@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.Common", "..\..\Xbim.Common\Xbim.Common.csproj", "{6745F5AC-AF3C-4372-81AA-A75E7B1FA03B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.Common", "Xbim.Common\Xbim.Common.csproj", "{6745F5AC-AF3C-4372-81AA-A75E7B1FA03B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.Ifc2x3", "..\..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj", "{5D4C907D-1293-4E5F-9642-D0862AE4741C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.Ifc2x3", "Xbim.Ifc2x3\Xbim.Ifc2x3.csproj", "{5D4C907D-1293-4E5F-9642-D0862AE4741C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.Ifc2x3.Extensions", "..\..\Xbim.Ifc.Extensions\Xbim.Ifc2x3.Extensions.csproj", "{6DF47D23-8F4D-4069-A44B-BBDACD3F9AEA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.Ifc2x3.Extensions", "Xbim.Ifc.Extensions\Xbim.Ifc2x3.Extensions.csproj", "{6DF47D23-8F4D-4069-A44B-BBDACD3F9AEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.IO", "..\..\Xbim.IO\Xbim.IO.csproj", "{85856DF2-C8AB-4120-8A8D-AE05D2696B51}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.IO", "Xbim.IO\Xbim.IO.csproj", "{85856DF2-C8AB-4120-8A8D-AE05D2696B51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
