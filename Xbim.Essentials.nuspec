@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>xBIM Essentials</id>
+    <id>xBIM.Essentials</id>
     <version>3.0.0-Prerelease</version>
     <authors>xBIM team</authors>
     <owners>Steve Lockley</owners>
