@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Xbim.Ifc2x3.TopologyResource.Vertex" Collapsed="true">
+    <Position X="3.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TopologyResource\Vertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.TopologicalRepresentationItem" Collapsed="true">
+    <Position X="15" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TopologyResource\TopologicalRepresentationItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometryResource.RepresentationItem" Collapsed="true">
+    <Position X="15" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>GeometryResource\RepresentationItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.VertexPoint" Collapsed="true">
+    <Position X="3.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>TopologyResource\VertexPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.Loop" Collapsed="true">
+    <Position X="8.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TopologyResource\Loop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.PolyLoop" Collapsed="true">
+    <Position X="6" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAACA=</HashCode>
+      <FileName>TopologyResource\PolyLoop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.VertexLoop" Collapsed="true">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TopologyResource\VertexLoop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.EdgeLoop" Collapsed="true">
+    <Position X="10.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>TopologyResource\EdgeLoop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.Edge" Collapsed="true">
+    <Position X="15" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAABAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>TopologyResource\Edge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.OrientedEdge" Collapsed="true">
+    <Position X="12.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAARAAIAAAAAAAAAAAAIQAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>TopologyResource\OrientedEdge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.EdgeCurve" Collapsed="true">
+    <Position X="15" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAABAAAAAAAAAAACAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>TopologyResource\EdgeCurve.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.Subedge" Collapsed="true">
+    <Position X="17.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>TopologyResource\Subedge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.Face" Collapsed="true">
+    <Position X="19.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>TopologyResource\Face.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.FaceBound" Collapsed="true">
+    <Position X="21.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>TopologyResource\FaceBound.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.FaceOuterBound" Collapsed="true">
+    <Position X="21.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TopologyResource\FaceOuterBound.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.ConnectedFaceSet" Collapsed="true">
+    <Position X="25.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TopologyResource\ConnectedFaceSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.ClosedShell" Collapsed="true">
+    <Position X="24" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TopologyResource\ClosedShell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.OpenShell" Collapsed="true">
+    <Position X="26.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TopologyResource\OpenShell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.FaceSurface" Collapsed="true">
+    <Position X="19.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAGEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TopologyResource\FaceSurface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.TopologyResource.Shell" Collapsed="true">
+    <Position X="25.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TopologyResource\Shell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

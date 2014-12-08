@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.GeometricSet" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\GeometricSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometryResource.GeometricRepresentationItem" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeometryResource\GeometricRepresentationItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometryResource.RepresentationItem" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>GeometryResource\RepresentationItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.GeometricCurveSet" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\GeometricCurveSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.BooleanClippingResult" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\BooleanClippingResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.BooleanResult" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAgAAAAgAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>GeometricModelResource\BooleanResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.SolidModel" Collapsed="true">
+    <Position X="10.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\SolidModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.ManifoldSolidBrep" Collapsed="true">
+    <Position X="9" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\ManifoldSolidBrep.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.FacetedBrep" Collapsed="true">
+    <Position X="7.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\FacetedBrep.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.FacetedBrepWithVoids" Collapsed="true">
+    <Position X="10" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\FacetedBrepWithVoids.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.BoundingBox" Collapsed="true">
+    <Position X="15.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAkAAAACAAgAAAAAAACCAAIAQAABAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\BoundingBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.SweptAreaSolid" Collapsed="true">
+    <Position X="12.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\SweptAreaSolid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.ExtrudedAreaSolid" Collapsed="true">
+    <Position X="12.75" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\ExtrudedAreaSolid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.HalfSpaceSolid" Collapsed="true">
+    <Position X="19" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAIAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\HalfSpaceSolid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.BoxedHalfSpace" Collapsed="true">
+    <Position X="17.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\BoxedHalfSpace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.PolygonalBoundedHalfSpace" Collapsed="true">
+    <Position X="19.75" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\PolygonalBoundedHalfSpace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.GeometricModelResource.ShellBasedSurfaceModel" Collapsed="true">
+    <Position X="5" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\ShellBasedSurfaceModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Xbim.Ifc2x3.GeometricModelResource.BooleanOperator" Collapsed="true">
+    <Position X="24.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAABAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\BooleanOperator.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Xbim.Ifc2x3.GeometricModelResource.BooleanOperand" Collapsed="true">
+    <Position X="23" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAEAgAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeometricModelResource\BooleanOperand.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

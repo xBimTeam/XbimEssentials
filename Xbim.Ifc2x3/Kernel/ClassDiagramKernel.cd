@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcPropertyDefinition">
+    <Position X="0.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcPropertyDefinition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelAssociates" Collapsed="true">
+    <Position X="5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAACAAAAAAAAAAAgAAAAAAAAAABAA=</HashCode>
+      <FileName>Kernel\IfcRelAssociates.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcObjectDefinition" Collapsed="true">
+    <Position X="42" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAADAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcObjectDefinition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelDecomposes" Collapsed="true">
+    <Position X="10.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAACAAAEBAAAAAAgAAAAAAAAAABAA=</HashCode>
+      <FileName>Kernel\IfcRelDecomposes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelDefines" Collapsed="true">
+    <Position X="28.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Kernel\IfcRelDefines.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelDefinesByProperties">
+    <Position X="27.5" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAIAAAAAAAAAAggAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcRelDefinesByProperties.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcPropertySetDefinition">
+    <Position X="0.5" Y="8.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcPropertySetDefinition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcTypeObject" Collapsed="true">
+    <Position X="34.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAABAAAAAAQAAAAAAAAAAABAAAAwAAAAQBAAEAAAA=</HashCode>
+      <FileName>Kernel\IfcTypeObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelDefinesByType">
+    <Position X="29.75" Y="7.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAgEAAAAAAAAACAA=</HashCode>
+      <FileName>Kernel\IfcRelDefinesByType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcTypeProduct" Collapsed="true">
+    <Position X="34.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAABAEAAgAAAAAAAAAAAAAAgAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcTypeProduct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcControl" Collapsed="true">
+    <Position X="45.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelAssignsToControl" Collapsed="true">
+    <Position X="16.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAIAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcRelAssignsToControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcGroup" Collapsed="true">
+    <Position X="47.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelAssignsToGroup" Collapsed="true">
+    <Position X="20.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAgAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcRelAssignsToGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcProcess" Collapsed="true">
+    <Position X="41" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAABAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcProcess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelSequence" Collapsed="true">
+    <Position X="32.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAACAIAACAAAAAEBABABgAAAAIAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcRelSequence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelAssignsToProcess" Collapsed="true">
+    <Position X="25.25" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAEAABAIwAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcRelAssignsToProcess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcProduct" Collapsed="true">
+    <Position X="38.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAABAAAAAkABgAAAAAgAAAA=</HashCode>
+      <FileName>Kernel\IfcProduct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcProxy" Collapsed="true">
+    <Position X="38.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABEAAAgAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcProxy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcProject" Collapsed="true">
+    <Position X="43.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAEAAAAEAAAAFAAAADAAAgACAAAAAEAABAA=</HashCode>
+      <FileName>Kernel\IfcProject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcPropertySet">
+    <Position X="0.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAIAAAAAAAAAAAAAAAAAAAAAAAAhAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcPropertySet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelAssignsToProduct" Collapsed="true">
+    <Position X="23" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Kernel\IfcRelAssignsToProduct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelAggregates">
+    <Position X="9.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcRelAggregates.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelAssignsToResource" Collapsed="true">
+    <Position X="18.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Kernel\IfcRelAssignsToResource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelAssociatesClassification" Collapsed="true">
+    <Position X="2.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Kernel\IfcRelAssociatesClassification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelAssociatesDocument" Collapsed="true">
+    <Position X="5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAQAAAAAAAAAAAACAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcRelAssociatesDocument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelAssociatesLibrary" Collapsed="true">
+    <Position X="7.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAgAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcRelAssociatesLibrary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelOverridesProperties">
+    <Position X="27.5" Y="10.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAIAA=</HashCode>
+      <FileName>Kernel\IfcRelOverridesProperties.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcResource" Collapsed="true">
+    <Position X="36.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcResource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcObject" Collapsed="true">
+    <Position X="43.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAECAAAAAAAAAAIAAAgAAAIAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.RelConnects" Collapsed="true">
+    <Position X="32" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\RelConnects.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelAssigns" Collapsed="true">
+    <Position X="19.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAABAAAAAAAAAAAACAAAAAAAgAAAgAAAAAAAAAAFAA=</HashCode>
+      <FileName>Kernel\IfcRelAssigns.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelAssignsToActor" Collapsed="true">
+    <Position X="14" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CEAAAIAAAAAAAAAAAAAAAAAAAAAAAgBAAAAQAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcRelAssignsToActor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRelNests" Collapsed="true">
+    <Position X="11.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcRelNests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.Relationship" Collapsed="true">
+    <Position X="17.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\Relationship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcActor" Collapsed="true">
+    <Position X="50" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAABAAAAAAAgAAAAAAAAAAAAgAAAAIAAIAAA=</HashCode>
+      <FileName>Kernel\IfcActor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.Root">
+    <Position X="25.25" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AGAAIAAABAQgABAEAAAAAAQBgAAAAgAAAAAACAQAAAA=</HashCode>
+      <FileName>Kernel\Root.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Xbim.Ifc2x3.Kernel.IfcRoot" Collapsed="true">
+    <Position X="40.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AGAAIEEABAQgAJAEggAAAAQLgAAAAoAAAAAACAQAAiA=</HashCode>
+      <FileName>Kernel\IfcRoot.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="Xbim.Ifc2x3.Kernel.IfcSequenceEnum" Collapsed="true">
+    <Position X="54.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAEAAAAAAAAAgAAAAAAAEAEAAAAAAAAAAA=</HashCode>
+      <FileName>Kernel\IfcSequenceEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

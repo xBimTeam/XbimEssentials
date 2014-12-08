@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Xbim.IfcLib.CostResource.AppliedValue" Collapsed="true">
+    <Position X="1.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAwCAAAAAAAAAQACAAAAAAAAACiAAIAAAA=</HashCode>
+      <FileName>CostResource\AppliedValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.IfcLib.CostResource.AppliedValueSelect" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>CostResource\AppliedValueSelect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.IfcLib.CostResource.AppliedValueRelationship" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAwAIAAAAAAAAQAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>CostResource\AppliedValueRelationship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.IfcLib.CostResource.CostValue" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>CostResource\CostValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.IfcLib.CostResource.CurrencyRelationship" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAGAAAAAAAAAAQAAIAAAAAAAA=</HashCode>
+      <FileName>CostResource\CurrencyRelationship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.IfcLib.CostResource.EnvironmentalImpactValue" Collapsed="true">
+    <Position X="2.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>CostResource\EnvironmentalImpactValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.IfcLib.CostResource.ReferencesValueDocument" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>CostResource\ReferencesValueDocument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Xbim.IfcLib.CostResource.ArithmeticOperatorEnum" Collapsed="true">
+    <Position X="5.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAACAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>CostResource\ArithmeticOperatorEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Xbim.IfcLib.CostResource.EnvironmentalImpactCategoryEnum" Collapsed="true">
+    <Position X="7" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAECAIAAAAAAAAAAACAgAAAAQAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>CostResource\EnvironmentalImpactCategoryEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

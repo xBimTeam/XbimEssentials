@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Xbim.Ifc2x3.TimeSeriesResource.TimeSeries" Collapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACgAAAAIAAAAAQAIAAgAAAAAAEAAAAAACA=</HashCode>
+      <FileName>TimeSeriesResource\TimeSeries.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Xbim.Ifc2x3.TimeSeriesResource.TimeSeriesDataTypeEnum" Collapsed="true">
+    <Position X="8.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAgAACCAAAAEAAAYAAAAAAAA=</HashCode>
+      <FileName>TimeSeriesResource\TimeSeriesDataTypeEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Xbim.Ifc2x3.TimeSeriesResource.DataOriginEnum" Collapsed="true">
+    <Position X="11.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIEAAAAAAAEAAAAAAAAgAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>TimeSeriesResource\DataOriginEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-infoPathSolution solutionVersion="1.0.0.2" PIVersion="1.0.0.0" href="file:///C:\Users\mxfm2\Desktop\ClassificationGroups.xsn" name="urn:schemas-microsoft-com:office:infopath:ClassificationGroups:-myXSD-2012-02-06T13-22-36" productVersion="14.0.0" ?>
+<?mso-application progid="InfoPath.Document" versionProgid="InfoPath.Document.2"?>
+<my:GroupsDefinitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:my="http://schemas.microsoft.com/office/infopath/2003/myXSD/2012-02-06T13:22:36" xmlns:xd="http://schemas.microsoft.com/office/infopath/2003" xml:lang="en-gb">
+	<my:groups my:classificationName="NRM">
+		<my:group my:name="Substructure" my:classification="01">
+			<my:group my:name="Foundations" my:classification="01.01">
+			</my:group>
+			<my:group my:name="Basement Excavation" my:classification="01.02">
+			</my:group>
+			<my:group my:name="Basement Retaining Walls" my:classification="01.03">
+			</my:group>
+			<my:group my:name="Ground Floor Construction" my:classification="01.04">
+			</my:group>
+		</my:group>
+		<my:group my:name="Superstructure" my:classification="02">
+			<my:group my:name="Frame" my:classification="02.01">
+				<my:group my:name="Steel Frames" my:classification="02.01.01">
+				</my:group>
+				<my:group my:name="Space Frames/Decks" my:classification="02.01.02">
+				</my:group>
+				<my:group my:name="Concrete Casings to Steel Frames" my:classification="02.01.03">
+				</my:group>
+				<my:group my:name="Concrete Frames" my:classification="02.01.04">
+				</my:group>
+				<my:group my:name="Timber Frames" my:classification="02.01.05">
+				</my:group>
+				<my:group my:name="Specialist Frames" my:classification="02.01.06">
+				</my:group>
+			</my:group>
+			<my:group my:name="Upper Floors" my:classification="02.02">
+			</my:group>
+			<my:group my:name="Roof" my:classification="02.03">
+			</my:group>
+			<my:group my:name="Stairs and Ramps" my:classification="02.04">
+			</my:group>
+			<my:group my:name="External Walls" my:classification="02.05">
+				<my:group my:name="External walls above ground floor" my:classification="02.05.01">
+				</my:group>
+				<my:group my:name="External Walls below ground level" my:classification="02.05.02">
+				</my:group>
+				<my:group my:name="Solar/Rainscreen Cladding" my:classification="02.05.03">
+				</my:group>
+				<my:group my:name="External Soffits" my:classification="02.05.04">
+				</my:group>
+				<my:group my:name="Subsidiary Walls, balustrades, handrails, railings and propriety balconies" my:classification="02.05.05">
+				</my:group>
+				<my:group my:name="Façade access/cleaning systems" my:classification="02.05.06">
+				</my:group>
+			</my:group>
+			<my:group my:name="Windows and External Doors" my:classification="02.06">
+			</my:group>
+			<my:group my:name="Internal Walls and Partitions" my:classification="02.07">
+			</my:group>
+			<my:group my:name="Internal Doors" my:classification="02.08">
+			</my:group>
+		</my:group>
+		<my:group my:name="Internal finishes" my:classification="03">
+			<my:group my:name="Wall finishes" my:classification="03.01">
+			</my:group>
+			<my:group my:name="Floor finishes" my:classification="03.02">
+			</my:group>
+			<my:group my:name="Ceiling finishes" my:classification="03.03">
+			</my:group>
+		</my:group>
+		<my:group my:name="Fittings, furnishing and equipment" my:classification="04">
+			<my:group my:name="General fittings, furnishings and equipment" my:classification="04.01">
+			</my:group>
+			<my:group my:name="Special fittings, furnishings and equipment" my:classification="04.02">
+			</my:group>
+			<my:group my:name="Internal planting" my:classification="04.03">
+			</my:group>
+			<my:group my:name="Bird and vermin control" my:classification="04.04">
+			</my:group>
+		</my:group>
+		<my:group my:name="Services" my:classification="05">
+			<my:group my:name="Sanitary appliances" my:classification="05.01">
+			</my:group>
+			<my:group my:name="Services equipment" my:classification="05.02">
+			</my:group>
+			<my:group my:name="Disposal installations" my:classification="05.03">
+			</my:group>
+			<my:group my:name="Mains water supply" my:classification="05.04">
+			</my:group>
+			<my:group my:name="Heat source" my:classification="05.05">
+			</my:group>
+			<my:group my:name="Space heating and air conditioning" my:classification="05.06">
+			</my:group>
+			<my:group my:name="Ventilation systems" my:classification="05.07">
+			</my:group>
+			<my:group my:name="Electrical installations" my:classification="05.08">
+			</my:group>
+			<my:group my:name="Gas and other fuel installations" my:classification="05.09">
+			</my:group>
+			<my:group my:name="Lift and conveyor installations" my:classification="05.10">
+			</my:group>
+			<my:group my:name="Fire and lightning protection" my:classification="05.11">
+			</my:group>
+			<my:group my:name="Communication, security and control systems" my:classification="05.12">
+			</my:group>
+			<my:group my:name="Specialist installations" my:classification="05.13">
+			</my:group>
+			<my:group my:name="Builder's work in connection with services" my:classification="05.14">
+			</my:group>
+			<my:group my:name="Testing and commissioning of services" my:classification="05.15">
+			</my:group>
+		</my:group>
+	</my:groups>
+</my:GroupsDefinitions>

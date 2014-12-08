@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Xbim.Ifc2x3.DateTimeResource.YearNumber" Collapsed="true">
+    <Position X="3.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAgAAAAAAAAAAAAIAAAABAAAAAAiA=</HashCode>
+      <FileName>DateTimeResource\YearNumber.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.DateTimeResource.DayInMonthNumber" Collapsed="true">
+    <Position X="7" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAgAAAAAAAAAAAAIAAAABAAAAAAiA=</HashCode>
+      <FileName>DateTimeResource\DayInMonthNumber.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.DateTimeResource.DaylightSavingHour" Collapsed="true">
+    <Position X="1.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAgAAAAAAAAAAAAIAAAABAAAAAAiA=</HashCode>
+      <FileName>DateTimeResource\DaylightSavingHour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.DateTimeResource.MinuteInHour" Collapsed="true">
+    <Position X="5.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAgAAAAAAAAAAAAIAAAAAAAAAIAiA=</HashCode>
+      <FileName>DateTimeResource\MinuteInHour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.DateTimeResource.MonthInYearNumber" Collapsed="true">
+    <Position X="7" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAgAAAAAAAAAAAAIAAAABAAAAAAiA=</HashCode>
+      <FileName>DateTimeResource\MonthInYearNumber.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.DateTimeResource.SecondInMinute" Collapsed="true">
+    <Position X="1.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAgAAAAAAAAAAAAIAAAABAAAAAAiA=</HashCode>
+      <FileName>DateTimeResource\SecondInMinute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.DateTimeResource.CalendarDate" Collapsed="true">
+    <Position X="1.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgACAAAAAAAAAAAAAAAAAAAAACAAAEA=</HashCode>
+      <FileName>DateTimeResource\CalendarDate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.DateTimeResource.CoordinatedUniversalTimeOffset" Collapsed="true">
+    <Position X="3.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAASAAAAAA=</HashCode>
+      <FileName>DateTimeResource\CoordinatedUniversalTimeOffset.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.DateTimeResource.DateAndTime" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAg=</HashCode>
+      <FileName>DateTimeResource\DateAndTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.DateTimeResource.LocalTime">
+    <Position X="3.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAADACAAAAAAAAABACAAAgAAAAAAA=</HashCode>
+      <FileName>DateTimeResource\LocalTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.DateTimeResource.DateTimeSelect">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>DateTimeResource\DateTimeSelect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Xbim.Ifc2x3.DateTimeResource.AheadOrBehind" Collapsed="true">
+    <Position X="1.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>DateTimeResource\AheadOrBehind.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

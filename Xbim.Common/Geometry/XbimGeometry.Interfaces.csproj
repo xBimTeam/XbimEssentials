@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F7FBCA9E-DB46-4D09-AA46-402B1CEF4878}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XbimGeometry.Interfaces</RootNamespace>
+    <AssemblyName>XbimGeometry.Interfaces</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Xbim.Common, Version=2.4.1.28, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\Steve\XbimNewGeometry\Xbim.ModelGeometry\packages\Xbim.2.4.13\lib\net40\Xbim.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IXbimBooleanOperand.cs" />
+    <Compile Include="IXbimCurve.cs" />
+    <Compile Include="IXbimCurveSet.cs" />
+    <Compile Include="IXbimEdge.cs" />
+    <Compile Include="IXbimEdgeSet.cs" />
+    <Compile Include="IXbimFace.cs" />
+    <Compile Include="IXbimFaceSet.cs" />
+    <Compile Include="IXbimGeometryObject.cs" />
+    <Compile Include="IXbimGeometryObjectSet.cs" />
+    <Compile Include="IXbimMesh.cs" />
+    <Compile Include="IXbimMeshSet.cs" />
+    <Compile Include="IXbimShellSet.cs" />
+    <Compile Include="IXbimSolidSet.cs" />
+    <Compile Include="IXbimSpatialObject.cs" />
+    <Compile Include="IXbimVertexSet.cs" />
+    <Compile Include="IXbimWire.cs" />
+    <Compile Include="IXbimOrientedEdge.cs" />
+    <Compile Include="IXbimPoint.cs" />
+    <Compile Include="IXbimShell.cs" />
+    <Compile Include="IXbimSolid.cs" />
+    <Compile Include="IXbimVertex.cs" />
+    <Compile Include="IXbimWireSet.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XbimGeometryObjectType.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

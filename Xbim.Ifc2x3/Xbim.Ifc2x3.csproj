@@ -1,0 +1,1108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5D4C907D-1293-4E5F-9642-D0862AE4741C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xbim.Ifc2x3</RootNamespace>
+    <AssemblyName>Xbim.Ifc2x3</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>XbimIfcKey.pfx</AssemblyOriginatorKeyFile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <DelaySign>false</DelaySign>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SupportActivation</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;SupportActivation</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="ActorResource\IfcAddress.cs" />
+    <Compile Include="ActorResource\IfcOrganizationRelationship.cs" />
+    <Compile Include="ActorResource\IfcAddressType.cs" />
+    <Compile Include="ApprovalResource\IfcApproval.cs" />
+    <Compile Include="ApprovalResource\IfcApprovalActorRelationship.cs" />
+    <Compile Include="ApprovalResource\IfcApprovalPropertyRelationship.cs" />
+    <Compile Include="ApprovalResource\IfcApprovalRelationship.cs" />
+    <Compile Include="ApprovalResource\IfcResourceApprovalRelationship.cs" />
+    <Compile Include="ArchitectureDomain\IfcPermeableCoveringOperationEnum.cs" />
+    <Compile Include="ArchitectureDomain\IfcPermeableCoveringProperties.cs" />
+    <Compile Include="ArchitectureDomain\IfcRelInteractionRequirements.cs" />
+    <Compile Include="ArchitectureDomain\IfcSpaceProgram.cs" />
+    <Compile Include="BuildingControlsDomain\IfcActuatorType.cs" />
+    <Compile Include="BuildingControlsDomain\IfcActuatorTypeEnum.cs" />
+    <Compile Include="BuildingControlsDomain\IfcAlarmType.cs" />
+    <Compile Include="BuildingControlsDomain\IfcAlarmTypeEnum.cs" />
+    <Compile Include="BuildingControlsDomain\IfcControllerType.cs" />
+    <Compile Include="BuildingControlsDomain\IfcControllerTypeEnum.cs" />
+    <Compile Include="BuildingControlsDomain\IfcFlowInstrumentType.cs" />
+    <Compile Include="BuildingControlsDomain\IfcFlowInstrumentTypeEnum.cs" />
+    <Compile Include="BuildingControlsDomain\IfcSensorType.cs" />
+    <Compile Include="BuildingControlsDomain\IfcSensorTypeEnum.cs" />
+    <Compile Include="ConstraintResource\IfcBenchmarkEnum.cs" />
+    <Compile Include="ConstraintResource\IfcConstraint.cs" />
+    <Compile Include="ConstraintResource\IfcConstraintAggregationRelationship.cs" />
+    <Compile Include="ConstraintResource\IfcConstraintClassificationRelationship.cs" />
+    <Compile Include="ConstraintResource\IfcConstraintEnum.cs" />
+    <Compile Include="ConstraintResource\IfcConstraintRelationship.cs" />
+    <Compile Include="ConstraintResource\IfcLogicalOperatorEnum.cs" />
+    <Compile Include="ConstraintResource\IfcMetric.cs" />
+    <Compile Include="ConstraintResource\IfcObjective.cs" />
+    <Compile Include="ConstraintResource\IfcObjectiveEnum.cs" />
+    <Compile Include="ConstraintResource\IfcPropertyConstraintRelationship.cs" />
+    <Compile Include="ConstructionMgmtDomain\IfcConstructionEquipmentResource.cs" />
+    <Compile Include="ConstructionMgmtDomain\IfcConstructionMaterialResource.cs" />
+    <Compile Include="ConstructionMgmtDomain\IfcConstructionProductResource.cs" />
+    <Compile Include="ConstructionMgmtDomain\IfcConstructionResource.cs" />
+    <Compile Include="ConstructionMgmtDomain\IfcCrewResource.cs" />
+    <Compile Include="ConstructionMgmtDomain\IfcLaborResource.cs" />
+    <Compile Include="ConstructionMgmtDomain\IfcResourceConsumptionEnum.cs" />
+    <Compile Include="ConstructionMgmtDomain\IfcSubContractResource.cs" />
+    <Compile Include="ControlExtension\IfcPerformanceHistory.cs" />
+    <Compile Include="ControlExtension\IfcRelAssociatesApproval.cs" />
+    <Compile Include="ControlExtension\IfcRelAssociatesConstraint.cs" />
+    <Compile Include="ControlExtension\IfcTimeSeriesSchedule.cs" />
+    <Compile Include="ControlExtension\IfcTimeSeriesScheduleTypeEnum.cs" />
+    <Compile Include="CostResource\IfcAppliedValue.cs" />
+    <Compile Include="CostResource\IfcAppliedValueRelationship.cs" />
+    <Compile Include="CostResource\IfcArithmeticOperatorEnum.cs" />
+    <Compile Include="CostResource\IfcCostValue.cs" />
+    <Compile Include="CostResource\IfcCurrencyRelationship.cs" />
+    <Compile Include="CostResource\IfcEnvironmentalImpactCategoryEnum.cs" />
+    <Compile Include="CostResource\IfcEnvironmentalImpactValue.cs" />
+    <Compile Include="CostResource\IfcReferencesValueDocument.cs" />
+    <Compile Include="DateTimeResource\IfcAheadOrBehind.cs" />
+    <Compile Include="DateTimeResource\IfcCalendarDate.cs" />
+    <Compile Include="DateTimeResource\IfcCoordinatedUniversalTimeOffset.cs" />
+    <Compile Include="DateTimeResource\IfcDateAndTime.cs" />
+    <Compile Include="DateTimeResource\IfcDayInMonthNumber.cs" />
+    <Compile Include="DateTimeResource\IfcDaylightSavingHour.cs" />
+    <Compile Include="DateTimeResource\IfcHourInDay.cs" />
+    <Compile Include="DateTimeResource\IfcLocalTime.cs" />
+    <Compile Include="DateTimeResource\IfcMinuteInHour.cs" />
+    <Compile Include="DateTimeResource\IfcMonthInYearNumber.cs" />
+    <Compile Include="DateTimeResource\IfcSecondInMinute.cs" />
+    <Compile Include="ElectricalDomain\IfcCableSegmentType.cs" />
+    <Compile Include="ElectricalDomain\IfcCableCarrierFittingType.cs" />
+    <Compile Include="ElectricalDomain\IfcCableCarrierFittingTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcCableCarrierSegmentType.cs" />
+    <Compile Include="ElectricalDomain\IfcCableCarrierSegmentTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcCableSegmentTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricalCircuit.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricApplianceType.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricApplianceTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricDistributionPoint.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricDistributionPointFunctionEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricFlowStorageDeviceType.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricFlowStorageDeviceTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricGeneratorType.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricGeneratorTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricHeaterType.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricHeaterTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricMotorType.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricMotorTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricTimeControlType.cs" />
+    <Compile Include="ElectricalDomain\IfcElectricTimeControlTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcJunctionBoxType.cs" />
+    <Compile Include="ElectricalDomain\IfcJunctionBoxTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcLampType.cs" />
+    <Compile Include="ElectricalDomain\IfcLampTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcLightFixtureType.cs" />
+    <Compile Include="ElectricalDomain\IfcLightFixtureTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcMotorConnectionType.cs" />
+    <Compile Include="ElectricalDomain\IfcMotorConnectionTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcOutletType.cs" />
+    <Compile Include="ElectricalDomain\IfcOutletTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcProtectiveDeviceType.cs" />
+    <Compile Include="ElectricalDomain\IfcProtectiveDeviceTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcSwitchingDeviceType.cs" />
+    <Compile Include="ElectricalDomain\IfcSwitchingDeviceTypeEnum.cs" />
+    <Compile Include="ElectricalDomain\IfcTransformerType.cs" />
+    <Compile Include="ElectricalDomain\IfcTransformerTypeEnum.cs" />
+    <Compile Include="FacilitiesMgmtDomain\IfcActionRequest.cs" />
+    <Compile Include="FacilitiesMgmtDomain\IfcCondition.cs" />
+    <Compile Include="FacilitiesMgmtDomain\IfcConditionCriterion.cs" />
+    <Compile Include="FacilitiesMgmtDomain\IfcEquipmentStandard.cs" />
+    <Compile Include="FacilitiesMgmtDomain\IfcFurnitureStandard.cs" />
+    <Compile Include="FacilitiesMgmtDomain\IfcMove.cs" />
+    <Compile Include="FacilitiesMgmtDomain\IfcOrderAction.cs" />
+    <Compile Include="FacilitiesMgmtDomain\IfcPermit.cs" />
+    <Compile Include="GeometricConstraintResource\IfcConnectionCurveGeometry.cs" />
+    <Compile Include="GeometricConstraintResource\IfcConnectionGeometry.cs" />
+    <Compile Include="GeometricConstraintResource\IfcConnectionPointEccentricity.cs" />
+    <Compile Include="GeometricConstraintResource\IfcConnectionPointGeometry.cs" />
+    <Compile Include="GeometricConstraintResource\IfcConnectionPortGeometry.cs" />
+    <Compile Include="GeometricConstraintResource\IfcConnectionSurfaceGeometry.cs" />
+    <Compile Include="GeometricConstraintResource\IfcGridAxis.cs" />
+    <Compile Include="GeometricConstraintResource\IfcGridPlacement.cs" />
+    <Compile Include="GeometricConstraintResource\IfcLocalPlacement.cs" />
+    <Compile Include="GeometricConstraintResource\IfcObjectPlacement.cs" />
+    <Compile Include="GeometricConstraintResource\IfcVirtualGridIntersection.cs" />
+    <Compile Include="GeometricModelResource\IfcBlock.cs" />
+    <Compile Include="GeometricModelResource\IfcBooleanClippingResult.cs" />
+    <Compile Include="GeometricModelResource\IfcBooleanOperator.cs" />
+    <Compile Include="GeometricModelResource\IfcBooleanResult.cs" />
+    <Compile Include="GeometricModelResource\IfcBoundingBox.cs" />
+    <Compile Include="GeometricModelResource\IfcBoxedHalfSpace.cs" />
+    <Compile Include="GeometricModelResource\IfcCsgPrimitive3D.cs" />
+    <Compile Include="GeometricModelResource\IfcCsgSolid.cs" />
+    <Compile Include="GeometricModelResource\IfcExtrudedAreaSolid.cs" />
+    <Compile Include="GeometricModelResource\IfcFaceBasedSurfaceModel.cs" />
+    <Compile Include="GeometricModelResource\IfcFacetedBrep.cs" />
+    <Compile Include="GeometricModelResource\IfcFacetedBrepWithVoids.cs" />
+    <Compile Include="GeometricModelResource\IfcGeometricCurveSet.cs" />
+    <Compile Include="GeometricModelResource\IfcGeometricSet.cs" />
+    <Compile Include="GeometricModelResource\IfcHalfSpaceSolid.cs" />
+    <Compile Include="GeometricModelResource\IfcManifoldSolidBrep.cs" />
+    <Compile Include="GeometricModelResource\IfcPolygonalBoundedHalfSpace.cs" />
+    <Compile Include="GeometricModelResource\IfcRectangularPyramid.cs" />
+    <Compile Include="GeometricModelResource\IfcRevolvedAreaSolid.cs" />
+    <Compile Include="GeometricModelResource\IfcRightCircularCone.cs" />
+    <Compile Include="GeometricModelResource\IfcRightCircularCylinder.cs" />
+    <Compile Include="GeometricModelResource\IfcSectionedSpine.cs" />
+    <Compile Include="GeometricModelResource\IfcShellBasedSurfaceModel.cs" />
+    <Compile Include="GeometricModelResource\IfcSolidModel.cs" />
+    <Compile Include="GeometricModelResource\IfcSphere.cs" />
+    <Compile Include="GeometricModelResource\IfcSurfaceCurveSweptAreaSolid.cs" />
+    <Compile Include="GeometricModelResource\IfcSweptAreaSolid.cs" />
+    <Compile Include="GeometricModelResource\IfcSweptDiskSolid.cs" />
+    <Compile Include="GeometryResource\IfcBoundedSurface.cs" />
+    <Compile Include="GeometryResource\IfcCartesianTransformationOperator.cs" />
+    <Compile Include="GeometryResource\IfcCartesianTransformationOperator2D.cs" />
+    <Compile Include="GeometryResource\IfcCartesianTransformationOperator2DnonUniform.cs" />
+    <Compile Include="GeometryResource\IfcCartesianTransformationOperator3D.cs" />
+    <Compile Include="GeometryResource\IfcCartesianTransformationOperator3DnonUniform.cs" />
+    <Compile Include="GeometryResource\IfcCircle.cs" />
+    <Compile Include="GeometryResource\IfcConic.cs" />
+    <Compile Include="GeometryResource\IfcCurveBoundedPlane.cs" />
+    <Compile Include="GeometryResource\IfcEllipse.cs" />
+    <Compile Include="GeometryResource\IfcLine.cs" />
+    <Compile Include="GeometryResource\IfcMappedItem.cs" />
+    <Compile Include="GeometryResource\IfcOffsetCurve2D.cs" />
+    <Compile Include="GeometryResource\IfcOffsetCurve3D.cs" />
+    <Compile Include="GeometryResource\IfcPointOnCurve.cs" />
+    <Compile Include="GeometryResource\IfcPointOnSurface.cs" />
+    <Compile Include="GeometryResource\IfcRationalBezierCurve.cs" />
+    <Compile Include="GeometryResource\IfcRectangularTrimmedSurface.cs" />
+    <Compile Include="GeometryResource\IfcTrimmedCurve.cs" />
+    <Compile Include="GeometryResource\IfcVector.cs" />
+    <Compile Include="GeometryResource\IIfcCartesianPoint.cs" />
+    <Compile Include="GeometryResource\IPlacement3D.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="HVACDomain\IfcAirTerminalBoxType.cs" />
+    <Compile Include="HVACDomain\IfcAirTerminalBoxTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcAirTerminalType.cs" />
+    <Compile Include="HVACDomain\IfcAirTerminalTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcAirToAirHeatRecoveryType.cs" />
+    <Compile Include="HVACDomain\IfcAirToAirHeatRecoveryTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcBoilerType.cs" />
+    <Compile Include="HVACDomain\IfcBoilerTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcChillerType.cs" />
+    <Compile Include="HVACDomain\IfcChillerTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcCoilType.cs" />
+    <Compile Include="HVACDomain\IfcCoilTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcCompressorType.cs" />
+    <Compile Include="HVACDomain\IfcCompressorTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcCondenserType.cs" />
+    <Compile Include="HVACDomain\IfcCondenserTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcCooledBeamType.cs" />
+    <Compile Include="HVACDomain\IfcCooledBeamTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcCoolingTowerType.cs" />
+    <Compile Include="HVACDomain\IfcCoolingTowerTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcDamperType.cs" />
+    <Compile Include="HVACDomain\IfcDamperTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcDuctFittingType.cs" />
+    <Compile Include="HVACDomain\IfcDuctFittingTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcDuctSegmentType.cs" />
+    <Compile Include="HVACDomain\IfcDuctSegmentTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcDuctSilencerType.cs" />
+    <Compile Include="HVACDomain\IfcDuctSilencerTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcEvaporativeCoolerType.cs" />
+    <Compile Include="HVACDomain\IfcEvaporativeCoolerTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcEvaporatorType.cs" />
+    <Compile Include="HVACDomain\IfcEvaporatorTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcFanType.cs" />
+    <Compile Include="HVACDomain\IfcFanTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcFilterType.cs" />
+    <Compile Include="HVACDomain\IfcFilterTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcFlowMeterType.cs" />
+    <Compile Include="HVACDomain\IfcFlowMeterTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcGasTerminalType.cs" />
+    <Compile Include="HVACDomain\IfcGasTerminalTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcHeatExchangerType.cs" />
+    <Compile Include="HVACDomain\IfcHeatExchangerTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcHumidifierType.cs" />
+    <Compile Include="HVACDomain\IfcHumidifierTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcPipeFittingType.cs" />
+    <Compile Include="HVACDomain\IfcPipeFittingTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcPipeSegmentType.cs" />
+    <Compile Include="HVACDomain\IfcPipeSegmentTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcPumpType.cs" />
+    <Compile Include="HVACDomain\IfcPumpTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcSpaceHeaterType.cs" />
+    <Compile Include="HVACDomain\IfcSpaceHeaterTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcTankType.cs" />
+    <Compile Include="HVACDomain\IfcTankTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcTubeBundleType.cs" />
+    <Compile Include="HVACDomain\IfcTubeBundleTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcUnitaryEquipmentType.cs" />
+    <Compile Include="HVACDomain\IfcVibrationIsolatorType.cs" />
+    <Compile Include="HVACDomain\IfcVibrationIsolatorTypeEnum.cs" />
+    <Compile Include="IfcEntityNameEnum.cs" />
+    <Compile Include="MaterialPropertyResource\IfcFuelProperties.cs" />
+    <Compile Include="MaterialPropertyResource\IfcGeneralMaterialProperties.cs" />
+    <Compile Include="MaterialPropertyResource\IfcHygroscopicMaterialProperties.cs" />
+    <Compile Include="MaterialPropertyResource\IfcMechanicalConcreteMaterialProperties.cs" />
+    <Compile Include="MaterialPropertyResource\IfcExtendedMaterialProperties.cs" />
+    <Compile Include="MaterialPropertyResource\IfcMaterialProperties.cs" />
+    <Compile Include="MaterialPropertyResource\IfcMechanicalMaterialProperties.cs" />
+    <Compile Include="MaterialPropertyResource\IfcMechanicalSteelMaterialProperties.cs" />
+    <Compile Include="MaterialPropertyResource\IfcOpticalMaterialProperties.cs" />
+    <Compile Include="MaterialPropertyResource\IfcProductsOfCombustionProperties.cs" />
+    <Compile Include="MaterialPropertyResource\IfcRelaxation.cs" />
+    <Compile Include="MaterialPropertyResource\IfcThermalMaterialProperties.cs" />
+    <Compile Include="MaterialPropertyResource\IfcWaterProperties.cs" />
+    <Compile Include="MeasureResource\IfcComplexNumber.cs" />
+    <Compile Include="MeasureResource\IfcElectricChargeMeasure.cs" />
+    <Compile Include="MeasureResource\IfcElectricConductanceMeasure.cs" />
+    <Compile Include="MeasureResource\IfcElectricResistanceMeasure.cs" />
+    <Compile Include="MeasureResource\IfcMonetaryUnit.cs" />
+    <Compile Include="MeasureResource\IfcNamedUnit.cs" />
+    <Compile Include="PlumbingFireProtectionDomain\IfcFireSuppressionTerminalType.cs" />
+    <Compile Include="PlumbingFireProtectionDomain\IfcFireSuppressionTerminalTypeEnum.cs" />
+    <Compile Include="PlumbingFireProtectionDomain\IfcSanitaryTerminalType.cs" />
+    <Compile Include="PlumbingFireProtectionDomain\IfcSanitaryTerminalTypeEnum.cs" />
+    <Compile Include="PlumbingFireProtectionDomain\IfcStackTerminalType.cs" />
+    <Compile Include="PlumbingFireProtectionDomain\IfcStackTerminalTypeEnum.cs" />
+    <Compile Include="PlumbingFireProtectionDomain\IfcWasteTerminalType.cs" />
+    <Compile Include="PlumbingFireProtectionDomain\IfcWasteTerminalTypeEnum.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcBlobTexture.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcExternallyDefinedHatchStyle.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcFillAreaStyleTiles.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcFillAreaStyleTileSymbolWithStyle.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcImageTexture.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcPixelTexture.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcPresentationStyleAssignment.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcSpecularRoughness.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcSymbolStyle.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcTextAlignment.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcTextDecoration.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcTextStyleTextModel.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcTextStyleWithBoxCharacteristics.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcTextTransformation.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcAnnotationCurveOccurrence.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcAnnotationFillAreaOccurrence.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcAnnotationSurface.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcAnnotationSurfaceOccurrence.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcAnnotationSymbolOccurrence.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcBoxAlignment.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcTextureCoordinate.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcTextureCoordinateGenerator.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcTextureMap.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcTextureVertex.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcVertexBasedTextureMap.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcAngularDimension.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcDiameterDimension.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcDimensionCalloutRelationship.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcDimensionCurve.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcDimensionCurveDirectedCallout.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcDimensionCurveTerminator.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcDimensionExtentUsage.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcDimensionPair.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcDraughtingCallout.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcDraughtingCalloutRelationship.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcLinearDimension.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcPreDefinedDimensionSymbol.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcPreDefinedPointMarkerSymbol.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcPreDefinedTerminatorSymbol.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcProjectionCurve.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcRadiusDimension.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcStructuredDimensionCallout.cs" />
+    <Compile Include="PresentationDimensioningResource\IfcTerminatorSymbol.cs" />
+    <Compile Include="PresentationOrganizationResource\IfcLightDistributionCurveEnum.cs" />
+    <Compile Include="PresentationOrganizationResource\IfcLightDistributionData.cs" />
+    <Compile Include="PresentationOrganizationResource\IfcLightEmissionSourceEnum.cs" />
+    <Compile Include="PresentationOrganizationResource\IfcLightIntensityDistribution.cs" />
+    <Compile Include="PresentationOrganizationResource\IfcLightSource.cs" />
+    <Compile Include="PresentationOrganizationResource\IfcLightSourceAmbient.cs" />
+    <Compile Include="PresentationOrganizationResource\IfcLightSourceDirectional.cs" />
+    <Compile Include="PresentationOrganizationResource\IfcLightSourceGoniometric.cs" />
+    <Compile Include="PresentationOrganizationResource\IfcLightSourcePositional.cs" />
+    <Compile Include="PresentationOrganizationResource\IfcLightSourceSpot.cs" />
+    <Compile Include="PresentationResource\IfcDraughtingPreDefinedTextFont.cs" />
+    <Compile Include="PresentationResource\IfcExternallyDefinedTextFont.cs" />
+    <Compile Include="PresentationResource\IfcFontStyle.cs" />
+    <Compile Include="PresentationResource\IfcFontVariant.cs" />
+    <Compile Include="PresentationResource\IfcFontWeight.cs" />
+    <Compile Include="PresentationResource\IfcPlanarBox.cs" />
+    <Compile Include="PresentationResource\IfcPresentableText.cs" />
+    <Compile Include="PresentationResource\IfcTextFontName.cs" />
+    <Compile Include="ProcessExtensions\IfcProcedure.cs" />
+    <Compile Include="ProcessExtensions\IfcRelAssignsTasks.cs" />
+    <Compile Include="ProcessExtensions\IfcScheduleTimeControl.cs" />
+    <Compile Include="ProcessExtensions\IfcTask.cs" />
+    <Compile Include="ProcessExtensions\IfcWorkControl.cs" />
+    <Compile Include="ProcessExtensions\IfcWorkControlTypeEnum.cs" />
+    <Compile Include="ProcessExtensions\IfcWorkPlan.cs" />
+    <Compile Include="ProcessExtensions\IfcWorkSchedule.cs" />
+    <Compile Include="ProcessExtension\IfcProcedureTypeEnum.cs" />
+    <Compile Include="ProductExtension\IfcElementType.cs" />
+    <Compile Include="ProductExtension\IfcTransportElementType.cs" />
+    <Compile Include="ProfilePropertyResource\IfcGeneralProfileProperties.cs" />
+    <Compile Include="ProfilePropertyResource\IfcProfileProperties.cs" />
+    <Compile Include="ProfilePropertyResource\IfcReinforcementBarProperties.cs" />
+    <Compile Include="ProfilePropertyResource\IfcReinforcingBarRoleEnum.cs" />
+    <Compile Include="ProfilePropertyResource\IfcReinforcingBarSurfaceEnum.cs" />
+    <Compile Include="ProfilePropertyResource\IfcRibPlateDirectionEnum.cs" />
+    <Compile Include="ProfilePropertyResource\IfcRibPlateProfileProperties.cs" />
+    <Compile Include="ProfilePropertyResource\IfcSectionProperties.cs" />
+    <Compile Include="ProfilePropertyResource\IfcSectionReinforcementProperties.cs" />
+    <Compile Include="ProfilePropertyResource\IfcSectionTypeEnum.cs" />
+    <Compile Include="ProfilePropertyResource\IfcStructuralProfileProperties.cs" />
+    <Compile Include="ProfilePropertyResource\IfcStructuralSteelProfileProperties.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcSoundProperties.cs" />
+    <Compile Include="MeasureResource\IfcAccelerationMeasure.cs" />
+    <Compile Include="MeasureResource\IfcAmountOfSubstanceMeasure.cs" />
+    <Compile Include="MeasureResource\IfcAngularVelocityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcContextDependentMeasure.cs" />
+    <Compile Include="MeasureResource\IfcCurvatureMeasure.cs" />
+    <Compile Include="MeasureResource\IfcDescriptiveMeasure.cs" />
+    <Compile Include="MeasureResource\IfcBoolean.cs" />
+    <Compile Include="MeasureResource\IfcDoseEquivalentMeasure.cs" />
+    <Compile Include="MeasureResource\IfcDynamicViscosityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcElectricCapacitanceMeasure.cs" />
+    <Compile Include="MeasureResource\IfcElectricCurrentMeasure.cs" />
+    <Compile Include="MeasureResource\IfcElectricVoltageMeasure.cs" />
+    <Compile Include="MeasureResource\IfcEnergyMeasure.cs" />
+    <Compile Include="MeasureResource\IfcForceMeasure.cs" />
+    <Compile Include="MeasureResource\IfcFrequencyMeasure.cs" />
+    <Compile Include="MeasureResource\IfcHeatFluxDensityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcHeatingValueMeasure.cs" />
+    <Compile Include="MeasureResource\IfcIdentifier.cs" />
+    <Compile Include="MeasureResource\IfcIlluminanceMeasure.cs" />
+    <Compile Include="MeasureResource\IfcInductanceMeasure.cs" />
+    <Compile Include="MeasureResource\IfcInteger.cs" />
+    <Compile Include="MeasureResource\IfcIntegerCountRateMeasure.cs" />
+    <Compile Include="MeasureResource\IfcIonConcentrationMeasure.cs" />
+    <Compile Include="MeasureResource\IfcIsothermalMoistureCapacityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcKinematicViscosityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcLabel.cs" />
+    <Compile Include="MeasureResource\IfcLinearForceMeasure.cs" />
+    <Compile Include="MeasureResource\IfcLinearMomentMeasure.cs" />
+    <Compile Include="MeasureResource\IfcLinearStiffnessMeasure.cs" />
+    <Compile Include="MeasureResource\IfcLinearVelocityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcLogical.cs" />
+    <Compile Include="MeasureResource\IfcLuminousFluxMeasure.cs" />
+    <Compile Include="MeasureResource\IfcLuminousIntensityDistributionMeasure.cs" />
+    <Compile Include="MeasureResource\IfcLuminousIntensityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcMagneticFluxDensityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcMagneticFluxMeasure.cs" />
+    <Compile Include="MeasureResource\IfcMassDensityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcMassFlowRateMeasure.cs" />
+    <Compile Include="MeasureResource\IfcMassPerLengthMeasure.cs" />
+    <Compile Include="MeasureResource\IfcModulusOfElasticityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcModulusOfLinearSubgradeReactionMeasure.cs" />
+    <Compile Include="MeasureResource\IfcModulusOfRotationalSubgradeReactionMeasure.cs" />
+    <Compile Include="MeasureResource\IfcModulusOfSubgradeReactionMeasure.cs" />
+    <Compile Include="MeasureResource\IfcMoistureDiffusivityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcMolecularWeightMeasure.cs" />
+    <Compile Include="MeasureResource\IfcMomentOfInertiaMeasure.cs" />
+    <Compile Include="MeasureResource\IfcNumericMeasure.cs" />
+    <Compile Include="MeasureResource\IfcParameterValue.cs" />
+    <Compile Include="MeasureResource\IfcPHMeasure.cs" />
+    <Compile Include="MeasureResource\IfcPlanarForceMeasure.cs" />
+    <Compile Include="MeasureResource\IfcPositivePlaneAngleMeasure.cs" />
+    <Compile Include="MeasureResource\IfcPowerMeasure.cs" />
+    <Compile Include="MeasureResource\IfcPressureMeasure.cs" />
+    <Compile Include="MeasureResource\IfcRadioActivityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcReal.cs" />
+    <Compile Include="MeasureResource\IfcRotationalFrequencyMeasure.cs" />
+    <Compile Include="MeasureResource\IfcRotationalMassMeasure.cs" />
+    <Compile Include="MeasureResource\IfcRotationalStiffnessMeasure.cs" />
+    <Compile Include="MeasureResource\IfcSectionalAreaIntegralMeasure.cs" />
+    <Compile Include="MeasureResource\IfcSectionModulusMeasure.cs" />
+    <Compile Include="MeasureResource\IfcShearModulusMeasure.cs" />
+    <Compile Include="MeasureResource\IfcSolidAngleMeasure.cs" />
+    <Compile Include="MeasureResource\IfcSoundPowerMeasure.cs" />
+    <Compile Include="MeasureResource\IfcSoundPressureMeasure.cs" />
+    <Compile Include="MeasureResource\IfcSpecificHeatCapacityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcTemperatureGradientMeasure.cs" />
+    <Compile Include="MeasureResource\IfcText.cs" />
+    <Compile Include="MeasureResource\IfcPlaneAngleMeasure.cs" />
+    <Compile Include="MeasureResource\IfcThermalAdmittanceMeasure.cs" />
+    <Compile Include="MeasureResource\IfcThermalConductivityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcThermalExpansionCoefficientMeasure.cs" />
+    <Compile Include="MeasureResource\IfcThermalResistanceMeasure.cs" />
+    <Compile Include="MeasureResource\IfcThermalTransmittanceMeasure.cs" />
+    <Compile Include="MeasureResource\IfcThermodynamicTemperatureMeasure.cs" />
+    <Compile Include="MeasureResource\SizeSelectConverter.cs" />
+    <Compile Include="MeasureResource\IfcTorqueMeasure.cs" />
+    <Compile Include="MeasureResource\IfcVaporPermeabilityMeasure.cs" />
+    <Compile Include="MeasureResource\IfcVolumetricFlowRateMeasure.cs" />
+    <Compile Include="MeasureResource\IfcWarpingConstantMeasure.cs" />
+    <Compile Include="MeasureResource\IfcWarpingMomentMeasure.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcReflectanceMethodEnum.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcSpecularExponent.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcTextStyle.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcTextStyleFontModel.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcTextStyleForDefinedFont.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcAnnotationOccurrence.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcAnnotationTextOccurrence.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcTextLiteralWithExtent.cs" />
+    <Compile Include="PresentationResource\IfcPlanarExtent.cs" />
+    <Compile Include="PresentationResource\IfcPreDefinedTextFont.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcDistributionChamberElement.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcDistributionChamberElementType.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcDistributionChamberElementTypeEnum.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcDistributionControlElement.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcDistributionControlElementType.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcDistributionFlowElement.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcDistributionFlowElementType.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcDistributionPort.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcElectricalBaseProperties.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcElectricCurrentEnum.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcEnergyConversionDevice.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcEnergyConversionDeviceType.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcEnergyProperties.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcEnergySequenceEnum.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowController.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowControllerType.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowDirectionEnum.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowFitting.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowFittingType.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowMovingDevice.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowMovingDeviceType.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowSegment.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowSegmentType.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowStorageDevice.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowStorageDeviceType.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowTerminal.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowTerminalType.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowTreatmentDevice.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFlowTreatmentDeviceType.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcFluidFlowProperties.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcPropertySourceEnum.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcRelFlowControlElements.cs" />
+    <Compile Include="HVACDomain\IfcUnitaryEquipmentTypeEnum.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcSoundScaleEnum.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcSoundValue.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcSpaceThermalLoadProperties.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcThermalLoadSourceEnum.cs" />
+    <Compile Include="SharedBldgServiceElements\IfcThermalLoadTypeEnum.cs" />
+    <Compile Include="HVACDomain\IfcValveType.cs" />
+    <Compile Include="HVACDomain\IfcValveTypeEnum.cs" />
+    <Compile Include="SharedComponentElements\IfcChamferEdgeFeature.cs" />
+    <Compile Include="SharedComponentElements\IfcDiscreteAccessory.cs" />
+    <Compile Include="SharedComponentElements\IfcDiscreteAccessoryType.cs" />
+    <Compile Include="SharedComponentElements\IfcEdgeFeature.cs" />
+    <Compile Include="SharedComponentElements\IfcElementComponent.cs" />
+    <Compile Include="SharedComponentElements\IfcElementComponentType.cs" />
+    <Compile Include="SharedComponentElements\IfcFastener.cs" />
+    <Compile Include="SharedComponentElements\IfcFastenerType.cs" />
+    <Compile Include="SharedComponentElements\IfcMechanicalFastener.cs" />
+    <Compile Include="SharedComponentElements\IfcMechanicalFastenerType.cs" />
+    <Compile Include="SharedComponentElements\IfcRoundedEdgeFeature.cs" />
+    <Compile Include="SharedFacilitiesElements\IfcAsset.cs" />
+    <Compile Include="SharedFacilitiesElements\IfcFurnitureType.cs" />
+    <Compile Include="SharedFacilitiesElements\IfcInventory.cs" />
+    <Compile Include="SharedFacilitiesElements\IfcInventoryTypeEnum.cs" />
+    <Compile Include="SharedFacilitiesElements\IfcOccupant.cs" />
+    <Compile Include="SharedFacilitiesElements\IfcOccupantTypeEnum.cs" />
+    <Compile Include="SharedFacilitiesElements\IfcRelOccupiesSpaces.cs" />
+    <Compile Include="SharedFacilitiesElements\IfcServiceLife.cs" />
+    <Compile Include="SharedFacilitiesElements\IfcServiceLifeFactor.cs" />
+    <Compile Include="SharedFacilitiesElements\IfcServiceLifeFactorTypeEnum.cs" />
+    <Compile Include="SharedFacilitiesElements\IfcServiceLifeTypeEnum.cs" />
+    <Compile Include="SharedFacilitiesElements\IfcSystemFurnitureElementType.cs" />
+    <Compile Include="SharedMgmtElements\IfcCostItem.cs" />
+    <Compile Include="SharedMgmtElements\IfcCostSchedule.cs" />
+    <Compile Include="SharedMgmtElements\IfcCostScheduleTypeEnum.cs" />
+    <Compile Include="SharedMgmtElements\IfcProjectOrder.cs" />
+    <Compile Include="SharedMgmtElements\IfcProjectOrderRecord.cs" />
+    <Compile Include="SharedMgmtElements\IfcProjectOrderRecordTypeEnum.cs" />
+    <Compile Include="SharedMgmtElements\IfcProjectOrderTypeEnum.cs" />
+    <Compile Include="SharedMgmtElements\IfcRelAssignsToProjectOrder.cs" />
+    <Compile Include="SharedMgmtElements\IfcRelAssociatesAppliedValue.cs" />
+    <Compile Include="SharedMgmtElements\IfcRelSchedulesCostItems.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcActionSourceTypeEnum.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcActionTypeEnum.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcAnalysisModelTypeEnum.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcAnalysisTheoryTypeEnum.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcLoadGroupTypeEnum.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcProjectedOrTrueLengthEnum.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcRelAssociatesProfileProperties.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcRelConnectsStructuralMember.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcRelConnectsWithEccentricity.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralAction.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralActivity.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralAnalysisModel.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralConnection.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralCurveConnection.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralCurveMember.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralCurveMemberVarying.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralCurveTypeEnum.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralLinearAction.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralLinearActionVarying.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralLoadGroup.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralPlanarAction.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralPlanarActionVarying.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralPointAction.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralPointConnection.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralPointReaction.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralReaction.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralResultGroup.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralSurfaceConnection.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralSurfaceMember.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralSurfaceMemberVarying.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralSurfaceTypeEnum.cs" />
+    <Compile Include="StructuralElementsDomain\IfcFooting.cs" />
+    <Compile Include="StructuralElementsDomain\IfcFootingTypeEnum.cs" />
+    <Compile Include="StructuralElementsDomain\IfcPile.cs" />
+    <Compile Include="StructuralElementsDomain\IfcPileConstructionEnum.cs" />
+    <Compile Include="StructuralElementsDomain\IfcPileTypeEnum.cs" />
+    <Compile Include="StructuralElementsDomain\IfcReinforcementDefinitionProperties.cs" />
+    <Compile Include="StructuralElementsDomain\IfcReinforcingBar.cs" />
+    <Compile Include="StructuralElementsDomain\IfcReinforcingElement.cs" />
+    <Compile Include="StructuralElementsDomain\IfcReinforcingMesh.cs" />
+    <Compile Include="StructuralElementsDomain\IfcTendon.cs" />
+    <Compile Include="StructuralElementsDomain\IfcTendonAnchor.cs" />
+    <Compile Include="StructuralElementsDomain\IfcTendonTypeEnum.cs" />
+    <Compile Include="StructuralLoadResource\IfcBoundaryCondition.cs" />
+    <Compile Include="StructuralLoadResource\IfcBoundaryEdgeCondition.cs" />
+    <Compile Include="StructuralLoadResource\IfcBoundaryFaceCondition.cs" />
+    <Compile Include="StructuralLoadResource\IfcBoundaryNodeCondition.cs" />
+    <Compile Include="StructuralLoadResource\IfcBoundaryNodeConditionWarping.cs" />
+    <Compile Include="StructuralLoadResource\IfcFailureConnectionCondition.cs" />
+    <Compile Include="StructuralLoadResource\IfcSlippageConnectionCondition.cs" />
+    <Compile Include="StructuralLoadResource\IfcStructuralConnectionCondition.cs" />
+    <Compile Include="StructuralLoadResource\IfcStructuralLoad.cs" />
+    <Compile Include="StructuralLoadResource\IfcStructuralLoadLinearForce.cs" />
+    <Compile Include="StructuralLoadResource\IfcStructuralLoadPlanarForce.cs" />
+    <Compile Include="StructuralLoadResource\IfcStructuralLoadSingleDisplacement.cs" />
+    <Compile Include="StructuralLoadResource\IfcStructuralLoadSingleDisplacementDistortion.cs" />
+    <Compile Include="StructuralLoadResource\IfcStructuralLoadSingleForce.cs" />
+    <Compile Include="StructuralLoadResource\IfcStructuralLoadSingleForceWarping.cs" />
+    <Compile Include="StructuralLoadResource\IfcStructuralLoadStatic.cs" />
+    <Compile Include="StructuralLoadResource\IfcStructuralLoadTemperature.cs" />
+    <Compile Include="TimeSeriesResource\IfcIrregularTimeSeries.cs" />
+    <Compile Include="TimeSeriesResource\IfcIrregularTimeSeriesValue.cs" />
+    <Compile Include="TimeSeriesResource\IfcRegularTimeSeries.cs" />
+    <Compile Include="TimeSeriesResource\IfcTimeSeriesReferenceRelationship.cs" />
+    <Compile Include="TimeSeriesResource\IfcTimeSeriesValue.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcCurveStyle.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcCurveStyleFont.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcCurveStyleFontAndScaling.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcCurveStyleFontPattern.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcDraughtingPreDefinedCurveFont.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcExternallyDefinedSurfaceStyle.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcFillAreaStyle.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcFillAreaStyleHatching.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcOneDirectionRepeatFactor.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcPreDefinedCurveFont.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcPresentationStyle.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcSurfaceSide.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcSurfaceStyle.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcSurfaceStyleLighting.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcSurfaceStyleRefraction.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcSurfaceStyleRendering.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcSurfaceStyleShading.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcSurfaceStyleWithTextures.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcSurfaceTexture.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcSurfaceTextureEnum.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcTwoDirectionRepeatFactor.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcAnnotationFillArea.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcDefinedSymbol.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcDraughtingCallOut.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcExternallyDefinedSymbol.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcPreDefinedSymbol.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcTextLiteral.cs" />
+    <Compile Include="PresentationDefinitionResource\IfcTextPath.cs" />
+    <Compile Include="PresentationOrganizationResource\IfcPresentationLayerWithStyle.cs" />
+    <Compile Include="PresentationResource\IfcColourRgb.cs" />
+    <Compile Include="PresentationResource\IfcColourSpecification.cs" />
+    <Compile Include="PresentationResource\IfcDraughtingPreDefinedColour.cs" />
+    <Compile Include="PresentationResource\IfcPreDefinedColour.cs" />
+    <Compile Include="PresentationResource\IfcPreDefinedItem.cs" />
+    <Compile Include="PropertySetDefinitions\PsetSpaceCommon.cs" />
+    <Compile Include="SharedBldgElements\IfcStairFlight.cs" />
+    <Compile Include="StructuralElementsDomain\IfcBuildingElementComponent.cs" />
+    <Compile Include="StructuralElementsDomain\IfcBuildingElementPart.cs" />
+    <Compile Include="ProfileResource\IfcArbitraryClosedProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcArbitraryOpenProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcArbitraryProfileDefWithVoids.cs" />
+    <Compile Include="ProfileResource\IfcAsymmetricIShapeProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcCenterLineProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcCircleHollowProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcCircleProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcCompositeProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcCraneRailAShapeProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcCraneRailFShapeProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcCShapeProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcDerivedProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcEllipseProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcIShapeProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcLShapeProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcParameterizedProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcProfileTypeEnum.cs" />
+    <Compile Include="GeometryResource\IfcCompositeCurveSegment.cs" />
+    <Compile Include="GeometryResource\IfcElementarySurface.cs" />
+    <Compile Include="GeometryResource\IfcPlane.cs" />
+    <Compile Include="GeometryResource\IfcPolyline.cs" />
+    <Compile Include="ProfileResource\IfcProfileDef.cs" />
+    <Compile Include="GeometryResource\IfcSurface.cs" />
+    <Compile Include="GeometryResource\IfcSurfaceOfLinearExtrusion.cs" />
+    <Compile Include="GeometryResource\IfcSurfaceOfRevolution.cs" />
+    <Compile Include="GeometryResource\IfcSweptSurface.cs" />
+    <Compile Include="MeasureResource\IfcAreaMeasure.cs" />
+    <Compile Include="MeasureResource\IfcCompoundPlaneAngleMeasure.cs" />
+    <Compile Include="MeasureResource\IfcCountMeasure.cs" />
+    <Compile Include="MeasureResource\IfcMassMeasure.cs" />
+    <Compile Include="MeasureResource\IfcMonetaryMeasure.cs" />
+    <Compile Include="MeasureResource\IfcNormalisedRatioMeasure.cs" />
+    <Compile Include="MeasureResource\IfcPositiveRatioMeasure.cs" />
+    <Compile Include="MeasureResource\IfcRatioMeasure.cs" />
+    <Compile Include="MeasureResource\IfcTimeStamp.cs" />
+    <Compile Include="MeasureResource\IfcVolumeMeasure.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcNullStyle.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcStyledItem.cs" />
+    <Compile Include="ProductExtension\IfcAnnotation.cs" />
+    <Compile Include="ProductExtension\IfcAssemblyPlaceEnum.cs" />
+    <Compile Include="ProductExtension\IfcBuildingElementProxyType.cs" />
+    <Compile Include="ProductExtension\IfcBuildingElementProxyTypeEnum.cs" />
+    <Compile Include="ProductExtension\IfcBuildingElementType.cs" />
+    <Compile Include="ProductExtension\IfcBuildingStorey.cs" />
+    <Compile Include="ProductExtension\IfcCoveringType.cs" />
+    <Compile Include="ProductExtension\IfcDistributionElementType.cs" />
+    <Compile Include="ProductExtension\IfcElementQuantity.cs" />
+    <Compile Include="ProductExtension\IfcFeatureElementAddition.cs" />
+    <Compile Include="ProductExtension\IfcFeatureElementSubtraction.cs" />
+    <Compile Include="ProductExtension\IfcFurnishingElementType.cs" />
+    <Compile Include="ProductExtension\IfcGrid.cs" />
+    <Compile Include="ProductExtension\IfcOpeningElement.cs" />
+    <Compile Include="ProductExtension\IfcPort.cs" />
+    <Compile Include="ProductExtension\IfcProjectionElement.cs" />
+    <Compile Include="ProductExtension\IfcRelAssociatesMaterial.cs" />
+    <Compile Include="ProductExtension\IfcRelConnectsElements.cs" />
+    <Compile Include="ProductExtension\IfcRelConnectsPorts.cs" />
+    <Compile Include="ProductExtension\IfcRelConnectsPortToElement.cs" />
+    <Compile Include="ProductExtension\IfcRelConnectsWithRealizingElements.cs" />
+    <Compile Include="ProductExtension\IfcRelCoversBldgElements.cs" />
+    <Compile Include="ProductExtension\IfcRelFillsElement.cs" />
+    <Compile Include="ProductExtension\IfcRelProjectsElement.cs" />
+    <Compile Include="ProductExtension\IfcRelVoidsElement.cs" />
+    <Compile Include="ProductExtension\IfcSpaceType.cs" />
+    <Compile Include="ProductExtension\IfcSpaceTypeEnum.cs" />
+    <Compile Include="ProductExtension\IfcSpatialStructureElementType.cs" />
+    <Compile Include="ProfileResource\IfcRectangleHollowProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcRectangleProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcRoundedRectangleProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcTrapeziumProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcTShapeProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcUShapeProfileDef.cs" />
+    <Compile Include="ProfileResource\IfcZShapeProfileDef.cs" />
+    <Compile Include="QuantityResource\IfcPhysicalComplexQuantity.cs" />
+    <Compile Include="QuantityResource\IfcPhysicalQuantity.cs" />
+    <Compile Include="QuantityResource\IfcPhysicalSimpleQuantity.cs" />
+    <Compile Include="QuantityResource\IfcQuantityArea.cs" />
+    <Compile Include="QuantityResource\IfcQuantityCount.cs" />
+    <Compile Include="QuantityResource\IfcQuantityLength.cs" />
+    <Compile Include="QuantityResource\IfcQuantityTime.cs" />
+    <Compile Include="QuantityResource\IfcQuantityVolume.cs" />
+    <Compile Include="QuantityResource\IfcQuantityWeight.cs" />
+    <Compile Include="SharedBldgElements\IfcBeam.cs" />
+    <Compile Include="ProductExtension\IfcBuilding.cs" />
+    <Compile Include="ProductExtension\IfcBuildingElement.cs" />
+    <Compile Include="ProductExtension\IfcBuildingElementProxy.cs" />
+    <Compile Include="SharedBldgElements\IfcBeamType.cs" />
+    <Compile Include="SharedBldgElements\IfcBeamTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcColumn.cs" />
+    <Compile Include="ProductExtension\IfcCovering.cs" />
+    <Compile Include="ProductExtension\IfcCoveringTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcColumnType.cs" />
+    <Compile Include="SharedBldgElements\IfcColumnTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcConnectionTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcCurtainWall.cs" />
+    <Compile Include="ProductExtension\IfcDistributionElement.cs" />
+    <Compile Include="SharedBldgElements\IfcCurtainWallType.cs" />
+    <Compile Include="SharedBldgElements\IfcCurtainWallTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcDoor.cs" />
+    <Compile Include="ProductExtension\IfcElectricalElement.cs" />
+    <Compile Include="ProductExtension\IfcElement.cs" />
+    <Compile Include="ProductExtension\IfcElementAssembly.cs" />
+    <Compile Include="ProductExtension\IfcElementAssemblyTypeEnum.cs" />
+    <Compile Include="ProductExtension\IfcElementCompositionEnum.cs" />
+    <Compile Include="ProductExtension\IfcEquipmentElement.cs" />
+    <Compile Include="ProductExtension\IfcFeatureElement.cs" />
+    <Compile Include="ProductExtension\IfcFurnishingElement.cs" />
+    <Compile Include="ProductExtension\IfcSystem.cs" />
+    <Compile Include="ProductExtension\IfcInternalOrExternalEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcDoorLiningProperties.cs" />
+    <Compile Include="SharedBldgElements\IfcDoorPanelOperationEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcDoorPanelPositionEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcDoorPanelProperties.cs" />
+    <Compile Include="SharedBldgElements\IfcDoorStyle.cs" />
+    <Compile Include="SharedBldgElements\IfcDoorStyleConstructionEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcDoorStyleOperationEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcMember.cs" />
+    <Compile Include="ProductExtension\IfcPhysicalOrVirtualEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcMemberType.cs" />
+    <Compile Include="SharedBldgElements\IfcMemberTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcPlate.cs" />
+    <Compile Include="SharedBldgElements\IfcPlateType.cs" />
+    <Compile Include="SharedBldgElements\IfcPlateTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcRailing.cs" />
+    <Compile Include="ProductExtension\IfcRelContainedInSpatialStructure.cs" />
+    <Compile Include="ProductExtension\IfcRelCoversSpaces.cs" />
+    <Compile Include="ProductExtension\IfcRelReferencedInSpatialStructure.cs" />
+    <Compile Include="ProductExtension\IfcRelServicesBuildings.cs" />
+    <Compile Include="ProductExtension\IfcRelSpaceBoundary.cs" />
+    <Compile Include="ProductExtension\IfcSite.cs" />
+    <Compile Include="ProductExtension\IfcSpace.cs" />
+    <Compile Include="ProductExtension\IfcSpatialStructureElement.cs" />
+    <Compile Include="ProductExtension\IfcTransportElement.cs" />
+    <Compile Include="ProductExtension\IfcTransportElementTypeEnum.cs" />
+    <Compile Include="ProductExtension\IfcVirtualElement.cs" />
+    <Compile Include="ProductExtension\IfcZone.cs" />
+    <Compile Include="SharedBldgElements\IfcRailingType.cs" />
+    <Compile Include="SharedBldgElements\IfcRailingTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcRamp.cs" />
+    <Compile Include="SharedBldgElements\IfcRampFlight.cs" />
+    <Compile Include="SharedBldgElements\IfcRampFlightType.cs" />
+    <Compile Include="SharedBldgElements\IfcRampFlightTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcRampTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcRelConnectsPathElements.cs" />
+    <Compile Include="SharedBldgElements\IfcRoof.cs" />
+    <Compile Include="SharedBldgElements\IfcRoofTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcSlab.cs" />
+    <Compile Include="SharedBldgElements\IfcSlabType.cs" />
+    <Compile Include="SharedBldgElements\IfcSlabTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcStair.cs" />
+    <Compile Include="SharedBldgElements\IfcStairFlightType.cs" />
+    <Compile Include="SharedBldgElements\IfcStairFlightTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcStairTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcWall.cs" />
+    <Compile Include="SharedBldgElements\IfcWallStandardCase.cs" />
+    <Compile Include="SharedBldgElements\IfcWallType.cs" />
+    <Compile Include="SharedBldgElements\IfcWallTypeEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcWindow.cs" />
+    <Compile Include="SharedBldgElements\IfcWindowLiningProperties.cs" />
+    <Compile Include="SharedBldgElements\IfcWindowPanelOperationEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcWindowPanelPositionEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcWindowPanelProperties.cs" />
+    <Compile Include="SharedBldgElements\IfcWindowStyle.cs" />
+    <Compile Include="SharedBldgElements\IfcWindowStyleConstructionEnum.cs" />
+    <Compile Include="SharedBldgElements\IfcWindowStyleOperationEnum.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcRelConnectsStructuralActivity.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcRelConnectsStructuralElement.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralItem.cs" />
+    <Compile Include="StructuralAnalysisDomain\IfcStructuralMember.cs" />
+    <Compile Include="TimeSeriesResource\IfcDataOriginEnum.cs" />
+    <Compile Include="TimeSeriesResource\IfcTimeSeriesDataTypeEnum.cs" />
+    <Compile Include="DateTimeResource\IfcYearNumber.cs" />
+    <Compile Include="ExternalReferenceResource\IfcClassification.cs" />
+    <Compile Include="ExternalReferenceResource\IfcClassificationItem.cs" />
+    <Compile Include="ExternalReferenceResource\IfcClassificationItemRelationship.cs" />
+    <Compile Include="ExternalReferenceResource\IfcClassificationNotation.cs" />
+    <Compile Include="ExternalReferenceResource\IfcClassificationNotationFacet.cs" />
+    <Compile Include="ExternalReferenceResource\IfcClassificationReference.cs" />
+    <Compile Include="ExternalReferenceResource\IfcDocumentConfidentialityEnum.cs" />
+    <Compile Include="ExternalReferenceResource\IfcDocumentElectronicFormat.cs" />
+    <Compile Include="ExternalReferenceResource\IfcDocumentInformation.cs" />
+    <Compile Include="ExternalReferenceResource\IfcDocumentInformationRelationship.cs" />
+    <Compile Include="ExternalReferenceResource\IfcDocumentReference.cs" />
+    <Compile Include="ExternalReferenceResource\IfcDocumentStatusEnum.cs" />
+    <Compile Include="ExternalReferenceResource\IfcExternalReference.cs" />
+    <Compile Include="ExternalReferenceResource\IfcLibraryInformation.cs" />
+    <Compile Include="ExternalReferenceResource\IfcLibraryReference.cs" />
+    <Compile Include="GeometryResource\Ifc2DCompositeCurve.cs" />
+    <Compile Include="GeometryResource\IfcAxis1Placement.cs" />
+    <Compile Include="GeometryResource\IfcAxis2Placement2D.cs" />
+    <Compile Include="GeometryResource\IfcAxis2Placement3D.cs" />
+    <Compile Include="GeometryResource\IfcBezierCurve.cs" />
+    <Compile Include="GeometryResource\IfcBoundedCurve.cs" />
+    <Compile Include="GeometryResource\IfcBSplineCurve.cs" />
+    <Compile Include="GeometryResource\IfcBSplineCurveForm.cs" />
+    <Compile Include="GeometryResource\IfcCartesianPoint.cs" />
+    <Compile Include="GeometryResource\IfcCompositeCurve.cs" />
+    <Compile Include="GeometryResource\IfcCurve.cs" />
+    <Compile Include="GeometryResource\IfcDimensionCount.cs" />
+    <Compile Include="GeometryResource\IfcDirection.cs" />
+    <Compile Include="GeometryResource\IfcGeometricRepresentationItem.cs" />
+    <Compile Include="GeometryResource\IfcPlacement.cs" />
+    <Compile Include="GeometryResource\IfcPoint.cs" />
+    <Compile Include="GeometryResource\IfcRepresentationItem.cs" />
+    <Compile Include="GeometryResource\IfcTransitionCode.cs" />
+    <Compile Include="GeometryResource\IfcTrimmingPreference.cs" />
+    <Compile Include="MaterialResource\IfcDirectionSenseEnum.cs" />
+    <Compile Include="Kernel\IfcActor.cs" />
+    <Compile Include="Kernel\IfcGroup.cs" />
+    <Compile Include="Kernel\IfcControl.cs" />
+    <Compile Include="Kernel\IfcObject.cs" />
+    <Compile Include="Kernel\IfcObjectDefinition.cs" />
+    <Compile Include="Kernel\IfcProcess.cs" />
+    <Compile Include="Kernel\IfcProduct.cs" />
+    <Compile Include="Kernel\IfcPropertySet.cs" />
+    <Compile Include="Kernel\IfcPropertySetDefinition.cs" />
+    <Compile Include="Kernel\IfcProxy.cs" />
+    <Compile Include="Kernel\IfcRelAggregates.cs" />
+    <Compile Include="Kernel\IfcRelAssigns.cs" />
+    <Compile Include="Kernel\IfcRelAssignsToActor.cs" />
+    <Compile Include="Kernel\IfcRelAssignsToControl.cs" />
+    <Compile Include="Kernel\IfcRelAssignsToGroup.cs" />
+    <Compile Include="Kernel\IfcRelAssignsToProcess.cs" />
+    <Compile Include="Kernel\IfcRelAssignsToProduct.cs" />
+    <Compile Include="Kernel\IfcRelAssignsToResource.cs" />
+    <Compile Include="Kernel\IfcRelAssociates.cs" />
+    <Compile Include="Kernel\IfcRelAssociatesClassification.cs" />
+    <Compile Include="Kernel\IfcRelAssociatesDocument.cs" />
+    <Compile Include="Kernel\IfcRelAssociatesLibrary.cs" />
+    <Compile Include="Kernel\IfcRelationship.cs" />
+    <Compile Include="Kernel\IfcRelConnects.cs" />
+    <Compile Include="Kernel\IfcRelDecomposes.cs" />
+    <Compile Include="Kernel\IfcRelDefines.cs" />
+    <Compile Include="Kernel\IfcRelDefinesByProperties.cs" />
+    <Compile Include="Kernel\IfcRelDefinesByType.cs" />
+    <Compile Include="GeometryResource\IfcRepresentationMap.cs" />
+    <Compile Include="Kernel\IfcRelNests.cs" />
+    <Compile Include="Kernel\IfcRelOverridesProperties.cs" />
+    <Compile Include="Kernel\IfcRelSequence.cs" />
+    <Compile Include="Kernel\IfcResource.cs" />
+    <Compile Include="Kernel\IfcTypeObject.cs" />
+    <Compile Include="Kernel\IfcTypeProduct.cs" />
+    <Compile Include="MaterialResource\IfcLayerSetDirectionEnum.cs" />
+    <Compile Include="MaterialResource\IfcMaterial.cs" />
+    <Compile Include="MaterialResource\IfcMaterialClassificationRelationship.cs" />
+    <Compile Include="MaterialResource\IfcMaterialLayer.cs" />
+    <Compile Include="MaterialResource\IfcMaterialLayerSet.cs" />
+    <Compile Include="MaterialResource\IfcMaterialLayerSetUsage.cs" />
+    <Compile Include="MaterialResource\IfcMaterialList.cs" />
+    <Compile Include="MeasureResource\IfcContextDependentUnit.cs" />
+    <Compile Include="MeasureResource\IfcConversionBasedUnit.cs" />
+    <Compile Include="MeasureResource\IfcDerivedUnitElement.cs" />
+    <Compile Include="MeasureResource\IfcDimensionalExponents.cs" />
+    <Compile Include="MeasureResource\IfcCurrencyEnum.cs" />
+    <Compile Include="MeasureResource\IfcDerivedUnitEnum.cs" />
+    <Compile Include="MeasureResource\IfcLengthMeasure.cs" />
+    <Compile Include="MeasureResource\IfcAbsorbedDoseMeasure.cs" />
+    <Compile Include="MeasureResource\IfcMeasureWithUnit.cs" />
+    <Compile Include="Kernel\IfcProject.cs" />
+    <Compile Include="MeasureResource\IfcPositiveLengthMeasure.cs" />
+    <Compile Include="MeasureResource\IfcSIUnit.cs" />
+    <Compile Include="MeasureResource\IfcTimeMeasure.cs" />
+    <Compile Include="MeasureResource\IfcDerivedUnit.cs" />
+    <Compile Include="MeasureResource\IfcUnitAssignment.cs" />
+    <Compile Include="MeasureResource\IfcSIPrefix.cs" />
+    <Compile Include="MeasureResource\IfcSIUnitName.cs" />
+    <Compile Include="MeasureResource\IfcUnitEnum.cs" />
+    <Compile Include="Kernel\IfcSequenceEnum.cs" />
+    <Compile Include="Kernel\IfcObjectType.cs" />
+    <Compile Include="Kernel\IfcPropertyDefinition.cs" />
+    <Compile Include="PresentationOrganizationResource\IfcPresentationLayerAssignment.cs" />
+    <Compile Include="PropertyResource\IfcComplexProperty.cs" />
+    <Compile Include="PropertyResource\IfcProperty.cs" />
+    <Compile Include="PropertyResource\IfcPropertyBoundedValue.cs" />
+    <Compile Include="PropertyResource\IfcPropertyDependencyRelationship.cs" />
+    <Compile Include="PropertyResource\IfcPropertyEnumeratedValue.cs" />
+    <Compile Include="PropertyResource\IfcPropertyEnumeration.cs" />
+    <Compile Include="PropertyResource\IfcPropertyListValue.cs" />
+    <Compile Include="PropertyResource\IfcPropertyReferenceValue.cs" />
+    <Compile Include="PropertyResource\IfcPropertySingleValue.cs" />
+    <Compile Include="PropertyResource\IfcPropertyTableValue.cs" />
+    <Compile Include="PropertyResource\IfcSimpleProperty.cs" />
+    <Compile Include="RepresentationResource\IfcGeometricProjectionEnum.cs" />
+    <Compile Include="RepresentationResource\IfcGeometricRepresentationContext.cs" />
+    <Compile Include="RepresentationResource\IfcGeometricRepresentationSubContext.cs" />
+    <Compile Include="RepresentationResource\IfcGlobalOrLocalEnum.cs" />
+    <Compile Include="RepresentationResource\IfcMaterialDefinitionRepresentation.cs" />
+    <Compile Include="RepresentationResource\IfcProductDefinitionShape.cs" />
+    <Compile Include="RepresentationResource\IfcProductRepresentation.cs" />
+    <Compile Include="RepresentationResource\IfcRepresentation.cs" />
+    <Compile Include="RepresentationResource\IfcRepresentationContext.cs" />
+    <Compile Include="RepresentationResource\IfcShapeAspect.cs" />
+    <Compile Include="RepresentationResource\IfcShapeModel.cs" />
+    <Compile Include="RepresentationResource\IfcShapeRepresentation.cs" />
+    <Compile Include="RepresentationResource\IfcStyledRepresentation.cs" />
+    <Compile Include="RepresentationResource\IfcStyleModel.cs" />
+    <Compile Include="RepresentationResource\IfcTopologyRepresentation.cs" />
+    <Compile Include="TimeSeriesResource\IfcTimeSeries.cs" />
+    <Compile Include="TopologyResource\IfcClosedShell.cs" />
+    <Compile Include="TopologyResource\IfcConnectedFaceSet.cs" />
+    <Compile Include="TopologyResource\IfcEdge.cs" />
+    <Compile Include="TopologyResource\IfcEdgeCurve.cs" />
+    <Compile Include="TopologyResource\IfcEdgeLoop.cs" />
+    <Compile Include="TopologyResource\IfcFace.cs" />
+    <Compile Include="TopologyResource\IfcFaceBound.cs" />
+    <Compile Include="TopologyResource\IfcFaceOuterBound.cs" />
+    <Compile Include="TopologyResource\IfcFaceSurface.cs" />
+    <Compile Include="TopologyResource\IfcLoop.cs" />
+    <Compile Include="TopologyResource\IfcOpenShell.cs" />
+    <Compile Include="TopologyResource\IfcOrientedEdge.cs" />
+    <Compile Include="TopologyResource\IfcPath.cs" />
+    <Compile Include="TopologyResource\IfcPolyLoop.cs" />
+    <Compile Include="TopologyResource\IfcSubedge.cs" />
+    <Compile Include="TopologyResource\IfcTopologicalRepresentationItem.cs" />
+    <Compile Include="TopologyResource\IfcVertex.cs" />
+    <Compile Include="TopologyResource\IfcVertexLoop.cs" />
+    <Compile Include="TopologyResource\IfcVertexPoint.cs" />
+    <Compile Include="UtilityResource\IfcGloballyUniqueId.cs" />
+    <Compile Include="UtilityResource\IfcChangeActionEnum.cs" />
+    <Compile Include="ActorResource\IfcActorRole.cs" />
+    <Compile Include="UtilityResource\IfcApplication.cs" />
+    <Compile Include="ActorResource\IfcOrganization.cs" />
+    <Compile Include="UtilityResource\IfcOwnerHistory.cs" />
+    <Compile Include="ActorResource\IfcPerson.cs" />
+    <Compile Include="ActorResource\IfcPersonAndOrganization.cs" />
+    <Compile Include="ActorResource\IfcPostalAddress.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+    </Compile>
+    <Compile Include="Kernel\IfcRoot.cs" />
+    <Compile Include="UtilityResource\IfcStateEnum.cs" />
+    <Compile Include="ActorResource\IfcRole.cs" />
+    <Compile Include="ActorResource\IfcTelecomAddress.cs" />
+    <Compile Include="UtilityResource\IfcTable.cs" />
+    <Compile Include="UtilityResource\IfcTableRow.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ActorResource\ClassDiagramActorResource.cd" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="CostResource\ClassDiagramCostResource.cd" />
+    <None Include="GeometricConstraintResource\ClassDiagramGeometricConstraintResource.cd" />
+    <None Include="PresentationAppearanceResource\ClassDiagramPresentationAppearanceResource.cd" />
+    <None Include="PresentationDefinitionResource\PresentationDefinitionResourceClassDiagram.cd" />
+    <None Include="PresentationOrganizationResource\ClassDiagramPresentationOrganizationResource.cd" />
+    <None Include="PresentationResource\ClassDiagramPresentationResource.cd" />
+    <None Include="ProductExtension\ClassDiagram1.cd" />
+    <None Include="ProfileResource\ClassDiagramProfileResource.cd" />
+    <None Include="QuantityResource\ClassDiagramQuantityResource.cd" />
+    <None Include="RepresentationResource\ClassDiagramRepresentationResource.cd" />
+    <None Include="DateTimeResource\ClassDiagramDateTime.cd" />
+    <None Include="ExternalReferenceResource\ClassDiagramExternalReference.cd" />
+    <None Include="Kernel\ClassDiagramKernel.cd" />
+    <None Include="MeasureResource\ClassDiagramMeasureResource.cd" />
+    <None Include="PropertyResource\ClassDiagramProperty.cd">
+      <CustomToolNamespace>xbim.IfcLib.PropertyResource</CustomToolNamespace>
+    </None>
+    <None Include="SharedBldgElements\ClassDiagramSharedBldgElements.cd" />
+    <None Include="StructuralAnalysisDomain\ClassDiagramStructuralAnalysisDomain.cd" />
+    <None Include="TimeSeriesResource\ClassDiagramTimeSeriesResource.cd" />
+    <None Include="TopologyResource\ClassDiagramTopologyResource.cd" />
+    <None Include="UtilityResource\ClassDiagramUtilityResource.cd" />
+    <None Include="XbimIfcKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GeometricModelResource\ClassDiagramGeometricModelResource.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">
+      <Project>{6745F5AC-AF3C-4372-81AA-A75E7B1FA03B}</Project>
+      <Name>Xbim.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  
+  -->
+  <!--<UsingTask AssemblyFile="$(ProjectDir)..\db4o\bin\net-3.5\Db4oTool.MSBuild.dll" TaskName="Db4oTool.MSBuild.Db4oEnhancerMSBuildTask" />
+  <ItemGroup>
+    <Db4oEnhance Include="$(TargetPath)" />
+  </ItemGroup>
+  <Target Name="AfterBuild">
+    <Db4oEnhancerMSBuildTask Assemblies="@(Db4oEnhance)" CommandLine="-debug"/>
+  </Target>-->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

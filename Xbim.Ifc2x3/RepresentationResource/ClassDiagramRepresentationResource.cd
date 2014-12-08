@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Xbim.Ifc2x3.RepresentationResource.ProductRepresentation" Collapsed="true">
+    <Position X="8.25" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAgAAAECAAAIAQAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>RepresentationResource\ProductRepresentation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.RepresentationResource.Representation" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAICAEBAADAABAAAAAAAAABgAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>RepresentationResource\Representation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.RepresentationResource.RepresentationContext" Collapsed="true">
+    <Position X="3" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQBAAAAAA=</HashCode>
+      <FileName>RepresentationResource\RepresentationContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.RepresentationResource.GeometricRepresentationContext" Collapsed="true">
+    <Position X="2.5" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIgAAQAgAAKAAAAAAAAAAAAAAAAAAECg=</HashCode>
+      <FileName>RepresentationResource\GeometricRepresentationContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.RepresentationResource.GeometricRepresentationSubContext" Collapsed="true">
+    <Position X="2.5" Y="8.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAIgABAAAAAIAAAAAAAAAAAAAAgAAAGAA=</HashCode>
+      <FileName>RepresentationResource\GeometricRepresentationSubContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.RepresentationResource.MaterialDefinitionRepresentation" Collapsed="true">
+    <Position X="6.5" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RepresentationResource\MaterialDefinitionRepresentation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.RepresentationResource.ProductDefinitionShape" Collapsed="true">
+    <Position X="9.75" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RepresentationResource\ProductDefinitionShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.RepresentationResource.ShapeAspect" Collapsed="true">
+    <Position X="12.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAgAAAAAAAAAAQAAAAACAAAAAAAAAAABAA=</HashCode>
+      <FileName>RepresentationResource\ShapeAspect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.RepresentationResource.ShapeModel" Collapsed="true">
+    <Position X="4.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RepresentationResource\ShapeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.RepresentationResource.ShapeRepresentation" Collapsed="true">
+    <Position X="2.75" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RepresentationResource\ShapeRepresentation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.RepresentationResource.StyleModel" Collapsed="true">
+    <Position X="8" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RepresentationResource\StyleModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.RepresentationResource.StyledRepresentation" Collapsed="true">
+    <Position X="8" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RepresentationResource\StyledRepresentation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Xbim.Ifc2x3.RepresentationResource.TopologyRepresentation" Collapsed="true">
+    <Position X="5.25" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RepresentationResource\TopologyRepresentation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Xbim.Ifc2x3.RepresentationResource.GeometricProjectionEnum" Collapsed="true">
+    <Position X="12.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAMAgAAAAAAAAAAAAAAgIAAAAAAAAAAIAAEAAAkAA=</HashCode>
+      <FileName>RepresentationResource\GeometricProjectionEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Xbim.Ifc2x3.RepresentationResource.GlobalOrLocalEnum" Collapsed="true">
+    <Position X="14.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RepresentationResource\GlobalOrLocalEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
