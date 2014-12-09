@@ -1,22 +1,35 @@
-<?xml version="1.0"?>
-<package >
-  <metadata>
-    <id>xBIM.Essentials</id>
-    <version>3.0.0-Prerelease</version>
-    <authors>xBIM team</authors>
-    <owners>Steve Lockley</owners>
-    <licenseUrl>http://xbim.codeplex.com/license</licenseUrl>
-	<projectUrl>http://xbim.codeplex.com/</projectUrl>
-	<iconUrl>http://download-codeplex.sec.s-msft.com/Download?ProjectName=xbim&amp;DownloadId=373774&amp;Build=20335</iconUrl>
-	<requireLicenseAcceptance>true</requireLicenseAcceptance>
-	<description>xBIM Geometry Engine is the core part of the toolkit that deals with geometry creation. It provides support for geometric operations for all Ifc2x3 objects, including boolean cut, union, intersect and slice. 3D visualisation is provided the platform specific xBIM 3D presentation packages, its also open source. xBIM is an Open Source Toolkit for developing IFC based applications (BuildingSmart Data model). It provides full support for reading and writing geometry, topology and data in accordance with the Ifc2x3 schema. xBIM reads and writes Ifc, IfcXMl and IfcZip formats. The xBIM project provides packages to convert IFC models to COBie spreadsheets in both UK and US cultures as well as a range of 3D viewing controls for use with Windows forms, WPF, WEBGL and OpenGL platforms. IOS and Android versions are under development.</description>
-    <summary>The .Net toolkit for developing BIM applications based on the IFC standard. Essential support for the Ifc data model</summary>
-    <copyright>Copyright 2014</copyright>
-    <releaseNotes>3.0 is a significant update to the xBIM geometry engine and provides a new extensible programming interface</releaseNotes>
-	<language>en-GB</language>
-	<tags>BIM, IFC, IfcXml, IfcZip, COBie, .Net, C#, BuildingSmart, 3D Geometry, OpenBIM, Visualisation</tags>
-    <dependencies>
-      <dependency id="SampleDependency" version="1.0" />
-    </dependencies>
-  </metadata>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+    <metadata>
+        <id>Xbim.Essentials</id>
+        <version>3.0.0-Prerelease</version>
+        <title>xBIM Essentials</title>
+        <authors>xBIM team</authors>
+        <owners>Steve Lockley</owners>
+        <licenseUrl>http://xbim.codeplex.com/license</licenseUrl>
+        <projectUrl>http://xbim.codeplex.com/</projectUrl>
+        <iconUrl>http://download-codeplex.sec.s-msft.com/Download?ProjectName=xbim&amp;DownloadId=373774&amp;Build=20335</iconUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>xBIM Essentials is the core part of the toolkit that deals with reading and writing IFC data files. It does not contain support for geometric operations and 3D visualisation. Use xBIM 3D if you need support for geometry and presentation, its also open source.
+xBIM is an Open Source Toolkit for developing IFC based applications (BuildingSmart Data model). 
+It provides full support for reading and writing geometry, topology and data in accordance with the Ifc2x3 schema.
+xBIM reads and writes Ifc, IfcXMl and IfcZip formats.
+The xBIM project provides packages to convert IFC models to COBie spreadsheets in both UK and US cultures as well as a range of 3D viewing controls for use with Windows forms, WPF, WEBGL and OpenGL platforms.
+IOS and Android versions are under development.</description>
+        <summary>The .Net toolkit for developing BIM applications based on the IFC standard. Essential support for the Ifc data model</summary>
+        <releaseNotes>3.0 contains a new geometry engine that has a full API to allow geometry constructions, boolean operations and meshing. All Ifc2x3 class are now supported.</releaseNotes>
+        <language>en-GB</language>
+        <tags>BIM, IFC, IfcXml, IfcZip, COBie, .Net, C#, BuildingSmart</tags>
+	<dependencies> 
+		<dependency id="log4net" version="2.0.3" />
+		<dependency id="ManagedEsent" version="1.9.2" />
+		<dependency id="SharpZipLib" version="0.86.0" />
+	</dependencies> 
+    </metadata>
+    <files>
+        <file src="lib\Xbim.Common.dll" target="Output\Xbim.Common.dll" />
+        <file src="lib\Xbim.Ifc.Extensions.dll" target="Output\Xbim.Ifc.Extensions.dll" />
+        <file src="lib\Xbim.Ifc2x3.dll" target="Output\Xbim.IO.dll" />
+    </files>
+	
 </package>
