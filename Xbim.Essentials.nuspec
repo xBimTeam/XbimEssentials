@@ -27,9 +27,9 @@ IOS and Android versions are under development.</description>
 	</dependencies> 
     </metadata>
     <files>
-        <file src="lib\Xbim.Common.dll" target="Output\Xbim.Common.dll" />
-        <file src="lib\Xbim.Ifc.Extensions.dll" target="Output\Xbim.Ifc.Extensions.dll" />
-        <file src="lib\Xbim.Ifc2x3.dll" target="Output\Xbim.IO.dll" />
+        <file src="Output\Xbim.Common.dll" target="lib\Xbim.Common.dll" />
+        <file src="Output\Xbim.Ifc.Extensions.dll" target="lib\Xbim.Ifc.Extensions.dll" />
+        <file src="Output\Xbim.Ifc2x3.dll" target="lib\Xbim.IO.dll" />
     </files>
 	
 </package>
