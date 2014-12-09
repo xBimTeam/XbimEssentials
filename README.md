@@ -1,7 +1,6 @@
-Please note that this repository is a git mirror of the original [Codeplex project](https://xbim.codeplex.com/). Please use the Codeplex site for communications.
+Subproject of https://github.com/xBimTeam/xBimToolkit
 
-Current Build Status (Master)
-[![Build status](https://ci.appveyor.com/api/projects/status/8avnatacab8wih2m/branch/master)](https://ci.appveyor.com/project/XbimCI/xbim-toolkit/branch/master)
+Relates to Nuget Package Xbim.Essentials
 
 # XBIM - the eXtensible Building Information Modelling (BIM) Toolkit
 
