@@ -10,7 +10,7 @@
 
 [assembly: AssemblyCompany("Lockley Consulting")]
 [assembly: AssemblyProduct("Xbim Library")]
-[assembly: AssemblyCopyright("Copyright © Lockley Consulting 2007-2012")]
+[assembly: AssemblyCopyright("Copyright © Lockley Consulting 2007-2015")]
 [assembly: AssemblyTrademark("Xbim")]
 [assembly: AssemblyCulture("")]
  

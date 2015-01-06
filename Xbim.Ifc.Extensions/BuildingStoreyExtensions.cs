@@ -50,6 +50,12 @@ namespace Xbim.Ifc2x3.Extensions
             double b = y.Elevation ?? 0;
             return a.CompareTo(b);
         }
+        public static IfcQuantityLength GetTotalHeightProperty(this IfcBuildingStorey buildingStorey)
+        {
+            var qLen = buildingStorey.GetQuantity<IfcQuantityLength>("BaseQuantities", "TotalHeight");
+            if (qLen == null) qLen = buildingStorey.GetQuantity<IfcQuantityLength>("TotalHeight"); //just look for any height
+            return qLen;
+        }
 
         public static IEnumerable<IfcBuildingStorey> GetBuildingStoreys(this IfcBuildingStorey buildingStorey, bool sortByElevation = false)
         {
