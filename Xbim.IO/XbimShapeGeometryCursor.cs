@@ -42,6 +42,7 @@ namespace Xbim.IO
         /// The format in which the shape data is represented, i.e. triangular mesh, polygon, opencascade
         /// </summary>
         ByteColumnValue _colValFormat;
+        /// <summary>
         /// The bounding box of this instance, requires tranformation to place in world coordinates
         /// </summary>
         BytesColumnValue _colValBoundingBox;

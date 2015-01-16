@@ -615,7 +615,7 @@ namespace Xbim.IO
         /// <param name="cache"></param>
         /// <param name="br"></param>
         /// <param name="unCached">If true instances inside the properties are not added to the cache</param>
-        /// <param name="fromCache"> If true the instance is read from the cache if not present it is created, used during parsing
+        /// <param name="fromCache"> If true the instance is read from the cache if not present it is created, used during parsing</param>
         public static void ReadEntityProperties(this IPersistIfcEntity entity, IfcPersistedInstanceCache cache, BinaryReader br, bool unCached = false,bool fromCache = false)
         {
             P21ParseAction action = (P21ParseAction)br.ReadByte();

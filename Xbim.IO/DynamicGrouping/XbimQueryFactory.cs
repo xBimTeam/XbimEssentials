@@ -251,16 +251,14 @@ namespace Xbim.IO.DynamicGrouping
             return Expression.Constant(false, typeof(bool));
         }
 
-        /// <summary>
         /// Unwraps ExpressType in the expression so that value is being accessed directly 
         /// and standard methods are than applicable on them. If EspressType is wrapped in 
         /// Nullable&lt;ExpressType&gt; generic function new Nullable instance is created and ExpressType core 
         /// value is used in this new object so that its behavior is the same as if just the 
         /// base types were used. If input is not ExpressType or Nullable&lt;ExpressType&gt;
-        /// nothing happens.<br>
+        /// nothing happens.
         /// This overloaded method is helper for the case when both sides of binary operation
         /// are to be unwrapped at one step. Left and right types should be the same.
-        /// </summary>
         /// <param name="left">Left expression</param>
         /// <param name="right">Right expression</param>
         private static void UnwrapExpressType(ref Expression left, ref Expression right)

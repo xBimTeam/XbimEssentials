@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>Xbim.Essentials</id>
-        <version>3.0.2-Prerelease</version>
+        <version>3.0.3-Prerelease</version>
         <title>xBIM Essentials</title>
         <authors>xBIM team</authors>
         <owners>Steve Lockley</owners>
@@ -20,17 +20,21 @@ IOS and Android versions are under development.</description>
         <releaseNotes>3.0 contains a new geometry engine that has a full API to allow geometry constructions, boolean operations and meshing. All Ifc2x3 class are now supported.</releaseNotes>
         <language>en-GB</language>
         <tags>BIM, IFC, IfcXml, IfcZip, COBie, .Net, C#, BuildingSmart</tags>
-	<dependencies> 
-		<dependency id="log4net" version="2.0.3" />
+	<dependencies>
+    <dependency id="log4net" version="2.0.3" />
 		<dependency id="ManagedEsent" version="1.9.2" />
 		<dependency id="SharpZipLib" version="0.86.0" />
 	</dependencies> 
     </metadata>
     <files>
-        <file src="Output\Xbim.Common.dll" target="lib\net45\Xbim.Common.dll" />
-        <file src="Output\Xbim.Ifc.Extensions.dll" target="lib\net45\Xbim.Ifc.Extensions.dll" />
-        <file src="Output\Xbim.Ifc2x3.dll" target="lib\net45\Xbim.Ifc2x3.dll" />
-		    <file src="Output\Xbim.IO.dll" target="lib\net45\Xbim.IO.dll" />
+      <file src="Output\Release\Xbim.Common.dll" target="lib\net45\Xbim.Common.dll" />
+      <file src="Output\Release\Xbim.Ifc.Extensions.dll" target="lib\net45\Xbim.Ifc.Extensions.dll" />
+      <file src="Output\Release\Xbim.Ifc2x3.dll" target="lib\net45\Xbim.Ifc2x3.dll" />
+      <file src="Output\Release\Xbim.IO.dll" target="lib\net45\Xbim.IO.dll" />
+      <file src="Output\Release\Xbim.Common.xml" target="lib\net45\Xbim.Common.xml" />
+      <file src="Output\Release\Xbim.Ifc.Extensions.xml" target="lib\net45\Xbim.Ifc.Extensions.xml" />
+      <file src="Output\Release\Xbim.Ifc2x3.xml" target="lib\net45\Xbim.Ifc2x3.xml" />
+      <file src="Output\Release\Xbim.IO.xml" target="lib\net45\Xbim.IO.xml" />
     </files>
 	
 </package>

@@ -41,10 +41,10 @@ namespace Xbim.IO
         /// </summary>
         ByteColumnValue _colValRepType;
         /// <summary>
-        /// <summary>
         /// The transformation to be applied to shape to place it in the world coordinates
         /// </summary>
         BytesColumnValue _colValTransformation;
+        /// <summary>
         /// The bounding box of this instance, requires tranformation to place in world coordinates
         /// </summary>
         BytesColumnValue _colValBoundingBox;
