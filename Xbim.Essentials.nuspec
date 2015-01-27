@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>Xbim.Essentials</id>
-        <version>3.0.3</version>
+        <version>3.0.4-prerelease</version>
         <title>xBIM Essentials</title>
         <authors>xBIM team</authors>
         <owners>Steve Lockley</owners>
@@ -35,6 +35,10 @@ IOS and Android versions are under development.</description>
       <file src="Output\Release\Xbim.Ifc.Extensions.xml" target="lib\net45\Xbim.Ifc.Extensions.xml" />
       <file src="Output\Release\Xbim.Ifc2x3.xml" target="lib\net45\Xbim.Ifc2x3.xml" />
       <file src="Output\Release\Xbim.IO.xml" target="lib\net45\Xbim.IO.xml" />
+      <file src="Output\Release\Xbim.Common.pdb" target="lib\net45\Xbim.Common.pdb" />
+      <file src="Output\Release\Xbim.Ifc.Extensions.pdb" target="lib\net45\Xbim.Ifc.Extensions.pdb" />
+      <file src="Output\Release\Xbim.Ifc2x3.pdb" target="lib\net45\Xbim.Ifc2x3.pdb" />
+      <file src="Output\Release\Xbim.IO.pdb" target="lib\net45\Xbim.IO.pdb" />
     </files>
 	
 </package>
