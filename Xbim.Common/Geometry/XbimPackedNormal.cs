@@ -90,26 +90,6 @@ namespace Xbim.Common.Geometry
             lon = lon / (2 * Math.PI);
             lat = lat / Math.PI;
 
-
-            //double longitude;
-            //if (Math.Abs(x) < tolerance && Math.Abs(y) < tolerance)
-            //{
-            //    longitude = 0;
-            //    // latitude = 1;
-            //}
-            //else
-            //{
-            //    longitude = Math.Acos(x / Math.Sqrt(x * x + y * y)) * (y < 0 ? -1 : 1);
-            //}
-            //double latitude = Math.Acos(z) * (z < 0 ? -1 : 1);
-            ////long and lat are between -1 and 1
-            //if (longitude < 0) longitude += 2*Math.PI;
-            //if (latitude < 0) latitude += 2 * Math.PI;
-            //longitude /= 2*Math.PI;
-            //latitude /= 2 * Math.PI;
-            ////longitude = Math.Abs((longitude + Math.PI) / (2 * Math.PI));
-            ////latitude = Math.Abs((latitude + Math.PI) / (2 * Math.PI));
-
             //stretch to pack size so that round directions are aligned to axes.
             var u = (int)(lon * PackSize);
             var v = (byte)(lat * PackSize);
@@ -141,24 +121,16 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                //double u = ((U / PackSize) * (2 * Math.PI)) ;
+                var lon = U / PackSize * Math.PI * 2; 
+                var lat = V / PackSize * Math.PI; 
 
-                //double v = ((V / PackSize) * (2 * Math.PI)) ;
+                var y = Math.Cos(lat);
+                var x = Math.Sin(lon) * Math.Sin(lat);
+                var z = Math.Cos(lon) * Math.Sin(lat);
 
-                //double x = (Math.Sin(v) * Math.Cos(u));
-                //double y = (Math.Sin(v) * Math.Sin(u));
-                //double z = Math.Cos(v);
-                //var v3D = new XbimVector3D(x, y, z);
-                //v3D.Normalize();
-                //return v3D;
-                var lon = U / PackSize * Math.PI * 2; //lon
-                var lat = V / PackSize * Math.PI; //lat
-
-                var Y = Math.Cos(lat);
-                var X = Math.Sin(lon) * Math.Sin(lat);
-                var Z = Math.Cos(lon) * Math.Sin(lat);
-
-                return new XbimVector3D(X, Y, Z);
+                var v3D = new XbimVector3D(x, y, z);
+                v3D.Normalize();
+                return v3D;
             }
         }
 

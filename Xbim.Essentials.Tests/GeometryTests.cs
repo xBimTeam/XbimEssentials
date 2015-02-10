@@ -45,7 +45,6 @@ namespace Xbim.Essentials.Tests
                 var x = Math.Abs(a.Length);
                 var y = v.DotProduct(v2);
                 var angle = Math.Atan2(x, y);
-                Debug.WriteLine(angle);
                 Assert.IsTrue(angle < 1e-10);
             }
 
