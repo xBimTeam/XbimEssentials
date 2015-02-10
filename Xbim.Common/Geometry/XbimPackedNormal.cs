@@ -32,38 +32,63 @@ namespace Xbim.Common.Geometry
            
         }
 
+        /// <summary>
+        /// Normalized normal vector. If the vector is not normalized packing will result in wrong results.
+        /// </summary>
+        /// <param name="x">X direction of the normalized normal vector</param>
+        /// <param name="y">Y direction of the normalized normal vector</param>
+        /// <param name="z">Z direction of the normalized normal vector</param>
         public XbimPackedNormal(double x, double y, double z)
         {
             const double tolerance = 1e-4;
 
-            if (Math.Abs(y) < tolerance || Math.Abs(y - 1) < tolerance)
+            //the most basic case when normal points in Y direction (singular point)
+            if (Math.Abs(1 - y) < tolerance)
             {
-                byte half = (byte)PackSize/2;
-                _packedData = (ushort)(half << 8 | (byte)y); 
-               
+                _packedData = 0; 
+               return;
+            }
+            //the most basic case when normal points in -Y direction (second singular point)
+            if (Math.Abs(y - 1) < tolerance)
+            {
+                _packedData = 0 << 8 | (byte)PackSize / 2;
+                return;
+            }
+            
+            double lat;
+            double lon;
+            //special cases when vector is aligned to one of the axis
+            if (Math.Abs(z - 1) < tolerance)
+            {
+                lon = 0;
+                lat = Math.PI/2;
+            }
+            else if (Math.Abs(z + 1) < tolerance)
+            {
+                lon = Math.PI;
+                lat = Math.PI / 2;
+            }
+            else if (Math.Abs(x - 1) < tolerance)
+            {
+                lon = Math.PI/2;
+                lat = Math.PI / 2;
+            }
+            else if (Math.Abs(x + 1) < tolerance)
+            {
+                lon = Math.PI + Math.PI / 2;
+                lat = Math.PI / 2;
+            }
+            else
+            {
+                //Atan2 takes care for quadrants (goes from positive Z to positive X and around)
+                lon = Math.Atan2(x,z);
+                //latitude from 0 to PI starting at positive Y ending at negative Y
+                lat = Math.Acos(y);
             }
 
-            var lon = Math.Abs(z) < tolerance ? Math.PI / 2 : (Math.Atan(x / z));
-
-            // Need to correct Atan's value based on quadrant
-            if ((x >= 0 && z >= 0) || (x < 0 && z >= 0))
-            {
-                lon = (Math.PI / 2) - lon;
-            }
-            else if (x < 0 && z < 0)
-            {
-                lon = Math.PI * 1.5 - Math.Abs(lon);
-            }
-            else if (x >= 0 && z < 0)
-            {
-                lon = Math.PI * 1.5 + Math.Abs(lon);
-            }
-
-            var lat = Math.Acos(y);
-
-
+            //normalize values
             lon = lon / (2 * Math.PI);
-            lat =  1 - lat / Math.PI;
+            lat = lat / Math.PI;
 
 
             //double longitude;
@@ -85,6 +110,7 @@ namespace Xbim.Common.Geometry
             ////longitude = Math.Abs((longitude + Math.PI) / (2 * Math.PI));
             ////latitude = Math.Abs((latitude + Math.PI) / (2 * Math.PI));
 
+            //stretch to pack size so that round directions are aligned to axes.
             var u = (int)(lon * PackSize);
             var v = (byte)(lat * PackSize);
             _packedData = (ushort)(u << 8 | v); 
@@ -125,21 +151,14 @@ namespace Xbim.Common.Geometry
                 //var v3D = new XbimVector3D(x, y, z);
                 //v3D.Normalize();
                 //return v3D;
-                var u = U / PackSize;
-                var v = V / PackSize;
-                var theta = (v-1) * Math.PI * -1;
-                var sinTheta = Math.Sin(theta);
-                var cosTheta = Math.Cos(theta);
+                var lon = U / PackSize * Math.PI * 2; //lon
+                var lat = V / PackSize * Math.PI; //lat
 
-                var phi = u * 2 * Math.PI;
-                var sinPhi = Math.Sin(phi);
-                var cosPhi = Math.Cos(phi);
+                var Y = Math.Cos(lat);
+                var X = Math.Sin(lon) * Math.Sin(lat);
+                var Z = Math.Cos(lon) * Math.Sin(lat);
 
-                var nX = cosPhi * sinTheta;
-                var nY = cosTheta;
-                var nZ = sinPhi * sinTheta;
-
-                return new XbimVector3D(nX, nY, nZ);
+                return new XbimVector3D(X, Y, Z);
             }
         }
 
