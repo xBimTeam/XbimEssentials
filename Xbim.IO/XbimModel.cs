@@ -1413,6 +1413,7 @@ namespace Xbim.IO
                 project.OwnerHistory.OwningApplication = DefaultOwningApplication;
                 txn.Commit();
             }
+            ReloadModelFactors();
         }
 
         /// <summary>
