@@ -166,6 +166,14 @@ namespace Xbim.IO
             g2.GroupElements(@"DynamicGrouping\NRM2IFC.xml");
         }
 
+        /// <summary>
+        /// Reloads the model factors if any units or precisions are changed
+        /// </summary>
+        public XbimModelFactors ReloadModelFactors()
+        {
+            GetModelFactors();
+            return _modelFactors;
+        }
 
         private void GetModelFactors()
         {
