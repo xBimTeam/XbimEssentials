@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Xbim.Common.Geometry;
 
 namespace XbimGeometry.Interfaces
@@ -6,7 +7,7 @@ namespace XbimGeometry.Interfaces
     /// <summary>
     /// Abstract class for all Xbim Geometry objects
     /// </summary>
-    public interface IXbimGeometryObject 
+    public interface IXbimGeometryObject : IDisposable
     {
         XbimGeometryObjectType GeometryType { get; }
         bool IsValid { get; }
