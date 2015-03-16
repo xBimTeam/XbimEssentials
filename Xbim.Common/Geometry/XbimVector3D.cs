@@ -26,9 +26,24 @@ namespace Xbim.Common.Geometry
             }
         }
 
+        public double Modulus
+        {
+            get { return X * X + Y * Y + Z * Z; }
+        }
+
+        double Angle(XbimVector3D other)
+        {
+            var cosinus = DotProduct(other);
+            if (cosinus > -0.70710678118655 && cosinus < 0.70710678118655)
+                return Math.Acos(cosinus);
+            var sinus = CrossProduct(other).Length;
+            if (cosinus < 0.0) return Math.PI - Math.Asin(sinus);
+            return Math.Asin(sinus);
+        }
+
         private double length()
         {
-           return Math.Sqrt(X * X + Y * Y + Z * Z);
+            return Math.Sqrt(X * X + Y * Y + Z * Z);
         }
 
 
