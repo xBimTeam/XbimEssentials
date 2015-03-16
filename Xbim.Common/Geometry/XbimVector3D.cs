@@ -31,7 +31,7 @@ namespace Xbim.Common.Geometry
             get { return X * X + Y * Y + Z * Z; }
         }
 
-        double Angle(XbimVector3D other)
+        public double Angle(XbimVector3D other)
         {
             var cosinus = DotProduct(other);
             if (cosinus > -0.70710678118655 && cosinus < 0.70710678118655)
@@ -47,7 +47,7 @@ namespace Xbim.Common.Geometry
         /// <param name="other">other vector</param>
         /// <param name="angularTolerance">Tolerance in radians</param>
         /// <returns></returns>
-        bool IsOpposite(XbimVector3D other, double angularTolerance)
+        public bool IsOpposite(XbimVector3D other, double angularTolerance)
         {
             return Math.PI - Angle (other) <= angularTolerance;
         }
@@ -58,7 +58,7 @@ namespace Xbim.Common.Geometry
         /// <param name="other">other vector</param>
         /// <param name="angularTolerance">Tolerance in radians</param>
         /// <returns></returns>
-        bool IsParallel(XbimVector3D other, double angularTolerance)
+        public bool IsParallel(XbimVector3D other, double angularTolerance)
         {
             var ang = Angle(other);
             return ang <= angularTolerance || Math.PI - ang <= angularTolerance;
