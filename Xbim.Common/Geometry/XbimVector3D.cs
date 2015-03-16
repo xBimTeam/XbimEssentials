@@ -41,6 +41,30 @@ namespace Xbim.Common.Geometry
             return Math.Asin(sinus);
         }
 
+        /// <summary>
+        /// Returns true if the angle is less than tolerance
+        /// </summary>
+        /// <param name="other">other vector</param>
+        /// <param name="angularTolerance">Tolerance in radians</param>
+        /// <returns></returns>
+        bool IsOpposite(XbimVector3D other, double angularTolerance)
+        {
+            return Math.PI - Angle (other) <= angularTolerance;
+        }
+
+        /// <summary>
+        /// Returns true if the vectors are parallel
+        /// </summary>
+        /// <param name="other">other vector</param>
+        /// <param name="angularTolerance">Tolerance in radians</param>
+        /// <returns></returns>
+        bool IsParallel(XbimVector3D other, double angularTolerance)
+        {
+            var ang = Angle(other);
+            return ang <= angularTolerance || Math.PI - ang <= angularTolerance;
+        }
+           
+
         private double length()
         {
             return Math.Sqrt(X * X + Y * Y + Z * Z);
