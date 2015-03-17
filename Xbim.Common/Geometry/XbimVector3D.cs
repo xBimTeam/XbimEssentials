@@ -63,7 +63,18 @@ namespace Xbim.Common.Geometry
             var ang = Angle(other);
             return ang <= angularTolerance || Math.PI - ang <= angularTolerance;
         }
-           
+            /// <summary>
+        /// Returns true if the vectors are normal
+        /// </summary>
+        /// <param name="other">other vector</param>
+        /// <param name="angularTolerance">Tolerance in radians</param>
+        /// <returns></returns>
+        public bool IsNormal(XbimVector3D other, double angularTolerance)
+        {
+            var ang = Math.PI / 2.0 - Angle(other);
+            if (ang < 0) ang = -ang;
+            return ang <= angularTolerance;
+        }
 
         private double length()
         {
