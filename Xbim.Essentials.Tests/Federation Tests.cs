@@ -48,6 +48,7 @@ namespace Xbim.Essentials.Tests
             {
                 fed.CreateFrom("P1P2Federation.ifc", "P1P2Federation.xBIMF"); //use xBIMF to help us distinguish
                 fed.Open("P1P2Federation.xBIMF", XbimExtensions.XbimDBAccess.Read);
+                fed.EnsureUniqueUserDefinedId();
 
                 var mustDiffer =
                     fed.Instances.OfType<IfcGeometricRepresentationSubContext>()

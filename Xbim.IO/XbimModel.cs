@@ -101,6 +101,8 @@ namespace Xbim.IO
         {
             cache = new IfcPersistedInstanceCache(this);
             instances = new XbimInstanceCollection(this);
+            var r = new Random();
+            UserDefinedId = (short)r.Next(short.MaxValue); // initialise value at random to reduce chance of duplicates
         }
         public string DatabaseName
         {
@@ -1353,14 +1355,23 @@ namespace Xbim.IO
                 {
                     // do not throw exception on referenceModel Creation
                     try
-                {
+                    {
                         _referencedModels.Add(new XbimReferencedModel(docInfo));
-                }
+                    }
                     catch (Exception)
-                {
+                    {
                         // drop exception in this case
                     }
                 }
+            }
+        }
+
+        public void EnsureUniqueUserDefinedId()
+        {
+            short iId = 0;
+            foreach (var model in AllModels)
+            {
+                model.UserDefinedId = iId++;
             }
         }
 
