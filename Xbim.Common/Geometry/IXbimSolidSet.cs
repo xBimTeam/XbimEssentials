@@ -17,5 +17,6 @@ namespace XbimGeometry.Interfaces
         IXbimSolidSet Union(IXbimSolid toUnion, double tolerance);
         IXbimSolidSet Intersection(IXbimSolidSet toIntersect, double tolerance);
         IXbimSolidSet Intersection(IXbimSolid toIntersect, double tolerance);
+        bool IsSimplified { get; }
     }
 }

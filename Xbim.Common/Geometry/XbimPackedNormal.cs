@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 
 namespace Xbim.Common.Geometry
 {
@@ -11,8 +7,15 @@ namespace Xbim.Common.Geometry
     {
         private ushort _packedData;
         const double PackSize = 252;
-       
+        public UInt16 ToUnit16()
+        {
+            return _packedData;  
+        }
 
+        public XbimPackedNormal(UInt16 packedData)
+        {
+            _packedData = packedData;
+        }
         public void Write(BinaryWriter bw)
         {
             bw.Write(U);

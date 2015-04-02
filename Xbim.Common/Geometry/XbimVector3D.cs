@@ -26,9 +26,59 @@ namespace Xbim.Common.Geometry
             }
         }
 
+        public double Modulus
+        {
+            get { return X * X + Y * Y + Z * Z; }
+        }
+
+        public double Angle(XbimVector3D other)
+        {
+            var cosinus = DotProduct(other);
+            if (cosinus > -0.70710678118655 && cosinus < 0.70710678118655)
+                return Math.Acos(cosinus);
+            var sinus = CrossProduct(other).Length;
+            if (cosinus < 0.0) return Math.PI - Math.Asin(sinus);
+            return Math.Asin(sinus);
+        }
+
+        /// <summary>
+        /// Returns true if the angle is less than tolerance
+        /// </summary>
+        /// <param name="other">other vector</param>
+        /// <param name="angularTolerance">Tolerance in radians</param>
+        /// <returns></returns>
+        public bool IsOpposite(XbimVector3D other, double angularTolerance)
+        {
+            return Math.PI - Angle (other) <= angularTolerance;
+        }
+
+        /// <summary>
+        /// Returns true if the vectors are parallel
+        /// </summary>
+        /// <param name="other">other vector</param>
+        /// <param name="angularTolerance">Tolerance in radians</param>
+        /// <returns></returns>
+        public bool IsParallel(XbimVector3D other, double angularTolerance)
+        {
+            var ang = Angle(other);
+            return ang <= angularTolerance || Math.PI - ang <= angularTolerance;
+        }
+            /// <summary>
+        /// Returns true if the vectors are normal
+        /// </summary>
+        /// <param name="other">other vector</param>
+        /// <param name="angularTolerance">Tolerance in radians</param>
+        /// <returns></returns>
+        public bool IsNormal(XbimVector3D other, double angularTolerance)
+        {
+            var ang = Math.PI / 2.0 - Angle(other);
+            if (ang < 0) ang = -ang;
+            return ang <= angularTolerance;
+        }
+
         private double length()
         {
-           return Math.Sqrt(X * X + Y * Y + Z * Z);
+            return Math.Sqrt(X * X + Y * Y + Z * Z);
         }
 
 

@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Xbim.Ifc2x3.MeasureResource;
 using Xbim.XbimExtensions.Interfaces;
 
 using Xbim.XbimExtensions;
@@ -62,7 +63,7 @@ namespace Xbim.IO
             {
                 foreach (string item in header.FileDescription.Description)
                 {
-                    headerStr.AppendFormat(@"{0}'{1}'", i == 0 ? "" : ",", item);
+                    headerStr.AppendFormat(@"{0}'{1}'", i == 0 ? "" : ",", IfcText.Escape(item));
                     i++;
                 }
             }
@@ -70,7 +71,7 @@ namespace Xbim.IO
             headerStr.AppendLine();
             //FileName
             headerStr.Append("FILE_NAME (");
-            headerStr.AppendFormat(@"'{0}'", header.FileName.Name);
+            headerStr.AppendFormat(@"'{0}'", IfcText.Escape(header.FileName.Name));
             headerStr.AppendFormat(@", '{0}'", header.FileName.TimeStamp);
             headerStr.Append(", (");
             i = 0;
@@ -80,7 +81,7 @@ namespace Xbim.IO
             {
                 foreach (string item in header.FileName.AuthorName)
                 {
-                    headerStr.AppendFormat(@"{0}'{1}'", i == 0 ? "" : ",", item);
+                    headerStr.AppendFormat(@"{0}'{1}'", i == 0 ? "" : ",", IfcText.Escape(item));
                     i++;
                 }
             }
@@ -92,12 +93,12 @@ namespace Xbim.IO
             {
                 foreach (string item in header.FileName.Organization)
                 {
-                    headerStr.AppendFormat(@"{0}'{1}'", i == 0 ? "" : ",", item);
+                    headerStr.AppendFormat(@"{0}'{1}'", i == 0 ? "" : ",", IfcText.Escape(item));
                     i++;
                 }
             }
-            headerStr.AppendFormat(@"), '{0}', '{1}', '{2}');", header.FileName.PreprocessorVersion, header.FileName.OriginatingSystem,
-                                header.FileName.AuthorizationName);
+            headerStr.AppendFormat(@"), '{0}', '{1}', '{2}');", IfcText.Escape(header.FileName.PreprocessorVersion), IfcText.Escape(header.FileName.OriginatingSystem),
+                                IfcText.Escape(header.FileName.AuthorizationName));
             headerStr.AppendLine();
             //FileSchema
             headerStr.AppendFormat("FILE_SCHEMA (('{0}'));", header.FileSchema.Schemas.FirstOrDefault());

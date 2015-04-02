@@ -101,6 +101,8 @@ namespace Xbim.IO
         {
             cache = new IfcPersistedInstanceCache(this);
             instances = new XbimInstanceCollection(this);
+            var r = new Random();
+            UserDefinedId = (short)r.Next(short.MaxValue); // initialise value at random to reduce chance of duplicates
         }
         public string DatabaseName
         {
@@ -166,6 +168,14 @@ namespace Xbim.IO
             g2.GroupElements(@"DynamicGrouping\NRM2IFC.xml");
         }
 
+        /// <summary>
+        /// Reloads the model factors if any units or precisions are changed
+        /// </summary>
+        public XbimModelFactors ReloadModelFactors()
+        {
+            GetModelFactors();
+            return _modelFactors;
+        }
 
         private void GetModelFactors()
         {
@@ -1345,14 +1355,23 @@ namespace Xbim.IO
                 {
                     // do not throw exception on referenceModel Creation
                     try
-                {
+                    {
                         _referencedModels.Add(new XbimReferencedModel(docInfo));
-                }
+                    }
                     catch (Exception)
-                {
+                    {
                         // drop exception in this case
                     }
                 }
+            }
+        }
+
+        public void EnsureUniqueUserDefinedId()
+        {
+            short iId = 0;
+            foreach (var model in AllModels)
+            {
+                model.UserDefinedId = iId++;
             }
         }
 
@@ -1405,6 +1424,7 @@ namespace Xbim.IO
                 project.OwnerHistory.OwningApplication = DefaultOwningApplication;
                 txn.Commit();
             }
+            ReloadModelFactors();
         }
 
         /// <summary>

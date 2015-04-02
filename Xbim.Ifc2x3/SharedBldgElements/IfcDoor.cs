@@ -119,7 +119,11 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         [IfcAttribute(10, IfcAttributeState.Optional)]
         public IfcPositiveLengthMeasure? OverallWidth
         {
-            get { return _overallWidth; }
+            get 
+            { 
+                ((IPersistIfcEntity)this).Activate(false);
+                return _overallWidth; 
+            }
             set { this.SetModelValue(this, ref _overallWidth, value, v => OverallWidth = v, "OverallWidth"); }
         }
 
