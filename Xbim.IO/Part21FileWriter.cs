@@ -71,8 +71,8 @@ namespace Xbim.IO
             headerStr.AppendLine();
             //FileName
             headerStr.Append("FILE_NAME (");
-            headerStr.AppendFormat(@"'{0}'", IfcText.Escape(header.FileName.Name));
-            headerStr.AppendFormat(@", '{0}'", header.FileName.TimeStamp);
+            headerStr.AppendFormat(@"'{0}'", (header.FileName !=null && header.FileName.Name!=null)? IfcText.Escape(header.FileName.Name):"");
+            headerStr.AppendFormat(@", '{0}'", header.FileName !=null? header.FileName.TimeStamp:"");
             headerStr.Append(", (");
             i = 0;
             if (header.FileName.AuthorName.Count == 0)
