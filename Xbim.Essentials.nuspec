@@ -27,7 +27,7 @@
         <tags>BIM, IFC, IfcXml, IfcZip, COBie, .Net, C#, BuildingSmart</tags>
 	<dependencies>
     <dependency id="log4net" version="2.0.3" />
-		<dependency id="ManagedEsent" version="1.9.2" />
+		<dependency id="ManagedEsent" version="1.9.2.0" />
 		<dependency id="SharpZipLib" version="0.86.0" />
 	</dependencies> 
     </metadata>
