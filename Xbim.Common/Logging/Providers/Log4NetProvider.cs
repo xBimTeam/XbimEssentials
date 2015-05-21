@@ -47,7 +47,12 @@ namespace Xbim.Common.Logging.Providers
                 log4net.GlobalContext.Properties["LogName"] = Path.Combine(LogPath, LogFileName);
                 log4net.GlobalContext.Properties["ApplicationName"] = ApplicationName;
             }
-			XmlConfigurator.Configure();
+
+            if (!log4net.LogManager.GetRepository().Configured)
+            {
+                // Don't call configure if the calling application has already configured
+                XmlConfigurator.Configure();
+            }
 
 		}
 
