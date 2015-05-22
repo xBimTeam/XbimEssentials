@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 
         public static string Escape(string source)
         {
-            if (source == null) return null;
+            if (string.IsNullOrEmpty(source)) return "";
             WriteState state = WriteState.Normal;
             StringBuilder sb = new StringBuilder(source.Length * 2);
             

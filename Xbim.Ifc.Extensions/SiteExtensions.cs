@@ -59,6 +59,19 @@ namespace Xbim.Ifc2x3.Extensions
 
         #endregion
 
+        public static IEnumerable<IfcSpace> GetSpaces(this IfcSite site)
+        {
+            if (site != null)
+            {
+                if (site.IsDecomposedBy != null)
+                {
+                    var decomp = site.IsDecomposedBy;
+                    var objs = decomp.SelectMany(s => s.RelatedObjects);
+                    return objs.OfType<IfcSpace>();
+                }
+            }
+            return Enumerable.Empty<IfcSpace>();
+        }
 
         #region Representation methods
 
