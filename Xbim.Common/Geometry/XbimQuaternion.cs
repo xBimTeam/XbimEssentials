@@ -72,7 +72,7 @@ namespace Xbim.Common.Geometry
 
         static XbimQuaternion()
         {
-            _identity = new XbimQuaternion(0.0f, 0.0f, 0.0f, 1.0f);
+            _identity = new XbimQuaternion(0.0, 0.0, 0.0, 1.0);
             _identity._isNotDefaultInitialised = true;
         }
 
@@ -139,6 +139,16 @@ namespace Xbim.Common.Geometry
                 result.Z = 0.5f * sqrt;
                 result.W = (matrix.M12 - matrix.M21) * half;
             }
+        }
+
+        public bool IsIdentity()
+        {
+            if (!_isNotDefaultInitialised) 
+                return true;
+            return Math.Abs(X - _identity.X) < double.Epsilon 
+                   && Math.Abs(Y - _identity.Y) < double.Epsilon
+                   && Math.Abs(Z - _identity.Z) < double.Epsilon
+                   && Math.Abs(W - _identity.W) < double.Epsilon;
         }
 
         /// <summary>
