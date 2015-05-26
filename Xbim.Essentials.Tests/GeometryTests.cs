@@ -10,6 +10,20 @@ namespace Xbim.Essentials.Tests
     public class GeometryTests
     {
         [TestMethod]
+        public void QuaternionTests()
+        {
+            var q = new XbimQuaternion();
+            Assert.AreEqual(true, q.IsIdentity(), "Uninitialised quaternion should be identity.");
+
+            q = new XbimQuaternion(0.0f, 0.0f, 0.0f, 1.0f);
+            Assert.AreEqual(true, q.IsIdentity(), "Should be identity when initialised with floats.");
+
+            var mat = new XbimMatrix3D();
+            q = mat.GetRotationQuaternion();
+            Assert.AreEqual(true, q.IsIdentity(), "Quaternion from identity matrix shold be identity.");
+        }
+
+        [TestMethod]
         public void PackedNormalTests()
         {
             var vectors = (List<XbimVector3D>)UniformPointsOnSphere(100);
