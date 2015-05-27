@@ -73,6 +73,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="GeometryCacheTestFiles\Monolith-NoGeomTables.xBIM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="GeometryCacheTestFiles\Monolith_Nogeom_Version1Schema.xbim">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestSourceFiles\BIM Logo-ExclaimationBody.xBIM">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

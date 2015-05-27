@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.IO;
+using Xbim.XbimExtensions;
 
 namespace Xbim.Essentials.Tests
 {
@@ -11,6 +12,15 @@ namespace Xbim.Essentials.Tests
         public void FileVersionIsCorrect()
         {
             var m = new XbimModel();
+
+            m.Open("Monolith-NoGeomTables.xBIM", XbimDBAccess.ReadWrite);
+            Assert.AreEqual(0, m.GeometrySupportLevel, "GeometrySupportLevel should be 0");
+            m.Close();
+
+            m.Open("Monolith_Nogeom_Version1Schema.xBIM");
+            Assert.AreEqual(0, m.GeometrySupportLevel, "GeometrySupportLevel should be 0");
+            m.Close();
+
             m.Open("Monolith_v10.xBIM");
             Assert.AreEqual(1, m.GeometrySupportLevel, "GeometrySupportLevel for Monolith_v10 should be 1");
             m.Close();
