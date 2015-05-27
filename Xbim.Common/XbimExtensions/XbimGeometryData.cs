@@ -49,7 +49,8 @@ namespace Xbim.XbimExtensions
             Counter = counter;
         }
 
-
+        // TODO: when marking methods obsolete we should provide guidance for removing them from user's codebases
+        // in this case the suggestion will probably be to re-mesh, but no clear API is available for that; we have to hava a policy in place
 
         /// <summary>
         /// Transforms the shape data of the geometry by the matrix
@@ -62,7 +63,6 @@ namespace Xbim.XbimExtensions
             XbimMatrix3D t =  XbimMatrix3D.FromArray(DataArray2);
             t = XbimMatrix3D.Multiply(t, matrix);
             return new XbimGeometryData(GeometryLabel, IfcProductLabel, GeometryType, IfcTypeId, ShapeData, t.ToArray(), GeometryHash, StyleLabel, Counter);
-            
         }
 
        
