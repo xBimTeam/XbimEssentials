@@ -1181,9 +1181,17 @@ namespace Xbim.IO
         {
             get
             {
-                if (GetGeometryData(XbimGeometryType.Polyhedron).Any()) return 2;
-                else if (GetGeometryData(XbimGeometryType.TriangulatedMesh).Any()) return 1;
-                else return 0;
+                if (DatabaseHasInstanceTable())
+                {
+                    using (var i = GetShapeInstanceTable())
+                    {
+                        if (i.RetrieveCount() > 0)
+                            return 2;
+                    }
+                }
+                else if (DatabaseHasGeometryTable() && GetGeometryData(XbimGeometryType.TriangulatedMesh).Any()) 
+                    return 1;
+                return 0;
             }
         }
 
@@ -1489,9 +1497,7 @@ namespace Xbim.IO
         }
 
         public object Tag { get; set; }
-
-
-
+        
         public XbimShapeGeometryCursor GetShapeGeometryTable()
         {
             return cache.GetShapeGeometryTable();
@@ -1502,5 +1508,19 @@ namespace Xbim.IO
             return cache.GetShapeInstanceTable();
         }
 
+        public bool DeleteGeometryCache()
+        {
+            return cache.DeleteGeometry();
+        }
+
+        public bool DatabaseHasGeometryTable()
+        {
+            return cache.DatabaseHasGeometryTable();
+        }
+
+        public bool DatabaseHasInstanceTable()
+        {
+            return cache.DatabaseHasInstanceTable();
+        }
     }
 }

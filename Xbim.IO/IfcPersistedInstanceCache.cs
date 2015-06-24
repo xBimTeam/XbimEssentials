@@ -2092,6 +2092,51 @@ namespace Xbim.IO
             return new XbimShapeGeometryCursor(this._model, _databaseName, openMode);
         }
 
+        internal bool deleteJetTable(string name)
+        {
+            if (!HasTable(name)) 
+                return true;
+            try
+            {
+                Api.JetDeleteTable(_session, _databaseId, name);
+            }
+            catch 
+            {
+                return false;
+            }
+            return true;
+        }
+
+        internal bool DeleteGeometry()
+        {
+            var ret = deleteJetTable(XbimShapeInstanceCursor.InstanceTableName);
+            if (!deleteJetTable(XbimGeometryCursor.GeometryTableName))
+                ret = false;
+            if (!deleteJetTable(XbimShapeGeometryCursor.GeometryTableName))
+                ret = false;
+            return ret;
+        }
+
+
+        internal bool DatabaseHasInstanceTable()
+        {
+            return HasTable(XbimShapeInstanceCursor.InstanceTableName);
+        }
+
+        internal bool DatabaseHasGeometryTable()
+        {
+            return HasTable(XbimGeometryCursor.GeometryTableName);
+        }
+        
+        private bool HasTable(string name)
+        {
+            JET_TABLEID t;
+            var has = Api.TryOpenTable(this._session, this._databaseId, name, OpenTableGrbit.ReadOnly, out t);
+            if (has)
+                Api.JetCloseTable(this._session, t);
+            return has;
+        }
+
         internal XbimShapeInstanceCursor GetShapeInstanceTable()
         {
             Debug.Assert(!string.IsNullOrEmpty(_databaseName));
