@@ -57,6 +57,7 @@
     <Compile Include="PackedNormalTests.cs" />
     <Compile Include="IfcHeaderTests.cs" />
     <Compile Include="IfcSIUnitTests.cs" />
+    <Compile Include="Base\IfcTestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">
@@ -78,6 +79,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="GeometryCacheTestFiles\Monolith-NoGeomTables.xBIM">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -91,6 +93,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\BIM Logo-LetterM.xBIM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\IfcSIUnitTests.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\P1.xBIM">
