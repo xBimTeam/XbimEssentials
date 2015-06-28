@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>Xbim.Essentials</id>
-        <version>3.0.23</version>
+        <version>3.0.24</version>
         <title>xBIM Essentials</title>
         <authors>xBIM team</authors>
         <owners>Steve Lockley</owners>
@@ -32,18 +32,18 @@
 	</dependencies> 
     </metadata>
     <files>
-      <file src="Output\Release\Xbim.Common.dll" target="lib\net45\Xbim.Common.dll" />
-      <file src="Output\Release\Xbim.Ifc.Extensions.dll" target="lib\net45\Xbim.Ifc.Extensions.dll" />
-      <file src="Output\Release\Xbim.Ifc2x3.dll" target="lib\net45\Xbim.Ifc2x3.dll" />
-      <file src="Output\Release\Xbim.IO.dll" target="lib\net45\Xbim.IO.dll" />
-      <file src="Output\Release\Xbim.Common.xml" target="lib\net45\Xbim.Common.xml" />
-      <file src="Output\Release\Xbim.Ifc.Extensions.xml" target="lib\net45\Xbim.Ifc.Extensions.xml" />
-      <file src="Output\Release\Xbim.Ifc2x3.xml" target="lib\net45\Xbim.Ifc2x3.xml" />
-      <file src="Output\Release\Xbim.IO.xml" target="lib\net45\Xbim.IO.xml" />
-      <file src="Output\Release\Xbim.Common.pdb" target="lib\net45\Xbim.Common.pdb" />
-      <file src="Output\Release\Xbim.Ifc.Extensions.pdb" target="lib\net45\Xbim.Ifc.Extensions.pdb" />
-      <file src="Output\Release\Xbim.Ifc2x3.pdb" target="lib\net45\Xbim.Ifc2x3.pdb" />
-      <file src="Output\Release\Xbim.IO.pdb" target="lib\net45\Xbim.IO.pdb" />
+      <file src="Output\Release\Xbim.Common.dll" target="lib\net40\Xbim.Common.dll" />
+      <file src="Output\Release\Xbim.Ifc.Extensions.dll" target="lib\net40\Xbim.Ifc.Extensions.dll" />
+      <file src="Output\Release\Xbim.Ifc2x3.dll" target="lib\net40\Xbim.Ifc2x3.dll" />
+      <file src="Output\Release\Xbim.IO.dll" target="lib\net40\Xbim.IO.dll" />
+      <file src="Output\Release\Xbim.Common.xml" target="lib\net40\Xbim.Common.xml" />
+      <file src="Output\Release\Xbim.Ifc.Extensions.xml" target="lib\net40\Xbim.Ifc.Extensions.xml" />
+      <file src="Output\Release\Xbim.Ifc2x3.xml" target="lib\net40\Xbim.Ifc2x3.xml" />
+      <file src="Output\Release\Xbim.IO.xml" target="lib\net40\Xbim.IO.xml" />
+      <file src="Output\Release\Xbim.Common.pdb" target="lib\net40\Xbim.Common.pdb" />
+      <file src="Output\Release\Xbim.Ifc.Extensions.pdb" target="lib\net40\Xbim.Ifc.Extensions.pdb" />
+      <file src="Output\Release\Xbim.Ifc2x3.pdb" target="lib\net40\Xbim.Ifc2x3.pdb" />
+      <file src="Output\Release\Xbim.IO.pdb" target="lib\net40\Xbim.IO.pdb" />
     </files>
 	
 </package>
