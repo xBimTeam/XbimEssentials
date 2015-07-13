@@ -15,9 +15,8 @@
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccProvider>SAK</SccProvider>
-    <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -214,6 +213,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="XbimIfcKey.pfx" />
+    <None Include="XbimOpenSourceKeyFile.snk" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Parser\gplex.exe" />
