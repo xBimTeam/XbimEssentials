@@ -15,6 +15,7 @@ namespace Xbim.IO
         ILogger Logger { get; }
 
         IXbimGeometryObject Create(IfcGeometricRepresentationItem ifcRepresentation);
+        IXbimGeometryObject Create(IfcGeometricRepresentationItem ifcRepresentation, IfcAxis2Placement3D objectLocation);
         /// <summary>
         /// 
         /// </summary>
