@@ -2047,8 +2047,7 @@ namespace Xbim.IO
             get
             {
                 return caching;
-            }
-                
+            }        
         }
 
         public XbimModel Model 
