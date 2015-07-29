@@ -22,6 +22,12 @@ namespace XbimGeometry.Interfaces
         /// <param name="matrix3D"></param>
         /// <returns></returns>
         IXbimGeometryObject Transform(XbimMatrix3D matrix3D);
+        /// <summary>
+        /// Returns a new version of the object transformed but does not perform a deepcopy, changes to this  will be reflected in the copy and vice versa
+        /// </summary>
+        /// <param name="matrix3D"></param>
+        /// <returns></returns>
+        IXbimGeometryObject TransformShallow(XbimMatrix3D matrix3D);
 
     }
 }
