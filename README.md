@@ -1,6 +1,10 @@
-Subproject of https://github.com/xBimTeam/xBimToolkit
+[![NuGet](https://img.shields.io/nuget/v/xbim.essentials.svg?label=Nuget version)](https://www.nuget.org/packages/xbim.essentials)
 
-Relates to Nuget Package Xbim.Essentials
+[![MyGet](https://img.shields.io/myget/xbim-master/vpre/Xbim.Essentials.svg?label=Myget Master)]()
+
+[![MyGet](https://img.shields.io/myget/xbim-develop/vpre/Xbim.Essentials.svg?label=Myget Develop)](https://www.nuget.org/packages/xbim.essentials)
+
+[![Issues](https://img.shields.io/github/issues/XbimTeam/XbimEssentials.svg)](https://github.com/xBimTeam/XbimEssentials/issues)
 
 # XBIM - the eXtensible Building Information Modelling (BIM) Toolkit
 
