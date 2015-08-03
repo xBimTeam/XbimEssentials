@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>Xbim.Essentials</id>
-        <version>3.0.23</version>
+        <version>3.1.3</version>
         <title>xBIM Essentials</title>
         <authors>xBIM team</authors>
         <owners>Steve Lockley</owners>
@@ -20,9 +20,7 @@
           The xBIM project provides packages to convert IFC models to COBie spreadsheets in both UK and US cultures as well as a range of 3D viewing controls for use with Windows forms, WPF, WEBGL and OpenGL platforms.
           IOS and Android versions are under development.</description>
         <summary>The .Net toolkit for developing BIM applications based on the IFC standard. Essential support for the Ifc data model</summary>
-        <releaseNotes>Minor changes to geometry interface definitions
-          Minor fixes with normal calculations and packing. 
-        All Ifc2x3 class are now supported.</releaseNotes>
+        <releaseNotes>Now references net40 framework and provides signed dlls.</releaseNotes>
         <language>en-GB</language>
         <tags>BIM, IFC, IfcXml, IfcZip, COBie, .Net, C#, BuildingSmart</tags>
 	<dependencies>
@@ -32,18 +30,18 @@
 	</dependencies> 
     </metadata>
     <files>
-      <file src="Output\Release\Xbim.Common.dll" target="lib\net45\Xbim.Common.dll" />
-      <file src="Output\Release\Xbim.Ifc.Extensions.dll" target="lib\net45\Xbim.Ifc.Extensions.dll" />
-      <file src="Output\Release\Xbim.Ifc2x3.dll" target="lib\net45\Xbim.Ifc2x3.dll" />
-      <file src="Output\Release\Xbim.IO.dll" target="lib\net45\Xbim.IO.dll" />
-      <file src="Output\Release\Xbim.Common.xml" target="lib\net45\Xbim.Common.xml" />
-      <file src="Output\Release\Xbim.Ifc.Extensions.xml" target="lib\net45\Xbim.Ifc.Extensions.xml" />
-      <file src="Output\Release\Xbim.Ifc2x3.xml" target="lib\net45\Xbim.Ifc2x3.xml" />
-      <file src="Output\Release\Xbim.IO.xml" target="lib\net45\Xbim.IO.xml" />
-      <file src="Output\Release\Xbim.Common.pdb" target="lib\net45\Xbim.Common.pdb" />
-      <file src="Output\Release\Xbim.Ifc.Extensions.pdb" target="lib\net45\Xbim.Ifc.Extensions.pdb" />
-      <file src="Output\Release\Xbim.Ifc2x3.pdb" target="lib\net45\Xbim.Ifc2x3.pdb" />
-      <file src="Output\Release\Xbim.IO.pdb" target="lib\net45\Xbim.IO.pdb" />
+      <file src="Output\Release\Xbim.Common.dll" target="lib\net40\Xbim.Common.dll" />
+      <file src="Output\Release\Xbim.Ifc.Extensions.dll" target="lib\net40\Xbim.Ifc.Extensions.dll" />
+      <file src="Output\Release\Xbim.Ifc2x3.dll" target="lib\net40\Xbim.Ifc2x3.dll" />
+      <file src="Output\Release\Xbim.IO.dll" target="lib\net40\Xbim.IO.dll" />
+      <file src="Output\Release\Xbim.Common.xml" target="lib\net40\Xbim.Common.xml" />
+      <file src="Output\Release\Xbim.Ifc.Extensions.xml" target="lib\net40\Xbim.Ifc.Extensions.xml" />
+      <file src="Output\Release\Xbim.Ifc2x3.xml" target="lib\net40\Xbim.Ifc2x3.xml" />
+      <file src="Output\Release\Xbim.IO.xml" target="lib\net40\Xbim.IO.xml" />
+      <file src="Output\Release\Xbim.Common.pdb" target="lib\net40\Xbim.Common.pdb" />
+      <file src="Output\Release\Xbim.Ifc.Extensions.pdb" target="lib\net40\Xbim.Ifc.Extensions.pdb" />
+      <file src="Output\Release\Xbim.Ifc2x3.pdb" target="lib\net40\Xbim.Ifc2x3.pdb" />
+      <file src="Output\Release\Xbim.IO.pdb" target="lib\net40\Xbim.IO.pdb" />
     </files>
 	
 </package>

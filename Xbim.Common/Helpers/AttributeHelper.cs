@@ -29,19 +29,9 @@ namespace Xbim.Common.Helpers
 		/// <returns></returns>
 		public static IEnumerable<T> GetAttributes<T>(ICustomAttributeProvider mInfo, bool inherit) where T : System.Attribute
 		{
-			IEnumerable<T> result = null;
-
-			if (mInfo != null)
-			{
-				T[] attributes = (T[])mInfo.GetCustomAttributes(typeof(T), inherit);
-
-				if (attributes != null && attributes.Count() > 0)
-				{
-					result = new List<T>(attributes);
-				}
-			}
-
-			return result;
+		    if (mInfo == null) return null;
+		    var attributes = mInfo.GetCustomAttributes(typeof(T), inherit).OfType<T>().ToList();
+		    return attributes.Any() ? attributes : Enumerable.Empty<T>();
 		}
 
 		/// <summary>
@@ -53,15 +43,7 @@ namespace Xbim.Common.Helpers
 		/// <returns></returns>
 		public static T GetAttribute<T>(ICustomAttributeProvider mInfo, bool inherit) where T : System.Attribute
 		{
-			IEnumerable<T> attributes = GetAttributes<T>(mInfo, inherit);
-			T attribute = null;
-
-			if (attributes != null)
-			{
-				attribute = attributes.First();
-			}
-
-			return attribute;
+			return GetAttributes<T>(mInfo, inherit).FirstOrDefault();			
 		}
 		
 		/// <summary>
@@ -71,17 +53,9 @@ namespace Xbim.Common.Helpers
 		/// <param name="inherit"></param>
 		/// <returns></returns>
 		public static string GetDescriptionAttributeValue(MemberInfo mInfo, bool inherit)
-		{
-			string attributeValue = string.Empty;
-
-			DescriptionAttribute attribute = GetAttribute<DescriptionAttribute>(mInfo, inherit);
-
-			if (attribute != null)
-			{
-				attributeValue = attribute.Description;
-			}
-
-			return attributeValue;
+		{			
+			var attribute = GetAttribute<DescriptionAttribute>(mInfo, inherit);
+		    return attribute != null ? attribute.Description : string.Empty;	
 		}
 	}
 }
