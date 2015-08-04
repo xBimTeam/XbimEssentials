@@ -135,9 +135,7 @@ namespace Xbim.IO
                 {
                     XbimEntityCursor.CreateTable(session, dbid);
                     XbimCursor.CreateGlobalsTable(session, dbid); //create the gobals table
-                    XbimGeometryCursor.CreateTable(session, dbid);
-                    XbimShapeGeometryCursor.CreateTable(session, dbid);
-                    XbimShapeInstanceCursor.CreateTable(session, dbid);
+                    EnsureGeometryTables(session, dbid);
                 }
                 catch (Exception e)
                 {
@@ -151,6 +149,23 @@ namespace Xbim.IO
                     throw e;
                 }
             }
+        }
+
+        internal bool EnsureGeometryTables()
+        {
+            return EnsureGeometryTables(_session, _databaseId);
+        }
+
+        private static bool EnsureGeometryTables(Session session, JET_DBID dbid)
+        {
+            
+            if (!HasTable(XbimGeometryCursor.GeometryTableName, session, dbid))
+                XbimGeometryCursor.CreateTable(session, dbid);
+            if (!HasTable(XbimShapeGeometryCursor.GeometryTableName, session, dbid))
+                XbimShapeGeometryCursor.CreateTable(session, dbid);
+            if (!HasTable(XbimShapeInstanceCursor.InstanceTableName, session, dbid))
+                XbimShapeInstanceCursor.CreateTable(session, dbid);
+            return true;
         }
 
         #region Table functions
@@ -2129,10 +2144,15 @@ namespace Xbim.IO
         
         private bool HasTable(string name)
         {
+            return HasTable(name, _session, _databaseId);
+        }
+
+        private static bool HasTable(string name, Session sess, JET_DBID db)
+        {
             JET_TABLEID t;
-            var has = Api.TryOpenTable(this._session, this._databaseId, name, OpenTableGrbit.ReadOnly, out t);
+            var has = Api.TryOpenTable(sess, db, name, OpenTableGrbit.ReadOnly, out t);
             if (has)
-                Api.JetCloseTable(this._session, t);
+                Api.JetCloseTable(sess, t);
             return has;
         }
 

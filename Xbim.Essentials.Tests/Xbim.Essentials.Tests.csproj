@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Federation Tests.cs" />
     <Compile Include="GeometryCacheTests.cs" />
+    <Compile Include="GeometryPersistencyTables.cs" />
     <Compile Include="GeometryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PackedNormalTests.cs" />
