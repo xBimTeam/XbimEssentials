@@ -135,9 +135,7 @@ namespace Xbim.IO
                 {
                     XbimEntityCursor.CreateTable(session, dbid);
                     XbimCursor.CreateGlobalsTable(session, dbid); //create the gobals table
-                    XbimGeometryCursor.CreateTable(session, dbid);
-                    XbimShapeGeometryCursor.CreateTable(session, dbid);
-                    XbimShapeInstanceCursor.CreateTable(session, dbid);
+                    EnsureGeometryTables(session, dbid);
                 }
                 catch (Exception e)
                 {
@@ -151,6 +149,23 @@ namespace Xbim.IO
                     throw e;
                 }
             }
+        }
+
+        internal bool EnsureGeometryTables()
+        {
+            return EnsureGeometryTables(_session, _databaseId);
+        }
+
+        private static bool EnsureGeometryTables(Session session, JET_DBID dbid)
+        {
+            
+            if (!HasTable(XbimGeometryCursor.GeometryTableName, session, dbid))
+                XbimGeometryCursor.CreateTable(session, dbid);
+            if (!HasTable(XbimShapeGeometryCursor.GeometryTableName, session, dbid))
+                XbimShapeGeometryCursor.CreateTable(session, dbid);
+            if (!HasTable(XbimShapeInstanceCursor.InstanceTableName, session, dbid))
+                XbimShapeInstanceCursor.CreateTable(session, dbid);
+            return true;
         }
 
         #region Table functions
@@ -402,39 +417,43 @@ namespace Xbim.IO
         /// </summary>
         public void Close()
         {
-            int refCount = openInstances.Count(c => c.JetInstance == this.JetInstance);
-            bool disposeTable = (refCount != 0); //only dispose if we have not terminated the instance
-            for (int i = 0; i < this._entityTables.Length; ++i)
-            {
-                if (null != this._entityTables[i])
-                {
-                    if(disposeTable) this._entityTables[i].Dispose();
-                    this._entityTables[i] = null;
-                }
-            }
-            for (int i = 0; i < this._geometryTables.Length; ++i)
-            {
-                if (null != this._geometryTables[i])
-                {
-                    if(disposeTable) this._geometryTables[i].Dispose();
-                    this._geometryTables[i] = null;
-                }
-            }
+            var refCount = openInstances.Count(c => c.JetInstance == JetInstance);
+            var disposeTable = (refCount != 0); //only dispose if we have not terminated the instance
+            CleanTableArrays(disposeTable);
             EndCaching();
 
-            if (_session != null )
+            if (_session == null) 
+                return;
+            Api.JetCloseDatabase(_session, _databaseId, CloseDatabaseGrbit.None);
+            lock (openInstances)
             {
-                Api.JetCloseDatabase(_session, _databaseId, CloseDatabaseGrbit.None);
-                lock (openInstances)
-                {
-                    openInstances.Remove(this);
-                    refCount = openInstances.Count(c => System.String.Compare(c.DatabaseName, this.DatabaseName, System.StringComparison.OrdinalIgnoreCase) == 0);
-                    if (refCount == 0) //only detach if we have no more references
-                        Api.JetDetachDatabase(_session, _databaseName);
-                }
-                this._databaseName = null;
-                _session.Dispose();
-                _session = null;
+                openInstances.Remove(this);
+                refCount = openInstances.Count(c => string.Compare(c.DatabaseName, DatabaseName, StringComparison.OrdinalIgnoreCase) == 0);
+                if (refCount == 0) //only detach if we have no more references
+                    Api.JetDetachDatabase(_session, _databaseName);
+            }
+            _databaseName = null;
+            _session.Dispose();
+            _session = null;
+        }
+
+        private void CleanTableArrays(bool disposeTables)
+        {
+            for (var i = 0; i < _entityTables.Length; ++i)
+            {
+                if (null == this._entityTables[i]) 
+                    continue;
+                if (disposeTables) 
+                    _entityTables[i].Dispose();
+                _entityTables[i] = null;
+            }
+            for (var i = 0; i < _geometryTables.Length; ++i)
+            {
+                if (null == this._geometryTables[i]) 
+                    continue;
+                if (disposeTables) 
+                    _geometryTables[i].Dispose();
+                _geometryTables[i] = null;
             }
         }
 
@@ -2099,21 +2118,26 @@ namespace Xbim.IO
             {
                 Api.JetDeleteTable(_session, _databaseId, name);
             }
-            catch 
+            catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
                 return false;
             }
             return true;
         }
 
+        /// <summary>
+        /// Deletes the geometric content of the model.
+        /// </summary>
+        /// <returns>True if successful.</returns>
         internal bool DeleteGeometry()
         {
-            var ret = deleteJetTable(XbimShapeInstanceCursor.InstanceTableName);
-            if (!deleteJetTable(XbimGeometryCursor.GeometryTableName))
-                ret = false;
-            if (!deleteJetTable(XbimShapeGeometryCursor.GeometryTableName))
-                ret = false;
-            return ret;
+            CleanTableArrays(true);
+            var  returnVal  = true;
+            returnVal &= deleteJetTable(XbimShapeInstanceCursor.InstanceTableName);
+            returnVal &= deleteJetTable(XbimGeometryCursor.GeometryTableName);
+            returnVal &= deleteJetTable(XbimShapeGeometryCursor.GeometryTableName);                
+            return returnVal;
         }
 
 
@@ -2129,10 +2153,15 @@ namespace Xbim.IO
         
         private bool HasTable(string name)
         {
+            return HasTable(name, _session, _databaseId);
+        }
+
+        private static bool HasTable(string name, Session sess, JET_DBID db)
+        {
             JET_TABLEID t;
-            var has = Api.TryOpenTable(this._session, this._databaseId, name, OpenTableGrbit.ReadOnly, out t);
+            var has = Api.TryOpenTable(sess, db, name, OpenTableGrbit.ReadOnly, out t);
             if (has)
-                Api.JetCloseTable(this._session, t);
+                Api.JetCloseTable(sess, t);
             return has;
         }
 

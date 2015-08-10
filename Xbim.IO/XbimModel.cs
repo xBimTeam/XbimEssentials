@@ -1508,6 +1508,15 @@ namespace Xbim.IO
             return cache.GetShapeInstanceTable();
         }
 
+        /// <summary>
+        /// Invoke the function before meshing to ensure database structure is available
+        /// </summary>
+        /// <returns></returns>
+        public bool EnsureGeometryTables()
+        {
+            return cache.EnsureGeometryTables();
+        }
+
         public bool DeleteGeometryCache()
         {
             return cache.DeleteGeometry();
