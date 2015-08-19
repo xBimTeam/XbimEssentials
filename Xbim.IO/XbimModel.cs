@@ -1,44 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Isam.Esent.Interop;
-using Xbim.Ifc2x3.GeometryResource;
-using Xbim.Ifc2x3.ProductExtension;
-using Xbim.XbimExtensions.Interfaces;
-using Xbim.Ifc2x3.ActorResource;
-using Xbim.Ifc2x3.UtilityResource;
-using Xbim.Ifc2x3.Kernel;
-using System.IO;
-using Xbim.XbimExtensions;
-using Xbim.Ifc2x3.Extensions;
+﻿using ICSharpCode.SharpZipLib.Zip;
+using System;
 using System.CodeDom.Compiler;
-using Xbim.XbimExtensions.SelectTypes;
 using System.Collections;
-using ICSharpCode.SharpZipLib.Zip;
-using Xbim.Ifc2x3.MeasureResource;
+using System.Collections.Generic;
 using System.Diagnostics;
-using Xbim.Common.Logging;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using System.Globalization;
-using Xbim.Ifc2x3.ExternalReferenceResource;
-using Xbim.IO.DynamicGrouping;
-using Xbim.Ifc2x3.RepresentationResource;
-using System.Runtime.CompilerServices;
 using Xbim.Common.Geometry;
-using Xbim.Ifc2x3.GeometricConstraintResource;
+using Xbim.Common.Logging;
+using Xbim.Ifc2x3.ActorResource;
+using Xbim.Ifc2x3.Extensions;
+using Xbim.Ifc2x3.ExternalReferenceResource;
+using Xbim.Ifc2x3.GeometryResource;
+using Xbim.Ifc2x3.Kernel;
+using Xbim.Ifc2x3.MeasureResource;
+using Xbim.Ifc2x3.RepresentationResource;
+using Xbim.Ifc2x3.UtilityResource;
+using Xbim.IO.DynamicGrouping;
+using Xbim.XbimExtensions;
+using Xbim.XbimExtensions.Interfaces;
+using Xbim.XbimExtensions.SelectTypes;
 using XbimGeometry.Interfaces;
 
 
 namespace Xbim.IO
 {
+    public delegate object PropertyTranformDelegate(IfcMetaProperty property, object parentObject);
     /// <summary>
     /// General Model class for memory based model suport
     /// </summary>
-   
+
     public class XbimModel : IModel, IDisposable
     {
+
+        
         #region Fields
 
         #region Logging Fields
@@ -222,7 +220,7 @@ namespace Xbim.IO
                         }
             }
             IEnumerable<IfcGeometricRepresentationContext> gcs =
-                this.Instances.OfType<IfcGeometricRepresentationContext>();
+                Instances.OfType<IfcGeometricRepresentationContext>();
             double? defaultPrecision = null;
             //get the Model precision if it is correctly defined
             foreach (var gc in gcs.Where(g => !(g is IfcGeometricRepresentationSubContext)))
@@ -1236,9 +1234,13 @@ namespace Xbim.IO
         /// <returns></returns>
         public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, bool includeInverses = false) where T : IPersistIfcEntity
         {
-            return cache.InsertCopy<T>(toCopy, mappings, txn, includeInverses);
+            return cache.InsertCopy<T>(toCopy, mappings, txn, includeInverses, null);
         }
 
+        public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, PropertyTranformDelegate propTransform, bool includeInverses = false) where T : IPersistIfcEntity
+        {
+            return cache.InsertCopy<T>(toCopy, mappings, txn, includeInverses, propTransform);
+        }
         internal void EndTransaction()
         {
             FreeTable(editTransactionEntityCursor); //release the cursor back to the pool
