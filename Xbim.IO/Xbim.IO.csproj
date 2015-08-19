@@ -85,6 +85,9 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+	<Compile Include="..\SharedFileVersionInfo.cs">
+      <Link>Properties\SharedFileVersionInfo.cs</Link>
+    </Compile>
     <Compile Include="DynamicGrouping\GroupingByXml.cs" />
     <Compile Include="DynamicGrouping\GroupsFromXml.cs" />
     <Compile Include="DynamicGrouping\XbimQueryBuilder.cs" />
