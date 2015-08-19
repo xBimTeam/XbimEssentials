@@ -242,8 +242,8 @@
     <Year>$([System.DateTime]::Now.ToString("yy"))</Year>
     <Month>$([System.DateTime]::Now.ToString("MM"))</Month>
     <Date>$([System.DateTime]::Now.ToString("dd"))</Date>
-    <Time>$([System.DateTime]::Now.ToString("HHmm"))</Time>
-    <AssemblyFileVersionAttribute>[assembly:System.Reflection.AssemblyFileVersion("$(Year).$(Month).$(Date).$(Time)")]</AssemblyFileVersionAttribute>
+    <Time>$([System.DateTime]::Now.ToString("HH"))</Time>
+    <AssemblyFileVersionAttribute>[assembly:System.Reflection.AssemblyFileVersion("3.1.$(Year)$(Month).$(Date)$(Time)")]</AssemblyFileVersionAttribute>
   </PropertyGroup>
   <Target Name="BeforeBuild">
     <WriteLinesToFile
