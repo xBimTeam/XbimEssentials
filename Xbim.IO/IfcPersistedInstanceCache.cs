@@ -1733,8 +1733,9 @@ namespace Xbim.IO
                 FreeTable(geomTable);
             }
         }
+        
 
-        internal T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, bool includeInverses) where T : IPersistIfcEntity
+        internal T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, bool includeInverses, PropertyTranformDelegate propTransform = null) where T : IPersistIfcEntity
         {
             //check if the transaction needs pulsing
             
@@ -1776,7 +1777,11 @@ namespace Xbim.IO
                 {
                     if (rt != null && prop.PropertyInfo.Name == "OwnerHistory") //don't add the owner history in as this will be changed later
                         continue;
-                    object value = prop.PropertyInfo.GetValue(toCopy, null);
+                    object value;
+                    if(propTransform != null)
+                        value = propTransform(prop,toCopy);
+                     else
+                        value = prop.PropertyInfo.GetValue(toCopy, null);
                     if (value != null)
                     {
                         bool isInverse = (prop.IfcAttribute.Order == -1); //don't try and set the values for inverses
