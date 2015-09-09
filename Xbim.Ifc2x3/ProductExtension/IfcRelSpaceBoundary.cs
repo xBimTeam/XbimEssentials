@@ -73,7 +73,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Reference to one spaces that is delimited by this boundary.
         /// </summary>
-        [IfcAttribute(5, IfcAttributeState.Mandatory)]
+        [IfcAttribute(5, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcSpace RelatingSpace
         {
             get
@@ -87,7 +87,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Optional. Reference to Element, that defines the Space Boundaries.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Optional)]
+        [IfcAttribute(6, IfcAttributeState.Optional), IndexedProperty]
         public IfcElement RelatedBuildingElement
         {
             get

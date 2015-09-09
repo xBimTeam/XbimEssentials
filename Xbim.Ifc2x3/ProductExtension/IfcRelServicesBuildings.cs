@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   System that services the Buildings.
         /// </summary>
-        [IfcAttribute(5, IfcAttributeState.Mandatory)]
+        [IfcAttribute(5, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcSystem RelatingSystem
         {
             get
@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <remarks>
         ///   IFC2x PLATFORM CHANGE  The data type has been changed from IfcBuilding to IfcSpatialStructureElement with upward compatibility for file based exchange.
         /// </remarks>
-        [IfcAttribute(6, IfcAttributeState.Mandatory, IfcAttributeType.Set, 1)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory, IfcAttributeType.Set, 1), IndexedProperty]
         public XbimList<IfcSpatialStructureElement> RelatedBuildings
         {
             get

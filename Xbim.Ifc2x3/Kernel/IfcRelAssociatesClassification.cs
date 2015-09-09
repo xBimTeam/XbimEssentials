@@ -45,7 +45,7 @@ namespace Xbim.Ifc2x3.Kernel
         /// <summary>
         ///   Classification applied to the objects.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcClassificationNotationSelect RelatingClassification
         {
             get

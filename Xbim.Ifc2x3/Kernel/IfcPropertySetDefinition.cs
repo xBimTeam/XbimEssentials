@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.Kernel
             {
                 return
                     ModelOf.Instances.Where<IfcTypeObject>(
-                        t => (t.HasPropertySets != null) && t.HasPropertySets.Contains(this));
+                        t => t.HasPropertySets.Contains(this));
             }
         }
 

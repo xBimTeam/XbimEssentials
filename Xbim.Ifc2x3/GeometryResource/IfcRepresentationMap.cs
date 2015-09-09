@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.GeometryResource
     }
 
 
-    [IfcPersistedEntityAttribute]
+    [IfcPersistedEntityAttribute, IndexedClass]
     public class IfcRepresentationMap : INotifyPropertyChanged, ISupportChangeNotification, IPersistIfcEntity,
                                         INotifyPropertyChanging
     {
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.GeometryResource
             }
         }
 
-        [IfcAttribute(2, IfcAttributeState.Mandatory)]
+        [IfcAttribute(2, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcRepresentation MappedRepresentation
         {
             get

@@ -98,5 +98,7 @@ namespace Xbim.XbimExtensions.Interfaces
         /// </summary>
         object Tag { get; set; }
         IGeometryManager GeometryManager { get; set; }
+
+        bool AutoAddOwnerHistory { get; }
     }
 }

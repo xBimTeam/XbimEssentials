@@ -232,11 +232,7 @@ namespace Xbim.Ifc2x3.ActorResource
             set
             {
                 if (_purpose != value)
-                {
-                    if (value == IfcAddressType.UserDefined)
-                        throw new ArgumentException(
-                            "An Address Type may not be explicitly set as UserDefined. Set the value of the UserDefinedPurpose Property instead");
-
+                {                  
                     this.SetModelValue(this, ref _purpose, value, v => Purpose = v, "Purpose");
                 }
             }

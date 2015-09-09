@@ -161,7 +161,7 @@ namespace Xbim.Ifc2x3.ActorResource
         /// <summary>
         ///   Organization which is the relating part of the relationship between organizations.
         /// </summary>
-        [IfcAttribute(3, IfcAttributeState.Mandatory)]
+        [IfcAttribute(3, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcOrganization RelatingOrganization
         {
             get
@@ -179,7 +179,7 @@ namespace Xbim.Ifc2x3.ActorResource
         /// <summary>
         ///   The other, possibly dependent, organizations which are the related parts of the relationship between organizations.
         /// </summary>
-        [IfcAttribute(4, IfcAttributeState.Mandatory, IfcAttributeType.Set, 1)]
+        [IfcAttribute(4, IfcAttributeState.Mandatory, IfcAttributeType.Set, 1), IndexedProperty]
         public OrganizationCollection RelatedOrganizations
         {
             get

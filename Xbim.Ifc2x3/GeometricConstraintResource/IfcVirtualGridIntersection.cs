@@ -132,8 +132,9 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
             _offsetDistances = new XbimList<IfcLengthMeasure>(this);
         }
         /// <summary>
-        ///   Two grid axes which intersects at exactly one intersection (see also informal proposition at IfcGrid). If attribute OffsetDistances is omited, the intersection defines the placement or ref direction of a grid placement directly. If OffsetDistances are given, the intersection is defined by the offset curves to the grid axes.
+        ///   Two grid axes which intersects at exacty one intersection (see also informal proposition at IfcGrid). If attribute OffsetDistances is omited, the intersection defines the placement or ref direction of a grid placement directly. If OffsetDistances are given, the intersection is defined by the offset curves to the grid axes.
         /// </summary>
+        [IfcAttribute(1, IfcAttributeState.Mandatory), IndexedProperty]
         public XbimListUnique<IfcGridAxis> IntersectingAxes
         {
             get
@@ -151,6 +152,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
         /// <summary>
         ///   Offset distances to the grid axes. If given, it defines virtual offset curves to the grid axes. The intersection of the offset curves specify the virtual grid intersection.
         /// </summary>
+        [IfcAttribute(2, IfcAttributeState.Mandatory)]
         public XbimList<IfcLengthMeasure> OffsetDistances
         {
             get

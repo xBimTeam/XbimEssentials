@@ -55,7 +55,7 @@ namespace Xbim.Ifc2x3.Kernel
         /// <summary>
         ///   Optional. Set list of unique property sets, that are associated with the object type and are common to all object occurrences referring to this object type.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Optional, IfcAttributeType.Set, 1)]
+        [IfcAttribute(6, IfcAttributeState.Optional, IfcAttributeType.Set, 1), IndexedProperty]
         public PropertySetDefinitionSet HasPropertySets
         {
             get

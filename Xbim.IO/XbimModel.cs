@@ -84,6 +84,7 @@ namespace Xbim.IO
         private string _importFilePath;
         
         private IfcAxis2Placement _wcs;
+        private bool m_AutoAddHistory = true;
       
         #endregion
 
@@ -454,6 +455,34 @@ namespace Xbim.IO
             {
                 return cache.GeometriesCount();
             }
+        }
+
+        public bool CreateFrom(Stream inputStream, XbimStorageType streamType,  string xbimDbName , ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false)
+        {
+            Close();
+
+
+            switch (streamType)
+            {
+                case XbimStorageType.IFCXML:
+                    cache.ImportIfcXml(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities);
+                    break;
+                case XbimStorageType.IFC:
+                    cache.ImportIfc(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities, _codePageOverrideForIfcFiles);
+                    break;
+                case XbimStorageType.IFCZIP:
+                    cache.ImportIfcZip(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities, _codePageOverrideForIfcFiles);
+                    break;
+                case XbimStorageType.INVALID:
+                default:
+                    return false;
+            }
+            if (keepOpen)
+            {
+                GetModelFactors();
+                this.LoadReferenceModels();
+            }
+            return true;
         }
 
         /// <summary>
@@ -1206,9 +1235,9 @@ namespace Xbim.IO
             return cache.GetEntityTable();
         }
 
-        internal void Compact(XbimModel targetModel)
+        static public void Compact(string sourceModelName, string targetModelName)
         {
-          
+            IfcPersistedInstanceCache.Compact(sourceModelName, targetModelName);
         }
 
         /// <summary>
@@ -1532,6 +1561,16 @@ namespace Xbim.IO
         public bool DatabaseHasInstanceTable()
         {
             return cache.DatabaseHasInstanceTable();
+        }
+
+        /// <summary>
+        /// If true OwnerHistory properties are added modified when an object is added or modified, by default this is on, turn off with care as it can lead to models that do not comply with the schema
+        /// The main use is for copy data between models where the owner history needs to be preserved
+        /// </summary>
+        public bool AutoAddOwnerHistory
+        { 
+            get { return m_AutoAddHistory; } 
+            set { m_AutoAddHistory = value; } 
         }
     }
 }

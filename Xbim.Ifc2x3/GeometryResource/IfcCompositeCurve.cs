@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.GeometryResource
     ///   WR41   :   No transition code should be Discontinuous, except for the last code of an open curve.  
     ///   WR42   :   Ensures, that all segments used in the curve have the same dimensionality.
     /// </remarks>
-    [IfcPersistedEntityAttribute]
+    [IfcPersistedEntityAttribute, IndexedClass]
     public class IfcCompositeCurve : IfcBoundedCurve
     {
         public IfcCompositeCurve()
@@ -53,7 +53,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 
         #region Part 21 Step file Parse routines
 
-        [IfcAttribute(1, IfcAttributeState.Mandatory, IfcAttributeType.List, IfcAttributeType.Class, 1)]
+        [IfcAttribute(1, IfcAttributeState.Mandatory, IfcAttributeType.List, IfcAttributeType.Class, 1), IndexedProperty]
         public CompositeCurveSegmentList Segments
         {
             get

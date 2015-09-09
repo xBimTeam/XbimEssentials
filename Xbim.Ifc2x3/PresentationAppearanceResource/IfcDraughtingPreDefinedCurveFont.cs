@@ -23,33 +23,14 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
     [IfcPersistedEntityAttribute]
     public class IfcDraughtingPreDefinedCurveFont : IfcPreDefinedCurveFont
     {
-        #region Constructors
-
-        public IfcDraughtingPreDefinedCurveFont()
-        {
-            SetName(ValidFontNames[0]);
-        }
-
-        #endregion
-
+       
         public static string[] ValidFontNames = new[]
                                                     {
                                                         "continuous", "chain", "chain double dash", "dashed", "dotted",
                                                         "by layer"
                                                     };
 
-        public static IfcDraughtingPreDefinedCurveFont[] PrefinedCurveFonts;
-
-        static IfcDraughtingPreDefinedCurveFont()
-        {
-            PrefinedCurveFonts = new IfcDraughtingPreDefinedCurveFont[ValidFontNames.Length];
-            for (int i = 0; i < ValidFontNames.Length; i++)
-            {
-                PrefinedCurveFonts[i] = new IfcDraughtingPreDefinedCurveFont();
-                PrefinedCurveFonts[i].SetName(ValidFontNames[i]);
-            }
-        }
-
+       
 
         public override string WhereRule()
         {

@@ -104,7 +104,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 
         protected void SetName(IfcLabel name)
         {
-            m_name = name;
+            this.SetModelValue(this, ref m_name, name, v => Name = v, "Name");
         }
 
         #endregion

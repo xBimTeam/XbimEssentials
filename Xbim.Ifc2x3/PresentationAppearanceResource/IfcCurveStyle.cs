@@ -27,13 +27,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
     [IfcPersistedEntityAttribute]
     public class IfcCurveStyle : IfcPresentationStyle, IfcPresentationStyleSelect
     {
-        #region Statics
 
-        public static double DefaultCurveWidth = 1.0;
-        public static IfcDraughtingPreDefinedColour DefaultCurveColour = new IfcDraughtingPreDefinedColour();
-        public static IfcDraughtingPreDefinedCurveFont DefaultCurveFont = new IfcDraughtingPreDefinedCurveFont();
-
-        #endregion
 
         #region Fields
 

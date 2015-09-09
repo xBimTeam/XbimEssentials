@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Relationship to the space object that is covered.
         /// </summary>
-        [IfcAttribute(5, IfcAttributeState.Mandatory)]
+        [IfcAttribute(5, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcSpace RelatedSpace
         {
             get
@@ -61,7 +61,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Relationship to the set of coverings covering this space.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory, IfcAttributeType.Set, IfcAttributeType.Class, 1)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory, IfcAttributeType.Set, IfcAttributeType.Class, 1), IndexedProperty]
         public CoveringSet RelatedCoverings
         {
             get
