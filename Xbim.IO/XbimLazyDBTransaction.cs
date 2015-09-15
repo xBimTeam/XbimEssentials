@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Isam.Esent.Interop;
+using Xbim.Common.Logging;
 
 namespace Xbim.IO
 {
@@ -32,6 +33,7 @@ namespace Xbim.IO
                 this.sesid = sesid;
                 Api.JetBeginTransaction(this.sesid);
                 this.inTransaction = true;
+                LoggerFactory.GetLogger().DebugFormat("New XbimTransaction with session {0}", sesid);
             }
 
             /// <summary>
@@ -39,6 +41,7 @@ namespace Xbim.IO
             /// </summary>
             public void Commit()
             {
+                LoggerFactory.GetLogger().DebugFormat("Committing XbimTransaction with session {0}", sesid);
                 Api.JetCommitTransaction(this.sesid, CommitTransactionGrbit.LazyFlush);
                 this.inTransaction = false;
             }
@@ -57,6 +60,7 @@ namespace Xbim.IO
             {
                 if (this.inTransaction)
                 {
+                    LoggerFactory.GetLogger().DebugFormat("Rolling back XbimTransaction with session {0}", sesid);
                     Api.JetRollback(this.sesid, RollbackTransactionGrbit.None);
                 }
             }

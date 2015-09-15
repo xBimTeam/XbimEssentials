@@ -14,9 +14,9 @@ namespace Xbim.Essentials.Tests
     /// <remarks>Parsing is performed in ths constructor since ClassInitialize does not work on base classes under mstest</remarks>
     public abstract class IfcTestBase
     {
-        protected readonly ILogger Logger = LoggerFactory.GetLogger();
+        protected static readonly ILogger Logger = LoggerFactory.GetLogger();
 
-        protected string XbimFile;
+        protected static string XbimFile;
 
         /// <summary>
         /// The Model instance under test. Automatically opened fresh before each test method is run.
@@ -64,12 +64,23 @@ namespace Xbim.Essentials.Tests
             XbimFile = Path.ChangeExtension(ifcFile, ".xbim");
             var model = new XbimModel();
             // Parse the file and create .xbim
-            model.CreateFrom(ifcFile, XbimFile);
+            if(!model.CreateFrom(ifcFile, XbimFile))
+            {
+                Logger.WarnFormat("Failed to parse Ifc File {0}", ifcFile);
+            }
         }
 
         public static void CleanUpModel()
         {
-            // TODO - delete xbim
+            try
+            {
+                File.Delete(XbimFile);
+            }
+            catch(System.SystemException ex)
+            {
+               Logger.Warn(String.Format("Could not delete {0} in Cleanup", XbimFile), ex);
+            }
+
         }
 
         /// <summary>

@@ -19,12 +19,15 @@ using Microsoft.Isam.Esent.Interop.Windows7;
 using ICSharpCode.SharpZipLib.Zip;
 using System.Collections.Concurrent;
 using XbimGeometry.Interfaces;
-
+using Xbim.Common.Logging;
 
 namespace Xbim.IO
 {   
     public class IfcPersistedInstanceCache : IDisposable
     {
+
+        private readonly ILogger Logger = LoggerFactory.GetLogger();
+
          /// <summary>
         /// Holds a collection of all currently opened instances in this process
         /// </summary>
@@ -138,6 +141,7 @@ namespace Xbim.IO
                     XbimGeometryCursor.CreateTable(session, dbid);
                     XbimShapeGeometryCursor.CreateTable(session, dbid);
                     XbimShapeInstanceCursor.CreateTable(session, dbid);
+                    Logger.DebugFormat("New Jet Database created with session {0}]", session.JetSesid);
                 }
                 catch (Exception e)
                 {
@@ -148,7 +152,8 @@ namespace Xbim.IO
                         openInstances.Remove(this);
                     }
                     File.Delete(fileName);
-                    throw e;
+                    Logger.Error("Failed to create model.", e);
+                    throw;
                 }
             }
         }
@@ -201,6 +206,7 @@ namespace Xbim.IO
                     try
                     {
                         Api.JetAttachDatabase(_session, _databaseName, openMode == OpenDatabaseGrbit.ReadOnly ? AttachDatabaseGrbit.ReadOnly : AttachDatabaseGrbit.None);
+                        Logger.DebugFormat("Jet Database attached with session {0}", _session.JetSesid);
                     }
                     catch (EsentDatabaseDirtyShutdownException)
                     {
@@ -222,11 +228,11 @@ namespace Xbim.IO
                                     // Give the process time to die, as we'll likely be reading files it has open next.
                                     System.Threading.Thread.Sleep(500);
                                 }
-                                XbimModel.Logger.WarnFormat("Repair failed {0} after dirty shutdown, time out", _databaseName);
+                                Logger.WarnFormat("Repair failed {0} after dirty shutdown, time out", _databaseName);
                             }
                             else
                             {
-                                XbimModel.Logger.WarnFormat("Repair success {0} after dirty shutdown", _databaseName);
+                                Logger.WarnFormat("Repair success {0} after dirty shutdown", _databaseName);
                                 proc.Close();
                                 //try again
                                 Api.JetAttachDatabase(_session, _databaseName, openMode == OpenDatabaseGrbit.ReadOnly ? AttachDatabaseGrbit.ReadOnly : AttachDatabaseGrbit.None);
@@ -430,7 +436,11 @@ namespace Xbim.IO
                     openInstances.Remove(this);
                     refCount = openInstances.Count(c => System.String.Compare(c.DatabaseName, this.DatabaseName, System.StringComparison.OrdinalIgnoreCase) == 0);
                     if (refCount == 0) //only detach if we have no more references
+                    {
+                        Logger.DebugFormat("Closing Database with session {0}", _session.JetSesid);
+
                         Api.JetDetachDatabase(_session, _databaseName);
+                    }
                 }
                 this._databaseName = null;
                 _session.Dispose();
@@ -474,6 +484,7 @@ namespace Xbim.IO
             CreateDatabase(xbimDbName);
             Open(xbimDbName, XbimDBAccess.Exclusive);
             var table = GetEntityTable();
+            var parseResult = false;
             if (cacheEntities) this.CacheStart();
             try
             {
@@ -483,27 +494,39 @@ namespace Xbim.IO
                     using (P21toIndexParser part21Parser = new P21toIndexParser(reader, table, this, codePageOverride))
                     {
                         if (progressHandler != null) part21Parser.ProgressStatus += progressHandler;
-                        part21Parser.Parse();
+                        parseResult=part21Parser.Parse();
                         _model.Header = part21Parser.Header;       
                         if (progressHandler != null) part21Parser.ProgressStatus -= progressHandler;
                     }
                 }
                 // the header used to be written a few lines above just after being assigned but should be ok here too.
                 // todo: bonghi: ask SRL if it should be elsewhere
-                using (var transaction = table.BeginLazyTransaction())
+                if (parseResult == true)
                 {
-                    table.WriteHeader(_model.Header);
-                    transaction.Commit();
+                    using (var transaction = table.BeginLazyTransaction())
+                    {
+                        table.WriteHeader(_model.Header);
+                        transaction.Commit();
+                    }
                 }
                 FreeTable(table);
                 if (!keepOpen) Close();
             }
             catch (Exception e)
             {
-                FreeTable(table);
-                Close();
-                File.Delete(xbimDbName);
-                throw e;
+                try
+                {
+                    Logger.Warn("Import of IFC failed. ", e);
+                    FreeTable(table);
+                    Close();
+                    File.Delete(xbimDbName);
+                }
+                catch(Exception innerEx)
+                {
+                    Logger.Warn("Exception occurred during errorhandling", innerEx);
+                }
+                
+                throw;
             }
         }
         /// <summary>

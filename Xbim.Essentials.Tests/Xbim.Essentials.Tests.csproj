@@ -54,6 +54,7 @@
     <Compile Include="Federation Tests.cs" />
     <Compile Include="GeometryCacheTests.cs" />
     <Compile Include="GeometryTests.cs" />
+    <Compile Include="InvalidModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PackedNormalTests.cs" />
     <Compile Include="IfcHeaderTests.cs" />
@@ -78,9 +79,15 @@
       <Name>Xbim.IO</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="TestSourceFiles\InvalidModelTests.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="GeometryCacheTestFiles\Monolith-NoGeomTables.xBIM">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -97,6 +104,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\IfcSIUnitTests.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\InvalidModelTests3.ifc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\Invalid.ifc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\InvalidModelTests2.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\P1.xBIM">
