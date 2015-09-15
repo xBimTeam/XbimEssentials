@@ -134,7 +134,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
         /// <summary>
         ///   The classification that is the source for the uppermost level of the classification item hierarchy used.
         /// </summary>
-        [IfcAttribute(2, IfcAttributeState.Optional)]
+        [IfcAttribute(2, IfcAttributeState.Optional), IndexedProperty]
         public IfcClassification ItemOf
         {
             get

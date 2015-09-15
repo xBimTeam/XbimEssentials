@@ -26,6 +26,16 @@ using Xbim.XbimExtensions.Interfaces;
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
+
+    [IfcPersistedEntityAttribute]
+    public class ElementSet : XbimSet<IfcElement>
+    {
+        internal ElementSet(IPersistIfcEntity owner)
+            : base(owner)
+        {
+        }
+    }
+
     /// <summary>
     ///   Generalization of all components that make up an AEC product. Those elements can be logically contained by a spatial structure element that constitutes a certain level within a project structure hierarchy (e.g., site, building, storey or space).
     /// </summary>

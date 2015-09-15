@@ -108,12 +108,15 @@ namespace Xbim.Ifc2x3.Kernel
             if (write)
             {
                 _model.Activate(this, write);
-                if (_ownerHistory != (_model.OwnerHistoryAddObject as IfcOwnerHistory))
+                if (_model.AutoAddOwnerHistory &&   _ownerHistory != (_model.OwnerHistoryAddObject as IfcOwnerHistory)) //no need to do it if it is already set
                 {
-                    Transaction.AddPropertyChange(v => OwnerHistory = v, _ownerHistory, (IfcOwnerHistory)_model.OwnerHistoryModifyObject);
-                    ((ISupportChangeNotification)this).NotifyPropertyChanging("OwnerHistory");
-                    _ownerHistory = (IfcOwnerHistory)_model.OwnerHistoryModifyObject;
-                    ((ISupportChangeNotification)this).NotifyPropertyChanged("OwnerHistory");
+                    if (_ownerHistory != (_model.OwnerHistoryModifyObject as IfcOwnerHistory))
+                    {
+                        Transaction.AddPropertyChange(v => OwnerHistory = v, _ownerHistory, (IfcOwnerHistory)_model.OwnerHistoryModifyObject);
+                        ((ISupportChangeNotification)this).NotifyPropertyChanging("OwnerHistory");
+                        _ownerHistory = (IfcOwnerHistory)_model.OwnerHistoryModifyObject;
+                        ((ISupportChangeNotification)this).NotifyPropertyChanged("OwnerHistory");
+                    }
                 }
             }
         }

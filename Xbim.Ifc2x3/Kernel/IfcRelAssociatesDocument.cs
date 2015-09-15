@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.Kernel
         /// <summary>
         ///   Document information or reference which is applied to the objects.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcDocumentSelect RelatingDocument
         {
             get

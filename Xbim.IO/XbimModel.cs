@@ -1,44 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Isam.Esent.Interop;
-using Xbim.Ifc2x3.GeometryResource;
-using Xbim.Ifc2x3.ProductExtension;
-using Xbim.XbimExtensions.Interfaces;
-using Xbim.Ifc2x3.ActorResource;
-using Xbim.Ifc2x3.UtilityResource;
-using Xbim.Ifc2x3.Kernel;
-using System.IO;
-using Xbim.XbimExtensions;
-using Xbim.Ifc2x3.Extensions;
+﻿using ICSharpCode.SharpZipLib.Zip;
+using System;
 using System.CodeDom.Compiler;
-using Xbim.XbimExtensions.SelectTypes;
 using System.Collections;
-using ICSharpCode.SharpZipLib.Zip;
-using Xbim.Ifc2x3.MeasureResource;
+using System.Collections.Generic;
 using System.Diagnostics;
-using Xbim.Common.Logging;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using System.Globalization;
-using Xbim.Ifc2x3.ExternalReferenceResource;
-using Xbim.IO.DynamicGrouping;
-using Xbim.Ifc2x3.RepresentationResource;
-using System.Runtime.CompilerServices;
 using Xbim.Common.Geometry;
-using Xbim.Ifc2x3.GeometricConstraintResource;
+using Xbim.Common.Logging;
+using Xbim.Ifc2x3.ActorResource;
+using Xbim.Ifc2x3.Extensions;
+using Xbim.Ifc2x3.ExternalReferenceResource;
+using Xbim.Ifc2x3.GeometryResource;
+using Xbim.Ifc2x3.Kernel;
+using Xbim.Ifc2x3.MeasureResource;
+using Xbim.Ifc2x3.RepresentationResource;
+using Xbim.Ifc2x3.UtilityResource;
+using Xbim.IO.DynamicGrouping;
+using Xbim.XbimExtensions;
+using Xbim.XbimExtensions.Interfaces;
+using Xbim.XbimExtensions.SelectTypes;
 using XbimGeometry.Interfaces;
 
 
 namespace Xbim.IO
 {
+    public delegate object PropertyTranformDelegate(IfcMetaProperty property, object parentObject);
     /// <summary>
     /// General Model class for memory based model suport
     /// </summary>
-   
+
     public class XbimModel : IModel, IDisposable
     {
+
+        
         #region Fields
 
         #region Logging Fields
@@ -86,6 +84,7 @@ namespace Xbim.IO
         private string _importFilePath;
         
         private IfcAxis2Placement _wcs;
+        private bool m_AutoAddHistory = true;
       
         #endregion
 
@@ -222,7 +221,7 @@ namespace Xbim.IO
                         }
             }
             IEnumerable<IfcGeometricRepresentationContext> gcs =
-                this.Instances.OfType<IfcGeometricRepresentationContext>();
+                Instances.OfType<IfcGeometricRepresentationContext>();
             double? defaultPrecision = null;
             //get the Model precision if it is correctly defined
             foreach (var gc in gcs.Where(g => !(g is IfcGeometricRepresentationSubContext)))
@@ -456,6 +455,34 @@ namespace Xbim.IO
             {
                 return cache.GeometriesCount();
             }
+        }
+
+        public bool CreateFrom(Stream inputStream, XbimStorageType streamType,  string xbimDbName , ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false)
+        {
+            Close();
+
+
+            switch (streamType)
+            {
+                case XbimStorageType.IFCXML:
+                    cache.ImportIfcXml(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities);
+                    break;
+                case XbimStorageType.IFC:
+                    cache.ImportIfc(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities, _codePageOverrideForIfcFiles);
+                    break;
+                case XbimStorageType.IFCZIP:
+                    cache.ImportIfcZip(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities, _codePageOverrideForIfcFiles);
+                    break;
+                case XbimStorageType.INVALID:
+                default:
+                    return false;
+            }
+            if (keepOpen)
+            {
+                GetModelFactors();
+                this.LoadReferenceModels();
+            }
+            return true;
         }
 
         /// <summary>
@@ -1208,9 +1235,9 @@ namespace Xbim.IO
             return cache.GetEntityTable();
         }
 
-        internal void Compact(XbimModel targetModel)
+        static public void Compact(string sourceModelName, string targetModelName)
         {
-          
+            IfcPersistedInstanceCache.Compact(sourceModelName, targetModelName);
         }
 
         /// <summary>
@@ -1236,9 +1263,13 @@ namespace Xbim.IO
         /// <returns></returns>
         public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, bool includeInverses = false) where T : IPersistIfcEntity
         {
-            return cache.InsertCopy<T>(toCopy, mappings, txn, includeInverses);
+            return cache.InsertCopy<T>(toCopy, mappings, txn, includeInverses, null);
         }
 
+        public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, PropertyTranformDelegate propTransform, bool includeInverses = false) where T : IPersistIfcEntity
+        {
+            return cache.InsertCopy<T>(toCopy, mappings, txn, includeInverses, propTransform);
+        }
         internal void EndTransaction()
         {
             FreeTable(editTransactionEntityCursor); //release the cursor back to the pool
@@ -1508,6 +1539,15 @@ namespace Xbim.IO
             return cache.GetShapeInstanceTable();
         }
 
+        /// <summary>
+        /// Invoke the function before meshing to ensure database structure is available
+        /// </summary>
+        /// <returns></returns>
+        public bool EnsureGeometryTables()
+        {
+            return cache.EnsureGeometryTables();
+        }
+
         public bool DeleteGeometryCache()
         {
             return cache.DeleteGeometry();
@@ -1521,6 +1561,16 @@ namespace Xbim.IO
         public bool DatabaseHasInstanceTable()
         {
             return cache.DatabaseHasInstanceTable();
+        }
+
+        /// <summary>
+        /// If true OwnerHistory properties are added modified when an object is added or modified, by default this is on, turn off with care as it can lead to models that do not comply with the schema
+        /// The main use is for copy data between models where the owner history needs to be preserved
+        /// </summary>
+        public bool AutoAddOwnerHistory
+        { 
+            get { return m_AutoAddHistory; } 
+            set { m_AutoAddHistory = value; } 
         }
     }
 }

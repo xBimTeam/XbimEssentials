@@ -147,7 +147,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
         /// <summary>
         ///   The set of layered items, which are assigned to this layer.
         /// </summary>
-        [IfcAttribute(3, IfcAttributeState.Mandatory, IfcAttributeType.Set, IfcAttributeType.Class, 1)]
+        [IfcAttribute(3, IfcAttributeState.Mandatory, IfcAttributeType.Set, IfcAttributeType.Class, 1),IndexedProperty]
         public XbimSet<IfcLayeredItem> AssignedItems
         {
             get

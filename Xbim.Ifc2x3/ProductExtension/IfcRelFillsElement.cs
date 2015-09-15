@@ -44,7 +44,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Opening Element being filled by virtue of this relationship.
         /// </summary>
-        [IfcAttribute(5, IfcAttributeState.Mandatory)]
+        [IfcAttribute(5, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcOpeningElement RelatingOpeningElement
         {
             get
@@ -62,7 +62,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Reference to element that occupies fully or partially the associated opening.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcElement RelatedBuildingElement
         {
             get

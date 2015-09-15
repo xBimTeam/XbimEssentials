@@ -37,8 +37,17 @@ namespace Xbim.IO
             output.Write(HeaderAsString(model.Header ?? new IfcFileHeader(IfcFileHeader.HeaderCreationMode.InitWithXbimDefaults)));
             foreach (XbimInstanceHandle item in model.InstanceHandles /*.Types.OrderBy(t=>t.Name)*/)
             {
-                IPersistIfcEntity entity = model.GetInstanceVolatile(item);
+                try
+                {
+                    IPersistIfcEntity entity = model.GetInstanceVolatile(item);
                 entity.WriteEntity(output, map);
+                }
+                catch (Exception e)
+                {
+                    
+                    throw;
+                }
+               
             }
 
             output.WriteLine("ENDSEC;");

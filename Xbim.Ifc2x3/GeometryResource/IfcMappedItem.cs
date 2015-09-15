@@ -52,7 +52,7 @@ namespace Xbim.Ifc2x3.GeometryResource
         /// <summary>
         ///   A representation map that is the source of the mapped item. It can be seen as a block (or cell or macro) definition.
         /// </summary>
-        [IfcAttribute(1, IfcAttributeState.Mandatory)]
+        [IfcAttribute(1, IfcAttributeState.Mandatory),IndexedProperty]
         public IfcRepresentationMap MappingSource
         {
             get

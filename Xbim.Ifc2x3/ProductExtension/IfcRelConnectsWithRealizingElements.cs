@@ -15,6 +15,7 @@
 using System;
 using Xbim.Ifc2x3.MeasureResource;
 using Xbim.XbimExtensions;
+using Xbim.XbimExtensions.Interfaces;
 
 #endregion
 
@@ -32,22 +33,67 @@ namespace Xbim.Ifc2x3.ProductExtension
     [IfcPersistedEntityAttribute]
     public class IfcRelConnectsWithRealizingElements : IfcRelConnectsElements
     {
+
+        ElementSet _realizingElements;
+        private IfcLabel? _connectionType;
+
+
+        public IfcRelConnectsWithRealizingElements()
+        {
+            _realizingElements = new ElementSet(this);
+        }
         /// <summary>
         ///   Defines the elements that realize a connection relationship.
         /// </summary>
-        public XbimList<IfcElement> RealizingElements
+        [IndexedProperty]
+        [IfcAttribute(8, IfcAttributeState.Mandatory, IfcAttributeType.Set, 1)]
+        public ElementSet RealizingElements
         {
-            get { throw new NotImplementedException(); }
-            set { }
+            get 
+            { 
+                ((IPersistIfcEntity)this).Activate(false); 
+                return _realizingElements; 
+            }
+            set { this.SetModelValue(this, ref _realizingElements, value, v => RealizingElements = v, "RealizingElements"); }
         }
 
         /// <summary>
         ///   The type of the connection given for informal purposes, it may include labels, like 'joint', 'rigid joint', 'flexible joint', etc.
         /// </summary>
-        public IfcLabel ConnectionType
+       [IfcAttribute(9, IfcAttributeState.Optional)]   
+       public IfcLabel? ConnectionType
         {
-            get { throw new NotImplementedException(); }
-            set { }
+            get
+            {
+                ((IPersistIfcEntity)this).Activate(false);
+                return _connectionType;
+            }
+            set { this.SetModelValue(this, ref _connectionType, value, v => ConnectionType = v, "ConnectionType"); }
         }
+
+       public override void IfcParse(int propIndex, IPropertyValue value)
+       {
+           switch (propIndex)
+           {
+               case 0:                  
+               case 1:               
+               case 2:
+               case 3:
+               case 4:
+               case 5:
+               case 6:
+                    base.IfcParse(propIndex, value);
+                    break;
+               case 7:
+                    _realizingElements.Add((IfcElement)value.EntityVal);
+                    break;
+               case 8:
+                    _connectionType = value.StringVal;
+                    break;
+               default:
+                   this.HandleUnexpectedAttribute(propIndex, value); break;
+           }
+       }
+
     }
 }

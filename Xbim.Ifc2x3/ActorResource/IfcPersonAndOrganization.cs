@@ -143,7 +143,7 @@ namespace Xbim.Ifc2x3.ActorResource
         ///   The person who is related to the organization.
         /// </summary>
 
-        [IfcAttribute(1, IfcAttributeState.Mandatory)]
+        [IfcAttribute(1, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcPerson ThePerson
         {
             get
@@ -158,7 +158,7 @@ namespace Xbim.Ifc2x3.ActorResource
         ///   The organization to which the person is related.
         /// </summary>
 
-        [IfcAttribute(2, IfcAttributeState.Mandatory)]
+        [IfcAttribute(2, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcOrganization TheOrganization
         {
             get

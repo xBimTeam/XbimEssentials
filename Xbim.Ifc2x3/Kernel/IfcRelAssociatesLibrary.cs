@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.Kernel
         /// <summary>
         ///   Reference to a library, from which the definition of the property set is taken.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcLibrarySelect RelatingLibrary
         {
             get

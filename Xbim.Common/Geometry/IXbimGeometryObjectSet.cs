@@ -9,6 +9,20 @@ namespace XbimGeometry.Interfaces
     {
         int Count { get; }
         IXbimGeometryObject First { get; }
+        IXbimSolidSet Solids { get; }
+        IXbimShellSet Shells { get; }
+        IXbimFaceSet Faces { get; }
+        IXbimEdgeSet Edges { get; }
+        IXbimVertexSet Vertices { get; }
+        void Add(IXbimGeometryObject shape);
+        IXbimGeometryObjectSet Cut(IXbimSolidSet toCut, double tolerance);
+        IXbimGeometryObjectSet Cut(IXbimSolid toCut, double tolerance);
+        IXbimGeometryObjectSet Union(IXbimSolidSet toUnion, double tolerance);
+        IXbimGeometryObjectSet Union(IXbimSolid toUnion, double tolerance);
+        IXbimGeometryObjectSet Intersection(IXbimSolidSet toIntersect, double tolerance);
+        IXbimGeometryObjectSet Intersection(IXbimSolid toIntersect, double tolerance);
+        
+
     }
 
 }

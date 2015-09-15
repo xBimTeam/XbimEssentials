@@ -259,7 +259,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
             {
                 return
                     ModelOf.Instances.Where<IfcPresentationLayerAssignment>(
-                        a => (a.AssignedItems != null && a.AssignedItems.Contains(this)));
+                        a => a.AssignedItems.Contains(this));
             }
         }
 

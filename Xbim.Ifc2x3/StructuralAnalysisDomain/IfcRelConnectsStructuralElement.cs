@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         /// <summary>
         ///   The physical element, representing a design or detailing part, that is connected to the structural member as its (partial) analytical idealization.
         /// </summary>
-        [IfcAttribute(5, IfcAttributeState.Mandatory)]
+        [IfcAttribute(5, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcElement RelatingElement
         {
             get
@@ -61,7 +61,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         /// <summary>
         ///   The structural member that is associated with the element of which it represents the analytical idealization.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcStructuralMember RelatedStructuralMember
         {
             get

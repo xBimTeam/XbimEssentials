@@ -6,6 +6,11 @@
 
 [![Issues](https://img.shields.io/github/issues/XbimTeam/XbimEssentials.svg)](https://github.com/xBimTeam/XbimEssentials/issues)
 
+
+Build Status (master branch): [ ![Build Status](http://xbimbuilds.cloudapp.net/app/rest/builds/buildType:(id:XbimEssentials_XbimEssentials),branch:(name:master)/statusIcon "Build Status") ](http://xbimbuilds.cloudapp.net/project.html?projectId=XbimEssentials&tab=projectOverview "Build Status")
+
+Build Status (develop branch): [ ![Build Status](http://xbimbuilds.cloudapp.net/app/rest/builds/buildType:(id:XbimEssentials_XbimEssentials),branch:(name:develop)/statusIcon "Build Status") ](http://xbimbuilds.cloudapp.net/project.html?projectId=XbimEssentials&tab=projectOverview "Build Status")
+
 # XBIM - the eXtensible Building Information Modelling (BIM) Toolkit
 
 ## What is it?

@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PropertyResource
     ///   Formal Propositions:
     ///   WR1   :   The DependingProperty shall not point to the same instance as the DependantProperty
     /// </remarks>
-    [IfcPersistedEntityAttribute]
+    [IfcPersistedEntityAttribute, IndexedClass]
     public class IfcPropertyDependencyRelationship : ISupportChangeNotification, INotifyPropertyChanged,
                                                      IPersistIfcEntity, INotifyPropertyChanging
     {
@@ -122,7 +122,7 @@ namespace Xbim.Ifc2x3.PropertyResource
         /// <summary>
         ///   The property on which the relationship depends.
         /// </summary>
-        [IfcAttribute(1, IfcAttributeState.Mandatory)]
+        [IfcAttribute(1, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcProperty DependingProperty
         {
             get
@@ -140,7 +140,7 @@ namespace Xbim.Ifc2x3.PropertyResource
         /// <summary>
         ///   The dependant property
         /// </summary>
-        [IfcAttribute(2, IfcAttributeState.Mandatory)]
+        [IfcAttribute(2, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcProperty DependantProperty
         {
             get

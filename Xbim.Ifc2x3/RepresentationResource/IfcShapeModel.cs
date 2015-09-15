@@ -74,7 +74,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
             {
                 return
                     ModelOf.Instances.Where<IfcShapeAspect>(
-                        s => (s.ShapeRepresentations != null && s.ShapeRepresentations.Contains(this)));
+                        s =>  s.ShapeRepresentations.Contains(this));
             }
         }
 

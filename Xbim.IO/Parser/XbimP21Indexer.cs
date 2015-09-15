@@ -327,6 +327,9 @@ namespace Xbim.IO.Parser
 
                 _currentType = entityTypeName;
                 IfcType ifcType = IfcMetaData.IfcType(_currentType);
+                if(ifcType==null)
+                    throw new ArgumentException(string.Format("Invalid entity type {0}", _currentType));
+
                 _indexKeys = ifcType.IndexedValues;
             }
         }

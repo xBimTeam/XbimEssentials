@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.Kernel
         /// <remarks>
         ///   WR1   :   The instance to with the relation points shall not be contained in the List of RelatedObjects.
         /// </remarks>
-        [IfcAttribute(7, IfcAttributeState.Mandatory)]
+        [IfcAttribute(7, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcProduct RelatingProduct
         {
             get

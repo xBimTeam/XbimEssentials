@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   List of grid axes defining the first row of grid lines.
         /// </summary>
-        [IfcAttribute(8, IfcAttributeState.Mandatory, IfcAttributeType.ListUnique, IfcAttributeType.Class, 1)]
+        [IfcAttribute(8, IfcAttributeState.Mandatory, IfcAttributeType.ListUnique, IfcAttributeType.Class, 1), IndexedProperty]
         public XbimListUnique<IfcGridAxis> UAxes
         {
             get
@@ -96,7 +96,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   List of grid axes defining the second row of grid lines.
         /// </summary>
-        [IfcAttribute(9, IfcAttributeState.Mandatory, IfcAttributeType.ListUnique, IfcAttributeType.Class, 1)]
+        [IfcAttribute(9, IfcAttributeState.Mandatory, IfcAttributeType.ListUnique, IfcAttributeType.Class, 1), IndexedProperty]
         public XbimListUnique<IfcGridAxis> VAxes
         {
             get
@@ -110,7 +110,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Optional. List of grid axes defining the third row of grid lines. It may be given in the case of a triangular grid.
         /// </summary>
-        [IfcAttribute(10, IfcAttributeState.Optional, IfcAttributeType.ListUnique, IfcAttributeType.Class, 1)]
+        [IfcAttribute(10, IfcAttributeState.Optional, IfcAttributeType.ListUnique, IfcAttributeType.Class, 1), IndexedProperty]
         public XbimListUnique<IfcGridAxis> WAxes
         {
             get

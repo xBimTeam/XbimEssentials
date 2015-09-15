@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         /// <summary>
         ///   References control elements which may be used to impart control on the Distribution Element.
         /// </summary>
-        [IfcAttribute(5, IfcAttributeState.Mandatory, IfcAttributeType.Set, IfcAttributeType.Class, 1)]
+        [IfcAttribute(5, IfcAttributeState.Mandatory, IfcAttributeType.Set, IfcAttributeType.Class, 1),IndexedProperty]
         public XbimSet<IfcDistributionControlElement> RelatedControlElements
         {
             get
@@ -57,7 +57,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         /// <summary>
         ///   Relationship to a distribution flow element
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcDistributionFlowElement RelatingFlowElement
         {
             get

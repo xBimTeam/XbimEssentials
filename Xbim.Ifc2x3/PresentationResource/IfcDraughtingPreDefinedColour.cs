@@ -28,14 +28,7 @@ namespace Xbim.Ifc2x3.PresentationResource
     [IfcPersistedEntityAttribute]
     public class IfcDraughtingPreDefinedColour : IfcPreDefinedColour, IfcFillStyleSelect
     {
-        #region Constructors
-
-        public IfcDraughtingPreDefinedColour()
-        {
-            SetName(ValidColourNames[0]);
-        }
-
-        #endregion
+       
 
         public static string[] ValidColourNames = new[]
                                                       {
@@ -43,17 +36,7 @@ namespace Xbim.Ifc2x3.PresentationResource
                                                           "white", "by layer"
                                                       };
 
-        public static IfcDraughtingPreDefinedColour[] PrefinedColours;
-
-        static IfcDraughtingPreDefinedColour()
-        {
-            PrefinedColours = new IfcDraughtingPreDefinedColour[ValidColourNames.Length];
-
-            for (int i = 0; i < ValidColourNames.Length; i++)
-            {
-                PrefinedColours[i] = new IfcDraughtingPreDefinedColour {Name = ValidColourNames[i]};
-            }
-        }
+       
 
         /// <summary>
         ///   Valid names for draughting colours are "black","red","green","blue","yellow", "magenta","cyan","white","by layer"

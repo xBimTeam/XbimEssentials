@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Reference to an Port that is connected by the objectified relationship.
         /// </summary>
-        [IfcAttribute(5, IfcAttributeState.Mandatory)]
+        [IfcAttribute(5, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcPort RelatingPort
         {
             get
@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Reference to an Element that is connected by the objectified relationship.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcElement RelatedElement
         {
             get

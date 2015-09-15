@@ -141,7 +141,7 @@ namespace Xbim.Ifc2x3.MaterialResource
         /// <summary>
         ///   Material being classified.
         /// </summary>
-        [IfcAttribute(2, IfcAttributeState.Mandatory)]
+        [IfcAttribute(2, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcMaterial ClassifiedMaterial
         {
             get

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Kernel
 
         #region Fields
 
-        private readonly ObjectDefinitionSet _relatedObjects;
+        private  ObjectDefinitionSet _relatedObjects;
         private IfcObjectType? _relatedObjectsType;
 
         #endregion
@@ -48,8 +48,13 @@ namespace Xbim.Ifc2x3.Kernel
         {
             get
             {
-                ((IPersistIfcEntity) this).Activate(false);
+                ((IPersistIfcEntity)this).Activate(false);
                 return _relatedObjects;
+            }
+            set
+            {
+                this.SetModelValue(this, ref _relatedObjects, value, v => RelatedObjects = v,
+                                           "RelatedObjects");
             }
         }
 

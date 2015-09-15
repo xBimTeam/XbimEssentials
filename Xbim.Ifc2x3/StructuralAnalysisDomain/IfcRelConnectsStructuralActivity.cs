@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         private IfcStructuralActivity _relatedStructuralActivity;
 
         #endregion
-        [IfcAttribute(5, IfcAttributeState.Mandatory)]
+        [IfcAttribute(5, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcStructuralActivityAssignmentSelect RelatingElement
         {
             get { return _relatingElement; }
@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
                                            "RelatingElement");
             }
         }
-        [IfcAttribute(6, IfcAttributeState.Mandatory)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcStructuralActivity RelatedStructuralActivity
         {
             get { return _relatedStructuralActivity; }

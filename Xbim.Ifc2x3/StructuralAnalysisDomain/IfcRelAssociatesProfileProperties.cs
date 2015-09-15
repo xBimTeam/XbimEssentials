@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         /// <summary>
         ///   Profile property definition assigned to the instances.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcProfileProperties RelatingProfileProperties
 
         {

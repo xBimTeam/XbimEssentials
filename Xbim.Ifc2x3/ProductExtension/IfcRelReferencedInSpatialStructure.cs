@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <remarks>
         ///   NOTE  Referenced elements are contained elsewhere within the spatial structure, they are referenced additionally by this spatial structure element, e.g., because they span several stories.
         /// </remarks>
-        [IfcAttribute(5, IfcAttributeState.Mandatory, IfcAttributeType.Set, IfcAttributeType.Class, 1)]
+        [IfcAttribute(5, IfcAttributeState.Mandatory, IfcAttributeType.Set, IfcAttributeType.Class, 1), IndexedProperty]
         public XbimSet<IfcProduct> RelatedElements
         {
             get
@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Spatial structure element, within which the element is referenced. Any element can be contained within zeor, one or many elements of the project spatial structure.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcSpatialStructureElement RelatingStructure
         {
             get

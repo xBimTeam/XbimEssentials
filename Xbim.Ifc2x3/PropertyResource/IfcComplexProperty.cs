@@ -71,7 +71,7 @@ namespace Xbim.Ifc2x3.PropertyResource
             set { this.SetModelValue(this, ref _usageName, value, v => UsageName = v, "UsageName"); }
         }
 
-        [IfcAttribute(4, IfcAttributeState.Mandatory, IfcAttributeType.Set, IfcAttributeType.Class, 1)]
+        [IfcAttribute(4, IfcAttributeState.Mandatory, IfcAttributeType.Set, IfcAttributeType.Class, 1), IndexedProperty]
         public SetOfProperty HasProperties
         {
             get

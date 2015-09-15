@@ -127,7 +127,7 @@ namespace Xbim.Ifc2x3.MaterialResource
         /// <summary>
         ///   Identification of the layers from which the matsel layer set is composed.
         /// </summary>
-        [IfcAttribute(1, IfcAttributeState.Mandatory, IfcAttributeType.List, 1)]
+        [IfcAttribute(1, IfcAttributeState.Mandatory, IfcAttributeType.List, 1),IndexedProperty]
         public MaterLayerList MaterialLayers
         {
             get

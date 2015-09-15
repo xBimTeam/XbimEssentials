@@ -62,7 +62,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Reference to an Element that is connected by the objectified relationship.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcElement RelatingElement
         {
             get
@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Reference to an Element that is connected by the objectified relationship.
         /// </summary>
-        [IfcAttribute(7, IfcAttributeState.Mandatory)]
+        [IfcAttribute(7, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcElement RelatedElement
         {
             get

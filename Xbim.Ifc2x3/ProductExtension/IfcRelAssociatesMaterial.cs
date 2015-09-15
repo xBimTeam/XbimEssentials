@@ -54,7 +54,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Material definition (either a single material, a list of materials, or a set of material layers) assigned to the elements.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcMaterialSelect RelatingMaterial
         {
             get

@@ -138,7 +138,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
         /// <summary>
         ///   SpatialStructuralElementParent context from which the sub context derives its world coordinate system, precision, space coordinate dimension and true north.
         /// </summary>
-        [IfcAttribute(7, IfcAttributeState.Mandatory)]
+        [IfcAttribute(7, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcGeometricRepresentationContext ParentContext
         {
             get

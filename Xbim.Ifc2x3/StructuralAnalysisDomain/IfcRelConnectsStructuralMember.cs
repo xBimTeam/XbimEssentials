@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         /// <summary>
         ///   Reference to an instance of IfcStructuralMember (or its subclasses) which is connected to the specified structural connection.
         /// </summary>
-        [IfcAttribute(5, IfcAttributeState.Mandatory)]
+        [IfcAttribute(5, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcStructuralMember RelatingStructuralMember
         {
             get
@@ -61,7 +61,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         /// <summary>
         ///   Reference to an instance of IfcStructuralConnection (or its subclasses) which is connected to the specified structural member.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcStructuralConnection RelatedStructuralConnection
         {
             get

@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
         /// <summary>
         ///   Reference to the material to which the representation applies.
         /// </summary>
-        [IfcAttribute(4, IfcAttributeState.Mandatory)]
+        [IfcAttribute(4, IfcAttributeState.Mandatory),IndexedProperty]
         public IfcMaterial RepresentedMaterial
         {
             get

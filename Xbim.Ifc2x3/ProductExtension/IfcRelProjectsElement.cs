@@ -61,7 +61,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Reference to the IfcFeatureElementAddition that defines an addition to the volume of the element, by using a Boolean addition operation. An example is a projection at the associated element.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcFeatureElementAddition RelatedFeatureElement
         {
             get

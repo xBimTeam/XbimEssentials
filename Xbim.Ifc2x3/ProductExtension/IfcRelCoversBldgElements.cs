@@ -48,7 +48,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Relationship to the element that is covered.
         /// </summary>
-        [IfcAttribute(5, IfcAttributeState.Mandatory)]
+        [IfcAttribute(5, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcElement RelatingBuildingElement
         {
             get
@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         ///   Relationship to the set of coverings at this element.
         /// </summary>
-        [IfcAttribute(6, IfcAttributeState.Mandatory, IfcAttributeType.Set, IfcAttributeType.Class, 1)]
+        [IfcAttribute(6, IfcAttributeState.Mandatory, IfcAttributeType.Set, IfcAttributeType.Class, 1), IndexedProperty]
         public XbimSet<IfcCovering> RelatedCoverings
         {
             get

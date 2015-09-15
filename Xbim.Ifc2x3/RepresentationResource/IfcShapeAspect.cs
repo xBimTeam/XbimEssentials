@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
     ///   NOTE: The definition of this class relates to the STEP entity shape_aspect. Please refer to ISO/IS 10303-41:1994 for the final definition of the formal standard. 
     ///   HISTORY: New Entity in IFC Release 2.0
     /// </remarks>
-    [IfcPersistedEntityAttribute]
+    [IfcPersistedEntityAttribute, IndexedClass]
     public class IfcShapeAspect : ISupportChangeNotification, INotifyPropertyChanged, IPersistIfcEntity,
                                   INotifyPropertyChanging
     {
@@ -133,7 +133,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
         /// <remarks>
         ///   IFC2x Edition 3 CHANGE  The data type has been changed from IfcShapeRepresentation to IfcShapeModel with upward compatibility
         /// </remarks>
-        [IfcAttribute(1, IfcAttributeState.Mandatory, IfcAttributeType.List, IfcAttributeType.Class, 1)]
+        [IfcAttribute(1, IfcAttributeState.Mandatory, IfcAttributeType.List, IfcAttributeType.Class, 1), IndexedProperty]
         public ShapeModelList ShapeRepresentations
         {
             get
@@ -203,7 +203,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
         /// <summary>
         ///   Reference to the product definition shape of which this class is an aspect.
         /// </summary>
-        [IfcAttribute(5, IfcAttributeState.Mandatory)]
+        [IfcAttribute(5, IfcAttributeState.Mandatory), IndexedProperty]
         public IfcProductDefinitionShape PartOfProductDefinitionShape
         {
             get
