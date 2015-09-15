@@ -428,23 +428,26 @@ namespace Xbim.IO
             CleanTableArrays(disposeTable);
             EndCaching();
 
-            if (_session == null) 
-                return;
+            if (_session != null)
+            {
                 Api.JetCloseDatabase(_session, _databaseId, CloseDatabaseGrbit.None);
                 lock (openInstances)
                 {
                     openInstances.Remove(this);
-                refCount = openInstances.Count(c => string.Compare(c.DatabaseName, DatabaseName, StringComparison.OrdinalIgnoreCase) == 0);
+                    refCount = openInstances.Count(c => string.Compare(c.DatabaseName, DatabaseName, StringComparison.OrdinalIgnoreCase) == 0);
                     if (refCount == 0) //only detach if we have no more references
                     {
                         Logger.DebugFormat("Closing Database with session {0}", _session.JetSesid);
 
                         Api.JetDetachDatabase(_session, _databaseName);
+                    }
                 }
-            _databaseName = null;
+                this._databaseName = null;
                 _session.Dispose();
                 _session = null;
             }
+        }
+            
 
         private void CleanTableArrays(bool disposeTables)
         {
@@ -455,7 +458,7 @@ namespace Xbim.IO
                 if (disposeTables) 
                     _entityTables[i].Dispose();
                 _entityTables[i] = null;
-        }
+            }
             for (var i = 0; i < _geometryTables.Length; ++i)
             {
                 if (null == this._geometryTables[i]) 

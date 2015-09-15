@@ -527,7 +527,7 @@ namespace Xbim.IO.Parser
         public void Dispose()
         {
             // Tidy up in exceptional cases where EndParse is never called
-#if foo
+#if !foo
             if(storeProcessor!=null && !storeProcessor.IsCompleted)
             {
                 Logger.DebugFormat("Disposing of Esent resources after failure");
@@ -539,7 +539,7 @@ namespace Xbim.IO.Parser
                 catch (OperationCanceledException) { }
 
                 Logger.DebugFormat("storeProcessor state: {0}", storeProcessor.Status);
-                //storeProcessor.Dispose();
+                storeProcessor.Dispose();
                 storeProcessor = null;
                 if (this.modelCache.IsCaching)
                 {
@@ -548,10 +548,9 @@ namespace Xbim.IO.Parser
                         cacheProcessor.Wait(_cancellationTokenSource.Token);
                     }
                     catch (OperationCanceledException) { }
-                    //cacheProcessor.Dispose();
+                    cacheProcessor.Dispose();
                     cacheProcessor = null;
                 }
-
                 _cancellationTokenSource.Dispose();
             }
 #endif
