@@ -213,6 +213,9 @@ namespace Xbim.IO
                                         break;
                                     case IfcUnitEnum.PLANEANGLEUNIT:
                                         angleToRadiansConversionFactor = value;
+                                        //need to guarantee precision to avoid errors in boolean operations
+                                        if (Math.Abs(angleToRadiansConversionFactor - (Math.PI/180)) < 1e-9)
+                                            angleToRadiansConversionFactor = Math.PI / 180;
                                         break;
                                     default:
                                         break;
