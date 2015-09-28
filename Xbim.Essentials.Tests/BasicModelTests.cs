@@ -53,7 +53,6 @@ namespace Xbim.Essentials.Tests
                 }
                 fileStream.Close();
             }
-
         }
 
         [TestMethod]
@@ -68,8 +67,8 @@ namespace Xbim.Essentials.Tests
                 }
                 fileStream.Close();
             }
-
         }
+
         [TestMethod]
         public void OpenIfcXmlFileFromStream()
         {

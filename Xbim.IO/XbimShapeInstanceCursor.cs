@@ -8,8 +8,8 @@ namespace Xbim.IO
     /// </summary>
     public class XbimShapeInstanceCursor : XbimCursor
     {
-
-        const int SizeOfTransformation = 16 * sizeof(float); //the 16 floats that make a transformation
+        // updated to allow storage for doubles in matrices.
+        const int MaxSizeOfTransformation = 16 * sizeof(double); // the 16 numbers that make a transformation
         #region Field Definition
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace Xbim.IO
                 //Transformation data
                 columndef.coltyp = JET_coltyp.Binary;
                 columndef.grbit = ColumndefGrbit.ColumnNotNULL;
-                columndef.cbMax = SizeOfTransformation;
+                columndef.cbMax = MaxSizeOfTransformation;
                 Api.JetAddColumn(sesid, tableid, colNameTransformation, columndef, null, 0, out columnid);
 
                 //Bounding Box data
