@@ -78,5 +78,38 @@ namespace Xbim.Essentials.Tests
             }
             return points;
         }
+
+        [TestMethod]
+        public void MatrixArrayConversion()
+        {
+            var m = XbimMatrix3D.CreateTranslation(10,20,30);
+            m.RotateAroundXAxis(Math.PI/4);
+            m.Scale(.05);
+
+            var outM = m.ToArray(true);
+            var rback = XbimMatrix3D.FromArray(outM);
+
+            Assert.AreEqual(rback.M11, m.M11);
+            Assert.AreEqual(rback.M12, m.M12);
+            Assert.AreEqual(rback.M13, m.M13);
+            Assert.AreEqual(rback.M14, m.M14);
+
+            Assert.AreEqual(rback.M21, m.M21);
+            Assert.AreEqual(rback.M22, m.M22);
+            Assert.AreEqual(rback.M23, m.M23);
+            Assert.AreEqual(rback.M24, m.M24);
+
+            Assert.AreEqual(rback.M31, m.M31);
+            Assert.AreEqual(rback.M32, m.M32);
+            Assert.AreEqual(rback.M33, m.M33);
+            Assert.AreEqual(rback.M34, m.M34);
+
+            Assert.AreEqual(rback.OffsetX, m.OffsetX);
+            Assert.AreEqual(rback.OffsetY, m.OffsetY);
+            Assert.AreEqual(rback.OffsetZ, m.OffsetZ);
+            Assert.AreEqual(rback.M44, m.M44);
+
+        }
+
     }
 }
