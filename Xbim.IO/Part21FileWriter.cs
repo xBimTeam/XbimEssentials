@@ -37,19 +37,9 @@ namespace Xbim.IO
             output.Write(HeaderAsString(model.Header ?? new IfcFileHeader(IfcFileHeader.HeaderCreationMode.InitWithXbimDefaults)));
             foreach (XbimInstanceHandle item in model.InstanceHandles /*.Types.OrderBy(t=>t.Name)*/)
             {
-                try
-                {
-                    IPersistIfcEntity entity = model.GetInstanceVolatile(item);
+                IPersistIfcEntity entity = model.GetInstanceVolatile(item);
                 entity.WriteEntity(output, map);
-                }
-                catch (Exception e)
-                {
-                    
-                    throw;
-                }
-               
             }
-
             output.WriteLine("ENDSEC;");
             output.WriteLine("END-ISO-10303-21;");
         }
