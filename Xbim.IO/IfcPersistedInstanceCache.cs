@@ -19,12 +19,15 @@ using Microsoft.Isam.Esent.Interop.Windows7;
 using ICSharpCode.SharpZipLib.Zip;
 using System.Collections.Concurrent;
 using XbimGeometry.Interfaces;
-
+using Xbim.Common.Logging;
 
 namespace Xbim.IO
 {   
     public class IfcPersistedInstanceCache : IDisposable
     {
+
+        private readonly ILogger Logger = LoggerFactory.GetLogger();
+
          /// <summary>
         /// Holds a collection of all currently opened instances in this process
         /// </summary>
@@ -136,6 +139,7 @@ namespace Xbim.IO
                     XbimEntityCursor.CreateTable(session, dbid);
                     XbimCursor.CreateGlobalsTable(session, dbid); //create the gobals table
                     EnsureGeometryTables(session, dbid);
+                    Logger.DebugFormat("New Jet Database created with session {0}]", session.JetSesid);
                 }
                 catch (Exception e)
                 {
@@ -146,7 +150,8 @@ namespace Xbim.IO
                         openInstances.Remove(this);
                     }
                     File.Delete(fileName);
-                    throw e;
+                    Logger.Error("Failed to create model.", e);
+                    throw;
                 }
             }
         }
@@ -216,6 +221,7 @@ namespace Xbim.IO
                     try
                     {
                         Api.JetAttachDatabase(_session, _databaseName, openMode == OpenDatabaseGrbit.ReadOnly ? AttachDatabaseGrbit.ReadOnly : AttachDatabaseGrbit.None);
+                        Logger.DebugFormat("Jet Database attached with session {0}", _session.JetSesid);
                     }
                     catch (EsentDatabaseDirtyShutdownException)
                     {
@@ -237,11 +243,11 @@ namespace Xbim.IO
                                     // Give the process time to die, as we'll likely be reading files it has open next.
                                     System.Threading.Thread.Sleep(500);
                                 }
-                                XbimModel.Logger.WarnFormat("Repair failed {0} after dirty shutdown, time out", _databaseName);
+                                Logger.WarnFormat("Repair failed {0} after dirty shutdown, time out", _databaseName);
                             }
                             else
                             {
-                                XbimModel.Logger.WarnFormat("Repair success {0} after dirty shutdown", _databaseName);
+                                Logger.WarnFormat("Repair success {0} after dirty shutdown", _databaseName);
                                 proc.Close();
                                 //try again
                                 Api.JetAttachDatabase(_session, _databaseName, openMode == OpenDatabaseGrbit.ReadOnly ? AttachDatabaseGrbit.ReadOnly : AttachDatabaseGrbit.None);
@@ -422,20 +428,26 @@ namespace Xbim.IO
             CleanTableArrays(disposeTable);
             EndCaching();
 
-            if (_session == null) 
-                return;
-            Api.JetCloseDatabase(_session, _databaseId, CloseDatabaseGrbit.None);
-            lock (openInstances)
+            if (_session != null)
             {
-                openInstances.Remove(this);
-                refCount = openInstances.Count(c => string.Compare(c.DatabaseName, DatabaseName, StringComparison.OrdinalIgnoreCase) == 0);
-                if (refCount == 0) //only detach if we have no more references
-                    Api.JetDetachDatabase(_session, _databaseName);
+                Api.JetCloseDatabase(_session, _databaseId, CloseDatabaseGrbit.None);
+                lock (openInstances)
+                {
+                    openInstances.Remove(this);
+                    refCount = openInstances.Count(c => string.Compare(c.DatabaseName, DatabaseName, StringComparison.OrdinalIgnoreCase) == 0);
+                    if (refCount == 0) //only detach if we have no more references
+                    {
+                        Logger.DebugFormat("Closing Database with session {0}", _session.JetSesid);
+
+                        Api.JetDetachDatabase(_session, _databaseName);
+                    }
+                }
+                this._databaseName = null;
+                _session.Dispose();
+                _session = null;
             }
-            _databaseName = null;
-            _session.Dispose();
-            _session = null;
         }
+            
 
         private void CleanTableArrays(bool disposeTables)
         {
@@ -489,11 +501,11 @@ namespace Xbim.IO
         /// <returns></returns>
         public void ImportIfc(string xbimDbName, string toImportIfcFilename, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false, int codePageOverride = -1)
         {
-            using (FileStream reader = new FileStream(toImportIfcFilename, FileMode.Open, FileAccess.Read))
-            {
+                using (FileStream reader = new FileStream(toImportIfcFilename, FileMode.Open, FileAccess.Read))
+                {
                 ImportIfc(xbimDbName, reader, progressHandler, keepOpen, cacheEntities, codePageOverride);
-            }
-        }
+                    }
+                }
         /// <summary>
         /// Imports an Ifc Zip file
         /// </summary>
@@ -502,10 +514,10 @@ namespace Xbim.IO
         public void ImportIfcZip(string xbimDbName, string toImportFilename, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false, int codePageOverride = -1)
         {
 
-            using (FileStream fileStream = File.OpenRead(toImportFilename))
+                using (FileStream fileStream = File.OpenRead(toImportFilename))
                 ImportIfcZip(xbimDbName, fileStream, progressHandler, keepOpen, cacheEntities, codePageOverride);
-                   
-        }
+
+                                        }
 
         /// <summary>
         /// Sets up the Esent directories, can only be call before the Init method of the instance
@@ -570,8 +582,8 @@ namespace Xbim.IO
         static private Instance CreateInstance(string instanceName,  bool recovery = false, bool createTemporaryTables = false)
         {
             string guid = Guid.NewGuid().ToString();
-            var jetInstance = new Instance(instanceName+guid);
-
+            var jetInstance = new Instance(instanceName+guid);           
+           
             if (string.IsNullOrWhiteSpace(_systemPath)) //we haven't specified a path so make one               
                 _systemPath = GetXbimTempDirectory();
             
@@ -1625,7 +1637,7 @@ namespace Xbim.IO
                 FreeTable(geomTable);
             }
         }
-        
+
 
         internal T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, bool includeInverses,  PropertyTranformDelegate propTransform = null) where T : IPersistIfcEntity
         {
@@ -1764,8 +1776,8 @@ namespace Xbim.IO
         {
             return _model.GetTransactingCursor().AddEntity(type, entityLabel);
         }
-        
 
+        
         /// <summary>
         /// Adds an entity to the modified cache, if the entity is not already being edited
         /// Throws an exception if an attempt is made to edit a duplicate reference to the entity

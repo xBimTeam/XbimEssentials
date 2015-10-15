@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Isam.Esent.Interop;
+using Xbim.Common.Logging;
 
 namespace Xbim.IO
 {
@@ -50,11 +51,14 @@ namespace Xbim.IO
        
         private static string ifcHeaderColumnName = "IfcHeader";
 
+        private readonly ILogger Logger = LoggerFactory.GetLogger();
+
 
 
         public bool ReadOnly { get; set; }
         public XbimCursor(XbimModel model, string database,  OpenDatabaseGrbit mode)
         {
+            // TODO: [APW] Should we be using this lock?
             this.lockObject = new Object();
             this.model = model;
             this.instance = model.Cache.JetInstance;
@@ -68,6 +72,8 @@ namespace Xbim.IO
             this.flushColumn = Api.GetTableColumnid(this.sesid, this.globalsTable, flushColumnName);
             this.ifcHeaderColumn = Api.GetTableColumnid(this.sesid, this.globalsTable, ifcHeaderColumnName);
             ReadOnly = (mode == OpenDatabaseGrbit.ReadOnly);
+
+            Logger.DebugFormat("New XbimCursor with session {0}", sesid);
         }
 
         internal abstract int RetrieveCount();
@@ -162,6 +168,7 @@ namespace Xbim.IO
         {
             return new Transaction(this.sesid);
         }
+
         /// <summary>
         /// Begin a new transaction for this cursor. This is the cheapest
         /// transaction type because it returns a struct and no separate
@@ -220,9 +227,9 @@ namespace Xbim.IO
                 Api.JetCloseDatabase(this.sesid, this.dbId, CloseDatabaseGrbit.None);
                 Api.JetEndSession(this.sesid, EndSessionGrbit.None);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-               
+                Logger.Warn("Error disposing XbimCursor", e);
             }
             
         }

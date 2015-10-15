@@ -12,25 +12,23 @@
 
 #region Directives
 
+using Microsoft.Isam.Esent.Interop;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
-using Xbim.XbimExtensions.Transactions.Extensions;
-using Xbim.XbimExtensions.Transactions;
+using System.Threading;
+using System.Threading.Tasks;
+using Xbim.Common.Logging;
 using Xbim.XbimExtensions;
 using Xbim.XbimExtensions.Interfaces;
-using Microsoft.Isam.Esent.Interop;
-using System.Globalization;
-using System.Threading.Tasks;
-using System.Collections.Concurrent;
-using System.Threading;
 #endregion
 
 namespace Xbim.IO.Parser
 {
-   
+
 
     public enum P21ParseAction
     {
@@ -57,6 +55,9 @@ namespace Xbim.IO.Parser
 
     public class P21toIndexParser : P21Parser, IDisposable
     {
+
+        private readonly ILogger Logger = LoggerFactory.GetLogger();
+
         public event ReportProgressDelegate ProgressStatus;
         private int _percentageParsed;
         private long _streamSize = -1;
@@ -64,6 +65,8 @@ namespace Xbim.IO.Parser
         private BlockingCollection<Tuple<int, short, List<int>, byte[], bool>> toStore;
         Task cacheProcessor;
         Task storeProcessor;
+
+        private CancellationTokenSource _cancellationTokenSource;
         private BinaryWriter _binaryWriter;
         
         private int _currentLabel;
@@ -112,17 +115,19 @@ namespace Xbim.IO.Parser
 
         internal override void SetErrorMessage()
         {
-            Debug.WriteLine("TODO");
+            Debug.WriteLine("Parse error at : #{0} - Error at {1}", this._currentInstance.EntityLabel, this.CurrentSemanticValue.strVal);
         }
 
         internal override void CharacterError()
         {
-            Debug.WriteLine("TODO");
+            Debug.WriteLine("Character error at : #{0} - Error at {1}", this._currentInstance.EntityLabel, this.CurrentSemanticValue.strVal);
         }
 
         internal override void BeginParse()
         {
+            Logger.Debug("Parsing Beginning");
             _binaryWriter = new BinaryWriter(new MemoryStream(0x7FFF));
+            _cancellationTokenSource = new CancellationTokenSource();
             toStore = new BlockingCollection<Tuple<int, short, List<int>, byte[], bool>>(512);
             if (this.modelCache.IsCaching)
             {
@@ -130,22 +135,23 @@ namespace Xbim.IO.Parser
                 cacheProcessor = Task.Factory.StartNew(() =>
                     {
                         try
-                        { 
+                        {
                             Tuple<int, Type, byte[]> h;
                             // Consume the BlockingCollection 
-                            while (!toProcess.IsCompleted)
+                            while (!toProcess.IsCompleted && !_cancellationTokenSource.IsCancellationRequested)
                             {
-                               
-                                if(toProcess.TryTake(out h))
+
+                                if (toProcess.TryTake(out h))
                                     this.modelCache.GetOrCreateInstanceFromCache(h.Item1, h.Item2, h.Item3);
                             }
 
                         }
-                        catch (InvalidOperationException)
+                        catch (InvalidOperationException ex)
                         {
-
+                            Logger.Debug("Error creating instances from cache", ex);
                         }
-                    }
+                    },
+                    _cancellationTokenSource.Token
                     );
 
             }
@@ -155,7 +161,7 @@ namespace Xbim.IO.Parser
                 using (var transaction = table.BeginLazyTransaction())
                 {
                     Tuple<int, short, List<int>, byte[], bool> h;
-                    while (!toStore.IsCompleted)
+                    while (!toStore.IsCompleted && !_cancellationTokenSource.IsCancellationRequested)
                     {
                         try
                         {
@@ -164,7 +170,7 @@ namespace Xbim.IO.Parser
                                 table.AddEntity(h.Item1, h.Item2, h.Item3, h.Item4, h.Item5, transaction);
                                 if (toStore.IsCompleted)
                                     table.WriteHeader(Header);
-                                long remainder = _entityCount%_transactionBatchSize;
+                                long remainder = _entityCount % _transactionBatchSize;
                                 if (remainder == _transactionBatchSize - 1)
                                 {
                                     transaction.Commit();
@@ -172,24 +178,28 @@ namespace Xbim.IO.Parser
                                 }
                             }
                         }
-                        catch (SystemException)
+                        catch (Exception ex)
                         {
-                            
+                            Logger.Warn("Error in parsing", ex);
+
                             // An InvalidOperationException means that Take() was called on a completed collection
                             //OperationCanceledException can also be called
 
                         }
+                    } // End while
+
+                    if (!_cancellationTokenSource.IsCancellationRequested)
+                    {
+                        transaction.Commit();
                     }
-                    transaction.Commit();
-                }
-                   
-               
-            }
-            );
+                } // End Transaction
+
+            }, _cancellationTokenSource.Token);
         }
 
         internal override void EndParse()
         {
+            Logger.Debug("Parsing Ended");
             toStore.CompleteAdding();
             storeProcessor.Wait();
             if (this.modelCache.IsCaching)
@@ -208,6 +218,7 @@ namespace Xbim.IO.Parser
             storeProcessor.Dispose();
             storeProcessor = null;
             Dispose();
+            
         }
 
         internal override void BeginHeader()
@@ -515,10 +526,39 @@ namespace Xbim.IO.Parser
 
         public void Dispose()
         {
+            // Tidy up in exceptional cases where EndParse is never called
+#if !foo
+            if(storeProcessor!=null && !storeProcessor.IsCompleted)
+            {
+                Logger.DebugFormat("Disposing of Esent resources after failure");
+                _cancellationTokenSource.Cancel(true);
+                try
+                {
+                    storeProcessor.Wait(_cancellationTokenSource.Token);
+                }
+                catch (OperationCanceledException) { }
+
+                Logger.DebugFormat("storeProcessor state: {0}", storeProcessor.Status);
+                storeProcessor.Dispose();
+                storeProcessor = null;
+                if (this.modelCache.IsCaching)
+                {
+                    try
+                    {
+                        cacheProcessor.Wait(_cancellationTokenSource.Token);
+                    }
+                    catch (OperationCanceledException) { }
+                    cacheProcessor.Dispose();
+                    cacheProcessor = null;
+                }
+                _cancellationTokenSource.Dispose();
+            }
+#endif
+
             if (_binaryWriter != null) _binaryWriter.Close();
             _binaryWriter = null;
         }
 
-        #endregion
+#endregion
     }
 }

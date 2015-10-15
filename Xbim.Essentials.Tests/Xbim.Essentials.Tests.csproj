@@ -55,16 +55,23 @@
     <Compile Include="GeometryCacheTests.cs" />
     <Compile Include="GeometryPersistencyTables.cs" />
     <Compile Include="GeometryTests.cs" />
+    <Compile Include="InvalidModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PackedNormalTests.cs" />
     <Compile Include="IfcHeaderTests.cs" />
     <Compile Include="ModelFilterTest.cs" />
     <Compile Include="BasicModelTests.cs" />
+    <Compile Include="IfcSIUnitTests.cs" />
+    <Compile Include="Base\IfcTestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">
       <Project>{6745f5ac-af3c-4372-81aa-a75e7b1fa03b}</Project>
       <Name>Xbim.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xbim.Ifc.Extensions\Xbim.Ifc2x3.Extensions.csproj">
+      <Project>{6df47d23-8f4d-4069-a44b-bbdacd3f9aea}</Project>
+      <Name>Xbim.Ifc2x3.Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj">
       <Project>{5D4C907D-1293-4E5F-9642-D0862AE4741C}</Project>
@@ -75,8 +82,15 @@
       <Name>Xbim.IO</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <None Include="TestSourceFiles\InvalidModelTests.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="GeometryCacheTestFiles\Monolith-NoGeomTables.xBIM">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -99,6 +113,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\BIM Logo-LetterM.xBIM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\IfcSIUnitTests.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\InvalidModelTests3.ifc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\Invalid.ifc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\InvalidModelTests2.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\P1.xBIM">
