@@ -14,8 +14,6 @@
 
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-
 using Xbim.Common.Geometry;
 using Xbim.Ifc2x3.GeometryResource;
 
@@ -51,7 +49,7 @@ namespace Xbim.Ifc2x3.Extensions
                 object transform;
                 if (maps.TryGetValue(ct3D.EntityLabel, out transform)) //already converted it just return cached
                     return (XbimMatrix3D)transform;
-                XbimMatrix3D matrix = ConvertCartesianTranformOperator3D(ct3D);
+                var matrix = ConvertCartesianTranformOperator3D(ct3D);
                 maps.TryAdd(ct3D.EntityLabel, matrix);
                 return matrix;
             }
@@ -59,7 +57,7 @@ namespace Xbim.Ifc2x3.Extensions
 
         private static XbimMatrix3D ConvertCartesianTranformOperator3D(IfcCartesianTransformationOperator3D ct3D)
         {
-            XbimMatrix3D m3d = ConvertCartesianTransform3D(ct3D);
+            var m3d = ConvertCartesianTransform3D(ct3D);
 
             m3d.Scale(ct3D.Scl);
             return m3d;
@@ -79,7 +77,7 @@ namespace Xbim.Ifc2x3.Extensions
                 object transform;
                 if (maps.TryGetValue(ct3D.EntityLabel, out transform)) //already converted it just return cached
                     return (XbimMatrix3D)transform;
-                XbimMatrix3D matrix = ConvertCartesianTransformationOperator3DnonUniform(ct3D);
+                var matrix = ConvertCartesianTransformationOperator3DnonUniform(ct3D);
                 maps.TryAdd(ct3D.EntityLabel, matrix);
                 return matrix;
             }
@@ -92,7 +90,7 @@ namespace Xbim.Ifc2x3.Extensions
             XbimVector3D u1; //Y axis direction
             if (ct3D.Axis3 != null)
             {
-                IfcDirection dir = ct3D.Axis3;
+                var dir = ct3D.Axis3;
                 u3 = new XbimVector3D(dir.DirectionRatios[0], dir.DirectionRatios[1], dir.DirectionRatios[2]);
                 u3.Normalize();
             }
@@ -100,30 +98,30 @@ namespace Xbim.Ifc2x3.Extensions
                 u3 = new XbimVector3D(0, 0, 1);
             if (ct3D.Axis1 != null)
             {
-                IfcDirection dir = ct3D.Axis1;
+                var dir = ct3D.Axis1;
                 u1 = new XbimVector3D(dir.DirectionRatios[0], dir.DirectionRatios[1], dir.DirectionRatios[2]);
                 u1.Normalize();
             }
             else
             {
-                XbimVector3D defXDir = new XbimVector3D(1, 0, 0);
+                var defXDir = new XbimVector3D(1, 0, 0);
                 u1 = u3 != defXDir ? defXDir : new XbimVector3D(0, 1, 0);
             }
-            XbimVector3D xVec = XbimVector3D.Multiply(XbimVector3D.DotProduct(u1, u3), u3);
-            XbimVector3D xAxis = XbimVector3D.Subtract(u1, xVec);
+            var xVec = XbimVector3D.Multiply(XbimVector3D.DotProduct(u1, u3), u3);
+            var xAxis = XbimVector3D.Subtract(u1, xVec);
             xAxis.Normalize();
 
             if (ct3D.Axis2 != null)
             {
-                IfcDirection dir = ct3D.Axis2;
+                var dir = ct3D.Axis2;
                 u2 = new XbimVector3D(dir.DirectionRatios[0], dir.DirectionRatios[1], dir.DirectionRatios[2]);
                 u2.Normalize();
             }
             else
                 u2 = new XbimVector3D(0, 1, 0);
 
-            XbimVector3D tmp = XbimVector3D.Multiply(XbimVector3D.DotProduct(u2, u3), u3);
-            XbimVector3D yAxis = XbimVector3D.Subtract(u2, tmp);
+            var tmp = XbimVector3D.Multiply(XbimVector3D.DotProduct(u2, u3), u3);
+            var yAxis = XbimVector3D.Subtract(u2, tmp);
             tmp = XbimVector3D.Multiply(XbimVector3D.DotProduct(u2, xAxis), xAxis);
             yAxis = XbimVector3D.Subtract(yAxis, tmp);
             yAxis.Normalize();
@@ -132,7 +130,7 @@ namespace Xbim.Ifc2x3.Extensions
 
             XbimPoint3D lo = ct3D.LocalOrigin.XbimPoint3D(); //local origin
 
-            XbimMatrix3D matrix = new XbimMatrix3D(u1.X, u1.Y, u1.Z, 0,
+            var matrix = new XbimMatrix3D(u1.X, u1.Y, u1.Z, 0,
                                            u2.X, u2.Y, u2.Z, 0,
                                            u3.X, u3.Y, u3.Z, 0,
                                            lo.X, lo.Y, lo.Z, 1);
@@ -148,7 +146,7 @@ namespace Xbim.Ifc2x3.Extensions
             XbimVector3D u1; //Y axis direction
             if (ct3D.Axis3 != null)
             {
-                IfcDirection dir = ct3D.Axis3;
+                var dir = ct3D.Axis3;
                 u3 = new XbimVector3D(dir.DirectionRatios[0], dir.DirectionRatios[1], dir.DirectionRatios[2]);
                 u3.Normalize();
             }
@@ -156,37 +154,37 @@ namespace Xbim.Ifc2x3.Extensions
                 u3 = new XbimVector3D(0, 0, 1);
             if (ct3D.Axis1 != null)
             {
-                IfcDirection dir = ct3D.Axis1;
+                var dir = ct3D.Axis1;
                 u1 = new XbimVector3D(dir.DirectionRatios[0], dir.DirectionRatios[1], dir.DirectionRatios[2]);
                 u1.Normalize();
             }
             else
             {
-                XbimVector3D defXDir = new XbimVector3D(1, 0, 0);
+                var defXDir = new XbimVector3D(1, 0, 0);
                 u1 = u3 != defXDir ? defXDir : new XbimVector3D(0, 1, 0);
             }
-            XbimVector3D xVec = XbimVector3D.Multiply(XbimVector3D.DotProduct(u1, u3), u3);
-            XbimVector3D xAxis = XbimVector3D.Subtract(u1, xVec);
+            var xVec = XbimVector3D.Multiply(XbimVector3D.DotProduct(u1, u3), u3);
+            var xAxis = XbimVector3D.Subtract(u1, xVec);
             xAxis.Normalize();
 
             if (ct3D.Axis2 != null)
             {
-                IfcDirection dir = ct3D.Axis2;
+                var dir = ct3D.Axis2;
                 u2 = new XbimVector3D(dir.DirectionRatios[0], dir.DirectionRatios[1], dir.DirectionRatios[2]);
                 u2.Normalize();
             }
             else
                 u2 = new XbimVector3D(0, 1, 0);
 
-            XbimVector3D tmp = XbimVector3D.Multiply(XbimVector3D.DotProduct(u2, u3), u3);
-            XbimVector3D yAxis = XbimVector3D.Subtract(u2, tmp);
+            var tmp = XbimVector3D.Multiply(XbimVector3D.DotProduct(u2, u3), u3);
+            var yAxis = XbimVector3D.Subtract(u2, tmp);
             tmp = XbimVector3D.Multiply(XbimVector3D.DotProduct(u2, xAxis), xAxis);
             yAxis = XbimVector3D.Subtract(yAxis, tmp);
             yAxis.Normalize();
             u2 = yAxis;
             u1 = xAxis;
 
-            XbimPoint3D lo = ct3D.LocalOrigin.XbimPoint3D(); //local origin
+            var lo = ct3D.LocalOrigin.XbimPoint3D(); //local origin
 
             return new XbimMatrix3D(u1.X, u1.Y, u1.Z, 0,
                                            u2.X, u2.Y, u2.Z, 0,

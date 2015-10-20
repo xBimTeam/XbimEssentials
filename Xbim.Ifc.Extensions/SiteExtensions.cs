@@ -17,8 +17,6 @@ using System.Linq;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProductExtension;
 using Xbim.Ifc2x3.RepresentationResource;
-using Xbim.XbimExtensions;
-using Xbim.Ifc2x3.PropertyResource;
 using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.QuantityResource;
 
@@ -89,7 +87,7 @@ namespace Xbim.Ifc2x3.Extensions
             IEnumerable<IfcRelDecomposes> decomposition = site.IsDecomposedBy;
             if (decomposition.Count() == 0) //none defined create the relationship
             {
-                IfcRelAggregates relSub = site.ModelOf.Instances.New<IfcRelAggregates>();
+                IfcRelAggregates relSub = site.Model.Instances.New<IfcRelAggregates>();
                 relSub.RelatingObject = site;
                 relSub.RelatedObjects.Add(building);
             }
@@ -104,7 +102,7 @@ namespace Xbim.Ifc2x3.Extensions
             IEnumerable<IfcRelDecomposes> decomposition = site.IsDecomposedBy;
             if (decomposition.Count() == 0) //none defined create the relationship
             {
-                IfcRelAggregates relSub = site.ModelOf.Instances.New<IfcRelAggregates>();
+                IfcRelAggregates relSub = site.Model.Instances.New<IfcRelAggregates>();
                 relSub.RelatingObject = site;
                 relSub.RelatedObjects.Add(subSite);
             }
@@ -120,7 +118,7 @@ namespace Xbim.Ifc2x3.Extensions
             if (relatedElements.Count() == 0) //none defined create the relationship
             {
                 IfcRelContainedInSpatialStructure relSe =
-                    site.ModelOf.Instances.New<IfcRelContainedInSpatialStructure>();
+                    site.Model.Instances.New<IfcRelContainedInSpatialStructure>();
                 relSe.RelatingStructure = site;
                 relSe.RelatedElements.Add(element);
             }

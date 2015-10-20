@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using Xbim.Ifc2x3.CostResource;
 using Xbim.Ifc2x3.MeasureResource;
-using Xbim.XbimExtensions.SelectTypes;
 
 namespace Xbim.Ifc2x3.Extensions
 {
@@ -22,22 +18,22 @@ namespace Xbim.Ifc2x3.Extensions
                 value.Append(", ");
             }
 
-            if (ifcAppliedValue.Value != null)//not nullable should be? incorrect name?
+            if (ifcAppliedValue.AppliedValue != null)//not nullable should be? incorrect name?
             {
                 value.Append("AppliedValue: ");
-                if (ifcAppliedValue.Value is IfcRatioMeasure)
+                if (ifcAppliedValue.AppliedValue is IfcRatioMeasure)
                 {
-                    IfcRatioMeasure ifcRatioMeasure = (IfcRatioMeasure)ifcAppliedValue.Value;
+                    IfcRatioMeasure ifcRatioMeasure = (IfcRatioMeasure)ifcAppliedValue.AppliedValue;
                     value.Append(string.Format("{0,0:N2}", ifcRatioMeasure.Value));
                 }
-                if (ifcAppliedValue.Value is IfcMonetaryMeasure)
+                if (ifcAppliedValue.AppliedValue is IfcMonetaryMeasure)
                 {
-                    IfcMonetaryMeasure ifcMonetaryMeasure = (IfcMonetaryMeasure)ifcAppliedValue.Value;
+                    IfcMonetaryMeasure ifcMonetaryMeasure = (IfcMonetaryMeasure)ifcAppliedValue.AppliedValue;
                     value.Append(string.Format("{0,0:N2}", ifcMonetaryMeasure.Value));
                 }
-                if (ifcAppliedValue.Value is IfcMeasureWithUnit)
+                if (ifcAppliedValue.AppliedValue is IfcMeasureWithUnit)
                 {
-                    value.Append(GetMeasureWithUnitAsString((IfcMeasureWithUnit)ifcAppliedValue.Value));
+                    value.Append(GetMeasureWithUnitAsString((IfcMeasureWithUnit)ifcAppliedValue.AppliedValue));
                     
                 }
                 value.Append(", ");

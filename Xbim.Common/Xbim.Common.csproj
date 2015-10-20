@@ -1,25 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6745F5AC-AF3C-4372-81AA-A75E7B1FA03B}</ProjectGuid>
+    <ProjectGuid>{A34EF831-EA82-4A79-8C65-B5E1C6D9508D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Xbim.Common</RootNamespace>
     <AssemblyName>Xbim.Common</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <SccAuxPath>SAK</SccAuxPath>
-    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,8 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,10 +29,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DebugSymbols>true</DebugSymbols>
     <DocumentationFile>..\Output\Release\Xbim.Common.XML</DocumentationFile>
     <NoWarn>1591;1572;1573;1574</NoWarn>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -51,25 +39,36 @@
     <AssemblyOriginatorKeyFile>XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+    <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-	<Compile Include="..\SharedFileVersionInfo.cs">
+    <Compile Include="..\SharedFileVersionInfo.cs">
       <Link>Properties\SharedFileVersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Attributes.cs" />
     <Compile Include="Exceptions\ExceptionExtensions.cs" />
     <Compile Include="Exceptions\XbimException.cs" />
     <Compile Include="Exceptions\XbimGeometryException.cs" />
     <Compile Include="Exceptions\XbimParserException.cs" />
+    <Compile Include="Metadata\ExpressMetaData.cs" />
+    <Compile Include="Metadata\ExpressType.cs" />
+    <Compile Include="Metadata\ExpressTypeDictionary.cs" />
+    <Compile Include="ExpressInterfaces.cs" />
+    <Compile Include="Federation\IFederatedModel.cs" />
+    <Compile Include="Federation\IReferencedModel.cs" />
     <Compile Include="Geometry\IGeometryManager.cs" />
     <Compile Include="Geometry\IXbimBooleanOperand.cs" />
     <Compile Include="Geometry\IXbimCurve.cs" />
@@ -98,145 +97,62 @@
     <Compile Include="Geometry\XbimFaceTriangulation.cs" />
     <Compile Include="Geometry\XbimGeometryObjectType.cs" />
     <Compile Include="Geometry\XbimGeometryRepresentationType.cs" />
+    <Compile Include="Geometry\XbimGeometryType.cs" />
     <Compile Include="Geometry\XbimLOD.cs" />
     <Compile Include="Geometry\XbimMatrix3D.cs" />
     <Compile Include="Geometry\XbimPackedNormal.cs" />
+    <Compile Include="Geometry\XbimPackedNormalCollection.cs" />
     <Compile Include="Geometry\XbimPoint3D.cs" />
     <Compile Include="Geometry\XbimQuaternion.cs" />
     <Compile Include="Geometry\XbimRect3D.cs" />
     <Compile Include="Geometry\XbimShapeTriangulation.cs" />
     <Compile Include="Geometry\XbimTriangulationIndexCollection.cs" />
-    <Compile Include="Geometry\XbimVector3D.cs" />
     <Compile Include="Geometry\XbimTriangulationVertexCollection.cs" />
-    <Compile Include="Helpers\AttributeHelper.cs" />
+    <Compile Include="Geometry\XbimVector3D.cs" />
+    <Compile Include="Logging\Providers\AttributeHelper.cs" />
+    <Compile Include="IEntityCollection.cs" />
+    <Compile Include="IEntityFactory.cs" />
+    <Compile Include="IPersistEntityExtensions.cs" />
+    <Compile Include="IInstantiableEntity.cs" />
+    <Compile Include="IItemSet.cs" />
+    <Compile Include="IModel.cs" />
+    <Compile Include="IOptionalItemSet.cs" />
+    <Compile Include="IPersistEntity.cs" />
+    <Compile Include="IPersist.cs" />
+    <Compile Include="IPropertyValue.cs" />
+    <Compile Include="Step21\StepFileHeader.cs" />
+    <Compile Include="Step21\IStepFileDescription.cs" />
+    <Compile Include="Step21\IStepFileHeader.cs" />
+    <Compile Include="Step21\IStepFileName.cs" />
+    <Compile Include="Step21\IStepFileSchema.cs" />
+    <Compile Include="ITransaction.cs" />
     <Compile Include="Logging\Event.cs" />
     <Compile Include="Logging\EventLevel.cs" />
+    <Compile Include="Logging\EventTrace.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\LoggerFactory.cs" />
-    <Compile Include="Logging\EventTrace.cs" />
     <Compile Include="Logging\Providers\DefaultLogger.cs" />
     <Compile Include="Logging\Providers\DefaultProvider.cs" />
     <Compile Include="Logging\Providers\ILoggingProvider.cs" />
     <Compile Include="Logging\Providers\Log4NetLogger.cs" />
     <Compile Include="Logging\Providers\Log4NetProvider.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SelectTypes\ExpressComplexType.cs" />
-    <Compile Include="SelectTypes\ExpressEnumerable.cs" />
-    <Compile Include="SelectTypes\ExpressSelectType.cs" />
-    <Compile Include="SelectTypes\ExpressType.cs" />
-    <Compile Include="SelectTypes\IfcActorSelect.cs" />
-    <Compile Include="SelectTypes\IfcAppliedValueSelect.cs" />
-    <Compile Include="SelectTypes\IfcAxis2Placement.cs" />
-    <Compile Include="SelectTypes\IfcBooleanOperand.cs" />
-    <Compile Include="SelectTypes\IfcCharacterStyleSelect.cs" />
-    <Compile Include="SelectTypes\IfcClassificationNotationSelect.cs" />
-    <Compile Include="SelectTypes\IfcColour.cs" />
-    <Compile Include="SelectTypes\IfcColourOrFactor.cs" />
-    <Compile Include="SelectTypes\IfcConditionCriterionSelect.cs" />
-    <Compile Include="SelectTypes\IfcCsgSelect.cs" />
-    <Compile Include="SelectTypes\IfcCurveFontOrScaledCurveFontSelect.cs" />
-    <Compile Include="SelectTypes\IfcCurveOrEdgeCurve.cs" />
-    <Compile Include="SelectTypes\IfcCurveStyleFontSelect.cs" />
-    <Compile Include="SelectTypes\IfcDateTimeSelect.cs" />
-    <Compile Include="SelectTypes\IfcDefinedSymbolSelect.cs" />
-    <Compile Include="SelectTypes\IfcDerivedMeasureValue.cs" />
-    <Compile Include="SelectTypes\IfcDocumentSelect.cs" />
-    <Compile Include="SelectTypes\IfcDraughtingCalloutElement.cs" />
-    <Compile Include="SelectTypes\IfcFillAreaStyleTileShapeSelect.cs" />
-    <Compile Include="SelectTypes\IfcFillStyleSelect.cs" />
-    <Compile Include="SelectTypes\IfcGeometricSetSelect.cs" />
-    <Compile Include="SelectTypes\IfcHatchLineDistanceSelect.cs" />
-    <Compile Include="SelectTypes\IfcLayeredItem.cs" />
-    <Compile Include="SelectTypes\IfcLibrarySelect.cs" />
-    <Compile Include="SelectTypes\IfcLightDistributionDataSourceSelect.cs" />
-    <Compile Include="SelectTypes\IfcMaterialSelect.cs" />
-    <Compile Include="SelectTypes\IfcMeasureValue.cs" />
-    <Compile Include="SelectTypes\IfcMetricValueSelect.cs" />
-    <Compile Include="SelectTypes\IfcObjectReferenceSelect.cs" />
-    <Compile Include="SelectTypes\IfcOrientationSelect.cs" />
-    <Compile Include="SelectTypes\IfcPointOrVertexPoint.cs" />
-    <Compile Include="SelectTypes\IfcPresentationStyleSelect.cs" />
-    <Compile Include="SelectTypes\IfcShell.cs" />
-    <Compile Include="SelectTypes\IfcSimpleValue.cs" />
-    <Compile Include="SelectTypes\IfcSizeSelect.cs" />
-    <Compile Include="SelectTypes\IfcSpecularHighlightSelect.cs" />
-    <Compile Include="SelectTypes\IfcStructuralActivityAssignmentSelect.cs" />
-    <Compile Include="SelectTypes\IfcSurfaceOrFaceSurface.cs" />
-    <Compile Include="SelectTypes\IfcSurfaceStyleElementSelect.cs" />
-    <Compile Include="SelectTypes\IfcSymbolStyleSelect.cs" />
-    <Compile Include="SelectTypes\IfcTextFontSelect.cs" />
-    <Compile Include="SelectTypes\IfcTextStyleSelect.cs" />
-    <Compile Include="SelectTypes\IfcTrimmingSelect.cs" />
-    <Compile Include="SelectTypes\IfcUnit.cs" />
-    <Compile Include="SelectTypes\IfcValue.cs" />
-    <Compile Include="SelectTypes\IfcVectorOrDirection.cs" />
+    <Compile Include="ReportProgressDelegate.cs" />
+    <Compile Include="Step21\StepParserType.cs" />
     <Compile Include="XbimExtensions\BinaryReaderExtensions.cs" />
-    <Compile Include="XbimExtensions\IfcAttribute.cs" />
-    <Compile Include="XbimExtensions\IIfcPersistExtensions.cs" />
-    <Compile Include="XbimExtensions\Interfaces\ExpressHeaderType.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IBoundary.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IFace.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IFaceBasedModel.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IFaceBasedModelCollection.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IfcParserType.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcClosedShell.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcConnectedFaceSet.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcEdge.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcEdgeLoop.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcFace.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcFaceBound.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcFileDescription.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcFileHeader.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcFileName.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcFileSchema.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcLoop.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcOrientedEdge.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcPersist.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcPoint.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcShell.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcShellBasedSurfaceModel.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcVertex.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IIfcVertexPoint.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IModel.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IPropertyValue.cs" />
-    <Compile Include="XbimExtensions\Interfaces\ISupportChangeNotification.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IVector3D.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IVertex3D.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IXbimNoNotifyCollection.cs" />
-    <Compile Include="XbimExtensions\Interfaces\IXbimInstanceCollection.cs" />
-    <Compile Include="XbimExtensions\StepP21Token.cs" />
-    <Compile Include="XbimExtensions\Transactions\Edit.cs" />
-    <Compile Include="XbimExtensions\Transactions\ICollectionReversibleExtension.cs" />
-    <Compile Include="XbimExtensions\Transactions\IDictionaryReversibleExtension.cs" />
-    <Compile Include="XbimExtensions\Transactions\IListReversibleExtension.cs" />
-    <Compile Include="XbimExtensions\Transactions\ListReversibleExtension.cs" />
-    <Compile Include="XbimExtensions\Transactions\Reversible.cs" />
-    <Compile Include="XbimExtensions\Transactions\ReversibleCollection.cs" />
-    <Compile Include="XbimExtensions\Transactions\ReversibleList.cs" />
-    <Compile Include="XbimExtensions\Transactions\ReversibleProperty.cs" />
-    <Compile Include="XbimExtensions\Transactions\ReversibleStorage.cs" />
-    <Compile Include="XbimExtensions\Transactions\ReversibleStorageEdit.cs" />
-    <Compile Include="XbimExtensions\Transactions\Transaction.cs" />
-    <Compile Include="XbimExtensions\Transactions\UndoRedoSession.cs" />
-    <Compile Include="XbimExtensions\ValidationFlags.cs" />
-    <Compile Include="XbimExtensions\XbimArray.cs" />
-    <Compile Include="XbimExtensions\XbimDBAccess.cs" />
-    <Compile Include="XbimExtensions\XbimGeometryData.cs" />
-    <Compile Include="XbimExtensions\XbimIndexedCollection.cs" />
-    <Compile Include="XbimExtensions\XbimIndexedCollectionExtensions.cs" />
-    <Compile Include="XbimExtensions\XbimIPersistIfcEntityCollection.cs" />
-    <Compile Include="XbimExtensions\XbimList.cs" />
-    <Compile Include="XbimExtensions\XbimListProxy.cs" />
-    <Compile Include="XbimExtensions\XbimPropertyDescriptor.cs" />
-    <Compile Include="XbimExtensions\XbimRepresentationType.cs" />
-    <Compile Include="XbimExtensions\XbimSet.cs" />
-    <Compile Include="Geometry\XbimGeometryType.cs" />
-    <Compile Include="XbimModelFactors.cs" />
+    <Compile Include="Geometry\IVector3D.cs" />
+    <Compile Include="Enumerations\ValidationFlags.cs" />
+    <Compile Include="Geometry\XbimGeometryData.cs" />
+    <Compile Include="Enumerations\XbimRepresentationType.cs" />
+    <Compile Include="XbimExtensions\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="XbimOpenSourceKeyFile.snk" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="log4net.xml" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <Year>$([System.DateTime]::Now.ToString("yy"))</Year>
@@ -246,10 +162,6 @@
     <AssemblyFileVersionAttribute>[assembly:System.Reflection.AssemblyFileVersion("3.1.$(Year)$(Month).$(Date)$(Time)")]</AssemblyFileVersionAttribute>
   </PropertyGroup>
   <Target Name="BeforeBuild">
-    <WriteLinesToFile
-        File="..\SharedFileVersionInfo.cs"
-        Lines="$(AssemblyFileVersionAttribute)"
-        Overwrite="true"
-        Encoding="Unicode"/>
+    <WriteLinesToFile File="..\SharedFileVersionInfo.cs" Lines="$(AssemblyFileVersionAttribute)" Overwrite="true" Encoding="Unicode" />
   </Target>
 </Project>

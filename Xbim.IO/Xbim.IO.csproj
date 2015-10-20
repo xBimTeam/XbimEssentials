@@ -49,20 +49,26 @@
     <Optimize>false</Optimize>
     <OutputPath>..\Output\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">RUNNING_ON_4</DefineConstants>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' != 'v4.0' ">NOT_RUNNING_ON_4</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\Output\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">RUNNING_ON_4</DefineConstants>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' != 'v4.0' ">NOT_RUNNING_ON_4</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\Output\Release\Xbim.IO.XML</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <NoWarn>1591;1572;1573;1574</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Esent.Interop, Version=1.9.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -82,96 +88,70 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
-	<Compile Include="..\SharedFileVersionInfo.cs">
+    <Compile Include="..\SharedFileVersionInfo.cs">
       <Link>Properties\SharedFileVersionInfo.cs</Link>
     </Compile>
-    <Compile Include="DynamicGrouping\GroupingByXml.cs" />
-    <Compile Include="DynamicGrouping\GroupsFromXml.cs" />
-    <Compile Include="DynamicGrouping\XbimQueryBuilder.cs" />
-    <Compile Include="DynamicGrouping\XbimQueryFactory.cs" />
+    <Compile Include="Esent\XbimFederatedModelInstances.cs" />
+    <Compile Include="Esent\XbimReferencedModelCollection.cs" />
+    <Compile Include="Esent\XbimSurfaceStyle.cs" />
+    <Compile Include="Esent\XbimSurfaceStyleMap.cs" />
     <Compile Include="FileReferenceResolver.cs" />
-    <Compile Include="GroupingAndStyling\EntityLabel.cs" />
-    <Compile Include="GroupingAndStyling\IGeomHandlesGrouping.cs" />
-    <Compile Include="GroupingAndStyling\TypeAndStyle.cs" />
-    <Compile Include="IfcFileHeader.cs" />
-    <Compile Include="IfcRepresentationItemExtensions.cs" />
-    <Compile Include="IXbimGeometryCreator.cs" />
-    <Compile Include="IXbimRepository.cs" />
     <Compile Include="IXbimShapeBounds.cs" />
     <Compile Include="IXbimShapeGeometryData.cs" />
     <Compile Include="IXbimShapeInstanceData.cs" />
-    <Compile Include="Parser\IfcForwardReference.cs" />
-    <Compile Include="Parser\XbimP21StringDecoder.cs" />
-    <Compile Include="Tree\TreeBuilder.cs" />
-    <Compile Include="Tree\TreeComponentStrategy.cs" />
-    <Compile Include="Tree\TreeContainmentStrategy.cs" />
-    <Compile Include="Tree\TreeNode.cs" />
-    <Compile Include="Tree\TreeNodes.cs" />
-    <Compile Include="Tree\TreeQueryStrategy.cs" />
-    <Compile Include="ViewModels\ClassificationViewModel.cs" />
-    <Compile Include="ViewModels\ContainedElementsViewModel.cs" />
-    <Compile Include="ViewModels\GroupViewModel.cs" />
-    <Compile Include="ViewModels\IfcProductModelView.cs" />
-    <Compile Include="ViewModels\IXbimViewModel.cs" />
-    <Compile Include="ViewModels\SpatialViewModel.cs" />
-    <Compile Include="ViewModels\TreeViewBuilder.cs" />
-    <Compile Include="ViewModels\TypeViewModel.cs" />
-    <Compile Include="ViewModels\XbimModelViewModel.cs" />
-    <Compile Include="ViewModels\XbimRefModelViewModel.cs" />
-    <Compile Include="XbimFederatedModelInstances.cs" />
-    <Compile Include="XbimGeometryHandle.cs" />
-    <Compile Include="XbimGeometryHandleCollection.cs" />
+    <Compile Include="Memory\EntityCollection.cs" />
+    <Compile Include="Memory\FederatedModel.cs" />
+    <Compile Include="Memory\MemoryModel.cs" />
+    <Compile Include="Memory\Transaction.cs" />
+    <Compile Include="PropertyInfoExtensions.cs" />
+    <Compile Include="Step21\Parser\StepForwardReference.cs" />
+    <Compile Include="Step21\StepDateTimeHelper.cs" />
+    <Compile Include="Step21\StepDoubleHelper.cs" />
+    <Compile Include="Step21\StepGuidHelper.cs" />
+    <Compile Include="Step21\XbimP21StringDecoder.cs" />
+    <Compile Include="Esent\XbimDBAccess.cs" />
+    <Compile Include="Step21\StepTextHelper.cs" />
+    <Compile Include="Esent\XbimGeometryHandle.cs" />
+    <Compile Include="Esent\XbimGeometryHandleCollection.cs" />
     <Compile Include="XbimGeometrySort.cs" />
-    <Compile Include="XbimInstanceCollection.cs" />
-    <Compile Include="XbimInstanceHandle.cs" />
-    <Compile Include="IfcMetaData.cs" />
-    <Compile Include="IfcPersistedInstanceCache.cs" />
-    <Compile Include="IfcProductExtensions.cs" />
-    <Compile Include="IfcType.cs" />
-    <Compile Include="IfcTypeDictionary.cs" />
-    <Compile Include="IfcXmlReader.cs" />
-    <Compile Include="IfcXmlWriter.cs" />
-    <Compile Include="IPersistIfcEntityExtensions.cs" />
-    <Compile Include="Parser\IndexPropertyValue.cs" />
-    <Compile Include="Parser\IStepP21Parser.cs" />
-    <Compile Include="Parser\PropertyValue.cs" />
-    <Compile Include="Parser\XbimP21Indexer.cs" />
-    <Compile Include="Parser\XbimP21Parser.cs" />
-    <Compile Include="Parser\Parser.cs" />
-    <Compile Include="Parser\ShiftReduceParserCode.cs" />
-    <Compile Include="Parser\StepP21Entity.cs" />
-    <Compile Include="Parser\StepP21Lex.cs" />
-    <Compile Include="Parser\StepP21Parser.cs" />
-    <Compile Include="Part21FileWriter.cs" />
-    <Compile Include="Part21Formatter.cs" />
+    <Compile Include="Esent\XbimInstanceCollection.cs" />
+    <Compile Include="Esent\XbimInstanceHandle.cs" />
+    <Compile Include="Esent\PersistedEntityInstanceCache.cs" />
+    <Compile Include="Xml\IfcXmlReader.cs" />
+    <Compile Include="Xml\IfcXmlWriter.cs" />
+    <Compile Include="IPersistEntityExtensions.cs" />
+    <Compile Include="Step21\Parser\IndexPropertyValue.cs" />
+    <Compile Include="Step21\Parser\IStepP21Parser.cs" />
+    <Compile Include="Step21\Parser\PropertyValue.cs" />
+    <Compile Include="Esent\XbimP21Indexer.cs" />
+    <Compile Include="Step21\XbimP21Parser.cs" />
+    <Compile Include="Step21\Parser\Parser.cs" />
+    <Compile Include="Step21\Parser\ShiftReduceParserCode.cs" />
+    <Compile Include="Step21\Parser\StepP21Entity.cs" />
+    <Compile Include="Step21\Parser\StepP21Lex.cs" />
+    <Compile Include="Step21\Parser\StepP21Parser.cs" />
+    <Compile Include="Step21\Part21FileWriter.cs" />
+    <Compile Include="Step21\Part21Formatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeExtensions.cs" />
-    <Compile Include="XbimCursor.cs" />
-    <Compile Include="XbimEntityCursor.cs" />
-    <Compile Include="XbimGeometryCursor.cs" />
-    <Compile Include="XbimInstanceHandleMap.cs" />
-    <Compile Include="XbimLazyDBTransaction.cs" />
-    <Compile Include="XbimModel.cs" />
-    <Compile Include="XbimInputStream.cs" />
-    <Compile Include="XbimModelSummary.cs" />
-    <Compile Include="XbimOutputStream.cs" />
-    <Compile Include="XbimPackage.cs" />
-    <Compile Include="XbimParserState.cs" />
-    <Compile Include="XbimReadOnlyDBTransaction.cs" />
-    <Compile Include="XbimReadTransaction.cs" />
-    <Compile Include="XbimReadWriteTransaction.cs" />
-    <Compile Include="XbimReferencedModel.cs" />
-    <Compile Include="XbimReferencedModelCollection.cs" />
-    <Compile Include="XbimShapeGeometry.cs" />
-    <Compile Include="XbimShapeGeometryCursor.cs" />
-    <Compile Include="XbimShapeInstance.cs" />
-    <Compile Include="XbimShapeInstanceCursor.cs" />
-    <Compile Include="XbimSurfaceStyle.cs" />
-    <Compile Include="XbimSurfaceStyleMap.cs" />
-    <Compile Include="XbimViewDefinition.cs" />
+    <Compile Include="Esent\XbimCursor.cs" />
+    <Compile Include="Esent\XbimEntityCursor.cs" />
+    <Compile Include="Esent\XbimGeometryCursor.cs" />
+    <Compile Include="Esent\XbimInstanceHandleMap.cs" />
+    <Compile Include="Esent\XbimLazyDBTransaction.cs" />
+    <Compile Include="Esent\EsentModel.cs" />
+    <Compile Include="Binary\XbimInputStream.cs" />
+    <Compile Include="Binary\XbimOutputStream.cs" />
+    <Compile Include="Binary\XbimPackage.cs" />
+    <Compile Include="Esent\XbimParserState.cs" />
+    <Compile Include="Esent\XbimReadOnlyDBTransaction.cs" />
+    <Compile Include="Esent\XbimReadTransaction.cs" />
+    <Compile Include="Esent\XbimReadWriteTransaction.cs" />
+    <Compile Include="Esent\XbimShapeGeometry.cs" />
+    <Compile Include="Esent\XbimShapeGeometryCursor.cs" />
+    <Compile Include="Esent\XbimShapeInstance.cs" />
+    <Compile Include="Esent\XbimShapeInstanceCursor.cs" />
+    <Compile Include="XbimStorageType.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -191,41 +171,26 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">
-      <Project>{6745F5AC-AF3C-4372-81AA-A75E7B1FA03B}</Project>
-      <Name>Xbim.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Xbim.Ifc.Extensions\Xbim.Ifc2x3.Extensions.csproj">
-      <Project>{6DF47D23-8F4D-4069-A44B-BBDACD3F9AEA}</Project>
-      <Name>Xbim.Ifc2x3.Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj">
-      <Project>{0255E9D0-1087-49D4-B886-C882CA27DD10}</Project>
-      <Name>Xbim.Ifc2x3</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Models.cd" />
-    <None Include="packages.config" />
-    <None Include="Parser\MAKEPARSER.BAT" />
-    <None Include="Parser\StepP21IndexerLex.lex" />
-    <None Include="Parser\StepP21Lex.lex" />
-    <None Include="Parser\StepP21Parser.y" />
-    <None Include="Parser\XbimViewerKey.pfx" />
-    <None Include="Xbim.IO.nuspec">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="XbimIfcKey.pfx" />
+    <None Include="Step21\Parser\MAKEPARSER.BAT" />
+    <None Include="Step21\Parser\StepP21IndexerLex.lex" />
+    <None Include="Step21\Parser\StepP21Lex.lex" />
+    <None Include="Step21\Parser\StepP21Parser.y" />
     <None Include="XbimOpenSourceKeyFile.snk" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Parser\gplex.exe" />
+    <None Include="Step21\Parser\gplex.exe" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Parser\gppg.exe" />
+    <None Include="Step21\Parser\gppg.exe" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Parser\Readme.txt" />
+    <None Include="Step21\Parser\Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">
+      <Project>{a34ef831-ea82-4a79-8c65-b5e1c6d9508d}</Project>
+      <Name>Xbim.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

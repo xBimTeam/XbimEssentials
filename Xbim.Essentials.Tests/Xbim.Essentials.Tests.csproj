@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Xbim.Essentials.Tests</RootNamespace>
     <AssemblyName>Xbim.Essentials.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,6 +35,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -60,22 +62,32 @@
     <Compile Include="IfcHeaderTests.cs" />
     <Compile Include="ModelFilterTest.cs" />
     <Compile Include="BasicModelTests.cs" />
+    <Compile Include="EqualityTests.cs" />
+    <Compile Include="ComplexDefinedTypeTests.cs" />
+    <Compile Include="ActivationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">
-      <Project>{6745f5ac-af3c-4372-81aa-a75e7b1fa03b}</Project>
+      <Project>{a34ef831-ea82-4a79-8c65-b5e1c6d9508d}</Project>
       <Name>Xbim.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Xbim.Ifc.Extensions\Xbim.Ifc2x3.Extensions.csproj">
+      <Project>{6df47d23-8f4d-4069-a44b-bbdacd3f9aea}</Project>
+      <Name>Xbim.Ifc2x3.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xbim.Ifc2x3.IO\Xbim.Ifc2x3.IO.csproj">
+      <Project>{27ac09f9-78b3-486a-8d2b-13d7c8af8c19}</Project>
+      <Name>Xbim.Ifc2x3.IO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj">
-      <Project>{5D4C907D-1293-4E5F-9642-D0862AE4741C}</Project>
+      <Project>{b6668419-d7a4-4736-b4d8-018756ccf134}</Project>
       <Name>Xbim.Ifc2x3</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xbim.IO\Xbim.IO.csproj">
-      <Project>{85856DF2-C8AB-4120-8A8D-AE05D2696B51}</Project>
+      <Project>{85856df2-c8ab-4120-8a8d-ae05d2696b51}</Project>
       <Name>Xbim.IO</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="GeometryCacheTestFiles\Monolith-NoGeomTables.xBIM">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

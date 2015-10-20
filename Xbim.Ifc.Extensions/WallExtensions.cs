@@ -16,7 +16,6 @@ using Xbim.Ifc2x3.MaterialResource;
 using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.QuantityResource;
-using Xbim.XbimExtensions.SelectTypes;
 
 #endregion
 

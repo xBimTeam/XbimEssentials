@@ -14,16 +14,13 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 using Xbim.Ifc2x3.GeometricModelResource;
-using Xbim.Ifc2x3.GeometryResource;
 using Xbim.Ifc2x3.ProductExtension;
 using Xbim.Ifc2x3.RepresentationResource;
 using Xbim.Ifc2x3.SharedBldgElements;
-using Xbim.XbimExtensions;
 using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.QuantityResource;
-using Xbim.Ifc2x3.Kernel;
-using Xbim.XbimExtensions.Interfaces;
 
 #endregion
 
@@ -54,10 +51,10 @@ namespace Xbim.Ifc2x3.Extensions
         /// <returns></returns>
         public static List<IfcWall> GenerateWalls(this IfcSpace space, IModel model)
         {
-            IfcShapeRepresentation fp = GetFootPrintRepresentation(space);
+            var fp = GetFootPrintRepresentation(space);
             if (fp != null)
             {
-                IfcRepresentationItem rep = fp.Items.FirstOrDefault();
+                var rep = fp.Items.FirstOrDefault();
                 if (rep != null && rep is IfcGeometricCurveSet) //we have a set of curves and inner boundaries
                 {
                 }
@@ -74,9 +71,9 @@ namespace Xbim.Ifc2x3.Extensions
         /// Returns the Gross Floor Area, if the element base quantity GrossFloorArea is defined
         /// </summary>
         /// <returns></returns>
-        public static IfcAreaMeasure GetGrossFloorArea(this IfcSpace space)
+        public static IfcAreaMeasure? GetGrossFloorArea(this IfcSpace space)
         {
-            IfcQuantityArea qArea = space.GetQuantity<IfcQuantityArea>("BaseQuantities", "GrossFloorArea");
+            var qArea = space.GetQuantity<IfcQuantityArea>("BaseQuantities", "GrossFloorArea");
             if (qArea == null) qArea = space.GetQuantity<IfcQuantityArea>("GrossFloorArea"); //just look for any area
             if (qArea != null) return qArea.AreaValue;
             //try none schema defined properties
@@ -90,9 +87,9 @@ namespace Xbim.Ifc2x3.Extensions
         /// Will use GSA Space Areas if the Ifc common property NetFloorArea is not defined
         /// </summary>
         /// <returns></returns>
-        public static IfcAreaMeasure GetNetFloorArea(this IfcSpace space)
+        public static IfcAreaMeasure? GetNetFloorArea(this IfcSpace space)
         {
-            IfcQuantityArea qArea = space.GetQuantity<IfcQuantityArea>("BaseQuantities", "NetFloorArea");
+            var qArea = space.GetQuantity<IfcQuantityArea>("BaseQuantities", "NetFloorArea");
             if (qArea == null) qArea = space.GetQuantity<IfcQuantityArea>("NetFloorArea"); //just look for any area
             if (qArea != null) return qArea.AreaValue;
             //try none schema defined properties
@@ -104,9 +101,9 @@ namespace Xbim.Ifc2x3.Extensions
         /// Returns the Height, if the element base quantity Height is defined
         /// </summary>
         /// <returns></returns>
-        public static IfcLengthMeasure GetHeight(this IfcSpace space)
+        public static IfcLengthMeasure? GetHeight(this IfcSpace space)
         {
-            IfcQuantityLength qLength = space.GetQuantity<IfcQuantityLength>("BaseQuantities", "Height");
+            var qLength = space.GetQuantity<IfcQuantityLength>("BaseQuantities", "Height");
             if (qLength == null) qLength = space.GetQuantity<IfcQuantityLength>("Height"); //just look for any area
             if (qLength != null) return qLength.LengthValue;
             //try none schema defined properties
@@ -119,10 +116,10 @@ namespace Xbim.Ifc2x3.Extensions
         /// 
         /// </summary>
         /// <returns></returns>
-        public static IfcLengthMeasure GetGrossPerimeter(this IfcSpace space)
+        public static IfcLengthMeasure? GetGrossPerimeter(this IfcSpace space)
         {
-            IfcQuantityLength qLength = space.GetQuantity<IfcQuantityLength>("BaseQuantities", "GrossPerimeter");
-            if (qLength == null) qLength = space.GetQuantity<IfcQuantityLength>("GrossPerimeter"); //just look for any area
+            var qLength = space.GetQuantity<IfcQuantityLength>("BaseQuantities", "GrossPerimeter") ??
+                          space.GetQuantity<IfcQuantityLength>("GrossPerimeter");
             if (qLength != null) return qLength.LengthValue;
             //try none schema defined properties
             return null;
@@ -134,8 +131,8 @@ namespace Xbim.Ifc2x3.Extensions
         /// <returns></returns>
         public static IEnumerable<IfcSpace> GetSpaces(this IfcSpace space)
         {
-            IEnumerable<IfcRelDecomposes> decomp = space.IsDecomposedBy;
-            IEnumerable<IfcObjectDefinition> objs = decomp.SelectMany(s => s.RelatedObjects);
+            var decomp = space.IsDecomposedBy;
+            var objs = decomp.SelectMany(s => s.RelatedObjects);
             return objs.OfType<IfcSpace>();
 
         }
@@ -147,7 +144,7 @@ namespace Xbim.Ifc2x3.Extensions
             //avoid adding element which is already defined as bounding element
             if (space.HasBoundingElement(model, element)) return;
 
-            IfcRelSpaceBoundary relation = model.Instances.New<IfcRelSpaceBoundary>(rel =>
+            model.Instances.New<IfcRelSpaceBoundary>(rel =>
                                                                               {
                                                                                   rel.RelatingSpace = space;
                                                                                   rel.InternalOrExternalBoundary =
@@ -164,13 +161,13 @@ namespace Xbim.Ifc2x3.Extensions
         /// <returns></returns>
         public static IfcSpaceType GetSpaceType(this IfcSpace space)
         {
-            IfcTypeObject sType =  space.GetDefiningType();
+            var sType =  space.GetDefiningType();
             return sType as IfcSpaceType;
         }
 
         public static bool HasBoundingElement(this IfcSpace space, IModel model, IfcElement element)
         {
-            IfcRelSpaceBoundary relation =
+            var relation =
                 model.Instances.Where<IfcRelSpaceBoundary>(
                     rel => rel.RelatingSpace == space && rel.RelatedBuildingElement == element).FirstOrDefault();
             return relation != null;

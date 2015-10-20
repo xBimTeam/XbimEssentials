@@ -14,7 +14,6 @@
 
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using Xbim.Common.Geometry;
 using Xbim.Ifc2x3.GeometryResource;
 
@@ -28,12 +27,11 @@ namespace Xbim.Ifc2x3.Extensions
 
         static public IfcAxis2Placement2D Create(this IfcAxis2Placement2D ax, IfcCartesianPoint centre, IfcDirection xAxisDirection)
         {
-            IfcAxis2Placement2D ax2 = new IfcAxis2Placement2D()
+            return ax.Model.Instances.New<IfcAxis2Placement2D>(a =>
             {
-                RefDirection = xAxisDirection,
-                Location = centre
-            };
-            return ax2;
+                a.RefDirection = xAxisDirection;
+                a.Location = centre;
+            });
         }
 
       

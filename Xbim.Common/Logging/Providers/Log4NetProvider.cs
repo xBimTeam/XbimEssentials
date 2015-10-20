@@ -19,7 +19,6 @@ using log4net.Config;
 using log4net.Core;
 using log4net.Layout;
 using log4net.Repository.Hierarchy;
-using Xbim.Common.Helpers;
 
 namespace Xbim.Common.Logging.Providers
 {

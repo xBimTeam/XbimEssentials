@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xbim.XbimExtensions.SelectTypes;
+﻿using System.Collections.Generic;
 using Xbim.Ifc2x3.MaterialResource;
 using Xbim.Ifc2x3.ActorResource;
 using Xbim.Ifc2x3.DateTimeResource;
 using Xbim.Ifc2x3.ExternalReferenceResource;
 using Xbim.Ifc2x3.TimeSeriesResource;
 using Xbim.Ifc2x3.CostResource;
+using Xbim.Ifc2x3.PropertyResource;
 
 namespace Xbim.Ifc2x3.Extensions
 {

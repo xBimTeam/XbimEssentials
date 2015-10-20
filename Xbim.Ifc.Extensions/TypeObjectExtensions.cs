@@ -14,21 +14,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-
-
+using Xbim.Common;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.ProductExtension;
 using Xbim.Ifc2x3.PropertyResource;
 using Xbim.Ifc2x3.QuantityResource;
-using Xbim.XbimExtensions.SelectTypes;
-using Xbim.XbimExtensions;
-using Xbim.XbimExtensions.Interfaces;
-
-
-
 
 #endregion
 
@@ -42,7 +34,7 @@ namespace Xbim.Ifc2x3.Extensions
         /// <param name="obj"></param>
         /// <param name="pSetName"></param>
         /// <returns></returns>
-        public static IfcPropertySet GetPropertySet(this Xbim.Ifc2x3.Kernel.IfcTypeObject obj, string pSetName, bool caseSensitive = true)
+        public static IfcPropertySet GetPropertySet(this IfcTypeObject obj, string pSetName, bool caseSensitive = true)
         {
             if (obj.HasPropertySets == null) return null;
             else return caseSensitive ? 
@@ -50,26 +42,26 @@ namespace Xbim.Ifc2x3.Extensions
                 obj.HasPropertySets.Where<IfcPropertySet>(r => r.Name.ToString().ToLower() == pSetName.ToLower()).FirstOrDefault();
         }
 
-        public static IfcPropertySingleValue GetPropertySingleValue(this Xbim.Ifc2x3.Kernel.IfcTypeObject obj, string pSetName, string propertyName)
+        public static IfcPropertySingleValue GetPropertySingleValue(this IfcTypeObject obj, string pSetName, string propertyName)
         {
-            IfcPropertySet pset = GetPropertySet(obj, pSetName);
+            var pset = GetPropertySet(obj, pSetName);
             if (pset != null)
                 return pset.HasProperties.Where<IfcPropertySingleValue>(p => p.Name == propertyName).FirstOrDefault();
             return null;
         }
 
-        public static IfcValue GetPropertySingleValueValue(this Xbim.Ifc2x3.Kernel.IfcTypeObject obj, string pSetName, string propertyName)
+        public static IfcValue GetPropertySingleValueValue(this IfcTypeObject obj, string pSetName, string propertyName)
         {
-            IfcPropertySingleValue psv = GetPropertySingleValue(obj, pSetName, propertyName);
+            var psv = GetPropertySingleValue(obj, pSetName, propertyName);
             return psv.NominalValue;
         }
 
-        public static List<IfcPropertySet> GetAllPropertySets(this Xbim.Ifc2x3.Kernel.IfcTypeObject obj)
+        public static List<IfcPropertySet> GetAllPropertySets(this IfcTypeObject obj)
         {
-            List<IfcPropertySet> result = new List<IfcPropertySet>();
+            var result = new List<IfcPropertySet>();
             if (obj.HasPropertySets != null)
             {
-                foreach (IfcPropertySetDefinition def in obj.HasPropertySets)
+                foreach (var def in obj.HasPropertySets)
                 {
                     if (def is IfcPropertySet) result.Add(def as IfcPropertySet);
                 }
@@ -77,19 +69,19 @@ namespace Xbim.Ifc2x3.Extensions
             return result;
         }
 
-        public static Dictionary<IfcLabel, Dictionary<IfcIdentifier, IfcValue>> GetAllPropertySingleValues(this Xbim.Ifc2x3.Kernel.IfcTypeObject obj)
+        public static Dictionary<IfcLabel, Dictionary<IfcIdentifier, IfcValue>> GetAllPropertySingleValues(this IfcTypeObject obj)
         {
-            Dictionary<IfcLabel, Dictionary<IfcIdentifier, IfcValue>> result = new Dictionary<IfcLabel, Dictionary<IfcIdentifier, IfcValue>>();
-            PropertySetDefinitionSet pSets = obj.HasPropertySets;
+            var result = new Dictionary<IfcLabel, Dictionary<IfcIdentifier, IfcValue>>();
+            var pSets = obj.HasPropertySets;
             if (pSets == null) return result;
-            IEnumerable<IfcPropertySet> pSetsPure = pSets.OfType<IfcPropertySet>();
-            foreach (IfcPropertySet pSet in pSetsPure)
+            var pSetsPure = pSets.OfType<IfcPropertySet>();
+            foreach (var pSet in pSetsPure)
             {
-                Dictionary<IfcIdentifier, IfcValue> value = new Dictionary<IfcIdentifier, IfcValue>();
-                IfcLabel psetName = pSet.Name ?? null;
-                foreach (IfcProperty prop in pSet.HasProperties)
+                var value = new Dictionary<IfcIdentifier, IfcValue>();
+                var psetName = pSet.Name ?? null;
+                foreach (var prop in pSet.HasProperties)
                 {
-                    IfcPropertySingleValue singleVal = prop as IfcPropertySingleValue;
+                    var singleVal = prop as IfcPropertySingleValue;
                     if (singleVal == null) continue;
                     value.Add(prop.Name, singleVal.NominalValue);
                 }
@@ -98,55 +90,55 @@ namespace Xbim.Ifc2x3.Extensions
             return result;
         }
 
-        public static void DeletePropertySingleValueValue(this Xbim.Ifc2x3.Kernel.IfcTypeObject obj, string pSetName, string propertyName)
+        public static void DeletePropertySingleValueValue(this IfcTypeObject obj, string pSetName, string propertyName)
         {
-            IfcPropertySingleValue psv = GetPropertySingleValue(obj, pSetName, propertyName);
+            var psv = GetPropertySingleValue(obj, pSetName, propertyName);
             if (psv != null) psv.NominalValue = null;
         }
 
-        public static IfcPropertyTableValue GetPropertyTableValue(this Xbim.Ifc2x3.Kernel.IfcTypeObject obj, string pSetName, string propertyTableName)
+        public static IfcPropertyTableValue GetPropertyTableValue(this IfcTypeObject obj, string pSetName, string propertyTableName)
         {
-            IfcPropertySet pset = GetPropertySet(obj, pSetName);
+            var pset = GetPropertySet(obj, pSetName);
             if (pset != null)
                 return pset.HasProperties.Where<IfcPropertyTableValue>(p => p.Name == propertyTableName).FirstOrDefault();
             return null;
         }
 
-        public static IfcValue GetPropertyTableItemValue(this Xbim.Ifc2x3.Kernel.IfcTypeObject obj, string pSetName, string propertyTableName, IfcValue definingValue)
+        public static IfcValue GetPropertyTableItemValue(this IfcTypeObject obj, string pSetName, string propertyTableName, IfcValue definingValue)
         {
-            IfcPropertyTableValue table = GetPropertyTableValue(obj, pSetName, propertyTableName);
+            var table = GetPropertyTableValue(obj, pSetName, propertyTableName);
             if (table == null) return null;
-            IList<IfcValue> definingValues = table.DefiningValues;
+            var definingValues = table.DefiningValues;
             if (definingValues == null) return null;
             if (!definingValues.Contains(definingValue)) return null;
-            int index = definingValues.IndexOf(definingValue);
+            var index = definingValues.IndexOf(definingValue);
 
             if (table.DefinedValues.Count < index + 1) return null;
             return table.DefinedValues[index];
         }
 
-        public static void SetPropertyTableItemValue(this Xbim.Ifc2x3.Kernel.IfcTypeObject obj, string pSetName, string propertyTableName, IfcValue definingValue, IfcValue definedValue)
+        public static void SetPropertyTableItemValue(this IfcTypeObject obj, string pSetName, string propertyTableName, IfcValue definingValue, IfcValue definedValue)
         {
             SetPropertyTableItemValue(obj, pSetName, propertyTableName, definingValue, definedValue, null, null);
         }
 
-        public static void SetPropertyTableItemValue(this Xbim.Ifc2x3.Kernel.IfcTypeObject obj, string pSetName, string propertyTableName, IfcValue definingValue, IfcValue definedValue, IfcUnit definingUnit, IfcUnit definedUnit)
+        public static void SetPropertyTableItemValue(this IfcTypeObject obj, string pSetName, string propertyTableName, IfcValue definingValue, IfcValue definedValue, IfcUnit definingUnit, IfcUnit definedUnit)
         {
-            IfcPropertySet pset = GetPropertySet(obj, pSetName);
-            IModel model = null;
+            var pset = GetPropertySet(obj, pSetName);
+            IModel model;
             if (pset == null)
             {
-                IPersistIfcEntity ent = obj as IPersistIfcEntity;
-                model = ent != null ? ent.ModelOf : obj.ModelOf;
+                var ent = obj as IPersistEntity;
+                model = ent != null ? ent.Model : obj.Model;
                 pset = model.Instances.New<IfcPropertySet>();
                 pset.Name = pSetName;
                 obj.AddPropertySet(pset);
             }
-            IfcPropertyTableValue table = GetPropertyTableValue(obj, pSetName, propertyTableName);
+            var table = GetPropertyTableValue(obj, pSetName, propertyTableName);
             if (table == null)
             {
-                IPersistIfcEntity ent = obj as IPersistIfcEntity;
-                model = ent != null ? ent.ModelOf : obj.ModelOf;
+                var ent = obj as IPersistEntity;
+                model = ent != null ? ent.Model : obj.Model;
                 table = model.Instances.New<IfcPropertyTableValue>(tb => { tb.Name = propertyTableName; });
                 pset.HasProperties.Add(table);
                 table.DefinedUnit = definedUnit;
@@ -155,10 +147,11 @@ namespace Xbim.Ifc2x3.Extensions
             if (table.DefiningUnit != definingUnit || table.DefinedUnit != definedUnit)
                 throw new Exception("Inconsistent definition of the units in the property table.");
 
-            IfcValue itemValue = GetPropertyTableItemValue(obj, pSetName, propertyTableName, definingValue);
-            if (itemValue != null)
+            var itemIndex = table.DefiningValues.IndexOf(definingValue);
+            //check if defining value is not defined already
+            if (itemIndex >= 0)
             {
-                itemValue = definedValue;
+                table.DefinedValues[itemIndex] = definedValue;
             }
             else
             {
@@ -171,23 +164,23 @@ namespace Xbim.Ifc2x3.Extensions
             }
         }
 
-        public static IfcPropertySingleValue SetPropertySingleValue(this Xbim.Ifc2x3.Kernel.IfcTypeObject obj, string pSetName, string propertyName, IfcValue value)
+        public static IfcPropertySingleValue SetPropertySingleValue(this IfcTypeObject obj, string pSetName, string propertyName, IfcValue value)
         {
-            IfcPropertySet pset = GetPropertySet(obj, pSetName);
-            IfcPropertySingleValue property = null;
-            IModel model = null;
+            var pset = GetPropertySet(obj, pSetName);
+            IfcPropertySingleValue property;
+            IModel model;
             if (pset == null)
             {
                 //if (value == null) return;
-                IPersistIfcEntity ent = obj as IPersistIfcEntity;
-                model = ent!= null? ent.ModelOf : obj.ModelOf;
+                var ent = obj as IPersistEntity;
+                model = ent!= null? ent.Model : obj.Model;
                 pset = model.Instances.New<IfcPropertySet>();
                 pset.Name = pSetName;
                 obj.AddPropertySet(pset);
             }
 
             //change existing property of the same name from the property set
-            IfcPropertySingleValue singleVal = GetPropertySingleValue(obj, pSetName, propertyName);
+            var singleVal = GetPropertySingleValue(obj, pSetName, propertyName);
             if (singleVal != null)
             {
                 property = singleVal;
@@ -196,8 +189,8 @@ namespace Xbim.Ifc2x3.Extensions
             else
             {
                 //if (value == null) return;
-                IPersistIfcEntity ent = obj as IPersistIfcEntity;
-                model = ent != null ? ent.ModelOf : obj.ModelOf;
+                var ent = obj as IPersistEntity;
+                model = ent != null ? ent.Model : obj.Model;
                 property = model.Instances.New<IfcPropertySingleValue>(psv => { psv.Name = propertyName; psv.NominalValue = value; });
                 pset.HasProperties.Add(property);
             }
@@ -206,7 +199,7 @@ namespace Xbim.Ifc2x3.Extensions
 
         public static IfcPhysicalSimpleQuantity GetElementPhysicalSimpleQuantity(this IfcTypeObject elem, string pSetName, string qualityName)
         {
-            IfcElementQuantity elementQuality = GetElementQuantity(elem, pSetName);
+            var elementQuality = GetElementQuantity(elem, pSetName);
             if (elementQuality != null)
             {
                 return elementQuality.Quantities.Where<IfcPhysicalSimpleQuantity>(sq => sq.Name == qualityName).FirstOrDefault();
@@ -247,18 +240,18 @@ namespace Xbim.Ifc2x3.Extensions
         {
             if (elem.HasPropertySets == null) return null;
             
-            return caseSensitive ? 
-                elem.HasPropertySets.Where<IfcElementQuantity>(r => r.Name == pSetName).FirstOrDefault() :
-                elem.HasPropertySets.Where<IfcElementQuantity>(r => r.Name.ToString().ToLower() == pSetName.ToLower()).FirstOrDefault()
+            return caseSensitive ?
+                elem.HasPropertySets.FirstOrDefault<IfcElementQuantity>(r => r.Name == pSetName) :
+                elem.HasPropertySets.FirstOrDefault<IfcElementQuantity>(r => r.Name.ToString().ToLower() == pSetName.ToLower())
                 ;
         }
 
         public static void RemoveElementPhysicalSimpleQuantity(this IfcTypeObject elem, string pSetName, string qualityName)
         {
-            IfcElementQuantity elementQuantity = GetElementQuantity(elem, pSetName);
+            var elementQuantity = GetElementQuantity(elem, pSetName);
             if (elementQuantity != null)
             {
-                IfcPhysicalSimpleQuantity simpleQuantity = elementQuantity.Quantities.Where<IfcPhysicalSimpleQuantity>(sq => sq.Name == qualityName).FirstOrDefault();
+                var simpleQuantity = elementQuantity.Quantities.FirstOrDefault(sq => sq.Name == qualityName);
                 if (simpleQuantity != null)
                 {
                     elementQuantity.Quantities.Remove(simpleQuantity);
@@ -268,27 +261,24 @@ namespace Xbim.Ifc2x3.Extensions
 
         public static void SetElementPhysicalSimpleQuantity(this IfcTypeObject elem, string qSetName, string qualityName, double value, XbimQuantityTypeEnum quantityType, IfcNamedUnit unit)
         {
-            IModel model = null;
+            var model = elem.Model;
 
-            if (elem is IPersistIfcEntity) 
-                model = (elem as IPersistIfcEntity).ModelOf;
-            else  
-                model = elem.ModelOf;
-
-            IfcElementQuantity qset = GetElementQuantity(elem, qSetName);
+            var qset = GetElementQuantity(elem, qSetName);
             if (qset == null)
             {
                 qset = model.Instances.New<IfcElementQuantity>();
                 qset.Name = qSetName;
-                if (elem.HasPropertySets == null) elem.CreateHasPropertySets();
+                if (elem.HasPropertySets == null) 
+                    throw new NullReferenceException("HasPropertySets is not initialized");
+                    //elem.CreateHasPropertySets();
                 elem.HasPropertySets.Add(qset);
             }
 
             //remove existing simple quality
-            IfcPhysicalSimpleQuantity simpleQuality = GetElementPhysicalSimpleQuantity(elem, qSetName, qualityName);
+            var simpleQuality = GetElementPhysicalSimpleQuantity(elem, qSetName, qualityName);
             if (simpleQuality != null)
             {
-                IfcElementQuantity elementQuality = GetElementQuantity(elem, qSetName);
+                var elementQuality = GetElementQuantity(elem, qSetName);
                 elementQuality.Quantities.Remove(simpleQuality);
                 model.Delete(simpleQuality);
             }

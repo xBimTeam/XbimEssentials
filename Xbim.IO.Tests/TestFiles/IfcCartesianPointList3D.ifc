@@ -1,0 +1,12 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('ViewDefinition [CoordinationView_V2.0, QuantityTakeOffAddOnView]'),'2;1');
+FILE_NAME('Project Number','2015-09-30T13:29:00',(''),(''),'The EXPRESS Data Manager Version 5.02.0100.07 : 28 Aug 2013','20140903_1530(x64) - Exporter 15.5.0.0 - Alternate UI 15.5.0.0','');
+FILE_SCHEMA(('IFC4'));
+ENDSEC;
+
+DATA;
+#1 = IFCCARTESIANPOINTLIST3D(((1.,0.,0.),(1.,0.,0.),(1.,0.,0.)));
+ENDSEC;
+
+END-ISO-10303-21;

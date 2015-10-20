@@ -12,8 +12,9 @@
 
 #region Directives
 
-using System.Collections.Generic; using System.Linq;using Xbim.XbimExtensions.Interfaces;
-using Xbim.Ifc2x3.PresentationDefinitionResource;
+using System.Collections.Generic;
+using Xbim.Common;
+using Xbim.Ifc2x3.PresentationDimensioningResource;
 
 #endregion
 
@@ -28,9 +29,9 @@ namespace Xbim.XbimExtensions.DataProviders
             this._model = model;
         }
 
-        public IEnumerable<IfcDraughtingCallOut> Items
+        public IEnumerable<IfcDraughtingCallout> Items
         {
-            get { return this._model.Instances.OfType<IfcDraughtingCallOut>(); }
+            get { return this._model.Instances.OfType<IfcDraughtingCallout>(); }
         }
     }
 }

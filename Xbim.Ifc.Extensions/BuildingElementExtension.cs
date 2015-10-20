@@ -12,11 +12,7 @@
 
 #region Directives
 
-using System.Linq;
-using Xbim.Ifc2x3.MaterialResource;
-using Xbim.Ifc2x3.MeasureResource;
-using Xbim.Ifc2x3.ProductExtension;
-using Xbim.XbimExtensions;
+
 
 #endregion
 

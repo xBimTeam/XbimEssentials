@@ -19,141 +19,17 @@ using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.ProductExtension;
 using Xbim.Ifc2x3.RepresentationResource;
-using Xbim.XbimExtensions;
-using Xbim.XbimExtensions.Interfaces;
 using Xbim.Common;
-using Xbim.Ifc.SelectTypes;
 
 #endregion
 
 namespace Xbim.Ifc2x3.Extensions
 {
-    public enum ProjectUnits
-    {
-        SIUnitsUK
-    }
+    
 
     public static class ProjectExtensions
     {
-        #region Unit Initialization
-
-        /// <summary>
-        ///   Sets up the default units as SI
-        ///   Creates the GeometricRepresentationContext for a Model view, required by Ifc compliance
-        /// </summary>
-        /// <param name = "ifcProject"></param>
-        public static void Initialize(this IfcProject ifcProject, ProjectUnits units)
-        {
-            IModel model = ifcProject.ModelOf;
-            if (units == ProjectUnits.SIUnitsUK)
-            {
-                IfcUnitAssignment ua = model.Instances.New<IfcUnitAssignment>();
-                ua.Units.Add(model.Instances.New<IfcSIUnit>(s =>
-                                                                 {
-                                                                     s.UnitType = IfcUnitEnum.LENGTHUNIT;
-                                                                     s.Name = IfcSIUnitName.METRE;
-                                                                     s.Prefix = IfcSIPrefix.MILLI;
-                                                                 }));
-                ua.Units.Add(model.Instances.New<IfcSIUnit>(s =>
-                                                                 {
-                                                                     s.UnitType = IfcUnitEnum.AREAUNIT;
-                                                                     s.Name = IfcSIUnitName.SQUARE_METRE;
-                                                                 }));
-                ua.Units.Add(model.Instances.New<IfcSIUnit>(s =>
-                                                                 {
-                                                                     s.UnitType = IfcUnitEnum.VOLUMEUNIT;
-                                                                     s.Name = IfcSIUnitName.CUBIC_METRE;
-                                                                 }));
-                ua.Units.Add(model.Instances.New<IfcSIUnit>(s =>
-                                                                 {
-                                                                     s.UnitType = IfcUnitEnum.SOLIDANGLEUNIT;
-                                                                     s.Name = IfcSIUnitName.STERADIAN;
-                                                                 }));
-                ua.Units.Add(model.Instances.New<IfcSIUnit>(s =>
-                                                                 {
-                                                                     s.UnitType = IfcUnitEnum.PLANEANGLEUNIT;
-                                                                     s.Name = IfcSIUnitName.RADIAN;
-                                                                 }));
-                ua.Units.Add(model.Instances.New<IfcSIUnit>(s =>
-                                                                 {
-                                                                     s.UnitType = IfcUnitEnum.MASSUNIT;
-                                                                     s.Name = IfcSIUnitName.GRAM;
-                                                                 }));
-                ua.Units.Add(model.Instances.New<IfcSIUnit>(s =>
-                                                                 {
-                                                                     s.UnitType = IfcUnitEnum.TIMEUNIT;
-                                                                     s.Name = IfcSIUnitName.SECOND;
-                                                                 }));
-                ua.Units.Add(model.Instances.New<IfcSIUnit>(s =>
-                                                                 {
-                                                                     s.UnitType =
-                                                                         IfcUnitEnum.THERMODYNAMICTEMPERATUREUNIT;
-                                                                     s.Name = IfcSIUnitName.DEGREE_CELSIUS;
-                                                                 }));
-                ua.Units.Add(model.Instances.New<IfcSIUnit>(s =>
-                                                                 {
-                                                                     s.UnitType = IfcUnitEnum.LUMINOUSINTENSITYUNIT;
-                                                                     s.Name = IfcSIUnitName.LUMEN;
-                                                                 }));
-                ifcProject.UnitsInContext = ua;
-            }
-            //Create the Mandatory Model View
-            if (ModelContext(ifcProject) == null)
-            {
-                IfcCartesianPoint origin = model.Instances.New<IfcCartesianPoint>(p => p.SetXYZ(0, 0, 0));
-                IfcAxis2Placement3D axis3D = model.Instances.New<IfcAxis2Placement3D>(a => a.Location = origin);
-                IfcGeometricRepresentationContext gc = model.Instances.New<IfcGeometricRepresentationContext>(c =>
-                                                                                                        {
-                                                                                                            c.
-                                                                                                                ContextType
-                                                                                                                =
-                                                                                                                "Model";
-                                                                                                            c.
-                                                                                                                ContextIdentifier
-                                                                                                                =
-                                                                                                                "Building Model";
-                                                                                                            c.
-                                                                                                                CoordinateSpaceDimension
-                                                                                                                = 3;
-                                                                                                            c.Precision
-                                                                                                                =
-                                                                                                                0.00001;
-                                                                                                            c.
-                                                                                                                WorldCoordinateSystem
-                                                                                                                = axis3D;
-                                                                                                        }
-                    );
-                ifcProject.RepresentationContexts.Add(gc);
-
-                IfcCartesianPoint origin2D = model.Instances.New<IfcCartesianPoint>(p => p.SetXY(0, 0));
-                IfcAxis2Placement2D axis2D = model.Instances.New<IfcAxis2Placement2D>(a => a.Location = origin2D);
-                IfcGeometricRepresentationContext pc = model.Instances.New<IfcGeometricRepresentationContext>(c =>
-                {
-                    c.
-                        ContextType
-                        =
-                        "Plan";
-                    c.
-                        ContextIdentifier
-                        =
-                        "Building Plan View";
-                    c.
-                        CoordinateSpaceDimension
-                        = 2;
-                    c.Precision
-                        =
-                        0.00001;
-                    c.
-                        WorldCoordinateSystem
-                        = axis2D;
-                }
-                    );
-                ifcProject.RepresentationContexts.Add(pc);
-
-            }
-        }
-
-        #endregion
+      
         /// <summary>
         /// Returns all buildings at the highest level of spatial structural decomposition (i.e. root buildings)
         /// </summary>
@@ -206,7 +82,7 @@ namespace Xbim.Ifc2x3.Extensions
         public static void SetOrChangeSIUnit(this IfcProject ifcProject, IfcUnitEnum unitType, IfcSIUnitName siUnitName,
                                              IfcSIPrefix? siUnitPrefix)
         {
-            IModel model = ifcProject.ModelOf;
+            IModel model = ifcProject.Model;
             if (ifcProject.UnitsInContext == null)
             {
                 ifcProject.UnitsInContext = model.Instances.New<IfcUnitAssignment>();
@@ -219,7 +95,7 @@ namespace Xbim.Ifc2x3.Extensions
         public static void SetOrChangeConversionUnit(this IfcProject ifcProject, IfcUnitEnum unitType,
                                                      ConversionBasedUnit conversionUnit)
         {
-            IModel model = ifcProject.ModelOf;
+            IModel model = ifcProject.Model;
             if (ifcProject.UnitsInContext == null)
             {
                 ifcProject.UnitsInContext = model.Instances.New<IfcUnitAssignment>();
@@ -255,7 +131,7 @@ namespace Xbim.Ifc2x3.Extensions
             IEnumerable<IfcRelDecomposes> decomposition = ifcProject.IsDecomposedBy;
             if (decomposition.Count() == 0) //none defined create the relationship
             {
-                IfcRelAggregates relSub = ifcProject.ModelOf.Instances.New<IfcRelAggregates>();
+                IfcRelAggregates relSub = ifcProject.Model.Instances.New<IfcRelAggregates>();
                 relSub.RelatingObject = ifcProject;
                 relSub.RelatedObjects.Add(site);
             }
@@ -287,7 +163,7 @@ namespace Xbim.Ifc2x3.Extensions
             IEnumerable<IfcRelDecomposes> decomposition = ifcProject.IsDecomposedBy;
             if (decomposition.Count() == 0) //none defined create the relationship
             {
-                IfcRelAggregates relSub = ifcProject.ModelOf.Instances.New<IfcRelAggregates>();
+                IfcRelAggregates relSub = ifcProject.Model.Instances.New<IfcRelAggregates>();
                 relSub.RelatingObject = ifcProject;
                 relSub.RelatedObjects.Add(building);
             }

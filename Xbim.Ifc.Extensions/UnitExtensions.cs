@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Xbim.Ifc2x3.MeasureResource;
-using Xbim.XbimExtensions.SelectTypes;
 
 namespace Xbim.Ifc2x3.Extensions
 {

@@ -14,10 +14,8 @@
 
 using System;
 using System.Linq;
+using Xbim.Common;
 using Xbim.Ifc2x3.MeasureResource;
-using Xbim.XbimExtensions;
-using Xbim.XbimExtensions.SelectTypes;
-using Xbim.XbimExtensions.Interfaces;
 using Xbim.Ifc2x3.QuantityResource;
 using Xbim.Ifc2x3.PropertyResource;
 
@@ -34,67 +32,55 @@ namespace Xbim.Ifc2x3.Extensions
         /// <returns></returns>
         public static double LengthUnitPower(this IfcUnitAssignment ua)
         {
-            IfcSIUnit si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
+            var si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
             if (si != null && si.Prefix.HasValue)
                 return si.Power();
-            else
-            {
-                IfcConversionBasedUnit cu =
-                    ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
-                if (cu != null)
-                {
-                    IfcMeasureWithUnit mu = cu.ConversionFactor;
-                    IfcSIUnit uc = mu.UnitComponent as IfcSIUnit;
-                    //some BIM tools such as StruCAD write the conversion value out as a Length Measure
-                    if (uc != null)
-                    {
-                        ExpressType et = ((ExpressType)mu.ValueComponent);
-                        double cFactor = 1.0;
-                        if(et.UnderlyingSystemType==typeof(double))
-                            cFactor = (double) et.Value;
-                        else if(et.UnderlyingSystemType==typeof(int))
-                            cFactor = (double) ((int)et.Value);
-                        else if (et.UnderlyingSystemType == typeof(long))
-                            cFactor = (double)((long)et.Value);
+            var cu =
+                ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
+            if (cu == null) return 1.0;
+            var mu = cu.ConversionFactor;
+            var uc = mu.UnitComponent as IfcSIUnit;
+            //some BIM tools such as StruCAD write the conversion value out as a Length Measure
+            if (uc == null) return 1.0;
 
-                        return uc.Power() * cFactor ;
-                    }
-                }
-            }
-            return 1.0;
+
+            var et = ((IExpressValueType)mu.ValueComponent);
+            var cFactor = 1.0;
+            if(et.UnderlyingSystemType==typeof(double))
+                cFactor = (double) et.Value;
+            else if(et.UnderlyingSystemType==typeof(int))
+                cFactor = (double) ((int)et.Value);
+            else if (et.UnderlyingSystemType == typeof(long))
+                cFactor = (double)((long)et.Value);
+
+            return uc.Power() * cFactor ;
         }
 
         public static double GetPower(this IfcUnitAssignment ua, IfcUnitEnum unitType)
         {
            
-            IfcSIUnit si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == unitType);
+            var si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == unitType);
             if (si != null && si.Prefix.HasValue)
                 return si.Power();
-            else
-            {
-                IfcConversionBasedUnit cu =
-                    ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == unitType);
-                if (cu != null)
-                {
-                    IfcMeasureWithUnit mu = cu.ConversionFactor;
-                    IfcSIUnit uc = mu.UnitComponent as IfcSIUnit;
-                    //some BIM tools such as StruCAD write the conversion value out as a Length Measure
-                    if (uc != null)
-                    {
-                        ExpressType et = ((ExpressType)mu.ValueComponent);
-                        double cFactor = 1.0;
-                        if (et.UnderlyingSystemType == typeof(double))
-                            cFactor = (double)et.Value;
-                        else if (et.UnderlyingSystemType == typeof(int))
-                            cFactor = (double)((int)et.Value);
-                        else if (et.UnderlyingSystemType == typeof(long))
-                            cFactor = (double)((long)et.Value);
+            var cu =
+                ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == unitType);
+            if (cu == null) return 1.0;
+            var mu = cu.ConversionFactor;
+            var uc = mu.UnitComponent as IfcSIUnit;
+            //some BIM tools such as StruCAD write the conversion value out as a Length Measure
+            if (uc == null) return 1.0;
 
-                        return uc.Power() * cFactor;
-                    }
-                }
-            }
-            return 1.0;
+
+            var et = ((IExpressValueType)mu.ValueComponent);
+            var cFactor = 1.0;
+            if (et.UnderlyingSystemType == typeof(double))
+                cFactor = (double)et.Value;
+            else if (et.UnderlyingSystemType == typeof(int))
+                cFactor = (double)((int)et.Value);
+            else if (et.UnderlyingSystemType == typeof(long))
+                cFactor = (double)((long)et.Value);
+
+            return uc.Power() * cFactor;
         }
 
         /// <summary>
@@ -106,7 +92,7 @@ namespace Xbim.Ifc2x3.Extensions
         /// <returns></returns>
         public static bool SetSILengthUnits(this IfcUnitAssignment ua, IfcSIUnitName siUnitName, IfcSIPrefix? siPrefix)
         {
-            IfcSIUnit si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
+            var si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
             if (si != null)
             {
                 si.Prefix = siPrefix;
@@ -120,8 +106,8 @@ namespace Xbim.Ifc2x3.Extensions
         public static void SetOrChangeSIUnit(this IfcUnitAssignment ua, IfcUnitEnum unitType, IfcSIUnitName siUnitName,
                                              IfcSIPrefix? siUnitPrefix)
         {
-            IModel model = ua.ModelOf;
-            IfcSIUnit si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == unitType);
+            var model = ua.Model;
+            var si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == unitType);
             if (si != null)
             {
                 si.Prefix = siUnitPrefix;
@@ -266,7 +252,7 @@ namespace Xbim.Ifc2x3.Extensions
         }
         public static string GetLengthUnitName(this IfcUnitAssignment ua)
         {
-            IfcSIUnit si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
+            var si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
             if (si != null)
             {
                 if (si.Prefix.HasValue)
@@ -276,7 +262,7 @@ namespace Xbim.Ifc2x3.Extensions
             }
             else
             {
-                IfcConversionBasedUnit cu =
+                var cu =
                     ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
                 if (cu != null)
                 {
@@ -284,7 +270,7 @@ namespace Xbim.Ifc2x3.Extensions
                 }
                 else
                 {
-                    IfcConversionBasedUnit cbu =
+                    var cbu =
                         ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(
                             u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
                     if (cbu != null)
@@ -297,21 +283,25 @@ namespace Xbim.Ifc2x3.Extensions
         }
         public static void SetOrChangeConversionUnit(this IfcUnitAssignment ua, IfcUnitEnum unitType, ConversionBasedUnit unit)
         {
-            IModel model = ua.ModelOf;
-            IfcSIUnit si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == unitType);
+            var model = ua.Model;
+            var si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == unitType);
             if (si != null)
             {
                 ua.Units.Remove(si);
                 try
                 {
                     model.Delete(si);
-                } catch (Exception){}
+                }
+                catch (Exception)
+                {
+                    // ignored
+                }
             }
             ua.Units.Add(GetNewConversionUnit(model, unitType, unit));
         }
         private static IfcConversionBasedUnit GetNewConversionUnit(IModel model, IfcUnitEnum unitType, ConversionBasedUnit unitEnum)
         {
-            IfcConversionBasedUnit unit = model.Instances.New<IfcConversionBasedUnit>();
+            var unit = model.Instances.New<IfcConversionBasedUnit>();
             unit.UnitType = unitType;
 
             switch (unitEnum)
@@ -393,7 +383,7 @@ namespace Xbim.Ifc2x3.Extensions
         }
         private static IfcDimensionalExponents GetLengthDimension(IModel model)
         {
-            IfcDimensionalExponents dimension = model.Instances.New<IfcDimensionalExponents>();
+            var dimension = model.Instances.New<IfcDimensionalExponents>();
             dimension.AmountOfSubstanceExponent = 0;
             dimension.ElectricCurrentExponent = 0;
             dimension.LengthExponent = 1;
@@ -406,7 +396,7 @@ namespace Xbim.Ifc2x3.Extensions
         }
         private static IfcDimensionalExponents GetVolumeDimension(IModel model)
         {
-            IfcDimensionalExponents dimension = model.Instances.New<IfcDimensionalExponents>();
+            var dimension = model.Instances.New<IfcDimensionalExponents>();
             dimension.AmountOfSubstanceExponent = 0;
             dimension.ElectricCurrentExponent = 0;
             dimension.LengthExponent = 3;
@@ -419,7 +409,7 @@ namespace Xbim.Ifc2x3.Extensions
         }
         private static IfcDimensionalExponents GetAreaDimension(IModel model)
         {
-            IfcDimensionalExponents dimension = model.Instances.New<IfcDimensionalExponents>();
+            var dimension = model.Instances.New<IfcDimensionalExponents>();
             dimension.AmountOfSubstanceExponent = 0;
             dimension.ElectricCurrentExponent = 0;
             dimension.LengthExponent = 2;
@@ -432,7 +422,7 @@ namespace Xbim.Ifc2x3.Extensions
         }
         private static IfcDimensionalExponents GetMassDimension(IModel model)
         {
-            IfcDimensionalExponents dimension = model.Instances.New<IfcDimensionalExponents>();
+            var dimension = model.Instances.New<IfcDimensionalExponents>();
             dimension.AmountOfSubstanceExponent = 0;
             dimension.ElectricCurrentExponent = 0;
             dimension.LengthExponent = 0;

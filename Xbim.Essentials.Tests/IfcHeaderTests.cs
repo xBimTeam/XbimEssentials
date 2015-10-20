@@ -12,7 +12,7 @@ namespace Xbim.Essentials.Tests
         {
             const string path = @"x:\path1\path2\filename.ifc";
             const string umlaut = "name with umlaut ü";
-            using (var model = XbimModel.CreateTemporaryModel())
+            using (var model = Xbim.Ifc2x3.IO.XbimModel.CreateTemporaryModel())
             {
 
                 model.Initialise("Creating Author", " Creating Organisation", "This Application", "This Developer", "v1.1");
@@ -26,7 +26,7 @@ namespace Xbim.Essentials.Tests
                 model.Header.FileName.Organization.Add(umlaut); 
                 model.SaveAs("testOutput.ifc");
             }
-            using (var model = new XbimModel())
+            using (var model = new Xbim.Ifc2x3.IO.XbimModel())
             {
                 model.CreateFrom("testOutput.ifc", null, null, true);
                 Assert.IsTrue(model.Header.FileName.Name == path);

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xbim.Ifc2x3.ProductExtension;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.MeasureResource;
@@ -52,14 +50,15 @@ namespace Xbim.Ifc2x3.Extensions
         /// <returns></returns>
         public static IfcAreaMeasure? GetGrossFloorArea(this IfcBuilding building)
         {
-            IfcQuantityArea qArea = building.GetQuantity<IfcQuantityArea>("BaseQuantities", "GrossFloorArea");
-            if (qArea == null) qArea = building.GetQuantity<IfcQuantityArea>("GrossFloorArea"); //just look for any area
-            if (qArea != null) return qArea.AreaValue;
+            IfcQuantityArea qArea = building.GetQuantity<IfcQuantityArea>("BaseQuantities", "GrossFloorArea") ??
+                                    building.GetQuantity<IfcQuantityArea>("GrossFloorArea");
+            if (qArea != null) 
+                return qArea.AreaValue;
             IfcAreaMeasure area = 0;
-            foreach (IfcBuildingStorey buildingStorey in building.GetBuildingStoreys())
+            foreach (var buildingStorey in building.GetBuildingStoreys())
             {
-                IfcAreaMeasure? bsArea = buildingStorey.GetGrossFloorArea();
-                if (bsArea.HasValue) area += bsArea;
+                var bsArea = buildingStorey.GetGrossFloorArea() ?? 0;
+                area += bsArea;
             }
             if (area != 0) return area;
             return null;

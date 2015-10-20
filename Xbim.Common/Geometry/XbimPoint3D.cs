@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Xbim.Common.Geometry
+﻿namespace Xbim.Common.Geometry
 {
     public struct XbimPoint3D 
     {
@@ -69,6 +64,14 @@ namespace Xbim.Common.Geometry
         public static XbimPoint3D Add(XbimPoint3D p, XbimVector3D v)
         {
             return new XbimPoint3D (p.X + v.X,
+                                    p.Y + v.Y,
+                                    p.Z + v.Z
+                                    );
+        }
+
+        public static XbimPoint3D Add(XbimPoint3D p, XbimPoint3D v)
+        {
+            return new XbimPoint3D(p.X + v.X,
                                     p.Y + v.Y,
                                     p.Z + v.Z
                                     );

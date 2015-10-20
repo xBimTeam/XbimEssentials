@@ -14,11 +14,9 @@
 
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
+using Xbim.Common;
 using Xbim.Common.Geometry;
 using Xbim.Ifc2x3.GeometryResource;
-using Xbim.XbimExtensions;
-using Xbim.XbimExtensions.Interfaces;
 
 #endregion
 
@@ -94,7 +92,7 @@ namespace Xbim.Ifc2x3.Extensions
 
         public static void SetNewLocation(this IfcAxis2Placement3D axis3, double x, double y, double z)
         {
-            IModel model = axis3.ModelOf;
+            IModel model = axis3.Model;
             IfcCartesianPoint location = model.Instances.New<IfcCartesianPoint>();
             location.X = x;
             location.Y = y;
@@ -117,7 +115,7 @@ namespace Xbim.Ifc2x3.Extensions
                                                 double xAxisDirectionY, double xAxisDirectionZ, double zAxisDirectionX,
                                                 double zAxisDirectionY, double zAxisDirectionZ)
         {
-            IModel model = axis3.ModelOf;
+            IModel model = axis3.Model;
             IfcDirection zDirection = model.Instances.New<IfcDirection>();
             zDirection.DirectionRatios[0] = zAxisDirectionX;
             zDirection.DirectionRatios[1] = zAxisDirectionY;

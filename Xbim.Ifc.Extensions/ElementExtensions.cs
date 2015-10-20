@@ -14,9 +14,8 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 using Xbim.Ifc2x3.ProductExtension;
-using Xbim.XbimExtensions;
-using Xbim.XbimExtensions.Interfaces;
 
 #endregion
 
