@@ -8,7 +8,7 @@
         <owners>Steve Lockley</owners>
         <licenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimExchange/master/LICENCE.md</licenseUrl>
         <projectUrl>https://github.com/xBimTeam/XbimExchange</projectUrl>
-        <iconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&s=200</iconUrl>
+        <iconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;s=200</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>
           xBIM Essentials is the core part of the toolkit that deals with reading and writing IFC data files. It does not contain support for geometric operations and 3D visualisation. 
