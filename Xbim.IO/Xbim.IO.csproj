@@ -113,6 +113,8 @@
     <Compile Include="Step21\StepTextHelper.cs" />
     <Compile Include="Esent\XbimGeometryHandle.cs" />
     <Compile Include="Esent\XbimGeometryHandleCollection.cs" />
+    <Compile Include="Translation\EntityTranslator.cs" />
+    <Compile Include="Translation\ModelTranslator.cs" />
     <Compile Include="XbimGeometrySort.cs" />
     <Compile Include="Esent\XbimInstanceCollection.cs" />
     <Compile Include="Esent\XbimInstanceHandle.cs" />

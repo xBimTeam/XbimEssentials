@@ -55,6 +55,7 @@
     <Compile Include="CobieTests.cs" />
     <Compile Include="InMemoryInsertionTests.cs" />
     <Compile Include="ReadIFC4Test.cs" />
+    <Compile Include="SchemaTranslation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.CobieExpress\Xbim.CobieExpress.csproj">

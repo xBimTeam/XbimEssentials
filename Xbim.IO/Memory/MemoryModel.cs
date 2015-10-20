@@ -394,7 +394,7 @@ namespace Xbim.IO.Memory
                     var isInverse = (prop.EntityAttribute.Order == -1); //don't try and set the values for inverses
                     var theType = value.GetType();
                     //if it is an express type or a value type, set the value
-                    if (theType.IsValueType || typeof(ExpressType).IsAssignableFrom(theType))
+                    if (theType.IsValueType)
                     {
                         prop.PropertyInfo.SetValue(copy, value, null);
                     }
@@ -413,7 +413,7 @@ namespace Xbim.IO.Memory
                         foreach (var item in (IList)value)
                         {
                             var actualItemType = item.GetType();
-                            if (actualItemType.IsValueType || typeof(ExpressType).IsAssignableFrom(actualItemType))
+                            if (actualItemType.IsValueType)
                                 copyColl.Add(item);
                             else if (typeof(IPersistEntity).IsAssignableFrom(actualItemType))
                             {
