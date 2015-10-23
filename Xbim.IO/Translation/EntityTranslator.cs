@@ -220,7 +220,7 @@ namespace Xbim.IO.Translation
                         var actualItemType = item.GetType();
                         if (actualItemType.IsValueType)
                         {
-                            var valueToSet = GetTargetValueTypeValue(result, value, resultExpressProperty);
+                            var valueToSet = GetTargetValueTypeValue(result, item, resultExpressProperty);
                             copyColl.Add(valueToSet);
                         }
                         else if (typeof(IPersistEntity).IsAssignableFrom(actualItemType))
