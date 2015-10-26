@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B5A7B0A5-00D7-41FA-B463-C2F9AFBCE9E3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xbim.SchemaTranslation</RootNamespace>
+    <AssemblyName>Xbim.SchemaTranslation</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IFC2X3ToIFC4\Ifc2DCompositeCurveTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcActionRequestTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcAngularDimensionTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcAnnotationCurveOccurrenceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcAnnotationFillAreaOccurrenceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcAnnotationSurfaceOccurrenceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcAnnotationSurfaceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcAnnotationSymbolOccurrenceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcAnnotationTextOccurrenceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcAppliedValueRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcApprovalActorRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcApprovalPropertyRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcApprovalRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcApprovalTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcAssetTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcAsymmetricIShapeProfileDefTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcBezierCurveTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcBlobTextureTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcBoundaryEdgeConditionTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcBoundaryFaceConditionTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcBoundaryNodeConditionTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcBoundaryNodeConditionWarpingTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcBoundedSurfaceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcBuildingElementProxyTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcCalendarDateTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcChamferEdgeFeatureTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcClassificationItemRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcClassificationItemTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcClassificationNotationFacetTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcClassificationNotationTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcClassificationReferenceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcClassificationTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcConditionCriterionTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcConditionTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcConnectionPortGeometryTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcConstraintAggregationRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcConstraintClassificationRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcConstraintRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcConstructionEquipmentResourceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcConstructionMaterialResourceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcConstructionProductResourceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcCoordinatedUniversalTimeOffsetTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcCostScheduleTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcCostValueTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcCraneRailAShapeProfileDefTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcCraneRailFShapeProfileDefTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcCrewResourceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcCShapeProfileDefTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcCurrencyRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDateAndTimeTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDefinedSymbolTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDiameterDimensionTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDimensionCalloutRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDimensionCurveDirectedCalloutTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDimensionCurveTerminatorTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDimensionCurveTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDimensionPairTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDistributionControlElementTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDocumentElectronicFormatTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDocumentInformationRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDocumentInformationTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDocumentReferenceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDraughtingCalloutRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDraughtingCalloutTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcDraughtingPreDefinedTextFontTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcElectricalBasePropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcElectricalCircuitTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcElectricalElementTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcElectricDistributionPointTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcElectricHeaterTypeTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcEnergyPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcEnvironmentalImpactValueTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcEquipmentElementTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcEquipmentStandardTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcExtendedMaterialPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcExternallyDefinedHatchStyleTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcExternallyDefinedSurfaceStyleTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcExternallyDefinedSymbolTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcExternallyDefinedTextFontTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcFillAreaStyleTilesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcFillAreaStyleTileSymbolWithStyleTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcFluidFlowPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcFuelPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcFurnitureStandardTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcGasTerminalTypeTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcGeneralMaterialPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcGeneralProfilePropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcGridPlacementTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcHygroscopicMaterialPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcImageTextureTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcInventoryTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcIrregularTimeSeriesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcIrregularTimeSeriesValueTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcLaborResourceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcLibraryInformationTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcLibraryReferenceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcLinearDimensionTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcLocalTimeTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcLShapeProfileDefTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcMaterialClassificationRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcMechanicalConcreteMaterialPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcMechanicalMaterialPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcMechanicalSteelMaterialPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcMetricTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcMonetaryUnitTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcMoveTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcObjectiveTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcOneDirectionRepeatFactorTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcOpticalMaterialPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcOrderActionTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcOrganizationTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcPerformanceHistoryTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcPermitTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcPersonTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcPixelTextureTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcPreDefinedDimensionSymbolTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcPreDefinedPointMarkerSymbolTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcPreDefinedTerminatorSymbolTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcPresentationLayerWithStyleTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcProcedureTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcProductRepresentationTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcProductsOfCombustionPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcProjectionCurveTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcProjectOrderRecordTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcProjectOrderTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcPropertyConstraintRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcPropertyDependencyRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRadiusDimensionTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRampTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRationalBezierCurveTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcReferencesValueDocumentTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRegularTimeSeriesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcReinforcingBarTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelAssignsTasksTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelAssignsToProcessTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelAssignsToProductTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelAssignsToProjectOrderTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelAssignsToResourceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelAssociatesAppliedValueTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelAssociatesApprovalTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelAssociatesClassificationTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelAssociatesConstraintTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelAssociatesDocumentTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelAssociatesLibraryTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelAssociatesMaterialTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelAssociatesProfilePropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelAssociatesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelaxationTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelConnectsPathElementsTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelConnectsStructuralElementTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelCoversSpacesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelDefinesByPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelInteractionRequirementsTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelNestsTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelOccupiesSpacesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelOverridesPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelSchedulesCostItemsTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelSequenceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRelSpaceBoundaryTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRepresentationContextTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRepresentationTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRibPlateProfilePropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRoofTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcRoundedEdgeFeatureTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcScheduleTimeControlTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcServiceLifeFactorTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcServiceLifeTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcShapeAspectTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcSoundPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcSoundValueTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcSpaceProgramTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcSpaceThermalLoadPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcSpaceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStairTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStructuralCurveMemberTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStructuralCurveMemberVaryingTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStructuralLinearActionTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStructuralLinearActionVaryingTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStructuralLoadTemperatureTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStructuralPlanarActionTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStructuralPlanarActionVaryingTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStructuralPointActionTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStructuralProfilePropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStructuralSteelProfilePropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStructuralSurfaceMemberTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStructuralSurfaceMemberVaryingTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStructuredDimensionCalloutTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcStyledItemTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcSubContractResourceTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcSymbolStyleTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcTableTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcTaskTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcTerminatorSymbolTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcTextStyleTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcTextStyleWithBoxCharacteristicsTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcTextureCoordinateGeneratorTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcTextureMapTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcThermalMaterialPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcTimeSeriesReferenceRelationshipTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcTimeSeriesScheduleTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcTransportElementTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcTShapeProfileDefTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcTwoDirectionRepeatFactorTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcUShapeProfileDefTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcVertexBasedTextureMapTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcWaterPropertiesTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcWorkPlanTranslator.cs" />
+    <Compile Include="IFC2X3ToIFC4\IfcWorkScheduleTranslator.cs" />
+    <Compile Include="ITranslator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">
+      <Project>{a34ef831-ea82-4a79-8c65-b5e1c6d9508d}</Project>
+      <Name>Xbim.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
