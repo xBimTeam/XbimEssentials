@@ -12,13 +12,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDirection
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDirection : IIfcGeometricRepresentationItem, IfcGridPlacementDirectionSelect, IfcVectorOrDirection
+	{
+		IEnumerable<double> @DirectionRatios { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCDIRECTION", 564)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IfcGridPlacementDirectionSelect, IfcVectorOrDirection, IInstantiableEntity, IEqualityComparer<@IfcDirection>, IEquatable<@IfcDirection>
+	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDirection, IEqualityComparer<@IfcDirection>, IEquatable<@IfcDirection>
 	{
+		#region IIfcDirection explicit implementation
+		IEnumerable<double> IIfcDirection.DirectionRatios { get { return @DirectionRatios; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDirection(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,9 +60,9 @@ namespace Xbim.Ifc4.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _directionRatios;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ExternalReferenceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcExternalReferenceRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcExternalReferenceRelationship : IIfcResourceLevelRelationship
+	{
+		IIfcExternalReference @RelatingReference { get; }
+		IEnumerable<IfcResourceObjectSelect> @RelatedResourceObjects { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IFCEXTERNALREFERENCERELATIONSHIP", 634)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternalReferenceRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IEqualityComparer<@IfcExternalReferenceRelationship>, IEquatable<@IfcExternalReferenceRelationship>
+	public  partial class @IfcExternalReferenceRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcExternalReferenceRelationship, IEqualityComparer<@IfcExternalReferenceRelationship>, IEquatable<@IfcExternalReferenceRelationship>
 	{
+		#region IIfcExternalReferenceRelationship explicit implementation
+		IIfcExternalReference IIfcExternalReferenceRelationship.RelatingReference { get { return @RelatingReference; } }	
+		IEnumerable<IfcResourceObjectSelect> IIfcExternalReferenceRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExternalReferenceRelationship(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +68,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _relatingReference = v, _relatingReference, value,  "RelatingReference");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
@@ -57,9 +79,9 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				((IPersistEntity)this).Activate(false);
 				return _relatedResourceObjects;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

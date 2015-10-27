@@ -14,13 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProcessExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTaskType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTaskType : IIfcTypeProcess
+	{
+		IfcTaskTypeEnum @PredefinedType { get; }
+		IfcLabel? @WorkMethod { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IFCTASKTYPE", 1084)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTaskType : IfcTypeProcess, IInstantiableEntity, IEqualityComparer<@IfcTaskType>, IEquatable<@IfcTaskType>
+	public  partial class @IfcTaskType : IfcTypeProcess, IInstantiableEntity, IIfcTaskType, IEqualityComparer<@IfcTaskType>, IEquatable<@IfcTaskType>
 	{
+		#region IIfcTaskType explicit implementation
+		IfcTaskTypeEnum IIfcTaskType.PredefinedType { get { return @PredefinedType; } }	
+		IfcLabel? IIfcTaskType.WorkMethod { get { return @WorkMethod; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTaskType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +68,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @WorkMethod 
 		{ 
@@ -60,9 +82,9 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _workMethod = v, _workMethod, value,  "WorkMethod");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -16,17 +16,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralPointAction
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralPointAction : IIfcStructuralAction
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALPOINTACTION", 1037)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralPointAction : IfcStructuralAction, IInstantiableEntity, IEqualityComparer<@IfcStructuralPointAction>, IEquatable<@IfcStructuralPointAction>
+	public  partial class @IfcStructuralPointAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralPointAction, IEqualityComparer<@IfcStructuralPointAction>, IEquatable<@IfcStructuralPointAction>
 	{
+		#region IIfcStructuralPointAction explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralPointAction(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

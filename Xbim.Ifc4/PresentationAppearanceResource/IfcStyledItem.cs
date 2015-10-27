@@ -13,13 +13,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStyledItem
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStyledItem : IIfcRepresentationItem
+	{
+		IIfcRepresentationItem @Item { get; }
+		IEnumerable<IfcStyleAssignmentSelect> @Styles { get; }
+		IfcLabel? @Name { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCSTYLEDITEM", 1048)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStyledItem : IfcRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcStyledItem>, IEquatable<@IfcStyledItem>
+	public  partial class @IfcStyledItem : IfcRepresentationItem, IInstantiableEntity, IIfcStyledItem, IEqualityComparer<@IfcStyledItem>, IEquatable<@IfcStyledItem>
 	{
+		#region IIfcStyledItem explicit implementation
+		IIfcRepresentationItem IIfcStyledItem.Item { get { return @Item; } }	
+		IEnumerable<IfcStyleAssignmentSelect> IIfcStyledItem.Styles { get { return @Styles; } }	
+		IfcLabel? IIfcStyledItem.Name { get { return @Name; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStyledItem(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +72,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _item = v, _item, value,  "Item");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcStyleAssignmentSelect> @Styles 
 		{ 
@@ -58,8 +82,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _styles;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Name 
 		{ 
@@ -73,9 +96,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

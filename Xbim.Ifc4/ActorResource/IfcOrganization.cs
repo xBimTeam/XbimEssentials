@@ -15,14 +15,49 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ActorResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcOrganization
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcOrganization : IPersistEntity, IfcActorSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect
+	{
+		IfcIdentifier? @Identification { get; }
+		IfcLabel @Name { get; }
+		IfcText? @Description { get; }
+		IEnumerable<IIfcActorRole> @Roles { get; }
+		IEnumerable<IIfcAddress> @Addresses { get; }
+		IEnumerable<IIfcOrganizationRelationship> @IsRelatedBy {  get; }
+		IEnumerable<IIfcOrganizationRelationship> @Relates {  get; }
+		IEnumerable<IIfcPersonAndOrganization> @Engages {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ActorResource
 {
 	[IndexedClass]
 	[ExpressType("IFCORGANIZATION", 784)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrganization : INotifyPropertyChanged, IfcActorSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect, IInstantiableEntity, IEqualityComparer<@IfcOrganization>, IEquatable<@IfcOrganization>
+	public  partial class @IfcOrganization : INotifyPropertyChanged, IInstantiableEntity, IIfcOrganization, IEqualityComparer<@IfcOrganization>, IEquatable<@IfcOrganization>
 	{
+		#region IIfcOrganization explicit implementation
+		IfcIdentifier? IIfcOrganization.Identification { get { return @Identification; } }	
+		IfcLabel IIfcOrganization.Name { get { return @Name; } }	
+		IfcText? IIfcOrganization.Description { get { return @Description; } }	
+		IEnumerable<IIfcActorRole> IIfcOrganization.Roles { get { return @Roles; } }	
+		IEnumerable<IIfcAddress> IIfcOrganization.Addresses { get { return @Addresses; } }	
+	
+	 
+		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.IsRelatedBy {  get { return @IsRelatedBy; } }
+		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.Relates {  get { return @Relates; } }
+		IEnumerable<IIfcPersonAndOrganization> IIfcOrganization.Engages {  get { return @Engages; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -108,8 +143,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _identification = v, _identification, value,  "Identification");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel @Name 
 		{ 
@@ -123,8 +157,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -138,8 +171,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcActorRole> @Roles 
 		{ 
@@ -149,8 +181,7 @@ namespace Xbim.Ifc4.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _roles;
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcAddress> @Addresses 
@@ -161,9 +192,9 @@ namespace Xbim.Ifc4.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _addresses;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

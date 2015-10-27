@@ -14,13 +14,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProfileResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProfileDef : IPersistEntity, IfcResourceObjectSelect
+	{
+		IfcProfileTypeEnum @ProfileType { get; }
+		IfcLabel? @ProfileName { get; }
+		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReference {  get; }
+		IEnumerable<IIfcProfileProperties> @HasProperties {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IFCPROFILEDEF", 841)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProfileDef : INotifyPropertyChanged, IfcResourceObjectSelect, IInstantiableEntity, IEqualityComparer<@IfcProfileDef>, IEquatable<@IfcProfileDef>
+	public  partial class @IfcProfileDef : INotifyPropertyChanged, IInstantiableEntity, IIfcProfileDef, IEqualityComparer<@IfcProfileDef>, IEquatable<@IfcProfileDef>
 	{
+		#region IIfcProfileDef explicit implementation
+		IfcProfileTypeEnum IIfcProfileDef.ProfileType { get { return @ProfileType; } }	
+		IfcLabel? IIfcProfileDef.ProfileName { get { return @ProfileName; } }	
+	
+	 
+		IEnumerable<IIfcExternalReferenceRelationship> IIfcProfileDef.HasExternalReference {  get { return @HasExternalReference; } }
+		IEnumerable<IIfcProfileProperties> IIfcProfileDef.HasProperties {  get { return @HasProperties; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -101,8 +128,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _profileType = v, _profileType, value,  "ProfileType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @ProfileName 
 		{ 
@@ -116,9 +142,9 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _profileName = v, _profileName, value,  "ProfileName");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

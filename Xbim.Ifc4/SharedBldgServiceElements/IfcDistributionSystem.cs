@@ -14,13 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgServiceElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDistributionSystem
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDistributionSystem : IIfcSystem
+	{
+		IfcLabel? @LongName { get; }
+		IfcDistributionSystemEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IFCDISTRIBUTIONSYSTEM", 577)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionSystem : IfcSystem, IInstantiableEntity, IEqualityComparer<@IfcDistributionSystem>, IEquatable<@IfcDistributionSystem>
+	public  partial class @IfcDistributionSystem : IfcSystem, IInstantiableEntity, IIfcDistributionSystem, IEqualityComparer<@IfcDistributionSystem>, IEquatable<@IfcDistributionSystem>
 	{
+		#region IIfcDistributionSystem explicit implementation
+		IfcLabel? IIfcDistributionSystem.LongName { get { return @LongName; } }	
+		IfcDistributionSystemEnum? IIfcDistributionSystem.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDistributionSystem(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +68,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 			{
 				SetValue( v =>  _longName = v, _longName, value,  "LongName");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDistributionSystemEnum? @PredefinedType 
 		{ 
@@ -60,9 +82,9 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

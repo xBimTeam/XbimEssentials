@@ -15,14 +15,41 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ExternalReferenceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcExternalReference
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcExternalReference : IPersistEntity, IfcLightDistributionDataSourceSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect
+	{
+		IfcURIReference? @Location { get; }
+		IfcIdentifier? @Identification { get; }
+		IfcLabel? @Name { get; }
+		IEnumerable<IIfcExternalReferenceRelationship> @ExternalReferenceForResources {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCEXTERNALREFERENCE", 633)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcExternalReference : IPersistEntity, INotifyPropertyChanged, IfcLightDistributionDataSourceSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect, IEqualityComparer<@IfcExternalReference>, IEquatable<@IfcExternalReference>
+	public abstract partial class @IfcExternalReference : IPersistEntity, INotifyPropertyChanged, IIfcExternalReference, IEqualityComparer<@IfcExternalReference>, IEquatable<@IfcExternalReference>
 	{
+		#region IIfcExternalReference explicit implementation
+		IfcURIReference? IIfcExternalReference.Location { get { return @Location; } }	
+		IfcIdentifier? IIfcExternalReference.Identification { get { return @Identification; } }	
+		IfcLabel? IIfcExternalReference.Name { get { return @Name; } }	
+	
+	 
+		IEnumerable<IIfcExternalReferenceRelationship> IIfcExternalReference.ExternalReferenceForResources {  get { return @ExternalReferenceForResources; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -104,8 +131,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _location = v, _location, value,  "Location");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIdentifier? @Identification 
 		{ 
@@ -119,8 +145,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _identification = v, _identification, value,  "Identification");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Name 
 		{ 
@@ -134,9 +159,9 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

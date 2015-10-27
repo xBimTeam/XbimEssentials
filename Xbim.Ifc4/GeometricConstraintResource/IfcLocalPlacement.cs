@@ -12,14 +12,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricConstraintResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLocalPlacement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLocalPlacement : IIfcObjectPlacement
+	{
+		IIfcObjectPlacement @PlacementRelTo { get; }
+		IfcAxis2Placement @RelativePlacement { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[IndexedClass]
 	[ExpressType("IFCLOCALPLACEMENT", 736)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLocalPlacement : IfcObjectPlacement, IInstantiableEntity, IEqualityComparer<@IfcLocalPlacement>, IEquatable<@IfcLocalPlacement>
+	public  partial class @IfcLocalPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcLocalPlacement, IEqualityComparer<@IfcLocalPlacement>, IEquatable<@IfcLocalPlacement>
 	{
+		#region IIfcLocalPlacement explicit implementation
+		IIfcObjectPlacement IIfcLocalPlacement.PlacementRelTo { get { return @PlacementRelTo; } }	
+		IfcAxis2Placement IIfcLocalPlacement.RelativePlacement { get { return @RelativePlacement; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLocalPlacement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +68,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				SetValue( v =>  _placementRelTo = v, _placementRelTo, value,  "PlacementRelTo");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcAxis2Placement @RelativePlacement 
 		{ 
@@ -60,9 +82,9 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				SetValue( v =>  _relativePlacement = v, _relativePlacement, value,  "RelativePlacement");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

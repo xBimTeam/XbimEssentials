@@ -14,17 +14,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProject
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProject : IIfcContext
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCPROJECT", 843)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProject : IfcContext, IInstantiableEntity, IEqualityComparer<@IfcProject>, IEquatable<@IfcProject>
+	public  partial class @IfcProject : IfcContext, IInstantiableEntity, IIfcProject, IEqualityComparer<@IfcProject>, IEquatable<@IfcProject>
 	{
+		#region IIfcProject explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProject(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

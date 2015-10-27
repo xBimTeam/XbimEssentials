@@ -15,13 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelCoversSpaces
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelCoversSpaces : IIfcRelConnects
+	{
+		IIfcSpace @RelatingSpace { get; }
+		IEnumerable<IIfcCovering> @RelatedCoverings { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IFCRELCOVERSSPACES", 928)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelCoversSpaces : IfcRelConnects, IInstantiableEntity, IEqualityComparer<@IfcRelCoversSpaces>, IEquatable<@IfcRelCoversSpaces>
+	public  partial class @IfcRelCoversSpaces : IfcRelConnects, IInstantiableEntity, IIfcRelCoversSpaces, IEqualityComparer<@IfcRelCoversSpaces>, IEquatable<@IfcRelCoversSpaces>
 	{
+		#region IIfcRelCoversSpaces explicit implementation
+		IIfcSpace IIfcRelCoversSpaces.RelatingSpace { get { return @RelatingSpace; } }	
+		IEnumerable<IIfcCovering> IIfcRelCoversSpaces.RelatedCoverings { get { return @RelatedCoverings; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelCoversSpaces(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +71,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _relatingSpace = v, _relatingSpace, value,  "RelatingSpace");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcCovering> @RelatedCoverings 
@@ -60,9 +82,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 				((IPersistEntity)this).Activate(false);
 				return _relatedCoverings;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

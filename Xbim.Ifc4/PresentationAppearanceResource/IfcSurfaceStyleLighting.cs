@@ -12,13 +12,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceStyleLighting
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceStyleLighting : IIfcPresentationItem, IfcSurfaceStyleElementSelect
+	{
+		IIfcColourRgb @DiffuseTransmissionColour { get; }
+		IIfcColourRgb @DiffuseReflectionColour { get; }
+		IIfcColourRgb @TransmissionColour { get; }
+		IIfcColourRgb @ReflectanceColour { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCSURFACESTYLELIGHTING", 1060)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleLighting : IfcPresentationItem, IfcSurfaceStyleElementSelect, IInstantiableEntity, IEqualityComparer<@IfcSurfaceStyleLighting>, IEquatable<@IfcSurfaceStyleLighting>
+	public  partial class @IfcSurfaceStyleLighting : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleLighting, IEqualityComparer<@IfcSurfaceStyleLighting>, IEquatable<@IfcSurfaceStyleLighting>
 	{
+		#region IIfcSurfaceStyleLighting explicit implementation
+		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseTransmissionColour { get { return @DiffuseTransmissionColour; } }	
+		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseReflectionColour { get { return @DiffuseReflectionColour; } }	
+		IIfcColourRgb IIfcSurfaceStyleLighting.TransmissionColour { get { return @TransmissionColour; } }	
+		IIfcColourRgb IIfcSurfaceStyleLighting.ReflectanceColour { get { return @ReflectanceColour; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleLighting(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +72,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _diffuseTransmissionColour = v, _diffuseTransmissionColour, value,  "DiffuseTransmissionColour");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColourRgb @DiffuseReflectionColour 
 		{ 
@@ -60,8 +86,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _diffuseReflectionColour = v, _diffuseReflectionColour, value,  "DiffuseReflectionColour");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColourRgb @TransmissionColour 
 		{ 
@@ -75,8 +100,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _transmissionColour = v, _transmissionColour, value,  "TransmissionColour");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColourRgb @ReflectanceColour 
 		{ 
@@ -90,9 +114,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _reflectanceColour = v, _reflectanceColour, value,  "ReflectanceColour");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

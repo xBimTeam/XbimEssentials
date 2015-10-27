@@ -14,13 +14,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedMgmtElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPermit
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPermit : IIfcControl
+	{
+		IfcPermitTypeEnum? @PredefinedType { get; }
+		IfcLabel? @Status { get; }
+		IfcText? @LongDescription { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedMgmtElements
 {
 	[ExpressType("IFCPERMIT", 796)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IEqualityComparer<@IfcPermit>, IEquatable<@IfcPermit>
+	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IIfcPermit, IEqualityComparer<@IfcPermit>, IEquatable<@IfcPermit>
 	{
+		#region IIfcPermit explicit implementation
+		IfcPermitTypeEnum? IIfcPermit.PredefinedType { get { return @PredefinedType; } }	
+		IfcLabel? IIfcPermit.Status { get { return @Status; } }	
+		IfcText? IIfcPermit.LongDescription { get { return @LongDescription; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPermit(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +71,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Status 
 		{ 
@@ -61,8 +85,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			{
 				SetValue( v =>  _status = v, _status, value,  "Status");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @LongDescription 
 		{ 
@@ -76,9 +99,9 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			{
 				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

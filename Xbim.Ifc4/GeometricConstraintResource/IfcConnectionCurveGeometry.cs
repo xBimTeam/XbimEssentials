@@ -11,14 +11,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricConstraintResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConnectionCurveGeometry
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConnectionCurveGeometry : IIfcConnectionGeometry
+	{
+		IfcCurveOrEdgeCurve @CurveOnRelatingElement { get; }
+		IfcCurveOrEdgeCurve @CurveOnRelatedElement { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCONNECTIONCURVEGEOMETRY", 510)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionCurveGeometry : IfcConnectionGeometry, IInstantiableEntity, IEqualityComparer<@IfcConnectionCurveGeometry>, IEquatable<@IfcConnectionCurveGeometry>
+	public  partial class @IfcConnectionCurveGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionCurveGeometry, IEqualityComparer<@IfcConnectionCurveGeometry>, IEquatable<@IfcConnectionCurveGeometry>
 	{
+		#region IIfcConnectionCurveGeometry explicit implementation
+		IfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatingElement { get { return @CurveOnRelatingElement; } }	
+		IfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatedElement { get { return @CurveOnRelatedElement; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionCurveGeometry(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +66,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				SetValue( v =>  _curveOnRelatingElement = v, _curveOnRelatingElement, value,  "CurveOnRelatingElement");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCurveOrEdgeCurve @CurveOnRelatedElement 
 		{ 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				SetValue( v =>  _curveOnRelatedElement = v, _curveOnRelatedElement, value,  "CurveOnRelatedElement");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

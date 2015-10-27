@@ -12,13 +12,44 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.RepresentationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMapConversion
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMapConversion : IIfcCoordinateOperation
+	{
+		IfcLengthMeasure @Eastings { get; }
+		IfcLengthMeasure @Northings { get; }
+		IfcLengthMeasure @OrthogonalHeight { get; }
+		IfcReal? @XAxisAbscissa { get; }
+		IfcReal? @XAxisOrdinate { get; }
+		IfcReal? @Scale { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IFCMAPCONVERSION", 739)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMapConversion : IfcCoordinateOperation, IInstantiableEntity, IEqualityComparer<@IfcMapConversion>, IEquatable<@IfcMapConversion>
+	public  partial class @IfcMapConversion : IfcCoordinateOperation, IInstantiableEntity, IIfcMapConversion, IEqualityComparer<@IfcMapConversion>, IEquatable<@IfcMapConversion>
 	{
+		#region IIfcMapConversion explicit implementation
+		IfcLengthMeasure IIfcMapConversion.Eastings { get { return @Eastings; } }	
+		IfcLengthMeasure IIfcMapConversion.Northings { get { return @Northings; } }	
+		IfcLengthMeasure IIfcMapConversion.OrthogonalHeight { get { return @OrthogonalHeight; } }	
+		IfcReal? IIfcMapConversion.XAxisAbscissa { get { return @XAxisAbscissa; } }	
+		IfcReal? IIfcMapConversion.XAxisOrdinate { get { return @XAxisOrdinate; } }	
+		IfcReal? IIfcMapConversion.Scale { get { return @Scale; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMapConversion(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +78,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _eastings = v, _eastings, value,  "Eastings");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure @Northings 
 		{ 
@@ -62,8 +92,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _northings = v, _northings, value,  "Northings");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure @OrthogonalHeight 
 		{ 
@@ -77,8 +106,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _orthogonalHeight = v, _orthogonalHeight, value,  "OrthogonalHeight");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcReal? @XAxisAbscissa 
 		{ 
@@ -92,8 +120,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _xAxisAbscissa = v, _xAxisAbscissa, value,  "XAxisAbscissa");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcReal? @XAxisOrdinate 
 		{ 
@@ -107,8 +134,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _xAxisOrdinate = v, _xAxisOrdinate, value,  "XAxisOrdinate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcReal? @Scale 
 		{ 
@@ -122,9 +148,9 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _scale = v, _scale, value,  "Scale");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

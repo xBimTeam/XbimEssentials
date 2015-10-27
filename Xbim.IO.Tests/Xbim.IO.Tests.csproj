@@ -71,10 +71,6 @@
       <Project>{b6668419-d7a4-4736-b4d8-018756ccf134}</Project>
       <Name>Xbim.Ifc2x3</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Xbim.Ifc4.Interfaces\Xbim.Ifc4.Interfaces.csproj">
-      <Project>{5446bb3c-e71d-4937-bf3b-467e26c77db1}</Project>
-      <Name>Xbim.Ifc4.Interfaces</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj">
       <Project>{63a3efcf-5d43-4c27-8637-86ccd6033a1e}</Project>
       <Name>Xbim.Ifc4</Name>

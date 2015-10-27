@@ -11,14 +11,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricConstraintResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConnectionSurfaceGeometry
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConnectionSurfaceGeometry : IIfcConnectionGeometry
+	{
+		IfcSurfaceOrFaceSurface @SurfaceOnRelatingElement { get; }
+		IfcSurfaceOrFaceSurface @SurfaceOnRelatedElement { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCONNECTIONSURFACEGEOMETRY", 514)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionSurfaceGeometry : IfcConnectionGeometry, IInstantiableEntity, IEqualityComparer<@IfcConnectionSurfaceGeometry>, IEquatable<@IfcConnectionSurfaceGeometry>
+	public  partial class @IfcConnectionSurfaceGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionSurfaceGeometry, IEqualityComparer<@IfcConnectionSurfaceGeometry>, IEquatable<@IfcConnectionSurfaceGeometry>
 	{
+		#region IIfcConnectionSurfaceGeometry explicit implementation
+		IfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatingElement { get { return @SurfaceOnRelatingElement; } }	
+		IfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatedElement { get { return @SurfaceOnRelatedElement; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionSurfaceGeometry(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +66,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				SetValue( v =>  _surfaceOnRelatingElement = v, _surfaceOnRelatingElement, value,  "SurfaceOnRelatingElement");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSurfaceOrFaceSurface @SurfaceOnRelatedElement 
 		{ 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				SetValue( v =>  _surfaceOnRelatedElement = v, _surfaceOnRelatedElement, value,  "SurfaceOnRelatedElement");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ElectricalDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCableCarrierFitting
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCableCarrierFitting : IIfcFlowFitting
+	{
+		IfcCableCarrierFittingTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IFCCABLECARRIERFITTING", 459)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCableCarrierFitting : IfcFlowFitting, IInstantiableEntity, IEqualityComparer<@IfcCableCarrierFitting>, IEquatable<@IfcCableCarrierFitting>
+	public  partial class @IfcCableCarrierFitting : IfcFlowFitting, IInstantiableEntity, IIfcCableCarrierFitting, IEqualityComparer<@IfcCableCarrierFitting>, IEquatable<@IfcCableCarrierFitting>
 	{
+		#region IIfcCableCarrierFitting explicit implementation
+		IfcCableCarrierFittingTypeEnum? IIfcCableCarrierFitting.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCableCarrierFitting(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.ElectricalDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -11,13 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPcurve
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPcurve : IIfcCurve, IfcCurveOnSurface
+	{
+		IIfcSurface @BasisSurface { get; }
+		IIfcCurve @ReferenceCurve { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCPCURVE", 793)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPcurve : IfcCurve, IfcCurveOnSurface, IInstantiableEntity, IEqualityComparer<@IfcPcurve>, IEquatable<@IfcPcurve>
+	public  partial class @IfcPcurve : IfcCurve, IInstantiableEntity, IIfcPcurve, IEqualityComparer<@IfcPcurve>, IEquatable<@IfcPcurve>
 	{
+		#region IIfcPcurve explicit implementation
+		IIfcSurface IIfcPcurve.BasisSurface { get { return @BasisSurface; } }	
+		IIfcCurve IIfcPcurve.ReferenceCurve { get { return @ReferenceCurve; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPcurve(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +65,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCurve @ReferenceCurve 
 		{ 
@@ -57,9 +79,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _referenceCurve = v, _referenceCurve, value,  "ReferenceCurve");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

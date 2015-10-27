@@ -14,13 +14,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MeasureResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMeasureWithUnit
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMeasureWithUnit : IPersistEntity, IfcAppliedValueSelect, IfcMetricValueSelect
+	{
+		IfcValue @ValueComponent { get; }
+		IfcUnit @UnitComponent { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IFCMEASUREWITHUNIT", 760)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMeasureWithUnit : INotifyPropertyChanged, IfcAppliedValueSelect, IfcMetricValueSelect, IInstantiableEntity, IEqualityComparer<@IfcMeasureWithUnit>, IEquatable<@IfcMeasureWithUnit>
+	public  partial class @IfcMeasureWithUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMeasureWithUnit, IEqualityComparer<@IfcMeasureWithUnit>, IEquatable<@IfcMeasureWithUnit>
 	{
+		#region IIfcMeasureWithUnit explicit implementation
+		IfcValue IIfcMeasureWithUnit.ValueComponent { get { return @ValueComponent; } }	
+		IfcUnit IIfcMeasureWithUnit.UnitComponent { get { return @UnitComponent; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -101,8 +124,7 @@ namespace Xbim.Ifc4.MeasureResource
 			{
 				SetValue( v =>  _valueComponent = v, _valueComponent, value,  "ValueComponent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcUnit @UnitComponent 
 		{ 
@@ -116,9 +138,9 @@ namespace Xbim.Ifc4.MeasureResource
 			{
 				SetValue( v =>  _unitComponent = v, _unitComponent, value,  "UnitComponent");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

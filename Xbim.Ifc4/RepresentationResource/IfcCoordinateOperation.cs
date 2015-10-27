@@ -12,13 +12,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.RepresentationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCoordinateOperation
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCoordinateOperation : IPersistEntity
+	{
+		IfcCoordinateReferenceSystemSelect @SourceCRS { get; }
+		IIfcCoordinateReferenceSystem @TargetCRS { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IFCCOORDINATEOPERATION", 536)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcCoordinateOperation : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcCoordinateOperation>, IEquatable<@IfcCoordinateOperation>
+	public abstract partial class @IfcCoordinateOperation : IPersistEntity, INotifyPropertyChanged, IIfcCoordinateOperation, IEqualityComparer<@IfcCoordinateOperation>, IEquatable<@IfcCoordinateOperation>
 	{
+		#region IIfcCoordinateOperation explicit implementation
+		IfcCoordinateReferenceSystemSelect IIfcCoordinateOperation.SourceCRS { get { return @SourceCRS; } }	
+		IIfcCoordinateReferenceSystem IIfcCoordinateOperation.TargetCRS { get { return @TargetCRS; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -99,8 +122,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _sourceCRS = v, _sourceCRS, value,  "SourceCRS");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCoordinateReferenceSystem @TargetCRS 
 		{ 
@@ -114,9 +136,9 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _targetCRS = v, _targetCRS, value,  "TargetCRS");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

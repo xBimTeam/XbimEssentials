@@ -13,13 +13,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProcess
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProcess : IIfcObject, IfcProcessSelect
+	{
+		IfcIdentifier? @Identification { get; }
+		IfcText? @LongDescription { get; }
+		IEnumerable<IIfcRelSequence> @IsPredecessorTo {  get; }
+		IEnumerable<IIfcRelSequence> @IsSuccessorFrom {  get; }
+		IEnumerable<IIfcRelAssignsToProcess> @OperatesOn {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCPROCESS", 837)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProcess : IfcObject, IfcProcessSelect, IEqualityComparer<@IfcProcess>, IEquatable<@IfcProcess>
+	public abstract partial class @IfcProcess : IfcObject, IIfcProcess, IEqualityComparer<@IfcProcess>, IEquatable<@IfcProcess>
 	{
+		#region IIfcProcess explicit implementation
+		IfcIdentifier? IIfcProcess.Identification { get { return @Identification; } }	
+		IfcText? IIfcProcess.LongDescription { get { return @LongDescription; } }	
+	
+	 
+		IEnumerable<IIfcRelSequence> IIfcProcess.IsPredecessorTo {  get { return @IsPredecessorTo; } }
+		IEnumerable<IIfcRelSequence> IIfcProcess.IsSuccessorFrom {  get { return @IsSuccessorFrom; } }
+		IEnumerable<IIfcRelAssignsToProcess> IIfcProcess.OperatesOn {  get { return @OperatesOn; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProcess(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +73,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _identification = v, _identification, value,  "Identification");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @LongDescription 
 		{ 
@@ -59,9 +87,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

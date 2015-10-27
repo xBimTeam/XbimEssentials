@@ -14,13 +14,46 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralLoadGroup
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralLoadGroup : IIfcGroup
+	{
+		IfcLoadGroupTypeEnum @PredefinedType { get; }
+		IfcActionTypeEnum @ActionType { get; }
+		IfcActionSourceTypeEnum @ActionSource { get; }
+		IfcRatioMeasure? @Coefficient { get; }
+		IfcLabel? @Purpose { get; }
+		IEnumerable<IIfcStructuralResultGroup> @SourceOfResultGroup {  get; }
+		IEnumerable<IIfcStructuralAnalysisModel> @LoadGroupFor {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALLOADGROUP", 1025)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadGroup : IfcGroup, IInstantiableEntity, IEqualityComparer<@IfcStructuralLoadGroup>, IEquatable<@IfcStructuralLoadGroup>
+	public  partial class @IfcStructuralLoadGroup : IfcGroup, IInstantiableEntity, IIfcStructuralLoadGroup, IEqualityComparer<@IfcStructuralLoadGroup>, IEquatable<@IfcStructuralLoadGroup>
 	{
+		#region IIfcStructuralLoadGroup explicit implementation
+		IfcLoadGroupTypeEnum IIfcStructuralLoadGroup.PredefinedType { get { return @PredefinedType; } }	
+		IfcActionTypeEnum IIfcStructuralLoadGroup.ActionType { get { return @ActionType; } }	
+		IfcActionSourceTypeEnum IIfcStructuralLoadGroup.ActionSource { get { return @ActionSource; } }	
+		IfcRatioMeasure? IIfcStructuralLoadGroup.Coefficient { get { return @Coefficient; } }	
+		IfcLabel? IIfcStructuralLoadGroup.Purpose { get { return @Purpose; } }	
+	
+	 
+		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralLoadGroup.SourceOfResultGroup {  get { return @SourceOfResultGroup; } }
+		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralLoadGroup.LoadGroupFor {  get { return @LoadGroupFor; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadGroup(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +81,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcActionTypeEnum @ActionType 
 		{ 
@@ -63,8 +95,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _actionType = v, _actionType, value,  "ActionType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcActionSourceTypeEnum @ActionSource 
 		{ 
@@ -78,8 +109,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _actionSource = v, _actionSource, value,  "ActionSource");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcRatioMeasure? @Coefficient 
 		{ 
@@ -93,8 +123,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _coefficient = v, _coefficient, value,  "Coefficient");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Purpose 
 		{ 
@@ -108,9 +137,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

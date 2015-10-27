@@ -14,13 +14,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelConnectsPorts
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelConnectsPorts : IIfcRelConnects
+	{
+		IIfcPort @RelatingPort { get; }
+		IIfcPort @RelatedPort { get; }
+		IIfcElement @RealizingElement { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCRELCONNECTSPORTS", 921)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsPorts : IfcRelConnects, IInstantiableEntity, IEqualityComparer<@IfcRelConnectsPorts>, IEquatable<@IfcRelConnectsPorts>
+	public  partial class @IfcRelConnectsPorts : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsPorts, IEqualityComparer<@IfcRelConnectsPorts>, IEquatable<@IfcRelConnectsPorts>
 	{
+		#region IIfcRelConnectsPorts explicit implementation
+		IIfcPort IIfcRelConnectsPorts.RelatingPort { get { return @RelatingPort; } }	
+		IIfcPort IIfcRelConnectsPorts.RelatedPort { get { return @RelatedPort; } }	
+		IIfcElement IIfcRelConnectsPorts.RealizingElement { get { return @RealizingElement; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsPorts(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +72,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _relatingPort = v, _relatingPort, value,  "RelatingPort");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcPort @RelatedPort 
@@ -63,8 +87,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _relatedPort = v, _relatedPort, value,  "RelatedPort");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcElement @RealizingElement 
 		{ 
@@ -78,9 +101,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _realizingElement = v, _realizingElement, value,  "RealizingElement");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

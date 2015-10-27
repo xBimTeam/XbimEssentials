@@ -13,13 +13,34 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MaterialResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialUsageDefinition
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialUsageDefinition : IPersistEntity, IfcMaterialSelect
+	{
+		IEnumerable<IIfcRelAssociatesMaterial> @AssociatedTo {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IFCMATERIALUSAGEDEFINITION", 759)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcMaterialUsageDefinition : IPersistEntity, INotifyPropertyChanged, IfcMaterialSelect, IEqualityComparer<@IfcMaterialUsageDefinition>, IEquatable<@IfcMaterialUsageDefinition>
+	public abstract partial class @IfcMaterialUsageDefinition : IPersistEntity, INotifyPropertyChanged, IIfcMaterialUsageDefinition, IEqualityComparer<@IfcMaterialUsageDefinition>, IEquatable<@IfcMaterialUsageDefinition>
 	{
+		#region IIfcMaterialUsageDefinition explicit implementation
+	
+	 
+		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialUsageDefinition.AssociatedTo {  get { return @AssociatedTo; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -80,6 +101,7 @@ namespace Xbim.Ifc4.MaterialResource
 		internal IfcMaterialUsageDefinition(IModel model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

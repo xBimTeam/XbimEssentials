@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ElectricalDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAudioVisualAppliance
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAudioVisualAppliance : IIfcFlowTerminal
+	{
+		IfcAudioVisualApplianceTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IFCAUDIOVISUALAPPLIANCE", 419)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAudioVisualAppliance : IfcFlowTerminal, IInstantiableEntity, IEqualityComparer<@IfcAudioVisualAppliance>, IEquatable<@IfcAudioVisualAppliance>
+	public  partial class @IfcAudioVisualAppliance : IfcFlowTerminal, IInstantiableEntity, IIfcAudioVisualAppliance, IEqualityComparer<@IfcAudioVisualAppliance>, IEquatable<@IfcAudioVisualAppliance>
 	{
+		#region IIfcAudioVisualAppliance explicit implementation
+		IfcAudioVisualApplianceTypeEnum? IIfcAudioVisualAppliance.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAudioVisualAppliance(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.ElectricalDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

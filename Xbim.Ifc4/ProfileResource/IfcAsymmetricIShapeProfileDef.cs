@@ -13,13 +13,56 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProfileResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAsymmetricIShapeProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAsymmetricIShapeProfileDef : IIfcParameterizedProfileDef
+	{
+		IfcPositiveLengthMeasure @BottomFlangeWidth { get; }
+		IfcPositiveLengthMeasure @OverallDepth { get; }
+		IfcPositiveLengthMeasure @WebThickness { get; }
+		IfcPositiveLengthMeasure @BottomFlangeThickness { get; }
+		IfcNonNegativeLengthMeasure? @BottomFlangeFilletRadius { get; }
+		IfcPositiveLengthMeasure @TopFlangeWidth { get; }
+		IfcPositiveLengthMeasure? @TopFlangeThickness { get; }
+		IfcNonNegativeLengthMeasure? @TopFlangeFilletRadius { get; }
+		IfcNonNegativeLengthMeasure? @BottomFlangeEdgeRadius { get; }
+		IfcPlaneAngleMeasure? @BottomFlangeSlope { get; }
+		IfcNonNegativeLengthMeasure? @TopFlangeEdgeRadius { get; }
+		IfcPlaneAngleMeasure? @TopFlangeSlope { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IFCASYMMETRICISHAPEPROFILEDEF", 418)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAsymmetricIShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IEqualityComparer<@IfcAsymmetricIShapeProfileDef>, IEquatable<@IfcAsymmetricIShapeProfileDef>
+	public  partial class @IfcAsymmetricIShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcAsymmetricIShapeProfileDef, IEqualityComparer<@IfcAsymmetricIShapeProfileDef>, IEquatable<@IfcAsymmetricIShapeProfileDef>
 	{
+		#region IIfcAsymmetricIShapeProfileDef explicit implementation
+		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeWidth { get { return @BottomFlangeWidth; } }	
+		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.OverallDepth { get { return @OverallDepth; } }	
+		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.WebThickness { get { return @WebThickness; } }	
+		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeThickness { get { return @BottomFlangeThickness; } }	
+		IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeFilletRadius { get { return @BottomFlangeFilletRadius; } }	
+		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth { get { return @TopFlangeWidth; } }	
+		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness { get { return @TopFlangeThickness; } }	
+		IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius { get { return @TopFlangeFilletRadius; } }	
+		IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeEdgeRadius { get { return @BottomFlangeEdgeRadius; } }	
+		IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeSlope { get { return @BottomFlangeSlope; } }	
+		IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeEdgeRadius { get { return @TopFlangeEdgeRadius; } }	
+		IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeSlope { get { return @TopFlangeSlope; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAsymmetricIShapeProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -54,8 +97,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _bottomFlangeWidth = v, _bottomFlangeWidth, value,  "BottomFlangeWidth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @OverallDepth 
 		{ 
@@ -69,8 +111,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _overallDepth = v, _overallDepth, value,  "OverallDepth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @WebThickness 
 		{ 
@@ -84,8 +125,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @BottomFlangeThickness 
 		{ 
@@ -99,8 +139,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _bottomFlangeThickness = v, _bottomFlangeThickness, value,  "BottomFlangeThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNonNegativeLengthMeasure? @BottomFlangeFilletRadius 
 		{ 
@@ -114,8 +153,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _bottomFlangeFilletRadius = v, _bottomFlangeFilletRadius, value,  "BottomFlangeFilletRadius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @TopFlangeWidth 
 		{ 
@@ -129,8 +167,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _topFlangeWidth = v, _topFlangeWidth, value,  "TopFlangeWidth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @TopFlangeThickness 
 		{ 
@@ -144,8 +181,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _topFlangeThickness = v, _topFlangeThickness, value,  "TopFlangeThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNonNegativeLengthMeasure? @TopFlangeFilletRadius 
 		{ 
@@ -159,8 +195,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _topFlangeFilletRadius = v, _topFlangeFilletRadius, value,  "TopFlangeFilletRadius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNonNegativeLengthMeasure? @BottomFlangeEdgeRadius 
 		{ 
@@ -174,8 +209,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _bottomFlangeEdgeRadius = v, _bottomFlangeEdgeRadius, value,  "BottomFlangeEdgeRadius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPlaneAngleMeasure? @BottomFlangeSlope 
 		{ 
@@ -189,8 +223,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _bottomFlangeSlope = v, _bottomFlangeSlope, value,  "BottomFlangeSlope");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNonNegativeLengthMeasure? @TopFlangeEdgeRadius 
 		{ 
@@ -204,8 +237,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _topFlangeEdgeRadius = v, _topFlangeEdgeRadius, value,  "TopFlangeEdgeRadius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPlaneAngleMeasure? @TopFlangeSlope 
 		{ 
@@ -219,9 +251,9 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _topFlangeSlope = v, _topFlangeSlope, value,  "TopFlangeSlope");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

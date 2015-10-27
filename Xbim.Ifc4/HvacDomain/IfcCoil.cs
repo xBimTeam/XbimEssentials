@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.HvacDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCoil
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCoil : IIfcEnergyConversionDevice
+	{
+		IfcCoilTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IFCCOIL", 488)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCoil : IfcEnergyConversionDevice, IInstantiableEntity, IEqualityComparer<@IfcCoil>, IEquatable<@IfcCoil>
+	public  partial class @IfcCoil : IfcEnergyConversionDevice, IInstantiableEntity, IIfcCoil, IEqualityComparer<@IfcCoil>, IEquatable<@IfcCoil>
 	{
+		#region IIfcCoil explicit implementation
+		IfcCoilTypeEnum? IIfcCoil.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCoil(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

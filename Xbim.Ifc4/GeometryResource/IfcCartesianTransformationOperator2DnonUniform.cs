@@ -11,13 +11,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCartesianTransformationOperator2DnonUniform
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCartesianTransformationOperator2DnonUniform : IIfcCartesianTransformationOperator2D
+	{
+		double? @Scale2 { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCCARTESIANTRANSFORMATIONOPERATOR2DNONUNIFORM", 472)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator2DnonUniform : IfcCartesianTransformationOperator2D, IInstantiableEntity, IEqualityComparer<@IfcCartesianTransformationOperator2DnonUniform>, IEquatable<@IfcCartesianTransformationOperator2DnonUniform>
+	public  partial class @IfcCartesianTransformationOperator2DnonUniform : IfcCartesianTransformationOperator2D, IInstantiableEntity, IIfcCartesianTransformationOperator2DnonUniform, IEqualityComparer<@IfcCartesianTransformationOperator2DnonUniform>, IEquatable<@IfcCartesianTransformationOperator2DnonUniform>
 	{
+		#region IIfcCartesianTransformationOperator2DnonUniform explicit implementation
+		double? IIfcCartesianTransformationOperator2DnonUniform.Scale2 { get { return @Scale2; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianTransformationOperator2DnonUniform(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,9 +62,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _scale2 = v, _scale2, value,  "Scale2");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

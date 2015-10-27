@@ -13,14 +13,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ExternalReferenceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDocumentReference
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDocumentReference : IIfcExternalReference, IfcDocumentSelect
+	{
+		IfcText? @Description { get; }
+		IIfcDocumentInformation @ReferencedDocument { get; }
+		IEnumerable<IIfcRelAssociatesDocument> @DocumentRefForObjects {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCDOCUMENTREFERENCE", 580)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentReference : IfcExternalReference, IfcDocumentSelect, IInstantiableEntity, IEqualityComparer<@IfcDocumentReference>, IEquatable<@IfcDocumentReference>
+	public  partial class @IfcDocumentReference : IfcExternalReference, IInstantiableEntity, IIfcDocumentReference, IEqualityComparer<@IfcDocumentReference>, IEquatable<@IfcDocumentReference>
 	{
+		#region IIfcDocumentReference explicit implementation
+		IfcText? IIfcDocumentReference.Description { get { return @Description; } }	
+		IIfcDocumentInformation IIfcDocumentReference.ReferencedDocument { get { return @ReferencedDocument; } }	
+	
+	 
+		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentReference.DocumentRefForObjects {  get { return @DocumentRefForObjects; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDocumentReference(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +70,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDocumentInformation @ReferencedDocument 
@@ -61,9 +85,9 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _referencedDocument = v, _referencedDocument, value,  "ReferencedDocument");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

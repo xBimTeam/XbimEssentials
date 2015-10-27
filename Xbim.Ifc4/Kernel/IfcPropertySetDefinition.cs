@@ -11,17 +11,43 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertySetDefinition
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertySetDefinition : IIfcPropertyDefinition, IfcPropertySetDefinitionSelect
+	{
+		IEnumerable<IIfcTypeObject> @DefinesType {  get; }
+		IEnumerable<IIfcRelDefinesByTemplate> @IsDefinedBy {  get; }
+		IEnumerable<IIfcRelDefinesByProperties> @DefinesOccurrence {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCPROPERTYSETDEFINITION", 858)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPropertySetDefinition : IfcPropertyDefinition, IfcPropertySetDefinitionSelect, IEqualityComparer<@IfcPropertySetDefinition>, IEquatable<@IfcPropertySetDefinition>
+	public abstract partial class @IfcPropertySetDefinition : IfcPropertyDefinition, IIfcPropertySetDefinition, IEqualityComparer<@IfcPropertySetDefinition>, IEquatable<@IfcPropertySetDefinition>
 	{
+		#region IIfcPropertySetDefinition explicit implementation
+	
+	 
+		IEnumerable<IIfcTypeObject> IIfcPropertySetDefinition.DefinesType {  get { return @DefinesType; } }
+		IEnumerable<IIfcRelDefinesByTemplate> IIfcPropertySetDefinition.IsDefinedBy {  get { return @IsDefinedBy; } }
+		IEnumerable<IIfcRelDefinesByProperties> IIfcPropertySetDefinition.DefinesOccurrence {  get { return @DefinesOccurrence; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertySetDefinition(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

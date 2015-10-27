@@ -13,13 +13,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcComplexPropertyTemplate
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcComplexPropertyTemplate : IIfcPropertyTemplate
+	{
+		IfcLabel? @UsageName { get; }
+		IfcComplexPropertyTemplateTypeEnum? @TemplateType { get; }
+		IEnumerable<IIfcPropertyTemplate> @HasPropertyTemplates { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCCOMPLEXPROPERTYTEMPLATE", 499)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcComplexPropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IEqualityComparer<@IfcComplexPropertyTemplate>, IEquatable<@IfcComplexPropertyTemplate>
+	public  partial class @IfcComplexPropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcComplexPropertyTemplate, IEqualityComparer<@IfcComplexPropertyTemplate>, IEquatable<@IfcComplexPropertyTemplate>
 	{
+		#region IIfcComplexPropertyTemplate explicit implementation
+		IfcLabel? IIfcComplexPropertyTemplate.UsageName { get { return @UsageName; } }	
+		IfcComplexPropertyTemplateTypeEnum? IIfcComplexPropertyTemplate.TemplateType { get { return @TemplateType; } }	
+		IEnumerable<IIfcPropertyTemplate> IIfcComplexPropertyTemplate.HasPropertyTemplates { get { return @HasPropertyTemplates; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcComplexPropertyTemplate(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +71,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _usageName = v, _usageName, value,  "UsageName");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcComplexPropertyTemplateTypeEnum? @TemplateType 
 		{ 
@@ -61,8 +85,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _templateType = v, _templateType, value,  "TemplateType");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcPropertyTemplate> @HasPropertyTemplates 
@@ -73,9 +96,9 @@ namespace Xbim.Ifc4.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _hasPropertyTemplates;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -14,13 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelConnectsPortToElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelConnectsPortToElement : IIfcRelConnects
+	{
+		IIfcPort @RelatingPort { get; }
+		IIfcDistributionElement @RelatedElement { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCRELCONNECTSPORTTOELEMENT", 920)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsPortToElement : IfcRelConnects, IInstantiableEntity, IEqualityComparer<@IfcRelConnectsPortToElement>, IEquatable<@IfcRelConnectsPortToElement>
+	public  partial class @IfcRelConnectsPortToElement : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsPortToElement, IEqualityComparer<@IfcRelConnectsPortToElement>, IEquatable<@IfcRelConnectsPortToElement>
 	{
+		#region IIfcRelConnectsPortToElement explicit implementation
+		IIfcPort IIfcRelConnectsPortToElement.RelatingPort { get { return @RelatingPort; } }	
+		IIfcDistributionElement IIfcRelConnectsPortToElement.RelatedElement { get { return @RelatedElement; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsPortToElement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +69,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _relatingPort = v, _relatingPort, value,  "RelatingPort");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDistributionElement @RelatedElement 
@@ -62,9 +84,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

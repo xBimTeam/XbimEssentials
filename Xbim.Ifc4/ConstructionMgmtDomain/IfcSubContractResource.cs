@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ConstructionMgmtDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSubContractResource
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSubContractResource : IIfcConstructionResource
+	{
+		IfcSubContractResourceTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	[ExpressType("IFCSUBCONTRACTRESOURCE", 1050)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSubContractResource : IfcConstructionResource, IInstantiableEntity, IEqualityComparer<@IfcSubContractResource>, IEquatable<@IfcSubContractResource>
+	public  partial class @IfcSubContractResource : IfcConstructionResource, IInstantiableEntity, IIfcSubContractResource, IEqualityComparer<@IfcSubContractResource>, IEquatable<@IfcSubContractResource>
 	{
+		#region IIfcSubContractResource explicit implementation
+		IfcSubContractResourceTypeEnum? IIfcSubContractResource.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSubContractResource(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

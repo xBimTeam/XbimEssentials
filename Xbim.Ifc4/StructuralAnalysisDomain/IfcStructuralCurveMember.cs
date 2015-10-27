@@ -16,13 +16,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralCurveMember
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralCurveMember : IIfcStructuralMember
+	{
+		IfcStructuralCurveMemberTypeEnum @PredefinedType { get; }
+		IIfcDirection @Axis { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALCURVEMEMBER", 1017)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralCurveMember : IfcStructuralMember, IInstantiableEntity, IEqualityComparer<@IfcStructuralCurveMember>, IEquatable<@IfcStructuralCurveMember>
+	public  partial class @IfcStructuralCurveMember : IfcStructuralMember, IInstantiableEntity, IIfcStructuralCurveMember, IEqualityComparer<@IfcStructuralCurveMember>, IEquatable<@IfcStructuralCurveMember>
 	{
+		#region IIfcStructuralCurveMember explicit implementation
+		IfcStructuralCurveMemberTypeEnum IIfcStructuralCurveMember.PredefinedType { get { return @PredefinedType; } }	
+		IIfcDirection IIfcStructuralCurveMember.Axis { get { return @Axis; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralCurveMember(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +70,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDirection @Axis 
 		{ 
@@ -62,9 +84,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _axis = v, _axis, value,  "Axis");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

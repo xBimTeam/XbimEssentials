@@ -13,13 +13,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationDefinitionResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPlanarBox
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPlanarBox : IIfcPlanarExtent
+	{
+		IfcAxis2Placement @Placement { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationDefinitionResource
 {
 	[ExpressType("IFCPLANARBOX", 810)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlanarBox : IfcPlanarExtent, IInstantiableEntity, IEqualityComparer<@IfcPlanarBox>, IEquatable<@IfcPlanarBox>
+	public  partial class @IfcPlanarBox : IfcPlanarExtent, IInstantiableEntity, IIfcPlanarBox, IEqualityComparer<@IfcPlanarBox>, IEquatable<@IfcPlanarBox>
 	{
+		#region IIfcPlanarBox explicit implementation
+		IfcAxis2Placement IIfcPlanarBox.Placement { get { return @Placement; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPlanarBox(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,9 +64,9 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			{
 				SetValue( v =>  _placement = v, _placement, value,  "Placement");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

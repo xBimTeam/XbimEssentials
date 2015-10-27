@@ -11,13 +11,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MeasureResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSIUnit
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSIUnit : IIfcNamedUnit
+	{
+		IfcSIPrefix? @Prefix { get; }
+		IfcSIUnitName @Name { get; }
+		new IIfcDimensionalExponents @Dimensions  { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IFCSIUNIT", 967)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSIUnit : IfcNamedUnit, IInstantiableEntity, IEqualityComparer<@IfcSIUnit>, IEquatable<@IfcSIUnit>
+	public  partial class @IfcSIUnit : IfcNamedUnit, IInstantiableEntity, IIfcSIUnit, IEqualityComparer<@IfcSIUnit>, IEquatable<@IfcSIUnit>
 	{
+		#region IIfcSIUnit explicit implementation
+		IfcSIPrefix? IIfcSIUnit.Prefix { get { return @Prefix; } }	
+		IfcSIUnitName IIfcSIUnit.Name { get { return @Name; } }	
+	
+		IIfcDimensionalExponents IIfcSIUnit.Dimensions  { get { return @Dimensions; } }
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSIUnit(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +67,7 @@ namespace Xbim.Ifc4.MeasureResource
 			{
 				SetValue( v =>  _prefix = v, _prefix, value,  "Prefix");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcSIUnitName @Name 
 		{ 
@@ -57,9 +81,9 @@ namespace Xbim.Ifc4.MeasureResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 		#region Overriding attributes
 		[EntityAttribute(1, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public override IfcDimensionalExponents @Dimensions 
@@ -73,7 +97,6 @@ namespace Xbim.Ifc4.MeasureResource
 				throw new System.Exception("It is not possible to set a value of derived property Dimensions in IfcSIUnit"); 
 			}
 		}
-
 		#endregion
 
 

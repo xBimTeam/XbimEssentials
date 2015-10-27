@@ -12,14 +12,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBooleanResult
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBooleanResult : IIfcGeometricRepresentationItem, IfcBooleanOperand, IfcCsgSelect
+	{
+		IfcBooleanOperator @Operator { get; }
+		IfcBooleanOperand @FirstOperand { get; }
+		IfcBooleanOperand @SecondOperand { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[IndexedClass]
 	[ExpressType("IFCBOOLEANRESULT", 436)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBooleanResult : IfcGeometricRepresentationItem, IfcBooleanOperand, IfcCsgSelect, IInstantiableEntity, IEqualityComparer<@IfcBooleanResult>, IEquatable<@IfcBooleanResult>
+	public  partial class @IfcBooleanResult : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBooleanResult, IEqualityComparer<@IfcBooleanResult>, IEquatable<@IfcBooleanResult>
 	{
+		#region IIfcBooleanResult explicit implementation
+		IfcBooleanOperator IIfcBooleanResult.Operator { get { return @Operator; } }	
+		IfcBooleanOperand IIfcBooleanResult.FirstOperand { get { return @FirstOperand; } }	
+		IfcBooleanOperand IIfcBooleanResult.SecondOperand { get { return @SecondOperand; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBooleanResult(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +70,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _operator = v, _operator, value,  "Operator");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcBooleanOperand @FirstOperand 
 		{ 
@@ -60,8 +84,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _firstOperand = v, _firstOperand, value,  "FirstOperand");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcBooleanOperand @SecondOperand 
 		{ 
@@ -75,9 +98,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _secondOperand = v, _secondOperand, value,  "SecondOperand");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

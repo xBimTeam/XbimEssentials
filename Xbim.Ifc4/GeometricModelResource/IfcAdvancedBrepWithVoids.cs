@@ -12,13 +12,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAdvancedBrepWithVoids
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAdvancedBrepWithVoids : IIfcAdvancedBrep
+	{
+		IEnumerable<IIfcClosedShell> @Voids { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCADVANCEDBREPWITHVOIDS", 398)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAdvancedBrepWithVoids : IfcAdvancedBrep, IInstantiableEntity, IEqualityComparer<@IfcAdvancedBrepWithVoids>, IEquatable<@IfcAdvancedBrepWithVoids>
+	public  partial class @IfcAdvancedBrepWithVoids : IfcAdvancedBrep, IInstantiableEntity, IIfcAdvancedBrepWithVoids, IEqualityComparer<@IfcAdvancedBrepWithVoids>, IEquatable<@IfcAdvancedBrepWithVoids>
 	{
+		#region IIfcAdvancedBrepWithVoids explicit implementation
+		IEnumerable<IIfcClosedShell> IIfcAdvancedBrepWithVoids.Voids { get { return @Voids; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAdvancedBrepWithVoids(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,9 +60,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 				((IPersistEntity)this).Activate(false);
 				return _voids;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

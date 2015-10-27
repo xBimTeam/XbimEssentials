@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcShadingDevice
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcShadingDevice : IIfcBuildingElement
+	{
+		IfcShadingDeviceTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IFCSHADINGDEVICE", 976)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcShadingDevice : IfcBuildingElement, IInstantiableEntity, IEqualityComparer<@IfcShadingDevice>, IEquatable<@IfcShadingDevice>
+	public  partial class @IfcShadingDevice : IfcBuildingElement, IInstantiableEntity, IIfcShadingDevice, IEqualityComparer<@IfcShadingDevice>, IEquatable<@IfcShadingDevice>
 	{
+		#region IIfcShadingDevice explicit implementation
+		IfcShadingDeviceTypeEnum? IIfcShadingDevice.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcShadingDevice(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

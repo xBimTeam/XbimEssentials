@@ -13,14 +13,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ExternalReferenceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLibraryReference
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLibraryReference : IIfcExternalReference, IfcLibrarySelect
+	{
+		IfcText? @Description { get; }
+		IfcLanguageId? @Language { get; }
+		IIfcLibraryInformation @ReferencedLibrary { get; }
+		IEnumerable<IIfcRelAssociatesLibrary> @LibraryRefForObjects {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCLIBRARYREFERENCE", 724)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLibraryReference : IfcExternalReference, IfcLibrarySelect, IInstantiableEntity, IEqualityComparer<@IfcLibraryReference>, IEquatable<@IfcLibraryReference>
+	public  partial class @IfcLibraryReference : IfcExternalReference, IInstantiableEntity, IIfcLibraryReference, IEqualityComparer<@IfcLibraryReference>, IEquatable<@IfcLibraryReference>
 	{
+		#region IIfcLibraryReference explicit implementation
+		IfcText? IIfcLibraryReference.Description { get { return @Description; } }	
+		IfcLanguageId? IIfcLibraryReference.Language { get { return @Language; } }	
+		IIfcLibraryInformation IIfcLibraryReference.ReferencedLibrary { get { return @ReferencedLibrary; } }	
+	
+	 
+		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryReference.LibraryRefForObjects {  get { return @LibraryRefForObjects; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLibraryReference(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +73,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLanguageId? @Language 
 		{ 
@@ -61,8 +87,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _language = v, _language, value,  "Language");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcLibraryInformation @ReferencedLibrary 
@@ -77,9 +102,9 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _referencedLibrary = v, _referencedLibrary, value,  "ReferencedLibrary");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

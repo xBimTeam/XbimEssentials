@@ -11,17 +11,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFeatureElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFeatureElement : IIfcElement
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCFEATUREELEMENT", 654)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFeatureElement : IfcElement, IEqualityComparer<@IfcFeatureElement>, IEquatable<@IfcFeatureElement>
+	public abstract partial class @IfcFeatureElement : IfcElement, IIfcFeatureElement, IEqualityComparer<@IfcFeatureElement>, IEquatable<@IfcFeatureElement>
 	{
+		#region IIfcFeatureElement explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFeatureElement(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

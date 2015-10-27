@@ -12,13 +12,44 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PropertyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertyTableValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertyTableValue : IIfcSimpleProperty
+	{
+		IEnumerable<IfcValue> @DefiningValues { get; }
+		IEnumerable<IfcValue> @DefinedValues { get; }
+		IfcText? @Expression { get; }
+		IfcUnit @DefiningUnit { get; }
+		IfcUnit @DefinedUnit { get; }
+		IfcCurveInterpolationEnum? @CurveInterpolation { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IFCPROPERTYTABLEVALUE", 861)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyTableValue : IfcSimpleProperty, IInstantiableEntity, IEqualityComparer<@IfcPropertyTableValue>, IEquatable<@IfcPropertyTableValue>
+	public  partial class @IfcPropertyTableValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyTableValue, IEqualityComparer<@IfcPropertyTableValue>, IEquatable<@IfcPropertyTableValue>
 	{
+		#region IIfcPropertyTableValue explicit implementation
+		IEnumerable<IfcValue> IIfcPropertyTableValue.DefiningValues { get { return @DefiningValues; } }	
+		IEnumerable<IfcValue> IIfcPropertyTableValue.DefinedValues { get { return @DefinedValues; } }	
+		IfcText? IIfcPropertyTableValue.Expression { get { return @Expression; } }	
+		IfcUnit IIfcPropertyTableValue.DefiningUnit { get { return @DefiningUnit; } }	
+		IfcUnit IIfcPropertyTableValue.DefinedUnit { get { return @DefinedUnit; } }	
+		IfcCurveInterpolationEnum? IIfcPropertyTableValue.CurveInterpolation { get { return @CurveInterpolation; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyTableValue(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +76,7 @@ namespace Xbim.Ifc4.PropertyResource
 				((IPersistEntity)this).Activate(false);
 				return _definingValues;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcValue> @DefinedValues 
 		{ 
@@ -56,8 +86,7 @@ namespace Xbim.Ifc4.PropertyResource
 				((IPersistEntity)this).Activate(false);
 				return _definedValues;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Expression 
 		{ 
@@ -71,8 +100,7 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _expression = v, _expression, value,  "Expression");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcUnit @DefiningUnit 
 		{ 
@@ -86,8 +114,7 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _definingUnit = v, _definingUnit, value,  "DefiningUnit");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcUnit @DefinedUnit 
 		{ 
@@ -101,8 +128,7 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _definedUnit = v, _definedUnit, value,  "DefinedUnit");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcCurveInterpolationEnum? @CurveInterpolation 
 		{ 
@@ -116,9 +142,9 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _curveInterpolation = v, _curveInterpolation, value,  "CurveInterpolation");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

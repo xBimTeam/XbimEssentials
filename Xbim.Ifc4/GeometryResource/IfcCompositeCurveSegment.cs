@@ -11,13 +11,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCompositeCurveSegment
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCompositeCurveSegment : IIfcGeometricRepresentationItem
+	{
+		IfcTransitionCode @Transition { get; }
+		bool @SameSense { get; }
+		IIfcCurve @ParentCurve { get; }
+		IEnumerable<IIfcCompositeCurve> @UsingCurves {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCCOMPOSITECURVESEGMENT", 502)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompositeCurveSegment : IfcGeometricRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcCompositeCurveSegment>, IEquatable<@IfcCompositeCurveSegment>
+	public  partial class @IfcCompositeCurveSegment : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcCompositeCurveSegment, IEqualityComparer<@IfcCompositeCurveSegment>, IEquatable<@IfcCompositeCurveSegment>
 	{
+		#region IIfcCompositeCurveSegment explicit implementation
+		IfcTransitionCode IIfcCompositeCurveSegment.Transition { get { return @Transition; } }	
+		bool IIfcCompositeCurveSegment.SameSense { get { return @SameSense; } }	
+		IIfcCurve IIfcCompositeCurveSegment.ParentCurve { get { return @ParentCurve; } }	
+	
+	 
+		IEnumerable<IIfcCompositeCurve> IIfcCompositeCurveSegment.UsingCurves {  get { return @UsingCurves; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCompositeCurveSegment(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +70,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _transition = v, _transition, value,  "Transition");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @SameSense 
 		{ 
@@ -58,8 +84,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _sameSense = v, _sameSense, value,  "SameSense");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCurve @ParentCurve 
 		{ 
@@ -73,9 +98,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _parentCurve = v, _parentCurve, value,  "ParentCurve");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

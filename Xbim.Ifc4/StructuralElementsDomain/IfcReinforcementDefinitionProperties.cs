@@ -15,13 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralElementsDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcReinforcementDefinitionProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcReinforcementDefinitionProperties : IIfcPreDefinedPropertySet
+	{
+		IfcLabel? @DefinitionType { get; }
+		IEnumerable<IIfcSectionReinforcementProperties> @ReinforcementSectionDefinitions { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IFCREINFORCEMENTDEFINITIONPROPERTIES", 894)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcementDefinitionProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IEqualityComparer<@IfcReinforcementDefinitionProperties>, IEquatable<@IfcReinforcementDefinitionProperties>
+	public  partial class @IfcReinforcementDefinitionProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcReinforcementDefinitionProperties, IEqualityComparer<@IfcReinforcementDefinitionProperties>, IEquatable<@IfcReinforcementDefinitionProperties>
 	{
+		#region IIfcReinforcementDefinitionProperties explicit implementation
+		IfcLabel? IIfcReinforcementDefinitionProperties.DefinitionType { get { return @DefinitionType; } }	
+		IEnumerable<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions { get { return @ReinforcementSectionDefinitions; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcementDefinitionProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +70,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _definitionType = v, _definitionType, value,  "DefinitionType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcSectionReinforcementProperties> @ReinforcementSectionDefinitions 
 		{ 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				((IPersistEntity)this).Activate(false);
 				return _reinforcementSectionDefinitions;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

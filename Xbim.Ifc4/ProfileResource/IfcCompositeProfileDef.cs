@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProfileResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCompositeProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCompositeProfileDef : IIfcProfileDef
+	{
+		IEnumerable<IIfcProfileDef> @Profiles { get; }
+		IfcLabel? @Label { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IFCCOMPOSITEPROFILEDEF", 503)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompositeProfileDef : IfcProfileDef, IInstantiableEntity, IEqualityComparer<@IfcCompositeProfileDef>, IEquatable<@IfcCompositeProfileDef>
+	public  partial class @IfcCompositeProfileDef : IfcProfileDef, IInstantiableEntity, IIfcCompositeProfileDef, IEqualityComparer<@IfcCompositeProfileDef>, IEquatable<@IfcCompositeProfileDef>
 	{
+		#region IIfcCompositeProfileDef explicit implementation
+		IEnumerable<IIfcProfileDef> IIfcCompositeProfileDef.Profiles { get { return @Profiles; } }	
+		IfcLabel? IIfcCompositeProfileDef.Label { get { return @Label; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCompositeProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -40,8 +63,7 @@ namespace Xbim.Ifc4.ProfileResource
 				((IPersistEntity)this).Activate(false);
 				return _profiles;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Label 
 		{ 
@@ -55,9 +77,9 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _label = v, _label, value,  "Label");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

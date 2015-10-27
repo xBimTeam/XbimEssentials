@@ -16,13 +16,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcWindowType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcWindowType : IIfcBuildingElementType
+	{
+		IfcWindowTypeEnum @PredefinedType { get; }
+		IfcWindowTypePartitioningEnum @PartitioningType { get; }
+		bool? @ParameterTakesPrecedence { get; }
+		IfcLabel? @UserDefinedPartitioningType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IFCWINDOWTYPE", 1149)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWindowType : IfcBuildingElementType, IInstantiableEntity, IEqualityComparer<@IfcWindowType>, IEquatable<@IfcWindowType>
+	public  partial class @IfcWindowType : IfcBuildingElementType, IInstantiableEntity, IIfcWindowType, IEqualityComparer<@IfcWindowType>, IEquatable<@IfcWindowType>
 	{
+		#region IIfcWindowType explicit implementation
+		IfcWindowTypeEnum IIfcWindowType.PredefinedType { get { return @PredefinedType; } }	
+		IfcWindowTypePartitioningEnum IIfcWindowType.PartitioningType { get { return @PartitioningType; } }	
+		bool? IIfcWindowType.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
+		IfcLabel? IIfcWindowType.UserDefinedPartitioningType { get { return @UserDefinedPartitioningType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWindowType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -49,8 +76,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcWindowTypePartitioningEnum @PartitioningType 
 		{ 
@@ -64,8 +90,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _partitioningType = v, _partitioningType, value,  "PartitioningType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @ParameterTakesPrecedence 
 		{ 
@@ -79,8 +104,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedPartitioningType 
 		{ 
@@ -94,9 +118,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _userDefinedPartitioningType = v, _userDefinedPartitioningType, value,  "UserDefinedPartitioningType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

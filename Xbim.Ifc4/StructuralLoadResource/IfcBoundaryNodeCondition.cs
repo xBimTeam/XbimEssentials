@@ -12,13 +12,44 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralLoadResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBoundaryNodeCondition
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBoundaryNodeCondition : IIfcBoundaryCondition
+	{
+		IfcTranslationalStiffnessSelect @TranslationalStiffnessX { get; }
+		IfcTranslationalStiffnessSelect @TranslationalStiffnessY { get; }
+		IfcTranslationalStiffnessSelect @TranslationalStiffnessZ { get; }
+		IfcRotationalStiffnessSelect @RotationalStiffnessX { get; }
+		IfcRotationalStiffnessSelect @RotationalStiffnessY { get; }
+		IfcRotationalStiffnessSelect @RotationalStiffnessZ { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IFCBOUNDARYNODECONDITION", 441)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundaryNodeCondition : IfcBoundaryCondition, IInstantiableEntity, IEqualityComparer<@IfcBoundaryNodeCondition>, IEquatable<@IfcBoundaryNodeCondition>
+	public  partial class @IfcBoundaryNodeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryNodeCondition, IEqualityComparer<@IfcBoundaryNodeCondition>, IEquatable<@IfcBoundaryNodeCondition>
 	{
+		#region IIfcBoundaryNodeCondition explicit implementation
+		IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessX { get { return @TranslationalStiffnessX; } }	
+		IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessY { get { return @TranslationalStiffnessY; } }	
+		IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessZ { get { return @TranslationalStiffnessZ; } }	
+		IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessX { get { return @RotationalStiffnessX; } }	
+		IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessY { get { return @RotationalStiffnessY; } }	
+		IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessZ { get { return @RotationalStiffnessZ; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundaryNodeCondition(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +78,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _translationalStiffnessX = v, _translationalStiffnessX, value,  "TranslationalStiffnessX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTranslationalStiffnessSelect @TranslationalStiffnessY 
 		{ 
@@ -62,8 +92,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _translationalStiffnessY = v, _translationalStiffnessY, value,  "TranslationalStiffnessY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTranslationalStiffnessSelect @TranslationalStiffnessZ 
 		{ 
@@ -77,8 +106,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _translationalStiffnessZ = v, _translationalStiffnessZ, value,  "TranslationalStiffnessZ");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcRotationalStiffnessSelect @RotationalStiffnessX 
 		{ 
@@ -92,8 +120,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _rotationalStiffnessX = v, _rotationalStiffnessX, value,  "RotationalStiffnessX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcRotationalStiffnessSelect @RotationalStiffnessY 
 		{ 
@@ -107,8 +134,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _rotationalStiffnessY = v, _rotationalStiffnessY, value,  "RotationalStiffnessY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcRotationalStiffnessSelect @RotationalStiffnessZ 
 		{ 
@@ -122,9 +148,9 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _rotationalStiffnessZ = v, _rotationalStiffnessZ, value,  "RotationalStiffnessZ");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

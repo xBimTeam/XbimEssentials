@@ -13,14 +13,45 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MaterialResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterial
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterial : IIfcMaterialDefinition
+	{
+		IfcLabel @Name { get; }
+		IfcText? @Description { get; }
+		IfcLabel? @Category { get; }
+		IEnumerable<IIfcMaterialDefinitionRepresentation> @HasRepresentation {  get; }
+		IEnumerable<IIfcMaterialRelationship> @IsRelatedWith {  get; }
+		IEnumerable<IIfcMaterialRelationship> @RelatesTo {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MaterialResource
 {
 	[IndexedClass]
 	[ExpressType("IFCMATERIAL", 741)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterial : IfcMaterialDefinition, IInstantiableEntity, IEqualityComparer<@IfcMaterial>, IEquatable<@IfcMaterial>
+	public  partial class @IfcMaterial : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterial, IEqualityComparer<@IfcMaterial>, IEquatable<@IfcMaterial>
 	{
+		#region IIfcMaterial explicit implementation
+		IfcLabel IIfcMaterial.Name { get { return @Name; } }	
+		IfcText? IIfcMaterial.Description { get { return @Description; } }	
+		IfcLabel? IIfcMaterial.Category { get { return @Category; } }	
+	
+	 
+		IEnumerable<IIfcMaterialDefinitionRepresentation> IIfcMaterial.HasRepresentation {  get { return @HasRepresentation; } }
+		IEnumerable<IIfcMaterialRelationship> IIfcMaterial.IsRelatedWith {  get { return @IsRelatedWith; } }
+		IEnumerable<IIfcMaterialRelationship> IIfcMaterial.RelatesTo {  get { return @RelatesTo; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterial(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +77,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -61,8 +91,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Category 
 		{ 
@@ -76,9 +105,9 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _category = v, _category, value,  "Category");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

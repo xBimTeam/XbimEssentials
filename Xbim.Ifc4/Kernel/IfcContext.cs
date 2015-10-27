@@ -13,13 +13,46 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcContext
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcContext : IIfcObjectDefinition
+	{
+		IfcLabel? @ObjectType { get; }
+		IfcLabel? @LongName { get; }
+		IfcLabel? @Phase { get; }
+		IEnumerable<IIfcRepresentationContext> @RepresentationContexts { get; }
+		IIfcUnitAssignment @UnitsInContext { get; }
+		IEnumerable<IIfcRelDefinesByProperties> @IsDefinedBy {  get; }
+		IEnumerable<IIfcRelDeclares> @Declares {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCCONTEXT", 525)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcContext : IfcObjectDefinition, IEqualityComparer<@IfcContext>, IEquatable<@IfcContext>
+	public abstract partial class @IfcContext : IfcObjectDefinition, IIfcContext, IEqualityComparer<@IfcContext>, IEquatable<@IfcContext>
 	{
+		#region IIfcContext explicit implementation
+		IfcLabel? IIfcContext.ObjectType { get { return @ObjectType; } }	
+		IfcLabel? IIfcContext.LongName { get { return @LongName; } }	
+		IfcLabel? IIfcContext.Phase { get { return @Phase; } }	
+		IEnumerable<IIfcRepresentationContext> IIfcContext.RepresentationContexts { get { return @RepresentationContexts; } }	
+		IIfcUnitAssignment IIfcContext.UnitsInContext { get { return @UnitsInContext; } }	
+	
+	 
+		IEnumerable<IIfcRelDefinesByProperties> IIfcContext.IsDefinedBy {  get { return @IsDefinedBy; } }
+		IEnumerable<IIfcRelDeclares> IIfcContext.Declares {  get { return @Declares; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcContext(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +81,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _objectType = v, _objectType, value,  "ObjectType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @LongName 
 		{ 
@@ -63,8 +95,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _longName = v, _longName, value,  "LongName");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Phase 
 		{ 
@@ -78,8 +109,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _phase = v, _phase, value,  "Phase");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcRepresentationContext> @RepresentationContexts 
 		{ 
@@ -89,8 +119,7 @@ namespace Xbim.Ifc4.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _representationContexts;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcUnitAssignment @UnitsInContext 
 		{ 
@@ -104,9 +133,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _unitsInContext = v, _unitsInContext, value,  "UnitsInContext");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

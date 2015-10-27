@@ -13,14 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ApprovalResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcResourceApprovalRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcResourceApprovalRelationship : IIfcResourceLevelRelationship
+	{
+		IEnumerable<IfcResourceObjectSelect> @RelatedResourceObjects { get; }
+		IIfcApproval @RelatingApproval { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ApprovalResource
 {
 	[IndexedClass]
 	[ExpressType("IFCRESOURCEAPPROVALRELATIONSHIP", 955)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcResourceApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IEqualityComparer<@IfcResourceApprovalRelationship>, IEquatable<@IfcResourceApprovalRelationship>
+	public  partial class @IfcResourceApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceApprovalRelationship, IEqualityComparer<@IfcResourceApprovalRelationship>, IEquatable<@IfcResourceApprovalRelationship>
 	{
+		#region IIfcResourceApprovalRelationship explicit implementation
+		IEnumerable<IfcResourceObjectSelect> IIfcResourceApprovalRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
+		IIfcApproval IIfcResourceApprovalRelationship.RelatingApproval { get { return @RelatingApproval; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcResourceApprovalRelationship(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +65,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				((IPersistEntity)this).Activate(false);
 				return _relatedResourceObjects;
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcApproval @RelatingApproval 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.ApprovalResource
 			{
 				SetValue( v =>  _relatingApproval = v, _relatingApproval, value,  "RelatingApproval");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

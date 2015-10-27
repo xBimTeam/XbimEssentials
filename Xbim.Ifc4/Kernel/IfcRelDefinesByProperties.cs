@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelDefinesByProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelDefinesByProperties : IIfcRelDefines
+	{
+		IEnumerable<IIfcObjectDefinition> @RelatedObjects { get; }
+		IfcPropertySetDefinitionSelect @RelatingPropertyDefinition { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELDEFINESBYPROPERTIES", 933)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelDefinesByProperties : IfcRelDefines, IInstantiableEntity, IEqualityComparer<@IfcRelDefinesByProperties>, IEquatable<@IfcRelDefinesByProperties>
+	public  partial class @IfcRelDefinesByProperties : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByProperties, IEqualityComparer<@IfcRelDefinesByProperties>, IEquatable<@IfcRelDefinesByProperties>
 	{
+		#region IIfcRelDefinesByProperties explicit implementation
+		IEnumerable<IIfcObjectDefinition> IIfcRelDefinesByProperties.RelatedObjects { get { return @RelatedObjects; } }	
+		IfcPropertySetDefinitionSelect IIfcRelDefinesByProperties.RelatingPropertyDefinition { get { return @RelatingPropertyDefinition; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDefinesByProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +65,7 @@ namespace Xbim.Ifc4.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _relatedObjects;
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcPropertySetDefinitionSelect @RelatingPropertyDefinition 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _relatingPropertyDefinition = v, _relatingPropertyDefinition, value,  "RelatingPropertyDefinition");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

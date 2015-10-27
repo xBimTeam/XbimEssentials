@@ -12,13 +12,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.DateTimeResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTaskTimeRecurring
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTaskTimeRecurring : IIfcTaskTime
+	{
+		IIfcRecurrencePattern @Recurrance { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IFCTASKTIMERECURRING", 1083)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTaskTimeRecurring : IfcTaskTime, IInstantiableEntity, IEqualityComparer<@IfcTaskTimeRecurring>, IEquatable<@IfcTaskTimeRecurring>
+	public  partial class @IfcTaskTimeRecurring : IfcTaskTime, IInstantiableEntity, IIfcTaskTimeRecurring, IEqualityComparer<@IfcTaskTimeRecurring>, IEquatable<@IfcTaskTimeRecurring>
 	{
+		#region IIfcTaskTimeRecurring explicit implementation
+		IIfcRecurrencePattern IIfcTaskTimeRecurring.Recurrance { get { return @Recurrance; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTaskTimeRecurring(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +63,9 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _recurrance = v, _recurrance, value,  "Recurrance");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

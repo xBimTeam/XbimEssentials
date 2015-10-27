@@ -13,13 +13,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssignsToGroupByFactor
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssignsToGroupByFactor : IIfcRelAssignsToGroup
+	{
+		IfcRatioMeasure @Factor { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELASSIGNSTOGROUPBYFACTOR", 906)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToGroupByFactor : IfcRelAssignsToGroup, IInstantiableEntity, IEqualityComparer<@IfcRelAssignsToGroupByFactor>, IEquatable<@IfcRelAssignsToGroupByFactor>
+	public  partial class @IfcRelAssignsToGroupByFactor : IfcRelAssignsToGroup, IInstantiableEntity, IIfcRelAssignsToGroupByFactor, IEqualityComparer<@IfcRelAssignsToGroupByFactor>, IEquatable<@IfcRelAssignsToGroupByFactor>
 	{
+		#region IIfcRelAssignsToGroupByFactor explicit implementation
+		IfcRatioMeasure IIfcRelAssignsToGroupByFactor.Factor { get { return @Factor; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsToGroupByFactor(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,9 +64,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _factor = v, _factor, value,  "Factor");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

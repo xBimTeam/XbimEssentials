@@ -13,13 +13,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationDefinitionResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextLiteral
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextLiteral : IIfcGeometricRepresentationItem
+	{
+		IfcPresentableText @Literal { get; }
+		IfcAxis2Placement @Placement { get; }
+		IfcTextPath @Path { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationDefinitionResource
 {
 	[ExpressType("IFCTEXTLITERAL", 1092)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextLiteral : IfcGeometricRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcTextLiteral>, IEquatable<@IfcTextLiteral>
+	public  partial class @IfcTextLiteral : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcTextLiteral, IEqualityComparer<@IfcTextLiteral>, IEquatable<@IfcTextLiteral>
 	{
+		#region IIfcTextLiteral explicit implementation
+		IfcPresentableText IIfcTextLiteral.Literal { get { return @Literal; } }	
+		IfcAxis2Placement IIfcTextLiteral.Placement { get { return @Placement; } }	
+		IfcTextPath IIfcTextLiteral.Path { get { return @Path; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextLiteral(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +70,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			{
 				SetValue( v =>  _literal = v, _literal, value,  "Literal");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcAxis2Placement @Placement 
 		{ 
@@ -60,8 +84,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			{
 				SetValue( v =>  _placement = v, _placement, value,  "Placement");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcTextPath @Path 
 		{ 
@@ -75,9 +98,9 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			{
 				SetValue( v =>  _path = v, _path, value,  "Path");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -12,13 +12,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralLoadResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralLoadSingleDisplacementDistortion
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralLoadSingleDisplacementDistortion : IIfcStructuralLoadSingleDisplacement
+	{
+		IfcCurvatureMeasure? @Distortion { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IFCSTRUCTURALLOADSINGLEDISPLACEMENTDISTORTION", 1030)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleDisplacementDistortion : IfcStructuralLoadSingleDisplacement, IInstantiableEntity, IEqualityComparer<@IfcStructuralLoadSingleDisplacementDistortion>, IEquatable<@IfcStructuralLoadSingleDisplacementDistortion>
+	public  partial class @IfcStructuralLoadSingleDisplacementDistortion : IfcStructuralLoadSingleDisplacement, IInstantiableEntity, IIfcStructuralLoadSingleDisplacementDistortion, IEqualityComparer<@IfcStructuralLoadSingleDisplacementDistortion>, IEquatable<@IfcStructuralLoadSingleDisplacementDistortion>
 	{
+		#region IIfcStructuralLoadSingleDisplacementDistortion explicit implementation
+		IfcCurvatureMeasure? IIfcStructuralLoadSingleDisplacementDistortion.Distortion { get { return @Distortion; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadSingleDisplacementDistortion(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +63,9 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _distortion = v, _distortion, value,  "Distortion");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

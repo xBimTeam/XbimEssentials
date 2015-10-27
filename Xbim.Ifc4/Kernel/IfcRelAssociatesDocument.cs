@@ -14,13 +14,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssociatesDocument
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssociatesDocument : IIfcRelAssociates
+	{
+		IfcDocumentSelect @RelatingDocument { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELASSOCIATESDOCUMENT", 914)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesDocument : IfcRelAssociates, IInstantiableEntity, IEqualityComparer<@IfcRelAssociatesDocument>, IEquatable<@IfcRelAssociatesDocument>
+	public  partial class @IfcRelAssociatesDocument : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesDocument, IEqualityComparer<@IfcRelAssociatesDocument>, IEquatable<@IfcRelAssociatesDocument>
 	{
+		#region IIfcRelAssociatesDocument explicit implementation
+		IfcDocumentSelect IIfcRelAssociatesDocument.RelatingDocument { get { return @RelatingDocument; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesDocument(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +66,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _relatingDocument = v, _relatingDocument, value,  "RelatingDocument");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

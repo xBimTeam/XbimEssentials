@@ -11,13 +11,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPlacement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPlacement : IIfcGeometricRepresentationItem
+	{
+		IIfcCartesianPoint @Location { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCPLACEMENT", 809)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPlacement : IfcGeometricRepresentationItem, IEqualityComparer<@IfcPlacement>, IEquatable<@IfcPlacement>
+	public abstract partial class @IfcPlacement : IfcGeometricRepresentationItem, IIfcPlacement, IEqualityComparer<@IfcPlacement>, IEquatable<@IfcPlacement>
 	{
+		#region IIfcPlacement explicit implementation
+		IIfcCartesianPoint IIfcPlacement.Location { get { return @Location; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPlacement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,9 +62,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _location = v, _location, value,  "Location");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

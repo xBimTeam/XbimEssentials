@@ -11,13 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricConstraintResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcGridPlacement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcGridPlacement : IIfcObjectPlacement
+	{
+		IIfcVirtualGridIntersection @PlacementLocation { get; }
+		IfcGridPlacementDirectionSelect @PlacementRefDirection { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[ExpressType("IFCGRIDPLACEMENT", 698)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGridPlacement : IfcObjectPlacement, IInstantiableEntity, IEqualityComparer<@IfcGridPlacement>, IEquatable<@IfcGridPlacement>
+	public  partial class @IfcGridPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcGridPlacement, IEqualityComparer<@IfcGridPlacement>, IEquatable<@IfcGridPlacement>
 	{
+		#region IIfcGridPlacement explicit implementation
+		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementLocation { get { return @PlacementLocation; } }	
+		IfcGridPlacementDirectionSelect IIfcGridPlacement.PlacementRefDirection { get { return @PlacementRefDirection; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGridPlacement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +65,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				SetValue( v =>  _placementLocation = v, _placementLocation, value,  "PlacementLocation");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcGridPlacementDirectionSelect @PlacementRefDirection 
 		{ 
@@ -57,9 +79,9 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				SetValue( v =>  _placementRefDirection = v, _placementRefDirection, value,  "PlacementRefDirection");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

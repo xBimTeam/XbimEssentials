@@ -15,13 +15,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBuildingStorey
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBuildingStorey : IIfcSpatialStructureElement
+	{
+		IfcLengthMeasure? @Elevation { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCBUILDINGSTOREY", 454)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuildingStorey : IfcSpatialStructureElement, IInstantiableEntity, IEqualityComparer<@IfcBuildingStorey>, IEquatable<@IfcBuildingStorey>
+	public  partial class @IfcBuildingStorey : IfcSpatialStructureElement, IInstantiableEntity, IIfcBuildingStorey, IEqualityComparer<@IfcBuildingStorey>, IEquatable<@IfcBuildingStorey>
 	{
+		#region IIfcBuildingStorey explicit implementation
+		IfcLengthMeasure? IIfcBuildingStorey.Elevation { get { return @Elevation; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBuildingStorey(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +66,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _elevation = v, _elevation, value,  "Elevation");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

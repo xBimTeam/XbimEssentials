@@ -12,13 +12,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralLoadResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralLoadPlanarForce
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralLoadPlanarForce : IIfcStructuralLoadStatic
+	{
+		IfcPlanarForceMeasure? @PlanarForceX { get; }
+		IfcPlanarForceMeasure? @PlanarForceY { get; }
+		IfcPlanarForceMeasure? @PlanarForceZ { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IFCSTRUCTURALLOADPLANARFORCE", 1028)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadPlanarForce : IfcStructuralLoadStatic, IInstantiableEntity, IEqualityComparer<@IfcStructuralLoadPlanarForce>, IEquatable<@IfcStructuralLoadPlanarForce>
+	public  partial class @IfcStructuralLoadPlanarForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadPlanarForce, IEqualityComparer<@IfcStructuralLoadPlanarForce>, IEquatable<@IfcStructuralLoadPlanarForce>
 	{
+		#region IIfcStructuralLoadPlanarForce explicit implementation
+		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceX { get { return @PlanarForceX; } }	
+		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceY { get { return @PlanarForceY; } }	
+		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceZ { get { return @PlanarForceZ; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadPlanarForce(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +69,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _planarForceX = v, _planarForceX, value,  "PlanarForceX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPlanarForceMeasure? @PlanarForceY 
 		{ 
@@ -59,8 +83,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _planarForceY = v, _planarForceY, value,  "PlanarForceY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPlanarForceMeasure? @PlanarForceZ 
 		{ 
@@ -74,9 +97,9 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _planarForceZ = v, _planarForceZ, value,  "PlanarForceZ");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

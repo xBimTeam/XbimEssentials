@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ConstructionMgmtDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCrewResource
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCrewResource : IIfcConstructionResource
+	{
+		IfcCrewResourceTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	[ExpressType("IFCCREWRESOURCE", 543)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCrewResource : IfcConstructionResource, IInstantiableEntity, IEqualityComparer<@IfcCrewResource>, IEquatable<@IfcCrewResource>
+	public  partial class @IfcCrewResource : IfcConstructionResource, IInstantiableEntity, IIfcCrewResource, IEqualityComparer<@IfcCrewResource>, IEquatable<@IfcCrewResource>
 	{
+		#region IIfcCrewResource explicit implementation
+		IfcCrewResourceTypeEnum? IIfcCrewResource.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCrewResource(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

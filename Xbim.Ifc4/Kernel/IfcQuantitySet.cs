@@ -11,17 +11,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcQuantitySet
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcQuantitySet : IIfcPropertySetDefinition
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCQUANTITYSET", 874)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcQuantitySet : IfcPropertySetDefinition, IEqualityComparer<@IfcQuantitySet>, IEquatable<@IfcQuantitySet>
+	public abstract partial class @IfcQuantitySet : IfcPropertySetDefinition, IIfcQuantitySet, IEqualityComparer<@IfcQuantitySet>, IEquatable<@IfcQuantitySet>
 	{
+		#region IIfcQuantitySet explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcQuantitySet(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

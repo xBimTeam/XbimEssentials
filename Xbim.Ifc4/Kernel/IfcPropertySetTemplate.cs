@@ -13,13 +13,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertySetTemplate
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertySetTemplate : IIfcPropertyTemplateDefinition
+	{
+		IfcPropertySetTemplateTypeEnum? @TemplateType { get; }
+		IfcIdentifier? @ApplicableEntity { get; }
+		IEnumerable<IIfcPropertyTemplate> @HasPropertyTemplates { get; }
+		IEnumerable<IIfcRelDefinesByTemplate> @Defines {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCPROPERTYSETTEMPLATE", 859)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertySetTemplate : IfcPropertyTemplateDefinition, IInstantiableEntity, IEqualityComparer<@IfcPropertySetTemplate>, IEquatable<@IfcPropertySetTemplate>
+	public  partial class @IfcPropertySetTemplate : IfcPropertyTemplateDefinition, IInstantiableEntity, IIfcPropertySetTemplate, IEqualityComparer<@IfcPropertySetTemplate>, IEquatable<@IfcPropertySetTemplate>
 	{
+		#region IIfcPropertySetTemplate explicit implementation
+		IfcPropertySetTemplateTypeEnum? IIfcPropertySetTemplate.TemplateType { get { return @TemplateType; } }	
+		IfcIdentifier? IIfcPropertySetTemplate.ApplicableEntity { get { return @ApplicableEntity; } }	
+		IEnumerable<IIfcPropertyTemplate> IIfcPropertySetTemplate.HasPropertyTemplates { get { return @HasPropertyTemplates; } }	
+	
+	 
+		IEnumerable<IIfcRelDefinesByTemplate> IIfcPropertySetTemplate.Defines {  get { return @Defines; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertySetTemplate(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +73,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _templateType = v, _templateType, value,  "TemplateType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIdentifier? @ApplicableEntity 
 		{ 
@@ -61,8 +87,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _applicableEntity = v, _applicableEntity, value,  "ApplicableEntity");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcPropertyTemplate> @HasPropertyTemplates 
@@ -73,9 +98,9 @@ namespace Xbim.Ifc4.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _hasPropertyTemplates;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

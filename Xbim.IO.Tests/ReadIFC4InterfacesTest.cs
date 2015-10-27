@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Ifc4;
 using Xbim.Ifc4.Interfaces;
 using Xbim.IO.Esent;
 using Xbim.IO.Memory;

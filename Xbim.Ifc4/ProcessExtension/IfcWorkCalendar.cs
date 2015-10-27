@@ -15,13 +15,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProcessExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcWorkCalendar
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcWorkCalendar : IIfcControl
+	{
+		IEnumerable<IIfcWorkTime> @WorkingTimes { get; }
+		IEnumerable<IIfcWorkTime> @ExceptionTimes { get; }
+		IfcWorkCalendarTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IFCWORKCALENDAR", 1150)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWorkCalendar : IfcControl, IInstantiableEntity, IEqualityComparer<@IfcWorkCalendar>, IEquatable<@IfcWorkCalendar>
+	public  partial class @IfcWorkCalendar : IfcControl, IInstantiableEntity, IIfcWorkCalendar, IEqualityComparer<@IfcWorkCalendar>, IEquatable<@IfcWorkCalendar>
 	{
+		#region IIfcWorkCalendar explicit implementation
+		IEnumerable<IIfcWorkTime> IIfcWorkCalendar.WorkingTimes { get { return @WorkingTimes; } }	
+		IEnumerable<IIfcWorkTime> IIfcWorkCalendar.ExceptionTimes { get { return @ExceptionTimes; } }	
+		IfcWorkCalendarTypeEnum? IIfcWorkCalendar.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWorkCalendar(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +70,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				((IPersistEntity)this).Activate(false);
 				return _workingTimes;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcWorkTime> @ExceptionTimes 
 		{ 
@@ -56,8 +80,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				((IPersistEntity)this).Activate(false);
 				return _exceptionTimes;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcWorkCalendarTypeEnum? @PredefinedType 
 		{ 
@@ -71,9 +94,9 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -13,13 +13,38 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.RepresentationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProductRepresentation
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProductRepresentation : IPersistEntity
+	{
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		IEnumerable<IIfcRepresentation> @Representations { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IFCPRODUCTREPRESENTATION", 840)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProductRepresentation : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcProductRepresentation>, IEquatable<@IfcProductRepresentation>
+	public abstract partial class @IfcProductRepresentation : IPersistEntity, INotifyPropertyChanged, IIfcProductRepresentation, IEqualityComparer<@IfcProductRepresentation>, IEquatable<@IfcProductRepresentation>
 	{
+		#region IIfcProductRepresentation explicit implementation
+		IfcLabel? IIfcProductRepresentation.Name { get { return @Name; } }	
+		IfcText? IIfcProductRepresentation.Description { get { return @Description; } }	
+		IEnumerable<IIfcRepresentation> IIfcProductRepresentation.Representations { get { return @Representations; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -102,8 +127,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -117,8 +141,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcRepresentation> @Representations 
@@ -129,9 +152,9 @@ namespace Xbim.Ifc4.RepresentationResource
 				((IPersistEntity)this).Activate(false);
 				return _representations;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

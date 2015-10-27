@@ -16,17 +16,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralSurfaceConnection
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralSurfaceConnection : IIfcStructuralConnection
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALSURFACECONNECTION", 1043)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSurfaceConnection : IfcStructuralConnection, IInstantiableEntity, IEqualityComparer<@IfcStructuralSurfaceConnection>, IEquatable<@IfcStructuralSurfaceConnection>
+	public  partial class @IfcStructuralSurfaceConnection : IfcStructuralConnection, IInstantiableEntity, IIfcStructuralSurfaceConnection, IEqualityComparer<@IfcStructuralSurfaceConnection>, IEquatable<@IfcStructuralSurfaceConnection>
 	{
+		#region IIfcStructuralSurfaceConnection explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralSurfaceConnection(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

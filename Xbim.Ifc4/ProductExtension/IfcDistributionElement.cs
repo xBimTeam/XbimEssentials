@@ -15,17 +15,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDistributionElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDistributionElement : IIfcElement
+	{
+		IEnumerable<IIfcRelConnectsPortToElement> @HasPorts {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCDISTRIBUTIONELEMENT", 572)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionElement : IfcElement, IInstantiableEntity, IEqualityComparer<@IfcDistributionElement>, IEquatable<@IfcDistributionElement>
+	public  partial class @IfcDistributionElement : IfcElement, IInstantiableEntity, IIfcDistributionElement, IEqualityComparer<@IfcDistributionElement>, IEquatable<@IfcDistributionElement>
 	{
+		#region IIfcDistributionElement explicit implementation
+	
+	 
+		IEnumerable<IIfcRelConnectsPortToElement> IIfcDistributionElement.HasPorts {  get { return @HasPorts; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDistributionElement(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

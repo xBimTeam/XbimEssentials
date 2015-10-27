@@ -13,13 +13,46 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MaterialResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialProfile
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialProfile : IIfcMaterialDefinition
+	{
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		IIfcMaterial @Material { get; }
+		IIfcProfileDef @Profile { get; }
+		IfcNormalisedRatioMeasure? @Priority { get; }
+		IfcLabel? @Category { get; }
+		IIfcMaterialProfileSet @ToMaterialProfileSet {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IFCMATERIALPROFILE", 752)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialProfile : IfcMaterialDefinition, IInstantiableEntity, IEqualityComparer<@IfcMaterialProfile>, IEquatable<@IfcMaterialProfile>
+	public  partial class @IfcMaterialProfile : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialProfile, IEqualityComparer<@IfcMaterialProfile>, IEquatable<@IfcMaterialProfile>
 	{
+		#region IIfcMaterialProfile explicit implementation
+		IfcLabel? IIfcMaterialProfile.Name { get { return @Name; } }	
+		IfcText? IIfcMaterialProfile.Description { get { return @Description; } }	
+		IIfcMaterial IIfcMaterialProfile.Material { get { return @Material; } }	
+		IIfcProfileDef IIfcMaterialProfile.Profile { get { return @Profile; } }	
+		IfcNormalisedRatioMeasure? IIfcMaterialProfile.Priority { get { return @Priority; } }	
+		IfcLabel? IIfcMaterialProfile.Category { get { return @Category; } }	
+	
+	 
+		IIfcMaterialProfileSet IIfcMaterialProfile.ToMaterialProfileSet {  get { return @ToMaterialProfileSet; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialProfile(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +81,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -63,8 +95,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMaterial @Material 
 		{ 
@@ -78,8 +109,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _material = v, _material, value,  "Material");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcProfileDef @Profile 
 		{ 
@@ -93,8 +123,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _profile = v, _profile, value,  "Profile");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure? @Priority 
 		{ 
@@ -108,8 +137,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _priority = v, _priority, value,  "Priority");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Category 
 		{ 
@@ -123,9 +151,9 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _category = v, _category, value,  "Category");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

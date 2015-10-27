@@ -13,13 +13,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ExternalReferenceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcResourceLevelRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcResourceLevelRelationship : IPersistEntity
+	{
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IFCRESOURCELEVELRELATIONSHIP", 957)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcResourceLevelRelationship : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcResourceLevelRelationship>, IEquatable<@IfcResourceLevelRelationship>
+	public abstract partial class @IfcResourceLevelRelationship : IPersistEntity, INotifyPropertyChanged, IIfcResourceLevelRelationship, IEqualityComparer<@IfcResourceLevelRelationship>, IEquatable<@IfcResourceLevelRelationship>
 	{
+		#region IIfcResourceLevelRelationship explicit implementation
+		IfcLabel? IIfcResourceLevelRelationship.Name { get { return @Name; } }	
+		IfcText? IIfcResourceLevelRelationship.Description { get { return @Description; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -100,8 +123,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -115,9 +137,9 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

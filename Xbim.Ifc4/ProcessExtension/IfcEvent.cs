@@ -15,13 +15,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProcessExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcEvent
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcEvent : IIfcProcess
+	{
+		IfcEventTypeEnum? @PredefinedType { get; }
+		IfcEventTriggerTypeEnum? @EventTriggerType { get; }
+		IfcLabel? @UserDefinedEventTriggerType { get; }
+		IIfcEventTime @EventOccurenceTime { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IFCEVENT", 628)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEvent : IfcProcess, IInstantiableEntity, IEqualityComparer<@IfcEvent>, IEquatable<@IfcEvent>
+	public  partial class @IfcEvent : IfcProcess, IInstantiableEntity, IIfcEvent, IEqualityComparer<@IfcEvent>, IEquatable<@IfcEvent>
 	{
+		#region IIfcEvent explicit implementation
+		IfcEventTypeEnum? IIfcEvent.PredefinedType { get { return @PredefinedType; } }	
+		IfcEventTriggerTypeEnum? IIfcEvent.EventTriggerType { get { return @EventTriggerType; } }	
+		IfcLabel? IIfcEvent.UserDefinedEventTriggerType { get { return @UserDefinedEventTriggerType; } }	
+		IIfcEventTime IIfcEvent.EventOccurenceTime { get { return @EventOccurenceTime; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEvent(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +75,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcEventTriggerTypeEnum? @EventTriggerType 
 		{ 
@@ -63,8 +89,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _eventTriggerType = v, _eventTriggerType, value,  "EventTriggerType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedEventTriggerType 
 		{ 
@@ -78,8 +103,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _userDefinedEventTriggerType = v, _userDefinedEventTriggerType, value,  "UserDefinedEventTriggerType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcEventTime @EventOccurenceTime 
 		{ 
@@ -93,9 +117,9 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _eventOccurenceTime = v, _eventOccurenceTime, value,  "EventOccurenceTime");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

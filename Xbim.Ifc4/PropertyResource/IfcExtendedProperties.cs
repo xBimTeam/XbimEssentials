@@ -12,13 +12,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PropertyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcExtendedProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcExtendedProperties : IIfcPropertyAbstraction
+	{
+		IfcIdentifier? @Name { get; }
+		IfcText? @Description { get; }
+		IEnumerable<IIfcProperty> @Properties { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IFCEXTENDEDPROPERTIES", 631)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcExtendedProperties : IfcPropertyAbstraction, IEqualityComparer<@IfcExtendedProperties>, IEquatable<@IfcExtendedProperties>
+	public abstract partial class @IfcExtendedProperties : IfcPropertyAbstraction, IIfcExtendedProperties, IEqualityComparer<@IfcExtendedProperties>, IEquatable<@IfcExtendedProperties>
 	{
+		#region IIfcExtendedProperties explicit implementation
+		IfcIdentifier? IIfcExtendedProperties.Name { get { return @Name; } }	
+		IfcText? IIfcExtendedProperties.Description { get { return @Description; } }	
+		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties { get { return @Properties; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExtendedProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +70,7 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -60,8 +84,7 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcProperty> @Properties 
 		{ 
@@ -71,9 +94,9 @@ namespace Xbim.Ifc4.PropertyResource
 				((IPersistEntity)this).Activate(false);
 				return _properties;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

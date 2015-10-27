@@ -14,14 +14,41 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ActorResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcActorRole
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcActorRole : IPersistEntity, IfcResourceObjectSelect
+	{
+		IfcRoleEnum @Role { get; }
+		IfcLabel? @UserDefinedRole { get; }
+		IfcText? @Description { get; }
+		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReference {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ActorResource
 {
 	[IndexedClass]
 	[ExpressType("IFCACTORROLE", 393)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActorRole : INotifyPropertyChanged, IfcResourceObjectSelect, IInstantiableEntity, IEqualityComparer<@IfcActorRole>, IEquatable<@IfcActorRole>
+	public  partial class @IfcActorRole : INotifyPropertyChanged, IInstantiableEntity, IIfcActorRole, IEqualityComparer<@IfcActorRole>, IEquatable<@IfcActorRole>
 	{
+		#region IIfcActorRole explicit implementation
+		IfcRoleEnum IIfcActorRole.Role { get { return @Role; } }	
+		IfcLabel? IIfcActorRole.UserDefinedRole { get { return @UserDefinedRole; } }	
+		IfcText? IIfcActorRole.Description { get { return @Description; } }	
+	
+	 
+		IEnumerable<IIfcExternalReferenceRelationship> IIfcActorRole.HasExternalReference {  get { return @HasExternalReference; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -103,8 +130,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _role = v, _role, value,  "Role");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedRole 
 		{ 
@@ -118,8 +144,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _userDefinedRole = v, _userDefinedRole, value,  "UserDefinedRole");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -133,9 +158,9 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

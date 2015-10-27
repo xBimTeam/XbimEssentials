@@ -12,13 +12,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTypeProcess
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTypeProcess : IIfcTypeObject, IfcProcessSelect
+	{
+		IfcIdentifier? @Identification { get; }
+		IfcText? @LongDescription { get; }
+		IfcLabel? @ProcessType { get; }
+		IEnumerable<IIfcRelAssignsToProcess> @OperatesOn {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCTYPEPROCESS", 1118)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTypeProcess : IfcTypeObject, IfcProcessSelect, IEqualityComparer<@IfcTypeProcess>, IEquatable<@IfcTypeProcess>
+	public abstract partial class @IfcTypeProcess : IfcTypeObject, IIfcTypeProcess, IEqualityComparer<@IfcTypeProcess>, IEquatable<@IfcTypeProcess>
 	{
+		#region IIfcTypeProcess explicit implementation
+		IfcIdentifier? IIfcTypeProcess.Identification { get { return @Identification; } }	
+		IfcText? IIfcTypeProcess.LongDescription { get { return @LongDescription; } }	
+		IfcLabel? IIfcTypeProcess.ProcessType { get { return @ProcessType; } }	
+	
+	 
+		IEnumerable<IIfcRelAssignsToProcess> IIfcTypeProcess.OperatesOn {  get { return @OperatesOn; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTypeProcess(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +71,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _identification = v, _identification, value,  "Identification");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @LongDescription 
 		{ 
@@ -59,8 +85,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @ProcessType 
 		{ 
@@ -74,9 +99,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _processType = v, _processType, value,  "ProcessType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

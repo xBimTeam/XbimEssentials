@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PlumbingFireProtectionDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStackTerminal
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStackTerminal : IIfcFlowTerminal
+	{
+		IfcStackTerminalTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
 	[ExpressType("IFCSTACKTERMINAL", 1004)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStackTerminal : IfcFlowTerminal, IInstantiableEntity, IEqualityComparer<@IfcStackTerminal>, IEquatable<@IfcStackTerminal>
+	public  partial class @IfcStackTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcStackTerminal, IEqualityComparer<@IfcStackTerminal>, IEquatable<@IfcStackTerminal>
 	{
+		#region IIfcStackTerminal explicit implementation
+		IfcStackTerminalTypeEnum? IIfcStackTerminal.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStackTerminal(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

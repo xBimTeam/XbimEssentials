@@ -15,13 +15,46 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricConstraintResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcGridAxis
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcGridAxis : IPersistEntity
+	{
+		IfcLabel? @AxisTag { get; }
+		IIfcCurve @AxisCurve { get; }
+		IfcBoolean @SameSense { get; }
+		IEnumerable<IIfcGrid> @PartOfW {  get; }
+		IEnumerable<IIfcGrid> @PartOfV {  get; }
+		IEnumerable<IIfcGrid> @PartOfU {  get; }
+		IEnumerable<IIfcVirtualGridIntersection> @HasIntersections {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[ExpressType("IFCGRIDAXIS", 697)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGridAxis : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcGridAxis>, IEquatable<@IfcGridAxis>
+	public  partial class @IfcGridAxis : INotifyPropertyChanged, IInstantiableEntity, IIfcGridAxis, IEqualityComparer<@IfcGridAxis>, IEquatable<@IfcGridAxis>
 	{
+		#region IIfcGridAxis explicit implementation
+		IfcLabel? IIfcGridAxis.AxisTag { get { return @AxisTag; } }	
+		IIfcCurve IIfcGridAxis.AxisCurve { get { return @AxisCurve; } }	
+		IfcBoolean IIfcGridAxis.SameSense { get { return @SameSense; } }	
+	
+	 
+		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfW {  get { return @PartOfW; } }
+		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfV {  get { return @PartOfV; } }
+		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfU {  get { return @PartOfU; } }
+		IEnumerable<IIfcVirtualGridIntersection> IIfcGridAxis.HasIntersections {  get { return @HasIntersections; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -103,8 +136,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				SetValue( v =>  _axisTag = v, _axisTag, value,  "AxisTag");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCurve @AxisCurve 
 		{ 
@@ -118,8 +150,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				SetValue( v =>  _axisCurve = v, _axisCurve, value,  "AxisCurve");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcBoolean @SameSense 
 		{ 
@@ -133,9 +164,9 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				SetValue( v =>  _sameSense = v, _sameSense, value,  "SameSense");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

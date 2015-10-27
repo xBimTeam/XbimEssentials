@@ -14,13 +14,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFaceBasedSurfaceModel
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFaceBasedSurfaceModel : IIfcGeometricRepresentationItem, IfcSurfaceOrFaceSurface
+	{
+		IEnumerable<IIfcConnectedFaceSet> @FbsmFaces { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCFACEBASEDSURFACEMODEL", 643)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFaceBasedSurfaceModel : IfcGeometricRepresentationItem, IfcSurfaceOrFaceSurface, IInstantiableEntity, IEqualityComparer<@IfcFaceBasedSurfaceModel>, IEquatable<@IfcFaceBasedSurfaceModel>
+	public  partial class @IfcFaceBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFaceBasedSurfaceModel, IEqualityComparer<@IfcFaceBasedSurfaceModel>, IEquatable<@IfcFaceBasedSurfaceModel>
 	{
+		#region IIfcFaceBasedSurfaceModel explicit implementation
+		IEnumerable<IIfcConnectedFaceSet> IIfcFaceBasedSurfaceModel.FbsmFaces { get { return @FbsmFaces; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFaceBasedSurfaceModel(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,9 +62,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 				((IPersistEntity)this).Activate(false);
 				return _fbsmFaces;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

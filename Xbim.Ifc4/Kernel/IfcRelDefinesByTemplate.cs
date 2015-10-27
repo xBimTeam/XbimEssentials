@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelDefinesByTemplate
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelDefinesByTemplate : IIfcRelDefines
+	{
+		IEnumerable<IIfcPropertySetDefinition> @RelatedPropertySets { get; }
+		IIfcPropertySetTemplate @RelatingTemplate { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELDEFINESBYTEMPLATE", 934)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelDefinesByTemplate : IfcRelDefines, IInstantiableEntity, IEqualityComparer<@IfcRelDefinesByTemplate>, IEquatable<@IfcRelDefinesByTemplate>
+	public  partial class @IfcRelDefinesByTemplate : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByTemplate, IEqualityComparer<@IfcRelDefinesByTemplate>, IEquatable<@IfcRelDefinesByTemplate>
 	{
+		#region IIfcRelDefinesByTemplate explicit implementation
+		IEnumerable<IIfcPropertySetDefinition> IIfcRelDefinesByTemplate.RelatedPropertySets { get { return @RelatedPropertySets; } }	
+		IIfcPropertySetTemplate IIfcRelDefinesByTemplate.RelatingTemplate { get { return @RelatingTemplate; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDefinesByTemplate(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +65,7 @@ namespace Xbim.Ifc4.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _relatedPropertySets;
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcPropertySetTemplate @RelatingTemplate 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _relatingTemplate = v, _relatingTemplate, value,  "RelatingTemplate");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

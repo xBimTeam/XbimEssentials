@@ -13,13 +13,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MaterialResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialProfileSet
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialProfileSet : IIfcMaterialDefinition
+	{
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		IEnumerable<IIfcMaterialProfile> @MaterialProfiles { get; }
+		IIfcCompositeProfileDef @CompositeProfile { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IFCMATERIALPROFILESET", 753)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialProfileSet : IfcMaterialDefinition, IInstantiableEntity, IEqualityComparer<@IfcMaterialProfileSet>, IEquatable<@IfcMaterialProfileSet>
+	public  partial class @IfcMaterialProfileSet : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialProfileSet, IEqualityComparer<@IfcMaterialProfileSet>, IEquatable<@IfcMaterialProfileSet>
 	{
+		#region IIfcMaterialProfileSet explicit implementation
+		IfcLabel? IIfcMaterialProfileSet.Name { get { return @Name; } }	
+		IfcText? IIfcMaterialProfileSet.Description { get { return @Description; } }	
+		IEnumerable<IIfcMaterialProfile> IIfcMaterialProfileSet.MaterialProfiles { get { return @MaterialProfiles; } }	
+		IIfcCompositeProfileDef IIfcMaterialProfileSet.CompositeProfile { get { return @CompositeProfile; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialProfileSet(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +74,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -62,8 +88,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcMaterialProfile> @MaterialProfiles 
@@ -74,8 +99,7 @@ namespace Xbim.Ifc4.MaterialResource
 				((IPersistEntity)this).Activate(false);
 				return _materialProfiles;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCompositeProfileDef @CompositeProfile 
 		{ 
@@ -89,9 +113,9 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _compositeProfile = v, _compositeProfile, value,  "CompositeProfile");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

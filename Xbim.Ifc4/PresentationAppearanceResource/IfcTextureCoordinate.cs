@@ -12,13 +12,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextureCoordinate
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextureCoordinate : IIfcPresentationItem
+	{
+		IEnumerable<IIfcSurfaceTexture> @Maps { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCTEXTURECOORDINATE", 1098)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTextureCoordinate : IfcPresentationItem, IEqualityComparer<@IfcTextureCoordinate>, IEquatable<@IfcTextureCoordinate>
+	public abstract partial class @IfcTextureCoordinate : IfcPresentationItem, IIfcTextureCoordinate, IEqualityComparer<@IfcTextureCoordinate>, IEquatable<@IfcTextureCoordinate>
 	{
+		#region IIfcTextureCoordinate explicit implementation
+		IEnumerable<IIfcSurfaceTexture> IIfcTextureCoordinate.Maps { get { return @Maps; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureCoordinate(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -40,9 +61,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _maps;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

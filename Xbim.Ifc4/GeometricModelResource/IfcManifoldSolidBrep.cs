@@ -12,13 +12,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcManifoldSolidBrep
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcManifoldSolidBrep : IIfcSolidModel
+	{
+		IIfcClosedShell @Outer { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCMANIFOLDSOLIDBREP", 738)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcManifoldSolidBrep : IfcSolidModel, IEqualityComparer<@IfcManifoldSolidBrep>, IEquatable<@IfcManifoldSolidBrep>
+	public abstract partial class @IfcManifoldSolidBrep : IfcSolidModel, IIfcManifoldSolidBrep, IEqualityComparer<@IfcManifoldSolidBrep>, IEquatable<@IfcManifoldSolidBrep>
 	{
+		#region IIfcManifoldSolidBrep explicit implementation
+		IIfcClosedShell IIfcManifoldSolidBrep.Outer { get { return @Outer; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcManifoldSolidBrep(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +63,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _outer = v, _outer, value,  "Outer");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

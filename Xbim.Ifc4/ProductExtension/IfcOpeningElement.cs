@@ -15,13 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcOpeningElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcOpeningElement : IIfcFeatureElementSubtraction
+	{
+		IfcOpeningElementTypeEnum? @PredefinedType { get; }
+		IEnumerable<IIfcRelFillsElement> @HasFillings {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCOPENINGELEMENT", 782)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOpeningElement : IfcFeatureElementSubtraction, IInstantiableEntity, IEqualityComparer<@IfcOpeningElement>, IEquatable<@IfcOpeningElement>
+	public  partial class @IfcOpeningElement : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcOpeningElement, IEqualityComparer<@IfcOpeningElement>, IEquatable<@IfcOpeningElement>
 	{
+		#region IIfcOpeningElement explicit implementation
+		IfcOpeningElementTypeEnum? IIfcOpeningElement.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		IEnumerable<IIfcRelFillsElement> IIfcOpeningElement.HasFillings {  get { return @HasFillings; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOpeningElement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +68,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

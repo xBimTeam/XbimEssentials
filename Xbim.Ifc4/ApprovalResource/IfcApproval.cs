@@ -17,14 +17,61 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ApprovalResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcApproval
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcApproval : IPersistEntity, IfcResourceObjectSelect
+	{
+		IfcIdentifier? @Identifier { get; }
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		IfcDateTime? @TimeOfApproval { get; }
+		IfcLabel? @Status { get; }
+		IfcLabel? @Level { get; }
+		IfcText? @Qualifier { get; }
+		IfcActorSelect @RequestingApproval { get; }
+		IfcActorSelect @GivingApproval { get; }
+		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReferences {  get; }
+		IEnumerable<IIfcRelAssociatesApproval> @ApprovedObjects {  get; }
+		IEnumerable<IIfcResourceApprovalRelationship> @ApprovedResources {  get; }
+		IEnumerable<IIfcApprovalRelationship> @IsRelatedWith {  get; }
+		IEnumerable<IIfcApprovalRelationship> @Relates {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ApprovalResource
 {
 	[IndexedClass]
 	[ExpressType("IFCAPPROVAL", 412)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApproval : INotifyPropertyChanged, IfcResourceObjectSelect, IInstantiableEntity, IEqualityComparer<@IfcApproval>, IEquatable<@IfcApproval>
+	public  partial class @IfcApproval : INotifyPropertyChanged, IInstantiableEntity, IIfcApproval, IEqualityComparer<@IfcApproval>, IEquatable<@IfcApproval>
 	{
+		#region IIfcApproval explicit implementation
+		IfcIdentifier? IIfcApproval.Identifier { get { return @Identifier; } }	
+		IfcLabel? IIfcApproval.Name { get { return @Name; } }	
+		IfcText? IIfcApproval.Description { get { return @Description; } }	
+		IfcDateTime? IIfcApproval.TimeOfApproval { get { return @TimeOfApproval; } }	
+		IfcLabel? IIfcApproval.Status { get { return @Status; } }	
+		IfcLabel? IIfcApproval.Level { get { return @Level; } }	
+		IfcText? IIfcApproval.Qualifier { get { return @Qualifier; } }	
+		IfcActorSelect IIfcApproval.RequestingApproval { get { return @RequestingApproval; } }	
+		IfcActorSelect IIfcApproval.GivingApproval { get { return @GivingApproval; } }	
+	
+	 
+		IEnumerable<IIfcExternalReferenceRelationship> IIfcApproval.HasExternalReferences {  get { return @HasExternalReferences; } }
+		IEnumerable<IIfcRelAssociatesApproval> IIfcApproval.ApprovedObjects {  get { return @ApprovedObjects; } }
+		IEnumerable<IIfcResourceApprovalRelationship> IIfcApproval.ApprovedResources {  get { return @ApprovedResources; } }
+		IEnumerable<IIfcApprovalRelationship> IIfcApproval.IsRelatedWith {  get { return @IsRelatedWith; } }
+		IEnumerable<IIfcApprovalRelationship> IIfcApproval.Relates {  get { return @Relates; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -112,8 +159,7 @@ namespace Xbim.Ifc4.ApprovalResource
 			{
 				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Name 
 		{ 
@@ -127,8 +173,7 @@ namespace Xbim.Ifc4.ApprovalResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -142,8 +187,7 @@ namespace Xbim.Ifc4.ApprovalResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @TimeOfApproval 
 		{ 
@@ -157,8 +201,7 @@ namespace Xbim.Ifc4.ApprovalResource
 			{
 				SetValue( v =>  _timeOfApproval = v, _timeOfApproval, value,  "TimeOfApproval");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Status 
 		{ 
@@ -172,8 +215,7 @@ namespace Xbim.Ifc4.ApprovalResource
 			{
 				SetValue( v =>  _status = v, _status, value,  "Status");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Level 
 		{ 
@@ -187,8 +229,7 @@ namespace Xbim.Ifc4.ApprovalResource
 			{
 				SetValue( v =>  _level = v, _level, value,  "Level");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Qualifier 
 		{ 
@@ -202,8 +243,7 @@ namespace Xbim.Ifc4.ApprovalResource
 			{
 				SetValue( v =>  _qualifier = v, _qualifier, value,  "Qualifier");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcActorSelect @RequestingApproval 
 		{ 
@@ -217,8 +257,7 @@ namespace Xbim.Ifc4.ApprovalResource
 			{
 				SetValue( v =>  _requestingApproval = v, _requestingApproval, value,  "RequestingApproval");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcActorSelect @GivingApproval 
 		{ 
@@ -232,9 +271,9 @@ namespace Xbim.Ifc4.ApprovalResource
 			{
 				SetValue( v =>  _givingApproval = v, _givingApproval, value,  "GivingApproval");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

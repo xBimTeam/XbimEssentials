@@ -13,14 +13,45 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PropertyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProperty
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProperty : IIfcPropertyAbstraction
+	{
+		IfcIdentifier @Name { get; }
+		IfcText? @Description { get; }
+		IEnumerable<IIfcPropertySet> @PartOfPset {  get; }
+		IEnumerable<IIfcPropertyDependencyRelationship> @PropertyForDependance {  get; }
+		IEnumerable<IIfcPropertyDependencyRelationship> @PropertyDependsOn {  get; }
+		IEnumerable<IIfcComplexProperty> @PartOfComplex {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PropertyResource
 {
 	[IndexedClass]
 	[ExpressType("IFCPROPERTY", 848)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProperty : IfcPropertyAbstraction, IEqualityComparer<@IfcProperty>, IEquatable<@IfcProperty>
+	public abstract partial class @IfcProperty : IfcPropertyAbstraction, IIfcProperty, IEqualityComparer<@IfcProperty>, IEquatable<@IfcProperty>
 	{
+		#region IIfcProperty explicit implementation
+		IfcIdentifier IIfcProperty.Name { get { return @Name; } }	
+		IfcText? IIfcProperty.Description { get { return @Description; } }	
+	
+	 
+		IEnumerable<IIfcPropertySet> IIfcProperty.PartOfPset {  get { return @PartOfPset; } }
+		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyForDependance {  get { return @PropertyForDependance; } }
+		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyDependsOn {  get { return @PropertyDependsOn; } }
+		IEnumerable<IIfcComplexProperty> IIfcProperty.PartOfComplex {  get { return @PartOfComplex; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProperty(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +76,7 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -60,9 +90,9 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

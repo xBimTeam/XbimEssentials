@@ -11,13 +11,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssociates
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssociates : IIfcRelationship
+	{
+		IEnumerable<IfcDefinitionSelect> @RelatedObjects { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELASSOCIATES", 910)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRelAssociates : IfcRelationship, IEqualityComparer<@IfcRelAssociates>, IEquatable<@IfcRelAssociates>
+	public abstract partial class @IfcRelAssociates : IfcRelationship, IIfcRelAssociates, IEqualityComparer<@IfcRelAssociates>, IEquatable<@IfcRelAssociates>
 	{
+		#region IIfcRelAssociates explicit implementation
+		IEnumerable<IfcDefinitionSelect> IIfcRelAssociates.RelatedObjects { get { return @RelatedObjects; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociates(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,9 +60,9 @@ namespace Xbim.Ifc4.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _relatedObjects;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

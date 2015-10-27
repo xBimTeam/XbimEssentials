@@ -12,13 +12,66 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.DateTimeResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTaskTime
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTaskTime : IIfcSchedulingTime
+	{
+		IfcTaskDurationEnum? @DurationType { get; }
+		IfcDuration? @ScheduleDuration { get; }
+		IfcDateTime? @ScheduleStart { get; }
+		IfcDateTime? @ScheduleFinish { get; }
+		IfcDateTime? @EarlyStart { get; }
+		IfcDateTime? @EarlyFinish { get; }
+		IfcDateTime? @LateStart { get; }
+		IfcDateTime? @LateFinish { get; }
+		IfcDuration? @FreeFloat { get; }
+		IfcDuration? @TotalFloat { get; }
+		bool? @IsCritical { get; }
+		IfcDateTime? @StatusTime { get; }
+		IfcDuration? @ActualDuration { get; }
+		IfcDateTime? @ActualStart { get; }
+		IfcDateTime? @ActualFinish { get; }
+		IfcDuration? @RemainingTime { get; }
+		IfcPositiveRatioMeasure? @Completion { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IFCTASKTIME", 1082)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTaskTime : IfcSchedulingTime, IInstantiableEntity, IEqualityComparer<@IfcTaskTime>, IEquatable<@IfcTaskTime>
+	public  partial class @IfcTaskTime : IfcSchedulingTime, IInstantiableEntity, IIfcTaskTime, IEqualityComparer<@IfcTaskTime>, IEquatable<@IfcTaskTime>
 	{
+		#region IIfcTaskTime explicit implementation
+		IfcTaskDurationEnum? IIfcTaskTime.DurationType { get { return @DurationType; } }	
+		IfcDuration? IIfcTaskTime.ScheduleDuration { get { return @ScheduleDuration; } }	
+		IfcDateTime? IIfcTaskTime.ScheduleStart { get { return @ScheduleStart; } }	
+		IfcDateTime? IIfcTaskTime.ScheduleFinish { get { return @ScheduleFinish; } }	
+		IfcDateTime? IIfcTaskTime.EarlyStart { get { return @EarlyStart; } }	
+		IfcDateTime? IIfcTaskTime.EarlyFinish { get { return @EarlyFinish; } }	
+		IfcDateTime? IIfcTaskTime.LateStart { get { return @LateStart; } }	
+		IfcDateTime? IIfcTaskTime.LateFinish { get { return @LateFinish; } }	
+		IfcDuration? IIfcTaskTime.FreeFloat { get { return @FreeFloat; } }	
+		IfcDuration? IIfcTaskTime.TotalFloat { get { return @TotalFloat; } }	
+		bool? IIfcTaskTime.IsCritical { get { return @IsCritical; } }	
+		IfcDateTime? IIfcTaskTime.StatusTime { get { return @StatusTime; } }	
+		IfcDuration? IIfcTaskTime.ActualDuration { get { return @ActualDuration; } }	
+		IfcDateTime? IIfcTaskTime.ActualStart { get { return @ActualStart; } }	
+		IfcDateTime? IIfcTaskTime.ActualFinish { get { return @ActualFinish; } }	
+		IfcDuration? IIfcTaskTime.RemainingTime { get { return @RemainingTime; } }	
+		IfcPositiveRatioMeasure? IIfcTaskTime.Completion { get { return @Completion; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTaskTime(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -58,8 +111,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _durationType = v, _durationType, value,  "DurationType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDuration? @ScheduleDuration 
 		{ 
@@ -73,8 +125,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _scheduleDuration = v, _scheduleDuration, value,  "ScheduleDuration");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @ScheduleStart 
 		{ 
@@ -88,8 +139,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _scheduleStart = v, _scheduleStart, value,  "ScheduleStart");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @ScheduleFinish 
 		{ 
@@ -103,8 +153,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _scheduleFinish = v, _scheduleFinish, value,  "ScheduleFinish");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @EarlyStart 
 		{ 
@@ -118,8 +167,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _earlyStart = v, _earlyStart, value,  "EarlyStart");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @EarlyFinish 
 		{ 
@@ -133,8 +181,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _earlyFinish = v, _earlyFinish, value,  "EarlyFinish");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @LateStart 
 		{ 
@@ -148,8 +195,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _lateStart = v, _lateStart, value,  "LateStart");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @LateFinish 
 		{ 
@@ -163,8 +209,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _lateFinish = v, _lateFinish, value,  "LateFinish");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDuration? @FreeFloat 
 		{ 
@@ -178,8 +223,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _freeFloat = v, _freeFloat, value,  "FreeFloat");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDuration? @TotalFloat 
 		{ 
@@ -193,8 +237,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _totalFloat = v, _totalFloat, value,  "TotalFloat");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @IsCritical 
 		{ 
@@ -208,8 +251,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _isCritical = v, _isCritical, value,  "IsCritical");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @StatusTime 
 		{ 
@@ -223,8 +265,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _statusTime = v, _statusTime, value,  "StatusTime");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDuration? @ActualDuration 
 		{ 
@@ -238,8 +279,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _actualDuration = v, _actualDuration, value,  "ActualDuration");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @ActualStart 
 		{ 
@@ -253,8 +293,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _actualStart = v, _actualStart, value,  "ActualStart");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @ActualFinish 
 		{ 
@@ -268,8 +307,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _actualFinish = v, _actualFinish, value,  "ActualFinish");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDuration? @RemainingTime 
 		{ 
@@ -283,8 +321,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _remainingTime = v, _remainingTime, value,  "RemainingTime");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @Completion 
 		{ 
@@ -298,9 +335,9 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _completion = v, _completion, value,  "Completion");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

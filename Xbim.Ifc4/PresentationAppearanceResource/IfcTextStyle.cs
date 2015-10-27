@@ -12,13 +12,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextStyle
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
+	{
+		IIfcTextStyleForDefinedFont @TextCharacterAppearance { get; }
+		IIfcTextStyleTextModel @TextStyle { get; }
+		IfcTextFontSelect @TextFontStyle { get; }
+		bool? @ModelOrDraughting { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCTEXTSTYLE", 1094)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyle : IfcPresentationStyle, IfcPresentationStyleSelect, IInstantiableEntity, IEqualityComparer<@IfcTextStyle>, IEquatable<@IfcTextStyle>
+	public  partial class @IfcTextStyle : IfcPresentationStyle, IInstantiableEntity, IIfcTextStyle, IEqualityComparer<@IfcTextStyle>, IEquatable<@IfcTextStyle>
 	{
+		#region IIfcTextStyle explicit implementation
+		IIfcTextStyleForDefinedFont IIfcTextStyle.TextCharacterAppearance { get { return @TextCharacterAppearance; } }	
+		IIfcTextStyleTextModel IIfcTextStyle.TextStyle { get { return @TextStyle; } }	
+		IfcTextFontSelect IIfcTextStyle.TextFontStyle { get { return @TextFontStyle; } }	
+		bool? IIfcTextStyle.ModelOrDraughting { get { return @ModelOrDraughting; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextStyle(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +72,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _textCharacterAppearance = v, _textCharacterAppearance, value,  "TextCharacterAppearance");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTextStyleTextModel @TextStyle 
 		{ 
@@ -60,8 +86,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _textStyle = v, _textStyle, value,  "TextStyle");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTextFontSelect @TextFontStyle 
 		{ 
@@ -75,8 +100,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _textFontStyle = v, _textFontStyle, value,  "TextFontStyle");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @ModelOrDraughting 
 		{ 
@@ -90,9 +114,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _modelOrDraughting = v, _modelOrDraughting, value,  "ModelOrDraughting");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

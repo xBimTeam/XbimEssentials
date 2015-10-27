@@ -13,13 +13,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MaterialResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialProfileWithOffsets
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialProfileWithOffsets : IIfcMaterialProfile
+	{
+		IEnumerable<IfcLengthMeasure> @OffsetValues { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IFCMATERIALPROFILEWITHOFFSETS", 756)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialProfileWithOffsets : IfcMaterialProfile, IInstantiableEntity, IEqualityComparer<@IfcMaterialProfileWithOffsets>, IEquatable<@IfcMaterialProfileWithOffsets>
+	public  partial class @IfcMaterialProfileWithOffsets : IfcMaterialProfile, IInstantiableEntity, IIfcMaterialProfileWithOffsets, IEqualityComparer<@IfcMaterialProfileWithOffsets>, IEquatable<@IfcMaterialProfileWithOffsets>
 	{
+		#region IIfcMaterialProfileWithOffsets explicit implementation
+		IEnumerable<IfcLengthMeasure> IIfcMaterialProfileWithOffsets.OffsetValues { get { return @OffsetValues; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialProfileWithOffsets(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -40,9 +61,9 @@ namespace Xbim.Ifc4.MaterialResource
 				((IPersistEntity)this).Activate(false);
 				return _offsetValues;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -14,13 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelVoidsElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelVoidsElement : IIfcRelDecomposes
+	{
+		IIfcElement @RelatingBuildingElement { get; }
+		IIfcFeatureElementSubtraction @RelatedOpeningElement { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCRELVOIDSELEMENT", 947)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelVoidsElement : IfcRelDecomposes, IInstantiableEntity, IEqualityComparer<@IfcRelVoidsElement>, IEquatable<@IfcRelVoidsElement>
+	public  partial class @IfcRelVoidsElement : IfcRelDecomposes, IInstantiableEntity, IIfcRelVoidsElement, IEqualityComparer<@IfcRelVoidsElement>, IEquatable<@IfcRelVoidsElement>
 	{
+		#region IIfcRelVoidsElement explicit implementation
+		IIfcElement IIfcRelVoidsElement.RelatingBuildingElement { get { return @RelatingBuildingElement; } }	
+		IIfcFeatureElementSubtraction IIfcRelVoidsElement.RelatedOpeningElement { get { return @RelatedOpeningElement; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelVoidsElement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +69,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _relatingBuildingElement = v, _relatingBuildingElement, value,  "RelatingBuildingElement");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcFeatureElementSubtraction @RelatedOpeningElement 
@@ -62,9 +84,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _relatedOpeningElement = v, _relatedOpeningElement, value,  "RelatedOpeningElement");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

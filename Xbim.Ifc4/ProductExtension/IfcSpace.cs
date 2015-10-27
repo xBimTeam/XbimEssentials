@@ -16,13 +16,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSpace
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSpace : IIfcSpatialStructureElement, IfcSpaceBoundarySelect
+	{
+		IfcSpaceTypeEnum? @PredefinedType { get; }
+		IfcLengthMeasure? @ElevationWithFlooring { get; }
+		IEnumerable<IIfcRelCoversSpaces> @HasCoverings {  get; }
+		IEnumerable<IIfcRelSpaceBoundary> @BoundedBy {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCSPACE", 993)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpace : IfcSpatialStructureElement, IfcSpaceBoundarySelect, IInstantiableEntity, IEqualityComparer<@IfcSpace>, IEquatable<@IfcSpace>
+	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IIfcSpace, IEqualityComparer<@IfcSpace>, IEquatable<@IfcSpace>
 	{
+		#region IIfcSpace explicit implementation
+		IfcSpaceTypeEnum? IIfcSpace.PredefinedType { get { return @PredefinedType; } }	
+		IfcLengthMeasure? IIfcSpace.ElevationWithFlooring { get { return @ElevationWithFlooring; } }	
+	
+	 
+		IEnumerable<IIfcRelCoversSpaces> IIfcSpace.HasCoverings {  get { return @HasCoverings; } }
+		IEnumerable<IIfcRelSpaceBoundary> IIfcSpace.BoundedBy {  get { return @BoundedBy; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpace(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +74,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @ElevationWithFlooring 
 		{ 
@@ -62,9 +88,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _elevationWithFlooring = v, _elevationWithFlooring, value,  "ElevationWithFlooring");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

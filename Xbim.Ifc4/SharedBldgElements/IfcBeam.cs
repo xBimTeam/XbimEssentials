@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBeam
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBeam : IIfcBuildingElement
+	{
+		IfcBeamTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IFCBEAM", 428)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBeam : IfcBuildingElement, IInstantiableEntity, IEqualityComparer<@IfcBeam>, IEquatable<@IfcBeam>
+	public  partial class @IfcBeam : IfcBuildingElement, IInstantiableEntity, IIfcBeam, IEqualityComparer<@IfcBeam>, IEquatable<@IfcBeam>
 	{
+		#region IIfcBeam explicit implementation
+		IfcBeamTypeEnum? IIfcBeam.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBeam(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

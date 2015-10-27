@@ -12,13 +12,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTypeResource
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTypeResource : IIfcTypeObject, IfcResourceSelect
+	{
+		IfcIdentifier? @Identification { get; }
+		IfcText? @LongDescription { get; }
+		IfcLabel? @ResourceType { get; }
+		IEnumerable<IIfcRelAssignsToResource> @ResourceOf {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCTYPERESOURCE", 1120)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTypeResource : IfcTypeObject, IfcResourceSelect, IEqualityComparer<@IfcTypeResource>, IEquatable<@IfcTypeResource>
+	public abstract partial class @IfcTypeResource : IfcTypeObject, IIfcTypeResource, IEqualityComparer<@IfcTypeResource>, IEquatable<@IfcTypeResource>
 	{
+		#region IIfcTypeResource explicit implementation
+		IfcIdentifier? IIfcTypeResource.Identification { get { return @Identification; } }	
+		IfcText? IIfcTypeResource.LongDescription { get { return @LongDescription; } }	
+		IfcLabel? IIfcTypeResource.ResourceType { get { return @ResourceType; } }	
+	
+	 
+		IEnumerable<IIfcRelAssignsToResource> IIfcTypeResource.ResourceOf {  get { return @ResourceOf; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTypeResource(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +71,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _identification = v, _identification, value,  "Identification");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @LongDescription 
 		{ 
@@ -59,8 +85,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @ResourceType 
 		{ 
@@ -74,9 +99,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _resourceType = v, _resourceType, value,  "ResourceType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

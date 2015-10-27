@@ -11,17 +11,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralLoadResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralLoadOrResult
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralLoadOrResult : IIfcStructuralLoad
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IFCSTRUCTURALLOADORRESULT", 1027)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralLoadOrResult : IfcStructuralLoad, IEqualityComparer<@IfcStructuralLoadOrResult>, IEquatable<@IfcStructuralLoadOrResult>
+	public abstract partial class @IfcStructuralLoadOrResult : IfcStructuralLoad, IIfcStructuralLoadOrResult, IEqualityComparer<@IfcStructuralLoadOrResult>, IEquatable<@IfcStructuralLoadOrResult>
 	{
+		#region IIfcStructuralLoadOrResult explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadOrResult(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

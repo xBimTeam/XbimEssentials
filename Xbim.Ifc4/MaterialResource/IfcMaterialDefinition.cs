@@ -15,13 +15,38 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MaterialResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialDefinition
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialDefinition : IPersistEntity, IfcMaterialSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect
+	{
+		IEnumerable<IIfcRelAssociatesMaterial> @AssociatedTo {  get; }
+		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReferences {  get; }
+		IEnumerable<IIfcMaterialProperties> @HasProperties {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IFCMATERIALDEFINITION", 745)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcMaterialDefinition : IPersistEntity, INotifyPropertyChanged, IfcMaterialSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect, IEqualityComparer<@IfcMaterialDefinition>, IEquatable<@IfcMaterialDefinition>
+	public abstract partial class @IfcMaterialDefinition : IPersistEntity, INotifyPropertyChanged, IIfcMaterialDefinition, IEqualityComparer<@IfcMaterialDefinition>, IEquatable<@IfcMaterialDefinition>
 	{
+		#region IIfcMaterialDefinition explicit implementation
+	
+	 
+		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialDefinition.AssociatedTo {  get { return @AssociatedTo; } }
+		IEnumerable<IIfcExternalReferenceRelationship> IIfcMaterialDefinition.HasExternalReferences {  get { return @HasExternalReferences; } }
+		IEnumerable<IIfcMaterialProperties> IIfcMaterialDefinition.HasProperties {  get { return @HasProperties; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -82,6 +107,7 @@ namespace Xbim.Ifc4.MaterialResource
 		internal IfcMaterialDefinition(IModel model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

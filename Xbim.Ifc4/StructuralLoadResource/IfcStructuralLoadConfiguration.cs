@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralLoadResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralLoadConfiguration
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralLoadConfiguration : IIfcStructuralLoad
+	{
+		IEnumerable<IIfcStructuralLoadOrResult> @Values { get; }
+		IEnumerable<IEnumerable<IfcLengthMeasure>> @Locations { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IFCSTRUCTURALLOADCONFIGURATION", 1024)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadConfiguration : IfcStructuralLoad, IInstantiableEntity, IEqualityComparer<@IfcStructuralLoadConfiguration>, IEquatable<@IfcStructuralLoadConfiguration>
+	public  partial class @IfcStructuralLoadConfiguration : IfcStructuralLoad, IInstantiableEntity, IIfcStructuralLoadConfiguration, IEqualityComparer<@IfcStructuralLoadConfiguration>, IEquatable<@IfcStructuralLoadConfiguration>
 	{
+		#region IIfcStructuralLoadConfiguration explicit implementation
+		IEnumerable<IIfcStructuralLoadOrResult> IIfcStructuralLoadConfiguration.Values { get { return @Values; } }	
+		IEnumerable<IEnumerable<IfcLengthMeasure>> IIfcStructuralLoadConfiguration.Locations { get { return @Locations; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadConfiguration(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,8 +64,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				((IPersistEntity)this).Activate(false);
 				return _values;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 1, -1)]
 		public OptionalItemSet<ItemSet<IfcLengthMeasure>> @Locations 
 		{ 
@@ -52,9 +74,9 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				((IPersistEntity)this).Activate(false);
 				return _locations;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

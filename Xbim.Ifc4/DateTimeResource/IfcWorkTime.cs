@@ -12,13 +12,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.DateTimeResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcWorkTime
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcWorkTime : IIfcSchedulingTime
+	{
+		IIfcRecurrencePattern @RecurrencePattern { get; }
+		IfcDate? @Start { get; }
+		IfcDate? @Finish { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IFCWORKTIME", 1154)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWorkTime : IfcSchedulingTime, IInstantiableEntity, IEqualityComparer<@IfcWorkTime>, IEquatable<@IfcWorkTime>
+	public  partial class @IfcWorkTime : IfcSchedulingTime, IInstantiableEntity, IIfcWorkTime, IEqualityComparer<@IfcWorkTime>, IEquatable<@IfcWorkTime>
 	{
+		#region IIfcWorkTime explicit implementation
+		IIfcRecurrencePattern IIfcWorkTime.RecurrencePattern { get { return @RecurrencePattern; } }	
+		IfcDate? IIfcWorkTime.Start { get { return @Start; } }	
+		IfcDate? IIfcWorkTime.Finish { get { return @Finish; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWorkTime(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +69,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _recurrencePattern = v, _recurrencePattern, value,  "RecurrencePattern");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDate? @Start 
 		{ 
@@ -59,8 +83,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _start = v, _start, value,  "Start");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDate? @Finish 
 		{ 
@@ -74,9 +97,9 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _finish = v, _finish, value,  "Finish");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelDefinesByObject
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelDefinesByObject : IIfcRelDefines
+	{
+		IEnumerable<IIfcObject> @RelatedObjects { get; }
+		IIfcObject @RelatingObject { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELDEFINESBYOBJECT", 932)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelDefinesByObject : IfcRelDefines, IInstantiableEntity, IEqualityComparer<@IfcRelDefinesByObject>, IEquatable<@IfcRelDefinesByObject>
+	public  partial class @IfcRelDefinesByObject : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByObject, IEqualityComparer<@IfcRelDefinesByObject>, IEquatable<@IfcRelDefinesByObject>
 	{
+		#region IIfcRelDefinesByObject explicit implementation
+		IEnumerable<IIfcObject> IIfcRelDefinesByObject.RelatedObjects { get { return @RelatedObjects; } }	
+		IIfcObject IIfcRelDefinesByObject.RelatingObject { get { return @RelatingObject; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDefinesByObject(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +65,7 @@ namespace Xbim.Ifc4.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _relatedObjects;
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcObject @RelatingObject 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _relatingObject = v, _relatingObject, value,  "RelatingObject");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

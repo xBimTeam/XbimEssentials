@@ -15,13 +15,58 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ArchitectureDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDoorLiningProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDoorLiningProperties : IIfcPreDefinedPropertySet
+	{
+		IfcPositiveLengthMeasure? @LiningDepth { get; }
+		IfcNonNegativeLengthMeasure? @LiningThickness { get; }
+		IfcPositiveLengthMeasure? @ThresholdDepth { get; }
+		IfcNonNegativeLengthMeasure? @ThresholdThickness { get; }
+		IfcNonNegativeLengthMeasure? @TransomThickness { get; }
+		IfcLengthMeasure? @TransomOffset { get; }
+		IfcLengthMeasure? @LiningOffset { get; }
+		IfcLengthMeasure? @ThresholdOffset { get; }
+		IfcPositiveLengthMeasure? @CasingThickness { get; }
+		IfcPositiveLengthMeasure? @CasingDepth { get; }
+		IIfcShapeAspect @ShapeAspectStyle { get; }
+		IfcLengthMeasure? @LiningToPanelOffsetX { get; }
+		IfcLengthMeasure? @LiningToPanelOffsetY { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ArchitectureDomain
 {
 	[ExpressType("IFCDOORLININGPROPERTIES", 582)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorLiningProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IEqualityComparer<@IfcDoorLiningProperties>, IEquatable<@IfcDoorLiningProperties>
+	public  partial class @IfcDoorLiningProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcDoorLiningProperties, IEqualityComparer<@IfcDoorLiningProperties>, IEquatable<@IfcDoorLiningProperties>
 	{
+		#region IIfcDoorLiningProperties explicit implementation
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningDepth { get { return @LiningDepth; } }	
+		IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.LiningThickness { get { return @LiningThickness; } }	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdDepth { get { return @ThresholdDepth; } }	
+		IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.ThresholdThickness { get { return @ThresholdThickness; } }	
+		IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.TransomThickness { get { return @TransomThickness; } }	
+		IfcLengthMeasure? IIfcDoorLiningProperties.TransomOffset { get { return @TransomOffset; } }	
+		IfcLengthMeasure? IIfcDoorLiningProperties.LiningOffset { get { return @LiningOffset; } }	
+		IfcLengthMeasure? IIfcDoorLiningProperties.ThresholdOffset { get { return @ThresholdOffset; } }	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingThickness { get { return @CasingThickness; } }	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingDepth { get { return @CasingDepth; } }	
+		IIfcShapeAspect IIfcDoorLiningProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
+		IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetX { get { return @LiningToPanelOffsetX; } }	
+		IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetY { get { return @LiningToPanelOffsetY; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDoorLiningProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -57,8 +102,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _liningDepth = v, _liningDepth, value,  "LiningDepth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNonNegativeLengthMeasure? @LiningThickness 
 		{ 
@@ -72,8 +116,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _liningThickness = v, _liningThickness, value,  "LiningThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @ThresholdDepth 
 		{ 
@@ -87,8 +130,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _thresholdDepth = v, _thresholdDepth, value,  "ThresholdDepth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNonNegativeLengthMeasure? @ThresholdThickness 
 		{ 
@@ -102,8 +144,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _thresholdThickness = v, _thresholdThickness, value,  "ThresholdThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNonNegativeLengthMeasure? @TransomThickness 
 		{ 
@@ -117,8 +158,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _transomThickness = v, _transomThickness, value,  "TransomThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @TransomOffset 
 		{ 
@@ -132,8 +172,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _transomOffset = v, _transomOffset, value,  "TransomOffset");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @LiningOffset 
 		{ 
@@ -147,8 +186,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _liningOffset = v, _liningOffset, value,  "LiningOffset");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @ThresholdOffset 
 		{ 
@@ -162,8 +200,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _thresholdOffset = v, _thresholdOffset, value,  "ThresholdOffset");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @CasingThickness 
 		{ 
@@ -177,8 +214,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _casingThickness = v, _casingThickness, value,  "CasingThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @CasingDepth 
 		{ 
@@ -192,8 +228,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _casingDepth = v, _casingDepth, value,  "CasingDepth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcShapeAspect @ShapeAspectStyle 
 		{ 
@@ -207,8 +242,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @LiningToPanelOffsetX 
 		{ 
@@ -222,8 +256,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _liningToPanelOffsetX = v, _liningToPanelOffsetX, value,  "LiningToPanelOffsetX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @LiningToPanelOffsetY 
 		{ 
@@ -237,9 +270,9 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _liningToPanelOffsetY = v, _liningToPanelOffsetY, value,  "LiningToPanelOffsetY");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

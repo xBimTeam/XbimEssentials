@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStairFlightType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStairFlightType : IIfcBuildingElementType
+	{
+		IfcStairFlightTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IFCSTAIRFLIGHTTYPE", 1008)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStairFlightType : IfcBuildingElementType, IInstantiableEntity, IEqualityComparer<@IfcStairFlightType>, IEquatable<@IfcStairFlightType>
+	public  partial class @IfcStairFlightType : IfcBuildingElementType, IInstantiableEntity, IIfcStairFlightType, IEqualityComparer<@IfcStairFlightType>, IEquatable<@IfcStairFlightType>
 	{
+		#region IIfcStairFlightType explicit implementation
+		IfcStairFlightTypeEnum IIfcStairFlightType.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStairFlightType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

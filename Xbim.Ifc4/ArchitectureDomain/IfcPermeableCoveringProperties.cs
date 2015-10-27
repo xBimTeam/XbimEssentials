@@ -15,13 +15,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ArchitectureDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPermeableCoveringProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPermeableCoveringProperties : IIfcPreDefinedPropertySet
+	{
+		IfcPermeableCoveringOperationEnum @OperationType { get; }
+		IfcWindowPanelPositionEnum @PanelPosition { get; }
+		IfcPositiveLengthMeasure? @FrameDepth { get; }
+		IfcPositiveLengthMeasure? @FrameThickness { get; }
+		IIfcShapeAspect @ShapeAspectStyle { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ArchitectureDomain
 {
 	[ExpressType("IFCPERMEABLECOVERINGPROPERTIES", 795)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPermeableCoveringProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IEqualityComparer<@IfcPermeableCoveringProperties>, IEquatable<@IfcPermeableCoveringProperties>
+	public  partial class @IfcPermeableCoveringProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcPermeableCoveringProperties, IEqualityComparer<@IfcPermeableCoveringProperties>, IEquatable<@IfcPermeableCoveringProperties>
 	{
+		#region IIfcPermeableCoveringProperties explicit implementation
+		IfcPermeableCoveringOperationEnum IIfcPermeableCoveringProperties.OperationType { get { return @OperationType; } }	
+		IfcWindowPanelPositionEnum IIfcPermeableCoveringProperties.PanelPosition { get { return @PanelPosition; } }	
+		IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameDepth { get { return @FrameDepth; } }	
+		IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameThickness { get { return @FrameThickness; } }	
+		IIfcShapeAspect IIfcPermeableCoveringProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPermeableCoveringProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -49,8 +78,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcWindowPanelPositionEnum @PanelPosition 
 		{ 
@@ -64,8 +92,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _panelPosition = v, _panelPosition, value,  "PanelPosition");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @FrameDepth 
 		{ 
@@ -79,8 +106,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _frameDepth = v, _frameDepth, value,  "FrameDepth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @FrameThickness 
 		{ 
@@ -94,8 +120,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _frameThickness = v, _frameThickness, value,  "FrameThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcShapeAspect @ShapeAspectStyle 
 		{ 
@@ -109,9 +134,9 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -11,13 +11,46 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBSplineSurface
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBSplineSurface : IIfcBoundedSurface
+	{
+		long @UDegree { get; }
+		long @VDegree { get; }
+		IEnumerable<IEnumerable<IIfcCartesianPoint>> @ControlPointsList { get; }
+		IfcBSplineSurfaceForm @SurfaceForm { get; }
+		bool? @UClosed { get; }
+		bool? @VClosed { get; }
+		bool? @SelfIntersect { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCBSPLINESURFACE", 426)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcBSplineSurface : IfcBoundedSurface, IEqualityComparer<@IfcBSplineSurface>, IEquatable<@IfcBSplineSurface>
+	public abstract partial class @IfcBSplineSurface : IfcBoundedSurface, IIfcBSplineSurface, IEqualityComparer<@IfcBSplineSurface>, IEquatable<@IfcBSplineSurface>
 	{
+		#region IIfcBSplineSurface explicit implementation
+		long IIfcBSplineSurface.UDegree { get { return @UDegree; } }	
+		long IIfcBSplineSurface.VDegree { get { return @VDegree; } }	
+		IEnumerable<IEnumerable<IIfcCartesianPoint>> IIfcBSplineSurface.ControlPointsList { get { return @ControlPointsList; } }	
+		IfcBSplineSurfaceForm IIfcBSplineSurface.SurfaceForm { get { return @SurfaceForm; } }	
+		bool? IIfcBSplineSurface.UClosed { get { return @UClosed; } }	
+		bool? IIfcBSplineSurface.VClosed { get { return @VClosed; } }	
+		bool? IIfcBSplineSurface.SelfIntersect { get { return @SelfIntersect; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineSurface(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +81,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _uDegree = v, _uDegree, value,  "UDegree");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public long @VDegree 
 		{ 
@@ -63,8 +95,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _vDegree = v, _vDegree, value,  "VDegree");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 2, -1)]
 		public ItemSet<ItemSet<IfcCartesianPoint>> @ControlPointsList 
 		{ 
@@ -74,8 +105,7 @@ namespace Xbim.Ifc4.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _controlPointsList;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcBSplineSurfaceForm @SurfaceForm 
 		{ 
@@ -89,8 +119,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _surfaceForm = v, _surfaceForm, value,  "SurfaceForm");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @UClosed 
 		{ 
@@ -104,8 +133,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _uClosed = v, _uClosed, value,  "UClosed");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @VClosed 
 		{ 
@@ -119,8 +147,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _vClosed = v, _vClosed, value,  "VClosed");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @SelfIntersect 
 		{ 
@@ -134,9 +161,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

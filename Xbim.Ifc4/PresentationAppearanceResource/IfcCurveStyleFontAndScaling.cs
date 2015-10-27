@@ -13,13 +13,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCurveStyleFontAndScaling
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCurveStyleFontAndScaling : IIfcPresentationItem, IfcCurveFontOrScaledCurveFontSelect
+	{
+		IfcLabel? @Name { get; }
+		IfcCurveStyleFontSelect @CurveFont { get; }
+		IfcPositiveRatioMeasure @CurveFontScaling { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCCURVESTYLEFONTANDSCALING", 555)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyleFontAndScaling : IfcPresentationItem, IfcCurveFontOrScaledCurveFontSelect, IInstantiableEntity, IEqualityComparer<@IfcCurveStyleFontAndScaling>, IEquatable<@IfcCurveStyleFontAndScaling>
+	public  partial class @IfcCurveStyleFontAndScaling : IfcPresentationItem, IInstantiableEntity, IIfcCurveStyleFontAndScaling, IEqualityComparer<@IfcCurveStyleFontAndScaling>, IEquatable<@IfcCurveStyleFontAndScaling>
 	{
+		#region IIfcCurveStyleFontAndScaling explicit implementation
+		IfcLabel? IIfcCurveStyleFontAndScaling.Name { get { return @Name; } }	
+		IfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont { get { return @CurveFont; } }	
+		IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling { get { return @CurveFontScaling; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveStyleFontAndScaling(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +70,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCurveStyleFontSelect @CurveFont 
 		{ 
@@ -60,8 +84,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _curveFont = v, _curveFont, value,  "CurveFont");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure @CurveFontScaling 
 		{ 
@@ -75,9 +98,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _curveFontScaling = v, _curveFontScaling, value,  "CurveFontScaling");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -13,18 +13,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.RepresentationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProductDefinitionShape
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProductDefinitionShape : IIfcProductRepresentation, IfcProductRepresentationSelect
+	{
+		IEnumerable<IIfcProduct> @ShapeOfProduct {  get; }
+		IEnumerable<IIfcShapeAspect> @HasShapeAspects {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.RepresentationResource
 {
 	[IndexedClass]
 	[ExpressType("IFCPRODUCTDEFINITIONSHAPE", 839)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProductDefinitionShape : IfcProductRepresentation, IfcProductRepresentationSelect, IInstantiableEntity, IEqualityComparer<@IfcProductDefinitionShape>, IEquatable<@IfcProductDefinitionShape>
+	public  partial class @IfcProductDefinitionShape : IfcProductRepresentation, IInstantiableEntity, IIfcProductDefinitionShape, IEqualityComparer<@IfcProductDefinitionShape>, IEquatable<@IfcProductDefinitionShape>
 	{
+		#region IIfcProductDefinitionShape explicit implementation
+	
+	 
+		IEnumerable<IIfcProduct> IIfcProductDefinitionShape.ShapeOfProduct {  get { return @ShapeOfProduct; } }
+		IEnumerable<IIfcShapeAspect> IIfcProductDefinitionShape.HasShapeAspects {  get { return @HasShapeAspects; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProductDefinitionShape(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

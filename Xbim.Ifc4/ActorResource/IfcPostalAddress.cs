@@ -12,13 +12,46 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ActorResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPostalAddress
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPostalAddress : IIfcAddress
+	{
+		IfcLabel? @InternalLocation { get; }
+		IEnumerable<IfcLabel> @AddressLines { get; }
+		IfcLabel? @PostalBox { get; }
+		IfcLabel? @Town { get; }
+		IfcLabel? @Region { get; }
+		IfcLabel? @PostalCode { get; }
+		IfcLabel? @Country { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ActorResource
 {
 	[ExpressType("IFCPOSTALADDRESS", 823)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IEqualityComparer<@IfcPostalAddress>, IEquatable<@IfcPostalAddress>
+	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IIfcPostalAddress, IEqualityComparer<@IfcPostalAddress>, IEquatable<@IfcPostalAddress>
 	{
+		#region IIfcPostalAddress explicit implementation
+		IfcLabel? IIfcPostalAddress.InternalLocation { get { return @InternalLocation; } }	
+		IEnumerable<IfcLabel> IIfcPostalAddress.AddressLines { get { return @AddressLines; } }	
+		IfcLabel? IIfcPostalAddress.PostalBox { get { return @PostalBox; } }	
+		IfcLabel? IIfcPostalAddress.Town { get { return @Town; } }	
+		IfcLabel? IIfcPostalAddress.Region { get { return @Region; } }	
+		IfcLabel? IIfcPostalAddress.PostalCode { get { return @PostalCode; } }	
+		IfcLabel? IIfcPostalAddress.Country { get { return @Country; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPostalAddress(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -49,8 +82,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _internalLocation = v, _internalLocation, value,  "InternalLocation");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<IfcLabel> @AddressLines 
 		{ 
@@ -60,8 +92,7 @@ namespace Xbim.Ifc4.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _addressLines;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @PostalBox 
 		{ 
@@ -75,8 +106,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _postalBox = v, _postalBox, value,  "PostalBox");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Town 
 		{ 
@@ -90,8 +120,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _town = v, _town, value,  "Town");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Region 
 		{ 
@@ -105,8 +134,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _region = v, _region, value,  "Region");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @PostalCode 
 		{ 
@@ -120,8 +148,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _postalCode = v, _postalCode, value,  "PostalCode");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Country 
 		{ 
@@ -135,9 +162,9 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _country = v, _country, value,  "Country");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

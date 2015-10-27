@@ -12,13 +12,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.DateTimeResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTimePeriod
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTimePeriod : IPersistEntity
+	{
+		IfcTime @StartTime { get; }
+		IfcTime @EndTime { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IFCTIMEPERIOD", 1103)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimePeriod : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcTimePeriod>, IEquatable<@IfcTimePeriod>
+	public  partial class @IfcTimePeriod : INotifyPropertyChanged, IInstantiableEntity, IIfcTimePeriod, IEqualityComparer<@IfcTimePeriod>, IEquatable<@IfcTimePeriod>
 	{
+		#region IIfcTimePeriod explicit implementation
+		IfcTime IIfcTimePeriod.StartTime { get { return @StartTime; } }	
+		IfcTime IIfcTimePeriod.EndTime { get { return @EndTime; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -99,8 +122,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcTime @EndTime 
 		{ 
@@ -114,9 +136,9 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _endTime = v, _endTime, value,  "EndTime");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

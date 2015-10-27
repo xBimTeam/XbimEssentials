@@ -14,14 +14,41 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.UtilityResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcApplication
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcApplication : IPersistEntity
+	{
+		IIfcOrganization @ApplicationDeveloper { get; }
+		IfcLabel @Version { get; }
+		IfcLabel @ApplicationFullName { get; }
+		IfcIdentifier @ApplicationIdentifier { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.UtilityResource
 {
 	[IndexedClass]
 	[ExpressType("IFCAPPLICATION", 410)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApplication : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcApplication>, IEquatable<@IfcApplication>
+	public  partial class @IfcApplication : INotifyPropertyChanged, IInstantiableEntity, IIfcApplication, IEqualityComparer<@IfcApplication>, IEquatable<@IfcApplication>
 	{
+		#region IIfcApplication explicit implementation
+		IIfcOrganization IIfcApplication.ApplicationDeveloper { get { return @ApplicationDeveloper; } }	
+		IfcLabel IIfcApplication.Version { get { return @Version; } }	
+		IfcLabel IIfcApplication.ApplicationFullName { get { return @ApplicationFullName; } }	
+		IfcIdentifier IIfcApplication.ApplicationIdentifier { get { return @ApplicationIdentifier; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -104,8 +131,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _applicationDeveloper = v, _applicationDeveloper, value,  "ApplicationDeveloper");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel @Version 
 		{ 
@@ -119,8 +145,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _version = v, _version, value,  "Version");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel @ApplicationFullName 
 		{ 
@@ -134,8 +159,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _applicationFullName = v, _applicationFullName, value,  "ApplicationFullName");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIdentifier @ApplicationIdentifier 
 		{ 
@@ -149,9 +173,9 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _applicationIdentifier = v, _applicationIdentifier, value,  "ApplicationIdentifier");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

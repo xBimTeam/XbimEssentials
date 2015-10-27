@@ -15,13 +15,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedMgmtElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCostSchedule
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCostSchedule : IIfcControl
+	{
+		IfcCostScheduleTypeEnum? @PredefinedType { get; }
+		IfcLabel? @Status { get; }
+		IfcDateTime? @SubmittedOn { get; }
+		IfcDateTime? @UpdateDate { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedMgmtElements
 {
 	[ExpressType("IFCCOSTSCHEDULE", 539)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IEqualityComparer<@IfcCostSchedule>, IEquatable<@IfcCostSchedule>
+	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IEqualityComparer<@IfcCostSchedule>, IEquatable<@IfcCostSchedule>
 	{
+		#region IIfcCostSchedule explicit implementation
+		IfcCostScheduleTypeEnum? IIfcCostSchedule.PredefinedType { get { return @PredefinedType; } }	
+		IfcLabel? IIfcCostSchedule.Status { get { return @Status; } }	
+		IfcDateTime? IIfcCostSchedule.SubmittedOn { get { return @SubmittedOn; } }	
+		IfcDateTime? IIfcCostSchedule.UpdateDate { get { return @UpdateDate; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCostSchedule(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +75,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Status 
 		{ 
@@ -63,8 +89,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			{
 				SetValue( v =>  _status = v, _status, value,  "Status");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @SubmittedOn 
 		{ 
@@ -78,8 +103,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			{
 				SetValue( v =>  _submittedOn = v, _submittedOn, value,  "SubmittedOn");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @UpdateDate 
 		{ 
@@ -93,9 +117,9 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			{
 				SetValue( v =>  _updateDate = v, _updateDate, value,  "UpdateDate");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

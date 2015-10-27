@@ -13,13 +13,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.DateTimeResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcIrregularTimeSeriesValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcIrregularTimeSeriesValue : IPersistEntity
+	{
+		IfcDateTime @TimeStamp { get; }
+		IEnumerable<IfcValue> @ListValues { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IFCIRREGULARTIMESERIESVALUE", 714)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIrregularTimeSeriesValue : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcIrregularTimeSeriesValue>, IEquatable<@IfcIrregularTimeSeriesValue>
+	public  partial class @IfcIrregularTimeSeriesValue : INotifyPropertyChanged, IInstantiableEntity, IIfcIrregularTimeSeriesValue, IEqualityComparer<@IfcIrregularTimeSeriesValue>, IEquatable<@IfcIrregularTimeSeriesValue>
 	{
+		#region IIfcIrregularTimeSeriesValue explicit implementation
+		IfcDateTime IIfcIrregularTimeSeriesValue.TimeStamp { get { return @TimeStamp; } }	
+		IEnumerable<IfcValue> IIfcIrregularTimeSeriesValue.ListValues { get { return @ListValues; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -101,8 +124,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _timeStamp = v, _timeStamp, value,  "TimeStamp");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcValue> @ListValues 
 		{ 
@@ -112,9 +134,9 @@ namespace Xbim.Ifc4.DateTimeResource
 				((IPersistEntity)this).Activate(false);
 				return _listValues;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

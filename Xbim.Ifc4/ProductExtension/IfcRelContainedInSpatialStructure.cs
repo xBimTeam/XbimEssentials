@@ -14,13 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelContainedInSpatialStructure
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelContainedInSpatialStructure : IIfcRelConnects
+	{
+		IEnumerable<IIfcProduct> @RelatedElements { get; }
+		IIfcSpatialElement @RelatingStructure { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCRELCONTAINEDINSPATIALSTRUCTURE", 926)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelContainedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IEqualityComparer<@IfcRelContainedInSpatialStructure>, IEquatable<@IfcRelContainedInSpatialStructure>
+	public  partial class @IfcRelContainedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IIfcRelContainedInSpatialStructure, IEqualityComparer<@IfcRelContainedInSpatialStructure>, IEquatable<@IfcRelContainedInSpatialStructure>
 	{
+		#region IIfcRelContainedInSpatialStructure explicit implementation
+		IEnumerable<IIfcProduct> IIfcRelContainedInSpatialStructure.RelatedElements { get { return @RelatedElements; } }	
+		IIfcSpatialElement IIfcRelContainedInSpatialStructure.RelatingStructure { get { return @RelatingStructure; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelContainedInSpatialStructure(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +66,7 @@ namespace Xbim.Ifc4.ProductExtension
 				((IPersistEntity)this).Activate(false);
 				return _relatedElements;
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSpatialElement @RelatingStructure 
@@ -59,9 +81,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _relatingStructure = v, _relatingStructure, value,  "RelatingStructure");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

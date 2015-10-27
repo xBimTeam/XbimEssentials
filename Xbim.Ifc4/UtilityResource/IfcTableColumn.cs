@@ -14,13 +14,42 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.UtilityResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTableColumn
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTableColumn : IPersistEntity
+	{
+		IfcIdentifier? @Identifier { get; }
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		IfcUnit @Unit { get; }
+		IIfcReference @ReferencePath { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.UtilityResource
 {
 	[ExpressType("IFCTABLECOLUMN", 1077)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTableColumn : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcTableColumn>, IEquatable<@IfcTableColumn>
+	public  partial class @IfcTableColumn : INotifyPropertyChanged, IInstantiableEntity, IIfcTableColumn, IEqualityComparer<@IfcTableColumn>, IEquatable<@IfcTableColumn>
 	{
+		#region IIfcTableColumn explicit implementation
+		IfcIdentifier? IIfcTableColumn.Identifier { get { return @Identifier; } }	
+		IfcLabel? IIfcTableColumn.Name { get { return @Name; } }	
+		IfcText? IIfcTableColumn.Description { get { return @Description; } }	
+		IfcUnit IIfcTableColumn.Unit { get { return @Unit; } }	
+		IIfcReference IIfcTableColumn.ReferencePath { get { return @ReferencePath; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -104,8 +133,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Name 
 		{ 
@@ -119,8 +147,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -134,8 +161,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcUnit @Unit 
 		{ 
@@ -149,8 +175,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _unit = v, _unit, value,  "Unit");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcReference @ReferencePath 
 		{ 
@@ -164,9 +189,9 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _referencePath = v, _referencePath, value,  "ReferencePath");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

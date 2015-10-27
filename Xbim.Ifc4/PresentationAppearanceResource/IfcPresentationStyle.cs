@@ -13,14 +13,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPresentationStyle
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPresentationStyle : IPersistEntity, IfcStyleAssignmentSelect
+	{
+		IfcLabel? @Name { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCPRESENTATIONSTYLE", 833)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPresentationStyle : IPersistEntity, INotifyPropertyChanged, IfcStyleAssignmentSelect, IEqualityComparer<@IfcPresentationStyle>, IEquatable<@IfcPresentationStyle>
+	public abstract partial class @IfcPresentationStyle : IPersistEntity, INotifyPropertyChanged, IIfcPresentationStyle, IEqualityComparer<@IfcPresentationStyle>, IEquatable<@IfcPresentationStyle>
 	{
+		#region IIfcPresentationStyle explicit implementation
+		IfcLabel? IIfcPresentationStyle.Name { get { return @Name; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -100,9 +121,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

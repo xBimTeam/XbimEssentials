@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceStyle
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
+	{
+		IfcSurfaceSide @Side { get; }
+		IEnumerable<IfcSurfaceStyleElementSelect> @Styles { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCSURFACESTYLE", 1059)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyle : IfcPresentationStyle, IfcPresentationStyleSelect, IInstantiableEntity, IEqualityComparer<@IfcSurfaceStyle>, IEquatable<@IfcSurfaceStyle>
+	public  partial class @IfcSurfaceStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSurfaceStyle, IEqualityComparer<@IfcSurfaceStyle>, IEquatable<@IfcSurfaceStyle>
 	{
+		#region IIfcSurfaceStyle explicit implementation
+		IfcSurfaceSide IIfcSurfaceStyle.Side { get { return @Side; } }	
+		IEnumerable<IfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles { get { return @Styles; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyle(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +67,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _side = v, _side, value,  "Side");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 5)]
 		public ItemSet<IfcSurfaceStyleElementSelect> @Styles 
 		{ 
@@ -55,9 +77,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _styles;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

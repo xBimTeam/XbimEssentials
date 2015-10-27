@@ -11,14 +11,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMappedItem
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMappedItem : IIfcRepresentationItem
+	{
+		IIfcRepresentationMap @MappingSource { get; }
+		IIfcCartesianTransformationOperator @MappingTarget { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[IndexedClass]
 	[ExpressType("IFCMAPPEDITEM", 740)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMappedItem : IfcRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcMappedItem>, IEquatable<@IfcMappedItem>
+	public  partial class @IfcMappedItem : IfcRepresentationItem, IInstantiableEntity, IIfcMappedItem, IEqualityComparer<@IfcMappedItem>, IEquatable<@IfcMappedItem>
 	{
+		#region IIfcMappedItem explicit implementation
+		IIfcRepresentationMap IIfcMappedItem.MappingSource { get { return @MappingSource; } }	
+		IIfcCartesianTransformationOperator IIfcMappedItem.MappingTarget { get { return @MappingTarget; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMappedItem(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +67,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _mappingSource = v, _mappingSource, value,  "MappingSource");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCartesianTransformationOperator @MappingTarget 
 		{ 
@@ -59,9 +81,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _mappingTarget = v, _mappingTarget, value,  "MappingTarget");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PlumbingFireProtectionDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSanitaryTerminal
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSanitaryTerminal : IIfcFlowTerminal
+	{
+		IfcSanitaryTerminalTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
 	[ExpressType("IFCSANITARYTERMINAL", 968)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSanitaryTerminal : IfcFlowTerminal, IInstantiableEntity, IEqualityComparer<@IfcSanitaryTerminal>, IEquatable<@IfcSanitaryTerminal>
+	public  partial class @IfcSanitaryTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcSanitaryTerminal, IEqualityComparer<@IfcSanitaryTerminal>, IEquatable<@IfcSanitaryTerminal>
 	{
+		#region IIfcSanitaryTerminal explicit implementation
+		IfcSanitaryTerminalTypeEnum? IIfcSanitaryTerminal.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSanitaryTerminal(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

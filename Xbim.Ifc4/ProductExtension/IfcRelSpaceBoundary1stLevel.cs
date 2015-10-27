@@ -14,13 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelSpaceBoundary1stLevel
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelSpaceBoundary1stLevel : IIfcRelSpaceBoundary
+	{
+		IIfcRelSpaceBoundary1stLevel @ParentBoundary { get; }
+		IEnumerable<IIfcRelSpaceBoundary1stLevel> @InnerBoundaries {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCRELSPACEBOUNDARY1STLEVEL", 945)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSpaceBoundary1stLevel : IfcRelSpaceBoundary, IInstantiableEntity, IEqualityComparer<@IfcRelSpaceBoundary1stLevel>, IEquatable<@IfcRelSpaceBoundary1stLevel>
+	public  partial class @IfcRelSpaceBoundary1stLevel : IfcRelSpaceBoundary, IInstantiableEntity, IIfcRelSpaceBoundary1stLevel, IEqualityComparer<@IfcRelSpaceBoundary1stLevel>, IEquatable<@IfcRelSpaceBoundary1stLevel>
 	{
+		#region IIfcRelSpaceBoundary1stLevel explicit implementation
+		IIfcRelSpaceBoundary1stLevel IIfcRelSpaceBoundary1stLevel.ParentBoundary { get { return @ParentBoundary; } }	
+	
+	 
+		IEnumerable<IIfcRelSpaceBoundary1stLevel> IIfcRelSpaceBoundary1stLevel.InnerBoundaries {  get { return @InnerBoundaries; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelSpaceBoundary1stLevel(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +68,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _parentBoundary = v, _parentBoundary, value,  "ParentBoundary");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

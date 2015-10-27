@@ -11,17 +11,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelDecomposes
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelDecomposes : IIfcRelationship
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELDECOMPOSES", 930)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRelDecomposes : IfcRelationship, IEqualityComparer<@IfcRelDecomposes>, IEquatable<@IfcRelDecomposes>
+	public abstract partial class @IfcRelDecomposes : IfcRelationship, IIfcRelDecomposes, IEqualityComparer<@IfcRelDecomposes>, IEquatable<@IfcRelDecomposes>
 	{
+		#region IIfcRelDecomposes explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDecomposes(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

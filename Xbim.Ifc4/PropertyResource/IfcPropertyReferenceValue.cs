@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PropertyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertyReferenceValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertyReferenceValue : IIfcSimpleProperty
+	{
+		IfcText? @UsageName { get; }
+		IfcObjectReferenceSelect @PropertyReference { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IFCPROPERTYREFERENCEVALUE", 856)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyReferenceValue : IfcSimpleProperty, IInstantiableEntity, IEqualityComparer<@IfcPropertyReferenceValue>, IEquatable<@IfcPropertyReferenceValue>
+	public  partial class @IfcPropertyReferenceValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyReferenceValue, IEqualityComparer<@IfcPropertyReferenceValue>, IEquatable<@IfcPropertyReferenceValue>
 	{
+		#region IIfcPropertyReferenceValue explicit implementation
+		IfcText? IIfcPropertyReferenceValue.UsageName { get { return @UsageName; } }	
+		IfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference { get { return @PropertyReference; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyReferenceValue(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +66,7 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _usageName = v, _usageName, value,  "UsageName");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcObjectReferenceSelect @PropertyReference 
 		{ 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _propertyReference = v, _propertyReference, value,  "PropertyReference");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

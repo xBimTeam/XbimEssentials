@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextureCoordinateGenerator
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextureCoordinateGenerator : IIfcTextureCoordinate
+	{
+		IfcLabel @Mode { get; }
+		IEnumerable<IfcReal> @Parameter { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCTEXTURECOORDINATEGENERATOR", 1099)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureCoordinateGenerator : IfcTextureCoordinate, IInstantiableEntity, IEqualityComparer<@IfcTextureCoordinateGenerator>, IEquatable<@IfcTextureCoordinateGenerator>
+	public  partial class @IfcTextureCoordinateGenerator : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureCoordinateGenerator, IEqualityComparer<@IfcTextureCoordinateGenerator>, IEquatable<@IfcTextureCoordinateGenerator>
 	{
+		#region IIfcTextureCoordinateGenerator explicit implementation
+		IfcLabel IIfcTextureCoordinateGenerator.Mode { get { return @Mode; } }	
+		IEnumerable<IfcReal> IIfcTextureCoordinateGenerator.Parameter { get { return @Parameter; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureCoordinateGenerator(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +67,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _mode = v, _mode, value,  "Mode");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<IfcReal> @Parameter 
 		{ 
@@ -55,9 +77,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _parameter;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

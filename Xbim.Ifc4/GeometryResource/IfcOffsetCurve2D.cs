@@ -12,13 +12,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcOffsetCurve2D
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcOffsetCurve2D : IIfcCurve
+	{
+		IIfcCurve @BasisCurve { get; }
+		IfcLengthMeasure @Distance { get; }
+		bool? @SelfIntersect { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCOFFSETCURVE2D", 779)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOffsetCurve2D : IfcCurve, IInstantiableEntity, IEqualityComparer<@IfcOffsetCurve2D>, IEquatable<@IfcOffsetCurve2D>
+	public  partial class @IfcOffsetCurve2D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve2D, IEqualityComparer<@IfcOffsetCurve2D>, IEquatable<@IfcOffsetCurve2D>
 	{
+		#region IIfcOffsetCurve2D explicit implementation
+		IIfcCurve IIfcOffsetCurve2D.BasisCurve { get { return @BasisCurve; } }	
+		IfcLengthMeasure IIfcOffsetCurve2D.Distance { get { return @Distance; } }	
+		bool? IIfcOffsetCurve2D.SelfIntersect { get { return @SelfIntersect; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOffsetCurve2D(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +69,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure @Distance 
 		{ 
@@ -59,8 +83,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _distance = v, _distance, value,  "Distance");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @SelfIntersect 
 		{ 
@@ -74,9 +97,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -12,14 +12,47 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextStyleTextModel
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextStyleTextModel : IIfcPresentationItem
+	{
+		IfcSizeSelect @TextIndent { get; }
+		IfcTextAlignment? @TextAlign { get; }
+		IfcTextDecoration? @TextDecoration { get; }
+		IfcSizeSelect @LetterSpacing { get; }
+		IfcSizeSelect @WordSpacing { get; }
+		IfcTextTransformation? @TextTransform { get; }
+		IfcSizeSelect @LineHeight { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCTEXTSTYLETEXTMODEL", 1097)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleTextModel : IfcPresentationItem, IInstantiableEntity, IEqualityComparer<@IfcTextStyleTextModel>, IEquatable<@IfcTextStyleTextModel>
+	public  partial class @IfcTextStyleTextModel : IfcPresentationItem, IInstantiableEntity, IIfcTextStyleTextModel, IEqualityComparer<@IfcTextStyleTextModel>, IEquatable<@IfcTextStyleTextModel>
 	{
+		#region IIfcTextStyleTextModel explicit implementation
+		IfcSizeSelect IIfcTextStyleTextModel.TextIndent { get { return @TextIndent; } }	
+		IfcTextAlignment? IIfcTextStyleTextModel.TextAlign { get { return @TextAlign; } }	
+		IfcTextDecoration? IIfcTextStyleTextModel.TextDecoration { get { return @TextDecoration; } }	
+		IfcSizeSelect IIfcTextStyleTextModel.LetterSpacing { get { return @LetterSpacing; } }	
+		IfcSizeSelect IIfcTextStyleTextModel.WordSpacing { get { return @WordSpacing; } }	
+		IfcTextTransformation? IIfcTextStyleTextModel.TextTransform { get { return @TextTransform; } }	
+		IfcSizeSelect IIfcTextStyleTextModel.LineHeight { get { return @LineHeight; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextStyleTextModel(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -49,8 +82,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _textIndent = v, _textIndent, value,  "TextIndent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcTextAlignment? @TextAlign 
 		{ 
@@ -64,8 +96,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _textAlign = v, _textAlign, value,  "TextAlign");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcTextDecoration? @TextDecoration 
 		{ 
@@ -79,8 +110,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _textDecoration = v, _textDecoration, value,  "TextDecoration");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSizeSelect @LetterSpacing 
 		{ 
@@ -94,8 +124,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _letterSpacing = v, _letterSpacing, value,  "LetterSpacing");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSizeSelect @WordSpacing 
 		{ 
@@ -109,8 +138,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _wordSpacing = v, _wordSpacing, value,  "WordSpacing");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcTextTransformation? @TextTransform 
 		{ 
@@ -124,8 +152,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _textTransform = v, _textTransform, value,  "TextTransform");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSizeSelect @LineHeight 
 		{ 
@@ -139,9 +166,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _lineHeight = v, _lineHeight, value,  "LineHeight");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

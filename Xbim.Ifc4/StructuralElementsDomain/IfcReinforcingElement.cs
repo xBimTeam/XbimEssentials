@@ -13,13 +13,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralElementsDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcReinforcingElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcReinforcingElement : IIfcElementComponent
+	{
+		IfcLabel? @SteelGrade { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IFCREINFORCINGELEMENT", 897)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcReinforcingElement : IfcElementComponent, IEqualityComparer<@IfcReinforcingElement>, IEquatable<@IfcReinforcingElement>
+	public abstract partial class @IfcReinforcingElement : IfcElementComponent, IIfcReinforcingElement, IEqualityComparer<@IfcReinforcingElement>, IEquatable<@IfcReinforcingElement>
 	{
+		#region IIfcReinforcingElement explicit implementation
+		IfcLabel? IIfcReinforcingElement.SteelGrade { get { return @SteelGrade; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcingElement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,9 +64,9 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _steelGrade = v, _steelGrade, value,  "SteelGrade");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

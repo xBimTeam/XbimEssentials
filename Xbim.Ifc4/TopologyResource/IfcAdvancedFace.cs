@@ -12,17 +12,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.TopologyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAdvancedFace
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAdvancedFace : IIfcFaceSurface
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IFCADVANCEDFACE", 399)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAdvancedFace : IfcFaceSurface, IInstantiableEntity, IEqualityComparer<@IfcAdvancedFace>, IEquatable<@IfcAdvancedFace>
+	public  partial class @IfcAdvancedFace : IfcFaceSurface, IInstantiableEntity, IIfcAdvancedFace, IEqualityComparer<@IfcAdvancedFace>, IEquatable<@IfcAdvancedFace>
 	{
+		#region IIfcAdvancedFace explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAdvancedFace(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

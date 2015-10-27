@@ -12,14 +12,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ExternalReferenceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDocumentInformationRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDocumentInformationRelationship : IIfcResourceLevelRelationship
+	{
+		IIfcDocumentInformation @RelatingDocument { get; }
+		IEnumerable<IIfcDocumentInformation> @RelatedDocuments { get; }
+		IfcLabel? @RelationshipType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCDOCUMENTINFORMATIONRELATIONSHIP", 579)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentInformationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IEqualityComparer<@IfcDocumentInformationRelationship>, IEquatable<@IfcDocumentInformationRelationship>
+	public  partial class @IfcDocumentInformationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcDocumentInformationRelationship, IEqualityComparer<@IfcDocumentInformationRelationship>, IEquatable<@IfcDocumentInformationRelationship>
 	{
+		#region IIfcDocumentInformationRelationship explicit implementation
+		IIfcDocumentInformation IIfcDocumentInformationRelationship.RelatingDocument { get { return @RelatingDocument; } }	
+		IEnumerable<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments { get { return @RelatedDocuments; } }	
+		IfcLabel? IIfcDocumentInformationRelationship.RelationshipType { get { return @RelationshipType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDocumentInformationRelationship(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +72,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _relatingDocument = v, _relatingDocument, value,  "RelatingDocument");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcDocumentInformation> @RelatedDocuments 
@@ -59,8 +83,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				((IPersistEntity)this).Activate(false);
 				return _relatedDocuments;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @RelationshipType 
 		{ 
@@ -74,9 +97,9 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _relationshipType = v, _relationshipType, value,  "RelationshipType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

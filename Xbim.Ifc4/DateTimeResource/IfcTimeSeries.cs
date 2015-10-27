@@ -16,14 +16,51 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.DateTimeResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTimeSeries
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTimeSeries : IPersistEntity, IfcMetricValueSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect
+	{
+		IfcLabel @Name { get; }
+		IfcText? @Description { get; }
+		IfcDateTime @StartTime { get; }
+		IfcDateTime @EndTime { get; }
+		IfcTimeSeriesDataTypeEnum @TimeSeriesDataType { get; }
+		IfcDataOriginEnum @DataOrigin { get; }
+		IfcLabel? @UserDefinedDataOrigin { get; }
+		IfcUnit @Unit { get; }
+		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReference {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.DateTimeResource
 {
 	[IndexedClass]
 	[ExpressType("IFCTIMESERIES", 1104)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTimeSeries : IPersistEntity, INotifyPropertyChanged, IfcMetricValueSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect, IEqualityComparer<@IfcTimeSeries>, IEquatable<@IfcTimeSeries>
+	public abstract partial class @IfcTimeSeries : IPersistEntity, INotifyPropertyChanged, IIfcTimeSeries, IEqualityComparer<@IfcTimeSeries>, IEquatable<@IfcTimeSeries>
 	{
+		#region IIfcTimeSeries explicit implementation
+		IfcLabel IIfcTimeSeries.Name { get { return @Name; } }	
+		IfcText? IIfcTimeSeries.Description { get { return @Description; } }	
+		IfcDateTime IIfcTimeSeries.StartTime { get { return @StartTime; } }	
+		IfcDateTime IIfcTimeSeries.EndTime { get { return @EndTime; } }	
+		IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType { get { return @TimeSeriesDataType; } }	
+		IfcDataOriginEnum IIfcTimeSeries.DataOrigin { get { return @DataOrigin; } }	
+		IfcLabel? IIfcTimeSeries.UserDefinedDataOrigin { get { return @UserDefinedDataOrigin; } }	
+		IfcUnit IIfcTimeSeries.Unit { get { return @Unit; } }	
+	
+	 
+		IEnumerable<IIfcExternalReferenceRelationship> IIfcTimeSeries.HasExternalReference {  get { return @HasExternalReference; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -110,8 +147,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -125,8 +161,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime @StartTime 
 		{ 
@@ -140,8 +175,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime @EndTime 
 		{ 
@@ -155,8 +189,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _endTime = v, _endTime, value,  "EndTime");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcTimeSeriesDataTypeEnum @TimeSeriesDataType 
 		{ 
@@ -170,8 +203,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _timeSeriesDataType = v, _timeSeriesDataType, value,  "TimeSeriesDataType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDataOriginEnum @DataOrigin 
 		{ 
@@ -185,8 +217,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _dataOrigin = v, _dataOrigin, value,  "DataOrigin");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedDataOrigin 
 		{ 
@@ -200,8 +231,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _userDefinedDataOrigin = v, _userDefinedDataOrigin, value,  "UserDefinedDataOrigin");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcUnit @Unit 
 		{ 
@@ -215,9 +245,9 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _unit = v, _unit, value,  "Unit");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

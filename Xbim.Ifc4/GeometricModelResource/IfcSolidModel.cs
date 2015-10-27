@@ -13,18 +13,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSolidModel
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSolidModel : IIfcGeometricRepresentationItem, IfcBooleanOperand, IfcSolidOrShell
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[IndexedClass]
 	[ExpressType("IFCSOLIDMODEL", 992)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSolidModel : IfcGeometricRepresentationItem, IfcBooleanOperand, IfcSolidOrShell, IEqualityComparer<@IfcSolidModel>, IEquatable<@IfcSolidModel>
+	public abstract partial class @IfcSolidModel : IfcGeometricRepresentationItem, IIfcSolidModel, IEqualityComparer<@IfcSolidModel>, IEquatable<@IfcSolidModel>
 	{
+		#region IIfcSolidModel explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSolidModel(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

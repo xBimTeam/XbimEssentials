@@ -12,13 +12,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MaterialResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialConstituentSet
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialConstituentSet : IIfcMaterialDefinition
+	{
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		IEnumerable<IIfcMaterialConstituent> @MaterialConstituents { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IFCMATERIALCONSTITUENTSET", 744)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialConstituentSet : IfcMaterialDefinition, IInstantiableEntity, IEqualityComparer<@IfcMaterialConstituentSet>, IEquatable<@IfcMaterialConstituentSet>
+	public  partial class @IfcMaterialConstituentSet : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialConstituentSet, IEqualityComparer<@IfcMaterialConstituentSet>, IEquatable<@IfcMaterialConstituentSet>
 	{
+		#region IIfcMaterialConstituentSet explicit implementation
+		IfcLabel? IIfcMaterialConstituentSet.Name { get { return @Name; } }	
+		IfcText? IIfcMaterialConstituentSet.Description { get { return @Description; } }	
+		IEnumerable<IIfcMaterialConstituent> IIfcMaterialConstituentSet.MaterialConstituents { get { return @MaterialConstituents; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialConstituentSet(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +70,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -60,8 +84,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcMaterialConstituent> @MaterialConstituents 
@@ -72,9 +95,9 @@ namespace Xbim.Ifc4.MaterialResource
 				((IPersistEntity)this).Activate(false);
 				return _materialConstituents;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

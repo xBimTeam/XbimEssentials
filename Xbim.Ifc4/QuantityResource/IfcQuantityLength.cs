@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.QuantityResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcQuantityLength
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcQuantityLength : IIfcPhysicalSimpleQuantity
+	{
+		IfcLengthMeasure @LengthValue { get; }
+		IfcLabel? @Formula { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.QuantityResource
 {
 	[ExpressType("IFCQUANTITYLENGTH", 873)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityLength : IfcPhysicalSimpleQuantity, IInstantiableEntity, IEqualityComparer<@IfcQuantityLength>, IEquatable<@IfcQuantityLength>
+	public  partial class @IfcQuantityLength : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityLength, IEqualityComparer<@IfcQuantityLength>, IEquatable<@IfcQuantityLength>
 	{
+		#region IIfcQuantityLength explicit implementation
+		IfcLengthMeasure IIfcQuantityLength.LengthValue { get { return @LengthValue; } }	
+		IfcLabel? IIfcQuantityLength.Formula { get { return @Formula; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcQuantityLength(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +66,7 @@ namespace Xbim.Ifc4.QuantityResource
 			{
 				SetValue( v =>  _lengthValue = v, _lengthValue, value,  "LengthValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Formula 
 		{ 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.QuantityResource
 			{
 				SetValue( v =>  _formula = v, _formula, value,  "Formula");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

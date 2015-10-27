@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.HvacDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcHeatExchangerType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcHeatExchangerType : IIfcEnergyConversionDeviceType
+	{
+		IfcHeatExchangerTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IFCHEATEXCHANGERTYPE", 702)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHeatExchangerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IEqualityComparer<@IfcHeatExchangerType>, IEquatable<@IfcHeatExchangerType>
+	public  partial class @IfcHeatExchangerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcHeatExchangerType, IEqualityComparer<@IfcHeatExchangerType>, IEquatable<@IfcHeatExchangerType>
 	{
+		#region IIfcHeatExchangerType explicit implementation
+		IfcHeatExchangerTypeEnum IIfcHeatExchangerType.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcHeatExchangerType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

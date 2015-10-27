@@ -12,13 +12,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCartesianPointList3D
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCartesianPointList3D : IIfcCartesianPointList
+	{
+		IEnumerable<IEnumerable<IfcLengthMeasure>> @CoordList { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCCARTESIANPOINTLIST3D", 469)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianPointList3D : IfcCartesianPointList, IInstantiableEntity, IEqualityComparer<@IfcCartesianPointList3D>, IEquatable<@IfcCartesianPointList3D>
+	public  partial class @IfcCartesianPointList3D : IfcCartesianPointList, IInstantiableEntity, IIfcCartesianPointList3D, IEqualityComparer<@IfcCartesianPointList3D>, IEquatable<@IfcCartesianPointList3D>
 	{
+		#region IIfcCartesianPointList3D explicit implementation
+		IEnumerable<IEnumerable<IfcLengthMeasure>> IIfcCartesianPointList3D.CoordList { get { return @CoordList; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianPointList3D(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,9 +60,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 				((IPersistEntity)this).Activate(false);
 				return _coordList;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

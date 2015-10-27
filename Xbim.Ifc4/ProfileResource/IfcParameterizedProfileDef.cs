@@ -12,13 +12,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProfileResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcParameterizedProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcParameterizedProfileDef : IIfcProfileDef
+	{
+		IIfcAxis2Placement2D @Position { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IFCPARAMETERIZEDPROFILEDEF", 791)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcParameterizedProfileDef : IfcProfileDef, IEqualityComparer<@IfcParameterizedProfileDef>, IEquatable<@IfcParameterizedProfileDef>
+	public abstract partial class @IfcParameterizedProfileDef : IfcProfileDef, IIfcParameterizedProfileDef, IEqualityComparer<@IfcParameterizedProfileDef>, IEquatable<@IfcParameterizedProfileDef>
 	{
+		#region IIfcParameterizedProfileDef explicit implementation
+		IIfcAxis2Placement2D IIfcParameterizedProfileDef.Position { get { return @Position; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcParameterizedProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +63,9 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _position = v, _position, value,  "Position");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

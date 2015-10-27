@@ -11,13 +11,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAxis2Placement2D
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAxis2Placement2D : IIfcPlacement, IfcAxis2Placement
+	{
+		IIfcDirection @RefDirection { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCAXIS2PLACEMENT2D", 422)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAxis2Placement2D : IfcPlacement, IfcAxis2Placement, IInstantiableEntity, IEqualityComparer<@IfcAxis2Placement2D>, IEquatable<@IfcAxis2Placement2D>
+	public  partial class @IfcAxis2Placement2D : IfcPlacement, IInstantiableEntity, IIfcAxis2Placement2D, IEqualityComparer<@IfcAxis2Placement2D>, IEquatable<@IfcAxis2Placement2D>
 	{
+		#region IIfcAxis2Placement2D explicit implementation
+		IIfcDirection IIfcAxis2Placement2D.RefDirection { get { return @RefDirection; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAxis2Placement2D(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,9 +62,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _refDirection = v, _refDirection, value,  "RefDirection");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

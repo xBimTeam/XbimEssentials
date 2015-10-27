@@ -13,14 +13,41 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRepresentationMap
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRepresentationMap : IPersistEntity, IfcProductRepresentationSelect
+	{
+		IfcAxis2Placement @MappingOrigin { get; }
+		IIfcRepresentation @MappedRepresentation { get; }
+		IEnumerable<IIfcShapeAspect> @HasShapeAspects {  get; }
+		IEnumerable<IIfcMappedItem> @MapUsage {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[IndexedClass]
 	[ExpressType("IFCREPRESENTATIONMAP", 953)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRepresentationMap : INotifyPropertyChanged, IfcProductRepresentationSelect, IInstantiableEntity, IEqualityComparer<@IfcRepresentationMap>, IEquatable<@IfcRepresentationMap>
+	public  partial class @IfcRepresentationMap : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentationMap, IEqualityComparer<@IfcRepresentationMap>, IEquatable<@IfcRepresentationMap>
 	{
+		#region IIfcRepresentationMap explicit implementation
+		IfcAxis2Placement IIfcRepresentationMap.MappingOrigin { get { return @MappingOrigin; } }	
+		IIfcRepresentation IIfcRepresentationMap.MappedRepresentation { get { return @MappedRepresentation; } }	
+	
+	 
+		IEnumerable<IIfcShapeAspect> IIfcRepresentationMap.HasShapeAspects {  get { return @HasShapeAspects; } }
+		IEnumerable<IIfcMappedItem> IIfcRepresentationMap.MapUsage {  get { return @MapUsage; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -101,8 +128,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _mappingOrigin = v, _mappingOrigin, value,  "MappingOrigin");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcRepresentation @MappedRepresentation 
@@ -117,9 +143,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _mappedRepresentation = v, _mappedRepresentation, value,  "MappedRepresentation");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

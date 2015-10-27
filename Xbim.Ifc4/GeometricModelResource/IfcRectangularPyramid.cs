@@ -13,13 +13,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRectangularPyramid
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRectangularPyramid : IIfcCsgPrimitive3D
+	{
+		IfcPositiveLengthMeasure @XLength { get; }
+		IfcPositiveLengthMeasure @YLength { get; }
+		IfcPositiveLengthMeasure @Height { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCRECTANGULARPYRAMID", 888)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangularPyramid : IfcCsgPrimitive3D, IInstantiableEntity, IEqualityComparer<@IfcRectangularPyramid>, IEquatable<@IfcRectangularPyramid>
+	public  partial class @IfcRectangularPyramid : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRectangularPyramid, IEqualityComparer<@IfcRectangularPyramid>, IEquatable<@IfcRectangularPyramid>
 	{
+		#region IIfcRectangularPyramid explicit implementation
+		IfcPositiveLengthMeasure IIfcRectangularPyramid.XLength { get { return @XLength; } }	
+		IfcPositiveLengthMeasure IIfcRectangularPyramid.YLength { get { return @YLength; } }	
+		IfcPositiveLengthMeasure IIfcRectangularPyramid.Height { get { return @Height; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRectangularPyramid(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +70,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _xLength = v, _xLength, value,  "XLength");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @YLength 
 		{ 
@@ -60,8 +84,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _yLength = v, _yLength, value,  "YLength");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @Height 
 		{ 
@@ -75,9 +98,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _height = v, _height, value,  "Height");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

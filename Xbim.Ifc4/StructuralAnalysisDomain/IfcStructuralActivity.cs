@@ -14,13 +14,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralActivity
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralActivity : IIfcProduct
+	{
+		IIfcStructuralLoad @AppliedLoad { get; }
+		IfcGlobalOrLocalEnum @GlobalOrLocal { get; }
+		IEnumerable<IIfcRelConnectsStructuralActivity> @AssignedToStructuralItem {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALACTIVITY", 1011)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralActivity : IfcProduct, IEqualityComparer<@IfcStructuralActivity>, IEquatable<@IfcStructuralActivity>
+	public abstract partial class @IfcStructuralActivity : IfcProduct, IIfcStructuralActivity, IEqualityComparer<@IfcStructuralActivity>, IEquatable<@IfcStructuralActivity>
 	{
+		#region IIfcStructuralActivity explicit implementation
+		IIfcStructuralLoad IIfcStructuralActivity.AppliedLoad { get { return @AppliedLoad; } }	
+		IfcGlobalOrLocalEnum IIfcStructuralActivity.GlobalOrLocal { get { return @GlobalOrLocal; } }	
+	
+	 
+		IEnumerable<IIfcRelConnectsStructuralActivity> IIfcStructuralActivity.AssignedToStructuralItem {  get { return @AssignedToStructuralItem; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralActivity(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +70,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _appliedLoad = v, _appliedLoad, value,  "AppliedLoad");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcGlobalOrLocalEnum @GlobalOrLocal 
 		{ 
@@ -60,9 +84,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _globalOrLocal = v, _globalOrLocal, value,  "GlobalOrLocal");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

@@ -13,13 +13,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProfileResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCircleProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCircleProfileDef : IIfcParameterizedProfileDef
+	{
+		IfcPositiveLengthMeasure @Radius { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IFCCIRCLEPROFILEDEF", 482)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCircleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IEqualityComparer<@IfcCircleProfileDef>, IEquatable<@IfcCircleProfileDef>
+	public  partial class @IfcCircleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCircleProfileDef, IEqualityComparer<@IfcCircleProfileDef>, IEquatable<@IfcCircleProfileDef>
 	{
+		#region IIfcCircleProfileDef explicit implementation
+		IfcPositiveLengthMeasure IIfcCircleProfileDef.Radius { get { return @Radius; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCircleProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,9 +64,9 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _radius = v, _radius, value,  "Radius");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

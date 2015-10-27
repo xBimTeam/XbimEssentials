@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTriangulatedFaceSet
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTriangulatedFaceSet : IIfcTessellatedFaceSet
+	{
+		IEnumerable<IEnumerable<long>> @CoordIndex { get; }
+		IEnumerable<IEnumerable<long>> @NormalIndex { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCTRIANGULATEDFACESET", 1113)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTriangulatedFaceSet : IfcTessellatedFaceSet, IInstantiableEntity, IEqualityComparer<@IfcTriangulatedFaceSet>, IEquatable<@IfcTriangulatedFaceSet>
+	public  partial class @IfcTriangulatedFaceSet : IfcTessellatedFaceSet, IInstantiableEntity, IIfcTriangulatedFaceSet, IEqualityComparer<@IfcTriangulatedFaceSet>, IEquatable<@IfcTriangulatedFaceSet>
 	{
+		#region IIfcTriangulatedFaceSet explicit implementation
+		IEnumerable<IEnumerable<long>> IIfcTriangulatedFaceSet.CoordIndex { get { return @CoordIndex; } }	
+		IEnumerable<IEnumerable<long>> IIfcTriangulatedFaceSet.NormalIndex { get { return @NormalIndex; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTriangulatedFaceSet(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,8 +64,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				((IPersistEntity)this).Activate(false);
 				return _coordIndex;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 1, -1)]
 		public OptionalItemSet<ItemSet<long>> @NormalIndex 
 		{ 
@@ -52,9 +74,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 				((IPersistEntity)this).Activate(false);
 				return _normalIndex;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

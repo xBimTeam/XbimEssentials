@@ -12,14 +12,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MaterialResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialList
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialList : IPersistEntity, IfcMaterialSelect
+	{
+		IEnumerable<IIfcMaterial> @Materials { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MaterialResource
 {
 	[IndexedClass]
 	[ExpressType("IFCMATERIALLIST", 751)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialList : INotifyPropertyChanged, IfcMaterialSelect, IInstantiableEntity, IEqualityComparer<@IfcMaterialList>, IEquatable<@IfcMaterialList>
+	public  partial class @IfcMaterialList : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialList, IEqualityComparer<@IfcMaterialList>, IEquatable<@IfcMaterialList>
 	{
+		#region IIfcMaterialList explicit implementation
+		IEnumerable<IIfcMaterial> IIfcMaterialList.Materials { get { return @Materials; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -96,9 +117,9 @@ namespace Xbim.Ifc4.MaterialResource
 				((IPersistEntity)this).Activate(false);
 				return _materials;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

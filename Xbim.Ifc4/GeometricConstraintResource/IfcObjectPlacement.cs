@@ -13,13 +13,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricConstraintResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcObjectPlacement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcObjectPlacement : IPersistEntity
+	{
+		IEnumerable<IIfcProduct> @PlacesObject {  get; }
+		IEnumerable<IIfcLocalPlacement> @ReferencedByPlacements {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[ExpressType("IFCOBJECTPLACEMENT", 776)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcObjectPlacement : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcObjectPlacement>, IEquatable<@IfcObjectPlacement>
+	public abstract partial class @IfcObjectPlacement : IPersistEntity, INotifyPropertyChanged, IIfcObjectPlacement, IEqualityComparer<@IfcObjectPlacement>, IEquatable<@IfcObjectPlacement>
 	{
+		#region IIfcObjectPlacement explicit implementation
+	
+	 
+		IEnumerable<IIfcProduct> IIfcObjectPlacement.PlacesObject {  get { return @PlacesObject; } }
+		IEnumerable<IIfcLocalPlacement> IIfcObjectPlacement.ReferencedByPlacements {  get { return @ReferencedByPlacements; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -80,6 +103,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		internal IfcObjectPlacement(IModel model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

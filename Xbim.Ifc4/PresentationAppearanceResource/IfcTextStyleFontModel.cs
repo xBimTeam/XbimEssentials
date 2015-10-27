@@ -12,14 +12,43 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextStyleFontModel
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextStyleFontModel : IIfcPreDefinedTextFont
+	{
+		IEnumerable<IfcTextFontName> @FontFamily { get; }
+		IfcFontStyle? @FontStyle { get; }
+		IfcFontVariant? @FontVariant { get; }
+		IfcFontWeight? @FontWeight { get; }
+		IfcSizeSelect @FontSize { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCTEXTSTYLEFONTMODEL", 1095)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleFontModel : IfcPreDefinedTextFont, IInstantiableEntity, IEqualityComparer<@IfcTextStyleFontModel>, IEquatable<@IfcTextStyleFontModel>
+	public  partial class @IfcTextStyleFontModel : IfcPreDefinedTextFont, IInstantiableEntity, IIfcTextStyleFontModel, IEqualityComparer<@IfcTextStyleFontModel>, IEquatable<@IfcTextStyleFontModel>
 	{
+		#region IIfcTextStyleFontModel explicit implementation
+		IEnumerable<IfcTextFontName> IIfcTextStyleFontModel.FontFamily { get { return @FontFamily; } }	
+		IfcFontStyle? IIfcTextStyleFontModel.FontStyle { get { return @FontStyle; } }	
+		IfcFontVariant? IIfcTextStyleFontModel.FontVariant { get { return @FontVariant; } }	
+		IfcFontWeight? IIfcTextStyleFontModel.FontWeight { get { return @FontWeight; } }	
+		IfcSizeSelect IIfcTextStyleFontModel.FontSize { get { return @FontSize; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextStyleFontModel(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +73,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _fontFamily;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcFontStyle? @FontStyle 
 		{ 
@@ -59,8 +87,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _fontStyle = v, _fontStyle, value,  "FontStyle");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcFontVariant? @FontVariant 
 		{ 
@@ -74,8 +101,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _fontVariant = v, _fontVariant, value,  "FontVariant");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcFontWeight? @FontWeight 
 		{ 
@@ -89,8 +115,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _fontWeight = v, _fontWeight, value,  "FontWeight");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSizeSelect @FontSize 
 		{ 
@@ -104,9 +129,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _fontSize = v, _fontSize, value,  "FontSize");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

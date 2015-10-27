@@ -11,17 +11,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertyTemplate
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertyTemplate : IIfcPropertyTemplateDefinition
+	{
+		IEnumerable<IIfcComplexPropertyTemplate> @PartOfComplexTemplate {  get; }
+		IEnumerable<IIfcPropertySetTemplate> @PartOfPsetTemplate {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCPROPERTYTEMPLATE", 862)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPropertyTemplate : IfcPropertyTemplateDefinition, IEqualityComparer<@IfcPropertyTemplate>, IEquatable<@IfcPropertyTemplate>
+	public abstract partial class @IfcPropertyTemplate : IfcPropertyTemplateDefinition, IIfcPropertyTemplate, IEqualityComparer<@IfcPropertyTemplate>, IEquatable<@IfcPropertyTemplate>
 	{
+		#region IIfcPropertyTemplate explicit implementation
+	
+	 
+		IEnumerable<IIfcComplexPropertyTemplate> IIfcPropertyTemplate.PartOfComplexTemplate {  get { return @PartOfComplexTemplate; } }
+		IEnumerable<IIfcPropertySetTemplate> IIfcPropertyTemplate.PartOfPsetTemplate {  get { return @PartOfPsetTemplate; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyTemplate(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

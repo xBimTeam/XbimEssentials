@@ -11,17 +11,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralLoadResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralLoadStatic
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralLoadStatic : IIfcStructuralLoadOrResult
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IFCSTRUCTURALLOADSTATIC", 1033)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralLoadStatic : IfcStructuralLoadOrResult, IEqualityComparer<@IfcStructuralLoadStatic>, IEquatable<@IfcStructuralLoadStatic>
+	public abstract partial class @IfcStructuralLoadStatic : IfcStructuralLoadOrResult, IIfcStructuralLoadStatic, IEqualityComparer<@IfcStructuralLoadStatic>, IEquatable<@IfcStructuralLoadStatic>
 	{
+		#region IIfcStructuralLoadStatic explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadStatic(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

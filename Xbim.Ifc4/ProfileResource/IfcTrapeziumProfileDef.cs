@@ -13,13 +13,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProfileResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTrapeziumProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTrapeziumProfileDef : IIfcParameterizedProfileDef
+	{
+		IfcPositiveLengthMeasure @BottomXDim { get; }
+		IfcPositiveLengthMeasure @TopXDim { get; }
+		IfcPositiveLengthMeasure @YDim { get; }
+		IfcLengthMeasure @TopXOffset { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IFCTRAPEZIUMPROFILEDEF", 1112)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTrapeziumProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IEqualityComparer<@IfcTrapeziumProfileDef>, IEquatable<@IfcTrapeziumProfileDef>
+	public  partial class @IfcTrapeziumProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcTrapeziumProfileDef, IEqualityComparer<@IfcTrapeziumProfileDef>, IEquatable<@IfcTrapeziumProfileDef>
 	{
+		#region IIfcTrapeziumProfileDef explicit implementation
+		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.BottomXDim { get { return @BottomXDim; } }	
+		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.TopXDim { get { return @TopXDim; } }	
+		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.YDim { get { return @YDim; } }	
+		IfcLengthMeasure IIfcTrapeziumProfileDef.TopXOffset { get { return @TopXOffset; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTrapeziumProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +73,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _bottomXDim = v, _bottomXDim, value,  "BottomXDim");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @TopXDim 
 		{ 
@@ -61,8 +87,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _topXDim = v, _topXDim, value,  "TopXDim");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @YDim 
 		{ 
@@ -76,8 +101,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _yDim = v, _yDim, value,  "YDim");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure @TopXOffset 
 		{ 
@@ -91,9 +115,9 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _topXOffset = v, _topXOffset, value,  "TopXOffset");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -11,17 +11,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgServiceElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcEnergyConversionDeviceType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcEnergyConversionDeviceType : IIfcDistributionFlowElementType
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IFCENERGYCONVERSIONDEVICETYPE", 621)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcEnergyConversionDeviceType : IfcDistributionFlowElementType, IEqualityComparer<@IfcEnergyConversionDeviceType>, IEquatable<@IfcEnergyConversionDeviceType>
+	public abstract partial class @IfcEnergyConversionDeviceType : IfcDistributionFlowElementType, IIfcEnergyConversionDeviceType, IEqualityComparer<@IfcEnergyConversionDeviceType>, IEquatable<@IfcEnergyConversionDeviceType>
 	{
+		#region IIfcEnergyConversionDeviceType explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEnergyConversionDeviceType(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

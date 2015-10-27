@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.MemoryModel.Tests
 {
@@ -10,9 +12,18 @@ namespace Xbim.MemoryModel.Tests
         public void TestInterschemaTypeAssignment()
         {
             Ifc2x3.MeasureResource.IfcIdentifier a = "aaa";
-            Ifc4.MeasureResource.IfcIdentifier b = (string)a;
+            IfcIdentifier b = (string)a;
 
             Assert.IsTrue(b == "aaa");
         }
+
+        IEnumerable<string> Test()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                yield return new IfcIdentifier("Test...");
+            }
+        }
+
     }
 }

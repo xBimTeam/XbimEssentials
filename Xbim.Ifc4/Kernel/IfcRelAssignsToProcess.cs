@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssignsToProcess
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssignsToProcess : IIfcRelAssigns
+	{
+		IfcProcessSelect @RelatingProcess { get; }
+		IIfcMeasureWithUnit @QuantityInProcess { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELASSIGNSTOPROCESS", 907)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IEqualityComparer<@IfcRelAssignsToProcess>, IEquatable<@IfcRelAssignsToProcess>
+	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProcess, IEqualityComparer<@IfcRelAssignsToProcess>, IEquatable<@IfcRelAssignsToProcess>
 	{
+		#region IIfcRelAssignsToProcess explicit implementation
+		IfcProcessSelect IIfcRelAssignsToProcess.RelatingProcess { get { return @RelatingProcess; } }	
+		IIfcMeasureWithUnit IIfcRelAssignsToProcess.QuantityInProcess { get { return @QuantityInProcess; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsToProcess(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +68,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMeasureWithUnit @QuantityInProcess 
 		{ 
@@ -60,9 +82,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _quantityInProcess = v, _quantityInProcess, value,  "QuantityInProcess");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

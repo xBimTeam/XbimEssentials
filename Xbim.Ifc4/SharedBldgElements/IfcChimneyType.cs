@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcChimneyType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcChimneyType : IIfcBuildingElementType
+	{
+		IfcChimneyTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IFCCHIMNEYTYPE", 479)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcChimneyType : IfcBuildingElementType, IInstantiableEntity, IEqualityComparer<@IfcChimneyType>, IEquatable<@IfcChimneyType>
+	public  partial class @IfcChimneyType : IfcBuildingElementType, IInstantiableEntity, IIfcChimneyType, IEqualityComparer<@IfcChimneyType>, IEquatable<@IfcChimneyType>
 	{
+		#region IIfcChimneyType explicit implementation
+		IfcChimneyTypeEnum IIfcChimneyType.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcChimneyType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

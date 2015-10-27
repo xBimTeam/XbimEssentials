@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MeasureResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcContextDependentUnit
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcContextDependentUnit : IIfcNamedUnit, IfcResourceObjectSelect
+	{
+		IfcLabel @Name { get; }
+		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReference {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IFCCONTEXTDEPENDENTUNIT", 526)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcContextDependentUnit : IfcNamedUnit, IfcResourceObjectSelect, IInstantiableEntity, IEqualityComparer<@IfcContextDependentUnit>, IEquatable<@IfcContextDependentUnit>
+	public  partial class @IfcContextDependentUnit : IfcNamedUnit, IInstantiableEntity, IIfcContextDependentUnit, IEqualityComparer<@IfcContextDependentUnit>, IEquatable<@IfcContextDependentUnit>
 	{
+		#region IIfcContextDependentUnit explicit implementation
+		IfcLabel IIfcContextDependentUnit.Name { get { return @Name; } }	
+	
+	 
+		IEnumerable<IIfcExternalReferenceRelationship> IIfcContextDependentUnit.HasExternalReference {  get { return @HasExternalReference; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcContextDependentUnit(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +65,9 @@ namespace Xbim.Ifc4.MeasureResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

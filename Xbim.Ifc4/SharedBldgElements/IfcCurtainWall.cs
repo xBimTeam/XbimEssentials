@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCurtainWall
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCurtainWall : IIfcBuildingElement
+	{
+		IfcCurtainWallTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IFCCURTAINWALL", 548)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurtainWall : IfcBuildingElement, IInstantiableEntity, IEqualityComparer<@IfcCurtainWall>, IEquatable<@IfcCurtainWall>
+	public  partial class @IfcCurtainWall : IfcBuildingElement, IInstantiableEntity, IIfcCurtainWall, IEqualityComparer<@IfcCurtainWall>, IEquatable<@IfcCurtainWall>
 	{
+		#region IIfcCurtainWall explicit implementation
+		IfcCurtainWallTypeEnum? IIfcCurtainWall.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurtainWall(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PropertyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertySingleValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertySingleValue : IIfcSimpleProperty
+	{
+		IfcValue @NominalValue { get; }
+		IfcUnit @Unit { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IFCPROPERTYSINGLEVALUE", 860)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertySingleValue : IfcSimpleProperty, IInstantiableEntity, IEqualityComparer<@IfcPropertySingleValue>, IEquatable<@IfcPropertySingleValue>
+	public  partial class @IfcPropertySingleValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertySingleValue, IEqualityComparer<@IfcPropertySingleValue>, IEquatable<@IfcPropertySingleValue>
 	{
+		#region IIfcPropertySingleValue explicit implementation
+		IfcValue IIfcPropertySingleValue.NominalValue { get { return @NominalValue; } }	
+		IfcUnit IIfcPropertySingleValue.Unit { get { return @Unit; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertySingleValue(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +66,7 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _nominalValue = v, _nominalValue, value,  "NominalValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcUnit @Unit 
 		{ 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _unit = v, _unit, value,  "Unit");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PlumbingFireProtectionDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcInterceptorType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcInterceptorType : IIfcFlowTreatmentDeviceType
+	{
+		IfcInterceptorTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
 	[ExpressType("IFCINTERCEPTORTYPE", 711)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcInterceptorType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IEqualityComparer<@IfcInterceptorType>, IEquatable<@IfcInterceptorType>
+	public  partial class @IfcInterceptorType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IIfcInterceptorType, IEqualityComparer<@IfcInterceptorType>, IEquatable<@IfcInterceptorType>
 	{
+		#region IIfcInterceptorType explicit implementation
+		IfcInterceptorTypeEnum IIfcInterceptorType.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcInterceptorType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

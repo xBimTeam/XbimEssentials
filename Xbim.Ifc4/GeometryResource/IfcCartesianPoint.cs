@@ -12,13 +12,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCartesianPoint
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCartesianPoint : IIfcPoint, IfcTrimmingSelect
+	{
+		IEnumerable<IfcLengthMeasure> @Coordinates { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCCARTESIANPOINT", 467)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianPoint : IfcPoint, IfcTrimmingSelect, IInstantiableEntity, IEqualityComparer<@IfcCartesianPoint>, IEquatable<@IfcCartesianPoint>
+	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IIfcCartesianPoint, IEqualityComparer<@IfcCartesianPoint>, IEquatable<@IfcCartesianPoint>
 	{
+		#region IIfcCartesianPoint explicit implementation
+		IEnumerable<IfcLengthMeasure> IIfcCartesianPoint.Coordinates { get { return @Coordinates; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianPoint(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,9 +60,9 @@ namespace Xbim.Ifc4.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _coordinates;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

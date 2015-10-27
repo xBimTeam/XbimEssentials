@@ -16,13 +16,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSite
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSite : IIfcSpatialStructureElement
+	{
+		IfcCompoundPlaneAngleMeasure? @RefLatitude { get; }
+		IfcCompoundPlaneAngleMeasure? @RefLongitude { get; }
+		IfcLengthMeasure? @RefElevation { get; }
+		IfcLabel? @LandTitleNumber { get; }
+		IIfcPostalAddress @SiteAddress { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCSITE", 984)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSite : IfcSpatialStructureElement, IInstantiableEntity, IEqualityComparer<@IfcSite>, IEquatable<@IfcSite>
+	public  partial class @IfcSite : IfcSpatialStructureElement, IInstantiableEntity, IIfcSite, IEqualityComparer<@IfcSite>, IEquatable<@IfcSite>
 	{
+		#region IIfcSite explicit implementation
+		IfcCompoundPlaneAngleMeasure? IIfcSite.RefLatitude { get { return @RefLatitude; } }	
+		IfcCompoundPlaneAngleMeasure? IIfcSite.RefLongitude { get { return @RefLongitude; } }	
+		IfcLengthMeasure? IIfcSite.RefElevation { get { return @RefElevation; } }	
+		IfcLabel? IIfcSite.LandTitleNumber { get { return @LandTitleNumber; } }	
+		IIfcPostalAddress IIfcSite.SiteAddress { get { return @SiteAddress; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSite(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -50,8 +79,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _refLatitude = v, _refLatitude, value,  "RefLatitude");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcCompoundPlaneAngleMeasure? @RefLongitude 
 		{ 
@@ -65,8 +93,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _refLongitude = v, _refLongitude, value,  "RefLongitude");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @RefElevation 
 		{ 
@@ -80,8 +107,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _refElevation = v, _refElevation, value,  "RefElevation");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @LandTitleNumber 
 		{ 
@@ -95,8 +121,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _landTitleNumber = v, _landTitleNumber, value,  "LandTitleNumber");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcPostalAddress @SiteAddress 
 		{ 
@@ -110,9 +135,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _siteAddress = v, _siteAddress, value,  "SiteAddress");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

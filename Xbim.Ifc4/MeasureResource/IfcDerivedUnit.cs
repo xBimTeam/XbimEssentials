@@ -12,13 +12,38 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MeasureResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDerivedUnit
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDerivedUnit : IPersistEntity, IfcUnit
+	{
+		IEnumerable<IIfcDerivedUnitElement> @Elements { get; }
+		IfcDerivedUnitEnum @UnitType { get; }
+		IfcLabel? @UserDefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IFCDERIVEDUNIT", 561)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDerivedUnit : INotifyPropertyChanged, IfcUnit, IInstantiableEntity, IEqualityComparer<@IfcDerivedUnit>, IEquatable<@IfcDerivedUnit>
+	public  partial class @IfcDerivedUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnit, IEqualityComparer<@IfcDerivedUnit>, IEquatable<@IfcDerivedUnit>
 	{
+		#region IIfcDerivedUnit explicit implementation
+		IEnumerable<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements { get { return @Elements; } }	
+		IfcDerivedUnitEnum IIfcDerivedUnit.UnitType { get { return @UnitType; } }	
+		IfcLabel? IIfcDerivedUnit.UserDefinedType { get { return @UserDefinedType; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -97,8 +122,7 @@ namespace Xbim.Ifc4.MeasureResource
 				((IPersistEntity)this).Activate(false);
 				return _elements;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDerivedUnitEnum @UnitType 
 		{ 
@@ -112,8 +136,7 @@ namespace Xbim.Ifc4.MeasureResource
 			{
 				SetValue( v =>  _unitType = v, _unitType, value,  "UnitType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedType 
 		{ 
@@ -127,9 +150,9 @@ namespace Xbim.Ifc4.MeasureResource
 			{
 				SetValue( v =>  _userDefinedType = v, _userDefinedType, value,  "UserDefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

@@ -15,13 +15,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedComponentElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFastener
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFastener : IIfcElementComponent
+	{
+		IfcFastenerTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedComponentElements
 {
 	[ExpressType("IFCFASTENER", 652)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFastener : IfcElementComponent, IInstantiableEntity, IEqualityComparer<@IfcFastener>, IEquatable<@IfcFastener>
+	public  partial class @IfcFastener : IfcElementComponent, IInstantiableEntity, IIfcFastener, IEqualityComparer<@IfcFastener>, IEquatable<@IfcFastener>
 	{
+		#region IIfcFastener explicit implementation
+		IfcFastenerTypeEnum? IIfcFastener.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFastener(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +66,9 @@ namespace Xbim.Ifc4.SharedComponentElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

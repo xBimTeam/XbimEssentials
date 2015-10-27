@@ -14,13 +14,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProcessExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProcedureType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProcedureType : IIfcTypeProcess
+	{
+		IfcProcedureTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IFCPROCEDURETYPE", 836)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProcedureType : IfcTypeProcess, IInstantiableEntity, IEqualityComparer<@IfcProcedureType>, IEquatable<@IfcProcedureType>
+	public  partial class @IfcProcedureType : IfcTypeProcess, IInstantiableEntity, IIfcProcedureType, IEqualityComparer<@IfcProcedureType>, IEquatable<@IfcProcedureType>
 	{
+		#region IIfcProcedureType explicit implementation
+		IfcProcedureTypeEnum IIfcProcedureType.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProcedureType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,9 +65,9 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

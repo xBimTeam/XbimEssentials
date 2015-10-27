@@ -13,13 +13,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcZone
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcZone : IIfcSystem
+	{
+		IfcLabel? @LongName { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCZONE", 1156)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcZone : IfcSystem, IInstantiableEntity, IEqualityComparer<@IfcZone>, IEquatable<@IfcZone>
+	public  partial class @IfcZone : IfcSystem, IInstantiableEntity, IIfcZone, IEqualityComparer<@IfcZone>, IEquatable<@IfcZone>
 	{
+		#region IIfcZone explicit implementation
+		IfcLabel? IIfcZone.LongName { get { return @LongName; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcZone(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,9 +64,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _longName = v, _longName, value,  "LongName");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -11,13 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricConstraintResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConnectionVolumeGeometry
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConnectionVolumeGeometry : IIfcConnectionGeometry
+	{
+		IfcSolidOrShell @VolumeOnRelatingElement { get; }
+		IfcSolidOrShell @VolumeOnRelatedElement { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[ExpressType("IFCCONNECTIONVOLUMEGEOMETRY", 515)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionVolumeGeometry : IfcConnectionGeometry, IInstantiableEntity, IEqualityComparer<@IfcConnectionVolumeGeometry>, IEquatable<@IfcConnectionVolumeGeometry>
+	public  partial class @IfcConnectionVolumeGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionVolumeGeometry, IEqualityComparer<@IfcConnectionVolumeGeometry>, IEquatable<@IfcConnectionVolumeGeometry>
 	{
+		#region IIfcConnectionVolumeGeometry explicit implementation
+		IfcSolidOrShell IIfcConnectionVolumeGeometry.VolumeOnRelatingElement { get { return @VolumeOnRelatingElement; } }	
+		IfcSolidOrShell IIfcConnectionVolumeGeometry.VolumeOnRelatedElement { get { return @VolumeOnRelatedElement; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionVolumeGeometry(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +65,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				SetValue( v =>  _volumeOnRelatingElement = v, _volumeOnRelatingElement, value,  "VolumeOnRelatingElement");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSolidOrShell @VolumeOnRelatedElement 
 		{ 
@@ -57,9 +79,9 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			{
 				SetValue( v =>  _volumeOnRelatedElement = v, _volumeOnRelatedElement, value,  "VolumeOnRelatedElement");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

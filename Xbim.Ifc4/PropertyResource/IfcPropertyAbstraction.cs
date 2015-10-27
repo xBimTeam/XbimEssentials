@@ -13,13 +13,34 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PropertyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertyAbstraction
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertyAbstraction : IPersistEntity, IfcResourceObjectSelect
+	{
+		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReferences {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IFCPROPERTYABSTRACTION", 849)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPropertyAbstraction : IPersistEntity, INotifyPropertyChanged, IfcResourceObjectSelect, IEqualityComparer<@IfcPropertyAbstraction>, IEquatable<@IfcPropertyAbstraction>
+	public abstract partial class @IfcPropertyAbstraction : IPersistEntity, INotifyPropertyChanged, IIfcPropertyAbstraction, IEqualityComparer<@IfcPropertyAbstraction>, IEquatable<@IfcPropertyAbstraction>
 	{
+		#region IIfcPropertyAbstraction explicit implementation
+	
+	 
+		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences {  get { return @HasExternalReferences; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -80,6 +101,7 @@ namespace Xbim.Ifc4.PropertyResource
 		internal IfcPropertyAbstraction(IModel model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

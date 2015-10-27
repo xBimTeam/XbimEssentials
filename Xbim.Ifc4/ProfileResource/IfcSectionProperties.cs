@@ -12,13 +12,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProfileResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSectionProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSectionProperties : IIfcPreDefinedProperties
+	{
+		IfcSectionTypeEnum @SectionType { get; }
+		IIfcProfileDef @StartProfile { get; }
+		IIfcProfileDef @EndProfile { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IFCSECTIONPROPERTIES", 971)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionProperties : IfcPreDefinedProperties, IInstantiableEntity, IEqualityComparer<@IfcSectionProperties>, IEquatable<@IfcSectionProperties>
+	public  partial class @IfcSectionProperties : IfcPreDefinedProperties, IInstantiableEntity, IIfcSectionProperties, IEqualityComparer<@IfcSectionProperties>, IEquatable<@IfcSectionProperties>
 	{
+		#region IIfcSectionProperties explicit implementation
+		IfcSectionTypeEnum IIfcSectionProperties.SectionType { get { return @SectionType; } }	
+		IIfcProfileDef IIfcSectionProperties.StartProfile { get { return @StartProfile; } }	
+		IIfcProfileDef IIfcSectionProperties.EndProfile { get { return @EndProfile; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSectionProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +69,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _sectionType = v, _sectionType, value,  "SectionType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcProfileDef @StartProfile 
 		{ 
@@ -59,8 +83,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _startProfile = v, _startProfile, value,  "StartProfile");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcProfileDef @EndProfile 
 		{ 
@@ -74,9 +97,9 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _endProfile = v, _endProfile, value,  "EndProfile");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

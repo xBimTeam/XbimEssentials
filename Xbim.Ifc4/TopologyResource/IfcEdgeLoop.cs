@@ -11,13 +11,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.TopologyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcEdgeLoop
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcEdgeLoop : IIfcLoop
+	{
+		IEnumerable<IIfcOrientedEdge> @EdgeList { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IFCEDGELOOP", 597)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEdgeLoop : IfcLoop, IInstantiableEntity, IEqualityComparer<@IfcEdgeLoop>, IEquatable<@IfcEdgeLoop>
+	public  partial class @IfcEdgeLoop : IfcLoop, IInstantiableEntity, IIfcEdgeLoop, IEqualityComparer<@IfcEdgeLoop>, IEquatable<@IfcEdgeLoop>
 	{
+		#region IIfcEdgeLoop explicit implementation
+		IEnumerable<IIfcOrientedEdge> IIfcEdgeLoop.EdgeList { get { return @EdgeList; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEdgeLoop(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -38,9 +59,9 @@ namespace Xbim.Ifc4.TopologyResource
 				((IPersistEntity)this).Activate(false);
 				return _edgeList;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -12,13 +12,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBSplineCurveWithKnots
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBSplineCurveWithKnots : IIfcBSplineCurve
+	{
+		IEnumerable<long> @KnotMultiplicities { get; }
+		IEnumerable<IfcParameterValue> @Knots { get; }
+		IfcKnotType @KnotSpec { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCBSPLINECURVEWITHKNOTS", 425)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBSplineCurveWithKnots : IfcBSplineCurve, IInstantiableEntity, IEqualityComparer<@IfcBSplineCurveWithKnots>, IEquatable<@IfcBSplineCurveWithKnots>
+	public  partial class @IfcBSplineCurveWithKnots : IfcBSplineCurve, IInstantiableEntity, IIfcBSplineCurveWithKnots, IEqualityComparer<@IfcBSplineCurveWithKnots>, IEquatable<@IfcBSplineCurveWithKnots>
 	{
+		#region IIfcBSplineCurveWithKnots explicit implementation
+		IEnumerable<long> IIfcBSplineCurveWithKnots.KnotMultiplicities { get { return @KnotMultiplicities; } }	
+		IEnumerable<IfcParameterValue> IIfcBSplineCurveWithKnots.Knots { get { return @Knots; } }	
+		IfcKnotType IIfcBSplineCurveWithKnots.KnotSpec { get { return @KnotSpec; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineCurveWithKnots(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +67,7 @@ namespace Xbim.Ifc4.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _knotMultiplicities;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1)]
 		public ItemSet<IfcParameterValue> @Knots 
 		{ 
@@ -53,8 +77,7 @@ namespace Xbim.Ifc4.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _knots;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcKnotType @KnotSpec 
 		{ 
@@ -68,9 +91,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _knotSpec = v, _knotSpec, value,  "KnotSpec");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

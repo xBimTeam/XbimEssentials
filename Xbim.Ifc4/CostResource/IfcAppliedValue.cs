@@ -17,14 +17,55 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.CostResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAppliedValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAppliedValue : IPersistEntity, IfcMetricValueSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect
+	{
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		IfcAppliedValueSelect @AppliedValue { get; }
+		IIfcMeasureWithUnit @UnitBasis { get; }
+		IfcDate? @ApplicableDate { get; }
+		IfcDate? @FixedUntilDate { get; }
+		IfcLabel? @Category { get; }
+		IfcLabel? @Condition { get; }
+		IfcArithmeticOperatorEnum? @ArithmeticOperator { get; }
+		IEnumerable<IIfcAppliedValue> @Components { get; }
+		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReference {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.CostResource
 {
 	[IndexedClass]
 	[ExpressType("IFCAPPLIEDVALUE", 411)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAppliedValue : INotifyPropertyChanged, IfcMetricValueSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect, IInstantiableEntity, IEqualityComparer<@IfcAppliedValue>, IEquatable<@IfcAppliedValue>
+	public  partial class @IfcAppliedValue : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValue, IEqualityComparer<@IfcAppliedValue>, IEquatable<@IfcAppliedValue>
 	{
+		#region IIfcAppliedValue explicit implementation
+		IfcLabel? IIfcAppliedValue.Name { get { return @Name; } }	
+		IfcText? IIfcAppliedValue.Description { get { return @Description; } }	
+		IfcAppliedValueSelect IIfcAppliedValue.AppliedValue { get { return @AppliedValue; } }	
+		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis { get { return @UnitBasis; } }	
+		IfcDate? IIfcAppliedValue.ApplicableDate { get { return @ApplicableDate; } }	
+		IfcDate? IIfcAppliedValue.FixedUntilDate { get { return @FixedUntilDate; } }	
+		IfcLabel? IIfcAppliedValue.Category { get { return @Category; } }	
+		IfcLabel? IIfcAppliedValue.Condition { get { return @Condition; } }	
+		IfcArithmeticOperatorEnum? IIfcAppliedValue.ArithmeticOperator { get { return @ArithmeticOperator; } }	
+		IEnumerable<IIfcAppliedValue> IIfcAppliedValue.Components { get { return @Components; } }	
+	
+	 
+		IEnumerable<IIfcExternalReferenceRelationship> IIfcAppliedValue.HasExternalReference {  get { return @HasExternalReference; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -114,8 +155,7 @@ namespace Xbim.Ifc4.CostResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -129,8 +169,7 @@ namespace Xbim.Ifc4.CostResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcAppliedValueSelect @AppliedValue 
 		{ 
@@ -144,8 +183,7 @@ namespace Xbim.Ifc4.CostResource
 			{
 				SetValue( v =>  _appliedValue = v, _appliedValue, value,  "AppliedValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMeasureWithUnit @UnitBasis 
 		{ 
@@ -159,8 +197,7 @@ namespace Xbim.Ifc4.CostResource
 			{
 				SetValue( v =>  _unitBasis = v, _unitBasis, value,  "UnitBasis");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDate? @ApplicableDate 
 		{ 
@@ -174,8 +211,7 @@ namespace Xbim.Ifc4.CostResource
 			{
 				SetValue( v =>  _applicableDate = v, _applicableDate, value,  "ApplicableDate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDate? @FixedUntilDate 
 		{ 
@@ -189,8 +225,7 @@ namespace Xbim.Ifc4.CostResource
 			{
 				SetValue( v =>  _fixedUntilDate = v, _fixedUntilDate, value,  "FixedUntilDate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Category 
 		{ 
@@ -204,8 +239,7 @@ namespace Xbim.Ifc4.CostResource
 			{
 				SetValue( v =>  _category = v, _category, value,  "Category");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Condition 
 		{ 
@@ -219,8 +253,7 @@ namespace Xbim.Ifc4.CostResource
 			{
 				SetValue( v =>  _condition = v, _condition, value,  "Condition");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcArithmeticOperatorEnum? @ArithmeticOperator 
 		{ 
@@ -234,8 +267,7 @@ namespace Xbim.Ifc4.CostResource
 			{
 				SetValue( v =>  _arithmeticOperator = v, _arithmeticOperator, value,  "ArithmeticOperator");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcAppliedValue> @Components 
 		{ 
@@ -245,9 +277,9 @@ namespace Xbim.Ifc4.CostResource
 				((IPersistEntity)this).Activate(false);
 				return _components;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

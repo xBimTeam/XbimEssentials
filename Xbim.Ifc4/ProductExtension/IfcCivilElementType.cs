@@ -15,17 +15,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCivilElementType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCivilElementType : IIfcElementType
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCCIVILELEMENTTYPE", 484)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCivilElementType : IfcElementType, IInstantiableEntity, IEqualityComparer<@IfcCivilElementType>, IEquatable<@IfcCivilElementType>
+	public  partial class @IfcCivilElementType : IfcElementType, IInstantiableEntity, IIfcCivilElementType, IEqualityComparer<@IfcCivilElementType>, IEquatable<@IfcCivilElementType>
 	{
+		#region IIfcCivilElementType explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCivilElementType(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

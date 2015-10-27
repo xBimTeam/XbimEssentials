@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextureMap
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextureMap : IIfcTextureCoordinate
+	{
+		IEnumerable<IIfcTextureVertex> @Vertices { get; }
+		IIfcFace @MappedTo { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCTEXTUREMAP", 1100)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IEqualityComparer<@IfcTextureMap>, IEquatable<@IfcTextureMap>
+	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureMap, IEqualityComparer<@IfcTextureMap>, IEquatable<@IfcTextureMap>
 	{
+		#region IIfcTextureMap explicit implementation
+		IEnumerable<IIfcTextureVertex> IIfcTextureMap.Vertices { get { return @Vertices; } }	
+		IIfcFace IIfcTextureMap.MappedTo { get { return @MappedTo; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureMap(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -40,8 +63,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _vertices;
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcFace @MappedTo 
@@ -56,9 +78,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _mappedTo = v, _mappedTo, value,  "MappedTo");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

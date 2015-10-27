@@ -14,13 +14,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFixedReferenceSweptAreaSolid
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFixedReferenceSweptAreaSolid : IIfcSweptAreaSolid
+	{
+		IIfcCurve @Directrix { get; }
+		IfcParameterValue? @StartParam { get; }
+		IfcParameterValue? @EndParam { get; }
+		IIfcDirection @FixedReference { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCFIXEDREFERENCESWEPTAREASOLID", 664)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFixedReferenceSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IEqualityComparer<@IfcFixedReferenceSweptAreaSolid>, IEquatable<@IfcFixedReferenceSweptAreaSolid>
+	public  partial class @IfcFixedReferenceSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcFixedReferenceSweptAreaSolid, IEqualityComparer<@IfcFixedReferenceSweptAreaSolid>, IEquatable<@IfcFixedReferenceSweptAreaSolid>
 	{
+		#region IIfcFixedReferenceSweptAreaSolid explicit implementation
+		IIfcCurve IIfcFixedReferenceSweptAreaSolid.Directrix { get { return @Directrix; } }	
+		IfcParameterValue? IIfcFixedReferenceSweptAreaSolid.StartParam { get { return @StartParam; } }	
+		IfcParameterValue? IIfcFixedReferenceSweptAreaSolid.EndParam { get { return @EndParam; } }	
+		IIfcDirection IIfcFixedReferenceSweptAreaSolid.FixedReference { get { return @FixedReference; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFixedReferenceSweptAreaSolid(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +74,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcParameterValue? @StartParam 
 		{ 
@@ -62,8 +88,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _startParam = v, _startParam, value,  "StartParam");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcParameterValue? @EndParam 
 		{ 
@@ -77,8 +102,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _endParam = v, _endParam, value,  "EndParam");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDirection @FixedReference 
 		{ 
@@ -92,9 +116,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _fixedReference = v, _fixedReference, value,  "FixedReference");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

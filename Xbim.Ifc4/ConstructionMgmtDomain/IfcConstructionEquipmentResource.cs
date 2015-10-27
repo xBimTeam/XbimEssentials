@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ConstructionMgmtDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConstructionEquipmentResource
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConstructionEquipmentResource : IIfcConstructionResource
+	{
+		IfcConstructionEquipmentResourceTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	[ExpressType("IFCCONSTRUCTIONEQUIPMENTRESOURCE", 517)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstructionEquipmentResource : IfcConstructionResource, IInstantiableEntity, IEqualityComparer<@IfcConstructionEquipmentResource>, IEquatable<@IfcConstructionEquipmentResource>
+	public  partial class @IfcConstructionEquipmentResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionEquipmentResource, IEqualityComparer<@IfcConstructionEquipmentResource>, IEquatable<@IfcConstructionEquipmentResource>
 	{
+		#region IIfcConstructionEquipmentResource explicit implementation
+		IfcConstructionEquipmentResourceTypeEnum? IIfcConstructionEquipmentResource.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstructionEquipmentResource(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

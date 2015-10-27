@@ -15,13 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralSurfaceMember
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralSurfaceMember : IIfcStructuralMember
+	{
+		IfcStructuralSurfaceMemberTypeEnum @PredefinedType { get; }
+		IfcPositiveLengthMeasure? @Thickness { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALSURFACEMEMBER", 1044)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSurfaceMember : IfcStructuralMember, IInstantiableEntity, IEqualityComparer<@IfcStructuralSurfaceMember>, IEquatable<@IfcStructuralSurfaceMember>
+	public  partial class @IfcStructuralSurfaceMember : IfcStructuralMember, IInstantiableEntity, IIfcStructuralSurfaceMember, IEqualityComparer<@IfcStructuralSurfaceMember>, IEquatable<@IfcStructuralSurfaceMember>
 	{
+		#region IIfcStructuralSurfaceMember explicit implementation
+		IfcStructuralSurfaceMemberTypeEnum IIfcStructuralSurfaceMember.PredefinedType { get { return @PredefinedType; } }	
+		IfcPositiveLengthMeasure? IIfcStructuralSurfaceMember.Thickness { get { return @Thickness; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralSurfaceMember(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +69,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @Thickness 
 		{ 
@@ -61,9 +83,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _thickness = v, _thickness, value,  "Thickness");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelDeclares
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelDeclares : IIfcRelationship
+	{
+		IIfcContext @RelatingContext { get; }
+		IEnumerable<IfcDefinitionSelect> @RelatedDefinitions { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELDECLARES", 929)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelDeclares : IfcRelationship, IInstantiableEntity, IEqualityComparer<@IfcRelDeclares>, IEquatable<@IfcRelDeclares>
+	public  partial class @IfcRelDeclares : IfcRelationship, IInstantiableEntity, IIfcRelDeclares, IEqualityComparer<@IfcRelDeclares>, IEquatable<@IfcRelDeclares>
 	{
+		#region IIfcRelDeclares explicit implementation
+		IIfcContext IIfcRelDeclares.RelatingContext { get { return @RelatingContext; } }	
+		IEnumerable<IfcDefinitionSelect> IIfcRelDeclares.RelatedDefinitions { get { return @RelatedDefinitions; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDeclares(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +69,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _relatingContext = v, _relatingContext, value,  "RelatingContext");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcDefinitionSelect> @RelatedDefinitions 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _relatedDefinitions;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

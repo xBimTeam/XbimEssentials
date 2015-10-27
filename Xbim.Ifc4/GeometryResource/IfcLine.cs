@@ -11,13 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLine
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLine : IIfcCurve
+	{
+		IIfcCartesianPoint @Pnt { get; }
+		IIfcVector @Dir { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCLINE", 735)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IEqualityComparer<@IfcLine>, IEquatable<@IfcLine>
+	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IIfcLine, IEqualityComparer<@IfcLine>, IEquatable<@IfcLine>
 	{
+		#region IIfcLine explicit implementation
+		IIfcCartesianPoint IIfcLine.Pnt { get { return @Pnt; } }	
+		IIfcVector IIfcLine.Dir { get { return @Dir; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLine(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +65,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _pnt = v, _pnt, value,  "Pnt");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcVector @Dir 
 		{ 
@@ -57,9 +79,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _dir = v, _dir, value,  "Dir");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
