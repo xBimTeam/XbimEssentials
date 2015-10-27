@@ -16,13 +16,44 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelConnectsStructuralMember
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelConnectsStructuralMember : IIfcRelConnects
+	{
+		IIfcStructuralMember @RelatingStructuralMember { get; }
+		IIfcStructuralConnection @RelatedStructuralConnection { get; }
+		IIfcBoundaryCondition @AppliedCondition { get; }
+		IIfcStructuralConnectionCondition @AdditionalConditions { get; }
+		IfcLengthMeasure? @SupportedLength { get; }
+		IIfcAxis2Placement3D @ConditionCoordinateSystem { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IFCRELCONNECTSSTRUCTURALMEMBER", 923)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsStructuralMember : IfcRelConnects, IInstantiableEntity, IEqualityComparer<@IfcRelConnectsStructuralMember>, IEquatable<@IfcRelConnectsStructuralMember>
+	public  partial class @IfcRelConnectsStructuralMember : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralMember, IEqualityComparer<@IfcRelConnectsStructuralMember>, IEquatable<@IfcRelConnectsStructuralMember>
 	{
+		#region IIfcRelConnectsStructuralMember explicit implementation
+		IIfcStructuralMember IIfcRelConnectsStructuralMember.RelatingStructuralMember { get { return @RelatingStructuralMember; } }	
+		IIfcStructuralConnection IIfcRelConnectsStructuralMember.RelatedStructuralConnection { get { return @RelatedStructuralConnection; } }	
+		IIfcBoundaryCondition IIfcRelConnectsStructuralMember.AppliedCondition { get { return @AppliedCondition; } }	
+		IIfcStructuralConnectionCondition IIfcRelConnectsStructuralMember.AdditionalConditions { get { return @AdditionalConditions; } }	
+		IfcLengthMeasure? IIfcRelConnectsStructuralMember.SupportedLength { get { return @SupportedLength; } }	
+		IIfcAxis2Placement3D IIfcRelConnectsStructuralMember.ConditionCoordinateSystem { get { return @ConditionCoordinateSystem; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsStructuralMember(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -52,8 +83,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _relatingStructuralMember = v, _relatingStructuralMember, value,  "RelatingStructuralMember");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcStructuralConnection @RelatedStructuralConnection 
@@ -68,8 +98,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _relatedStructuralConnection = v, _relatedStructuralConnection, value,  "RelatedStructuralConnection");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcBoundaryCondition @AppliedCondition 
 		{ 
@@ -83,8 +112,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _appliedCondition = v, _appliedCondition, value,  "AppliedCondition");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcStructuralConnectionCondition @AdditionalConditions 
 		{ 
@@ -98,8 +126,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _additionalConditions = v, _additionalConditions, value,  "AdditionalConditions");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @SupportedLength 
 		{ 
@@ -113,8 +140,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _supportedLength = v, _supportedLength, value,  "SupportedLength");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcAxis2Placement3D @ConditionCoordinateSystem 
 		{ 
@@ -128,9 +154,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _conditionCoordinateSystem = v, _conditionCoordinateSystem, value,  "ConditionCoordinateSystem");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

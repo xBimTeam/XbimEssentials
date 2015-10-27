@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ConstraintResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcResourceConstraintRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcResourceConstraintRelationship : IIfcResourceLevelRelationship
+	{
+		IIfcConstraint @RelatingConstraint { get; }
+		IEnumerable<IfcResourceObjectSelect> @RelatedResourceObjects { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ConstraintResource
 {
 	[ExpressType("IFCRESOURCECONSTRAINTRELATIONSHIP", 956)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcResourceConstraintRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IEqualityComparer<@IfcResourceConstraintRelationship>, IEquatable<@IfcResourceConstraintRelationship>
+	public  partial class @IfcResourceConstraintRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceConstraintRelationship, IEqualityComparer<@IfcResourceConstraintRelationship>, IEquatable<@IfcResourceConstraintRelationship>
 	{
+		#region IIfcResourceConstraintRelationship explicit implementation
+		IIfcConstraint IIfcResourceConstraintRelationship.RelatingConstraint { get { return @RelatingConstraint; } }	
+		IEnumerable<IfcResourceObjectSelect> IIfcResourceConstraintRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcResourceConstraintRelationship(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +69,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			{
 				SetValue( v =>  _relatingConstraint = v, _relatingConstraint, value,  "RelatingConstraint");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
 		{ 
@@ -57,9 +79,9 @@ namespace Xbim.Ifc4.ConstraintResource
 				((IPersistEntity)this).Activate(false);
 				return _relatedResourceObjects;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

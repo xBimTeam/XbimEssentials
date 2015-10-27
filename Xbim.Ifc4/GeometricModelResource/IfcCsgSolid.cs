@@ -11,13 +11,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCsgSolid
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCsgSolid : IIfcSolidModel
+	{
+		IfcCsgSelect @TreeRootExpression { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCCSGSOLID", 546)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCsgSolid : IfcSolidModel, IInstantiableEntity, IEqualityComparer<@IfcCsgSolid>, IEquatable<@IfcCsgSolid>
+	public  partial class @IfcCsgSolid : IfcSolidModel, IInstantiableEntity, IIfcCsgSolid, IEqualityComparer<@IfcCsgSolid>, IEquatable<@IfcCsgSolid>
 	{
+		#region IIfcCsgSolid explicit implementation
+		IfcCsgSelect IIfcCsgSolid.TreeRootExpression { get { return @TreeRootExpression; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCsgSolid(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,9 +62,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _treeRootExpression = v, _treeRootExpression, value,  "TreeRootExpression");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

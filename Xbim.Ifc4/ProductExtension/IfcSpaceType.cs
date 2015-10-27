@@ -15,13 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSpaceType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSpaceType : IIfcSpatialStructureElementType
+	{
+		IfcSpaceTypeEnum @PredefinedType { get; }
+		IfcLabel? @LongName { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCSPACETYPE", 996)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceType : IfcSpatialStructureElementType, IInstantiableEntity, IEqualityComparer<@IfcSpaceType>, IEquatable<@IfcSpaceType>
+	public  partial class @IfcSpaceType : IfcSpatialStructureElementType, IInstantiableEntity, IIfcSpaceType, IEqualityComparer<@IfcSpaceType>, IEquatable<@IfcSpaceType>
 	{
+		#region IIfcSpaceType explicit implementation
+		IfcSpaceTypeEnum IIfcSpaceType.PredefinedType { get { return @PredefinedType; } }	
+		IfcLabel? IIfcSpaceType.LongName { get { return @LongName; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpaceType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +69,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @LongName 
 		{ 
@@ -61,9 +83,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _longName = v, _longName, value,  "LongName");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

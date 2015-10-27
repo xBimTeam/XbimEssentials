@@ -12,13 +12,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBSplineSurfaceWithKnots
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBSplineSurfaceWithKnots : IIfcBSplineSurface
+	{
+		IEnumerable<long> @UMultiplicities { get; }
+		IEnumerable<long> @VMultiplicities { get; }
+		IEnumerable<IfcParameterValue> @UKnots { get; }
+		IEnumerable<IfcParameterValue> @VKnots { get; }
+		IfcKnotType @KnotSpec { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCBSPLINESURFACEWITHKNOTS", 427)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBSplineSurfaceWithKnots : IfcBSplineSurface, IInstantiableEntity, IEqualityComparer<@IfcBSplineSurfaceWithKnots>, IEquatable<@IfcBSplineSurfaceWithKnots>
+	public  partial class @IfcBSplineSurfaceWithKnots : IfcBSplineSurface, IInstantiableEntity, IIfcBSplineSurfaceWithKnots, IEqualityComparer<@IfcBSplineSurfaceWithKnots>, IEquatable<@IfcBSplineSurfaceWithKnots>
 	{
+		#region IIfcBSplineSurfaceWithKnots explicit implementation
+		IEnumerable<long> IIfcBSplineSurfaceWithKnots.UMultiplicities { get { return @UMultiplicities; } }	
+		IEnumerable<long> IIfcBSplineSurfaceWithKnots.VMultiplicities { get { return @VMultiplicities; } }	
+		IEnumerable<IfcParameterValue> IIfcBSplineSurfaceWithKnots.UKnots { get { return @UKnots; } }	
+		IEnumerable<IfcParameterValue> IIfcBSplineSurfaceWithKnots.VKnots { get { return @VKnots; } }	
+		IfcKnotType IIfcBSplineSurfaceWithKnots.KnotSpec { get { return @KnotSpec; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineSurfaceWithKnots(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +75,7 @@ namespace Xbim.Ifc4.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _uMultiplicities;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1)]
 		public ItemSet<long> @VMultiplicities 
 		{ 
@@ -57,8 +85,7 @@ namespace Xbim.Ifc4.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _vMultiplicities;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1)]
 		public ItemSet<IfcParameterValue> @UKnots 
 		{ 
@@ -68,8 +95,7 @@ namespace Xbim.Ifc4.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _uKnots;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1)]
 		public ItemSet<IfcParameterValue> @VKnots 
 		{ 
@@ -79,8 +105,7 @@ namespace Xbim.Ifc4.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _vKnots;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcKnotType @KnotSpec 
 		{ 
@@ -94,9 +119,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _knotSpec = v, _knotSpec, value,  "KnotSpec");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

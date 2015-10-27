@@ -12,17 +12,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralElementsDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcReinforcingElementType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcReinforcingElementType : IIfcElementComponentType
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IFCREINFORCINGELEMENTTYPE", 898)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcReinforcingElementType : IfcElementComponentType, IEqualityComparer<@IfcReinforcingElementType>, IEquatable<@IfcReinforcingElementType>
+	public abstract partial class @IfcReinforcingElementType : IfcElementComponentType, IIfcReinforcingElementType, IEqualityComparer<@IfcReinforcingElementType>, IEquatable<@IfcReinforcingElementType>
 	{
+		#region IIfcReinforcingElementType explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcingElementType(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

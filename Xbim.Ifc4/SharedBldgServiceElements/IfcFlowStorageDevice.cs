@@ -15,17 +15,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgServiceElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFlowStorageDevice
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFlowStorageDevice : IIfcDistributionFlowElement
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IFCFLOWSTORAGEDEVICE", 677)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowStorageDevice : IfcDistributionFlowElement, IInstantiableEntity, IEqualityComparer<@IfcFlowStorageDevice>, IEquatable<@IfcFlowStorageDevice>
+	public  partial class @IfcFlowStorageDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowStorageDevice, IEqualityComparer<@IfcFlowStorageDevice>, IEquatable<@IfcFlowStorageDevice>
 	{
+		#region IIfcFlowStorageDevice explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFlowStorageDevice(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

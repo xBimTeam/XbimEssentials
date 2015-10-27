@@ -12,14 +12,43 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MaterialResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialLayerSetUsage
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialLayerSetUsage : IIfcMaterialUsageDefinition
+	{
+		IIfcMaterialLayerSet @ForLayerSet { get; }
+		IfcLayerSetDirectionEnum @LayerSetDirection { get; }
+		IfcDirectionSenseEnum @DirectionSense { get; }
+		IfcLengthMeasure @OffsetFromReferenceLine { get; }
+		IfcPositiveLengthMeasure? @ReferenceExtent { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MaterialResource
 {
 	[IndexedClass]
 	[ExpressType("IFCMATERIALLAYERSETUSAGE", 749)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerSetUsage : IfcMaterialUsageDefinition, IInstantiableEntity, IEqualityComparer<@IfcMaterialLayerSetUsage>, IEquatable<@IfcMaterialLayerSetUsage>
+	public  partial class @IfcMaterialLayerSetUsage : IfcMaterialUsageDefinition, IInstantiableEntity, IIfcMaterialLayerSetUsage, IEqualityComparer<@IfcMaterialLayerSetUsage>, IEquatable<@IfcMaterialLayerSetUsage>
 	{
+		#region IIfcMaterialLayerSetUsage explicit implementation
+		IIfcMaterialLayerSet IIfcMaterialLayerSetUsage.ForLayerSet { get { return @ForLayerSet; } }	
+		IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection { get { return @LayerSetDirection; } }	
+		IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense { get { return @DirectionSense; } }	
+		IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine { get { return @OffsetFromReferenceLine; } }	
+		IfcPositiveLengthMeasure? IIfcMaterialLayerSetUsage.ReferenceExtent { get { return @ReferenceExtent; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialLayerSetUsage(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +76,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _forLayerSet = v, _forLayerSet, value,  "ForLayerSet");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcLayerSetDirectionEnum @LayerSetDirection 
 		{ 
@@ -62,8 +90,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _layerSetDirection = v, _layerSetDirection, value,  "LayerSetDirection");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDirectionSenseEnum @DirectionSense 
 		{ 
@@ -77,8 +104,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _directionSense = v, _directionSense, value,  "DirectionSense");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure @OffsetFromReferenceLine 
 		{ 
@@ -92,8 +118,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _offsetFromReferenceLine = v, _offsetFromReferenceLine, value,  "OffsetFromReferenceLine");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @ReferenceExtent 
 		{ 
@@ -107,9 +132,9 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _referenceExtent = v, _referenceExtent, value,  "ReferenceExtent");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

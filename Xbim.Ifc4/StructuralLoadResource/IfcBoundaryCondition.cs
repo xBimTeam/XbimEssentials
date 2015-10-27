@@ -13,14 +13,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralLoadResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBoundaryCondition
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBoundaryCondition : IPersistEntity
+	{
+		IfcLabel? @Name { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[IndexedClass]
 	[ExpressType("IFCBOUNDARYCONDITION", 437)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcBoundaryCondition : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcBoundaryCondition>, IEquatable<@IfcBoundaryCondition>
+	public abstract partial class @IfcBoundaryCondition : IPersistEntity, INotifyPropertyChanged, IIfcBoundaryCondition, IEqualityComparer<@IfcBoundaryCondition>, IEquatable<@IfcBoundaryCondition>
 	{
+		#region IIfcBoundaryCondition explicit implementation
+		IfcLabel? IIfcBoundaryCondition.Name { get { return @Name; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -100,9 +121,9 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

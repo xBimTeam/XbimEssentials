@@ -15,13 +15,48 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralElementsDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTendon
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTendon : IIfcReinforcingElement
+	{
+		IfcTendonTypeEnum? @PredefinedType { get; }
+		IfcPositiveLengthMeasure? @NominalDiameter { get; }
+		IfcAreaMeasure? @CrossSectionArea { get; }
+		IfcForceMeasure? @TensionForce { get; }
+		IfcPressureMeasure? @PreStress { get; }
+		IfcNormalisedRatioMeasure? @FrictionCoefficient { get; }
+		IfcPositiveLengthMeasure? @AnchorageSlip { get; }
+		IfcPositiveLengthMeasure? @MinCurvatureRadius { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IFCTENDON", 1086)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTendon : IfcReinforcingElement, IInstantiableEntity, IEqualityComparer<@IfcTendon>, IEquatable<@IfcTendon>
+	public  partial class @IfcTendon : IfcReinforcingElement, IInstantiableEntity, IIfcTendon, IEqualityComparer<@IfcTendon>, IEquatable<@IfcTendon>
 	{
+		#region IIfcTendon explicit implementation
+		IfcTendonTypeEnum? IIfcTendon.PredefinedType { get { return @PredefinedType; } }	
+		IfcPositiveLengthMeasure? IIfcTendon.NominalDiameter { get { return @NominalDiameter; } }	
+		IfcAreaMeasure? IIfcTendon.CrossSectionArea { get { return @CrossSectionArea; } }	
+		IfcForceMeasure? IIfcTendon.TensionForce { get { return @TensionForce; } }	
+		IfcPressureMeasure? IIfcTendon.PreStress { get { return @PreStress; } }	
+		IfcNormalisedRatioMeasure? IIfcTendon.FrictionCoefficient { get { return @FrictionCoefficient; } }	
+		IfcPositiveLengthMeasure? IIfcTendon.AnchorageSlip { get { return @AnchorageSlip; } }	
+		IfcPositiveLengthMeasure? IIfcTendon.MinCurvatureRadius { get { return @MinCurvatureRadius; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTendon(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -52,8 +87,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @NominalDiameter 
 		{ 
@@ -67,8 +101,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcAreaMeasure? @CrossSectionArea 
 		{ 
@@ -82,8 +115,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcForceMeasure? @TensionForce 
 		{ 
@@ -97,8 +129,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _tensionForce = v, _tensionForce, value,  "TensionForce");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPressureMeasure? @PreStress 
 		{ 
@@ -112,8 +143,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _preStress = v, _preStress, value,  "PreStress");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure? @FrictionCoefficient 
 		{ 
@@ -127,8 +157,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _frictionCoefficient = v, _frictionCoefficient, value,  "FrictionCoefficient");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @AnchorageSlip 
 		{ 
@@ -142,8 +171,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _anchorageSlip = v, _anchorageSlip, value,  "AnchorageSlip");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @MinCurvatureRadius 
 		{ 
@@ -157,9 +185,9 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _minCurvatureRadius = v, _minCurvatureRadius, value,  "MinCurvatureRadius");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

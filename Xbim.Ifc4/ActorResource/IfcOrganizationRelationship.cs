@@ -13,14 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ActorResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcOrganizationRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcOrganizationRelationship : IIfcResourceLevelRelationship
+	{
+		IIfcOrganization @RelatingOrganization { get; }
+		IEnumerable<IIfcOrganization> @RelatedOrganizations { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ActorResource
 {
 	[IndexedClass]
 	[ExpressType("IFCORGANIZATIONRELATIONSHIP", 785)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrganizationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IEqualityComparer<@IfcOrganizationRelationship>, IEquatable<@IfcOrganizationRelationship>
+	public  partial class @IfcOrganizationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcOrganizationRelationship, IEqualityComparer<@IfcOrganizationRelationship>, IEquatable<@IfcOrganizationRelationship>
 	{
+		#region IIfcOrganizationRelationship explicit implementation
+		IIfcOrganization IIfcOrganizationRelationship.RelatingOrganization { get { return @RelatingOrganization; } }	
+		IEnumerable<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations { get { return @RelatedOrganizations; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOrganizationRelationship(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +70,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _relatingOrganization = v, _relatingOrganization, value,  "RelatingOrganization");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcOrganization> @RelatedOrganizations 
@@ -59,9 +81,9 @@ namespace Xbim.Ifc4.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _relatedOrganizations;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MaterialResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialProfileSetUsageTapering
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialProfileSetUsageTapering : IIfcMaterialProfileSetUsage
+	{
+		IIfcMaterialProfileSet @ForProfileEndSet { get; }
+		IfcCardinalPointReference? @CardinalEndPoint { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IFCMATERIALPROFILESETUSAGETAPERING", 755)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialProfileSetUsageTapering : IfcMaterialProfileSetUsage, IInstantiableEntity, IEqualityComparer<@IfcMaterialProfileSetUsageTapering>, IEquatable<@IfcMaterialProfileSetUsageTapering>
+	public  partial class @IfcMaterialProfileSetUsageTapering : IfcMaterialProfileSetUsage, IInstantiableEntity, IIfcMaterialProfileSetUsageTapering, IEqualityComparer<@IfcMaterialProfileSetUsageTapering>, IEquatable<@IfcMaterialProfileSetUsageTapering>
 	{
+		#region IIfcMaterialProfileSetUsageTapering explicit implementation
+		IIfcMaterialProfileSet IIfcMaterialProfileSetUsageTapering.ForProfileEndSet { get { return @ForProfileEndSet; } }	
+		IfcCardinalPointReference? IIfcMaterialProfileSetUsageTapering.CardinalEndPoint { get { return @CardinalEndPoint; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialProfileSetUsageTapering(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +66,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _forProfileEndSet = v, _forProfileEndSet, value,  "ForProfileEndSet");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcCardinalPointReference? @CardinalEndPoint 
 		{ 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _cardinalEndPoint = v, _cardinalEndPoint, value,  "CardinalEndPoint");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

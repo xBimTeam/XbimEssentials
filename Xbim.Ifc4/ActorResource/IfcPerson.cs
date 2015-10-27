@@ -15,14 +15,51 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ActorResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPerson
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPerson : IPersistEntity, IfcActorSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect
+	{
+		IfcIdentifier? @Identification { get; }
+		IfcLabel? @FamilyName { get; }
+		IfcLabel? @GivenName { get; }
+		IEnumerable<IfcLabel> @MiddleNames { get; }
+		IEnumerable<IfcLabel> @PrefixTitles { get; }
+		IEnumerable<IfcLabel> @SuffixTitles { get; }
+		IEnumerable<IIfcActorRole> @Roles { get; }
+		IEnumerable<IIfcAddress> @Addresses { get; }
+		IEnumerable<IIfcPersonAndOrganization> @EngagedIn {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ActorResource
 {
 	[IndexedClass]
 	[ExpressType("IFCPERSON", 797)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPerson : INotifyPropertyChanged, IfcActorSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect, IInstantiableEntity, IEqualityComparer<@IfcPerson>, IEquatable<@IfcPerson>
+	public  partial class @IfcPerson : INotifyPropertyChanged, IInstantiableEntity, IIfcPerson, IEqualityComparer<@IfcPerson>, IEquatable<@IfcPerson>
 	{
+		#region IIfcPerson explicit implementation
+		IfcIdentifier? IIfcPerson.Identification { get { return @Identification; } }	
+		IfcLabel? IIfcPerson.FamilyName { get { return @FamilyName; } }	
+		IfcLabel? IIfcPerson.GivenName { get { return @GivenName; } }	
+		IEnumerable<IfcLabel> IIfcPerson.MiddleNames { get { return @MiddleNames; } }	
+		IEnumerable<IfcLabel> IIfcPerson.PrefixTitles { get { return @PrefixTitles; } }	
+		IEnumerable<IfcLabel> IIfcPerson.SuffixTitles { get { return @SuffixTitles; } }	
+		IEnumerable<IIfcActorRole> IIfcPerson.Roles { get { return @Roles; } }	
+		IEnumerable<IIfcAddress> IIfcPerson.Addresses { get { return @Addresses; } }	
+	
+	 
+		IEnumerable<IIfcPersonAndOrganization> IIfcPerson.EngagedIn {  get { return @EngagedIn; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -114,8 +151,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _identification = v, _identification, value,  "Identification");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @FamilyName 
 		{ 
@@ -129,8 +165,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _familyName = v, _familyName, value,  "FamilyName");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @GivenName 
 		{ 
@@ -144,8 +179,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _givenName = v, _givenName, value,  "GivenName");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<IfcLabel> @MiddleNames 
 		{ 
@@ -155,8 +189,7 @@ namespace Xbim.Ifc4.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _middleNames;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<IfcLabel> @PrefixTitles 
 		{ 
@@ -166,8 +199,7 @@ namespace Xbim.Ifc4.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _prefixTitles;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<IfcLabel> @SuffixTitles 
 		{ 
@@ -177,8 +209,7 @@ namespace Xbim.Ifc4.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _suffixTitles;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcActorRole> @Roles 
 		{ 
@@ -188,8 +219,7 @@ namespace Xbim.Ifc4.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _roles;
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcAddress> @Addresses 
@@ -200,9 +230,9 @@ namespace Xbim.Ifc4.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _addresses;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

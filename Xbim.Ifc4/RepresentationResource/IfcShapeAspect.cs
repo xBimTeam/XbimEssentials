@@ -13,14 +13,43 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.RepresentationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcShapeAspect
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcShapeAspect : IPersistEntity
+	{
+		IEnumerable<IIfcShapeModel> @ShapeRepresentations { get; }
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		bool? @ProductDefinitional { get; }
+		IfcProductRepresentationSelect @PartOfProductDefinitionShape { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.RepresentationResource
 {
 	[IndexedClass]
 	[ExpressType("IFCSHAPEASPECT", 978)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcShapeAspect : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcShapeAspect>, IEquatable<@IfcShapeAspect>
+	public  partial class @IfcShapeAspect : INotifyPropertyChanged, IInstantiableEntity, IIfcShapeAspect, IEqualityComparer<@IfcShapeAspect>, IEquatable<@IfcShapeAspect>
 	{
+		#region IIfcShapeAspect explicit implementation
+		IEnumerable<IIfcShapeModel> IIfcShapeAspect.ShapeRepresentations { get { return @ShapeRepresentations; } }	
+		IfcLabel? IIfcShapeAspect.Name { get { return @Name; } }	
+		IfcText? IIfcShapeAspect.Description { get { return @Description; } }	
+		bool? IIfcShapeAspect.ProductDefinitional { get { return @ProductDefinitional; } }	
+		IfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape { get { return @PartOfProductDefinitionShape; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -102,8 +131,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				((IPersistEntity)this).Activate(false);
 				return _shapeRepresentations;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Name 
 		{ 
@@ -117,8 +145,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -132,8 +159,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @ProductDefinitional 
 		{ 
@@ -147,8 +173,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _productDefinitional = v, _productDefinitional, value,  "ProductDefinitional");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcProductRepresentationSelect @PartOfProductDefinitionShape 
@@ -163,9 +188,9 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _partOfProductDefinitionShape = v, _partOfProductDefinitionShape, value,  "PartOfProductDefinitionShape");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

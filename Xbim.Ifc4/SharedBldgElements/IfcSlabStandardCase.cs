@@ -15,17 +15,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSlabStandardCase
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSlabStandardCase : IIfcSlab
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IFCSLABSTANDARDCASE", 987)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSlabStandardCase : IfcSlab, IInstantiableEntity, IEqualityComparer<@IfcSlabStandardCase>, IEquatable<@IfcSlabStandardCase>
+	public  partial class @IfcSlabStandardCase : IfcSlab, IInstantiableEntity, IIfcSlabStandardCase, IEqualityComparer<@IfcSlabStandardCase>, IEquatable<@IfcSlabStandardCase>
 	{
+		#region IIfcSlabStandardCase explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSlabStandardCase(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

@@ -14,13 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelConnectsStructuralActivity
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelConnectsStructuralActivity : IIfcRelConnects
+	{
+		IfcStructuralActivityAssignmentSelect @RelatingElement { get; }
+		IIfcStructuralActivity @RelatedStructuralActivity { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IFCRELCONNECTSSTRUCTURALACTIVITY", 922)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsStructuralActivity : IfcRelConnects, IInstantiableEntity, IEqualityComparer<@IfcRelConnectsStructuralActivity>, IEquatable<@IfcRelConnectsStructuralActivity>
+	public  partial class @IfcRelConnectsStructuralActivity : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralActivity, IEqualityComparer<@IfcRelConnectsStructuralActivity>, IEquatable<@IfcRelConnectsStructuralActivity>
 	{
+		#region IIfcRelConnectsStructuralActivity explicit implementation
+		IfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement { get { return @RelatingElement; } }	
+		IIfcStructuralActivity IIfcRelConnectsStructuralActivity.RelatedStructuralActivity { get { return @RelatedStructuralActivity; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsStructuralActivity(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +69,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcStructuralActivity @RelatedStructuralActivity 
@@ -62,9 +84,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _relatedStructuralActivity = v, _relatedStructuralActivity, value,  "RelatedStructuralActivity");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

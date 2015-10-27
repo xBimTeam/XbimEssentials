@@ -11,17 +11,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertyTemplateDefinition
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertyTemplateDefinition : IIfcPropertyDefinition
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCPROPERTYTEMPLATEDEFINITION", 863)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPropertyTemplateDefinition : IfcPropertyDefinition, IEqualityComparer<@IfcPropertyTemplateDefinition>, IEquatable<@IfcPropertyTemplateDefinition>
+	public abstract partial class @IfcPropertyTemplateDefinition : IfcPropertyDefinition, IIfcPropertyTemplateDefinition, IEqualityComparer<@IfcPropertyTemplateDefinition>, IEquatable<@IfcPropertyTemplateDefinition>
 	{
+		#region IIfcPropertyTemplateDefinition explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyTemplateDefinition(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

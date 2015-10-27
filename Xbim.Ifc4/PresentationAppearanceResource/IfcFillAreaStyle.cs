@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFillAreaStyle
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFillAreaStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
+	{
+		IEnumerable<IfcFillStyleSelect> @FillStyles { get; }
+		bool? @ModelorDraughting { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCFILLAREASTYLE", 657)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IfcPresentationStyleSelect, IInstantiableEntity, IEqualityComparer<@IfcFillAreaStyle>, IEquatable<@IfcFillAreaStyle>
+	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IIfcFillAreaStyle, IEqualityComparer<@IfcFillAreaStyle>, IEquatable<@IfcFillAreaStyle>
 	{
+		#region IIfcFillAreaStyle explicit implementation
+		IEnumerable<IfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { get { return @FillStyles; } }	
+		bool? IIfcFillAreaStyle.ModelorDraughting { get { return @ModelorDraughting; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyle(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -40,8 +63,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _fillStyles;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @ModelorDraughting 
 		{ 
@@ -55,9 +77,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _modelorDraughting = v, _modelorDraughting, value,  "ModelorDraughting");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

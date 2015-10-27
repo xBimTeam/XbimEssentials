@@ -11,13 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssigns
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssigns : IIfcRelationship
+	{
+		IEnumerable<IIfcObjectDefinition> @RelatedObjects { get; }
+		IfcObjectTypeEnum? @RelatedObjectsType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELASSIGNS", 902)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRelAssigns : IfcRelationship, IEqualityComparer<@IfcRelAssigns>, IEquatable<@IfcRelAssigns>
+	public abstract partial class @IfcRelAssigns : IfcRelationship, IIfcRelAssigns, IEqualityComparer<@IfcRelAssigns>, IEquatable<@IfcRelAssigns>
 	{
+		#region IIfcRelAssigns explicit implementation
+		IEnumerable<IIfcObjectDefinition> IIfcRelAssigns.RelatedObjects { get { return @RelatedObjects; } }	
+		IfcObjectTypeEnum? IIfcRelAssigns.RelatedObjectsType { get { return @RelatedObjectsType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssigns(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -40,8 +63,7 @@ namespace Xbim.Ifc4.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _relatedObjects;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcObjectTypeEnum? @RelatedObjectsType 
 		{ 
@@ -55,9 +77,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _relatedObjectsType = v, _relatedObjectsType, value,  "RelatedObjectsType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

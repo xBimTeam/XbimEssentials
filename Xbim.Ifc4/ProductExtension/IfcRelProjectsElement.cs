@@ -14,13 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelProjectsElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelProjectsElement : IIfcRelDecomposes
+	{
+		IIfcElement @RelatingElement { get; }
+		IIfcFeatureElementAddition @RelatedFeatureElement { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCRELPROJECTSELEMENT", 940)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelProjectsElement : IfcRelDecomposes, IInstantiableEntity, IEqualityComparer<@IfcRelProjectsElement>, IEquatable<@IfcRelProjectsElement>
+	public  partial class @IfcRelProjectsElement : IfcRelDecomposes, IInstantiableEntity, IIfcRelProjectsElement, IEqualityComparer<@IfcRelProjectsElement>, IEquatable<@IfcRelProjectsElement>
 	{
+		#region IIfcRelProjectsElement explicit implementation
+		IIfcElement IIfcRelProjectsElement.RelatingElement { get { return @RelatingElement; } }	
+		IIfcFeatureElementAddition IIfcRelProjectsElement.RelatedFeatureElement { get { return @RelatedFeatureElement; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelProjectsElement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +69,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcFeatureElementAddition @RelatedFeatureElement 
@@ -62,9 +84,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _relatedFeatureElement = v, _relatedFeatureElement, value,  "RelatedFeatureElement");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

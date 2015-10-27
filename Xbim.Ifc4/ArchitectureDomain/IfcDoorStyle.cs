@@ -15,13 +15,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ArchitectureDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDoorStyle
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDoorStyle : IIfcTypeProduct
+	{
+		IfcDoorStyleOperationEnum @OperationType { get; }
+		IfcDoorStyleConstructionEnum @ConstructionType { get; }
+		bool @ParameterTakesPrecedence { get; }
+		bool @Sizeable { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ArchitectureDomain
 {
 	[ExpressType("IFCDOORSTYLE", 585)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorStyle : IfcTypeProduct, IInstantiableEntity, IEqualityComparer<@IfcDoorStyle>, IEquatable<@IfcDoorStyle>
+	public  partial class @IfcDoorStyle : IfcTypeProduct, IInstantiableEntity, IIfcDoorStyle, IEqualityComparer<@IfcDoorStyle>, IEquatable<@IfcDoorStyle>
 	{
+		#region IIfcDoorStyle explicit implementation
+		IfcDoorStyleOperationEnum IIfcDoorStyle.OperationType { get { return @OperationType; } }	
+		IfcDoorStyleConstructionEnum IIfcDoorStyle.ConstructionType { get { return @ConstructionType; } }	
+		bool IIfcDoorStyle.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
+		bool IIfcDoorStyle.Sizeable { get { return @Sizeable; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDoorStyle(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +75,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDoorStyleConstructionEnum @ConstructionType 
 		{ 
@@ -63,8 +89,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _constructionType = v, _constructionType, value,  "ConstructionType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @ParameterTakesPrecedence 
 		{ 
@@ -78,8 +103,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @Sizeable 
 		{ 
@@ -93,9 +117,9 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			{
 				SetValue( v =>  _sizeable = v, _sizeable, value,  "Sizeable");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

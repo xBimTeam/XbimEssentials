@@ -13,13 +13,44 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ActorResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTelecomAddress
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTelecomAddress : IIfcAddress
+	{
+		IEnumerable<IfcLabel> @TelephoneNumbers { get; }
+		IEnumerable<IfcLabel> @FacsimileNumbers { get; }
+		IfcLabel? @PagerNumber { get; }
+		IEnumerable<IfcLabel> @ElectronicMailAddresses { get; }
+		IfcURIReference? @WWWHomePageURL { get; }
+		IEnumerable<IfcURIReference> @MessagingIDs { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ActorResource
 {
 	[ExpressType("IFCTELECOMADDRESS", 1085)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IEqualityComparer<@IfcTelecomAddress>, IEquatable<@IfcTelecomAddress>
+	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IIfcTelecomAddress, IEqualityComparer<@IfcTelecomAddress>, IEquatable<@IfcTelecomAddress>
 	{
+		#region IIfcTelecomAddress explicit implementation
+		IEnumerable<IfcLabel> IIfcTelecomAddress.TelephoneNumbers { get { return @TelephoneNumbers; } }	
+		IEnumerable<IfcLabel> IIfcTelecomAddress.FacsimileNumbers { get { return @FacsimileNumbers; } }	
+		IfcLabel? IIfcTelecomAddress.PagerNumber { get { return @PagerNumber; } }	
+		IEnumerable<IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses { get { return @ElectronicMailAddresses; } }	
+		IfcURIReference? IIfcTelecomAddress.WWWHomePageURL { get { return @WWWHomePageURL; } }	
+		IEnumerable<IfcURIReference> IIfcTelecomAddress.MessagingIDs { get { return @MessagingIDs; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTelecomAddress(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +79,7 @@ namespace Xbim.Ifc4.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _telephoneNumbers;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<IfcLabel> @FacsimileNumbers 
 		{ 
@@ -59,8 +89,7 @@ namespace Xbim.Ifc4.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _facsimileNumbers;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @PagerNumber 
 		{ 
@@ -74,8 +103,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _pagerNumber = v, _pagerNumber, value,  "PagerNumber");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<IfcLabel> @ElectronicMailAddresses 
 		{ 
@@ -85,8 +113,7 @@ namespace Xbim.Ifc4.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _electronicMailAddresses;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcURIReference? @WWWHomePageURL 
 		{ 
@@ -100,8 +127,7 @@ namespace Xbim.Ifc4.ActorResource
 			{
 				SetValue( v =>  _wWWHomePageURL = v, _wWWHomePageURL, value,  "WWWHomePageURL");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<IfcURIReference> @MessagingIDs 
 		{ 
@@ -111,9 +137,9 @@ namespace Xbim.Ifc4.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _messagingIDs;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

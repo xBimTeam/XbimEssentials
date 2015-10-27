@@ -11,17 +11,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFeatureElementAddition
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFeatureElementAddition : IIfcFeatureElement
+	{
+		IIfcRelProjectsElement @ProjectsElements {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCFEATUREELEMENTADDITION", 655)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFeatureElementAddition : IfcFeatureElement, IEqualityComparer<@IfcFeatureElementAddition>, IEquatable<@IfcFeatureElementAddition>
+	public abstract partial class @IfcFeatureElementAddition : IfcFeatureElement, IIfcFeatureElementAddition, IEqualityComparer<@IfcFeatureElementAddition>, IEquatable<@IfcFeatureElementAddition>
 	{
+		#region IIfcFeatureElementAddition explicit implementation
+	
+	 
+		IIfcRelProjectsElement IIfcFeatureElementAddition.ProjectsElements {  get { return @ProjectsElements; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFeatureElementAddition(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

@@ -15,17 +15,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgServiceElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFlowTerminal
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFlowTerminal : IIfcDistributionFlowElement
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IFCFLOWTERMINAL", 679)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowTerminal : IfcDistributionFlowElement, IInstantiableEntity, IEqualityComparer<@IfcFlowTerminal>, IEquatable<@IfcFlowTerminal>
+	public  partial class @IfcFlowTerminal : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowTerminal, IEqualityComparer<@IfcFlowTerminal>, IEquatable<@IfcFlowTerminal>
 	{
+		#region IIfcFlowTerminal explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFlowTerminal(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

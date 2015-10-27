@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRightCircularCone
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRightCircularCone : IIfcCsgPrimitive3D
+	{
+		IfcPositiveLengthMeasure @Height { get; }
+		IfcPositiveLengthMeasure @BottomRadius { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCRIGHTCIRCULARCONE", 961)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRightCircularCone : IfcCsgPrimitive3D, IInstantiableEntity, IEqualityComparer<@IfcRightCircularCone>, IEquatable<@IfcRightCircularCone>
+	public  partial class @IfcRightCircularCone : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCone, IEqualityComparer<@IfcRightCircularCone>, IEquatable<@IfcRightCircularCone>
 	{
+		#region IIfcRightCircularCone explicit implementation
+		IfcPositiveLengthMeasure IIfcRightCircularCone.Height { get { return @Height; } }	
+		IfcPositiveLengthMeasure IIfcRightCircularCone.BottomRadius { get { return @BottomRadius; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRightCircularCone(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +67,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _height = v, _height, value,  "Height");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @BottomRadius 
 		{ 
@@ -59,9 +81,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _bottomRadius = v, _bottomRadius, value,  "BottomRadius");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

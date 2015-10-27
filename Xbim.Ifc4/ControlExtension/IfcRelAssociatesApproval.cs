@@ -15,13 +15,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ControlExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssociatesApproval
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssociatesApproval : IIfcRelAssociates
+	{
+		IIfcApproval @RelatingApproval { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ControlExtension
 {
 	[ExpressType("IFCRELASSOCIATESAPPROVAL", 911)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesApproval : IfcRelAssociates, IInstantiableEntity, IEqualityComparer<@IfcRelAssociatesApproval>, IEquatable<@IfcRelAssociatesApproval>
+	public  partial class @IfcRelAssociatesApproval : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesApproval, IEqualityComparer<@IfcRelAssociatesApproval>, IEquatable<@IfcRelAssociatesApproval>
 	{
+		#region IIfcRelAssociatesApproval explicit implementation
+		IIfcApproval IIfcRelAssociatesApproval.RelatingApproval { get { return @RelatingApproval; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesApproval(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.ControlExtension
 			{
 				SetValue( v =>  _relatingApproval = v, _relatingApproval, value,  "RelatingApproval");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -16,17 +16,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralPlanarAction
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralPlanarAction : IIfcStructuralSurfaceAction
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALPLANARACTION", 1036)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralPlanarAction : IfcStructuralSurfaceAction, IInstantiableEntity, IEqualityComparer<@IfcStructuralPlanarAction>, IEquatable<@IfcStructuralPlanarAction>
+	public  partial class @IfcStructuralPlanarAction : IfcStructuralSurfaceAction, IInstantiableEntity, IIfcStructuralPlanarAction, IEqualityComparer<@IfcStructuralPlanarAction>, IEquatable<@IfcStructuralPlanarAction>
 	{
+		#region IIfcStructuralPlanarAction explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralPlanarAction(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

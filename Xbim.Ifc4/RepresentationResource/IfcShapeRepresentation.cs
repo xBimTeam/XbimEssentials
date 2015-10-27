@@ -13,17 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.RepresentationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcShapeRepresentation
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcShapeRepresentation : IIfcShapeModel
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IFCSHAPEREPRESENTATION", 980)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcShapeRepresentation : IfcShapeModel, IInstantiableEntity, IEqualityComparer<@IfcShapeRepresentation>, IEquatable<@IfcShapeRepresentation>
+	public  partial class @IfcShapeRepresentation : IfcShapeModel, IInstantiableEntity, IIfcShapeRepresentation, IEqualityComparer<@IfcShapeRepresentation>, IEquatable<@IfcShapeRepresentation>
 	{
+		#region IIfcShapeRepresentation explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcShapeRepresentation(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

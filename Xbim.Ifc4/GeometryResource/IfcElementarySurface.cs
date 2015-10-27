@@ -11,13 +11,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcElementarySurface
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcElementarySurface : IIfcSurface
+	{
+		IIfcAxis2Placement3D @Position { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCELEMENTARYSURFACE", 617)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcElementarySurface : IfcSurface, IEqualityComparer<@IfcElementarySurface>, IEquatable<@IfcElementarySurface>
+	public abstract partial class @IfcElementarySurface : IfcSurface, IIfcElementarySurface, IEqualityComparer<@IfcElementarySurface>, IEquatable<@IfcElementarySurface>
 	{
+		#region IIfcElementarySurface explicit implementation
+		IIfcAxis2Placement3D IIfcElementarySurface.Position { get { return @Position; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElementarySurface(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,9 +62,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _position = v, _position, value,  "Position");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

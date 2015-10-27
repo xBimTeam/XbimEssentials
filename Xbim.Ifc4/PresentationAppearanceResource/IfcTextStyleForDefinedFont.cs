@@ -12,14 +12,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextStyleForDefinedFont
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextStyleForDefinedFont : IIfcPresentationItem
+	{
+		IfcColour @Colour { get; }
+		IfcColour @BackgroundColour { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCTEXTSTYLEFORDEFINEDFONT", 1096)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleForDefinedFont : IfcPresentationItem, IInstantiableEntity, IEqualityComparer<@IfcTextStyleForDefinedFont>, IEquatable<@IfcTextStyleForDefinedFont>
+	public  partial class @IfcTextStyleForDefinedFont : IfcPresentationItem, IInstantiableEntity, IIfcTextStyleForDefinedFont, IEqualityComparer<@IfcTextStyleForDefinedFont>, IEquatable<@IfcTextStyleForDefinedFont>
 	{
+		#region IIfcTextStyleForDefinedFont explicit implementation
+		IfcColour IIfcTextStyleForDefinedFont.Colour { get { return @Colour; } }	
+		IfcColour IIfcTextStyleForDefinedFont.BackgroundColour { get { return @BackgroundColour; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextStyleForDefinedFont(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +67,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _colour = v, _colour, value,  "Colour");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColour @BackgroundColour 
 		{ 
@@ -59,9 +81,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _backgroundColour = v, _backgroundColour, value,  "BackgroundColour");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

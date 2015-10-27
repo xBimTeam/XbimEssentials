@@ -13,13 +13,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSpatialElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSpatialElement : IIfcProduct
+	{
+		IfcLabel? @LongName { get; }
+		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainsElements {  get; }
+		IEnumerable<IIfcRelServicesBuildings> @ServicedBySystems {  get; }
+		IEnumerable<IIfcRelReferencedInSpatialStructure> @ReferencesElements {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCSPATIALELEMENT", 997)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSpatialElement : IfcProduct, IEqualityComparer<@IfcSpatialElement>, IEquatable<@IfcSpatialElement>
+	public abstract partial class @IfcSpatialElement : IfcProduct, IIfcSpatialElement, IEqualityComparer<@IfcSpatialElement>, IEquatable<@IfcSpatialElement>
 	{
+		#region IIfcSpatialElement explicit implementation
+		IfcLabel? IIfcSpatialElement.LongName { get { return @LongName; } }	
+	
+	 
+		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements {  get { return @ContainsElements; } }
+		IEnumerable<IIfcRelServicesBuildings> IIfcSpatialElement.ServicedBySystems {  get { return @ServicedBySystems; } }
+		IEnumerable<IIfcRelReferencedInSpatialStructure> IIfcSpatialElement.ReferencesElements {  get { return @ReferencesElements; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpatialElement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,9 +70,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _longName = v, _longName, value,  "LongName");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

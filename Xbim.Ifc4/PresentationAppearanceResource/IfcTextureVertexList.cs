@@ -13,13 +13,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextureVertexList
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextureVertexList : IIfcPresentationItem
+	{
+		IEnumerable<IEnumerable<IfcParameterValue>> @TexCoordsList { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCTEXTUREVERTEXLIST", 1102)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureVertexList : IfcPresentationItem, IInstantiableEntity, IEqualityComparer<@IfcTextureVertexList>, IEquatable<@IfcTextureVertexList>
+	public  partial class @IfcTextureVertexList : IfcPresentationItem, IInstantiableEntity, IIfcTextureVertexList, IEqualityComparer<@IfcTextureVertexList>, IEquatable<@IfcTextureVertexList>
 	{
+		#region IIfcTextureVertexList explicit implementation
+		IEnumerable<IEnumerable<IfcParameterValue>> IIfcTextureVertexList.TexCoordsList { get { return @TexCoordsList; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureVertexList(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -40,9 +61,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _texCoordsList;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

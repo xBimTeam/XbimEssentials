@@ -13,13 +13,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextureVertex
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextureVertex : IIfcPresentationItem
+	{
+		IEnumerable<IfcParameterValue> @Coordinates { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCTEXTUREVERTEX", 1101)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureVertex : IfcPresentationItem, IInstantiableEntity, IEqualityComparer<@IfcTextureVertex>, IEquatable<@IfcTextureVertex>
+	public  partial class @IfcTextureVertex : IfcPresentationItem, IInstantiableEntity, IIfcTextureVertex, IEqualityComparer<@IfcTextureVertex>, IEquatable<@IfcTextureVertex>
 	{
+		#region IIfcTextureVertex explicit implementation
+		IEnumerable<IfcParameterValue> IIfcTextureVertex.Coordinates { get { return @Coordinates; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureVertex(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -40,9 +61,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _coordinates;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

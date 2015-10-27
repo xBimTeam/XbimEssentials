@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.QuantityResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcQuantityWeight
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcQuantityWeight : IIfcPhysicalSimpleQuantity
+	{
+		IfcMassMeasure @WeightValue { get; }
+		IfcLabel? @Formula { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.QuantityResource
 {
 	[ExpressType("IFCQUANTITYWEIGHT", 877)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityWeight : IfcPhysicalSimpleQuantity, IInstantiableEntity, IEqualityComparer<@IfcQuantityWeight>, IEquatable<@IfcQuantityWeight>
+	public  partial class @IfcQuantityWeight : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityWeight, IEqualityComparer<@IfcQuantityWeight>, IEquatable<@IfcQuantityWeight>
 	{
+		#region IIfcQuantityWeight explicit implementation
+		IfcMassMeasure IIfcQuantityWeight.WeightValue { get { return @WeightValue; } }	
+		IfcLabel? IIfcQuantityWeight.Formula { get { return @Formula; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcQuantityWeight(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +66,7 @@ namespace Xbim.Ifc4.QuantityResource
 			{
 				SetValue( v =>  _weightValue = v, _weightValue, value,  "WeightValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Formula 
 		{ 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.QuantityResource
 			{
 				SetValue( v =>  _formula = v, _formula, value,  "Formula");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -16,13 +16,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcWindow
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcWindow : IIfcBuildingElement
+	{
+		IfcPositiveLengthMeasure? @OverallHeight { get; }
+		IfcPositiveLengthMeasure? @OverallWidth { get; }
+		IfcWindowTypeEnum? @PredefinedType { get; }
+		IfcWindowTypePartitioningEnum? @PartitioningType { get; }
+		IfcLabel? @UserDefinedPartitioningType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IFCWINDOW", 1144)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWindow : IfcBuildingElement, IInstantiableEntity, IEqualityComparer<@IfcWindow>, IEquatable<@IfcWindow>
+	public  partial class @IfcWindow : IfcBuildingElement, IInstantiableEntity, IIfcWindow, IEqualityComparer<@IfcWindow>, IEquatable<@IfcWindow>
 	{
+		#region IIfcWindow explicit implementation
+		IfcPositiveLengthMeasure? IIfcWindow.OverallHeight { get { return @OverallHeight; } }	
+		IfcPositiveLengthMeasure? IIfcWindow.OverallWidth { get { return @OverallWidth; } }	
+		IfcWindowTypeEnum? IIfcWindow.PredefinedType { get { return @PredefinedType; } }	
+		IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType { get { return @PartitioningType; } }	
+		IfcLabel? IIfcWindow.UserDefinedPartitioningType { get { return @UserDefinedPartitioningType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWindow(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -50,8 +79,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @OverallWidth 
 		{ 
@@ -65,8 +93,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _overallWidth = v, _overallWidth, value,  "OverallWidth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcWindowTypeEnum? @PredefinedType 
 		{ 
@@ -80,8 +107,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcWindowTypePartitioningEnum? @PartitioningType 
 		{ 
@@ -95,8 +121,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _partitioningType = v, _partitioningType, value,  "PartitioningType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedPartitioningType 
 		{ 
@@ -110,9 +135,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _userDefinedPartitioningType = v, _userDefinedPartitioningType, value,  "UserDefinedPartitioningType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

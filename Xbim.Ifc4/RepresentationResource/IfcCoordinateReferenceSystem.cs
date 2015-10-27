@@ -13,13 +13,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.RepresentationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCoordinateReferenceSystem
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCoordinateReferenceSystem : IPersistEntity, IfcCoordinateReferenceSystemSelect
+	{
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		IfcIdentifier @GeodeticDatum { get; }
+		IfcIdentifier? @VerticalDatum { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IFCCOORDINATEREFERENCESYSTEM", 537)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcCoordinateReferenceSystem : IPersistEntity, INotifyPropertyChanged, IfcCoordinateReferenceSystemSelect, IEqualityComparer<@IfcCoordinateReferenceSystem>, IEquatable<@IfcCoordinateReferenceSystem>
+	public abstract partial class @IfcCoordinateReferenceSystem : IPersistEntity, INotifyPropertyChanged, IIfcCoordinateReferenceSystem, IEqualityComparer<@IfcCoordinateReferenceSystem>, IEquatable<@IfcCoordinateReferenceSystem>
 	{
+		#region IIfcCoordinateReferenceSystem explicit implementation
+		IfcLabel? IIfcCoordinateReferenceSystem.Name { get { return @Name; } }	
+		IfcText? IIfcCoordinateReferenceSystem.Description { get { return @Description; } }	
+		IfcIdentifier IIfcCoordinateReferenceSystem.GeodeticDatum { get { return @GeodeticDatum; } }	
+		IfcIdentifier? IIfcCoordinateReferenceSystem.VerticalDatum { get { return @VerticalDatum; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -102,8 +129,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -117,8 +143,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIdentifier @GeodeticDatum 
 		{ 
@@ -132,8 +157,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _geodeticDatum = v, _geodeticDatum, value,  "GeodeticDatum");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIdentifier? @VerticalDatum 
 		{ 
@@ -147,9 +171,9 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _verticalDatum = v, _verticalDatum, value,  "VerticalDatum");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

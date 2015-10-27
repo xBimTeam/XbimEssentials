@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PropertyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertyEnumeratedValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertyEnumeratedValue : IIfcSimpleProperty
+	{
+		IEnumerable<IfcValue> @EnumerationValues { get; }
+		IIfcPropertyEnumeration @EnumerationReference { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IFCPROPERTYENUMERATEDVALUE", 853)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyEnumeratedValue : IfcSimpleProperty, IInstantiableEntity, IEqualityComparer<@IfcPropertyEnumeratedValue>, IEquatable<@IfcPropertyEnumeratedValue>
+	public  partial class @IfcPropertyEnumeratedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyEnumeratedValue, IEqualityComparer<@IfcPropertyEnumeratedValue>, IEquatable<@IfcPropertyEnumeratedValue>
 	{
+		#region IIfcPropertyEnumeratedValue explicit implementation
+		IEnumerable<IfcValue> IIfcPropertyEnumeratedValue.EnumerationValues { get { return @EnumerationValues; } }	
+		IIfcPropertyEnumeration IIfcPropertyEnumeratedValue.EnumerationReference { get { return @EnumerationReference; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyEnumeratedValue(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -40,8 +63,7 @@ namespace Xbim.Ifc4.PropertyResource
 				((IPersistEntity)this).Activate(false);
 				return _enumerationValues;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcPropertyEnumeration @EnumerationReference 
 		{ 
@@ -55,9 +77,9 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _enumerationReference = v, _enumerationReference, value,  "EnumerationReference");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

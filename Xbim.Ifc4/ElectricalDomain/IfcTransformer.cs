@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ElectricalDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTransformer
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTransformer : IIfcEnergyConversionDevice
+	{
+		IfcTransformerTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IFCTRANSFORMER", 1108)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTransformer : IfcEnergyConversionDevice, IInstantiableEntity, IEqualityComparer<@IfcTransformer>, IEquatable<@IfcTransformer>
+	public  partial class @IfcTransformer : IfcEnergyConversionDevice, IInstantiableEntity, IIfcTransformer, IEqualityComparer<@IfcTransformer>, IEquatable<@IfcTransformer>
 	{
+		#region IIfcTransformer explicit implementation
+		IfcTransformerTypeEnum? IIfcTransformer.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTransformer(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.ElectricalDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

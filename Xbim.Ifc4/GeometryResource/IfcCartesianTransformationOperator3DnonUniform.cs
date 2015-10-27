@@ -11,13 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCartesianTransformationOperator3DnonUniform
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCartesianTransformationOperator3DnonUniform : IIfcCartesianTransformationOperator3D
+	{
+		double? @Scale2 { get; }
+		double? @Scale3 { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCCARTESIANTRANSFORMATIONOPERATOR3DNONUNIFORM", 474)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D, IInstantiableEntity, IEqualityComparer<@IfcCartesianTransformationOperator3DnonUniform>, IEquatable<@IfcCartesianTransformationOperator3DnonUniform>
+	public  partial class @IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D, IInstantiableEntity, IIfcCartesianTransformationOperator3DnonUniform, IEqualityComparer<@IfcCartesianTransformationOperator3DnonUniform>, IEquatable<@IfcCartesianTransformationOperator3DnonUniform>
 	{
+		#region IIfcCartesianTransformationOperator3DnonUniform explicit implementation
+		double? IIfcCartesianTransformationOperator3DnonUniform.Scale2 { get { return @Scale2; } }	
+		double? IIfcCartesianTransformationOperator3DnonUniform.Scale3 { get { return @Scale3; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianTransformationOperator3DnonUniform(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +65,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _scale2 = v, _scale2, value,  "Scale2");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public double? @Scale3 
 		{ 
@@ -57,9 +79,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _scale3 = v, _scale3, value,  "Scale3");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

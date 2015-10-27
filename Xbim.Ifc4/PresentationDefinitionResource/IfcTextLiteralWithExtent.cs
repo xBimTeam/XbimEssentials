@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationDefinitionResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextLiteralWithExtent
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextLiteralWithExtent : IIfcTextLiteral
+	{
+		IIfcPlanarExtent @Extent { get; }
+		IfcBoxAlignment @BoxAlignment { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationDefinitionResource
 {
 	[ExpressType("IFCTEXTLITERALWITHEXTENT", 1093)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextLiteralWithExtent : IfcTextLiteral, IInstantiableEntity, IEqualityComparer<@IfcTextLiteralWithExtent>, IEquatable<@IfcTextLiteralWithExtent>
+	public  partial class @IfcTextLiteralWithExtent : IfcTextLiteral, IInstantiableEntity, IIfcTextLiteralWithExtent, IEqualityComparer<@IfcTextLiteralWithExtent>, IEquatable<@IfcTextLiteralWithExtent>
 	{
+		#region IIfcTextLiteralWithExtent explicit implementation
+		IIfcPlanarExtent IIfcTextLiteralWithExtent.Extent { get { return @Extent; } }	
+		IfcBoxAlignment IIfcTextLiteralWithExtent.BoxAlignment { get { return @BoxAlignment; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextLiteralWithExtent(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +67,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			{
 				SetValue( v =>  _extent = v, _extent, value,  "Extent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcBoxAlignment @BoxAlignment 
 		{ 
@@ -59,9 +81,9 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			{
 				SetValue( v =>  _boxAlignment = v, _boxAlignment, value,  "BoxAlignment");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

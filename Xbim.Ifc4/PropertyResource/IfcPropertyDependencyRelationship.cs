@@ -13,14 +13,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PropertyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertyDependencyRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertyDependencyRelationship : IIfcResourceLevelRelationship
+	{
+		IIfcProperty @DependingProperty { get; }
+		IIfcProperty @DependantProperty { get; }
+		IfcText? @Expression { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PropertyResource
 {
 	[IndexedClass]
 	[ExpressType("IFCPROPERTYDEPENDENCYRELATIONSHIP", 852)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyDependencyRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IEqualityComparer<@IfcPropertyDependencyRelationship>, IEquatable<@IfcPropertyDependencyRelationship>
+	public  partial class @IfcPropertyDependencyRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcPropertyDependencyRelationship, IEqualityComparer<@IfcPropertyDependencyRelationship>, IEquatable<@IfcPropertyDependencyRelationship>
 	{
+		#region IIfcPropertyDependencyRelationship explicit implementation
+		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty { get { return @DependingProperty; } }	
+		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty { get { return @DependantProperty; } }	
+		IfcText? IIfcPropertyDependencyRelationship.Expression { get { return @Expression; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyDependencyRelationship(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +72,7 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _dependingProperty = v, _dependingProperty, value,  "DependingProperty");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcProperty @DependantProperty 
@@ -63,8 +87,7 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _dependantProperty = v, _dependantProperty, value,  "DependantProperty");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Expression 
 		{ 
@@ -78,9 +101,9 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _expression = v, _expression, value,  "Expression");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

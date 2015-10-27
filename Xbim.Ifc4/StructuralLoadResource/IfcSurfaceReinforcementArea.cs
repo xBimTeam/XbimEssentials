@@ -12,13 +12,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralLoadResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceReinforcementArea
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceReinforcementArea : IIfcStructuralLoadOrResult
+	{
+		IEnumerable<IfcLengthMeasure> @SurfaceReinforcement1 { get; }
+		IEnumerable<IfcLengthMeasure> @SurfaceReinforcement2 { get; }
+		IfcRatioMeasure? @ShearReinforcement { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IFCSURFACEREINFORCEMENTAREA", 1058)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceReinforcementArea : IfcStructuralLoadOrResult, IInstantiableEntity, IEqualityComparer<@IfcSurfaceReinforcementArea>, IEquatable<@IfcSurfaceReinforcementArea>
+	public  partial class @IfcSurfaceReinforcementArea : IfcStructuralLoadOrResult, IInstantiableEntity, IIfcSurfaceReinforcementArea, IEqualityComparer<@IfcSurfaceReinforcementArea>, IEquatable<@IfcSurfaceReinforcementArea>
 	{
+		#region IIfcSurfaceReinforcementArea explicit implementation
+		IEnumerable<IfcLengthMeasure> IIfcSurfaceReinforcementArea.SurfaceReinforcement1 { get { return @SurfaceReinforcement1; } }	
+		IEnumerable<IfcLengthMeasure> IIfcSurfaceReinforcementArea.SurfaceReinforcement2 { get { return @SurfaceReinforcement2; } }	
+		IfcRatioMeasure? IIfcSurfaceReinforcementArea.ShearReinforcement { get { return @ShearReinforcement; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceReinforcementArea(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +67,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				((IPersistEntity)this).Activate(false);
 				return _surfaceReinforcement1;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 2, 3)]
 		public OptionalItemSet<IfcLengthMeasure> @SurfaceReinforcement2 
 		{ 
@@ -53,8 +77,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				((IPersistEntity)this).Activate(false);
 				return _surfaceReinforcement2;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcRatioMeasure? @ShearReinforcement 
 		{ 
@@ -68,9 +91,9 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _shearReinforcement = v, _shearReinforcement, value,  "ShearReinforcement");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

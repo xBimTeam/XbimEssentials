@@ -13,14 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ApprovalResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcApprovalRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcApprovalRelationship : IIfcResourceLevelRelationship
+	{
+		IIfcApproval @RelatingApproval { get; }
+		IEnumerable<IIfcApproval> @RelatedApprovals { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ApprovalResource
 {
 	[IndexedClass]
 	[ExpressType("IFCAPPROVALRELATIONSHIP", 413)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IEqualityComparer<@IfcApprovalRelationship>, IEquatable<@IfcApprovalRelationship>
+	public  partial class @IfcApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcApprovalRelationship, IEqualityComparer<@IfcApprovalRelationship>, IEquatable<@IfcApprovalRelationship>
 	{
+		#region IIfcApprovalRelationship explicit implementation
+		IIfcApproval IIfcApprovalRelationship.RelatingApproval { get { return @RelatingApproval; } }	
+		IEnumerable<IIfcApproval> IIfcApprovalRelationship.RelatedApprovals { get { return @RelatedApprovals; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcApprovalRelationship(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +70,7 @@ namespace Xbim.Ifc4.ApprovalResource
 			{
 				SetValue( v =>  _relatingApproval = v, _relatingApproval, value,  "RelatingApproval");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcApproval> @RelatedApprovals 
@@ -59,9 +81,9 @@ namespace Xbim.Ifc4.ApprovalResource
 				((IPersistEntity)this).Activate(false);
 				return _relatedApprovals;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

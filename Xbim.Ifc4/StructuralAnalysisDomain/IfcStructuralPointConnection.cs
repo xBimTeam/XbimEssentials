@@ -17,13 +17,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralPointConnection
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralPointConnection : IIfcStructuralConnection
+	{
+		IIfcAxis2Placement3D @ConditionCoordinateSystem { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALPOINTCONNECTION", 1038)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralPointConnection : IfcStructuralConnection, IInstantiableEntity, IEqualityComparer<@IfcStructuralPointConnection>, IEquatable<@IfcStructuralPointConnection>
+	public  partial class @IfcStructuralPointConnection : IfcStructuralConnection, IInstantiableEntity, IIfcStructuralPointConnection, IEqualityComparer<@IfcStructuralPointConnection>, IEquatable<@IfcStructuralPointConnection>
 	{
+		#region IIfcStructuralPointConnection explicit implementation
+		IIfcAxis2Placement3D IIfcStructuralPointConnection.ConditionCoordinateSystem { get { return @ConditionCoordinateSystem; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralPointConnection(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,9 +68,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _conditionCoordinateSystem = v, _conditionCoordinateSystem, value,  "ConditionCoordinateSystem");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

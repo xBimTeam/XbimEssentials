@@ -15,14 +15,49 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ExternalReferenceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLibraryInformation
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLibraryInformation : IIfcExternalInformation, IfcLibrarySelect
+	{
+		IfcLabel @Name { get; }
+		IfcLabel? @Version { get; }
+		IfcActorSelect @Publisher { get; }
+		IfcDateTime? @VersionDate { get; }
+		IfcURIReference? @Location { get; }
+		IfcText? @Description { get; }
+		IEnumerable<IIfcRelAssociatesLibrary> @LibraryInfoForObjects {  get; }
+		IEnumerable<IIfcLibraryReference> @HasLibraryReferences {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCLIBRARYINFORMATION", 723)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLibraryInformation : IfcExternalInformation, IfcLibrarySelect, IInstantiableEntity, IEqualityComparer<@IfcLibraryInformation>, IEquatable<@IfcLibraryInformation>
+	public  partial class @IfcLibraryInformation : IfcExternalInformation, IInstantiableEntity, IIfcLibraryInformation, IEqualityComparer<@IfcLibraryInformation>, IEquatable<@IfcLibraryInformation>
 	{
+		#region IIfcLibraryInformation explicit implementation
+		IfcLabel IIfcLibraryInformation.Name { get { return @Name; } }	
+		IfcLabel? IIfcLibraryInformation.Version { get { return @Version; } }	
+		IfcActorSelect IIfcLibraryInformation.Publisher { get { return @Publisher; } }	
+		IfcDateTime? IIfcLibraryInformation.VersionDate { get { return @VersionDate; } }	
+		IfcURIReference? IIfcLibraryInformation.Location { get { return @Location; } }	
+		IfcText? IIfcLibraryInformation.Description { get { return @Description; } }	
+	
+	 
+		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryInformation.LibraryInfoForObjects {  get { return @LibraryInfoForObjects; } }
+		IEnumerable<IIfcLibraryReference> IIfcLibraryInformation.HasLibraryReferences {  get { return @HasLibraryReferences; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLibraryInformation(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -51,8 +86,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Version 
 		{ 
@@ -66,8 +100,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _version = v, _version, value,  "Version");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcActorSelect @Publisher 
 		{ 
@@ -81,8 +114,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _publisher = v, _publisher, value,  "Publisher");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @VersionDate 
 		{ 
@@ -96,8 +128,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _versionDate = v, _versionDate, value,  "VersionDate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcURIReference? @Location 
 		{ 
@@ -111,8 +142,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _location = v, _location, value,  "Location");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -126,9 +156,9 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

@@ -12,13 +12,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.DateTimeResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcEventTime
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcEventTime : IIfcSchedulingTime
+	{
+		IfcDateTime? @ActualDate { get; }
+		IfcDateTime? @EarlyDate { get; }
+		IfcDateTime? @LateDate { get; }
+		IfcDateTime? @ScheduleDate { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IFCEVENTTIME", 629)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEventTime : IfcSchedulingTime, IInstantiableEntity, IEqualityComparer<@IfcEventTime>, IEquatable<@IfcEventTime>
+	public  partial class @IfcEventTime : IfcSchedulingTime, IInstantiableEntity, IIfcEventTime, IEqualityComparer<@IfcEventTime>, IEquatable<@IfcEventTime>
 	{
+		#region IIfcEventTime explicit implementation
+		IfcDateTime? IIfcEventTime.ActualDate { get { return @ActualDate; } }	
+		IfcDateTime? IIfcEventTime.EarlyDate { get { return @EarlyDate; } }	
+		IfcDateTime? IIfcEventTime.LateDate { get { return @LateDate; } }	
+		IfcDateTime? IIfcEventTime.ScheduleDate { get { return @ScheduleDate; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEventTime(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +72,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _actualDate = v, _actualDate, value,  "ActualDate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @EarlyDate 
 		{ 
@@ -60,8 +86,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _earlyDate = v, _earlyDate, value,  "EarlyDate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @LateDate 
 		{ 
@@ -75,8 +100,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _lateDate = v, _lateDate, value,  "LateDate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @ScheduleDate 
 		{ 
@@ -90,9 +114,9 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _scheduleDate = v, _scheduleDate, value,  "ScheduleDate");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

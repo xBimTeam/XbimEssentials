@@ -16,13 +16,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralElementsDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcReinforcingBar
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcReinforcingBar : IIfcReinforcingElement
+	{
+		IfcPositiveLengthMeasure? @NominalDiameter { get; }
+		IfcAreaMeasure? @CrossSectionArea { get; }
+		IfcPositiveLengthMeasure? @BarLength { get; }
+		IfcReinforcingBarTypeEnum? @PredefinedType { get; }
+		IfcReinforcingBarSurfaceEnum? @BarSurface { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IFCREINFORCINGBAR", 895)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcingBar : IfcReinforcingElement, IInstantiableEntity, IEqualityComparer<@IfcReinforcingBar>, IEquatable<@IfcReinforcingBar>
+	public  partial class @IfcReinforcingBar : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingBar, IEqualityComparer<@IfcReinforcingBar>, IEquatable<@IfcReinforcingBar>
 	{
+		#region IIfcReinforcingBar explicit implementation
+		IfcPositiveLengthMeasure? IIfcReinforcingBar.NominalDiameter { get { return @NominalDiameter; } }	
+		IfcAreaMeasure? IIfcReinforcingBar.CrossSectionArea { get { return @CrossSectionArea; } }	
+		IfcPositiveLengthMeasure? IIfcReinforcingBar.BarLength { get { return @BarLength; } }	
+		IfcReinforcingBarTypeEnum? IIfcReinforcingBar.PredefinedType { get { return @PredefinedType; } }	
+		IfcReinforcingBarSurfaceEnum? IIfcReinforcingBar.BarSurface { get { return @BarSurface; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcingBar(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -50,8 +79,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcAreaMeasure? @CrossSectionArea 
 		{ 
@@ -65,8 +93,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @BarLength 
 		{ 
@@ -80,8 +107,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _barLength = v, _barLength, value,  "BarLength");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcReinforcingBarTypeEnum? @PredefinedType 
 		{ 
@@ -95,8 +121,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcReinforcingBarSurfaceEnum? @BarSurface 
 		{ 
@@ -110,9 +135,9 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _barSurface = v, _barSurface, value,  "BarSurface");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

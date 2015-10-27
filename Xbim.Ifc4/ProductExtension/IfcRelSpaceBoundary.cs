@@ -15,13 +15,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelSpaceBoundary
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelSpaceBoundary : IIfcRelConnects
+	{
+		IfcSpaceBoundarySelect @RelatingSpace { get; }
+		IIfcElement @RelatedBuildingElement { get; }
+		IIfcConnectionGeometry @ConnectionGeometry { get; }
+		IfcPhysicalOrVirtualEnum @PhysicalOrVirtualBoundary { get; }
+		IfcInternalOrExternalEnum @InternalOrExternalBoundary { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCRELSPACEBOUNDARY", 944)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSpaceBoundary : IfcRelConnects, IInstantiableEntity, IEqualityComparer<@IfcRelSpaceBoundary>, IEquatable<@IfcRelSpaceBoundary>
+	public  partial class @IfcRelSpaceBoundary : IfcRelConnects, IInstantiableEntity, IIfcRelSpaceBoundary, IEqualityComparer<@IfcRelSpaceBoundary>, IEquatable<@IfcRelSpaceBoundary>
 	{
+		#region IIfcRelSpaceBoundary explicit implementation
+		IfcSpaceBoundarySelect IIfcRelSpaceBoundary.RelatingSpace { get { return @RelatingSpace; } }	
+		IIfcElement IIfcRelSpaceBoundary.RelatedBuildingElement { get { return @RelatedBuildingElement; } }	
+		IIfcConnectionGeometry IIfcRelSpaceBoundary.ConnectionGeometry { get { return @ConnectionGeometry; } }	
+		IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary { get { return @PhysicalOrVirtualBoundary; } }	
+		IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary { get { return @InternalOrExternalBoundary; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelSpaceBoundary(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -50,8 +79,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _relatingSpace = v, _relatingSpace, value,  "RelatingSpace");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcElement @RelatedBuildingElement 
@@ -66,8 +94,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _relatedBuildingElement = v, _relatedBuildingElement, value,  "RelatedBuildingElement");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcConnectionGeometry @ConnectionGeometry 
 		{ 
@@ -81,8 +108,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _connectionGeometry = v, _connectionGeometry, value,  "ConnectionGeometry");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcPhysicalOrVirtualEnum @PhysicalOrVirtualBoundary 
 		{ 
@@ -96,8 +122,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _physicalOrVirtualBoundary = v, _physicalOrVirtualBoundary, value,  "PhysicalOrVirtualBoundary");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcInternalOrExternalEnum @InternalOrExternalBoundary 
 		{ 
@@ -111,9 +136,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _internalOrExternalBoundary = v, _internalOrExternalBoundary, value,  "InternalOrExternalBoundary");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

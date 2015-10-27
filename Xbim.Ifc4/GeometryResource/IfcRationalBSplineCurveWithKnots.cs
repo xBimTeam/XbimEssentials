@@ -12,13 +12,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRationalBSplineCurveWithKnots
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRationalBSplineCurveWithKnots : IIfcBSplineCurveWithKnots
+	{
+		IEnumerable<double> @WeightsData { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCRATIONALBSPLINECURVEWITHKNOTS", 884)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRationalBSplineCurveWithKnots : IfcBSplineCurveWithKnots, IInstantiableEntity, IEqualityComparer<@IfcRationalBSplineCurveWithKnots>, IEquatable<@IfcRationalBSplineCurveWithKnots>
+	public  partial class @IfcRationalBSplineCurveWithKnots : IfcBSplineCurveWithKnots, IInstantiableEntity, IIfcRationalBSplineCurveWithKnots, IEqualityComparer<@IfcRationalBSplineCurveWithKnots>, IEquatable<@IfcRationalBSplineCurveWithKnots>
 	{
+		#region IIfcRationalBSplineCurveWithKnots explicit implementation
+		IEnumerable<double> IIfcRationalBSplineCurveWithKnots.WeightsData { get { return @WeightsData; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRationalBSplineCurveWithKnots(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,9 +60,9 @@ namespace Xbim.Ifc4.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _weightsData;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -12,13 +12,44 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralLoadResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralLoadLinearForce
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralLoadLinearForce : IIfcStructuralLoadStatic
+	{
+		IfcLinearForceMeasure? @LinearForceX { get; }
+		IfcLinearForceMeasure? @LinearForceY { get; }
+		IfcLinearForceMeasure? @LinearForceZ { get; }
+		IfcLinearMomentMeasure? @LinearMomentX { get; }
+		IfcLinearMomentMeasure? @LinearMomentY { get; }
+		IfcLinearMomentMeasure? @LinearMomentZ { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IFCSTRUCTURALLOADLINEARFORCE", 1026)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadLinearForce : IfcStructuralLoadStatic, IInstantiableEntity, IEqualityComparer<@IfcStructuralLoadLinearForce>, IEquatable<@IfcStructuralLoadLinearForce>
+	public  partial class @IfcStructuralLoadLinearForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadLinearForce, IEqualityComparer<@IfcStructuralLoadLinearForce>, IEquatable<@IfcStructuralLoadLinearForce>
 	{
+		#region IIfcStructuralLoadLinearForce explicit implementation
+		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceX { get { return @LinearForceX; } }	
+		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceY { get { return @LinearForceY; } }	
+		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceZ { get { return @LinearForceZ; } }	
+		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentX { get { return @LinearMomentX; } }	
+		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentY { get { return @LinearMomentY; } }	
+		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentZ { get { return @LinearMomentZ; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadLinearForce(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +78,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _linearForceX = v, _linearForceX, value,  "LinearForceX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLinearForceMeasure? @LinearForceY 
 		{ 
@@ -62,8 +92,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _linearForceY = v, _linearForceY, value,  "LinearForceY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLinearForceMeasure? @LinearForceZ 
 		{ 
@@ -77,8 +106,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _linearForceZ = v, _linearForceZ, value,  "LinearForceZ");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLinearMomentMeasure? @LinearMomentX 
 		{ 
@@ -92,8 +120,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _linearMomentX = v, _linearMomentX, value,  "LinearMomentX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLinearMomentMeasure? @LinearMomentY 
 		{ 
@@ -107,8 +134,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _linearMomentY = v, _linearMomentY, value,  "LinearMomentY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLinearMomentMeasure? @LinearMomentZ 
 		{ 
@@ -122,9 +148,9 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _linearMomentZ = v, _linearMomentZ, value,  "LinearMomentZ");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -15,13 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ControlExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssociatesConstraint
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssociatesConstraint : IIfcRelAssociates
+	{
+		IfcLabel? @Intent { get; }
+		IIfcConstraint @RelatingConstraint { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ControlExtension
 {
 	[ExpressType("IFCRELASSOCIATESCONSTRAINT", 913)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesConstraint : IfcRelAssociates, IInstantiableEntity, IEqualityComparer<@IfcRelAssociatesConstraint>, IEquatable<@IfcRelAssociatesConstraint>
+	public  partial class @IfcRelAssociatesConstraint : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesConstraint, IEqualityComparer<@IfcRelAssociatesConstraint>, IEquatable<@IfcRelAssociatesConstraint>
 	{
+		#region IIfcRelAssociatesConstraint explicit implementation
+		IfcLabel? IIfcRelAssociatesConstraint.Intent { get { return @Intent; } }	
+		IIfcConstraint IIfcRelAssociatesConstraint.RelatingConstraint { get { return @RelatingConstraint; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesConstraint(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +69,7 @@ namespace Xbim.Ifc4.ControlExtension
 			{
 				SetValue( v =>  _intent = v, _intent, value,  "Intent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcConstraint @RelatingConstraint 
 		{ 
@@ -61,9 +83,9 @@ namespace Xbim.Ifc4.ControlExtension
 			{
 				SetValue( v =>  _relatingConstraint = v, _relatingConstraint, value,  "RelatingConstraint");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

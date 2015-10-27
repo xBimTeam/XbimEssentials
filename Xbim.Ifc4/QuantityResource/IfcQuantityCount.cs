@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.QuantityResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcQuantityCount
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcQuantityCount : IIfcPhysicalSimpleQuantity
+	{
+		IfcCountMeasure @CountValue { get; }
+		IfcLabel? @Formula { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.QuantityResource
 {
 	[ExpressType("IFCQUANTITYCOUNT", 872)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityCount : IfcPhysicalSimpleQuantity, IInstantiableEntity, IEqualityComparer<@IfcQuantityCount>, IEquatable<@IfcQuantityCount>
+	public  partial class @IfcQuantityCount : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityCount, IEqualityComparer<@IfcQuantityCount>, IEquatable<@IfcQuantityCount>
 	{
+		#region IIfcQuantityCount explicit implementation
+		IfcCountMeasure IIfcQuantityCount.CountValue { get { return @CountValue; } }	
+		IfcLabel? IIfcQuantityCount.Formula { get { return @Formula; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcQuantityCount(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +66,7 @@ namespace Xbim.Ifc4.QuantityResource
 			{
 				SetValue( v =>  _countValue = v, _countValue, value,  "CountValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Formula 
 		{ 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.QuantityResource
 			{
 				SetValue( v =>  _formula = v, _formula, value,  "Formula");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

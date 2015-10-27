@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.HvacDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcChiller
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcChiller : IIfcEnergyConversionDevice
+	{
+		IfcChillerTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IFCCHILLER", 476)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcChiller : IfcEnergyConversionDevice, IInstantiableEntity, IEqualityComparer<@IfcChiller>, IEquatable<@IfcChiller>
+	public  partial class @IfcChiller : IfcEnergyConversionDevice, IInstantiableEntity, IIfcChiller, IEqualityComparer<@IfcChiller>, IEquatable<@IfcChiller>
 	{
+		#region IIfcChiller explicit implementation
+		IfcChillerTypeEnum? IIfcChiller.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcChiller(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

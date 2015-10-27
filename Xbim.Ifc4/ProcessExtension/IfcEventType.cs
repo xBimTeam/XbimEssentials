@@ -14,13 +14,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProcessExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcEventType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcEventType : IIfcTypeProcess
+	{
+		IfcEventTypeEnum @PredefinedType { get; }
+		IfcEventTriggerTypeEnum @EventTriggerType { get; }
+		IfcLabel? @UserDefinedEventTriggerType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IFCEVENTTYPE", 630)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEventType : IfcTypeProcess, IInstantiableEntity, IEqualityComparer<@IfcEventType>, IEquatable<@IfcEventType>
+	public  partial class @IfcEventType : IfcTypeProcess, IInstantiableEntity, IIfcEventType, IEqualityComparer<@IfcEventType>, IEquatable<@IfcEventType>
 	{
+		#region IIfcEventType explicit implementation
+		IfcEventTypeEnum IIfcEventType.PredefinedType { get { return @PredefinedType; } }	
+		IfcEventTriggerTypeEnum IIfcEventType.EventTriggerType { get { return @EventTriggerType; } }	
+		IfcLabel? IIfcEventType.UserDefinedEventTriggerType { get { return @UserDefinedEventTriggerType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEventType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +71,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcEventTriggerTypeEnum @EventTriggerType 
 		{ 
@@ -61,8 +85,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _eventTriggerType = v, _eventTriggerType, value,  "EventTriggerType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedEventTriggerType 
 		{ 
@@ -76,9 +99,9 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _userDefinedEventTriggerType = v, _userDefinedEventTriggerType, value,  "UserDefinedEventTriggerType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

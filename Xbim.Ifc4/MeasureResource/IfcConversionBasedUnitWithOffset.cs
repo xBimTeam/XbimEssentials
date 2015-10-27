@@ -11,13 +11,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MeasureResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConversionBasedUnitWithOffset
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConversionBasedUnitWithOffset : IIfcConversionBasedUnit
+	{
+		IfcReal @ConversionOffset { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IFCCONVERSIONBASEDUNITWITHOFFSET", 531)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConversionBasedUnitWithOffset : IfcConversionBasedUnit, IInstantiableEntity, IEqualityComparer<@IfcConversionBasedUnitWithOffset>, IEquatable<@IfcConversionBasedUnitWithOffset>
+	public  partial class @IfcConversionBasedUnitWithOffset : IfcConversionBasedUnit, IInstantiableEntity, IIfcConversionBasedUnitWithOffset, IEqualityComparer<@IfcConversionBasedUnitWithOffset>, IEquatable<@IfcConversionBasedUnitWithOffset>
 	{
+		#region IIfcConversionBasedUnitWithOffset explicit implementation
+		IfcReal IIfcConversionBasedUnitWithOffset.ConversionOffset { get { return @ConversionOffset; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConversionBasedUnitWithOffset(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,9 +62,9 @@ namespace Xbim.Ifc4.MeasureResource
 			{
 				SetValue( v =>  _conversionOffset = v, _conversionOffset, value,  "ConversionOffset");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

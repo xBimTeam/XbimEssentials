@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCurveStyleFontPattern
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCurveStyleFontPattern : IIfcPresentationItem
+	{
+		IfcLengthMeasure @VisibleSegmentLength { get; }
+		IfcPositiveLengthMeasure @InvisibleSegmentLength { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCCURVESTYLEFONTPATTERN", 556)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyleFontPattern : IfcPresentationItem, IInstantiableEntity, IEqualityComparer<@IfcCurveStyleFontPattern>, IEquatable<@IfcCurveStyleFontPattern>
+	public  partial class @IfcCurveStyleFontPattern : IfcPresentationItem, IInstantiableEntity, IIfcCurveStyleFontPattern, IEqualityComparer<@IfcCurveStyleFontPattern>, IEquatable<@IfcCurveStyleFontPattern>
 	{
+		#region IIfcCurveStyleFontPattern explicit implementation
+		IfcLengthMeasure IIfcCurveStyleFontPattern.VisibleSegmentLength { get { return @VisibleSegmentLength; } }	
+		IfcPositiveLengthMeasure IIfcCurveStyleFontPattern.InvisibleSegmentLength { get { return @InvisibleSegmentLength; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveStyleFontPattern(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +67,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _visibleSegmentLength = v, _visibleSegmentLength, value,  "VisibleSegmentLength");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @InvisibleSegmentLength 
 		{ 
@@ -59,9 +81,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _invisibleSegmentLength = v, _invisibleSegmentLength, value,  "InvisibleSegmentLength");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

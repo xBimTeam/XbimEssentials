@@ -13,13 +13,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPixelTexture
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPixelTexture : IIfcSurfaceTexture
+	{
+		IfcInteger @Width { get; }
+		IfcInteger @Height { get; }
+		IfcInteger @ColourComponents { get; }
+		IEnumerable<long> @Pixel { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCPIXELTEXTURE", 808)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPixelTexture : IfcSurfaceTexture, IInstantiableEntity, IEqualityComparer<@IfcPixelTexture>, IEquatable<@IfcPixelTexture>
+	public  partial class @IfcPixelTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcPixelTexture, IEqualityComparer<@IfcPixelTexture>, IEquatable<@IfcPixelTexture>
 	{
+		#region IIfcPixelTexture explicit implementation
+		IfcInteger IIfcPixelTexture.Width { get { return @Width; } }	
+		IfcInteger IIfcPixelTexture.Height { get { return @Height; } }	
+		IfcInteger IIfcPixelTexture.ColourComponents { get { return @ColourComponents; } }	
+		IEnumerable<long> IIfcPixelTexture.Pixel { get { return @Pixel; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPixelTexture(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +74,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _width = v, _width, value,  "Width");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcInteger @Height 
 		{ 
@@ -62,8 +88,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _height = v, _height, value,  "Height");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcInteger @ColourComponents 
 		{ 
@@ -77,8 +102,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _colourComponents = v, _colourComponents, value,  "ColourComponents");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public ItemSet<long> @Pixel 
 		{ 
@@ -88,9 +112,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _pixel;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

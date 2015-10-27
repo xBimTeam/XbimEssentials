@@ -12,13 +12,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PropertyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertyEnumeration
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertyEnumeration : IIfcPropertyAbstraction
+	{
+		IfcLabel @Name { get; }
+		IEnumerable<IfcValue> @EnumerationValues { get; }
+		IfcUnit @Unit { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IFCPROPERTYENUMERATION", 854)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyEnumeration : IfcPropertyAbstraction, IInstantiableEntity, IEqualityComparer<@IfcPropertyEnumeration>, IEquatable<@IfcPropertyEnumeration>
+	public  partial class @IfcPropertyEnumeration : IfcPropertyAbstraction, IInstantiableEntity, IIfcPropertyEnumeration, IEqualityComparer<@IfcPropertyEnumeration>, IEquatable<@IfcPropertyEnumeration>
 	{
+		#region IIfcPropertyEnumeration explicit implementation
+		IfcLabel IIfcPropertyEnumeration.Name { get { return @Name; } }	
+		IEnumerable<IfcValue> IIfcPropertyEnumeration.EnumerationValues { get { return @EnumerationValues; } }	
+		IfcUnit IIfcPropertyEnumeration.Unit { get { return @Unit; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyEnumeration(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +70,7 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcValue> @EnumerationValues 
 		{ 
@@ -56,8 +80,7 @@ namespace Xbim.Ifc4.PropertyResource
 				((IPersistEntity)this).Activate(false);
 				return _enumerationValues;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcUnit @Unit 
 		{ 
@@ -71,9 +94,9 @@ namespace Xbim.Ifc4.PropertyResource
 			{
 				SetValue( v =>  _unit = v, _unit, value,  "Unit");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

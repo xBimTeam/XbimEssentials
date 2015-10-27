@@ -14,13 +14,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssociatesLibrary
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssociatesLibrary : IIfcRelAssociates
+	{
+		IfcLibrarySelect @RelatingLibrary { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELASSOCIATESLIBRARY", 915)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesLibrary : IfcRelAssociates, IInstantiableEntity, IEqualityComparer<@IfcRelAssociatesLibrary>, IEquatable<@IfcRelAssociatesLibrary>
+	public  partial class @IfcRelAssociatesLibrary : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesLibrary, IEqualityComparer<@IfcRelAssociatesLibrary>, IEquatable<@IfcRelAssociatesLibrary>
 	{
+		#region IIfcRelAssociatesLibrary explicit implementation
+		IfcLibrarySelect IIfcRelAssociatesLibrary.RelatingLibrary { get { return @RelatingLibrary; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesLibrary(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +66,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _relatingLibrary = v, _relatingLibrary, value,  "RelatingLibrary");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

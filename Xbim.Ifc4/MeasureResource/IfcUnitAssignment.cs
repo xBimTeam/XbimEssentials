@@ -12,14 +12,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MeasureResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcUnitAssignment
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcUnitAssignment : IPersistEntity
+	{
+		IEnumerable<IfcUnit> @Units { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MeasureResource
 {
 	[IndexedClass]
 	[ExpressType("IFCUNITASSIGNMENT", 1122)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcUnitAssignment : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcUnitAssignment>, IEquatable<@IfcUnitAssignment>
+	public  partial class @IfcUnitAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcUnitAssignment, IEqualityComparer<@IfcUnitAssignment>, IEquatable<@IfcUnitAssignment>
 	{
+		#region IIfcUnitAssignment explicit implementation
+		IEnumerable<IfcUnit> IIfcUnitAssignment.Units { get { return @Units; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -96,9 +117,9 @@ namespace Xbim.Ifc4.MeasureResource
 				((IPersistEntity)this).Activate(false);
 				return _units;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

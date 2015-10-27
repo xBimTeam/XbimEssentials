@@ -14,13 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ConstructionMgmtDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConstructionResourceType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConstructionResourceType : IIfcTypeResource
+	{
+		IEnumerable<IIfcAppliedValue> @BaseCosts { get; }
+		IIfcPhysicalQuantity @BaseQuantity { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	[ExpressType("IFCCONSTRUCTIONRESOURCETYPE", 524)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConstructionResourceType : IfcTypeResource, IEqualityComparer<@IfcConstructionResourceType>, IEquatable<@IfcConstructionResourceType>
+	public abstract partial class @IfcConstructionResourceType : IfcTypeResource, IIfcConstructionResourceType, IEqualityComparer<@IfcConstructionResourceType>, IEquatable<@IfcConstructionResourceType>
 	{
+		#region IIfcConstructionResourceType explicit implementation
+		IEnumerable<IIfcAppliedValue> IIfcConstructionResourceType.BaseCosts { get { return @BaseCosts; } }	
+		IIfcPhysicalQuantity IIfcConstructionResourceType.BaseQuantity { get { return @BaseQuantity; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstructionResourceType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +65,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 				((IPersistEntity)this).Activate(false);
 				return _baseCosts;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcPhysicalQuantity @BaseQuantity 
 		{ 
@@ -57,9 +79,9 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _baseQuantity = v, _baseQuantity, value,  "BaseQuantity");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

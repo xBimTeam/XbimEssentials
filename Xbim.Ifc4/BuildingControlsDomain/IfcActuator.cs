@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.BuildingControlsDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcActuator
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcActuator : IIfcDistributionControlElement
+	{
+		IfcActuatorTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	[ExpressType("IFCACTUATOR", 394)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActuator : IfcDistributionControlElement, IInstantiableEntity, IEqualityComparer<@IfcActuator>, IEquatable<@IfcActuator>
+	public  partial class @IfcActuator : IfcDistributionControlElement, IInstantiableEntity, IIfcActuator, IEqualityComparer<@IfcActuator>, IEquatable<@IfcActuator>
 	{
+		#region IIfcActuator explicit implementation
+		IfcActuatorTypeEnum? IIfcActuator.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcActuator(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

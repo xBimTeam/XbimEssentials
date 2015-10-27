@@ -12,14 +12,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MaterialResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialLayerSet
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialLayerSet : IIfcMaterialDefinition
+	{
+		IEnumerable<IIfcMaterialLayer> @MaterialLayers { get; }
+		IfcLabel? @LayerSetName { get; }
+		IfcText? @Description { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MaterialResource
 {
 	[IndexedClass]
 	[ExpressType("IFCMATERIALLAYERSET", 748)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerSet : IfcMaterialDefinition, IInstantiableEntity, IEqualityComparer<@IfcMaterialLayerSet>, IEquatable<@IfcMaterialLayerSet>
+	public  partial class @IfcMaterialLayerSet : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialLayerSet, IEqualityComparer<@IfcMaterialLayerSet>, IEquatable<@IfcMaterialLayerSet>
 	{
+		#region IIfcMaterialLayerSet explicit implementation
+		IEnumerable<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers { get { return @MaterialLayers; } }	
+		IfcLabel? IIfcMaterialLayerSet.LayerSetName { get { return @LayerSetName; } }	
+		IfcText? IIfcMaterialLayerSet.Description { get { return @Description; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialLayerSet(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +68,7 @@ namespace Xbim.Ifc4.MaterialResource
 				((IPersistEntity)this).Activate(false);
 				return _materialLayers;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @LayerSetName 
 		{ 
@@ -58,8 +82,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _layerSetName = v, _layerSetName, value,  "LayerSetName");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -73,9 +96,9 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

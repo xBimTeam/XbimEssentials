@@ -15,13 +15,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralElementsDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTendonAnchorType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTendonAnchorType : IIfcReinforcingElementType
+	{
+		IfcTendonAnchorTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IFCTENDONANCHORTYPE", 1088)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTendonAnchorType : IfcReinforcingElementType, IInstantiableEntity, IEqualityComparer<@IfcTendonAnchorType>, IEquatable<@IfcTendonAnchorType>
+	public  partial class @IfcTendonAnchorType : IfcReinforcingElementType, IInstantiableEntity, IIfcTendonAnchorType, IEqualityComparer<@IfcTendonAnchorType>, IEquatable<@IfcTendonAnchorType>
 	{
+		#region IIfcTendonAnchorType explicit implementation
+		IfcTendonAnchorTypeEnum IIfcTendonAnchorType.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTendonAnchorType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +66,9 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

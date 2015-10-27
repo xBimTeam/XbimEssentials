@@ -13,14 +13,43 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ExternalReferenceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcClassificationReference
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcClassificationReference : IIfcExternalReference, IfcClassificationReferenceSelect, IfcClassificationSelect
+	{
+		IfcClassificationReferenceSelect @ReferencedSource { get; }
+		IfcText? @Description { get; }
+		IfcIdentifier? @Sort { get; }
+		IEnumerable<IIfcRelAssociatesClassification> @ClassificationRefForObjects {  get; }
+		IEnumerable<IIfcClassificationReference> @HasReferences {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCLASSIFICATIONREFERENCE", 486)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationReference : IfcExternalReference, IfcClassificationReferenceSelect, IfcClassificationSelect, IInstantiableEntity, IEqualityComparer<@IfcClassificationReference>, IEquatable<@IfcClassificationReference>
+	public  partial class @IfcClassificationReference : IfcExternalReference, IInstantiableEntity, IIfcClassificationReference, IEqualityComparer<@IfcClassificationReference>, IEquatable<@IfcClassificationReference>
 	{
+		#region IIfcClassificationReference explicit implementation
+		IfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource { get { return @ReferencedSource; } }	
+		IfcText? IIfcClassificationReference.Description { get { return @Description; } }	
+		IfcIdentifier? IIfcClassificationReference.Sort { get { return @Sort; } }	
+	
+	 
+		IEnumerable<IIfcRelAssociatesClassification> IIfcClassificationReference.ClassificationRefForObjects {  get { return @ClassificationRefForObjects; } }
+		IEnumerable<IIfcClassificationReference> IIfcClassificationReference.HasReferences {  get { return @HasReferences; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcClassificationReference(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +76,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _referencedSource = v, _referencedSource, value,  "ReferencedSource");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -62,8 +90,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIdentifier? @Sort 
 		{ 
@@ -77,9 +104,9 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _sort = v, _sort, value,  "Sort");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

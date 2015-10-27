@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.HvacDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFilterType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFilterType : IIfcFlowTreatmentDeviceType
+	{
+		IfcFilterTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IFCFILTERTYPE", 661)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFilterType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IEqualityComparer<@IfcFilterType>, IEquatable<@IfcFilterType>
+	public  partial class @IfcFilterType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IIfcFilterType, IEqualityComparer<@IfcFilterType>, IEquatable<@IfcFilterType>
 	{
+		#region IIfcFilterType explicit implementation
+		IfcFilterTypeEnum IIfcFilterType.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFilterType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

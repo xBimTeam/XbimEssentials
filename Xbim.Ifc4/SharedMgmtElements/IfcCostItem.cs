@@ -16,13 +16,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedMgmtElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCostItem
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCostItem : IIfcControl
+	{
+		IfcCostItemTypeEnum? @PredefinedType { get; }
+		IEnumerable<IIfcCostValue> @CostValues { get; }
+		IEnumerable<IIfcPhysicalQuantity> @CostQuantities { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedMgmtElements
 {
 	[ExpressType("IFCCOSTITEM", 538)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostItem : IfcControl, IInstantiableEntity, IEqualityComparer<@IfcCostItem>, IEquatable<@IfcCostItem>
+	public  partial class @IfcCostItem : IfcControl, IInstantiableEntity, IIfcCostItem, IEqualityComparer<@IfcCostItem>, IEquatable<@IfcCostItem>
 	{
+		#region IIfcCostItem explicit implementation
+		IfcCostItemTypeEnum? IIfcCostItem.PredefinedType { get { return @PredefinedType; } }	
+		IEnumerable<IIfcCostValue> IIfcCostItem.CostValues { get { return @CostValues; } }	
+		IEnumerable<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities { get { return @CostQuantities; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCostItem(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -50,8 +75,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcCostValue> @CostValues 
 		{ 
@@ -61,8 +85,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 				((IPersistEntity)this).Activate(false);
 				return _costValues;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcPhysicalQuantity> @CostQuantities 
 		{ 
@@ -72,9 +95,9 @@ namespace Xbim.Ifc4.SharedMgmtElements
 				((IPersistEntity)this).Activate(false);
 				return _costQuantities;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -14,13 +14,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationOrganizationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLightSource
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLightSource : IIfcGeometricRepresentationItem
+	{
+		IfcLabel? @Name { get; }
+		IIfcColourRgb @LightColour { get; }
+		IfcNormalisedRatioMeasure? @AmbientIntensity { get; }
+		IfcNormalisedRatioMeasure? @Intensity { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[ExpressType("IFCLIGHTSOURCE", 729)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcLightSource : IfcGeometricRepresentationItem, IEqualityComparer<@IfcLightSource>, IEquatable<@IfcLightSource>
+	public abstract partial class @IfcLightSource : IfcGeometricRepresentationItem, IIfcLightSource, IEqualityComparer<@IfcLightSource>, IEquatable<@IfcLightSource>
 	{
+		#region IIfcLightSource explicit implementation
+		IfcLabel? IIfcLightSource.Name { get { return @Name; } }	
+		IIfcColourRgb IIfcLightSource.LightColour { get { return @LightColour; } }	
+		IfcNormalisedRatioMeasure? IIfcLightSource.AmbientIntensity { get { return @AmbientIntensity; } }	
+		IfcNormalisedRatioMeasure? IIfcLightSource.Intensity { get { return @Intensity; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightSource(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +74,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColourRgb @LightColour 
 		{ 
@@ -62,8 +88,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			{
 				SetValue( v =>  _lightColour = v, _lightColour, value,  "LightColour");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure? @AmbientIntensity 
 		{ 
@@ -77,8 +102,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			{
 				SetValue( v =>  _ambientIntensity = v, _ambientIntensity, value,  "AmbientIntensity");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure? @Intensity 
 		{ 
@@ -92,9 +116,9 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			{
 				SetValue( v =>  _intensity = v, _intensity, value,  "Intensity");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

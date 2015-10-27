@@ -12,13 +12,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.DateTimeResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcIrregularTimeSeries
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcIrregularTimeSeries : IIfcTimeSeries
+	{
+		IEnumerable<IIfcIrregularTimeSeriesValue> @Values { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IFCIRREGULARTIMESERIES", 713)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIrregularTimeSeries : IfcTimeSeries, IInstantiableEntity, IEqualityComparer<@IfcIrregularTimeSeries>, IEquatable<@IfcIrregularTimeSeries>
+	public  partial class @IfcIrregularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcIrregularTimeSeries, IEqualityComparer<@IfcIrregularTimeSeries>, IEquatable<@IfcIrregularTimeSeries>
 	{
+		#region IIfcIrregularTimeSeries explicit implementation
+		IEnumerable<IIfcIrregularTimeSeriesValue> IIfcIrregularTimeSeries.Values { get { return @Values; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIrregularTimeSeries(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,9 +60,9 @@ namespace Xbim.Ifc4.DateTimeResource
 				((IPersistEntity)this).Activate(false);
 				return _values;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

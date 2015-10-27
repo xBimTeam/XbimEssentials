@@ -14,13 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcActor
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcActor : IIfcObject
+	{
+		IfcActorSelect @TheActor { get; }
+		IEnumerable<IIfcRelAssignsToActor> @IsActingUpon {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCACTOR", 392)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActor : IfcObject, IInstantiableEntity, IEqualityComparer<@IfcActor>, IEquatable<@IfcActor>
+	public  partial class @IfcActor : IfcObject, IInstantiableEntity, IIfcActor, IEqualityComparer<@IfcActor>, IEquatable<@IfcActor>
 	{
+		#region IIfcActor explicit implementation
+		IfcActorSelect IIfcActor.TheActor { get { return @TheActor; } }	
+	
+	 
+		IEnumerable<IIfcRelAssignsToActor> IIfcActor.IsActingUpon {  get { return @IsActingUpon; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcActor(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,9 +67,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _theActor = v, _theActor, value,  "TheActor");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

@@ -14,13 +14,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedMgmtElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProjectOrder
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProjectOrder : IIfcControl
+	{
+		IfcProjectOrderTypeEnum? @PredefinedType { get; }
+		IfcLabel? @Status { get; }
+		IfcText? @LongDescription { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedMgmtElements
 {
 	[ExpressType("IFCPROJECTORDER", 845)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectOrder : IfcControl, IInstantiableEntity, IEqualityComparer<@IfcProjectOrder>, IEquatable<@IfcProjectOrder>
+	public  partial class @IfcProjectOrder : IfcControl, IInstantiableEntity, IIfcProjectOrder, IEqualityComparer<@IfcProjectOrder>, IEquatable<@IfcProjectOrder>
 	{
+		#region IIfcProjectOrder explicit implementation
+		IfcProjectOrderTypeEnum? IIfcProjectOrder.PredefinedType { get { return @PredefinedType; } }	
+		IfcLabel? IIfcProjectOrder.Status { get { return @Status; } }	
+		IfcText? IIfcProjectOrder.LongDescription { get { return @LongDescription; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProjectOrder(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +71,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Status 
 		{ 
@@ -61,8 +85,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			{
 				SetValue( v =>  _status = v, _status, value,  "Status");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @LongDescription 
 		{ 
@@ -76,9 +99,9 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			{
 				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

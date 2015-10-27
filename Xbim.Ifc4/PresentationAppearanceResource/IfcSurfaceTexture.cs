@@ -14,13 +14,46 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceTexture
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceTexture : IIfcPresentationItem
+	{
+		bool @RepeatS { get; }
+		bool @RepeatT { get; }
+		IfcIdentifier? @Mode { get; }
+		IIfcCartesianTransformationOperator2D @TextureTransform { get; }
+		IEnumerable<IfcIdentifier> @Parameter { get; }
+		IEnumerable<IIfcTextureCoordinate> @IsMappedBy {  get; }
+		IEnumerable<IIfcSurfaceStyleWithTextures> @UsedInStyles {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCSURFACETEXTURE", 1065)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSurfaceTexture : IfcPresentationItem, IEqualityComparer<@IfcSurfaceTexture>, IEquatable<@IfcSurfaceTexture>
+	public abstract partial class @IfcSurfaceTexture : IfcPresentationItem, IIfcSurfaceTexture, IEqualityComparer<@IfcSurfaceTexture>, IEquatable<@IfcSurfaceTexture>
 	{
+		#region IIfcSurfaceTexture explicit implementation
+		bool IIfcSurfaceTexture.RepeatS { get { return @RepeatS; } }	
+		bool IIfcSurfaceTexture.RepeatT { get { return @RepeatT; } }	
+		IfcIdentifier? IIfcSurfaceTexture.Mode { get { return @Mode; } }	
+		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform { get { return @TextureTransform; } }	
+		IEnumerable<IfcIdentifier> IIfcSurfaceTexture.Parameter { get { return @Parameter; } }	
+	
+	 
+		IEnumerable<IIfcTextureCoordinate> IIfcSurfaceTexture.IsMappedBy {  get { return @IsMappedBy; } }
+		IEnumerable<IIfcSurfaceStyleWithTextures> IIfcSurfaceTexture.UsedInStyles {  get { return @UsedInStyles; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceTexture(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -49,8 +82,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _repeatS = v, _repeatS, value,  "RepeatS");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @RepeatT 
 		{ 
@@ -64,8 +96,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _repeatT = v, _repeatT, value,  "RepeatT");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIdentifier? @Mode 
 		{ 
@@ -79,8 +110,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _mode = v, _mode, value,  "Mode");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCartesianTransformationOperator2D @TextureTransform 
 		{ 
@@ -94,8 +124,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _textureTransform = v, _textureTransform, value,  "TextureTransform");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<IfcIdentifier> @Parameter 
 		{ 
@@ -105,9 +134,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _parameter;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

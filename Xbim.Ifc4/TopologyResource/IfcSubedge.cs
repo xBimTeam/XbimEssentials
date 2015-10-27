@@ -11,13 +11,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.TopologyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSubedge
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSubedge : IIfcEdge
+	{
+		IIfcEdge @ParentEdge { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IFCSUBEDGE", 1052)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSubedge : IfcEdge, IInstantiableEntity, IEqualityComparer<@IfcSubedge>, IEquatable<@IfcSubedge>
+	public  partial class @IfcSubedge : IfcEdge, IInstantiableEntity, IIfcSubedge, IEqualityComparer<@IfcSubedge>, IEquatable<@IfcSubedge>
 	{
+		#region IIfcSubedge explicit implementation
+		IIfcEdge IIfcSubedge.ParentEdge { get { return @ParentEdge; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSubedge(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,9 +62,9 @@ namespace Xbim.Ifc4.TopologyResource
 			{
 				SetValue( v =>  _parentEdge = v, _parentEdge, value,  "ParentEdge");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -15,13 +15,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelInterferesElements
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelInterferesElements : IIfcRelConnects
+	{
+		IIfcElement @RelatingElement { get; }
+		IIfcElement @RelatedElement { get; }
+		IIfcConnectionGeometry @InterferenceGeometry { get; }
+		IfcIdentifier? @InterferenceType { get; }
+		bool? @ImpliedOrder { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCRELINTERFERESELEMENTS", 938)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelInterferesElements : IfcRelConnects, IInstantiableEntity, IEqualityComparer<@IfcRelInterferesElements>, IEquatable<@IfcRelInterferesElements>
+	public  partial class @IfcRelInterferesElements : IfcRelConnects, IInstantiableEntity, IIfcRelInterferesElements, IEqualityComparer<@IfcRelInterferesElements>, IEquatable<@IfcRelInterferesElements>
 	{
+		#region IIfcRelInterferesElements explicit implementation
+		IIfcElement IIfcRelInterferesElements.RelatingElement { get { return @RelatingElement; } }	
+		IIfcElement IIfcRelInterferesElements.RelatedElement { get { return @RelatedElement; } }	
+		IIfcConnectionGeometry IIfcRelInterferesElements.InterferenceGeometry { get { return @InterferenceGeometry; } }	
+		IfcIdentifier? IIfcRelInterferesElements.InterferenceType { get { return @InterferenceType; } }	
+		bool? IIfcRelInterferesElements.ImpliedOrder { get { return @ImpliedOrder; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelInterferesElements(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -50,8 +79,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcElement @RelatedElement 
@@ -66,8 +94,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcConnectionGeometry @InterferenceGeometry 
 		{ 
@@ -81,8 +108,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _interferenceGeometry = v, _interferenceGeometry, value,  "InterferenceGeometry");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIdentifier? @InterferenceType 
 		{ 
@@ -96,8 +122,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _interferenceType = v, _interferenceType, value,  "InterferenceType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @ImpliedOrder 
 		{ 
@@ -111,9 +136,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _impliedOrder = v, _impliedOrder, value,  "ImpliedOrder");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

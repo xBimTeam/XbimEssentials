@@ -11,13 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.TopologyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFaceBound
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFaceBound : IIfcTopologicalRepresentationItem
+	{
+		IIfcLoop @Bound { get; }
+		bool @Orientation { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IFCFACEBOUND", 644)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFaceBound : IfcTopologicalRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcFaceBound>, IEquatable<@IfcFaceBound>
+	public  partial class @IfcFaceBound : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFaceBound, IEqualityComparer<@IfcFaceBound>, IEquatable<@IfcFaceBound>
 	{
+		#region IIfcFaceBound explicit implementation
+		IIfcLoop IIfcFaceBound.Bound { get { return @Bound; } }	
+		bool IIfcFaceBound.Orientation { get { return @Orientation; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFaceBound(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +65,7 @@ namespace Xbim.Ifc4.TopologyResource
 			{
 				SetValue( v =>  _bound = v, _bound, value,  "Bound");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @Orientation 
 		{ 
@@ -57,9 +79,9 @@ namespace Xbim.Ifc4.TopologyResource
 			{
 				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

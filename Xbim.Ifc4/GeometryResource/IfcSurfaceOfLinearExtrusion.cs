@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceOfLinearExtrusion
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceOfLinearExtrusion : IIfcSweptSurface
+	{
+		IIfcDirection @ExtrudedDirection { get; }
+		IfcLengthMeasure @Depth { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCSURFACEOFLINEAREXTRUSION", 1056)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceOfLinearExtrusion : IfcSweptSurface, IInstantiableEntity, IEqualityComparer<@IfcSurfaceOfLinearExtrusion>, IEquatable<@IfcSurfaceOfLinearExtrusion>
+	public  partial class @IfcSurfaceOfLinearExtrusion : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfLinearExtrusion, IEqualityComparer<@IfcSurfaceOfLinearExtrusion>, IEquatable<@IfcSurfaceOfLinearExtrusion>
 	{
+		#region IIfcSurfaceOfLinearExtrusion explicit implementation
+		IIfcDirection IIfcSurfaceOfLinearExtrusion.ExtrudedDirection { get { return @ExtrudedDirection; } }	
+		IfcLengthMeasure IIfcSurfaceOfLinearExtrusion.Depth { get { return @Depth; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceOfLinearExtrusion(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +67,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _extrudedDirection = v, _extrudedDirection, value,  "ExtrudedDirection");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure @Depth 
 		{ 
@@ -59,9 +81,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _depth = v, _depth, value,  "Depth");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

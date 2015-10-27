@@ -11,17 +11,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgServiceElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFlowSegmentType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFlowSegmentType : IIfcDistributionFlowElementType
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IFCFLOWSEGMENTTYPE", 676)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFlowSegmentType : IfcDistributionFlowElementType, IEqualityComparer<@IfcFlowSegmentType>, IEquatable<@IfcFlowSegmentType>
+	public abstract partial class @IfcFlowSegmentType : IfcDistributionFlowElementType, IIfcFlowSegmentType, IEqualityComparer<@IfcFlowSegmentType>, IEquatable<@IfcFlowSegmentType>
 	{
+		#region IIfcFlowSegmentType explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFlowSegmentType(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

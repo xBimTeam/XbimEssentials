@@ -15,13 +15,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProcessExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelSequence
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelSequence : IIfcRelConnects
+	{
+		IIfcProcess @RelatingProcess { get; }
+		IIfcProcess @RelatedProcess { get; }
+		IIfcLagTime @TimeLag { get; }
+		IfcSequenceEnum? @SequenceType { get; }
+		IfcLabel? @UserDefinedSequenceType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IFCRELSEQUENCE", 942)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IEqualityComparer<@IfcRelSequence>, IEquatable<@IfcRelSequence>
+	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IIfcRelSequence, IEqualityComparer<@IfcRelSequence>, IEquatable<@IfcRelSequence>
 	{
+		#region IIfcRelSequence explicit implementation
+		IIfcProcess IIfcRelSequence.RelatingProcess { get { return @RelatingProcess; } }	
+		IIfcProcess IIfcRelSequence.RelatedProcess { get { return @RelatedProcess; } }	
+		IIfcLagTime IIfcRelSequence.TimeLag { get { return @TimeLag; } }	
+		IfcSequenceEnum? IIfcRelSequence.SequenceType { get { return @SequenceType; } }	
+		IfcLabel? IIfcRelSequence.UserDefinedSequenceType { get { return @UserDefinedSequenceType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelSequence(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -50,8 +79,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcProcess @RelatedProcess 
@@ -66,8 +94,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _relatedProcess = v, _relatedProcess, value,  "RelatedProcess");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcLagTime @TimeLag 
 		{ 
@@ -81,8 +108,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _timeLag = v, _timeLag, value,  "TimeLag");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcSequenceEnum? @SequenceType 
 		{ 
@@ -96,8 +122,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _sequenceType = v, _sequenceType, value,  "SequenceType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedSequenceType 
 		{ 
@@ -111,9 +136,9 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _userDefinedSequenceType = v, _userDefinedSequenceType, value,  "UserDefinedSequenceType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

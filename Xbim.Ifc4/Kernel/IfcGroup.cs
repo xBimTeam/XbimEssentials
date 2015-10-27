@@ -13,17 +13,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcGroup
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcGroup : IIfcObject
+	{
+		IEnumerable<IIfcRelAssignsToGroup> @IsGroupedBy {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCGROUP", 699)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGroup : IfcObject, IInstantiableEntity, IEqualityComparer<@IfcGroup>, IEquatable<@IfcGroup>
+	public  partial class @IfcGroup : IfcObject, IInstantiableEntity, IIfcGroup, IEqualityComparer<@IfcGroup>, IEquatable<@IfcGroup>
 	{
+		#region IIfcGroup explicit implementation
+	
+	 
+		IEnumerable<IIfcRelAssignsToGroup> IIfcGroup.IsGroupedBy {  get { return @IsGroupedBy; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGroup(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

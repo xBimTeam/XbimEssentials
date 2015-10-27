@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.HvacDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCondenser
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCondenser : IIfcEnergyConversionDevice
+	{
+		IfcCondenserTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IFCCONDENSER", 506)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCondenser : IfcEnergyConversionDevice, IInstantiableEntity, IEqualityComparer<@IfcCondenser>, IEquatable<@IfcCondenser>
+	public  partial class @IfcCondenser : IfcEnergyConversionDevice, IInstantiableEntity, IIfcCondenser, IEqualityComparer<@IfcCondenser>, IEquatable<@IfcCondenser>
 	{
+		#region IIfcCondenser explicit implementation
+		IfcCondenserTypeEnum? IIfcCondenser.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCondenser(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

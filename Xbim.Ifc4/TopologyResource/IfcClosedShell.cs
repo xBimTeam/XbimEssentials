@@ -12,17 +12,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.TopologyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcClosedShell
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcClosedShell : IIfcConnectedFaceSet, IfcShell, IfcSolidOrShell
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IFCCLOSEDSHELL", 487)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClosedShell : IfcConnectedFaceSet, IfcShell, IfcSolidOrShell, IInstantiableEntity, IEqualityComparer<@IfcClosedShell>, IEquatable<@IfcClosedShell>
+	public  partial class @IfcClosedShell : IfcConnectedFaceSet, IInstantiableEntity, IIfcClosedShell, IEqualityComparer<@IfcClosedShell>, IEquatable<@IfcClosedShell>
 	{
+		#region IIfcClosedShell explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcClosedShell(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

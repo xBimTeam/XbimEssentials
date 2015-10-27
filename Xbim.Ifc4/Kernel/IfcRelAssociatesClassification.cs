@@ -14,13 +14,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssociatesClassification
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssociatesClassification : IIfcRelAssociates
+	{
+		IfcClassificationSelect @RelatingClassification { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELASSOCIATESCLASSIFICATION", 912)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesClassification : IfcRelAssociates, IInstantiableEntity, IEqualityComparer<@IfcRelAssociatesClassification>, IEquatable<@IfcRelAssociatesClassification>
+	public  partial class @IfcRelAssociatesClassification : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesClassification, IEqualityComparer<@IfcRelAssociatesClassification>, IEquatable<@IfcRelAssociatesClassification>
 	{
+		#region IIfcRelAssociatesClassification explicit implementation
+		IfcClassificationSelect IIfcRelAssociatesClassification.RelatingClassification { get { return @RelatingClassification; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesClassification(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +66,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _relatingClassification = v, _relatingClassification, value,  "RelatingClassification");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

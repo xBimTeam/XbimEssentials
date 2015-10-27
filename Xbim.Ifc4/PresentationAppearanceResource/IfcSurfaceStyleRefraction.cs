@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceStyleRefraction
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceStyleRefraction : IIfcPresentationItem, IfcSurfaceStyleElementSelect
+	{
+		IfcReal? @RefractionIndex { get; }
+		IfcReal? @DispersionFactor { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCSURFACESTYLEREFRACTION", 1061)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleRefraction : IfcPresentationItem, IfcSurfaceStyleElementSelect, IInstantiableEntity, IEqualityComparer<@IfcSurfaceStyleRefraction>, IEquatable<@IfcSurfaceStyleRefraction>
+	public  partial class @IfcSurfaceStyleRefraction : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleRefraction, IEqualityComparer<@IfcSurfaceStyleRefraction>, IEquatable<@IfcSurfaceStyleRefraction>
 	{
+		#region IIfcSurfaceStyleRefraction explicit implementation
+		IfcReal? IIfcSurfaceStyleRefraction.RefractionIndex { get { return @RefractionIndex; } }	
+		IfcReal? IIfcSurfaceStyleRefraction.DispersionFactor { get { return @DispersionFactor; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleRefraction(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +67,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _refractionIndex = v, _refractionIndex, value,  "RefractionIndex");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcReal? @DispersionFactor 
 		{ 
@@ -59,9 +81,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _dispersionFactor = v, _dispersionFactor, value,  "DispersionFactor");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

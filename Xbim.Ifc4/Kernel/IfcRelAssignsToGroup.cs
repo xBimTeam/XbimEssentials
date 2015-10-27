@@ -13,13 +13,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssignsToGroup
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssignsToGroup : IIfcRelAssigns
+	{
+		IIfcGroup @RelatingGroup { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELASSIGNSTOGROUP", 905)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToGroup : IfcRelAssigns, IInstantiableEntity, IEqualityComparer<@IfcRelAssignsToGroup>, IEquatable<@IfcRelAssignsToGroup>
+	public  partial class @IfcRelAssignsToGroup : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToGroup, IEqualityComparer<@IfcRelAssignsToGroup>, IEquatable<@IfcRelAssignsToGroup>
 	{
+		#region IIfcRelAssignsToGroup explicit implementation
+		IIfcGroup IIfcRelAssignsToGroup.RelatingGroup { get { return @RelatingGroup; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsToGroup(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,9 +65,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _relatingGroup = v, _relatingGroup, value,  "RelatingGroup");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

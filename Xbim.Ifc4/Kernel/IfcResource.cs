@@ -12,13 +12,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcResource
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcResource : IIfcObject, IfcResourceSelect
+	{
+		IfcIdentifier? @Identification { get; }
+		IfcText? @LongDescription { get; }
+		IEnumerable<IIfcRelAssignsToResource> @ResourceOf {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRESOURCE", 954)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcResource : IfcObject, IfcResourceSelect, IEqualityComparer<@IfcResource>, IEquatable<@IfcResource>
+	public abstract partial class @IfcResource : IfcObject, IIfcResource, IEqualityComparer<@IfcResource>, IEquatable<@IfcResource>
 	{
+		#region IIfcResource explicit implementation
+		IfcIdentifier? IIfcResource.Identification { get { return @Identification; } }	
+		IfcText? IIfcResource.LongDescription { get { return @LongDescription; } }	
+	
+	 
+		IEnumerable<IIfcRelAssignsToResource> IIfcResource.ResourceOf {  get { return @ResourceOf; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcResource(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +68,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _identification = v, _identification, value,  "Identification");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @LongDescription 
 		{ 
@@ -58,9 +82,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

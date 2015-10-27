@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralElementsDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceFeature
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceFeature : IIfcFeatureElement
+	{
+		IfcSurfaceFeatureTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IFCSURFACEFEATURE", 1055)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceFeature : IfcFeatureElement, IInstantiableEntity, IEqualityComparer<@IfcSurfaceFeature>, IEquatable<@IfcSurfaceFeature>
+	public  partial class @IfcSurfaceFeature : IfcFeatureElement, IInstantiableEntity, IIfcSurfaceFeature, IEqualityComparer<@IfcSurfaceFeature>, IEquatable<@IfcSurfaceFeature>
 	{
+		#region IIfcSurfaceFeature explicit implementation
+		IfcSurfaceFeatureTypeEnum? IIfcSurfaceFeature.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceFeature(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

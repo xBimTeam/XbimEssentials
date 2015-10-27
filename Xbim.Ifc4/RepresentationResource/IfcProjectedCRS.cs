@@ -12,13 +12,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.RepresentationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProjectedCRS
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProjectedCRS : IIfcCoordinateReferenceSystem
+	{
+		IfcIdentifier? @MapProjection { get; }
+		IfcIdentifier? @MapZone { get; }
+		IIfcNamedUnit @MapUnit { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IFCPROJECTEDCRS", 846)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectedCRS : IfcCoordinateReferenceSystem, IInstantiableEntity, IEqualityComparer<@IfcProjectedCRS>, IEquatable<@IfcProjectedCRS>
+	public  partial class @IfcProjectedCRS : IfcCoordinateReferenceSystem, IInstantiableEntity, IIfcProjectedCRS, IEqualityComparer<@IfcProjectedCRS>, IEquatable<@IfcProjectedCRS>
 	{
+		#region IIfcProjectedCRS explicit implementation
+		IfcIdentifier? IIfcProjectedCRS.MapProjection { get { return @MapProjection; } }	
+		IfcIdentifier? IIfcProjectedCRS.MapZone { get { return @MapZone; } }	
+		IIfcNamedUnit IIfcProjectedCRS.MapUnit { get { return @MapUnit; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProjectedCRS(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +69,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _mapProjection = v, _mapProjection, value,  "MapProjection");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIdentifier? @MapZone 
 		{ 
@@ -59,8 +83,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _mapZone = v, _mapZone, value,  "MapZone");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcNamedUnit @MapUnit 
 		{ 
@@ -74,9 +97,9 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _mapUnit = v, _mapUnit, value,  "MapUnit");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

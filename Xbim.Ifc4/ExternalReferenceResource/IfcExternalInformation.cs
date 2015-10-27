@@ -12,13 +12,32 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ExternalReferenceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcExternalInformation
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcExternalInformation : IPersistEntity, IfcResourceObjectSelect
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IFCEXTERNALINFORMATION", 632)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcExternalInformation : IPersistEntity, INotifyPropertyChanged, IfcResourceObjectSelect, IEqualityComparer<@IfcExternalInformation>, IEquatable<@IfcExternalInformation>
+	public abstract partial class @IfcExternalInformation : IPersistEntity, INotifyPropertyChanged, IIfcExternalInformation, IEqualityComparer<@IfcExternalInformation>, IEquatable<@IfcExternalInformation>
 	{
+		#region IIfcExternalInformation explicit implementation
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -79,6 +98,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		internal IfcExternalInformation(IModel model) 		{ 
 			Model = model; 
 		}
+
 
 
 

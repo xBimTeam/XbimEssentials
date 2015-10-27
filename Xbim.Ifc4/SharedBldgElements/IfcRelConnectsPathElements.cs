@@ -15,13 +15,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelConnectsPathElements
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelConnectsPathElements : IIfcRelConnectsElements
+	{
+		IEnumerable<double> @RelatingPriorities { get; }
+		IEnumerable<double> @RelatedPriorities { get; }
+		IfcConnectionTypeEnum @RelatedConnectionType { get; }
+		IfcConnectionTypeEnum @RelatingConnectionType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IFCRELCONNECTSPATHELEMENTS", 919)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsPathElements : IfcRelConnectsElements, IInstantiableEntity, IEqualityComparer<@IfcRelConnectsPathElements>, IEquatable<@IfcRelConnectsPathElements>
+	public  partial class @IfcRelConnectsPathElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsPathElements, IEqualityComparer<@IfcRelConnectsPathElements>, IEquatable<@IfcRelConnectsPathElements>
 	{
+		#region IIfcRelConnectsPathElements explicit implementation
+		IEnumerable<double> IIfcRelConnectsPathElements.RelatingPriorities { get { return @RelatingPriorities; } }	
+		IEnumerable<double> IIfcRelConnectsPathElements.RelatedPriorities { get { return @RelatedPriorities; } }	
+		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType { get { return @RelatedConnectionType; } }	
+		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType { get { return @RelatingConnectionType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsPathElements(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +73,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				((IPersistEntity)this).Activate(false);
 				return _relatingPriorities;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 0, -1)]
 		public ItemSet<double> @RelatedPriorities 
 		{ 
@@ -57,8 +83,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				((IPersistEntity)this).Activate(false);
 				return _relatedPriorities;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcConnectionTypeEnum @RelatedConnectionType 
 		{ 
@@ -72,8 +97,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _relatedConnectionType = v, _relatedConnectionType, value,  "RelatedConnectionType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcConnectionTypeEnum @RelatingConnectionType 
 		{ 
@@ -87,9 +111,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _relatingConnectionType = v, _relatingConnectionType, value,  "RelatingConnectionType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

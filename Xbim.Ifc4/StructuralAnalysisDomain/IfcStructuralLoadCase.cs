@@ -13,13 +13,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralLoadCase
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralLoadCase : IIfcStructuralLoadGroup
+	{
+		IEnumerable<IfcRatioMeasure> @SelfWeightCoefficients { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALLOADCASE", 1023)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadCase : IfcStructuralLoadGroup, IInstantiableEntity, IEqualityComparer<@IfcStructuralLoadCase>, IEquatable<@IfcStructuralLoadCase>
+	public  partial class @IfcStructuralLoadCase : IfcStructuralLoadGroup, IInstantiableEntity, IIfcStructuralLoadCase, IEqualityComparer<@IfcStructuralLoadCase>, IEquatable<@IfcStructuralLoadCase>
 	{
+		#region IIfcStructuralLoadCase explicit implementation
+		IEnumerable<IfcRatioMeasure> IIfcStructuralLoadCase.SelfWeightCoefficients { get { return @SelfWeightCoefficients; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadCase(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -40,9 +61,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				((IPersistEntity)this).Activate(false);
 				return _selfWeightCoefficients;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -12,17 +12,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFacetedBrep
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFacetedBrep : IIfcManifoldSolidBrep
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCFACETEDBREP", 647)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFacetedBrep : IfcManifoldSolidBrep, IInstantiableEntity, IEqualityComparer<@IfcFacetedBrep>, IEquatable<@IfcFacetedBrep>
+	public  partial class @IfcFacetedBrep : IfcManifoldSolidBrep, IInstantiableEntity, IIfcFacetedBrep, IEqualityComparer<@IfcFacetedBrep>, IEquatable<@IfcFacetedBrep>
 	{
+		#region IIfcFacetedBrep explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFacetedBrep(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

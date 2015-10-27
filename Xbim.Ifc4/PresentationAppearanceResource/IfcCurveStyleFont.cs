@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCurveStyleFont
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCurveStyleFont : IIfcPresentationItem, IfcCurveStyleFontSelect
+	{
+		IfcLabel? @Name { get; }
+		IEnumerable<IIfcCurveStyleFontPattern> @PatternList { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCCURVESTYLEFONT", 554)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyleFont : IfcPresentationItem, IfcCurveStyleFontSelect, IInstantiableEntity, IEqualityComparer<@IfcCurveStyleFont>, IEquatable<@IfcCurveStyleFont>
+	public  partial class @IfcCurveStyleFont : IfcPresentationItem, IInstantiableEntity, IIfcCurveStyleFont, IEqualityComparer<@IfcCurveStyleFont>, IEquatable<@IfcCurveStyleFont>
 	{
+		#region IIfcCurveStyleFont explicit implementation
+		IfcLabel? IIfcCurveStyleFont.Name { get { return @Name; } }	
+		IEnumerable<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList { get { return @PatternList; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveStyleFont(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +68,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcCurveStyleFontPattern> @PatternList 
 		{ 
@@ -56,9 +78,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _patternList;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

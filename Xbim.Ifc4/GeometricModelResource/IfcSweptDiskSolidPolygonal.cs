@@ -13,13 +13,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSweptDiskSolidPolygonal
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSweptDiskSolidPolygonal : IIfcSweptDiskSolid
+	{
+		IfcPositiveLengthMeasure? @FilletRadius { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCSWEPTDISKSOLIDPOLYGONAL", 1068)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSweptDiskSolidPolygonal : IfcSweptDiskSolid, IInstantiableEntity, IEqualityComparer<@IfcSweptDiskSolidPolygonal>, IEquatable<@IfcSweptDiskSolidPolygonal>
+	public  partial class @IfcSweptDiskSolidPolygonal : IfcSweptDiskSolid, IInstantiableEntity, IIfcSweptDiskSolidPolygonal, IEqualityComparer<@IfcSweptDiskSolidPolygonal>, IEquatable<@IfcSweptDiskSolidPolygonal>
 	{
+		#region IIfcSweptDiskSolidPolygonal explicit implementation
+		IfcPositiveLengthMeasure? IIfcSweptDiskSolidPolygonal.FilletRadius { get { return @FilletRadius; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSweptDiskSolidPolygonal(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,9 +64,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

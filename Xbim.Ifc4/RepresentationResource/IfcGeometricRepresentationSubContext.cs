@@ -13,13 +13,48 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.RepresentationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcGeometricRepresentationSubContext
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcGeometricRepresentationSubContext : IIfcGeometricRepresentationContext
+	{
+		IIfcGeometricRepresentationContext @ParentContext { get; }
+		IfcPositiveRatioMeasure? @TargetScale { get; }
+		IfcGeometricProjectionEnum @TargetView { get; }
+		IfcLabel? @UserDefinedTargetView { get; }
+		new IfcAxis2Placement @WorldCoordinateSystem  { get; }
+		new IfcDimensionCount @CoordinateSpaceDimension  { get; }
+		new IIfcDirection @TrueNorth  { get; }
+		new double? @Precision  { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IFCGEOMETRICREPRESENTATIONSUBCONTEXT", 694)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IEqualityComparer<@IfcGeometricRepresentationSubContext>, IEquatable<@IfcGeometricRepresentationSubContext>
+	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationSubContext, IEqualityComparer<@IfcGeometricRepresentationSubContext>, IEquatable<@IfcGeometricRepresentationSubContext>
 	{
+		#region IIfcGeometricRepresentationSubContext explicit implementation
+		IIfcGeometricRepresentationContext IIfcGeometricRepresentationSubContext.ParentContext { get { return @ParentContext; } }	
+		IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale { get { return @TargetScale; } }	
+		IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView { get { return @TargetView; } }	
+		IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView { get { return @UserDefinedTargetView; } }	
+	
+		IfcAxis2Placement IIfcGeometricRepresentationSubContext.WorldCoordinateSystem  { get { return @WorldCoordinateSystem; } }
+		IfcDimensionCount IIfcGeometricRepresentationSubContext.CoordinateSpaceDimension  { get { return @CoordinateSpaceDimension; } }
+		IIfcDirection IIfcGeometricRepresentationSubContext.TrueNorth  { get { return @TrueNorth; } }
+		double? IIfcGeometricRepresentationSubContext.Precision  { get { return @Precision; } }
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeometricRepresentationSubContext(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +82,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _parentContext = v, _parentContext, value,  "ParentContext");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @TargetScale 
 		{ 
@@ -62,8 +96,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _targetScale = v, _targetScale, value,  "TargetScale");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcGeometricProjectionEnum @TargetView 
 		{ 
@@ -77,8 +110,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _targetView = v, _targetView, value,  "TargetView");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedTargetView 
 		{ 
@@ -92,9 +124,9 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _userDefinedTargetView = v, _userDefinedTargetView, value,  "UserDefinedTargetView");
 			} 
-		}
-	
+		}	
 		#endregion
+
 		#region Overriding attributes
 		[EntityAttribute(5, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public override IfcAxis2Placement @WorldCoordinateSystem 
@@ -108,7 +140,6 @@ namespace Xbim.Ifc4.RepresentationResource
 				throw new System.Exception("It is not possible to set a value of derived property WorldCoordinateSystem in IfcGeometricRepresentationSubContext"); 
 			}
 		}
-
 		[EntityAttribute(3, EntityAttributeState.DerivedOverride, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public override IfcDimensionCount @CoordinateSpaceDimension 
 		{
@@ -121,7 +152,6 @@ namespace Xbim.Ifc4.RepresentationResource
 				throw new System.Exception("It is not possible to set a value of derived property CoordinateSpaceDimension in IfcGeometricRepresentationSubContext"); 
 			}
 		}
-
 		[EntityAttribute(6, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public override IfcDirection @TrueNorth 
 		{
@@ -134,7 +164,6 @@ namespace Xbim.Ifc4.RepresentationResource
 				throw new System.Exception("It is not possible to set a value of derived property TrueNorth in IfcGeometricRepresentationSubContext"); 
 			}
 		}
-
 		[EntityAttribute(4, EntityAttributeState.DerivedOverride, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public override double? @Precision 
 		{
@@ -147,7 +176,6 @@ namespace Xbim.Ifc4.RepresentationResource
 				throw new System.Exception("It is not possible to set a value of derived property Precision in IfcGeometricRepresentationSubContext"); 
 			}
 		}
-
 		#endregion
 
 

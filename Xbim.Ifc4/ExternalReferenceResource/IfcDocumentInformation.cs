@@ -15,14 +15,75 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ExternalReferenceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDocumentInformation
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDocumentInformation : IIfcExternalInformation, IfcDocumentSelect
+	{
+		IfcIdentifier @Identification { get; }
+		IfcLabel @Name { get; }
+		IfcText? @Description { get; }
+		IfcURIReference? @Location { get; }
+		IfcText? @Purpose { get; }
+		IfcText? @IntendedUse { get; }
+		IfcText? @Scope { get; }
+		IfcLabel? @Revision { get; }
+		IfcActorSelect @DocumentOwner { get; }
+		IEnumerable<IfcActorSelect> @Editors { get; }
+		IfcDateTime? @CreationTime { get; }
+		IfcDateTime? @LastRevisionTime { get; }
+		IfcIdentifier? @ElectronicFormat { get; }
+		IfcDate? @ValidFrom { get; }
+		IfcDate? @ValidUntil { get; }
+		IfcDocumentConfidentialityEnum? @Confidentiality { get; }
+		IfcDocumentStatusEnum? @Status { get; }
+		IEnumerable<IIfcRelAssociatesDocument> @DocumentInfoForObjects {  get; }
+		IEnumerable<IIfcDocumentReference> @HasDocumentReferences {  get; }
+		IEnumerable<IIfcDocumentInformationRelationship> @IsPointedTo {  get; }
+		IEnumerable<IIfcDocumentInformationRelationship> @IsPointer {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCDOCUMENTINFORMATION", 578)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentInformation : IfcExternalInformation, IfcDocumentSelect, IInstantiableEntity, IEqualityComparer<@IfcDocumentInformation>, IEquatable<@IfcDocumentInformation>
+	public  partial class @IfcDocumentInformation : IfcExternalInformation, IInstantiableEntity, IIfcDocumentInformation, IEqualityComparer<@IfcDocumentInformation>, IEquatable<@IfcDocumentInformation>
 	{
+		#region IIfcDocumentInformation explicit implementation
+		IfcIdentifier IIfcDocumentInformation.Identification { get { return @Identification; } }	
+		IfcLabel IIfcDocumentInformation.Name { get { return @Name; } }	
+		IfcText? IIfcDocumentInformation.Description { get { return @Description; } }	
+		IfcURIReference? IIfcDocumentInformation.Location { get { return @Location; } }	
+		IfcText? IIfcDocumentInformation.Purpose { get { return @Purpose; } }	
+		IfcText? IIfcDocumentInformation.IntendedUse { get { return @IntendedUse; } }	
+		IfcText? IIfcDocumentInformation.Scope { get { return @Scope; } }	
+		IfcLabel? IIfcDocumentInformation.Revision { get { return @Revision; } }	
+		IfcActorSelect IIfcDocumentInformation.DocumentOwner { get { return @DocumentOwner; } }	
+		IEnumerable<IfcActorSelect> IIfcDocumentInformation.Editors { get { return @Editors; } }	
+		IfcDateTime? IIfcDocumentInformation.CreationTime { get { return @CreationTime; } }	
+		IfcDateTime? IIfcDocumentInformation.LastRevisionTime { get { return @LastRevisionTime; } }	
+		IfcIdentifier? IIfcDocumentInformation.ElectronicFormat { get { return @ElectronicFormat; } }	
+		IfcDate? IIfcDocumentInformation.ValidFrom { get { return @ValidFrom; } }	
+		IfcDate? IIfcDocumentInformation.ValidUntil { get { return @ValidUntil; } }	
+		IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality { get { return @Confidentiality; } }	
+		IfcDocumentStatusEnum? IIfcDocumentInformation.Status { get { return @Status; } }	
+	
+	 
+		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentInformation.DocumentInfoForObjects {  get { return @DocumentInfoForObjects; } }
+		IEnumerable<IIfcDocumentReference> IIfcDocumentInformation.HasDocumentReferences {  get { return @HasDocumentReferences; } }
+		IEnumerable<IIfcDocumentInformationRelationship> IIfcDocumentInformation.IsPointedTo {  get { return @IsPointedTo; } }
+		IEnumerable<IIfcDocumentInformationRelationship> IIfcDocumentInformation.IsPointer {  get { return @IsPointer; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDocumentInformation(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -63,8 +124,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _identification = v, _identification, value,  "Identification");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel @Name 
 		{ 
@@ -78,8 +138,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -93,8 +152,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcURIReference? @Location 
 		{ 
@@ -108,8 +166,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _location = v, _location, value,  "Location");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Purpose 
 		{ 
@@ -123,8 +180,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @IntendedUse 
 		{ 
@@ -138,8 +194,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _intendedUse = v, _intendedUse, value,  "IntendedUse");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Scope 
 		{ 
@@ -153,8 +208,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _scope = v, _scope, value,  "Scope");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Revision 
 		{ 
@@ -168,8 +222,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _revision = v, _revision, value,  "Revision");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcActorSelect @DocumentOwner 
 		{ 
@@ -183,8 +236,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _documentOwner = v, _documentOwner, value,  "DocumentOwner");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcActorSelect> @Editors 
 		{ 
@@ -194,8 +246,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				((IPersistEntity)this).Activate(false);
 				return _editors;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @CreationTime 
 		{ 
@@ -209,8 +260,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _creationTime = v, _creationTime, value,  "CreationTime");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDateTime? @LastRevisionTime 
 		{ 
@@ -224,8 +274,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _lastRevisionTime = v, _lastRevisionTime, value,  "LastRevisionTime");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIdentifier? @ElectronicFormat 
 		{ 
@@ -239,8 +288,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _electronicFormat = v, _electronicFormat, value,  "ElectronicFormat");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDate? @ValidFrom 
 		{ 
@@ -254,8 +302,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _validFrom = v, _validFrom, value,  "ValidFrom");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDate? @ValidUntil 
 		{ 
@@ -269,8 +316,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _validUntil = v, _validUntil, value,  "ValidUntil");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDocumentConfidentialityEnum? @Confidentiality 
 		{ 
@@ -284,8 +330,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _confidentiality = v, _confidentiality, value,  "Confidentiality");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDocumentStatusEnum? @Status 
 		{ 
@@ -299,9 +344,9 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			{
 				SetValue( v =>  _status = v, _status, value,  "Status");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

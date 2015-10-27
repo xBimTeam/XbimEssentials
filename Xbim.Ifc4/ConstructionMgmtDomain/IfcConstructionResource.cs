@@ -15,13 +15,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ConstructionMgmtDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConstructionResource
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConstructionResource : IIfcResource
+	{
+		IIfcResourceTime @Usage { get; }
+		IEnumerable<IIfcAppliedValue> @BaseCosts { get; }
+		IIfcPhysicalQuantity @BaseQuantity { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	[ExpressType("IFCCONSTRUCTIONRESOURCE", 523)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConstructionResource : IfcResource, IEqualityComparer<@IfcConstructionResource>, IEquatable<@IfcConstructionResource>
+	public abstract partial class @IfcConstructionResource : IfcResource, IIfcConstructionResource, IEqualityComparer<@IfcConstructionResource>, IEquatable<@IfcConstructionResource>
 	{
+		#region IIfcConstructionResource explicit implementation
+		IIfcResourceTime IIfcConstructionResource.Usage { get { return @Usage; } }	
+		IEnumerable<IIfcAppliedValue> IIfcConstructionResource.BaseCosts { get { return @BaseCosts; } }	
+		IIfcPhysicalQuantity IIfcConstructionResource.BaseQuantity { get { return @BaseQuantity; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstructionResource(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +73,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _usage = v, _usage, value,  "Usage");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcAppliedValue> @BaseCosts 
 		{ 
@@ -59,8 +83,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 				((IPersistEntity)this).Activate(false);
 				return _baseCosts;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcPhysicalQuantity @BaseQuantity 
 		{ 
@@ -74,9 +97,9 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _baseQuantity = v, _baseQuantity, value,  "BaseQuantity");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

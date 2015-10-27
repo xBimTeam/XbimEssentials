@@ -13,13 +13,44 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProfileResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLShapeProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLShapeProfileDef : IIfcParameterizedProfileDef
+	{
+		IfcPositiveLengthMeasure @Depth { get; }
+		IfcPositiveLengthMeasure? @Width { get; }
+		IfcPositiveLengthMeasure @Thickness { get; }
+		IfcNonNegativeLengthMeasure? @FilletRadius { get; }
+		IfcNonNegativeLengthMeasure? @EdgeRadius { get; }
+		IfcPlaneAngleMeasure? @LegSlope { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IFCLSHAPEPROFILEDEF", 717)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IEqualityComparer<@IfcLShapeProfileDef>, IEquatable<@IfcLShapeProfileDef>
+	public  partial class @IfcLShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcLShapeProfileDef, IEqualityComparer<@IfcLShapeProfileDef>, IEquatable<@IfcLShapeProfileDef>
 	{
+		#region IIfcLShapeProfileDef explicit implementation
+		IfcPositiveLengthMeasure IIfcLShapeProfileDef.Depth { get { return @Depth; } }	
+		IfcPositiveLengthMeasure? IIfcLShapeProfileDef.Width { get { return @Width; } }	
+		IfcPositiveLengthMeasure IIfcLShapeProfileDef.Thickness { get { return @Thickness; } }	
+		IfcNonNegativeLengthMeasure? IIfcLShapeProfileDef.FilletRadius { get { return @FilletRadius; } }	
+		IfcNonNegativeLengthMeasure? IIfcLShapeProfileDef.EdgeRadius { get { return @EdgeRadius; } }	
+		IfcPlaneAngleMeasure? IIfcLShapeProfileDef.LegSlope { get { return @LegSlope; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLShapeProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +79,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _depth = v, _depth, value,  "Depth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @Width 
 		{ 
@@ -63,8 +93,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _width = v, _width, value,  "Width");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @Thickness 
 		{ 
@@ -78,8 +107,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _thickness = v, _thickness, value,  "Thickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNonNegativeLengthMeasure? @FilletRadius 
 		{ 
@@ -93,8 +121,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNonNegativeLengthMeasure? @EdgeRadius 
 		{ 
@@ -108,8 +135,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _edgeRadius = v, _edgeRadius, value,  "EdgeRadius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPlaneAngleMeasure? @LegSlope 
 		{ 
@@ -123,9 +149,9 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _legSlope = v, _legSlope, value,  "LegSlope");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

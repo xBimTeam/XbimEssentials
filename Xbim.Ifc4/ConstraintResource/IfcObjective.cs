@@ -14,13 +14,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ConstraintResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcObjective
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcObjective : IIfcConstraint
+	{
+		IEnumerable<IIfcConstraint> @BenchmarkValues { get; }
+		IfcLogicalOperatorEnum? @LogicalAggregator { get; }
+		IfcObjectiveEnum @ObjectiveQualifier { get; }
+		IfcLabel? @UserDefinedQualifier { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ConstraintResource
 {
 	[ExpressType("IFCOBJECTIVE", 777)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcObjective : IfcConstraint, IInstantiableEntity, IEqualityComparer<@IfcObjective>, IEquatable<@IfcObjective>
+	public  partial class @IfcObjective : IfcConstraint, IInstantiableEntity, IIfcObjective, IEqualityComparer<@IfcObjective>, IEquatable<@IfcObjective>
 	{
+		#region IIfcObjective explicit implementation
+		IEnumerable<IIfcConstraint> IIfcObjective.BenchmarkValues { get { return @BenchmarkValues; } }	
+		IfcLogicalOperatorEnum? IIfcObjective.LogicalAggregator { get { return @LogicalAggregator; } }	
+		IfcObjectiveEnum IIfcObjective.ObjectiveQualifier { get { return @ObjectiveQualifier; } }	
+		IfcLabel? IIfcObjective.UserDefinedQualifier { get { return @UserDefinedQualifier; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcObjective(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +71,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				((IPersistEntity)this).Activate(false);
 				return _benchmarkValues;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcLogicalOperatorEnum? @LogicalAggregator 
 		{ 
@@ -59,8 +85,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			{
 				SetValue( v =>  _logicalAggregator = v, _logicalAggregator, value,  "LogicalAggregator");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcObjectiveEnum @ObjectiveQualifier 
 		{ 
@@ -74,8 +99,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			{
 				SetValue( v =>  _objectiveQualifier = v, _objectiveQualifier, value,  "ObjectiveQualifier");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedQualifier 
 		{ 
@@ -89,9 +113,9 @@ namespace Xbim.Ifc4.ConstraintResource
 			{
 				SetValue( v =>  _userDefinedQualifier = v, _userDefinedQualifier, value,  "UserDefinedQualifier");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -15,17 +15,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralSurfaceMemberVarying
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralSurfaceMemberVarying : IIfcStructuralSurfaceMember
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALSURFACEMEMBERVARYING", 1045)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IEqualityComparer<@IfcStructuralSurfaceMemberVarying>, IEquatable<@IfcStructuralSurfaceMemberVarying>
+	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IIfcStructuralSurfaceMemberVarying, IEqualityComparer<@IfcStructuralSurfaceMemberVarying>, IEquatable<@IfcStructuralSurfaceMemberVarying>
 	{
+		#region IIfcStructuralSurfaceMemberVarying explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralSurfaceMemberVarying(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

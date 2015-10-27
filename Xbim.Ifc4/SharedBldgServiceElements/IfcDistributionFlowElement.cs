@@ -16,17 +16,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgServiceElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDistributionFlowElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDistributionFlowElement : IIfcDistributionElement
+	{
+		IEnumerable<IIfcRelFlowControlElements> @HasControlElements {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IFCDISTRIBUTIONFLOWELEMENT", 574)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionFlowElement : IfcDistributionElement, IInstantiableEntity, IEqualityComparer<@IfcDistributionFlowElement>, IEquatable<@IfcDistributionFlowElement>
+	public  partial class @IfcDistributionFlowElement : IfcDistributionElement, IInstantiableEntity, IIfcDistributionFlowElement, IEqualityComparer<@IfcDistributionFlowElement>, IEquatable<@IfcDistributionFlowElement>
 	{
+		#region IIfcDistributionFlowElement explicit implementation
+	
+	 
+		IEnumerable<IIfcRelFlowControlElements> IIfcDistributionFlowElement.HasControlElements {  get { return @HasControlElements; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDistributionFlowElement(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

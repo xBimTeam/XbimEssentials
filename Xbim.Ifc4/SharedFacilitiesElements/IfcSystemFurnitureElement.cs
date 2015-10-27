@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedFacilitiesElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSystemFurnitureElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSystemFurnitureElement : IIfcFurnishingElement
+	{
+		IfcSystemFurnitureElementTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedFacilitiesElements
 {
 	[ExpressType("IFCSYSTEMFURNITUREELEMENT", 1073)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSystemFurnitureElement : IfcFurnishingElement, IInstantiableEntity, IEqualityComparer<@IfcSystemFurnitureElement>, IEquatable<@IfcSystemFurnitureElement>
+	public  partial class @IfcSystemFurnitureElement : IfcFurnishingElement, IInstantiableEntity, IIfcSystemFurnitureElement, IEqualityComparer<@IfcSystemFurnitureElement>, IEquatable<@IfcSystemFurnitureElement>
 	{
+		#region IIfcSystemFurnitureElement explicit implementation
+		IfcSystemFurnitureElementTypeEnum? IIfcSystemFurnitureElement.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSystemFurnitureElement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

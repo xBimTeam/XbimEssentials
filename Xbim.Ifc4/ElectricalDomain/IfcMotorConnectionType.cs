@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ElectricalDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMotorConnectionType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMotorConnectionType : IIfcEnergyConversionDeviceType
+	{
+		IfcMotorConnectionTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IFCMOTORCONNECTIONTYPE", 772)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMotorConnectionType : IfcEnergyConversionDeviceType, IInstantiableEntity, IEqualityComparer<@IfcMotorConnectionType>, IEquatable<@IfcMotorConnectionType>
+	public  partial class @IfcMotorConnectionType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcMotorConnectionType, IEqualityComparer<@IfcMotorConnectionType>, IEquatable<@IfcMotorConnectionType>
 	{
+		#region IIfcMotorConnectionType explicit implementation
+		IfcMotorConnectionTypeEnum IIfcMotorConnectionType.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMotorConnectionType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.ElectricalDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

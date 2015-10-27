@@ -11,13 +11,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCurveBoundedSurface
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCurveBoundedSurface : IIfcBoundedSurface
+	{
+		IIfcSurface @BasisSurface { get; }
+		IEnumerable<IIfcBoundaryCurve> @Boundaries { get; }
+		bool @ImplicitOuter { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCCURVEBOUNDEDSURFACE", 552)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveBoundedSurface : IfcBoundedSurface, IInstantiableEntity, IEqualityComparer<@IfcCurveBoundedSurface>, IEquatable<@IfcCurveBoundedSurface>
+	public  partial class @IfcCurveBoundedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcCurveBoundedSurface, IEqualityComparer<@IfcCurveBoundedSurface>, IEquatable<@IfcCurveBoundedSurface>
 	{
+		#region IIfcCurveBoundedSurface explicit implementation
+		IIfcSurface IIfcCurveBoundedSurface.BasisSurface { get { return @BasisSurface; } }	
+		IEnumerable<IIfcBoundaryCurve> IIfcCurveBoundedSurface.Boundaries { get { return @Boundaries; } }	
+		bool IIfcCurveBoundedSurface.ImplicitOuter { get { return @ImplicitOuter; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveBoundedSurface(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +69,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcBoundaryCurve> @Boundaries 
 		{ 
@@ -55,8 +79,7 @@ namespace Xbim.Ifc4.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _boundaries;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @ImplicitOuter 
 		{ 
@@ -70,9 +93,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _implicitOuter = v, _implicitOuter, value,  "ImplicitOuter");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

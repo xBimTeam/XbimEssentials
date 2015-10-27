@@ -14,13 +14,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcExtrudedAreaSolidTapered
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcExtrudedAreaSolidTapered : IIfcExtrudedAreaSolid
+	{
+		IIfcProfileDef @EndSweptArea { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCEXTRUDEDAREASOLIDTAPERED", 641)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExtrudedAreaSolidTapered : IfcExtrudedAreaSolid, IInstantiableEntity, IEqualityComparer<@IfcExtrudedAreaSolidTapered>, IEquatable<@IfcExtrudedAreaSolidTapered>
+	public  partial class @IfcExtrudedAreaSolidTapered : IfcExtrudedAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolidTapered, IEqualityComparer<@IfcExtrudedAreaSolidTapered>, IEquatable<@IfcExtrudedAreaSolidTapered>
 	{
+		#region IIfcExtrudedAreaSolidTapered explicit implementation
+		IIfcProfileDef IIfcExtrudedAreaSolidTapered.EndSweptArea { get { return @EndSweptArea; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExtrudedAreaSolidTapered(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,9 +65,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _endSweptArea = v, _endSweptArea, value,  "EndSweptArea");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

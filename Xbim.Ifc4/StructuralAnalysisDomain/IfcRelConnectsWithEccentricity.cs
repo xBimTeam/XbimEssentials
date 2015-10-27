@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelConnectsWithEccentricity
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelConnectsWithEccentricity : IIfcRelConnectsStructuralMember
+	{
+		IIfcConnectionGeometry @ConnectionConstraint { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IFCRELCONNECTSWITHECCENTRICITY", 924)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsWithEccentricity : IfcRelConnectsStructuralMember, IInstantiableEntity, IEqualityComparer<@IfcRelConnectsWithEccentricity>, IEquatable<@IfcRelConnectsWithEccentricity>
+	public  partial class @IfcRelConnectsWithEccentricity : IfcRelConnectsStructuralMember, IInstantiableEntity, IIfcRelConnectsWithEccentricity, IEqualityComparer<@IfcRelConnectsWithEccentricity>, IEquatable<@IfcRelConnectsWithEccentricity>
 	{
+		#region IIfcRelConnectsWithEccentricity explicit implementation
+		IIfcConnectionGeometry IIfcRelConnectsWithEccentricity.ConnectionConstraint { get { return @ConnectionConstraint; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsWithEccentricity(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _connectionConstraint = v, _connectionConstraint, value,  "ConnectionConstraint");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

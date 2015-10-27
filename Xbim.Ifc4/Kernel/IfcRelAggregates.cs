@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAggregates
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAggregates : IIfcRelDecomposes
+	{
+		IIfcObjectDefinition @RelatingObject { get; }
+		IEnumerable<IIfcObjectDefinition> @RelatedObjects { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELAGGREGATES", 901)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAggregates : IfcRelDecomposes, IInstantiableEntity, IEqualityComparer<@IfcRelAggregates>, IEquatable<@IfcRelAggregates>
+	public  partial class @IfcRelAggregates : IfcRelDecomposes, IInstantiableEntity, IIfcRelAggregates, IEqualityComparer<@IfcRelAggregates>, IEquatable<@IfcRelAggregates>
 	{
+		#region IIfcRelAggregates explicit implementation
+		IIfcObjectDefinition IIfcRelAggregates.RelatingObject { get { return @RelatingObject; } }	
+		IEnumerable<IIfcObjectDefinition> IIfcRelAggregates.RelatedObjects { get { return @RelatedObjects; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAggregates(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +69,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _relatingObject = v, _relatingObject, value,  "RelatingObject");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcObjectDefinition> @RelatedObjects 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _relatedObjects;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

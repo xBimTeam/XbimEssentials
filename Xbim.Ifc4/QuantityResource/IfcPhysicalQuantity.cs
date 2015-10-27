@@ -14,13 +14,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.QuantityResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPhysicalQuantity
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPhysicalQuantity : IPersistEntity, IfcResourceObjectSelect
+	{
+		IfcLabel @Name { get; }
+		IfcText? @Description { get; }
+		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReferences {  get; }
+		IEnumerable<IIfcPhysicalComplexQuantity> @PartOfComplex {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.QuantityResource
 {
 	[ExpressType("IFCPHYSICALQUANTITY", 800)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPhysicalQuantity : IPersistEntity, INotifyPropertyChanged, IfcResourceObjectSelect, IEqualityComparer<@IfcPhysicalQuantity>, IEquatable<@IfcPhysicalQuantity>
+	public abstract partial class @IfcPhysicalQuantity : IPersistEntity, INotifyPropertyChanged, IIfcPhysicalQuantity, IEqualityComparer<@IfcPhysicalQuantity>, IEquatable<@IfcPhysicalQuantity>
 	{
+		#region IIfcPhysicalQuantity explicit implementation
+		IfcLabel IIfcPhysicalQuantity.Name { get { return @Name; } }	
+		IfcText? IIfcPhysicalQuantity.Description { get { return @Description; } }	
+	
+	 
+		IEnumerable<IIfcExternalReferenceRelationship> IIfcPhysicalQuantity.HasExternalReferences {  get { return @HasExternalReferences; } }
+		IEnumerable<IIfcPhysicalComplexQuantity> IIfcPhysicalQuantity.PartOfComplex {  get { return @PartOfComplex; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -101,8 +128,7 @@ namespace Xbim.Ifc4.QuantityResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -116,9 +142,9 @@ namespace Xbim.Ifc4.QuantityResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

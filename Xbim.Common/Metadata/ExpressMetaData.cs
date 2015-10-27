@@ -166,9 +166,11 @@ namespace Xbim.Common.Metadata
         public ExpressType ExpressType(string typeName)
         {
             ExpressType result;
-            return _typeNameToExpressTypeLookup.TryGetValue(typeName, out result) ?
-                result :
-                _persistNameToExpressTypeLookup[typeName];
+            if (_typeNameToExpressTypeLookup.TryGetValue(typeName, out result))
+                return result;
+            if (_persistNameToExpressTypeLookup.TryGetValue(typeName, out result))
+                return result;
+            return null;
         }
 
         public IEnumerable<ExpressType> ExpressTypesImplementing(Type type)
@@ -205,7 +207,9 @@ namespace Xbim.Common.Metadata
         /// <returns>The foud type (or Null if not found)</returns>
         public ExpressType ExpressType(Type type)
         {
-            return _typeToExpressTypeLookup[type];
+            if (_typeToExpressTypeLookup.Contains(type))
+                return _typeToExpressTypeLookup[type];
+            return null;
         }
 
         /// <summary>
@@ -260,7 +264,7 @@ namespace Xbim.Common.Metadata
         /// <returns></returns>
         public ExpressType ExpressType(IPersist entity)
         {
-            return _typeToExpressTypeLookup[entity.GetType()];
+            return ExpressType(entity.GetType());
         }
 
 

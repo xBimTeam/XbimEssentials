@@ -13,13 +13,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.RepresentationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcGeometricRepresentationContext
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcGeometricRepresentationContext : IIfcRepresentationContext, IfcCoordinateReferenceSystemSelect
+	{
+		IfcDimensionCount @CoordinateSpaceDimension { get; }
+		double? @Precision { get; }
+		IfcAxis2Placement @WorldCoordinateSystem { get; }
+		IIfcDirection @TrueNorth { get; }
+		IEnumerable<IIfcGeometricRepresentationSubContext> @HasSubContexts {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IFCGEOMETRICREPRESENTATIONCONTEXT", 692)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricRepresentationContext : IfcRepresentationContext, IfcCoordinateReferenceSystemSelect, IInstantiableEntity, IEqualityComparer<@IfcGeometricRepresentationContext>, IEquatable<@IfcGeometricRepresentationContext>
+	public  partial class @IfcGeometricRepresentationContext : IfcRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationContext, IEqualityComparer<@IfcGeometricRepresentationContext>, IEquatable<@IfcGeometricRepresentationContext>
 	{
+		#region IIfcGeometricRepresentationContext explicit implementation
+		IfcDimensionCount IIfcGeometricRepresentationContext.CoordinateSpaceDimension { get { return @CoordinateSpaceDimension; } }	
+		double? IIfcGeometricRepresentationContext.Precision { get { return @Precision; } }	
+		IfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem { get { return @WorldCoordinateSystem; } }	
+		IIfcDirection IIfcGeometricRepresentationContext.TrueNorth { get { return @TrueNorth; } }	
+	
+	 
+		IEnumerable<IIfcGeometricRepresentationSubContext> IIfcGeometricRepresentationContext.HasSubContexts {  get { return @HasSubContexts; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeometricRepresentationContext(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +75,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _coordinateSpaceDimension = v, _coordinateSpaceDimension, value,  "CoordinateSpaceDimension");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public virtual double? @Precision 
 		{ 
@@ -61,8 +89,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _precision = v, _precision, value,  "Precision");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public virtual IfcAxis2Placement @WorldCoordinateSystem 
 		{ 
@@ -76,8 +103,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _worldCoordinateSystem = v, _worldCoordinateSystem, value,  "WorldCoordinateSystem");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public virtual IfcDirection @TrueNorth 
 		{ 
@@ -91,9 +117,9 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _trueNorth = v, _trueNorth, value,  "TrueNorth");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

@@ -15,13 +15,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralElementsDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTendonType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTendonType : IIfcReinforcingElementType
+	{
+		IfcTendonTypeEnum @PredefinedType { get; }
+		IfcPositiveLengthMeasure? @NominalDiameter { get; }
+		IfcAreaMeasure? @CrossSectionArea { get; }
+		IfcPositiveLengthMeasure? @SheethDiameter { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IFCTENDONTYPE", 1089)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTendonType : IfcReinforcingElementType, IInstantiableEntity, IEqualityComparer<@IfcTendonType>, IEquatable<@IfcTendonType>
+	public  partial class @IfcTendonType : IfcReinforcingElementType, IInstantiableEntity, IIfcTendonType, IEqualityComparer<@IfcTendonType>, IEquatable<@IfcTendonType>
 	{
+		#region IIfcTendonType explicit implementation
+		IfcTendonTypeEnum IIfcTendonType.PredefinedType { get { return @PredefinedType; } }	
+		IfcPositiveLengthMeasure? IIfcTendonType.NominalDiameter { get { return @NominalDiameter; } }	
+		IfcAreaMeasure? IIfcTendonType.CrossSectionArea { get { return @CrossSectionArea; } }	
+		IfcPositiveLengthMeasure? IIfcTendonType.SheethDiameter { get { return @SheethDiameter; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTendonType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +75,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @NominalDiameter 
 		{ 
@@ -63,8 +89,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcAreaMeasure? @CrossSectionArea 
 		{ 
@@ -78,8 +103,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @SheethDiameter 
 		{ 
@@ -93,9 +117,9 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _sheethDiameter = v, _sheethDiameter, value,  "SheethDiameter");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

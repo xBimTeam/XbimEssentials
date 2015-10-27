@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedFacilitiesElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFurniture
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFurniture : IIfcFurnishingElement
+	{
+		IfcFurnitureTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedFacilitiesElements
 {
 	[ExpressType("IFCFURNITURE", 687)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFurniture : IfcFurnishingElement, IInstantiableEntity, IEqualityComparer<@IfcFurniture>, IEquatable<@IfcFurniture>
+	public  partial class @IfcFurniture : IfcFurnishingElement, IInstantiableEntity, IIfcFurniture, IEqualityComparer<@IfcFurniture>, IEquatable<@IfcFurniture>
 	{
+		#region IIfcFurniture explicit implementation
+		IfcFurnitureTypeEnum? IIfcFurniture.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFurniture(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

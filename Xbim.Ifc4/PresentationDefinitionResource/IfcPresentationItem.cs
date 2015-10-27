@@ -12,13 +12,32 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationDefinitionResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPresentationItem
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPresentationItem : IPersistEntity
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationDefinitionResource
 {
 	[ExpressType("IFCPRESENTATIONITEM", 830)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPresentationItem : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcPresentationItem>, IEquatable<@IfcPresentationItem>
+	public abstract partial class @IfcPresentationItem : IPersistEntity, INotifyPropertyChanged, IIfcPresentationItem, IEqualityComparer<@IfcPresentationItem>, IEquatable<@IfcPresentationItem>
 	{
+		#region IIfcPresentationItem explicit implementation
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -79,6 +98,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		internal IfcPresentationItem(IModel model) 		{ 
 			Model = model; 
 		}
+
 
 
 

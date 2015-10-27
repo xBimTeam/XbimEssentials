@@ -12,13 +12,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceStyleShading
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceStyleShading : IIfcPresentationItem, IfcSurfaceStyleElementSelect
+	{
+		IIfcColourRgb @SurfaceColour { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCSURFACESTYLESHADING", 1063)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleShading : IfcPresentationItem, IfcSurfaceStyleElementSelect, IInstantiableEntity, IEqualityComparer<@IfcSurfaceStyleShading>, IEquatable<@IfcSurfaceStyleShading>
+	public  partial class @IfcSurfaceStyleShading : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleShading, IEqualityComparer<@IfcSurfaceStyleShading>, IEquatable<@IfcSurfaceStyleShading>
 	{
+		#region IIfcSurfaceStyleShading explicit implementation
+		IIfcColourRgb IIfcSurfaceStyleShading.SurfaceColour { get { return @SurfaceColour; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleShading(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +63,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _surfaceColour = v, _surfaceColour, value,  "SurfaceColour");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

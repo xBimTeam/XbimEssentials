@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationDefinitionResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPlanarExtent
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPlanarExtent : IIfcGeometricRepresentationItem
+	{
+		IfcLengthMeasure @SizeInX { get; }
+		IfcLengthMeasure @SizeInY { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationDefinitionResource
 {
 	[ExpressType("IFCPLANAREXTENT", 811)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlanarExtent : IfcGeometricRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcPlanarExtent>, IEquatable<@IfcPlanarExtent>
+	public  partial class @IfcPlanarExtent : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcPlanarExtent, IEqualityComparer<@IfcPlanarExtent>, IEquatable<@IfcPlanarExtent>
 	{
+		#region IIfcPlanarExtent explicit implementation
+		IfcLengthMeasure IIfcPlanarExtent.SizeInX { get { return @SizeInX; } }	
+		IfcLengthMeasure IIfcPlanarExtent.SizeInY { get { return @SizeInY; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPlanarExtent(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +67,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			{
 				SetValue( v =>  _sizeInX = v, _sizeInX, value,  "SizeInX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure @SizeInY 
 		{ 
@@ -59,9 +81,9 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			{
 				SetValue( v =>  _sizeInY = v, _sizeInY, value,  "SizeInY");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

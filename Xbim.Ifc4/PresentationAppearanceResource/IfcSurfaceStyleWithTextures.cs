@@ -12,13 +12,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceStyleWithTextures
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceStyleWithTextures : IIfcPresentationItem, IfcSurfaceStyleElementSelect
+	{
+		IEnumerable<IIfcSurfaceTexture> @Textures { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCSURFACESTYLEWITHTEXTURES", 1064)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleWithTextures : IfcPresentationItem, IfcSurfaceStyleElementSelect, IInstantiableEntity, IEqualityComparer<@IfcSurfaceStyleWithTextures>, IEquatable<@IfcSurfaceStyleWithTextures>
+	public  partial class @IfcSurfaceStyleWithTextures : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleWithTextures, IEqualityComparer<@IfcSurfaceStyleWithTextures>, IEquatable<@IfcSurfaceStyleWithTextures>
 	{
+		#region IIfcSurfaceStyleWithTextures explicit implementation
+		IEnumerable<IIfcSurfaceTexture> IIfcSurfaceStyleWithTextures.Textures { get { return @Textures; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleWithTextures(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -40,9 +61,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _textures;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -11,17 +11,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelDefines
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelDefines : IIfcRelationship
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELDEFINES", 931)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRelDefines : IfcRelationship, IEqualityComparer<@IfcRelDefines>, IEquatable<@IfcRelDefines>
+	public abstract partial class @IfcRelDefines : IfcRelationship, IIfcRelDefines, IEqualityComparer<@IfcRelDefines>, IEquatable<@IfcRelDefines>
 	{
+		#region IIfcRelDefines explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDefines(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

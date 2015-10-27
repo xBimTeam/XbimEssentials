@@ -13,13 +13,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTessellatedFaceSet
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTessellatedFaceSet : IIfcTessellatedItem
+	{
+		IIfcCartesianPointList3D @Coordinates { get; }
+		IEnumerable<IEnumerable<IfcParameterValue>> @Normals { get; }
+		bool? @Closed { get; }
+		IEnumerable<IIfcIndexedColourMap> @HasColours {  get; }
+		IEnumerable<IIfcIndexedTextureMap> @HasTextures {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCTESSELLATEDFACESET", 1090)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTessellatedFaceSet : IfcTessellatedItem, IEqualityComparer<@IfcTessellatedFaceSet>, IEquatable<@IfcTessellatedFaceSet>
+	public abstract partial class @IfcTessellatedFaceSet : IfcTessellatedItem, IIfcTessellatedFaceSet, IEqualityComparer<@IfcTessellatedFaceSet>, IEquatable<@IfcTessellatedFaceSet>
 	{
+		#region IIfcTessellatedFaceSet explicit implementation
+		IIfcCartesianPointList3D IIfcTessellatedFaceSet.Coordinates { get { return @Coordinates; } }	
+		IEnumerable<IEnumerable<IfcParameterValue>> IIfcTessellatedFaceSet.Normals { get { return @Normals; } }	
+		bool? IIfcTessellatedFaceSet.Closed { get { return @Closed; } }	
+	
+	 
+		IEnumerable<IIfcIndexedColourMap> IIfcTessellatedFaceSet.HasColours {  get { return @HasColours; } }
+		IEnumerable<IIfcIndexedTextureMap> IIfcTessellatedFaceSet.HasTextures {  get { return @HasTextures; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTessellatedFaceSet(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +75,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _coordinates = v, _coordinates, value,  "Coordinates");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 1, -1)]
 		public OptionalItemSet<ItemSet<IfcParameterValue>> @Normals 
 		{ 
@@ -57,8 +85,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				((IPersistEntity)this).Activate(false);
 				return _normals;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @Closed 
 		{ 
@@ -72,9 +99,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _closed = v, _closed, value,  "Closed");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

@@ -13,13 +13,48 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.DateTimeResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRecurrencePattern
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRecurrencePattern : IPersistEntity
+	{
+		IfcRecurrenceTypeEnum @RecurrenceType { get; }
+		IEnumerable<IfcDayInMonthNumber> @DayComponent { get; }
+		IEnumerable<IfcDayInWeekNumber> @WeekdayComponent { get; }
+		IEnumerable<IfcMonthInYearNumber> @MonthComponent { get; }
+		IfcInteger? @Position { get; }
+		IfcInteger? @Interval { get; }
+		IfcInteger? @Occurrences { get; }
+		IEnumerable<IIfcTimePeriod> @TimePeriods { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IFCRECURRENCEPATTERN", 890)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRecurrencePattern : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcRecurrencePattern>, IEquatable<@IfcRecurrencePattern>
+	public  partial class @IfcRecurrencePattern : INotifyPropertyChanged, IInstantiableEntity, IIfcRecurrencePattern, IEqualityComparer<@IfcRecurrencePattern>, IEquatable<@IfcRecurrencePattern>
 	{
+		#region IIfcRecurrencePattern explicit implementation
+		IfcRecurrenceTypeEnum IIfcRecurrencePattern.RecurrenceType { get { return @RecurrenceType; } }	
+		IEnumerable<IfcDayInMonthNumber> IIfcRecurrencePattern.DayComponent { get { return @DayComponent; } }	
+		IEnumerable<IfcDayInWeekNumber> IIfcRecurrencePattern.WeekdayComponent { get { return @WeekdayComponent; } }	
+		IEnumerable<IfcMonthInYearNumber> IIfcRecurrencePattern.MonthComponent { get { return @MonthComponent; } }	
+		IfcInteger? IIfcRecurrencePattern.Position { get { return @Position; } }	
+		IfcInteger? IIfcRecurrencePattern.Interval { get { return @Interval; } }	
+		IfcInteger? IIfcRecurrencePattern.Occurrences { get { return @Occurrences; } }	
+		IEnumerable<IIfcTimePeriod> IIfcRecurrencePattern.TimePeriods { get { return @TimePeriods; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -110,8 +145,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _recurrenceType = v, _recurrenceType, value,  "RecurrenceType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<IfcDayInMonthNumber> @DayComponent 
 		{ 
@@ -121,8 +155,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				((IPersistEntity)this).Activate(false);
 				return _dayComponent;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<IfcDayInWeekNumber> @WeekdayComponent 
 		{ 
@@ -132,8 +165,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				((IPersistEntity)this).Activate(false);
 				return _weekdayComponent;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<IfcMonthInYearNumber> @MonthComponent 
 		{ 
@@ -143,8 +175,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				((IPersistEntity)this).Activate(false);
 				return _monthComponent;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcInteger? @Position 
 		{ 
@@ -158,8 +189,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _position = v, _position, value,  "Position");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcInteger? @Interval 
 		{ 
@@ -173,8 +203,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _interval = v, _interval, value,  "Interval");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcInteger? @Occurrences 
 		{ 
@@ -188,8 +217,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _occurrences = v, _occurrences, value,  "Occurrences");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcTimePeriod> @TimePeriods 
 		{ 
@@ -199,9 +227,9 @@ namespace Xbim.Ifc4.DateTimeResource
 				((IPersistEntity)this).Activate(false);
 				return _timePeriods;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

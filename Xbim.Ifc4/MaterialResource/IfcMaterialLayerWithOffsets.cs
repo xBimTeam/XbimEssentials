@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MaterialResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialLayerWithOffsets
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialLayerWithOffsets : IIfcMaterialLayer
+	{
+		IfcLayerSetDirectionEnum @OffsetDirection { get; }
+		IEnumerable<IfcLengthMeasure> @OffsetValues { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IFCMATERIALLAYERWITHOFFSETS", 750)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerWithOffsets : IfcMaterialLayer, IInstantiableEntity, IEqualityComparer<@IfcMaterialLayerWithOffsets>, IEquatable<@IfcMaterialLayerWithOffsets>
+	public  partial class @IfcMaterialLayerWithOffsets : IfcMaterialLayer, IInstantiableEntity, IIfcMaterialLayerWithOffsets, IEqualityComparer<@IfcMaterialLayerWithOffsets>, IEquatable<@IfcMaterialLayerWithOffsets>
 	{
+		#region IIfcMaterialLayerWithOffsets explicit implementation
+		IfcLayerSetDirectionEnum IIfcMaterialLayerWithOffsets.OffsetDirection { get { return @OffsetDirection; } }	
+		IEnumerable<IfcLengthMeasure> IIfcMaterialLayerWithOffsets.OffsetValues { get { return @OffsetValues; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialLayerWithOffsets(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +67,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _offsetDirection = v, _offsetDirection, value,  "OffsetDirection");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Array, EntityAttributeType.None, 1, 2)]
 		public ItemSet<IfcLengthMeasure> @OffsetValues 
 		{ 
@@ -55,9 +77,9 @@ namespace Xbim.Ifc4.MaterialResource
 				((IPersistEntity)this).Activate(false);
 				return _offsetValues;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

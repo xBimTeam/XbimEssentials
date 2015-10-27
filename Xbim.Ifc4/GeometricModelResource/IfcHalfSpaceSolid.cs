@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcHalfSpaceSolid
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcHalfSpaceSolid : IIfcGeometricRepresentationItem, IfcBooleanOperand
+	{
+		IIfcSurface @BaseSurface { get; }
+		bool @AgreementFlag { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCHALFSPACESOLID", 700)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHalfSpaceSolid : IfcGeometricRepresentationItem, IfcBooleanOperand, IInstantiableEntity, IEqualityComparer<@IfcHalfSpaceSolid>, IEquatable<@IfcHalfSpaceSolid>
+	public  partial class @IfcHalfSpaceSolid : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcHalfSpaceSolid, IEqualityComparer<@IfcHalfSpaceSolid>, IEquatable<@IfcHalfSpaceSolid>
 	{
+		#region IIfcHalfSpaceSolid explicit implementation
+		IIfcSurface IIfcHalfSpaceSolid.BaseSurface { get { return @BaseSurface; } }	
+		bool IIfcHalfSpaceSolid.AgreementFlag { get { return @AgreementFlag; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcHalfSpaceSolid(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +66,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _baseSurface = v, _baseSurface, value,  "BaseSurface");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @AgreementFlag 
 		{ 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _agreementFlag = v, _agreementFlag, value,  "AgreementFlag");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -14,13 +14,56 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcElement : IIfcProduct, IfcStructuralActivityAssignmentSelect
+	{
+		IfcIdentifier? @Tag { get; }
+		IEnumerable<IIfcRelFillsElement> @FillsVoids {  get; }
+		IEnumerable<IIfcRelConnectsElements> @ConnectedTo {  get; }
+		IEnumerable<IIfcRelInterferesElements> @IsInterferedByElements {  get; }
+		IEnumerable<IIfcRelInterferesElements> @InterferesElements {  get; }
+		IEnumerable<IIfcRelProjectsElement> @HasProjections {  get; }
+		IEnumerable<IIfcRelReferencedInSpatialStructure> @ReferencedInStructures {  get; }
+		IEnumerable<IIfcRelVoidsElement> @HasOpenings {  get; }
+		IEnumerable<IIfcRelConnectsWithRealizingElements> @IsConnectionRealization {  get; }
+		IEnumerable<IIfcRelSpaceBoundary> @ProvidesBoundaries {  get; }
+		IEnumerable<IIfcRelConnectsElements> @ConnectedFrom {  get; }
+		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainedInStructure {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCELEMENT", 610)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcElement : IfcProduct, IfcStructuralActivityAssignmentSelect, IEqualityComparer<@IfcElement>, IEquatable<@IfcElement>
+	public abstract partial class @IfcElement : IfcProduct, IIfcElement, IEqualityComparer<@IfcElement>, IEquatable<@IfcElement>
 	{
+		#region IIfcElement explicit implementation
+		IfcIdentifier? IIfcElement.Tag { get { return @Tag; } }	
+	
+	 
+		IEnumerable<IIfcRelFillsElement> IIfcElement.FillsVoids {  get { return @FillsVoids; } }
+		IEnumerable<IIfcRelConnectsElements> IIfcElement.ConnectedTo {  get { return @ConnectedTo; } }
+		IEnumerable<IIfcRelInterferesElements> IIfcElement.IsInterferedByElements {  get { return @IsInterferedByElements; } }
+		IEnumerable<IIfcRelInterferesElements> IIfcElement.InterferesElements {  get { return @InterferesElements; } }
+		IEnumerable<IIfcRelProjectsElement> IIfcElement.HasProjections {  get { return @HasProjections; } }
+		IEnumerable<IIfcRelReferencedInSpatialStructure> IIfcElement.ReferencedInStructures {  get { return @ReferencedInStructures; } }
+		IEnumerable<IIfcRelVoidsElement> IIfcElement.HasOpenings {  get { return @HasOpenings; } }
+		IEnumerable<IIfcRelConnectsWithRealizingElements> IIfcElement.IsConnectionRealization {  get { return @IsConnectionRealization; } }
+		IEnumerable<IIfcRelSpaceBoundary> IIfcElement.ProvidesBoundaries {  get { return @ProvidesBoundaries; } }
+		IEnumerable<IIfcRelConnectsElements> IIfcElement.ConnectedFrom {  get { return @ConnectedFrom; } }
+		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcElement.ContainedInStructure {  get { return @ContainedInStructure; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,9 +87,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _tag = v, _tag, value,  "Tag");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

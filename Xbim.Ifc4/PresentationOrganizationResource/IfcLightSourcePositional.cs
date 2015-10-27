@@ -14,13 +14,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationOrganizationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLightSourcePositional
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLightSourcePositional : IIfcLightSource
+	{
+		IIfcCartesianPoint @Position { get; }
+		IfcPositiveLengthMeasure @Radius { get; }
+		IfcReal @ConstantAttenuation { get; }
+		IfcReal @DistanceAttenuation { get; }
+		IfcReal @QuadricAttenuation { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[ExpressType("IFCLIGHTSOURCEPOSITIONAL", 733)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourcePositional : IfcLightSource, IInstantiableEntity, IEqualityComparer<@IfcLightSourcePositional>, IEquatable<@IfcLightSourcePositional>
+	public  partial class @IfcLightSourcePositional : IfcLightSource, IInstantiableEntity, IIfcLightSourcePositional, IEqualityComparer<@IfcLightSourcePositional>, IEquatable<@IfcLightSourcePositional>
 	{
+		#region IIfcLightSourcePositional explicit implementation
+		IIfcCartesianPoint IIfcLightSourcePositional.Position { get { return @Position; } }	
+		IfcPositiveLengthMeasure IIfcLightSourcePositional.Radius { get { return @Radius; } }	
+		IfcReal IIfcLightSourcePositional.ConstantAttenuation { get { return @ConstantAttenuation; } }	
+		IfcReal IIfcLightSourcePositional.DistanceAttenuation { get { return @DistanceAttenuation; } }	
+		IfcReal IIfcLightSourcePositional.QuadricAttenuation { get { return @QuadricAttenuation; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightSourcePositional(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +77,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			{
 				SetValue( v =>  _position = v, _position, value,  "Position");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @Radius 
 		{ 
@@ -63,8 +91,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			{
 				SetValue( v =>  _radius = v, _radius, value,  "Radius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcReal @ConstantAttenuation 
 		{ 
@@ -78,8 +105,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			{
 				SetValue( v =>  _constantAttenuation = v, _constantAttenuation, value,  "ConstantAttenuation");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcReal @DistanceAttenuation 
 		{ 
@@ -93,8 +119,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			{
 				SetValue( v =>  _distanceAttenuation = v, _distanceAttenuation, value,  "DistanceAttenuation");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcReal @QuadricAttenuation 
 		{ 
@@ -108,9 +133,9 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			{
 				SetValue( v =>  _quadricAttenuation = v, _quadricAttenuation, value,  "QuadricAttenuation");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

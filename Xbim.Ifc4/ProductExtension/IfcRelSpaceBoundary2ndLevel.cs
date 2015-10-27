@@ -14,13 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelSpaceBoundary2ndLevel
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelSpaceBoundary2ndLevel : IIfcRelSpaceBoundary1stLevel
+	{
+		IIfcRelSpaceBoundary2ndLevel @CorrespondingBoundary { get; }
+		IEnumerable<IIfcRelSpaceBoundary2ndLevel> @Corresponds {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCRELSPACEBOUNDARY2NDLEVEL", 946)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSpaceBoundary2ndLevel : IfcRelSpaceBoundary1stLevel, IInstantiableEntity, IEqualityComparer<@IfcRelSpaceBoundary2ndLevel>, IEquatable<@IfcRelSpaceBoundary2ndLevel>
+	public  partial class @IfcRelSpaceBoundary2ndLevel : IfcRelSpaceBoundary1stLevel, IInstantiableEntity, IIfcRelSpaceBoundary2ndLevel, IEqualityComparer<@IfcRelSpaceBoundary2ndLevel>, IEquatable<@IfcRelSpaceBoundary2ndLevel>
 	{
+		#region IIfcRelSpaceBoundary2ndLevel explicit implementation
+		IIfcRelSpaceBoundary2ndLevel IIfcRelSpaceBoundary2ndLevel.CorrespondingBoundary { get { return @CorrespondingBoundary; } }	
+	
+	 
+		IEnumerable<IIfcRelSpaceBoundary2ndLevel> IIfcRelSpaceBoundary2ndLevel.Corresponds {  get { return @Corresponds; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelSpaceBoundary2ndLevel(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +68,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _correspondingBoundary = v, _correspondingBoundary, value,  "CorrespondingBoundary");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

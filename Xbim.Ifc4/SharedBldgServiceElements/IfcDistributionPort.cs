@@ -16,13 +16,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgServiceElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDistributionPort
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDistributionPort : IIfcPort
+	{
+		IfcFlowDirectionEnum? @FlowDirection { get; }
+		IfcDistributionPortTypeEnum? @PredefinedType { get; }
+		IfcDistributionSystemEnum? @SystemType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IFCDISTRIBUTIONPORT", 576)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionPort : IfcPort, IInstantiableEntity, IEqualityComparer<@IfcDistributionPort>, IEquatable<@IfcDistributionPort>
+	public  partial class @IfcDistributionPort : IfcPort, IInstantiableEntity, IIfcDistributionPort, IEqualityComparer<@IfcDistributionPort>, IEquatable<@IfcDistributionPort>
 	{
+		#region IIfcDistributionPort explicit implementation
+		IfcFlowDirectionEnum? IIfcDistributionPort.FlowDirection { get { return @FlowDirection; } }	
+		IfcDistributionPortTypeEnum? IIfcDistributionPort.PredefinedType { get { return @PredefinedType; } }	
+		IfcDistributionSystemEnum? IIfcDistributionPort.SystemType { get { return @SystemType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDistributionPort(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +73,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 			{
 				SetValue( v =>  _flowDirection = v, _flowDirection, value,  "FlowDirection");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDistributionPortTypeEnum? @PredefinedType 
 		{ 
@@ -63,8 +87,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDistributionSystemEnum? @SystemType 
 		{ 
@@ -78,9 +101,9 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 			{
 				SetValue( v =>  _systemType = v, _systemType, value,  "SystemType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

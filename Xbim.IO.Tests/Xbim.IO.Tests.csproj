@@ -54,6 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CobieTests.cs" />
     <Compile Include="InMemoryInsertionTests.cs" />
+    <Compile Include="ReadIFC4InterfacesTest.cs" />
     <Compile Include="ReadIFC4Test.cs" />
   </ItemGroup>
   <ItemGroup>

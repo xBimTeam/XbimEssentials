@@ -15,13 +15,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProcessExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcWorkSchedule
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcWorkSchedule : IIfcWorkControl
+	{
+		IfcWorkScheduleTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IFCWORKSCHEDULE", 1153)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWorkSchedule : IfcWorkControl, IInstantiableEntity, IEqualityComparer<@IfcWorkSchedule>, IEquatable<@IfcWorkSchedule>
+	public  partial class @IfcWorkSchedule : IfcWorkControl, IInstantiableEntity, IIfcWorkSchedule, IEqualityComparer<@IfcWorkSchedule>, IEquatable<@IfcWorkSchedule>
 	{
+		#region IIfcWorkSchedule explicit implementation
+		IfcWorkScheduleTypeEnum? IIfcWorkSchedule.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWorkSchedule(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +66,9 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

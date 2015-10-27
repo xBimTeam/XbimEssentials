@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSweptSurface
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSweptSurface : IIfcSurface
+	{
+		IIfcProfileDef @SweptCurve { get; }
+		IIfcAxis2Placement3D @Position { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCSWEPTSURFACE", 1069)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSweptSurface : IfcSurface, IEqualityComparer<@IfcSweptSurface>, IEquatable<@IfcSweptSurface>
+	public abstract partial class @IfcSweptSurface : IfcSurface, IIfcSweptSurface, IEqualityComparer<@IfcSweptSurface>, IEquatable<@IfcSweptSurface>
 	{
+		#region IIfcSweptSurface explicit implementation
+		IIfcProfileDef IIfcSweptSurface.SweptCurve { get { return @SweptCurve; } }	
+		IIfcAxis2Placement3D IIfcSweptSurface.Position { get { return @Position; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSweptSurface(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +66,7 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _sweptCurve = v, _sweptCurve, value,  "SweptCurve");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcAxis2Placement3D @Position 
 		{ 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				SetValue( v =>  _position = v, _position, value,  "Position");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -15,13 +15,44 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProcessExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTask
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTask : IIfcProcess
+	{
+		IfcLabel? @Status { get; }
+		IfcLabel? @WorkMethod { get; }
+		bool @IsMilestone { get; }
+		long? @Priority { get; }
+		IIfcTaskTime @TaskTime { get; }
+		IfcTaskTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IFCTASK", 1081)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IEqualityComparer<@IfcTask>, IEquatable<@IfcTask>
+	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IIfcTask, IEqualityComparer<@IfcTask>, IEquatable<@IfcTask>
 	{
+		#region IIfcTask explicit implementation
+		IfcLabel? IIfcTask.Status { get { return @Status; } }	
+		IfcLabel? IIfcTask.WorkMethod { get { return @WorkMethod; } }	
+		bool IIfcTask.IsMilestone { get { return @IsMilestone; } }	
+		long? IIfcTask.Priority { get { return @Priority; } }	
+		IIfcTaskTime IIfcTask.TaskTime { get { return @TaskTime; } }	
+		IfcTaskTypeEnum? IIfcTask.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTask(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -50,8 +81,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _status = v, _status, value,  "Status");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @WorkMethod 
 		{ 
@@ -65,8 +95,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _workMethod = v, _workMethod, value,  "WorkMethod");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @IsMilestone 
 		{ 
@@ -80,8 +109,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _isMilestone = v, _isMilestone, value,  "IsMilestone");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public long? @Priority 
 		{ 
@@ -95,8 +123,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _priority = v, _priority, value,  "Priority");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTaskTime @TaskTime 
 		{ 
@@ -110,8 +137,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _taskTime = v, _taskTime, value,  "TaskTime");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcTaskTypeEnum? @PredefinedType 
 		{ 
@@ -125,9 +151,9 @@ namespace Xbim.Ifc4.ProcessExtension
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

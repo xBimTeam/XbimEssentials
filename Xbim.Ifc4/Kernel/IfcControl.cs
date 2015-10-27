@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcControl
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcControl : IIfcObject
+	{
+		IfcIdentifier? @Identification { get; }
+		IEnumerable<IIfcRelAssignsToControl> @Controls {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCCONTROL", 527)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcControl : IfcObject, IEqualityComparer<@IfcControl>, IEquatable<@IfcControl>
+	public abstract partial class @IfcControl : IfcObject, IIfcControl, IEqualityComparer<@IfcControl>, IEquatable<@IfcControl>
 	{
+		#region IIfcControl explicit implementation
+		IfcIdentifier? IIfcControl.Identification { get { return @Identification; } }	
+	
+	 
+		IEnumerable<IIfcRelAssignsToControl> IIfcControl.Controls {  get { return @Controls; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcControl(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +65,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _identification = v, _identification, value,  "Identification");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

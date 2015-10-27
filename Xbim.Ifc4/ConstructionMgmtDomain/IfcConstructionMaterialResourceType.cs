@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ConstructionMgmtDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConstructionMaterialResourceType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConstructionMaterialResourceType : IIfcConstructionResourceType
+	{
+		IfcConstructionMaterialResourceTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	[ExpressType("IFCCONSTRUCTIONMATERIALRESOURCETYPE", 520)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstructionMaterialResourceType : IfcConstructionResourceType, IInstantiableEntity, IEqualityComparer<@IfcConstructionMaterialResourceType>, IEquatable<@IfcConstructionMaterialResourceType>
+	public  partial class @IfcConstructionMaterialResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcConstructionMaterialResourceType, IEqualityComparer<@IfcConstructionMaterialResourceType>, IEquatable<@IfcConstructionMaterialResourceType>
 	{
+		#region IIfcConstructionMaterialResourceType explicit implementation
+		IfcConstructionMaterialResourceTypeEnum IIfcConstructionMaterialResourceType.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstructionMaterialResourceType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

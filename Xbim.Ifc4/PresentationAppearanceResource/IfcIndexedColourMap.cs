@@ -13,13 +13,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcIndexedColourMap
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcIndexedColourMap : IIfcPresentationItem
+	{
+		IIfcTessellatedFaceSet @MappedTo { get; }
+		IIfcSurfaceStyleShading @Overrides { get; }
+		IIfcColourRgbList @Colours { get; }
+		IEnumerable<long> @ColourIndex { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCINDEXEDCOLOURMAP", 707)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIndexedColourMap : IfcPresentationItem, IInstantiableEntity, IEqualityComparer<@IfcIndexedColourMap>, IEquatable<@IfcIndexedColourMap>
+	public  partial class @IfcIndexedColourMap : IfcPresentationItem, IInstantiableEntity, IIfcIndexedColourMap, IEqualityComparer<@IfcIndexedColourMap>, IEquatable<@IfcIndexedColourMap>
 	{
+		#region IIfcIndexedColourMap explicit implementation
+		IIfcTessellatedFaceSet IIfcIndexedColourMap.MappedTo { get { return @MappedTo; } }	
+		IIfcSurfaceStyleShading IIfcIndexedColourMap.Overrides { get { return @Overrides; } }	
+		IIfcColourRgbList IIfcIndexedColourMap.Colours { get { return @Colours; } }	
+		IEnumerable<long> IIfcIndexedColourMap.ColourIndex { get { return @ColourIndex; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIndexedColourMap(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +75,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _mappedTo = v, _mappedTo, value,  "MappedTo");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSurfaceStyleShading @Overrides 
 		{ 
@@ -63,8 +89,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _overrides = v, _overrides, value,  "Overrides");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColourRgbList @Colours 
 		{ 
@@ -78,8 +103,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _colours = v, _colours, value,  "Colours");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public ItemSet<long> @ColourIndex 
 		{ 
@@ -89,9 +113,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _colourIndex;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

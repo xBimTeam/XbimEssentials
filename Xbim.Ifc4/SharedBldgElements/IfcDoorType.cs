@@ -16,13 +16,40 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDoorType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDoorType : IIfcBuildingElementType
+	{
+		IfcDoorTypeEnum @PredefinedType { get; }
+		IfcDoorTypeOperationEnum @OperationType { get; }
+		bool? @ParameterTakesPrecedence { get; }
+		IfcLabel? @UserDefinedOperationType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IFCDOORTYPE", 586)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorType : IfcBuildingElementType, IInstantiableEntity, IEqualityComparer<@IfcDoorType>, IEquatable<@IfcDoorType>
+	public  partial class @IfcDoorType : IfcBuildingElementType, IInstantiableEntity, IIfcDoorType, IEqualityComparer<@IfcDoorType>, IEquatable<@IfcDoorType>
 	{
+		#region IIfcDoorType explicit implementation
+		IfcDoorTypeEnum IIfcDoorType.PredefinedType { get { return @PredefinedType; } }	
+		IfcDoorTypeOperationEnum IIfcDoorType.OperationType { get { return @OperationType; } }	
+		bool? IIfcDoorType.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
+		IfcLabel? IIfcDoorType.UserDefinedOperationType { get { return @UserDefinedOperationType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDoorType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -49,8 +76,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDoorTypeOperationEnum @OperationType 
 		{ 
@@ -64,8 +90,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @ParameterTakesPrecedence 
 		{ 
@@ -79,8 +104,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedOperationType 
 		{ 
@@ -94,9 +118,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _userDefinedOperationType = v, _userDefinedOperationType, value,  "UserDefinedOperationType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

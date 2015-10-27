@@ -11,17 +11,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFeatureElementSubtraction
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFeatureElementSubtraction : IIfcFeatureElement
+	{
+		IIfcRelVoidsElement @VoidsElements {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCFEATUREELEMENTSUBTRACTION", 656)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFeatureElementSubtraction : IfcFeatureElement, IEqualityComparer<@IfcFeatureElementSubtraction>, IEquatable<@IfcFeatureElementSubtraction>
+	public abstract partial class @IfcFeatureElementSubtraction : IfcFeatureElement, IIfcFeatureElementSubtraction, IEqualityComparer<@IfcFeatureElementSubtraction>, IEquatable<@IfcFeatureElementSubtraction>
 	{
+		#region IIfcFeatureElementSubtraction explicit implementation
+	
+	 
+		IIfcRelVoidsElement IIfcFeatureElementSubtraction.VoidsElements {  get { return @VoidsElements; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFeatureElementSubtraction(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

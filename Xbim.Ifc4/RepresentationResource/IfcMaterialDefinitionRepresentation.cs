@@ -13,13 +13,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.RepresentationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialDefinitionRepresentation
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialDefinitionRepresentation : IIfcProductRepresentation
+	{
+		IIfcMaterial @RepresentedMaterial { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IFCMATERIALDEFINITIONREPRESENTATION", 746)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialDefinitionRepresentation : IfcProductRepresentation, IInstantiableEntity, IEqualityComparer<@IfcMaterialDefinitionRepresentation>, IEquatable<@IfcMaterialDefinitionRepresentation>
+	public  partial class @IfcMaterialDefinitionRepresentation : IfcProductRepresentation, IInstantiableEntity, IIfcMaterialDefinitionRepresentation, IEqualityComparer<@IfcMaterialDefinitionRepresentation>, IEquatable<@IfcMaterialDefinitionRepresentation>
 	{
+		#region IIfcMaterialDefinitionRepresentation explicit implementation
+		IIfcMaterial IIfcMaterialDefinitionRepresentation.RepresentedMaterial { get { return @RepresentedMaterial; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialDefinitionRepresentation(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,9 +65,9 @@ namespace Xbim.Ifc4.RepresentationResource
 			{
 				SetValue( v =>  _representedMaterial = v, _representedMaterial, value,  "RepresentedMaterial");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

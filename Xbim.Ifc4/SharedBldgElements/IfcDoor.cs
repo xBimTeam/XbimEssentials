@@ -16,13 +16,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDoor
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDoor : IIfcBuildingElement
+	{
+		IfcPositiveLengthMeasure? @OverallHeight { get; }
+		IfcPositiveLengthMeasure? @OverallWidth { get; }
+		IfcDoorTypeEnum? @PredefinedType { get; }
+		IfcDoorTypeOperationEnum? @OperationType { get; }
+		IfcLabel? @UserDefinedOperationType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IFCDOOR", 581)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IEqualityComparer<@IfcDoor>, IEquatable<@IfcDoor>
+	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IIfcDoor, IEqualityComparer<@IfcDoor>, IEquatable<@IfcDoor>
 	{
+		#region IIfcDoor explicit implementation
+		IfcPositiveLengthMeasure? IIfcDoor.OverallHeight { get { return @OverallHeight; } }	
+		IfcPositiveLengthMeasure? IIfcDoor.OverallWidth { get { return @OverallWidth; } }	
+		IfcDoorTypeEnum? IIfcDoor.PredefinedType { get { return @PredefinedType; } }	
+		IfcDoorTypeOperationEnum? IIfcDoor.OperationType { get { return @OperationType; } }	
+		IfcLabel? IIfcDoor.UserDefinedOperationType { get { return @UserDefinedOperationType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDoor(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -50,8 +79,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @OverallWidth 
 		{ 
@@ -65,8 +93,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _overallWidth = v, _overallWidth, value,  "OverallWidth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDoorTypeEnum? @PredefinedType 
 		{ 
@@ -80,8 +107,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDoorTypeOperationEnum? @OperationType 
 		{ 
@@ -95,8 +121,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedOperationType 
 		{ 
@@ -110,9 +135,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _userDefinedOperationType = v, _userDefinedOperationType, value,  "UserDefinedOperationType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

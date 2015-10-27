@@ -14,13 +14,42 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ConstraintResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcReference
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcReference : IPersistEntity, IfcAppliedValueSelect, IfcMetricValueSelect
+	{
+		IfcIdentifier? @TypeIdentifier { get; }
+		IfcIdentifier? @AttributeIdentifier { get; }
+		IfcLabel? @InstanceName { get; }
+		IEnumerable<long> @ListPositions { get; }
+		IIfcReference @InnerReference { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ConstraintResource
 {
 	[ExpressType("IFCREFERENCE", 891)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReference : INotifyPropertyChanged, IfcAppliedValueSelect, IfcMetricValueSelect, IInstantiableEntity, IEqualityComparer<@IfcReference>, IEquatable<@IfcReference>
+	public  partial class @IfcReference : INotifyPropertyChanged, IInstantiableEntity, IIfcReference, IEqualityComparer<@IfcReference>, IEquatable<@IfcReference>
 	{
+		#region IIfcReference explicit implementation
+		IfcIdentifier? IIfcReference.TypeIdentifier { get { return @TypeIdentifier; } }	
+		IfcIdentifier? IIfcReference.AttributeIdentifier { get { return @AttributeIdentifier; } }	
+		IfcLabel? IIfcReference.InstanceName { get { return @InstanceName; } }	
+		IEnumerable<long> IIfcReference.ListPositions { get { return @ListPositions; } }	
+		IIfcReference IIfcReference.InnerReference { get { return @InnerReference; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -105,8 +134,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			{
 				SetValue( v =>  _typeIdentifier = v, _typeIdentifier, value,  "TypeIdentifier");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIdentifier? @AttributeIdentifier 
 		{ 
@@ -120,8 +148,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			{
 				SetValue( v =>  _attributeIdentifier = v, _attributeIdentifier, value,  "AttributeIdentifier");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @InstanceName 
 		{ 
@@ -135,8 +162,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			{
 				SetValue( v =>  _instanceName = v, _instanceName, value,  "InstanceName");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<long> @ListPositions 
 		{ 
@@ -146,8 +172,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				((IPersistEntity)this).Activate(false);
 				return _listPositions;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcReference @InnerReference 
 		{ 
@@ -161,9 +186,9 @@ namespace Xbim.Ifc4.ConstraintResource
 			{
 				SetValue( v =>  _innerReference = v, _innerReference, value,  "InnerReference");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

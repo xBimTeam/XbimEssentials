@@ -13,13 +13,38 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.DateTimeResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSchedulingTime
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSchedulingTime : IPersistEntity
+	{
+		IfcLabel? @Name { get; }
+		IfcDataOriginEnum? @DataOrigin { get; }
+		IfcLabel? @UserDefinedDataOrigin { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IFCSCHEDULINGTIME", 970)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSchedulingTime : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcSchedulingTime>, IEquatable<@IfcSchedulingTime>
+	public abstract partial class @IfcSchedulingTime : IPersistEntity, INotifyPropertyChanged, IIfcSchedulingTime, IEqualityComparer<@IfcSchedulingTime>, IEquatable<@IfcSchedulingTime>
 	{
+		#region IIfcSchedulingTime explicit implementation
+		IfcLabel? IIfcSchedulingTime.Name { get { return @Name; } }	
+		IfcDataOriginEnum? IIfcSchedulingTime.DataOrigin { get { return @DataOrigin; } }	
+		IfcLabel? IIfcSchedulingTime.UserDefinedDataOrigin { get { return @UserDefinedDataOrigin; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -101,8 +126,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDataOriginEnum? @DataOrigin 
 		{ 
@@ -116,8 +140,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _dataOrigin = v, _dataOrigin, value,  "DataOrigin");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedDataOrigin 
 		{ 
@@ -131,9 +154,9 @@ namespace Xbim.Ifc4.DateTimeResource
 			{
 				SetValue( v =>  _userDefinedDataOrigin = v, _userDefinedDataOrigin, value,  "UserDefinedDataOrigin");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

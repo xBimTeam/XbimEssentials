@@ -13,13 +13,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPreDefinedItem
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPreDefinedItem : IIfcPresentationItem
+	{
+		IfcLabel @Name { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCPREDEFINEDITEM", 826)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedItem : IfcPresentationItem, IEqualityComparer<@IfcPreDefinedItem>, IEquatable<@IfcPreDefinedItem>
+	public abstract partial class @IfcPreDefinedItem : IfcPresentationItem, IIfcPreDefinedItem, IEqualityComparer<@IfcPreDefinedItem>, IEquatable<@IfcPreDefinedItem>
 	{
+		#region IIfcPreDefinedItem explicit implementation
+		IfcLabel IIfcPreDefinedItem.Name { get { return @Name; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPreDefinedItem(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,9 +64,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

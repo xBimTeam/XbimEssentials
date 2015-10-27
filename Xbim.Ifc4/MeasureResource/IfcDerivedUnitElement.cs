@@ -12,13 +12,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MeasureResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDerivedUnitElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDerivedUnitElement : IPersistEntity
+	{
+		IIfcNamedUnit @Unit { get; }
+		long @Exponent { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IFCDERIVEDUNITELEMENT", 562)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDerivedUnitElement : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcDerivedUnitElement>, IEquatable<@IfcDerivedUnitElement>
+	public  partial class @IfcDerivedUnitElement : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnitElement, IEqualityComparer<@IfcDerivedUnitElement>, IEquatable<@IfcDerivedUnitElement>
 	{
+		#region IIfcDerivedUnitElement explicit implementation
+		IIfcNamedUnit IIfcDerivedUnitElement.Unit { get { return @Unit; } }	
+		long IIfcDerivedUnitElement.Exponent { get { return @Exponent; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -99,8 +122,7 @@ namespace Xbim.Ifc4.MeasureResource
 			{
 				SetValue( v =>  _unit = v, _unit, value,  "Unit");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public long @Exponent 
 		{ 
@@ -114,9 +136,9 @@ namespace Xbim.Ifc4.MeasureResource
 			{
 				SetValue( v =>  _exponent = v, _exponent, value,  "Exponent");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

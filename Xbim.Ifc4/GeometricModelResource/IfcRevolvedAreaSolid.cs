@@ -14,13 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRevolvedAreaSolid
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRevolvedAreaSolid : IIfcSweptAreaSolid
+	{
+		IIfcAxis1Placement @Axis { get; }
+		IfcPlaneAngleMeasure @Angle { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCREVOLVEDAREASOLID", 959)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRevolvedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IEqualityComparer<@IfcRevolvedAreaSolid>, IEquatable<@IfcRevolvedAreaSolid>
+	public  partial class @IfcRevolvedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcRevolvedAreaSolid, IEqualityComparer<@IfcRevolvedAreaSolid>, IEquatable<@IfcRevolvedAreaSolid>
 	{
+		#region IIfcRevolvedAreaSolid explicit implementation
+		IIfcAxis1Placement IIfcRevolvedAreaSolid.Axis { get { return @Axis; } }	
+		IfcPlaneAngleMeasure IIfcRevolvedAreaSolid.Angle { get { return @Angle; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRevolvedAreaSolid(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +68,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _axis = v, _axis, value,  "Axis");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPlaneAngleMeasure @Angle 
 		{ 
@@ -60,9 +82,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _angle = v, _angle, value,  "Angle");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -11,17 +11,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.TopologyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLoop
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLoop : IIfcTopologicalRepresentationItem
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IFCLOOP", 737)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLoop : IfcTopologicalRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcLoop>, IEquatable<@IfcLoop>
+	public  partial class @IfcLoop : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcLoop, IEqualityComparer<@IfcLoop>, IEquatable<@IfcLoop>
 	{
+		#region IIfcLoop explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLoop(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

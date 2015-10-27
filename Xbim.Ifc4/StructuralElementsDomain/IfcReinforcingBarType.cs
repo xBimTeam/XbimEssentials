@@ -16,13 +16,46 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralElementsDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcReinforcingBarType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcReinforcingBarType : IIfcReinforcingElementType
+	{
+		IfcReinforcingBarTypeEnum @PredefinedType { get; }
+		IfcPositiveLengthMeasure? @NominalDiameter { get; }
+		IfcAreaMeasure? @CrossSectionArea { get; }
+		IfcPositiveLengthMeasure? @BarLength { get; }
+		IfcReinforcingBarSurfaceEnum? @BarSurface { get; }
+		IfcLabel? @BendingShapeCode { get; }
+		IEnumerable<IfcBendingParameterSelect> @BendingParameters { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IFCREINFORCINGBARTYPE", 896)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcingBarType : IfcReinforcingElementType, IInstantiableEntity, IEqualityComparer<@IfcReinforcingBarType>, IEquatable<@IfcReinforcingBarType>
+	public  partial class @IfcReinforcingBarType : IfcReinforcingElementType, IInstantiableEntity, IIfcReinforcingBarType, IEqualityComparer<@IfcReinforcingBarType>, IEquatable<@IfcReinforcingBarType>
 	{
+		#region IIfcReinforcingBarType explicit implementation
+		IfcReinforcingBarTypeEnum IIfcReinforcingBarType.PredefinedType { get { return @PredefinedType; } }	
+		IfcPositiveLengthMeasure? IIfcReinforcingBarType.NominalDiameter { get { return @NominalDiameter; } }	
+		IfcAreaMeasure? IIfcReinforcingBarType.CrossSectionArea { get { return @CrossSectionArea; } }	
+		IfcPositiveLengthMeasure? IIfcReinforcingBarType.BarLength { get { return @BarLength; } }	
+		IfcReinforcingBarSurfaceEnum? IIfcReinforcingBarType.BarSurface { get { return @BarSurface; } }	
+		IfcLabel? IIfcReinforcingBarType.BendingShapeCode { get { return @BendingShapeCode; } }	
+		IEnumerable<IfcBendingParameterSelect> IIfcReinforcingBarType.BendingParameters { get { return @BendingParameters; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcingBarType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -53,8 +86,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @NominalDiameter 
 		{ 
@@ -68,8 +100,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcAreaMeasure? @CrossSectionArea 
 		{ 
@@ -83,8 +114,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @BarLength 
 		{ 
@@ -98,8 +128,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _barLength = v, _barLength, value,  "BarLength");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcReinforcingBarSurfaceEnum? @BarSurface 
 		{ 
@@ -113,8 +142,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _barSurface = v, _barSurface, value,  "BarSurface");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @BendingShapeCode 
 		{ 
@@ -128,8 +156,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _bendingShapeCode = v, _bendingShapeCode, value,  "BendingShapeCode");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcBendingParameterSelect> @BendingParameters 
 		{ 
@@ -139,9 +166,9 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				((IPersistEntity)this).Activate(false);
 				return _bendingParameters;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

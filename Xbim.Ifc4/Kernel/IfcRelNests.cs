@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelNests
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelNests : IIfcRelDecomposes
+	{
+		IIfcObjectDefinition @RelatingObject { get; }
+		IEnumerable<IIfcObjectDefinition> @RelatedObjects { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCRELNESTS", 939)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelNests : IfcRelDecomposes, IInstantiableEntity, IEqualityComparer<@IfcRelNests>, IEquatable<@IfcRelNests>
+	public  partial class @IfcRelNests : IfcRelDecomposes, IInstantiableEntity, IIfcRelNests, IEqualityComparer<@IfcRelNests>, IEquatable<@IfcRelNests>
 	{
+		#region IIfcRelNests explicit implementation
+		IIfcObjectDefinition IIfcRelNests.RelatingObject { get { return @RelatingObject; } }	
+		IEnumerable<IIfcObjectDefinition> IIfcRelNests.RelatedObjects { get { return @RelatedObjects; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelNests(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +69,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _relatingObject = v, _relatingObject, value,  "RelatingObject");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcObjectDefinition> @RelatedObjects 
@@ -58,9 +80,9 @@ namespace Xbim.Ifc4.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _relatedObjects;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

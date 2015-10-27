@@ -12,13 +12,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MeasureResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConversionBasedUnit
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConversionBasedUnit : IIfcNamedUnit, IfcResourceObjectSelect
+	{
+		IfcLabel @Name { get; }
+		IIfcMeasureWithUnit @ConversionFactor { get; }
+		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReference {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IFCCONVERSIONBASEDUNIT", 530)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConversionBasedUnit : IfcNamedUnit, IfcResourceObjectSelect, IInstantiableEntity, IEqualityComparer<@IfcConversionBasedUnit>, IEquatable<@IfcConversionBasedUnit>
+	public  partial class @IfcConversionBasedUnit : IfcNamedUnit, IInstantiableEntity, IIfcConversionBasedUnit, IEqualityComparer<@IfcConversionBasedUnit>, IEquatable<@IfcConversionBasedUnit>
 	{
+		#region IIfcConversionBasedUnit explicit implementation
+		IfcLabel IIfcConversionBasedUnit.Name { get { return @Name; } }	
+		IIfcMeasureWithUnit IIfcConversionBasedUnit.ConversionFactor { get { return @ConversionFactor; } }	
+	
+	 
+		IEnumerable<IIfcExternalReferenceRelationship> IIfcConversionBasedUnit.HasExternalReference {  get { return @HasExternalReference; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConversionBasedUnit(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +68,7 @@ namespace Xbim.Ifc4.MeasureResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMeasureWithUnit @ConversionFactor 
 		{ 
@@ -58,9 +82,9 @@ namespace Xbim.Ifc4.MeasureResource
 			{
 				SetValue( v =>  _conversionFactor = v, _conversionFactor, value,  "ConversionFactor");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

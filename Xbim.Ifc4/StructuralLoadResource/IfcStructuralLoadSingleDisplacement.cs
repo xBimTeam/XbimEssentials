@@ -12,13 +12,44 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralLoadResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralLoadSingleDisplacement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralLoadSingleDisplacement : IIfcStructuralLoadStatic
+	{
+		IfcLengthMeasure? @DisplacementX { get; }
+		IfcLengthMeasure? @DisplacementY { get; }
+		IfcLengthMeasure? @DisplacementZ { get; }
+		IfcPlaneAngleMeasure? @RotationalDisplacementRX { get; }
+		IfcPlaneAngleMeasure? @RotationalDisplacementRY { get; }
+		IfcPlaneAngleMeasure? @RotationalDisplacementRZ { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IFCSTRUCTURALLOADSINGLEDISPLACEMENT", 1029)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleDisplacement : IfcStructuralLoadStatic, IInstantiableEntity, IEqualityComparer<@IfcStructuralLoadSingleDisplacement>, IEquatable<@IfcStructuralLoadSingleDisplacement>
+	public  partial class @IfcStructuralLoadSingleDisplacement : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadSingleDisplacement, IEqualityComparer<@IfcStructuralLoadSingleDisplacement>, IEquatable<@IfcStructuralLoadSingleDisplacement>
 	{
+		#region IIfcStructuralLoadSingleDisplacement explicit implementation
+		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementX { get { return @DisplacementX; } }	
+		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementY { get { return @DisplacementY; } }	
+		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementZ { get { return @DisplacementZ; } }	
+		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRX { get { return @RotationalDisplacementRX; } }	
+		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRY { get { return @RotationalDisplacementRY; } }	
+		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRZ { get { return @RotationalDisplacementRZ; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadSingleDisplacement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +78,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _displacementX = v, _displacementX, value,  "DisplacementX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @DisplacementY 
 		{ 
@@ -62,8 +92,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _displacementY = v, _displacementY, value,  "DisplacementY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @DisplacementZ 
 		{ 
@@ -77,8 +106,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _displacementZ = v, _displacementZ, value,  "DisplacementZ");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPlaneAngleMeasure? @RotationalDisplacementRX 
 		{ 
@@ -92,8 +120,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _rotationalDisplacementRX = v, _rotationalDisplacementRX, value,  "RotationalDisplacementRX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPlaneAngleMeasure? @RotationalDisplacementRY 
 		{ 
@@ -107,8 +134,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _rotationalDisplacementRY = v, _rotationalDisplacementRY, value,  "RotationalDisplacementRY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPlaneAngleMeasure? @RotationalDisplacementRZ 
 		{ 
@@ -122,9 +148,9 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _rotationalDisplacementRZ = v, _rotationalDisplacementRZ, value,  "RotationalDisplacementRZ");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

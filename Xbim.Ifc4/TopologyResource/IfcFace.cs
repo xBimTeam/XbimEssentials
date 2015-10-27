@@ -12,13 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.TopologyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFace
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFace : IIfcTopologicalRepresentationItem
+	{
+		IEnumerable<IIfcFaceBound> @Bounds { get; }
+		IEnumerable<IIfcTextureMap> @HasTextureMaps {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IFCFACE", 642)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFace : IfcTopologicalRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcFace>, IEquatable<@IfcFace>
+	public  partial class @IfcFace : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFace, IEqualityComparer<@IfcFace>, IEquatable<@IfcFace>
 	{
+		#region IIfcFace explicit implementation
+		IEnumerable<IIfcFaceBound> IIfcFace.Bounds { get { return @Bounds; } }	
+	
+	 
+		IEnumerable<IIfcTextureMap> IIfcFace.HasTextureMaps {  get { return @HasTextureMaps; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFace(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,9 +62,9 @@ namespace Xbim.Ifc4.TopologyResource
 				((IPersistEntity)this).Activate(false);
 				return _bounds;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

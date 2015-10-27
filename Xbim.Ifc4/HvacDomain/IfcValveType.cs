@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.HvacDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcValveType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcValveType : IIfcFlowControllerType
+	{
+		IfcValveTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IFCVALVETYPE", 1128)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcValveType : IfcFlowControllerType, IInstantiableEntity, IEqualityComparer<@IfcValveType>, IEquatable<@IfcValveType>
+	public  partial class @IfcValveType : IfcFlowControllerType, IInstantiableEntity, IIfcValveType, IEqualityComparer<@IfcValveType>, IEquatable<@IfcValveType>
 	{
+		#region IIfcValveType explicit implementation
+		IfcValveTypeEnum IIfcValveType.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcValveType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.HvacDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

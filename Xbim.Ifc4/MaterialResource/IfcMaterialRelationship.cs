@@ -13,13 +13,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MaterialResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialRelationship : IIfcResourceLevelRelationship
+	{
+		IIfcMaterial @RelatingMaterial { get; }
+		IEnumerable<IIfcMaterial> @RelatedMaterials { get; }
+		IfcLabel? @Expression { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IFCMATERIALRELATIONSHIP", 758)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IEqualityComparer<@IfcMaterialRelationship>, IEquatable<@IfcMaterialRelationship>
+	public  partial class @IfcMaterialRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcMaterialRelationship, IEqualityComparer<@IfcMaterialRelationship>, IEquatable<@IfcMaterialRelationship>
 	{
+		#region IIfcMaterialRelationship explicit implementation
+		IIfcMaterial IIfcMaterialRelationship.RelatingMaterial { get { return @RelatingMaterial; } }	
+		IEnumerable<IIfcMaterial> IIfcMaterialRelationship.RelatedMaterials { get { return @RelatedMaterials; } }	
+		IfcLabel? IIfcMaterialRelationship.Expression { get { return @Expression; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialRelationship(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +72,7 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _relatingMaterial = v, _relatingMaterial, value,  "RelatingMaterial");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcMaterial> @RelatedMaterials 
@@ -59,8 +83,7 @@ namespace Xbim.Ifc4.MaterialResource
 				((IPersistEntity)this).Activate(false);
 				return _relatedMaterials;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Expression 
 		{ 
@@ -74,9 +97,9 @@ namespace Xbim.Ifc4.MaterialResource
 			{
 				SetValue( v =>  _expression = v, _expression, value,  "Expression");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

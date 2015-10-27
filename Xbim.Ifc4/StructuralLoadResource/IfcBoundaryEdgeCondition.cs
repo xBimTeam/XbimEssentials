@@ -12,13 +12,44 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralLoadResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBoundaryEdgeCondition
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBoundaryEdgeCondition : IIfcBoundaryCondition
+	{
+		IfcModulusOfTranslationalSubgradeReactionSelect @TranslationalStiffnessByLengthX { get; }
+		IfcModulusOfTranslationalSubgradeReactionSelect @TranslationalStiffnessByLengthY { get; }
+		IfcModulusOfTranslationalSubgradeReactionSelect @TranslationalStiffnessByLengthZ { get; }
+		IfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthX { get; }
+		IfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthY { get; }
+		IfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthZ { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IFCBOUNDARYEDGECONDITION", 439)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundaryEdgeCondition : IfcBoundaryCondition, IInstantiableEntity, IEqualityComparer<@IfcBoundaryEdgeCondition>, IEquatable<@IfcBoundaryEdgeCondition>
+	public  partial class @IfcBoundaryEdgeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryEdgeCondition, IEqualityComparer<@IfcBoundaryEdgeCondition>, IEquatable<@IfcBoundaryEdgeCondition>
 	{
+		#region IIfcBoundaryEdgeCondition explicit implementation
+		IfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthX { get { return @TranslationalStiffnessByLengthX; } }	
+		IfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthY { get { return @TranslationalStiffnessByLengthY; } }	
+		IfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthZ { get { return @TranslationalStiffnessByLengthZ; } }	
+		IfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthX { get { return @RotationalStiffnessByLengthX; } }	
+		IfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthY { get { return @RotationalStiffnessByLengthY; } }	
+		IfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthZ { get { return @RotationalStiffnessByLengthZ; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundaryEdgeCondition(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +78,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _translationalStiffnessByLengthX = v, _translationalStiffnessByLengthX, value,  "TranslationalStiffnessByLengthX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcModulusOfTranslationalSubgradeReactionSelect @TranslationalStiffnessByLengthY 
 		{ 
@@ -62,8 +92,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _translationalStiffnessByLengthY = v, _translationalStiffnessByLengthY, value,  "TranslationalStiffnessByLengthY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcModulusOfTranslationalSubgradeReactionSelect @TranslationalStiffnessByLengthZ 
 		{ 
@@ -77,8 +106,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _translationalStiffnessByLengthZ = v, _translationalStiffnessByLengthZ, value,  "TranslationalStiffnessByLengthZ");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthX 
 		{ 
@@ -92,8 +120,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _rotationalStiffnessByLengthX = v, _rotationalStiffnessByLengthX, value,  "RotationalStiffnessByLengthX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthY 
 		{ 
@@ -107,8 +134,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _rotationalStiffnessByLengthY = v, _rotationalStiffnessByLengthY, value,  "RotationalStiffnessByLengthY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthZ 
 		{ 
@@ -122,9 +148,9 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _rotationalStiffnessByLengthZ = v, _rotationalStiffnessByLengthZ, value,  "RotationalStiffnessByLengthZ");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

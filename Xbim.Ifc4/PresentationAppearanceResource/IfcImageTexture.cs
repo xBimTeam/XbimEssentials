@@ -14,13 +14,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcImageTexture
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcImageTexture : IIfcSurfaceTexture
+	{
+		IfcURIReference @URLReference { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCIMAGETEXTURE", 706)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcImageTexture : IfcSurfaceTexture, IInstantiableEntity, IEqualityComparer<@IfcImageTexture>, IEquatable<@IfcImageTexture>
+	public  partial class @IfcImageTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcImageTexture, IEqualityComparer<@IfcImageTexture>, IEquatable<@IfcImageTexture>
 	{
+		#region IIfcImageTexture explicit implementation
+		IfcURIReference IIfcImageTexture.URLReference { get { return @URLReference; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcImageTexture(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,9 +65,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				SetValue( v =>  _uRLReference = v, _uRLReference, value,  "URLReference");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

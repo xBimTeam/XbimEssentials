@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPlate
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPlate : IIfcBuildingElement
+	{
+		IfcPlateTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IFCPLATE", 813)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlate : IfcBuildingElement, IInstantiableEntity, IEqualityComparer<@IfcPlate>, IEquatable<@IfcPlate>
+	public  partial class @IfcPlate : IfcBuildingElement, IInstantiableEntity, IIfcPlate, IEqualityComparer<@IfcPlate>, IEquatable<@IfcPlate>
 	{
+		#region IIfcPlate explicit implementation
+		IfcPlateTypeEnum? IIfcPlate.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPlate(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

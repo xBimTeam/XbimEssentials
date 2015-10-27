@@ -12,13 +12,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcIndexedTriangleTextureMap
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcIndexedTriangleTextureMap : IIfcIndexedTextureMap
+	{
+		IEnumerable<IEnumerable<long>> @TexCoordIndex { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCINDEXEDTRIANGLETEXTUREMAP", 709)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIndexedTriangleTextureMap : IfcIndexedTextureMap, IInstantiableEntity, IEqualityComparer<@IfcIndexedTriangleTextureMap>, IEquatable<@IfcIndexedTriangleTextureMap>
+	public  partial class @IfcIndexedTriangleTextureMap : IfcIndexedTextureMap, IInstantiableEntity, IIfcIndexedTriangleTextureMap, IEqualityComparer<@IfcIndexedTriangleTextureMap>, IEquatable<@IfcIndexedTriangleTextureMap>
 	{
+		#region IIfcIndexedTriangleTextureMap explicit implementation
+		IEnumerable<IEnumerable<long>> IIfcIndexedTriangleTextureMap.TexCoordIndex { get { return @TexCoordIndex; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIndexedTriangleTextureMap(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,9 +60,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _texCoordIndex;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

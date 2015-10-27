@@ -15,13 +15,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedComponentElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBuildingElementPartType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBuildingElementPartType : IIfcElementComponentType
+	{
+		IfcBuildingElementPartTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedComponentElements
 {
 	[ExpressType("IFCBUILDINGELEMENTPARTTYPE", 450)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuildingElementPartType : IfcElementComponentType, IInstantiableEntity, IEqualityComparer<@IfcBuildingElementPartType>, IEquatable<@IfcBuildingElementPartType>
+	public  partial class @IfcBuildingElementPartType : IfcElementComponentType, IInstantiableEntity, IIfcBuildingElementPartType, IEqualityComparer<@IfcBuildingElementPartType>, IEquatable<@IfcBuildingElementPartType>
 	{
+		#region IIfcBuildingElementPartType explicit implementation
+		IfcBuildingElementPartTypeEnum IIfcBuildingElementPartType.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBuildingElementPartType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +66,9 @@ namespace Xbim.Ifc4.SharedComponentElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

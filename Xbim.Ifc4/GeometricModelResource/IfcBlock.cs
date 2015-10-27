@@ -13,13 +13,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometricModelResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBlock
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBlock : IIfcCsgPrimitive3D
+	{
+		IfcPositiveLengthMeasure @XLength { get; }
+		IfcPositiveLengthMeasure @YLength { get; }
+		IfcPositiveLengthMeasure @ZLength { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IFCBLOCK", 432)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBlock : IfcCsgPrimitive3D, IInstantiableEntity, IEqualityComparer<@IfcBlock>, IEquatable<@IfcBlock>
+	public  partial class @IfcBlock : IfcCsgPrimitive3D, IInstantiableEntity, IIfcBlock, IEqualityComparer<@IfcBlock>, IEquatable<@IfcBlock>
 	{
+		#region IIfcBlock explicit implementation
+		IfcPositiveLengthMeasure IIfcBlock.XLength { get { return @XLength; } }	
+		IfcPositiveLengthMeasure IIfcBlock.YLength { get { return @YLength; } }	
+		IfcPositiveLengthMeasure IIfcBlock.ZLength { get { return @ZLength; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBlock(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +70,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _xLength = v, _xLength, value,  "XLength");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @YLength 
 		{ 
@@ -60,8 +84,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _yLength = v, _yLength, value,  "YLength");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @ZLength 
 		{ 
@@ -75,9 +98,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				SetValue( v =>  _zLength = v, _zLength, value,  "ZLength");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

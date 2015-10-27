@@ -17,13 +17,44 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedFacilitiesElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcInventory
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcInventory : IIfcGroup
+	{
+		IfcInventoryTypeEnum? @PredefinedType { get; }
+		IfcActorSelect @Jurisdiction { get; }
+		IEnumerable<IIfcPerson> @ResponsiblePersons { get; }
+		IfcDate? @LastUpdateDate { get; }
+		IIfcCostValue @CurrentValue { get; }
+		IIfcCostValue @OriginalValue { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedFacilitiesElements
 {
 	[ExpressType("IFCINVENTORY", 712)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IEqualityComparer<@IfcInventory>, IEquatable<@IfcInventory>
+	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IIfcInventory, IEqualityComparer<@IfcInventory>, IEquatable<@IfcInventory>
 	{
+		#region IIfcInventory explicit implementation
+		IfcInventoryTypeEnum? IIfcInventory.PredefinedType { get { return @PredefinedType; } }	
+		IfcActorSelect IIfcInventory.Jurisdiction { get { return @Jurisdiction; } }	
+		IEnumerable<IIfcPerson> IIfcInventory.ResponsiblePersons { get { return @ResponsiblePersons; } }	
+		IfcDate? IIfcInventory.LastUpdateDate { get { return @LastUpdateDate; } }	
+		IIfcCostValue IIfcInventory.CurrentValue { get { return @CurrentValue; } }	
+		IIfcCostValue IIfcInventory.OriginalValue { get { return @OriginalValue; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcInventory(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -53,8 +84,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcActorSelect @Jurisdiction 
 		{ 
@@ -68,8 +98,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			{
 				SetValue( v =>  _jurisdiction = v, _jurisdiction, value,  "Jurisdiction");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcPerson> @ResponsiblePersons 
 		{ 
@@ -79,8 +108,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				((IPersistEntity)this).Activate(false);
 				return _responsiblePersons;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDate? @LastUpdateDate 
 		{ 
@@ -94,8 +122,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			{
 				SetValue( v =>  _lastUpdateDate = v, _lastUpdateDate, value,  "LastUpdateDate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCostValue @CurrentValue 
 		{ 
@@ -109,8 +136,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			{
 				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCostValue @OriginalValue 
 		{ 
@@ -124,9 +150,9 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			{
 				SetValue( v =>  _originalValue = v, _originalValue, value,  "OriginalValue");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

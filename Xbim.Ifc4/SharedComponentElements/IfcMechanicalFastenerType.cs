@@ -15,13 +15,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedComponentElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMechanicalFastenerType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMechanicalFastenerType : IIfcElementComponentType
+	{
+		IfcMechanicalFastenerTypeEnum @PredefinedType { get; }
+		IfcPositiveLengthMeasure? @NominalDiameter { get; }
+		IfcPositiveLengthMeasure? @NominalLength { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedComponentElements
 {
 	[ExpressType("IFCMECHANICALFASTENERTYPE", 762)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalFastenerType : IfcElementComponentType, IInstantiableEntity, IEqualityComparer<@IfcMechanicalFastenerType>, IEquatable<@IfcMechanicalFastenerType>
+	public  partial class @IfcMechanicalFastenerType : IfcElementComponentType, IInstantiableEntity, IIfcMechanicalFastenerType, IEqualityComparer<@IfcMechanicalFastenerType>, IEquatable<@IfcMechanicalFastenerType>
 	{
+		#region IIfcMechanicalFastenerType explicit implementation
+		IfcMechanicalFastenerTypeEnum IIfcMechanicalFastenerType.PredefinedType { get { return @PredefinedType; } }	
+		IfcPositiveLengthMeasure? IIfcMechanicalFastenerType.NominalDiameter { get { return @NominalDiameter; } }	
+		IfcPositiveLengthMeasure? IIfcMechanicalFastenerType.NominalLength { get { return @NominalLength; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMechanicalFastenerType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +72,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @NominalDiameter 
 		{ 
@@ -62,8 +86,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 			{
 				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @NominalLength 
 		{ 
@@ -77,9 +100,9 @@ namespace Xbim.Ifc4.SharedComponentElements
 			{
 				SetValue( v =>  _nominalLength = v, _nominalLength, value,  "NominalLength");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

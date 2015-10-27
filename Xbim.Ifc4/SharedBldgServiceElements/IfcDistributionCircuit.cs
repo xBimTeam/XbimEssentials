@@ -13,17 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgServiceElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDistributionCircuit
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDistributionCircuit : IIfcDistributionSystem
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IFCDISTRIBUTIONCIRCUIT", 569)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionCircuit : IfcDistributionSystem, IInstantiableEntity, IEqualityComparer<@IfcDistributionCircuit>, IEquatable<@IfcDistributionCircuit>
+	public  partial class @IfcDistributionCircuit : IfcDistributionSystem, IInstantiableEntity, IIfcDistributionCircuit, IEqualityComparer<@IfcDistributionCircuit>, IEquatable<@IfcDistributionCircuit>
 	{
+		#region IIfcDistributionCircuit explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDistributionCircuit(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.BuildingControlsDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcUnitaryControlElementType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcUnitaryControlElementType : IIfcDistributionControlElementType
+	{
+		IfcUnitaryControlElementTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	[ExpressType("IFCUNITARYCONTROLELEMENTTYPE", 1124)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcUnitaryControlElementType : IfcDistributionControlElementType, IInstantiableEntity, IEqualityComparer<@IfcUnitaryControlElementType>, IEquatable<@IfcUnitaryControlElementType>
+	public  partial class @IfcUnitaryControlElementType : IfcDistributionControlElementType, IInstantiableEntity, IIfcUnitaryControlElementType, IEqualityComparer<@IfcUnitaryControlElementType>, IEquatable<@IfcUnitaryControlElementType>
 	{
+		#region IIfcUnitaryControlElementType explicit implementation
+		IfcUnitaryControlElementTypeEnum IIfcUnitaryControlElementType.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcUnitaryControlElementType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

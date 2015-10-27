@@ -12,17 +12,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationAppearanceResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDraughtingPreDefinedColour
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDraughtingPreDefinedColour : IIfcPreDefinedColour
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IFCDRAUGHTINGPREDEFINEDCOLOUR", 587)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingPreDefinedColour : IfcPreDefinedColour, IInstantiableEntity, IEqualityComparer<@IfcDraughtingPreDefinedColour>, IEquatable<@IfcDraughtingPreDefinedColour>
+	public  partial class @IfcDraughtingPreDefinedColour : IfcPreDefinedColour, IInstantiableEntity, IIfcDraughtingPreDefinedColour, IEqualityComparer<@IfcDraughtingPreDefinedColour>, IEquatable<@IfcDraughtingPreDefinedColour>
 	{
+		#region IIfcDraughtingPreDefinedColour explicit implementation
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDraughtingPreDefinedColour(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

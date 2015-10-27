@@ -14,13 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelServicesBuildings
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelServicesBuildings : IIfcRelConnects
+	{
+		IIfcSystem @RelatingSystem { get; }
+		IEnumerable<IIfcSpatialElement> @RelatedBuildings { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCRELSERVICESBUILDINGS", 943)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelServicesBuildings : IfcRelConnects, IInstantiableEntity, IEqualityComparer<@IfcRelServicesBuildings>, IEquatable<@IfcRelServicesBuildings>
+	public  partial class @IfcRelServicesBuildings : IfcRelConnects, IInstantiableEntity, IIfcRelServicesBuildings, IEqualityComparer<@IfcRelServicesBuildings>, IEquatable<@IfcRelServicesBuildings>
 	{
+		#region IIfcRelServicesBuildings explicit implementation
+		IIfcSystem IIfcRelServicesBuildings.RelatingSystem { get { return @RelatingSystem; } }	
+		IEnumerable<IIfcSpatialElement> IIfcRelServicesBuildings.RelatedBuildings { get { return @RelatedBuildings; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelServicesBuildings(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +70,7 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _relatingSystem = v, _relatingSystem, value,  "RelatingSystem");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcSpatialElement> @RelatedBuildings 
@@ -59,9 +81,9 @@ namespace Xbim.Ifc4.ProductExtension
 				((IPersistEntity)this).Activate(false);
 				return _relatedBuildings;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

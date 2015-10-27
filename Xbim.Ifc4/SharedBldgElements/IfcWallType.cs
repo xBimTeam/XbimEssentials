@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.SharedBldgElements;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcWallType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcWallType : IIfcBuildingElementType
+	{
+		IfcWallTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IFCWALLTYPE", 1141)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWallType : IfcBuildingElementType, IInstantiableEntity, IEqualityComparer<@IfcWallType>, IEquatable<@IfcWallType>
+	public  partial class @IfcWallType : IfcBuildingElementType, IInstantiableEntity, IIfcWallType, IEqualityComparer<@IfcWallType>, IEquatable<@IfcWallType>
 	{
+		#region IIfcWallType explicit implementation
+		IfcWallTypeEnum IIfcWallType.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWallType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -14,13 +14,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.GeometryResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRepresentationItem
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRepresentationItem : IPersistEntity, IfcLayeredItem
+	{
+		IEnumerable<IIfcPresentationLayerAssignment> @LayerAssignment {  get; }
+		IEnumerable<IIfcStyledItem> @StyledByItem {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IFCREPRESENTATIONITEM", 952)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRepresentationItem : IPersistEntity, INotifyPropertyChanged, IfcLayeredItem, IEqualityComparer<@IfcRepresentationItem>, IEquatable<@IfcRepresentationItem>
+	public abstract partial class @IfcRepresentationItem : IPersistEntity, INotifyPropertyChanged, IIfcRepresentationItem, IEqualityComparer<@IfcRepresentationItem>, IEquatable<@IfcRepresentationItem>
 	{
+		#region IIfcRepresentationItem explicit implementation
+	
+	 
+		IEnumerable<IIfcPresentationLayerAssignment> IIfcRepresentationItem.LayerAssignment {  get { return @LayerAssignment; } }
+		IEnumerable<IIfcStyledItem> IIfcRepresentationItem.StyledByItem {  get { return @StyledByItem; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -81,6 +104,7 @@ namespace Xbim.Ifc4.GeometryResource
 		internal IfcRepresentationItem(IModel model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

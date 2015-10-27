@@ -14,14 +14,49 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.UtilityResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcOwnerHistory
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcOwnerHistory : IPersistEntity
+	{
+		IIfcPersonAndOrganization @OwningUser { get; }
+		IIfcApplication @OwningApplication { get; }
+		IfcStateEnum? @State { get; }
+		IfcChangeActionEnum? @ChangeAction { get; }
+		IfcTimeStamp? @LastModifiedDate { get; }
+		IIfcPersonAndOrganization @LastModifyingUser { get; }
+		IIfcApplication @LastModifyingApplication { get; }
+		IfcTimeStamp @CreationDate { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.UtilityResource
 {
 	[IndexedClass]
 	[ExpressType("IFCOWNERHISTORY", 790)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOwnerHistory : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcOwnerHistory>, IEquatable<@IfcOwnerHistory>
+	public  partial class @IfcOwnerHistory : INotifyPropertyChanged, IInstantiableEntity, IIfcOwnerHistory, IEqualityComparer<@IfcOwnerHistory>, IEquatable<@IfcOwnerHistory>
 	{
+		#region IIfcOwnerHistory explicit implementation
+		IIfcPersonAndOrganization IIfcOwnerHistory.OwningUser { get { return @OwningUser; } }	
+		IIfcApplication IIfcOwnerHistory.OwningApplication { get { return @OwningApplication; } }	
+		IfcStateEnum? IIfcOwnerHistory.State { get { return @State; } }	
+		IfcChangeActionEnum? IIfcOwnerHistory.ChangeAction { get { return @ChangeAction; } }	
+		IfcTimeStamp? IIfcOwnerHistory.LastModifiedDate { get { return @LastModifiedDate; } }	
+		IIfcPersonAndOrganization IIfcOwnerHistory.LastModifyingUser { get { return @LastModifyingUser; } }	
+		IIfcApplication IIfcOwnerHistory.LastModifyingApplication { get { return @LastModifyingApplication; } }	
+		IfcTimeStamp IIfcOwnerHistory.CreationDate { get { return @CreationDate; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -108,8 +143,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _owningUser = v, _owningUser, value,  "OwningUser");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcApplication @OwningApplication 
 		{ 
@@ -123,8 +157,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _owningApplication = v, _owningApplication, value,  "OwningApplication");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcStateEnum? @State 
 		{ 
@@ -138,8 +171,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _state = v, _state, value,  "State");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcChangeActionEnum? @ChangeAction 
 		{ 
@@ -153,8 +185,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _changeAction = v, _changeAction, value,  "ChangeAction");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcTimeStamp? @LastModifiedDate 
 		{ 
@@ -168,8 +199,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _lastModifiedDate = v, _lastModifiedDate, value,  "LastModifiedDate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcPersonAndOrganization @LastModifyingUser 
 		{ 
@@ -183,8 +213,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _lastModifyingUser = v, _lastModifyingUser, value,  "LastModifyingUser");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcApplication @LastModifyingApplication 
 		{ 
@@ -198,8 +227,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _lastModifyingApplication = v, _lastModifyingApplication, value,  "LastModifyingApplication");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcTimeStamp @CreationDate 
 		{ 
@@ -213,9 +241,9 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _creationDate = v, _creationDate, value,  "CreationDate");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

@@ -15,13 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.Kernel;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProxy
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProxy : IIfcProduct
+	{
+		IfcObjectTypeEnum @ProxyType { get; }
+		IfcLabel? @Tag { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IFCPROXY", 868)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProxy : IfcProduct, IInstantiableEntity, IEqualityComparer<@IfcProxy>, IEquatable<@IfcProxy>
+	public  partial class @IfcProxy : IfcProduct, IInstantiableEntity, IIfcProxy, IEqualityComparer<@IfcProxy>, IEquatable<@IfcProxy>
 	{
+		#region IIfcProxy explicit implementation
+		IfcObjectTypeEnum IIfcProxy.ProxyType { get { return @ProxyType; } }	
+		IfcLabel? IIfcProxy.Tag { get { return @Tag; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProxy(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +69,7 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _proxyType = v, _proxyType, value,  "ProxyType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Tag 
 		{ 
@@ -61,9 +83,9 @@ namespace Xbim.Ifc4.Kernel
 			{
 				SetValue( v =>  _tag = v, _tag, value,  "Tag");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -12,13 +12,44 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralLoadResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralLoadSingleForce
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralLoadSingleForce : IIfcStructuralLoadStatic
+	{
+		IfcForceMeasure? @ForceX { get; }
+		IfcForceMeasure? @ForceY { get; }
+		IfcForceMeasure? @ForceZ { get; }
+		IfcTorqueMeasure? @MomentX { get; }
+		IfcTorqueMeasure? @MomentY { get; }
+		IfcTorqueMeasure? @MomentZ { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IFCSTRUCTURALLOADSINGLEFORCE", 1031)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleForce : IfcStructuralLoadStatic, IInstantiableEntity, IEqualityComparer<@IfcStructuralLoadSingleForce>, IEquatable<@IfcStructuralLoadSingleForce>
+	public  partial class @IfcStructuralLoadSingleForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadSingleForce, IEqualityComparer<@IfcStructuralLoadSingleForce>, IEquatable<@IfcStructuralLoadSingleForce>
 	{
+		#region IIfcStructuralLoadSingleForce explicit implementation
+		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceX { get { return @ForceX; } }	
+		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceY { get { return @ForceY; } }	
+		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceZ { get { return @ForceZ; } }	
+		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentX { get { return @MomentX; } }	
+		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentY { get { return @MomentY; } }	
+		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentZ { get { return @MomentZ; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadSingleForce(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +78,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _forceX = v, _forceX, value,  "ForceX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcForceMeasure? @ForceY 
 		{ 
@@ -62,8 +92,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _forceY = v, _forceY, value,  "ForceY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcForceMeasure? @ForceZ 
 		{ 
@@ -77,8 +106,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _forceZ = v, _forceZ, value,  "ForceZ");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcTorqueMeasure? @MomentX 
 		{ 
@@ -92,8 +120,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _momentX = v, _momentX, value,  "MomentX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcTorqueMeasure? @MomentY 
 		{ 
@@ -107,8 +134,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _momentY = v, _momentY, value,  "MomentY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcTorqueMeasure? @MomentZ 
 		{ 
@@ -122,9 +148,9 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			{
 				SetValue( v =>  _momentZ = v, _momentZ, value,  "MomentZ");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

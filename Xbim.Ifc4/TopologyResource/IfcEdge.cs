@@ -11,13 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.TopologyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcEdge
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcEdge : IIfcTopologicalRepresentationItem
+	{
+		IIfcVertex @EdgeStart { get; }
+		IIfcVertex @EdgeEnd { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IFCEDGE", 595)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEdge : IfcTopologicalRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcEdge>, IEquatable<@IfcEdge>
+	public  partial class @IfcEdge : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcEdge, IEqualityComparer<@IfcEdge>, IEquatable<@IfcEdge>
 	{
+		#region IIfcEdge explicit implementation
+		IIfcVertex IIfcEdge.EdgeStart { get { return @EdgeStart; } }	
+		IIfcVertex IIfcEdge.EdgeEnd { get { return @EdgeEnd; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEdge(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +65,7 @@ namespace Xbim.Ifc4.TopologyResource
 			{
 				SetValue( v =>  _edgeStart = v, _edgeStart, value,  "EdgeStart");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public virtual IfcVertex @EdgeEnd 
 		{ 
@@ -57,9 +79,9 @@ namespace Xbim.Ifc4.TopologyResource
 			{
 				SetValue( v =>  _edgeEnd = v, _edgeEnd, value,  "EdgeEnd");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

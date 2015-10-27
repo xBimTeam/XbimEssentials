@@ -13,13 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.TopologyResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFaceSurface
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFaceSurface : IIfcFace, IfcSurfaceOrFaceSurface
+	{
+		IIfcSurface @FaceSurface { get; }
+		bool @SameSense { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IFCFACESURFACE", 646)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFaceSurface : IfcFace, IfcSurfaceOrFaceSurface, IInstantiableEntity, IEqualityComparer<@IfcFaceSurface>, IEquatable<@IfcFaceSurface>
+	public  partial class @IfcFaceSurface : IfcFace, IInstantiableEntity, IIfcFaceSurface, IEqualityComparer<@IfcFaceSurface>, IEquatable<@IfcFaceSurface>
 	{
+		#region IIfcFaceSurface explicit implementation
+		IIfcSurface IIfcFaceSurface.FaceSurface { get { return @FaceSurface; } }	
+		bool IIfcFaceSurface.SameSense { get { return @SameSense; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFaceSurface(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +67,7 @@ namespace Xbim.Ifc4.TopologyResource
 			{
 				SetValue( v =>  _faceSurface = v, _faceSurface, value,  "FaceSurface");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @SameSense 
 		{ 
@@ -59,9 +81,9 @@ namespace Xbim.Ifc4.TopologyResource
 			{
 				SetValue( v =>  _sameSense = v, _sameSense, value,  "SameSense");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

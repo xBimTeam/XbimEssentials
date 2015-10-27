@@ -13,13 +13,44 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProfileResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcReinforcementBarProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcReinforcementBarProperties : IIfcPreDefinedProperties
+	{
+		IfcAreaMeasure @TotalCrossSectionArea { get; }
+		IfcLabel @SteelGrade { get; }
+		IfcReinforcingBarSurfaceEnum? @BarSurface { get; }
+		IfcLengthMeasure? @EffectiveDepth { get; }
+		IfcPositiveLengthMeasure? @NominalBarDiameter { get; }
+		IfcCountMeasure? @BarCount { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IFCREINFORCEMENTBARPROPERTIES", 893)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcementBarProperties : IfcPreDefinedProperties, IInstantiableEntity, IEqualityComparer<@IfcReinforcementBarProperties>, IEquatable<@IfcReinforcementBarProperties>
+	public  partial class @IfcReinforcementBarProperties : IfcPreDefinedProperties, IInstantiableEntity, IIfcReinforcementBarProperties, IEqualityComparer<@IfcReinforcementBarProperties>, IEquatable<@IfcReinforcementBarProperties>
 	{
+		#region IIfcReinforcementBarProperties explicit implementation
+		IfcAreaMeasure IIfcReinforcementBarProperties.TotalCrossSectionArea { get { return @TotalCrossSectionArea; } }	
+		IfcLabel IIfcReinforcementBarProperties.SteelGrade { get { return @SteelGrade; } }	
+		IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface { get { return @BarSurface; } }	
+		IfcLengthMeasure? IIfcReinforcementBarProperties.EffectiveDepth { get { return @EffectiveDepth; } }	
+		IfcPositiveLengthMeasure? IIfcReinforcementBarProperties.NominalBarDiameter { get { return @NominalBarDiameter; } }	
+		IfcCountMeasure? IIfcReinforcementBarProperties.BarCount { get { return @BarCount; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcementBarProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +79,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _totalCrossSectionArea = v, _totalCrossSectionArea, value,  "TotalCrossSectionArea");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel @SteelGrade 
 		{ 
@@ -63,8 +93,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _steelGrade = v, _steelGrade, value,  "SteelGrade");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcReinforcingBarSurfaceEnum? @BarSurface 
 		{ 
@@ -78,8 +107,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _barSurface = v, _barSurface, value,  "BarSurface");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @EffectiveDepth 
 		{ 
@@ -93,8 +121,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _effectiveDepth = v, _effectiveDepth, value,  "EffectiveDepth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @NominalBarDiameter 
 		{ 
@@ -108,8 +135,7 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _nominalBarDiameter = v, _nominalBarDiameter, value,  "NominalBarDiameter");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcCountMeasure? @BarCount 
 		{ 
@@ -123,9 +149,9 @@ namespace Xbim.Ifc4.ProfileResource
 			{
 				SetValue( v =>  _barCount = v, _barCount, value,  "BarCount");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

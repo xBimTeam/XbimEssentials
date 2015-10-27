@@ -15,14 +15,39 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.UtilityResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTable
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTable : IPersistEntity, IfcMetricValueSelect, IfcObjectReferenceSelect
+	{
+		IfcLabel? @Name { get; }
+		IEnumerable<IIfcTableRow> @Rows { get; }
+		IEnumerable<IIfcTableColumn> @Columns { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.UtilityResource
 {
 	[IndexedClass]
 	[ExpressType("IFCTABLE", 1076)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTable : INotifyPropertyChanged, IfcMetricValueSelect, IfcObjectReferenceSelect, IInstantiableEntity, IEqualityComparer<@IfcTable>, IEquatable<@IfcTable>
+	public  partial class @IfcTable : INotifyPropertyChanged, IInstantiableEntity, IIfcTable, IEqualityComparer<@IfcTable>, IEquatable<@IfcTable>
 	{
+		#region IIfcTable explicit implementation
+		IfcLabel? IIfcTable.Name { get { return @Name; } }	
+		IEnumerable<IIfcTableRow> IIfcTable.Rows { get { return @Rows; } }	
+		IEnumerable<IIfcTableColumn> IIfcTable.Columns { get { return @Columns; } }	
+	
+	 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -106,8 +131,7 @@ namespace Xbim.Ifc4.UtilityResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcTableRow> @Rows 
@@ -118,8 +142,7 @@ namespace Xbim.Ifc4.UtilityResource
 				((IPersistEntity)this).Activate(false);
 				return _rows;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcTableColumn> @Columns 
 		{ 
@@ -129,9 +152,9 @@ namespace Xbim.Ifc4.UtilityResource
 				((IPersistEntity)this).Activate(false);
 				return _columns;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

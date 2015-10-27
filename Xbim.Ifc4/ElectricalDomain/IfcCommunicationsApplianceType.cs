@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ElectricalDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCommunicationsApplianceType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCommunicationsApplianceType : IIfcFlowTerminalType
+	{
+		IfcCommunicationsApplianceTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IFCCOMMUNICATIONSAPPLIANCETYPE", 497)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCommunicationsApplianceType : IfcFlowTerminalType, IInstantiableEntity, IEqualityComparer<@IfcCommunicationsApplianceType>, IEquatable<@IfcCommunicationsApplianceType>
+	public  partial class @IfcCommunicationsApplianceType : IfcFlowTerminalType, IInstantiableEntity, IIfcCommunicationsApplianceType, IEqualityComparer<@IfcCommunicationsApplianceType>, IEquatable<@IfcCommunicationsApplianceType>
 	{
+		#region IIfcCommunicationsApplianceType explicit implementation
+		IfcCommunicationsApplianceTypeEnum IIfcCommunicationsApplianceType.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCommunicationsApplianceType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.ElectricalDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

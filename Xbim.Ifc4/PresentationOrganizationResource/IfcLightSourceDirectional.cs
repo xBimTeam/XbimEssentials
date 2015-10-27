@@ -14,13 +14,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.PresentationOrganizationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLightSourceDirectional
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLightSourceDirectional : IIfcLightSource
+	{
+		IIfcDirection @Orientation { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[ExpressType("IFCLIGHTSOURCEDIRECTIONAL", 731)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceDirectional : IfcLightSource, IInstantiableEntity, IEqualityComparer<@IfcLightSourceDirectional>, IEquatable<@IfcLightSourceDirectional>
+	public  partial class @IfcLightSourceDirectional : IfcLightSource, IInstantiableEntity, IIfcLightSourceDirectional, IEqualityComparer<@IfcLightSourceDirectional>, IEquatable<@IfcLightSourceDirectional>
 	{
+		#region IIfcLightSourceDirectional explicit implementation
+		IIfcDirection IIfcLightSourceDirectional.Orientation { get { return @Orientation; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightSourceDirectional(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,9 +65,9 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			{
 				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

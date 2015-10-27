@@ -13,13 +13,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcElementType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcElementType : IIfcTypeProduct
+	{
+		IfcLabel? @ElementType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IFCELEMENTTYPE", 616)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcElementType : IfcTypeProduct, IEqualityComparer<@IfcElementType>, IEquatable<@IfcElementType>
+	public abstract partial class @IfcElementType : IfcTypeProduct, IIfcElementType, IEqualityComparer<@IfcElementType>, IEquatable<@IfcElementType>
 	{
+		#region IIfcElementType explicit implementation
+		IfcLabel? IIfcElementType.ElementType { get { return @ElementType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElementType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,9 +64,9 @@ namespace Xbim.Ifc4.ProductExtension
 			{
 				SetValue( v =>  _elementType = v, _elementType, value,  "ElementType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

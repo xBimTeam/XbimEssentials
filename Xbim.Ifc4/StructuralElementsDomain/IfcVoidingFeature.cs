@@ -16,13 +16,34 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.StructuralElementsDomain;
+
+namespace Xbim.Ifc4.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcVoidingFeature
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcVoidingFeature : IIfcFeatureElementSubtraction
+	{
+		IfcVoidingFeatureTypeEnum? @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IFCVOIDINGFEATURE", 1137)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVoidingFeature : IfcFeatureElementSubtraction, IInstantiableEntity, IEqualityComparer<@IfcVoidingFeature>, IEquatable<@IfcVoidingFeature>
+	public  partial class @IfcVoidingFeature : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcVoidingFeature, IEqualityComparer<@IfcVoidingFeature>, IEquatable<@IfcVoidingFeature>
 	{
+		#region IIfcVoidingFeature explicit implementation
+		IfcVoidingFeatureTypeEnum? IIfcVoidingFeature.PredefinedType { get { return @PredefinedType; } }	
+	
+	 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcVoidingFeature(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +67,9 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
