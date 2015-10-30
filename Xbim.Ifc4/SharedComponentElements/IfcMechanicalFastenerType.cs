@@ -43,8 +43,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 		IfcMechanicalFastenerTypeEnum IIfcMechanicalFastenerType.PredefinedType { get { return @PredefinedType; } }	
 		IfcPositiveLengthMeasure? IIfcMechanicalFastenerType.NominalDiameter { get { return @NominalDiameter; } }	
 		IfcPositiveLengthMeasure? IIfcMechanicalFastenerType.NominalLength { get { return @NominalLength; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

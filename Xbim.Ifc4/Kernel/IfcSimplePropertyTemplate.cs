@@ -52,8 +52,7 @@ namespace Xbim.Ifc4.Kernel
 		IfcUnit IIfcSimplePropertyTemplate.SecondaryUnit { get { return @SecondaryUnit; } }	
 		IfcLabel? IIfcSimplePropertyTemplate.Expression { get { return @Expression; } }	
 		IfcStateEnum? IIfcSimplePropertyTemplate.AccessState { get { return @AccessState; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

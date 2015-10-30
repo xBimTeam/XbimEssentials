@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		#region IIfcFurnitureType explicit implementation
 		IfcAssemblyPlaceEnum IIfcFurnitureType.AssemblyPlace { get { return @AssemblyPlace; } }	
 		IfcFurnitureTypeEnum? IIfcFurnitureType.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

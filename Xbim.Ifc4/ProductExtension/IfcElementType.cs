@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcElementType explicit implementation
 		IfcLabel? IIfcElementType.ElementType { get { return @ElementType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

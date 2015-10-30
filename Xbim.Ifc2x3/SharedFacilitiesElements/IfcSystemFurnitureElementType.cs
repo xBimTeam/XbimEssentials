@@ -16,17 +16,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedFacilitiesElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSystemFurnitureElementType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSystemFurnitureElementType : IIfcFurnishingElementType
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IFCSYSTEMFURNITUREELEMENTTYPE", 422)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSystemFurnitureElementType : IfcFurnishingElementType, IInstantiableEntity, IEqualityComparer<@IfcSystemFurnitureElementType>, IEquatable<@IfcSystemFurnitureElementType>
+	public  partial class @IfcSystemFurnitureElementType : IfcFurnishingElementType, IInstantiableEntity, IIfcSystemFurnitureElementType, IEqualityComparer<@IfcSystemFurnitureElementType>, IEquatable<@IfcSystemFurnitureElementType>
 	{
+		#region IIfcSystemFurnitureElementType explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSystemFurnitureElementType(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

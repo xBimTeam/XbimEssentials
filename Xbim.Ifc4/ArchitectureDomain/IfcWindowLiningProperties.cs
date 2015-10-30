@@ -61,8 +61,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		IfcLengthMeasure? IIfcWindowLiningProperties.LiningOffset { get { return @LiningOffset; } }	
 		IfcLengthMeasure? IIfcWindowLiningProperties.LiningToPanelOffsetX { get { return @LiningToPanelOffsetX; } }	
 		IfcLengthMeasure? IIfcWindowLiningProperties.LiningToPanelOffsetY { get { return @LiningToPanelOffsetY; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

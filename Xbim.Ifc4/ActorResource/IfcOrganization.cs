@@ -51,8 +51,7 @@ namespace Xbim.Ifc4.ActorResource
 		IfcText? IIfcOrganization.Description { get { return @Description; } }	
 		IEnumerable<IIfcActorRole> IIfcOrganization.Roles { get { return @Roles; } }	
 		IEnumerable<IIfcAddress> IIfcOrganization.Addresses { get { return @Addresses; } }	
-	
-	 
+		 
 		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.IsRelatedBy {  get { return @IsRelatedBy; } }
 		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.Relates {  get { return @Relates; } }
 		IEnumerable<IIfcPersonAndOrganization> IIfcOrganization.Engages {  get { return @Engages; } }

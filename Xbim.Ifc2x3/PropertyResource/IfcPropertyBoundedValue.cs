@@ -12,13 +12,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertyBoundedValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertyBoundedValue : IIfcSimpleProperty
+	{
+		IfcValue @UpperBoundValue { get; }
+		IfcValue @LowerBoundValue { get; }
+		IfcUnit @Unit { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IFCPROPERTYBOUNDEDVALUE", 3)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyBoundedValue : IfcSimpleProperty, IInstantiableEntity, IEqualityComparer<@IfcPropertyBoundedValue>, IEquatable<@IfcPropertyBoundedValue>
+	public  partial class @IfcPropertyBoundedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyBoundedValue, IEqualityComparer<@IfcPropertyBoundedValue>, IEquatable<@IfcPropertyBoundedValue>
 	{
+		#region IIfcPropertyBoundedValue explicit implementation
+		IfcValue IIfcPropertyBoundedValue.UpperBoundValue { get { return @UpperBoundValue; } }	
+		IfcValue IIfcPropertyBoundedValue.LowerBoundValue { get { return @LowerBoundValue; } }	
+		IfcUnit IIfcPropertyBoundedValue.Unit { get { return @Unit; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyBoundedValue(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +68,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				SetValue( v =>  _upperBoundValue = v, _upperBoundValue, value,  "UpperBoundValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcValue @LowerBoundValue 
 		{ 
@@ -59,8 +82,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				SetValue( v =>  _lowerBoundValue = v, _lowerBoundValue, value,  "LowerBoundValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcUnit @Unit 
 		{ 
@@ -74,9 +96,9 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				SetValue( v =>  _unit = v, _unit, value,  "Unit");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

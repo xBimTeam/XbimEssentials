@@ -15,13 +15,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDoorPanelProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDoorPanelProperties : IIfcPropertySetDefinition
+	{
+		IfcPositiveLengthMeasure? @PanelDepth { get; }
+		IfcDoorPanelOperationEnum @PanelOperation { get; }
+		IfcNormalisedRatioMeasure? @PanelWidth { get; }
+		IfcDoorPanelPositionEnum @PanelPosition { get; }
+		IIfcShapeAspect @ShapeAspectStyle { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IFCDOORPANELPROPERTIES", 602)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorPanelProperties : IfcPropertySetDefinition, IInstantiableEntity, IEqualityComparer<@IfcDoorPanelProperties>, IEquatable<@IfcDoorPanelProperties>
+	public  partial class @IfcDoorPanelProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcDoorPanelProperties, IEqualityComparer<@IfcDoorPanelProperties>, IEquatable<@IfcDoorPanelProperties>
 	{
+		#region IIfcDoorPanelProperties explicit implementation
+		IfcPositiveLengthMeasure? IIfcDoorPanelProperties.PanelDepth { get { return @PanelDepth; } }	
+		IfcDoorPanelOperationEnum IIfcDoorPanelProperties.PanelOperation { get { return @PanelOperation; } }	
+		IfcNormalisedRatioMeasure? IIfcDoorPanelProperties.PanelWidth { get { return @PanelWidth; } }	
+		IfcDoorPanelPositionEnum IIfcDoorPanelProperties.PanelPosition { get { return @PanelPosition; } }	
+		IIfcShapeAspect IIfcDoorPanelProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDoorPanelProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -49,8 +77,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _panelDepth = v, _panelDepth, value,  "PanelDepth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDoorPanelOperationEnum @PanelOperation 
 		{ 
@@ -64,8 +91,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _panelOperation = v, _panelOperation, value,  "PanelOperation");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure? @PanelWidth 
 		{ 
@@ -79,8 +105,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _panelWidth = v, _panelWidth, value,  "PanelWidth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDoorPanelPositionEnum @PanelPosition 
 		{ 
@@ -94,8 +119,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _panelPosition = v, _panelPosition, value,  "PanelPosition");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcShapeAspect @ShapeAspectStyle 
 		{ 
@@ -109,9 +133,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

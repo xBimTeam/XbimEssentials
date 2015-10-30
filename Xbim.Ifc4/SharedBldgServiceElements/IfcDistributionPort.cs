@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 		IfcFlowDirectionEnum? IIfcDistributionPort.FlowDirection { get { return @FlowDirection; } }	
 		IfcDistributionPortTypeEnum? IIfcDistributionPort.PredefinedType { get { return @PredefinedType; } }	
 		IfcDistributionSystemEnum? IIfcDistributionPort.SystemType { get { return @SystemType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

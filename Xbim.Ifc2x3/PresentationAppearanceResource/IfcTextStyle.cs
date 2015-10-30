@@ -13,13 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextStyle
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
+	{
+		IfcCharacterStyleSelect @TextCharacterAppearance { get; }
+		IfcTextStyleSelect @TextStyle { get; }
+		IfcTextFontSelect @TextFontStyle { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCTEXTSTYLE", 427)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyle : IfcPresentationStyle, IfcPresentationStyleSelect, IInstantiableEntity, IEqualityComparer<@IfcTextStyle>, IEquatable<@IfcTextStyle>
+	public  partial class @IfcTextStyle : IfcPresentationStyle, IInstantiableEntity, IIfcTextStyle, IEqualityComparer<@IfcTextStyle>, IEquatable<@IfcTextStyle>
 	{
+		#region IIfcTextStyle explicit implementation
+		IfcCharacterStyleSelect IIfcTextStyle.TextCharacterAppearance { get { return @TextCharacterAppearance; } }	
+		IfcTextStyleSelect IIfcTextStyle.TextStyle { get { return @TextStyle; } }	
+		IfcTextFontSelect IIfcTextStyle.TextFontStyle { get { return @TextFontStyle; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextStyle(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +69,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _textCharacterAppearance = v, _textCharacterAppearance, value,  "TextCharacterAppearance");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTextStyleSelect @TextStyle 
 		{ 
@@ -60,8 +83,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _textStyle = v, _textStyle, value,  "TextStyle");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTextFontSelect @TextFontStyle 
 		{ 
@@ -75,9 +97,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _textFontStyle = v, _textFontStyle, value,  "TextFontStyle");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

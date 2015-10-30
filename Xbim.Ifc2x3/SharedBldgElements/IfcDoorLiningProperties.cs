@@ -15,13 +15,53 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDoorLiningProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDoorLiningProperties : IIfcPropertySetDefinition
+	{
+		IfcPositiveLengthMeasure? @LiningDepth { get; }
+		IfcPositiveLengthMeasure? @LiningThickness { get; }
+		IfcPositiveLengthMeasure? @ThresholdDepth { get; }
+		IfcPositiveLengthMeasure? @ThresholdThickness { get; }
+		IfcPositiveLengthMeasure? @TransomThickness { get; }
+		IfcLengthMeasure? @TransomOffset { get; }
+		IfcLengthMeasure? @LiningOffset { get; }
+		IfcLengthMeasure? @ThresholdOffset { get; }
+		IfcPositiveLengthMeasure? @CasingThickness { get; }
+		IfcPositiveLengthMeasure? @CasingDepth { get; }
+		IIfcShapeAspect @ShapeAspectStyle { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IFCDOORLININGPROPERTIES", 493)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorLiningProperties : IfcPropertySetDefinition, IInstantiableEntity, IEqualityComparer<@IfcDoorLiningProperties>, IEquatable<@IfcDoorLiningProperties>
+	public  partial class @IfcDoorLiningProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcDoorLiningProperties, IEqualityComparer<@IfcDoorLiningProperties>, IEquatable<@IfcDoorLiningProperties>
 	{
+		#region IIfcDoorLiningProperties explicit implementation
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningDepth { get { return @LiningDepth; } }	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningThickness { get { return @LiningThickness; } }	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdDepth { get { return @ThresholdDepth; } }	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdThickness { get { return @ThresholdThickness; } }	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.TransomThickness { get { return @TransomThickness; } }	
+		IfcLengthMeasure? IIfcDoorLiningProperties.TransomOffset { get { return @TransomOffset; } }	
+		IfcLengthMeasure? IIfcDoorLiningProperties.LiningOffset { get { return @LiningOffset; } }	
+		IfcLengthMeasure? IIfcDoorLiningProperties.ThresholdOffset { get { return @ThresholdOffset; } }	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingThickness { get { return @CasingThickness; } }	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingDepth { get { return @CasingDepth; } }	
+		IIfcShapeAspect IIfcDoorLiningProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDoorLiningProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -55,8 +95,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _liningDepth = v, _liningDepth, value,  "LiningDepth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @LiningThickness 
 		{ 
@@ -70,8 +109,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _liningThickness = v, _liningThickness, value,  "LiningThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @ThresholdDepth 
 		{ 
@@ -85,8 +123,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _thresholdDepth = v, _thresholdDepth, value,  "ThresholdDepth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @ThresholdThickness 
 		{ 
@@ -100,8 +137,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _thresholdThickness = v, _thresholdThickness, value,  "ThresholdThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @TransomThickness 
 		{ 
@@ -115,8 +151,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _transomThickness = v, _transomThickness, value,  "TransomThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @TransomOffset 
 		{ 
@@ -130,8 +165,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _transomOffset = v, _transomOffset, value,  "TransomOffset");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @LiningOffset 
 		{ 
@@ -145,8 +179,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _liningOffset = v, _liningOffset, value,  "LiningOffset");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @ThresholdOffset 
 		{ 
@@ -160,8 +193,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _thresholdOffset = v, _thresholdOffset, value,  "ThresholdOffset");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @CasingThickness 
 		{ 
@@ -175,8 +207,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _casingThickness = v, _casingThickness, value,  "CasingThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @CasingDepth 
 		{ 
@@ -190,8 +221,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _casingDepth = v, _casingDepth, value,  "CasingDepth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcShapeAspect @ShapeAspectStyle 
 		{ 
@@ -205,9 +235,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

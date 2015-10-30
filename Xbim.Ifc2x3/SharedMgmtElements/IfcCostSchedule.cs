@@ -16,13 +16,47 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedMgmtElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCostSchedule
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCostSchedule : IIfcControl
+	{
+		IfcActorSelect @SubmittedBy { get; }
+		IfcActorSelect @PreparedBy { get; }
+		IfcDateTimeSelect @SubmittedOn { get; }
+		IfcLabel? @Status { get; }
+		IEnumerable<IfcActorSelect> @TargetUsers { get; }
+		IfcDateTimeSelect @UpdateDate { get; }
+		IfcIdentifier @ID { get; }
+		IfcCostScheduleTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IFCCOSTSCHEDULE", 695)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IEqualityComparer<@IfcCostSchedule>, IEquatable<@IfcCostSchedule>
+	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IEqualityComparer<@IfcCostSchedule>, IEquatable<@IfcCostSchedule>
 	{
+		#region IIfcCostSchedule explicit implementation
+		IfcActorSelect IIfcCostSchedule.SubmittedBy { get { return @SubmittedBy; } }	
+		IfcActorSelect IIfcCostSchedule.PreparedBy { get { return @PreparedBy; } }	
+		IfcDateTimeSelect IIfcCostSchedule.SubmittedOn { get { return @SubmittedOn; } }	
+		IfcLabel? IIfcCostSchedule.Status { get { return @Status; } }	
+		IEnumerable<IfcActorSelect> IIfcCostSchedule.TargetUsers { get { return @TargetUsers; } }	
+		IfcDateTimeSelect IIfcCostSchedule.UpdateDate { get { return @UpdateDate; } }	
+		IfcIdentifier IIfcCostSchedule.ID { get { return @ID; } }	
+		IfcCostScheduleTypeEnum IIfcCostSchedule.PredefinedType { get { return @PredefinedType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCostSchedule(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -54,8 +88,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			{
 				SetValue( v =>  _submittedBy = v, _submittedBy, value,  "SubmittedBy");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcActorSelect @PreparedBy 
 		{ 
@@ -69,8 +102,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			{
 				SetValue( v =>  _preparedBy = v, _preparedBy, value,  "PreparedBy");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDateTimeSelect @SubmittedOn 
 		{ 
@@ -84,8 +116,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			{
 				SetValue( v =>  _submittedOn = v, _submittedOn, value,  "SubmittedOn");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Status 
 		{ 
@@ -99,8 +130,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			{
 				SetValue( v =>  _status = v, _status, value,  "Status");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcActorSelect> @TargetUsers 
 		{ 
@@ -110,8 +140,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				((IPersistEntity)this).Activate(false);
 				return _targetUsers;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDateTimeSelect @UpdateDate 
 		{ 
@@ -125,8 +154,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			{
 				SetValue( v =>  _updateDate = v, _updateDate, value,  "UpdateDate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIdentifier @ID 
 		{ 
@@ -140,8 +168,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			{
 				SetValue( v =>  _iD = v, _iD, value,  "ID");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcCostScheduleTypeEnum @PredefinedType 
 		{ 
@@ -155,9 +182,9 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

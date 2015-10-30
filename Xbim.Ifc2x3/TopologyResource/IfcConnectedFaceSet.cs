@@ -11,13 +11,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.TopologyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConnectedFaceSet
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConnectedFaceSet : IIfcTopologicalRepresentationItem
+	{
+		IEnumerable<IIfcFace> @CfsFaces { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IFCCONNECTEDFACESET", 160)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectedFaceSet : IfcTopologicalRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcConnectedFaceSet>, IEquatable<@IfcConnectedFaceSet>
+	public  partial class @IfcConnectedFaceSet : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcConnectedFaceSet, IEqualityComparer<@IfcConnectedFaceSet>, IEquatable<@IfcConnectedFaceSet>
 	{
+		#region IIfcConnectedFaceSet explicit implementation
+		IEnumerable<IIfcFace> IIfcConnectedFaceSet.CfsFaces { get { return @CfsFaces; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectedFaceSet(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -38,9 +58,9 @@ namespace Xbim.Ifc2x3.TopologyResource
 				((IPersistEntity)this).Activate(false);
 				return _cfsFaces;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

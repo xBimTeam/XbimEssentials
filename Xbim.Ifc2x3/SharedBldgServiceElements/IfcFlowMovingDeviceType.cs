@@ -11,17 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgServiceElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFlowMovingDeviceType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFlowMovingDeviceType : IIfcDistributionFlowElementType
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IFCFLOWMOVINGDEVICETYPE", 587)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFlowMovingDeviceType : IfcDistributionFlowElementType, IEqualityComparer<@IfcFlowMovingDeviceType>, IEquatable<@IfcFlowMovingDeviceType>
+	public abstract partial class @IfcFlowMovingDeviceType : IfcDistributionFlowElementType, IIfcFlowMovingDeviceType, IEqualityComparer<@IfcFlowMovingDeviceType>, IEquatable<@IfcFlowMovingDeviceType>
 	{
+		#region IIfcFlowMovingDeviceType explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFlowMovingDeviceType(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

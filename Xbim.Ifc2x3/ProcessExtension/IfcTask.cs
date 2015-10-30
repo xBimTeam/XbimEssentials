@@ -14,13 +14,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProcessExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTask
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTask : IIfcProcess
+	{
+		IfcIdentifier @TaskId { get; }
+		IfcLabel? @Status { get; }
+		IfcLabel? @WorkMethod { get; }
+		bool @IsMilestone { get; }
+		long? @Priority { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IFCTASK", 72)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IEqualityComparer<@IfcTask>, IEquatable<@IfcTask>
+	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IIfcTask, IEqualityComparer<@IfcTask>, IEquatable<@IfcTask>
 	{
+		#region IIfcTask explicit implementation
+		IfcIdentifier IIfcTask.TaskId { get { return @TaskId; } }	
+		IfcLabel? IIfcTask.Status { get { return @Status; } }	
+		IfcLabel? IIfcTask.WorkMethod { get { return @WorkMethod; } }	
+		bool IIfcTask.IsMilestone { get { return @IsMilestone; } }	
+		long? IIfcTask.Priority { get { return @Priority; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTask(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +76,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _taskId = v, _taskId, value,  "TaskId");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Status 
 		{ 
@@ -63,8 +90,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _status = v, _status, value,  "Status");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @WorkMethod 
 		{ 
@@ -78,8 +104,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _workMethod = v, _workMethod, value,  "WorkMethod");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @IsMilestone 
 		{ 
@@ -93,8 +118,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _isMilestone = v, _isMilestone, value,  "IsMilestone");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public long? @Priority 
 		{ 
@@ -108,9 +132,9 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _priority = v, _priority, value,  "Priority");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

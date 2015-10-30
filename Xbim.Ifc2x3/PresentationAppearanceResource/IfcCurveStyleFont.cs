@@ -13,13 +13,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCurveStyleFont
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCurveStyleFont : IPersistEntity, IfcCurveStyleFontSelect
+	{
+		IfcLabel? @Name { get; }
+		IEnumerable<IIfcCurveStyleFontPattern> @PatternList { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCCURVESTYLEFONT", 223)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyleFont : INotifyPropertyChanged, IfcCurveStyleFontSelect, IInstantiableEntity, IEqualityComparer<@IfcCurveStyleFont>, IEquatable<@IfcCurveStyleFont>
+	public  partial class @IfcCurveStyleFont : INotifyPropertyChanged, IInstantiableEntity, IIfcCurveStyleFont, IEqualityComparer<@IfcCurveStyleFont>, IEquatable<@IfcCurveStyleFont>
 	{
+		#region IIfcCurveStyleFont explicit implementation
+		IfcLabel? IIfcCurveStyleFont.Name { get { return @Name; } }	
+		IEnumerable<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList { get { return @PatternList; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -101,8 +123,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcCurveStyleFontPattern> @PatternList 
 		{ 
@@ -112,9 +133,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _patternList;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

@@ -14,13 +14,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgServiceElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSoundProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSoundProperties : IIfcPropertySetDefinition
+	{
+		IfcBoolean @IsAttenuating { get; }
+		IfcSoundScaleEnum? @SoundScale { get; }
+		IEnumerable<IIfcSoundValue> @SoundValues { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IFCSOUNDPROPERTIES", 474)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSoundProperties : IfcPropertySetDefinition, IInstantiableEntity, IEqualityComparer<@IfcSoundProperties>, IEquatable<@IfcSoundProperties>
+	public  partial class @IfcSoundProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundProperties, IEqualityComparer<@IfcSoundProperties>, IEquatable<@IfcSoundProperties>
 	{
+		#region IIfcSoundProperties explicit implementation
+		IfcBoolean IIfcSoundProperties.IsAttenuating { get { return @IsAttenuating; } }	
+		IfcSoundScaleEnum? IIfcSoundProperties.SoundScale { get { return @SoundScale; } }	
+		IEnumerable<IIfcSoundValue> IIfcSoundProperties.SoundValues { get { return @SoundValues; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSoundProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +71,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _isAttenuating = v, _isAttenuating, value,  "IsAttenuating");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcSoundScaleEnum? @SoundScale 
 		{ 
@@ -62,8 +85,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _soundScale = v, _soundScale, value,  "SoundScale");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, 8)]
 		public ItemSet<IfcSoundValue> @SoundValues 
 		{ 
@@ -73,9 +95,9 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				((IPersistEntity)this).Activate(false);
 				return _soundValues;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

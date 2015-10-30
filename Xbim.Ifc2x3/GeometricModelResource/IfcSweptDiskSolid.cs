@@ -13,13 +13,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometricModelResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSweptDiskSolid
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSweptDiskSolid : IIfcSolidModel
+	{
+		IIfcCurve @Directrix { get; }
+		IfcPositiveLengthMeasure @Radius { get; }
+		IfcPositiveLengthMeasure? @InnerRadius { get; }
+		IfcParameterValue @StartParam { get; }
+		IfcParameterValue @EndParam { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IFCSWEPTDISKSOLID", 547)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IEqualityComparer<@IfcSweptDiskSolid>, IEquatable<@IfcSweptDiskSolid>
+	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IIfcSweptDiskSolid, IEqualityComparer<@IfcSweptDiskSolid>, IEquatable<@IfcSweptDiskSolid>
 	{
+		#region IIfcSweptDiskSolid explicit implementation
+		IIfcCurve IIfcSweptDiskSolid.Directrix { get { return @Directrix; } }	
+		IfcPositiveLengthMeasure IIfcSweptDiskSolid.Radius { get { return @Radius; } }	
+		IfcPositiveLengthMeasure? IIfcSweptDiskSolid.InnerRadius { get { return @InnerRadius; } }	
+		IfcParameterValue IIfcSweptDiskSolid.StartParam { get { return @StartParam; } }	
+		IfcParameterValue IIfcSweptDiskSolid.EndParam { get { return @EndParam; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSweptDiskSolid(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +75,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @Radius 
 		{ 
@@ -62,8 +89,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _radius = v, _radius, value,  "Radius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @InnerRadius 
 		{ 
@@ -77,8 +103,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _innerRadius = v, _innerRadius, value,  "InnerRadius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcParameterValue @StartParam 
 		{ 
@@ -92,8 +117,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _startParam = v, _startParam, value,  "StartParam");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcParameterValue @EndParam 
 		{ 
@@ -107,9 +131,9 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _endParam = v, _endParam, value,  "EndParam");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

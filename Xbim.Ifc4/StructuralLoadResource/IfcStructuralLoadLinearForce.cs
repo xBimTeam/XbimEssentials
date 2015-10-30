@@ -46,8 +46,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentX { get { return @LinearMomentX; } }	
 		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentY { get { return @LinearMomentY; } }	
 		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentZ { get { return @LinearMomentZ; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

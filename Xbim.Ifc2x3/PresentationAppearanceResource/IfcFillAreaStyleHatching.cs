@@ -13,13 +13,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFillAreaStyleHatching
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFillAreaStyleHatching : IIfcGeometricRepresentationItem, IfcFillStyleSelect
+	{
+		IIfcCurveStyle @HatchLineAppearance { get; }
+		IfcHatchLineDistanceSelect @StartOfNextHatchLine { get; }
+		IIfcCartesianPoint @PointOfReferenceHatchLine { get; }
+		IIfcCartesianPoint @PatternStart { get; }
+		IfcPlaneAngleMeasure @HatchLineAngle { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCFILLAREASTYLEHATCHING", 462)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IfcFillStyleSelect, IInstantiableEntity, IEqualityComparer<@IfcFillAreaStyleHatching>, IEquatable<@IfcFillAreaStyleHatching>
+	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleHatching, IEqualityComparer<@IfcFillAreaStyleHatching>, IEquatable<@IfcFillAreaStyleHatching>
 	{
+		#region IIfcFillAreaStyleHatching explicit implementation
+		IIfcCurveStyle IIfcFillAreaStyleHatching.HatchLineAppearance { get { return @HatchLineAppearance; } }	
+		IfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine { get { return @StartOfNextHatchLine; } }	
+		IIfcCartesianPoint IIfcFillAreaStyleHatching.PointOfReferenceHatchLine { get { return @PointOfReferenceHatchLine; } }	
+		IIfcCartesianPoint IIfcFillAreaStyleHatching.PatternStart { get { return @PatternStart; } }	
+		IfcPlaneAngleMeasure IIfcFillAreaStyleHatching.HatchLineAngle { get { return @HatchLineAngle; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyleHatching(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +75,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _hatchLineAppearance = v, _hatchLineAppearance, value,  "HatchLineAppearance");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcHatchLineDistanceSelect @StartOfNextHatchLine 
 		{ 
@@ -62,8 +89,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _startOfNextHatchLine = v, _startOfNextHatchLine, value,  "StartOfNextHatchLine");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCartesianPoint @PointOfReferenceHatchLine 
 		{ 
@@ -77,8 +103,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _pointOfReferenceHatchLine = v, _pointOfReferenceHatchLine, value,  "PointOfReferenceHatchLine");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCartesianPoint @PatternStart 
 		{ 
@@ -92,8 +117,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _patternStart = v, _patternStart, value,  "PatternStart");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPlaneAngleMeasure @HatchLineAngle 
 		{ 
@@ -107,9 +131,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _hatchLineAngle = v, _hatchLineAngle, value,  "HatchLineAngle");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

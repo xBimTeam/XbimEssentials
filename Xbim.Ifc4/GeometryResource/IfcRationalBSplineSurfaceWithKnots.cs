@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcRationalBSplineSurfaceWithKnots explicit implementation
 		IEnumerable<IEnumerable<double>> IIfcRationalBSplineSurfaceWithKnots.WeightsData { get { return @WeightsData; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

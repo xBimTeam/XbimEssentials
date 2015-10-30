@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcRelAssignsToGroup explicit implementation
 		IIfcGroup IIfcRelAssignsToGroup.RelatingGroup { get { return @RelatingGroup; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

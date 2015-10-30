@@ -14,13 +14,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProcessExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssignsTasks
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssignsTasks : IIfcRelAssignsToControl
+	{
+		IIfcScheduleTimeControl @TimeForTask { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IFCRELASSIGNSTASKS", 618)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsTasks : IfcRelAssignsToControl, IInstantiableEntity, IEqualityComparer<@IfcRelAssignsTasks>, IEquatable<@IfcRelAssignsTasks>
+	public  partial class @IfcRelAssignsTasks : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsTasks, IEqualityComparer<@IfcRelAssignsTasks>, IEquatable<@IfcRelAssignsTasks>
 	{
+		#region IIfcRelAssignsTasks explicit implementation
+		IIfcScheduleTimeControl IIfcRelAssignsTasks.TimeForTask { get { return @TimeForTask; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsTasks(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +65,9 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _timeForTask = v, _timeForTask, value,  "TimeForTask");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

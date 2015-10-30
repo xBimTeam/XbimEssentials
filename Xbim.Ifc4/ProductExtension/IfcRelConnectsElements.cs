@@ -43,8 +43,7 @@ namespace Xbim.Ifc4.ProductExtension
 		IIfcConnectionGeometry IIfcRelConnectsElements.ConnectionGeometry { get { return @ConnectionGeometry; } }	
 		IIfcElement IIfcRelConnectsElements.RelatingElement { get { return @RelatingElement; } }	
 		IIfcElement IIfcRelConnectsElements.RelatedElement { get { return @RelatedElement; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

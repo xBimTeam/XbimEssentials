@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcCivilElementType : IfcElementType, IInstantiableEntity, IIfcCivilElementType, IEqualityComparer<@IfcCivilElementType>, IEquatable<@IfcCivilElementType>
 	{
 		#region IIfcCivilElementType explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	{
 		#region IIfcStructuralLoadSingleDisplacementDistortion explicit implementation
 		IfcCurvatureMeasure? IIfcStructuralLoadSingleDisplacementDistortion.Distortion { get { return @Distortion; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

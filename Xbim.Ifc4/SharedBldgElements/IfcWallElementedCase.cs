@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcWallElementedCase : IfcWall, IInstantiableEntity, IIfcWallElementedCase, IEqualityComparer<@IfcWallElementedCase>, IEquatable<@IfcWallElementedCase>
 	{
 		#region IIfcWallElementedCase explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

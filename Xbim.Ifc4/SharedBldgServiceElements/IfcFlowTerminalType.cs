@@ -33,8 +33,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 	public abstract partial class @IfcFlowTerminalType : IfcDistributionFlowElementType, IIfcFlowTerminalType, IEqualityComparer<@IfcFlowTerminalType>, IEquatable<@IfcFlowTerminalType>
 	{
 		#region IIfcFlowTerminalType explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

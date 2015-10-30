@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		#region IIfcStructuralCurveAction explicit implementation
 		IfcProjectedOrTrueLengthEnum? IIfcStructuralCurveAction.ProjectedOrTrue { get { return @ProjectedOrTrue; } }	
 		IfcStructuralCurveActivityTypeEnum IIfcStructuralCurveAction.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

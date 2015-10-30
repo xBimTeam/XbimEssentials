@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcIndexedTriangleTextureMap explicit implementation
 		IEnumerable<IEnumerable<long>> IIfcIndexedTriangleTextureMap.TexCoordIndex { get { return @TexCoordIndex; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

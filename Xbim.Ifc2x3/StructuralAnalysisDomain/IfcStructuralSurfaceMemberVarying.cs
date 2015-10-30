@@ -15,13 +15,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralSurfaceMemberVarying
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralSurfaceMemberVarying : IIfcStructuralSurfaceMember
+	{
+		IEnumerable<IfcPositiveLengthMeasure> @SubsequentThickness { get; }
+		IIfcShapeAspect @VaryingThicknessLocation { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALSURFACEMEMBERVARYING", 421)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IEqualityComparer<@IfcStructuralSurfaceMemberVarying>, IEquatable<@IfcStructuralSurfaceMemberVarying>
+	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IIfcStructuralSurfaceMemberVarying, IEqualityComparer<@IfcStructuralSurfaceMemberVarying>, IEquatable<@IfcStructuralSurfaceMemberVarying>
 	{
+		#region IIfcStructuralSurfaceMemberVarying explicit implementation
+		IEnumerable<IfcPositiveLengthMeasure> IIfcStructuralSurfaceMemberVarying.SubsequentThickness { get { return @SubsequentThickness; } }	
+		IIfcShapeAspect IIfcStructuralSurfaceMemberVarying.VaryingThicknessLocation { get { return @VaryingThicknessLocation; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralSurfaceMemberVarying(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +65,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				((IPersistEntity)this).Activate(false);
 				return _subsequentThickness;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcShapeAspect @VaryingThicknessLocation 
 		{ 
@@ -58,9 +79,9 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _varyingThicknessLocation = v, _varyingThicknessLocation, value,  "VaryingThicknessLocation");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -15,13 +15,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDefinitionResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAnnotationFillAreaOccurrence
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAnnotationFillAreaOccurrence : IIfcAnnotationOccurrence
+	{
+		IIfcPoint @FillStyleTarget { get; }
+		IfcGlobalOrLocalEnum? @GlobalOrLocal { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IFCANNOTATIONFILLAREAOCCURRENCE", 544)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationFillAreaOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IEqualityComparer<@IfcAnnotationFillAreaOccurrence>, IEquatable<@IfcAnnotationFillAreaOccurrence>
+	public  partial class @IfcAnnotationFillAreaOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationFillAreaOccurrence, IEqualityComparer<@IfcAnnotationFillAreaOccurrence>, IEquatable<@IfcAnnotationFillAreaOccurrence>
 	{
+		#region IIfcAnnotationFillAreaOccurrence explicit implementation
+		IIfcPoint IIfcAnnotationFillAreaOccurrence.FillStyleTarget { get { return @FillStyleTarget; } }	
+		IfcGlobalOrLocalEnum? IIfcAnnotationFillAreaOccurrence.GlobalOrLocal { get { return @GlobalOrLocal; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAnnotationFillAreaOccurrence(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +68,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				SetValue( v =>  _fillStyleTarget = v, _fillStyleTarget, value,  "FillStyleTarget");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcGlobalOrLocalEnum? @GlobalOrLocal 
 		{ 
@@ -61,9 +82,9 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				SetValue( v =>  _globalOrLocal = v, _globalOrLocal, value,  "GlobalOrLocal");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

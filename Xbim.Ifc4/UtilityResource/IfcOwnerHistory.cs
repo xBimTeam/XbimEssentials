@@ -53,8 +53,7 @@ namespace Xbim.Ifc4.UtilityResource
 		IIfcPersonAndOrganization IIfcOwnerHistory.LastModifyingUser { get { return @LastModifyingUser; } }	
 		IIfcApplication IIfcOwnerHistory.LastModifyingApplication { get { return @LastModifyingApplication; } }	
 		IfcTimeStamp IIfcOwnerHistory.CreationDate { get { return @CreationDate; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

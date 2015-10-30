@@ -49,8 +49,7 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcElement explicit implementation
 		IfcIdentifier? IIfcElement.Tag { get { return @Tag; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelFillsElement> IIfcElement.FillsVoids {  get { return @FillsVoids; } }
 		IEnumerable<IIfcRelConnectsElements> IIfcElement.ConnectedTo {  get { return @ConnectedTo; } }
 		IEnumerable<IIfcRelInterferesElements> IIfcElement.IsInterferedByElements {  get { return @IsInterferedByElements; } }

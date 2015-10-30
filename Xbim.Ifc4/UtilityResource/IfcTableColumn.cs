@@ -46,8 +46,7 @@ namespace Xbim.Ifc4.UtilityResource
 		IfcText? IIfcTableColumn.Description { get { return @Description; } }	
 		IfcUnit IIfcTableColumn.Unit { get { return @Unit; } }	
 		IIfcReference IIfcTableColumn.ReferencePath { get { return @ReferencePath; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

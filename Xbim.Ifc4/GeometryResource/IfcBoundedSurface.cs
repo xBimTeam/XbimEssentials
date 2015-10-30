@@ -33,8 +33,7 @@ namespace Xbim.Ifc4.GeometryResource
 	public abstract partial class @IfcBoundedSurface : IfcSurface, IIfcBoundedSurface, IEqualityComparer<@IfcBoundedSurface>, IEquatable<@IfcBoundedSurface>
 	{
 		#region IIfcBoundedSurface explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

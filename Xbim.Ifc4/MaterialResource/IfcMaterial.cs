@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.MaterialResource
 		IfcLabel IIfcMaterial.Name { get { return @Name; } }	
 		IfcText? IIfcMaterial.Description { get { return @Description; } }	
 		IfcLabel? IIfcMaterial.Category { get { return @Category; } }	
-	
-	 
+		 
 		IEnumerable<IIfcMaterialDefinitionRepresentation> IIfcMaterial.HasRepresentation {  get { return @HasRepresentation; } }
 		IEnumerable<IIfcMaterialRelationship> IIfcMaterial.IsRelatedWith {  get { return @IsRelatedWith; } }
 		IEnumerable<IIfcMaterialRelationship> IIfcMaterial.RelatesTo {  get { return @RelatesTo; } }

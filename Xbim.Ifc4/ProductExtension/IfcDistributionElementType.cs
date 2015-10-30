@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcDistributionElementType : IfcElementType, IInstantiableEntity, IIfcDistributionElementType, IEqualityComparer<@IfcDistributionElementType>, IEquatable<@IfcDistributionElementType>
 	{
 		#region IIfcDistributionElementType explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

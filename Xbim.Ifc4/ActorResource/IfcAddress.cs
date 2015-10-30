@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.ActorResource
 		IfcAddressTypeEnum? IIfcAddress.Purpose { get { return @Purpose; } }	
 		IfcText? IIfcAddress.Description { get { return @Description; } }	
 		IfcLabel? IIfcAddress.UserDefinedPurpose { get { return @UserDefinedPurpose; } }	
-	
-	 
+		 
 		IEnumerable<IIfcPerson> IIfcAddress.OfPerson {  get { return @OfPerson; } }
 		IEnumerable<IIfcOrganization> IIfcAddress.OfOrganization {  get { return @OfOrganization; } }
 		#endregion

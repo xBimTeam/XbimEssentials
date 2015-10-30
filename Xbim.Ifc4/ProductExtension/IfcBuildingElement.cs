@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.ProductExtension
 	public abstract partial class @IfcBuildingElement : IfcElement, IIfcBuildingElement, IEqualityComparer<@IfcBuildingElement>, IEquatable<@IfcBuildingElement>
 	{
 		#region IIfcBuildingElement explicit implementation
-	
-	 
+		 
 		IEnumerable<IIfcRelCoversBldgElements> IIfcBuildingElement.HasCoverings {  get { return @HasCoverings; } }
 		#endregion
 

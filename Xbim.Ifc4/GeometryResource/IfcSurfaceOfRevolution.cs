@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcSurfaceOfRevolution explicit implementation
 		IIfcAxis1Placement IIfcSurfaceOfRevolution.AxisPosition { get { return @AxisPosition; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

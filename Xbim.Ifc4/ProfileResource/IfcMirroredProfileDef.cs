@@ -24,7 +24,6 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMirroredProfileDef : IIfcDerivedProfileDef
 	{
-		new IIfcCartesianTransformationOperator2D @Operator  { get; }
 		
 	}
 }
@@ -36,9 +35,7 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcMirroredProfileDef : IfcDerivedProfileDef, IInstantiableEntity, IIfcMirroredProfileDef, IEqualityComparer<@IfcMirroredProfileDef>, IEquatable<@IfcMirroredProfileDef>
 	{
 		#region IIfcMirroredProfileDef explicit implementation
-	
-		IIfcCartesianTransformationOperator2D IIfcMirroredProfileDef.Operator  { get { return @Operator; } }
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

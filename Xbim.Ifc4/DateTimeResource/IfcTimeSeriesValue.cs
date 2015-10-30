@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.DateTimeResource
 	{
 		#region IIfcTimeSeriesValue explicit implementation
 		IEnumerable<IfcValue> IIfcTimeSeriesValue.ListValues { get { return @ListValues; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

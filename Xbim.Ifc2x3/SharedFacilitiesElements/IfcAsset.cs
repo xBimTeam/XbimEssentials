@@ -17,13 +17,49 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedFacilitiesElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAsset
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAsset : IIfcGroup
+	{
+		IfcIdentifier @AssetID { get; }
+		IIfcCostValue @OriginalValue { get; }
+		IIfcCostValue @CurrentValue { get; }
+		IIfcCostValue @TotalReplacementCost { get; }
+		IfcActorSelect @Owner { get; }
+		IfcActorSelect @User { get; }
+		IIfcPerson @ResponsiblePerson { get; }
+		IIfcCalendarDate @IncorporationDate { get; }
+		IIfcCostValue @DepreciatedValue { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IFCASSET", 767)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IEqualityComparer<@IfcAsset>, IEquatable<@IfcAsset>
+	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IIfcAsset, IEqualityComparer<@IfcAsset>, IEquatable<@IfcAsset>
 	{
+		#region IIfcAsset explicit implementation
+		IfcIdentifier IIfcAsset.AssetID { get { return @AssetID; } }	
+		IIfcCostValue IIfcAsset.OriginalValue { get { return @OriginalValue; } }	
+		IIfcCostValue IIfcAsset.CurrentValue { get { return @CurrentValue; } }	
+		IIfcCostValue IIfcAsset.TotalReplacementCost { get { return @TotalReplacementCost; } }	
+		IfcActorSelect IIfcAsset.Owner { get { return @Owner; } }	
+		IfcActorSelect IIfcAsset.User { get { return @User; } }	
+		IIfcPerson IIfcAsset.ResponsiblePerson { get { return @ResponsiblePerson; } }	
+		IIfcCalendarDate IIfcAsset.IncorporationDate { get { return @IncorporationDate; } }	
+		IIfcCostValue IIfcAsset.DepreciatedValue { get { return @DepreciatedValue; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAsset(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -55,8 +91,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _assetID = v, _assetID, value,  "AssetID");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCostValue @OriginalValue 
 		{ 
@@ -70,8 +105,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _originalValue = v, _originalValue, value,  "OriginalValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCostValue @CurrentValue 
 		{ 
@@ -85,8 +119,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCostValue @TotalReplacementCost 
 		{ 
@@ -100,8 +133,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _totalReplacementCost = v, _totalReplacementCost, value,  "TotalReplacementCost");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcActorSelect @Owner 
 		{ 
@@ -115,8 +147,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _owner = v, _owner, value,  "Owner");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcActorSelect @User 
 		{ 
@@ -130,8 +161,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _user = v, _user, value,  "User");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcPerson @ResponsiblePerson 
 		{ 
@@ -145,8 +175,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _responsiblePerson = v, _responsiblePerson, value,  "ResponsiblePerson");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCalendarDate @IncorporationDate 
 		{ 
@@ -160,8 +189,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _incorporationDate = v, _incorporationDate, value,  "IncorporationDate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCostValue @DepreciatedValue 
 		{ 
@@ -175,9 +203,9 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _depreciatedValue = v, _depreciatedValue, value,  "DepreciatedValue");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

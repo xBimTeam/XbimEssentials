@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.Kernel
 		#region IIfcRelAssignsToProcess explicit implementation
 		IfcProcessSelect IIfcRelAssignsToProcess.RelatingProcess { get { return @RelatingProcess; } }	
 		IIfcMeasureWithUnit IIfcRelAssignsToProcess.QuantityInProcess { get { return @QuantityInProcess; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

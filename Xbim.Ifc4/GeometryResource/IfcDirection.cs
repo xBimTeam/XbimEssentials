@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcDirection explicit implementation
 		IEnumerable<double> IIfcDirection.DirectionRatios { get { return @DirectionRatios; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

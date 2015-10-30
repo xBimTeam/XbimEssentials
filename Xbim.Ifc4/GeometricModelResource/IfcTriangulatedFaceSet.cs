@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#region IIfcTriangulatedFaceSet explicit implementation
 		IEnumerable<IEnumerable<long>> IIfcTriangulatedFaceSet.CoordIndex { get { return @CoordIndex; } }	
 		IEnumerable<IEnumerable<long>> IIfcTriangulatedFaceSet.NormalIndex { get { return @NormalIndex; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

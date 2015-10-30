@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.TopologyResource
 		#region IIfcFaceSurface explicit implementation
 		IIfcSurface IIfcFaceSurface.FaceSurface { get { return @FaceSurface; } }	
 		bool IIfcFaceSurface.SameSense { get { return @SameSense; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

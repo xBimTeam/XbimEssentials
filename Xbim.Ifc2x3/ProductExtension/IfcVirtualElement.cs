@@ -15,17 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcVirtualElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcVirtualElement : IIfcElement
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCVIRTUALELEMENT", 168)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVirtualElement : IfcElement, IInstantiableEntity, IEqualityComparer<@IfcVirtualElement>, IEquatable<@IfcVirtualElement>
+	public  partial class @IfcVirtualElement : IfcElement, IInstantiableEntity, IIfcVirtualElement, IEqualityComparer<@IfcVirtualElement>, IEquatable<@IfcVirtualElement>
 	{
+		#region IIfcVirtualElement explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcVirtualElement(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

@@ -51,8 +51,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		IfcDuration? IIfcWorkControl.TotalFloat { get { return @TotalFloat; } }	
 		IfcDateTime IIfcWorkControl.StartTime { get { return @StartTime; } }	
 		IfcDateTime? IIfcWorkControl.FinishTime { get { return @FinishTime; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

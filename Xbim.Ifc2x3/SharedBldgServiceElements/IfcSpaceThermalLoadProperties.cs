@@ -15,13 +15,51 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgServiceElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSpaceThermalLoadProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSpaceThermalLoadProperties : IIfcPropertySetDefinition
+	{
+		IfcPositiveRatioMeasure? @ApplicableValueRatio { get; }
+		IfcThermalLoadSourceEnum @ThermalLoadSource { get; }
+		IfcPropertySourceEnum @PropertySource { get; }
+		IfcText? @SourceDescription { get; }
+		IfcPowerMeasure @MaximumValue { get; }
+		IfcPowerMeasure? @MinimumValue { get; }
+		IIfcTimeSeries @ThermalLoadTimeSeriesValues { get; }
+		IfcLabel? @UserDefinedThermalLoadSource { get; }
+		IfcLabel? @UserDefinedPropertySource { get; }
+		IfcThermalLoadTypeEnum @ThermalLoadType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IFCSPACETHERMALLOADPROPERTIES", 610)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceThermalLoadProperties : IfcPropertySetDefinition, IInstantiableEntity, IEqualityComparer<@IfcSpaceThermalLoadProperties>, IEquatable<@IfcSpaceThermalLoadProperties>
+	public  partial class @IfcSpaceThermalLoadProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSpaceThermalLoadProperties, IEqualityComparer<@IfcSpaceThermalLoadProperties>, IEquatable<@IfcSpaceThermalLoadProperties>
 	{
+		#region IIfcSpaceThermalLoadProperties explicit implementation
+		IfcPositiveRatioMeasure? IIfcSpaceThermalLoadProperties.ApplicableValueRatio { get { return @ApplicableValueRatio; } }	
+		IfcThermalLoadSourceEnum IIfcSpaceThermalLoadProperties.ThermalLoadSource { get { return @ThermalLoadSource; } }	
+		IfcPropertySourceEnum IIfcSpaceThermalLoadProperties.PropertySource { get { return @PropertySource; } }	
+		IfcText? IIfcSpaceThermalLoadProperties.SourceDescription { get { return @SourceDescription; } }	
+		IfcPowerMeasure IIfcSpaceThermalLoadProperties.MaximumValue { get { return @MaximumValue; } }	
+		IfcPowerMeasure? IIfcSpaceThermalLoadProperties.MinimumValue { get { return @MinimumValue; } }	
+		IIfcTimeSeries IIfcSpaceThermalLoadProperties.ThermalLoadTimeSeriesValues { get { return @ThermalLoadTimeSeriesValues; } }	
+		IfcLabel? IIfcSpaceThermalLoadProperties.UserDefinedThermalLoadSource { get { return @UserDefinedThermalLoadSource; } }	
+		IfcLabel? IIfcSpaceThermalLoadProperties.UserDefinedPropertySource { get { return @UserDefinedPropertySource; } }	
+		IfcThermalLoadTypeEnum IIfcSpaceThermalLoadProperties.ThermalLoadType { get { return @ThermalLoadType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpaceThermalLoadProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -54,8 +92,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _applicableValueRatio = v, _applicableValueRatio, value,  "ApplicableValueRatio");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcThermalLoadSourceEnum @ThermalLoadSource 
 		{ 
@@ -69,8 +106,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _thermalLoadSource = v, _thermalLoadSource, value,  "ThermalLoadSource");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcPropertySourceEnum @PropertySource 
 		{ 
@@ -84,8 +120,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _propertySource = v, _propertySource, value,  "PropertySource");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @SourceDescription 
 		{ 
@@ -99,8 +134,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _sourceDescription = v, _sourceDescription, value,  "SourceDescription");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPowerMeasure @MaximumValue 
 		{ 
@@ -114,8 +148,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _maximumValue = v, _maximumValue, value,  "MaximumValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPowerMeasure? @MinimumValue 
 		{ 
@@ -129,8 +162,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _minimumValue = v, _minimumValue, value,  "MinimumValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTimeSeries @ThermalLoadTimeSeriesValues 
 		{ 
@@ -144,8 +176,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _thermalLoadTimeSeriesValues = v, _thermalLoadTimeSeriesValues, value,  "ThermalLoadTimeSeriesValues");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedThermalLoadSource 
 		{ 
@@ -159,8 +190,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _userDefinedThermalLoadSource = v, _userDefinedThermalLoadSource, value,  "UserDefinedThermalLoadSource");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedPropertySource 
 		{ 
@@ -174,8 +204,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _userDefinedPropertySource = v, _userDefinedPropertySource, value,  "UserDefinedPropertySource");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcThermalLoadTypeEnum @ThermalLoadType 
 		{ 
@@ -189,9 +218,9 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _thermalLoadType = v, _thermalLoadType, value,  "ThermalLoadType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

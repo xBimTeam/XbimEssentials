@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.QuantityResource
 		#region IIfcQuantityTime explicit implementation
 		IfcTimeMeasure IIfcQuantityTime.TimeValue { get { return @TimeValue; } }	
 		IfcLabel? IIfcQuantityTime.Formula { get { return @Formula; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

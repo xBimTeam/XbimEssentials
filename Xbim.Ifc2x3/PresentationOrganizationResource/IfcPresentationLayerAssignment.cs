@@ -13,14 +13,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationOrganizationResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPresentationLayerAssignment
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPresentationLayerAssignment : IPersistEntity
+	{
+		IfcLabel @Name { get; }
+		IfcText? @Description { get; }
+		IEnumerable<IfcLayeredItem> @AssignedItems { get; }
+		IfcIdentifier? @Identifier { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[IndexedClass]
 	[ExpressType("IFCPRESENTATIONLAYERASSIGNMENT", 258)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationLayerAssignment : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcPresentationLayerAssignment>, IEquatable<@IfcPresentationLayerAssignment>
+	public  partial class @IfcPresentationLayerAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationLayerAssignment, IEqualityComparer<@IfcPresentationLayerAssignment>, IEquatable<@IfcPresentationLayerAssignment>
 	{
+		#region IIfcPresentationLayerAssignment explicit implementation
+		IfcLabel IIfcPresentationLayerAssignment.Name { get { return @Name; } }	
+		IfcText? IIfcPresentationLayerAssignment.Description { get { return @Description; } }	
+		IEnumerable<IfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems { get { return @AssignedItems; } }	
+		IfcIdentifier? IIfcPresentationLayerAssignment.Identifier { get { return @Identifier; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -104,8 +130,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -119,8 +144,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcLayeredItem> @AssignedItems 
@@ -131,8 +155,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				((IPersistEntity)this).Activate(false);
 				return _assignedItems;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIdentifier? @Identifier 
 		{ 
@@ -146,9 +169,9 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

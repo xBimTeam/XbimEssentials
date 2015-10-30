@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#region IIfcVirtualGridIntersection explicit implementation
 		IEnumerable<IIfcGridAxis> IIfcVirtualGridIntersection.IntersectingAxes { get { return @IntersectingAxes; } }	
 		IEnumerable<IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances { get { return @OffsetDistances; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

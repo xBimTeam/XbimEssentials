@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#region IIfcGridPlacement explicit implementation
 		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementLocation { get { return @PlacementLocation; } }	
 		IfcGridPlacementDirectionSelect IIfcGridPlacement.PlacementRefDirection { get { return @PlacementRefDirection; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

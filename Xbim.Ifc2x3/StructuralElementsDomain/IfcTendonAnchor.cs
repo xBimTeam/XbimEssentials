@@ -15,17 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralElementsDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTendonAnchor
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTendonAnchor : IIfcReinforcingElement
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IFCTENDONANCHOR", 675)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTendonAnchor : IfcReinforcingElement, IInstantiableEntity, IEqualityComparer<@IfcTendonAnchor>, IEquatable<@IfcTendonAnchor>
+	public  partial class @IfcTendonAnchor : IfcReinforcingElement, IInstantiableEntity, IIfcTendonAnchor, IEqualityComparer<@IfcTendonAnchor>, IEquatable<@IfcTendonAnchor>
 	{
+		#region IIfcTendonAnchor explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTendonAnchor(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

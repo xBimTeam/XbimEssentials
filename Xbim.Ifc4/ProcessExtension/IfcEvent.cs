@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		IfcEventTriggerTypeEnum? IIfcEvent.EventTriggerType { get { return @EventTriggerType; } }	
 		IfcLabel? IIfcEvent.UserDefinedEventTriggerType { get { return @UserDefinedEventTriggerType; } }	
 		IIfcEventTime IIfcEvent.EventOccurenceTime { get { return @EventOccurenceTime; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

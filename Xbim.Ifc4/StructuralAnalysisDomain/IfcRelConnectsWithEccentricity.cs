@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	{
 		#region IIfcRelConnectsWithEccentricity explicit implementation
 		IIfcConnectionGeometry IIfcRelConnectsWithEccentricity.ConnectionConstraint { get { return @ConnectionConstraint; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

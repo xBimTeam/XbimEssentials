@@ -15,14 +15,42 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ExternalReferenceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLibraryInformation
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLibraryInformation : IPersistEntity, IfcLibrarySelect
+	{
+		IfcLabel @Name { get; }
+		IfcLabel? @Version { get; }
+		IIfcOrganization @Publisher { get; }
+		IIfcCalendarDate @VersionDate { get; }
+		IEnumerable<IIfcLibraryReference> @LibraryReference { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCLIBRARYINFORMATION", 449)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLibraryInformation : INotifyPropertyChanged, IfcLibrarySelect, IInstantiableEntity, IEqualityComparer<@IfcLibraryInformation>, IEquatable<@IfcLibraryInformation>
+	public  partial class @IfcLibraryInformation : INotifyPropertyChanged, IInstantiableEntity, IIfcLibraryInformation, IEqualityComparer<@IfcLibraryInformation>, IEquatable<@IfcLibraryInformation>
 	{
+		#region IIfcLibraryInformation explicit implementation
+		IfcLabel IIfcLibraryInformation.Name { get { return @Name; } }	
+		IfcLabel? IIfcLibraryInformation.Version { get { return @Version; } }	
+		IIfcOrganization IIfcLibraryInformation.Publisher { get { return @Publisher; } }	
+		IIfcCalendarDate IIfcLibraryInformation.VersionDate { get { return @VersionDate; } }	
+		IEnumerable<IIfcLibraryReference> IIfcLibraryInformation.LibraryReference { get { return @LibraryReference; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -107,8 +135,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Version 
 		{ 
@@ -122,8 +149,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _version = v, _version, value,  "Version");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcOrganization @Publisher 
 		{ 
@@ -137,8 +163,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _publisher = v, _publisher, value,  "Publisher");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCalendarDate @VersionDate 
 		{ 
@@ -152,8 +177,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _versionDate = v, _versionDate, value,  "VersionDate");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcLibraryReference> @LibraryReference 
@@ -164,9 +188,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				((IPersistEntity)this).Activate(false);
 				return _libraryReference;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

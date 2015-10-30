@@ -13,14 +13,42 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertyDependencyRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertyDependencyRelationship : IPersistEntity
+	{
+		IIfcProperty @DependingProperty { get; }
+		IIfcProperty @DependantProperty { get; }
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		IfcText? @Expression { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[IndexedClass]
 	[ExpressType("IFCPROPERTYDEPENDENCYRELATIONSHIP", 444)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyDependencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcPropertyDependencyRelationship>, IEquatable<@IfcPropertyDependencyRelationship>
+	public  partial class @IfcPropertyDependencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcPropertyDependencyRelationship, IEqualityComparer<@IfcPropertyDependencyRelationship>, IEquatable<@IfcPropertyDependencyRelationship>
 	{
+		#region IIfcPropertyDependencyRelationship explicit implementation
+		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty { get { return @DependingProperty; } }	
+		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty { get { return @DependantProperty; } }	
+		IfcLabel? IIfcPropertyDependencyRelationship.Name { get { return @Name; } }	
+		IfcText? IIfcPropertyDependencyRelationship.Description { get { return @Description; } }	
+		IfcText? IIfcPropertyDependencyRelationship.Expression { get { return @Expression; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -105,8 +133,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				SetValue( v =>  _dependingProperty = v, _dependingProperty, value,  "DependingProperty");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcProperty @DependantProperty 
@@ -121,8 +148,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				SetValue( v =>  _dependantProperty = v, _dependantProperty, value,  "DependantProperty");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Name 
 		{ 
@@ -136,8 +162,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -151,8 +176,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Expression 
 		{ 
@@ -166,9 +190,9 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				SetValue( v =>  _expression = v, _expression, value,  "Expression");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		IfcPresentableText IIfcTextLiteral.Literal { get { return @Literal; } }	
 		IfcAxis2Placement IIfcTextLiteral.Placement { get { return @Placement; } }	
 		IfcTextPath IIfcTextLiteral.Path { get { return @Path; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

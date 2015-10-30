@@ -13,13 +13,43 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfilePropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcReinforcementBarProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcReinforcementBarProperties : IPersistEntity
+	{
+		IfcAreaMeasure @TotalCrossSectionArea { get; }
+		IfcLabel @SteelGrade { get; }
+		IfcReinforcingBarSurfaceEnum? @BarSurface { get; }
+		IfcLengthMeasure? @EffectiveDepth { get; }
+		IfcPositiveLengthMeasure? @NominalBarDiameter { get; }
+		IfcCountMeasure? @BarCount { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IFCREINFORCEMENTBARPROPERTIES", 684)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcementBarProperties : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcReinforcementBarProperties>, IEquatable<@IfcReinforcementBarProperties>
+	public  partial class @IfcReinforcementBarProperties : INotifyPropertyChanged, IInstantiableEntity, IIfcReinforcementBarProperties, IEqualityComparer<@IfcReinforcementBarProperties>, IEquatable<@IfcReinforcementBarProperties>
 	{
+		#region IIfcReinforcementBarProperties explicit implementation
+		IfcAreaMeasure IIfcReinforcementBarProperties.TotalCrossSectionArea { get { return @TotalCrossSectionArea; } }	
+		IfcLabel IIfcReinforcementBarProperties.SteelGrade { get { return @SteelGrade; } }	
+		IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface { get { return @BarSurface; } }	
+		IfcLengthMeasure? IIfcReinforcementBarProperties.EffectiveDepth { get { return @EffectiveDepth; } }	
+		IfcPositiveLengthMeasure? IIfcReinforcementBarProperties.NominalBarDiameter { get { return @NominalBarDiameter; } }	
+		IfcCountMeasure? IIfcReinforcementBarProperties.BarCount { get { return @BarCount; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -104,8 +134,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _totalCrossSectionArea = v, _totalCrossSectionArea, value,  "TotalCrossSectionArea");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel @SteelGrade 
 		{ 
@@ -119,8 +148,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _steelGrade = v, _steelGrade, value,  "SteelGrade");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcReinforcingBarSurfaceEnum? @BarSurface 
 		{ 
@@ -134,8 +162,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _barSurface = v, _barSurface, value,  "BarSurface");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @EffectiveDepth 
 		{ 
@@ -149,8 +176,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _effectiveDepth = v, _effectiveDepth, value,  "EffectiveDepth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @NominalBarDiameter 
 		{ 
@@ -164,8 +190,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _nominalBarDiameter = v, _nominalBarDiameter, value,  "NominalBarDiameter");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcCountMeasure? @BarCount 
 		{ 
@@ -179,9 +204,9 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _barCount = v, _barCount, value,  "BarCount");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

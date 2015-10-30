@@ -15,13 +15,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.FacilitiesMgmtDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConditionCriterion
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConditionCriterion : IIfcControl
+	{
+		IfcConditionCriterionSelect @Criterion { get; }
+		IfcDateTimeSelect @CriterionDateTime { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IFCCONDITIONCRITERION", 688)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConditionCriterion : IfcControl, IInstantiableEntity, IEqualityComparer<@IfcConditionCriterion>, IEquatable<@IfcConditionCriterion>
+	public  partial class @IfcConditionCriterion : IfcControl, IInstantiableEntity, IIfcConditionCriterion, IEqualityComparer<@IfcConditionCriterion>, IEquatable<@IfcConditionCriterion>
 	{
+		#region IIfcConditionCriterion explicit implementation
+		IfcConditionCriterionSelect IIfcConditionCriterion.Criterion { get { return @Criterion; } }	
+		IfcDateTimeSelect IIfcConditionCriterion.CriterionDateTime { get { return @CriterionDateTime; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConditionCriterion(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +68,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			{
 				SetValue( v =>  _criterion = v, _criterion, value,  "Criterion");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDateTimeSelect @CriterionDateTime 
 		{ 
@@ -61,9 +82,9 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			{
 				SetValue( v =>  _criterionDateTime = v, _criterionDateTime, value,  "CriterionDateTime");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

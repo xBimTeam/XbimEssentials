@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		#region IIfcCoordinateOperation explicit implementation
 		IfcCoordinateReferenceSystemSelect IIfcCoordinateOperation.SourceCRS { get { return @SourceCRS; } }	
 		IIfcCoordinateReferenceSystem IIfcCoordinateOperation.TargetCRS { get { return @TargetCRS; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

@@ -12,14 +12,34 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MeasureResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMonetaryUnit
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMonetaryUnit : IPersistEntity, IfcUnit
+	{
+		IfcCurrencyEnum @Currency { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[IndexedClass]
 	[ExpressType("IFCMONETARYUNIT", 545)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMonetaryUnit : INotifyPropertyChanged, IfcUnit, IInstantiableEntity, IEqualityComparer<@IfcMonetaryUnit>, IEquatable<@IfcMonetaryUnit>
+	public  partial class @IfcMonetaryUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMonetaryUnit, IEqualityComparer<@IfcMonetaryUnit>, IEquatable<@IfcMonetaryUnit>
 	{
+		#region IIfcMonetaryUnit explicit implementation
+		IfcCurrencyEnum IIfcMonetaryUnit.Currency { get { return @Currency; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -99,9 +119,9 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				SetValue( v =>  _currency = v, _currency, value,  "Currency");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

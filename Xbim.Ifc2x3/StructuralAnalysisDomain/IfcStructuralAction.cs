@@ -11,13 +11,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralAction
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralAction : IIfcStructuralActivity
+	{
+		bool @DestabilizingLoad { get; }
+		IIfcStructuralReaction @CausedBy { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALACTION", 40)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralAction : IfcStructuralActivity, IEqualityComparer<@IfcStructuralAction>, IEquatable<@IfcStructuralAction>
+	public abstract partial class @IfcStructuralAction : IfcStructuralActivity, IIfcStructuralAction, IEqualityComparer<@IfcStructuralAction>, IEquatable<@IfcStructuralAction>
 	{
+		#region IIfcStructuralAction explicit implementation
+		bool IIfcStructuralAction.DestabilizingLoad { get { return @DestabilizingLoad; } }	
+		IIfcStructuralReaction IIfcStructuralAction.CausedBy { get { return @CausedBy; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralAction(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +64,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _destabilizingLoad = v, _destabilizingLoad, value,  "DestabilizingLoad");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcStructuralReaction @CausedBy 
@@ -58,9 +79,9 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _causedBy = v, _causedBy, value,  "CausedBy");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

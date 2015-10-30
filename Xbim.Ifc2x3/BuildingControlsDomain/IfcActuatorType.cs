@@ -16,13 +16,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.BuildingcontrolsDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcActuatorType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcActuatorType : IIfcDistributionControlElementType
+	{
+		IfcActuatorTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	[ExpressType("IFCACTUATORTYPE", 485)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActuatorType : IfcDistributionControlElementType, IInstantiableEntity, IEqualityComparer<@IfcActuatorType>, IEquatable<@IfcActuatorType>
+	public  partial class @IfcActuatorType : IfcDistributionControlElementType, IInstantiableEntity, IIfcActuatorType, IEqualityComparer<@IfcActuatorType>, IEquatable<@IfcActuatorType>
 	{
+		#region IIfcActuatorType explicit implementation
+		IfcActuatorTypeEnum IIfcActuatorType.PredefinedType { get { return @PredefinedType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcActuatorType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +66,9 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

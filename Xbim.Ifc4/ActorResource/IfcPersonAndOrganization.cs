@@ -43,8 +43,7 @@ namespace Xbim.Ifc4.ActorResource
 		IIfcPerson IIfcPersonAndOrganization.ThePerson { get { return @ThePerson; } }	
 		IIfcOrganization IIfcPersonAndOrganization.TheOrganization { get { return @TheOrganization; } }	
 		IEnumerable<IIfcActorRole> IIfcPersonAndOrganization.Roles { get { return @Roles; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

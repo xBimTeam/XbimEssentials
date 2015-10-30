@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 	{
 		#region IIfcMemberType explicit implementation
 		IfcMemberTypeEnum IIfcMemberType.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

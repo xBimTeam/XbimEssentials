@@ -34,8 +34,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 	public abstract partial class @IfcElementComponent : IfcElement, IIfcElementComponent, IEqualityComparer<@IfcElementComponent>, IEquatable<@IfcElementComponent>
 	{
 		#region IIfcElementComponent explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

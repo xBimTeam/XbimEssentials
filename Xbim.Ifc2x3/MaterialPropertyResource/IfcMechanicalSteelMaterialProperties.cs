@@ -13,13 +13,45 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialPropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMechanicalSteelMaterialProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMechanicalSteelMaterialProperties : IIfcMechanicalMaterialProperties
+	{
+		IfcPressureMeasure? @YieldStress { get; }
+		IfcPressureMeasure? @UltimateStress { get; }
+		IfcPositiveRatioMeasure? @UltimateStrain { get; }
+		IfcModulusOfElasticityMeasure? @HardeningModule { get; }
+		IfcPressureMeasure? @ProportionalStress { get; }
+		IfcPositiveRatioMeasure? @PlasticStrain { get; }
+		IEnumerable<IIfcRelaxation> @Relaxations { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IFCMECHANICALSTEELMATERIALPROPERTIES", 510)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalSteelMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IEqualityComparer<@IfcMechanicalSteelMaterialProperties>, IEquatable<@IfcMechanicalSteelMaterialProperties>
+	public  partial class @IfcMechanicalSteelMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalSteelMaterialProperties, IEqualityComparer<@IfcMechanicalSteelMaterialProperties>, IEquatable<@IfcMechanicalSteelMaterialProperties>
 	{
+		#region IIfcMechanicalSteelMaterialProperties explicit implementation
+		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.YieldStress { get { return @YieldStress; } }	
+		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.UltimateStress { get { return @UltimateStress; } }	
+		IfcPositiveRatioMeasure? IIfcMechanicalSteelMaterialProperties.UltimateStrain { get { return @UltimateStrain; } }	
+		IfcModulusOfElasticityMeasure? IIfcMechanicalSteelMaterialProperties.HardeningModule { get { return @HardeningModule; } }	
+		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.ProportionalStress { get { return @ProportionalStress; } }	
+		IfcPositiveRatioMeasure? IIfcMechanicalSteelMaterialProperties.PlasticStrain { get { return @PlasticStrain; } }	
+		IEnumerable<IIfcRelaxation> IIfcMechanicalSteelMaterialProperties.Relaxations { get { return @Relaxations; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMechanicalSteelMaterialProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -50,8 +82,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _yieldStress = v, _yieldStress, value,  "YieldStress");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPressureMeasure? @UltimateStress 
 		{ 
@@ -65,8 +96,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _ultimateStress = v, _ultimateStress, value,  "UltimateStress");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @UltimateStrain 
 		{ 
@@ -80,8 +110,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _ultimateStrain = v, _ultimateStrain, value,  "UltimateStrain");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcModulusOfElasticityMeasure? @HardeningModule 
 		{ 
@@ -95,8 +124,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _hardeningModule = v, _hardeningModule, value,  "HardeningModule");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPressureMeasure? @ProportionalStress 
 		{ 
@@ -110,8 +138,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _proportionalStress = v, _proportionalStress, value,  "ProportionalStress");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @PlasticStrain 
 		{ 
@@ -125,8 +152,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _plasticStrain = v, _plasticStrain, value,  "PlasticStrain");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcRelaxation> @Relaxations 
 		{ 
@@ -136,9 +162,9 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				((IPersistEntity)this).Activate(false);
 				return _relaxations;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

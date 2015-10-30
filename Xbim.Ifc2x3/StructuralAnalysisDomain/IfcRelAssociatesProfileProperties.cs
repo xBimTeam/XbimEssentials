@@ -16,13 +16,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssociatesProfileProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssociatesProfileProperties : IIfcRelAssociates
+	{
+		IIfcProfileProperties @RelatingProfileProperties { get; }
+		IIfcShapeAspect @ProfileSectionLocation { get; }
+		IfcOrientationSelect @ProfileOrientation { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IFCRELASSOCIATESPROFILEPROPERTIES", 676)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesProfileProperties : IfcRelAssociates, IInstantiableEntity, IEqualityComparer<@IfcRelAssociatesProfileProperties>, IEquatable<@IfcRelAssociatesProfileProperties>
+	public  partial class @IfcRelAssociatesProfileProperties : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesProfileProperties, IEqualityComparer<@IfcRelAssociatesProfileProperties>, IEquatable<@IfcRelAssociatesProfileProperties>
 	{
+		#region IIfcRelAssociatesProfileProperties explicit implementation
+		IIfcProfileProperties IIfcRelAssociatesProfileProperties.RelatingProfileProperties { get { return @RelatingProfileProperties; } }	
+		IIfcShapeAspect IIfcRelAssociatesProfileProperties.ProfileSectionLocation { get { return @ProfileSectionLocation; } }	
+		IfcOrientationSelect IIfcRelAssociatesProfileProperties.ProfileOrientation { get { return @ProfileOrientation; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesProfileProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +72,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _relatingProfileProperties = v, _relatingProfileProperties, value,  "RelatingProfileProperties");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcShapeAspect @ProfileSectionLocation 
 		{ 
@@ -63,8 +86,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _profileSectionLocation = v, _profileSectionLocation, value,  "ProfileSectionLocation");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcOrientationSelect @ProfileOrientation 
 		{ 
@@ -78,9 +100,9 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _profileOrientation = v, _profileOrientation, value,  "ProfileOrientation");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

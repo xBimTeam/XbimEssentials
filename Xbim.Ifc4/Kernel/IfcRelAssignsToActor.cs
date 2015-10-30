@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.Kernel
 		#region IIfcRelAssignsToActor explicit implementation
 		IIfcActor IIfcRelAssignsToActor.RelatingActor { get { return @RelatingActor; } }	
 		IIfcActorRole IIfcRelAssignsToActor.ActingRole { get { return @ActingRole; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

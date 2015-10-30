@@ -50,8 +50,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IfcColourOrFactor IIfcSurfaceStyleRendering.SpecularColour { get { return @SpecularColour; } }	
 		IfcSpecularHighlightSelect IIfcSurfaceStyleRendering.SpecularHighlight { get { return @SpecularHighlight; } }	
 		IfcReflectanceMethodEnum IIfcSurfaceStyleRendering.ReflectanceMethod { get { return @ReflectanceMethod; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

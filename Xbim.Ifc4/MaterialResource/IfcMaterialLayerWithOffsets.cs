@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#region IIfcMaterialLayerWithOffsets explicit implementation
 		IfcLayerSetDirectionEnum IIfcMaterialLayerWithOffsets.OffsetDirection { get { return @OffsetDirection; } }	
 		IEnumerable<IfcLengthMeasure> IIfcMaterialLayerWithOffsets.OffsetValues { get { return @OffsetValues; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

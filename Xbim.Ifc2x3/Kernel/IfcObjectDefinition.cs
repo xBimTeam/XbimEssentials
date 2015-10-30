@@ -11,17 +11,44 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcObjectDefinition
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcObjectDefinition : IIfcRoot
+	{
+		IEnumerable<IIfcRelAssigns> @HasAssignments {  get; }
+		IEnumerable<IIfcRelDecomposes> @IsDecomposedBy {  get; }
+		IEnumerable<IIfcRelDecomposes> @Decomposes {  get; }
+		IEnumerable<IIfcRelAssociates> @HasAssociations {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCOBJECTDEFINITION", 22)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcObjectDefinition : IfcRoot, IEqualityComparer<@IfcObjectDefinition>, IEquatable<@IfcObjectDefinition>
+	public abstract partial class @IfcObjectDefinition : IfcRoot, IIfcObjectDefinition, IEqualityComparer<@IfcObjectDefinition>, IEquatable<@IfcObjectDefinition>
 	{
+		#region IIfcObjectDefinition explicit implementation
+		 
+		IEnumerable<IIfcRelAssigns> IIfcObjectDefinition.HasAssignments {  get { return @HasAssignments; } }
+		IEnumerable<IIfcRelDecomposes> IIfcObjectDefinition.IsDecomposedBy {  get { return @IsDecomposedBy; } }
+		IEnumerable<IIfcRelDecomposes> IIfcObjectDefinition.Decomposes {  get { return @Decomposes; } }
+		IEnumerable<IIfcRelAssociates> IIfcObjectDefinition.HasAssociations {  get { return @HasAssociations; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcObjectDefinition(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

@@ -12,13 +12,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDefinitionResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDefinedSymbol
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDefinedSymbol : IIfcGeometricRepresentationItem
+	{
+		IfcDefinedSymbolSelect @Definition { get; }
+		IIfcCartesianTransformationOperator2D @Target { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IFCDEFINEDSYMBOL", 461)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDefinedSymbol : IfcGeometricRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcDefinedSymbol>, IEquatable<@IfcDefinedSymbol>
+	public  partial class @IfcDefinedSymbol : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDefinedSymbol, IEqualityComparer<@IfcDefinedSymbol>, IEquatable<@IfcDefinedSymbol>
 	{
+		#region IIfcDefinedSymbol explicit implementation
+		IfcDefinedSymbolSelect IIfcDefinedSymbol.Definition { get { return @Definition; } }	
+		IIfcCartesianTransformationOperator2D IIfcDefinedSymbol.Target { get { return @Target; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDefinedSymbol(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +65,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				SetValue( v =>  _definition = v, _definition, value,  "Definition");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCartesianTransformationOperator2D @Target 
 		{ 
@@ -58,9 +79,9 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				SetValue( v =>  _target = v, _target, value,  "Target");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -34,8 +34,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	public abstract partial class @IfcConnectionGeometry : IPersistEntity, INotifyPropertyChanged, IIfcConnectionGeometry, IEqualityComparer<@IfcConnectionGeometry>, IEquatable<@IfcConnectionGeometry>
 	{
 		#region IIfcConnectionGeometry explicit implementation
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

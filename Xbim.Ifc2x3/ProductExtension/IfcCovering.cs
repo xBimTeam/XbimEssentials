@@ -15,13 +15,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCovering
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCovering : IIfcBuildingElement
+	{
+		IfcCoveringTypeEnum? @PredefinedType { get; }
+		IEnumerable<IIfcRelCoversSpaces> @CoversSpaces {  get; }
+		IEnumerable<IIfcRelCoversBldgElements> @Covers {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCCOVERING", 382)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCovering : IfcBuildingElement, IInstantiableEntity, IEqualityComparer<@IfcCovering>, IEquatable<@IfcCovering>
+	public  partial class @IfcCovering : IfcBuildingElement, IInstantiableEntity, IIfcCovering, IEqualityComparer<@IfcCovering>, IEquatable<@IfcCovering>
 	{
+		#region IIfcCovering explicit implementation
+		IfcCoveringTypeEnum? IIfcCovering.PredefinedType { get { return @PredefinedType; } }	
+		 
+		IEnumerable<IIfcRelCoversSpaces> IIfcCovering.CoversSpaces {  get { return @CoversSpaces; } }
+		IEnumerable<IIfcRelCoversBldgElements> IIfcCovering.Covers {  get { return @Covers; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCovering(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +69,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

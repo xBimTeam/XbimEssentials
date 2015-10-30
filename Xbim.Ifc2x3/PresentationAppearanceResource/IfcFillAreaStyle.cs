@@ -12,13 +12,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFillAreaStyle
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFillAreaStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
+	{
+		IEnumerable<IfcFillStyleSelect> @FillStyles { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCFILLAREASTYLE", 33)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IfcPresentationStyleSelect, IInstantiableEntity, IEqualityComparer<@IfcFillAreaStyle>, IEquatable<@IfcFillAreaStyle>
+	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IIfcFillAreaStyle, IEqualityComparer<@IfcFillAreaStyle>, IEquatable<@IfcFillAreaStyle>
 	{
+		#region IIfcFillAreaStyle explicit implementation
+		IEnumerable<IfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { get { return @FillStyles; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyle(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,9 +59,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _fillStyles;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

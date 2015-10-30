@@ -16,13 +16,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.BuildingcontrolsDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSensorType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSensorType : IIfcDistributionControlElementType
+	{
+		IfcSensorTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	[ExpressType("IFCSENSORTYPE", 375)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSensorType : IfcDistributionControlElementType, IInstantiableEntity, IEqualityComparer<@IfcSensorType>, IEquatable<@IfcSensorType>
+	public  partial class @IfcSensorType : IfcDistributionControlElementType, IInstantiableEntity, IIfcSensorType, IEqualityComparer<@IfcSensorType>, IEquatable<@IfcSensorType>
 	{
+		#region IIfcSensorType explicit implementation
+		IfcSensorTypeEnum IIfcSensorType.PredefinedType { get { return @PredefinedType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSensorType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +66,9 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -33,8 +33,7 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcPreDefinedPropertySet : IfcPropertySetDefinition, IIfcPreDefinedPropertySet, IEqualityComparer<@IfcPreDefinedPropertySet>, IEquatable<@IfcPreDefinedPropertySet>
 	{
 		#region IIfcPreDefinedPropertySet explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -13,13 +13,41 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextStyleWithBoxCharacteristics
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextStyleWithBoxCharacteristics : IPersistEntity, IfcTextStyleSelect
+	{
+		IfcPositiveLengthMeasure? @BoxHeight { get; }
+		IfcPositiveLengthMeasure? @BoxWidth { get; }
+		IfcPlaneAngleMeasure? @BoxSlantAngle { get; }
+		IfcPlaneAngleMeasure? @BoxRotateAngle { get; }
+		IfcSizeSelect @CharacterSpacing { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCTEXTSTYLEWITHBOXCHARACTERISTICS", 730)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleWithBoxCharacteristics : INotifyPropertyChanged, IfcTextStyleSelect, IInstantiableEntity, IEqualityComparer<@IfcTextStyleWithBoxCharacteristics>, IEquatable<@IfcTextStyleWithBoxCharacteristics>
+	public  partial class @IfcTextStyleWithBoxCharacteristics : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleWithBoxCharacteristics, IEqualityComparer<@IfcTextStyleWithBoxCharacteristics>, IEquatable<@IfcTextStyleWithBoxCharacteristics>
 	{
+		#region IIfcTextStyleWithBoxCharacteristics explicit implementation
+		IfcPositiveLengthMeasure? IIfcTextStyleWithBoxCharacteristics.BoxHeight { get { return @BoxHeight; } }	
+		IfcPositiveLengthMeasure? IIfcTextStyleWithBoxCharacteristics.BoxWidth { get { return @BoxWidth; } }	
+		IfcPlaneAngleMeasure? IIfcTextStyleWithBoxCharacteristics.BoxSlantAngle { get { return @BoxSlantAngle; } }	
+		IfcPlaneAngleMeasure? IIfcTextStyleWithBoxCharacteristics.BoxRotateAngle { get { return @BoxRotateAngle; } }	
+		IfcSizeSelect IIfcTextStyleWithBoxCharacteristics.CharacterSpacing { get { return @CharacterSpacing; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -103,8 +131,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _boxHeight = v, _boxHeight, value,  "BoxHeight");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @BoxWidth 
 		{ 
@@ -118,8 +145,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _boxWidth = v, _boxWidth, value,  "BoxWidth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPlaneAngleMeasure? @BoxSlantAngle 
 		{ 
@@ -133,8 +159,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _boxSlantAngle = v, _boxSlantAngle, value,  "BoxSlantAngle");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPlaneAngleMeasure? @BoxRotateAngle 
 		{ 
@@ -148,8 +173,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _boxRotateAngle = v, _boxRotateAngle, value,  "BoxRotateAngle");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSizeSelect @CharacterSpacing 
 		{ 
@@ -163,9 +187,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _characterSpacing = v, _characterSpacing, value,  "CharacterSpacing");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

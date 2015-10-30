@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#region IIfcSpace explicit implementation
 		IfcSpaceTypeEnum? IIfcSpace.PredefinedType { get { return @PredefinedType; } }	
 		IfcLengthMeasure? IIfcSpace.ElevationWithFlooring { get { return @ElevationWithFlooring; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelCoversSpaces> IIfcSpace.HasCoverings {  get { return @HasCoverings; } }
 		IEnumerable<IIfcRelSpaceBoundary> IIfcSpace.BoundedBy {  get { return @BoundedBy; } }
 		#endregion

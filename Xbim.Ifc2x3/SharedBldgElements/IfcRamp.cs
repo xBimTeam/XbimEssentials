@@ -16,13 +16,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRamp
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRamp : IIfcBuildingElement
+	{
+		IfcRampTypeEnum @ShapeType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IFCRAMP", 414)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRamp : IfcBuildingElement, IInstantiableEntity, IEqualityComparer<@IfcRamp>, IEquatable<@IfcRamp>
+	public  partial class @IfcRamp : IfcBuildingElement, IInstantiableEntity, IIfcRamp, IEqualityComparer<@IfcRamp>, IEquatable<@IfcRamp>
 	{
+		#region IIfcRamp explicit implementation
+		IfcRampTypeEnum IIfcRamp.ShapeType { get { return @ShapeType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRamp(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +66,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _shapeType = v, _shapeType, value,  "ShapeType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

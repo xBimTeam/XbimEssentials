@@ -43,8 +43,7 @@ namespace Xbim.Ifc4.MaterialResource
 		IfcText? IIfcMaterialProfileSet.Description { get { return @Description; } }	
 		IEnumerable<IIfcMaterialProfile> IIfcMaterialProfileSet.MaterialProfiles { get { return @MaterialProfiles; } }	
 		IIfcCompositeProfileDef IIfcMaterialProfileSet.CompositeProfile { get { return @CompositeProfile; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

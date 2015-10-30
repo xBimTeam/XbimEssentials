@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#region IIfcVector explicit implementation
 		IIfcDirection IIfcVector.Orientation { get { return @Orientation; } }	
 		IfcLengthMeasure IIfcVector.Magnitude { get { return @Magnitude; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

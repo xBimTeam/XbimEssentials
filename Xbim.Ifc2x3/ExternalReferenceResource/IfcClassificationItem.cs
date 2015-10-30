@@ -13,14 +13,42 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ExternalReferenceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcClassificationItem
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcClassificationItem : IPersistEntity
+	{
+		IIfcClassificationNotationFacet @Notation { get; }
+		IIfcClassification @ItemOf { get; }
+		IfcLabel @Title { get; }
+		IEnumerable<IIfcClassificationItemRelationship> @IsClassifiedItemIn {  get; }
+		IEnumerable<IIfcClassificationItemRelationship> @IsClassifyingItemIn {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCLASSIFICATIONITEM", 14)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationItem : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcClassificationItem>, IEquatable<@IfcClassificationItem>
+	public  partial class @IfcClassificationItem : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationItem, IEqualityComparer<@IfcClassificationItem>, IEquatable<@IfcClassificationItem>
 	{
+		#region IIfcClassificationItem explicit implementation
+		IIfcClassificationNotationFacet IIfcClassificationItem.Notation { get { return @Notation; } }	
+		IIfcClassification IIfcClassificationItem.ItemOf { get { return @ItemOf; } }	
+		IfcLabel IIfcClassificationItem.Title { get { return @Title; } }	
+		 
+		IEnumerable<IIfcClassificationItemRelationship> IIfcClassificationItem.IsClassifiedItemIn {  get { return @IsClassifiedItemIn; } }
+		IEnumerable<IIfcClassificationItemRelationship> IIfcClassificationItem.IsClassifyingItemIn {  get { return @IsClassifyingItemIn; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -102,8 +130,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _notation = v, _notation, value,  "Notation");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcClassification @ItemOf 
@@ -118,8 +145,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _itemOf = v, _itemOf, value,  "ItemOf");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel @Title 
 		{ 
@@ -133,9 +159,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _title = v, _title, value,  "Title");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		IIfcRecurrencePattern IIfcWorkTime.RecurrencePattern { get { return @RecurrencePattern; } }	
 		IfcDate? IIfcWorkTime.Start { get { return @Start; } }	
 		IfcDate? IIfcWorkTime.Finish { get { return @Finish; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

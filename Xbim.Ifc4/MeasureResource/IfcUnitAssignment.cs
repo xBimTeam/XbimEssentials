@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.MeasureResource
 	{
 		#region IIfcUnitAssignment explicit implementation
 		IEnumerable<IfcUnit> IIfcUnitAssignment.Units { get { return @Units; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		#region IIfcAnnotationFillArea explicit implementation
 		IIfcCurve IIfcAnnotationFillArea.OuterBoundary { get { return @OuterBoundary; } }	
 		IEnumerable<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries { get { return @InnerBoundaries; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

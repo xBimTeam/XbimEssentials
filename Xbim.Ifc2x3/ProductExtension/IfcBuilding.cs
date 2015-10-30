@@ -16,13 +16,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBuilding
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBuilding : IIfcSpatialStructureElement
+	{
+		IfcLengthMeasure? @ElevationOfRefHeight { get; }
+		IfcLengthMeasure? @ElevationOfTerrain { get; }
+		IIfcPostalAddress @BuildingAddress { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCBUILDING", 169)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuilding : IfcSpatialStructureElement, IInstantiableEntity, IEqualityComparer<@IfcBuilding>, IEquatable<@IfcBuilding>
+	public  partial class @IfcBuilding : IfcSpatialStructureElement, IInstantiableEntity, IIfcBuilding, IEqualityComparer<@IfcBuilding>, IEquatable<@IfcBuilding>
 	{
+		#region IIfcBuilding explicit implementation
+		IfcLengthMeasure? IIfcBuilding.ElevationOfRefHeight { get { return @ElevationOfRefHeight; } }	
+		IfcLengthMeasure? IIfcBuilding.ElevationOfTerrain { get { return @ElevationOfTerrain; } }	
+		IIfcPostalAddress IIfcBuilding.BuildingAddress { get { return @BuildingAddress; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBuilding(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +72,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _elevationOfRefHeight = v, _elevationOfRefHeight, value,  "ElevationOfRefHeight");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @ElevationOfTerrain 
 		{ 
@@ -63,8 +86,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _elevationOfTerrain = v, _elevationOfTerrain, value,  "ElevationOfTerrain");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcPostalAddress @BuildingAddress 
 		{ 
@@ -78,9 +100,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _buildingAddress = v, _buildingAddress, value,  "BuildingAddress");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

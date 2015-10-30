@@ -12,18 +12,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ExternalReferenceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLibraryReference
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLibraryReference : IIfcExternalReference, IfcLibrarySelect
+	{
+		IEnumerable<IIfcLibraryInformation> @ReferenceIntoLibrary {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCLIBRARYREFERENCE", 598)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLibraryReference : IfcExternalReference, IfcLibrarySelect, IInstantiableEntity, IEqualityComparer<@IfcLibraryReference>, IEquatable<@IfcLibraryReference>
+	public  partial class @IfcLibraryReference : IfcExternalReference, IInstantiableEntity, IIfcLibraryReference, IEqualityComparer<@IfcLibraryReference>, IEquatable<@IfcLibraryReference>
 	{
+		#region IIfcLibraryReference explicit implementation
+		 
+		IEnumerable<IIfcLibraryInformation> IIfcLibraryReference.ReferenceIntoLibrary {  get { return @ReferenceIntoLibrary; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLibraryReference(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

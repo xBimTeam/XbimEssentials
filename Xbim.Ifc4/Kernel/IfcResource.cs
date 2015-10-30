@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.Kernel
 		#region IIfcResource explicit implementation
 		IfcIdentifier? IIfcResource.Identification { get { return @Identification; } }	
 		IfcText? IIfcResource.LongDescription { get { return @LongDescription; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelAssignsToResource> IIfcResource.ResourceOf {  get { return @ResourceOf; } }
 		#endregion
 

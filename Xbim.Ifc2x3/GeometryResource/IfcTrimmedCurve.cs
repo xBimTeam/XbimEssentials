@@ -11,13 +11,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTrimmedCurve
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTrimmedCurve : IIfcBoundedCurve
+	{
+		IIfcCurve @BasisCurve { get; }
+		IEnumerable<IfcTrimmingSelect> @Trim1 { get; }
+		IEnumerable<IfcTrimmingSelect> @Trim2 { get; }
+		bool @SenseAgreement { get; }
+		IfcTrimmingPreference @MasterRepresentation { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCTRIMMEDCURVE", 143)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTrimmedCurve : IfcBoundedCurve, IInstantiableEntity, IEqualityComparer<@IfcTrimmedCurve>, IEquatable<@IfcTrimmedCurve>
+	public  partial class @IfcTrimmedCurve : IfcBoundedCurve, IInstantiableEntity, IIfcTrimmedCurve, IEqualityComparer<@IfcTrimmedCurve>, IEquatable<@IfcTrimmedCurve>
 	{
+		#region IIfcTrimmedCurve explicit implementation
+		IIfcCurve IIfcTrimmedCurve.BasisCurve { get { return @BasisCurve; } }	
+		IEnumerable<IfcTrimmingSelect> IIfcTrimmedCurve.Trim1 { get { return @Trim1; } }	
+		IEnumerable<IfcTrimmingSelect> IIfcTrimmedCurve.Trim2 { get { return @Trim2; } }	
+		bool IIfcTrimmedCurve.SenseAgreement { get { return @SenseAgreement; } }	
+		IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation { get { return @MasterRepresentation; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTrimmedCurve(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +75,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 2)]
 		public ItemSet<IfcTrimmingSelect> @Trim1 
 		{ 
@@ -58,8 +85,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _trim1;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 2)]
 		public ItemSet<IfcTrimmingSelect> @Trim2 
 		{ 
@@ -69,8 +95,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _trim2;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @SenseAgreement 
 		{ 
@@ -84,8 +109,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _senseAgreement = v, _senseAgreement, value,  "SenseAgreement");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcTrimmingPreference @MasterRepresentation 
 		{ 
@@ -99,9 +123,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _masterRepresentation = v, _masterRepresentation, value,  "MasterRepresentation");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

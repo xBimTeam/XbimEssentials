@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageX { get { return @SlippageX; } }	
 		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageY { get { return @SlippageY; } }	
 		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageZ { get { return @SlippageZ; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

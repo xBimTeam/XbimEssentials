@@ -12,13 +12,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralLoadResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralLoadSingleForceWarping
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralLoadSingleForceWarping : IIfcStructuralLoadSingleForce
+	{
+		IfcWarpingMomentMeasure? @WarpingMoment { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IFCSTRUCTURALLOADSINGLEFORCEWARPING", 393)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleForceWarping : IfcStructuralLoadSingleForce, IInstantiableEntity, IEqualityComparer<@IfcStructuralLoadSingleForceWarping>, IEquatable<@IfcStructuralLoadSingleForceWarping>
+	public  partial class @IfcStructuralLoadSingleForceWarping : IfcStructuralLoadSingleForce, IInstantiableEntity, IIfcStructuralLoadSingleForceWarping, IEqualityComparer<@IfcStructuralLoadSingleForceWarping>, IEquatable<@IfcStructuralLoadSingleForceWarping>
 	{
+		#region IIfcStructuralLoadSingleForceWarping explicit implementation
+		IfcWarpingMomentMeasure? IIfcStructuralLoadSingleForceWarping.WarpingMoment { get { return @WarpingMoment; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadSingleForceWarping(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +62,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _warpingMoment = v, _warpingMoment, value,  "WarpingMoment");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

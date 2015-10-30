@@ -13,13 +13,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSpatialStructureElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSpatialStructureElement : IIfcProduct
+	{
+		IfcLabel? @LongName { get; }
+		IfcElementCompositionEnum @CompositionType { get; }
+		IEnumerable<IIfcRelReferencedInSpatialStructure> @ReferencesElements {  get; }
+		IEnumerable<IIfcRelServicesBuildings> @ServicedBySystems {  get; }
+		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainsElements {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCSPATIALSTRUCTUREELEMENT", 170)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSpatialStructureElement : IfcProduct, IEqualityComparer<@IfcSpatialStructureElement>, IEquatable<@IfcSpatialStructureElement>
+	public abstract partial class @IfcSpatialStructureElement : IfcProduct, IIfcSpatialStructureElement, IEqualityComparer<@IfcSpatialStructureElement>, IEquatable<@IfcSpatialStructureElement>
 	{
+		#region IIfcSpatialStructureElement explicit implementation
+		IfcLabel? IIfcSpatialStructureElement.LongName { get { return @LongName; } }	
+		IfcElementCompositionEnum IIfcSpatialStructureElement.CompositionType { get { return @CompositionType; } }	
+		 
+		IEnumerable<IIfcRelReferencedInSpatialStructure> IIfcSpatialStructureElement.ReferencesElements {  get { return @ReferencesElements; } }
+		IEnumerable<IIfcRelServicesBuildings> IIfcSpatialStructureElement.ServicedBySystems {  get { return @ServicedBySystems; } }
+		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialStructureElement.ContainsElements {  get { return @ContainsElements; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpatialStructureElement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +72,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _longName = v, _longName, value,  "LongName");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcElementCompositionEnum @CompositionType 
 		{ 
@@ -59,9 +86,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _compositionType = v, _compositionType, value,  "CompositionType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

@@ -33,8 +33,7 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcCartesianTransformationOperator2D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator2D, IEqualityComparer<@IfcCartesianTransformationOperator2D>, IEquatable<@IfcCartesianTransformationOperator2D>
 	{
 		#region IIfcCartesianTransformationOperator2D explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

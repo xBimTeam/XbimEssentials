@@ -43,8 +43,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IfcPositiveLengthMeasure IIfcBoundingBox.XDim { get { return @XDim; } }	
 		IfcPositiveLengthMeasure IIfcBoundingBox.YDim { get { return @YDim; } }	
 		IfcPositiveLengthMeasure IIfcBoundingBox.ZDim { get { return @ZDim; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

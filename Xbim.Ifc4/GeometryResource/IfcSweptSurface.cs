@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#region IIfcSweptSurface explicit implementation
 		IIfcProfileDef IIfcSweptSurface.SweptCurve { get { return @SweptCurve; } }	
 		IIfcAxis2Placement3D IIfcSweptSurface.Position { get { return @Position; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

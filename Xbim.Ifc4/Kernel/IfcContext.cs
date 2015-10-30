@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.Kernel
 		IfcLabel? IIfcContext.Phase { get { return @Phase; } }	
 		IEnumerable<IIfcRepresentationContext> IIfcContext.RepresentationContexts { get { return @RepresentationContexts; } }	
 		IIfcUnitAssignment IIfcContext.UnitsInContext { get { return @UnitsInContext; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelDefinesByProperties> IIfcContext.IsDefinedBy {  get { return @IsDefinedBy; } }
 		IEnumerable<IIfcRelDeclares> IIfcContext.Declares {  get { return @Declares; } }
 		#endregion

@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.UtilityResource
 		IfcLabel? IIfcTable.Name { get { return @Name; } }	
 		IEnumerable<IIfcTableRow> IIfcTable.Rows { get { return @Rows; } }	
 		IEnumerable<IIfcTableColumn> IIfcTable.Columns { get { return @Columns; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

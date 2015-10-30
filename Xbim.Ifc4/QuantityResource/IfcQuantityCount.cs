@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.QuantityResource
 		#region IIfcQuantityCount explicit implementation
 		IfcCountMeasure IIfcQuantityCount.CountValue { get { return @CountValue; } }	
 		IfcLabel? IIfcQuantityCount.Formula { get { return @Formula; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

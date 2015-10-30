@@ -11,13 +11,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.TopologyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcOrientedEdge
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcOrientedEdge : IIfcEdge
+	{
+		IIfcEdge @EdgeElement { get; }
+		bool @Orientation { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IFCORIENTEDEDGE", 596)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrientedEdge : IfcEdge, IInstantiableEntity, IEqualityComparer<@IfcOrientedEdge>, IEquatable<@IfcOrientedEdge>
+	public  partial class @IfcOrientedEdge : IfcEdge, IInstantiableEntity, IIfcOrientedEdge, IEqualityComparer<@IfcOrientedEdge>, IEquatable<@IfcOrientedEdge>
 	{
+		#region IIfcOrientedEdge explicit implementation
+		IIfcEdge IIfcOrientedEdge.EdgeElement { get { return @EdgeElement; } }	
+		bool IIfcOrientedEdge.Orientation { get { return @Orientation; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOrientedEdge(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +64,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 			{
 				SetValue( v =>  _edgeElement = v, _edgeElement, value,  "EdgeElement");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @Orientation 
 		{ 
@@ -57,9 +78,9 @@ namespace Xbim.Ifc2x3.TopologyResource
 			{
 				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation");
 			} 
-		}
-	
+		}	
 		#endregion
+
 		#region Overriding attributes
 		[EntityAttribute(1, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public override IfcVertex @EdgeStart 
@@ -73,7 +94,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 				throw new System.Exception("It is not possible to set a value of derived property EdgeStart in IfcOrientedEdge"); 
 			}
 		}
-
 		[EntityAttribute(2, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public override IfcVertex @EdgeEnd 
 		{
@@ -86,7 +106,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 				throw new System.Exception("It is not possible to set a value of derived property EdgeEnd in IfcOrientedEdge"); 
 			}
 		}
-
 		#endregion
 
 

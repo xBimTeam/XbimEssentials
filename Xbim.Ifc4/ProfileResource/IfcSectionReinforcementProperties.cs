@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.ProfileResource
 		IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole { get { return @ReinforcementRole; } }	
 		IIfcSectionProperties IIfcSectionReinforcementProperties.SectionDefinition { get { return @SectionDefinition; } }	
 		IEnumerable<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions { get { return @CrossSectionReinforcementDefinitions; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -16,13 +16,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.HVACDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDamperType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDamperType : IIfcFlowControllerType
+	{
+		IfcDamperTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IFCDAMPERTYPE", 514)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDamperType : IfcFlowControllerType, IInstantiableEntity, IEqualityComparer<@IfcDamperType>, IEquatable<@IfcDamperType>
+	public  partial class @IfcDamperType : IfcFlowControllerType, IInstantiableEntity, IIfcDamperType, IEqualityComparer<@IfcDamperType>, IEquatable<@IfcDamperType>
 	{
+		#region IIfcDamperType explicit implementation
+		IfcDamperTypeEnum IIfcDamperType.PredefinedType { get { return @PredefinedType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDamperType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +66,9 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

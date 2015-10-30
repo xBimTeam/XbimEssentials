@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IfcFontVariant? IIfcTextStyleFontModel.FontVariant { get { return @FontVariant; } }	
 		IfcFontWeight? IIfcTextStyleFontModel.FontWeight { get { return @FontWeight; } }	
 		IfcSizeSelect IIfcTextStyleFontModel.FontSize { get { return @FontSize; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

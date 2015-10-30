@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	{
 		#region IIfcStructuralConnectionCondition explicit implementation
 		IfcLabel? IIfcStructuralConnectionCondition.Name { get { return @Name; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

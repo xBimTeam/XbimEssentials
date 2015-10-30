@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.CostResource
 		IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate { get { return @ExchangeRate; } }	
 		IfcDateTime? IIfcCurrencyRelationship.RateDateTime { get { return @RateDateTime; } }	
 		IIfcLibraryInformation IIfcCurrencyRelationship.RateSource { get { return @RateSource; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

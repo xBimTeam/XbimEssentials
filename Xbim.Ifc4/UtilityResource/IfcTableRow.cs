@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.UtilityResource
 		#region IIfcTableRow explicit implementation
 		IEnumerable<IfcValue> IIfcTableRow.RowCells { get { return @RowCells; } }	
 		bool? IIfcTableRow.IsHeading { get { return @IsHeading; } }	
-	
-	 
+		 
 		IIfcTable IIfcTableRow.OfTable {  get { return @OfTable; } }
 		#endregion
 

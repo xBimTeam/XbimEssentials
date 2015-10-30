@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.ProductExtension
 		IIfcConnectionGeometry IIfcRelInterferesElements.InterferenceGeometry { get { return @InterferenceGeometry; } }	
 		IfcIdentifier? IIfcRelInterferesElements.InterferenceType { get { return @InterferenceType; } }	
 		bool? IIfcRelInterferesElements.ImpliedOrder { get { return @ImpliedOrder; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

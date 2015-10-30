@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IfcPositiveLengthMeasure IIfcBlock.XLength { get { return @XLength; } }	
 		IfcPositiveLengthMeasure IIfcBlock.YLength { get { return @YLength; } }	
 		IfcPositiveLengthMeasure IIfcBlock.ZLength { get { return @ZLength; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

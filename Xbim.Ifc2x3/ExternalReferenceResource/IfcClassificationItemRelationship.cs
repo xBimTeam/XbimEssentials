@@ -12,14 +12,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ExternalReferenceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcClassificationItemRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcClassificationItemRelationship : IPersistEntity
+	{
+		IIfcClassificationItem @RelatingItem { get; }
+		IEnumerable<IIfcClassificationItem> @RelatedItems { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCLASSIFICATIONITEMRELATIONSHIP", 210)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationItemRelationship : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcClassificationItemRelationship>, IEquatable<@IfcClassificationItemRelationship>
+	public  partial class @IfcClassificationItemRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationItemRelationship, IEqualityComparer<@IfcClassificationItemRelationship>, IEquatable<@IfcClassificationItemRelationship>
 	{
+		#region IIfcClassificationItemRelationship explicit implementation
+		IIfcClassificationItem IIfcClassificationItemRelationship.RelatingItem { get { return @RelatingItem; } }	
+		IEnumerable<IIfcClassificationItem> IIfcClassificationItemRelationship.RelatedItems { get { return @RelatedItems; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -102,8 +124,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _relatingItem = v, _relatingItem, value,  "RelatingItem");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcClassificationItem> @RelatedItems 
@@ -114,9 +135,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				((IPersistEntity)this).Activate(false);
 				return _relatedItems;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

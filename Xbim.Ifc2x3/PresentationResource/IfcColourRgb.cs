@@ -13,13 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcColourRgb
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcColourRgb : IIfcColourSpecification, IfcColourOrFactor
+	{
+		IfcNormalisedRatioMeasure @Red { get; }
+		IfcNormalisedRatioMeasure @Green { get; }
+		IfcNormalisedRatioMeasure @Blue { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IFCCOLOURRGB", 27)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcColourRgb : IfcColourSpecification, IfcColourOrFactor, IInstantiableEntity, IEqualityComparer<@IfcColourRgb>, IEquatable<@IfcColourRgb>
+	public  partial class @IfcColourRgb : IfcColourSpecification, IInstantiableEntity, IIfcColourRgb, IEqualityComparer<@IfcColourRgb>, IEquatable<@IfcColourRgb>
 	{
+		#region IIfcColourRgb explicit implementation
+		IfcNormalisedRatioMeasure IIfcColourRgb.Red { get { return @Red; } }	
+		IfcNormalisedRatioMeasure IIfcColourRgb.Green { get { return @Green; } }	
+		IfcNormalisedRatioMeasure IIfcColourRgb.Blue { get { return @Blue; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcColourRgb(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +69,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 			{
 				SetValue( v =>  _red = v, _red, value,  "Red");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure @Green 
 		{ 
@@ -60,8 +83,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 			{
 				SetValue( v =>  _green = v, _green, value,  "Green");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure @Blue 
 		{ 
@@ -75,9 +97,9 @@ namespace Xbim.Ifc2x3.PresentationResource
 			{
 				SetValue( v =>  _blue = v, _blue, value,  "Blue");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

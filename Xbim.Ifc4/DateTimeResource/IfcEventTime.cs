@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		IfcDateTime? IIfcEventTime.EarlyDate { get { return @EarlyDate; } }	
 		IfcDateTime? IIfcEventTime.LateDate { get { return @LateDate; } }	
 		IfcDateTime? IIfcEventTime.ScheduleDate { get { return @ScheduleDate; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

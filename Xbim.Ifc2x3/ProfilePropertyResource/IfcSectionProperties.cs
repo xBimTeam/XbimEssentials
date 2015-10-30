@@ -13,13 +13,37 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfilePropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSectionProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSectionProperties : IPersistEntity
+	{
+		IfcSectionTypeEnum @SectionType { get; }
+		IIfcProfileDef @StartProfile { get; }
+		IIfcProfileDef @EndProfile { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IFCSECTIONPROPERTIES", 184)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionProperties : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcSectionProperties>, IEquatable<@IfcSectionProperties>
+	public  partial class @IfcSectionProperties : INotifyPropertyChanged, IInstantiableEntity, IIfcSectionProperties, IEqualityComparer<@IfcSectionProperties>, IEquatable<@IfcSectionProperties>
 	{
+		#region IIfcSectionProperties explicit implementation
+		IfcSectionTypeEnum IIfcSectionProperties.SectionType { get { return @SectionType; } }	
+		IIfcProfileDef IIfcSectionProperties.StartProfile { get { return @StartProfile; } }	
+		IIfcProfileDef IIfcSectionProperties.EndProfile { get { return @EndProfile; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -101,8 +125,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _sectionType = v, _sectionType, value,  "SectionType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcProfileDef @StartProfile 
 		{ 
@@ -116,8 +139,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _startProfile = v, _startProfile, value,  "StartProfile");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcProfileDef @EndProfile 
 		{ 
@@ -131,9 +153,9 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _endProfile = v, _endProfile, value,  "EndProfile");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

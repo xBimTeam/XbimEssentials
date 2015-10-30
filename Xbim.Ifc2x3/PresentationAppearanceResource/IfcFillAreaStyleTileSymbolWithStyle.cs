@@ -13,13 +13,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFillAreaStyleTileSymbolWithStyle
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFillAreaStyleTileSymbolWithStyle : IIfcGeometricRepresentationItem, IfcFillAreaStyleTileShapeSelect
+	{
+		IIfcAnnotationSymbolOccurrence @Symbol { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCFILLAREASTYLETILESYMBOLWITHSTYLE", 726)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleTileSymbolWithStyle : IfcGeometricRepresentationItem, IfcFillAreaStyleTileShapeSelect, IInstantiableEntity, IEqualityComparer<@IfcFillAreaStyleTileSymbolWithStyle>, IEquatable<@IfcFillAreaStyleTileSymbolWithStyle>
+	public  partial class @IfcFillAreaStyleTileSymbolWithStyle : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTileSymbolWithStyle, IEqualityComparer<@IfcFillAreaStyleTileSymbolWithStyle>, IEquatable<@IfcFillAreaStyleTileSymbolWithStyle>
 	{
+		#region IIfcFillAreaStyleTileSymbolWithStyle explicit implementation
+		IIfcAnnotationSymbolOccurrence IIfcFillAreaStyleTileSymbolWithStyle.Symbol { get { return @Symbol; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyleTileSymbolWithStyle(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,9 +63,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _symbol = v, _symbol, value,  "Symbol");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

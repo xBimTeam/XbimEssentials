@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		IfcLabel? IIfcGridAxis.AxisTag { get { return @AxisTag; } }	
 		IIfcCurve IIfcGridAxis.AxisCurve { get { return @AxisCurve; } }	
 		IfcBoolean IIfcGridAxis.SameSense { get { return @SameSense; } }	
-	
-	 
+		 
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfW {  get { return @PartOfW; } }
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfV {  get { return @PartOfV; } }
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfU {  get { return @PartOfU; } }

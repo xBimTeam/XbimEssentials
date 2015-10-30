@@ -13,14 +13,42 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProperty
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProperty : IPersistEntity
+	{
+		IfcIdentifier @Name { get; }
+		IfcText? @Description { get; }
+		IEnumerable<IIfcPropertyDependencyRelationship> @PropertyForDependance {  get; }
+		IEnumerable<IIfcPropertyDependencyRelationship> @PropertyDependsOn {  get; }
+		IEnumerable<IIfcComplexProperty> @PartOfComplex {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[IndexedClass]
 	[ExpressType("IFCPROPERTY", 5)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProperty : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcProperty>, IEquatable<@IfcProperty>
+	public abstract partial class @IfcProperty : IPersistEntity, INotifyPropertyChanged, IIfcProperty, IEqualityComparer<@IfcProperty>, IEquatable<@IfcProperty>
 	{
+		#region IIfcProperty explicit implementation
+		IfcIdentifier IIfcProperty.Name { get { return @Name; } }	
+		IfcText? IIfcProperty.Description { get { return @Description; } }	
+		 
+		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyForDependance {  get { return @PropertyForDependance; } }
+		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyDependsOn {  get { return @PropertyDependsOn; } }
+		IEnumerable<IIfcComplexProperty> IIfcProperty.PartOfComplex {  get { return @PartOfComplex; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -101,8 +129,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -116,9 +143,9 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

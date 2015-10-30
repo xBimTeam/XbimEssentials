@@ -12,13 +12,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPointOnSurface
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPointOnSurface : IIfcPoint
+	{
+		IIfcSurface @BasisSurface { get; }
+		IfcParameterValue @PointParameterU { get; }
+		IfcParameterValue @PointParameterV { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCPOINTONSURFACE", 65)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPointOnSurface : IfcPoint, IInstantiableEntity, IEqualityComparer<@IfcPointOnSurface>, IEquatable<@IfcPointOnSurface>
+	public  partial class @IfcPointOnSurface : IfcPoint, IInstantiableEntity, IIfcPointOnSurface, IEqualityComparer<@IfcPointOnSurface>, IEquatable<@IfcPointOnSurface>
 	{
+		#region IIfcPointOnSurface explicit implementation
+		IIfcSurface IIfcPointOnSurface.BasisSurface { get { return @BasisSurface; } }	
+		IfcParameterValue IIfcPointOnSurface.PointParameterU { get { return @PointParameterU; } }	
+		IfcParameterValue IIfcPointOnSurface.PointParameterV { get { return @PointParameterV; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPointOnSurface(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +68,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcParameterValue @PointParameterU 
 		{ 
@@ -59,8 +82,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _pointParameterU = v, _pointParameterU, value,  "PointParameterU");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcParameterValue @PointParameterV 
 		{ 
@@ -74,9 +96,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _pointParameterV = v, _pointParameterV, value,  "PointParameterV");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		#region IIfcRepresentationContext explicit implementation
 		IfcLabel? IIfcRepresentationContext.ContextIdentifier { get { return @ContextIdentifier; } }	
 		IfcLabel? IIfcRepresentationContext.ContextType { get { return @ContextType; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRepresentation> IIfcRepresentationContext.RepresentationsInContext {  get { return @RepresentationsInContext; } }
 		#endregion
 

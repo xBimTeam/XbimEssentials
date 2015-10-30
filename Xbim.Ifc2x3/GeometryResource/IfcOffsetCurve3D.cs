@@ -12,13 +12,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcOffsetCurve3D
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcOffsetCurve3D : IIfcCurve
+	{
+		IIfcCurve @BasisCurve { get; }
+		IfcLengthMeasure @Distance { get; }
+		bool? @SelfIntersect { get; }
+		IIfcDirection @RefDirection { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCOFFSETCURVE3D", 67)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOffsetCurve3D : IfcCurve, IInstantiableEntity, IEqualityComparer<@IfcOffsetCurve3D>, IEquatable<@IfcOffsetCurve3D>
+	public  partial class @IfcOffsetCurve3D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve3D, IEqualityComparer<@IfcOffsetCurve3D>, IEquatable<@IfcOffsetCurve3D>
 	{
+		#region IIfcOffsetCurve3D explicit implementation
+		IIfcCurve IIfcOffsetCurve3D.BasisCurve { get { return @BasisCurve; } }	
+		IfcLengthMeasure IIfcOffsetCurve3D.Distance { get { return @Distance; } }	
+		bool? IIfcOffsetCurve3D.SelfIntersect { get { return @SelfIntersect; } }	
+		IIfcDirection IIfcOffsetCurve3D.RefDirection { get { return @RefDirection; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOffsetCurve3D(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +71,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure @Distance 
 		{ 
@@ -60,8 +85,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _distance = v, _distance, value,  "Distance");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @SelfIntersect 
 		{ 
@@ -75,8 +99,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDirection @RefDirection 
 		{ 
@@ -90,9 +113,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _refDirection = v, _refDirection, value,  "RefDirection");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -43,8 +43,7 @@ namespace Xbim.Ifc4.ProfileResource
 		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.TopXDim { get { return @TopXDim; } }	
 		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.YDim { get { return @YDim; } }	
 		IfcLengthMeasure IIfcTrapeziumProfileDef.TopXOffset { get { return @TopXOffset; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

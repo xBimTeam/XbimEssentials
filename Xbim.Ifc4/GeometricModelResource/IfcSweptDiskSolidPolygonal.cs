@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcSweptDiskSolidPolygonal explicit implementation
 		IfcPositiveLengthMeasure? IIfcSweptDiskSolidPolygonal.FilletRadius { get { return @FilletRadius; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

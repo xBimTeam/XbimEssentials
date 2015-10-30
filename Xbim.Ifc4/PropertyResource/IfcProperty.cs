@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.PropertyResource
 		#region IIfcProperty explicit implementation
 		IfcIdentifier IIfcProperty.Name { get { return @Name; } }	
 		IfcText? IIfcProperty.Description { get { return @Description; } }	
-	
-	 
+		 
 		IEnumerable<IIfcPropertySet> IIfcProperty.PartOfPset {  get { return @PartOfPset; } }
 		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyForDependance {  get { return @PropertyForDependance; } }
 		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyDependsOn {  get { return @PropertyDependsOn; } }

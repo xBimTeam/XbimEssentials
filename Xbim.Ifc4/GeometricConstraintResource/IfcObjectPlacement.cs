@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	public abstract partial class @IfcObjectPlacement : IPersistEntity, INotifyPropertyChanged, IIfcObjectPlacement, IEqualityComparer<@IfcObjectPlacement>, IEquatable<@IfcObjectPlacement>
 	{
 		#region IIfcObjectPlacement explicit implementation
-	
-	 
+		 
 		IEnumerable<IIfcProduct> IIfcObjectPlacement.PlacesObject {  get { return @PlacesObject; } }
 		IEnumerable<IIfcLocalPlacement> IIfcObjectPlacement.ReferencedByPlacements {  get { return @ReferencedByPlacements; } }
 		#endregion

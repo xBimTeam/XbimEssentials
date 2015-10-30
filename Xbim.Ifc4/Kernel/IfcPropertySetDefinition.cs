@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcPropertySetDefinition : IfcPropertyDefinition, IIfcPropertySetDefinition, IEqualityComparer<@IfcPropertySetDefinition>, IEquatable<@IfcPropertySetDefinition>
 	{
 		#region IIfcPropertySetDefinition explicit implementation
-	
-	 
+		 
 		IEnumerable<IIfcTypeObject> IIfcPropertySetDefinition.DefinesType {  get { return @DefinesType; } }
 		IEnumerable<IIfcRelDefinesByTemplate> IIfcPropertySetDefinition.IsDefinedBy {  get { return @IsDefinedBy; } }
 		IEnumerable<IIfcRelDefinesByProperties> IIfcPropertySetDefinition.DefinesOccurrence {  get { return @DefinesOccurrence; } }

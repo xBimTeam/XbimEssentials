@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#region IIfcRelContainedInSpatialStructure explicit implementation
 		IEnumerable<IIfcProduct> IIfcRelContainedInSpatialStructure.RelatedElements { get { return @RelatedElements; } }	
 		IIfcSpatialElement IIfcRelContainedInSpatialStructure.RelatingStructure { get { return @RelatingStructure; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

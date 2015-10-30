@@ -33,8 +33,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public abstract partial class @IfcPreDefinedCurveFont : IfcPreDefinedItem, IIfcPreDefinedCurveFont, IEqualityComparer<@IfcPreDefinedCurveFont>, IEquatable<@IfcPreDefinedCurveFont>
 	{
 		#region IIfcPreDefinedCurveFont explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

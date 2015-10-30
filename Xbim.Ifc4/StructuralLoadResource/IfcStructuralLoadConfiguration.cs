@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		#region IIfcStructuralLoadConfiguration explicit implementation
 		IEnumerable<IIfcStructuralLoadOrResult> IIfcStructuralLoadConfiguration.Values { get { return @Values; } }	
 		IEnumerable<IEnumerable<IfcLengthMeasure>> IIfcStructuralLoadConfiguration.Locations { get { return @Locations; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

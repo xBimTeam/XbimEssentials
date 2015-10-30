@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcReparametrisedCompositeCurveSegment explicit implementation
 		IfcParameterValue IIfcReparametrisedCompositeCurveSegment.ParamLength { get { return @ParamLength; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

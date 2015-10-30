@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#region IIfcRelProjectsElement explicit implementation
 		IIfcElement IIfcRelProjectsElement.RelatingElement { get { return @RelatingElement; } }	
 		IIfcFeatureElementAddition IIfcRelProjectsElement.RelatedFeatureElement { get { return @RelatedFeatureElement; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

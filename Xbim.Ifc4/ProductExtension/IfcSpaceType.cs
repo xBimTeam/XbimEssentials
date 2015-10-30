@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#region IIfcSpaceType explicit implementation
 		IfcSpaceTypeEnum IIfcSpaceType.PredefinedType { get { return @PredefinedType; } }	
 		IfcLabel? IIfcSpaceType.LongName { get { return @LongName; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

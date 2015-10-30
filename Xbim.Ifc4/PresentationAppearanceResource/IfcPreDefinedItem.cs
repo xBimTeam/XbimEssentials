@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcPreDefinedItem explicit implementation
 		IfcLabel IIfcPreDefinedItem.Name { get { return @Name; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

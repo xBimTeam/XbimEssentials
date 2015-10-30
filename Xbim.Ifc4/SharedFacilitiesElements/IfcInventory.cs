@@ -51,8 +51,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		IfcDate? IIfcInventory.LastUpdateDate { get { return @LastUpdateDate; } }	
 		IIfcCostValue IIfcInventory.CurrentValue { get { return @CurrentValue; } }	
 		IIfcCostValue IIfcInventory.OriginalValue { get { return @OriginalValue; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

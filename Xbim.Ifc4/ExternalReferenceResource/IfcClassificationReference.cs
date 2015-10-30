@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		IfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource { get { return @ReferencedSource; } }	
 		IfcText? IIfcClassificationReference.Description { get { return @Description; } }	
 		IfcIdentifier? IIfcClassificationReference.Sort { get { return @Sort; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelAssociatesClassification> IIfcClassificationReference.ClassificationRefForObjects {  get { return @ClassificationRefForObjects; } }
 		IEnumerable<IIfcClassificationReference> IIfcClassificationReference.HasReferences {  get { return @HasReferences; } }
 		#endregion

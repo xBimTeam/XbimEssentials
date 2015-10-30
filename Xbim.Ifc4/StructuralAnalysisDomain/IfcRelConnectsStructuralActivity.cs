@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		#region IIfcRelConnectsStructuralActivity explicit implementation
 		IfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement { get { return @RelatingElement; } }	
 		IIfcStructuralActivity IIfcRelConnectsStructuralActivity.RelatedStructuralActivity { get { return @RelatedStructuralActivity; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

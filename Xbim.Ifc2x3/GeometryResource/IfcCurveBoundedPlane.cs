@@ -11,13 +11,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCurveBoundedPlane
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCurveBoundedPlane : IIfcBoundedSurface
+	{
+		IIfcPlane @BasisSurface { get; }
+		IIfcCurve @OuterBoundary { get; }
+		IEnumerable<IIfcCurve> @InnerBoundaries { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCCURVEBOUNDEDPLANE", 334)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveBoundedPlane : IfcBoundedSurface, IInstantiableEntity, IEqualityComparer<@IfcCurveBoundedPlane>, IEquatable<@IfcCurveBoundedPlane>
+	public  partial class @IfcCurveBoundedPlane : IfcBoundedSurface, IInstantiableEntity, IIfcCurveBoundedPlane, IEqualityComparer<@IfcCurveBoundedPlane>, IEquatable<@IfcCurveBoundedPlane>
 	{
+		#region IIfcCurveBoundedPlane explicit implementation
+		IIfcPlane IIfcCurveBoundedPlane.BasisSurface { get { return @BasisSurface; } }	
+		IIfcCurve IIfcCurveBoundedPlane.OuterBoundary { get { return @OuterBoundary; } }	
+		IEnumerable<IIfcCurve> IIfcCurveBoundedPlane.InnerBoundaries { get { return @InnerBoundaries; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveBoundedPlane(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +68,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCurve @OuterBoundary 
 		{ 
@@ -59,8 +82,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _outerBoundary = v, _outerBoundary, value,  "OuterBoundary");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1)]
 		public ItemSet<IfcCurve> @InnerBoundaries 
 		{ 
@@ -70,9 +92,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _innerBoundaries;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

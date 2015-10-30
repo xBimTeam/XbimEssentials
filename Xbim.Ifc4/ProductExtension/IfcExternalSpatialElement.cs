@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcExternalSpatialElement explicit implementation
 		IfcExternalSpatialElementTypeEnum? IIfcExternalSpatialElement.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelSpaceBoundary> IIfcExternalSpatialElement.BoundedBy {  get { return @BoundedBy; } }
 		#endregion
 

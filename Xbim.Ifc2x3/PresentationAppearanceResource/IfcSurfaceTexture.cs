@@ -13,13 +13,39 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceTexture
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceTexture : IPersistEntity
+	{
+		bool @RepeatS { get; }
+		bool @RepeatT { get; }
+		IfcSurfaceTextureEnum @TextureType { get; }
+		IIfcCartesianTransformationOperator2D @TextureTransform { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCSURFACETEXTURE", 722)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSurfaceTexture : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcSurfaceTexture>, IEquatable<@IfcSurfaceTexture>
+	public abstract partial class @IfcSurfaceTexture : IPersistEntity, INotifyPropertyChanged, IIfcSurfaceTexture, IEqualityComparer<@IfcSurfaceTexture>, IEquatable<@IfcSurfaceTexture>
 	{
+		#region IIfcSurfaceTexture explicit implementation
+		bool IIfcSurfaceTexture.RepeatS { get { return @RepeatS; } }	
+		bool IIfcSurfaceTexture.RepeatT { get { return @RepeatT; } }	
+		IfcSurfaceTextureEnum IIfcSurfaceTexture.TextureType { get { return @TextureType; } }	
+		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform { get { return @TextureTransform; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -102,8 +128,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _repeatS = v, _repeatS, value,  "RepeatS");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @RepeatT 
 		{ 
@@ -117,8 +142,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _repeatT = v, _repeatT, value,  "RepeatT");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcSurfaceTextureEnum @TextureType 
 		{ 
@@ -132,8 +156,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _textureType = v, _textureType, value,  "TextureType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCartesianTransformationOperator2D @TextureTransform 
 		{ 
@@ -147,9 +170,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _textureTransform = v, _textureTransform, value,  "TextureTransform");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

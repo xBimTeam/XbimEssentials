@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcTransportElementType explicit implementation
 		IfcTransportElementTypeEnum IIfcTransportElementType.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

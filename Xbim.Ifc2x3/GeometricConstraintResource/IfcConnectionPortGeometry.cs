@@ -13,13 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometricConstraintResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConnectionPortGeometry
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConnectionPortGeometry : IIfcConnectionGeometry
+	{
+		IfcAxis2Placement @LocationAtRelatingElement { get; }
+		IfcAxis2Placement @LocationAtRelatedElement { get; }
+		IIfcProfileDef @ProfileOfPort { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IFCCONNECTIONPORTGEOMETRY", 713)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPortGeometry : IfcConnectionGeometry, IInstantiableEntity, IEqualityComparer<@IfcConnectionPortGeometry>, IEquatable<@IfcConnectionPortGeometry>
+	public  partial class @IfcConnectionPortGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPortGeometry, IEqualityComparer<@IfcConnectionPortGeometry>, IEquatable<@IfcConnectionPortGeometry>
 	{
+		#region IIfcConnectionPortGeometry explicit implementation
+		IfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatingElement { get { return @LocationAtRelatingElement; } }	
+		IfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatedElement { get { return @LocationAtRelatedElement; } }	
+		IIfcProfileDef IIfcConnectionPortGeometry.ProfileOfPort { get { return @ProfileOfPort; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionPortGeometry(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +69,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			{
 				SetValue( v =>  _locationAtRelatingElement = v, _locationAtRelatingElement, value,  "LocationAtRelatingElement");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcAxis2Placement @LocationAtRelatedElement 
 		{ 
@@ -60,8 +83,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			{
 				SetValue( v =>  _locationAtRelatedElement = v, _locationAtRelatedElement, value,  "LocationAtRelatedElement");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcProfileDef @ProfileOfPort 
 		{ 
@@ -75,9 +97,9 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			{
 				SetValue( v =>  _profileOfPort = v, _profileOfPort, value,  "ProfileOfPort");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

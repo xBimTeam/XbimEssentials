@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	{
 		#region IIfcStructuralAction explicit implementation
 		bool? IIfcStructuralAction.DestabilizingLoad { get { return @DestabilizingLoad; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

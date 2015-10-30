@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#region IIfcTextStyleForDefinedFont explicit implementation
 		IfcColour IIfcTextStyleForDefinedFont.Colour { get { return @Colour; } }	
 		IfcColour IIfcTextStyleForDefinedFont.BackgroundColour { get { return @BackgroundColour; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

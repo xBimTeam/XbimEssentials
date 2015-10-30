@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.Kernel
 		#region IIfcProcess explicit implementation
 		IfcIdentifier? IIfcProcess.Identification { get { return @Identification; } }	
 		IfcText? IIfcProcess.LongDescription { get { return @LongDescription; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelSequence> IIfcProcess.IsPredecessorTo {  get { return @IsPredecessorTo; } }
 		IEnumerable<IIfcRelSequence> IIfcProcess.IsSuccessorFrom {  get { return @IsSuccessorFrom; } }
 		IEnumerable<IIfcRelAssignsToProcess> IIfcProcess.OperatesOn {  get { return @OperatesOn; } }

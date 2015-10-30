@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcRelAssignsToResource explicit implementation
 		IfcResourceSelect IIfcRelAssignsToResource.RelatingResource { get { return @RelatingResource; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

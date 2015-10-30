@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#region IIfcTimePeriod explicit implementation
 		IfcTime IIfcTimePeriod.StartTime { get { return @StartTime; } }	
 		IfcTime IIfcTimePeriod.EndTime { get { return @EndTime; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

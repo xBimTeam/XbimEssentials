@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#region IIfcHalfSpaceSolid explicit implementation
 		IIfcSurface IIfcHalfSpaceSolid.BaseSurface { get { return @BaseSurface; } }	
 		bool IIfcHalfSpaceSolid.AgreementFlag { get { return @AgreementFlag; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

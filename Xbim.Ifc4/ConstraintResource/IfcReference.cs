@@ -46,8 +46,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		IfcLabel? IIfcReference.InstanceName { get { return @InstanceName; } }	
 		IEnumerable<long> IIfcReference.ListPositions { get { return @ListPositions; } }	
 		IIfcReference IIfcReference.InnerReference { get { return @InnerReference; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.PropertyResource
 		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty { get { return @DependingProperty; } }	
 		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty { get { return @DependantProperty; } }	
 		IfcText? IIfcPropertyDependencyRelationship.Expression { get { return @Expression; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

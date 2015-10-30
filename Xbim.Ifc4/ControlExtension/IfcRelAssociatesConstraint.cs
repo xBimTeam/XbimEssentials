@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.ControlExtension
 		#region IIfcRelAssociatesConstraint explicit implementation
 		IfcLabel? IIfcRelAssociatesConstraint.Intent { get { return @Intent; } }	
 		IIfcConstraint IIfcRelAssociatesConstraint.RelatingConstraint { get { return @RelatingConstraint; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

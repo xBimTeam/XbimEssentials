@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcRelAssociatesLibrary explicit implementation
 		IfcLibrarySelect IIfcRelAssociatesLibrary.RelatingLibrary { get { return @RelatingLibrary; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

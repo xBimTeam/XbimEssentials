@@ -34,8 +34,7 @@ namespace Xbim.Ifc4.GeometryResource
 	public abstract partial class @IfcBoundedCurve : IfcCurve, IIfcBoundedCurve, IEqualityComparer<@IfcBoundedCurve>, IEquatable<@IfcBoundedCurve>
 	{
 		#region IIfcBoundedCurve explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

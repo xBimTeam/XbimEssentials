@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#region IIfcEllipse explicit implementation
 		IfcPositiveLengthMeasure IIfcEllipse.SemiAxis1 { get { return @SemiAxis1; } }	
 		IfcPositiveLengthMeasure IIfcEllipse.SemiAxis2 { get { return @SemiAxis2; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		IfcPlaneAngleMeasure IIfcLightDistributionData.MainPlaneAngle { get { return @MainPlaneAngle; } }	
 		IEnumerable<IfcPlaneAngleMeasure> IIfcLightDistributionData.SecondaryPlaneAngle { get { return @SecondaryPlaneAngle; } }	
 		IEnumerable<IfcLuminousIntensityDistributionMeasure> IIfcLightDistributionData.LuminousIntensity { get { return @LuminousIntensity; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

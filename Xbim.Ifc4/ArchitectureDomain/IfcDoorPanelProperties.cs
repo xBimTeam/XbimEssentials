@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		IfcNormalisedRatioMeasure? IIfcDoorPanelProperties.PanelWidth { get { return @PanelWidth; } }	
 		IfcDoorPanelPositionEnum IIfcDoorPanelProperties.PanelPosition { get { return @PanelPosition; } }	
 		IIfcShapeAspect IIfcDoorPanelProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

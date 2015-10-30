@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.ControlExtension
 	{
 		#region IIfcRelAssociatesApproval explicit implementation
 		IIfcApproval IIfcRelAssociatesApproval.RelatingApproval { get { return @RelatingApproval; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

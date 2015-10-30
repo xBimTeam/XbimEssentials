@@ -48,8 +48,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight { get { return @RiserHeight; } }	
 		IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength { get { return @TreadLength; } }	
 		IfcStairFlightTypeEnum? IIfcStairFlight.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	{
 		#region IIfcStructuralLoad explicit implementation
 		IfcLabel? IIfcStructuralLoad.Name { get { return @Name; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

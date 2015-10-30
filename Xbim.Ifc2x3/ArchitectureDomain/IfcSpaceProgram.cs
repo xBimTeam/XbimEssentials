@@ -15,13 +15,45 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ArchitectureDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSpaceProgram
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSpaceProgram : IIfcControl
+	{
+		IfcIdentifier @SpaceProgramIdentifier { get; }
+		IfcAreaMeasure? @MaxRequiredArea { get; }
+		IfcAreaMeasure? @MinRequiredArea { get; }
+		IIfcSpatialStructureElement @RequestedLocation { get; }
+		IfcAreaMeasure @StandardRequiredArea { get; }
+		IEnumerable<IIfcRelInteractionRequirements> @HasInteractionReqsFrom {  get; }
+		IEnumerable<IIfcRelInteractionRequirements> @HasInteractionReqsTo {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ArchitectureDomain
 {
 	[ExpressType("IFCSPACEPROGRAM", 709)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceProgram : IfcControl, IInstantiableEntity, IEqualityComparer<@IfcSpaceProgram>, IEquatable<@IfcSpaceProgram>
+	public  partial class @IfcSpaceProgram : IfcControl, IInstantiableEntity, IIfcSpaceProgram, IEqualityComparer<@IfcSpaceProgram>, IEquatable<@IfcSpaceProgram>
 	{
+		#region IIfcSpaceProgram explicit implementation
+		IfcIdentifier IIfcSpaceProgram.SpaceProgramIdentifier { get { return @SpaceProgramIdentifier; } }	
+		IfcAreaMeasure? IIfcSpaceProgram.MaxRequiredArea { get { return @MaxRequiredArea; } }	
+		IfcAreaMeasure? IIfcSpaceProgram.MinRequiredArea { get { return @MinRequiredArea; } }	
+		IIfcSpatialStructureElement IIfcSpaceProgram.RequestedLocation { get { return @RequestedLocation; } }	
+		IfcAreaMeasure IIfcSpaceProgram.StandardRequiredArea { get { return @StandardRequiredArea; } }	
+		 
+		IEnumerable<IIfcRelInteractionRequirements> IIfcSpaceProgram.HasInteractionReqsFrom {  get { return @HasInteractionReqsFrom; } }
+		IEnumerable<IIfcRelInteractionRequirements> IIfcSpaceProgram.HasInteractionReqsTo {  get { return @HasInteractionReqsTo; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpaceProgram(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -49,8 +81,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			{
 				SetValue( v =>  _spaceProgramIdentifier = v, _spaceProgramIdentifier, value,  "SpaceProgramIdentifier");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcAreaMeasure? @MaxRequiredArea 
 		{ 
@@ -64,8 +95,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			{
 				SetValue( v =>  _maxRequiredArea = v, _maxRequiredArea, value,  "MaxRequiredArea");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcAreaMeasure? @MinRequiredArea 
 		{ 
@@ -79,8 +109,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			{
 				SetValue( v =>  _minRequiredArea = v, _minRequiredArea, value,  "MinRequiredArea");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSpatialStructureElement @RequestedLocation 
 		{ 
@@ -94,8 +123,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			{
 				SetValue( v =>  _requestedLocation = v, _requestedLocation, value,  "RequestedLocation");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcAreaMeasure @StandardRequiredArea 
 		{ 
@@ -109,9 +137,9 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			{
 				SetValue( v =>  _standardRequiredArea = v, _standardRequiredArea, value,  "StandardRequiredArea");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

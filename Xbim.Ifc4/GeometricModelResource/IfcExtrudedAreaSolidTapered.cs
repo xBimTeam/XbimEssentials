@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcExtrudedAreaSolidTapered explicit implementation
 		IIfcProfileDef IIfcExtrudedAreaSolidTapered.EndSweptArea { get { return @EndSweptArea; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

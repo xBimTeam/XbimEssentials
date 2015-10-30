@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.PropertyResource
 		IfcValue IIfcPropertyBoundedValue.LowerBoundValue { get { return @LowerBoundValue; } }	
 		IfcUnit IIfcPropertyBoundedValue.Unit { get { return @Unit; } }	
 		IfcValue IIfcPropertyBoundedValue.SetPointValue { get { return @SetPointValue; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

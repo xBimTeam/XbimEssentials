@@ -15,14 +15,58 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ConstraintResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConstraint
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConstraint : IPersistEntity
+	{
+		IfcLabel @Name { get; }
+		IfcText? @Description { get; }
+		IfcConstraintEnum @ConstraintGrade { get; }
+		IfcLabel? @ConstraintSource { get; }
+		IfcActorSelect @CreatingActor { get; }
+		IfcDateTimeSelect @CreationTime { get; }
+		IfcLabel? @UserDefinedGrade { get; }
+		IEnumerable<IIfcConstraintClassificationRelationship> @ClassifiedAs {  get; }
+		IEnumerable<IIfcConstraintRelationship> @RelatesConstraints {  get; }
+		IEnumerable<IIfcConstraintRelationship> @IsRelatedWith {  get; }
+		IEnumerable<IIfcPropertyConstraintRelationship> @PropertiesForConstraint {  get; }
+		IEnumerable<IIfcConstraintAggregationRelationship> @Aggregates {  get; }
+		IEnumerable<IIfcConstraintAggregationRelationship> @IsAggregatedIn {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCONSTRAINT", 81)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConstraint : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcConstraint>, IEquatable<@IfcConstraint>
+	public abstract partial class @IfcConstraint : IPersistEntity, INotifyPropertyChanged, IIfcConstraint, IEqualityComparer<@IfcConstraint>, IEquatable<@IfcConstraint>
 	{
+		#region IIfcConstraint explicit implementation
+		IfcLabel IIfcConstraint.Name { get { return @Name; } }	
+		IfcText? IIfcConstraint.Description { get { return @Description; } }	
+		IfcConstraintEnum IIfcConstraint.ConstraintGrade { get { return @ConstraintGrade; } }	
+		IfcLabel? IIfcConstraint.ConstraintSource { get { return @ConstraintSource; } }	
+		IfcActorSelect IIfcConstraint.CreatingActor { get { return @CreatingActor; } }	
+		IfcDateTimeSelect IIfcConstraint.CreationTime { get { return @CreationTime; } }	
+		IfcLabel? IIfcConstraint.UserDefinedGrade { get { return @UserDefinedGrade; } }	
+		 
+		IEnumerable<IIfcConstraintClassificationRelationship> IIfcConstraint.ClassifiedAs {  get { return @ClassifiedAs; } }
+		IEnumerable<IIfcConstraintRelationship> IIfcConstraint.RelatesConstraints {  get { return @RelatesConstraints; } }
+		IEnumerable<IIfcConstraintRelationship> IIfcConstraint.IsRelatedWith {  get { return @IsRelatedWith; } }
+		IEnumerable<IIfcPropertyConstraintRelationship> IIfcConstraint.PropertiesForConstraint {  get { return @PropertiesForConstraint; } }
+		IEnumerable<IIfcConstraintAggregationRelationship> IIfcConstraint.Aggregates {  get { return @Aggregates; } }
+		IEnumerable<IIfcConstraintAggregationRelationship> IIfcConstraint.IsAggregatedIn {  get { return @IsAggregatedIn; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -108,8 +152,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -123,8 +166,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcConstraintEnum @ConstraintGrade 
 		{ 
@@ -138,8 +180,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _constraintGrade = v, _constraintGrade, value,  "ConstraintGrade");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @ConstraintSource 
 		{ 
@@ -153,8 +194,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _constraintSource = v, _constraintSource, value,  "ConstraintSource");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcActorSelect @CreatingActor 
 		{ 
@@ -168,8 +208,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _creatingActor = v, _creatingActor, value,  "CreatingActor");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDateTimeSelect @CreationTime 
 		{ 
@@ -183,8 +222,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _creationTime = v, _creationTime, value,  "CreationTime");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedGrade 
 		{ 
@@ -198,9 +236,9 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _userDefinedGrade = v, _userDefinedGrade, value,  "UserDefinedGrade");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

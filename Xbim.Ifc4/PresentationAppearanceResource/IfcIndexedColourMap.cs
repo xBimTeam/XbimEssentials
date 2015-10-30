@@ -43,8 +43,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IIfcSurfaceStyleShading IIfcIndexedColourMap.Overrides { get { return @Overrides; } }	
 		IIfcColourRgbList IIfcIndexedColourMap.Colours { get { return @Colours; } }	
 		IEnumerable<long> IIfcIndexedColourMap.ColourIndex { get { return @ColourIndex; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#region IIfcProfileDef explicit implementation
 		IfcProfileTypeEnum IIfcProfileDef.ProfileType { get { return @ProfileType; } }	
 		IfcLabel? IIfcProfileDef.ProfileName { get { return @ProfileName; } }	
-	
-	 
+		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcProfileDef.HasExternalReference {  get { return @HasExternalReference; } }
 		IEnumerable<IIfcProfileProperties> IIfcProfileDef.HasProperties {  get { return @HasProperties; } }
 		#endregion

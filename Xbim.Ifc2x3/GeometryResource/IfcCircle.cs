@@ -12,13 +12,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCircle
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCircle : IIfcConic
+	{
+		IfcPositiveLengthMeasure @Radius { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCCIRCLE", 336)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCircle : IfcConic, IInstantiableEntity, IEqualityComparer<@IfcCircle>, IEquatable<@IfcCircle>
+	public  partial class @IfcCircle : IfcConic, IInstantiableEntity, IIfcCircle, IEqualityComparer<@IfcCircle>, IEquatable<@IfcCircle>
 	{
+		#region IIfcCircle explicit implementation
+		IfcPositiveLengthMeasure IIfcCircle.Radius { get { return @Radius; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCircle(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +62,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _radius = v, _radius, value,  "Radius");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -13,14 +13,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialLayerSet
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialLayerSet : IPersistEntity, IfcMaterialSelect
+	{
+		IEnumerable<IIfcMaterialLayer> @MaterialLayers { get; }
+		IfcLabel? @LayerSetName { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	[IndexedClass]
 	[ExpressType("IFCMATERIALLAYERSET", 205)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerSet : INotifyPropertyChanged, IfcMaterialSelect, IInstantiableEntity, IEqualityComparer<@IfcMaterialLayerSet>, IEquatable<@IfcMaterialLayerSet>
+	public  partial class @IfcMaterialLayerSet : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialLayerSet, IEqualityComparer<@IfcMaterialLayerSet>, IEquatable<@IfcMaterialLayerSet>
 	{
+		#region IIfcMaterialLayerSet explicit implementation
+		IEnumerable<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers { get { return @MaterialLayers; } }	
+		IfcLabel? IIfcMaterialLayerSet.LayerSetName { get { return @LayerSetName; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -99,8 +121,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				((IPersistEntity)this).Activate(false);
 				return _materialLayers;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @LayerSetName 
 		{ 
@@ -114,9 +135,9 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				SetValue( v =>  _layerSetName = v, _layerSetName, value,  "LayerSetName");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

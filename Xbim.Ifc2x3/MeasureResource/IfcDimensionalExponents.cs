@@ -12,13 +12,45 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MeasureResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDimensionalExponents
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDimensionalExponents : IPersistEntity
+	{
+		long @LengthExponent { get; }
+		long @MassExponent { get; }
+		long @TimeExponent { get; }
+		long @ElectricCurrentExponent { get; }
+		long @ThermodynamicTemperatureExponent { get; }
+		long @AmountOfSubstanceExponent { get; }
+		long @LuminousIntensityExponent { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IFCDIMENSIONALEXPONENTS", 303)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionalExponents : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcDimensionalExponents>, IEquatable<@IfcDimensionalExponents>
+	public  partial class @IfcDimensionalExponents : INotifyPropertyChanged, IInstantiableEntity, IIfcDimensionalExponents, IEqualityComparer<@IfcDimensionalExponents>, IEquatable<@IfcDimensionalExponents>
 	{
+		#region IIfcDimensionalExponents explicit implementation
+		long IIfcDimensionalExponents.LengthExponent { get { return @LengthExponent; } }	
+		long IIfcDimensionalExponents.MassExponent { get { return @MassExponent; } }	
+		long IIfcDimensionalExponents.TimeExponent { get { return @TimeExponent; } }	
+		long IIfcDimensionalExponents.ElectricCurrentExponent { get { return @ElectricCurrentExponent; } }	
+		long IIfcDimensionalExponents.ThermodynamicTemperatureExponent { get { return @ThermodynamicTemperatureExponent; } }	
+		long IIfcDimensionalExponents.AmountOfSubstanceExponent { get { return @AmountOfSubstanceExponent; } }	
+		long IIfcDimensionalExponents.LuminousIntensityExponent { get { return @LuminousIntensityExponent; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -104,8 +136,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				SetValue( v =>  _lengthExponent = v, _lengthExponent, value,  "LengthExponent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public long @MassExponent 
 		{ 
@@ -119,8 +150,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				SetValue( v =>  _massExponent = v, _massExponent, value,  "MassExponent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public long @TimeExponent 
 		{ 
@@ -134,8 +164,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				SetValue( v =>  _timeExponent = v, _timeExponent, value,  "TimeExponent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public long @ElectricCurrentExponent 
 		{ 
@@ -149,8 +178,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				SetValue( v =>  _electricCurrentExponent = v, _electricCurrentExponent, value,  "ElectricCurrentExponent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public long @ThermodynamicTemperatureExponent 
 		{ 
@@ -164,8 +192,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				SetValue( v =>  _thermodynamicTemperatureExponent = v, _thermodynamicTemperatureExponent, value,  "ThermodynamicTemperatureExponent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public long @AmountOfSubstanceExponent 
 		{ 
@@ -179,8 +206,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				SetValue( v =>  _amountOfSubstanceExponent = v, _amountOfSubstanceExponent, value,  "AmountOfSubstanceExponent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public long @LuminousIntensityExponent 
 		{ 
@@ -194,9 +220,9 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				SetValue( v =>  _luminousIntensityExponent = v, _luminousIntensityExponent, value,  "LuminousIntensityExponent");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

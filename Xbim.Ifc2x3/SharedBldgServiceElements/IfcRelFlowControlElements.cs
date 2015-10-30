@@ -14,13 +14,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgServiceElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelFlowControlElements
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelFlowControlElements : IIfcRelConnects
+	{
+		IEnumerable<IIfcDistributionControlElement> @RelatedControlElements { get; }
+		IIfcDistributionFlowElement @RelatingFlowElement { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IFCRELFLOWCONTROLELEMENTS", 360)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelFlowControlElements : IfcRelConnects, IInstantiableEntity, IEqualityComparer<@IfcRelFlowControlElements>, IEquatable<@IfcRelFlowControlElements>
+	public  partial class @IfcRelFlowControlElements : IfcRelConnects, IInstantiableEntity, IIfcRelFlowControlElements, IEqualityComparer<@IfcRelFlowControlElements>, IEquatable<@IfcRelFlowControlElements>
 	{
+		#region IIfcRelFlowControlElements explicit implementation
+		IEnumerable<IIfcDistributionControlElement> IIfcRelFlowControlElements.RelatedControlElements { get { return @RelatedControlElements; } }	
+		IIfcDistributionFlowElement IIfcRelFlowControlElements.RelatingFlowElement { get { return @RelatingFlowElement; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelFlowControlElements(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +65,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				((IPersistEntity)this).Activate(false);
 				return _relatedControlElements;
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDistributionFlowElement @RelatingFlowElement 
@@ -59,9 +80,9 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _relatingFlowElement = v, _relatingFlowElement, value,  "RelatingFlowElement");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

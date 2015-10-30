@@ -12,13 +12,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometricModelResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCsgPrimitive3D
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCsgPrimitive3D : IIfcGeometricRepresentationItem, IfcBooleanOperand, IfcCsgSelect
+	{
+		IIfcAxis2Placement3D @Position { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IFCCSGPRIMITIVE3D", 714)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcCsgPrimitive3D : IfcGeometricRepresentationItem, IfcBooleanOperand, IfcCsgSelect, IEqualityComparer<@IfcCsgPrimitive3D>, IEquatable<@IfcCsgPrimitive3D>
+	public abstract partial class @IfcCsgPrimitive3D : IfcGeometricRepresentationItem, IIfcCsgPrimitive3D, IEqualityComparer<@IfcCsgPrimitive3D>, IEquatable<@IfcCsgPrimitive3D>
 	{
+		#region IIfcCsgPrimitive3D explicit implementation
+		IIfcAxis2Placement3D IIfcCsgPrimitive3D.Position { get { return @Position; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCsgPrimitive3D(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +62,9 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _position = v, _position, value,  "Position");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

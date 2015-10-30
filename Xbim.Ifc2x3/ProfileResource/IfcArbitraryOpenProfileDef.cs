@@ -13,13 +13,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfileResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcArbitraryOpenProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcArbitraryOpenProfileDef : IIfcProfileDef
+	{
+		IIfcBoundedCurve @Curve { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IFCARBITRARYOPENPROFILEDEF", 219)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcArbitraryOpenProfileDef : IfcProfileDef, IInstantiableEntity, IEqualityComparer<@IfcArbitraryOpenProfileDef>, IEquatable<@IfcArbitraryOpenProfileDef>
+	public  partial class @IfcArbitraryOpenProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryOpenProfileDef, IEqualityComparer<@IfcArbitraryOpenProfileDef>, IEquatable<@IfcArbitraryOpenProfileDef>
 	{
+		#region IIfcArbitraryOpenProfileDef explicit implementation
+		IIfcBoundedCurve IIfcArbitraryOpenProfileDef.Curve { get { return @Curve; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcArbitraryOpenProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,9 +63,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _curve = v, _curve, value,  "Curve");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

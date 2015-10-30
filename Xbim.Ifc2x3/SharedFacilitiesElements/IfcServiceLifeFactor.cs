@@ -14,13 +14,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedFacilitiesElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcServiceLifeFactor
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcServiceLifeFactor : IIfcPropertySetDefinition
+	{
+		IfcServiceLifeFactorTypeEnum @PredefinedType { get; }
+		IfcMeasureValue @UpperValue { get; }
+		IfcMeasureValue @MostUsedValue { get; }
+		IfcMeasureValue @LowerValue { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IFCSERVICELIFEFACTOR", 770)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcServiceLifeFactor : IfcPropertySetDefinition, IInstantiableEntity, IEqualityComparer<@IfcServiceLifeFactor>, IEquatable<@IfcServiceLifeFactor>
+	public  partial class @IfcServiceLifeFactor : IfcPropertySetDefinition, IInstantiableEntity, IIfcServiceLifeFactor, IEqualityComparer<@IfcServiceLifeFactor>, IEquatable<@IfcServiceLifeFactor>
 	{
+		#region IIfcServiceLifeFactor explicit implementation
+		IfcServiceLifeFactorTypeEnum IIfcServiceLifeFactor.PredefinedType { get { return @PredefinedType; } }	
+		IfcMeasureValue IIfcServiceLifeFactor.UpperValue { get { return @UpperValue; } }	
+		IfcMeasureValue IIfcServiceLifeFactor.MostUsedValue { get { return @MostUsedValue; } }	
+		IfcMeasureValue IIfcServiceLifeFactor.LowerValue { get { return @LowerValue; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcServiceLifeFactor(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +73,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMeasureValue @UpperValue 
 		{ 
@@ -62,8 +87,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _upperValue = v, _upperValue, value,  "UpperValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMeasureValue @MostUsedValue 
 		{ 
@@ -77,8 +101,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _mostUsedValue = v, _mostUsedValue, value,  "MostUsedValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMeasureValue @LowerValue 
 		{ 
@@ -92,9 +115,9 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _lowerValue = v, _lowerValue, value,  "LowerValue");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

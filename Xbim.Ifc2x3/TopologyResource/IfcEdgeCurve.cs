@@ -13,13 +13,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.TopologyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcEdgeCurve
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcEdgeCurve : IIfcEdge, IfcCurveOrEdgeCurve
+	{
+		IIfcCurve @EdgeGeometry { get; }
+		bool @SameSense { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IFCEDGECURVE", 203)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEdgeCurve : IfcEdge, IfcCurveOrEdgeCurve, IInstantiableEntity, IEqualityComparer<@IfcEdgeCurve>, IEquatable<@IfcEdgeCurve>
+	public  partial class @IfcEdgeCurve : IfcEdge, IInstantiableEntity, IIfcEdgeCurve, IEqualityComparer<@IfcEdgeCurve>, IEquatable<@IfcEdgeCurve>
 	{
+		#region IIfcEdgeCurve explicit implementation
+		IIfcCurve IIfcEdgeCurve.EdgeGeometry { get { return @EdgeGeometry; } }	
+		bool IIfcEdgeCurve.SameSense { get { return @SameSense; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEdgeCurve(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +66,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 			{
 				SetValue( v =>  _edgeGeometry = v, _edgeGeometry, value,  "EdgeGeometry");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @SameSense 
 		{ 
@@ -59,9 +80,9 @@ namespace Xbim.Ifc2x3.TopologyResource
 			{
 				SetValue( v =>  _sameSense = v, _sameSense, value,  "SameSense");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -13,14 +13,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ConstraintResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConstraintClassificationRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConstraintClassificationRelationship : IPersistEntity
+	{
+		IIfcConstraint @ClassifiedConstraint { get; }
+		IEnumerable<IfcClassificationNotationSelect> @RelatedClassifications { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCONSTRAINTCLASSIFICATIONRELATIONSHIP", 274)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstraintClassificationRelationship : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcConstraintClassificationRelationship>, IEquatable<@IfcConstraintClassificationRelationship>
+	public  partial class @IfcConstraintClassificationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintClassificationRelationship, IEqualityComparer<@IfcConstraintClassificationRelationship>, IEquatable<@IfcConstraintClassificationRelationship>
 	{
+		#region IIfcConstraintClassificationRelationship explicit implementation
+		IIfcConstraint IIfcConstraintClassificationRelationship.ClassifiedConstraint { get { return @ClassifiedConstraint; } }	
+		IEnumerable<IfcClassificationNotationSelect> IIfcConstraintClassificationRelationship.RelatedClassifications { get { return @RelatedClassifications; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -103,8 +125,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _classifiedConstraint = v, _classifiedConstraint, value,  "ClassifiedConstraint");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcClassificationNotationSelect> @RelatedClassifications 
 		{ 
@@ -114,9 +135,9 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				((IPersistEntity)this).Activate(false);
 				return _relatedClassifications;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

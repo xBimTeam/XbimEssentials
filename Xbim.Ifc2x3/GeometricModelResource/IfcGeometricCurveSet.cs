@@ -11,17 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometricModelResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcGeometricCurveSet
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcGeometricCurveSet : IIfcGeometricSet
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IFCGEOMETRICCURVESET", 237)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricCurveSet : IfcGeometricSet, IInstantiableEntity, IEqualityComparer<@IfcGeometricCurveSet>, IEquatable<@IfcGeometricCurveSet>
+	public  partial class @IfcGeometricCurveSet : IfcGeometricSet, IInstantiableEntity, IIfcGeometricCurveSet, IEqualityComparer<@IfcGeometricCurveSet>, IEquatable<@IfcGeometricCurveSet>
 	{
+		#region IIfcGeometricCurveSet explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeometricCurveSet(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

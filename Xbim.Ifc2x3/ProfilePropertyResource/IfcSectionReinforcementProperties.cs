@@ -13,13 +13,43 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfilePropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSectionReinforcementProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSectionReinforcementProperties : IPersistEntity
+	{
+		IfcLengthMeasure @LongitudinalStartPosition { get; }
+		IfcLengthMeasure @LongitudinalEndPosition { get; }
+		IfcLengthMeasure? @TransversePosition { get; }
+		IfcReinforcingBarRoleEnum @ReinforcementRole { get; }
+		IIfcSectionProperties @SectionDefinition { get; }
+		IEnumerable<IIfcReinforcementBarProperties> @CrossSectionReinforcementDefinitions { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IFCSECTIONREINFORCEMENTPROPERTIES", 508)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionReinforcementProperties : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcSectionReinforcementProperties>, IEquatable<@IfcSectionReinforcementProperties>
+	public  partial class @IfcSectionReinforcementProperties : INotifyPropertyChanged, IInstantiableEntity, IIfcSectionReinforcementProperties, IEqualityComparer<@IfcSectionReinforcementProperties>, IEquatable<@IfcSectionReinforcementProperties>
 	{
+		#region IIfcSectionReinforcementProperties explicit implementation
+		IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalStartPosition { get { return @LongitudinalStartPosition; } }	
+		IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalEndPosition { get { return @LongitudinalEndPosition; } }	
+		IfcLengthMeasure? IIfcSectionReinforcementProperties.TransversePosition { get { return @TransversePosition; } }	
+		IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole { get { return @ReinforcementRole; } }	
+		IIfcSectionProperties IIfcSectionReinforcementProperties.SectionDefinition { get { return @SectionDefinition; } }	
+		IEnumerable<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions { get { return @CrossSectionReinforcementDefinitions; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -105,8 +135,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _longitudinalStartPosition = v, _longitudinalStartPosition, value,  "LongitudinalStartPosition");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure @LongitudinalEndPosition 
 		{ 
@@ -120,8 +149,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _longitudinalEndPosition = v, _longitudinalEndPosition, value,  "LongitudinalEndPosition");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @TransversePosition 
 		{ 
@@ -135,8 +163,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _transversePosition = v, _transversePosition, value,  "TransversePosition");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcReinforcingBarRoleEnum @ReinforcementRole 
 		{ 
@@ -150,8 +177,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _reinforcementRole = v, _reinforcementRole, value,  "ReinforcementRole");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSectionProperties @SectionDefinition 
 		{ 
@@ -165,8 +191,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _sectionDefinition = v, _sectionDefinition, value,  "SectionDefinition");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcReinforcementBarProperties> @CrossSectionReinforcementDefinitions 
 		{ 
@@ -176,9 +201,9 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				((IPersistEntity)this).Activate(false);
 				return _crossSectionReinforcementDefinitions;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

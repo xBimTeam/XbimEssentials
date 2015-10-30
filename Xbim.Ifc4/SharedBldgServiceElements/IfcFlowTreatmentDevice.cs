@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 	public  partial class @IfcFlowTreatmentDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowTreatmentDevice, IEqualityComparer<@IfcFlowTreatmentDevice>, IEquatable<@IfcFlowTreatmentDevice>
 	{
 		#region IIfcFlowTreatmentDevice explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

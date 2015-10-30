@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.StartParam { get { return @StartParam; } }	
 		IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.EndParam { get { return @EndParam; } }	
 		IIfcSurface IIfcSurfaceCurveSweptAreaSolid.ReferenceSurface { get { return @ReferenceSurface; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

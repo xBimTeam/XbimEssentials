@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.PropertyResource
 	public abstract partial class @IfcPropertyAbstraction : IPersistEntity, INotifyPropertyChanged, IIfcPropertyAbstraction, IEqualityComparer<@IfcPropertyAbstraction>, IEquatable<@IfcPropertyAbstraction>
 	{
 		#region IIfcPropertyAbstraction explicit implementation
-	
-	 
+		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences {  get { return @HasExternalReferences; } }
 		#endregion
 

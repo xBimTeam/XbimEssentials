@@ -48,8 +48,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		IfcWindowTypeEnum? IIfcWindow.PredefinedType { get { return @PredefinedType; } }	
 		IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType { get { return @PartitioningType; } }	
 		IfcLabel? IIfcWindow.UserDefinedPartitioningType { get { return @UserDefinedPartitioningType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

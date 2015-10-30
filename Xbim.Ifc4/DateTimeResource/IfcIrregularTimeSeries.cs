@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.DateTimeResource
 	{
 		#region IIfcIrregularTimeSeries explicit implementation
 		IEnumerable<IIfcIrregularTimeSeriesValue> IIfcIrregularTimeSeries.Values { get { return @Values; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

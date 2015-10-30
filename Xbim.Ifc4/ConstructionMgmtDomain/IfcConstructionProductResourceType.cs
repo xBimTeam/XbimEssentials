@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 	{
 		#region IIfcConstructionProductResourceType explicit implementation
 		IfcConstructionProductResourceTypeEnum IIfcConstructionProductResourceType.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

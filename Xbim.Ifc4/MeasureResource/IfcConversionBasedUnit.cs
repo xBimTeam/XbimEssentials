@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.MeasureResource
 		#region IIfcConversionBasedUnit explicit implementation
 		IfcLabel IIfcConversionBasedUnit.Name { get { return @Name; } }	
 		IIfcMeasureWithUnit IIfcConversionBasedUnit.ConversionFactor { get { return @ConversionFactor; } }	
-	
-	 
+		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcConversionBasedUnit.HasExternalReference {  get { return @HasExternalReference; } }
 		#endregion
 

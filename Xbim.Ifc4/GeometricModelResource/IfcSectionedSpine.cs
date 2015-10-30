@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IIfcCompositeCurve IIfcSectionedSpine.SpineCurve { get { return @SpineCurve; } }	
 		IEnumerable<IIfcProfileDef> IIfcSectionedSpine.CrossSections { get { return @CrossSections; } }	
 		IEnumerable<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions { get { return @CrossSectionPositions; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

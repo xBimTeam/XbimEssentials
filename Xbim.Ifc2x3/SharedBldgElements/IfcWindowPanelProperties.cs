@@ -15,13 +15,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcWindowPanelProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcWindowPanelProperties : IIfcPropertySetDefinition
+	{
+		IfcWindowPanelOperationEnum @OperationType { get; }
+		IfcWindowPanelPositionEnum @PanelPosition { get; }
+		IfcPositiveLengthMeasure? @FrameDepth { get; }
+		IfcPositiveLengthMeasure? @FrameThickness { get; }
+		IIfcShapeAspect @ShapeAspectStyle { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IFCWINDOWPANELPROPERTIES", 96)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWindowPanelProperties : IfcPropertySetDefinition, IInstantiableEntity, IEqualityComparer<@IfcWindowPanelProperties>, IEquatable<@IfcWindowPanelProperties>
+	public  partial class @IfcWindowPanelProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcWindowPanelProperties, IEqualityComparer<@IfcWindowPanelProperties>, IEquatable<@IfcWindowPanelProperties>
 	{
+		#region IIfcWindowPanelProperties explicit implementation
+		IfcWindowPanelOperationEnum IIfcWindowPanelProperties.OperationType { get { return @OperationType; } }	
+		IfcWindowPanelPositionEnum IIfcWindowPanelProperties.PanelPosition { get { return @PanelPosition; } }	
+		IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameDepth { get { return @FrameDepth; } }	
+		IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameThickness { get { return @FrameThickness; } }	
+		IIfcShapeAspect IIfcWindowPanelProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWindowPanelProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -49,8 +77,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcWindowPanelPositionEnum @PanelPosition 
 		{ 
@@ -64,8 +91,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _panelPosition = v, _panelPosition, value,  "PanelPosition");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @FrameDepth 
 		{ 
@@ -79,8 +105,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _frameDepth = v, _frameDepth, value,  "FrameDepth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @FrameThickness 
 		{ 
@@ -94,8 +119,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _frameThickness = v, _frameThickness, value,  "FrameThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcShapeAspect @ShapeAspectStyle 
 		{ 
@@ -109,9 +133,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

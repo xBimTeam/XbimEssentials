@@ -14,13 +14,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ConstructionMgmtDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSubContractResource
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSubContractResource : IIfcConstructionResource
+	{
+		IfcActorSelect @SubContractor { get; }
+		IfcText? @JobDescription { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IFCSUBCONTRACTRESOURCE", 594)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSubContractResource : IfcConstructionResource, IInstantiableEntity, IEqualityComparer<@IfcSubContractResource>, IEquatable<@IfcSubContractResource>
+	public  partial class @IfcSubContractResource : IfcConstructionResource, IInstantiableEntity, IIfcSubContractResource, IEqualityComparer<@IfcSubContractResource>, IEquatable<@IfcSubContractResource>
 	{
+		#region IIfcSubContractResource explicit implementation
+		IfcActorSelect IIfcSubContractResource.SubContractor { get { return @SubContractor; } }	
+		IfcText? IIfcSubContractResource.JobDescription { get { return @JobDescription; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSubContractResource(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +67,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _subContractor = v, _subContractor, value,  "SubContractor");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @JobDescription 
 		{ 
@@ -60,9 +81,9 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _jobDescription = v, _jobDescription, value,  "JobDescription");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

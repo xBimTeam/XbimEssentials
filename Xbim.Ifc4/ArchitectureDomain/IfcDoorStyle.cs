@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		IfcDoorStyleConstructionEnum IIfcDoorStyle.ConstructionType { get { return @ConstructionType; } }	
 		bool IIfcDoorStyle.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
 		bool IIfcDoorStyle.Sizeable { get { return @Sizeable; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

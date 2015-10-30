@@ -13,13 +13,33 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.TimeSeriesResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTimeSeriesValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTimeSeriesValue : IPersistEntity
+	{
+		IEnumerable<IfcValue> @ListValues { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IFCTIMESERIESVALUE", 35)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimeSeriesValue : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcTimeSeriesValue>, IEquatable<@IfcTimeSeriesValue>
+	public  partial class @IfcTimeSeriesValue : INotifyPropertyChanged, IInstantiableEntity, IIfcTimeSeriesValue, IEqualityComparer<@IfcTimeSeriesValue>, IEquatable<@IfcTimeSeriesValue>
 	{
+		#region IIfcTimeSeriesValue explicit implementation
+		IEnumerable<IfcValue> IIfcTimeSeriesValue.ListValues { get { return @ListValues; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -96,9 +116,9 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				((IPersistEntity)this).Activate(false);
 				return _listValues;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

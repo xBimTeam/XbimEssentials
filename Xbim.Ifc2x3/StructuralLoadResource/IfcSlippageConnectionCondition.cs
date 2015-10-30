@@ -12,13 +12,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralLoadResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSlippageConnectionCondition
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSlippageConnectionCondition : IIfcStructuralConnectionCondition
+	{
+		IfcLengthMeasure? @SlippageX { get; }
+		IfcLengthMeasure? @SlippageY { get; }
+		IfcLengthMeasure? @SlippageZ { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IFCSLIPPAGECONNECTIONCONDITION", 638)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSlippageConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IEqualityComparer<@IfcSlippageConnectionCondition>, IEquatable<@IfcSlippageConnectionCondition>
+	public  partial class @IfcSlippageConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcSlippageConnectionCondition, IEqualityComparer<@IfcSlippageConnectionCondition>, IEquatable<@IfcSlippageConnectionCondition>
 	{
+		#region IIfcSlippageConnectionCondition explicit implementation
+		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageX { get { return @SlippageX; } }	
+		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageY { get { return @SlippageY; } }	
+		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageZ { get { return @SlippageZ; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSlippageConnectionCondition(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +68,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _slippageX = v, _slippageX, value,  "SlippageX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @SlippageY 
 		{ 
@@ -59,8 +82,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _slippageY = v, _slippageY, value,  "SlippageY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @SlippageZ 
 		{ 
@@ -74,9 +96,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _slippageZ = v, _slippageZ, value,  "SlippageZ");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

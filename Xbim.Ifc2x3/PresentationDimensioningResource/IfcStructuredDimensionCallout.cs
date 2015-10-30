@@ -11,17 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDimensioningResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuredDimensionCallout
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuredDimensionCallout : IIfcDraughtingCallout
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IFCSTRUCTUREDDIMENSIONCALLOUT", 752)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuredDimensionCallout : IfcDraughtingCallout, IInstantiableEntity, IEqualityComparer<@IfcStructuredDimensionCallout>, IEquatable<@IfcStructuredDimensionCallout>
+	public  partial class @IfcStructuredDimensionCallout : IfcDraughtingCallout, IInstantiableEntity, IIfcStructuredDimensionCallout, IEqualityComparer<@IfcStructuredDimensionCallout>, IEquatable<@IfcStructuredDimensionCallout>
 	{
+		#region IIfcStructuredDimensionCallout explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuredDimensionCallout(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

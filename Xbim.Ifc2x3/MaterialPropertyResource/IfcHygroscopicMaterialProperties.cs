@@ -13,13 +13,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialPropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcHygroscopicMaterialProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcHygroscopicMaterialProperties : IIfcMaterialProperties
+	{
+		IfcPositiveRatioMeasure? @UpperVaporResistanceFactor { get; }
+		IfcPositiveRatioMeasure? @LowerVaporResistanceFactor { get; }
+		IfcIsothermalMoistureCapacityMeasure? @IsothermalMoistureCapacity { get; }
+		IfcVaporPermeabilityMeasure? @VaporPermeability { get; }
+		IfcMoistureDiffusivityMeasure? @MoistureDiffusivity { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IFCHYGROSCOPICMATERIALPROPERTIES", 717)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHygroscopicMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IEqualityComparer<@IfcHygroscopicMaterialProperties>, IEquatable<@IfcHygroscopicMaterialProperties>
+	public  partial class @IfcHygroscopicMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcHygroscopicMaterialProperties, IEqualityComparer<@IfcHygroscopicMaterialProperties>, IEquatable<@IfcHygroscopicMaterialProperties>
 	{
+		#region IIfcHygroscopicMaterialProperties explicit implementation
+		IfcPositiveRatioMeasure? IIfcHygroscopicMaterialProperties.UpperVaporResistanceFactor { get { return @UpperVaporResistanceFactor; } }	
+		IfcPositiveRatioMeasure? IIfcHygroscopicMaterialProperties.LowerVaporResistanceFactor { get { return @LowerVaporResistanceFactor; } }	
+		IfcIsothermalMoistureCapacityMeasure? IIfcHygroscopicMaterialProperties.IsothermalMoistureCapacity { get { return @IsothermalMoistureCapacity; } }	
+		IfcVaporPermeabilityMeasure? IIfcHygroscopicMaterialProperties.VaporPermeability { get { return @VaporPermeability; } }	
+		IfcMoistureDiffusivityMeasure? IIfcHygroscopicMaterialProperties.MoistureDiffusivity { get { return @MoistureDiffusivity; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcHygroscopicMaterialProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +75,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _upperVaporResistanceFactor = v, _upperVaporResistanceFactor, value,  "UpperVaporResistanceFactor");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @LowerVaporResistanceFactor 
 		{ 
@@ -62,8 +89,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _lowerVaporResistanceFactor = v, _lowerVaporResistanceFactor, value,  "LowerVaporResistanceFactor");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIsothermalMoistureCapacityMeasure? @IsothermalMoistureCapacity 
 		{ 
@@ -77,8 +103,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _isothermalMoistureCapacity = v, _isothermalMoistureCapacity, value,  "IsothermalMoistureCapacity");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcVaporPermeabilityMeasure? @VaporPermeability 
 		{ 
@@ -92,8 +117,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _vaporPermeability = v, _vaporPermeability, value,  "VaporPermeability");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcMoistureDiffusivityMeasure? @MoistureDiffusivity 
 		{ 
@@ -107,9 +131,9 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _moistureDiffusivity = v, _moistureDiffusivity, value,  "MoistureDiffusivity");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

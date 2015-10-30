@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		IIfcColourRgb IIfcLightSource.LightColour { get { return @LightColour; } }	
 		IfcNormalisedRatioMeasure? IIfcLightSource.AmbientIntensity { get { return @AmbientIntensity; } }	
 		IfcNormalisedRatioMeasure? IIfcLightSource.Intensity { get { return @Intensity; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

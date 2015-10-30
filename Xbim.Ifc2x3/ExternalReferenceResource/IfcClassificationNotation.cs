@@ -12,14 +12,34 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ExternalReferenceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcClassificationNotation
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcClassificationNotation : IPersistEntity, IfcClassificationNotationSelect
+	{
+		IEnumerable<IIfcClassificationNotationFacet> @NotationFacets { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCLASSIFICATIONNOTATION", 13)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationNotation : INotifyPropertyChanged, IfcClassificationNotationSelect, IInstantiableEntity, IEqualityComparer<@IfcClassificationNotation>, IEquatable<@IfcClassificationNotation>
+	public  partial class @IfcClassificationNotation : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationNotation, IEqualityComparer<@IfcClassificationNotation>, IEquatable<@IfcClassificationNotation>
 	{
+		#region IIfcClassificationNotation explicit implementation
+		IEnumerable<IIfcClassificationNotationFacet> IIfcClassificationNotation.NotationFacets { get { return @NotationFacets; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -96,9 +116,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				((IPersistEntity)this).Activate(false);
 				return _notationFacets;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

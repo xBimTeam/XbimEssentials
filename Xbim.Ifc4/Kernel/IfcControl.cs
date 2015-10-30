@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcControl explicit implementation
 		IfcIdentifier? IIfcControl.Identification { get { return @Identification; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelAssignsToControl> IIfcControl.Controls {  get { return @Controls; } }
 		#endregion
 

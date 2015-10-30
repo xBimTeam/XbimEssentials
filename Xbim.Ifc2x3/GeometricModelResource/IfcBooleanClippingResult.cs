@@ -11,17 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometricModelResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBooleanClippingResult
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBooleanClippingResult : IIfcBooleanResult
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IFCBOOLEANCLIPPINGRESULT", 340)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBooleanClippingResult : IfcBooleanResult, IInstantiableEntity, IEqualityComparer<@IfcBooleanClippingResult>, IEquatable<@IfcBooleanClippingResult>
+	public  partial class @IfcBooleanClippingResult : IfcBooleanResult, IInstantiableEntity, IIfcBooleanClippingResult, IEqualityComparer<@IfcBooleanClippingResult>, IEquatable<@IfcBooleanClippingResult>
 	{
+		#region IIfcBooleanClippingResult explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBooleanClippingResult(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

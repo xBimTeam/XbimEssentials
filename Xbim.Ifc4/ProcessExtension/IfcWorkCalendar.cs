@@ -43,8 +43,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		IEnumerable<IIfcWorkTime> IIfcWorkCalendar.WorkingTimes { get { return @WorkingTimes; } }	
 		IEnumerable<IIfcWorkTime> IIfcWorkCalendar.ExceptionTimes { get { return @ExceptionTimes; } }	
 		IfcWorkCalendarTypeEnum? IIfcWorkCalendar.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

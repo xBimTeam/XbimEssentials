@@ -13,13 +13,33 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPreDefinedItem
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPreDefinedItem : IPersistEntity
+	{
+		IfcLabel @Name { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IFCPREDEFINEDITEM", 288)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedItem : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcPreDefinedItem>, IEquatable<@IfcPreDefinedItem>
+	public abstract partial class @IfcPreDefinedItem : IPersistEntity, INotifyPropertyChanged, IIfcPreDefinedItem, IEqualityComparer<@IfcPreDefinedItem>, IEquatable<@IfcPreDefinedItem>
 	{
+		#region IIfcPreDefinedItem explicit implementation
+		IfcLabel IIfcPreDefinedItem.Name { get { return @Name; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -99,9 +119,9 @@ namespace Xbim.Ifc2x3.PresentationResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

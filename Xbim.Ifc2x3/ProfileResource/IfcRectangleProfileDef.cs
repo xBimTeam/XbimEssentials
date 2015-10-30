@@ -13,13 +13,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfileResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRectangleProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRectangleProfileDef : IIfcParameterizedProfileDef
+	{
+		IfcPositiveLengthMeasure @XDim { get; }
+		IfcPositiveLengthMeasure @YDim { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IFCRECTANGLEPROFILEDEF", 103)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IEqualityComparer<@IfcRectangleProfileDef>, IEquatable<@IfcRectangleProfileDef>
+	public  partial class @IfcRectangleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcRectangleProfileDef, IEqualityComparer<@IfcRectangleProfileDef>, IEquatable<@IfcRectangleProfileDef>
 	{
+		#region IIfcRectangleProfileDef explicit implementation
+		IfcPositiveLengthMeasure IIfcRectangleProfileDef.XDim { get { return @XDim; } }	
+		IfcPositiveLengthMeasure IIfcRectangleProfileDef.YDim { get { return @YDim; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRectangleProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +66,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _xDim = v, _xDim, value,  "XDim");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @YDim 
 		{ 
@@ -59,9 +80,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _yDim = v, _yDim, value,  "YDim");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

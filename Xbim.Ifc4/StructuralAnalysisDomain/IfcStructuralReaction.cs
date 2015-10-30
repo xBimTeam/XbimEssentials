@@ -33,8 +33,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public abstract partial class @IfcStructuralReaction : IfcStructuralActivity, IIfcStructuralReaction, IEqualityComparer<@IfcStructuralReaction>, IEquatable<@IfcStructuralReaction>
 	{
 		#region IIfcStructuralReaction explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

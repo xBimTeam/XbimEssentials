@@ -15,13 +15,49 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcWindowLiningProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcWindowLiningProperties : IIfcPropertySetDefinition
+	{
+		IfcPositiveLengthMeasure? @LiningDepth { get; }
+		IfcPositiveLengthMeasure? @LiningThickness { get; }
+		IfcPositiveLengthMeasure? @TransomThickness { get; }
+		IfcPositiveLengthMeasure? @MullionThickness { get; }
+		IfcNormalisedRatioMeasure? @FirstTransomOffset { get; }
+		IfcNormalisedRatioMeasure? @SecondTransomOffset { get; }
+		IfcNormalisedRatioMeasure? @FirstMullionOffset { get; }
+		IfcNormalisedRatioMeasure? @SecondMullionOffset { get; }
+		IIfcShapeAspect @ShapeAspectStyle { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IFCWINDOWLININGPROPERTIES", 252)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWindowLiningProperties : IfcPropertySetDefinition, IInstantiableEntity, IEqualityComparer<@IfcWindowLiningProperties>, IEquatable<@IfcWindowLiningProperties>
+	public  partial class @IfcWindowLiningProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcWindowLiningProperties, IEqualityComparer<@IfcWindowLiningProperties>, IEquatable<@IfcWindowLiningProperties>
 	{
+		#region IIfcWindowLiningProperties explicit implementation
+		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.LiningDepth { get { return @LiningDepth; } }	
+		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.LiningThickness { get { return @LiningThickness; } }	
+		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.TransomThickness { get { return @TransomThickness; } }	
+		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.MullionThickness { get { return @MullionThickness; } }	
+		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstTransomOffset { get { return @FirstTransomOffset; } }	
+		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondTransomOffset { get { return @SecondTransomOffset; } }	
+		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstMullionOffset { get { return @FirstMullionOffset; } }	
+		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondMullionOffset { get { return @SecondMullionOffset; } }	
+		IIfcShapeAspect IIfcWindowLiningProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWindowLiningProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -53,8 +89,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _liningDepth = v, _liningDepth, value,  "LiningDepth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @LiningThickness 
 		{ 
@@ -68,8 +103,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _liningThickness = v, _liningThickness, value,  "LiningThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @TransomThickness 
 		{ 
@@ -83,8 +117,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _transomThickness = v, _transomThickness, value,  "TransomThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @MullionThickness 
 		{ 
@@ -98,8 +131,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _mullionThickness = v, _mullionThickness, value,  "MullionThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure? @FirstTransomOffset 
 		{ 
@@ -113,8 +145,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _firstTransomOffset = v, _firstTransomOffset, value,  "FirstTransomOffset");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure? @SecondTransomOffset 
 		{ 
@@ -128,8 +159,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _secondTransomOffset = v, _secondTransomOffset, value,  "SecondTransomOffset");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure? @FirstMullionOffset 
 		{ 
@@ -143,8 +173,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _firstMullionOffset = v, _firstMullionOffset, value,  "FirstMullionOffset");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure? @SecondMullionOffset 
 		{ 
@@ -158,8 +187,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _secondMullionOffset = v, _secondMullionOffset, value,  "SecondMullionOffset");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcShapeAspect @ShapeAspectStyle 
 		{ 
@@ -173,9 +201,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

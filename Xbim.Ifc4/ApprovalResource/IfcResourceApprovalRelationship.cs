@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		#region IIfcResourceApprovalRelationship explicit implementation
 		IEnumerable<IfcResourceObjectSelect> IIfcResourceApprovalRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
 		IIfcApproval IIfcResourceApprovalRelationship.RelatingApproval { get { return @RelatingApproval; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

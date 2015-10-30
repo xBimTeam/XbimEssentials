@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.UtilityResource
 		IfcLabel IIfcApplication.Version { get { return @Version; } }	
 		IfcLabel IIfcApplication.ApplicationFullName { get { return @ApplicationFullName; } }	
 		IfcIdentifier IIfcApplication.ApplicationIdentifier { get { return @ApplicationIdentifier; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

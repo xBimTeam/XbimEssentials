@@ -14,13 +14,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.FacilitiesMgmtDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcOrderAction
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcOrderAction : IIfcTask
+	{
+		IfcIdentifier @ActionID { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IFCORDERACTION", 591)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrderAction : IfcTask, IInstantiableEntity, IEqualityComparer<@IfcOrderAction>, IEquatable<@IfcOrderAction>
+	public  partial class @IfcOrderAction : IfcTask, IInstantiableEntity, IIfcOrderAction, IEqualityComparer<@IfcOrderAction>, IEquatable<@IfcOrderAction>
 	{
+		#region IIfcOrderAction explicit implementation
+		IfcIdentifier IIfcOrderAction.ActionID { get { return @ActionID; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOrderAction(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,9 +64,9 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			{
 				SetValue( v =>  _actionID = v, _actionID, value,  "ActionID");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

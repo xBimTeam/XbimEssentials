@@ -59,8 +59,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.TransverseBarSpacing { get { return @TransverseBarSpacing; } }	
 		IfcLabel? IIfcReinforcingMeshType.BendingShapeCode { get { return @BendingShapeCode; } }	
 		IEnumerable<IfcBendingParameterSelect> IIfcReinforcingMeshType.BendingParameters { get { return @BendingParameters; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

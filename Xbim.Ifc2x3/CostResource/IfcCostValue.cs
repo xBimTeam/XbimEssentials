@@ -14,13 +14,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.CostResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCostValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCostValue : IIfcAppliedValue, IfcMetricValueSelect
+	{
+		IfcLabel @CostType { get; }
+		IfcText? @Condition { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IFCCOSTVALUE", 658)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostValue : IfcAppliedValue, IfcMetricValueSelect, IInstantiableEntity, IEqualityComparer<@IfcCostValue>, IEquatable<@IfcCostValue>
+	public  partial class @IfcCostValue : IfcAppliedValue, IInstantiableEntity, IIfcCostValue, IEqualityComparer<@IfcCostValue>, IEquatable<@IfcCostValue>
 	{
+		#region IIfcCostValue explicit implementation
+		IfcLabel IIfcCostValue.CostType { get { return @CostType; } }	
+		IfcText? IIfcCostValue.Condition { get { return @Condition; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCostValue(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +67,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _costType = v, _costType, value,  "CostType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Condition 
 		{ 
@@ -60,9 +81,9 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _condition = v, _condition, value,  "Condition");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

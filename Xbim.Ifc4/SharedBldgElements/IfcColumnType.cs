@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 	{
 		#region IIfcColumnType explicit implementation
 		IfcColumnTypeEnum IIfcColumnType.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

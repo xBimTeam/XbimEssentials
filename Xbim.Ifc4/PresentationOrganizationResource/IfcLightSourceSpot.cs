@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		IfcReal? IIfcLightSourceSpot.ConcentrationExponent { get { return @ConcentrationExponent; } }	
 		IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.SpreadAngle { get { return @SpreadAngle; } }	
 		IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.BeamWidthAngle { get { return @BeamWidthAngle; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -12,13 +12,43 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralLoadResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFailureConnectionCondition
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFailureConnectionCondition : IIfcStructuralConnectionCondition
+	{
+		IfcForceMeasure? @TensionFailureX { get; }
+		IfcForceMeasure? @TensionFailureY { get; }
+		IfcForceMeasure? @TensionFailureZ { get; }
+		IfcForceMeasure? @CompressionFailureX { get; }
+		IfcForceMeasure? @CompressionFailureY { get; }
+		IfcForceMeasure? @CompressionFailureZ { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IFCFAILURECONNECTIONCONDITION", 640)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFailureConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IEqualityComparer<@IfcFailureConnectionCondition>, IEquatable<@IfcFailureConnectionCondition>
+	public  partial class @IfcFailureConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcFailureConnectionCondition, IEqualityComparer<@IfcFailureConnectionCondition>, IEquatable<@IfcFailureConnectionCondition>
 	{
+		#region IIfcFailureConnectionCondition explicit implementation
+		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureX { get { return @TensionFailureX; } }	
+		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureY { get { return @TensionFailureY; } }	
+		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureZ { get { return @TensionFailureZ; } }	
+		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureX { get { return @CompressionFailureX; } }	
+		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureY { get { return @CompressionFailureY; } }	
+		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureZ { get { return @CompressionFailureZ; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFailureConnectionCondition(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +77,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _tensionFailureX = v, _tensionFailureX, value,  "TensionFailureX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcForceMeasure? @TensionFailureY 
 		{ 
@@ -62,8 +91,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _tensionFailureY = v, _tensionFailureY, value,  "TensionFailureY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcForceMeasure? @TensionFailureZ 
 		{ 
@@ -77,8 +105,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _tensionFailureZ = v, _tensionFailureZ, value,  "TensionFailureZ");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcForceMeasure? @CompressionFailureX 
 		{ 
@@ -92,8 +119,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _compressionFailureX = v, _compressionFailureX, value,  "CompressionFailureX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcForceMeasure? @CompressionFailureY 
 		{ 
@@ -107,8 +133,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _compressionFailureY = v, _compressionFailureY, value,  "CompressionFailureY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcForceMeasure? @CompressionFailureZ 
 		{ 
@@ -122,9 +147,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _compressionFailureZ = v, _compressionFailureZ, value,  "CompressionFailureZ");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

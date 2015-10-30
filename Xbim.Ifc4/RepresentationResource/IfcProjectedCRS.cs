@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		IfcIdentifier? IIfcProjectedCRS.MapProjection { get { return @MapProjection; } }	
 		IfcIdentifier? IIfcProjectedCRS.MapZone { get { return @MapZone; } }	
 		IIfcNamedUnit IIfcProjectedCRS.MapUnit { get { return @MapUnit; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

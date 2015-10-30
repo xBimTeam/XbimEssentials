@@ -15,17 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDimensioningResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProjectionCurve
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProjectionCurve : IIfcAnnotationCurveOccurrence
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IFCPROJECTIONCURVE", 750)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IEqualityComparer<@IfcProjectionCurve>, IEquatable<@IfcProjectionCurve>
+	public  partial class @IfcProjectionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IIfcProjectionCurve, IEqualityComparer<@IfcProjectionCurve>, IEquatable<@IfcProjectionCurve>
 	{
+		#region IIfcProjectionCurve explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProjectionCurve(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

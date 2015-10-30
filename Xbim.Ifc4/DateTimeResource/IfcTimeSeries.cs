@@ -56,8 +56,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		IfcDataOriginEnum IIfcTimeSeries.DataOrigin { get { return @DataOrigin; } }	
 		IfcLabel? IIfcTimeSeries.UserDefinedDataOrigin { get { return @UserDefinedDataOrigin; } }	
 		IfcUnit IIfcTimeSeries.Unit { get { return @Unit; } }	
-	
-	 
+		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcTimeSeries.HasExternalReference {  get { return @HasExternalReference; } }
 		#endregion
 

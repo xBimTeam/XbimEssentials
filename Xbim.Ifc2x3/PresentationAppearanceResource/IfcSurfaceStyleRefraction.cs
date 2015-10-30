@@ -13,13 +13,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceStyleRefraction
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceStyleRefraction : IPersistEntity, IfcSurfaceStyleElementSelect
+	{
+		IfcReal? @RefractionIndex { get; }
+		IfcReal? @DispersionFactor { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCSURFACESTYLEREFRACTION", 636)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleRefraction : INotifyPropertyChanged, IfcSurfaceStyleElementSelect, IInstantiableEntity, IEqualityComparer<@IfcSurfaceStyleRefraction>, IEquatable<@IfcSurfaceStyleRefraction>
+	public  partial class @IfcSurfaceStyleRefraction : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleRefraction, IEqualityComparer<@IfcSurfaceStyleRefraction>, IEquatable<@IfcSurfaceStyleRefraction>
 	{
+		#region IIfcSurfaceStyleRefraction explicit implementation
+		IfcReal? IIfcSurfaceStyleRefraction.RefractionIndex { get { return @RefractionIndex; } }	
+		IfcReal? IIfcSurfaceStyleRefraction.DispersionFactor { get { return @DispersionFactor; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -100,8 +122,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _refractionIndex = v, _refractionIndex, value,  "RefractionIndex");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcReal? @DispersionFactor 
 		{ 
@@ -115,9 +136,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _dispersionFactor = v, _dispersionFactor, value,  "DispersionFactor");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

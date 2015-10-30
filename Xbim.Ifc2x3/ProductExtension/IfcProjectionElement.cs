@@ -15,17 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProjectionElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProjectionElement : IIfcFeatureElementAddition
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCPROJECTIONELEMENT", 384)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectionElement : IfcFeatureElementAddition, IInstantiableEntity, IEqualityComparer<@IfcProjectionElement>, IEquatable<@IfcProjectionElement>
+	public  partial class @IfcProjectionElement : IfcFeatureElementAddition, IInstantiableEntity, IIfcProjectionElement, IEqualityComparer<@IfcProjectionElement>, IEquatable<@IfcProjectionElement>
 	{
+		#region IIfcProjectionElement explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProjectionElement(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

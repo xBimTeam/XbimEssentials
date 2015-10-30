@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseReflectionColour { get { return @DiffuseReflectionColour; } }	
 		IIfcColourRgb IIfcSurfaceStyleLighting.TransmissionColour { get { return @TransmissionColour; } }	
 		IIfcColourRgb IIfcSurfaceStyleLighting.ReflectanceColour { get { return @ReflectanceColour; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

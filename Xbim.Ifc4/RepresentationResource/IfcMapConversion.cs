@@ -46,8 +46,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		IfcReal? IIfcMapConversion.XAxisAbscissa { get { return @XAxisAbscissa; } }	
 		IfcReal? IIfcMapConversion.XAxisOrdinate { get { return @XAxisOrdinate; } }	
 		IfcReal? IIfcMapConversion.Scale { get { return @Scale; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

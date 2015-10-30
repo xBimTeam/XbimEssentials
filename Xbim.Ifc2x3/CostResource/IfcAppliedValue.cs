@@ -15,14 +15,50 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.CostResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAppliedValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAppliedValue : IPersistEntity, IfcObjectReferenceSelect
+	{
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		IfcAppliedValueSelect @AppliedValue { get; }
+		IIfcMeasureWithUnit @UnitBasis { get; }
+		IfcDateTimeSelect @ApplicableDate { get; }
+		IfcDateTimeSelect @FixedUntilDate { get; }
+		IEnumerable<IIfcReferencesValueDocument> @ValuesReferenced {  get; }
+		IEnumerable<IIfcAppliedValueRelationship> @ValueOfComponents {  get; }
+		IEnumerable<IIfcAppliedValueRelationship> @IsComponentIn {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.CostResource
 {
 	[IndexedClass]
 	[ExpressType("IFCAPPLIEDVALUE", 79)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcAppliedValue : IPersistEntity, INotifyPropertyChanged, IfcObjectReferenceSelect, IEqualityComparer<@IfcAppliedValue>, IEquatable<@IfcAppliedValue>
+	public abstract partial class @IfcAppliedValue : IPersistEntity, INotifyPropertyChanged, IIfcAppliedValue, IEqualityComparer<@IfcAppliedValue>, IEquatable<@IfcAppliedValue>
 	{
+		#region IIfcAppliedValue explicit implementation
+		IfcLabel? IIfcAppliedValue.Name { get { return @Name; } }	
+		IfcText? IIfcAppliedValue.Description { get { return @Description; } }	
+		IfcAppliedValueSelect IIfcAppliedValue.AppliedValue { get { return @AppliedValue; } }	
+		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis { get { return @UnitBasis; } }	
+		IfcDateTimeSelect IIfcAppliedValue.ApplicableDate { get { return @ApplicableDate; } }	
+		IfcDateTimeSelect IIfcAppliedValue.FixedUntilDate { get { return @FixedUntilDate; } }	
+		 
+		IEnumerable<IIfcReferencesValueDocument> IIfcAppliedValue.ValuesReferenced {  get { return @ValuesReferenced; } }
+		IEnumerable<IIfcAppliedValueRelationship> IIfcAppliedValue.ValueOfComponents {  get { return @ValueOfComponents; } }
+		IEnumerable<IIfcAppliedValueRelationship> IIfcAppliedValue.IsComponentIn {  get { return @IsComponentIn; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -107,8 +143,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -122,8 +157,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcAppliedValueSelect @AppliedValue 
 		{ 
@@ -137,8 +171,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _appliedValue = v, _appliedValue, value,  "AppliedValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMeasureWithUnit @UnitBasis 
 		{ 
@@ -152,8 +185,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _unitBasis = v, _unitBasis, value,  "UnitBasis");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDateTimeSelect @ApplicableDate 
 		{ 
@@ -167,8 +199,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _applicableDate = v, _applicableDate, value,  "ApplicableDate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDateTimeSelect @FixedUntilDate 
 		{ 
@@ -182,9 +213,9 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _fixedUntilDate = v, _fixedUntilDate, value,  "FixedUntilDate");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

@@ -48,8 +48,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux { get { return @LuminousFlux; } }	
 		IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource { get { return @LightEmissionSource; } }	
 		IfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource { get { return @LightDistributionDataSource; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

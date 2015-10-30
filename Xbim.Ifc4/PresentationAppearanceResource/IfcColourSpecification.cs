@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcColourSpecification explicit implementation
 		IfcLabel? IIfcColourSpecification.Name { get { return @Name; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

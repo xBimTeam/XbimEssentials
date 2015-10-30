@@ -13,13 +13,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssignsToControl
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssignsToControl : IIfcRelAssigns
+	{
+		IIfcControl @RelatingControl { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCRELASSIGNSTOCONTROL", 558)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToControl : IfcRelAssigns, IInstantiableEntity, IEqualityComparer<@IfcRelAssignsToControl>, IEquatable<@IfcRelAssignsToControl>
+	public  partial class @IfcRelAssignsToControl : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToControl, IEqualityComparer<@IfcRelAssignsToControl>, IEquatable<@IfcRelAssignsToControl>
 	{
+		#region IIfcRelAssignsToControl explicit implementation
+		IIfcControl IIfcRelAssignsToControl.RelatingControl { get { return @RelatingControl; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsToControl(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,9 +64,9 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _relatingControl = v, _relatingControl, value,  "RelatingControl");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

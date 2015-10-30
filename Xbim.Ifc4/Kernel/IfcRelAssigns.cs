@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.Kernel
 		#region IIfcRelAssigns explicit implementation
 		IEnumerable<IIfcObjectDefinition> IIfcRelAssigns.RelatedObjects { get { return @RelatedObjects; } }	
 		IfcObjectTypeEnum? IIfcRelAssigns.RelatedObjectsType { get { return @RelatedObjectsType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

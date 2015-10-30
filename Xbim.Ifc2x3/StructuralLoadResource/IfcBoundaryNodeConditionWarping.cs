@@ -12,13 +12,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralLoadResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBoundaryNodeConditionWarping
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBoundaryNodeConditionWarping : IIfcBoundaryNodeCondition
+	{
+		IfcWarpingMomentMeasure? @WarpingStiffness { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IFCBOUNDARYNODECONDITIONWARPING", 395)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundaryNodeConditionWarping : IfcBoundaryNodeCondition, IInstantiableEntity, IEqualityComparer<@IfcBoundaryNodeConditionWarping>, IEquatable<@IfcBoundaryNodeConditionWarping>
+	public  partial class @IfcBoundaryNodeConditionWarping : IfcBoundaryNodeCondition, IInstantiableEntity, IIfcBoundaryNodeConditionWarping, IEqualityComparer<@IfcBoundaryNodeConditionWarping>, IEquatable<@IfcBoundaryNodeConditionWarping>
 	{
+		#region IIfcBoundaryNodeConditionWarping explicit implementation
+		IfcWarpingMomentMeasure? IIfcBoundaryNodeConditionWarping.WarpingStiffness { get { return @WarpingStiffness; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundaryNodeConditionWarping(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +62,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _warpingStiffness = v, _warpingStiffness, value,  "WarpingStiffness");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

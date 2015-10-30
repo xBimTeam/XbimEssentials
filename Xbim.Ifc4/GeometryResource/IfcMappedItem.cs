@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#region IIfcMappedItem explicit implementation
 		IIfcRepresentationMap IIfcMappedItem.MappingSource { get { return @MappingSource; } }	
 		IIfcCartesianTransformationOperator IIfcMappedItem.MappingTarget { get { return @MappingTarget; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

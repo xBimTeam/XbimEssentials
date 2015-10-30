@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.PropertyResource
 		#region IIfcPropertyReferenceValue explicit implementation
 		IfcText? IIfcPropertyReferenceValue.UsageName { get { return @UsageName; } }	
 		IfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference { get { return @PropertyReference; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

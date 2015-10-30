@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#region IIfcAxis2Placement3D explicit implementation
 		IIfcDirection IIfcAxis2Placement3D.Axis { get { return @Axis; } }	
 		IIfcDirection IIfcAxis2Placement3D.RefDirection { get { return @RefDirection; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

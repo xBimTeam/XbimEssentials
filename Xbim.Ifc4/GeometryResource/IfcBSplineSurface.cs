@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.GeometryResource
 		bool? IIfcBSplineSurface.UClosed { get { return @UClosed; } }	
 		bool? IIfcBSplineSurface.VClosed { get { return @VClosed; } }	
 		bool? IIfcBSplineSurface.SelfIntersect { get { return @SelfIntersect; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

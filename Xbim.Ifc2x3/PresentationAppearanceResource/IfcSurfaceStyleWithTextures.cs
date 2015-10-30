@@ -12,13 +12,33 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceStyleWithTextures
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceStyleWithTextures : IPersistEntity, IfcSurfaceStyleElementSelect
+	{
+		IEnumerable<IIfcSurfaceTexture> @Textures { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCSURFACESTYLEWITHTEXTURES", 392)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleWithTextures : INotifyPropertyChanged, IfcSurfaceStyleElementSelect, IInstantiableEntity, IEqualityComparer<@IfcSurfaceStyleWithTextures>, IEquatable<@IfcSurfaceStyleWithTextures>
+	public  partial class @IfcSurfaceStyleWithTextures : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleWithTextures, IEqualityComparer<@IfcSurfaceStyleWithTextures>, IEquatable<@IfcSurfaceStyleWithTextures>
 	{
+		#region IIfcSurfaceStyleWithTextures explicit implementation
+		IEnumerable<IIfcSurfaceTexture> IIfcSurfaceStyleWithTextures.Textures { get { return @Textures; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -95,9 +115,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _textures;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

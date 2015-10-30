@@ -12,13 +12,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceOfRevolution
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceOfRevolution : IIfcSweptSurface
+	{
+		IIfcAxis1Placement @AxisPosition { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCSURFACEOFREVOLUTION", 109)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceOfRevolution : IfcSweptSurface, IInstantiableEntity, IEqualityComparer<@IfcSurfaceOfRevolution>, IEquatable<@IfcSurfaceOfRevolution>
+	public  partial class @IfcSurfaceOfRevolution : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfRevolution, IEqualityComparer<@IfcSurfaceOfRevolution>, IEquatable<@IfcSurfaceOfRevolution>
 	{
+		#region IIfcSurfaceOfRevolution explicit implementation
+		IIfcAxis1Placement IIfcSurfaceOfRevolution.AxisPosition { get { return @AxisPosition; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceOfRevolution(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +62,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _axisPosition = v, _axisPosition, value,  "AxisPosition");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

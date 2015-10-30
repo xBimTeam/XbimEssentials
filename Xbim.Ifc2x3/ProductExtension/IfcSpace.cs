@@ -15,13 +15,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSpace
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSpace : IIfcSpatialStructureElement
+	{
+		IfcInternalOrExternalEnum @InteriorOrExteriorSpace { get; }
+		IfcLengthMeasure? @ElevationWithFlooring { get; }
+		IEnumerable<IIfcRelCoversSpaces> @HasCoverings {  get; }
+		IEnumerable<IIfcRelSpaceBoundary> @BoundedBy {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCSPACE", 454)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IEqualityComparer<@IfcSpace>, IEquatable<@IfcSpace>
+	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IIfcSpace, IEqualityComparer<@IfcSpace>, IEquatable<@IfcSpace>
 	{
+		#region IIfcSpace explicit implementation
+		IfcInternalOrExternalEnum IIfcSpace.InteriorOrExteriorSpace { get { return @InteriorOrExteriorSpace; } }	
+		IfcLengthMeasure? IIfcSpace.ElevationWithFlooring { get { return @ElevationWithFlooring; } }	
+		 
+		IEnumerable<IIfcRelCoversSpaces> IIfcSpace.HasCoverings {  get { return @HasCoverings; } }
+		IEnumerable<IIfcRelSpaceBoundary> IIfcSpace.BoundedBy {  get { return @BoundedBy; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpace(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +72,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _interiorOrExteriorSpace = v, _interiorOrExteriorSpace, value,  "InteriorOrExteriorSpace");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @ElevationWithFlooring 
 		{ 
@@ -61,9 +86,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _elevationWithFlooring = v, _elevationWithFlooring, value,  "ElevationWithFlooring");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

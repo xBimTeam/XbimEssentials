@@ -16,13 +16,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ElectricalDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcElectricDistributionPoint
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcElectricDistributionPoint : IIfcFlowController
+	{
+		IfcElectricDistributionPointFunctionEnum @DistributionPointFunction { get; }
+		IfcLabel? @UserDefinedFunction { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IFCELECTRICDISTRIBUTIONPOINT", 242)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricDistributionPoint : IfcFlowController, IInstantiableEntity, IEqualityComparer<@IfcElectricDistributionPoint>, IEquatable<@IfcElectricDistributionPoint>
+	public  partial class @IfcElectricDistributionPoint : IfcFlowController, IInstantiableEntity, IIfcElectricDistributionPoint, IEqualityComparer<@IfcElectricDistributionPoint>, IEquatable<@IfcElectricDistributionPoint>
 	{
+		#region IIfcElectricDistributionPoint explicit implementation
+		IfcElectricDistributionPointFunctionEnum IIfcElectricDistributionPoint.DistributionPointFunction { get { return @DistributionPointFunction; } }	
+		IfcLabel? IIfcElectricDistributionPoint.UserDefinedFunction { get { return @UserDefinedFunction; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElectricDistributionPoint(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +69,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			{
 				SetValue( v =>  _distributionPointFunction = v, _distributionPointFunction, value,  "DistributionPointFunction");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedFunction 
 		{ 
@@ -62,9 +83,9 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			{
 				SetValue( v =>  _userDefinedFunction = v, _userDefinedFunction, value,  "UserDefinedFunction");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

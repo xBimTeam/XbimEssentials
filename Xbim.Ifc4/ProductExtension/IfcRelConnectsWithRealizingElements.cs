@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#region IIfcRelConnectsWithRealizingElements explicit implementation
 		IEnumerable<IIfcElement> IIfcRelConnectsWithRealizingElements.RealizingElements { get { return @RealizingElements; } }	
 		IfcLabel? IIfcRelConnectsWithRealizingElements.ConnectionType { get { return @ConnectionType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

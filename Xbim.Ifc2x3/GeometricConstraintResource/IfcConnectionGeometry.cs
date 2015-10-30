@@ -12,13 +12,31 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometricConstraintResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConnectionGeometry
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConnectionGeometry : IPersistEntity
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IFCCONNECTIONGEOMETRY", 70)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConnectionGeometry : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcConnectionGeometry>, IEquatable<@IfcConnectionGeometry>
+	public abstract partial class @IfcConnectionGeometry : IPersistEntity, INotifyPropertyChanged, IIfcConnectionGeometry, IEqualityComparer<@IfcConnectionGeometry>, IEquatable<@IfcConnectionGeometry>
 	{
+		#region IIfcConnectionGeometry explicit implementation
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -79,6 +97,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		internal IfcConnectionGeometry(IModel model) 		{ 
 			Model = model; 
 		}
+
 
 
 

@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.TopologyResource
 	{
 		#region IIfcConnectedFaceSet explicit implementation
 		IEnumerable<IIfcFace> IIfcConnectedFaceSet.CfsFaces { get { return @CfsFaces; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

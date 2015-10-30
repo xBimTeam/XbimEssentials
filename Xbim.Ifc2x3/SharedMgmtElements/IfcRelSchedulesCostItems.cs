@@ -14,17 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedMgmtElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelSchedulesCostItems
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelSchedulesCostItems : IIfcRelAssignsToControl
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IFCRELSCHEDULESCOSTITEMS", 700)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSchedulesCostItems : IfcRelAssignsToControl, IInstantiableEntity, IEqualityComparer<@IfcRelSchedulesCostItems>, IEquatable<@IfcRelSchedulesCostItems>
+	public  partial class @IfcRelSchedulesCostItems : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelSchedulesCostItems, IEqualityComparer<@IfcRelSchedulesCostItems>, IEquatable<@IfcRelSchedulesCostItems>
 	{
+		#region IIfcRelSchedulesCostItems explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelSchedulesCostItems(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

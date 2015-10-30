@@ -15,14 +15,46 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.RepresentationResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRepresentation
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRepresentation : IPersistEntity, IfcLayeredItem
+	{
+		IIfcRepresentationContext @ContextOfItems { get; }
+		IfcLabel? @RepresentationIdentifier { get; }
+		IfcLabel? @RepresentationType { get; }
+		IEnumerable<IIfcRepresentationItem> @Items { get; }
+		IEnumerable<IIfcRepresentationMap> @RepresentationMap {  get; }
+		IEnumerable<IIfcPresentationLayerAssignment> @LayerAssignments {  get; }
+		IEnumerable<IIfcProductRepresentation> @OfProductRepresentation {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[IndexedClass]
 	[ExpressType("IFCREPRESENTATION", 87)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRepresentation : INotifyPropertyChanged, IfcLayeredItem, IInstantiableEntity, IEqualityComparer<@IfcRepresentation>, IEquatable<@IfcRepresentation>
+	public  partial class @IfcRepresentation : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentation, IEqualityComparer<@IfcRepresentation>, IEquatable<@IfcRepresentation>
 	{
+		#region IIfcRepresentation explicit implementation
+		IIfcRepresentationContext IIfcRepresentation.ContextOfItems { get { return @ContextOfItems; } }	
+		IfcLabel? IIfcRepresentation.RepresentationIdentifier { get { return @RepresentationIdentifier; } }	
+		IfcLabel? IIfcRepresentation.RepresentationType { get { return @RepresentationType; } }	
+		IEnumerable<IIfcRepresentationItem> IIfcRepresentation.Items { get { return @Items; } }	
+		 
+		IEnumerable<IIfcRepresentationMap> IIfcRepresentation.RepresentationMap {  get { return @RepresentationMap; } }
+		IEnumerable<IIfcPresentationLayerAssignment> IIfcRepresentation.LayerAssignments {  get { return @LayerAssignments; } }
+		IEnumerable<IIfcProductRepresentation> IIfcRepresentation.OfProductRepresentation {  get { return @OfProductRepresentation; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -107,8 +139,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			{
 				SetValue( v =>  _contextOfItems = v, _contextOfItems, value,  "ContextOfItems");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @RepresentationIdentifier 
 		{ 
@@ -122,8 +153,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			{
 				SetValue( v =>  _representationIdentifier = v, _representationIdentifier, value,  "RepresentationIdentifier");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @RepresentationType 
 		{ 
@@ -137,8 +167,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			{
 				SetValue( v =>  _representationType = v, _representationType, value,  "RepresentationType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcRepresentationItem> @Items 
 		{ 
@@ -148,9 +177,9 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				((IPersistEntity)this).Activate(false);
 				return _items;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

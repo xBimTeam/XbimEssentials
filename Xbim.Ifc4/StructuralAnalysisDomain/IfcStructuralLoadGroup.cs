@@ -48,8 +48,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		IfcActionSourceTypeEnum IIfcStructuralLoadGroup.ActionSource { get { return @ActionSource; } }	
 		IfcRatioMeasure? IIfcStructuralLoadGroup.Coefficient { get { return @Coefficient; } }	
 		IfcLabel? IIfcStructuralLoadGroup.Purpose { get { return @Purpose; } }	
-	
-	 
+		 
 		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralLoadGroup.SourceOfResultGroup {  get { return @SourceOfResultGroup; } }
 		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralLoadGroup.LoadGroupFor {  get { return @LoadGroupFor; } }
 		#endregion

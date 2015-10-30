@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcRelAssignsToControl explicit implementation
 		IIfcControl IIfcRelAssignsToControl.RelatingControl { get { return @RelatingControl; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

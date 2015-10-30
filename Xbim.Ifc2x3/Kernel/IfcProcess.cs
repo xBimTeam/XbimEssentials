@@ -11,17 +11,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProcess
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProcess : IIfcObject
+	{
+		IEnumerable<IIfcRelAssignsToProcess> @OperatesOn {  get; }
+		IEnumerable<IIfcRelSequence> @IsSuccessorFrom {  get; }
+		IEnumerable<IIfcRelSequence> @IsPredecessorTo {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCPROCESS", 73)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProcess : IfcObject, IEqualityComparer<@IfcProcess>, IEquatable<@IfcProcess>
+	public abstract partial class @IfcProcess : IfcObject, IIfcProcess, IEqualityComparer<@IfcProcess>, IEquatable<@IfcProcess>
 	{
+		#region IIfcProcess explicit implementation
+		 
+		IEnumerable<IIfcRelAssignsToProcess> IIfcProcess.OperatesOn {  get { return @OperatesOn; } }
+		IEnumerable<IIfcRelSequence> IIfcProcess.IsSuccessorFrom {  get { return @IsSuccessorFrom; } }
+		IEnumerable<IIfcRelSequence> IIfcProcess.IsPredecessorTo {  get { return @IsPredecessorTo; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProcess(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

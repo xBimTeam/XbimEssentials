@@ -13,17 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ConstructionMgmtDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConstructionEquipmentResource
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConstructionEquipmentResource : IIfcConstructionResource
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IFCCONSTRUCTIONEQUIPMENTRESOURCE", 408)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstructionEquipmentResource : IfcConstructionResource, IInstantiableEntity, IEqualityComparer<@IfcConstructionEquipmentResource>, IEquatable<@IfcConstructionEquipmentResource>
+	public  partial class @IfcConstructionEquipmentResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionEquipmentResource, IEqualityComparer<@IfcConstructionEquipmentResource>, IEquatable<@IfcConstructionEquipmentResource>
 	{
+		#region IIfcConstructionEquipmentResource explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstructionEquipmentResource(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

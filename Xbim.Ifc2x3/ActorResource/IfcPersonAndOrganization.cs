@@ -13,14 +13,38 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ActorResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPersonAndOrganization
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPersonAndOrganization : IPersistEntity, IfcActorSelect, IfcObjectReferenceSelect
+	{
+		IIfcPerson @ThePerson { get; }
+		IIfcOrganization @TheOrganization { get; }
+		IEnumerable<IIfcActorRole> @Roles { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ActorResource
 {
 	[IndexedClass]
 	[ExpressType("IFCPERSONANDORGANIZATION", 663)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPersonAndOrganization : INotifyPropertyChanged, IfcActorSelect, IfcObjectReferenceSelect, IInstantiableEntity, IEqualityComparer<@IfcPersonAndOrganization>, IEquatable<@IfcPersonAndOrganization>
+	public  partial class @IfcPersonAndOrganization : INotifyPropertyChanged, IInstantiableEntity, IIfcPersonAndOrganization, IEqualityComparer<@IfcPersonAndOrganization>, IEquatable<@IfcPersonAndOrganization>
 	{
+		#region IIfcPersonAndOrganization explicit implementation
+		IIfcPerson IIfcPersonAndOrganization.ThePerson { get { return @ThePerson; } }	
+		IIfcOrganization IIfcPersonAndOrganization.TheOrganization { get { return @TheOrganization; } }	
+		IEnumerable<IIfcActorRole> IIfcPersonAndOrganization.Roles { get { return @Roles; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -104,8 +128,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 				SetValue( v =>  _thePerson = v, _thePerson, value,  "ThePerson");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcOrganization @TheOrganization 
@@ -120,8 +143,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 				SetValue( v =>  _theOrganization = v, _theOrganization, value,  "TheOrganization");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcActorRole> @Roles 
 		{ 
@@ -131,9 +153,9 @@ namespace Xbim.Ifc2x3.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _roles;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

@@ -14,13 +14,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometricModelResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceCurveSweptAreaSolid
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceCurveSweptAreaSolid : IIfcSweptAreaSolid
+	{
+		IIfcCurve @Directrix { get; }
+		IfcParameterValue @StartParam { get; }
+		IfcParameterValue @EndParam { get; }
+		IIfcSurface @ReferenceSurface { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IFCSURFACECURVESWEPTAREASOLID", 480)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceCurveSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IEqualityComparer<@IfcSurfaceCurveSweptAreaSolid>, IEquatable<@IfcSurfaceCurveSweptAreaSolid>
+	public  partial class @IfcSurfaceCurveSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcSurfaceCurveSweptAreaSolid, IEqualityComparer<@IfcSurfaceCurveSweptAreaSolid>, IEquatable<@IfcSurfaceCurveSweptAreaSolid>
 	{
+		#region IIfcSurfaceCurveSweptAreaSolid explicit implementation
+		IIfcCurve IIfcSurfaceCurveSweptAreaSolid.Directrix { get { return @Directrix; } }	
+		IfcParameterValue IIfcSurfaceCurveSweptAreaSolid.StartParam { get { return @StartParam; } }	
+		IfcParameterValue IIfcSurfaceCurveSweptAreaSolid.EndParam { get { return @EndParam; } }	
+		IIfcSurface IIfcSurfaceCurveSweptAreaSolid.ReferenceSurface { get { return @ReferenceSurface; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceCurveSweptAreaSolid(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +73,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcParameterValue @StartParam 
 		{ 
@@ -62,8 +87,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _startParam = v, _startParam, value,  "StartParam");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcParameterValue @EndParam 
 		{ 
@@ -77,8 +101,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _endParam = v, _endParam, value,  "EndParam");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSurface @ReferenceSurface 
 		{ 
@@ -92,9 +115,9 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _referenceSurface = v, _referenceSurface, value,  "ReferenceSurface");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

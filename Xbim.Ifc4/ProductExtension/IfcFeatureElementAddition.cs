@@ -34,8 +34,7 @@ namespace Xbim.Ifc4.ProductExtension
 	public abstract partial class @IfcFeatureElementAddition : IfcFeatureElement, IIfcFeatureElementAddition, IEqualityComparer<@IfcFeatureElementAddition>, IEquatable<@IfcFeatureElementAddition>
 	{
 		#region IIfcFeatureElementAddition explicit implementation
-	
-	 
+		 
 		IIfcRelProjectsElement IIfcFeatureElementAddition.ProjectsElements {  get { return @ProjectsElements; } }
 		#endregion
 

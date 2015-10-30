@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#region IIfcSurfaceOfLinearExtrusion explicit implementation
 		IIfcDirection IIfcSurfaceOfLinearExtrusion.ExtrudedDirection { get { return @ExtrudedDirection; } }	
 		IfcLengthMeasure IIfcSurfaceOfLinearExtrusion.Depth { get { return @Depth; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

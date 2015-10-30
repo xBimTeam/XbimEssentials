@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcCsgSolid explicit implementation
 		IfcCsgSelect IIfcCsgSolid.TreeRootExpression { get { return @TreeRootExpression; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

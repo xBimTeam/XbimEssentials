@@ -48,8 +48,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		IfcPositiveLengthMeasure? IIfcReinforcingBar.BarLength { get { return @BarLength; } }	
 		IfcReinforcingBarTypeEnum? IIfcReinforcingBar.PredefinedType { get { return @PredefinedType; } }	
 		IfcReinforcingBarSurfaceEnum? IIfcReinforcingBar.BarSurface { get { return @BarSurface; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

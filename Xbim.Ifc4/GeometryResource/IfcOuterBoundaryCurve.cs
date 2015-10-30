@@ -33,8 +33,7 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcOuterBoundaryCurve : IfcBoundaryCurve, IInstantiableEntity, IIfcOuterBoundaryCurve, IEqualityComparer<@IfcOuterBoundaryCurve>, IEquatable<@IfcOuterBoundaryCurve>
 	{
 		#region IIfcOuterBoundaryCurve explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

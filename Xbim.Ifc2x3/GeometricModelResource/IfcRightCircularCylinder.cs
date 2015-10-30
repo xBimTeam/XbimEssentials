@@ -13,13 +13,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometricModelResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRightCircularCylinder
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRightCircularCylinder : IIfcCsgPrimitive3D
+	{
+		IfcPositiveLengthMeasure @Height { get; }
+		IfcPositiveLengthMeasure @Radius { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IFCRIGHTCIRCULARCYLINDER", 704)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRightCircularCylinder : IfcCsgPrimitive3D, IInstantiableEntity, IEqualityComparer<@IfcRightCircularCylinder>, IEquatable<@IfcRightCircularCylinder>
+	public  partial class @IfcRightCircularCylinder : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCylinder, IEqualityComparer<@IfcRightCircularCylinder>, IEquatable<@IfcRightCircularCylinder>
 	{
+		#region IIfcRightCircularCylinder explicit implementation
+		IfcPositiveLengthMeasure IIfcRightCircularCylinder.Height { get { return @Height; } }	
+		IfcPositiveLengthMeasure IIfcRightCircularCylinder.Radius { get { return @Radius; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRightCircularCylinder(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +66,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _height = v, _height, value,  "Height");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @Radius 
 		{ 
@@ -59,9 +80,9 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _radius = v, _radius, value,  "Radius");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

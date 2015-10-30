@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcRelAssociatesClassification explicit implementation
 		IfcClassificationSelect IIfcRelAssociatesClassification.RelatingClassification { get { return @RelatingClassification; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

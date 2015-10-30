@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcZone explicit implementation
 		IfcLabel? IIfcZone.LongName { get { return @LongName; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

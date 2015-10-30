@@ -13,14 +13,42 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ConstraintResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConstraintAggregationRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConstraintAggregationRelationship : IPersistEntity
+	{
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		IIfcConstraint @RelatingConstraint { get; }
+		IEnumerable<IIfcConstraint> @RelatedConstraints { get; }
+		IfcLogicalOperatorEnum @LogicalAggregator { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCONSTRAINTAGGREGATIONRELATIONSHIP", 82)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstraintAggregationRelationship : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcConstraintAggregationRelationship>, IEquatable<@IfcConstraintAggregationRelationship>
+	public  partial class @IfcConstraintAggregationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintAggregationRelationship, IEqualityComparer<@IfcConstraintAggregationRelationship>, IEquatable<@IfcConstraintAggregationRelationship>
 	{
+		#region IIfcConstraintAggregationRelationship explicit implementation
+		IfcLabel? IIfcConstraintAggregationRelationship.Name { get { return @Name; } }	
+		IfcText? IIfcConstraintAggregationRelationship.Description { get { return @Description; } }	
+		IIfcConstraint IIfcConstraintAggregationRelationship.RelatingConstraint { get { return @RelatingConstraint; } }	
+		IEnumerable<IIfcConstraint> IIfcConstraintAggregationRelationship.RelatedConstraints { get { return @RelatedConstraints; } }	
+		IfcLogicalOperatorEnum IIfcConstraintAggregationRelationship.LogicalAggregator { get { return @LogicalAggregator; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -105,8 +133,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -120,8 +147,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcConstraint @RelatingConstraint 
@@ -136,8 +162,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _relatingConstraint = v, _relatingConstraint, value,  "RelatingConstraint");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcConstraint> @RelatedConstraints 
@@ -148,8 +173,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				((IPersistEntity)this).Activate(false);
 				return _relatedConstraints;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcLogicalOperatorEnum @LogicalAggregator 
 		{ 
@@ -163,9 +187,9 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _logicalAggregator = v, _logicalAggregator, value,  "LogicalAggregator");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

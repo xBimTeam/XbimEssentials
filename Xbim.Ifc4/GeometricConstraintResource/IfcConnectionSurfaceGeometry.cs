@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#region IIfcConnectionSurfaceGeometry explicit implementation
 		IfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatingElement { get { return @SurfaceOnRelatingElement; } }	
 		IfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatedElement { get { return @SurfaceOnRelatedElement; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

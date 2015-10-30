@@ -13,13 +13,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCurveStyleFontPattern
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCurveStyleFontPattern : IPersistEntity
+	{
+		IfcLengthMeasure @VisibleSegmentLength { get; }
+		IfcPositiveLengthMeasure @InvisibleSegmentLength { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCCURVESTYLEFONTPATTERN", 637)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyleFontPattern : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcCurveStyleFontPattern>, IEquatable<@IfcCurveStyleFontPattern>
+	public  partial class @IfcCurveStyleFontPattern : INotifyPropertyChanged, IInstantiableEntity, IIfcCurveStyleFontPattern, IEqualityComparer<@IfcCurveStyleFontPattern>, IEquatable<@IfcCurveStyleFontPattern>
 	{
+		#region IIfcCurveStyleFontPattern explicit implementation
+		IfcLengthMeasure IIfcCurveStyleFontPattern.VisibleSegmentLength { get { return @VisibleSegmentLength; } }	
+		IfcPositiveLengthMeasure IIfcCurveStyleFontPattern.InvisibleSegmentLength { get { return @InvisibleSegmentLength; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -100,8 +122,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _visibleSegmentLength = v, _visibleSegmentLength, value,  "VisibleSegmentLength");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @InvisibleSegmentLength 
 		{ 
@@ -115,9 +136,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _invisibleSegmentLength = v, _invisibleSegmentLength, value,  "InvisibleSegmentLength");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

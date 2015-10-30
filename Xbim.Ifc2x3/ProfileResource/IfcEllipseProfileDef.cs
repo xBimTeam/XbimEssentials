@@ -13,13 +13,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfileResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcEllipseProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcEllipseProfileDef : IIfcParameterizedProfileDef
+	{
+		IfcPositiveLengthMeasure @SemiAxis1 { get; }
+		IfcPositiveLengthMeasure @SemiAxis2 { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IFCELLIPSEPROFILEDEF", 285)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEllipseProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IEqualityComparer<@IfcEllipseProfileDef>, IEquatable<@IfcEllipseProfileDef>
+	public  partial class @IfcEllipseProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcEllipseProfileDef, IEqualityComparer<@IfcEllipseProfileDef>, IEquatable<@IfcEllipseProfileDef>
 	{
+		#region IIfcEllipseProfileDef explicit implementation
+		IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis1 { get { return @SemiAxis1; } }	
+		IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis2 { get { return @SemiAxis2; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEllipseProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +66,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _semiAxis1 = v, _semiAxis1, value,  "SemiAxis1");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @SemiAxis2 
 		{ 
@@ -59,9 +80,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _semiAxis2 = v, _semiAxis2, value,  "SemiAxis2");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

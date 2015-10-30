@@ -13,13 +13,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfileResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCenterLineProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCenterLineProfileDef : IIfcArbitraryOpenProfileDef
+	{
+		IfcPositiveLengthMeasure @Thickness { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IFCCENTERLINEPROFILEDEF", 353)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCenterLineProfileDef : IfcArbitraryOpenProfileDef, IInstantiableEntity, IEqualityComparer<@IfcCenterLineProfileDef>, IEquatable<@IfcCenterLineProfileDef>
+	public  partial class @IfcCenterLineProfileDef : IfcArbitraryOpenProfileDef, IInstantiableEntity, IIfcCenterLineProfileDef, IEqualityComparer<@IfcCenterLineProfileDef>, IEquatable<@IfcCenterLineProfileDef>
 	{
+		#region IIfcCenterLineProfileDef explicit implementation
+		IfcPositiveLengthMeasure IIfcCenterLineProfileDef.Thickness { get { return @Thickness; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCenterLineProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,9 +63,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _thickness = v, _thickness, value,  "Thickness");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -15,13 +15,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralAnalysisModel
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralAnalysisModel : IIfcSystem
+	{
+		IfcAnalysisModelTypeEnum @PredefinedType { get; }
+		IIfcAxis2Placement3D @OrientationOf2DPlane { get; }
+		IEnumerable<IIfcStructuralLoadGroup> @LoadedBy { get; }
+		IEnumerable<IIfcStructuralResultGroup> @HasResults { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALANALYSISMODEL", 230)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralAnalysisModel : IfcSystem, IInstantiableEntity, IEqualityComparer<@IfcStructuralAnalysisModel>, IEquatable<@IfcStructuralAnalysisModel>
+	public  partial class @IfcStructuralAnalysisModel : IfcSystem, IInstantiableEntity, IIfcStructuralAnalysisModel, IEqualityComparer<@IfcStructuralAnalysisModel>, IEquatable<@IfcStructuralAnalysisModel>
 	{
+		#region IIfcStructuralAnalysisModel explicit implementation
+		IfcAnalysisModelTypeEnum IIfcStructuralAnalysisModel.PredefinedType { get { return @PredefinedType; } }	
+		IIfcAxis2Placement3D IIfcStructuralAnalysisModel.OrientationOf2DPlane { get { return @OrientationOf2DPlane; } }	
+		IEnumerable<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy { get { return @LoadedBy; } }	
+		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults { get { return @HasResults; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralAnalysisModel(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -50,8 +76,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcAxis2Placement3D @OrientationOf2DPlane 
 		{ 
@@ -65,8 +90,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _orientationOf2DPlane = v, _orientationOf2DPlane, value,  "OrientationOf2DPlane");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcStructuralLoadGroup> @LoadedBy 
@@ -77,8 +101,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				((IPersistEntity)this).Activate(false);
 				return _loadedBy;
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcStructuralResultGroup> @HasResults 
@@ -89,9 +112,9 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				((IPersistEntity)this).Activate(false);
 				return _hasResults;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -12,17 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDefinitionResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPreDefinedSymbol
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPreDefinedSymbol : IIfcPreDefinedItem, IfcDefinedSymbolSelect
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IFCPREDEFINEDSYMBOL", 568)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedSymbol : IfcPreDefinedItem, IfcDefinedSymbolSelect, IEqualityComparer<@IfcPreDefinedSymbol>, IEquatable<@IfcPreDefinedSymbol>
+	public abstract partial class @IfcPreDefinedSymbol : IfcPreDefinedItem, IIfcPreDefinedSymbol, IEqualityComparer<@IfcPreDefinedSymbol>, IEquatable<@IfcPreDefinedSymbol>
 	{
+		#region IIfcPreDefinedSymbol explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPreDefinedSymbol(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

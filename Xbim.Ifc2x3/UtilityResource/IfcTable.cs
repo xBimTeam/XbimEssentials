@@ -13,14 +13,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.UtilityResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTable
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTable : IPersistEntity, IfcMetricValueSelect
+	{
+		string @Name { get; }
+		IEnumerable<IIfcTableRow> @Rows { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.UtilityResource
 {
 	[IndexedClass]
 	[ExpressType("IFCTABLE", 377)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTable : INotifyPropertyChanged, IfcMetricValueSelect, IInstantiableEntity, IEqualityComparer<@IfcTable>, IEquatable<@IfcTable>
+	public  partial class @IfcTable : INotifyPropertyChanged, IInstantiableEntity, IIfcTable, IEqualityComparer<@IfcTable>, IEquatable<@IfcTable>
 	{
+		#region IIfcTable explicit implementation
+		string IIfcTable.Name { get { return @Name; } }	
+		IEnumerable<IIfcTableRow> IIfcTable.Rows { get { return @Rows; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -102,8 +124,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcTableRow> @Rows 
@@ -114,9 +135,9 @@ namespace Xbim.Ifc2x3.UtilityResource
 				((IPersistEntity)this).Activate(false);
 				return _rows;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

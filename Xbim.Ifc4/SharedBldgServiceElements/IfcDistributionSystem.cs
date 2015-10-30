@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 		#region IIfcDistributionSystem explicit implementation
 		IfcLabel? IIfcDistributionSystem.LongName { get { return @LongName; } }	
 		IfcDistributionSystemEnum? IIfcDistributionSystem.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

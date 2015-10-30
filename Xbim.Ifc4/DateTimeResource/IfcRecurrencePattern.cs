@@ -51,8 +51,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		IfcInteger? IIfcRecurrencePattern.Interval { get { return @Interval; } }	
 		IfcInteger? IIfcRecurrencePattern.Occurrences { get { return @Occurrences; } }	
 		IEnumerable<IIfcTimePeriod> IIfcRecurrencePattern.TimePeriods { get { return @TimePeriods; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

@@ -15,13 +15,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBuildingElementProxy
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBuildingElementProxy : IIfcBuildingElement
+	{
+		IfcElementCompositionEnum? @CompositionType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCBUILDINGELEMENTPROXY", 560)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuildingElementProxy : IfcBuildingElement, IInstantiableEntity, IEqualityComparer<@IfcBuildingElementProxy>, IEquatable<@IfcBuildingElementProxy>
+	public  partial class @IfcBuildingElementProxy : IfcBuildingElement, IInstantiableEntity, IIfcBuildingElementProxy, IEqualityComparer<@IfcBuildingElementProxy>, IEquatable<@IfcBuildingElementProxy>
 	{
+		#region IIfcBuildingElementProxy explicit implementation
+		IfcElementCompositionEnum? IIfcBuildingElementProxy.CompositionType { get { return @CompositionType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBuildingElementProxy(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +65,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _compositionType = v, _compositionType, value,  "CompositionType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -50,8 +50,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		IIfcStructuralConnectionCondition IIfcRelConnectsStructuralMember.AdditionalConditions { get { return @AdditionalConditions; } }	
 		IfcLengthMeasure? IIfcRelConnectsStructuralMember.SupportedLength { get { return @SupportedLength; } }	
 		IIfcAxis2Placement3D IIfcRelConnectsStructuralMember.ConditionCoordinateSystem { get { return @ConditionCoordinateSystem; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

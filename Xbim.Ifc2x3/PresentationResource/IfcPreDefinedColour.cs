@@ -11,17 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPreDefinedColour
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPreDefinedColour : IIfcPreDefinedItem, IfcColour
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IFCPREDEFINEDCOLOUR", 608)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedColour : IfcPreDefinedItem, IfcColour, IEqualityComparer<@IfcPreDefinedColour>, IEquatable<@IfcPreDefinedColour>
+	public abstract partial class @IfcPreDefinedColour : IfcPreDefinedItem, IIfcPreDefinedColour, IEqualityComparer<@IfcPreDefinedColour>, IEquatable<@IfcPreDefinedColour>
 	{
+		#region IIfcPreDefinedColour explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPreDefinedColour(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

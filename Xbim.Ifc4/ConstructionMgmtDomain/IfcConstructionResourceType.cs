@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 		#region IIfcConstructionResourceType explicit implementation
 		IEnumerable<IIfcAppliedValue> IIfcConstructionResourceType.BaseCosts { get { return @BaseCosts; } }	
 		IIfcPhysicalQuantity IIfcConstructionResourceType.BaseQuantity { get { return @BaseQuantity; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

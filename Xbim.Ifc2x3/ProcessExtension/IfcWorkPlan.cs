@@ -15,17 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProcessExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcWorkPlan
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcWorkPlan : IIfcWorkControl
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IFCWORKPLAN", 187)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWorkPlan : IfcWorkControl, IInstantiableEntity, IEqualityComparer<@IfcWorkPlan>, IEquatable<@IfcWorkPlan>
+	public  partial class @IfcWorkPlan : IfcWorkControl, IInstantiableEntity, IIfcWorkPlan, IEqualityComparer<@IfcWorkPlan>, IEquatable<@IfcWorkPlan>
 	{
+		#region IIfcWorkPlan explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWorkPlan(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

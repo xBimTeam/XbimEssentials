@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.ProfileResource
 		IfcLengthMeasure? IIfcReinforcementBarProperties.EffectiveDepth { get { return @EffectiveDepth; } }	
 		IfcPositiveLengthMeasure? IIfcReinforcementBarProperties.NominalBarDiameter { get { return @NominalBarDiameter; } }	
 		IfcCountMeasure? IIfcReinforcementBarProperties.BarCount { get { return @BarCount; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

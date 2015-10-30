@@ -11,13 +11,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDefinitionResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextureMap
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextureMap : IIfcTextureCoordinate
+	{
+		IEnumerable<IIfcVertexBasedTextureMap> @TextureMaps { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IFCTEXTUREMAP", 734)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IEqualityComparer<@IfcTextureMap>, IEquatable<@IfcTextureMap>
+	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureMap, IEqualityComparer<@IfcTextureMap>, IEquatable<@IfcTextureMap>
 	{
+		#region IIfcTextureMap explicit implementation
+		IEnumerable<IIfcVertexBasedTextureMap> IIfcTextureMap.TextureMaps { get { return @TextureMaps; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureMap(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -38,9 +58,9 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				((IPersistEntity)this).Activate(false);
 				return _textureMaps;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

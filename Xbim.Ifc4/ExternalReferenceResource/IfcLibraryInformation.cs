@@ -52,8 +52,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		IfcDateTime? IIfcLibraryInformation.VersionDate { get { return @VersionDate; } }	
 		IfcURIReference? IIfcLibraryInformation.Location { get { return @Location; } }	
 		IfcText? IIfcLibraryInformation.Description { get { return @Description; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryInformation.LibraryInfoForObjects {  get { return @LibraryInfoForObjects; } }
 		IEnumerable<IIfcLibraryReference> IIfcLibraryInformation.HasLibraryReferences {  get { return @HasLibraryReferences; } }
 		#endregion

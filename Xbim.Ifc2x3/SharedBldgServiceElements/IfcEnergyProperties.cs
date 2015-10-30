@@ -14,13 +14,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgServiceElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcEnergyProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcEnergyProperties : IIfcPropertySetDefinition
+	{
+		IfcEnergySequenceEnum? @EnergySequence { get; }
+		IfcLabel? @UserDefinedEnergySequence { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IFCENERGYPROPERTIES", 176)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEnergyProperties : IfcPropertySetDefinition, IInstantiableEntity, IEqualityComparer<@IfcEnergyProperties>, IEquatable<@IfcEnergyProperties>
+	public  partial class @IfcEnergyProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcEnergyProperties, IEqualityComparer<@IfcEnergyProperties>, IEquatable<@IfcEnergyProperties>
 	{
+		#region IIfcEnergyProperties explicit implementation
+		IfcEnergySequenceEnum? IIfcEnergyProperties.EnergySequence { get { return @EnergySequence; } }	
+		IfcLabel? IIfcEnergyProperties.UserDefinedEnergySequence { get { return @UserDefinedEnergySequence; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEnergyProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +67,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _energySequence = v, _energySequence, value,  "EnergySequence");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedEnergySequence 
 		{ 
@@ -60,9 +81,9 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _userDefinedEnergySequence = v, _userDefinedEnergySequence, value,  "UserDefinedEnergySequence");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

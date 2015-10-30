@@ -15,17 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgServiceElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDistributionChamberElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDistributionChamberElement : IIfcDistributionFlowElement
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IFCDISTRIBUTIONCHAMBERELEMENT", 180)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionChamberElement : IfcDistributionFlowElement, IInstantiableEntity, IEqualityComparer<@IfcDistributionChamberElement>, IEquatable<@IfcDistributionChamberElement>
+	public  partial class @IfcDistributionChamberElement : IfcDistributionFlowElement, IInstantiableEntity, IIfcDistributionChamberElement, IEqualityComparer<@IfcDistributionChamberElement>, IEquatable<@IfcDistributionChamberElement>
 	{
+		#region IIfcDistributionChamberElement explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDistributionChamberElement(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

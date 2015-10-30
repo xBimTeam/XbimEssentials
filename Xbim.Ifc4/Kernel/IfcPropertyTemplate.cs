@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcPropertyTemplate : IfcPropertyTemplateDefinition, IIfcPropertyTemplate, IEqualityComparer<@IfcPropertyTemplate>, IEquatable<@IfcPropertyTemplate>
 	{
 		#region IIfcPropertyTemplate explicit implementation
-	
-	 
+		 
 		IEnumerable<IIfcComplexPropertyTemplate> IIfcPropertyTemplate.PartOfComplexTemplate {  get { return @PartOfComplexTemplate; } }
 		IEnumerable<IIfcPropertySetTemplate> IIfcPropertyTemplate.PartOfPsetTemplate {  get { return @PartOfPsetTemplate; } }
 		#endregion

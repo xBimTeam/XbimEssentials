@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.MeasureResource
 	{
 		#region IIfcMonetaryUnit explicit implementation
 		IfcLabel IIfcMonetaryUnit.Currency { get { return @Currency; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

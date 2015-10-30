@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IEnumerable<IIfcVector> IIfcFillAreaStyleTiles.TilingPattern { get { return @TilingPattern; } }	
 		IEnumerable<IIfcStyledItem> IIfcFillAreaStyleTiles.Tiles { get { return @Tiles; } }	
 		IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale { get { return @TilingScale; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

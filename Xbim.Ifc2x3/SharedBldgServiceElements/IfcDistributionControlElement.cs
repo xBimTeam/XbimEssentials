@@ -16,13 +16,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgServiceElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDistributionControlElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDistributionControlElement : IIfcDistributionElement
+	{
+		IfcIdentifier? @ControlElementId { get; }
+		IEnumerable<IIfcRelFlowControlElements> @AssignedToFlowElement {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IFCDISTRIBUTIONCONTROLELEMENT", 468)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionControlElement : IfcDistributionElement, IInstantiableEntity, IEqualityComparer<@IfcDistributionControlElement>, IEquatable<@IfcDistributionControlElement>
+	public  partial class @IfcDistributionControlElement : IfcDistributionElement, IInstantiableEntity, IIfcDistributionControlElement, IEqualityComparer<@IfcDistributionControlElement>, IEquatable<@IfcDistributionControlElement>
 	{
+		#region IIfcDistributionControlElement explicit implementation
+		IfcIdentifier? IIfcDistributionControlElement.ControlElementId { get { return @ControlElementId; } }	
+		 
+		IEnumerable<IIfcRelFlowControlElements> IIfcDistributionControlElement.AssignedToFlowElement {  get { return @AssignedToFlowElement; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDistributionControlElement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +68,9 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _controlElementId = v, _controlElementId, value,  "ControlElementId");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

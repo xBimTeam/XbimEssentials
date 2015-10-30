@@ -13,13 +13,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialPropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProductsOfCombustionProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProductsOfCombustionProperties : IIfcMaterialProperties
+	{
+		IfcSpecificHeatCapacityMeasure? @SpecificHeatCapacity { get; }
+		IfcPositiveRatioMeasure? @N20Content { get; }
+		IfcPositiveRatioMeasure? @COContent { get; }
+		IfcPositiveRatioMeasure? @CO2Content { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IFCPRODUCTSOFCOMBUSTIONPROPERTIES", 719)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProductsOfCombustionProperties : IfcMaterialProperties, IInstantiableEntity, IEqualityComparer<@IfcProductsOfCombustionProperties>, IEquatable<@IfcProductsOfCombustionProperties>
+	public  partial class @IfcProductsOfCombustionProperties : IfcMaterialProperties, IInstantiableEntity, IIfcProductsOfCombustionProperties, IEqualityComparer<@IfcProductsOfCombustionProperties>, IEquatable<@IfcProductsOfCombustionProperties>
 	{
+		#region IIfcProductsOfCombustionProperties explicit implementation
+		IfcSpecificHeatCapacityMeasure? IIfcProductsOfCombustionProperties.SpecificHeatCapacity { get { return @SpecificHeatCapacity; } }	
+		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.N20Content { get { return @N20Content; } }	
+		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.COContent { get { return @COContent; } }	
+		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.CO2Content { get { return @CO2Content; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProductsOfCombustionProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +72,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _specificHeatCapacity = v, _specificHeatCapacity, value,  "SpecificHeatCapacity");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @N20Content 
 		{ 
@@ -61,8 +86,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _n20Content = v, _n20Content, value,  "N20Content");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @COContent 
 		{ 
@@ -76,8 +100,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _cOContent = v, _cOContent, value,  "COContent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @CO2Content 
 		{ 
@@ -91,9 +114,9 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _cO2Content = v, _cO2Content, value,  "CO2Content");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

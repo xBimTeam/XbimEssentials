@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcObject explicit implementation
 		IfcLabel? IIfcObject.ObjectType { get { return @ObjectType; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelDefinesByObject> IIfcObject.IsDeclaredBy {  get { return @IsDeclaredBy; } }
 		IEnumerable<IIfcRelDefinesByObject> IIfcObject.Declares {  get { return @Declares; } }
 		IEnumerable<IIfcRelDefinesByType> IIfcObject.IsTypedBy {  get { return @IsTypedBy; } }

@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#region IIfcLine explicit implementation
 		IIfcCartesianPoint IIfcLine.Pnt { get { return @Pnt; } }	
 		IIfcVector IIfcLine.Dir { get { return @Dir; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

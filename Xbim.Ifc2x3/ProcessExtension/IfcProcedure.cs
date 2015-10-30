@@ -14,13 +14,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProcessExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProcedure
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProcedure : IIfcProcess
+	{
+		IfcIdentifier @ProcedureID { get; }
+		IfcProcedureTypeEnum @ProcedureType { get; }
+		IfcLabel? @UserDefinedProcedureType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IFCPROCEDURE", 294)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProcedure : IfcProcess, IInstantiableEntity, IEqualityComparer<@IfcProcedure>, IEquatable<@IfcProcedure>
+	public  partial class @IfcProcedure : IfcProcess, IInstantiableEntity, IIfcProcedure, IEqualityComparer<@IfcProcedure>, IEquatable<@IfcProcedure>
 	{
+		#region IIfcProcedure explicit implementation
+		IfcIdentifier IIfcProcedure.ProcedureID { get { return @ProcedureID; } }	
+		IfcProcedureTypeEnum IIfcProcedure.ProcedureType { get { return @ProcedureType; } }	
+		IfcLabel? IIfcProcedure.UserDefinedProcedureType { get { return @UserDefinedProcedureType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProcedure(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +70,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _procedureID = v, _procedureID, value,  "ProcedureID");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcProcedureTypeEnum @ProcedureType 
 		{ 
@@ -61,8 +84,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _procedureType = v, _procedureType, value,  "ProcedureType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedProcedureType 
 		{ 
@@ -76,9 +98,9 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _userDefinedProcedureType = v, _userDefinedProcedureType, value,  "UserDefinedProcedureType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

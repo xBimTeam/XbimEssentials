@@ -14,13 +14,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationOrganizationResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLightSourceSpot
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLightSourceSpot : IIfcLightSourcePositional
+	{
+		IIfcDirection @Orientation { get; }
+		IfcReal? @ConcentrationExponent { get; }
+		IfcPositivePlaneAngleMeasure @SpreadAngle { get; }
+		IfcPositivePlaneAngleMeasure @BeamWidthAngle { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IFCLIGHTSOURCESPOT", 760)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceSpot : IfcLightSourcePositional, IInstantiableEntity, IEqualityComparer<@IfcLightSourceSpot>, IEquatable<@IfcLightSourceSpot>
+	public  partial class @IfcLightSourceSpot : IfcLightSourcePositional, IInstantiableEntity, IIfcLightSourceSpot, IEqualityComparer<@IfcLightSourceSpot>, IEquatable<@IfcLightSourceSpot>
 	{
+		#region IIfcLightSourceSpot explicit implementation
+		IIfcDirection IIfcLightSourceSpot.Orientation { get { return @Orientation; } }	
+		IfcReal? IIfcLightSourceSpot.ConcentrationExponent { get { return @ConcentrationExponent; } }	
+		IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.SpreadAngle { get { return @SpreadAngle; } }	
+		IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.BeamWidthAngle { get { return @BeamWidthAngle; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightSourceSpot(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +73,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcReal? @ConcentrationExponent 
 		{ 
@@ -62,8 +87,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _concentrationExponent = v, _concentrationExponent, value,  "ConcentrationExponent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositivePlaneAngleMeasure @SpreadAngle 
 		{ 
@@ -77,8 +101,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _spreadAngle = v, _spreadAngle, value,  "SpreadAngle");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositivePlaneAngleMeasure @BeamWidthAngle 
 		{ 
@@ -92,9 +115,9 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _beamWidthAngle = v, _beamWidthAngle, value,  "BeamWidthAngle");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -34,8 +34,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	public abstract partial class @IfcReinforcingElementType : IfcElementComponentType, IIfcReinforcingElementType, IEqualityComparer<@IfcReinforcingElementType>, IEquatable<@IfcReinforcingElementType>
 	{
 		#region IIfcReinforcingElementType explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

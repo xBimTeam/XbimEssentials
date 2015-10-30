@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IfcPositiveLengthMeasure? IIfcSweptDiskSolid.InnerRadius { get { return @InnerRadius; } }	
 		IfcParameterValue? IIfcSweptDiskSolid.StartParam { get { return @StartParam; } }	
 		IfcParameterValue? IIfcSweptDiskSolid.EndParam { get { return @EndParam; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

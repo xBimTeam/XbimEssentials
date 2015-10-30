@@ -43,8 +43,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		IfcText? IIfcLibraryReference.Description { get { return @Description; } }	
 		IfcLanguageId? IIfcLibraryReference.Language { get { return @Language; } }	
 		IIfcLibraryInformation IIfcLibraryReference.ReferencedLibrary { get { return @ReferencedLibrary; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryReference.LibraryRefForObjects {  get { return @LibraryRefForObjects; } }
 		#endregion
 

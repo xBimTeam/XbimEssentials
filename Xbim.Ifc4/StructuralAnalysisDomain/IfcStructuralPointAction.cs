@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralPointAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralPointAction, IEqualityComparer<@IfcStructuralPointAction>, IEquatable<@IfcStructuralPointAction>
 	{
 		#region IIfcStructuralPointAction explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

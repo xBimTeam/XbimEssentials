@@ -16,13 +16,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcGrid
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcGrid : IIfcProduct
+	{
+		IEnumerable<IIfcGridAxis> @UAxes { get; }
+		IEnumerable<IIfcGridAxis> @VAxes { get; }
+		IEnumerable<IIfcGridAxis> @WAxes { get; }
+		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainedInStructure {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCGRID", 564)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IEqualityComparer<@IfcGrid>, IEquatable<@IfcGrid>
+	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IIfcGrid, IEqualityComparer<@IfcGrid>, IEquatable<@IfcGrid>
 	{
+		#region IIfcGrid explicit implementation
+		IEnumerable<IIfcGridAxis> IIfcGrid.UAxes { get { return @UAxes; } }	
+		IEnumerable<IIfcGridAxis> IIfcGrid.VAxes { get { return @VAxes; } }	
+		IEnumerable<IIfcGridAxis> IIfcGrid.WAxes { get { return @WAxes; } }	
+		 
+		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcGrid.ContainedInStructure {  get { return @ContainedInStructure; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGrid(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +74,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				((IPersistEntity)this).Activate(false);
 				return _uAxes;
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcGridAxis> @VAxes 
@@ -60,8 +85,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				((IPersistEntity)this).Activate(false);
 				return _vAxes;
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcGridAxis> @WAxes 
@@ -72,9 +96,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 				((IPersistEntity)this).Activate(false);
 				return _wAxes;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

@@ -14,14 +14,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.CostResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcReferencesValueDocument
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcReferencesValueDocument : IPersistEntity
+	{
+		IfcDocumentSelect @ReferencedDocument { get; }
+		IEnumerable<IIfcAppliedValue> @ReferencingValues { get; }
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.CostResource
 {
 	[IndexedClass]
 	[ExpressType("IFCREFERENCESVALUEDOCUMENT", 551)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReferencesValueDocument : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcReferencesValueDocument>, IEquatable<@IfcReferencesValueDocument>
+	public  partial class @IfcReferencesValueDocument : INotifyPropertyChanged, IInstantiableEntity, IIfcReferencesValueDocument, IEqualityComparer<@IfcReferencesValueDocument>, IEquatable<@IfcReferencesValueDocument>
 	{
+		#region IIfcReferencesValueDocument explicit implementation
+		IfcDocumentSelect IIfcReferencesValueDocument.ReferencedDocument { get { return @ReferencedDocument; } }	
+		IEnumerable<IIfcAppliedValue> IIfcReferencesValueDocument.ReferencingValues { get { return @ReferencingValues; } }	
+		IfcLabel? IIfcReferencesValueDocument.Name { get { return @Name; } }	
+		IfcText? IIfcReferencesValueDocument.Description { get { return @Description; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -105,8 +131,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _referencedDocument = v, _referencedDocument, value,  "ReferencedDocument");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcAppliedValue> @ReferencingValues 
@@ -117,8 +142,7 @@ namespace Xbim.Ifc2x3.CostResource
 				((IPersistEntity)this).Activate(false);
 				return _referencingValues;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Name 
 		{ 
@@ -132,8 +156,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -147,9 +170,9 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

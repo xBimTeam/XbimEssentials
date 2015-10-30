@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcBoxedHalfSpace explicit implementation
 		IIfcBoundingBox IIfcBoxedHalfSpace.Enclosure { get { return @Enclosure; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

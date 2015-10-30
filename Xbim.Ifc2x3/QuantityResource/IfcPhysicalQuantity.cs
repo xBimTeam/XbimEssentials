@@ -13,13 +13,37 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.QuantityResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPhysicalQuantity
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPhysicalQuantity : IPersistEntity
+	{
+		IfcLabel @Name { get; }
+		IfcText? @Description { get; }
+		IEnumerable<IIfcPhysicalComplexQuantity> @PartOfComplex {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IFCPHYSICALQUANTITY", 102)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPhysicalQuantity : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcPhysicalQuantity>, IEquatable<@IfcPhysicalQuantity>
+	public abstract partial class @IfcPhysicalQuantity : IPersistEntity, INotifyPropertyChanged, IIfcPhysicalQuantity, IEqualityComparer<@IfcPhysicalQuantity>, IEquatable<@IfcPhysicalQuantity>
 	{
+		#region IIfcPhysicalQuantity explicit implementation
+		IfcLabel IIfcPhysicalQuantity.Name { get { return @Name; } }	
+		IfcText? IIfcPhysicalQuantity.Description { get { return @Description; } }	
+		 
+		IEnumerable<IIfcPhysicalComplexQuantity> IIfcPhysicalQuantity.PartOfComplex {  get { return @PartOfComplex; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -100,8 +124,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -115,9 +138,9 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

@@ -13,14 +13,38 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.UtilityResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTableRow
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTableRow : IPersistEntity
+	{
+		IEnumerable<IfcValue> @RowCells { get; }
+		bool @IsHeading { get; }
+		IIfcTable @OfTable {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.UtilityResource
 {
 	[IndexedClass]
 	[ExpressType("IFCTABLEROW", 661)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTableRow : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcTableRow>, IEquatable<@IfcTableRow>
+	public  partial class @IfcTableRow : INotifyPropertyChanged, IInstantiableEntity, IIfcTableRow, IEqualityComparer<@IfcTableRow>, IEquatable<@IfcTableRow>
 	{
+		#region IIfcTableRow explicit implementation
+		IEnumerable<IfcValue> IIfcTableRow.RowCells { get { return @RowCells; } }	
+		bool IIfcTableRow.IsHeading { get { return @IsHeading; } }	
+		 
+		IIfcTable IIfcTableRow.OfTable {  get { return @OfTable; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -98,8 +122,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 				((IPersistEntity)this).Activate(false);
 				return _rowCells;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @IsHeading 
 		{ 
@@ -113,9 +136,9 @@ namespace Xbim.Ifc2x3.UtilityResource
 			{
 				SetValue( v =>  _isHeading = v, _isHeading, value,  "IsHeading");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

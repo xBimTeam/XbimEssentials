@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#region IIfcCurveStyleFontPattern explicit implementation
 		IfcLengthMeasure IIfcCurveStyleFontPattern.VisibleSegmentLength { get { return @VisibleSegmentLength; } }	
 		IfcPositiveLengthMeasure IIfcCurveStyleFontPattern.InvisibleSegmentLength { get { return @InvisibleSegmentLength; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

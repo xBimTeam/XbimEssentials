@@ -15,17 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcEquipmentElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcEquipmentElement : IIfcElement
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCEQUIPMENTELEMENT", 212)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEquipmentElement : IfcElement, IInstantiableEntity, IEqualityComparer<@IfcEquipmentElement>, IEquatable<@IfcEquipmentElement>
+	public  partial class @IfcEquipmentElement : IfcElement, IInstantiableEntity, IIfcEquipmentElement, IEqualityComparer<@IfcEquipmentElement>, IEquatable<@IfcEquipmentElement>
 	{
+		#region IIfcEquipmentElement explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEquipmentElement(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

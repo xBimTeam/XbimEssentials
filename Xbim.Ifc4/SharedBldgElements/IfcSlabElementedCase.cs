@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcSlabElementedCase : IfcSlab, IInstantiableEntity, IIfcSlabElementedCase, IEqualityComparer<@IfcSlabElementedCase>, IEquatable<@IfcSlabElementedCase>
 	{
 		#region IIfcSlabElementedCase explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

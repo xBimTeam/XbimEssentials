@@ -14,13 +14,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ConstructionMgmtDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConstructionMaterialResource
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConstructionMaterialResource : IIfcConstructionResource
+	{
+		IEnumerable<IfcActorSelect> @Suppliers { get; }
+		IfcRatioMeasure? @UsageRatio { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IFCCONSTRUCTIONMATERIALRESOURCE", 243)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstructionMaterialResource : IfcConstructionResource, IInstantiableEntity, IEqualityComparer<@IfcConstructionMaterialResource>, IEquatable<@IfcConstructionMaterialResource>
+	public  partial class @IfcConstructionMaterialResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionMaterialResource, IEqualityComparer<@IfcConstructionMaterialResource>, IEquatable<@IfcConstructionMaterialResource>
 	{
+		#region IIfcConstructionMaterialResource explicit implementation
+		IEnumerable<IfcActorSelect> IIfcConstructionMaterialResource.Suppliers { get { return @Suppliers; } }	
+		IfcRatioMeasure? IIfcConstructionMaterialResource.UsageRatio { get { return @UsageRatio; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstructionMaterialResource(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +64,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 				((IPersistEntity)this).Activate(false);
 				return _suppliers;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcRatioMeasure? @UsageRatio 
 		{ 
@@ -57,9 +78,9 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _usageRatio = v, _usageRatio, value,  "UsageRatio");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

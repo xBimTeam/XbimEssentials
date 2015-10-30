@@ -11,13 +11,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCartesianTransformationOperator3D
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCartesianTransformationOperator3D : IIfcCartesianTransformationOperator
+	{
+		IIfcDirection @Axis3 { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCCARTESIANTRANSFORMATIONOPERATOR3D", 337)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator3D : IfcCartesianTransformationOperator, IInstantiableEntity, IEqualityComparer<@IfcCartesianTransformationOperator3D>, IEquatable<@IfcCartesianTransformationOperator3D>
+	public  partial class @IfcCartesianTransformationOperator3D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator3D, IEqualityComparer<@IfcCartesianTransformationOperator3D>, IEquatable<@IfcCartesianTransformationOperator3D>
 	{
+		#region IIfcCartesianTransformationOperator3D explicit implementation
+		IIfcDirection IIfcCartesianTransformationOperator3D.Axis3 { get { return @Axis3; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianTransformationOperator3D(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,9 +61,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _axis3 = v, _axis3, value,  "Axis3");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

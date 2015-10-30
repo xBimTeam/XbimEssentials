@@ -13,14 +13,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextStyleForDefinedFont
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextStyleForDefinedFont : IPersistEntity, IfcCharacterStyleSelect
+	{
+		IfcColour @Colour { get; }
+		IfcColour @BackgroundColour { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCTEXTSTYLEFORDEFINEDFONT", 611)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleForDefinedFont : INotifyPropertyChanged, IfcCharacterStyleSelect, IInstantiableEntity, IEqualityComparer<@IfcTextStyleForDefinedFont>, IEquatable<@IfcTextStyleForDefinedFont>
+	public  partial class @IfcTextStyleForDefinedFont : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleForDefinedFont, IEqualityComparer<@IfcTextStyleForDefinedFont>, IEquatable<@IfcTextStyleForDefinedFont>
 	{
+		#region IIfcTextStyleForDefinedFont explicit implementation
+		IfcColour IIfcTextStyleForDefinedFont.Colour { get { return @Colour; } }	
+		IfcColour IIfcTextStyleForDefinedFont.BackgroundColour { get { return @BackgroundColour; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -101,8 +123,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _colour = v, _colour, value,  "Colour");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColour @BackgroundColour 
 		{ 
@@ -116,9 +137,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _backgroundColour = v, _backgroundColour, value,  "BackgroundColour");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

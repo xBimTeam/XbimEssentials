@@ -12,17 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralElementsDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBuildingElementComponent
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBuildingElementComponent : IIfcBuildingElement
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IFCBUILDINGELEMENTCOMPONENT", 221)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcBuildingElementComponent : IfcBuildingElement, IEqualityComparer<@IfcBuildingElementComponent>, IEquatable<@IfcBuildingElementComponent>
+	public abstract partial class @IfcBuildingElementComponent : IfcBuildingElement, IIfcBuildingElementComponent, IEqualityComparer<@IfcBuildingElementComponent>, IEquatable<@IfcBuildingElementComponent>
 	{
+		#region IIfcBuildingElementComponent explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBuildingElementComponent(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

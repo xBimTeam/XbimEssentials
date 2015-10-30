@@ -16,17 +16,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRampFlight
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRampFlight : IIfcBuildingElement
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IFCRAMPFLIGHT", 348)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRampFlight : IfcBuildingElement, IInstantiableEntity, IEqualityComparer<@IfcRampFlight>, IEquatable<@IfcRampFlight>
+	public  partial class @IfcRampFlight : IfcBuildingElement, IInstantiableEntity, IIfcRampFlight, IEqualityComparer<@IfcRampFlight>, IEquatable<@IfcRampFlight>
 	{
+		#region IIfcRampFlight explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRampFlight(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

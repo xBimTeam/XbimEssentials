@@ -11,13 +11,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MeasureResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcContextDependentUnit
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcContextDependentUnit : IIfcNamedUnit
+	{
+		IfcLabel @Name { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IFCCONTEXTDEPENDENTUNIT", 304)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcContextDependentUnit : IfcNamedUnit, IInstantiableEntity, IEqualityComparer<@IfcContextDependentUnit>, IEquatable<@IfcContextDependentUnit>
+	public  partial class @IfcContextDependentUnit : IfcNamedUnit, IInstantiableEntity, IIfcContextDependentUnit, IEqualityComparer<@IfcContextDependentUnit>, IEquatable<@IfcContextDependentUnit>
 	{
+		#region IIfcContextDependentUnit explicit implementation
+		IfcLabel IIfcContextDependentUnit.Name { get { return @Name; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcContextDependentUnit(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,9 +61,9 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

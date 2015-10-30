@@ -16,13 +16,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.HVACDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcGasTerminalType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcGasTerminalType : IIfcFlowTerminalType
+	{
+		IfcGasTerminalTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IFCGASTERMINALTYPE", 701)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGasTerminalType : IfcFlowTerminalType, IInstantiableEntity, IEqualityComparer<@IfcGasTerminalType>, IEquatable<@IfcGasTerminalType>
+	public  partial class @IfcGasTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcGasTerminalType, IEqualityComparer<@IfcGasTerminalType>, IEquatable<@IfcGasTerminalType>
 	{
+		#region IIfcGasTerminalType explicit implementation
+		IfcGasTerminalTypeEnum IIfcGasTerminalType.PredefinedType { get { return @PredefinedType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGasTerminalType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +66,9 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

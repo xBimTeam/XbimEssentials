@@ -12,13 +12,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.QuantityResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPhysicalSimpleQuantity
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPhysicalSimpleQuantity : IIfcPhysicalQuantity
+	{
+		IIfcNamedUnit @Unit { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IFCPHYSICALSIMPLEQUANTITY", 101)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPhysicalSimpleQuantity : IfcPhysicalQuantity, IEqualityComparer<@IfcPhysicalSimpleQuantity>, IEquatable<@IfcPhysicalSimpleQuantity>
+	public abstract partial class @IfcPhysicalSimpleQuantity : IfcPhysicalQuantity, IIfcPhysicalSimpleQuantity, IEqualityComparer<@IfcPhysicalSimpleQuantity>, IEquatable<@IfcPhysicalSimpleQuantity>
 	{
+		#region IIfcPhysicalSimpleQuantity explicit implementation
+		IIfcNamedUnit IIfcPhysicalSimpleQuantity.Unit { get { return @Unit; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPhysicalSimpleQuantity(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +62,9 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				SetValue( v =>  _unit = v, _unit, value,  "Unit");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

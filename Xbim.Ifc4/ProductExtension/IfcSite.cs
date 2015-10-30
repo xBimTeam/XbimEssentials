@@ -48,8 +48,7 @@ namespace Xbim.Ifc4.ProductExtension
 		IfcLengthMeasure? IIfcSite.RefElevation { get { return @RefElevation; } }	
 		IfcLabel? IIfcSite.LandTitleNumber { get { return @LandTitleNumber; } }	
 		IIfcPostalAddress IIfcSite.SiteAddress { get { return @SiteAddress; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

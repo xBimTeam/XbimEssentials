@@ -43,8 +43,7 @@ namespace Xbim.Ifc4.GeometryResource
 		IfcBSplineCurveForm IIfcBSplineCurve.CurveForm { get { return @CurveForm; } }	
 		bool? IIfcBSplineCurve.ClosedCurve { get { return @ClosedCurve; } }	
 		bool? IIfcBSplineCurve.SelfIntersect { get { return @SelfIntersect; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

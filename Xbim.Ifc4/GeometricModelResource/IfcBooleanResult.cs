@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IfcBooleanOperator IIfcBooleanResult.Operator { get { return @Operator; } }	
 		IfcBooleanOperand IIfcBooleanResult.FirstOperand { get { return @FirstOperand; } }	
 		IfcBooleanOperand IIfcBooleanResult.SecondOperand { get { return @SecondOperand; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

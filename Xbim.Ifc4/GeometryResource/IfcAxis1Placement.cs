@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcAxis1Placement explicit implementation
 		IIfcDirection IIfcAxis1Placement.Axis { get { return @Axis; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

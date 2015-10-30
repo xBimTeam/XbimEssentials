@@ -61,8 +61,7 @@ namespace Xbim.Ifc4.CostResource
 		IfcLabel? IIfcAppliedValue.Condition { get { return @Condition; } }	
 		IfcArithmeticOperatorEnum? IIfcAppliedValue.ArithmeticOperator { get { return @ArithmeticOperator; } }	
 		IEnumerable<IIfcAppliedValue> IIfcAppliedValue.Components { get { return @Components; } }	
-	
-	 
+		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcAppliedValue.HasExternalReference {  get { return @HasExternalReference; } }
 		#endregion
 

@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		double? IIfcGeometricRepresentationContext.Precision { get { return @Precision; } }	
 		IfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem { get { return @WorldCoordinateSystem; } }	
 		IIfcDirection IIfcGeometricRepresentationContext.TrueNorth { get { return @TrueNorth; } }	
-	
-	 
+		 
 		IEnumerable<IIfcGeometricRepresentationSubContext> IIfcGeometricRepresentationContext.HasSubContexts {  get { return @HasSubContexts; } }
 		#endregion
 

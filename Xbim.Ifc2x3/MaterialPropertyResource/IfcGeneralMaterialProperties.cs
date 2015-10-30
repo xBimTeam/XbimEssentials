@@ -13,13 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialPropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcGeneralMaterialProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcGeneralMaterialProperties : IIfcMaterialProperties
+	{
+		IfcMolecularWeightMeasure? @MolecularWeight { get; }
+		IfcNormalisedRatioMeasure? @Porosity { get; }
+		IfcMassDensityMeasure? @MassDensity { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IFCGENERALMATERIALPROPERTIES", 716)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeneralMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IEqualityComparer<@IfcGeneralMaterialProperties>, IEquatable<@IfcGeneralMaterialProperties>
+	public  partial class @IfcGeneralMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcGeneralMaterialProperties, IEqualityComparer<@IfcGeneralMaterialProperties>, IEquatable<@IfcGeneralMaterialProperties>
 	{
+		#region IIfcGeneralMaterialProperties explicit implementation
+		IfcMolecularWeightMeasure? IIfcGeneralMaterialProperties.MolecularWeight { get { return @MolecularWeight; } }	
+		IfcNormalisedRatioMeasure? IIfcGeneralMaterialProperties.Porosity { get { return @Porosity; } }	
+		IfcMassDensityMeasure? IIfcGeneralMaterialProperties.MassDensity { get { return @MassDensity; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeneralMaterialProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +69,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _molecularWeight = v, _molecularWeight, value,  "MolecularWeight");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure? @Porosity 
 		{ 
@@ -60,8 +83,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _porosity = v, _porosity, value,  "Porosity");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcMassDensityMeasure? @MassDensity 
 		{ 
@@ -75,9 +97,9 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _massDensity = v, _massDensity, value,  "MassDensity");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

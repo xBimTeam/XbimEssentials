@@ -12,17 +12,42 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPort
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPort : IIfcProduct
+	{
+		IIfcRelConnectsPortToElement @ContainedIn {  get; }
+		IEnumerable<IIfcRelConnectsPorts> @ConnectedFrom {  get; }
+		IEnumerable<IIfcRelConnectsPorts> @ConnectedTo {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCPORT", 179)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPort : IfcProduct, IEqualityComparer<@IfcPort>, IEquatable<@IfcPort>
+	public abstract partial class @IfcPort : IfcProduct, IIfcPort, IEqualityComparer<@IfcPort>, IEquatable<@IfcPort>
 	{
+		#region IIfcPort explicit implementation
+		 
+		IIfcRelConnectsPortToElement IIfcPort.ContainedIn {  get { return @ContainedIn; } }
+		IEnumerable<IIfcRelConnectsPorts> IIfcPort.ConnectedFrom {  get { return @ConnectedFrom; } }
+		IEnumerable<IIfcRelConnectsPorts> IIfcPort.ConnectedTo {  get { return @ConnectedTo; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPort(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

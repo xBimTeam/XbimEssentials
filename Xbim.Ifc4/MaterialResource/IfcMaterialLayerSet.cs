@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.MaterialResource
 		IEnumerable<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers { get { return @MaterialLayers; } }	
 		IfcLabel? IIfcMaterialLayerSet.LayerSetName { get { return @LayerSetName; } }	
 		IfcText? IIfcMaterialLayerSet.Description { get { return @Description; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

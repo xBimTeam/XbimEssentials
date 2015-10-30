@@ -13,13 +13,45 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialPropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcWaterProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcWaterProperties : IIfcMaterialProperties
+	{
+		bool? @IsPotable { get; }
+		IfcIonConcentrationMeasure? @Hardness { get; }
+		IfcIonConcentrationMeasure? @AlkalinityConcentration { get; }
+		IfcIonConcentrationMeasure? @AcidityConcentration { get; }
+		IfcNormalisedRatioMeasure? @ImpuritiesContent { get; }
+		IfcPHMeasure? @PHLevel { get; }
+		IfcNormalisedRatioMeasure? @DissolvedSolidsContent { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IFCWATERPROPERTIES", 721)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWaterProperties : IfcMaterialProperties, IInstantiableEntity, IEqualityComparer<@IfcWaterProperties>, IEquatable<@IfcWaterProperties>
+	public  partial class @IfcWaterProperties : IfcMaterialProperties, IInstantiableEntity, IIfcWaterProperties, IEqualityComparer<@IfcWaterProperties>, IEquatable<@IfcWaterProperties>
 	{
+		#region IIfcWaterProperties explicit implementation
+		bool? IIfcWaterProperties.IsPotable { get { return @IsPotable; } }	
+		IfcIonConcentrationMeasure? IIfcWaterProperties.Hardness { get { return @Hardness; } }	
+		IfcIonConcentrationMeasure? IIfcWaterProperties.AlkalinityConcentration { get { return @AlkalinityConcentration; } }	
+		IfcIonConcentrationMeasure? IIfcWaterProperties.AcidityConcentration { get { return @AcidityConcentration; } }	
+		IfcNormalisedRatioMeasure? IIfcWaterProperties.ImpuritiesContent { get { return @ImpuritiesContent; } }	
+		IfcPHMeasure? IIfcWaterProperties.PHLevel { get { return @PHLevel; } }	
+		IfcNormalisedRatioMeasure? IIfcWaterProperties.DissolvedSolidsContent { get { return @DissolvedSolidsContent; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWaterProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -49,8 +81,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _isPotable = v, _isPotable, value,  "IsPotable");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIonConcentrationMeasure? @Hardness 
 		{ 
@@ -64,8 +95,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _hardness = v, _hardness, value,  "Hardness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIonConcentrationMeasure? @AlkalinityConcentration 
 		{ 
@@ -79,8 +109,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _alkalinityConcentration = v, _alkalinityConcentration, value,  "AlkalinityConcentration");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIonConcentrationMeasure? @AcidityConcentration 
 		{ 
@@ -94,8 +123,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _acidityConcentration = v, _acidityConcentration, value,  "AcidityConcentration");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure? @ImpuritiesContent 
 		{ 
@@ -109,8 +137,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _impuritiesContent = v, _impuritiesContent, value,  "ImpuritiesContent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPHMeasure? @PHLevel 
 		{ 
@@ -124,8 +151,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _pHLevel = v, _pHLevel, value,  "PHLevel");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure? @DissolvedSolidsContent 
 		{ 
@@ -139,9 +165,9 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _dissolvedSolidsContent = v, _dissolvedSolidsContent, value,  "DissolvedSolidsContent");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

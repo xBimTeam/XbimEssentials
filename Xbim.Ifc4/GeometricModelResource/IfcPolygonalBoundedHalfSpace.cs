@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#region IIfcPolygonalBoundedHalfSpace explicit implementation
 		IIfcAxis2Placement3D IIfcPolygonalBoundedHalfSpace.Position { get { return @Position; } }	
 		IIfcBoundedCurve IIfcPolygonalBoundedHalfSpace.PolygonalBoundary { get { return @PolygonalBoundary; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

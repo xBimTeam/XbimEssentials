@@ -13,14 +13,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialClassificationRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialClassificationRelationship : IPersistEntity
+	{
+		IEnumerable<IfcClassificationNotationSelect> @MaterialClassifications { get; }
+		IIfcMaterial @ClassifiedMaterial { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	[IndexedClass]
 	[ExpressType("IFCMATERIALCLASSIFICATIONRELATIONSHIP", 8)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialClassificationRelationship : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcMaterialClassificationRelationship>, IEquatable<@IfcMaterialClassificationRelationship>
+	public  partial class @IfcMaterialClassificationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialClassificationRelationship, IEqualityComparer<@IfcMaterialClassificationRelationship>, IEquatable<@IfcMaterialClassificationRelationship>
 	{
+		#region IIfcMaterialClassificationRelationship explicit implementation
+		IEnumerable<IfcClassificationNotationSelect> IIfcMaterialClassificationRelationship.MaterialClassifications { get { return @MaterialClassifications; } }	
+		IIfcMaterial IIfcMaterialClassificationRelationship.ClassifiedMaterial { get { return @ClassifiedMaterial; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -98,8 +120,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				((IPersistEntity)this).Activate(false);
 				return _materialClassifications;
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMaterial @ClassifiedMaterial 
@@ -114,9 +135,9 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				SetValue( v =>  _classifiedMaterial = v, _classifiedMaterial, value,  "ClassifiedMaterial");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.PropertyResource
 		IfcLabel IIfcPropertyEnumeration.Name { get { return @Name; } }	
 		IEnumerable<IfcValue> IIfcPropertyEnumeration.EnumerationValues { get { return @EnumerationValues; } }	
 		IfcUnit IIfcPropertyEnumeration.Unit { get { return @Unit; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcDoorStandardCase : IfcDoor, IInstantiableEntity, IIfcDoorStandardCase, IEqualityComparer<@IfcDoorStandardCase>, IEquatable<@IfcDoorStandardCase>
 	{
 		#region IIfcDoorStandardCase explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

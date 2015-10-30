@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcPresentationStyle explicit implementation
 		IfcLabel? IIfcPresentationStyle.Name { get { return @Name; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

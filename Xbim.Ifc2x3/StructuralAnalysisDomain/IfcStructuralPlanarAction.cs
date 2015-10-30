@@ -16,13 +16,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralPlanarAction
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralPlanarAction : IIfcStructuralAction
+	{
+		IfcProjectedOrTrueLengthEnum @ProjectedOrTrue { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALPLANARACTION", 39)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralPlanarAction : IfcStructuralAction, IInstantiableEntity, IEqualityComparer<@IfcStructuralPlanarAction>, IEquatable<@IfcStructuralPlanarAction>
+	public  partial class @IfcStructuralPlanarAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralPlanarAction, IEqualityComparer<@IfcStructuralPlanarAction>, IEquatable<@IfcStructuralPlanarAction>
 	{
+		#region IIfcStructuralPlanarAction explicit implementation
+		IfcProjectedOrTrueLengthEnum IIfcStructuralPlanarAction.ProjectedOrTrue { get { return @ProjectedOrTrue; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralPlanarAction(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +66,9 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _projectedOrTrue = v, _projectedOrTrue, value,  "ProjectedOrTrue");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

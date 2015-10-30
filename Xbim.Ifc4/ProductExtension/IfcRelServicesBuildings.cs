@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#region IIfcRelServicesBuildings explicit implementation
 		IIfcSystem IIfcRelServicesBuildings.RelatingSystem { get { return @RelatingSystem; } }	
 		IEnumerable<IIfcSpatialElement> IIfcRelServicesBuildings.RelatedBuildings { get { return @RelatedBuildings; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

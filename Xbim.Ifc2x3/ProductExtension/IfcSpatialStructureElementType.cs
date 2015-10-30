@@ -11,17 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSpatialStructureElementType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSpatialStructureElementType : IIfcElementType
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCSPATIALSTRUCTUREELEMENTTYPE", 530)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSpatialStructureElementType : IfcElementType, IEqualityComparer<@IfcSpatialStructureElementType>, IEquatable<@IfcSpatialStructureElementType>
+	public abstract partial class @IfcSpatialStructureElementType : IfcElementType, IIfcSpatialStructureElementType, IEqualityComparer<@IfcSpatialStructureElementType>, IEquatable<@IfcSpatialStructureElementType>
 	{
+		#region IIfcSpatialStructureElementType explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpatialStructureElementType(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

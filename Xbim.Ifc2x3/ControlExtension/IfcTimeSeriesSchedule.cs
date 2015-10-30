@@ -16,13 +16,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ControlExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTimeSeriesSchedule
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTimeSeriesSchedule : IIfcControl
+	{
+		IEnumerable<IfcDateTimeSelect> @ApplicableDates { get; }
+		IfcTimeSeriesScheduleTypeEnum @TimeSeriesScheduleType { get; }
+		IIfcTimeSeries @TimeSeries { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ControlExtension
 {
 	[ExpressType("IFCTIMESERIESSCHEDULE", 712)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IEqualityComparer<@IfcTimeSeriesSchedule>, IEquatable<@IfcTimeSeriesSchedule>
+	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IIfcTimeSeriesSchedule, IEqualityComparer<@IfcTimeSeriesSchedule>, IEquatable<@IfcTimeSeriesSchedule>
 	{
+		#region IIfcTimeSeriesSchedule explicit implementation
+		IEnumerable<IfcDateTimeSelect> IIfcTimeSeriesSchedule.ApplicableDates { get { return @ApplicableDates; } }	
+		IfcTimeSeriesScheduleTypeEnum IIfcTimeSeriesSchedule.TimeSeriesScheduleType { get { return @TimeSeriesScheduleType; } }	
+		IIfcTimeSeries IIfcTimeSeriesSchedule.TimeSeries { get { return @TimeSeries; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTimeSeriesSchedule(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +69,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 				((IPersistEntity)this).Activate(false);
 				return _applicableDates;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcTimeSeriesScheduleTypeEnum @TimeSeriesScheduleType 
 		{ 
@@ -60,8 +83,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 			{
 				SetValue( v =>  _timeSeriesScheduleType = v, _timeSeriesScheduleType, value,  "TimeSeriesScheduleType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTimeSeries @TimeSeries 
 		{ 
@@ -75,9 +97,9 @@ namespace Xbim.Ifc2x3.ControlExtension
 			{
 				SetValue( v =>  _timeSeries = v, _timeSeries, value,  "TimeSeries");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

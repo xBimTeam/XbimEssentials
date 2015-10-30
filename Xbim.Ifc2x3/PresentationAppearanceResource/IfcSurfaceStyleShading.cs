@@ -13,13 +13,33 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceStyleShading
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceStyleShading : IPersistEntity, IfcSurfaceStyleElementSelect
+	{
+		IIfcColourRgb @SurfaceColour { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCSURFACESTYLESHADING", 316)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleShading : INotifyPropertyChanged, IfcSurfaceStyleElementSelect, IInstantiableEntity, IEqualityComparer<@IfcSurfaceStyleShading>, IEquatable<@IfcSurfaceStyleShading>
+	public  partial class @IfcSurfaceStyleShading : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleShading, IEqualityComparer<@IfcSurfaceStyleShading>, IEquatable<@IfcSurfaceStyleShading>
 	{
+		#region IIfcSurfaceStyleShading explicit implementation
+		IIfcColourRgb IIfcSurfaceStyleShading.SurfaceColour { get { return @SurfaceColour; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -99,9 +119,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _surfaceColour = v, _surfaceColour, value,  "SurfaceColour");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

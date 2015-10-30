@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#region IIfcPointOnCurve explicit implementation
 		IIfcCurve IIfcPointOnCurve.BasisCurve { get { return @BasisCurve; } }	
 		IfcParameterValue IIfcPointOnCurve.PointParameter { get { return @PointParameter; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

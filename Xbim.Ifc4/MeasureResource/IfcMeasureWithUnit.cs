@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.MeasureResource
 		#region IIfcMeasureWithUnit explicit implementation
 		IfcValue IIfcMeasureWithUnit.ValueComponent { get { return @ValueComponent; } }	
 		IfcUnit IIfcMeasureWithUnit.UnitComponent { get { return @UnitComponent; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

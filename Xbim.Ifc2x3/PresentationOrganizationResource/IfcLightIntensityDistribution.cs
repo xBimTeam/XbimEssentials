@@ -12,13 +12,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationOrganizationResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLightIntensityDistribution
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLightIntensityDistribution : IPersistEntity, IfcLightDistributionDataSourceSelect
+	{
+		IfcLightDistributionCurveEnum @LightDistributionCurve { get; }
+		IEnumerable<IIfcLightDistributionData> @DistributionData { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IFCLIGHTINTENSITYDISTRIBUTION", 754)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightIntensityDistribution : INotifyPropertyChanged, IfcLightDistributionDataSourceSelect, IInstantiableEntity, IEqualityComparer<@IfcLightIntensityDistribution>, IEquatable<@IfcLightIntensityDistribution>
+	public  partial class @IfcLightIntensityDistribution : INotifyPropertyChanged, IInstantiableEntity, IIfcLightIntensityDistribution, IEqualityComparer<@IfcLightIntensityDistribution>, IEquatable<@IfcLightIntensityDistribution>
 	{
+		#region IIfcLightIntensityDistribution explicit implementation
+		IfcLightDistributionCurveEnum IIfcLightIntensityDistribution.LightDistributionCurve { get { return @LightDistributionCurve; } }	
+		IEnumerable<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData { get { return @DistributionData; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -100,8 +122,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _lightDistributionCurve = v, _lightDistributionCurve, value,  "LightDistributionCurve");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcLightDistributionData> @DistributionData 
 		{ 
@@ -111,9 +132,9 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				((IPersistEntity)this).Activate(false);
 				return _distributionData;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcSpatialElement explicit implementation
 		IfcLabel? IIfcSpatialElement.LongName { get { return @LongName; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements {  get { return @ContainsElements; } }
 		IEnumerable<IIfcRelServicesBuildings> IIfcSpatialElement.ServicedBySystems {  get { return @ServicedBySystems; } }
 		IEnumerable<IIfcRelReferencedInSpatialStructure> IIfcSpatialElement.ReferencesElements {  get { return @ReferencesElements; } }

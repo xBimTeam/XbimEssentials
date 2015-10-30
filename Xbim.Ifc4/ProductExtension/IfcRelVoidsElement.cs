@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#region IIfcRelVoidsElement explicit implementation
 		IIfcElement IIfcRelVoidsElement.RelatingBuildingElement { get { return @RelatingBuildingElement; } }	
 		IIfcFeatureElementSubtraction IIfcRelVoidsElement.RelatedOpeningElement { get { return @RelatedOpeningElement; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

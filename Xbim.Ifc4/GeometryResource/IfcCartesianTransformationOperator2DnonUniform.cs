@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcCartesianTransformationOperator2DnonUniform explicit implementation
 		double? IIfcCartesianTransformationOperator2DnonUniform.Scale2 { get { return @Scale2; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

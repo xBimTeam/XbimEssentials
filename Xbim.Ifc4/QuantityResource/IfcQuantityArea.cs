@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.QuantityResource
 		#region IIfcQuantityArea explicit implementation
 		IfcAreaMeasure IIfcQuantityArea.AreaValue { get { return @AreaValue; } }	
 		IfcLabel? IIfcQuantityArea.Formula { get { return @Formula; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

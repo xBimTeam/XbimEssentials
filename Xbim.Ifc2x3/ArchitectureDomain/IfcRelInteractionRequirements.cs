@@ -15,13 +15,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ArchitectureDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelInteractionRequirements
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelInteractionRequirements : IIfcRelConnects
+	{
+		IfcCountMeasure? @DailyInteraction { get; }
+		IfcNormalisedRatioMeasure? @ImportanceRating { get; }
+		IIfcSpatialStructureElement @LocationOfInteraction { get; }
+		IIfcSpaceProgram @RelatedSpaceProgram { get; }
+		IIfcSpaceProgram @RelatingSpaceProgram { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ArchitectureDomain
 {
 	[ExpressType("IFCRELINTERACTIONREQUIREMENTS", 708)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelInteractionRequirements : IfcRelConnects, IInstantiableEntity, IEqualityComparer<@IfcRelInteractionRequirements>, IEquatable<@IfcRelInteractionRequirements>
+	public  partial class @IfcRelInteractionRequirements : IfcRelConnects, IInstantiableEntity, IIfcRelInteractionRequirements, IEqualityComparer<@IfcRelInteractionRequirements>, IEquatable<@IfcRelInteractionRequirements>
 	{
+		#region IIfcRelInteractionRequirements explicit implementation
+		IfcCountMeasure? IIfcRelInteractionRequirements.DailyInteraction { get { return @DailyInteraction; } }	
+		IfcNormalisedRatioMeasure? IIfcRelInteractionRequirements.ImportanceRating { get { return @ImportanceRating; } }	
+		IIfcSpatialStructureElement IIfcRelInteractionRequirements.LocationOfInteraction { get { return @LocationOfInteraction; } }	
+		IIfcSpaceProgram IIfcRelInteractionRequirements.RelatedSpaceProgram { get { return @RelatedSpaceProgram; } }	
+		IIfcSpaceProgram IIfcRelInteractionRequirements.RelatingSpaceProgram { get { return @RelatingSpaceProgram; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelInteractionRequirements(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -49,8 +77,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			{
 				SetValue( v =>  _dailyInteraction = v, _dailyInteraction, value,  "DailyInteraction");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure? @ImportanceRating 
 		{ 
@@ -64,8 +91,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			{
 				SetValue( v =>  _importanceRating = v, _importanceRating, value,  "ImportanceRating");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSpatialStructureElement @LocationOfInteraction 
 		{ 
@@ -79,8 +105,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			{
 				SetValue( v =>  _locationOfInteraction = v, _locationOfInteraction, value,  "LocationOfInteraction");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSpaceProgram @RelatedSpaceProgram 
@@ -95,8 +120,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			{
 				SetValue( v =>  _relatedSpaceProgram = v, _relatedSpaceProgram, value,  "RelatedSpaceProgram");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSpaceProgram @RelatingSpaceProgram 
@@ -111,9 +135,9 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			{
 				SetValue( v =>  _relatingSpaceProgram = v, _relatingSpaceProgram, value,  "RelatingSpaceProgram");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -15,17 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDistributionElementType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDistributionElementType : IIfcElementType
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCDISTRIBUTIONELEMENTTYPE", 47)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionElementType : IfcElementType, IInstantiableEntity, IEqualityComparer<@IfcDistributionElementType>, IEquatable<@IfcDistributionElementType>
+	public  partial class @IfcDistributionElementType : IfcElementType, IInstantiableEntity, IIfcDistributionElementType, IEqualityComparer<@IfcDistributionElementType>, IEquatable<@IfcDistributionElementType>
 	{
+		#region IIfcDistributionElementType explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDistributionElementType(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

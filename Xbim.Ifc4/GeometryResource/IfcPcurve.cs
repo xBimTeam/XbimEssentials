@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#region IIfcPcurve explicit implementation
 		IIfcSurface IIfcPcurve.BasisSurface { get { return @BasisSurface; } }	
 		IIfcCurve IIfcPcurve.ReferenceCurve { get { return @ReferenceCurve; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

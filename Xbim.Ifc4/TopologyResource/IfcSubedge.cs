@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.TopologyResource
 	{
 		#region IIfcSubedge explicit implementation
 		IIfcEdge IIfcSubedge.ParentEdge { get { return @ParentEdge; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

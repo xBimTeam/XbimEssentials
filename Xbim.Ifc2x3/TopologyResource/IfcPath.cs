@@ -11,13 +11,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.TopologyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPath
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPath : IIfcTopologicalRepresentationItem
+	{
+		IEnumerable<IIfcOrientedEdge> @EdgeList { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IFCPATH", 771)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPath : IfcTopologicalRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcPath>, IEquatable<@IfcPath>
+	public  partial class @IfcPath : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcPath, IEqualityComparer<@IfcPath>, IEquatable<@IfcPath>
 	{
+		#region IIfcPath explicit implementation
+		IEnumerable<IIfcOrientedEdge> IIfcPath.EdgeList { get { return @EdgeList; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPath(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -38,9 +58,9 @@ namespace Xbim.Ifc2x3.TopologyResource
 				((IPersistEntity)this).Activate(false);
 				return _edgeList;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

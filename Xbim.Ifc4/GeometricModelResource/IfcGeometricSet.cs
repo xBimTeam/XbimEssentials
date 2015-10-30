@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcGeometricSet explicit implementation
 		IEnumerable<IfcGeometricSetSelect> IIfcGeometricSet.Elements { get { return @Elements; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

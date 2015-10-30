@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceX { get { return @PlanarForceX; } }	
 		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceY { get { return @PlanarForceY; } }	
 		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceZ { get { return @PlanarForceZ; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

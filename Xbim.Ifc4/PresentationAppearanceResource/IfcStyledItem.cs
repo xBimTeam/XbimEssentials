@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IIfcRepresentationItem IIfcStyledItem.Item { get { return @Item; } }	
 		IEnumerable<IfcStyleAssignmentSelect> IIfcStyledItem.Styles { get { return @Styles; } }	
 		IfcLabel? IIfcStyledItem.Name { get { return @Name; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.Kernel
 		IIfcOwnerHistory IIfcRoot.OwnerHistory { get { return @OwnerHistory; } }	
 		IfcLabel? IIfcRoot.Name { get { return @Name; } }	
 		IfcText? IIfcRoot.Description { get { return @Description; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 		#region IIfcRelFlowControlElements explicit implementation
 		IEnumerable<IIfcDistributionControlElement> IIfcRelFlowControlElements.RelatedControlElements { get { return @RelatedControlElements; } }	
 		IIfcDistributionFlowElement IIfcRelFlowControlElements.RelatingFlowElement { get { return @RelatingFlowElement; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

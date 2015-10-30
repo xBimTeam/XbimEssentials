@@ -34,8 +34,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	public abstract partial class @IfcExternalInformation : IPersistEntity, INotifyPropertyChanged, IIfcExternalInformation, IEqualityComparer<@IfcExternalInformation>, IEquatable<@IfcExternalInformation>
 	{
 		#region IIfcExternalInformation explicit implementation
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

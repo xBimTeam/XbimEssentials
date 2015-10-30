@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		IfcActionRequestTypeEnum? IIfcActionRequest.PredefinedType { get { return @PredefinedType; } }	
 		IfcLabel? IIfcActionRequest.Status { get { return @Status; } }	
 		IfcText? IIfcActionRequest.LongDescription { get { return @LongDescription; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

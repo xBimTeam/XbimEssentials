@@ -16,13 +16,61 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgServiceElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFluidFlowProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFluidFlowProperties : IIfcPropertySetDefinition
+	{
+		IfcPropertySourceEnum @PropertySource { get; }
+		IIfcTimeSeries @FlowConditionTimeSeries { get; }
+		IIfcTimeSeries @VelocityTimeSeries { get; }
+		IIfcTimeSeries @FlowrateTimeSeries { get; }
+		IIfcMaterial @Fluid { get; }
+		IIfcTimeSeries @PressureTimeSeries { get; }
+		IfcLabel? @UserDefinedPropertySource { get; }
+		IfcThermodynamicTemperatureMeasure? @TemperatureSingleValue { get; }
+		IfcThermodynamicTemperatureMeasure? @WetBulbTemperatureSingleValue { get; }
+		IIfcTimeSeries @WetBulbTemperatureTimeSeries { get; }
+		IIfcTimeSeries @TemperatureTimeSeries { get; }
+		IfcDerivedMeasureValue @FlowrateSingleValue { get; }
+		IfcPositiveRatioMeasure? @FlowConditionSingleValue { get; }
+		IfcLinearVelocityMeasure? @VelocitySingleValue { get; }
+		IfcPressureMeasure? @PressureSingleValue { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IFCFLUIDFLOWPROPERTIES", 466)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFluidFlowProperties : IfcPropertySetDefinition, IInstantiableEntity, IEqualityComparer<@IfcFluidFlowProperties>, IEquatable<@IfcFluidFlowProperties>
+	public  partial class @IfcFluidFlowProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcFluidFlowProperties, IEqualityComparer<@IfcFluidFlowProperties>, IEquatable<@IfcFluidFlowProperties>
 	{
+		#region IIfcFluidFlowProperties explicit implementation
+		IfcPropertySourceEnum IIfcFluidFlowProperties.PropertySource { get { return @PropertySource; } }	
+		IIfcTimeSeries IIfcFluidFlowProperties.FlowConditionTimeSeries { get { return @FlowConditionTimeSeries; } }	
+		IIfcTimeSeries IIfcFluidFlowProperties.VelocityTimeSeries { get { return @VelocityTimeSeries; } }	
+		IIfcTimeSeries IIfcFluidFlowProperties.FlowrateTimeSeries { get { return @FlowrateTimeSeries; } }	
+		IIfcMaterial IIfcFluidFlowProperties.Fluid { get { return @Fluid; } }	
+		IIfcTimeSeries IIfcFluidFlowProperties.PressureTimeSeries { get { return @PressureTimeSeries; } }	
+		IfcLabel? IIfcFluidFlowProperties.UserDefinedPropertySource { get { return @UserDefinedPropertySource; } }	
+		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.TemperatureSingleValue { get { return @TemperatureSingleValue; } }	
+		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.WetBulbTemperatureSingleValue { get { return @WetBulbTemperatureSingleValue; } }	
+		IIfcTimeSeries IIfcFluidFlowProperties.WetBulbTemperatureTimeSeries { get { return @WetBulbTemperatureTimeSeries; } }	
+		IIfcTimeSeries IIfcFluidFlowProperties.TemperatureTimeSeries { get { return @TemperatureTimeSeries; } }	
+		IfcDerivedMeasureValue IIfcFluidFlowProperties.FlowrateSingleValue { get { return @FlowrateSingleValue; } }	
+		IfcPositiveRatioMeasure? IIfcFluidFlowProperties.FlowConditionSingleValue { get { return @FlowConditionSingleValue; } }	
+		IfcLinearVelocityMeasure? IIfcFluidFlowProperties.VelocitySingleValue { get { return @VelocitySingleValue; } }	
+		IfcPressureMeasure? IIfcFluidFlowProperties.PressureSingleValue { get { return @PressureSingleValue; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFluidFlowProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -60,8 +108,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _propertySource = v, _propertySource, value,  "PropertySource");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTimeSeries @FlowConditionTimeSeries 
 		{ 
@@ -75,8 +122,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _flowConditionTimeSeries = v, _flowConditionTimeSeries, value,  "FlowConditionTimeSeries");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTimeSeries @VelocityTimeSeries 
 		{ 
@@ -90,8 +136,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _velocityTimeSeries = v, _velocityTimeSeries, value,  "VelocityTimeSeries");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTimeSeries @FlowrateTimeSeries 
 		{ 
@@ -105,8 +150,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _flowrateTimeSeries = v, _flowrateTimeSeries, value,  "FlowrateTimeSeries");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMaterial @Fluid 
 		{ 
@@ -120,8 +164,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _fluid = v, _fluid, value,  "Fluid");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTimeSeries @PressureTimeSeries 
 		{ 
@@ -135,8 +178,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _pressureTimeSeries = v, _pressureTimeSeries, value,  "PressureTimeSeries");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedPropertySource 
 		{ 
@@ -150,8 +192,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _userDefinedPropertySource = v, _userDefinedPropertySource, value,  "UserDefinedPropertySource");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcThermodynamicTemperatureMeasure? @TemperatureSingleValue 
 		{ 
@@ -165,8 +206,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _temperatureSingleValue = v, _temperatureSingleValue, value,  "TemperatureSingleValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcThermodynamicTemperatureMeasure? @WetBulbTemperatureSingleValue 
 		{ 
@@ -180,8 +220,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _wetBulbTemperatureSingleValue = v, _wetBulbTemperatureSingleValue, value,  "WetBulbTemperatureSingleValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTimeSeries @WetBulbTemperatureTimeSeries 
 		{ 
@@ -195,8 +234,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _wetBulbTemperatureTimeSeries = v, _wetBulbTemperatureTimeSeries, value,  "WetBulbTemperatureTimeSeries");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcTimeSeries @TemperatureTimeSeries 
 		{ 
@@ -210,8 +248,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _temperatureTimeSeries = v, _temperatureTimeSeries, value,  "TemperatureTimeSeries");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDerivedMeasureValue @FlowrateSingleValue 
 		{ 
@@ -225,8 +262,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _flowrateSingleValue = v, _flowrateSingleValue, value,  "FlowrateSingleValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @FlowConditionSingleValue 
 		{ 
@@ -240,8 +276,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _flowConditionSingleValue = v, _flowConditionSingleValue, value,  "FlowConditionSingleValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLinearVelocityMeasure? @VelocitySingleValue 
 		{ 
@@ -255,8 +290,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _velocitySingleValue = v, _velocitySingleValue, value,  "VelocitySingleValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPressureMeasure? @PressureSingleValue 
 		{ 
@@ -270,9 +304,9 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _pressureSingleValue = v, _pressureSingleValue, value,  "PressureSingleValue");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

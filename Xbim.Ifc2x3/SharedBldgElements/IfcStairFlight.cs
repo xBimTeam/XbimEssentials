@@ -16,13 +16,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStairFlight
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStairFlight : IIfcBuildingElement
+	{
+		long? @NumberOfRiser { get; }
+		long? @NumberOfTreads { get; }
+		IfcPositiveLengthMeasure? @RiserHeight { get; }
+		IfcPositiveLengthMeasure? @TreadLength { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IFCSTAIRFLIGHT", 25)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStairFlight : IfcBuildingElement, IInstantiableEntity, IEqualityComparer<@IfcStairFlight>, IEquatable<@IfcStairFlight>
+	public  partial class @IfcStairFlight : IfcBuildingElement, IInstantiableEntity, IIfcStairFlight, IEqualityComparer<@IfcStairFlight>, IEquatable<@IfcStairFlight>
 	{
+		#region IIfcStairFlight explicit implementation
+		long? IIfcStairFlight.NumberOfRiser { get { return @NumberOfRiser; } }	
+		long? IIfcStairFlight.NumberOfTreads { get { return @NumberOfTreads; } }	
+		IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight { get { return @RiserHeight; } }	
+		IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength { get { return @TreadLength; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStairFlight(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -49,8 +75,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _numberOfRiser = v, _numberOfRiser, value,  "NumberOfRiser");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public long? @NumberOfTreads 
 		{ 
@@ -64,8 +89,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _numberOfTreads = v, _numberOfTreads, value,  "NumberOfTreads");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @RiserHeight 
 		{ 
@@ -79,8 +103,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _riserHeight = v, _riserHeight, value,  "RiserHeight");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @TreadLength 
 		{ 
@@ -94,9 +117,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _treadLength = v, _treadLength, value,  "TreadLength");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

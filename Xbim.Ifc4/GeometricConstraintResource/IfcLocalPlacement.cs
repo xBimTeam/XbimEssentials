@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#region IIfcLocalPlacement explicit implementation
 		IIfcObjectPlacement IIfcLocalPlacement.PlacementRelTo { get { return @PlacementRelTo; } }	
 		IfcAxis2Placement IIfcLocalPlacement.RelativePlacement { get { return @RelativePlacement; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -13,13 +13,49 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialPropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcOpticalMaterialProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcOpticalMaterialProperties : IIfcMaterialProperties
+	{
+		IfcPositiveRatioMeasure? @VisibleTransmittance { get; }
+		IfcPositiveRatioMeasure? @SolarTransmittance { get; }
+		IfcPositiveRatioMeasure? @ThermalIrTransmittance { get; }
+		IfcPositiveRatioMeasure? @ThermalIrEmissivityBack { get; }
+		IfcPositiveRatioMeasure? @ThermalIrEmissivityFront { get; }
+		IfcPositiveRatioMeasure? @VisibleReflectanceBack { get; }
+		IfcPositiveRatioMeasure? @VisibleReflectanceFront { get; }
+		IfcPositiveRatioMeasure? @SolarReflectanceFront { get; }
+		IfcPositiveRatioMeasure? @SolarReflectanceBack { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IFCOPTICALMATERIALPROPERTIES", 718)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOpticalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IEqualityComparer<@IfcOpticalMaterialProperties>, IEquatable<@IfcOpticalMaterialProperties>
+	public  partial class @IfcOpticalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcOpticalMaterialProperties, IEqualityComparer<@IfcOpticalMaterialProperties>, IEquatable<@IfcOpticalMaterialProperties>
 	{
+		#region IIfcOpticalMaterialProperties explicit implementation
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleTransmittance { get { return @VisibleTransmittance; } }	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarTransmittance { get { return @SolarTransmittance; } }	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrTransmittance { get { return @ThermalIrTransmittance; } }	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrEmissivityBack { get { return @ThermalIrEmissivityBack; } }	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrEmissivityFront { get { return @ThermalIrEmissivityFront; } }	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleReflectanceBack { get { return @VisibleReflectanceBack; } }	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleReflectanceFront { get { return @VisibleReflectanceFront; } }	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarReflectanceFront { get { return @SolarReflectanceFront; } }	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarReflectanceBack { get { return @SolarReflectanceBack; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOpticalMaterialProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -51,8 +87,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _visibleTransmittance = v, _visibleTransmittance, value,  "VisibleTransmittance");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @SolarTransmittance 
 		{ 
@@ -66,8 +101,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _solarTransmittance = v, _solarTransmittance, value,  "SolarTransmittance");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @ThermalIrTransmittance 
 		{ 
@@ -81,8 +115,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _thermalIrTransmittance = v, _thermalIrTransmittance, value,  "ThermalIrTransmittance");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @ThermalIrEmissivityBack 
 		{ 
@@ -96,8 +129,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _thermalIrEmissivityBack = v, _thermalIrEmissivityBack, value,  "ThermalIrEmissivityBack");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @ThermalIrEmissivityFront 
 		{ 
@@ -111,8 +143,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _thermalIrEmissivityFront = v, _thermalIrEmissivityFront, value,  "ThermalIrEmissivityFront");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @VisibleReflectanceBack 
 		{ 
@@ -126,8 +157,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _visibleReflectanceBack = v, _visibleReflectanceBack, value,  "VisibleReflectanceBack");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @VisibleReflectanceFront 
 		{ 
@@ -141,8 +171,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _visibleReflectanceFront = v, _visibleReflectanceFront, value,  "VisibleReflectanceFront");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @SolarReflectanceFront 
 		{ 
@@ -156,8 +185,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _solarReflectanceFront = v, _solarReflectanceFront, value,  "SolarReflectanceFront");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @SolarReflectanceBack 
 		{ 
@@ -171,9 +199,9 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _solarReflectanceBack = v, _solarReflectanceBack, value,  "SolarReflectanceBack");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

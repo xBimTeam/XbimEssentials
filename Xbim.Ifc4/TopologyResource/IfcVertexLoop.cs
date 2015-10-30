@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.TopologyResource
 	{
 		#region IIfcVertexLoop explicit implementation
 		IIfcVertex IIfcVertexLoop.LoopVertex { get { return @LoopVertex; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

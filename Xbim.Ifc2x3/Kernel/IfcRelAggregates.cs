@@ -13,17 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAggregates
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAggregates : IIfcRelDecomposes
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCRELAGGREGATES", 631)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAggregates : IfcRelDecomposes, IInstantiableEntity, IEqualityComparer<@IfcRelAggregates>, IEquatable<@IfcRelAggregates>
+	public  partial class @IfcRelAggregates : IfcRelDecomposes, IInstantiableEntity, IIfcRelAggregates, IEqualityComparer<@IfcRelAggregates>, IEquatable<@IfcRelAggregates>
 	{
+		#region IIfcRelAggregates explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAggregates(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

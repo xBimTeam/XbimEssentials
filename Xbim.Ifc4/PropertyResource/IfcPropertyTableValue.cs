@@ -46,8 +46,7 @@ namespace Xbim.Ifc4.PropertyResource
 		IfcUnit IIfcPropertyTableValue.DefiningUnit { get { return @DefiningUnit; } }	
 		IfcUnit IIfcPropertyTableValue.DefinedUnit { get { return @DefinedUnit; } }	
 		IfcCurveInterpolationEnum? IIfcPropertyTableValue.CurveInterpolation { get { return @CurveInterpolation; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -14,13 +14,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelConnectsWithRealizingElements
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelConnectsWithRealizingElements : IIfcRelConnectsElements
+	{
+		IEnumerable<IIfcElement> @RealizingElements { get; }
+		IfcLabel? @ConnectionType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCRELCONNECTSWITHREALIZINGELEMENTS", 313)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsWithRealizingElements : IfcRelConnectsElements, IInstantiableEntity, IEqualityComparer<@IfcRelConnectsWithRealizingElements>, IEquatable<@IfcRelConnectsWithRealizingElements>
+	public  partial class @IfcRelConnectsWithRealizingElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsWithRealizingElements, IEqualityComparer<@IfcRelConnectsWithRealizingElements>, IEquatable<@IfcRelConnectsWithRealizingElements>
 	{
+		#region IIfcRelConnectsWithRealizingElements explicit implementation
+		IEnumerable<IIfcElement> IIfcRelConnectsWithRealizingElements.RealizingElements { get { return @RealizingElements; } }	
+		IfcLabel? IIfcRelConnectsWithRealizingElements.ConnectionType { get { return @ConnectionType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsWithRealizingElements(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +65,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				((IPersistEntity)this).Activate(false);
 				return _realizingElements;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @ConnectionType 
 		{ 
@@ -58,9 +79,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _connectionType = v, _connectionType, value,  "ConnectionType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

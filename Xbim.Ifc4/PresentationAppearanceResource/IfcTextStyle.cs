@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IIfcTextStyleTextModel IIfcTextStyle.TextStyle { get { return @TextStyle; } }	
 		IfcTextFontSelect IIfcTextStyle.TextFontStyle { get { return @TextFontStyle; } }	
 		bool? IIfcTextStyle.ModelOrDraughting { get { return @ModelOrDraughting; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

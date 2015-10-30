@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.ProfileResource
 		IfcPositiveLengthMeasure IIfcRectangleHollowProfileDef.WallThickness { get { return @WallThickness; } }	
 		IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.InnerFilletRadius { get { return @InnerFilletRadius; } }	
 		IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.OuterFilletRadius { get { return @OuterFilletRadius; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

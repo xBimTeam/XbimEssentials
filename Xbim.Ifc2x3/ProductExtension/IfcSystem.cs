@@ -14,17 +14,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSystem
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSystem : IIfcGroup
+	{
+		IEnumerable<IIfcRelServicesBuildings> @ServicesBuildings {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCSYSTEM", 229)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSystem : IfcGroup, IInstantiableEntity, IEqualityComparer<@IfcSystem>, IEquatable<@IfcSystem>
+	public  partial class @IfcSystem : IfcGroup, IInstantiableEntity, IIfcSystem, IEqualityComparer<@IfcSystem>, IEquatable<@IfcSystem>
 	{
+		#region IIfcSystem explicit implementation
+		 
+		IEnumerable<IIfcRelServicesBuildings> IIfcSystem.ServicesBuildings {  get { return @ServicesBuildings; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSystem(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

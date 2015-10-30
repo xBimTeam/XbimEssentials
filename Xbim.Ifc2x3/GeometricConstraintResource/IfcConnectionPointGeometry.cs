@@ -11,14 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometricConstraintResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConnectionPointGeometry
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConnectionPointGeometry : IIfcConnectionGeometry
+	{
+		IfcPointOrVertexPoint @PointOnRelatingElement { get; }
+		IfcPointOrVertexPoint @PointOnRelatedElement { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCONNECTIONPOINTGEOMETRY", 71)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPointGeometry : IfcConnectionGeometry, IInstantiableEntity, IEqualityComparer<@IfcConnectionPointGeometry>, IEquatable<@IfcConnectionPointGeometry>
+	public  partial class @IfcConnectionPointGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPointGeometry, IEqualityComparer<@IfcConnectionPointGeometry>, IEquatable<@IfcConnectionPointGeometry>
 	{
+		#region IIfcConnectionPointGeometry explicit implementation
+		IfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatingElement { get { return @PointOnRelatingElement; } }	
+		IfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatedElement { get { return @PointOnRelatedElement; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionPointGeometry(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +65,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			{
 				SetValue( v =>  _pointOnRelatingElement = v, _pointOnRelatingElement, value,  "PointOnRelatingElement");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcPointOrVertexPoint @PointOnRelatedElement 
 		{ 
@@ -58,9 +79,9 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			{
 				SetValue( v =>  _pointOnRelatedElement = v, _pointOnRelatedElement, value,  "PointOnRelatedElement");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

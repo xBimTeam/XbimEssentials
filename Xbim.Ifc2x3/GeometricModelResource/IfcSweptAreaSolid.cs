@@ -13,13 +13,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometricModelResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSweptAreaSolid
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSweptAreaSolid : IIfcSolidModel
+	{
+		IIfcProfileDef @SweptArea { get; }
+		IIfcAxis2Placement3D @Position { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IFCSWEPTAREASOLID", 239)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSweptAreaSolid : IfcSolidModel, IEqualityComparer<@IfcSweptAreaSolid>, IEquatable<@IfcSweptAreaSolid>
+	public abstract partial class @IfcSweptAreaSolid : IfcSolidModel, IIfcSweptAreaSolid, IEqualityComparer<@IfcSweptAreaSolid>, IEquatable<@IfcSweptAreaSolid>
 	{
+		#region IIfcSweptAreaSolid explicit implementation
+		IIfcProfileDef IIfcSweptAreaSolid.SweptArea { get { return @SweptArea; } }	
+		IIfcAxis2Placement3D IIfcSweptAreaSolid.Position { get { return @Position; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSweptAreaSolid(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +66,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _sweptArea = v, _sweptArea, value,  "SweptArea");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcAxis2Placement3D @Position 
 		{ 
@@ -59,9 +80,9 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _position = v, _position, value,  "Position");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

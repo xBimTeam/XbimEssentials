@@ -11,13 +11,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRationalBezierCurve
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRationalBezierCurve : IIfcBezierCurve
+	{
+		IEnumerable<double> @WeightsData { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCRATIONALBEZIERCURVE", 546)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRationalBezierCurve : IfcBezierCurve, IInstantiableEntity, IEqualityComparer<@IfcRationalBezierCurve>, IEquatable<@IfcRationalBezierCurve>
+	public  partial class @IfcRationalBezierCurve : IfcBezierCurve, IInstantiableEntity, IIfcRationalBezierCurve, IEqualityComparer<@IfcRationalBezierCurve>, IEquatable<@IfcRationalBezierCurve>
 	{
+		#region IIfcRationalBezierCurve explicit implementation
+		IEnumerable<double> IIfcRationalBezierCurve.WeightsData { get { return @WeightsData; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRationalBezierCurve(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -38,9 +58,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _weightsData;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

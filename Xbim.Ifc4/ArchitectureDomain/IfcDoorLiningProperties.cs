@@ -63,8 +63,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		IIfcShapeAspect IIfcDoorLiningProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
 		IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetX { get { return @LiningToPanelOffsetX; } }	
 		IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetY { get { return @LiningToPanelOffsetY; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#region IIfcRightCircularCone explicit implementation
 		IfcPositiveLengthMeasure IIfcRightCircularCone.Height { get { return @Height; } }	
 		IfcPositiveLengthMeasure IIfcRightCircularCone.BottomRadius { get { return @BottomRadius; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -13,13 +13,39 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDimensioningResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDraughtingCalloutRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDraughtingCalloutRelationship : IPersistEntity
+	{
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		IIfcDraughtingCallout @RelatingDraughtingCallout { get; }
+		IIfcDraughtingCallout @RelatedDraughtingCallout { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IFCDRAUGHTINGCALLOUTRELATIONSHIP", 740)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingCalloutRelationship : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcDraughtingCalloutRelationship>, IEquatable<@IfcDraughtingCalloutRelationship>
+	public  partial class @IfcDraughtingCalloutRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcDraughtingCalloutRelationship, IEqualityComparer<@IfcDraughtingCalloutRelationship>, IEquatable<@IfcDraughtingCalloutRelationship>
 	{
+		#region IIfcDraughtingCalloutRelationship explicit implementation
+		IfcLabel? IIfcDraughtingCalloutRelationship.Name { get { return @Name; } }	
+		IfcText? IIfcDraughtingCalloutRelationship.Description { get { return @Description; } }	
+		IIfcDraughtingCallout IIfcDraughtingCalloutRelationship.RelatingDraughtingCallout { get { return @RelatingDraughtingCallout; } }	
+		IIfcDraughtingCallout IIfcDraughtingCalloutRelationship.RelatedDraughtingCallout { get { return @RelatedDraughtingCallout; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -102,8 +128,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -117,8 +142,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDraughtingCallout @RelatingDraughtingCallout 
@@ -133,8 +157,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 			{
 				SetValue( v =>  _relatingDraughtingCallout = v, _relatingDraughtingCallout, value,  "RelatingDraughtingCallout");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDraughtingCallout @RelatedDraughtingCallout 
@@ -149,9 +172,9 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 			{
 				SetValue( v =>  _relatedDraughtingCallout = v, _relatedDraughtingCallout, value,  "RelatedDraughtingCallout");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

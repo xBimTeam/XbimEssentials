@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.ProductExtension
 		IIfcConnectionGeometry IIfcRelSpaceBoundary.ConnectionGeometry { get { return @ConnectionGeometry; } }	
 		IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary { get { return @PhysicalOrVirtualBoundary; } }	
 		IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary { get { return @InternalOrExternalBoundary; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -28,10 +28,6 @@ namespace Xbim.Ifc4.Interfaces
 		IfcPositiveRatioMeasure? @TargetScale { get; }
 		IfcGeometricProjectionEnum @TargetView { get; }
 		IfcLabel? @UserDefinedTargetView { get; }
-		new IfcAxis2Placement @WorldCoordinateSystem  { get; }
-		new IfcDimensionCount @CoordinateSpaceDimension  { get; }
-		new IIfcDirection @TrueNorth  { get; }
-		new double? @Precision  { get; }
 		
 	}
 }
@@ -47,12 +43,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale { get { return @TargetScale; } }	
 		IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView { get { return @TargetView; } }	
 		IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView { get { return @UserDefinedTargetView; } }	
-	
-		IfcAxis2Placement IIfcGeometricRepresentationSubContext.WorldCoordinateSystem  { get { return @WorldCoordinateSystem; } }
-		IfcDimensionCount IIfcGeometricRepresentationSubContext.CoordinateSpaceDimension  { get { return @CoordinateSpaceDimension; } }
-		IIfcDirection IIfcGeometricRepresentationSubContext.TrueNorth  { get { return @TrueNorth; } }
-		double? IIfcGeometricRepresentationSubContext.Precision  { get { return @Precision; } }
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

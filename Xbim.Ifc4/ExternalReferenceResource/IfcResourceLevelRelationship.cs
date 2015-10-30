@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		#region IIfcResourceLevelRelationship explicit implementation
 		IfcLabel? IIfcResourceLevelRelationship.Name { get { return @Name; } }	
 		IfcText? IIfcResourceLevelRelationship.Description { get { return @Description; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

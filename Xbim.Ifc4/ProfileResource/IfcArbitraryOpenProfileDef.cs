@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.ProfileResource
 	{
 		#region IIfcArbitraryOpenProfileDef explicit implementation
 		IIfcBoundedCurve IIfcArbitraryOpenProfileDef.Curve { get { return @Curve; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

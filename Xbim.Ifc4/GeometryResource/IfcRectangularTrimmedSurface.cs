@@ -48,8 +48,7 @@ namespace Xbim.Ifc4.GeometryResource
 		IfcParameterValue IIfcRectangularTrimmedSurface.V2 { get { return @V2; } }	
 		bool IIfcRectangularTrimmedSurface.Usense { get { return @Usense; } }	
 		bool IIfcRectangularTrimmedSurface.Vsense { get { return @Vsense; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

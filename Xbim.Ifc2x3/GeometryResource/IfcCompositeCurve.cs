@@ -11,14 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCompositeCurve
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCompositeCurve : IIfcBoundedCurve
+	{
+		IEnumerable<IIfcCompositeCurveSegment> @Segments { get; }
+		bool? @SelfIntersect { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCOMPOSITECURVE", 279)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompositeCurve : IfcBoundedCurve, IInstantiableEntity, IEqualityComparer<@IfcCompositeCurve>, IEquatable<@IfcCompositeCurve>
+	public  partial class @IfcCompositeCurve : IfcBoundedCurve, IInstantiableEntity, IIfcCompositeCurve, IEqualityComparer<@IfcCompositeCurve>, IEquatable<@IfcCompositeCurve>
 	{
+		#region IIfcCompositeCurve explicit implementation
+		IEnumerable<IIfcCompositeCurveSegment> IIfcCompositeCurve.Segments { get { return @Segments; } }	
+		bool? IIfcCompositeCurve.SelfIntersect { get { return @SelfIntersect; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCompositeCurve(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,8 +63,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _segments;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @SelfIntersect 
 		{ 
@@ -56,9 +77,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

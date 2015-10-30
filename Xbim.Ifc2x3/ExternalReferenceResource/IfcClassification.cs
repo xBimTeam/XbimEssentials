@@ -14,14 +14,42 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ExternalReferenceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcClassification
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcClassification : IPersistEntity
+	{
+		IfcLabel @Source { get; }
+		IfcLabel @Edition { get; }
+		IIfcCalendarDate @EditionDate { get; }
+		IfcLabel @Name { get; }
+		IEnumerable<IIfcClassificationItem> @Contains {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCLASSIFICATION", 412)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassification : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcClassification>, IEquatable<@IfcClassification>
+	public  partial class @IfcClassification : INotifyPropertyChanged, IInstantiableEntity, IIfcClassification, IEqualityComparer<@IfcClassification>, IEquatable<@IfcClassification>
 	{
+		#region IIfcClassification explicit implementation
+		IfcLabel IIfcClassification.Source { get { return @Source; } }	
+		IfcLabel IIfcClassification.Edition { get { return @Edition; } }	
+		IIfcCalendarDate IIfcClassification.EditionDate { get { return @EditionDate; } }	
+		IfcLabel IIfcClassification.Name { get { return @Name; } }	
+		 
+		IEnumerable<IIfcClassificationItem> IIfcClassification.Contains {  get { return @Contains; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -104,8 +132,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _source = v, _source, value,  "Source");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel @Edition 
 		{ 
@@ -119,8 +146,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _edition = v, _edition, value,  "Edition");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCalendarDate @EditionDate 
 		{ 
@@ -134,8 +160,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _editionDate = v, _editionDate, value,  "EditionDate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel @Name 
 		{ 
@@ -149,9 +174,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

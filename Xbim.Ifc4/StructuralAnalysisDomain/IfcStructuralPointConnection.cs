@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	{
 		#region IIfcStructuralPointConnection explicit implementation
 		IIfcAxis2Placement3D IIfcStructuralPointConnection.ConditionCoordinateSystem { get { return @ConditionCoordinateSystem; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

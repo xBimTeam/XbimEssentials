@@ -13,14 +13,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialLayerSetUsage
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialLayerSetUsage : IPersistEntity, IfcMaterialSelect
+	{
+		IIfcMaterialLayerSet @ForLayerSet { get; }
+		IfcLayerSetDirectionEnum @LayerSetDirection { get; }
+		IfcDirectionSenseEnum @DirectionSense { get; }
+		IfcLengthMeasure @OffsetFromReferenceLine { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	[IndexedClass]
 	[ExpressType("IFCMATERIALLAYERSETUSAGE", 165)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerSetUsage : INotifyPropertyChanged, IfcMaterialSelect, IInstantiableEntity, IEqualityComparer<@IfcMaterialLayerSetUsage>, IEquatable<@IfcMaterialLayerSetUsage>
+	public  partial class @IfcMaterialLayerSetUsage : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialLayerSetUsage, IEqualityComparer<@IfcMaterialLayerSetUsage>, IEquatable<@IfcMaterialLayerSetUsage>
 	{
+		#region IIfcMaterialLayerSetUsage explicit implementation
+		IIfcMaterialLayerSet IIfcMaterialLayerSetUsage.ForLayerSet { get { return @ForLayerSet; } }	
+		IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection { get { return @LayerSetDirection; } }	
+		IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense { get { return @DirectionSense; } }	
+		IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine { get { return @OffsetFromReferenceLine; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -103,8 +129,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				SetValue( v =>  _forLayerSet = v, _forLayerSet, value,  "ForLayerSet");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcLayerSetDirectionEnum @LayerSetDirection 
 		{ 
@@ -118,8 +143,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				SetValue( v =>  _layerSetDirection = v, _layerSetDirection, value,  "LayerSetDirection");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcDirectionSenseEnum @DirectionSense 
 		{ 
@@ -133,8 +157,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				SetValue( v =>  _directionSense = v, _directionSense, value,  "DirectionSense");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure @OffsetFromReferenceLine 
 		{ 
@@ -148,9 +171,9 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				SetValue( v =>  _offsetFromReferenceLine = v, _offsetFromReferenceLine, value,  "OffsetFromReferenceLine");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

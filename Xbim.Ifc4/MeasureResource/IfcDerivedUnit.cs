@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.MeasureResource
 		IEnumerable<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements { get { return @Elements; } }	
 		IfcDerivedUnitEnum IIfcDerivedUnit.UnitType { get { return @UnitType; } }	
 		IfcLabel? IIfcDerivedUnit.UserDefinedType { get { return @UserDefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#region IIfcConnectionCurveGeometry explicit implementation
 		IfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatingElement { get { return @CurveOnRelatingElement; } }	
 		IfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatedElement { get { return @CurveOnRelatedElement; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		IfcLabel? IIfcSchedulingTime.Name { get { return @Name; } }	
 		IfcDataOriginEnum? IIfcSchedulingTime.DataOrigin { get { return @DataOrigin; } }	
 		IfcLabel? IIfcSchedulingTime.UserDefinedDataOrigin { get { return @UserDefinedDataOrigin; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

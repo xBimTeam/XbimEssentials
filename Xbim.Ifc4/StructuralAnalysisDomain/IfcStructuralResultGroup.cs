@@ -43,8 +43,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType { get { return @TheoryType; } }	
 		IIfcStructuralLoadGroup IIfcStructuralResultGroup.ResultForLoadGroup { get { return @ResultForLoadGroup; } }	
 		bool IIfcStructuralResultGroup.IsLinear { get { return @IsLinear; } }	
-	
-	 
+		 
 		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralResultGroup.ResultGroupFor {  get { return @ResultGroupFor; } }
 		#endregion
 

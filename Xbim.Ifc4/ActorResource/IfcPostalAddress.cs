@@ -48,8 +48,7 @@ namespace Xbim.Ifc4.ActorResource
 		IfcLabel? IIfcPostalAddress.Region { get { return @Region; } }	
 		IfcLabel? IIfcPostalAddress.PostalCode { get { return @PostalCode; } }	
 		IfcLabel? IIfcPostalAddress.Country { get { return @Country; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

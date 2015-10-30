@@ -14,13 +14,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ConstraintResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMetric
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMetric : IIfcConstraint
+	{
+		IfcBenchmarkEnum @Benchmark { get; }
+		IfcLabel? @ValueSource { get; }
+		IfcMetricValueSelect @DataValue { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IFCMETRIC", 80)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IEqualityComparer<@IfcMetric>, IEquatable<@IfcMetric>
+	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IIfcMetric, IEqualityComparer<@IfcMetric>, IEquatable<@IfcMetric>
 	{
+		#region IIfcMetric explicit implementation
+		IfcBenchmarkEnum IIfcMetric.Benchmark { get { return @Benchmark; } }	
+		IfcLabel? IIfcMetric.ValueSource { get { return @ValueSource; } }	
+		IfcMetricValueSelect IIfcMetric.DataValue { get { return @DataValue; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMetric(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +70,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _benchmark = v, _benchmark, value,  "Benchmark");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @ValueSource 
 		{ 
@@ -61,8 +84,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _valueSource = v, _valueSource, value,  "ValueSource");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMetricValueSelect @DataValue 
 		{ 
@@ -76,9 +98,9 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _dataValue = v, _dataValue, value,  "DataValue");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

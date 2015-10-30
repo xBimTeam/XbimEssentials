@@ -12,13 +12,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometricConstraintResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConnectionPointEccentricity
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConnectionPointEccentricity : IIfcConnectionPointGeometry
+	{
+		IfcLengthMeasure? @EccentricityInX { get; }
+		IfcLengthMeasure? @EccentricityInY { get; }
+		IfcLengthMeasure? @EccentricityInZ { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IFCCONNECTIONPOINTECCENTRICITY", 405)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPointEccentricity : IfcConnectionPointGeometry, IInstantiableEntity, IEqualityComparer<@IfcConnectionPointEccentricity>, IEquatable<@IfcConnectionPointEccentricity>
+	public  partial class @IfcConnectionPointEccentricity : IfcConnectionPointGeometry, IInstantiableEntity, IIfcConnectionPointEccentricity, IEqualityComparer<@IfcConnectionPointEccentricity>, IEquatable<@IfcConnectionPointEccentricity>
 	{
+		#region IIfcConnectionPointEccentricity explicit implementation
+		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInX { get { return @EccentricityInX; } }	
+		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInY { get { return @EccentricityInY; } }	
+		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInZ { get { return @EccentricityInZ; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionPointEccentricity(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +68,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			{
 				SetValue( v =>  _eccentricityInX = v, _eccentricityInX, value,  "EccentricityInX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @EccentricityInY 
 		{ 
@@ -59,8 +82,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			{
 				SetValue( v =>  _eccentricityInY = v, _eccentricityInY, value,  "EccentricityInY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure? @EccentricityInZ 
 		{ 
@@ -74,9 +96,9 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			{
 				SetValue( v =>  _eccentricityInZ = v, _eccentricityInZ, value,  "EccentricityInZ");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

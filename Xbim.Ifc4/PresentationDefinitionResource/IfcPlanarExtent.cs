@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		#region IIfcPlanarExtent explicit implementation
 		IfcLengthMeasure IIfcPlanarExtent.SizeInX { get { return @SizeInX; } }	
 		IfcLengthMeasure IIfcPlanarExtent.SizeInY { get { return @SizeInY; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

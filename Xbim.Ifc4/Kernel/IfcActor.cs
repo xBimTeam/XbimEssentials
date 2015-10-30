@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcActor explicit implementation
 		IfcActorSelect IIfcActor.TheActor { get { return @TheActor; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelAssignsToActor> IIfcActor.IsActingUpon {  get { return @IsActingUpon; } }
 		#endregion
 

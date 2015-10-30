@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.GeometryResource
 		IEnumerable<IfcParameterValue> IIfcBSplineSurfaceWithKnots.UKnots { get { return @UKnots; } }	
 		IEnumerable<IfcParameterValue> IIfcBSplineSurfaceWithKnots.VKnots { get { return @VKnots; } }	
 		IfcKnotType IIfcBSplineSurfaceWithKnots.KnotSpec { get { return @KnotSpec; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

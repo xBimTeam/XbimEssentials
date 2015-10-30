@@ -16,13 +16,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedFacilitiesElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFurnitureType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFurnitureType : IIfcFurnishingElementType
+	{
+		IfcAssemblyPlaceEnum @AssemblyPlace { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IFCFURNITURETYPE", 359)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFurnitureType : IfcFurnishingElementType, IInstantiableEntity, IEqualityComparer<@IfcFurnitureType>, IEquatable<@IfcFurnitureType>
+	public  partial class @IfcFurnitureType : IfcFurnishingElementType, IInstantiableEntity, IIfcFurnitureType, IEqualityComparer<@IfcFurnitureType>, IEquatable<@IfcFurnitureType>
 	{
+		#region IIfcFurnitureType explicit implementation
+		IfcAssemblyPlaceEnum IIfcFurnitureType.AssemblyPlace { get { return @AssemblyPlace; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFurnitureType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +66,9 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _assemblyPlace = v, _assemblyPlace, value,  "AssemblyPlace");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

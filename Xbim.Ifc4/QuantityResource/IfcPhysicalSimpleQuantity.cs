@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.QuantityResource
 	{
 		#region IIfcPhysicalSimpleQuantity explicit implementation
 		IIfcNamedUnit IIfcPhysicalSimpleQuantity.Unit { get { return @Unit; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

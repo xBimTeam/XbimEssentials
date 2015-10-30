@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#region IIfcElementQuantity explicit implementation
 		IfcLabel? IIfcElementQuantity.MethodOfMeasurement { get { return @MethodOfMeasurement; } }	
 		IEnumerable<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities { get { return @Quantities; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -13,13 +13,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfilePropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRibPlateProfileProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRibPlateProfileProperties : IIfcProfileProperties
+	{
+		IfcPositiveLengthMeasure? @Thickness { get; }
+		IfcPositiveLengthMeasure? @RibHeight { get; }
+		IfcPositiveLengthMeasure? @RibWidth { get; }
+		IfcPositiveLengthMeasure? @RibSpacing { get; }
+		IfcRibPlateDirectionEnum @Direction { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IFCRIBPLATEPROFILEPROPERTIES", 763)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRibPlateProfileProperties : IfcProfileProperties, IInstantiableEntity, IEqualityComparer<@IfcRibPlateProfileProperties>, IEquatable<@IfcRibPlateProfileProperties>
+	public  partial class @IfcRibPlateProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcRibPlateProfileProperties, IEqualityComparer<@IfcRibPlateProfileProperties>, IEquatable<@IfcRibPlateProfileProperties>
 	{
+		#region IIfcRibPlateProfileProperties explicit implementation
+		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.Thickness { get { return @Thickness; } }	
+		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibHeight { get { return @RibHeight; } }	
+		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibWidth { get { return @RibWidth; } }	
+		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibSpacing { get { return @RibSpacing; } }	
+		IfcRibPlateDirectionEnum IIfcRibPlateProfileProperties.Direction { get { return @Direction; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRibPlateProfileProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +75,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _thickness = v, _thickness, value,  "Thickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @RibHeight 
 		{ 
@@ -62,8 +89,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _ribHeight = v, _ribHeight, value,  "RibHeight");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @RibWidth 
 		{ 
@@ -77,8 +103,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _ribWidth = v, _ribWidth, value,  "RibWidth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @RibSpacing 
 		{ 
@@ -92,8 +117,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _ribSpacing = v, _ribSpacing, value,  "RibSpacing");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcRibPlateDirectionEnum @Direction 
 		{ 
@@ -107,9 +131,9 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _direction = v, _direction, value,  "Direction");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

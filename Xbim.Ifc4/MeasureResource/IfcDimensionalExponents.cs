@@ -48,8 +48,7 @@ namespace Xbim.Ifc4.MeasureResource
 		long IIfcDimensionalExponents.ThermodynamicTemperatureExponent { get { return @ThermodynamicTemperatureExponent; } }	
 		long IIfcDimensionalExponents.AmountOfSubstanceExponent { get { return @AmountOfSubstanceExponent; } }	
 		long IIfcDimensionalExponents.LuminousIntensityExponent { get { return @LuminousIntensityExponent; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

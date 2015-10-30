@@ -12,13 +12,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDefinitionResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAnnotationFillArea
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAnnotationFillArea : IIfcGeometricRepresentationItem
+	{
+		IIfcCurve @OuterBoundary { get; }
+		IEnumerable<IIfcCurve> @InnerBoundaries { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IFCANNOTATIONFILLAREA", 173)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationFillArea : IfcGeometricRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcAnnotationFillArea>, IEquatable<@IfcAnnotationFillArea>
+	public  partial class @IfcAnnotationFillArea : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationFillArea, IEqualityComparer<@IfcAnnotationFillArea>, IEquatable<@IfcAnnotationFillArea>
 	{
+		#region IIfcAnnotationFillArea explicit implementation
+		IIfcCurve IIfcAnnotationFillArea.OuterBoundary { get { return @OuterBoundary; } }	
+		IEnumerable<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries { get { return @InnerBoundaries; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAnnotationFillArea(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +66,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				SetValue( v =>  _outerBoundary = v, _outerBoundary, value,  "OuterBoundary");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcCurve> @InnerBoundaries 
 		{ 
@@ -55,9 +76,9 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				((IPersistEntity)this).Activate(false);
 				return _innerBoundaries;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

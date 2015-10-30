@@ -15,14 +15,38 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterial
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterial : IPersistEntity, IfcMaterialSelect, IfcObjectReferenceSelect
+	{
+		IfcLabel @Name { get; }
+		IEnumerable<IIfcMaterialDefinitionRepresentation> @HasRepresentation {  get; }
+		IEnumerable<IIfcMaterialClassificationRelationship> @ClassifiedAs {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	[IndexedClass]
 	[ExpressType("IFCMATERIAL", 94)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterial : INotifyPropertyChanged, IfcMaterialSelect, IfcObjectReferenceSelect, IInstantiableEntity, IEqualityComparer<@IfcMaterial>, IEquatable<@IfcMaterial>
+	public  partial class @IfcMaterial : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterial, IEqualityComparer<@IfcMaterial>, IEquatable<@IfcMaterial>
 	{
+		#region IIfcMaterial explicit implementation
+		IfcLabel IIfcMaterial.Name { get { return @Name; } }	
+		 
+		IEnumerable<IIfcMaterialDefinitionRepresentation> IIfcMaterial.HasRepresentation {  get { return @HasRepresentation; } }
+		IEnumerable<IIfcMaterialClassificationRelationship> IIfcMaterial.ClassifiedAs {  get { return @ClassifiedAs; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -102,9 +126,9 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

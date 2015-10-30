@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#region IIfcConnectionPointGeometry explicit implementation
 		IfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatingElement { get { return @PointOnRelatingElement; } }	
 		IfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatedElement { get { return @PointOnRelatedElement; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

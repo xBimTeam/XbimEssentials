@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcPolyline explicit implementation
 		IEnumerable<IIfcCartesianPoint> IIfcPolyline.Points { get { return @Points; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

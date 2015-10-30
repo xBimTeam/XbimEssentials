@@ -13,13 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfileResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDerivedProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDerivedProfileDef : IIfcProfileDef
+	{
+		IIfcProfileDef @ParentProfile { get; }
+		IIfcCartesianTransformationOperator2D @Operator { get; }
+		IfcLabel? @Label { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IFCDERIVEDPROFILEDEF", 390)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDerivedProfileDef : IfcProfileDef, IInstantiableEntity, IEqualityComparer<@IfcDerivedProfileDef>, IEquatable<@IfcDerivedProfileDef>
+	public  partial class @IfcDerivedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcDerivedProfileDef, IEqualityComparer<@IfcDerivedProfileDef>, IEquatable<@IfcDerivedProfileDef>
 	{
+		#region IIfcDerivedProfileDef explicit implementation
+		IIfcProfileDef IIfcDerivedProfileDef.ParentProfile { get { return @ParentProfile; } }	
+		IIfcCartesianTransformationOperator2D IIfcDerivedProfileDef.Operator { get { return @Operator; } }	
+		IfcLabel? IIfcDerivedProfileDef.Label { get { return @Label; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDerivedProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +69,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _parentProfile = v, _parentProfile, value,  "ParentProfile");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCartesianTransformationOperator2D @Operator 
 		{ 
@@ -60,8 +83,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _operator = v, _operator, value,  "Operator");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Label 
 		{ 
@@ -75,9 +97,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _label = v, _label, value,  "Label");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

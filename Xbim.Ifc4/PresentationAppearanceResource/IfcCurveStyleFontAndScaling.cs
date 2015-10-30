@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IfcLabel? IIfcCurveStyleFontAndScaling.Name { get { return @Name; } }	
 		IfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont { get { return @CurveFont; } }	
 		IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling { get { return @CurveFontScaling; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#region IIfcFillAreaStyle explicit implementation
 		IEnumerable<IfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { get { return @FillStyles; } }	
 		bool? IIfcFillAreaStyle.ModelorDraughting { get { return @ModelorDraughting; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

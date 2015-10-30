@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.MaterialResource
 		IIfcMaterial IIfcMaterialConstituent.Material { get { return @Material; } }	
 		IfcNormalisedRatioMeasure? IIfcMaterialConstituent.Fraction { get { return @Fraction; } }	
 		IfcLabel? IIfcMaterialConstituent.Category { get { return @Category; } }	
-	
-	 
+		 
 		IIfcMaterialConstituentSet IIfcMaterialConstituent.ToMaterialConstituentSet {  get { return @ToMaterialConstituentSet; } }
 		#endregion
 

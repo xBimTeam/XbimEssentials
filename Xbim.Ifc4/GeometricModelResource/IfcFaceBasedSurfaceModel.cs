@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcFaceBasedSurfaceModel explicit implementation
 		IEnumerable<IIfcConnectedFaceSet> IIfcFaceBasedSurfaceModel.FbsmFaces { get { return @FbsmFaces; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

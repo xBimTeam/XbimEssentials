@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		#region IIfcPile explicit implementation
 		IfcPileTypeEnum? IIfcPile.PredefinedType { get { return @PredefinedType; } }	
 		IfcPileConstructionEnum? IIfcPile.ConstructionType { get { return @ConstructionType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

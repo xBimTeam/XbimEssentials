@@ -13,13 +13,47 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgServiceElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcElectricalBaseProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcElectricalBaseProperties : IIfcEnergyProperties
+	{
+		IfcElectricCurrentEnum? @ElectricCurrentType { get; }
+		IfcElectricVoltageMeasure @InputVoltage { get; }
+		IfcFrequencyMeasure @InputFrequency { get; }
+		IfcElectricCurrentMeasure? @FullLoadCurrent { get; }
+		IfcElectricCurrentMeasure? @MinimumCircuitCurrent { get; }
+		IfcPowerMeasure? @MaximumPowerInput { get; }
+		IfcPowerMeasure? @RatedPowerInput { get; }
+		long @InputPhase { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IFCELECTRICALBASEPROPERTIES", 177)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricalBaseProperties : IfcEnergyProperties, IInstantiableEntity, IEqualityComparer<@IfcElectricalBaseProperties>, IEquatable<@IfcElectricalBaseProperties>
+	public  partial class @IfcElectricalBaseProperties : IfcEnergyProperties, IInstantiableEntity, IIfcElectricalBaseProperties, IEqualityComparer<@IfcElectricalBaseProperties>, IEquatable<@IfcElectricalBaseProperties>
 	{
+		#region IIfcElectricalBaseProperties explicit implementation
+		IfcElectricCurrentEnum? IIfcElectricalBaseProperties.ElectricCurrentType { get { return @ElectricCurrentType; } }	
+		IfcElectricVoltageMeasure IIfcElectricalBaseProperties.InputVoltage { get { return @InputVoltage; } }	
+		IfcFrequencyMeasure IIfcElectricalBaseProperties.InputFrequency { get { return @InputFrequency; } }	
+		IfcElectricCurrentMeasure? IIfcElectricalBaseProperties.FullLoadCurrent { get { return @FullLoadCurrent; } }	
+		IfcElectricCurrentMeasure? IIfcElectricalBaseProperties.MinimumCircuitCurrent { get { return @MinimumCircuitCurrent; } }	
+		IfcPowerMeasure? IIfcElectricalBaseProperties.MaximumPowerInput { get { return @MaximumPowerInput; } }	
+		IfcPowerMeasure? IIfcElectricalBaseProperties.RatedPowerInput { get { return @RatedPowerInput; } }	
+		long IIfcElectricalBaseProperties.InputPhase { get { return @InputPhase; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElectricalBaseProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -50,8 +84,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _electricCurrentType = v, _electricCurrentType, value,  "ElectricCurrentType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcElectricVoltageMeasure @InputVoltage 
 		{ 
@@ -65,8 +98,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _inputVoltage = v, _inputVoltage, value,  "InputVoltage");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcFrequencyMeasure @InputFrequency 
 		{ 
@@ -80,8 +112,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _inputFrequency = v, _inputFrequency, value,  "InputFrequency");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcElectricCurrentMeasure? @FullLoadCurrent 
 		{ 
@@ -95,8 +126,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _fullLoadCurrent = v, _fullLoadCurrent, value,  "FullLoadCurrent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcElectricCurrentMeasure? @MinimumCircuitCurrent 
 		{ 
@@ -110,8 +140,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _minimumCircuitCurrent = v, _minimumCircuitCurrent, value,  "MinimumCircuitCurrent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPowerMeasure? @MaximumPowerInput 
 		{ 
@@ -125,8 +154,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _maximumPowerInput = v, _maximumPowerInput, value,  "MaximumPowerInput");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPowerMeasure? @RatedPowerInput 
 		{ 
@@ -140,8 +168,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _ratedPowerInput = v, _ratedPowerInput, value,  "RatedPowerInput");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public long @InputPhase 
 		{ 
@@ -155,9 +182,9 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _inputPhase = v, _inputPhase, value,  "InputPhase");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

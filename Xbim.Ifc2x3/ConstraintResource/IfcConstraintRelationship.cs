@@ -13,14 +13,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ConstraintResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConstraintRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConstraintRelationship : IPersistEntity
+	{
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		IIfcConstraint @RelatingConstraint { get; }
+		IEnumerable<IIfcConstraint> @RelatedConstraints { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCONSTRAINTRELATIONSHIP", 374)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstraintRelationship : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcConstraintRelationship>, IEquatable<@IfcConstraintRelationship>
+	public  partial class @IfcConstraintRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintRelationship, IEqualityComparer<@IfcConstraintRelationship>, IEquatable<@IfcConstraintRelationship>
 	{
+		#region IIfcConstraintRelationship explicit implementation
+		IfcLabel? IIfcConstraintRelationship.Name { get { return @Name; } }	
+		IfcText? IIfcConstraintRelationship.Description { get { return @Description; } }	
+		IIfcConstraint IIfcConstraintRelationship.RelatingConstraint { get { return @RelatingConstraint; } }	
+		IEnumerable<IIfcConstraint> IIfcConstraintRelationship.RelatedConstraints { get { return @RelatedConstraints; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -104,8 +130,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -119,8 +144,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcConstraint @RelatingConstraint 
@@ -135,8 +159,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _relatingConstraint = v, _relatingConstraint, value,  "RelatingConstraint");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcConstraint> @RelatedConstraints 
@@ -147,9 +170,9 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				((IPersistEntity)this).Activate(false);
 				return _relatedConstraints;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

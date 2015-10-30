@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.GeometryResource
 		IIfcCurve IIfcOffsetCurve2D.BasisCurve { get { return @BasisCurve; } }	
 		IfcLengthMeasure IIfcOffsetCurve2D.Distance { get { return @Distance; } }	
 		bool? IIfcOffsetCurve2D.SelfIntersect { get { return @SelfIntersect; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

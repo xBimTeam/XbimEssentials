@@ -14,17 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcZone
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcZone : IIfcGroup
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCZONE", 669)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcZone : IfcGroup, IInstantiableEntity, IEqualityComparer<@IfcZone>, IEquatable<@IfcZone>
+	public  partial class @IfcZone : IfcGroup, IInstantiableEntity, IIfcZone, IEqualityComparer<@IfcZone>, IEquatable<@IfcZone>
 	{
+		#region IIfcZone explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcZone(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#region IIfcMaterialClassificationRelationship explicit implementation
 		IEnumerable<IfcClassificationSelect> IIfcMaterialClassificationRelationship.MaterialClassifications { get { return @MaterialClassifications; } }	
 		IIfcMaterial IIfcMaterialClassificationRelationship.ClassifiedMaterial { get { return @ClassifiedMaterial; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#region IIfcIndexedTextureMap explicit implementation
 		IIfcTessellatedFaceSet IIfcIndexedTextureMap.MappedTo { get { return @MappedTo; } }	
 		IIfcTextureVertexList IIfcIndexedTextureMap.TexCoords { get { return @TexCoords; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

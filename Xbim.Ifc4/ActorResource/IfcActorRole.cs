@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.ActorResource
 		IfcRoleEnum IIfcActorRole.Role { get { return @Role; } }	
 		IfcLabel? IIfcActorRole.UserDefinedRole { get { return @UserDefinedRole; } }	
 		IfcText? IIfcActorRole.Description { get { return @Description; } }	
-	
-	 
+		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcActorRole.HasExternalReference {  get { return @HasExternalReference; } }
 		#endregion
 

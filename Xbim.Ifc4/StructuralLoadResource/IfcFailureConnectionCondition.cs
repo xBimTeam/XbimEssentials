@@ -46,8 +46,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureX { get { return @CompressionFailureX; } }	
 		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureY { get { return @CompressionFailureY; } }	
 		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureZ { get { return @CompressionFailureZ; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

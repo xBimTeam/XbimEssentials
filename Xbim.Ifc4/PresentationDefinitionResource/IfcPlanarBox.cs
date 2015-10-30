@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 	{
 		#region IIfcPlanarBox explicit implementation
 		IfcAxis2Placement IIfcPlanarBox.Placement { get { return @Placement; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

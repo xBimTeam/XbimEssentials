@@ -15,14 +15,42 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.CostResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCurrencyRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCurrencyRelationship : IPersistEntity
+	{
+		IIfcMonetaryUnit @RelatingMonetaryUnit { get; }
+		IIfcMonetaryUnit @RelatedMonetaryUnit { get; }
+		IfcPositiveRatioMeasure @ExchangeRate { get; }
+		IIfcDateAndTime @RateDateTime { get; }
+		IIfcLibraryInformation @RateSource { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.CostResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCURRENCYRELATIONSHIP", 195)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurrencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcCurrencyRelationship>, IEquatable<@IfcCurrencyRelationship>
+	public  partial class @IfcCurrencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcCurrencyRelationship, IEqualityComparer<@IfcCurrencyRelationship>, IEquatable<@IfcCurrencyRelationship>
 	{
+		#region IIfcCurrencyRelationship explicit implementation
+		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatingMonetaryUnit { get { return @RelatingMonetaryUnit; } }	
+		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatedMonetaryUnit { get { return @RelatedMonetaryUnit; } }	
+		IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate { get { return @ExchangeRate; } }	
+		IIfcDateAndTime IIfcCurrencyRelationship.RateDateTime { get { return @RateDateTime; } }	
+		IIfcLibraryInformation IIfcCurrencyRelationship.RateSource { get { return @RateSource; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -106,8 +134,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _relatingMonetaryUnit = v, _relatingMonetaryUnit, value,  "RelatingMonetaryUnit");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMonetaryUnit @RelatedMonetaryUnit 
 		{ 
@@ -121,8 +148,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _relatedMonetaryUnit = v, _relatedMonetaryUnit, value,  "RelatedMonetaryUnit");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure @ExchangeRate 
 		{ 
@@ -136,8 +162,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _exchangeRate = v, _exchangeRate, value,  "ExchangeRate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDateAndTime @RateDateTime 
 		{ 
@@ -151,8 +176,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _rateDateTime = v, _rateDateTime, value,  "RateDateTime");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcLibraryInformation @RateSource 
 		{ 
@@ -166,9 +190,9 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _rateSource = v, _rateSource, value,  "RateSource");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

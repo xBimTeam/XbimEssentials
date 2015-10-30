@@ -13,13 +13,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometricConstraintResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcVirtualGridIntersection
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcVirtualGridIntersection : IPersistEntity
+	{
+		IEnumerable<IIfcGridAxis> @IntersectingAxes { get; }
+		IEnumerable<IfcLengthMeasure> @OffsetDistances { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IFCVIRTUALGRIDINTERSECTION", 589)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVirtualGridIntersection : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcVirtualGridIntersection>, IEquatable<@IfcVirtualGridIntersection>
+	public  partial class @IfcVirtualGridIntersection : INotifyPropertyChanged, IInstantiableEntity, IIfcVirtualGridIntersection, IEqualityComparer<@IfcVirtualGridIntersection>, IEquatable<@IfcVirtualGridIntersection>
 	{
+		#region IIfcVirtualGridIntersection explicit implementation
+		IEnumerable<IIfcGridAxis> IIfcVirtualGridIntersection.IntersectingAxes { get { return @IntersectingAxes; } }	
+		IEnumerable<IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances { get { return @OffsetDistances; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -99,8 +121,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				((IPersistEntity)this).Activate(false);
 				return _intersectingAxes;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, 3)]
 		public ItemSet<IfcLengthMeasure> @OffsetDistances 
 		{ 
@@ -110,9 +131,9 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				((IPersistEntity)this).Activate(false);
 				return _offsetDistances;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

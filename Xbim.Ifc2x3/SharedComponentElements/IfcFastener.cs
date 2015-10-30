@@ -15,17 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedComponentElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFastener
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFastener : IIfcElementComponent
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IFCFASTENER", 535)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFastener : IfcElementComponent, IInstantiableEntity, IEqualityComparer<@IfcFastener>, IEquatable<@IfcFastener>
+	public  partial class @IfcFastener : IfcElementComponent, IInstantiableEntity, IIfcFastener, IEqualityComparer<@IfcFastener>, IEquatable<@IfcFastener>
 	{
+		#region IIfcFastener explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFastener(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

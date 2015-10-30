@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		#region IIfcDocumentReference explicit implementation
 		IfcText? IIfcDocumentReference.Description { get { return @Description; } }	
 		IIfcDocumentInformation IIfcDocumentReference.ReferencedDocument { get { return @ReferencedDocument; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentReference.DocumentRefForObjects {  get { return @DocumentRefForObjects; } }
 		#endregion
 

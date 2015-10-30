@@ -13,13 +13,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssignsToResource
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssignsToResource : IIfcRelAssigns
+	{
+		IIfcResource @RelatingResource { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCRELASSIGNSTORESOURCE", 9)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToResource : IfcRelAssigns, IInstantiableEntity, IEqualityComparer<@IfcRelAssignsToResource>, IEquatable<@IfcRelAssignsToResource>
+	public  partial class @IfcRelAssignsToResource : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToResource, IEqualityComparer<@IfcRelAssignsToResource>, IEquatable<@IfcRelAssignsToResource>
 	{
+		#region IIfcRelAssignsToResource explicit implementation
+		IIfcResource IIfcRelAssignsToResource.RelatingResource { get { return @RelatingResource; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsToResource(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,9 +64,9 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _relatingResource = v, _relatingResource, value,  "RelatingResource");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

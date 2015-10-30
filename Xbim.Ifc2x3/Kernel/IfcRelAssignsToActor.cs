@@ -14,13 +14,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssignsToActor
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssignsToActor : IIfcRelAssigns
+	{
+		IIfcActor @RelatingActor { get; }
+		IIfcActorRole @ActingRole { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCRELASSIGNSTOACTOR", 323)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToActor : IfcRelAssigns, IInstantiableEntity, IEqualityComparer<@IfcRelAssignsToActor>, IEquatable<@IfcRelAssignsToActor>
+	public  partial class @IfcRelAssignsToActor : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToActor, IEqualityComparer<@IfcRelAssignsToActor>, IEquatable<@IfcRelAssignsToActor>
 	{
+		#region IIfcRelAssignsToActor explicit implementation
+		IIfcActor IIfcRelAssignsToActor.RelatingActor { get { return @RelatingActor; } }	
+		IIfcActorRole IIfcRelAssignsToActor.ActingRole { get { return @ActingRole; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsToActor(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +68,7 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _relatingActor = v, _relatingActor, value,  "RelatingActor");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcActorRole @ActingRole 
 		{ 
@@ -61,9 +82,9 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _actingRole = v, _actingRole, value,  "ActingRole");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

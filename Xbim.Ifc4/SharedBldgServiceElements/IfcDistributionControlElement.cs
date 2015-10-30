@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 	public  partial class @IfcDistributionControlElement : IfcDistributionElement, IInstantiableEntity, IIfcDistributionControlElement, IEqualityComparer<@IfcDistributionControlElement>, IEquatable<@IfcDistributionControlElement>
 	{
 		#region IIfcDistributionControlElement explicit implementation
-	
-	 
+		 
 		IEnumerable<IIfcRelFlowControlElements> IIfcDistributionControlElement.AssignedToFlowElement {  get { return @AssignedToFlowElement; } }
 		#endregion
 

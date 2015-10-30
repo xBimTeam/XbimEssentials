@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.ProfileResource
 		IfcNonNegativeLengthMeasure? IIfcLShapeProfileDef.FilletRadius { get { return @FilletRadius; } }	
 		IfcNonNegativeLengthMeasure? IIfcLShapeProfileDef.EdgeRadius { get { return @EdgeRadius; } }	
 		IfcPlaneAngleMeasure? IIfcLShapeProfileDef.LegSlope { get { return @LegSlope; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

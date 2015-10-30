@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcRelAssociatesMaterial explicit implementation
 		IfcMaterialSelect IIfcRelAssociatesMaterial.RelatingMaterial { get { return @RelatingMaterial; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

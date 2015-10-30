@@ -13,13 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfileResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRectangleHollowProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRectangleHollowProfileDef : IIfcRectangleProfileDef
+	{
+		IfcPositiveLengthMeasure @WallThickness { get; }
+		IfcPositiveLengthMeasure? @InnerFilletRadius { get; }
+		IfcPositiveLengthMeasure? @OuterFilletRadius { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IFCRECTANGLEHOLLOWPROFILEDEF", 562)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangleHollowProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IEqualityComparer<@IfcRectangleHollowProfileDef>, IEquatable<@IfcRectangleHollowProfileDef>
+	public  partial class @IfcRectangleHollowProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRectangleHollowProfileDef, IEqualityComparer<@IfcRectangleHollowProfileDef>, IEquatable<@IfcRectangleHollowProfileDef>
 	{
+		#region IIfcRectangleHollowProfileDef explicit implementation
+		IfcPositiveLengthMeasure IIfcRectangleHollowProfileDef.WallThickness { get { return @WallThickness; } }	
+		IfcPositiveLengthMeasure? IIfcRectangleHollowProfileDef.InnerFilletRadius { get { return @InnerFilletRadius; } }	
+		IfcPositiveLengthMeasure? IIfcRectangleHollowProfileDef.OuterFilletRadius { get { return @OuterFilletRadius; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRectangleHollowProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +69,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _wallThickness = v, _wallThickness, value,  "WallThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @InnerFilletRadius 
 		{ 
@@ -60,8 +83,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _innerFilletRadius = v, _innerFilletRadius, value,  "InnerFilletRadius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @OuterFilletRadius 
 		{ 
@@ -75,9 +97,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _outerFilletRadius = v, _outerFilletRadius, value,  "OuterFilletRadius");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

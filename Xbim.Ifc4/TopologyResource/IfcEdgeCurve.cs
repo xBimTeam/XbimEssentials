@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.TopologyResource
 		#region IIfcEdgeCurve explicit implementation
 		IIfcCurve IIfcEdgeCurve.EdgeGeometry { get { return @EdgeGeometry; } }	
 		bool IIfcEdgeCurve.SameSense { get { return @SameSense; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

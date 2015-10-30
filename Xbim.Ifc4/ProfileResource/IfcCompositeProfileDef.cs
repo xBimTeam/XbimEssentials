@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#region IIfcCompositeProfileDef explicit implementation
 		IEnumerable<IIfcProfileDef> IIfcCompositeProfileDef.Profiles { get { return @Profiles; } }	
 		IfcLabel? IIfcCompositeProfileDef.Label { get { return @Label; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

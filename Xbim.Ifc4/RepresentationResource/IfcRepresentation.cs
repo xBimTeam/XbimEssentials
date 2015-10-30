@@ -49,8 +49,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		IfcLabel? IIfcRepresentation.RepresentationIdentifier { get { return @RepresentationIdentifier; } }	
 		IfcLabel? IIfcRepresentation.RepresentationType { get { return @RepresentationType; } }	
 		IEnumerable<IIfcRepresentationItem> IIfcRepresentation.Items { get { return @Items; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRepresentationMap> IIfcRepresentation.RepresentationMap {  get { return @RepresentationMap; } }
 		IEnumerable<IIfcPresentationLayerAssignment> IIfcRepresentation.LayerAssignments {  get { return @LayerAssignments; } }
 		IEnumerable<IIfcProductRepresentation> IIfcRepresentation.OfProductRepresentation {  get { return @OfProductRepresentation; } }

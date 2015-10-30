@@ -16,17 +16,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCurtainWall
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCurtainWall : IIfcBuildingElement
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IFCCURTAINWALL", 456)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurtainWall : IfcBuildingElement, IInstantiableEntity, IEqualityComparer<@IfcCurtainWall>, IEquatable<@IfcCurtainWall>
+	public  partial class @IfcCurtainWall : IfcBuildingElement, IInstantiableEntity, IIfcCurtainWall, IEqualityComparer<@IfcCurtainWall>, IEquatable<@IfcCurtainWall>
 	{
+		#region IIfcCurtainWall explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurtainWall(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

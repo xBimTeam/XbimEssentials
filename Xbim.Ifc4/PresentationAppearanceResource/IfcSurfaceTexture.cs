@@ -48,8 +48,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IfcIdentifier? IIfcSurfaceTexture.Mode { get { return @Mode; } }	
 		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform { get { return @TextureTransform; } }	
 		IEnumerable<IfcIdentifier> IIfcSurfaceTexture.Parameter { get { return @Parameter; } }	
-	
-	 
+		 
 		IEnumerable<IIfcTextureCoordinate> IIfcSurfaceTexture.IsMappedBy {  get { return @IsMappedBy; } }
 		IEnumerable<IIfcSurfaceStyleWithTextures> IIfcSurfaceTexture.UsedInStyles {  get { return @UsedInStyles; } }
 		#endregion

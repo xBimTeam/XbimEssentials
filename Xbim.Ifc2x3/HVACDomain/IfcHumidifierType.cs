@@ -16,13 +16,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.HVACDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcHumidifierType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcHumidifierType : IIfcEnergyConversionDeviceType
+	{
+		IfcHumidifierTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IFCHUMIDIFIERTYPE", 64)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHumidifierType : IfcEnergyConversionDeviceType, IInstantiableEntity, IEqualityComparer<@IfcHumidifierType>, IEquatable<@IfcHumidifierType>
+	public  partial class @IfcHumidifierType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcHumidifierType, IEqualityComparer<@IfcHumidifierType>, IEquatable<@IfcHumidifierType>
 	{
+		#region IIfcHumidifierType explicit implementation
+		IfcHumidifierTypeEnum IIfcHumidifierType.PredefinedType { get { return @PredefinedType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcHumidifierType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +66,9 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

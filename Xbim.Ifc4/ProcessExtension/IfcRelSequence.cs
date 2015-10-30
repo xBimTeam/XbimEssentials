@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		IIfcLagTime IIfcRelSequence.TimeLag { get { return @TimeLag; } }	
 		IfcSequenceEnum? IIfcRelSequence.SequenceType { get { return @SequenceType; } }	
 		IfcLabel? IIfcRelSequence.UserDefinedSequenceType { get { return @UserDefinedSequenceType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

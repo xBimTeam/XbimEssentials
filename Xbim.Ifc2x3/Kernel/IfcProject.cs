@@ -14,13 +14,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProject
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProject : IIfcObject
+	{
+		IfcLabel? @LongName { get; }
+		IfcLabel? @Phase { get; }
+		IEnumerable<IIfcRepresentationContext> @RepresentationContexts { get; }
+		IIfcUnitAssignment @UnitsInContext { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCPROJECT", 204)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProject : IfcObject, IInstantiableEntity, IEqualityComparer<@IfcProject>, IEquatable<@IfcProject>
+	public  partial class @IfcProject : IfcObject, IInstantiableEntity, IIfcProject, IEqualityComparer<@IfcProject>, IEquatable<@IfcProject>
 	{
+		#region IIfcProject explicit implementation
+		IfcLabel? IIfcProject.LongName { get { return @LongName; } }	
+		IfcLabel? IIfcProject.Phase { get { return @Phase; } }	
+		IEnumerable<IIfcRepresentationContext> IIfcProject.RepresentationContexts { get { return @RepresentationContexts; } }	
+		IIfcUnitAssignment IIfcProject.UnitsInContext { get { return @UnitsInContext; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProject(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +74,7 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _longName = v, _longName, value,  "LongName");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Phase 
 		{ 
@@ -63,8 +88,7 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _phase = v, _phase, value,  "Phase");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcRepresentationContext> @RepresentationContexts 
 		{ 
@@ -74,8 +98,7 @@ namespace Xbim.Ifc2x3.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _representationContexts;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcUnitAssignment @UnitsInContext 
 		{ 
@@ -89,9 +112,9 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _unitsInContext = v, _unitsInContext, value,  "UnitsInContext");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

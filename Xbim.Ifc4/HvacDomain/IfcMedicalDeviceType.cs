@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.HvacDomain
 	{
 		#region IIfcMedicalDeviceType explicit implementation
 		IfcMedicalDeviceTypeEnum IIfcMedicalDeviceType.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

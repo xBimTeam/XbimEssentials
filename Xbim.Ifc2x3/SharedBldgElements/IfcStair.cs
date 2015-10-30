@@ -16,13 +16,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStair
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStair : IIfcBuildingElement
+	{
+		IfcStairTypeEnum @ShapeType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IFCSTAIR", 346)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStair : IfcBuildingElement, IInstantiableEntity, IEqualityComparer<@IfcStair>, IEquatable<@IfcStair>
+	public  partial class @IfcStair : IfcBuildingElement, IInstantiableEntity, IIfcStair, IEqualityComparer<@IfcStair>, IEquatable<@IfcStair>
 	{
+		#region IIfcStair explicit implementation
+		IfcStairTypeEnum IIfcStair.ShapeType { get { return @ShapeType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStair(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +66,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _shapeType = v, _shapeType, value,  "ShapeType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

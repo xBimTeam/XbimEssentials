@@ -11,13 +11,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBSplineCurve
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBSplineCurve : IIfcBoundedCurve
+	{
+		long @Degree { get; }
+		IEnumerable<IIfcCartesianPoint> @ControlPointsList { get; }
+		IfcBSplineCurveForm @CurveForm { get; }
+		bool? @ClosedCurve { get; }
+		bool? @SelfIntersect { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCBSPLINECURVE", 167)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcBSplineCurve : IfcBoundedCurve, IEqualityComparer<@IfcBSplineCurve>, IEquatable<@IfcBSplineCurve>
+	public abstract partial class @IfcBSplineCurve : IfcBoundedCurve, IIfcBSplineCurve, IEqualityComparer<@IfcBSplineCurve>, IEquatable<@IfcBSplineCurve>
 	{
+		#region IIfcBSplineCurve explicit implementation
+		long IIfcBSplineCurve.Degree { get { return @Degree; } }	
+		IEnumerable<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList { get { return @ControlPointsList; } }	
+		IfcBSplineCurveForm IIfcBSplineCurve.CurveForm { get { return @CurveForm; } }	
+		bool? IIfcBSplineCurve.ClosedCurve { get { return @ClosedCurve; } }	
+		bool? IIfcBSplineCurve.SelfIntersect { get { return @SelfIntersect; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineCurve(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +74,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _degree = v, _degree, value,  "Degree");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1)]
 		public ItemSet<IfcCartesianPoint> @ControlPointsList 
 		{ 
@@ -57,8 +84,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				((IPersistEntity)this).Activate(false);
 				return _controlPointsList;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcBSplineCurveForm @CurveForm 
 		{ 
@@ -72,8 +98,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _curveForm = v, _curveForm, value,  "CurveForm");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @ClosedCurve 
 		{ 
@@ -87,8 +112,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _closedCurve = v, _closedCurve, value,  "ClosedCurve");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @SelfIntersect 
 		{ 
@@ -102,9 +126,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

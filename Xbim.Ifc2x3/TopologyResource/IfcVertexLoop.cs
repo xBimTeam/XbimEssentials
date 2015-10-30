@@ -11,13 +11,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.TopologyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcVertexLoop
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcVertexLoop : IIfcLoop
+	{
+		IIfcVertex @LoopVertex { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IFCVERTEXLOOP", 244)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVertexLoop : IfcLoop, IInstantiableEntity, IEqualityComparer<@IfcVertexLoop>, IEquatable<@IfcVertexLoop>
+	public  partial class @IfcVertexLoop : IfcLoop, IInstantiableEntity, IIfcVertexLoop, IEqualityComparer<@IfcVertexLoop>, IEquatable<@IfcVertexLoop>
 	{
+		#region IIfcVertexLoop explicit implementation
+		IIfcVertex IIfcVertexLoop.LoopVertex { get { return @LoopVertex; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcVertexLoop(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,9 +61,9 @@ namespace Xbim.Ifc2x3.TopologyResource
 			{
 				SetValue( v =>  _loopVertex = v, _loopVertex, value,  "LoopVertex");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

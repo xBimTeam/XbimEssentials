@@ -11,17 +11,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcControl
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcControl : IIfcObject
+	{
+		IEnumerable<IIfcRelAssignsToControl> @Controls {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCCONTROL", 76)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcControl : IfcObject, IEqualityComparer<@IfcControl>, IEquatable<@IfcControl>
+	public abstract partial class @IfcControl : IfcObject, IIfcControl, IEqualityComparer<@IfcControl>, IEquatable<@IfcControl>
 	{
+		#region IIfcControl explicit implementation
+		 
+		IEnumerable<IIfcRelAssignsToControl> IIfcControl.Controls {  get { return @Controls; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcControl(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

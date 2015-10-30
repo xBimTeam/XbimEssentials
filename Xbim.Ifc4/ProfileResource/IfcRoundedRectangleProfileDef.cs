@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.ProfileResource
 	{
 		#region IIfcRoundedRectangleProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcRoundedRectangleProfileDef.RoundingRadius { get { return @RoundingRadius; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

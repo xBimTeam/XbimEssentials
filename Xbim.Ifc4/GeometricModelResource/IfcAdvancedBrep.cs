@@ -34,8 +34,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcAdvancedBrep : IfcManifoldSolidBrep, IInstantiableEntity, IIfcAdvancedBrep, IEqualityComparer<@IfcAdvancedBrep>, IEquatable<@IfcAdvancedBrep>
 	{
 		#region IIfcAdvancedBrep explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

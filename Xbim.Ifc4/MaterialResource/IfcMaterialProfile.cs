@@ -48,8 +48,7 @@ namespace Xbim.Ifc4.MaterialResource
 		IIfcProfileDef IIfcMaterialProfile.Profile { get { return @Profile; } }	
 		IfcNormalisedRatioMeasure? IIfcMaterialProfile.Priority { get { return @Priority; } }	
 		IfcLabel? IIfcMaterialProfile.Category { get { return @Category; } }	
-	
-	 
+		 
 		IIfcMaterialProfileSet IIfcMaterialProfile.ToMaterialProfileSet {  get { return @ToMaterialProfileSet; } }
 		#endregion
 

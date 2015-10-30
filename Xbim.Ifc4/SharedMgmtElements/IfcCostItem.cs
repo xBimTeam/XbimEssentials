@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		IfcCostItemTypeEnum? IIfcCostItem.PredefinedType { get { return @PredefinedType; } }	
 		IEnumerable<IIfcCostValue> IIfcCostItem.CostValues { get { return @CostValues; } }	
 		IEnumerable<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities { get { return @CostQuantities; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

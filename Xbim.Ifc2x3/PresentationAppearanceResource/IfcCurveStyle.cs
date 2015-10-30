@@ -13,13 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCurveStyle
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCurveStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
+	{
+		IfcCurveFontOrScaledCurveFontSelect @CurveFont { get; }
+		IfcSizeSelect @CurveWidth { get; }
+		IfcColour @CurveColour { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCCURVESTYLE", 118)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyle : IfcPresentationStyle, IfcPresentationStyleSelect, IInstantiableEntity, IEqualityComparer<@IfcCurveStyle>, IEquatable<@IfcCurveStyle>
+	public  partial class @IfcCurveStyle : IfcPresentationStyle, IInstantiableEntity, IIfcCurveStyle, IEqualityComparer<@IfcCurveStyle>, IEquatable<@IfcCurveStyle>
 	{
+		#region IIfcCurveStyle explicit implementation
+		IfcCurveFontOrScaledCurveFontSelect IIfcCurveStyle.CurveFont { get { return @CurveFont; } }	
+		IfcSizeSelect IIfcCurveStyle.CurveWidth { get { return @CurveWidth; } }	
+		IfcColour IIfcCurveStyle.CurveColour { get { return @CurveColour; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveStyle(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +69,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _curveFont = v, _curveFont, value,  "CurveFont");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSizeSelect @CurveWidth 
 		{ 
@@ -60,8 +83,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _curveWidth = v, _curveWidth, value,  "CurveWidth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColour @CurveColour 
 		{ 
@@ -75,9 +97,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _curveColour = v, _curveColour, value,  "CurveColour");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

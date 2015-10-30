@@ -11,17 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDimensioningResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRadiusDimension
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRadiusDimension : IIfcDimensionCurveDirectedCallout
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IFCRADIUSDIMENSION", 751)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRadiusDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IEqualityComparer<@IfcRadiusDimension>, IEquatable<@IfcRadiusDimension>
+	public  partial class @IfcRadiusDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IIfcRadiusDimension, IEqualityComparer<@IfcRadiusDimension>, IEquatable<@IfcRadiusDimension>
 	{
+		#region IIfcRadiusDimension explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRadiusDimension(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

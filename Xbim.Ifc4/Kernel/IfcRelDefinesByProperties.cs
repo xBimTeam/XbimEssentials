@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.Kernel
 		#region IIfcRelDefinesByProperties explicit implementation
 		IEnumerable<IIfcObjectDefinition> IIfcRelDefinesByProperties.RelatedObjects { get { return @RelatedObjects; } }	
 		IfcPropertySetDefinitionSelect IIfcRelDefinesByProperties.RelatingPropertyDefinition { get { return @RelatingPropertyDefinition; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

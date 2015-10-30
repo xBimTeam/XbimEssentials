@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#region IIfcRelCoversBldgElements explicit implementation
 		IIfcElement IIfcRelCoversBldgElements.RelatingBuildingElement { get { return @RelatingBuildingElement; } }	
 		IEnumerable<IIfcCovering> IIfcRelCoversBldgElements.RelatedCoverings { get { return @RelatedCoverings; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

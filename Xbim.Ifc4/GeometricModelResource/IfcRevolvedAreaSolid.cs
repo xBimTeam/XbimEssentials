@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#region IIfcRevolvedAreaSolid explicit implementation
 		IIfcAxis1Placement IIfcRevolvedAreaSolid.Axis { get { return @Axis; } }	
 		IfcPlaneAngleMeasure IIfcRevolvedAreaSolid.Angle { get { return @Angle; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

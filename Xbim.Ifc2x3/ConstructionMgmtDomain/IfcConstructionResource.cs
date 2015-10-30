@@ -13,13 +13,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ConstructionMgmtDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcConstructionResource
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcConstructionResource : IIfcResource
+	{
+		IfcIdentifier? @ResourceIdentifier { get; }
+		IfcLabel? @ResourceGroup { get; }
+		IfcResourceConsumptionEnum? @ResourceConsumption { get; }
+		IIfcMeasureWithUnit @BaseQuantity { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IFCCONSTRUCTIONRESOURCE", 157)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConstructionResource : IfcResource, IEqualityComparer<@IfcConstructionResource>, IEquatable<@IfcConstructionResource>
+	public abstract partial class @IfcConstructionResource : IfcResource, IIfcConstructionResource, IEqualityComparer<@IfcConstructionResource>, IEquatable<@IfcConstructionResource>
 	{
+		#region IIfcConstructionResource explicit implementation
+		IfcIdentifier? IIfcConstructionResource.ResourceIdentifier { get { return @ResourceIdentifier; } }	
+		IfcLabel? IIfcConstructionResource.ResourceGroup { get { return @ResourceGroup; } }	
+		IfcResourceConsumptionEnum? IIfcConstructionResource.ResourceConsumption { get { return @ResourceConsumption; } }	
+		IIfcMeasureWithUnit IIfcConstructionResource.BaseQuantity { get { return @BaseQuantity; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstructionResource(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +72,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _resourceIdentifier = v, _resourceIdentifier, value,  "ResourceIdentifier");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @ResourceGroup 
 		{ 
@@ -61,8 +86,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _resourceGroup = v, _resourceGroup, value,  "ResourceGroup");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcResourceConsumptionEnum? @ResourceConsumption 
 		{ 
@@ -76,8 +100,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _resourceConsumption = v, _resourceConsumption, value,  "ResourceConsumption");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMeasureWithUnit @BaseQuantity 
 		{ 
@@ -91,9 +114,9 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _baseQuantity = v, _baseQuantity, value,  "BaseQuantity");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

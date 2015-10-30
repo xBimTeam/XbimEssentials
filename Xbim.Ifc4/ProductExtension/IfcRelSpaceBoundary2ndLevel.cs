@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcRelSpaceBoundary2ndLevel explicit implementation
 		IIfcRelSpaceBoundary2ndLevel IIfcRelSpaceBoundary2ndLevel.CorrespondingBoundary { get { return @CorrespondingBoundary; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelSpaceBoundary2ndLevel> IIfcRelSpaceBoundary2ndLevel.Corresponds {  get { return @Corresponds; } }
 		#endregion
 

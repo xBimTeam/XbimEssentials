@@ -13,13 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFillAreaStyleTiles
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFillAreaStyleTiles : IIfcGeometricRepresentationItem, IfcFillStyleSelect
+	{
+		IIfcOneDirectionRepeatFactor @TilingPattern { get; }
+		IEnumerable<IfcFillAreaStyleTileShapeSelect> @Tiles { get; }
+		IfcPositiveRatioMeasure @TilingScale { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCFILLAREASTYLETILES", 725)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IfcFillStyleSelect, IInstantiableEntity, IEqualityComparer<@IfcFillAreaStyleTiles>, IEquatable<@IfcFillAreaStyleTiles>
+	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTiles, IEqualityComparer<@IfcFillAreaStyleTiles>, IEquatable<@IfcFillAreaStyleTiles>
 	{
+		#region IIfcFillAreaStyleTiles explicit implementation
+		IIfcOneDirectionRepeatFactor IIfcFillAreaStyleTiles.TilingPattern { get { return @TilingPattern; } }	
+		IEnumerable<IfcFillAreaStyleTileShapeSelect> IIfcFillAreaStyleTiles.Tiles { get { return @Tiles; } }	
+		IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale { get { return @TilingScale; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyleTiles(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +70,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _tilingPattern = v, _tilingPattern, value,  "TilingPattern");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcFillAreaStyleTileShapeSelect> @Tiles 
 		{ 
@@ -57,8 +80,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _tiles;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure @TilingScale 
 		{ 
@@ -72,9 +94,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _tilingScale = v, _tilingScale, value,  "TilingScale");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

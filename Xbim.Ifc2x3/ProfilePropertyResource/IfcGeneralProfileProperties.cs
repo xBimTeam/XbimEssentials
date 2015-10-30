@@ -13,13 +13,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfilePropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcGeneralProfileProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcGeneralProfileProperties : IIfcProfileProperties
+	{
+		IfcMassPerLengthMeasure? @PhysicalWeight { get; }
+		IfcPositiveLengthMeasure? @Perimeter { get; }
+		IfcPositiveLengthMeasure? @MinimumPlateThickness { get; }
+		IfcPositiveLengthMeasure? @MaximumPlateThickness { get; }
+		IfcAreaMeasure? @CrossSectionArea { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IFCGENERALPROFILEPROPERTIES", 648)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeneralProfileProperties : IfcProfileProperties, IInstantiableEntity, IEqualityComparer<@IfcGeneralProfileProperties>, IEquatable<@IfcGeneralProfileProperties>
+	public  partial class @IfcGeneralProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcGeneralProfileProperties, IEqualityComparer<@IfcGeneralProfileProperties>, IEquatable<@IfcGeneralProfileProperties>
 	{
+		#region IIfcGeneralProfileProperties explicit implementation
+		IfcMassPerLengthMeasure? IIfcGeneralProfileProperties.PhysicalWeight { get { return @PhysicalWeight; } }	
+		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.Perimeter { get { return @Perimeter; } }	
+		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.MinimumPlateThickness { get { return @MinimumPlateThickness; } }	
+		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.MaximumPlateThickness { get { return @MaximumPlateThickness; } }	
+		IfcAreaMeasure? IIfcGeneralProfileProperties.CrossSectionArea { get { return @CrossSectionArea; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeneralProfileProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +75,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _physicalWeight = v, _physicalWeight, value,  "PhysicalWeight");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @Perimeter 
 		{ 
@@ -62,8 +89,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _perimeter = v, _perimeter, value,  "Perimeter");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @MinimumPlateThickness 
 		{ 
@@ -77,8 +103,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _minimumPlateThickness = v, _minimumPlateThickness, value,  "MinimumPlateThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @MaximumPlateThickness 
 		{ 
@@ -92,8 +117,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _maximumPlateThickness = v, _maximumPlateThickness, value,  "MaximumPlateThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcAreaMeasure? @CrossSectionArea 
 		{ 
@@ -107,9 +131,9 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

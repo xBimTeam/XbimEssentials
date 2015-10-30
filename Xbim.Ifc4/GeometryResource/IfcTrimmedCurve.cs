@@ -43,8 +43,7 @@ namespace Xbim.Ifc4.GeometryResource
 		IEnumerable<IfcTrimmingSelect> IIfcTrimmedCurve.Trim2 { get { return @Trim2; } }	
 		bool IIfcTrimmedCurve.SenseAgreement { get { return @SenseAgreement; } }	
 		IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation { get { return @MasterRepresentation; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

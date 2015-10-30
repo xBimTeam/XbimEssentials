@@ -12,13 +12,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralConnection
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralConnection : IIfcStructuralItem
+	{
+		IIfcBoundaryCondition @AppliedCondition { get; }
+		IEnumerable<IIfcRelConnectsStructuralMember> @ConnectsStructuralMembers {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALCONNECTION", 265)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralConnection : IfcStructuralItem, IEqualityComparer<@IfcStructuralConnection>, IEquatable<@IfcStructuralConnection>
+	public abstract partial class @IfcStructuralConnection : IfcStructuralItem, IIfcStructuralConnection, IEqualityComparer<@IfcStructuralConnection>, IEquatable<@IfcStructuralConnection>
 	{
+		#region IIfcStructuralConnection explicit implementation
+		IIfcBoundaryCondition IIfcStructuralConnection.AppliedCondition { get { return @AppliedCondition; } }	
+		 
+		IEnumerable<IIfcRelConnectsStructuralMember> IIfcStructuralConnection.ConnectsStructuralMembers {  get { return @ConnectsStructuralMembers; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralConnection(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +64,9 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _appliedCondition = v, _appliedCondition, value,  "AppliedCondition");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

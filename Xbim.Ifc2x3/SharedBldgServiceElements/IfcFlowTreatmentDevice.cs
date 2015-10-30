@@ -15,17 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgServiceElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFlowTreatmentDevice
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFlowTreatmentDevice : IIfcDistributionFlowElement
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IFCFLOWTREATMENTDEVICE", 425)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowTreatmentDevice : IfcDistributionFlowElement, IInstantiableEntity, IEqualityComparer<@IfcFlowTreatmentDevice>, IEquatable<@IfcFlowTreatmentDevice>
+	public  partial class @IfcFlowTreatmentDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowTreatmentDevice, IEqualityComparer<@IfcFlowTreatmentDevice>, IEquatable<@IfcFlowTreatmentDevice>
 	{
+		#region IIfcFlowTreatmentDevice explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFlowTreatmentDevice(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

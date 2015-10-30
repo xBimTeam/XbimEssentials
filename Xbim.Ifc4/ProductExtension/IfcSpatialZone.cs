@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcSpatialZone explicit implementation
 		IfcSpatialZoneTypeEnum? IIfcSpatialZone.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -15,13 +15,51 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProcessExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcWorkControl
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcWorkControl : IIfcControl
+	{
+		IfcIdentifier @Identifier { get; }
+		IfcDateTimeSelect @CreationDate { get; }
+		IEnumerable<IIfcPerson> @Creators { get; }
+		IfcLabel? @Purpose { get; }
+		IfcTimeMeasure? @Duration { get; }
+		IfcTimeMeasure? @TotalFloat { get; }
+		IfcDateTimeSelect @StartTime { get; }
+		IfcDateTimeSelect @FinishTime { get; }
+		IfcWorkControlTypeEnum? @WorkControlType { get; }
+		IfcLabel? @UserDefinedControlType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IFCWORKCONTROL", 185)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcWorkControl : IfcControl, IEqualityComparer<@IfcWorkControl>, IEquatable<@IfcWorkControl>
+	public abstract partial class @IfcWorkControl : IfcControl, IIfcWorkControl, IEqualityComparer<@IfcWorkControl>, IEquatable<@IfcWorkControl>
 	{
+		#region IIfcWorkControl explicit implementation
+		IfcIdentifier IIfcWorkControl.Identifier { get { return @Identifier; } }	
+		IfcDateTimeSelect IIfcWorkControl.CreationDate { get { return @CreationDate; } }	
+		IEnumerable<IIfcPerson> IIfcWorkControl.Creators { get { return @Creators; } }	
+		IfcLabel? IIfcWorkControl.Purpose { get { return @Purpose; } }	
+		IfcTimeMeasure? IIfcWorkControl.Duration { get { return @Duration; } }	
+		IfcTimeMeasure? IIfcWorkControl.TotalFloat { get { return @TotalFloat; } }	
+		IfcDateTimeSelect IIfcWorkControl.StartTime { get { return @StartTime; } }	
+		IfcDateTimeSelect IIfcWorkControl.FinishTime { get { return @FinishTime; } }	
+		IfcWorkControlTypeEnum? IIfcWorkControl.WorkControlType { get { return @WorkControlType; } }	
+		IfcLabel? IIfcWorkControl.UserDefinedControlType { get { return @UserDefinedControlType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWorkControl(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -55,8 +93,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDateTimeSelect @CreationDate 
 		{ 
@@ -70,8 +107,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _creationDate = v, _creationDate, value,  "CreationDate");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcPerson> @Creators 
 		{ 
@@ -81,8 +117,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				((IPersistEntity)this).Activate(false);
 				return _creators;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Purpose 
 		{ 
@@ -96,8 +131,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcTimeMeasure? @Duration 
 		{ 
@@ -111,8 +145,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _duration = v, _duration, value,  "Duration");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcTimeMeasure? @TotalFloat 
 		{ 
@@ -126,8 +159,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _totalFloat = v, _totalFloat, value,  "TotalFloat");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDateTimeSelect @StartTime 
 		{ 
@@ -141,8 +173,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDateTimeSelect @FinishTime 
 		{ 
@@ -156,8 +187,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _finishTime = v, _finishTime, value,  "FinishTime");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcWorkControlTypeEnum? @WorkControlType 
 		{ 
@@ -171,8 +201,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _workControlType = v, _workControlType, value,  "WorkControlType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedControlType 
 		{ 
@@ -186,9 +215,9 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			{
 				SetValue( v =>  _userDefinedControlType = v, _userDefinedControlType, value,  "UserDefinedControlType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

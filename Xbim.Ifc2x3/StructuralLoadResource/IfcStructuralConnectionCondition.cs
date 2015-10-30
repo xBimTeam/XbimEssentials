@@ -13,13 +13,33 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralLoadResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralConnectionCondition
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralConnectionCondition : IPersistEntity
+	{
+		IfcLabel? @Name { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IFCSTRUCTURALCONNECTIONCONDITION", 639)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralConnectionCondition : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcStructuralConnectionCondition>, IEquatable<@IfcStructuralConnectionCondition>
+	public abstract partial class @IfcStructuralConnectionCondition : IPersistEntity, INotifyPropertyChanged, IIfcStructuralConnectionCondition, IEqualityComparer<@IfcStructuralConnectionCondition>, IEquatable<@IfcStructuralConnectionCondition>
 	{
+		#region IIfcStructuralConnectionCondition explicit implementation
+		IfcLabel? IIfcStructuralConnectionCondition.Name { get { return @Name; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -99,9 +119,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

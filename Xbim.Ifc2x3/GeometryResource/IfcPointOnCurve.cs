@@ -12,13 +12,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPointOnCurve
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPointOnCurve : IIfcPoint
+	{
+		IIfcCurve @BasisCurve { get; }
+		IfcParameterValue @PointParameter { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCPOINTONCURVE", 654)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPointOnCurve : IfcPoint, IInstantiableEntity, IEqualityComparer<@IfcPointOnCurve>, IEquatable<@IfcPointOnCurve>
+	public  partial class @IfcPointOnCurve : IfcPoint, IInstantiableEntity, IIfcPointOnCurve, IEqualityComparer<@IfcPointOnCurve>, IEquatable<@IfcPointOnCurve>
 	{
+		#region IIfcPointOnCurve explicit implementation
+		IIfcCurve IIfcPointOnCurve.BasisCurve { get { return @BasisCurve; } }	
+		IfcParameterValue IIfcPointOnCurve.PointParameter { get { return @PointParameter; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPointOnCurve(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +65,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcParameterValue @PointParameter 
 		{ 
@@ -58,9 +79,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _pointParameter = v, _pointParameter, value,  "PointParameter");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

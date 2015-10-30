@@ -13,13 +13,37 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationOrganizationResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLightDistributionData
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLightDistributionData : IPersistEntity
+	{
+		IfcPlaneAngleMeasure @MainPlaneAngle { get; }
+		IEnumerable<IfcPlaneAngleMeasure> @SecondaryPlaneAngle { get; }
+		IEnumerable<IfcLuminousIntensityDistributionMeasure> @LuminousIntensity { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IFCLIGHTDISTRIBUTIONDATA", 753)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightDistributionData : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcLightDistributionData>, IEquatable<@IfcLightDistributionData>
+	public  partial class @IfcLightDistributionData : INotifyPropertyChanged, IInstantiableEntity, IIfcLightDistributionData, IEqualityComparer<@IfcLightDistributionData>, IEquatable<@IfcLightDistributionData>
 	{
+		#region IIfcLightDistributionData explicit implementation
+		IfcPlaneAngleMeasure IIfcLightDistributionData.MainPlaneAngle { get { return @MainPlaneAngle; } }	
+		IEnumerable<IfcPlaneAngleMeasure> IIfcLightDistributionData.SecondaryPlaneAngle { get { return @SecondaryPlaneAngle; } }	
+		IEnumerable<IfcLuminousIntensityDistributionMeasure> IIfcLightDistributionData.LuminousIntensity { get { return @LuminousIntensity; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -103,8 +127,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _mainPlaneAngle = v, _mainPlaneAngle, value,  "MainPlaneAngle");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public ItemSet<IfcPlaneAngleMeasure> @SecondaryPlaneAngle 
 		{ 
@@ -114,8 +137,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				((IPersistEntity)this).Activate(false);
 				return _secondaryPlaneAngle;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public ItemSet<IfcLuminousIntensityDistributionMeasure> @LuminousIntensity 
 		{ 
@@ -125,9 +147,9 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				((IPersistEntity)this).Activate(false);
 				return _luminousIntensity;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

@@ -12,13 +12,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.QuantityResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPhysicalComplexQuantity
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPhysicalComplexQuantity : IIfcPhysicalQuantity
+	{
+		IEnumerable<IIfcPhysicalQuantity> @HasQuantities { get; }
+		IfcLabel @Discrimination { get; }
+		IfcLabel? @Quality { get; }
+		IfcLabel? @Usage { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IFCPHYSICALCOMPLEXQUANTITY", 604)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPhysicalComplexQuantity : IfcPhysicalQuantity, IInstantiableEntity, IEqualityComparer<@IfcPhysicalComplexQuantity>, IEquatable<@IfcPhysicalComplexQuantity>
+	public  partial class @IfcPhysicalComplexQuantity : IfcPhysicalQuantity, IInstantiableEntity, IIfcPhysicalComplexQuantity, IEqualityComparer<@IfcPhysicalComplexQuantity>, IEquatable<@IfcPhysicalComplexQuantity>
 	{
+		#region IIfcPhysicalComplexQuantity explicit implementation
+		IEnumerable<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities { get { return @HasQuantities; } }	
+		IfcLabel IIfcPhysicalComplexQuantity.Discrimination { get { return @Discrimination; } }	
+		IfcLabel? IIfcPhysicalComplexQuantity.Quality { get { return @Quality; } }	
+		IfcLabel? IIfcPhysicalComplexQuantity.Usage { get { return @Usage; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPhysicalComplexQuantity(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +69,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 				((IPersistEntity)this).Activate(false);
 				return _hasQuantities;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel @Discrimination 
 		{ 
@@ -58,8 +83,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				SetValue( v =>  _discrimination = v, _discrimination, value,  "Discrimination");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Quality 
 		{ 
@@ -73,8 +97,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				SetValue( v =>  _quality = v, _quality, value,  "Quality");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Usage 
 		{ 
@@ -88,9 +111,9 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				SetValue( v =>  _usage = v, _usage, value,  "Usage");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

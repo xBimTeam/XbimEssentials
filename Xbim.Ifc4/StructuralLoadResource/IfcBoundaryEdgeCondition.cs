@@ -46,8 +46,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		IfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthX { get { return @RotationalStiffnessByLengthX; } }	
 		IfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthY { get { return @RotationalStiffnessByLengthY; } }	
 		IfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthZ { get { return @RotationalStiffnessByLengthZ; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

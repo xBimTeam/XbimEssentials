@@ -13,13 +13,33 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDefinitionResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextureVertex
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextureVertex : IPersistEntity
+	{
+		IEnumerable<IfcParameterValue> @Coordinates { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IFCTEXTUREVERTEX", 735)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureVertex : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcTextureVertex>, IEquatable<@IfcTextureVertex>
+	public  partial class @IfcTextureVertex : INotifyPropertyChanged, IInstantiableEntity, IIfcTextureVertex, IEqualityComparer<@IfcTextureVertex>, IEquatable<@IfcTextureVertex>
 	{
+		#region IIfcTextureVertex explicit implementation
+		IEnumerable<IfcParameterValue> IIfcTextureVertex.Coordinates { get { return @Coordinates; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -96,9 +116,9 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				((IPersistEntity)this).Activate(false);
 				return _coordinates;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

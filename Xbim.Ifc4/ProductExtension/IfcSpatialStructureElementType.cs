@@ -33,8 +33,7 @@ namespace Xbim.Ifc4.ProductExtension
 	public abstract partial class @IfcSpatialStructureElementType : IfcSpatialElementType, IIfcSpatialStructureElementType, IEqualityComparer<@IfcSpatialStructureElementType>, IEquatable<@IfcSpatialStructureElementType>
 	{
 		#region IIfcSpatialStructureElementType explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcCylindricalSurface explicit implementation
 		IfcPositiveLengthMeasure IIfcCylindricalSurface.Radius { get { return @Radius; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

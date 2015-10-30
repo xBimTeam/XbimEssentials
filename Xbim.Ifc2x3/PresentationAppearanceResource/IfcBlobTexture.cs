@@ -13,13 +13,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBlobTexture
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBlobTexture : IIfcSurfaceTexture
+	{
+		IfcIdentifier @RasterFormat { get; }
+		bool @RasterCode { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCBLOBTEXTURE", 723)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IEqualityComparer<@IfcBlobTexture>, IEquatable<@IfcBlobTexture>
+	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcBlobTexture, IEqualityComparer<@IfcBlobTexture>, IEquatable<@IfcBlobTexture>
 	{
+		#region IIfcBlobTexture explicit implementation
+		IfcIdentifier IIfcBlobTexture.RasterFormat { get { return @RasterFormat; } }	
+		bool IIfcBlobTexture.RasterCode { get { return @RasterCode; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBlobTexture(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +66,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _rasterFormat = v, _rasterFormat, value,  "RasterFormat");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @RasterCode 
 		{ 
@@ -59,9 +80,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _rasterCode = v, _rasterCode, value,  "RasterCode");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -14,13 +14,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedFacilitiesElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcServiceLife
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcServiceLife : IIfcControl
+	{
+		IfcServiceLifeTypeEnum @ServiceLifeType { get; }
+		IfcTimeMeasure @ServiceLifeDuration { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IFCSERVICELIFE", 769)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IEqualityComparer<@IfcServiceLife>, IEquatable<@IfcServiceLife>
+	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IIfcServiceLife, IEqualityComparer<@IfcServiceLife>, IEquatable<@IfcServiceLife>
 	{
+		#region IIfcServiceLife explicit implementation
+		IfcServiceLifeTypeEnum IIfcServiceLife.ServiceLifeType { get { return @ServiceLifeType; } }	
+		IfcTimeMeasure IIfcServiceLife.ServiceLifeDuration { get { return @ServiceLifeDuration; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcServiceLife(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +67,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _serviceLifeType = v, _serviceLifeType, value,  "ServiceLifeType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcTimeMeasure @ServiceLifeDuration 
 		{ 
@@ -60,9 +81,9 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			{
 				SetValue( v =>  _serviceLifeDuration = v, _serviceLifeDuration, value,  "ServiceLifeDuration");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

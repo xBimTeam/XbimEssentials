@@ -11,17 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPreDefinedTextFont
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPreDefinedTextFont : IIfcPreDefinedItem, IfcTextFontSelect
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IFCPREDEFINEDTEXTFONT", 504)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedTextFont : IfcPreDefinedItem, IfcTextFontSelect, IEqualityComparer<@IfcPreDefinedTextFont>, IEquatable<@IfcPreDefinedTextFont>
+	public abstract partial class @IfcPreDefinedTextFont : IfcPreDefinedItem, IIfcPreDefinedTextFont, IEqualityComparer<@IfcPreDefinedTextFont>, IEquatable<@IfcPreDefinedTextFont>
 	{
+		#region IIfcPreDefinedTextFont explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPreDefinedTextFont(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

@@ -15,17 +15,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDimensioningResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDimensionCurve
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDimensionCurve : IIfcAnnotationCurveOccurrence
+	{
+		IEnumerable<IIfcTerminatorSymbol> @AnnotatedBySymbols {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IFCDIMENSIONCURVE", 742)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IEqualityComparer<@IfcDimensionCurve>, IEquatable<@IfcDimensionCurve>
+	public  partial class @IfcDimensionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IIfcDimensionCurve, IEqualityComparer<@IfcDimensionCurve>, IEquatable<@IfcDimensionCurve>
 	{
+		#region IIfcDimensionCurve explicit implementation
+		 
+		IEnumerable<IIfcTerminatorSymbol> IIfcDimensionCurve.AnnotatedBySymbols {  get { return @AnnotatedBySymbols; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDimensionCurve(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

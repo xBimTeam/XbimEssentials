@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTConstant { get { return @DeltaTConstant; } }	
 		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTY { get { return @DeltaTY; } }	
 		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTZ { get { return @DeltaTZ; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

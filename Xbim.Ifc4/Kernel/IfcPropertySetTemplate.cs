@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.Kernel
 		IfcPropertySetTemplateTypeEnum? IIfcPropertySetTemplate.TemplateType { get { return @TemplateType; } }	
 		IfcIdentifier? IIfcPropertySetTemplate.ApplicableEntity { get { return @ApplicableEntity; } }	
 		IEnumerable<IIfcPropertyTemplate> IIfcPropertySetTemplate.HasPropertyTemplates { get { return @HasPropertyTemplates; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelDefinesByTemplate> IIfcPropertySetTemplate.Defines {  get { return @Defines; } }
 		#endregion
 

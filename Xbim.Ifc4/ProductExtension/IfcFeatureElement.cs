@@ -33,8 +33,7 @@ namespace Xbim.Ifc4.ProductExtension
 	public abstract partial class @IfcFeatureElement : IfcElement, IIfcFeatureElement, IEqualityComparer<@IfcFeatureElement>, IEquatable<@IfcFeatureElement>
 	{
 		#region IIfcFeatureElement explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

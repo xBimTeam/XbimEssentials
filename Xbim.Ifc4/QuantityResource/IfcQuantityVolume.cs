@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.QuantityResource
 		#region IIfcQuantityVolume explicit implementation
 		IfcVolumeMeasure IIfcQuantityVolume.VolumeValue { get { return @VolumeValue; } }	
 		IfcLabel? IIfcQuantityVolume.Formula { get { return @Formula; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

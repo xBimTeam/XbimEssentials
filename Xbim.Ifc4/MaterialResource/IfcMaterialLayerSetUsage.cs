@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.MaterialResource
 		IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense { get { return @DirectionSense; } }	
 		IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine { get { return @OffsetFromReferenceLine; } }	
 		IfcPositiveLengthMeasure? IIfcMaterialLayerSetUsage.ReferenceExtent { get { return @ReferenceExtent; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

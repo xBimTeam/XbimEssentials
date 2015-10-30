@@ -15,17 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFurnishingElementType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFurnishingElementType : IIfcElementType
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCFURNISHINGELEMENTTYPE", 358)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFurnishingElementType : IfcElementType, IInstantiableEntity, IEqualityComparer<@IfcFurnishingElementType>, IEquatable<@IfcFurnishingElementType>
+	public  partial class @IfcFurnishingElementType : IfcElementType, IInstantiableEntity, IIfcFurnishingElementType, IEqualityComparer<@IfcFurnishingElementType>, IEquatable<@IfcFurnishingElementType>
 	{
+		#region IIfcFurnishingElementType explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFurnishingElementType(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

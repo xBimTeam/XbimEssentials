@@ -13,13 +13,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfilePropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralSteelProfileProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralSteelProfileProperties : IIfcStructuralProfileProperties
+	{
+		IfcAreaMeasure? @ShearAreaZ { get; }
+		IfcAreaMeasure? @ShearAreaY { get; }
+		IfcPositiveRatioMeasure? @PlasticShapeFactorY { get; }
+		IfcPositiveRatioMeasure? @PlasticShapeFactorZ { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IFCSTRUCTURALSTEELPROFILEPROPERTIES", 692)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSteelProfileProperties : IfcStructuralProfileProperties, IInstantiableEntity, IEqualityComparer<@IfcStructuralSteelProfileProperties>, IEquatable<@IfcStructuralSteelProfileProperties>
+	public  partial class @IfcStructuralSteelProfileProperties : IfcStructuralProfileProperties, IInstantiableEntity, IIfcStructuralSteelProfileProperties, IEqualityComparer<@IfcStructuralSteelProfileProperties>, IEquatable<@IfcStructuralSteelProfileProperties>
 	{
+		#region IIfcStructuralSteelProfileProperties explicit implementation
+		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaZ { get { return @ShearAreaZ; } }	
+		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaY { get { return @ShearAreaY; } }	
+		IfcPositiveRatioMeasure? IIfcStructuralSteelProfileProperties.PlasticShapeFactorY { get { return @PlasticShapeFactorY; } }	
+		IfcPositiveRatioMeasure? IIfcStructuralSteelProfileProperties.PlasticShapeFactorZ { get { return @PlasticShapeFactorZ; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralSteelProfileProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +72,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _shearAreaZ = v, _shearAreaZ, value,  "ShearAreaZ");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(25, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcAreaMeasure? @ShearAreaY 
 		{ 
@@ -61,8 +86,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _shearAreaY = v, _shearAreaY, value,  "ShearAreaY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(26, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @PlasticShapeFactorY 
 		{ 
@@ -76,8 +100,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _plasticShapeFactorY = v, _plasticShapeFactorY, value,  "PlasticShapeFactorY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(27, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @PlasticShapeFactorZ 
 		{ 
@@ -91,9 +114,9 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _plasticShapeFactorZ = v, _plasticShapeFactorZ, value,  "PlasticShapeFactorZ");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

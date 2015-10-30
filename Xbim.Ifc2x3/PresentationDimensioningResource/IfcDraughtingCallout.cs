@@ -12,13 +12,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDimensioningResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDraughtingCallout
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDraughtingCallout : IIfcGeometricRepresentationItem
+	{
+		IEnumerable<IfcDraughtingCalloutElement> @Contents { get; }
+		IEnumerable<IIfcDraughtingCalloutRelationship> @IsRelatedFromCallout {  get; }
+		IEnumerable<IIfcDraughtingCalloutRelationship> @IsRelatedToCallout {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IFCDRAUGHTINGCALLOUT", 222)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcDraughtingCallout>, IEquatable<@IfcDraughtingCallout>
+	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDraughtingCallout, IEqualityComparer<@IfcDraughtingCallout>, IEquatable<@IfcDraughtingCallout>
 	{
+		#region IIfcDraughtingCallout explicit implementation
+		IEnumerable<IfcDraughtingCalloutElement> IIfcDraughtingCallout.Contents { get { return @Contents; } }	
+		 
+		IEnumerable<IIfcDraughtingCalloutRelationship> IIfcDraughtingCallout.IsRelatedFromCallout {  get { return @IsRelatedFromCallout; } }
+		IEnumerable<IIfcDraughtingCalloutRelationship> IIfcDraughtingCallout.IsRelatedToCallout {  get { return @IsRelatedToCallout; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDraughtingCallout(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,9 +63,9 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				((IPersistEntity)this).Activate(false);
 				return _contents;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

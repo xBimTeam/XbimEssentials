@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.Kernel
 		#region IIfcRelDefinesByTemplate explicit implementation
 		IEnumerable<IIfcPropertySetDefinition> IIfcRelDefinesByTemplate.RelatedPropertySets { get { return @RelatedPropertySets; } }	
 		IIfcPropertySetTemplate IIfcRelDefinesByTemplate.RelatingTemplate { get { return @RelatingTemplate; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

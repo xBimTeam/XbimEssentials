@@ -12,13 +12,33 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDefinitionResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextureCoordinate
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextureCoordinate : IPersistEntity
+	{
+		IEnumerable<IIfcAnnotationSurface> @AnnotatedSurface {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IFCTEXTURECOORDINATE", 732)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTextureCoordinate : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcTextureCoordinate>, IEquatable<@IfcTextureCoordinate>
+	public abstract partial class @IfcTextureCoordinate : IPersistEntity, INotifyPropertyChanged, IIfcTextureCoordinate, IEqualityComparer<@IfcTextureCoordinate>, IEquatable<@IfcTextureCoordinate>
 	{
+		#region IIfcTextureCoordinate explicit implementation
+		 
+		IEnumerable<IIfcAnnotationSurface> IIfcTextureCoordinate.AnnotatedSurface {  get { return @AnnotatedSurface; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -79,6 +99,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		internal IfcTextureCoordinate(IModel model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

@@ -12,13 +12,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSymbolStyle
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSymbolStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
+	{
+		IfcSymbolStyleSelect @StyleOfSymbol { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCSYMBOLSTYLE", 729)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSymbolStyle : IfcPresentationStyle, IfcPresentationStyleSelect, IInstantiableEntity, IEqualityComparer<@IfcSymbolStyle>, IEquatable<@IfcSymbolStyle>
+	public  partial class @IfcSymbolStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSymbolStyle, IEqualityComparer<@IfcSymbolStyle>, IEquatable<@IfcSymbolStyle>
 	{
+		#region IIfcSymbolStyle explicit implementation
+		IfcSymbolStyleSelect IIfcSymbolStyle.StyleOfSymbol { get { return @StyleOfSymbol; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSymbolStyle(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +62,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _styleOfSymbol = v, _styleOfSymbol, value,  "StyleOfSymbol");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

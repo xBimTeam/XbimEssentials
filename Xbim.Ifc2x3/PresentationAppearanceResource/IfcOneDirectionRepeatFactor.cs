@@ -12,13 +12,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcOneDirectionRepeatFactor
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcOneDirectionRepeatFactor : IIfcGeometricRepresentationItem, IfcHatchLineDistanceSelect
+	{
+		IIfcVector @RepeatFactor { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCONEDIRECTIONREPEATFACTOR", 32)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOneDirectionRepeatFactor : IfcGeometricRepresentationItem, IfcHatchLineDistanceSelect, IInstantiableEntity, IEqualityComparer<@IfcOneDirectionRepeatFactor>, IEquatable<@IfcOneDirectionRepeatFactor>
+	public  partial class @IfcOneDirectionRepeatFactor : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcOneDirectionRepeatFactor, IEqualityComparer<@IfcOneDirectionRepeatFactor>, IEquatable<@IfcOneDirectionRepeatFactor>
 	{
+		#region IIfcOneDirectionRepeatFactor explicit implementation
+		IIfcVector IIfcOneDirectionRepeatFactor.RepeatFactor { get { return @RepeatFactor; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOneDirectionRepeatFactor(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +62,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _repeatFactor = v, _repeatFactor, value,  "RepeatFactor");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IIfcStructuralSurfaceMemberVarying, IEqualityComparer<@IfcStructuralSurfaceMemberVarying>, IEquatable<@IfcStructuralSurfaceMemberVarying>
 	{
 		#region IIfcStructuralSurfaceMemberVarying explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

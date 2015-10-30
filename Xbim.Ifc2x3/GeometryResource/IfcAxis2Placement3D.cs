@@ -11,13 +11,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAxis2Placement3D
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAxis2Placement3D : IIfcPlacement, IfcAxis2Placement
+	{
+		IIfcDirection @Axis { get; }
+		IIfcDirection @RefDirection { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCAXIS2PLACEMENT3D", 448)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAxis2Placement3D : IfcPlacement, IfcAxis2Placement, IInstantiableEntity, IEqualityComparer<@IfcAxis2Placement3D>, IEquatable<@IfcAxis2Placement3D>
+	public  partial class @IfcAxis2Placement3D : IfcPlacement, IInstantiableEntity, IIfcAxis2Placement3D, IEqualityComparer<@IfcAxis2Placement3D>, IEquatable<@IfcAxis2Placement3D>
 	{
+		#region IIfcAxis2Placement3D explicit implementation
+		IIfcDirection IIfcAxis2Placement3D.Axis { get { return @Axis; } }	
+		IIfcDirection IIfcAxis2Placement3D.RefDirection { get { return @RefDirection; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAxis2Placement3D(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,8 +64,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _axis = v, _axis, value,  "Axis");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDirection @RefDirection 
 		{ 
@@ -57,9 +78,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _refDirection = v, _refDirection, value,  "RefDirection");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

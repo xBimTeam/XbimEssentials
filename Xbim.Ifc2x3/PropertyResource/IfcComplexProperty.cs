@@ -12,13 +12,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcComplexProperty
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcComplexProperty : IIfcProperty
+	{
+		IfcIdentifier @UsageName { get; }
+		IEnumerable<IIfcProperty> @HasProperties { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IFCCOMPLEXPROPERTY", 379)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcComplexProperty : IfcProperty, IInstantiableEntity, IEqualityComparer<@IfcComplexProperty>, IEquatable<@IfcComplexProperty>
+	public  partial class @IfcComplexProperty : IfcProperty, IInstantiableEntity, IIfcComplexProperty, IEqualityComparer<@IfcComplexProperty>, IEquatable<@IfcComplexProperty>
 	{
+		#region IIfcComplexProperty explicit implementation
+		IfcIdentifier IIfcComplexProperty.UsageName { get { return @UsageName; } }	
+		IEnumerable<IIfcProperty> IIfcComplexProperty.HasProperties { get { return @HasProperties; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcComplexProperty(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +66,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				SetValue( v =>  _usageName = v, _usageName, value,  "UsageName");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcProperty> @HasProperties 
@@ -56,9 +77,9 @@ namespace Xbim.Ifc2x3.PropertyResource
 				((IPersistEntity)this).Activate(false);
 				return _hasProperties;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

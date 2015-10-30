@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameDepth { get { return @FrameDepth; } }	
 		IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameThickness { get { return @FrameThickness; } }	
 		IIfcShapeAspect IIfcPermeableCoveringProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

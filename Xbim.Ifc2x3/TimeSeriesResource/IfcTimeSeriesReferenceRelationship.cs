@@ -13,13 +13,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.TimeSeriesResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTimeSeriesReferenceRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTimeSeriesReferenceRelationship : IPersistEntity
+	{
+		IIfcTimeSeries @ReferencedTimeSeries { get; }
+		IEnumerable<IfcDocumentSelect> @TimeSeriesReferences { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IFCTIMESERIESREFERENCERELATIONSHIP", 673)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimeSeriesReferenceRelationship : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcTimeSeriesReferenceRelationship>, IEquatable<@IfcTimeSeriesReferenceRelationship>
+	public  partial class @IfcTimeSeriesReferenceRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcTimeSeriesReferenceRelationship, IEqualityComparer<@IfcTimeSeriesReferenceRelationship>, IEquatable<@IfcTimeSeriesReferenceRelationship>
 	{
+		#region IIfcTimeSeriesReferenceRelationship explicit implementation
+		IIfcTimeSeries IIfcTimeSeriesReferenceRelationship.ReferencedTimeSeries { get { return @ReferencedTimeSeries; } }	
+		IEnumerable<IfcDocumentSelect> IIfcTimeSeriesReferenceRelationship.TimeSeriesReferences { get { return @TimeSeriesReferences; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -102,8 +124,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			{
 				SetValue( v =>  _referencedTimeSeries = v, _referencedTimeSeries, value,  "ReferencedTimeSeries");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcDocumentSelect> @TimeSeriesReferences 
 		{ 
@@ -113,9 +134,9 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				((IPersistEntity)this).Activate(false);
 				return _timeSeriesReferences;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

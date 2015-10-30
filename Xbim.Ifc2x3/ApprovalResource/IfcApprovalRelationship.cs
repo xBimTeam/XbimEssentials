@@ -13,14 +13,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ApprovalResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcApprovalRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcApprovalRelationship : IPersistEntity
+	{
+		IIfcApproval @RelatedApproval { get; }
+		IIfcApproval @RelatingApproval { get; }
+		IfcText? @Description { get; }
+		IfcLabel @Name { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ApprovalResource
 {
 	[IndexedClass]
 	[ExpressType("IFCAPPROVALRELATIONSHIP", 552)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApprovalRelationship : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcApprovalRelationship>, IEquatable<@IfcApprovalRelationship>
+	public  partial class @IfcApprovalRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalRelationship, IEqualityComparer<@IfcApprovalRelationship>, IEquatable<@IfcApprovalRelationship>
 	{
+		#region IIfcApprovalRelationship explicit implementation
+		IIfcApproval IIfcApprovalRelationship.RelatedApproval { get { return @RelatedApproval; } }	
+		IIfcApproval IIfcApprovalRelationship.RelatingApproval { get { return @RelatingApproval; } }	
+		IfcText? IIfcApprovalRelationship.Description { get { return @Description; } }	
+		IfcLabel IIfcApprovalRelationship.Name { get { return @Name; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -104,8 +130,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			{
 				SetValue( v =>  _relatedApproval = v, _relatedApproval, value,  "RelatedApproval");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcApproval @RelatingApproval 
@@ -120,8 +145,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			{
 				SetValue( v =>  _relatingApproval = v, _relatingApproval, value,  "RelatingApproval");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -135,8 +159,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel @Name 
 		{ 
@@ -150,9 +173,9 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

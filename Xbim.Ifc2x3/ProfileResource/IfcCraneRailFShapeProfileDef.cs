@@ -13,13 +13,49 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfileResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCraneRailFShapeProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCraneRailFShapeProfileDef : IIfcParameterizedProfileDef
+	{
+		IfcPositiveLengthMeasure @OverallHeight { get; }
+		IfcPositiveLengthMeasure @HeadWidth { get; }
+		IfcPositiveLengthMeasure? @Radius { get; }
+		IfcPositiveLengthMeasure @HeadDepth2 { get; }
+		IfcPositiveLengthMeasure @HeadDepth3 { get; }
+		IfcPositiveLengthMeasure @WebThickness { get; }
+		IfcPositiveLengthMeasure @BaseDepth1 { get; }
+		IfcPositiveLengthMeasure @BaseDepth2 { get; }
+		IfcPositiveLengthMeasure? @CentreOfGravityInY { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IFCCRANERAILFSHAPEPROFILEDEF", 112)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCraneRailFShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IEqualityComparer<@IfcCraneRailFShapeProfileDef>, IEquatable<@IfcCraneRailFShapeProfileDef>
+	public  partial class @IfcCraneRailFShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCraneRailFShapeProfileDef, IEqualityComparer<@IfcCraneRailFShapeProfileDef>, IEquatable<@IfcCraneRailFShapeProfileDef>
 	{
+		#region IIfcCraneRailFShapeProfileDef explicit implementation
+		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.OverallHeight { get { return @OverallHeight; } }	
+		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadWidth { get { return @HeadWidth; } }	
+		IfcPositiveLengthMeasure? IIfcCraneRailFShapeProfileDef.Radius { get { return @Radius; } }	
+		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadDepth2 { get { return @HeadDepth2; } }	
+		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadDepth3 { get { return @HeadDepth3; } }	
+		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.WebThickness { get { return @WebThickness; } }	
+		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.BaseDepth1 { get { return @BaseDepth1; } }	
+		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.BaseDepth2 { get { return @BaseDepth2; } }	
+		IfcPositiveLengthMeasure? IIfcCraneRailFShapeProfileDef.CentreOfGravityInY { get { return @CentreOfGravityInY; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCraneRailFShapeProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -51,8 +87,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @HeadWidth 
 		{ 
@@ -66,8 +101,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _headWidth = v, _headWidth, value,  "HeadWidth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @Radius 
 		{ 
@@ -81,8 +115,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _radius = v, _radius, value,  "Radius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @HeadDepth2 
 		{ 
@@ -96,8 +129,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _headDepth2 = v, _headDepth2, value,  "HeadDepth2");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @HeadDepth3 
 		{ 
@@ -111,8 +143,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _headDepth3 = v, _headDepth3, value,  "HeadDepth3");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @WebThickness 
 		{ 
@@ -126,8 +157,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @BaseDepth1 
 		{ 
@@ -141,8 +171,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _baseDepth1 = v, _baseDepth1, value,  "BaseDepth1");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @BaseDepth2 
 		{ 
@@ -156,8 +185,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _baseDepth2 = v, _baseDepth2, value,  "BaseDepth2");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @CentreOfGravityInY 
 		{ 
@@ -171,9 +199,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _centreOfGravityInY = v, _centreOfGravityInY, value,  "CentreOfGravityInY");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

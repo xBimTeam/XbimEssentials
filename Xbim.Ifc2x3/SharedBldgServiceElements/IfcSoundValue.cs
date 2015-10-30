@@ -15,13 +15,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgServiceElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSoundValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSoundValue : IIfcPropertySetDefinition
+	{
+		IIfcTimeSeries @SoundLevelTimeSeries { get; }
+		IfcFrequencyMeasure @Frequency { get; }
+		IfcDerivedMeasureValue @SoundLevelSingleValue { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IFCSOUNDVALUE", 266)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSoundValue : IfcPropertySetDefinition, IInstantiableEntity, IEqualityComparer<@IfcSoundValue>, IEquatable<@IfcSoundValue>
+	public  partial class @IfcSoundValue : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundValue, IEqualityComparer<@IfcSoundValue>, IEquatable<@IfcSoundValue>
 	{
+		#region IIfcSoundValue explicit implementation
+		IIfcTimeSeries IIfcSoundValue.SoundLevelTimeSeries { get { return @SoundLevelTimeSeries; } }	
+		IfcFrequencyMeasure IIfcSoundValue.Frequency { get { return @Frequency; } }	
+		IfcDerivedMeasureValue IIfcSoundValue.SoundLevelSingleValue { get { return @SoundLevelSingleValue; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSoundValue(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +71,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _soundLevelTimeSeries = v, _soundLevelTimeSeries, value,  "SoundLevelTimeSeries");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcFrequencyMeasure @Frequency 
 		{ 
@@ -62,8 +85,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _frequency = v, _frequency, value,  "Frequency");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDerivedMeasureValue @SoundLevelSingleValue 
 		{ 
@@ -77,9 +99,9 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			{
 				SetValue( v =>  _soundLevelSingleValue = v, _soundLevelSingleValue, value,  "SoundLevelSingleValue");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

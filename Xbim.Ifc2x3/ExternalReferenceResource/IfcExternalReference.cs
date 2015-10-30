@@ -15,14 +15,38 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ExternalReferenceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcExternalReference
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcExternalReference : IPersistEntity, IfcLightDistributionDataSourceSelect, IfcObjectReferenceSelect
+	{
+		IfcLabel? @Location { get; }
+		IfcIdentifier? @ItemReference { get; }
+		IfcLabel? @Name { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCEXTERNALREFERENCE", 133)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcExternalReference : IPersistEntity, INotifyPropertyChanged, IfcLightDistributionDataSourceSelect, IfcObjectReferenceSelect, IEqualityComparer<@IfcExternalReference>, IEquatable<@IfcExternalReference>
+	public abstract partial class @IfcExternalReference : IPersistEntity, INotifyPropertyChanged, IIfcExternalReference, IEqualityComparer<@IfcExternalReference>, IEquatable<@IfcExternalReference>
 	{
+		#region IIfcExternalReference explicit implementation
+		IfcLabel? IIfcExternalReference.Location { get { return @Location; } }	
+		IfcIdentifier? IIfcExternalReference.ItemReference { get { return @ItemReference; } }	
+		IfcLabel? IIfcExternalReference.Name { get { return @Name; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -104,8 +128,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _location = v, _location, value,  "Location");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcIdentifier? @ItemReference 
 		{ 
@@ -119,8 +142,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _itemReference = v, _itemReference, value,  "ItemReference");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Name 
 		{ 
@@ -134,9 +156,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

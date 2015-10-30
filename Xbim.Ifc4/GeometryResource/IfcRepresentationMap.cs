@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#region IIfcRepresentationMap explicit implementation
 		IfcAxis2Placement IIfcRepresentationMap.MappingOrigin { get { return @MappingOrigin; } }	
 		IIfcRepresentation IIfcRepresentationMap.MappedRepresentation { get { return @MappedRepresentation; } }	
-	
-	 
+		 
 		IEnumerable<IIfcShapeAspect> IIfcRepresentationMap.HasShapeAspects {  get { return @HasShapeAspects; } }
 		IEnumerable<IIfcMappedItem> IIfcRepresentationMap.MapUsage {  get { return @MapUsage; } }
 		#endregion

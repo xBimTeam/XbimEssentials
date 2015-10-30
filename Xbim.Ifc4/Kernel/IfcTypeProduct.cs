@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.Kernel
 		#region IIfcTypeProduct explicit implementation
 		IEnumerable<IIfcRepresentationMap> IIfcTypeProduct.RepresentationMaps { get { return @RepresentationMaps; } }	
 		IfcLabel? IIfcTypeProduct.Tag { get { return @Tag; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelAssignsToProduct> IIfcTypeProduct.ReferencedBy {  get { return @ReferencedBy; } }
 		#endregion
 

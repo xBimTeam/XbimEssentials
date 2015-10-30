@@ -33,8 +33,7 @@ namespace Xbim.Ifc4.TopologyResource
 	public  partial class @IfcVertex : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcVertex, IEqualityComparer<@IfcVertex>, IEquatable<@IfcVertex>
 	{
 		#region IIfcVertex explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

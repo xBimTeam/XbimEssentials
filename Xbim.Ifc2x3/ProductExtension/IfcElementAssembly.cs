@@ -15,13 +15,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcElementAssembly
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcElementAssembly : IIfcElement
+	{
+		IfcAssemblyPlaceEnum? @AssemblyPlace { get; }
+		IfcElementAssemblyTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCELEMENTASSEMBLY", 18)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElementAssembly : IfcElement, IInstantiableEntity, IEqualityComparer<@IfcElementAssembly>, IEquatable<@IfcElementAssembly>
+	public  partial class @IfcElementAssembly : IfcElement, IInstantiableEntity, IIfcElementAssembly, IEqualityComparer<@IfcElementAssembly>, IEquatable<@IfcElementAssembly>
 	{
+		#region IIfcElementAssembly explicit implementation
+		IfcAssemblyPlaceEnum? IIfcElementAssembly.AssemblyPlace { get { return @AssemblyPlace; } }	
+		IfcElementAssemblyTypeEnum IIfcElementAssembly.PredefinedType { get { return @PredefinedType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElementAssembly(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +68,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _assemblyPlace = v, _assemblyPlace, value,  "AssemblyPlace");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcElementAssemblyTypeEnum @PredefinedType 
 		{ 
@@ -61,9 +82,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

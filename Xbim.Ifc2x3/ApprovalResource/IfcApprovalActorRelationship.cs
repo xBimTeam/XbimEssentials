@@ -13,14 +13,38 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ApprovalResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcApprovalActorRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcApprovalActorRelationship : IPersistEntity
+	{
+		IfcActorSelect @Actor { get; }
+		IIfcApproval @Approval { get; }
+		IIfcActorRole @Role { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ApprovalResource
 {
 	[IndexedClass]
 	[ExpressType("IFCAPPROVALACTORRELATIONSHIP", 442)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApprovalActorRelationship : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcApprovalActorRelationship>, IEquatable<@IfcApprovalActorRelationship>
+	public  partial class @IfcApprovalActorRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalActorRelationship, IEqualityComparer<@IfcApprovalActorRelationship>, IEquatable<@IfcApprovalActorRelationship>
 	{
+		#region IIfcApprovalActorRelationship explicit implementation
+		IfcActorSelect IIfcApprovalActorRelationship.Actor { get { return @Actor; } }	
+		IIfcApproval IIfcApprovalActorRelationship.Approval { get { return @Approval; } }	
+		IIfcActorRole IIfcApprovalActorRelationship.Role { get { return @Role; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -102,8 +126,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			{
 				SetValue( v =>  _actor = v, _actor, value,  "Actor");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcApproval @Approval 
@@ -118,8 +141,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			{
 				SetValue( v =>  _approval = v, _approval, value,  "Approval");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcActorRole @Role 
 		{ 
@@ -133,9 +155,9 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			{
 				SetValue( v =>  _role = v, _role, value,  "Role");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

@@ -34,8 +34,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public abstract partial class @IfcStructuralMember : IfcStructuralItem, IIfcStructuralMember, IEqualityComparer<@IfcStructuralMember>, IEquatable<@IfcStructuralMember>
 	{
 		#region IIfcStructuralMember explicit implementation
-	
-	 
+		 
 		IEnumerable<IIfcRelConnectsStructuralMember> IIfcStructuralMember.ConnectedBy {  get { return @ConnectedBy; } }
 		#endregion
 

@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.MaterialResource
 		IIfcMaterial IIfcMaterialRelationship.RelatingMaterial { get { return @RelatingMaterial; } }	
 		IEnumerable<IIfcMaterial> IIfcMaterialRelationship.RelatedMaterials { get { return @RelatedMaterials; } }	
 		IfcLabel? IIfcMaterialRelationship.Expression { get { return @Expression; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

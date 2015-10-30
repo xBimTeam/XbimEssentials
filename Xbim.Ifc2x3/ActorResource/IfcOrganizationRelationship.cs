@@ -13,14 +13,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ActorResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcOrganizationRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcOrganizationRelationship : IPersistEntity
+	{
+		IfcLabel @Name { get; }
+		IfcText? @Description { get; }
+		IIfcOrganization @RelatingOrganization { get; }
+		IEnumerable<IIfcOrganization> @RelatedOrganizations { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ActorResource
 {
 	[IndexedClass]
 	[ExpressType("IFCORGANIZATIONRELATIONSHIP", 486)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrganizationRelationship : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcOrganizationRelationship>, IEquatable<@IfcOrganizationRelationship>
+	public  partial class @IfcOrganizationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcOrganizationRelationship, IEqualityComparer<@IfcOrganizationRelationship>, IEquatable<@IfcOrganizationRelationship>
 	{
+		#region IIfcOrganizationRelationship explicit implementation
+		IfcLabel IIfcOrganizationRelationship.Name { get { return @Name; } }	
+		IfcText? IIfcOrganizationRelationship.Description { get { return @Description; } }	
+		IIfcOrganization IIfcOrganizationRelationship.RelatingOrganization { get { return @RelatingOrganization; } }	
+		IEnumerable<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations { get { return @RelatedOrganizations; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -104,8 +130,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -119,8 +144,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcOrganization @RelatingOrganization 
@@ -135,8 +159,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 				SetValue( v =>  _relatingOrganization = v, _relatingOrganization, value,  "RelatingOrganization");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcOrganization> @RelatedOrganizations 
@@ -147,9 +170,9 @@ namespace Xbim.Ifc2x3.ActorResource
 				((IPersistEntity)this).Activate(false);
 				return _relatedOrganizations;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

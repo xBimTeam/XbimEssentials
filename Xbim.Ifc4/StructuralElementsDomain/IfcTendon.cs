@@ -53,8 +53,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		IfcNormalisedRatioMeasure? IIfcTendon.FrictionCoefficient { get { return @FrictionCoefficient; } }	
 		IfcPositiveLengthMeasure? IIfcTendon.AnchorageSlip { get { return @AnchorageSlip; } }	
 		IfcPositiveLengthMeasure? IIfcTendon.MinCurvatureRadius { get { return @MinCurvatureRadius; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

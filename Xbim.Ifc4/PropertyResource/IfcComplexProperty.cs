@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.PropertyResource
 		#region IIfcComplexProperty explicit implementation
 		IfcIdentifier IIfcComplexProperty.UsageName { get { return @UsageName; } }	
 		IEnumerable<IIfcProperty> IIfcComplexProperty.HasProperties { get { return @HasProperties; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

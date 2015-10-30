@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcFacetedBrepWithVoids explicit implementation
 		IEnumerable<IIfcClosedShell> IIfcFacetedBrepWithVoids.Voids { get { return @Voids; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

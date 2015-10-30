@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#region IIfcRegularTimeSeries explicit implementation
 		IfcTimeMeasure IIfcRegularTimeSeries.TimeStep { get { return @TimeStep; } }	
 		IEnumerable<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values { get { return @Values; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

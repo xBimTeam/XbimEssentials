@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.Kernel
 		IfcIdentifier? IIfcTypeResource.Identification { get { return @Identification; } }	
 		IfcText? IIfcTypeResource.LongDescription { get { return @LongDescription; } }	
 		IfcLabel? IIfcTypeResource.ResourceType { get { return @ResourceType; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelAssignsToResource> IIfcTypeResource.ResourceOf {  get { return @ResourceOf; } }
 		#endregion
 

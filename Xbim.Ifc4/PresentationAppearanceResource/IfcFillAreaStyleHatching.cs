@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PointOfReferenceHatchLine { get { return @PointOfReferenceHatchLine; } }	
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PatternStart { get { return @PatternStart; } }	
 		IfcPlaneAngleMeasure IIfcFillAreaStyleHatching.HatchLineAngle { get { return @HatchLineAngle; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -48,8 +48,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		IfcDoorTypeEnum? IIfcDoor.PredefinedType { get { return @PredefinedType; } }	
 		IfcDoorTypeOperationEnum? IIfcDoor.OperationType { get { return @OperationType; } }	
 		IfcLabel? IIfcDoor.UserDefinedOperationType { get { return @UserDefinedOperationType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

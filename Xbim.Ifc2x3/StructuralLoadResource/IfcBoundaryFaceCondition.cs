@@ -12,13 +12,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralLoadResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBoundaryFaceCondition
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBoundaryFaceCondition : IIfcBoundaryCondition
+	{
+		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaX { get; }
+		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaY { get; }
+		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaZ { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IFCBOUNDARYFACECONDITION", 674)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundaryFaceCondition : IfcBoundaryCondition, IInstantiableEntity, IEqualityComparer<@IfcBoundaryFaceCondition>, IEquatable<@IfcBoundaryFaceCondition>
+	public  partial class @IfcBoundaryFaceCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryFaceCondition, IEqualityComparer<@IfcBoundaryFaceCondition>, IEquatable<@IfcBoundaryFaceCondition>
 	{
+		#region IIfcBoundaryFaceCondition explicit implementation
+		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaX { get { return @LinearStiffnessByAreaX; } }	
+		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaY { get { return @LinearStiffnessByAreaY; } }	
+		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaZ { get { return @LinearStiffnessByAreaZ; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundaryFaceCondition(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +68,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _linearStiffnessByAreaX = v, _linearStiffnessByAreaX, value,  "LinearStiffnessByAreaX");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaY 
 		{ 
@@ -59,8 +82,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _linearStiffnessByAreaY = v, _linearStiffnessByAreaY, value,  "LinearStiffnessByAreaY");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaZ 
 		{ 
@@ -74,9 +96,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			{
 				SetValue( v =>  _linearStiffnessByAreaZ = v, _linearStiffnessByAreaZ, value,  "LinearStiffnessByAreaZ");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

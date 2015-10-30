@@ -13,14 +13,38 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.DateTimeResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCalendarDate
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCalendarDate : IPersistEntity, IfcDateTimeSelect, IfcObjectReferenceSelect
+	{
+		IfcDayInMonthNumber @DayComponent { get; }
+		IfcMonthInYearNumber @MonthComponent { get; }
+		IfcYearNumber @YearComponent { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[IndexedClass]
 	[ExpressType("IFCCALENDARDATE", 407)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCalendarDate : INotifyPropertyChanged, IfcDateTimeSelect, IfcObjectReferenceSelect, IInstantiableEntity, IEqualityComparer<@IfcCalendarDate>, IEquatable<@IfcCalendarDate>
+	public  partial class @IfcCalendarDate : INotifyPropertyChanged, IInstantiableEntity, IIfcCalendarDate, IEqualityComparer<@IfcCalendarDate>, IEquatable<@IfcCalendarDate>
 	{
+		#region IIfcCalendarDate explicit implementation
+		IfcDayInMonthNumber IIfcCalendarDate.DayComponent { get { return @DayComponent; } }	
+		IfcMonthInYearNumber IIfcCalendarDate.MonthComponent { get { return @MonthComponent; } }	
+		IfcYearNumber IIfcCalendarDate.YearComponent { get { return @YearComponent; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -102,8 +126,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			{
 				SetValue( v =>  _dayComponent = v, _dayComponent, value,  "DayComponent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcMonthInYearNumber @MonthComponent 
 		{ 
@@ -117,8 +140,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			{
 				SetValue( v =>  _monthComponent = v, _monthComponent, value,  "MonthComponent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcYearNumber @YearComponent 
 		{ 
@@ -132,9 +154,9 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			{
 				SetValue( v =>  _yearComponent = v, _yearComponent, value,  "YearComponent");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

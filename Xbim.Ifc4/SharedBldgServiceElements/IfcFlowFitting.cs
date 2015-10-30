@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 	public  partial class @IfcFlowFitting : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowFitting, IEqualityComparer<@IfcFlowFitting>, IEquatable<@IfcFlowFitting>
 	{
 		#region IIfcFlowFitting explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

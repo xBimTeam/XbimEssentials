@@ -11,13 +11,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelDecomposes
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelDecomposes : IIfcRelationship
+	{
+		IIfcObjectDefinition @RelatingObject { get; }
+		IEnumerable<IIfcObjectDefinition> @RelatedObjects { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCRELDECOMPOSES", 306)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRelDecomposes : IfcRelationship, IEqualityComparer<@IfcRelDecomposes>, IEquatable<@IfcRelDecomposes>
+	public abstract partial class @IfcRelDecomposes : IfcRelationship, IIfcRelDecomposes, IEqualityComparer<@IfcRelDecomposes>, IEquatable<@IfcRelDecomposes>
 	{
+		#region IIfcRelDecomposes explicit implementation
+		IIfcObjectDefinition IIfcRelDecomposes.RelatingObject { get { return @RelatingObject; } }	
+		IEnumerable<IIfcObjectDefinition> IIfcRelDecomposes.RelatedObjects { get { return @RelatedObjects; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDecomposes(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +66,7 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _relatingObject = v, _relatingObject, value,  "RelatingObject");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcObjectDefinition> @RelatedObjects 
@@ -56,9 +77,9 @@ namespace Xbim.Ifc2x3.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _relatedObjects;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -48,8 +48,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		IEnumerable<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy { get { return @LoadedBy; } }	
 		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults { get { return @HasResults; } }	
 		IIfcObjectPlacement IIfcStructuralAnalysisModel.SharedPlacement { get { return @SharedPlacement; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

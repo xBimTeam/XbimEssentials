@@ -12,13 +12,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.QuantityResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcQuantityArea
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcQuantityArea : IIfcPhysicalSimpleQuantity
+	{
+		IfcAreaMeasure @AreaValue { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IFCQUANTITYAREA", 495)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityArea : IfcPhysicalSimpleQuantity, IInstantiableEntity, IEqualityComparer<@IfcQuantityArea>, IEquatable<@IfcQuantityArea>
+	public  partial class @IfcQuantityArea : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityArea, IEqualityComparer<@IfcQuantityArea>, IEquatable<@IfcQuantityArea>
 	{
+		#region IIfcQuantityArea explicit implementation
+		IfcAreaMeasure IIfcQuantityArea.AreaValue { get { return @AreaValue; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcQuantityArea(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +62,9 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				SetValue( v =>  _areaValue = v, _areaValue, value,  "AreaValue");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

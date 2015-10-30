@@ -15,13 +15,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelConnectsElements
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelConnectsElements : IIfcRelConnects
+	{
+		IIfcConnectionGeometry @ConnectionGeometry { get; }
+		IIfcElement @RelatingElement { get; }
+		IIfcElement @RelatedElement { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCRELCONNECTSELEMENTS", 312)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsElements : IfcRelConnects, IInstantiableEntity, IEqualityComparer<@IfcRelConnectsElements>, IEquatable<@IfcRelConnectsElements>
+	public  partial class @IfcRelConnectsElements : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsElements, IEqualityComparer<@IfcRelConnectsElements>, IEquatable<@IfcRelConnectsElements>
 	{
+		#region IIfcRelConnectsElements explicit implementation
+		IIfcConnectionGeometry IIfcRelConnectsElements.ConnectionGeometry { get { return @ConnectionGeometry; } }	
+		IIfcElement IIfcRelConnectsElements.RelatingElement { get { return @RelatingElement; } }	
+		IIfcElement IIfcRelConnectsElements.RelatedElement { get { return @RelatedElement; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsElements(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +71,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _connectionGeometry = v, _connectionGeometry, value,  "ConnectionGeometry");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcElement @RelatingElement 
@@ -63,8 +86,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcElement @RelatedElement 
@@ -79,9 +101,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

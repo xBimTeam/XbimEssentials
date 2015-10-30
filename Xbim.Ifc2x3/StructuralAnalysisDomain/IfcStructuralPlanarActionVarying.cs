@@ -16,13 +16,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralPlanarActionVarying
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralPlanarActionVarying : IIfcStructuralPlanarAction
+	{
+		IIfcShapeAspect @VaryingAppliedLoadLocation { get; }
+		IEnumerable<IIfcStructuralLoad> @SubsequentAppliedLoads { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALPLANARACTIONVARYING", 357)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralPlanarActionVarying : IfcStructuralPlanarAction, IInstantiableEntity, IEqualityComparer<@IfcStructuralPlanarActionVarying>, IEquatable<@IfcStructuralPlanarActionVarying>
+	public  partial class @IfcStructuralPlanarActionVarying : IfcStructuralPlanarAction, IInstantiableEntity, IIfcStructuralPlanarActionVarying, IEqualityComparer<@IfcStructuralPlanarActionVarying>, IEquatable<@IfcStructuralPlanarActionVarying>
 	{
+		#region IIfcStructuralPlanarActionVarying explicit implementation
+		IIfcShapeAspect IIfcStructuralPlanarActionVarying.VaryingAppliedLoadLocation { get { return @VaryingAppliedLoadLocation; } }	
+		IEnumerable<IIfcStructuralLoad> IIfcStructuralPlanarActionVarying.SubsequentAppliedLoads { get { return @SubsequentAppliedLoads; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralPlanarActionVarying(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +70,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _varyingAppliedLoadLocation = v, _varyingAppliedLoadLocation, value,  "VaryingAppliedLoadLocation");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1)]
 		public ItemSet<IfcStructuralLoad> @SubsequentAppliedLoads 
 		{ 
@@ -59,9 +80,9 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				((IPersistEntity)this).Activate(false);
 				return _subsequentAppliedLoads;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

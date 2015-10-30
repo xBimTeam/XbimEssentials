@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.QuantityResource
 		#region IIfcPhysicalQuantity explicit implementation
 		IfcLabel IIfcPhysicalQuantity.Name { get { return @Name; } }	
 		IfcText? IIfcPhysicalQuantity.Description { get { return @Description; } }	
-	
-	 
+		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPhysicalQuantity.HasExternalReferences {  get { return @HasExternalReferences; } }
 		IEnumerable<IIfcPhysicalComplexQuantity> IIfcPhysicalQuantity.PartOfComplex {  get { return @PartOfComplex; } }
 		#endregion

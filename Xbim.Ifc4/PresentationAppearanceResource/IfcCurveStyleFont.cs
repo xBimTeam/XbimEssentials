@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#region IIfcCurveStyleFont explicit implementation
 		IfcLabel? IIfcCurveStyleFont.Name { get { return @Name; } }	
 		IEnumerable<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList { get { return @PatternList; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

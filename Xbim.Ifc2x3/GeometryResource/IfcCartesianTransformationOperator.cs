@@ -11,13 +11,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCartesianTransformationOperator
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCartesianTransformationOperator : IIfcGeometricRepresentationItem
+	{
+		IIfcDirection @Axis1 { get; }
+		IIfcDirection @Axis2 { get; }
+		IIfcCartesianPoint @LocalOrigin { get; }
+		double? @Scale { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCCARTESIANTRANSFORMATIONOPERATOR", 146)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcCartesianTransformationOperator : IfcGeometricRepresentationItem, IEqualityComparer<@IfcCartesianTransformationOperator>, IEquatable<@IfcCartesianTransformationOperator>
+	public abstract partial class @IfcCartesianTransformationOperator : IfcGeometricRepresentationItem, IIfcCartesianTransformationOperator, IEqualityComparer<@IfcCartesianTransformationOperator>, IEquatable<@IfcCartesianTransformationOperator>
 	{
+		#region IIfcCartesianTransformationOperator explicit implementation
+		IIfcDirection IIfcCartesianTransformationOperator.Axis1 { get { return @Axis1; } }	
+		IIfcDirection IIfcCartesianTransformationOperator.Axis2 { get { return @Axis2; } }	
+		IIfcCartesianPoint IIfcCartesianTransformationOperator.LocalOrigin { get { return @LocalOrigin; } }	
+		double? IIfcCartesianTransformationOperator.Scale { get { return @Scale; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianTransformationOperator(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +70,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _axis1 = v, _axis1, value,  "Axis1");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcDirection @Axis2 
 		{ 
@@ -59,8 +84,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _axis2 = v, _axis2, value,  "Axis2");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCartesianPoint @LocalOrigin 
 		{ 
@@ -74,8 +98,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _localOrigin = v, _localOrigin, value,  "LocalOrigin");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public double? @Scale 
 		{ 
@@ -89,9 +112,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _scale = v, _scale, value,  "Scale");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

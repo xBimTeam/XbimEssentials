@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameDepth { get { return @FrameDepth; } }	
 		IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameThickness { get { return @FrameThickness; } }	
 		IIfcShapeAspect IIfcWindowPanelProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

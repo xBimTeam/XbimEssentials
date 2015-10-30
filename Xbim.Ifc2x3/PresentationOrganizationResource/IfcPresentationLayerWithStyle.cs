@@ -13,13 +13,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationOrganizationResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPresentationLayerWithStyle
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPresentationLayerWithStyle : IIfcPresentationLayerAssignment
+	{
+		bool? @LayerOn { get; }
+		bool? @LayerFrozen { get; }
+		bool? @LayerBlocked { get; }
+		IEnumerable<IfcPresentationStyleSelect> @LayerStyles { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IFCPRESENTATIONLAYERWITHSTYLE", 259)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IEqualityComparer<@IfcPresentationLayerWithStyle>, IEquatable<@IfcPresentationLayerWithStyle>
+	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IIfcPresentationLayerWithStyle, IEqualityComparer<@IfcPresentationLayerWithStyle>, IEquatable<@IfcPresentationLayerWithStyle>
 	{
+		#region IIfcPresentationLayerWithStyle explicit implementation
+		bool? IIfcPresentationLayerWithStyle.LayerOn { get { return @LayerOn; } }	
+		bool? IIfcPresentationLayerWithStyle.LayerFrozen { get { return @LayerFrozen; } }	
+		bool? IIfcPresentationLayerWithStyle.LayerBlocked { get { return @LayerBlocked; } }	
+		IEnumerable<IfcPresentationStyleSelect> IIfcPresentationLayerWithStyle.LayerStyles { get { return @LayerStyles; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPresentationLayerWithStyle(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +73,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _layerOn = v, _layerOn, value,  "LayerOn");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @LayerFrozen 
 		{ 
@@ -62,8 +87,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _layerFrozen = v, _layerFrozen, value,  "LayerFrozen");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool? @LayerBlocked 
 		{ 
@@ -77,8 +101,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _layerBlocked = v, _layerBlocked, value,  "LayerBlocked");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1)]
 		public ItemSet<IfcPresentationStyleSelect> @LayerStyles 
 		{ 
@@ -88,9 +111,9 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				((IPersistEntity)this).Activate(false);
 				return _layerStyles;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

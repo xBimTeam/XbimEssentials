@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.QuantityResource
 		IfcLabel IIfcPhysicalComplexQuantity.Discrimination { get { return @Discrimination; } }	
 		IfcLabel? IIfcPhysicalComplexQuantity.Quality { get { return @Quality; } }	
 		IfcLabel? IIfcPhysicalComplexQuantity.Usage { get { return @Usage; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

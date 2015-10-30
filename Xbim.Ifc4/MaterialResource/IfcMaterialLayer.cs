@@ -50,8 +50,7 @@ namespace Xbim.Ifc4.MaterialResource
 		IfcText? IIfcMaterialLayer.Description { get { return @Description; } }	
 		IfcLabel? IIfcMaterialLayer.Category { get { return @Category; } }	
 		IfcNormalisedRatioMeasure? IIfcMaterialLayer.Priority { get { return @Priority; } }	
-	
-	 
+		 
 		IIfcMaterialLayerSet IIfcMaterialLayer.ToMaterialLayerSet {  get { return @ToMaterialLayerSet; } }
 		#endregion
 

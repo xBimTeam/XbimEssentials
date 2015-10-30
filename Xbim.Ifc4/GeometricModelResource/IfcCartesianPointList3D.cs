@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcCartesianPointList3D explicit implementation
 		IEnumerable<IEnumerable<IfcLengthMeasure>> IIfcCartesianPointList3D.CoordList { get { return @CoordList; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

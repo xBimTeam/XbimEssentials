@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcManifoldSolidBrep explicit implementation
 		IIfcClosedShell IIfcManifoldSolidBrep.Outer { get { return @Outer; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

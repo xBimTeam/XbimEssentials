@@ -13,14 +13,38 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.RepresentationResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRepresentationContext
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRepresentationContext : IPersistEntity
+	{
+		IfcLabel? @ContextIdentifier { get; }
+		IfcLabel? @ContextType { get; }
+		IEnumerable<IIfcRepresentation> @RepresentationsInContext {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[IndexedClass]
 	[ExpressType("IFCREPRESENTATIONCONTEXT", 378)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRepresentationContext : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcRepresentationContext>, IEquatable<@IfcRepresentationContext>
+	public  partial class @IfcRepresentationContext : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentationContext, IEqualityComparer<@IfcRepresentationContext>, IEquatable<@IfcRepresentationContext>
 	{
+		#region IIfcRepresentationContext explicit implementation
+		IfcLabel? IIfcRepresentationContext.ContextIdentifier { get { return @ContextIdentifier; } }	
+		IfcLabel? IIfcRepresentationContext.ContextType { get { return @ContextType; } }	
+		 
+		IEnumerable<IIfcRepresentation> IIfcRepresentationContext.RepresentationsInContext {  get { return @RepresentationsInContext; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -101,8 +125,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			{
 				SetValue( v =>  _contextIdentifier = v, _contextIdentifier, value,  "ContextIdentifier");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @ContextType 
 		{ 
@@ -116,9 +139,9 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			{
 				SetValue( v =>  _contextType = v, _contextType, value,  "ContextType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

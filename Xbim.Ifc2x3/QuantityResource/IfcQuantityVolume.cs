@@ -12,13 +12,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.QuantityResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcQuantityVolume
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcQuantityVolume : IIfcPhysicalSimpleQuantity
+	{
+		IfcVolumeMeasure @VolumeValue { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IFCQUANTITYVOLUME", 100)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityVolume : IfcPhysicalSimpleQuantity, IInstantiableEntity, IEqualityComparer<@IfcQuantityVolume>, IEquatable<@IfcQuantityVolume>
+	public  partial class @IfcQuantityVolume : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityVolume, IEqualityComparer<@IfcQuantityVolume>, IEquatable<@IfcQuantityVolume>
 	{
+		#region IIfcQuantityVolume explicit implementation
+		IfcVolumeMeasure IIfcQuantityVolume.VolumeValue { get { return @VolumeValue; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcQuantityVolume(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +62,9 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				SetValue( v =>  _volumeValue = v, _volumeValue, value,  "VolumeValue");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

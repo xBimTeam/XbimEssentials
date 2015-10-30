@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#region IIfcSurfaceStyleRefraction explicit implementation
 		IfcReal? IIfcSurfaceStyleRefraction.RefractionIndex { get { return @RefractionIndex; } }	
 		IfcReal? IIfcSurfaceStyleRefraction.DispersionFactor { get { return @DispersionFactor; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

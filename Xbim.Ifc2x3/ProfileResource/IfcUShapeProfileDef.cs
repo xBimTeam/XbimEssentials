@@ -13,13 +13,47 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfileResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcUShapeProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcUShapeProfileDef : IIfcParameterizedProfileDef
+	{
+		IfcPositiveLengthMeasure @Depth { get; }
+		IfcPositiveLengthMeasure @FlangeWidth { get; }
+		IfcPositiveLengthMeasure @WebThickness { get; }
+		IfcPositiveLengthMeasure @FlangeThickness { get; }
+		IfcPositiveLengthMeasure? @FilletRadius { get; }
+		IfcPositiveLengthMeasure? @EdgeRadius { get; }
+		IfcPlaneAngleMeasure? @FlangeSlope { get; }
+		IfcPositiveLengthMeasure? @CentreOfGravityInX { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IFCUSHAPEPROFILEDEF", 670)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcUShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IEqualityComparer<@IfcUShapeProfileDef>, IEquatable<@IfcUShapeProfileDef>
+	public  partial class @IfcUShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcUShapeProfileDef, IEqualityComparer<@IfcUShapeProfileDef>, IEquatable<@IfcUShapeProfileDef>
 	{
+		#region IIfcUShapeProfileDef explicit implementation
+		IfcPositiveLengthMeasure IIfcUShapeProfileDef.Depth { get { return @Depth; } }	
+		IfcPositiveLengthMeasure IIfcUShapeProfileDef.FlangeWidth { get { return @FlangeWidth; } }	
+		IfcPositiveLengthMeasure IIfcUShapeProfileDef.WebThickness { get { return @WebThickness; } }	
+		IfcPositiveLengthMeasure IIfcUShapeProfileDef.FlangeThickness { get { return @FlangeThickness; } }	
+		IfcPositiveLengthMeasure? IIfcUShapeProfileDef.FilletRadius { get { return @FilletRadius; } }	
+		IfcPositiveLengthMeasure? IIfcUShapeProfileDef.EdgeRadius { get { return @EdgeRadius; } }	
+		IfcPlaneAngleMeasure? IIfcUShapeProfileDef.FlangeSlope { get { return @FlangeSlope; } }	
+		IfcPositiveLengthMeasure? IIfcUShapeProfileDef.CentreOfGravityInX { get { return @CentreOfGravityInX; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcUShapeProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -50,8 +84,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _depth = v, _depth, value,  "Depth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @FlangeWidth 
 		{ 
@@ -65,8 +98,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _flangeWidth = v, _flangeWidth, value,  "FlangeWidth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @WebThickness 
 		{ 
@@ -80,8 +112,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @FlangeThickness 
 		{ 
@@ -95,8 +126,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _flangeThickness = v, _flangeThickness, value,  "FlangeThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @FilletRadius 
 		{ 
@@ -110,8 +140,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @EdgeRadius 
 		{ 
@@ -125,8 +154,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _edgeRadius = v, _edgeRadius, value,  "EdgeRadius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPlaneAngleMeasure? @FlangeSlope 
 		{ 
@@ -140,8 +168,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _flangeSlope = v, _flangeSlope, value,  "FlangeSlope");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @CentreOfGravityInX 
 		{ 
@@ -155,9 +182,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _centreOfGravityInX = v, _centreOfGravityInX, value,  "CentreOfGravityInX");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -14,13 +14,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometricModelResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcExtrudedAreaSolid
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcExtrudedAreaSolid : IIfcSweptAreaSolid
+	{
+		IIfcDirection @ExtrudedDirection { get; }
+		IfcPositiveLengthMeasure @Depth { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IFCEXTRUDEDAREASOLID", 238)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExtrudedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IEqualityComparer<@IfcExtrudedAreaSolid>, IEquatable<@IfcExtrudedAreaSolid>
+	public  partial class @IfcExtrudedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolid, IEqualityComparer<@IfcExtrudedAreaSolid>, IEquatable<@IfcExtrudedAreaSolid>
 	{
+		#region IIfcExtrudedAreaSolid explicit implementation
+		IIfcDirection IIfcExtrudedAreaSolid.ExtrudedDirection { get { return @ExtrudedDirection; } }	
+		IfcPositiveLengthMeasure IIfcExtrudedAreaSolid.Depth { get { return @Depth; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExtrudedAreaSolid(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +67,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _extrudedDirection = v, _extrudedDirection, value,  "ExtrudedDirection");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @Depth 
 		{ 
@@ -60,9 +81,9 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _depth = v, _depth, value,  "Depth");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcObjectDefinition : IfcRoot, IIfcObjectDefinition, IEqualityComparer<@IfcObjectDefinition>, IEquatable<@IfcObjectDefinition>
 	{
 		#region IIfcObjectDefinition explicit implementation
-	
-	 
+		 
 		IEnumerable<IIfcRelAssigns> IIfcObjectDefinition.HasAssignments {  get { return @HasAssignments; } }
 		IEnumerable<IIfcRelNests> IIfcObjectDefinition.Nests {  get { return @Nests; } }
 		IEnumerable<IIfcRelNests> IIfcObjectDefinition.IsNestedBy {  get { return @IsNestedBy; } }

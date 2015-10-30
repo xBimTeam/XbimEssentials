@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.MaterialResource
 	public abstract partial class @IfcMaterialUsageDefinition : IPersistEntity, INotifyPropertyChanged, IIfcMaterialUsageDefinition, IEqualityComparer<@IfcMaterialUsageDefinition>, IEquatable<@IfcMaterialUsageDefinition>
 	{
 		#region IIfcMaterialUsageDefinition explicit implementation
-	
-	 
+		 
 		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialUsageDefinition.AssociatedTo {  get { return @AssociatedTo; } }
 		#endregion
 

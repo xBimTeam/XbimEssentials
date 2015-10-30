@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.ProfileResource
 	{
 		#region IIfcCircleHollowProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcCircleHollowProfileDef.WallThickness { get { return @WallThickness; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

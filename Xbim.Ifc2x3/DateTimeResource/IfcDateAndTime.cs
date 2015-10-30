@@ -13,13 +13,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.DateTimeResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDateAndTime
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDateAndTime : IPersistEntity, IfcDateTimeSelect, IfcObjectReferenceSelect
+	{
+		IIfcCalendarDate @DateComponent { get; }
+		IIfcLocalTime @TimeComponent { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IFCDATEANDTIME", 373)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDateAndTime : INotifyPropertyChanged, IfcDateTimeSelect, IfcObjectReferenceSelect, IInstantiableEntity, IEqualityComparer<@IfcDateAndTime>, IEquatable<@IfcDateAndTime>
+	public  partial class @IfcDateAndTime : INotifyPropertyChanged, IInstantiableEntity, IIfcDateAndTime, IEqualityComparer<@IfcDateAndTime>, IEquatable<@IfcDateAndTime>
 	{
+		#region IIfcDateAndTime explicit implementation
+		IIfcCalendarDate IIfcDateAndTime.DateComponent { get { return @DateComponent; } }	
+		IIfcLocalTime IIfcDateAndTime.TimeComponent { get { return @TimeComponent; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -100,8 +122,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			{
 				SetValue( v =>  _dateComponent = v, _dateComponent, value,  "DateComponent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcLocalTime @TimeComponent 
 		{ 
@@ -115,9 +136,9 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			{
 				SetValue( v =>  _timeComponent = v, _timeComponent, value,  "TimeComponent");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

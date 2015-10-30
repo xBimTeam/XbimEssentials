@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 	public abstract partial class @IfcSurface : IfcGeometricRepresentationItem, IIfcSurface, IEqualityComparer<@IfcSurface>, IEquatable<@IfcSurface>
 	{
 		#region IIfcSurface explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

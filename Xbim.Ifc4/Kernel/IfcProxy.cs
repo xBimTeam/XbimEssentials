@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.Kernel
 		#region IIfcProxy explicit implementation
 		IfcObjectTypeEnum IIfcProxy.ProxyType { get { return @ProxyType; } }	
 		IfcLabel? IIfcProxy.Tag { get { return @Tag; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

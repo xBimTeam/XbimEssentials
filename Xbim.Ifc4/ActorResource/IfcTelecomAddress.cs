@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.ActorResource
 		IEnumerable<IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses { get { return @ElectronicMailAddresses; } }	
 		IfcURIReference? IIfcTelecomAddress.WWWHomePageURL { get { return @WWWHomePageURL; } }	
 		IEnumerable<IfcURIReference> IIfcTelecomAddress.MessagingIDs { get { return @MessagingIDs; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

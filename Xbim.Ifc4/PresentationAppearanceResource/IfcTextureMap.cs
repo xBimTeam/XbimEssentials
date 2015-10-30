@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#region IIfcTextureMap explicit implementation
 		IEnumerable<IIfcTextureVertex> IIfcTextureMap.Vertices { get { return @Vertices; } }	
 		IIfcFace IIfcTextureMap.MappedTo { get { return @MappedTo; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

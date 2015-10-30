@@ -12,17 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgServiceElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDistributionControlElementType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDistributionControlElementType : IIfcDistributionElementType
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IFCDISTRIBUTIONCONTROLELEMENTTYPE", 197)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcDistributionControlElementType : IfcDistributionElementType, IEqualityComparer<@IfcDistributionControlElementType>, IEquatable<@IfcDistributionControlElementType>
+	public abstract partial class @IfcDistributionControlElementType : IfcDistributionElementType, IIfcDistributionControlElementType, IEqualityComparer<@IfcDistributionControlElementType>, IEquatable<@IfcDistributionControlElementType>
 	{
+		#region IIfcDistributionControlElementType explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDistributionControlElementType(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

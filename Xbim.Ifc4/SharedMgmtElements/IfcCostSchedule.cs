@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		IfcLabel? IIfcCostSchedule.Status { get { return @Status; } }	
 		IfcDateTime? IIfcCostSchedule.SubmittedOn { get { return @SubmittedOn; } }	
 		IfcDateTime? IIfcCostSchedule.UpdateDate { get { return @UpdateDate; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

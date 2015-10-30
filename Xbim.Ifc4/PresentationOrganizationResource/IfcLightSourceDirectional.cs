@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 	{
 		#region IIfcLightSourceDirectional explicit implementation
 		IIfcDirection IIfcLightSourceDirectional.Orientation { get { return @Orientation; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

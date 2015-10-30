@@ -15,17 +15,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDefinitionResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAnnotationCurveOccurrence
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAnnotationCurveOccurrence : IIfcAnnotationOccurrence, IfcDraughtingCalloutElement
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IFCANNOTATIONCURVEOCCURRENCE", 57)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationCurveOccurrence : IfcAnnotationOccurrence, IfcDraughtingCalloutElement, IInstantiableEntity, IEqualityComparer<@IfcAnnotationCurveOccurrence>, IEquatable<@IfcAnnotationCurveOccurrence>
+	public  partial class @IfcAnnotationCurveOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationCurveOccurrence, IEqualityComparer<@IfcAnnotationCurveOccurrence>, IEquatable<@IfcAnnotationCurveOccurrence>
 	{
+		#region IIfcAnnotationCurveOccurrence explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAnnotationCurveOccurrence(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

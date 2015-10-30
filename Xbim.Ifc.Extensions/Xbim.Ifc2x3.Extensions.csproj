@@ -73,7 +73,7 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-	<Compile Include="..\SharedFileVersionInfo.cs">
+    <Compile Include="..\SharedFileVersionInfo.cs">
       <Link>Properties\SharedFileVersionInfo.cs</Link>
     </Compile>
     <Compile Include="ActorSelectExtensions.cs" />
@@ -748,6 +748,10 @@
     <ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj">
       <Project>{b6668419-d7a4-4736-b4d8-018756ccf134}</Project>
       <Name>Xbim.Ifc2x3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj">
+      <Project>{63a3efcf-5d43-4c27-8637-86ccd6033a1e}</Project>
+      <Name>Xbim.Ifc4</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

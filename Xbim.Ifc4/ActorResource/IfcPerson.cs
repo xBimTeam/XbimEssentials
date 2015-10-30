@@ -55,8 +55,7 @@ namespace Xbim.Ifc4.ActorResource
 		IEnumerable<IfcLabel> IIfcPerson.SuffixTitles { get { return @SuffixTitles; } }	
 		IEnumerable<IIfcActorRole> IIfcPerson.Roles { get { return @Roles; } }	
 		IEnumerable<IIfcAddress> IIfcPerson.Addresses { get { return @Addresses; } }	
-	
-	 
+		 
 		IEnumerable<IIfcPersonAndOrganization> IIfcPerson.EngagedIn {  get { return @EngagedIn; } }
 		#endregion
 

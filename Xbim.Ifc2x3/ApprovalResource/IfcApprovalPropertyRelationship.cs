@@ -13,14 +13,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ApprovalResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcApprovalPropertyRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcApprovalPropertyRelationship : IPersistEntity
+	{
+		IEnumerable<IIfcProperty> @ApprovedProperties { get; }
+		IIfcApproval @Approval { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ApprovalResource
 {
 	[IndexedClass]
 	[ExpressType("IFCAPPROVALPROPERTYRELATIONSHIP", 376)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApprovalPropertyRelationship : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcApprovalPropertyRelationship>, IEquatable<@IfcApprovalPropertyRelationship>
+	public  partial class @IfcApprovalPropertyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalPropertyRelationship, IEqualityComparer<@IfcApprovalPropertyRelationship>, IEquatable<@IfcApprovalPropertyRelationship>
 	{
+		#region IIfcApprovalPropertyRelationship explicit implementation
+		IEnumerable<IIfcProperty> IIfcApprovalPropertyRelationship.ApprovedProperties { get { return @ApprovedProperties; } }	
+		IIfcApproval IIfcApprovalPropertyRelationship.Approval { get { return @Approval; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -98,8 +120,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				((IPersistEntity)this).Activate(false);
 				return _approvedProperties;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcApproval @Approval 
 		{ 
@@ -113,9 +134,9 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			{
 				SetValue( v =>  _approval = v, _approval, value,  "Approval");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

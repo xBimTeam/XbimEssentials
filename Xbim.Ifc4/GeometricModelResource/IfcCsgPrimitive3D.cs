@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcCsgPrimitive3D explicit implementation
 		IIfcAxis2Placement3D IIfcCsgPrimitive3D.Position { get { return @Position; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

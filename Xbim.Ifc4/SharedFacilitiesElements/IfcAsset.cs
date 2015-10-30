@@ -57,8 +57,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		IIfcPerson IIfcAsset.ResponsiblePerson { get { return @ResponsiblePerson; } }	
 		IfcDate? IIfcAsset.IncorporationDate { get { return @IncorporationDate; } }	
 		IIfcCostValue IIfcAsset.DepreciatedValue { get { return @DepreciatedValue; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

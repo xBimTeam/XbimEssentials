@@ -14,14 +14,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRoot
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRoot : IPersistEntity
+	{
+		IfcGloballyUniqueId @GlobalId { get; }
+		IIfcOwnerHistory @OwnerHistory { get; }
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[IndexedClass]
 	[ExpressType("IFCROOT", 12)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRoot : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcRoot>, IEquatable<@IfcRoot>
+	public abstract partial class @IfcRoot : IPersistEntity, INotifyPropertyChanged, IIfcRoot, IEqualityComparer<@IfcRoot>, IEquatable<@IfcRoot>
 	{
+		#region IIfcRoot explicit implementation
+		IfcGloballyUniqueId IIfcRoot.GlobalId { get { return @GlobalId; } }	
+		IIfcOwnerHistory IIfcRoot.OwnerHistory { get { return @OwnerHistory; } }	
+		IfcLabel? IIfcRoot.Name { get { return @Name; } }	
+		IfcText? IIfcRoot.Description { get { return @Description; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -104,8 +130,7 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _globalId = v, _globalId, value,  "GlobalId");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcOwnerHistory @OwnerHistory 
 		{ 
@@ -119,8 +144,7 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _ownerHistory = v, _ownerHistory, value,  "OwnerHistory");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Name 
 		{ 
@@ -134,8 +158,7 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -149,9 +172,9 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

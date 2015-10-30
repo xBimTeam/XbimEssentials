@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.Kernel
 		#region IIfcTypeObject explicit implementation
 		IfcIdentifier? IIfcTypeObject.ApplicableOccurrence { get { return @ApplicableOccurrence; } }	
 		IEnumerable<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets { get { return @HasPropertySets; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelDefinesByType> IIfcTypeObject.Types {  get { return @Types; } }
 		#endregion
 

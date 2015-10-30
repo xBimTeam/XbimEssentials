@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.TopologyResource
 		#region IIfcFaceBound explicit implementation
 		IIfcLoop IIfcFaceBound.Bound { get { return @Bound; } }	
 		bool IIfcFaceBound.Orientation { get { return @Orientation; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

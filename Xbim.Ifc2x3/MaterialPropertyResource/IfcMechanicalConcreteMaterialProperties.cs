@@ -13,13 +13,43 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialPropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMechanicalConcreteMaterialProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMechanicalConcreteMaterialProperties : IIfcMechanicalMaterialProperties
+	{
+		IfcPressureMeasure? @CompressiveStrength { get; }
+		IfcPositiveLengthMeasure? @MaxAggregateSize { get; }
+		IfcText? @AdmixturesDescription { get; }
+		IfcText? @Workability { get; }
+		IfcNormalisedRatioMeasure? @ProtectivePoreRatio { get; }
+		IfcText? @WaterImpermeability { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IFCMECHANICALCONCRETEMATERIALPROPERTIES", 693)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalConcreteMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IEqualityComparer<@IfcMechanicalConcreteMaterialProperties>, IEquatable<@IfcMechanicalConcreteMaterialProperties>
+	public  partial class @IfcMechanicalConcreteMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalConcreteMaterialProperties, IEqualityComparer<@IfcMechanicalConcreteMaterialProperties>, IEquatable<@IfcMechanicalConcreteMaterialProperties>
 	{
+		#region IIfcMechanicalConcreteMaterialProperties explicit implementation
+		IfcPressureMeasure? IIfcMechanicalConcreteMaterialProperties.CompressiveStrength { get { return @CompressiveStrength; } }	
+		IfcPositiveLengthMeasure? IIfcMechanicalConcreteMaterialProperties.MaxAggregateSize { get { return @MaxAggregateSize; } }	
+		IfcText? IIfcMechanicalConcreteMaterialProperties.AdmixturesDescription { get { return @AdmixturesDescription; } }	
+		IfcText? IIfcMechanicalConcreteMaterialProperties.Workability { get { return @Workability; } }	
+		IfcNormalisedRatioMeasure? IIfcMechanicalConcreteMaterialProperties.ProtectivePoreRatio { get { return @ProtectivePoreRatio; } }	
+		IfcText? IIfcMechanicalConcreteMaterialProperties.WaterImpermeability { get { return @WaterImpermeability; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMechanicalConcreteMaterialProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +78,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _compressiveStrength = v, _compressiveStrength, value,  "CompressiveStrength");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @MaxAggregateSize 
 		{ 
@@ -63,8 +92,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _maxAggregateSize = v, _maxAggregateSize, value,  "MaxAggregateSize");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @AdmixturesDescription 
 		{ 
@@ -78,8 +106,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _admixturesDescription = v, _admixturesDescription, value,  "AdmixturesDescription");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Workability 
 		{ 
@@ -93,8 +120,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _workability = v, _workability, value,  "Workability");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure? @ProtectivePoreRatio 
 		{ 
@@ -108,8 +134,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _protectivePoreRatio = v, _protectivePoreRatio, value,  "ProtectivePoreRatio");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @WaterImpermeability 
 		{ 
@@ -123,9 +148,9 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _waterImpermeability = v, _waterImpermeability, value,  "WaterImpermeability");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

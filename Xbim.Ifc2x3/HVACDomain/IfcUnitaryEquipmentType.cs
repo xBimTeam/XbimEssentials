@@ -16,13 +16,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.HVACDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcUnitaryEquipmentType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcUnitaryEquipmentType : IIfcEnergyConversionDeviceType
+	{
+		IfcUnitaryEquipmentTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IFCUNITARYEQUIPMENTTYPE", 234)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcUnitaryEquipmentType : IfcEnergyConversionDeviceType, IInstantiableEntity, IEqualityComparer<@IfcUnitaryEquipmentType>, IEquatable<@IfcUnitaryEquipmentType>
+	public  partial class @IfcUnitaryEquipmentType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcUnitaryEquipmentType, IEqualityComparer<@IfcUnitaryEquipmentType>, IEquatable<@IfcUnitaryEquipmentType>
 	{
+		#region IIfcUnitaryEquipmentType explicit implementation
+		IfcUnitaryEquipmentTypeEnum IIfcUnitaryEquipmentType.PredefinedType { get { return @PredefinedType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcUnitaryEquipmentType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +66,9 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

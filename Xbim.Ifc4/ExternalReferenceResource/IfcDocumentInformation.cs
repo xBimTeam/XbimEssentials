@@ -76,8 +76,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		IfcDate? IIfcDocumentInformation.ValidUntil { get { return @ValidUntil; } }	
 		IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality { get { return @Confidentiality; } }	
 		IfcDocumentStatusEnum? IIfcDocumentInformation.Status { get { return @Status; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentInformation.DocumentInfoForObjects {  get { return @DocumentInfoForObjects; } }
 		IEnumerable<IIfcDocumentReference> IIfcDocumentInformation.HasDocumentReferences {  get { return @HasDocumentReferences; } }
 		IEnumerable<IIfcDocumentInformationRelationship> IIfcDocumentInformation.IsPointedTo {  get { return @IsPointedTo; } }

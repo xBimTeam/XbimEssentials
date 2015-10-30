@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		IEnumerable<double> IIfcRelConnectsPathElements.RelatedPriorities { get { return @RelatedPriorities; } }	
 		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType { get { return @RelatedConnectionType; } }	
 		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType { get { return @RelatingConnectionType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

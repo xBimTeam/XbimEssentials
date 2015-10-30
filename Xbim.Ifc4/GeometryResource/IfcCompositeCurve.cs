@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#region IIfcCompositeCurve explicit implementation
 		IEnumerable<IIfcCompositeCurveSegment> IIfcCompositeCurve.Segments { get { return @Segments; } }	
 		bool? IIfcCompositeCurve.SelfIntersect { get { return @SelfIntersect; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

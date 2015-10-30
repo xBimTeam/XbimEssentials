@@ -13,13 +13,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDefinitionResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcVertexBasedTextureMap
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcVertexBasedTextureMap : IPersistEntity
+	{
+		IEnumerable<IIfcTextureVertex> @TextureVertices { get; }
+		IEnumerable<IIfcCartesianPoint> @TexturePoints { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IFCVERTEXBASEDTEXTUREMAP", 736)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVertexBasedTextureMap : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcVertexBasedTextureMap>, IEquatable<@IfcVertexBasedTextureMap>
+	public  partial class @IfcVertexBasedTextureMap : INotifyPropertyChanged, IInstantiableEntity, IIfcVertexBasedTextureMap, IEqualityComparer<@IfcVertexBasedTextureMap>, IEquatable<@IfcVertexBasedTextureMap>
 	{
+		#region IIfcVertexBasedTextureMap explicit implementation
+		IEnumerable<IIfcTextureVertex> IIfcVertexBasedTextureMap.TextureVertices { get { return @TextureVertices; } }	
+		IEnumerable<IIfcCartesianPoint> IIfcVertexBasedTextureMap.TexturePoints { get { return @TexturePoints; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -98,8 +120,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				((IPersistEntity)this).Activate(false);
 				return _textureVertices;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 3, -1)]
 		public ItemSet<IfcCartesianPoint> @TexturePoints 
 		{ 
@@ -109,9 +130,9 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				((IPersistEntity)this).Activate(false);
 				return _texturePoints;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

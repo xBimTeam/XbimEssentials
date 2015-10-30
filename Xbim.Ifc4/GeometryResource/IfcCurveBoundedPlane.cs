@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.GeometryResource
 		IIfcPlane IIfcCurveBoundedPlane.BasisSurface { get { return @BasisSurface; } }	
 		IIfcCurve IIfcCurveBoundedPlane.OuterBoundary { get { return @OuterBoundary; } }	
 		IEnumerable<IIfcCurve> IIfcCurveBoundedPlane.InnerBoundaries { get { return @InnerBoundaries; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

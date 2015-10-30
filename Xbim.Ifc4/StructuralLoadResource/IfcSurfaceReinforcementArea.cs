@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		IEnumerable<IfcLengthMeasure> IIfcSurfaceReinforcementArea.SurfaceReinforcement1 { get { return @SurfaceReinforcement1; } }	
 		IEnumerable<IfcLengthMeasure> IIfcSurfaceReinforcementArea.SurfaceReinforcement2 { get { return @SurfaceReinforcement2; } }	
 		IfcRatioMeasure? IIfcSurfaceReinforcementArea.ShearReinforcement { get { return @ShearReinforcement; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

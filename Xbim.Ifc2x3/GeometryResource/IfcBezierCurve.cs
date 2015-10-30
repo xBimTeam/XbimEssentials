@@ -11,17 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBezierCurve
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBezierCurve : IIfcBSplineCurve
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCBEZIERCURVE", 166)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBezierCurve : IfcBSplineCurve, IInstantiableEntity, IEqualityComparer<@IfcBezierCurve>, IEquatable<@IfcBezierCurve>
+	public  partial class @IfcBezierCurve : IfcBSplineCurve, IInstantiableEntity, IIfcBezierCurve, IEqualityComparer<@IfcBezierCurve>, IEquatable<@IfcBezierCurve>
 	{
+		#region IIfcBezierCurve explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBezierCurve(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

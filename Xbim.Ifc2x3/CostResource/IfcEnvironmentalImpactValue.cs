@@ -13,13 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.CostResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcEnvironmentalImpactValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcEnvironmentalImpactValue : IIfcAppliedValue
+	{
+		IfcLabel @ImpactType { get; }
+		IfcEnvironmentalImpactCategoryEnum @Category { get; }
+		IfcLabel? @UserDefinedCategory { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IFCENVIRONMENTALIMPACTVALUE", 78)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEnvironmentalImpactValue : IfcAppliedValue, IInstantiableEntity, IEqualityComparer<@IfcEnvironmentalImpactValue>, IEquatable<@IfcEnvironmentalImpactValue>
+	public  partial class @IfcEnvironmentalImpactValue : IfcAppliedValue, IInstantiableEntity, IIfcEnvironmentalImpactValue, IEqualityComparer<@IfcEnvironmentalImpactValue>, IEquatable<@IfcEnvironmentalImpactValue>
 	{
+		#region IIfcEnvironmentalImpactValue explicit implementation
+		IfcLabel IIfcEnvironmentalImpactValue.ImpactType { get { return @ImpactType; } }	
+		IfcEnvironmentalImpactCategoryEnum IIfcEnvironmentalImpactValue.Category { get { return @Category; } }	
+		IfcLabel? IIfcEnvironmentalImpactValue.UserDefinedCategory { get { return @UserDefinedCategory; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEnvironmentalImpactValue(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +69,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _impactType = v, _impactType, value,  "ImpactType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcEnvironmentalImpactCategoryEnum @Category 
 		{ 
@@ -60,8 +83,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _category = v, _category, value,  "Category");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedCategory 
 		{ 
@@ -75,9 +97,9 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _userDefinedCategory = v, _userDefinedCategory, value,  "UserDefinedCategory");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

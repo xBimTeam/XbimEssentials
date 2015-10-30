@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.TopologyResource
 	{
 		#region IIfcPath explicit implementation
 		IEnumerable<IIfcOrientedEdge> IIfcPath.EdgeList { get { return @EdgeList; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

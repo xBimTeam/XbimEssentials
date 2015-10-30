@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#region IIfcLagTime explicit implementation
 		IfcTimeOrRatioSelect IIfcLagTime.LagValue { get { return @LagValue; } }	
 		IfcTaskDurationEnum IIfcLagTime.DurationType { get { return @DurationType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

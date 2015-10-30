@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.MaterialResource
 		IfcLabel? IIfcMaterialConstituentSet.Name { get { return @Name; } }	
 		IfcText? IIfcMaterialConstituentSet.Description { get { return @Description; } }	
 		IEnumerable<IIfcMaterialConstituent> IIfcMaterialConstituentSet.MaterialConstituents { get { return @MaterialConstituents; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

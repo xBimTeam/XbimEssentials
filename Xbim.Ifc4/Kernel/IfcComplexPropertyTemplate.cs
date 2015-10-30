@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.Kernel
 		IfcLabel? IIfcComplexPropertyTemplate.UsageName { get { return @UsageName; } }	
 		IfcComplexPropertyTemplateTypeEnum? IIfcComplexPropertyTemplate.TemplateType { get { return @TemplateType; } }	
 		IEnumerable<IIfcPropertyTemplate> IIfcComplexPropertyTemplate.HasPropertyTemplates { get { return @HasPropertyTemplates; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#region IIfcMaterialProfileSetUsageTapering explicit implementation
 		IIfcMaterialProfileSet IIfcMaterialProfileSetUsageTapering.ForProfileEndSet { get { return @ForProfileEndSet; } }	
 		IfcCardinalPointReference? IIfcMaterialProfileSetUsageTapering.CardinalEndPoint { get { return @CardinalEndPoint; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

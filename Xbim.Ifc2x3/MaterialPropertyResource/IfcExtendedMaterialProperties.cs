@@ -14,13 +14,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialPropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcExtendedMaterialProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcExtendedMaterialProperties : IIfcMaterialProperties
+	{
+		IEnumerable<IIfcProperty> @ExtendedProperties { get; }
+		IfcText? @Description { get; }
+		IfcLabel @Name { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IFCEXTENDEDMATERIALPROPERTIES", 585)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExtendedMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IEqualityComparer<@IfcExtendedMaterialProperties>, IEquatable<@IfcExtendedMaterialProperties>
+	public  partial class @IfcExtendedMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcExtendedMaterialProperties, IEqualityComparer<@IfcExtendedMaterialProperties>, IEquatable<@IfcExtendedMaterialProperties>
 	{
+		#region IIfcExtendedMaterialProperties explicit implementation
+		IEnumerable<IIfcProperty> IIfcExtendedMaterialProperties.ExtendedProperties { get { return @ExtendedProperties; } }	
+		IfcText? IIfcExtendedMaterialProperties.Description { get { return @Description; } }	
+		IfcLabel IIfcExtendedMaterialProperties.Name { get { return @Name; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExtendedMaterialProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +67,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				((IPersistEntity)this).Activate(false);
 				return _extendedProperties;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -58,8 +81,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel @Name 
 		{ 
@@ -73,9 +95,9 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

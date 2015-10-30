@@ -13,13 +13,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedComponentElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcEdgeFeature
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcEdgeFeature : IIfcFeatureElementSubtraction
+	{
+		IfcPositiveLengthMeasure? @FeatureLength { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IFCEDGEFEATURE", 764)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcEdgeFeature : IfcFeatureElementSubtraction, IEqualityComparer<@IfcEdgeFeature>, IEquatable<@IfcEdgeFeature>
+	public abstract partial class @IfcEdgeFeature : IfcFeatureElementSubtraction, IIfcEdgeFeature, IEqualityComparer<@IfcEdgeFeature>, IEquatable<@IfcEdgeFeature>
 	{
+		#region IIfcEdgeFeature explicit implementation
+		IfcPositiveLengthMeasure? IIfcEdgeFeature.FeatureLength { get { return @FeatureLength; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEdgeFeature(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,9 +63,9 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			{
 				SetValue( v =>  _featureLength = v, _featureLength, value,  "FeatureLength");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.GeometryResource
 		IfcTransitionCode IIfcCompositeCurveSegment.Transition { get { return @Transition; } }	
 		bool IIfcCompositeCurveSegment.SameSense { get { return @SameSense; } }	
 		IIfcCurve IIfcCompositeCurveSegment.ParentCurve { get { return @ParentCurve; } }	
-	
-	 
+		 
 		IEnumerable<IIfcCompositeCurve> IIfcCompositeCurveSegment.UsingCurves {  get { return @UsingCurves; } }
 		#endregion
 

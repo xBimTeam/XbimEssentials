@@ -11,13 +11,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAxis1Placement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAxis1Placement : IIfcPlacement
+	{
+		IIfcDirection @Axis { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCAXIS1PLACEMENT", 280)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAxis1Placement : IfcPlacement, IInstantiableEntity, IEqualityComparer<@IfcAxis1Placement>, IEquatable<@IfcAxis1Placement>
+	public  partial class @IfcAxis1Placement : IfcPlacement, IInstantiableEntity, IIfcAxis1Placement, IEqualityComparer<@IfcAxis1Placement>, IEquatable<@IfcAxis1Placement>
 	{
+		#region IIfcAxis1Placement explicit implementation
+		IIfcDirection IIfcAxis1Placement.Axis { get { return @Axis; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAxis1Placement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,9 +61,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _axis = v, _axis, value,  "Axis");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

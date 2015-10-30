@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.MeasureResource
 	{
 		#region IIfcConversionBasedUnitWithOffset explicit implementation
 		IfcReal IIfcConversionBasedUnitWithOffset.ConversionOffset { get { return @ConversionOffset; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

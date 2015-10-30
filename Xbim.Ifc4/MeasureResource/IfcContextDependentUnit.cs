@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.MeasureResource
 	{
 		#region IIfcContextDependentUnit explicit implementation
 		IfcLabel IIfcContextDependentUnit.Name { get { return @Name; } }	
-	
-	 
+		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcContextDependentUnit.HasExternalReference {  get { return @HasExternalReference; } }
 		#endregion
 

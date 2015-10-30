@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcPresentationStyleAssignment explicit implementation
 		IEnumerable<IfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles { get { return @Styles; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

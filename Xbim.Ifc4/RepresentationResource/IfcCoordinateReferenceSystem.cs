@@ -43,8 +43,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		IfcText? IIfcCoordinateReferenceSystem.Description { get { return @Description; } }	
 		IfcIdentifier IIfcCoordinateReferenceSystem.GeodeticDatum { get { return @GeodeticDatum; } }	
 		IfcIdentifier? IIfcCoordinateReferenceSystem.VerticalDatum { get { return @VerticalDatum; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

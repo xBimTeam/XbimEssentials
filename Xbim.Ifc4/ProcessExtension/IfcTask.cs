@@ -49,8 +49,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		long? IIfcTask.Priority { get { return @Priority; } }	
 		IIfcTaskTime IIfcTask.TaskTime { get { return @TaskTime; } }	
 		IfcTaskTypeEnum? IIfcTask.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

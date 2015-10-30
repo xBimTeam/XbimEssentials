@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcSystem : IfcGroup, IInstantiableEntity, IIfcSystem, IEqualityComparer<@IfcSystem>, IEquatable<@IfcSystem>
 	{
 		#region IIfcSystem explicit implementation
-	
-	 
+		 
 		IEnumerable<IIfcRelServicesBuildings> IIfcSystem.ServicesBuildings {  get { return @ServicesBuildings; } }
 		#endregion
 

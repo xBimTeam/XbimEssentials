@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.Kernel
 		#region IIfcProduct explicit implementation
 		IIfcObjectPlacement IIfcProduct.ObjectPlacement { get { return @ObjectPlacement; } }	
 		IIfcProductRepresentation IIfcProduct.Representation { get { return @Representation; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelAssignsToProduct> IIfcProduct.ReferencedBy {  get { return @ReferencedBy; } }
 		#endregion
 

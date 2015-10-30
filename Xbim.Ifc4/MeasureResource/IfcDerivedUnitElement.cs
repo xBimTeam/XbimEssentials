@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.MeasureResource
 		#region IIfcDerivedUnitElement explicit implementation
 		IIfcNamedUnit IIfcDerivedUnitElement.Unit { get { return @Unit; } }	
 		long IIfcDerivedUnitElement.Exponent { get { return @Exponent; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

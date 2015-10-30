@@ -15,13 +15,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedMgmtElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssociatesAppliedValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssociatesAppliedValue : IIfcRelAssociates
+	{
+		IIfcAppliedValue @RelatingAppliedValue { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IFCRELASSOCIATESAPPLIEDVALUE", 699)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesAppliedValue : IfcRelAssociates, IInstantiableEntity, IEqualityComparer<@IfcRelAssociatesAppliedValue>, IEquatable<@IfcRelAssociatesAppliedValue>
+	public  partial class @IfcRelAssociatesAppliedValue : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesAppliedValue, IEqualityComparer<@IfcRelAssociatesAppliedValue>, IEquatable<@IfcRelAssociatesAppliedValue>
 	{
+		#region IIfcRelAssociatesAppliedValue explicit implementation
+		IIfcAppliedValue IIfcRelAssociatesAppliedValue.RelatingAppliedValue { get { return @RelatingAppliedValue; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesAppliedValue(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,9 +65,9 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			{
 				SetValue( v =>  _relatingAppliedValue = v, _relatingAppliedValue, value,  "RelatingAppliedValue");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

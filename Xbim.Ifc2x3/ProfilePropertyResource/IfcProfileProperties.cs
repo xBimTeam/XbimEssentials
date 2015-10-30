@@ -14,13 +14,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfilePropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProfileProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProfileProperties : IPersistEntity
+	{
+		IfcLabel? @ProfileName { get; }
+		IIfcProfileDef @ProfileDefinition { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IFCPROFILEPROPERTIES", 649)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProfileProperties : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@IfcProfileProperties>, IEquatable<@IfcProfileProperties>
+	public abstract partial class @IfcProfileProperties : IPersistEntity, INotifyPropertyChanged, IIfcProfileProperties, IEqualityComparer<@IfcProfileProperties>, IEquatable<@IfcProfileProperties>
 	{
+		#region IIfcProfileProperties explicit implementation
+		IfcLabel? IIfcProfileProperties.ProfileName { get { return @ProfileName; } }	
+		IIfcProfileDef IIfcProfileProperties.ProfileDefinition { get { return @ProfileDefinition; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -101,8 +123,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _profileName = v, _profileName, value,  "ProfileName");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcProfileDef @ProfileDefinition 
 		{ 
@@ -116,9 +137,9 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			{
 				SetValue( v =>  _profileDefinition = v, _profileDefinition, value,  "ProfileDefinition");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

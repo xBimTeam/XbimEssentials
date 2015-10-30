@@ -33,8 +33,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	public abstract partial class @IfcStructuralLoadOrResult : IfcStructuralLoad, IIfcStructuralLoadOrResult, IEqualityComparer<@IfcStructuralLoadOrResult>, IEquatable<@IfcStructuralLoadOrResult>
 	{
 		#region IIfcStructuralLoadOrResult explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

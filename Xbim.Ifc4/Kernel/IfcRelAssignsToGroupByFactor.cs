@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcRelAssignsToGroupByFactor explicit implementation
 		IfcRatioMeasure IIfcRelAssignsToGroupByFactor.Factor { get { return @Factor; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

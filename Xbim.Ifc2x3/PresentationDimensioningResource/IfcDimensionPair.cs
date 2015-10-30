@@ -12,17 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDimensioningResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDimensionPair
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDimensionPair : IIfcDraughtingCalloutRelationship
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IFCDIMENSIONPAIR", 745)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionPair : IfcDraughtingCalloutRelationship, IInstantiableEntity, IEqualityComparer<@IfcDimensionPair>, IEquatable<@IfcDimensionPair>
+	public  partial class @IfcDimensionPair : IfcDraughtingCalloutRelationship, IInstantiableEntity, IIfcDimensionPair, IEqualityComparer<@IfcDimensionPair>, IEquatable<@IfcDimensionPair>
 	{
+		#region IIfcDimensionPair explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDimensionPair(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

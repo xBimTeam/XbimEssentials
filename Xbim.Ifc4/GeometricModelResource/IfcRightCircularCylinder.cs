@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#region IIfcRightCircularCylinder explicit implementation
 		IfcPositiveLengthMeasure IIfcRightCircularCylinder.Height { get { return @Height; } }	
 		IfcPositiveLengthMeasure IIfcRightCircularCylinder.Radius { get { return @Radius; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

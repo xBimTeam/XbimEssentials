@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.GeometryResource
 		IIfcDirection IIfcCartesianTransformationOperator.Axis2 { get { return @Axis2; } }	
 		IIfcCartesianPoint IIfcCartesianTransformationOperator.LocalOrigin { get { return @LocalOrigin; } }	
 		double? IIfcCartesianTransformationOperator.Scale { get { return @Scale; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

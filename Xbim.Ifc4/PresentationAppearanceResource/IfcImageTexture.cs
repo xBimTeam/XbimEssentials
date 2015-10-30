@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcImageTexture explicit implementation
 		IfcURIReference IIfcImageTexture.URLReference { get { return @URLReference; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

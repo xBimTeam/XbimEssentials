@@ -63,8 +63,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		IfcText? IIfcApproval.Qualifier { get { return @Qualifier; } }	
 		IfcActorSelect IIfcApproval.RequestingApproval { get { return @RequestingApproval; } }	
 		IfcActorSelect IIfcApproval.GivingApproval { get { return @GivingApproval; } }	
-	
-	 
+		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcApproval.HasExternalReferences {  get { return @HasExternalReferences; } }
 		IEnumerable<IIfcRelAssociatesApproval> IIfcApproval.ApprovedObjects {  get { return @ApprovedObjects; } }
 		IEnumerable<IIfcResourceApprovalRelationship> IIfcApproval.ApprovedResources {  get { return @ApprovedResources; } }

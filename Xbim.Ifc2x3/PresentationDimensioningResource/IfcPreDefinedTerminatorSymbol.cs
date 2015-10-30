@@ -13,17 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDimensioningResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPreDefinedTerminatorSymbol
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPreDefinedTerminatorSymbol : IIfcPreDefinedSymbol
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IFCPREDEFINEDTERMINATORSYMBOL", 749)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPreDefinedTerminatorSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IEqualityComparer<@IfcPreDefinedTerminatorSymbol>, IEquatable<@IfcPreDefinedTerminatorSymbol>
+	public  partial class @IfcPreDefinedTerminatorSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedTerminatorSymbol, IEqualityComparer<@IfcPreDefinedTerminatorSymbol>, IEquatable<@IfcPreDefinedTerminatorSymbol>
 	{
+		#region IIfcPreDefinedTerminatorSymbol explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPreDefinedTerminatorSymbol(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

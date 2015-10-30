@@ -13,13 +13,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialPropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelaxation
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelaxation : IPersistEntity
+	{
+		IfcNormalisedRatioMeasure @RelaxationValue { get; }
+		IfcNormalisedRatioMeasure @InitialStress { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IFCRELAXATION", 364)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelaxation : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcRelaxation>, IEquatable<@IfcRelaxation>
+	public  partial class @IfcRelaxation : INotifyPropertyChanged, IInstantiableEntity, IIfcRelaxation, IEqualityComparer<@IfcRelaxation>, IEquatable<@IfcRelaxation>
 	{
+		#region IIfcRelaxation explicit implementation
+		IfcNormalisedRatioMeasure IIfcRelaxation.RelaxationValue { get { return @RelaxationValue; } }	
+		IfcNormalisedRatioMeasure IIfcRelaxation.InitialStress { get { return @InitialStress; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -100,8 +122,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _relaxationValue = v, _relaxationValue, value,  "RelaxationValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcNormalisedRatioMeasure @InitialStress 
 		{ 
@@ -115,9 +136,9 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _initialStress = v, _initialStress, value,  "InitialStress");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

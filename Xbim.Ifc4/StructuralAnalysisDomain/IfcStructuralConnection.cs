@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	{
 		#region IIfcStructuralConnection explicit implementation
 		IIfcBoundaryCondition IIfcStructuralConnection.AppliedCondition { get { return @AppliedCondition; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelConnectsStructuralMember> IIfcStructuralConnection.ConnectsStructuralMembers {  get { return @ConnectsStructuralMembers; } }
 		#endregion
 

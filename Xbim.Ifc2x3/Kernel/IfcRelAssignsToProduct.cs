@@ -13,13 +13,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelAssignsToProduct
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelAssignsToProduct : IIfcRelAssigns
+	{
+		IIfcProduct @RelatingProduct { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCRELASSIGNSTOPRODUCT", 309)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToProduct : IfcRelAssigns, IInstantiableEntity, IEqualityComparer<@IfcRelAssignsToProduct>, IEquatable<@IfcRelAssignsToProduct>
+	public  partial class @IfcRelAssignsToProduct : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProduct, IEqualityComparer<@IfcRelAssignsToProduct>, IEquatable<@IfcRelAssignsToProduct>
 	{
+		#region IIfcRelAssignsToProduct explicit implementation
+		IIfcProduct IIfcRelAssignsToProduct.RelatingProduct { get { return @RelatingProduct; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsToProduct(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,9 +64,9 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _relatingProduct = v, _relatingProduct, value,  "RelatingProduct");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

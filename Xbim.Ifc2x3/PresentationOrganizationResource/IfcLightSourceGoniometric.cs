@@ -14,13 +14,43 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationOrganizationResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLightSourceGoniometric
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLightSourceGoniometric : IIfcLightSource
+	{
+		IIfcAxis2Placement3D @Position { get; }
+		IIfcColourRgb @ColourAppearance { get; }
+		IfcThermodynamicTemperatureMeasure @ColourTemperature { get; }
+		IfcLuminousFluxMeasure @LuminousFlux { get; }
+		IfcLightEmissionSourceEnum @LightEmissionSource { get; }
+		IfcLightDistributionDataSourceSelect @LightDistributionDataSource { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IFCLIGHTSOURCEGONIOMETRIC", 758)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceGoniometric : IfcLightSource, IInstantiableEntity, IEqualityComparer<@IfcLightSourceGoniometric>, IEquatable<@IfcLightSourceGoniometric>
+	public  partial class @IfcLightSourceGoniometric : IfcLightSource, IInstantiableEntity, IIfcLightSourceGoniometric, IEqualityComparer<@IfcLightSourceGoniometric>, IEquatable<@IfcLightSourceGoniometric>
 	{
+		#region IIfcLightSourceGoniometric explicit implementation
+		IIfcAxis2Placement3D IIfcLightSourceGoniometric.Position { get { return @Position; } }	
+		IIfcColourRgb IIfcLightSourceGoniometric.ColourAppearance { get { return @ColourAppearance; } }	
+		IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature { get { return @ColourTemperature; } }	
+		IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux { get { return @LuminousFlux; } }	
+		IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource { get { return @LightEmissionSource; } }	
+		IfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource { get { return @LightDistributionDataSource; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightSourceGoniometric(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -49,8 +79,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _position = v, _position, value,  "Position");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColourRgb @ColourAppearance 
 		{ 
@@ -64,8 +93,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _colourAppearance = v, _colourAppearance, value,  "ColourAppearance");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcThermodynamicTemperatureMeasure @ColourTemperature 
 		{ 
@@ -79,8 +107,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _colourTemperature = v, _colourTemperature, value,  "ColourTemperature");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLuminousFluxMeasure @LuminousFlux 
 		{ 
@@ -94,8 +121,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _luminousFlux = v, _luminousFlux, value,  "LuminousFlux");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcLightEmissionSourceEnum @LightEmissionSource 
 		{ 
@@ -109,8 +135,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _lightEmissionSource = v, _lightEmissionSource, value,  "LightEmissionSource");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcLightDistributionDataSourceSelect @LightDistributionDataSource 
 		{ 
@@ -124,9 +149,9 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 				SetValue( v =>  _lightDistributionDataSource = v, _lightDistributionDataSource, value,  "LightDistributionDataSource");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

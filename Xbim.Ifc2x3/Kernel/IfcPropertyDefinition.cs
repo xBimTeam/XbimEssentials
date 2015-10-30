@@ -11,17 +11,38 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertyDefinition
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertyDefinition : IIfcRoot
+	{
+		IEnumerable<IIfcRelAssociates> @HasAssociations {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCPROPERTYDEFINITION", 98)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPropertyDefinition : IfcRoot, IEqualityComparer<@IfcPropertyDefinition>, IEquatable<@IfcPropertyDefinition>
+	public abstract partial class @IfcPropertyDefinition : IfcRoot, IIfcPropertyDefinition, IEqualityComparer<@IfcPropertyDefinition>, IEquatable<@IfcPropertyDefinition>
 	{
+		#region IIfcPropertyDefinition explicit implementation
+		 
+		IEnumerable<IIfcRelAssociates> IIfcPropertyDefinition.HasAssociations {  get { return @HasAssociations; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyDefinition(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

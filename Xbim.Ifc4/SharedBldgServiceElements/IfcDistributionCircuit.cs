@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 	public  partial class @IfcDistributionCircuit : IfcDistributionSystem, IInstantiableEntity, IIfcDistributionCircuit, IEqualityComparer<@IfcDistributionCircuit>, IEquatable<@IfcDistributionCircuit>
 	{
 		#region IIfcDistributionCircuit explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

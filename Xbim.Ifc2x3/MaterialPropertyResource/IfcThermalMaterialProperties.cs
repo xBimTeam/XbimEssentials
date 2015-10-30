@@ -13,13 +13,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialPropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcThermalMaterialProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcThermalMaterialProperties : IIfcMaterialProperties
+	{
+		IfcSpecificHeatCapacityMeasure? @SpecificHeatCapacity { get; }
+		IfcThermodynamicTemperatureMeasure? @BoilingPoint { get; }
+		IfcThermodynamicTemperatureMeasure? @FreezingPoint { get; }
+		IfcThermalConductivityMeasure? @ThermalConductivity { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IFCTHERMALMATERIALPROPERTIES", 720)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcThermalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IEqualityComparer<@IfcThermalMaterialProperties>, IEquatable<@IfcThermalMaterialProperties>
+	public  partial class @IfcThermalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcThermalMaterialProperties, IEqualityComparer<@IfcThermalMaterialProperties>, IEquatable<@IfcThermalMaterialProperties>
 	{
+		#region IIfcThermalMaterialProperties explicit implementation
+		IfcSpecificHeatCapacityMeasure? IIfcThermalMaterialProperties.SpecificHeatCapacity { get { return @SpecificHeatCapacity; } }	
+		IfcThermodynamicTemperatureMeasure? IIfcThermalMaterialProperties.BoilingPoint { get { return @BoilingPoint; } }	
+		IfcThermodynamicTemperatureMeasure? IIfcThermalMaterialProperties.FreezingPoint { get { return @FreezingPoint; } }	
+		IfcThermalConductivityMeasure? IIfcThermalMaterialProperties.ThermalConductivity { get { return @ThermalConductivity; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcThermalMaterialProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +72,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _specificHeatCapacity = v, _specificHeatCapacity, value,  "SpecificHeatCapacity");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcThermodynamicTemperatureMeasure? @BoilingPoint 
 		{ 
@@ -61,8 +86,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _boilingPoint = v, _boilingPoint, value,  "BoilingPoint");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcThermodynamicTemperatureMeasure? @FreezingPoint 
 		{ 
@@ -76,8 +100,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _freezingPoint = v, _freezingPoint, value,  "FreezingPoint");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcThermalConductivityMeasure? @ThermalConductivity 
 		{ 
@@ -91,9 +114,9 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _thermalConductivity = v, _thermalConductivity, value,  "ThermalConductivity");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

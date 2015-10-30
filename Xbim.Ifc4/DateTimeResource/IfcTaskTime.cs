@@ -68,8 +68,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		IfcDateTime? IIfcTaskTime.ActualFinish { get { return @ActualFinish; } }	
 		IfcDuration? IIfcTaskTime.RemainingTime { get { return @RemainingTime; } }	
 		IfcPositiveRatioMeasure? IIfcTaskTime.Completion { get { return @Completion; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

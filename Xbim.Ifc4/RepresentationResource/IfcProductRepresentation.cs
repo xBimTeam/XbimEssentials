@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		IfcLabel? IIfcProductRepresentation.Name { get { return @Name; } }	
 		IfcText? IIfcProductRepresentation.Description { get { return @Description; } }	
 		IEnumerable<IIfcRepresentation> IIfcProductRepresentation.Representations { get { return @Representations; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

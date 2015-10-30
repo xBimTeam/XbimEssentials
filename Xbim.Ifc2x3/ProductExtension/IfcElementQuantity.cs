@@ -15,13 +15,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcElementQuantity
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcElementQuantity : IIfcPropertySetDefinition
+	{
+		IfcLabel? @MethodOfMeasurement { get; }
+		IEnumerable<IIfcPhysicalQuantity> @Quantities { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCELEMENTQUANTITY", 458)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElementQuantity : IfcPropertySetDefinition, IInstantiableEntity, IEqualityComparer<@IfcElementQuantity>, IEquatable<@IfcElementQuantity>
+	public  partial class @IfcElementQuantity : IfcPropertySetDefinition, IInstantiableEntity, IIfcElementQuantity, IEqualityComparer<@IfcElementQuantity>, IEquatable<@IfcElementQuantity>
 	{
+		#region IIfcElementQuantity explicit implementation
+		IfcLabel? IIfcElementQuantity.MethodOfMeasurement { get { return @MethodOfMeasurement; } }	
+		IEnumerable<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities { get { return @Quantities; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElementQuantity(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +69,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _methodOfMeasurement = v, _methodOfMeasurement, value,  "MethodOfMeasurement");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcPhysicalQuantity> @Quantities 
 		{ 
@@ -58,9 +79,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 				((IPersistEntity)this).Activate(false);
 				return _quantities;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

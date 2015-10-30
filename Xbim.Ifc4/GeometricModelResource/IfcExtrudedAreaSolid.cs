@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#region IIfcExtrudedAreaSolid explicit implementation
 		IIfcDirection IIfcExtrudedAreaSolid.ExtrudedDirection { get { return @ExtrudedDirection; } }	
 		IfcPositiveLengthMeasure IIfcExtrudedAreaSolid.Depth { get { return @Depth; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

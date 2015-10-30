@@ -12,13 +12,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.QuantityResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcQuantityWeight
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcQuantityWeight : IIfcPhysicalSimpleQuantity
+	{
+		IfcMassMeasure @WeightValue { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IFCQUANTITYWEIGHT", 603)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityWeight : IfcPhysicalSimpleQuantity, IInstantiableEntity, IEqualityComparer<@IfcQuantityWeight>, IEquatable<@IfcQuantityWeight>
+	public  partial class @IfcQuantityWeight : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityWeight, IEqualityComparer<@IfcQuantityWeight>, IEquatable<@IfcQuantityWeight>
 	{
+		#region IIfcQuantityWeight explicit implementation
+		IfcMassMeasure IIfcQuantityWeight.WeightValue { get { return @WeightValue; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcQuantityWeight(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +62,9 @@ namespace Xbim.Ifc2x3.QuantityResource
 			{
 				SetValue( v =>  _weightValue = v, _weightValue, value,  "WeightValue");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

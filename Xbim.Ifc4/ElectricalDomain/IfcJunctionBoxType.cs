@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 	{
 		#region IIfcJunctionBoxType explicit implementation
 		IfcJunctionBoxTypeEnum IIfcJunctionBoxType.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

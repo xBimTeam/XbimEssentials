@@ -13,13 +13,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfileResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcIShapeProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcIShapeProfileDef : IIfcParameterizedProfileDef
+	{
+		IfcPositiveLengthMeasure @OverallWidth { get; }
+		IfcPositiveLengthMeasure @OverallDepth { get; }
+		IfcPositiveLengthMeasure @WebThickness { get; }
+		IfcPositiveLengthMeasure @FlangeThickness { get; }
+		IfcPositiveLengthMeasure? @FilletRadius { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IFCISHAPEPROFILEDEF", 352)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IEqualityComparer<@IfcIShapeProfileDef>, IEquatable<@IfcIShapeProfileDef>
+	public  partial class @IfcIShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcIShapeProfileDef, IEqualityComparer<@IfcIShapeProfileDef>, IEquatable<@IfcIShapeProfileDef>
 	{
+		#region IIfcIShapeProfileDef explicit implementation
+		IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallWidth { get { return @OverallWidth; } }	
+		IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallDepth { get { return @OverallDepth; } }	
+		IfcPositiveLengthMeasure IIfcIShapeProfileDef.WebThickness { get { return @WebThickness; } }	
+		IfcPositiveLengthMeasure IIfcIShapeProfileDef.FlangeThickness { get { return @FlangeThickness; } }	
+		IfcPositiveLengthMeasure? IIfcIShapeProfileDef.FilletRadius { get { return @FilletRadius; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIShapeProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +75,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _overallWidth = v, _overallWidth, value,  "OverallWidth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @OverallDepth 
 		{ 
@@ -62,8 +89,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _overallDepth = v, _overallDepth, value,  "OverallDepth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @WebThickness 
 		{ 
@@ -77,8 +103,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @FlangeThickness 
 		{ 
@@ -92,8 +117,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _flangeThickness = v, _flangeThickness, value,  "FlangeThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @FilletRadius 
 		{ 
@@ -107,9 +131,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

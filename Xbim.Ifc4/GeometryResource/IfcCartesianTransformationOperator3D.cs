@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 	{
 		#region IIfcCartesianTransformationOperator3D explicit implementation
 		IIfcDirection IIfcCartesianTransformationOperator3D.Axis3 { get { return @Axis3; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

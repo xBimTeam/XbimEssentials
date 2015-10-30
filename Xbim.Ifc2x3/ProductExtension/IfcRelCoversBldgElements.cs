@@ -14,13 +14,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelCoversBldgElements
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelCoversBldgElements : IIfcRelConnects
+	{
+		IIfcElement @RelatingBuildingElement { get; }
+		IEnumerable<IIfcCovering> @RelatedCoverings { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCRELCOVERSBLDGELEMENTS", 24)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelCoversBldgElements : IfcRelConnects, IInstantiableEntity, IEqualityComparer<@IfcRelCoversBldgElements>, IEquatable<@IfcRelCoversBldgElements>
+	public  partial class @IfcRelCoversBldgElements : IfcRelConnects, IInstantiableEntity, IIfcRelCoversBldgElements, IEqualityComparer<@IfcRelCoversBldgElements>, IEquatable<@IfcRelCoversBldgElements>
 	{
+		#region IIfcRelCoversBldgElements explicit implementation
+		IIfcElement IIfcRelCoversBldgElements.RelatingBuildingElement { get { return @RelatingBuildingElement; } }	
+		IEnumerable<IIfcCovering> IIfcRelCoversBldgElements.RelatedCoverings { get { return @RelatedCoverings; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelCoversBldgElements(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +69,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _relatingBuildingElement = v, _relatingBuildingElement, value,  "RelatingBuildingElement");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcCovering> @RelatedCoverings 
@@ -59,9 +80,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 				((IPersistEntity)this).Activate(false);
 				return _relatedCoverings;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

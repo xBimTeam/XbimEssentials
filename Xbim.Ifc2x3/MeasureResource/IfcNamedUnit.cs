@@ -12,13 +12,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MeasureResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcNamedUnit
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcNamedUnit : IPersistEntity, IfcUnit
+	{
+		IIfcDimensionalExponents @Dimensions { get; }
+		IfcUnitEnum @UnitType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IFCNAMEDUNIT", 93)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcNamedUnit : IPersistEntity, INotifyPropertyChanged, IfcUnit, IEqualityComparer<@IfcNamedUnit>, IEquatable<@IfcNamedUnit>
+	public abstract partial class @IfcNamedUnit : IPersistEntity, INotifyPropertyChanged, IIfcNamedUnit, IEqualityComparer<@IfcNamedUnit>, IEquatable<@IfcNamedUnit>
 	{
+		#region IIfcNamedUnit explicit implementation
+		IIfcDimensionalExponents IIfcNamedUnit.Dimensions { get { return @Dimensions; } }	
+		IfcUnitEnum IIfcNamedUnit.UnitType { get { return @UnitType; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -99,8 +121,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				SetValue( v =>  _dimensions = v, _dimensions, value,  "Dimensions");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcUnitEnum @UnitType 
 		{ 
@@ -114,9 +135,9 @@ namespace Xbim.Ifc2x3.MeasureResource
 			{
 				SetValue( v =>  _unitType = v, _unitType, value,  "UnitType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

@@ -14,14 +14,42 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ActorResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAddress
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAddress : IPersistEntity, IfcObjectReferenceSelect
+	{
+		IfcAddressTypeEnum? @Purpose { get; }
+		IfcText? @Description { get; }
+		IfcLabel? @UserDefinedPurpose { get; }
+		IEnumerable<IIfcPerson> @OfPerson {  get; }
+		IEnumerable<IIfcOrganization> @OfOrganization {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ActorResource
 {
 	[IndexedClass]
 	[ExpressType("IFCADDRESS", 554)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcAddress : IPersistEntity, INotifyPropertyChanged, IfcObjectReferenceSelect, IEqualityComparer<@IfcAddress>, IEquatable<@IfcAddress>
+	public abstract partial class @IfcAddress : IPersistEntity, INotifyPropertyChanged, IIfcAddress, IEqualityComparer<@IfcAddress>, IEquatable<@IfcAddress>
 	{
+		#region IIfcAddress explicit implementation
+		IfcAddressTypeEnum? IIfcAddress.Purpose { get { return @Purpose; } }	
+		IfcText? IIfcAddress.Description { get { return @Description; } }	
+		IfcLabel? IIfcAddress.UserDefinedPurpose { get { return @UserDefinedPurpose; } }	
+		 
+		IEnumerable<IIfcPerson> IIfcAddress.OfPerson {  get { return @OfPerson; } }
+		IEnumerable<IIfcOrganization> IIfcAddress.OfOrganization {  get { return @OfOrganization; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -103,8 +131,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -118,8 +145,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedPurpose 
 		{ 
@@ -133,9 +159,9 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 				SetValue( v =>  _userDefinedPurpose = v, _userDefinedPurpose, value,  "UserDefinedPurpose");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

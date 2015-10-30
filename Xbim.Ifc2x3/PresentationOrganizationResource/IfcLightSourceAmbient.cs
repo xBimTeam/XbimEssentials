@@ -13,17 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationOrganizationResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLightSourceAmbient
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLightSourceAmbient : IIfcLightSource
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IFCLIGHTSOURCEAMBIENT", 756)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceAmbient : IfcLightSource, IInstantiableEntity, IEqualityComparer<@IfcLightSourceAmbient>, IEquatable<@IfcLightSourceAmbient>
+	public  partial class @IfcLightSourceAmbient : IfcLightSource, IInstantiableEntity, IIfcLightSourceAmbient, IEqualityComparer<@IfcLightSourceAmbient>, IEquatable<@IfcLightSourceAmbient>
 	{
+		#region IIfcLightSourceAmbient explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightSourceAmbient(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

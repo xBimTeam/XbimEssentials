@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	{
 		#region IIfcReinforcingElement explicit implementation
 		IfcLabel? IIfcReinforcingElement.SteelGrade { get { return @SteelGrade; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

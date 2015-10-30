@@ -14,13 +14,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedMgmtElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProjectOrder
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProjectOrder : IIfcControl
+	{
+		IfcIdentifier @ID { get; }
+		IfcProjectOrderTypeEnum @PredefinedType { get; }
+		IfcLabel? @Status { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IFCPROJECTORDER", 696)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectOrder : IfcControl, IInstantiableEntity, IEqualityComparer<@IfcProjectOrder>, IEquatable<@IfcProjectOrder>
+	public  partial class @IfcProjectOrder : IfcControl, IInstantiableEntity, IIfcProjectOrder, IEqualityComparer<@IfcProjectOrder>, IEquatable<@IfcProjectOrder>
 	{
+		#region IIfcProjectOrder explicit implementation
+		IfcIdentifier IIfcProjectOrder.ID { get { return @ID; } }	
+		IfcProjectOrderTypeEnum IIfcProjectOrder.PredefinedType { get { return @PredefinedType; } }	
+		IfcLabel? IIfcProjectOrder.Status { get { return @Status; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProjectOrder(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +70,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			{
 				SetValue( v =>  _iD = v, _iD, value,  "ID");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcProjectOrderTypeEnum @PredefinedType 
 		{ 
@@ -61,8 +84,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Status 
 		{ 
@@ -76,9 +98,9 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			{
 				SetValue( v =>  _status = v, _status, value,  "Status");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

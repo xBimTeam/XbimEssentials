@@ -16,13 +16,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.HVACDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPipeSegmentType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPipeSegmentType : IIfcFlowSegmentType
+	{
+		IfcPipeSegmentTypeEnum @PredefinedType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IFCPIPESEGMENTTYPE", 62)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPipeSegmentType : IfcFlowSegmentType, IInstantiableEntity, IEqualityComparer<@IfcPipeSegmentType>, IEquatable<@IfcPipeSegmentType>
+	public  partial class @IfcPipeSegmentType : IfcFlowSegmentType, IInstantiableEntity, IIfcPipeSegmentType, IEqualityComparer<@IfcPipeSegmentType>, IEquatable<@IfcPipeSegmentType>
 	{
+		#region IIfcPipeSegmentType explicit implementation
+		IfcPipeSegmentTypeEnum IIfcPipeSegmentType.PredefinedType { get { return @PredefinedType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPipeSegmentType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +66,9 @@ namespace Xbim.Ifc2x3.HVACDomain
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

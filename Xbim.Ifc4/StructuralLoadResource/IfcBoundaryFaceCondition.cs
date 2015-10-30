@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		IfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaX { get { return @TranslationalStiffnessByAreaX; } }	
 		IfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaY { get { return @TranslationalStiffnessByAreaY; } }	
 		IfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaZ { get { return @TranslationalStiffnessByAreaZ; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

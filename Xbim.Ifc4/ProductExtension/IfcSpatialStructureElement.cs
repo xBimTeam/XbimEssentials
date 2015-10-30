@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcSpatialStructureElement explicit implementation
 		IfcElementCompositionEnum? IIfcSpatialStructureElement.CompositionType { get { return @CompositionType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

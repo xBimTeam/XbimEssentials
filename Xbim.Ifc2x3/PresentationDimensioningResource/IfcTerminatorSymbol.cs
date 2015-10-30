@@ -15,13 +15,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDimensioningResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTerminatorSymbol
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTerminatorSymbol : IIfcAnnotationSymbolOccurrence
+	{
+		IIfcAnnotationCurveOccurrence @AnnotatedCurve { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IFCTERMINATORSYMBOL", 743)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTerminatorSymbol : IfcAnnotationSymbolOccurrence, IInstantiableEntity, IEqualityComparer<@IfcTerminatorSymbol>, IEquatable<@IfcTerminatorSymbol>
+	public  partial class @IfcTerminatorSymbol : IfcAnnotationSymbolOccurrence, IInstantiableEntity, IIfcTerminatorSymbol, IEqualityComparer<@IfcTerminatorSymbol>, IEquatable<@IfcTerminatorSymbol>
 	{
+		#region IIfcTerminatorSymbol explicit implementation
+		IIfcAnnotationCurveOccurrence IIfcTerminatorSymbol.AnnotatedCurve { get { return @AnnotatedCurve; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTerminatorSymbol(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,9 +66,9 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 			{
 				SetValue( v =>  _annotatedCurve = v, _annotatedCurve, value,  "AnnotatedCurve");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

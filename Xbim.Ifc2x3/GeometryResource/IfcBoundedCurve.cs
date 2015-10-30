@@ -12,17 +12,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBoundedCurve
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBoundedCurve : IIfcCurve, IfcCurveOrEdgeCurve
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCBOUNDEDCURVE", 144)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcBoundedCurve : IfcCurve, IfcCurveOrEdgeCurve, IEqualityComparer<@IfcBoundedCurve>, IEquatable<@IfcBoundedCurve>
+	public abstract partial class @IfcBoundedCurve : IfcCurve, IIfcBoundedCurve, IEqualityComparer<@IfcBoundedCurve>, IEquatable<@IfcBoundedCurve>
 	{
+		#region IIfcBoundedCurve explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundedCurve(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

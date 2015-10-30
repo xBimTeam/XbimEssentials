@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		#region IIfcStructuralSurfaceMember explicit implementation
 		IfcStructuralSurfaceMemberTypeEnum IIfcStructuralSurfaceMember.PredefinedType { get { return @PredefinedType; } }	
 		IfcPositiveLengthMeasure? IIfcStructuralSurfaceMember.Thickness { get { return @Thickness; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

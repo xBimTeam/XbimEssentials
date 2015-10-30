@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		#region IIfcReinforcementDefinitionProperties explicit implementation
 		IfcLabel? IIfcReinforcementDefinitionProperties.DefinitionType { get { return @DefinitionType; } }	
 		IEnumerable<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions { get { return @ReinforcementSectionDefinitions; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

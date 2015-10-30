@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.TopologyResource
 	{
 		#region IIfcFace explicit implementation
 		IEnumerable<IIfcFaceBound> IIfcFace.Bounds { get { return @Bounds; } }	
-	
-	 
+		 
 		IEnumerable<IIfcTextureMap> IIfcFace.HasTextureMaps {  get { return @HasTextureMaps; } }
 		#endregion
 

@@ -14,14 +14,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMaterialLayer
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMaterialLayer : IPersistEntity, IfcMaterialSelect, IfcObjectReferenceSelect
+	{
+		IIfcMaterial @Material { get; }
+		IfcPositiveLengthMeasure @LayerThickness { get; }
+		IfcLogical? @IsVentilated { get; }
+		IIfcMaterialLayerSet @ToMaterialLayerSet {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	[IndexedClass]
 	[ExpressType("IFCMATERIALLAYER", 446)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayer : INotifyPropertyChanged, IfcMaterialSelect, IfcObjectReferenceSelect, IInstantiableEntity, IEqualityComparer<@IfcMaterialLayer>, IEquatable<@IfcMaterialLayer>
+	public  partial class @IfcMaterialLayer : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialLayer, IEqualityComparer<@IfcMaterialLayer>, IEquatable<@IfcMaterialLayer>
 	{
+		#region IIfcMaterialLayer explicit implementation
+		IIfcMaterial IIfcMaterialLayer.Material { get { return @Material; } }	
+		IfcPositiveLengthMeasure IIfcMaterialLayer.LayerThickness { get { return @LayerThickness; } }	
+		IfcLogical? IIfcMaterialLayer.IsVentilated { get { return @IsVentilated; } }	
+		 
+		IIfcMaterialLayerSet IIfcMaterialLayer.ToMaterialLayerSet {  get { return @ToMaterialLayerSet; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -103,8 +129,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				SetValue( v =>  _material = v, _material, value,  "Material");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @LayerThickness 
 		{ 
@@ -118,8 +143,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				SetValue( v =>  _layerThickness = v, _layerThickness, value,  "LayerThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLogical? @IsVentilated 
 		{ 
@@ -133,9 +157,9 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				SetValue( v =>  _isVentilated = v, _isVentilated, value,  "IsVentilated");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

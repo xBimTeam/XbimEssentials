@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcBeamStandardCase : IfcBeam, IInstantiableEntity, IIfcBeamStandardCase, IEqualityComparer<@IfcBeamStandardCase>, IEquatable<@IfcBeamStandardCase>
 	{
 		#region IIfcBeamStandardCase explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

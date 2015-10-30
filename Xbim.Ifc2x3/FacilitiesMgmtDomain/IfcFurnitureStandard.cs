@@ -14,17 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.FacilitiesMgmtDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFurnitureStandard
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFurnitureStandard : IIfcControl
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IFCFURNITURESTANDARD", 75)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFurnitureStandard : IfcControl, IInstantiableEntity, IEqualityComparer<@IfcFurnitureStandard>, IEquatable<@IfcFurnitureStandard>
+	public  partial class @IfcFurnitureStandard : IfcControl, IInstantiableEntity, IIfcFurnitureStandard, IEqualityComparer<@IfcFurnitureStandard>, IEquatable<@IfcFurnitureStandard>
 	{
+		#region IIfcFurnitureStandard explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFurnitureStandard(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

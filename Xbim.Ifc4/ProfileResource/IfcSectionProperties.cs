@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ProfileResource
 		IfcSectionTypeEnum IIfcSectionProperties.SectionType { get { return @SectionType; } }	
 		IIfcProfileDef IIfcSectionProperties.StartProfile { get { return @StartProfile; } }	
 		IIfcProfileDef IIfcSectionProperties.EndProfile { get { return @EndProfile; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IfcSizeSelect IIfcCurveStyle.CurveWidth { get { return @CurveWidth; } }	
 		IfcColour IIfcCurveStyle.CurveColour { get { return @CurveColour; } }	
 		bool? IIfcCurveStyle.ModelOrDraughting { get { return @ModelOrDraughting; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

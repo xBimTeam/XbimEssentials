@@ -13,13 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcProduct
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcProduct : IIfcObject
+	{
+		IIfcObjectPlacement @ObjectPlacement { get; }
+		IIfcProductRepresentation @Representation { get; }
+		IEnumerable<IIfcRelAssignsToProduct> @ReferencedBy {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCPRODUCT", 20)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProduct : IfcObject, IEqualityComparer<@IfcProduct>, IEquatable<@IfcProduct>
+	public abstract partial class @IfcProduct : IfcObject, IIfcProduct, IEqualityComparer<@IfcProduct>, IEquatable<@IfcProduct>
 	{
+		#region IIfcProduct explicit implementation
+		IIfcObjectPlacement IIfcProduct.ObjectPlacement { get { return @ObjectPlacement; } }	
+		IIfcProductRepresentation IIfcProduct.Representation { get { return @Representation; } }	
+		 
+		IEnumerable<IIfcRelAssignsToProduct> IIfcProduct.ReferencedBy {  get { return @ReferencedBy; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProduct(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +69,7 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _objectPlacement = v, _objectPlacement, value,  "ObjectPlacement");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcProductRepresentation @Representation 
@@ -61,9 +84,9 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _representation = v, _representation, value,  "Representation");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

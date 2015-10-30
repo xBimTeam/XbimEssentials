@@ -13,13 +13,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfileResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcArbitraryProfileDefWithVoids
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcArbitraryProfileDefWithVoids : IIfcArbitraryClosedProfileDef
+	{
+		IEnumerable<IIfcCurve> @InnerCurves { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IFCARBITRARYPROFILEDEFWITHVOIDS", 116)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IEqualityComparer<@IfcArbitraryProfileDefWithVoids>, IEquatable<@IfcArbitraryProfileDefWithVoids>
+	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IIfcArbitraryProfileDefWithVoids, IEqualityComparer<@IfcArbitraryProfileDefWithVoids>, IEquatable<@IfcArbitraryProfileDefWithVoids>
 	{
+		#region IIfcArbitraryProfileDefWithVoids explicit implementation
+		IEnumerable<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves { get { return @InnerCurves; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcArbitraryProfileDefWithVoids(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -40,9 +60,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 				((IPersistEntity)this).Activate(false);
 				return _innerCurves;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

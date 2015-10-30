@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		IfcPermitTypeEnum? IIfcPermit.PredefinedType { get { return @PredefinedType; } }	
 		IfcLabel? IIfcPermit.Status { get { return @Status; } }	
 		IfcText? IIfcPermit.LongDescription { get { return @LongDescription; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

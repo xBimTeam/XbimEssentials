@@ -11,17 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBoundedSurface
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBoundedSurface : IIfcSurface
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCBOUNDEDSURFACE", 335)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundedSurface : IfcSurface, IInstantiableEntity, IEqualityComparer<@IfcBoundedSurface>, IEquatable<@IfcBoundedSurface>
+	public  partial class @IfcBoundedSurface : IfcSurface, IInstantiableEntity, IIfcBoundedSurface, IEqualityComparer<@IfcBoundedSurface>, IEquatable<@IfcBoundedSurface>
 	{
+		#region IIfcBoundedSurface explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundedSurface(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

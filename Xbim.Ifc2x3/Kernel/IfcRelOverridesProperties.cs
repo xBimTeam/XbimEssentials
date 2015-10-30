@@ -14,13 +14,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelOverridesProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelOverridesProperties : IIfcRelDefinesByProperties
+	{
+		IEnumerable<IIfcProperty> @OverridingProperties { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCRELOVERRIDESPROPERTIES", 248)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelOverridesProperties : IfcRelDefinesByProperties, IInstantiableEntity, IEqualityComparer<@IfcRelOverridesProperties>, IEquatable<@IfcRelOverridesProperties>
+	public  partial class @IfcRelOverridesProperties : IfcRelDefinesByProperties, IInstantiableEntity, IIfcRelOverridesProperties, IEqualityComparer<@IfcRelOverridesProperties>, IEquatable<@IfcRelOverridesProperties>
 	{
+		#region IIfcRelOverridesProperties explicit implementation
+		IEnumerable<IIfcProperty> IIfcRelOverridesProperties.OverridingProperties { get { return @OverridingProperties; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelOverridesProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,9 +61,9 @@ namespace Xbim.Ifc2x3.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _overridingProperties;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

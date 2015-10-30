@@ -12,18 +12,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ExternalReferenceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDocumentReference
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDocumentReference : IIfcExternalReference, IfcDocumentSelect
+	{
+		IEnumerable<IIfcDocumentInformation> @ReferenceToDocument {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCDOCUMENTREFERENCE", 450)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentReference : IfcExternalReference, IfcDocumentSelect, IInstantiableEntity, IEqualityComparer<@IfcDocumentReference>, IEquatable<@IfcDocumentReference>
+	public  partial class @IfcDocumentReference : IfcExternalReference, IInstantiableEntity, IIfcDocumentReference, IEqualityComparer<@IfcDocumentReference>, IEquatable<@IfcDocumentReference>
 	{
+		#region IIfcDocumentReference explicit implementation
+		 
+		IEnumerable<IIfcDocumentInformation> IIfcDocumentReference.ReferenceToDocument {  get { return @ReferenceToDocument; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDocumentReference(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 		#region Inverse attributes

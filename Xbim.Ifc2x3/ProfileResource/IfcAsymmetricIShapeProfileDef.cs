@@ -13,13 +13,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfileResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAsymmetricIShapeProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAsymmetricIShapeProfileDef : IIfcIShapeProfileDef
+	{
+		IfcPositiveLengthMeasure @TopFlangeWidth { get; }
+		IfcPositiveLengthMeasure? @TopFlangeThickness { get; }
+		IfcPositiveLengthMeasure? @TopFlangeFilletRadius { get; }
+		IfcPositiveLengthMeasure? @CentreOfGravityInY { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IFCASYMMETRICISHAPEPROFILEDEF", 672)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAsymmetricIShapeProfileDef : IfcIShapeProfileDef, IInstantiableEntity, IEqualityComparer<@IfcAsymmetricIShapeProfileDef>, IEquatable<@IfcAsymmetricIShapeProfileDef>
+	public  partial class @IfcAsymmetricIShapeProfileDef : IfcIShapeProfileDef, IInstantiableEntity, IIfcAsymmetricIShapeProfileDef, IEqualityComparer<@IfcAsymmetricIShapeProfileDef>, IEquatable<@IfcAsymmetricIShapeProfileDef>
 	{
+		#region IIfcAsymmetricIShapeProfileDef explicit implementation
+		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth { get { return @TopFlangeWidth; } }	
+		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness { get { return @TopFlangeThickness; } }	
+		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius { get { return @TopFlangeFilletRadius; } }	
+		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.CentreOfGravityInY { get { return @CentreOfGravityInY; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAsymmetricIShapeProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +72,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _topFlangeWidth = v, _topFlangeWidth, value,  "TopFlangeWidth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @TopFlangeThickness 
 		{ 
@@ -61,8 +86,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _topFlangeThickness = v, _topFlangeThickness, value,  "TopFlangeThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @TopFlangeFilletRadius 
 		{ 
@@ -76,8 +100,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _topFlangeFilletRadius = v, _topFlangeFilletRadius, value,  "TopFlangeFilletRadius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @CentreOfGravityInY 
 		{ 
@@ -91,9 +114,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _centreOfGravityInY = v, _centreOfGravityInY, value,  "CentreOfGravityInY");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.MaterialResource
 	public abstract partial class @IfcMaterialDefinition : IPersistEntity, INotifyPropertyChanged, IIfcMaterialDefinition, IEqualityComparer<@IfcMaterialDefinition>, IEquatable<@IfcMaterialDefinition>
 	{
 		#region IIfcMaterialDefinition explicit implementation
-	
-	 
+		 
 		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialDefinition.AssociatedTo {  get { return @AssociatedTo; } }
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcMaterialDefinition.HasExternalReferences {  get { return @HasExternalReferences; } }
 		IEnumerable<IIfcMaterialProperties> IIfcMaterialDefinition.HasProperties {  get { return @HasProperties; } }

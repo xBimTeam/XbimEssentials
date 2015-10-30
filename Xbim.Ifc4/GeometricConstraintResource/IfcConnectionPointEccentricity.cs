@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInX { get { return @EccentricityInX; } }	
 		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInY { get { return @EccentricityInY; } }	
 		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInZ { get { return @EccentricityInZ; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

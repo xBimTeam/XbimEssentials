@@ -52,8 +52,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		IfcReinforcingBarSurfaceEnum? IIfcReinforcingBarType.BarSurface { get { return @BarSurface; } }	
 		IfcLabel? IIfcReinforcingBarType.BendingShapeCode { get { return @BendingShapeCode; } }	
 		IEnumerable<IfcBendingParameterSelect> IIfcReinforcingBarType.BendingParameters { get { return @BendingParameters; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

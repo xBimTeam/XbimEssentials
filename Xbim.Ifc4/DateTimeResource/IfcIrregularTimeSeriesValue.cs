@@ -39,8 +39,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#region IIfcIrregularTimeSeriesValue explicit implementation
 		IfcDateTime IIfcIrregularTimeSeriesValue.TimeStamp { get { return @TimeStamp; } }	
 		IEnumerable<IfcValue> IIfcIrregularTimeSeriesValue.ListValues { get { return @ListValues; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

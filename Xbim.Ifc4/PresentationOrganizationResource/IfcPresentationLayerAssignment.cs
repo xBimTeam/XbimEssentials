@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		IfcText? IIfcPresentationLayerAssignment.Description { get { return @Description; } }	
 		IEnumerable<IfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems { get { return @AssignedItems; } }	
 		IfcIdentifier? IIfcPresentationLayerAssignment.Identifier { get { return @Identifier; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

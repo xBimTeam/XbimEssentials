@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.TopologyResource
 	{
 		#region IIfcPolyLoop explicit implementation
 		IEnumerable<IIfcCartesianPoint> IIfcPolyLoop.Polygon { get { return @Polygon; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

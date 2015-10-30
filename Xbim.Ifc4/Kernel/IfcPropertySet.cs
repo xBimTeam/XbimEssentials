@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcPropertySet explicit implementation
 		IEnumerable<IIfcProperty> IIfcPropertySet.HasProperties { get { return @HasProperties; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

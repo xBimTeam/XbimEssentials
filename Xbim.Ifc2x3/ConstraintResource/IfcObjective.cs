@@ -14,13 +14,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ConstraintResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcObjective
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcObjective : IIfcConstraint
+	{
+		IIfcMetric @BenchmarkValues { get; }
+		IIfcMetric @ResultValues { get; }
+		IfcObjectiveEnum @ObjectiveQualifier { get; }
+		IfcLabel? @UserDefinedQualifier { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IFCOBJECTIVE", 518)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcObjective : IfcConstraint, IInstantiableEntity, IEqualityComparer<@IfcObjective>, IEquatable<@IfcObjective>
+	public  partial class @IfcObjective : IfcConstraint, IInstantiableEntity, IIfcObjective, IEqualityComparer<@IfcObjective>, IEquatable<@IfcObjective>
 	{
+		#region IIfcObjective explicit implementation
+		IIfcMetric IIfcObjective.BenchmarkValues { get { return @BenchmarkValues; } }	
+		IIfcMetric IIfcObjective.ResultValues { get { return @ResultValues; } }	
+		IfcObjectiveEnum IIfcObjective.ObjectiveQualifier { get { return @ObjectiveQualifier; } }	
+		IfcLabel? IIfcObjective.UserDefinedQualifier { get { return @UserDefinedQualifier; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcObjective(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +73,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _benchmarkValues = v, _benchmarkValues, value,  "BenchmarkValues");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMetric @ResultValues 
 		{ 
@@ -62,8 +87,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _resultValues = v, _resultValues, value,  "ResultValues");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcObjectiveEnum @ObjectiveQualifier 
 		{ 
@@ -77,8 +101,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _objectiveQualifier = v, _objectiveQualifier, value,  "ObjectiveQualifier");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @UserDefinedQualifier 
 		{ 
@@ -92,9 +115,9 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			{
 				SetValue( v =>  _userDefinedQualifier = v, _userDefinedQualifier, value,  "UserDefinedQualifier");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

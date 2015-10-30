@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		#region IIfcStructuralActivity explicit implementation
 		IIfcStructuralLoad IIfcStructuralActivity.AppliedLoad { get { return @AppliedLoad; } }	
 		IfcGlobalOrLocalEnum IIfcStructuralActivity.GlobalOrLocal { get { return @GlobalOrLocal; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelConnectsStructuralActivity> IIfcStructuralActivity.AssignedToStructuralItem {  get { return @AssignedToStructuralItem; } }
 		#endregion
 

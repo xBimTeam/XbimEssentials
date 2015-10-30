@@ -55,8 +55,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		IfcActorSelect IIfcConstraint.CreatingActor { get { return @CreatingActor; } }	
 		IfcDateTime? IIfcConstraint.CreationTime { get { return @CreationTime; } }	
 		IfcLabel? IIfcConstraint.UserDefinedGrade { get { return @UserDefinedGrade; } }	
-	
-	 
+		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcConstraint.HasExternalReferences {  get { return @HasExternalReferences; } }
 		IEnumerable<IIfcResourceConstraintRelationship> IIfcConstraint.PropertiesForConstraint {  get { return @PropertiesForConstraint; } }
 		#endregion

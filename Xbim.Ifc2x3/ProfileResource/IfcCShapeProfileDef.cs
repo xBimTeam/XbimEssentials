@@ -13,13 +13,43 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProfileResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCShapeProfileDef
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCShapeProfileDef : IIfcParameterizedProfileDef
+	{
+		IfcPositiveLengthMeasure @Depth { get; }
+		IfcPositiveLengthMeasure @Width { get; }
+		IfcPositiveLengthMeasure @WallThickness { get; }
+		IfcPositiveLengthMeasure @Girth { get; }
+		IfcPositiveLengthMeasure? @InternalFilletRadius { get; }
+		IfcPositiveLengthMeasure? @CentreOfGravityInX { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IFCCSHAPEPROFILEDEF", 501)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IEqualityComparer<@IfcCShapeProfileDef>, IEquatable<@IfcCShapeProfileDef>
+	public  partial class @IfcCShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCShapeProfileDef, IEqualityComparer<@IfcCShapeProfileDef>, IEquatable<@IfcCShapeProfileDef>
 	{
+		#region IIfcCShapeProfileDef explicit implementation
+		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Depth { get { return @Depth; } }	
+		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Width { get { return @Width; } }	
+		IfcPositiveLengthMeasure IIfcCShapeProfileDef.WallThickness { get { return @WallThickness; } }	
+		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Girth { get { return @Girth; } }	
+		IfcPositiveLengthMeasure? IIfcCShapeProfileDef.InternalFilletRadius { get { return @InternalFilletRadius; } }	
+		IfcPositiveLengthMeasure? IIfcCShapeProfileDef.CentreOfGravityInX { get { return @CentreOfGravityInX; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCShapeProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +78,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _depth = v, _depth, value,  "Depth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @Width 
 		{ 
@@ -63,8 +92,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _width = v, _width, value,  "Width");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @WallThickness 
 		{ 
@@ -78,8 +106,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _wallThickness = v, _wallThickness, value,  "WallThickness");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @Girth 
 		{ 
@@ -93,8 +120,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _girth = v, _girth, value,  "Girth");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @InternalFilletRadius 
 		{ 
@@ -108,8 +134,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _internalFilletRadius = v, _internalFilletRadius, value,  "InternalFilletRadius");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @CentreOfGravityInX 
 		{ 
@@ -123,9 +148,9 @@ namespace Xbim.Ifc2x3.ProfileResource
 			{
 				SetValue( v =>  _centreOfGravityInX = v, _centreOfGravityInX, value,  "CentreOfGravityInX");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

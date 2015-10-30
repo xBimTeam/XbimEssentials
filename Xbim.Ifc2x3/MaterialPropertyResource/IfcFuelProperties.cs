@@ -13,13 +13,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialPropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcFuelProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcFuelProperties : IIfcMaterialProperties
+	{
+		IfcThermodynamicTemperatureMeasure? @CombustionTemperature { get; }
+		IfcPositiveRatioMeasure? @CarbonContent { get; }
+		IfcHeatingValueMeasure? @LowerHeatingValue { get; }
+		IfcHeatingValueMeasure? @HigherHeatingValue { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IFCFUELPROPERTIES", 715)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFuelProperties : IfcMaterialProperties, IInstantiableEntity, IEqualityComparer<@IfcFuelProperties>, IEquatable<@IfcFuelProperties>
+	public  partial class @IfcFuelProperties : IfcMaterialProperties, IInstantiableEntity, IIfcFuelProperties, IEqualityComparer<@IfcFuelProperties>, IEquatable<@IfcFuelProperties>
 	{
+		#region IIfcFuelProperties explicit implementation
+		IfcThermodynamicTemperatureMeasure? IIfcFuelProperties.CombustionTemperature { get { return @CombustionTemperature; } }	
+		IfcPositiveRatioMeasure? IIfcFuelProperties.CarbonContent { get { return @CarbonContent; } }	
+		IfcHeatingValueMeasure? IIfcFuelProperties.LowerHeatingValue { get { return @LowerHeatingValue; } }	
+		IfcHeatingValueMeasure? IIfcFuelProperties.HigherHeatingValue { get { return @HigherHeatingValue; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFuelProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +72,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _combustionTemperature = v, _combustionTemperature, value,  "CombustionTemperature");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @CarbonContent 
 		{ 
@@ -61,8 +86,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _carbonContent = v, _carbonContent, value,  "CarbonContent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcHeatingValueMeasure? @LowerHeatingValue 
 		{ 
@@ -76,8 +100,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _lowerHeatingValue = v, _lowerHeatingValue, value,  "LowerHeatingValue");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcHeatingValueMeasure? @HigherHeatingValue 
 		{ 
@@ -91,9 +114,9 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _higherHeatingValue = v, _higherHeatingValue, value,  "HigherHeatingValue");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.ProductExtension
 		IIfcPort IIfcRelConnectsPorts.RelatingPort { get { return @RelatingPort; } }	
 		IIfcPort IIfcRelConnectsPorts.RelatedPort { get { return @RelatedPort; } }	
 		IIfcElement IIfcRelConnectsPorts.RealizingElement { get { return @RealizingElement; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

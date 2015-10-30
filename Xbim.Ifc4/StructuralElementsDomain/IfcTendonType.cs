@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		IfcPositiveLengthMeasure? IIfcTendonType.NominalDiameter { get { return @NominalDiameter; } }	
 		IfcAreaMeasure? IIfcTendonType.CrossSectionArea { get { return @CrossSectionArea; } }	
 		IfcPositiveLengthMeasure? IIfcTendonType.SheethDiameter { get { return @SheethDiameter; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

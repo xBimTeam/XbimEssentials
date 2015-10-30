@@ -43,8 +43,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		bool? IIfcPresentationLayerWithStyle.LayerFrozen { get { return @LayerFrozen; } }	
 		bool? IIfcPresentationLayerWithStyle.LayerBlocked { get { return @LayerBlocked; } }	
 		IEnumerable<IIfcPresentationStyle> IIfcPresentationLayerWithStyle.LayerStyles { get { return @LayerStyles; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

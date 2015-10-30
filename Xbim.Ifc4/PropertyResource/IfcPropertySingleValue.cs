@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.PropertyResource
 		#region IIfcPropertySingleValue explicit implementation
 		IfcValue IIfcPropertySingleValue.NominalValue { get { return @NominalValue; } }	
 		IfcUnit IIfcPropertySingleValue.Unit { get { return @Unit; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

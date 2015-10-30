@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		IfcWindowStyleOperationEnum IIfcWindowStyle.OperationType { get { return @OperationType; } }	
 		bool IIfcWindowStyle.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
 		bool IIfcWindowStyle.Sizeable { get { return @Sizeable; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

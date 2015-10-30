@@ -12,13 +12,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcObject
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcObject : IIfcObjectDefinition
+	{
+		IfcLabel? @ObjectType { get; }
+		IEnumerable<IIfcRelDefines> @IsDefinedBy {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCOBJECT", 21)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcObject : IfcObjectDefinition, IEqualityComparer<@IfcObject>, IEquatable<@IfcObject>
+	public abstract partial class @IfcObject : IfcObjectDefinition, IIfcObject, IEqualityComparer<@IfcObject>, IEquatable<@IfcObject>
 	{
+		#region IIfcObject explicit implementation
+		IfcLabel? IIfcObject.ObjectType { get { return @ObjectType; } }	
+		 
+		IEnumerable<IIfcRelDefines> IIfcObject.IsDefinedBy {  get { return @IsDefinedBy; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcObject(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -42,9 +64,9 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _objectType = v, _objectType, value,  "ObjectType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

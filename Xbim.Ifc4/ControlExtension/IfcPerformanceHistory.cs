@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ControlExtension
 		#region IIfcPerformanceHistory explicit implementation
 		IfcLabel IIfcPerformanceHistory.LifeCyclePhase { get { return @LifeCyclePhase; } }	
 		IfcPerformanceHistoryTypeEnum? IIfcPerformanceHistory.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

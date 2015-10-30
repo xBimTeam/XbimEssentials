@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcSpatialElementType explicit implementation
 		IfcLabel? IIfcSpatialElementType.ElementType { get { return @ElementType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

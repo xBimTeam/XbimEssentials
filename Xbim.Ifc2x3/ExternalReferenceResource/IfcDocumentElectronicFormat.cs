@@ -13,14 +13,38 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ExternalReferenceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDocumentElectronicFormat
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDocumentElectronicFormat : IPersistEntity
+	{
+		IfcLabel? @FileExtension { get; }
+		IfcLabel? @MimeContentType { get; }
+		IfcLabel? @MimeSubtype { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCDOCUMENTELECTRONICFORMAT", 599)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentElectronicFormat : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcDocumentElectronicFormat>, IEquatable<@IfcDocumentElectronicFormat>
+	public  partial class @IfcDocumentElectronicFormat : INotifyPropertyChanged, IInstantiableEntity, IIfcDocumentElectronicFormat, IEqualityComparer<@IfcDocumentElectronicFormat>, IEquatable<@IfcDocumentElectronicFormat>
 	{
+		#region IIfcDocumentElectronicFormat explicit implementation
+		IfcLabel? IIfcDocumentElectronicFormat.FileExtension { get { return @FileExtension; } }	
+		IfcLabel? IIfcDocumentElectronicFormat.MimeContentType { get { return @MimeContentType; } }	
+		IfcLabel? IIfcDocumentElectronicFormat.MimeSubtype { get { return @MimeSubtype; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -102,8 +126,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _fileExtension = v, _fileExtension, value,  "FileExtension");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @MimeContentType 
 		{ 
@@ -117,8 +140,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _mimeContentType = v, _mimeContentType, value,  "MimeContentType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @MimeSubtype 
 		{ 
@@ -132,9 +154,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 				SetValue( v =>  _mimeSubtype = v, _mimeSubtype, value,  "MimeSubtype");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

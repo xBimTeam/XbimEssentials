@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		IfcLabel? IIfcMetric.ValueSource { get { return @ValueSource; } }	
 		IfcMetricValueSelect IIfcMetric.DataValue { get { return @DataValue; } }	
 		IIfcReference IIfcMetric.ReferencePath { get { return @ReferencePath; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

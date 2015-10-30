@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 	{
 		#region IIfcCovering explicit implementation
 		IfcCoveringTypeEnum? IIfcCovering.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelCoversSpaces> IIfcCovering.CoversSpaces {  get { return @CoversSpaces; } }
 		IEnumerable<IIfcRelCoversBldgElements> IIfcCovering.CoversElements {  get { return @CoversElements; } }
 		#endregion

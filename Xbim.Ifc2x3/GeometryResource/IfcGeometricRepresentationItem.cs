@@ -11,17 +11,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcGeometricRepresentationItem
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcGeometricRepresentationItem : IIfcRepresentationItem
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCGEOMETRICREPRESENTATIONITEM", 30)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcGeometricRepresentationItem : IfcRepresentationItem, IEqualityComparer<@IfcGeometricRepresentationItem>, IEquatable<@IfcGeometricRepresentationItem>
+	public abstract partial class @IfcGeometricRepresentationItem : IfcRepresentationItem, IIfcGeometricRepresentationItem, IEqualityComparer<@IfcGeometricRepresentationItem>, IEquatable<@IfcGeometricRepresentationItem>
 	{
+		#region IIfcGeometricRepresentationItem explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeometricRepresentationItem(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

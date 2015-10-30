@@ -15,13 +15,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ProductExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTransportElement
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTransportElement : IIfcElement
+	{
+		IfcTransportElementTypeEnum? @OperationType { get; }
+		IfcMassMeasure? @CapacityByWeight { get; }
+		IfcCountMeasure? @CapacityByNumber { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IFCTRANSPORTELEMENT", 416)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTransportElement : IfcElement, IInstantiableEntity, IEqualityComparer<@IfcTransportElement>, IEquatable<@IfcTransportElement>
+	public  partial class @IfcTransportElement : IfcElement, IInstantiableEntity, IIfcTransportElement, IEqualityComparer<@IfcTransportElement>, IEquatable<@IfcTransportElement>
 	{
+		#region IIfcTransportElement explicit implementation
+		IfcTransportElementTypeEnum? IIfcTransportElement.OperationType { get { return @OperationType; } }	
+		IfcMassMeasure? IIfcTransportElement.CapacityByWeight { get { return @CapacityByWeight; } }	
+		IfcCountMeasure? IIfcTransportElement.CapacityByNumber { get { return @CapacityByNumber; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTransportElement(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +71,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcMassMeasure? @CapacityByWeight 
 		{ 
@@ -62,8 +85,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _capacityByWeight = v, _capacityByWeight, value,  "CapacityByWeight");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcCountMeasure? @CapacityByNumber 
 		{ 
@@ -77,9 +99,9 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				SetValue( v =>  _capacityByNumber = v, _capacityByNumber, value,  "CapacityByNumber");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

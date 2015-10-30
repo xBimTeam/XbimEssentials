@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ProductExtension
 	{
 		#region IIfcOpeningElement explicit implementation
 		IfcOpeningElementTypeEnum? IIfcOpeningElement.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelFillsElement> IIfcOpeningElement.HasFillings {  get { return @HasFillings; } }
 		#endregion
 

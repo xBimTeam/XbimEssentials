@@ -12,13 +12,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertyReferenceValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertyReferenceValue : IIfcSimpleProperty
+	{
+		IfcLabel? @UsageName { get; }
+		IfcObjectReferenceSelect @PropertyReference { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IFCPROPERTYREFERENCEVALUE", 277)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyReferenceValue : IfcSimpleProperty, IInstantiableEntity, IEqualityComparer<@IfcPropertyReferenceValue>, IEquatable<@IfcPropertyReferenceValue>
+	public  partial class @IfcPropertyReferenceValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyReferenceValue, IEqualityComparer<@IfcPropertyReferenceValue>, IEquatable<@IfcPropertyReferenceValue>
 	{
+		#region IIfcPropertyReferenceValue explicit implementation
+		IfcLabel? IIfcPropertyReferenceValue.UsageName { get { return @UsageName; } }	
+		IfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference { get { return @PropertyReference; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyReferenceValue(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +65,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				SetValue( v =>  _usageName = v, _usageName, value,  "UsageName");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcObjectReferenceSelect @PropertyReference 
 		{ 
@@ -58,9 +79,9 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				SetValue( v =>  _propertyReference = v, _propertyReference, value,  "PropertyReference");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

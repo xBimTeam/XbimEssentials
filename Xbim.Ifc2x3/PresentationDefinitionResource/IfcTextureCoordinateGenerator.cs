@@ -12,13 +12,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDefinitionResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTextureCoordinateGenerator
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTextureCoordinateGenerator : IIfcTextureCoordinate
+	{
+		IfcLabel @Mode { get; }
+		IEnumerable<IfcSimpleValue> @Parameter { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IFCTEXTURECOORDINATEGENERATOR", 733)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureCoordinateGenerator : IfcTextureCoordinate, IInstantiableEntity, IEqualityComparer<@IfcTextureCoordinateGenerator>, IEquatable<@IfcTextureCoordinateGenerator>
+	public  partial class @IfcTextureCoordinateGenerator : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureCoordinateGenerator, IEqualityComparer<@IfcTextureCoordinateGenerator>, IEquatable<@IfcTextureCoordinateGenerator>
 	{
+		#region IIfcTextureCoordinateGenerator explicit implementation
+		IfcLabel IIfcTextureCoordinateGenerator.Mode { get { return @Mode; } }	
+		IEnumerable<IfcSimpleValue> IIfcTextureCoordinateGenerator.Parameter { get { return @Parameter; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureCoordinateGenerator(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,8 +66,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 				SetValue( v =>  _mode = v, _mode, value,  "Mode");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcSimpleValue> @Parameter 
 		{ 
@@ -55,9 +76,9 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				((IPersistEntity)this).Activate(false);
 				return _parameter;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

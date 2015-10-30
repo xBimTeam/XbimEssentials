@@ -47,8 +47,7 @@ namespace Xbim.Ifc4.ProductExtension
 		IEnumerable<IIfcGridAxis> IIfcGrid.VAxes { get { return @VAxes; } }	
 		IEnumerable<IIfcGridAxis> IIfcGrid.WAxes { get { return @WAxes; } }	
 		IfcGridTypeEnum? IIfcGrid.PredefinedType { get { return @PredefinedType; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcGrid.ContainedInStructure {  get { return @ContainedInStructure; } }
 		#endregion
 

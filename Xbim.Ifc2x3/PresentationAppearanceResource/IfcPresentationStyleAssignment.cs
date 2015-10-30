@@ -12,14 +12,34 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPresentationStyleAssignment
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPresentationStyleAssignment : IPersistEntity
+	{
+		IEnumerable<IfcPresentationStyleSelect> @Styles { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[IndexedClass]
 	[ExpressType("IFCPRESENTATIONSTYLEASSIGNMENT", 584)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationStyleAssignment : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcPresentationStyleAssignment>, IEquatable<@IfcPresentationStyleAssignment>
+	public  partial class @IfcPresentationStyleAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationStyleAssignment, IEqualityComparer<@IfcPresentationStyleAssignment>, IEquatable<@IfcPresentationStyleAssignment>
 	{
+		#region IIfcPresentationStyleAssignment explicit implementation
+		IEnumerable<IfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles { get { return @Styles; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -96,9 +116,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				((IPersistEntity)this).Activate(false);
 				return _styles;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

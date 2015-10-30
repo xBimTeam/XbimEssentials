@@ -14,13 +14,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPropertySet
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPropertySet : IIfcPropertySetDefinition
+	{
+		IEnumerable<IIfcProperty> @HasProperties { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCPROPERTYSET", 666)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertySet : IfcPropertySetDefinition, IInstantiableEntity, IEqualityComparer<@IfcPropertySet>, IEquatable<@IfcPropertySet>
+	public  partial class @IfcPropertySet : IfcPropertySetDefinition, IInstantiableEntity, IIfcPropertySet, IEqualityComparer<@IfcPropertySet>, IEquatable<@IfcPropertySet>
 	{
+		#region IIfcPropertySet explicit implementation
+		IEnumerable<IIfcProperty> IIfcPropertySet.HasProperties { get { return @HasProperties; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertySet(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -41,9 +61,9 @@ namespace Xbim.Ifc2x3.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _hasProperties;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

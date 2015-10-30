@@ -34,8 +34,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 	public abstract partial class @IfcPresentationItem : IPersistEntity, INotifyPropertyChanged, IIfcPresentationItem, IEqualityComparer<@IfcPresentationItem>, IEquatable<@IfcPresentationItem>
 	{
 		#region IIfcPresentationItem explicit implementation
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

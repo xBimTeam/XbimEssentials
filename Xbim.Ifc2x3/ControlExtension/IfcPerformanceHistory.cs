@@ -14,13 +14,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ControlExtension;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPerformanceHistory
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPerformanceHistory : IIfcControl
+	{
+		IfcLabel @LifeCyclePhase { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ControlExtension
 {
 	[ExpressType("IFCPERFORMANCEHISTORY", 710)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IEqualityComparer<@IfcPerformanceHistory>, IEquatable<@IfcPerformanceHistory>
+	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IIfcPerformanceHistory, IEqualityComparer<@IfcPerformanceHistory>, IEquatable<@IfcPerformanceHistory>
 	{
+		#region IIfcPerformanceHistory explicit implementation
+		IfcLabel IIfcPerformanceHistory.LifeCyclePhase { get { return @LifeCyclePhase; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPerformanceHistory(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,9 +64,9 @@ namespace Xbim.Ifc2x3.ControlExtension
 			{
 				SetValue( v =>  _lifeCyclePhase = v, _lifeCyclePhase, value,  "LifeCyclePhase");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

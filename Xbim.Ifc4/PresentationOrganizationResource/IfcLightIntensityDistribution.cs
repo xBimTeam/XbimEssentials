@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		#region IIfcLightIntensityDistribution explicit implementation
 		IfcLightDistributionCurveEnum IIfcLightIntensityDistribution.LightDistributionCurve { get { return @LightDistributionCurve; } }	
 		IEnumerable<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData { get { return @DistributionData; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

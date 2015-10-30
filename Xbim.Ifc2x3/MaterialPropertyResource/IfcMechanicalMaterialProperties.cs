@@ -13,13 +13,41 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.MaterialPropertyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMechanicalMaterialProperties
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMechanicalMaterialProperties : IIfcMaterialProperties
+	{
+		IfcDynamicViscosityMeasure? @DynamicViscosity { get; }
+		IfcModulusOfElasticityMeasure? @YoungModulus { get; }
+		IfcModulusOfElasticityMeasure? @ShearModulus { get; }
+		IfcPositiveRatioMeasure? @PoissonRatio { get; }
+		IfcThermalExpansionCoefficientMeasure? @ThermalExpansionCoefficient { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IFCMECHANICALMATERIALPROPERTIES", 436)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IEqualityComparer<@IfcMechanicalMaterialProperties>, IEquatable<@IfcMechanicalMaterialProperties>
+	public  partial class @IfcMechanicalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcMechanicalMaterialProperties, IEqualityComparer<@IfcMechanicalMaterialProperties>, IEquatable<@IfcMechanicalMaterialProperties>
 	{
+		#region IIfcMechanicalMaterialProperties explicit implementation
+		IfcDynamicViscosityMeasure? IIfcMechanicalMaterialProperties.DynamicViscosity { get { return @DynamicViscosity; } }	
+		IfcModulusOfElasticityMeasure? IIfcMechanicalMaterialProperties.YoungModulus { get { return @YoungModulus; } }	
+		IfcModulusOfElasticityMeasure? IIfcMechanicalMaterialProperties.ShearModulus { get { return @ShearModulus; } }	
+		IfcPositiveRatioMeasure? IIfcMechanicalMaterialProperties.PoissonRatio { get { return @PoissonRatio; } }	
+		IfcThermalExpansionCoefficientMeasure? IIfcMechanicalMaterialProperties.ThermalExpansionCoefficient { get { return @ThermalExpansionCoefficient; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMechanicalMaterialProperties(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +75,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _dynamicViscosity = v, _dynamicViscosity, value,  "DynamicViscosity");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcModulusOfElasticityMeasure? @YoungModulus 
 		{ 
@@ -62,8 +89,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _youngModulus = v, _youngModulus, value,  "YoungModulus");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcModulusOfElasticityMeasure? @ShearModulus 
 		{ 
@@ -77,8 +103,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _shearModulus = v, _shearModulus, value,  "ShearModulus");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveRatioMeasure? @PoissonRatio 
 		{ 
@@ -92,8 +117,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _poissonRatio = v, _poissonRatio, value,  "PoissonRatio");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcThermalExpansionCoefficientMeasure? @ThermalExpansionCoefficient 
 		{ 
@@ -107,9 +131,9 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				SetValue( v =>  _thermalExpansionCoefficient = v, _thermalExpansionCoefficient, value,  "ThermalExpansionCoefficient");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

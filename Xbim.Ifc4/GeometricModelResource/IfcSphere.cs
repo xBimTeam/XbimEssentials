@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcSphere explicit implementation
 		IfcPositiveLengthMeasure IIfcSphere.Radius { get { return @Radius; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

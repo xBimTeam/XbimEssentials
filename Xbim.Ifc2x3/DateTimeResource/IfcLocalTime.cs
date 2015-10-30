@@ -13,13 +13,41 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.DateTimeResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLocalTime
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLocalTime : IPersistEntity, IfcDateTimeSelect, IfcObjectReferenceSelect
+	{
+		IfcHourInDay @HourComponent { get; }
+		IfcMinuteInHour? @MinuteComponent { get; }
+		IfcSecondInMinute? @SecondComponent { get; }
+		IIfcCoordinatedUniversalTimeOffset @Zone { get; }
+		IfcDaylightSavingHour? @DaylightSavingOffset { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IFCLOCALTIME", 483)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLocalTime : INotifyPropertyChanged, IfcDateTimeSelect, IfcObjectReferenceSelect, IInstantiableEntity, IEqualityComparer<@IfcLocalTime>, IEquatable<@IfcLocalTime>
+	public  partial class @IfcLocalTime : INotifyPropertyChanged, IInstantiableEntity, IIfcLocalTime, IEqualityComparer<@IfcLocalTime>, IEquatable<@IfcLocalTime>
 	{
+		#region IIfcLocalTime explicit implementation
+		IfcHourInDay IIfcLocalTime.HourComponent { get { return @HourComponent; } }	
+		IfcMinuteInHour? IIfcLocalTime.MinuteComponent { get { return @MinuteComponent; } }	
+		IfcSecondInMinute? IIfcLocalTime.SecondComponent { get { return @SecondComponent; } }	
+		IIfcCoordinatedUniversalTimeOffset IIfcLocalTime.Zone { get { return @Zone; } }	
+		IfcDaylightSavingHour? IIfcLocalTime.DaylightSavingOffset { get { return @DaylightSavingOffset; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -103,8 +131,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			{
 				SetValue( v =>  _hourComponent = v, _hourComponent, value,  "HourComponent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcMinuteInHour? @MinuteComponent 
 		{ 
@@ -118,8 +145,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			{
 				SetValue( v =>  _minuteComponent = v, _minuteComponent, value,  "MinuteComponent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcSecondInMinute? @SecondComponent 
 		{ 
@@ -133,8 +159,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			{
 				SetValue( v =>  _secondComponent = v, _secondComponent, value,  "SecondComponent");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcCoordinatedUniversalTimeOffset @Zone 
 		{ 
@@ -148,8 +173,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			{
 				SetValue( v =>  _zone = v, _zone, value,  "Zone");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcDaylightSavingHour? @DaylightSavingOffset 
 		{ 
@@ -163,9 +187,9 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			{
 				SetValue( v =>  _daylightSavingOffset = v, _daylightSavingOffset, value,  "DaylightSavingOffset");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

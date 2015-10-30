@@ -24,8 +24,6 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IIfcEdge @EdgeElement { get; }
 		bool @Orientation { get; }
-		new IIfcVertex @EdgeStart  { get; }
-		new IIfcVertex @EdgeEnd  { get; }
 		
 	}
 }
@@ -39,10 +37,7 @@ namespace Xbim.Ifc4.TopologyResource
 		#region IIfcOrientedEdge explicit implementation
 		IIfcEdge IIfcOrientedEdge.EdgeElement { get { return @EdgeElement; } }	
 		bool IIfcOrientedEdge.Orientation { get { return @Orientation; } }	
-	
-		IIfcVertex IIfcOrientedEdge.EdgeStart  { get { return @EdgeStart; } }
-		IIfcVertex IIfcOrientedEdge.EdgeEnd  { get { return @EdgeEnd; } }
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

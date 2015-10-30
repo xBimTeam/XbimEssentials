@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.MaterialResource
 		IIfcMaterialProfileSet IIfcMaterialProfileSetUsage.ForProfileSet { get { return @ForProfileSet; } }	
 		IfcCardinalPointReference? IIfcMaterialProfileSetUsage.CardinalPoint { get { return @CardinalPoint; } }	
 		IfcPositiveLengthMeasure? IIfcMaterialProfileSetUsage.ReferenceExtent { get { return @ReferenceExtent; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

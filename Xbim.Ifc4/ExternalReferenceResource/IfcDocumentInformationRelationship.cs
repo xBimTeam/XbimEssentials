@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		IIfcDocumentInformation IIfcDocumentInformationRelationship.RelatingDocument { get { return @RelatingDocument; } }	
 		IEnumerable<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments { get { return @RelatedDocuments; } }	
 		IfcLabel? IIfcDocumentInformationRelationship.RelationshipType { get { return @RelationshipType; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

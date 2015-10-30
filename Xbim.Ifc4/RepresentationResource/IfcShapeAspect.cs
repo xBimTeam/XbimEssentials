@@ -46,8 +46,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		IfcText? IIfcShapeAspect.Description { get { return @Description; } }	
 		bool? IIfcShapeAspect.ProductDefinitional { get { return @ProductDefinitional; } }	
 		IfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape { get { return @PartOfProductDefinitionShape; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

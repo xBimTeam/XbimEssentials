@@ -12,13 +12,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometryResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcVector
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcVector : IIfcGeometricRepresentationItem, IfcVectorOrDirection
+	{
+		IIfcDirection @Orientation { get; }
+		IfcLengthMeasure @Magnitude { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IFCVECTOR", 652)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVector : IfcGeometricRepresentationItem, IfcVectorOrDirection, IInstantiableEntity, IEqualityComparer<@IfcVector>, IEquatable<@IfcVector>
+	public  partial class @IfcVector : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcVector, IEqualityComparer<@IfcVector>, IEquatable<@IfcVector>
 	{
+		#region IIfcVector explicit implementation
+		IIfcDirection IIfcVector.Orientation { get { return @Orientation; } }	
+		IfcLengthMeasure IIfcVector.Magnitude { get { return @Magnitude; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcVector(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,8 +65,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLengthMeasure @Magnitude 
 		{ 
@@ -58,9 +79,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				SetValue( v =>  _magnitude = v, _magnitude, value,  "Magnitude");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

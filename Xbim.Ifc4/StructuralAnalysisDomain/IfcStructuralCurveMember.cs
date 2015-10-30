@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		#region IIfcStructuralCurveMember explicit implementation
 		IfcStructuralCurveMemberTypeEnum IIfcStructuralCurveMember.PredefinedType { get { return @PredefinedType; } }	
 		IIfcDirection IIfcStructuralCurveMember.Axis { get { return @Axis; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.ProfileResource
 		IIfcProfileDef IIfcDerivedProfileDef.ParentProfile { get { return @ParentProfile; } }	
 		IIfcCartesianTransformationOperator2D IIfcDerivedProfileDef.Operator { get { return @Operator; } }	
 		IfcLabel? IIfcDerivedProfileDef.Label { get { return @Label; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

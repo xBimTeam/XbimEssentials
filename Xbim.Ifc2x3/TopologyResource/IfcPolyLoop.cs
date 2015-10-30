@@ -12,13 +12,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.TopologyResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcPolyLoop
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcPolyLoop : IIfcLoop
+	{
+		IEnumerable<IIfcCartesianPoint> @Polygon { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IFCPOLYLOOP", 200)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPolyLoop : IfcLoop, IInstantiableEntity, IEqualityComparer<@IfcPolyLoop>, IEquatable<@IfcPolyLoop>
+	public  partial class @IfcPolyLoop : IfcLoop, IInstantiableEntity, IIfcPolyLoop, IEqualityComparer<@IfcPolyLoop>, IEquatable<@IfcPolyLoop>
 	{
+		#region IIfcPolyLoop explicit implementation
+		IEnumerable<IIfcCartesianPoint> IIfcPolyLoop.Polygon { get { return @Polygon; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPolyLoop(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,9 +59,9 @@ namespace Xbim.Ifc2x3.TopologyResource
 				((IPersistEntity)this).Activate(false);
 				return _polygon;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

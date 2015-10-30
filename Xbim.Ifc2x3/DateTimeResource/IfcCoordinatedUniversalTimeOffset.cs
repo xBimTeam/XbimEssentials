@@ -12,13 +12,37 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.DateTimeResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcCoordinatedUniversalTimeOffset
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcCoordinatedUniversalTimeOffset : IPersistEntity
+	{
+		IfcHourInDay @HourOffset { get; }
+		IfcMinuteInHour? @MinuteOffset { get; }
+		IfcAheadOrBehind @Sense { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IFCCOORDINATEDUNIVERSALTIMEOFFSET", 690)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCoordinatedUniversalTimeOffset : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcCoordinatedUniversalTimeOffset>, IEquatable<@IfcCoordinatedUniversalTimeOffset>
+	public  partial class @IfcCoordinatedUniversalTimeOffset : INotifyPropertyChanged, IInstantiableEntity, IIfcCoordinatedUniversalTimeOffset, IEqualityComparer<@IfcCoordinatedUniversalTimeOffset>, IEquatable<@IfcCoordinatedUniversalTimeOffset>
 	{
+		#region IIfcCoordinatedUniversalTimeOffset explicit implementation
+		IfcHourInDay IIfcCoordinatedUniversalTimeOffset.HourOffset { get { return @HourOffset; } }	
+		IfcMinuteInHour? IIfcCoordinatedUniversalTimeOffset.MinuteOffset { get { return @MinuteOffset; } }	
+		IfcAheadOrBehind IIfcCoordinatedUniversalTimeOffset.Sense { get { return @Sense; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -100,8 +124,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			{
 				SetValue( v =>  _hourOffset = v, _hourOffset, value,  "HourOffset");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcMinuteInHour? @MinuteOffset 
 		{ 
@@ -115,8 +138,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			{
 				SetValue( v =>  _minuteOffset = v, _minuteOffset, value,  "MinuteOffset");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcAheadOrBehind @Sense 
 		{ 
@@ -130,9 +152,9 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			{
 				SetValue( v =>  _sense = v, _sense, value,  "Sense");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

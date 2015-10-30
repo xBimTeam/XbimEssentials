@@ -46,8 +46,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRX { get { return @RotationalDisplacementRX; } }	
 		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRY { get { return @RotationalDisplacementRY; } }	
 		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRZ { get { return @RotationalDisplacementRZ; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

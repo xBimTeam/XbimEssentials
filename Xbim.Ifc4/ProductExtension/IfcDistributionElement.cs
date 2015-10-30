@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcDistributionElement : IfcElement, IInstantiableEntity, IIfcDistributionElement, IEqualityComparer<@IfcDistributionElement>, IEquatable<@IfcDistributionElement>
 	{
 		#region IIfcDistributionElement explicit implementation
-	
-	 
+		 
 		IEnumerable<IIfcRelConnectsPortToElement> IIfcDistributionElement.HasPorts {  get { return @HasPorts; } }
 		#endregion
 

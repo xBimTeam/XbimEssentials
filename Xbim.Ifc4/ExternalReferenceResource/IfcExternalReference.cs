@@ -45,8 +45,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		IfcURIReference? IIfcExternalReference.Location { get { return @Location; } }	
 		IfcIdentifier? IIfcExternalReference.Identification { get { return @Identification; } }	
 		IfcLabel? IIfcExternalReference.Name { get { return @Name; } }	
-	
-	 
+		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcExternalReference.ExternalReferenceForResources {  get { return @ExternalReferenceForResources; } }
 		#endregion
 

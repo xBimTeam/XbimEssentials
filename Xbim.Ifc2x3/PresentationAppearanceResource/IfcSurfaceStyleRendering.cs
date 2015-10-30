@@ -13,13 +13,47 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationAppearanceResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcSurfaceStyleRendering
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcSurfaceStyleRendering : IIfcSurfaceStyleShading
+	{
+		IfcNormalisedRatioMeasure? @Transparency { get; }
+		IfcColourOrFactor @DiffuseColour { get; }
+		IfcColourOrFactor @TransmissionColour { get; }
+		IfcColourOrFactor @DiffuseTransmissionColour { get; }
+		IfcColourOrFactor @ReflectionColour { get; }
+		IfcColourOrFactor @SpecularColour { get; }
+		IfcSpecularHighlightSelect @SpecularHighlight { get; }
+		IfcReflectanceMethodEnum @ReflectanceMethod { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IFCSURFACESTYLERENDERING", 317)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IEqualityComparer<@IfcSurfaceStyleRendering>, IEquatable<@IfcSurfaceStyleRendering>
+	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IIfcSurfaceStyleRendering, IEqualityComparer<@IfcSurfaceStyleRendering>, IEquatable<@IfcSurfaceStyleRendering>
 	{
+		#region IIfcSurfaceStyleRendering explicit implementation
+		IfcNormalisedRatioMeasure? IIfcSurfaceStyleRendering.Transparency { get { return @Transparency; } }	
+		IfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour { get { return @DiffuseColour; } }	
+		IfcColourOrFactor IIfcSurfaceStyleRendering.TransmissionColour { get { return @TransmissionColour; } }	
+		IfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseTransmissionColour { get { return @DiffuseTransmissionColour; } }	
+		IfcColourOrFactor IIfcSurfaceStyleRendering.ReflectionColour { get { return @ReflectionColour; } }	
+		IfcColourOrFactor IIfcSurfaceStyleRendering.SpecularColour { get { return @SpecularColour; } }	
+		IfcSpecularHighlightSelect IIfcSurfaceStyleRendering.SpecularHighlight { get { return @SpecularHighlight; } }	
+		IfcReflectanceMethodEnum IIfcSurfaceStyleRendering.ReflectanceMethod { get { return @ReflectanceMethod; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleRendering(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -50,8 +84,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _transparency = v, _transparency, value,  "Transparency");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColourOrFactor @DiffuseColour 
 		{ 
@@ -65,8 +98,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _diffuseColour = v, _diffuseColour, value,  "DiffuseColour");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColourOrFactor @TransmissionColour 
 		{ 
@@ -80,8 +112,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _transmissionColour = v, _transmissionColour, value,  "TransmissionColour");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColourOrFactor @DiffuseTransmissionColour 
 		{ 
@@ -95,8 +126,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _diffuseTransmissionColour = v, _diffuseTransmissionColour, value,  "DiffuseTransmissionColour");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColourOrFactor @ReflectionColour 
 		{ 
@@ -110,8 +140,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _reflectionColour = v, _reflectionColour, value,  "ReflectionColour");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColourOrFactor @SpecularColour 
 		{ 
@@ -125,8 +154,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _specularColour = v, _specularColour, value,  "SpecularColour");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSpecularHighlightSelect @SpecularHighlight 
 		{ 
@@ -140,8 +168,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _specularHighlight = v, _specularHighlight, value,  "SpecularHighlight");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcReflectanceMethodEnum @ReflectanceMethod 
 		{ 
@@ -155,9 +182,9 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 				SetValue( v =>  _reflectanceMethod = v, _reflectanceMethod, value,  "ReflectanceMethod");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

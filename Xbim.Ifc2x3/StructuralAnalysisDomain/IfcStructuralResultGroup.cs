@@ -14,13 +14,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.StructuralAnalysisDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcStructuralResultGroup
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcStructuralResultGroup : IIfcGroup
+	{
+		IfcAnalysisTheoryTypeEnum @TheoryType { get; }
+		IIfcStructuralLoadGroup @ResultForLoadGroup { get; }
+		bool @IsLinear { get; }
+		IEnumerable<IIfcStructuralAnalysisModel> @ResultGroupFor {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IFCSTRUCTURALRESULTGROUP", 532)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralResultGroup : IfcGroup, IInstantiableEntity, IEqualityComparer<@IfcStructuralResultGroup>, IEquatable<@IfcStructuralResultGroup>
+	public  partial class @IfcStructuralResultGroup : IfcGroup, IInstantiableEntity, IIfcStructuralResultGroup, IEqualityComparer<@IfcStructuralResultGroup>, IEquatable<@IfcStructuralResultGroup>
 	{
+		#region IIfcStructuralResultGroup explicit implementation
+		IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType { get { return @TheoryType; } }	
+		IIfcStructuralLoadGroup IIfcStructuralResultGroup.ResultForLoadGroup { get { return @ResultForLoadGroup; } }	
+		bool IIfcStructuralResultGroup.IsLinear { get { return @IsLinear; } }	
+		 
+		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralResultGroup.ResultGroupFor {  get { return @ResultGroupFor; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralResultGroup(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +72,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _theoryType = v, _theoryType, value,  "TheoryType");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcStructuralLoadGroup @ResultForLoadGroup 
@@ -62,8 +87,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _resultForLoadGroup = v, _resultForLoadGroup, value,  "ResultForLoadGroup");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public bool @IsLinear 
 		{ 
@@ -77,9 +101,9 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			{
 				SetValue( v =>  _isLinear = v, _isLinear, value,  "IsLinear");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

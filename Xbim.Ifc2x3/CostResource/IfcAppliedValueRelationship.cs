@@ -13,14 +13,42 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.CostResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAppliedValueRelationship
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAppliedValueRelationship : IPersistEntity
+	{
+		IIfcAppliedValue @ComponentOfTotal { get; }
+		IEnumerable<IIfcAppliedValue> @Components { get; }
+		IfcArithmeticOperatorEnum @ArithmeticOperator { get; }
+		IfcLabel? @Name { get; }
+		IfcText? @Description { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.CostResource
 {
 	[IndexedClass]
 	[ExpressType("IFCAPPLIEDVALUERELATIONSHIP", 691)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAppliedValueRelationship : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@IfcAppliedValueRelationship>, IEquatable<@IfcAppliedValueRelationship>
+	public  partial class @IfcAppliedValueRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValueRelationship, IEqualityComparer<@IfcAppliedValueRelationship>, IEquatable<@IfcAppliedValueRelationship>
 	{
+		#region IIfcAppliedValueRelationship explicit implementation
+		IIfcAppliedValue IIfcAppliedValueRelationship.ComponentOfTotal { get { return @ComponentOfTotal; } }	
+		IEnumerable<IIfcAppliedValue> IIfcAppliedValueRelationship.Components { get { return @Components; } }	
+		IfcArithmeticOperatorEnum IIfcAppliedValueRelationship.ArithmeticOperator { get { return @ArithmeticOperator; } }	
+		IfcLabel? IIfcAppliedValueRelationship.Name { get { return @Name; } }	
+		IfcText? IIfcAppliedValueRelationship.Description { get { return @Description; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -106,8 +134,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _componentOfTotal = v, _componentOfTotal, value,  "ComponentOfTotal");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcAppliedValue> @Components 
@@ -118,8 +145,7 @@ namespace Xbim.Ifc2x3.CostResource
 				((IPersistEntity)this).Activate(false);
 				return _components;
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
 		public IfcArithmeticOperatorEnum @ArithmeticOperator 
 		{ 
@@ -133,8 +159,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _arithmeticOperator = v, _arithmeticOperator, value,  "ArithmeticOperator");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcLabel? @Name 
 		{ 
@@ -148,8 +173,7 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcText? @Description 
 		{ 
@@ -163,9 +187,9 @@ namespace Xbim.Ifc2x3.CostResource
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

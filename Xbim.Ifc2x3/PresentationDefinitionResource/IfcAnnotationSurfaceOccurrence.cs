@@ -14,17 +14,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.PresentationDefinitionResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcAnnotationSurfaceOccurrence
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcAnnotationSurfaceOccurrence : IIfcAnnotationOccurrence
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IFCANNOTATIONSURFACEOCCURRENCE", 509)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationSurfaceOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IEqualityComparer<@IfcAnnotationSurfaceOccurrence>, IEquatable<@IfcAnnotationSurfaceOccurrence>
+	public  partial class @IfcAnnotationSurfaceOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationSurfaceOccurrence, IEqualityComparer<@IfcAnnotationSurfaceOccurrence>, IEquatable<@IfcAnnotationSurfaceOccurrence>
 	{
+		#region IIfcAnnotationSurfaceOccurrence explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAnnotationSurfaceOccurrence(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

@@ -44,8 +44,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		IfcLogicalOperatorEnum? IIfcObjective.LogicalAggregator { get { return @LogicalAggregator; } }	
 		IfcObjectiveEnum IIfcObjective.ObjectiveQualifier { get { return @ObjectiveQualifier; } }	
 		IfcLabel? IIfcObjective.UserDefinedQualifier { get { return @UserDefinedQualifier; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

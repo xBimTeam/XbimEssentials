@@ -13,17 +13,36 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelNests
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelNests : IIfcRelDecomposes
+	{
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCRELNESTS", 305)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelNests : IfcRelDecomposes, IInstantiableEntity, IEqualityComparer<@IfcRelNests>, IEquatable<@IfcRelNests>
+	public  partial class @IfcRelNests : IfcRelDecomposes, IInstantiableEntity, IIfcRelNests, IEqualityComparer<@IfcRelNests>, IEquatable<@IfcRelNests>
 	{
+		#region IIfcRelNests explicit implementation
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelNests(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 

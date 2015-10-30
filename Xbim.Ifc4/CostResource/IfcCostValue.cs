@@ -35,8 +35,7 @@ namespace Xbim.Ifc4.CostResource
 	public  partial class @IfcCostValue : IfcAppliedValue, IInstantiableEntity, IIfcCostValue, IEqualityComparer<@IfcCostValue>, IEquatable<@IfcCostValue>
 	{
 		#region IIfcCostValue explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

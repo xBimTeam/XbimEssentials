@@ -83,6 +83,10 @@
       <Project>{b6668419-d7a4-4736-b4d8-018756ccf134}</Project>
       <Name>Xbim.Ifc2x3</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj">
+      <Project>{63a3efcf-5d43-4c27-8637-86ccd6033a1e}</Project>
+      <Name>Xbim.Ifc4</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xbim.IO\Xbim.IO.csproj">
       <Project>{85856df2-c8ab-4120-8a8d-ae05d2696b51}</Project>
       <Name>Xbim.IO</Name>

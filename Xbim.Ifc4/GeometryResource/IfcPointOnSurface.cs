@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.GeometryResource
 		IIfcSurface IIfcPointOnSurface.BasisSurface { get { return @BasisSurface; } }	
 		IfcParameterValue IIfcPointOnSurface.PointParameterU { get { return @PointParameterU; } }	
 		IfcParameterValue IIfcPointOnSurface.PointParameterV { get { return @PointParameterV; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

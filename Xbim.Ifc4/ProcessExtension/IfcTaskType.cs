@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		#region IIfcTaskType explicit implementation
 		IfcTaskTypeEnum IIfcTaskType.PredefinedType { get { return @PredefinedType; } }	
 		IfcLabel? IIfcTaskType.WorkMethod { get { return @WorkMethod; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

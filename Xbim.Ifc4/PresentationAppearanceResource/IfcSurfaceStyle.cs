@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#region IIfcSurfaceStyle explicit implementation
 		IfcSurfaceSide IIfcSurfaceStyle.Side { get { return @Side; } }	
 		IEnumerable<IfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles { get { return @Styles; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

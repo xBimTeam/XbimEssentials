@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IfcPositiveLengthMeasure IIfcRectangularPyramid.XLength { get { return @XLength; } }	
 		IfcPositiveLengthMeasure IIfcRectangularPyramid.YLength { get { return @YLength; } }	
 		IfcPositiveLengthMeasure IIfcRectangularPyramid.Height { get { return @Height; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

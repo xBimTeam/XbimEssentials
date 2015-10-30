@@ -34,8 +34,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public abstract partial class @IfcTessellatedItem : IfcGeometricRepresentationItem, IIfcTessellatedItem, IEqualityComparer<@IfcTessellatedItem>, IEquatable<@IfcTessellatedItem>
 	{
 		#region IIfcTessellatedItem explicit implementation
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

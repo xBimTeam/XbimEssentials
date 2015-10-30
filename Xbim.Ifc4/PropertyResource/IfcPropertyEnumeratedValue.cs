@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.PropertyResource
 		#region IIfcPropertyEnumeratedValue explicit implementation
 		IEnumerable<IfcValue> IIfcPropertyEnumeratedValue.EnumerationValues { get { return @EnumerationValues; } }	
 		IIfcPropertyEnumeration IIfcPropertyEnumeratedValue.EnumerationReference { get { return @EnumerationReference; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

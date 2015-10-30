@@ -13,13 +13,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.ConstructionMgmtDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcLaborResource
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcLaborResource : IIfcConstructionResource
+	{
+		IfcText? @SkillSet { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IFCLABORRESOURCE", 156)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLaborResource : IfcConstructionResource, IInstantiableEntity, IEqualityComparer<@IfcLaborResource>, IEquatable<@IfcLaborResource>
+	public  partial class @IfcLaborResource : IfcConstructionResource, IInstantiableEntity, IIfcLaborResource, IEqualityComparer<@IfcLaborResource>, IEquatable<@IfcLaborResource>
 	{
+		#region IIfcLaborResource explicit implementation
+		IfcText? IIfcLaborResource.SkillSet { get { return @SkillSet; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLaborResource(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,9 +63,9 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			{
 				SetValue( v =>  _skillSet = v, _skillSet, value,  "SkillSet");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

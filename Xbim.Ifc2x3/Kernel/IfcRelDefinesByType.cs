@@ -13,13 +13,33 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcRelDefinesByType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcRelDefinesByType : IIfcRelDefines
+	{
+		IIfcTypeObject @RelatingType { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCRELDEFINESBYTYPE", 206)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelDefinesByType : IfcRelDefines, IInstantiableEntity, IEqualityComparer<@IfcRelDefinesByType>, IEquatable<@IfcRelDefinesByType>
+	public  partial class @IfcRelDefinesByType : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByType, IEqualityComparer<@IfcRelDefinesByType>, IEquatable<@IfcRelDefinesByType>
 	{
+		#region IIfcRelDefinesByType explicit implementation
+		IIfcTypeObject IIfcRelDefinesByType.RelatingType { get { return @RelatingType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDefinesByType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -44,9 +64,9 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _relatingType = v, _relatingType, value,  "RelatingType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

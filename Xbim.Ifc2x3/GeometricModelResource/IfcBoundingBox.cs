@@ -13,13 +13,39 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.GeometricModelResource;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcBoundingBox
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcBoundingBox : IIfcGeometricRepresentationItem
+	{
+		IIfcCartesianPoint @Corner { get; }
+		IfcPositiveLengthMeasure @XDim { get; }
+		IfcPositiveLengthMeasure @YDim { get; }
+		IfcPositiveLengthMeasure @ZDim { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IFCBOUNDINGBOX", 151)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundingBox : IfcGeometricRepresentationItem, IInstantiableEntity, IEqualityComparer<@IfcBoundingBox>, IEquatable<@IfcBoundingBox>
+	public  partial class @IfcBoundingBox : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBoundingBox, IEqualityComparer<@IfcBoundingBox>, IEquatable<@IfcBoundingBox>
 	{
+		#region IIfcBoundingBox explicit implementation
+		IIfcCartesianPoint IIfcBoundingBox.Corner { get { return @Corner; } }	
+		IfcPositiveLengthMeasure IIfcBoundingBox.XDim { get { return @XDim; } }	
+		IfcPositiveLengthMeasure IIfcBoundingBox.YDim { get { return @YDim; } }	
+		IfcPositiveLengthMeasure IIfcBoundingBox.ZDim { get { return @ZDim; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundingBox(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -46,8 +72,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _corner = v, _corner, value,  "Corner");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @XDim 
 		{ 
@@ -61,8 +86,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _xDim = v, _xDim, value,  "XDim");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @YDim 
 		{ 
@@ -76,8 +100,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _yDim = v, _yDim, value,  "YDim");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure @ZDim 
 		{ 
@@ -91,9 +114,9 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 				SetValue( v =>  _zDim = v, _zDim, value,  "ZDim");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

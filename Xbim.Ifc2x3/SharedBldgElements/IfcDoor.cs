@@ -16,13 +16,35 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.SharedBldgElements;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcDoor
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcDoor : IIfcBuildingElement
+	{
+		IfcPositiveLengthMeasure? @OverallHeight { get; }
+		IfcPositiveLengthMeasure? @OverallWidth { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IFCDOOR", 213)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IEqualityComparer<@IfcDoor>, IEquatable<@IfcDoor>
+	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IIfcDoor, IEqualityComparer<@IfcDoor>, IEquatable<@IfcDoor>
 	{
+		#region IIfcDoor explicit implementation
+		IfcPositiveLengthMeasure? IIfcDoor.OverallHeight { get { return @OverallHeight; } }	
+		IfcPositiveLengthMeasure? IIfcDoor.OverallWidth { get { return @OverallWidth; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDoor(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -47,8 +69,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
 		public IfcPositiveLengthMeasure? @OverallWidth 
 		{ 
@@ -62,9 +83,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			{
 				SetValue( v =>  _overallWidth = v, _overallWidth, value,  "OverallWidth");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

@@ -15,13 +15,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.FacilitiesMgmtDomain;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcMove
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcMove : IIfcTask
+	{
+		IIfcSpatialStructureElement @MoveFrom { get; }
+		IIfcSpatialStructureElement @MoveTo { get; }
+		IEnumerable<IfcText> @PunchList { get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IFCMOVE", 74)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMove : IfcTask, IInstantiableEntity, IEqualityComparer<@IfcMove>, IEquatable<@IfcMove>
+	public  partial class @IfcMove : IfcTask, IInstantiableEntity, IIfcMove, IEqualityComparer<@IfcMove>, IEquatable<@IfcMove>
 	{
+		#region IIfcMove explicit implementation
+		IIfcSpatialStructureElement IIfcMove.MoveFrom { get { return @MoveFrom; } }	
+		IIfcSpatialStructureElement IIfcMove.MoveTo { get { return @MoveTo; } }	
+		IEnumerable<IfcText> IIfcMove.PunchList { get { return @PunchList; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMove(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -48,8 +72,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			{
 				SetValue( v =>  _moveFrom = v, _moveFrom, value,  "MoveFrom");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcSpatialStructureElement @MoveTo 
 		{ 
@@ -63,8 +86,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			{
 				SetValue( v =>  _moveTo = v, _moveTo, value,  "MoveTo");
 			} 
-		}
-	
+		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<IfcText> @PunchList 
 		{ 
@@ -74,9 +96,9 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 				((IPersistEntity)this).Activate(false);
 				return _punchList;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 

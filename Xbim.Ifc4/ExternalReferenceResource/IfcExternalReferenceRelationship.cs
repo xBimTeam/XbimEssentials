@@ -38,8 +38,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		#region IIfcExternalReferenceRelationship explicit implementation
 		IIfcExternalReference IIfcExternalReferenceRelationship.RelatingReference { get { return @RelatingReference; } }	
 		IEnumerable<IfcResourceObjectSelect> IIfcExternalReferenceRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

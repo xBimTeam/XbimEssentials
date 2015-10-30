@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.ProfileResource
 	{
 		#region IIfcParameterizedProfileDef explicit implementation
 		IIfcAxis2Placement2D IIfcParameterizedProfileDef.Position { get { return @Position; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

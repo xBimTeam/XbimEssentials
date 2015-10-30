@@ -36,8 +36,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	{
 		#region IIfcBoundaryNodeConditionWarping explicit implementation
 		IfcWarpingStiffnessSelect IIfcBoundaryNodeConditionWarping.WarpingStiffness { get { return @WarpingStiffness; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

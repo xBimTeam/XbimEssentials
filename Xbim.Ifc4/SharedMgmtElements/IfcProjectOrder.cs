@@ -42,8 +42,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		IfcProjectOrderTypeEnum? IIfcProjectOrder.PredefinedType { get { return @PredefinedType; } }	
 		IfcLabel? IIfcProjectOrder.Status { get { return @Status; } }	
 		IfcText? IIfcProjectOrder.LongDescription { get { return @LongDescription; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -37,8 +37,7 @@ namespace Xbim.Ifc4.MaterialResource
 	{
 		#region IIfcMaterialList explicit implementation
 		IEnumerable<IIfcMaterial> IIfcMaterialList.Materials { get { return @Materials; } }	
-	
-	 
+		 
 		#endregion
 
 		#region Implementation of IPersistEntity

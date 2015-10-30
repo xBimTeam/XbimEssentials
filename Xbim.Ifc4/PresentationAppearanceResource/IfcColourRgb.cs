@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IfcNormalisedRatioMeasure IIfcColourRgb.Red { get { return @Red; } }	
 		IfcNormalisedRatioMeasure IIfcColourRgb.Green { get { return @Green; } }	
 		IfcNormalisedRatioMeasure IIfcColourRgb.Blue { get { return @Blue; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

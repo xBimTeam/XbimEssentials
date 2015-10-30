@@ -40,8 +40,7 @@ namespace Xbim.Ifc4.ActorResource
 		#region IIfcOrganizationRelationship explicit implementation
 		IIfcOrganization IIfcOrganizationRelationship.RelatingOrganization { get { return @RelatingOrganization; } }	
 		IEnumerable<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations { get { return @RelatedOrganizations; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

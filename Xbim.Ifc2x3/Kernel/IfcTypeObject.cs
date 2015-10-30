@@ -13,13 +13,37 @@ using System;
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Kernel;
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for IfcTypeObject
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @IIfcTypeObject : IIfcObjectDefinition
+	{
+		IfcLabel? @ApplicableOccurrence { get; }
+		IEnumerable<IIfcPropertySetDefinition> @HasPropertySets { get; }
+		IEnumerable<IIfcRelDefinesByType> @ObjectTypeOf {  get; }
+		
+	}
+}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IFCTYPEOBJECT", 42)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTypeObject : IfcObjectDefinition, IInstantiableEntity, IEqualityComparer<@IfcTypeObject>, IEquatable<@IfcTypeObject>
+	public  partial class @IfcTypeObject : IfcObjectDefinition, IInstantiableEntity, IIfcTypeObject, IEqualityComparer<@IfcTypeObject>, IEquatable<@IfcTypeObject>
 	{
+		#region IIfcTypeObject explicit implementation
+		IfcLabel? IIfcTypeObject.ApplicableOccurrence { get { return @ApplicableOccurrence; } }	
+		IEnumerable<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets { get { return @HasPropertySets; } }	
+		 
+		IEnumerable<IIfcRelDefinesByType> IIfcTypeObject.ObjectTypeOf {  get { return @ObjectTypeOf; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTypeObject(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -45,8 +69,7 @@ namespace Xbim.Ifc2x3.Kernel
 			{
 				SetValue( v =>  _applicableOccurrence = v, _applicableOccurrence, value,  "ApplicableOccurrence");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcPropertySetDefinition> @HasPropertySets 
@@ -57,9 +80,9 @@ namespace Xbim.Ifc2x3.Kernel
 				((IPersistEntity)this).Activate(false);
 				return _hasPropertySets;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]

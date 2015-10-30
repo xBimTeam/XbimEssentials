@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.Kernel
 		IfcIdentifier? IIfcTypeProcess.Identification { get { return @Identification; } }	
 		IfcText? IIfcTypeProcess.LongDescription { get { return @LongDescription; } }	
 		IfcLabel? IIfcTypeProcess.ProcessType { get { return @ProcessType; } }	
-	
-	 
+		 
 		IEnumerable<IIfcRelAssignsToProcess> IIfcTypeProcess.OperatesOn {  get { return @OperatesOn; } }
 		#endregion
 

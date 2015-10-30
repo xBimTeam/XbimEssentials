@@ -24,7 +24,6 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcSIPrefix? @Prefix { get; }
 		IfcSIUnitName @Name { get; }
-		new IIfcDimensionalExponents @Dimensions  { get; }
 		
 	}
 }
@@ -38,9 +37,7 @@ namespace Xbim.Ifc4.MeasureResource
 		#region IIfcSIUnit explicit implementation
 		IfcSIPrefix? IIfcSIUnit.Prefix { get { return @Prefix; } }	
 		IfcSIUnitName IIfcSIUnit.Name { get { return @Name; } }	
-	
-		IIfcDimensionalExponents IIfcSIUnit.Dimensions  { get { return @Dimensions; } }
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

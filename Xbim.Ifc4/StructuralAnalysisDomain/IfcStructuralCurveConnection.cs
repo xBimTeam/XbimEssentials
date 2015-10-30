@@ -41,8 +41,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	{
 		#region IIfcStructuralCurveConnection explicit implementation
 		IIfcDirection IIfcStructuralCurveConnection.Axis { get { return @Axis; } }	
-	
-	 
+		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
