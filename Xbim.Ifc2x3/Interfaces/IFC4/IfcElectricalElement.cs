@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				//TODO: Handle return of Tag for which no match was found
-				throw new System.NotImplementedException();
+				if (Tag == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)Tag);
 			} 
 		}
 		IEnumerable<IIfcRelFillsElement> IIfcElement.FillsVoids 

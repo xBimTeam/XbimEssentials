@@ -20,8 +20,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				//TODO: Handle return of RelatingObject for which no match was found
-				throw new System.NotImplementedException();
+				return RelatingObject as IIfcObjectDefinition;
 			} 
 		}
 		IEnumerable<IIfcObjectDefinition> IIfcRelNests.RelatedObjects 

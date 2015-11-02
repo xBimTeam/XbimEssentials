@@ -20,8 +20,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
-				//TODO: Handle return of Item for which no match was found
-				throw new System.NotImplementedException();
+				return Item as IIfcRepresentationItem;
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.PresentationAppearanceResource.IfcStyleAssignmentSelect> IIfcStyledItem.Styles 
@@ -36,8 +35,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
-				//TODO: Handle return of Name for which no match was found
-				throw new System.NotImplementedException();
+				if (Name == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 	}

@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
-				return TimeForTask as IIfcControl;
+				return RelatingControl as IIfcControl;
 			} 
 		}
 	}

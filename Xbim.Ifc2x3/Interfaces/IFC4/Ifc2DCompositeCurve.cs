@@ -20,16 +20,17 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				//TODO: Handle return of Segments for which no match was found
-				throw new System.NotImplementedException();
+			foreach (var member in Segments)
+			{
+				yield return member as IIfcCompositeCurveSegment;
+			}
 			} 
 		}
 		bool? IIfcCompositeCurve.SelfIntersect 
 		{ 
 			get
 			{
-				//TODO: Handle return of SelfIntersect for which no match was found
-				throw new System.NotImplementedException();
+				return SelfIntersect;
 			} 
 		}
 	}

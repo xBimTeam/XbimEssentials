@@ -20,32 +20,31 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get
 			{
-				//TODO: Handle return of Status for which no match was found
-				throw new System.NotImplementedException();
+				if (Status == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Status);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcTask.WorkMethod 
 		{ 
 			get
 			{
-				//TODO: Handle return of WorkMethod for which no match was found
-				throw new System.NotImplementedException();
+				if (WorkMethod == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)WorkMethod);
 			} 
 		}
 		bool IIfcTask.IsMilestone 
 		{ 
 			get
 			{
-				//TODO: Handle return of IsMilestone for which no match was found
-				throw new System.NotImplementedException();
+				return IsMilestone;
 			} 
 		}
 		long? IIfcTask.Priority 
 		{ 
 			get
 			{
-				//TODO: Handle return of Priority for which no match was found
-				throw new System.NotImplementedException();
+				if (Priority == null) return null;
+				return Priority;
 			} 
 		}
 		IIfcTaskTime IIfcTask.TaskTime 

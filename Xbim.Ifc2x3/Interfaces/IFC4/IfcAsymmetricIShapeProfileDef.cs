@@ -28,16 +28,14 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				//TODO: Handle return of OverallDepth for which no match was found
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)OverallDepth);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.WebThickness 
 		{ 
 			get
 			{
-				//TODO: Handle return of WebThickness for which no match was found
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)WebThickness);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeThickness 

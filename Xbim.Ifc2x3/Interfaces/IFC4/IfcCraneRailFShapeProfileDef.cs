@@ -20,8 +20,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				//TODO: Handle return of Position for which no match was found
-				throw new System.NotImplementedException();
+				return Position as IIfcAxis2Placement2D;
 			} 
 		}
 	}

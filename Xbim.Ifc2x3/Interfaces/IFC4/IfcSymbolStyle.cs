@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				//TODO: Handle return of Name for which no match was found
-				throw new System.NotImplementedException();
+				if (Name == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 	}

@@ -20,8 +20,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get
 			{
-				//TODO: Handle return of RelatingControl for which no match was found
-				throw new System.NotImplementedException();
+				return RelatingControl as IIfcControl;
 			} 
 		}
 	}

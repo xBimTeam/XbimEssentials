@@ -20,32 +20,38 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
-				//TODO: Handle return of Name for which no match was found
-				throw new System.NotImplementedException();
+				if (Name == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcAppliedValue.Description 
 		{ 
 			get
 			{
-				//TODO: Handle return of Description for which no match was found
-				throw new System.NotImplementedException();
+				if (Description == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
 		Xbim.Ifc4.CostResource.IfcAppliedValueSelect IIfcAppliedValue.AppliedValue 
 		{ 
 			get
 			{
-				//TODO: Handle return of AppliedValue for which no match was found
-				throw new System.NotImplementedException();
+				if (AppliedValue == null) return null;
+				if (AppliedValue is Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure)AppliedValue);
+				var ifcmeasurewithunit = AppliedValue as Xbim.Ifc2x3.MeasureResource.IfcMeasureWithUnit;
+				if (ifcmeasurewithunit != null) 
+					return ifcmeasurewithunit;
+				if (AppliedValue is Xbim.Ifc2x3.MeasureResource.IfcMonetaryMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMonetaryMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMonetaryMeasure)AppliedValue);
+				return null;
 			} 
 		}
 		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis 
 		{ 
 			get
 			{
-				//TODO: Handle return of UnitBasis for which no match was found
-				throw new System.NotImplementedException();
+				return UnitBasis as IIfcMeasureWithUnit;
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDate? IIfcAppliedValue.ApplicableDate 

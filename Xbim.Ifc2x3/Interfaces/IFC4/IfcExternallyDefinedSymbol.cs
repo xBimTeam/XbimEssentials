@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
-				//TODO: Handle return of Location for which no match was found
-				throw new System.NotImplementedException();
+				if (Location == null) return null;
+				return new Xbim.Ifc4.ExternalReferenceResource.IfcURIReference((string)Location);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcExternalReference.Identification 
@@ -36,8 +36,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
-				//TODO: Handle return of Name for which no match was found
-				throw new System.NotImplementedException();
+				if (Name == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcExternalReference.ExternalReferenceForResources 

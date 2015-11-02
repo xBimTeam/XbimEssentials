@@ -20,8 +20,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				//TODO: Handle return of ProfileDefinition for which no match was found
-				throw new System.NotImplementedException();
+				return ProfileDefinition as IIfcProfileDef;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcExtendedProperties.Name 

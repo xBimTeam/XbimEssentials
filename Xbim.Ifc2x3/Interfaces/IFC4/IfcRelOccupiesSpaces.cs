@@ -20,16 +20,14 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
-				//TODO: Handle return of RelatingActor for which no match was found
-				throw new System.NotImplementedException();
+				return RelatingActor as IIfcActor;
 			} 
 		}
 		IIfcActorRole IIfcRelAssignsToActor.ActingRole 
 		{ 
 			get
 			{
-				//TODO: Handle return of ActingRole for which no match was found
-				throw new System.NotImplementedException();
+				return ActingRole as IIfcActorRole;
 			} 
 		}
 	}

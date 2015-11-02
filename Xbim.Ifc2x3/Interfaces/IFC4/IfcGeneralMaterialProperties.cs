@@ -20,8 +20,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get
 			{
-				//TODO: Handle return of Material for which no match was found
-				throw new System.NotImplementedException();
+				return Material as IIfcMaterialDefinition;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcExtendedProperties.Name 
