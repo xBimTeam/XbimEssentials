@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
@@ -26,7 +27,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Tag == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Tag);
 			} 
 		}
 	}

@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralLoadResource
@@ -19,21 +20,24 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (PlanarForceX == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPlanarForceMeasure((double)PlanarForceX);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceY 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (PlanarForceY == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPlanarForceMeasure((double)PlanarForceY);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceZ 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (PlanarForceZ == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPlanarForceMeasure((double)PlanarForceZ);
 			} 
 		}
 	}

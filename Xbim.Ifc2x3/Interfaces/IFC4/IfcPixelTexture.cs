@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -19,21 +20,21 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcInteger((long)Width);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.Height 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcInteger((long)Height);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.ColourComponents 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcInteger((long)ColourComponents);
 			} 
 		}
 		IEnumerable<long> IIfcPixelTexture.Pixel 

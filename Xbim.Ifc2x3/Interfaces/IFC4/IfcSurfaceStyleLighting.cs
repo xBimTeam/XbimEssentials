@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -19,28 +20,28 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return DiffuseTransmissionColour as IIfcColourRgb;
 			} 
 		}
 		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseReflectionColour 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return DiffuseReflectionColour as IIfcColourRgb;
 			} 
 		}
 		IIfcColourRgb IIfcSurfaceStyleLighting.TransmissionColour 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return TransmissionColour as IIfcColourRgb;
 			} 
 		}
 		IIfcColourRgb IIfcSurfaceStyleLighting.ReflectanceColour 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ReflectanceColour as IIfcColourRgb;
 			} 
 		}
 	}

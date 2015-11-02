@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.TimeSeriesResource
@@ -19,14 +20,15 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcTimeSeries.Description 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Description == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDateTime IIfcTimeSeries.StartTime 
@@ -61,21 +63,32 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (UserDefinedDataOrigin == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)UserDefinedDataOrigin);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcUnit IIfcTimeSeries.Unit 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Unit == null) return null;
+				var ifcderivedunit = Unit as Xbim.Ifc2x3.MeasureResource.IfcDerivedUnit;
+				if (ifcderivedunit != null) 
+					return ifcderivedunit;
+				var ifcnamedunit = Unit as Xbim.Ifc2x3.MeasureResource.IfcNamedUnit;
+				if (ifcnamedunit != null) 
+					return ifcnamedunit;
+				var ifcmonetaryunit = Unit as Xbim.Ifc2x3.MeasureResource.IfcMonetaryUnit;
+				if (ifcmonetaryunit != null) 
+					return ifcmonetaryunit;
+				return null;
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcTimeSeries.HasExternalReference 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
 	}

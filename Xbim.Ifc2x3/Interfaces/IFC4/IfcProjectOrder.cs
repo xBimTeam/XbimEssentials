@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedMgmtElements
@@ -26,14 +27,15 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Status == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Status);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcProjectOrder.LongDescription 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)ID);
 			} 
 		}
 	}

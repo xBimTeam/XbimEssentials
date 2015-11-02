@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgElements
@@ -19,77 +20,87 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LiningDepth == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)LiningDepth);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.LiningThickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LiningThickness == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)LiningThickness);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdDepth 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ThresholdDepth == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)ThresholdDepth);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.ThresholdThickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ThresholdThickness == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)ThresholdThickness);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.TransomThickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TransomThickness == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)TransomThickness);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.TransomOffset 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TransomOffset == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)TransomOffset);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.LiningOffset 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LiningOffset == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)LiningOffset);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.ThresholdOffset 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ThresholdOffset == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)ThresholdOffset);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingThickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (CasingThickness == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)CasingThickness);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingDepth 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (CasingDepth == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)CasingDepth);
 			} 
 		}
 		IIfcShapeAspect IIfcDoorLiningProperties.ShapeAspectStyle 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ShapeAspectStyle as IIfcShapeAspect;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetX 

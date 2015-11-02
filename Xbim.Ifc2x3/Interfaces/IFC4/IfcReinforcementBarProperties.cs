@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfilePropertyResource
@@ -19,14 +20,14 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcAreaMeasure((double)TotalCrossSectionArea);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel IIfcReinforcementBarProperties.SteelGrade 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)SteelGrade);
 			} 
 		}
 		Xbim.Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface 
@@ -40,28 +41,31 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (EffectiveDepth == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)EffectiveDepth);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcementBarProperties.NominalBarDiameter 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (NominalBarDiameter == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)NominalBarDiameter);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcCountMeasure? IIfcReinforcementBarProperties.BarCount 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (BarCount == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcCountMeasure((double)BarCount);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
 	}

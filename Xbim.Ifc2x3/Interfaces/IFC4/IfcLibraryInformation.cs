@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ExternalReferenceResource
@@ -19,14 +20,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcLibraryInformation.Version 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Version == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Version);
 			} 
 		}
 		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcLibraryInformation.Publisher 
@@ -61,14 +63,14 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelAssociatesLibrary>(e => (e.RelatingLibrary as IfcLibraryInformation) == this);
 			} 
 		}
 		IEnumerable<IIfcLibraryReference> IIfcLibraryInformation.HasLibraryReferences 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcLibraryReference>(e => (e.ReferencedLibrary as IfcLibraryInformation) == this);
 			} 
 		}
 	}

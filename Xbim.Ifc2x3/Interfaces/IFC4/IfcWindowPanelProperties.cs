@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgElements
@@ -33,21 +34,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FrameDepth == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FrameDepth);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameThickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FrameThickness == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FrameThickness);
 			} 
 		}
 		IIfcShapeAspect IIfcWindowPanelProperties.ShapeAspectStyle 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ShapeAspectStyle as IIfcShapeAspect;
 			} 
 		}
 	}

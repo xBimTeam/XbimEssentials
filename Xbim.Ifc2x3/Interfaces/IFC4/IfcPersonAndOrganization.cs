@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
@@ -19,14 +20,14 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ThePerson as IIfcPerson;
 			} 
 		}
 		IIfcOrganization IIfcPersonAndOrganization.TheOrganization 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return TheOrganization as IIfcOrganization;
 			} 
 		}
 		IEnumerable<IIfcActorRole> IIfcPersonAndOrganization.Roles 

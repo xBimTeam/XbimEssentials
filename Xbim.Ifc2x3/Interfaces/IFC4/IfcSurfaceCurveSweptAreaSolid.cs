@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
@@ -19,28 +20,28 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Directrix as IIfcCurve;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.StartParam 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)StartParam);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.EndParam 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)EndParam);
 			} 
 		}
 		IIfcSurface IIfcSurfaceCurveSweptAreaSolid.ReferenceSurface 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ReferenceSurface as IIfcSurface;
 			} 
 		}
 	}

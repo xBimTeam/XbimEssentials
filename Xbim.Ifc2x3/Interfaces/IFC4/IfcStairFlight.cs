@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgElements
@@ -33,14 +34,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (RiserHeight == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)RiserHeight);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TreadLength == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)TreadLength);
 			} 
 		}
 		Xbim.Ifc4.SharedBldgElements.IfcStairFlightTypeEnum? IIfcStairFlight.PredefinedType 

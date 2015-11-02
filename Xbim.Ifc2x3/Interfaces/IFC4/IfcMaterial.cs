@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MaterialResource
@@ -19,7 +20,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcMaterial.Description 
@@ -40,42 +41,42 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcMaterialDefinitionRepresentation>(e => (e.RepresentedMaterial as IfcMaterial) == this);
 			} 
 		}
 		IEnumerable<IIfcMaterialRelationship> IIfcMaterial.IsRelatedWith 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcMaterialRelationship>(e => e.RelatedMaterials != null &&  e.RelatedMaterials.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcMaterialRelationship> IIfcMaterial.RelatesTo 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcMaterialRelationship>(e => (e.RelatingMaterial as IfcMaterial) == this);
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialDefinition.AssociatedTo 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelAssociatesMaterial>(e => (e.RelatingMaterial as IfcMaterial) == this);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcMaterialDefinition.HasExternalReferences 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcMaterialProperties> IIfcMaterialDefinition.HasProperties 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcMaterialProperties>(e => (e.Material as IfcMaterial) == this);
 			} 
 		}
 	}

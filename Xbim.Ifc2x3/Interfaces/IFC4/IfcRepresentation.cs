@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.RepresentationResource
@@ -19,21 +20,23 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ContextOfItems as IIfcRepresentationContext;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcRepresentation.RepresentationIdentifier 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (RepresentationIdentifier == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)RepresentationIdentifier);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcRepresentation.RepresentationType 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (RepresentationType == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)RepresentationType);
 			} 
 		}
 		IEnumerable<IIfcRepresentationItem> IIfcRepresentation.Items 
@@ -47,21 +50,21 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRepresentationMap>(e => (e.MappedRepresentation as IfcRepresentation) == this);
 			} 
 		}
 		IEnumerable<IIfcPresentationLayerAssignment> IIfcRepresentation.LayerAssignments 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcPresentationLayerAssignment>(e => e.AssignedItems != null &&  e.AssignedItems.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcProductRepresentation> IIfcRepresentation.OfProductRepresentation 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcProductRepresentation>(e => e.Representations != null &&  e.Representations.Contains(this));
 			} 
 		}
 	}

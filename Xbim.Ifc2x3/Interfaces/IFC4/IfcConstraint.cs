@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ConstraintResource
@@ -19,14 +20,15 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcConstraint.Description 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Description == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
 		Xbim.Ifc4.ConstraintResource.IfcConstraintEnum IIfcConstraint.ConstraintGrade 
@@ -40,14 +42,25 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ConstraintSource == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ConstraintSource);
 			} 
 		}
 		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcConstraint.CreatingActor 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (CreatingActor == null) return null;
+				var ifcorganization = CreatingActor as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+					return ifcorganization;
+				var ifcperson = CreatingActor as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				if (ifcperson != null) 
+					return ifcperson;
+				var ifcpersonandorganization = CreatingActor as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+					return ifcpersonandorganization;
+				return null;
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcConstraint.CreationTime 
@@ -61,21 +74,22 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (UserDefinedGrade == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)UserDefinedGrade);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcConstraint.HasExternalReferences 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcResourceConstraintRelationship> IIfcConstraint.PropertiesForConstraint 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcResourceConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this);
 			} 
 		}
 	}

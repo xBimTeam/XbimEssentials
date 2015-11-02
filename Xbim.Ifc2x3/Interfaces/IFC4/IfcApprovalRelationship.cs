@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ApprovalResource
@@ -19,7 +20,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RelatingApproval as IIfcApproval;
 			} 
 		}
 		IEnumerable<IIfcApproval> IIfcApprovalRelationship.RelatedApprovals 

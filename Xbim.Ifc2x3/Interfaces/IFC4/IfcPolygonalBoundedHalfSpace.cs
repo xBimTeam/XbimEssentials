@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
@@ -19,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Position as IIfcAxis2Placement3D;
 			} 
 		}
 		IIfcBoundedCurve IIfcPolygonalBoundedHalfSpace.PolygonalBoundary 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return PolygonalBoundary as IIfcBoundedCurve;
 			} 
 		}
 	}

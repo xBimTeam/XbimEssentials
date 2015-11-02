@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.RepresentationResource
@@ -19,7 +20,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.GeometryResource.IfcDimensionCount((long)CoordinateSpaceDimension);
 			} 
 		}
 		double? IIfcGeometricRepresentationContext.Precision 
@@ -33,21 +34,28 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (WorldCoordinateSystem == null) return null;
+				var ifcaxis2placement2d = WorldCoordinateSystem as Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement2D;
+				if (ifcaxis2placement2d != null) 
+					return ifcaxis2placement2d;
+				var ifcaxis2placement3d = WorldCoordinateSystem as Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement3D;
+				if (ifcaxis2placement3d != null) 
+					return ifcaxis2placement3d;
+				return null;
 			} 
 		}
 		IIfcDirection IIfcGeometricRepresentationContext.TrueNorth 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return TrueNorth as IIfcDirection;
 			} 
 		}
 		IEnumerable<IIfcGeometricRepresentationSubContext> IIfcGeometricRepresentationContext.HasSubContexts 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcGeometricRepresentationSubContext>(e => (e.ParentContext as IfcGeometricRepresentationContext) == this);
 			} 
 		}
 	}

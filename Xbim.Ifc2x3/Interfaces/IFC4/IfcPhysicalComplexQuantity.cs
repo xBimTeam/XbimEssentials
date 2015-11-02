@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.QuantityResource
@@ -26,21 +27,23 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Discrimination);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPhysicalComplexQuantity.Quality 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Quality == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Quality);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPhysicalComplexQuantity.Usage 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Usage == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Usage);
 			} 
 		}
 	}

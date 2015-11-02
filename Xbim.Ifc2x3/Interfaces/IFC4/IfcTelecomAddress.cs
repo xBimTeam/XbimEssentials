@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
@@ -33,7 +34,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (PagerNumber == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)PagerNumber);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses 
@@ -47,7 +49,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (WWWHomePageURL == null) return null;
+				return new Xbim.Ifc4.ExternalReferenceResource.IfcURIReference((string)WWWHomePageURL);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.ExternalReferenceResource.IfcURIReference> IIfcTelecomAddress.MessagingIDs 

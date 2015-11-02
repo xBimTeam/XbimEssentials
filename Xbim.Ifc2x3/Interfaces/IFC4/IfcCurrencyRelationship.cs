@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.CostResource
@@ -19,21 +20,21 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RelatingMonetaryUnit as IIfcMonetaryUnit;
 			} 
 		}
 		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatedMonetaryUnit 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RelatedMonetaryUnit as IIfcMonetaryUnit;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)ExchangeRate);
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcCurrencyRelationship.RateDateTime 
@@ -47,7 +48,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RateSource as IIfcLibraryInformation;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 

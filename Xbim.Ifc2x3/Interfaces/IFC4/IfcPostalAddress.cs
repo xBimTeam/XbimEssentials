@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
@@ -19,7 +20,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (InternalLocation == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)InternalLocation);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPostalAddress.AddressLines 
@@ -33,35 +35,40 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (PostalBox == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)PostalBox);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Town 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Town == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Town);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Region 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Region == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Region);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.PostalCode 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (PostalCode == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)PostalCode);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Country 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Country == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Country);
 			} 
 		}
 	}

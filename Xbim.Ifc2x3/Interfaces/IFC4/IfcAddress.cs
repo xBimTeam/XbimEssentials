@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
@@ -26,28 +27,30 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Description == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcAddress.UserDefinedPurpose 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (UserDefinedPurpose == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)UserDefinedPurpose);
 			} 
 		}
 		IEnumerable<IIfcPerson> IIfcAddress.OfPerson 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcPerson>(e => e.Addresses != null &&  e.Addresses.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcOrganization> IIfcAddress.OfOrganization 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcOrganization>(e => e.Addresses != null &&  e.Addresses.Contains(this));
 			} 
 		}
 	}

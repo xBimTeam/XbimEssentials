@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -33,7 +34,14 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TextFontStyle == null) return null;
+				var ifcpredefinedtextfont = TextFontStyle as Xbim.Ifc2x3.PresentationResource.IfcPreDefinedTextFont;
+				if (ifcpredefinedtextfont != null) 
+					return ifcpredefinedtextfont;
+				var ifcexternallydefinedtextfont = TextFontStyle as Xbim.Ifc2x3.PresentationResource.IfcExternallyDefinedTextFont;
+				if (ifcexternallydefinedtextfont != null) 
+					return ifcexternallydefinedtextfont;
+				return null;
 			} 
 		}
 		bool? IIfcTextStyle.ModelOrDraughting 

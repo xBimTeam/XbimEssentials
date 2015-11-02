@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PropertyResource
@@ -19,21 +20,62 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (UsageName == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)UsageName);
 			} 
 		}
 		Xbim.Ifc4.PropertyResource.IfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (PropertyReference == null) return null;
+				var ifcmaterial = PropertyReference as Xbim.Ifc2x3.MaterialResource.IfcMaterial;
+				if (ifcmaterial != null) 
+					throw new System.NotImplementedException();
+				var ifcperson = PropertyReference as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				if (ifcperson != null) 
+					return ifcperson;
+				var ifcdateandtime = PropertyReference as Xbim.Ifc2x3.DateTimeResource.IfcDateAndTime;
+				if (ifcdateandtime != null) 
+					throw new System.NotImplementedException();
+				var ifcmateriallist = PropertyReference as Xbim.Ifc2x3.MaterialResource.IfcMaterialList;
+				if (ifcmateriallist != null) 
+					throw new System.NotImplementedException();
+				var ifcorganization = PropertyReference as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+					return ifcorganization;
+				var ifccalendardate = PropertyReference as Xbim.Ifc2x3.DateTimeResource.IfcCalendarDate;
+				if (ifccalendardate != null) 
+					throw new System.NotImplementedException();
+				var ifclocaltime = PropertyReference as Xbim.Ifc2x3.DateTimeResource.IfcLocalTime;
+				if (ifclocaltime != null) 
+					throw new System.NotImplementedException();
+				var ifcpersonandorganization = PropertyReference as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+					return ifcpersonandorganization;
+				var ifcmateriallayer = PropertyReference as Xbim.Ifc2x3.MaterialResource.IfcMaterialLayer;
+				if (ifcmateriallayer != null) 
+					throw new System.NotImplementedException();
+				var ifcexternalreference = PropertyReference as Xbim.Ifc2x3.ExternalReferenceResource.IfcExternalReference;
+				if (ifcexternalreference != null) 
+					return ifcexternalreference;
+				var ifctimeseries = PropertyReference as Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeries;
+				if (ifctimeseries != null) 
+					return ifctimeseries;
+				var ifcaddress = PropertyReference as Xbim.Ifc2x3.ActorResource.IfcAddress;
+				if (ifcaddress != null) 
+					return ifcaddress;
+				var ifcappliedvalue = PropertyReference as Xbim.Ifc2x3.CostResource.IfcAppliedValue;
+				if (ifcappliedvalue != null) 
+					return ifcappliedvalue;
+				return null;
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
 	}

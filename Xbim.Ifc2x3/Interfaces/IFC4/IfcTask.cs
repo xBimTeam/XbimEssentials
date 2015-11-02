@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProcessExtension
@@ -19,14 +20,16 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Status == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Status);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcTask.WorkMethod 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (WorkMethod == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)WorkMethod);
 			} 
 		}
 		bool IIfcTask.IsMilestone 

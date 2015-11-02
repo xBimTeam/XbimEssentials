@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
@@ -19,21 +20,21 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ConnectionGeometry as IIfcConnectionGeometry;
 			} 
 		}
 		IIfcElement IIfcRelConnectsElements.RelatingElement 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RelatingElement as IIfcElement;
 			} 
 		}
 		IIfcElement IIfcRelConnectsElements.RelatedElement 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RelatedElement as IIfcElement;
 			} 
 		}
 	}

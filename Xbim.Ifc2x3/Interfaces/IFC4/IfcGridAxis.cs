@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricConstraintResource
@@ -19,49 +20,50 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (AxisTag == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)AxisTag);
 			} 
 		}
 		IIfcCurve IIfcGridAxis.AxisCurve 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return AxisCurve as IIfcCurve;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcBoolean IIfcGridAxis.SameSense 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcBoolean((bool)SameSense);
 			} 
 		}
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfW 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcGrid>(e => e.WAxes != null &&  e.WAxes.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfV 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcGrid>(e => e.VAxes != null &&  e.VAxes.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfU 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcGrid>(e => e.UAxes != null &&  e.UAxes.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcVirtualGridIntersection> IIfcGridAxis.HasIntersections 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcVirtualGridIntersection>(e => e.IntersectingAxes != null &&  e.IntersectingAxes.Contains(this));
 			} 
 		}
 	}

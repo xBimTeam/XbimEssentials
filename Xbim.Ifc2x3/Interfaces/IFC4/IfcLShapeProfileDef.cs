@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfileResource
@@ -19,42 +20,46 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Depth);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcLShapeProfileDef.Width 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Width == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Width);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcLShapeProfileDef.Thickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Thickness);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcLShapeProfileDef.FilletRadius 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FilletRadius == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)FilletRadius);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcLShapeProfileDef.EdgeRadius 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (EdgeRadius == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)EdgeRadius);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcLShapeProfileDef.LegSlope 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LegSlope == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)LegSlope);
 			} 
 		}
 	}

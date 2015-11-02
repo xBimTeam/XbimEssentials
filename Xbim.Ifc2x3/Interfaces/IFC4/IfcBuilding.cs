@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
@@ -19,21 +20,23 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ElevationOfRefHeight == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)ElevationOfRefHeight);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfTerrain 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ElevationOfTerrain == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)ElevationOfTerrain);
 			} 
 		}
 		IIfcPostalAddress IIfcBuilding.BuildingAddress 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return BuildingAddress as IIfcPostalAddress;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
@@ -47,21 +50,21 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelContainedInSpatialStructure>(e => (e.RelatingStructure as IfcBuilding) == this);
 			} 
 		}
 		IEnumerable<IIfcRelServicesBuildings> IIfcSpatialElement.ServicedBySystems 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelServicesBuildings>(e => e.RelatedBuildings != null &&  e.RelatedBuildings.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcRelReferencedInSpatialStructure> IIfcSpatialElement.ReferencesElements 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelReferencedInSpatialStructure>(e => (e.RelatingStructure as IfcBuilding) == this);
 			} 
 		}
 	}

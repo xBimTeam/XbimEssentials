@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
@@ -19,49 +20,69 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)AssetID);
 			} 
 		}
 		IIfcCostValue IIfcAsset.OriginalValue 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return OriginalValue as IIfcCostValue;
 			} 
 		}
 		IIfcCostValue IIfcAsset.CurrentValue 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return CurrentValue as IIfcCostValue;
 			} 
 		}
 		IIfcCostValue IIfcAsset.TotalReplacementCost 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return TotalReplacementCost as IIfcCostValue;
 			} 
 		}
 		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcAsset.Owner 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Owner == null) return null;
+				var ifcorganization = Owner as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+					return ifcorganization;
+				var ifcperson = Owner as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				if (ifcperson != null) 
+					return ifcperson;
+				var ifcpersonandorganization = Owner as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+					return ifcpersonandorganization;
+				return null;
 			} 
 		}
 		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcAsset.User 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (User == null) return null;
+				var ifcorganization = User as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+					return ifcorganization;
+				var ifcperson = User as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				if (ifcperson != null) 
+					return ifcperson;
+				var ifcpersonandorganization = User as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+					return ifcpersonandorganization;
+				return null;
 			} 
 		}
 		IIfcPerson IIfcAsset.ResponsiblePerson 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ResponsiblePerson as IIfcPerson;
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDate? IIfcAsset.IncorporationDate 
@@ -75,7 +96,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return DepreciatedValue as IIfcCostValue;
 			} 
 		}
 	}

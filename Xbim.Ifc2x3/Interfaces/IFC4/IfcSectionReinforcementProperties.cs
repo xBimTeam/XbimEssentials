@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfilePropertyResource
@@ -19,21 +20,22 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)LongitudinalStartPosition);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalEndPosition 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)LongitudinalEndPosition);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcSectionReinforcementProperties.TransversePosition 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TransversePosition == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)TransversePosition);
 			} 
 		}
 		Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole 
@@ -47,7 +49,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return SectionDefinition as IIfcSectionProperties;
 			} 
 		}
 		IEnumerable<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions 
@@ -61,7 +63,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
 	}

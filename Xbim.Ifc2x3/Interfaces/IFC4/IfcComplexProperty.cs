@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PropertyResource
@@ -19,7 +20,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)UsageName);
 			} 
 		}
 		IEnumerable<IIfcProperty> IIfcComplexProperty.HasProperties 
@@ -33,7 +34,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
 	}

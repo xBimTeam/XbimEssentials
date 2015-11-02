@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -19,14 +20,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (RefractionIndex == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcReal((double)RefractionIndex);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcReal? IIfcSurfaceStyleRefraction.DispersionFactor 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (DispersionFactor == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcReal((double)DispersionFactor);
 			} 
 		}
 	}

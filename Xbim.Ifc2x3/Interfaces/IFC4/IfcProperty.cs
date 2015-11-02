@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PropertyResource
@@ -19,49 +20,50 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)Name);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcProperty.Description 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Description == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
 		IEnumerable<IIfcPropertySet> IIfcProperty.PartOfPset 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcPropertySet>(e => e.HasProperties != null &&  e.HasProperties.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyForDependance 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcPropertyDependencyRelationship>(e => (e.DependingProperty as IfcProperty) == this);
 			} 
 		}
 		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyDependsOn 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcPropertyDependencyRelationship>(e => (e.DependantProperty as IfcProperty) == this);
 			} 
 		}
 		IEnumerable<IIfcComplexProperty> IIfcProperty.PartOfComplex 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcComplexProperty>(e => e.HasProperties != null &&  e.HasProperties.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
 	}

@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
@@ -26,14 +27,40 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FirstOperand == null) return null;
+				var ifcsolidmodel = FirstOperand as Xbim.Ifc2x3.GeometricModelResource.IfcSolidModel;
+				if (ifcsolidmodel != null) 
+					return ifcsolidmodel;
+				var ifchalfspacesolid = FirstOperand as Xbim.Ifc2x3.GeometricModelResource.IfcHalfSpaceSolid;
+				if (ifchalfspacesolid != null) 
+					return ifchalfspacesolid;
+				var ifcbooleanresult = FirstOperand as Xbim.Ifc2x3.GeometricModelResource.IfcBooleanResult;
+				if (ifcbooleanresult != null) 
+					return ifcbooleanresult;
+				var ifccsgprimitive3d = FirstOperand as Xbim.Ifc2x3.GeometricModelResource.IfcCsgPrimitive3D;
+				if (ifccsgprimitive3d != null) 
+					return ifccsgprimitive3d;
+				return null;
 			} 
 		}
 		Xbim.Ifc4.GeometricModelResource.IfcBooleanOperand IIfcBooleanResult.SecondOperand 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (SecondOperand == null) return null;
+				var ifcsolidmodel = SecondOperand as Xbim.Ifc2x3.GeometricModelResource.IfcSolidModel;
+				if (ifcsolidmodel != null) 
+					return ifcsolidmodel;
+				var ifchalfspacesolid = SecondOperand as Xbim.Ifc2x3.GeometricModelResource.IfcHalfSpaceSolid;
+				if (ifchalfspacesolid != null) 
+					return ifchalfspacesolid;
+				var ifcbooleanresult = SecondOperand as Xbim.Ifc2x3.GeometricModelResource.IfcBooleanResult;
+				if (ifcbooleanresult != null) 
+					return ifcbooleanresult;
+				var ifccsgprimitive3d = SecondOperand as Xbim.Ifc2x3.GeometricModelResource.IfcCsgPrimitive3D;
+				if (ifccsgprimitive3d != null) 
+					return ifccsgprimitive3d;
+				return null;
 			} 
 		}
 	}

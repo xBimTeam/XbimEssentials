@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
@@ -33,21 +34,21 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelSequence>(e => (e.RelatingProcess as IfcProcess) == this);
 			} 
 		}
 		IEnumerable<IIfcRelSequence> IIfcProcess.IsSuccessorFrom 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelSequence>(e => (e.RelatedProcess as IfcProcess) == this);
 			} 
 		}
 		IEnumerable<IIfcRelAssignsToProcess> IIfcProcess.OperatesOn 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelAssignsToProcess>(e => (e.RelatingProcess as IfcProcess) == this);
 			} 
 		}
 	}

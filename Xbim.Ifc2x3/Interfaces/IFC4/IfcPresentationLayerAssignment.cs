@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
@@ -19,14 +20,15 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcPresentationLayerAssignment.Description 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Description == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.PresentationOrganizationResource.IfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems 
@@ -40,7 +42,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Identifier == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)Identifier);
 			} 
 		}
 	}

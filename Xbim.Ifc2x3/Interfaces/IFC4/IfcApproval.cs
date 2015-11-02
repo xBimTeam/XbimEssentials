@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ApprovalResource
@@ -19,21 +20,22 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)Identifier);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcApproval.Name 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcApproval.Description 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Description == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcApproval.TimeOfApproval 
@@ -82,35 +84,35 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesApproval> IIfcApproval.ApprovedObjects 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelAssociatesApproval>(e => (e.RelatingApproval as IfcApproval) == this);
 			} 
 		}
 		IEnumerable<IIfcResourceApprovalRelationship> IIfcApproval.ApprovedResources 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcResourceApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this);
 			} 
 		}
 		IEnumerable<IIfcApprovalRelationship> IIfcApproval.IsRelatedWith 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcApprovalRelationship>(e => e.RelatedApprovals != null &&  e.RelatedApprovals.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcApprovalRelationship> IIfcApproval.Relates 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this);
 			} 
 		}
 	}

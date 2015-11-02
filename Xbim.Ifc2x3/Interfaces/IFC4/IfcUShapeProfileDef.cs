@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfileResource
@@ -19,49 +20,52 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Depth);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcUShapeProfileDef.FlangeWidth 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FlangeWidth);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcUShapeProfileDef.WebThickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)WebThickness);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcUShapeProfileDef.FlangeThickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FlangeThickness);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcUShapeProfileDef.FilletRadius 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FilletRadius == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)FilletRadius);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcUShapeProfileDef.EdgeRadius 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (EdgeRadius == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)EdgeRadius);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcUShapeProfileDef.FlangeSlope 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FlangeSlope == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)FlangeSlope);
 			} 
 		}
 	}

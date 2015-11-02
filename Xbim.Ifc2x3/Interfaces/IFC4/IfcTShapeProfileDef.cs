@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfileResource
@@ -19,63 +20,68 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Depth);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTShapeProfileDef.FlangeWidth 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FlangeWidth);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTShapeProfileDef.WebThickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)WebThickness);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTShapeProfileDef.FlangeThickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FlangeThickness);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcTShapeProfileDef.FilletRadius 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FilletRadius == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)FilletRadius);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcTShapeProfileDef.FlangeEdgeRadius 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FlangeEdgeRadius == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)FlangeEdgeRadius);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcTShapeProfileDef.WebEdgeRadius 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (WebEdgeRadius == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)WebEdgeRadius);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcTShapeProfileDef.WebSlope 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (WebSlope == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)WebSlope);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcTShapeProfileDef.FlangeSlope 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FlangeSlope == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)FlangeSlope);
 			} 
 		}
 	}

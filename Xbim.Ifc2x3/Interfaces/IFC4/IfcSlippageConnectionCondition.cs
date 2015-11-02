@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralLoadResource
@@ -19,21 +20,24 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (SlippageX == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)SlippageX);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageY 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (SlippageY == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)SlippageY);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageZ 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (SlippageZ == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)SlippageZ);
 			} 
 		}
 	}

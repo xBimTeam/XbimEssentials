@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PropertyResource
@@ -33,21 +34,42 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Expression == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)Expression);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcUnit IIfcPropertyTableValue.DefiningUnit 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (DefiningUnit == null) return null;
+				var ifcderivedunit = DefiningUnit as Xbim.Ifc2x3.MeasureResource.IfcDerivedUnit;
+				if (ifcderivedunit != null) 
+					return ifcderivedunit;
+				var ifcnamedunit = DefiningUnit as Xbim.Ifc2x3.MeasureResource.IfcNamedUnit;
+				if (ifcnamedunit != null) 
+					return ifcnamedunit;
+				var ifcmonetaryunit = DefiningUnit as Xbim.Ifc2x3.MeasureResource.IfcMonetaryUnit;
+				if (ifcmonetaryunit != null) 
+					return ifcmonetaryunit;
+				return null;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcUnit IIfcPropertyTableValue.DefinedUnit 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (DefinedUnit == null) return null;
+				var ifcderivedunit = DefinedUnit as Xbim.Ifc2x3.MeasureResource.IfcDerivedUnit;
+				if (ifcderivedunit != null) 
+					return ifcderivedunit;
+				var ifcnamedunit = DefinedUnit as Xbim.Ifc2x3.MeasureResource.IfcNamedUnit;
+				if (ifcnamedunit != null) 
+					return ifcnamedunit;
+				var ifcmonetaryunit = DefinedUnit as Xbim.Ifc2x3.MeasureResource.IfcMonetaryUnit;
+				if (ifcmonetaryunit != null) 
+					return ifcmonetaryunit;
+				return null;
 			} 
 		}
 		Xbim.Ifc4.PropertyResource.IfcCurveInterpolationEnum? IIfcPropertyTableValue.CurveInterpolation 
@@ -61,7 +83,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
 	}

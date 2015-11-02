@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricConstraintResource
@@ -19,14 +20,28 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (CurveOnRelatingElement == null) return null;
+				var ifcboundedcurve = CurveOnRelatingElement as Xbim.Ifc2x3.GeometryResource.IfcBoundedCurve;
+				if (ifcboundedcurve != null) 
+					return ifcboundedcurve;
+				var ifcedgecurve = CurveOnRelatingElement as Xbim.Ifc2x3.TopologyResource.IfcEdgeCurve;
+				if (ifcedgecurve != null) 
+					return ifcedgecurve;
+				return null;
 			} 
 		}
 		Xbim.Ifc4.GeometricConstraintResource.IfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatedElement 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (CurveOnRelatedElement == null) return null;
+				var ifcboundedcurve = CurveOnRelatedElement as Xbim.Ifc2x3.GeometryResource.IfcBoundedCurve;
+				if (ifcboundedcurve != null) 
+					return ifcboundedcurve;
+				var ifcedgecurve = CurveOnRelatedElement as Xbim.Ifc2x3.TopologyResource.IfcEdgeCurve;
+				if (ifcedgecurve != null) 
+					return ifcedgecurve;
+				return null;
 			} 
 		}
 	}

@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -19,21 +20,45 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (CurveFont == null) return null;
+				var ifcpredefinedcurvefont = CurveFont as Xbim.Ifc2x3.PresentationAppearanceResource.IfcPreDefinedCurveFont;
+				if (ifcpredefinedcurvefont != null) 
+					return ifcpredefinedcurvefont;
+				var ifccurvestylefont = CurveFont as Xbim.Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFont;
+				if (ifccurvestylefont != null) 
+					return ifccurvestylefont;
+				var ifccurvestylefontandscaling = CurveFont as Xbim.Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFontAndScaling;
+				if (ifccurvestylefontandscaling != null) 
+					return ifccurvestylefontandscaling;
+				return null;
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcCurveStyle.CurveWidth 
 		{ 
 			get
 			{
+				if (CurveWidth == null) return null;
 				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcColour IIfcCurveStyle.CurveColour 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (CurveColour == null) return null;
+				var ifccolourspecification = CurveColour as Xbim.Ifc2x3.PresentationResource.IfcColourSpecification;
+				if (ifccolourspecification != null) 
+					return ifccolourspecification;
+				var ifcpredefinedcolour = CurveColour as Xbim.Ifc2x3.PresentationResource.IfcPreDefinedColour;
+				if (ifcpredefinedcolour != null) 
+					return ifcpredefinedcolour;
+				return null;
 			} 
 		}
 		bool? IIfcCurveStyle.ModelOrDraughting 

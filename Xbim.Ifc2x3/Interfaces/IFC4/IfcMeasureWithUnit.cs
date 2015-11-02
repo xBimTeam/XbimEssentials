@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MeasureResource
@@ -19,14 +20,122 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
+				if (ValueComponent == null) return null;
 				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcUnit IIfcMeasureWithUnit.UnitComponent 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (UnitComponent == null) return null;
+				var ifcderivedunit = UnitComponent as Xbim.Ifc2x3.MeasureResource.IfcDerivedUnit;
+				if (ifcderivedunit != null) 
+					return ifcderivedunit;
+				var ifcnamedunit = UnitComponent as Xbim.Ifc2x3.MeasureResource.IfcNamedUnit;
+				if (ifcnamedunit != null) 
+					return ifcnamedunit;
+				var ifcmonetaryunit = UnitComponent as Xbim.Ifc2x3.MeasureResource.IfcMonetaryUnit;
+				if (ifcmonetaryunit != null) 
+					return ifcmonetaryunit;
+				return null;
 			} 
 		}
 	}

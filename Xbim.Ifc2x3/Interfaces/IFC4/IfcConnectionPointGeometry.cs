@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricConstraintResource
@@ -19,14 +20,28 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (PointOnRelatingElement == null) return null;
+				var ifcpoint = PointOnRelatingElement as Xbim.Ifc2x3.GeometryResource.IfcPoint;
+				if (ifcpoint != null) 
+					return ifcpoint;
+				var ifcvertexpoint = PointOnRelatingElement as Xbim.Ifc2x3.TopologyResource.IfcVertexPoint;
+				if (ifcvertexpoint != null) 
+					return ifcvertexpoint;
+				return null;
 			} 
 		}
 		Xbim.Ifc4.GeometricConstraintResource.IfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatedElement 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (PointOnRelatedElement == null) return null;
+				var ifcpoint = PointOnRelatedElement as Xbim.Ifc2x3.GeometryResource.IfcPoint;
+				if (ifcpoint != null) 
+					return ifcpoint;
+				var ifcvertexpoint = PointOnRelatedElement as Xbim.Ifc2x3.TopologyResource.IfcVertexPoint;
+				if (ifcvertexpoint != null) 
+					return ifcvertexpoint;
+				return null;
 			} 
 		}
 	}

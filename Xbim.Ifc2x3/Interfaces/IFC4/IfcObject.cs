@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
@@ -19,35 +20,36 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ObjectType == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ObjectType);
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByObject> IIfcObject.IsDeclaredBy 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelDefinesByObject>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByObject> IIfcObject.Declares 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelDefinesByObject>(e => (e.RelatingObject as IfcObject) == this);
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByType> IIfcObject.IsTypedBy 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelDefinesByType>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByProperties> IIfcObject.IsDefinedBy 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelDefinesByProperties>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
 	}

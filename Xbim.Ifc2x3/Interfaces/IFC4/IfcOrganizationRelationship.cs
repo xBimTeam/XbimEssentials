@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
@@ -19,7 +20,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RelatingOrganization as IIfcOrganization;
 			} 
 		}
 		IEnumerable<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations 

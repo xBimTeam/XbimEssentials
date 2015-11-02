@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
@@ -19,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Pnt as IIfcCartesianPoint;
 			} 
 		}
 		IIfcVector IIfcLine.Dir 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Dir as IIfcVector;
 			} 
 		}
 	}

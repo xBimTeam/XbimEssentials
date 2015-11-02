@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.CostResource
@@ -19,28 +20,36 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Name == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcAppliedValue.Description 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Description == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
 		Xbim.Ifc4.CostResource.IfcAppliedValueSelect IIfcAppliedValue.AppliedValue 
 		{ 
 			get
 			{
+				if (AppliedValue == null) return null;
 				throw new System.NotImplementedException();
+				var ifcmeasurewithunit = AppliedValue as Xbim.Ifc2x3.MeasureResource.IfcMeasureWithUnit;
+				if (ifcmeasurewithunit != null) 
+					return ifcmeasurewithunit;
+				throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return UnitBasis as IIfcMeasureWithUnit;
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDate? IIfcAppliedValue.ApplicableDate 
@@ -89,7 +98,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
 	}

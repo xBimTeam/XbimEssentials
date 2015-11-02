@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedComponentElements
@@ -19,14 +20,16 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (NominalDiameter == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)NominalDiameter);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (NominalLength == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)NominalLength);
 			} 
 		}
 		Xbim.Ifc4.SharedComponentElements.IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType 

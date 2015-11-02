@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralLoadResource
@@ -19,42 +20,48 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LinearForceX == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLinearForceMeasure((double)LinearForceX);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceY 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LinearForceY == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLinearForceMeasure((double)LinearForceY);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceZ 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LinearForceZ == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLinearForceMeasure((double)LinearForceZ);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentX 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LinearMomentX == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLinearMomentMeasure((double)LinearMomentX);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentY 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LinearMomentY == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLinearMomentMeasure((double)LinearMomentY);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentZ 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LinearMomentZ == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLinearMomentMeasure((double)LinearMomentZ);
 			} 
 		}
 	}

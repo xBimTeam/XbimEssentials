@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
@@ -19,7 +20,14 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TreeRootExpression == null) return null;
+				var ifcbooleanresult = TreeRootExpression as Xbim.Ifc2x3.GeometricModelResource.IfcBooleanResult;
+				if (ifcbooleanresult != null) 
+					return ifcbooleanresult;
+				var ifccsgprimitive3d = TreeRootExpression as Xbim.Ifc2x3.GeometricModelResource.IfcCsgPrimitive3D;
+				if (ifccsgprimitive3d != null) 
+					return ifccsgprimitive3d;
+				return null;
 			} 
 		}
 	}

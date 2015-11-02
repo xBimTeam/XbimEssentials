@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
@@ -40,28 +41,30 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Coefficient == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcRatioMeasure((double)Coefficient);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcStructuralLoadGroup.Purpose 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Purpose == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Purpose);
 			} 
 		}
 		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralLoadGroup.SourceOfResultGroup 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcStructuralResultGroup>(e => (e.ResultForLoadGroup as IfcStructuralLoadGroup) == this);
 			} 
 		}
 		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralLoadGroup.LoadGroupFor 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcStructuralAnalysisModel>(e => e.LoadedBy != null &&  e.LoadedBy.Contains(this));
 			} 
 		}
 	}

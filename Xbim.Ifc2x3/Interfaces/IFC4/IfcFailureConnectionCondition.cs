@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralLoadResource
@@ -19,42 +20,48 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TensionFailureX == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)TensionFailureX);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureY 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TensionFailureY == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)TensionFailureY);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureZ 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TensionFailureZ == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)TensionFailureZ);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureX 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (CompressionFailureX == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)CompressionFailureX);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureY 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (CompressionFailureY == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)CompressionFailureY);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureZ 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (CompressionFailureZ == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)CompressionFailureZ);
 			} 
 		}
 	}

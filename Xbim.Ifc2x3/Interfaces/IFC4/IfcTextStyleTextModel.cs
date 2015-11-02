@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -19,49 +20,80 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
+				if (TextIndent == null) return null;
 				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcTextAlignment? IIfcTextStyleTextModel.TextAlign 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TextAlign == null) return null;
+				return new Xbim.Ifc4.PresentationAppearanceResource.IfcTextAlignment((string)TextAlign);
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcTextDecoration? IIfcTextStyleTextModel.TextDecoration 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TextDecoration == null) return null;
+				return new Xbim.Ifc4.PresentationAppearanceResource.IfcTextDecoration((string)TextDecoration);
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.LetterSpacing 
 		{ 
 			get
 			{
+				if (LetterSpacing == null) return null;
 				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.WordSpacing 
 		{ 
 			get
 			{
+				if (WordSpacing == null) return null;
 				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcTextTransformation? IIfcTextStyleTextModel.TextTransform 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TextTransform == null) return null;
+				return new Xbim.Ifc4.PresentationAppearanceResource.IfcTextTransformation((string)TextTransform);
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.LineHeight 
 		{ 
 			get
 			{
+				if (LineHeight == null) return null;
 				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 	}

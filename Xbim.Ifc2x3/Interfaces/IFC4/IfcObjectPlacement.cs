@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricConstraintResource
@@ -19,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcProduct>(e => (e.ObjectPlacement as IfcObjectPlacement) == this);
 			} 
 		}
 		IEnumerable<IIfcLocalPlacement> IIfcObjectPlacement.ReferencedByPlacements 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcLocalPlacement>(e => (e.PlacementRelTo as IfcObjectPlacement) == this);
 			} 
 		}
 	}

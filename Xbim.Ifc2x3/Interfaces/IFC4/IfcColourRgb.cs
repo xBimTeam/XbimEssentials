@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationResource
@@ -19,21 +20,21 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)Red);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure IIfcColourRgb.Green 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)Green);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure IIfcColourRgb.Blue 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)Blue);
 			} 
 		}
 	}

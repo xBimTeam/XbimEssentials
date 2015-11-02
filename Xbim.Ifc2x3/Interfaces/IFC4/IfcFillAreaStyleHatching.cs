@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -19,35 +20,40 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return HatchLineAppearance as IIfcCurveStyle;
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine 
 		{ 
 			get
 			{
+				if (StartOfNextHatchLine == null) return null;
+				var ifconedirectionrepeatfactor = StartOfNextHatchLine as Xbim.Ifc2x3.PresentationAppearanceResource.IfcOneDirectionRepeatFactor;
+				if (ifconedirectionrepeatfactor != null) 
+					throw new System.NotImplementedException();
 				throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PointOfReferenceHatchLine 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return PointOfReferenceHatchLine as IIfcCartesianPoint;
 			} 
 		}
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PatternStart 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return PatternStart as IIfcCartesianPoint;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure IIfcFillAreaStyleHatching.HatchLineAngle 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)HatchLineAngle);
 			} 
 		}
 	}

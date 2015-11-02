@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationResource
@@ -19,7 +20,14 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Placement == null) return null;
+				var ifcaxis2placement2d = Placement as Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement2D;
+				if (ifcaxis2placement2d != null) 
+					return ifcaxis2placement2d;
+				var ifcaxis2placement3d = Placement as Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement3D;
+				if (ifcaxis2placement3d != null) 
+					return ifcaxis2placement3d;
+				return null;
 			} 
 		}
 	}

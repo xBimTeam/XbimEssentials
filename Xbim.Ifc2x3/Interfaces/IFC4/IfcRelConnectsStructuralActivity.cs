@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
@@ -19,14 +20,21 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (RelatingElement == null) return null;
+				var ifcstructuralitem = RelatingElement as Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralItem;
+				if (ifcstructuralitem != null) 
+					return ifcstructuralitem;
+				var ifcelement = RelatingElement as Xbim.Ifc2x3.ProductExtension.IfcElement;
+				if (ifcelement != null) 
+					return ifcelement;
+				return null;
 			} 
 		}
 		IIfcStructuralActivity IIfcRelConnectsStructuralActivity.RelatedStructuralActivity 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RelatedStructuralActivity as IIfcStructuralActivity;
 			} 
 		}
 	}

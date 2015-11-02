@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
@@ -26,77 +27,77 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelFillsElement>(e => (e.RelatedBuildingElement as IfcElectricalElement) == this);
 			} 
 		}
 		IEnumerable<IIfcRelConnectsElements> IIfcElement.ConnectedTo 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelConnectsElements>(e => (e.RelatingElement as IfcElectricalElement) == this);
 			} 
 		}
 		IEnumerable<IIfcRelInterferesElements> IIfcElement.IsInterferedByElements 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelInterferesElements>(e => (e.RelatedElement as IfcElectricalElement) == this);
 			} 
 		}
 		IEnumerable<IIfcRelInterferesElements> IIfcElement.InterferesElements 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelInterferesElements>(e => (e.RelatingElement as IfcElectricalElement) == this);
 			} 
 		}
 		IEnumerable<IIfcRelProjectsElement> IIfcElement.HasProjections 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelProjectsElement>(e => (e.RelatingElement as IfcElectricalElement) == this);
 			} 
 		}
 		IEnumerable<IIfcRelReferencedInSpatialStructure> IIfcElement.ReferencedInStructures 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelReferencedInSpatialStructure>(e => e.RelatedElements != null &&  e.RelatedElements.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcRelVoidsElement> IIfcElement.HasOpenings 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelVoidsElement>(e => (e.RelatingBuildingElement as IfcElectricalElement) == this);
 			} 
 		}
 		IEnumerable<IIfcRelConnectsWithRealizingElements> IIfcElement.IsConnectionRealization 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelConnectsWithRealizingElements>(e => e.RealizingElements != null &&  e.RealizingElements.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcRelSpaceBoundary> IIfcElement.ProvidesBoundaries 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelSpaceBoundary>(e => (e.RelatedBuildingElement as IfcElectricalElement) == this);
 			} 
 		}
 		IEnumerable<IIfcRelConnectsElements> IIfcElement.ConnectedFrom 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelConnectsElements>(e => (e.RelatedElement as IfcElectricalElement) == this);
 			} 
 		}
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcElement.ContainedInStructure 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelContainedInSpatialStructure>(e => e.RelatedElements != null &&  e.RelatedElements.Contains(this));
 			} 
 		}
 	}

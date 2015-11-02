@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
@@ -19,21 +20,21 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ObjectPlacement as IIfcObjectPlacement;
 			} 
 		}
 		IIfcProductRepresentation IIfcProduct.Representation 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Representation as IIfcProductRepresentation;
 			} 
 		}
 		IEnumerable<IIfcRelAssignsToProduct> IIfcProduct.ReferencedBy 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelAssignsToProduct>(e => (e.RelatingProduct as IfcProduct) == this);
 			} 
 		}
 	}

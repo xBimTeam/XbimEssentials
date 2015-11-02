@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -19,21 +20,29 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Name == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (CurveFont == null) return null;
+				var ifcpredefinedcurvefont = CurveFont as Xbim.Ifc2x3.PresentationAppearanceResource.IfcPreDefinedCurveFont;
+				if (ifcpredefinedcurvefont != null) 
+					return ifcpredefinedcurvefont;
+				var ifccurvestylefont = CurveFont as Xbim.Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFont;
+				if (ifccurvestylefont != null) 
+					return ifccurvestylefont;
+				return null;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)CurveFontScaling);
 			} 
 		}
 	}

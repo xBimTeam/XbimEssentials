@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
@@ -19,35 +20,39 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (RefLatitude == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure((List<long>)RefLatitude);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure? IIfcSite.RefLongitude 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (RefLongitude == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure((List<long>)RefLongitude);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcSite.RefElevation 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (RefElevation == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)RefElevation);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSite.LandTitleNumber 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LandTitleNumber == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)LandTitleNumber);
 			} 
 		}
 		IIfcPostalAddress IIfcSite.SiteAddress 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return SiteAddress as IIfcPostalAddress;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
@@ -61,21 +66,21 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelContainedInSpatialStructure>(e => (e.RelatingStructure as IfcSite) == this);
 			} 
 		}
 		IEnumerable<IIfcRelServicesBuildings> IIfcSpatialElement.ServicedBySystems 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelServicesBuildings>(e => e.RelatedBuildings != null &&  e.RelatedBuildings.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcRelReferencedInSpatialStructure> IIfcSpatialElement.ReferencesElements 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelReferencedInSpatialStructure>(e => (e.RelatingStructure as IfcSite) == this);
 			} 
 		}
 	}

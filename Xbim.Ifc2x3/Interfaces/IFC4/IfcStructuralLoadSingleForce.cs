@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralLoadResource
@@ -19,42 +20,48 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ForceX == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)ForceX);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceY 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ForceY == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)ForceY);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceZ 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ForceZ == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)ForceZ);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentX 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (MomentX == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcTorqueMeasure((double)MomentX);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentY 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (MomentY == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcTorqueMeasure((double)MomentY);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentZ 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (MomentZ == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcTorqueMeasure((double)MomentZ);
 			} 
 		}
 	}

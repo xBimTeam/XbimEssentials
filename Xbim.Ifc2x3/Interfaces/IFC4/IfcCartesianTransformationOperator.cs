@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
@@ -19,21 +20,21 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Axis1 as IIfcDirection;
 			} 
 		}
 		IIfcDirection IIfcCartesianTransformationOperator.Axis2 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Axis2 as IIfcDirection;
 			} 
 		}
 		IIfcCartesianPoint IIfcCartesianTransformationOperator.LocalOrigin 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return LocalOrigin as IIfcCartesianPoint;
 			} 
 		}
 		double? IIfcCartesianTransformationOperator.Scale 

@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ControlExtension
@@ -19,14 +20,14 @@ namespace Xbim.Ifc2x3.ControlExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Intent);
 			} 
 		}
 		IIfcConstraint IIfcRelAssociatesConstraint.RelatingConstraint 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RelatingConstraint as IIfcConstraint;
 			} 
 		}
 	}

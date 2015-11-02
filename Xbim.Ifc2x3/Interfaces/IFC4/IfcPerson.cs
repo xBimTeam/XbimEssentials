@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
@@ -19,21 +20,24 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Id == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)Id);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPerson.FamilyName 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FamilyName == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)FamilyName);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPerson.GivenName 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (GivenName == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)GivenName);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.MiddleNames 
@@ -75,7 +79,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcPersonAndOrganization>(e => (e.ThePerson as IfcPerson) == this);
 			} 
 		}
 	}

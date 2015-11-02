@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralElementsDomain
@@ -26,49 +27,54 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)NominalDiameter);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcAreaMeasure? IIfcTendon.CrossSectionArea 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcAreaMeasure((double)CrossSectionArea);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcForceMeasure? IIfcTendon.TensionForce 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TensionForce == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)TensionForce);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPressureMeasure? IIfcTendon.PreStress 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (PreStress == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPressureMeasure((double)PreStress);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcTendon.FrictionCoefficient 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FrictionCoefficient == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)FrictionCoefficient);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.AnchorageSlip 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (AnchorageSlip == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)AnchorageSlip);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.MinCurvatureRadius 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (MinCurvatureRadius == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)MinCurvatureRadius);
 			} 
 		}
 	}

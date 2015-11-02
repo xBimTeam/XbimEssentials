@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ConstraintResource
@@ -26,14 +27,38 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ValueSource == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ValueSource);
 			} 
 		}
 		Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect IIfcMetric.DataValue 
 		{ 
 			get
 			{
+				if (DataValue == null) return null;
+				var ifccalendardate = DataValue as Xbim.Ifc2x3.DateTimeResource.IfcCalendarDate;
+				if (ifccalendardate != null) 
+					throw new System.NotImplementedException();
+				var ifclocaltime = DataValue as Xbim.Ifc2x3.DateTimeResource.IfcLocalTime;
+				if (ifclocaltime != null) 
+					throw new System.NotImplementedException();
+				var ifcdateandtime = DataValue as Xbim.Ifc2x3.DateTimeResource.IfcDateAndTime;
+				if (ifcdateandtime != null) 
+					throw new System.NotImplementedException();
+				var ifcmeasurewithunit = DataValue as Xbim.Ifc2x3.MeasureResource.IfcMeasureWithUnit;
+				if (ifcmeasurewithunit != null) 
+					return ifcmeasurewithunit;
+				var ifctable = DataValue as Xbim.Ifc2x3.UtilityResource.IfcTable;
+				if (ifctable != null) 
+					return ifctable;
 				throw new System.NotImplementedException();
+				var ifctimeseries = DataValue as Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeries;
+				if (ifctimeseries != null) 
+					return ifctimeseries;
+				var ifccostvalue = DataValue as Xbim.Ifc2x3.CostResource.IfcCostValue;
+				if (ifccostvalue != null) 
+					return ifccostvalue;
+				return null;
 			} 
 		}
 		IIfcReference IIfcMetric.ReferencePath 

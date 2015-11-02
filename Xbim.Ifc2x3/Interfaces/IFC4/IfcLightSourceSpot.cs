@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
@@ -19,28 +20,29 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Orientation as IIfcDirection;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcReal? IIfcLightSourceSpot.ConcentrationExponent 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ConcentrationExponent == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcReal((double)ConcentrationExponent);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.SpreadAngle 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure((double)SpreadAngle);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.BeamWidthAngle 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure((double)BeamWidthAngle);
 			} 
 		}
 	}

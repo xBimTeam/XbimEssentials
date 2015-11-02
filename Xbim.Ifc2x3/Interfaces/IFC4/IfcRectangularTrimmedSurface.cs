@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
@@ -19,35 +20,35 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return BasisSurface as IIfcSurface;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.U1 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)U1);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.V1 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)V1);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.U2 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)U2);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.V2 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)V2);
 			} 
 		}
 		bool IIfcRectangularTrimmedSurface.Usense 

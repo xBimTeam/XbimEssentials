@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgElements
@@ -19,63 +20,71 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LiningDepth == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)LiningDepth);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcWindowLiningProperties.LiningThickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LiningThickness == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)LiningThickness);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcWindowLiningProperties.TransomThickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TransomThickness == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)TransomThickness);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcWindowLiningProperties.MullionThickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (MullionThickness == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)MullionThickness);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstTransomOffset 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FirstTransomOffset == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)FirstTransomOffset);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondTransomOffset 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (SecondTransomOffset == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)SecondTransomOffset);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstMullionOffset 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FirstMullionOffset == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)FirstMullionOffset);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondMullionOffset 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (SecondMullionOffset == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)SecondMullionOffset);
 			} 
 		}
 		IIfcShapeAspect IIfcWindowLiningProperties.ShapeAspectStyle 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ShapeAspectStyle as IIfcShapeAspect;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcWindowLiningProperties.LiningOffset 

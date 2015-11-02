@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricConstraintResource
@@ -19,21 +20,24 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (EccentricityInX == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)EccentricityInX);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInY 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (EccentricityInY == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)EccentricityInY);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInZ 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (EccentricityInZ == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)EccentricityInZ);
 			} 
 		}
 	}

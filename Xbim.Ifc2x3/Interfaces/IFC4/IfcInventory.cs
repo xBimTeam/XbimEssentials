@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
@@ -26,7 +27,17 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Jurisdiction == null) return null;
+				var ifcorganization = Jurisdiction as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+					return ifcorganization;
+				var ifcperson = Jurisdiction as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				if (ifcperson != null) 
+					return ifcperson;
+				var ifcpersonandorganization = Jurisdiction as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+					return ifcpersonandorganization;
+				return null;
 			} 
 		}
 		IEnumerable<IIfcPerson> IIfcInventory.ResponsiblePersons 
@@ -47,14 +58,14 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return CurrentValue as IIfcCostValue;
 			} 
 		}
 		IIfcCostValue IIfcInventory.OriginalValue 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return OriginalValue as IIfcCostValue;
 			} 
 		}
 	}

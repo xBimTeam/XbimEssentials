@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.RepresentationResource
@@ -19,14 +20,15 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ParentContext as IIfcGeometricRepresentationContext;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TargetScale == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)TargetScale);
 			} 
 		}
 		Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView 
@@ -40,7 +42,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (UserDefinedTargetView == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)UserDefinedTargetView);
 			} 
 		}
 	}

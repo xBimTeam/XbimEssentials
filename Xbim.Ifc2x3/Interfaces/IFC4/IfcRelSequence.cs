@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
@@ -19,14 +20,14 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RelatingProcess as IIfcProcess;
 			} 
 		}
 		IIfcProcess IIfcRelSequence.RelatedProcess 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RelatedProcess as IIfcProcess;
 			} 
 		}
 		IIfcLagTime IIfcRelSequence.TimeLag 

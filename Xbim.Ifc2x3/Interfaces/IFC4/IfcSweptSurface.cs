@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
@@ -19,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return SweptCurve as IIfcProfileDef;
 			} 
 		}
 		IIfcAxis2Placement3D IIfcSweptSurface.Position 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Position as IIfcAxis2Placement3D;
 			} 
 		}
 	}

@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
@@ -19,14 +20,24 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (TheActor == null) return null;
+				var ifcorganization = TheActor as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+					return ifcorganization;
+				var ifcperson = TheActor as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				if (ifcperson != null) 
+					return ifcperson;
+				var ifcpersonandorganization = TheActor as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+					return ifcpersonandorganization;
+				return null;
 			} 
 		}
 		IEnumerable<IIfcRelAssignsToActor> IIfcActor.IsActingUpon 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelAssignsToActor>(e => (e.RelatingActor as IfcActor) == this);
 			} 
 		}
 	}

@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -19,14 +20,28 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Colour == null) return null;
+				var ifccolourspecification = Colour as Xbim.Ifc2x3.PresentationResource.IfcColourSpecification;
+				if (ifccolourspecification != null) 
+					return ifccolourspecification;
+				var ifcpredefinedcolour = Colour as Xbim.Ifc2x3.PresentationResource.IfcPreDefinedColour;
+				if (ifcpredefinedcolour != null) 
+					return ifcpredefinedcolour;
+				return null;
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcColour IIfcTextStyleForDefinedFont.BackgroundColour 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (BackgroundColour == null) return null;
+				var ifccolourspecification = BackgroundColour as Xbim.Ifc2x3.PresentationResource.IfcColourSpecification;
+				if (ifccolourspecification != null) 
+					return ifccolourspecification;
+				var ifcpredefinedcolour = BackgroundColour as Xbim.Ifc2x3.PresentationResource.IfcPreDefinedColour;
+				if (ifcpredefinedcolour != null) 
+					return ifcpredefinedcolour;
+				return null;
 			} 
 		}
 	}

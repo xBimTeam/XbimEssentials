@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ArchitectureDomain
@@ -33,21 +34,23 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FrameDepth == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FrameDepth);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameThickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (FrameThickness == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FrameThickness);
 			} 
 		}
 		IIfcShapeAspect IIfcPermeableCoveringProperties.ShapeAspectStyle 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ShapeAspectStyle as IIfcShapeAspect;
 			} 
 		}
 	}

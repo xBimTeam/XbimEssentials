@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -19,49 +20,78 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Transparency == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)Transparency);
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour 
 		{ 
 			get
 			{
+				if (DiffuseColour == null) return null;
+				var ifccolourrgb = DiffuseColour as Xbim.Ifc2x3.PresentationResource.IfcColourRgb;
+				if (ifccolourrgb != null) 
+					return ifccolourrgb;
 				throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcColourOrFactor IIfcSurfaceStyleRendering.TransmissionColour 
 		{ 
 			get
 			{
+				if (TransmissionColour == null) return null;
+				var ifccolourrgb = TransmissionColour as Xbim.Ifc2x3.PresentationResource.IfcColourRgb;
+				if (ifccolourrgb != null) 
+					return ifccolourrgb;
 				throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseTransmissionColour 
 		{ 
 			get
 			{
+				if (DiffuseTransmissionColour == null) return null;
+				var ifccolourrgb = DiffuseTransmissionColour as Xbim.Ifc2x3.PresentationResource.IfcColourRgb;
+				if (ifccolourrgb != null) 
+					return ifccolourrgb;
 				throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcColourOrFactor IIfcSurfaceStyleRendering.ReflectionColour 
 		{ 
 			get
 			{
+				if (ReflectionColour == null) return null;
+				var ifccolourrgb = ReflectionColour as Xbim.Ifc2x3.PresentationResource.IfcColourRgb;
+				if (ifccolourrgb != null) 
+					return ifccolourrgb;
 				throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcColourOrFactor IIfcSurfaceStyleRendering.SpecularColour 
 		{ 
 			get
 			{
+				if (SpecularColour == null) return null;
+				var ifccolourrgb = SpecularColour as Xbim.Ifc2x3.PresentationResource.IfcColourRgb;
+				if (ifccolourrgb != null) 
+					return ifccolourrgb;
 				throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcSpecularHighlightSelect IIfcSurfaceStyleRendering.SpecularHighlight 
 		{ 
 			get
 			{
+				if (SpecularHighlight == null) return null;
 				throw new System.NotImplementedException();
+				throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum IIfcSurfaceStyleRendering.ReflectanceMethod 

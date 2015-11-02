@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ExternalReferenceResource
@@ -19,28 +20,31 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Location == null) return null;
+				return new Xbim.Ifc4.ExternalReferenceResource.IfcURIReference((string)Location);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcExternalReference.Identification 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ItemReference == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)ItemReference);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcExternalReference.Name 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Name == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcExternalReference.ExternalReferenceForResources 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => (e.RelatingReference as IfcExternalReference) == this);
 			} 
 		}
 	}

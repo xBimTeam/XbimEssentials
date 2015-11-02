@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MaterialResource
@@ -19,7 +20,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ForLayerSet as IIfcMaterialLayerSet;
 			} 
 		}
 		Xbim.Ifc4.MaterialResource.IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection 
@@ -40,7 +41,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)OffsetFromReferenceLine);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMaterialLayerSetUsage.ReferenceExtent 
@@ -54,7 +55,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelAssociatesMaterial>(e => (e.RelatingMaterial as IfcMaterialLayerSetUsage) == this);
 			} 
 		}
 	}

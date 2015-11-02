@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ExternalReferenceResource
@@ -19,7 +20,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RelatingDocument as IIfcDocumentInformation;
 			} 
 		}
 		IEnumerable<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments 
@@ -33,7 +34,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (RelationshipType == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)RelationshipType);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 

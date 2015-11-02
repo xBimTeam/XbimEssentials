@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MaterialResource
@@ -19,21 +20,22 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Material as IIfcMaterial;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure IIfcMaterialLayer.LayerThickness 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)LayerThickness);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLogical? IIfcMaterialLayer.IsVentilated 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (IsVentilated == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLogical((bool?)IsVentilated);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayer.Name 
@@ -68,28 +70,28 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.FirstOrDefault<IIfcMaterialLayerSet>(e => e.MaterialLayers != null &&  e.MaterialLayers.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialDefinition.AssociatedTo 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelAssociatesMaterial>(e => (e.RelatingMaterial as IfcMaterialLayer) == this);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcMaterialDefinition.HasExternalReferences 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcMaterialProperties> IIfcMaterialDefinition.HasProperties 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcMaterialProperties>(e => (e.Material as IfcMaterialLayer) == this);
 			} 
 		}
 	}

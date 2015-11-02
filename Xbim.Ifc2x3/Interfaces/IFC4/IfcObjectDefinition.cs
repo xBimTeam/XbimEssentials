@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
@@ -19,49 +20,49 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelAssigns>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcRelNests> IIfcObjectDefinition.Nests 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelNests>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcRelNests> IIfcObjectDefinition.IsNestedBy 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelNests>(e => (e.RelatingObject as IfcObjectDefinition) == this);
 			} 
 		}
 		IEnumerable<IIfcRelDeclares> IIfcObjectDefinition.HasContext 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelDeclares>(e => e.RelatedDefinitions != null &&  e.RelatedDefinitions.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcRelAggregates> IIfcObjectDefinition.IsDecomposedBy 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelAggregates>(e => (e.RelatingObject as IfcObjectDefinition) == this);
 			} 
 		}
 		IEnumerable<IIfcRelAggregates> IIfcObjectDefinition.Decomposes 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelAggregates>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcRelAssociates> IIfcObjectDefinition.HasAssociations 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelAssociates>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
 	}

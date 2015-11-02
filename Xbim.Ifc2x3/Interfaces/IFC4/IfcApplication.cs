@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.UtilityResource
@@ -19,28 +20,28 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ApplicationDeveloper as IIfcOrganization;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel IIfcApplication.Version 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Version);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel IIfcApplication.ApplicationFullName 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ApplicationFullName);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcIdentifier IIfcApplication.ApplicationIdentifier 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)ApplicationIdentifier);
 			} 
 		}
 	}

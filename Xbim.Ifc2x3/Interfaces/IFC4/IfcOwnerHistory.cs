@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.UtilityResource
@@ -19,14 +20,14 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return OwningUser as IIfcPersonAndOrganization;
 			} 
 		}
 		IIfcApplication IIfcOwnerHistory.OwningApplication 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return OwningApplication as IIfcApplication;
 			} 
 		}
 		Xbim.Ifc4.UtilityResource.IfcStateEnum? IIfcOwnerHistory.State 
@@ -47,28 +48,29 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LastModifiedDate == null) return null;
+				return new Xbim.Ifc4.DateTimeResource.IfcTimeStamp((long)LastModifiedDate);
 			} 
 		}
 		IIfcPersonAndOrganization IIfcOwnerHistory.LastModifyingUser 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return LastModifyingUser as IIfcPersonAndOrganization;
 			} 
 		}
 		IIfcApplication IIfcOwnerHistory.LastModifyingApplication 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return LastModifyingApplication as IIfcApplication;
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcTimeStamp IIfcOwnerHistory.CreationDate 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.DateTimeResource.IfcTimeStamp((long)CreationDate);
 			} 
 		}
 	}

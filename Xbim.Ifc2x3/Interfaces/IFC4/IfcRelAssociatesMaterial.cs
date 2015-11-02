@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
@@ -19,7 +20,23 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (RelatingMaterial == null) return null;
+				var ifcmaterial = RelatingMaterial as Xbim.Ifc2x3.MaterialResource.IfcMaterial;
+				if (ifcmaterial != null) 
+					throw new System.NotImplementedException();
+				var ifcmateriallist = RelatingMaterial as Xbim.Ifc2x3.MaterialResource.IfcMaterialList;
+				if (ifcmateriallist != null) 
+					return ifcmateriallist;
+				var ifcmateriallayersetusage = RelatingMaterial as Xbim.Ifc2x3.MaterialResource.IfcMaterialLayerSetUsage;
+				if (ifcmateriallayersetusage != null) 
+					throw new System.NotImplementedException();
+				var ifcmateriallayerset = RelatingMaterial as Xbim.Ifc2x3.MaterialResource.IfcMaterialLayerSet;
+				if (ifcmateriallayerset != null) 
+					throw new System.NotImplementedException();
+				var ifcmateriallayer = RelatingMaterial as Xbim.Ifc2x3.MaterialResource.IfcMaterialLayer;
+				if (ifcmateriallayer != null) 
+					throw new System.NotImplementedException();
+				return null;
 			} 
 		}
 	}

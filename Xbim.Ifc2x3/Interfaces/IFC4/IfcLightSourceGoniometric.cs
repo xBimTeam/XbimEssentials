@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
@@ -19,28 +20,28 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Position as IIfcAxis2Placement3D;
 			} 
 		}
 		IIfcColourRgb IIfcLightSourceGoniometric.ColourAppearance 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ColourAppearance as IIfcColourRgb;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure((double)ColourTemperature);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLuminousFluxMeasure((double)LuminousFlux);
 			} 
 		}
 		Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource 
@@ -54,7 +55,14 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (LightDistributionDataSource == null) return null;
+				var ifcexternalreference = LightDistributionDataSource as Xbim.Ifc2x3.ExternalReferenceResource.IfcExternalReference;
+				if (ifcexternalreference != null) 
+					return ifcexternalreference;
+				var ifclightintensitydistribution = LightDistributionDataSource as Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightIntensityDistribution;
+				if (ifclightintensitydistribution != null) 
+					return ifclightintensitydistribution;
+				return null;
 			} 
 		}
 	}

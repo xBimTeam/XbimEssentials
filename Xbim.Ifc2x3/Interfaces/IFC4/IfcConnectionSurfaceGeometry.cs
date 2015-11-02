@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricConstraintResource
@@ -19,14 +20,34 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (SurfaceOnRelatingElement == null) return null;
+				var ifcsurface = SurfaceOnRelatingElement as Xbim.Ifc2x3.GeometryResource.IfcSurface;
+				if (ifcsurface != null) 
+					return ifcsurface;
+				var ifcfacesurface = SurfaceOnRelatingElement as Xbim.Ifc2x3.TopologyResource.IfcFaceSurface;
+				if (ifcfacesurface != null) 
+					return ifcfacesurface;
+				var ifcfacebasedsurfacemodel = SurfaceOnRelatingElement as Xbim.Ifc2x3.GeometricModelResource.IfcFaceBasedSurfaceModel;
+				if (ifcfacebasedsurfacemodel != null) 
+					return ifcfacebasedsurfacemodel;
+				return null;
 			} 
 		}
 		Xbim.Ifc4.GeometricConstraintResource.IfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatedElement 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (SurfaceOnRelatedElement == null) return null;
+				var ifcsurface = SurfaceOnRelatedElement as Xbim.Ifc2x3.GeometryResource.IfcSurface;
+				if (ifcsurface != null) 
+					return ifcsurface;
+				var ifcfacesurface = SurfaceOnRelatedElement as Xbim.Ifc2x3.TopologyResource.IfcFaceSurface;
+				if (ifcfacesurface != null) 
+					return ifcfacesurface;
+				var ifcfacebasedsurfacemodel = SurfaceOnRelatedElement as Xbim.Ifc2x3.GeometricModelResource.IfcFaceBasedSurfaceModel;
+				if (ifcfacebasedsurfacemodel != null) 
+					return ifcfacebasedsurfacemodel;
+				return null;
 			} 
 		}
 	}

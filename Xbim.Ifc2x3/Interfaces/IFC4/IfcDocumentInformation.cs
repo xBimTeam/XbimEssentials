@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ExternalReferenceResource
@@ -26,14 +27,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Description 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Description == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
 		Xbim.Ifc4.ExternalReferenceResource.IfcURIReference? IIfcDocumentInformation.Location 
@@ -47,35 +49,49 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Purpose == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)Purpose);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.IntendedUse 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (IntendedUse == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)IntendedUse);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Scope 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Scope == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcText((string)Scope);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformation.Revision 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Revision == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Revision);
 			} 
 		}
 		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcDocumentInformation.DocumentOwner 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (DocumentOwner == null) return null;
+				var ifcorganization = DocumentOwner as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+					return ifcorganization;
+				var ifcperson = DocumentOwner as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				if (ifcperson != null) 
+					return ifcperson;
+				var ifcpersonandorganization = DocumentOwner as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+					return ifcpersonandorganization;
+				return null;
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.ActorResource.IfcActorSelect> IIfcDocumentInformation.Editors 
@@ -138,28 +154,28 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRelAssociatesDocument>(e => (e.RelatingDocument as IfcDocumentInformation) == this);
 			} 
 		}
 		IEnumerable<IIfcDocumentReference> IIfcDocumentInformation.HasDocumentReferences 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcDocumentReference>(e => (e.ReferencedDocument as IfcDocumentInformation) == this);
 			} 
 		}
 		IEnumerable<IIfcDocumentInformationRelationship> IIfcDocumentInformation.IsPointedTo 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcDocumentInformationRelationship>(e => e.RelatedDocuments != null &&  e.RelatedDocuments.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcDocumentInformationRelationship> IIfcDocumentInformation.IsPointer 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcDocumentInformationRelationship>(e => (e.RelatingDocument as IfcDocumentInformation) == this);
 			} 
 		}
 	}

@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.RepresentationResource
@@ -19,21 +20,23 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ContextIdentifier == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ContextIdentifier);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcRepresentationContext.ContextType 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (ContextType == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ContextType);
 			} 
 		}
 		IEnumerable<IIfcRepresentation> IIfcRepresentationContext.RepresentationsInContext 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcRepresentation>(e => (e.ContextOfItems as IfcRepresentationContext) == this);
 			} 
 		}
 	}

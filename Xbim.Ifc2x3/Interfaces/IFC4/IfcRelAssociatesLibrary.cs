@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
@@ -19,7 +20,14 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (RelatingLibrary == null) return null;
+				var ifclibraryreference = RelatingLibrary as Xbim.Ifc2x3.ExternalReferenceResource.IfcLibraryReference;
+				if (ifclibraryreference != null) 
+					return ifclibraryreference;
+				var ifclibraryinformation = RelatingLibrary as Xbim.Ifc2x3.ExternalReferenceResource.IfcLibraryInformation;
+				if (ifclibraryinformation != null) 
+					return ifclibraryinformation;
+				return null;
 			} 
 		}
 	}

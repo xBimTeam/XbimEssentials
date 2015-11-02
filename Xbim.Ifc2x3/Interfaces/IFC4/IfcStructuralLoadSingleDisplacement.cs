@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralLoadResource
@@ -19,42 +20,48 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (DisplacementX == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)DisplacementX);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementY 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (DisplacementY == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)DisplacementY);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementZ 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (DisplacementZ == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)DisplacementZ);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRX 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (RotationalDisplacementRX == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)RotationalDisplacementRX);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRY 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (RotationalDisplacementRY == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)RotationalDisplacementRY);
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRZ 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (RotationalDisplacementRZ == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)RotationalDisplacementRZ);
 			} 
 		}
 	}

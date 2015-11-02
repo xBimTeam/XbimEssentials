@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
@@ -19,28 +20,35 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (MappingOrigin == null) return null;
+				var ifcaxis2placement2d = MappingOrigin as Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement2D;
+				if (ifcaxis2placement2d != null) 
+					return ifcaxis2placement2d;
+				var ifcaxis2placement3d = MappingOrigin as Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement3D;
+				if (ifcaxis2placement3d != null) 
+					return ifcaxis2placement3d;
+				return null;
 			} 
 		}
 		IIfcRepresentation IIfcRepresentationMap.MappedRepresentation 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return MappedRepresentation as IIfcRepresentation;
 			} 
 		}
 		IEnumerable<IIfcShapeAspect> IIfcRepresentationMap.HasShapeAspects 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcShapeAspect>(e => (e.PartOfProductDefinitionShape as IfcRepresentationMap) == this);
 			} 
 		}
 		IEnumerable<IIfcMappedItem> IIfcRepresentationMap.MapUsage 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Model.Instances.Where<IIfcMappedItem>(e => (e.MappingSource as IfcRepresentationMap) == this);
 			} 
 		}
 	}

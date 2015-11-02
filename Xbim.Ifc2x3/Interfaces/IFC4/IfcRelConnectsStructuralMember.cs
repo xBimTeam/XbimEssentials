@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
@@ -19,42 +20,43 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RelatingStructuralMember as IIfcStructuralMember;
 			} 
 		}
 		IIfcStructuralConnection IIfcRelConnectsStructuralMember.RelatedStructuralConnection 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RelatedStructuralConnection as IIfcStructuralConnection;
 			} 
 		}
 		IIfcBoundaryCondition IIfcRelConnectsStructuralMember.AppliedCondition 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return AppliedCondition as IIfcBoundaryCondition;
 			} 
 		}
 		IIfcStructuralConnectionCondition IIfcRelConnectsStructuralMember.AdditionalConditions 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return AdditionalConditions as IIfcStructuralConnectionCondition;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcRelConnectsStructuralMember.SupportedLength 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (SupportedLength == null) return null;
+				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)SupportedLength);
 			} 
 		}
 		IIfcAxis2Placement3D IIfcRelConnectsStructuralMember.ConditionCoordinateSystem 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ConditionCoordinateSystem as IIfcAxis2Placement3D;
 			} 
 		}
 	}
