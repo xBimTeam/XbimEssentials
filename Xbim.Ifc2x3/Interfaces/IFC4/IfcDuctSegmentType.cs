@@ -20,7 +20,24 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctSegmentTypeEnum.RIGIDSEGMENT:
+						return Xbim.Ifc4.HvacDomain.IfcDuctSegmentTypeEnum.RIGIDSEGMENT;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctSegmentTypeEnum.FLEXIBLESEGMENT:
+						return Xbim.Ifc4.HvacDomain.IfcDuctSegmentTypeEnum.FLEXIBLESEGMENT;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctSegmentTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcDuctSegmentTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctSegmentTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcDuctSegmentTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

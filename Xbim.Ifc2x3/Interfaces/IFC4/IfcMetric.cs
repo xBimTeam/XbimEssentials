@@ -20,7 +20,30 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (Benchmark)
+				{
+					case Xbim.Ifc2x3.ConstraintResource.IfcBenchmarkEnum.GREATERTHAN:
+						return Xbim.Ifc4.ConstraintResource.IfcBenchmarkEnum.GREATERTHAN;
+					
+					case Xbim.Ifc2x3.ConstraintResource.IfcBenchmarkEnum.GREATERTHANOREQUALTO:
+						return Xbim.Ifc4.ConstraintResource.IfcBenchmarkEnum.GREATERTHANOREQUALTO;
+					
+					case Xbim.Ifc2x3.ConstraintResource.IfcBenchmarkEnum.LESSTHAN:
+						return Xbim.Ifc4.ConstraintResource.IfcBenchmarkEnum.LESSTHAN;
+					
+					case Xbim.Ifc2x3.ConstraintResource.IfcBenchmarkEnum.LESSTHANOREQUALTO:
+						return Xbim.Ifc4.ConstraintResource.IfcBenchmarkEnum.LESSTHANOREQUALTO;
+					
+					case Xbim.Ifc2x3.ConstraintResource.IfcBenchmarkEnum.EQUALTO:
+						return Xbim.Ifc4.ConstraintResource.IfcBenchmarkEnum.EQUALTO;
+					
+					case Xbim.Ifc2x3.ConstraintResource.IfcBenchmarkEnum.NOTEQUALTO:
+						return Xbim.Ifc4.ConstraintResource.IfcBenchmarkEnum.NOTEQUALTO;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcMetric.ValueSource 
@@ -38,12 +61,15 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (DataValue == null) return null;
 				var ifccalendardate = DataValue as Xbim.Ifc2x3.DateTimeResource.IfcCalendarDate;
 				if (ifccalendardate != null) 
+					//TODO: Handle entity ifccalendardate which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
 					throw new System.NotImplementedException();
 				var ifclocaltime = DataValue as Xbim.Ifc2x3.DateTimeResource.IfcLocalTime;
 				if (ifclocaltime != null) 
+					//TODO: Handle entity ifclocaltime which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
 					throw new System.NotImplementedException();
 				var ifcdateandtime = DataValue as Xbim.Ifc2x3.DateTimeResource.IfcDateAndTime;
 				if (ifcdateandtime != null) 
+					//TODO: Handle entity ifcdateandtime which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
 					throw new System.NotImplementedException();
 				var ifcmeasurewithunit = DataValue as Xbim.Ifc2x3.MeasureResource.IfcMeasureWithUnit;
 				if (ifcmeasurewithunit != null) 
@@ -51,7 +77,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				var ifctable = DataValue as Xbim.Ifc2x3.UtilityResource.IfcTable;
 				if (ifctable != null) 
 					return ifctable;
-				throw new System.NotImplementedException();
+				if (DataValue is Xbim.Ifc2x3.MeasureResource.IfcText) 
+					return new Xbim.Ifc4.MeasureResource.IfcText((string)(Xbim.Ifc2x3.MeasureResource.IfcText)DataValue);
 				var ifctimeseries = DataValue as Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeries;
 				if (ifctimeseries != null) 
 					return ifctimeseries;
@@ -65,6 +92,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
+				//TODO: Handle return of ReferencePath for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

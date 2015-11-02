@@ -20,7 +20,45 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.SECTIONALRADIATOR:
+						//TODO: Handle translation of SECTIONALRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.PANELRADIATOR:
+						//TODO: Handle translation of PANELRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.TUBULARRADIATOR:
+						//TODO: Handle translation of TUBULARRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.CONVECTOR:
+						return Xbim.Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.CONVECTOR;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.BASEBOARDHEATER:
+						//TODO: Handle translation of BASEBOARDHEATER member from IfcSpaceHeaterTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.FINNEDTUBEUNIT:
+						//TODO: Handle translation of FINNEDTUBEUNIT member from IfcSpaceHeaterTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.UNITHEATER:
+						//TODO: Handle translation of UNITHEATER member from IfcSpaceHeaterTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

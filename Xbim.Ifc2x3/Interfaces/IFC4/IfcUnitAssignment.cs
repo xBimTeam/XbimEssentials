@@ -20,7 +20,18 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Units)
+			{
+				var ifcderivedunit = member as Xbim.Ifc2x3.MeasureResource.IfcDerivedUnit;
+				if (ifcderivedunit != null) 
+					yield return ifcderivedunit;
+				var ifcnamedunit = member as Xbim.Ifc2x3.MeasureResource.IfcNamedUnit;
+				if (ifcnamedunit != null) 
+					yield return ifcnamedunit;
+				var ifcmonetaryunit = member as Xbim.Ifc2x3.MeasureResource.IfcMonetaryUnit;
+				if (ifcmonetaryunit != null) 
+					yield return ifcmonetaryunit;
+			}
 			} 
 		}
 	}

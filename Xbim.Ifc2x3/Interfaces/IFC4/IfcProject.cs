@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
+				//TODO: Handle return of ObjectType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
+				//TODO: Handle return of LongName for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -34,6 +36,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
+				//TODO: Handle return of Phase for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -41,6 +44,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
+				//TODO: Handle return of RepresentationContexts for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -48,6 +52,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
+				//TODO: Handle return of UnitsInContext for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

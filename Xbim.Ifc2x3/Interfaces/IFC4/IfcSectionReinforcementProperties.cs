@@ -42,7 +42,39 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (ReinforcementRole)
+				{
+					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.MAIN:
+						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.MAIN;
+					
+					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.SHEAR:
+						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.SHEAR;
+					
+					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.LIGATURE:
+						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.LIGATURE;
+					
+					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.STUD:
+						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.STUD;
+					
+					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.PUNCHING:
+						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.PUNCHING;
+					
+					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.EDGE:
+						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.EDGE;
+					
+					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.RING:
+						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.RING;
+					
+					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.USERDEFINED:
+						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.NOTDEFINED:
+						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		IIfcSectionProperties IIfcSectionReinforcementProperties.SectionDefinition 
@@ -56,7 +88,10 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in CrossSectionReinforcementDefinitions)
+			{
+				yield return member as IIfcReinforcementBarProperties;
+			}
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 

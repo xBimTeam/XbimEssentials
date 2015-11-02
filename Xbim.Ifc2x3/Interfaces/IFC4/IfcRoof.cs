@@ -20,7 +20,54 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (ShapeType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.FLAT_ROOF:
+						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.FLAT_ROOF;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.SHED_ROOF:
+						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.SHED_ROOF;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.GABLE_ROOF:
+						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.GABLE_ROOF;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.HIP_ROOF:
+						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.HIP_ROOF;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.HIPPED_GABLE_ROOF:
+						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.HIPPED_GABLE_ROOF;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.GAMBREL_ROOF:
+						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.GAMBREL_ROOF;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.MANSARD_ROOF:
+						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.MANSARD_ROOF;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.BARREL_ROOF:
+						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.BARREL_ROOF;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.RAINBOW_ROOF:
+						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.RAINBOW_ROOF;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.BUTTERFLY_ROOF:
+						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.BUTTERFLY_ROOF;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.PAVILION_ROOF:
+						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.PAVILION_ROOF;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.DOME_ROOF:
+						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.DOME_ROOF;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.FREEFORM:
+						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.FREEFORM;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

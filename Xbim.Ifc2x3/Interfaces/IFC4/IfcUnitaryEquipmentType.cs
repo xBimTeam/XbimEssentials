@@ -20,7 +20,30 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcUnitaryEquipmentTypeEnum.AIRHANDLER:
+						return Xbim.Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.AIRHANDLER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT:
+						return Xbim.Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM:
+						return Xbim.Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT:
+						return Xbim.Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcUnitaryEquipmentTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcUnitaryEquipmentTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

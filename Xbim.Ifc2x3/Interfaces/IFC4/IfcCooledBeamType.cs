@@ -20,7 +20,24 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcCooledBeamTypeEnum.ACTIVE:
+						return Xbim.Ifc4.HvacDomain.IfcCooledBeamTypeEnum.ACTIVE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCooledBeamTypeEnum.PASSIVE:
+						return Xbim.Ifc4.HvacDomain.IfcCooledBeamTypeEnum.PASSIVE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCooledBeamTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcCooledBeamTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCooledBeamTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcCooledBeamTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

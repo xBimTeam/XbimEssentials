@@ -27,7 +27,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in RelatedDocuments)
+			{
+				yield return member as IIfcDocumentInformation;
+			}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformationRelationship.RelationshipType 
@@ -42,6 +45,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Name for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -49,6 +53,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Description for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

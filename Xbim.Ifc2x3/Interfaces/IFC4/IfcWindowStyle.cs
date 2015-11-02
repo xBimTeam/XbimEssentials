@@ -20,28 +20,95 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (ConstructionType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.ALUMINIUM:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.ALUMINIUM;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.HIGH_GRADE_STEEL:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.HIGH_GRADE_STEEL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.STEEL:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.STEEL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.WOOD:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.WOOD;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.ALUMINIUM_WOOD:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.ALUMINIUM_WOOD;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.PLASTIC:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.PLASTIC;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.OTHER_CONSTRUCTION:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.OTHER_CONSTRUCTION;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.NOTDEFINED:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum IIfcWindowStyle.OperationType 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (OperationType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.SINGLE_PANEL:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.SINGLE_PANEL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.DOUBLE_PANEL_VERTICAL:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.DOUBLE_PANEL_VERTICAL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.DOUBLE_PANEL_HORIZONTAL:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.DOUBLE_PANEL_HORIZONTAL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.TRIPLE_PANEL_VERTICAL:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_VERTICAL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.TRIPLE_PANEL_BOTTOM:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_BOTTOM;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.TRIPLE_PANEL_TOP:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_TOP;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.TRIPLE_PANEL_LEFT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_LEFT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.TRIPLE_PANEL_RIGHT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_RIGHT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.TRIPLE_PANEL_HORIZONTAL:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_HORIZONTAL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.USERDEFINED:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.NOTDEFINED:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		bool IIfcWindowStyle.ParameterTakesPrecedence 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ParameterTakesPrecedence;
 			} 
 		}
 		bool IIfcWindowStyle.Sizeable 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Sizeable;
 			} 
 		}
 	}

@@ -27,14 +27,39 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (LayerSetDirection)
+				{
+					case Xbim.Ifc2x3.MaterialResource.IfcLayerSetDirectionEnum.AXIS1:
+						return Xbim.Ifc4.MaterialResource.IfcLayerSetDirectionEnum.AXIS1;
+					
+					case Xbim.Ifc2x3.MaterialResource.IfcLayerSetDirectionEnum.AXIS2:
+						return Xbim.Ifc4.MaterialResource.IfcLayerSetDirectionEnum.AXIS2;
+					
+					case Xbim.Ifc2x3.MaterialResource.IfcLayerSetDirectionEnum.AXIS3:
+						return Xbim.Ifc4.MaterialResource.IfcLayerSetDirectionEnum.AXIS3;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MaterialResource.IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (DirectionSense)
+				{
+					case Xbim.Ifc2x3.MaterialResource.IfcDirectionSenseEnum.POSITIVE:
+						return Xbim.Ifc4.MaterialResource.IfcDirectionSenseEnum.POSITIVE;
+					
+					case Xbim.Ifc2x3.MaterialResource.IfcDirectionSenseEnum.NEGATIVE:
+						return Xbim.Ifc4.MaterialResource.IfcDirectionSenseEnum.NEGATIVE;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine 
@@ -48,6 +73,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
+				//TODO: Handle return of ReferenceExtent for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

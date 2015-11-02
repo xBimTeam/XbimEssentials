@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Degree for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
+				//TODO: Handle return of ControlPointsList for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -34,6 +36,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
+				//TODO: Handle return of CurveForm for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -41,6 +44,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
+				//TODO: Handle return of ClosedCurve for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -48,6 +52,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
+				//TODO: Handle return of SelfIntersect for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

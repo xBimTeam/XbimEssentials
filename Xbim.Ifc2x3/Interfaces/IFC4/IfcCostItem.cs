@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get
 			{
+				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get
 			{
+				//TODO: Handle return of CostValues for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -34,6 +36,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get
 			{
+				//TODO: Handle return of CostQuantities for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

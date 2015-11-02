@@ -34,7 +34,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in InnerBoundaries)
+			{
+				yield return member as IIfcCurve;
+			}
 			} 
 		}
 	}

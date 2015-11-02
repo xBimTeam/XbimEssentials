@@ -20,7 +20,102 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.COMPUTER:
+						//TODO: Handle translation of COMPUTER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.DIRECTWATERHEATER:
+						//TODO: Handle translation of DIRECTWATERHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.DISHWASHER:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricApplianceTypeEnum.DISHWASHER;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.ELECTRICCOOKER:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricApplianceTypeEnum.ELECTRICCOOKER;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.ELECTRICHEATER:
+						//TODO: Handle translation of ELECTRICHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.FACSIMILE:
+						//TODO: Handle translation of FACSIMILE member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.FREESTANDINGFAN:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricApplianceTypeEnum.FREESTANDINGFAN;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.FREEZER:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricApplianceTypeEnum.FREEZER;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.FRIDGE_FREEZER:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricApplianceTypeEnum.FRIDGE_FREEZER;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.HANDDRYER:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricApplianceTypeEnum.HANDDRYER;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.INDIRECTWATERHEATER:
+						//TODO: Handle translation of INDIRECTWATERHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.MICROWAVE:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricApplianceTypeEnum.MICROWAVE;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.PHOTOCOPIER:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricApplianceTypeEnum.PHOTOCOPIER;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.PRINTER:
+						//TODO: Handle translation of PRINTER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.REFRIGERATOR:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricApplianceTypeEnum.REFRIGERATOR;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.RADIANTHEATER:
+						//TODO: Handle translation of RADIANTHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.SCANNER:
+						//TODO: Handle translation of SCANNER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.TELEPHONE:
+						//TODO: Handle translation of TELEPHONE member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.TUMBLEDRYER:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricApplianceTypeEnum.TUMBLEDRYER;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.TV:
+						//TODO: Handle translation of TV member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.VENDINGMACHINE:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricApplianceTypeEnum.VENDINGMACHINE;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.WASHINGMACHINE:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricApplianceTypeEnum.WASHINGMACHINE;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.WATERHEATER:
+						//TODO: Handle translation of WATERHEATER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.WATERCOOLER:
+						//TODO: Handle translation of WATERCOOLER member from IfcElectricApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricApplianceTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricApplianceTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricApplianceTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

@@ -36,6 +36,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -43,6 +44,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//TODO: Handle return of OperationType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -50,6 +52,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//TODO: Handle return of UserDefinedOperationType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

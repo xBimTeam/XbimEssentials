@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
+				//TODO: Handle return of RelatingActor for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
+				//TODO: Handle return of ActingRole for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

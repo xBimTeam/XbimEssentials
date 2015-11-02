@@ -42,6 +42,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
+				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -49,7 +50,18 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (BarSurface)
+				{
+					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.PLAIN:
+						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum.PLAIN;
+					
+					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.TEXTURED:
+						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum.TEXTURED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

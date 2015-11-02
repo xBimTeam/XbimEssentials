@@ -20,14 +20,66 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (AssemblyPlace)
+				{
+					case Xbim.Ifc2x3.ProductExtension.IfcAssemblyPlaceEnum.SITE:
+						return Xbim.Ifc4.ProductExtension.IfcAssemblyPlaceEnum.SITE;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcAssemblyPlaceEnum.FACTORY:
+						return Xbim.Ifc4.ProductExtension.IfcAssemblyPlaceEnum.FACTORY;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcAssemblyPlaceEnum.NOTDEFINED:
+						return Xbim.Ifc4.ProductExtension.IfcAssemblyPlaceEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.ProductExtension.IfcElementAssemblyTypeEnum? IIfcElementAssembly.PredefinedType 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ProductExtension.IfcElementAssemblyTypeEnum.ACCESSORY_ASSEMBLY:
+						return Xbim.Ifc4.ProductExtension.IfcElementAssemblyTypeEnum.ACCESSORY_ASSEMBLY;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcElementAssemblyTypeEnum.ARCH:
+						return Xbim.Ifc4.ProductExtension.IfcElementAssemblyTypeEnum.ARCH;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcElementAssemblyTypeEnum.BEAM_GRID:
+						return Xbim.Ifc4.ProductExtension.IfcElementAssemblyTypeEnum.BEAM_GRID;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcElementAssemblyTypeEnum.BRACED_FRAME:
+						return Xbim.Ifc4.ProductExtension.IfcElementAssemblyTypeEnum.BRACED_FRAME;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcElementAssemblyTypeEnum.GIRDER:
+						return Xbim.Ifc4.ProductExtension.IfcElementAssemblyTypeEnum.GIRDER;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcElementAssemblyTypeEnum.REINFORCEMENT_UNIT:
+						return Xbim.Ifc4.ProductExtension.IfcElementAssemblyTypeEnum.REINFORCEMENT_UNIT;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcElementAssemblyTypeEnum.RIGID_FRAME:
+						return Xbim.Ifc4.ProductExtension.IfcElementAssemblyTypeEnum.RIGID_FRAME;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcElementAssemblyTypeEnum.SLAB_FIELD:
+						return Xbim.Ifc4.ProductExtension.IfcElementAssemblyTypeEnum.SLAB_FIELD;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcElementAssemblyTypeEnum.TRUSS:
+						return Xbim.Ifc4.ProductExtension.IfcElementAssemblyTypeEnum.TRUSS;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcElementAssemblyTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ProductExtension.IfcElementAssemblyTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcElementAssemblyTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ProductExtension.IfcElementAssemblyTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

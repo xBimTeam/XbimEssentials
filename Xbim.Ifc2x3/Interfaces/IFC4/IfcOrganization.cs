@@ -43,14 +43,20 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Roles)
+			{
+				yield return member as IIfcActorRole;
+			}
 			} 
 		}
 		IEnumerable<IIfcAddress> IIfcOrganization.Addresses 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Addresses)
+			{
+				yield return member as IIfcAddress;
+			}
 			} 
 		}
 		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.IsRelatedBy 

@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in HasQuantities)
+			{
+				yield return member as IIfcPhysicalQuantity;
+			}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel IIfcPhysicalComplexQuantity.Discrimination 

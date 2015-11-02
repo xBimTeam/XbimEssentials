@@ -34,7 +34,10 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Roles)
+			{
+				yield return member as IIfcActorRole;
+			}
 			} 
 		}
 	}

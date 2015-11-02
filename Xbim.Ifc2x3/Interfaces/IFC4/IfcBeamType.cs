@@ -20,7 +20,30 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcBeamTypeEnum.BEAM:
+						return Xbim.Ifc4.SharedBldgElements.IfcBeamTypeEnum.BEAM;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcBeamTypeEnum.JOIST:
+						return Xbim.Ifc4.SharedBldgElements.IfcBeamTypeEnum.JOIST;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcBeamTypeEnum.LINTEL:
+						return Xbim.Ifc4.SharedBldgElements.IfcBeamTypeEnum.LINTEL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcBeamTypeEnum.T_BEAM:
+						return Xbim.Ifc4.SharedBldgElements.IfcBeamTypeEnum.T_BEAM;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcBeamTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcBeamTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcBeamTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcBeamTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

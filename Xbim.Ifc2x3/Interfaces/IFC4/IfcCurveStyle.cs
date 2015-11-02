@@ -38,12 +38,18 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get
 			{
 				if (CurveWidth == null) return null;
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
+				if (CurveWidth is Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure)CurveWidth);
+				if (CurveWidth is Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure)CurveWidth);
+				if (CurveWidth is Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure)CurveWidth);
+				if (CurveWidth is Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure)CurveWidth);
+				if (CurveWidth is Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure)CurveWidth);
+				if (CurveWidth is Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure)CurveWidth);
 				return null;
 			} 
 		}
@@ -65,6 +71,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of ModelOrDraughting for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

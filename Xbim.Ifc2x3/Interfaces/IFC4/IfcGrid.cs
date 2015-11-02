@@ -20,27 +20,37 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in UAxes)
+			{
+				yield return member as IIfcGridAxis;
+			}
 			} 
 		}
 		IEnumerable<IIfcGridAxis> IIfcGrid.VAxes 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in VAxes)
+			{
+				yield return member as IIfcGridAxis;
+			}
 			} 
 		}
 		IEnumerable<IIfcGridAxis> IIfcGrid.WAxes 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in WAxes)
+			{
+				yield return member as IIfcGridAxis;
+			}
 			} 
 		}
 		Xbim.Ifc4.ProductExtension.IfcGridTypeEnum? IIfcGrid.PredefinedType 
 		{ 
 			get
 			{
+				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

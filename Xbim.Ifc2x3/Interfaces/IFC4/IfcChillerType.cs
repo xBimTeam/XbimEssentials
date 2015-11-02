@@ -20,7 +20,27 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcChillerTypeEnum.AIRCOOLED:
+						return Xbim.Ifc4.HvacDomain.IfcChillerTypeEnum.AIRCOOLED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcChillerTypeEnum.WATERCOOLED:
+						return Xbim.Ifc4.HvacDomain.IfcChillerTypeEnum.WATERCOOLED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcChillerTypeEnum.HEATRECOVERY:
+						return Xbim.Ifc4.HvacDomain.IfcChillerTypeEnum.HEATRECOVERY;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcChillerTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcChillerTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcChillerTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcChillerTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

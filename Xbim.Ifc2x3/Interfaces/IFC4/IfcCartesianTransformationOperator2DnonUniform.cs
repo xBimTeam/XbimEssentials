@@ -20,7 +20,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Scale2 == null) return null;
+				return Scale2;
 			} 
 		}
 	}

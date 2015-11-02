@@ -20,7 +20,24 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ElectricalDomain.IfcCableSegmentTypeEnum.CABLESEGMENT:
+						return Xbim.Ifc4.ElectricalDomain.IfcCableSegmentTypeEnum.CABLESEGMENT;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcCableSegmentTypeEnum.CONDUCTORSEGMENT:
+						return Xbim.Ifc4.ElectricalDomain.IfcCableSegmentTypeEnum.CONDUCTORSEGMENT;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcCableSegmentTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcCableSegmentTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcCableSegmentTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcCableSegmentTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

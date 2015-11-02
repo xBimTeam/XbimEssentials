@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Bounds)
+			{
+				yield return member as IIfcFaceBound;
+			}
 			} 
 		}
 		IEnumerable<IIfcTextureMap> IIfcFace.HasTextureMaps 

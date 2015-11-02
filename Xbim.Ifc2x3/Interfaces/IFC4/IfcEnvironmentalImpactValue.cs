@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Name for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Description for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -34,6 +36,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of AppliedValue for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -41,6 +44,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of UnitBasis for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -48,6 +52,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of ApplicableDate for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -55,6 +60,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of FixedUntilDate for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -62,6 +68,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Category for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -69,6 +76,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Condition for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -76,6 +84,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of ArithmeticOperator for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -83,6 +92,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Components for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//TODO: Handle return of RelatingPriorities for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//TODO: Handle return of RelatedPriorities for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -34,14 +36,48 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (RelatedConnectionType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.ATPATH:
+						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATPATH;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.ATSTART:
+						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATSTART;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.ATEND:
+						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATEND;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (RelatingConnectionType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.ATPATH:
+						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATPATH;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.ATSTART:
+						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATSTART;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.ATEND:
+						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATEND;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

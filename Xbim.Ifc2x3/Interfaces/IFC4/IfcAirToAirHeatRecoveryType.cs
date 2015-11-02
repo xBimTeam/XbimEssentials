@@ -20,7 +20,45 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECOUNTERFLOWEXCHANGER:
+						return Xbim.Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECOUNTERFLOWEXCHANGER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECROSSFLOWEXCHANGER:
+						return Xbim.Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECROSSFLOWEXCHANGER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATEPARALLELFLOWEXCHANGER:
+						return Xbim.Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATEPARALLELFLOWEXCHANGER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryTypeEnum.ROTARYWHEEL:
+						return Xbim.Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.ROTARYWHEEL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryTypeEnum.RUNAROUNDCOILLOOP:
+						return Xbim.Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.RUNAROUNDCOILLOOP;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryTypeEnum.HEATPIPE:
+						return Xbim.Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.HEATPIPE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryTypeEnum.TWINTOWERENTHALPYRECOVERYLOOPS:
+						return Xbim.Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.TWINTOWERENTHALPYRECOVERYLOOPS;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONSEALEDTUBEHEATEXCHANGERS:
+						return Xbim.Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONSEALEDTUBEHEATEXCHANGERS;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONCOILTYPEHEATEXCHANGERS:
+						return Xbim.Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONCOILTYPEHEATEXCHANGERS;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

@@ -20,14 +20,57 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileTypeEnum.COHESION:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcPileTypeEnum.COHESION;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileTypeEnum.FRICTION:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcPileTypeEnum.FRICTION;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileTypeEnum.SUPPORT:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcPileTypeEnum.SUPPORT;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcPileTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcPileTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.StructuralElementsDomain.IfcPileConstructionEnum? IIfcPile.ConstructionType 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (ConstructionType)
+				{
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileConstructionEnum.CAST_IN_PLACE:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.CAST_IN_PLACE;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileConstructionEnum.COMPOSITE:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.COMPOSITE;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileConstructionEnum.PRECAST_CONCRETE:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.PRECAST_CONCRETE;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileConstructionEnum.PREFAB_STEEL:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.PREFAB_STEEL;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileConstructionEnum.USERDEFINED:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileConstructionEnum.NOTDEFINED:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

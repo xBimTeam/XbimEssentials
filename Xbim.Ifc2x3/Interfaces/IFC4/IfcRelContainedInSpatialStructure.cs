@@ -20,13 +20,17 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in RelatedElements)
+			{
+				yield return member as IIfcProduct;
+			}
 			} 
 		}
 		IIfcSpatialElement IIfcRelContainedInSpatialStructure.RelatingStructure 
 		{ 
 			get
 			{
+				//TODO: Handle return of RelatingStructure for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

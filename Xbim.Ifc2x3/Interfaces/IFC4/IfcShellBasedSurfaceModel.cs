@@ -20,7 +20,15 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in SbsmBoundary)
+			{
+				var ifcclosedshell = member as Xbim.Ifc2x3.TopologyResource.IfcClosedShell;
+				if (ifcclosedshell != null) 
+					yield return ifcclosedshell;
+				var ifcopenshell = member as Xbim.Ifc2x3.TopologyResource.IfcOpenShell;
+				if (ifcopenshell != null) 
+					yield return ifcopenshell;
+			}
 			} 
 		}
 	}

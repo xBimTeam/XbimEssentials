@@ -20,14 +20,45 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (Side)
+				{
+					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceSide.POSITIVE:
+						return Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceSide.POSITIVE;
+					
+					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceSide.NEGATIVE:
+						return Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceSide.NEGATIVE;
+					
+					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceSide.BOTH:
+						return Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceSide.BOTH;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Styles)
+			{
+				var ifcsurfacestyleshading = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleShading;
+				if (ifcsurfacestyleshading != null) 
+					yield return ifcsurfacestyleshading;
+				var ifcsurfacestylelighting = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleLighting;
+				if (ifcsurfacestylelighting != null) 
+					yield return ifcsurfacestylelighting;
+				var ifcsurfacestylewithtextures = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleWithTextures;
+				if (ifcsurfacestylewithtextures != null) 
+					yield return ifcsurfacestylewithtextures;
+				var ifcexternallydefinedsurfacestyle = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcExternallyDefinedSurfaceStyle;
+				if (ifcexternallydefinedsurfacestyle != null) 
+					yield return ifcexternallydefinedsurfacestyle;
+				var ifcsurfacestylerefraction = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleRefraction;
+				if (ifcsurfacestylerefraction != null) 
+					yield return ifcsurfacestylerefraction;
+			}
 			} 
 		}
 	}

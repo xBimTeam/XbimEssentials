@@ -20,7 +20,39 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.CENTRIFUGALFORWARDCURVED:
+						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.CENTRIFUGALFORWARDCURVED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.CENTRIFUGALRADIAL:
+						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.CENTRIFUGALRADIAL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED:
+						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.CENTRIFUGALAIRFOIL:
+						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.CENTRIFUGALAIRFOIL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.TUBEAXIAL:
+						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.TUBEAXIAL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.VANEAXIAL:
+						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.VANEAXIAL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.PROPELLORAXIAL:
+						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.PROPELLORAXIAL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

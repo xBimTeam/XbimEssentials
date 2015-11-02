@@ -20,7 +20,21 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcTubeBundleTypeEnum.FINNED:
+						return Xbim.Ifc4.HvacDomain.IfcTubeBundleTypeEnum.FINNED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcTubeBundleTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcTubeBundleTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcTubeBundleTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcTubeBundleTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

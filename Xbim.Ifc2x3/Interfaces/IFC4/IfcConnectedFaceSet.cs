@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in CfsFaces)
+			{
+				yield return member as IIfcFace;
+			}
 			} 
 		}
 	}

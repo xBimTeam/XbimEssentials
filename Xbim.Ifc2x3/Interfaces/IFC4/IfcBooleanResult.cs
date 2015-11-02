@@ -20,7 +20,21 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (Operator)
+				{
+					case Xbim.Ifc2x3.GeometricModelResource.IfcBooleanOperator.UNION:
+						return Xbim.Ifc4.GeometricModelResource.IfcBooleanOperator.UNION;
+					
+					case Xbim.Ifc2x3.GeometricModelResource.IfcBooleanOperator.INTERSECTION:
+						return Xbim.Ifc4.GeometricModelResource.IfcBooleanOperator.INTERSECTION;
+					
+					case Xbim.Ifc2x3.GeometricModelResource.IfcBooleanOperator.DIFFERENCE:
+						return Xbim.Ifc4.GeometricModelResource.IfcBooleanOperator.DIFFERENCE;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.GeometricModelResource.IfcBooleanOperand IIfcBooleanResult.FirstOperand 

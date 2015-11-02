@@ -20,7 +20,30 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcTendonTypeEnum.STRAND:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcTendonTypeEnum.STRAND;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcTendonTypeEnum.WIRE:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcTendonTypeEnum.WIRE;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcTendonTypeEnum.BAR:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcTendonTypeEnum.BAR;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcTendonTypeEnum.COATED:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcTendonTypeEnum.COATED;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcTendonTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcTendonTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcTendonTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcTendonTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.NominalDiameter 

@@ -20,7 +20,33 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcProjectOrderTypeEnum.CHANGEORDER:
+						return Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.CHANGEORDER;
+					
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER:
+						return Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER;
+					
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcProjectOrderTypeEnum.MOVEORDER:
+						return Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.MOVEORDER;
+					
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcProjectOrderTypeEnum.PURCHASEORDER:
+						return Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.PURCHASEORDER;
+					
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcProjectOrderTypeEnum.WORKORDER:
+						return Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.WORKORDER;
+					
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcProjectOrderTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcProjectOrderTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcProjectOrder.Status 

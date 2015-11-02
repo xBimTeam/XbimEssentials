@@ -20,7 +20,27 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRailingTypeEnum.HANDRAIL:
+						return Xbim.Ifc4.SharedBldgElements.IfcRailingTypeEnum.HANDRAIL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRailingTypeEnum.GUARDRAIL:
+						return Xbim.Ifc4.SharedBldgElements.IfcRailingTypeEnum.GUARDRAIL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRailingTypeEnum.BALUSTRADE:
+						return Xbim.Ifc4.SharedBldgElements.IfcRailingTypeEnum.BALUSTRADE;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRailingTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcRailingTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRailingTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcRailingTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

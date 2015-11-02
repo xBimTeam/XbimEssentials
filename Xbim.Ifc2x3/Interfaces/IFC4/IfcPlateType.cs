@@ -20,7 +20,24 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcPlateTypeEnum.CURTAIN_PANEL:
+						return Xbim.Ifc4.SharedBldgElements.IfcPlateTypeEnum.CURTAIN_PANEL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcPlateTypeEnum.SHEET:
+						return Xbim.Ifc4.SharedBldgElements.IfcPlateTypeEnum.SHEET;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcPlateTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcPlateTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcPlateTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcPlateTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in MaterialLayers)
+			{
+				yield return member as IIfcMaterialLayer;
+			}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayerSet.LayerSetName 
@@ -35,6 +38,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Description for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

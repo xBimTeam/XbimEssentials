@@ -20,7 +20,32 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.PREFORMED:
+						//TODO: Handle translation of PREFORMED member from IfcTankTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.SECTIONAL:
+						//TODO: Handle translation of SECTIONAL member from IfcTankTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.EXPANSION:
+						return Xbim.Ifc4.HvacDomain.IfcTankTypeEnum.EXPANSION;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.PRESSUREVESSEL:
+						return Xbim.Ifc4.HvacDomain.IfcTankTypeEnum.PRESSUREVESSEL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcTankTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcTankTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

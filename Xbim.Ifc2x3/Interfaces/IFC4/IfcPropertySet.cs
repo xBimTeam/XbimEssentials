@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in HasProperties)
+			{
+				yield return member as IIfcProperty;
+			}
 			} 
 		}
 	}

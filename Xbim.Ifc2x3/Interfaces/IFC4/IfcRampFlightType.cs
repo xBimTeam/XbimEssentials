@@ -20,7 +20,24 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRampFlightTypeEnum.STRAIGHT:
+						return Xbim.Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.STRAIGHT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRampFlightTypeEnum.SPIRAL:
+						return Xbim.Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.SPIRAL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRampFlightTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRampFlightTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

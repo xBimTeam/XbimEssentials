@@ -20,7 +20,33 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricMotorTypeEnum.DC:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum.DC;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricMotorTypeEnum.INDUCTION:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum.INDUCTION;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricMotorTypeEnum.POLYPHASE:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum.POLYPHASE;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricMotorTypeEnum.RELUCTANCESYNCHRONOUS:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum.RELUCTANCESYNCHRONOUS;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricMotorTypeEnum.SYNCHRONOUS:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum.SYNCHRONOUS;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricMotorTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricMotorTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

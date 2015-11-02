@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of TextCharacterAppearance for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of TextStyle for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -48,6 +50,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of ModelOrDraughting for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

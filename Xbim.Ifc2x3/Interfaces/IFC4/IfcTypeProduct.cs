@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in RepresentationMaps)
+			{
+				yield return member as IIfcRepresentationMap;
+			}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcTypeProduct.Tag 

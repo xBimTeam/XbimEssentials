@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
+				//TODO: Handle return of ConditionCoordinateSystem for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Values)
+			{
+				yield return member as IIfcIrregularTimeSeriesValue;
+			}
 			} 
 		}
 	}

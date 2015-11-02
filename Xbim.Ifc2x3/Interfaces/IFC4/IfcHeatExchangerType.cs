@@ -20,7 +20,24 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcHeatExchangerTypeEnum.PLATE:
+						return Xbim.Ifc4.HvacDomain.IfcHeatExchangerTypeEnum.PLATE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHeatExchangerTypeEnum.SHELLANDTUBE:
+						return Xbim.Ifc4.HvacDomain.IfcHeatExchangerTypeEnum.SHELLANDTUBE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHeatExchangerTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcHeatExchangerTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHeatExchangerTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcHeatExchangerTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

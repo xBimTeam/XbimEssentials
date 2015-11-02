@@ -20,7 +20,18 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (SectionType)
+				{
+					case Xbim.Ifc2x3.ProfilePropertyResource.IfcSectionTypeEnum.UNIFORM:
+						return Xbim.Ifc4.ProfileResource.IfcSectionTypeEnum.UNIFORM;
+					
+					case Xbim.Ifc2x3.ProfilePropertyResource.IfcSectionTypeEnum.TAPERED:
+						return Xbim.Ifc4.ProfileResource.IfcSectionTypeEnum.TAPERED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		IIfcProfileDef IIfcSectionProperties.StartProfile 

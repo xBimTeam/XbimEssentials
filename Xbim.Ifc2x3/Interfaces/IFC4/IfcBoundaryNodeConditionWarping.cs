@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
+				//TODO: Handle return of WarpingStiffness for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

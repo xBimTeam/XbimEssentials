@@ -20,7 +20,33 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcStairFlightTypeEnum.STRAIGHT:
+						return Xbim.Ifc4.SharedBldgElements.IfcStairFlightTypeEnum.STRAIGHT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcStairFlightTypeEnum.WINDER:
+						return Xbim.Ifc4.SharedBldgElements.IfcStairFlightTypeEnum.WINDER;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcStairFlightTypeEnum.SPIRAL:
+						return Xbim.Ifc4.SharedBldgElements.IfcStairFlightTypeEnum.SPIRAL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcStairFlightTypeEnum.CURVED:
+						return Xbim.Ifc4.SharedBldgElements.IfcStairFlightTypeEnum.CURVED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcStairFlightTypeEnum.FREEFORM:
+						return Xbim.Ifc4.SharedBldgElements.IfcStairFlightTypeEnum.FREEFORM;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcStairFlightTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcStairFlightTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcStairFlightTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcStairFlightTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

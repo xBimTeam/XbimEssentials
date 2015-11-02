@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in ShapeRepresentations)
+			{
+				yield return member as IIfcShapeModel;
+			}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcShapeAspect.Name 
@@ -43,13 +46,14 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ProductDefinitional;
 			} 
 		}
 		Xbim.Ifc4.RepresentationResource.IfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape 
 		{ 
 			get
 			{
+				//TODO: Handle return of PartOfProductDefinitionShape for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

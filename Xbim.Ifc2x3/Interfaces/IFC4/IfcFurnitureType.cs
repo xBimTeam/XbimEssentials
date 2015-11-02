@@ -20,13 +20,28 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (AssemblyPlace)
+				{
+					case Xbim.Ifc2x3.ProductExtension.IfcAssemblyPlaceEnum.SITE:
+						return Xbim.Ifc4.ProductExtension.IfcAssemblyPlaceEnum.SITE;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcAssemblyPlaceEnum.FACTORY:
+						return Xbim.Ifc4.ProductExtension.IfcAssemblyPlaceEnum.FACTORY;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcAssemblyPlaceEnum.NOTDEFINED:
+						return Xbim.Ifc4.ProductExtension.IfcAssemblyPlaceEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.SharedFacilitiesElements.IfcFurnitureTypeEnum? IIfcFurnitureType.PredefinedType 
 		{ 
 			get
 			{
+				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

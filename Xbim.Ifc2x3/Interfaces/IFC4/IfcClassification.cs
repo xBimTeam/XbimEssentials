@@ -34,6 +34,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of EditionDate for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -48,6 +49,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Description for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -55,6 +57,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Location for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -62,6 +65,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of ReferenceTokens for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

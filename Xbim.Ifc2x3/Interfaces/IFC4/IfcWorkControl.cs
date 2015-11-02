@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
+				//TODO: Handle return of CreationDate for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,7 +28,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Creators)
+			{
+				yield return member as IIfcPerson;
+			}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcWorkControl.Purpose 
@@ -42,6 +46,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
+				//TODO: Handle return of Duration for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -49,6 +54,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
+				//TODO: Handle return of TotalFloat for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -56,6 +62,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
+				//TODO: Handle return of StartTime for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -63,6 +70,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
+				//TODO: Handle return of FinishTime for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

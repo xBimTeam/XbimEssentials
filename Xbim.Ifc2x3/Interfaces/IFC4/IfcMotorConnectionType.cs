@@ -20,7 +20,27 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ElectricalDomain.IfcMotorConnectionTypeEnum.BELTDRIVE:
+						return Xbim.Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.BELTDRIVE;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcMotorConnectionTypeEnum.COUPLING:
+						return Xbim.Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.COUPLING;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcMotorConnectionTypeEnum.DIRECTDRIVE:
+						return Xbim.Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.DIRECTDRIVE;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcMotorConnectionTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcMotorConnectionTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

@@ -20,7 +20,30 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT:
+						return Xbim.Ifc4.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT:
+						return Xbim.Ifc4.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT:
+						return Xbim.Ifc4.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT:
+						return Xbim.Ifc4.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

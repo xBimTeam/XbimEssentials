@@ -20,28 +20,119 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (OperationType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.SINGLE_SWING_LEFT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.SINGLE_SWING_LEFT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.SINGLE_SWING_RIGHT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.SINGLE_SWING_RIGHT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.DOUBLE_SWING_LEFT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_SWING_LEFT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.DOUBLE_SWING_RIGHT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_SWING_RIGHT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.DOUBLE_DOOR_DOUBLE_SWING:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_DOOR_DOUBLE_SWING;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.SLIDING_TO_LEFT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.SLIDING_TO_LEFT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.SLIDING_TO_RIGHT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.SLIDING_TO_RIGHT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SLIDING:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SLIDING;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.FOLDING_TO_LEFT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.FOLDING_TO_LEFT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.FOLDING_TO_RIGHT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.FOLDING_TO_RIGHT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.DOUBLE_DOOR_FOLDING:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_DOOR_FOLDING;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.REVOLVING:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.REVOLVING;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.ROLLINGUP:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.ROLLINGUP;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.USERDEFINED:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleOperationEnum.NOTDEFINED:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum IIfcDoorStyle.ConstructionType 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (ConstructionType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleConstructionEnum.ALUMINIUM:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.ALUMINIUM;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleConstructionEnum.HIGH_GRADE_STEEL:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.HIGH_GRADE_STEEL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleConstructionEnum.STEEL:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.STEEL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleConstructionEnum.WOOD:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.WOOD;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleConstructionEnum.ALUMINIUM_WOOD:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.ALUMINIUM_WOOD;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleConstructionEnum.ALUMINIUM_PLASTIC:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.ALUMINIUM_PLASTIC;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleConstructionEnum.PLASTIC:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.PLASTIC;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleConstructionEnum.USERDEFINED:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorStyleConstructionEnum.NOTDEFINED:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		bool IIfcDoorStyle.ParameterTakesPrecedence 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ParameterTakesPrecedence;
 			} 
 		}
 		bool IIfcDoorStyle.Sizeable 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Sizeable;
 			} 
 		}
 	}

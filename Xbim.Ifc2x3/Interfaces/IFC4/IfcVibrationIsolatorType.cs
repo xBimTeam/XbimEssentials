@@ -20,7 +20,24 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcVibrationIsolatorTypeEnum.COMPRESSION:
+						return Xbim.Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.COMPRESSION;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcVibrationIsolatorTypeEnum.SPRING:
+						return Xbim.Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.SPRING;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcVibrationIsolatorTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcVibrationIsolatorTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

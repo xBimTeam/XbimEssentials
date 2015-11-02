@@ -35,7 +35,15 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in AssignedItems)
+			{
+				var ifcrepresentationitem = member as Xbim.Ifc2x3.GeometryResource.IfcRepresentationItem;
+				if (ifcrepresentationitem != null) 
+					yield return ifcrepresentationitem;
+				var ifcrepresentation = member as Xbim.Ifc2x3.RepresentationResource.IfcRepresentation;
+				if (ifcrepresentation != null) 
+					yield return ifcrepresentation;
+			}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcPresentationLayerAssignment.Identifier 

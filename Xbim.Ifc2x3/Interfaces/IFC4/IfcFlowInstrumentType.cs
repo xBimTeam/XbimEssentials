@@ -20,7 +20,42 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcFlowInstrumentTypeEnum.PRESSUREGAUGE:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.PRESSUREGAUGE;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcFlowInstrumentTypeEnum.THERMOMETER:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.THERMOMETER;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcFlowInstrumentTypeEnum.AMMETER:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.AMMETER;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcFlowInstrumentTypeEnum.FREQUENCYMETER:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.FREQUENCYMETER;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcFlowInstrumentTypeEnum.POWERFACTORMETER:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.POWERFACTORMETER;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcFlowInstrumentTypeEnum.PHASEANGLEMETER:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.PHASEANGLEMETER;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcFlowInstrumentTypeEnum.VOLTMETER_PEAK:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.VOLTMETER_PEAK;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcFlowInstrumentTypeEnum.VOLTMETER_RMS:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.VOLTMETER_RMS;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcFlowInstrumentTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcFlowInstrumentTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

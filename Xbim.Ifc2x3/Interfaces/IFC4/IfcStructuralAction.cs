@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return DestabilizingLoad;
 			} 
 		}
 	}

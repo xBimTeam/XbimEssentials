@@ -36,7 +36,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Representations)
+			{
+				yield return member as IIfcRepresentation;
+			}
 			} 
 		}
 	}

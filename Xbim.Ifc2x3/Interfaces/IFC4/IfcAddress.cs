@@ -20,7 +20,27 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (Purpose)
+				{
+					case Xbim.Ifc2x3.ActorResource.IfcAddressTypeEnum.OFFICE:
+						return Xbim.Ifc4.ActorResource.IfcAddressTypeEnum.OFFICE;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcAddressTypeEnum.SITE:
+						return Xbim.Ifc4.ActorResource.IfcAddressTypeEnum.SITE;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcAddressTypeEnum.HOME:
+						return Xbim.Ifc4.ActorResource.IfcAddressTypeEnum.HOME;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcAddressTypeEnum.DISTRIBUTIONPOINT:
+						return Xbim.Ifc4.ActorResource.IfcAddressTypeEnum.DISTRIBUTIONPOINT;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcAddressTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ActorResource.IfcAddressTypeEnum.USERDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcAddress.Description 

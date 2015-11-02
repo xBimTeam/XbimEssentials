@@ -20,7 +20,58 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.CO2SENSOR:
+						//TODO: Handle translation of CO2SENSOR member from IfcSensorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.FIRESENSOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.FIRESENSOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.FLOWSENSOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.FLOWSENSOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.GASSENSOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.GASSENSOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.HEATSENSOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.HEATSENSOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.HUMIDITYSENSOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.HUMIDITYSENSOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.LIGHTSENSOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.LIGHTSENSOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.MOISTURESENSOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.MOISTURESENSOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.MOVEMENTSENSOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.MOVEMENTSENSOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.PRESSURESENSOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.PRESSURESENSOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.SMOKESENSOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.SMOKESENSOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.SOUNDSENSOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.SOUNDSENSOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.TEMPERATURESENSOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.TEMPERATURESENSOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

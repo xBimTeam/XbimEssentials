@@ -20,7 +20,33 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcFilterTypeEnum.AIRPARTICLEFILTER:
+						return Xbim.Ifc4.HvacDomain.IfcFilterTypeEnum.AIRPARTICLEFILTER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcFilterTypeEnum.ODORFILTER:
+						return Xbim.Ifc4.HvacDomain.IfcFilterTypeEnum.ODORFILTER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcFilterTypeEnum.OILFILTER:
+						return Xbim.Ifc4.HvacDomain.IfcFilterTypeEnum.OILFILTER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcFilterTypeEnum.STRAINER:
+						return Xbim.Ifc4.HvacDomain.IfcFilterTypeEnum.STRAINER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcFilterTypeEnum.WATERFILTER:
+						return Xbim.Ifc4.HvacDomain.IfcFilterTypeEnum.WATERFILTER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcFilterTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcFilterTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcFilterTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcFilterTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

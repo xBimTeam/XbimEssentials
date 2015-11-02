@@ -20,13 +20,25 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ProductExtension.IfcSpaceTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ProductExtension.IfcSpaceTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcSpaceTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ProductExtension.IfcSpaceTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpaceType.LongName 
 		{ 
 			get
 			{
+				//TODO: Handle return of LongName for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -34,6 +46,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//TODO: Handle return of ElementType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

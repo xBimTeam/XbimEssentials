@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Voids)
+			{
+				yield return member as IIfcClosedShell;
+			}
 			} 
 		}
 	}

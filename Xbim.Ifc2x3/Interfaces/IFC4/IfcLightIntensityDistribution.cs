@@ -20,14 +20,34 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (LightDistributionCurve)
+				{
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightDistributionCurveEnum.TYPE_A:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightDistributionCurveEnum.TYPE_A;
+					
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightDistributionCurveEnum.TYPE_B:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightDistributionCurveEnum.TYPE_B;
+					
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightDistributionCurveEnum.TYPE_C:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightDistributionCurveEnum.TYPE_C;
+					
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightDistributionCurveEnum.NOTDEFINED:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightDistributionCurveEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		IEnumerable<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in DistributionData)
+			{
+				yield return member as IIfcLightDistributionData;
+			}
 			} 
 		}
 	}

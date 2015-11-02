@@ -27,28 +27,56 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Trim1)
+			{
+				var ifccartesianpoint = member as Xbim.Ifc2x3.GeometryResource.IfcCartesianPoint;
+				if (ifccartesianpoint != null) 
+					yield return ifccartesianpoint;
+				if (member is Xbim.Ifc2x3.MeasureResource.IfcParameterValue) 
+					yield return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)(Xbim.Ifc2x3.MeasureResource.IfcParameterValue)member);
+			}
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.GeometryResource.IfcTrimmingSelect> IIfcTrimmedCurve.Trim2 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Trim2)
+			{
+				var ifccartesianpoint = member as Xbim.Ifc2x3.GeometryResource.IfcCartesianPoint;
+				if (ifccartesianpoint != null) 
+					yield return ifccartesianpoint;
+				if (member is Xbim.Ifc2x3.MeasureResource.IfcParameterValue) 
+					yield return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)(Xbim.Ifc2x3.MeasureResource.IfcParameterValue)member);
+			}
 			} 
 		}
 		bool IIfcTrimmedCurve.SenseAgreement 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return SenseAgreement;
 			} 
 		}
 		Xbim.Ifc4.GeometryResource.IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (MasterRepresentation)
+				{
+					case Xbim.Ifc2x3.GeometryResource.IfcTrimmingPreference.CARTESIAN:
+						return Xbim.Ifc4.GeometryResource.IfcTrimmingPreference.CARTESIAN;
+					
+					case Xbim.Ifc2x3.GeometryResource.IfcTrimmingPreference.PARAMETER:
+						return Xbim.Ifc4.GeometryResource.IfcTrimmingPreference.PARAMETER;
+					
+					case Xbim.Ifc2x3.GeometryResource.IfcTrimmingPreference.UNSPECIFIED:
+						return Xbim.Ifc4.GeometryResource.IfcTrimmingPreference.UNSPECIFIED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

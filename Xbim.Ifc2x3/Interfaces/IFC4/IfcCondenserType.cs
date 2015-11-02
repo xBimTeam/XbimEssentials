@@ -20,7 +20,36 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE:
+						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL:
+						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE:
+						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE:
+						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.AIRCOOLED:
+						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.AIRCOOLED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.EVAPORATIVECOOLED:
+						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.EVAPORATIVECOOLED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

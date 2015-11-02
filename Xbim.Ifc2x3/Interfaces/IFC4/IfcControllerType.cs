@@ -20,7 +20,39 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.FLOATING:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.FLOATING;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.PROPORTIONAL:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.PROPORTIONAL;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.PROPORTIONALINTEGRAL:
+						//TODO: Handle translation of PROPORTIONALINTEGRAL member from IfcControllerTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.PROPORTIONALINTEGRALDERIVATIVE:
+						//TODO: Handle translation of PROPORTIONALINTEGRALDERIVATIVE member from IfcControllerTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.TIMEDTWOPOSITION:
+						//TODO: Handle translation of TIMEDTWOPOSITION member from IfcControllerTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.TWOPOSITION:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.TWOPOSITION;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

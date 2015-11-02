@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get
 			{
+				//TODO: Handle return of Status for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get
 			{
+				//TODO: Handle return of WorkMethod for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -34,6 +36,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get
 			{
+				//TODO: Handle return of IsMilestone for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -41,6 +44,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get
 			{
+				//TODO: Handle return of Priority for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -48,6 +52,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get
 			{
+				//TODO: Handle return of TaskTime for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -55,6 +60,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get
 			{
+				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

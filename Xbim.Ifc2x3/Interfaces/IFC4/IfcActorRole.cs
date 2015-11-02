@@ -20,7 +20,82 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (Role)
+				{
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.SUPPLIER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.SUPPLIER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.MANUFACTURER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.MANUFACTURER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.CONTRACTOR:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.CONTRACTOR;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.SUBCONTRACTOR:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.SUBCONTRACTOR;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.ARCHITECT:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.ARCHITECT;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.STRUCTURALENGINEER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.STRUCTURALENGINEER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.COSTENGINEER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.COSTENGINEER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.CLIENT:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.CLIENT;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.BUILDINGOWNER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.BUILDINGOWNER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.BUILDINGOPERATOR:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.BUILDINGOPERATOR;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.MECHANICALENGINEER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.MECHANICALENGINEER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.ELECTRICALENGINEER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.ELECTRICALENGINEER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.PROJECTMANAGER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.PROJECTMANAGER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.FACILITIESMANAGER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.FACILITIESMANAGER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.CIVILENGINEER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.CIVILENGINEER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.COMISSIONINGENGINEER:
+						//TODO: Handle translation of COMISSIONINGENGINEER member from IfcRoleEnum in property Role
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.ENGINEER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.ENGINEER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.OWNER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.OWNER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.CONSULTANT:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.CONSULTANT;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.CONSTRUCTIONMANAGER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.CONSTRUCTIONMANAGER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.FIELDCONSTRUCTIONMANAGER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.FIELDCONSTRUCTIONMANAGER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.RESELLER:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.RESELLER;
+					
+					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.USERDEFINED:
+						return Xbim.Ifc4.ActorResource.IfcRoleEnum.USERDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcActorRole.UserDefinedRole 

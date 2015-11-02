@@ -20,7 +20,36 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.COMPACTFLUORESCENT:
+						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.COMPACTFLUORESCENT;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.FLUORESCENT:
+						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.FLUORESCENT;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.HIGHPRESSUREMERCURY:
+						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.HIGHPRESSUREMERCURY;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.HIGHPRESSURESODIUM:
+						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.HIGHPRESSURESODIUM;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.METALHALIDE:
+						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.METALHALIDE;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.TUNGSTENFILAMENT:
+						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.TUNGSTENFILAMENT;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

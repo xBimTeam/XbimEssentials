@@ -20,7 +20,21 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcColumnTypeEnum.COLUMN:
+						return Xbim.Ifc4.SharedBldgElements.IfcColumnTypeEnum.COLUMN;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcColumnTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcColumnTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcColumnTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcColumnTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

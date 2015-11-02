@@ -27,7 +27,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in HasProperties)
+			{
+				yield return member as IIfcProperty;
+			}
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 

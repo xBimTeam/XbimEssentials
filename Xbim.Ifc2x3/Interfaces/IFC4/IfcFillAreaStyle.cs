@@ -20,13 +20,31 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in FillStyles)
+			{
+				var ifcfillareastylehatching = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleHatching;
+				if (ifcfillareastylehatching != null) 
+					yield return ifcfillareastylehatching;
+				var ifcfillareastyletiles = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleTiles;
+				if (ifcfillareastyletiles != null) 
+					yield return ifcfillareastyletiles;
+				var ifccolourspecification = member as Xbim.Ifc2x3.PresentationResource.IfcColourSpecification;
+				if (ifccolourspecification != null) 
+					yield return ifccolourspecification;
+				var ifcpredefinedcolour = member as Xbim.Ifc2x3.PresentationResource.IfcPreDefinedColour;
+				if (ifcpredefinedcolour != null) 
+					yield return ifcpredefinedcolour;
+				var ifcexternallydefinedhatchstyle = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcExternallyDefinedHatchStyle;
+				if (ifcexternallydefinedhatchstyle != null) 
+					yield return ifcexternallydefinedhatchstyle;
+			}
 			} 
 		}
 		bool? IIfcFillAreaStyle.ModelorDraughting 
 		{ 
 			get
 			{
+				//TODO: Handle return of ModelorDraughting for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

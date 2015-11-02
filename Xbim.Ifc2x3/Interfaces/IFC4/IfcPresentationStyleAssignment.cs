@@ -20,7 +20,25 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Styles)
+			{
+				var ifccurvestyle = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcCurveStyle;
+				if (ifccurvestyle != null) 
+					yield return ifccurvestyle;
+				var ifcsymbolstyle = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcSymbolStyle;
+				if (ifcsymbolstyle != null) 
+					//TODO: Handle entity ifcsymbolstyle which is not a part of the target select interface Xbim.Ifc4.PresentationAppearanceResource.IfcPresentationStyleSelect in property Styles
+					throw new System.NotImplementedException();
+				var ifcfillareastyle = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyle;
+				if (ifcfillareastyle != null) 
+					yield return ifcfillareastyle;
+				var ifctextstyle = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcTextStyle;
+				if (ifctextstyle != null) 
+					yield return ifctextstyle;
+				var ifcsurfacestyle = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle;
+				if (ifcsurfacestyle != null) 
+					yield return ifcsurfacestyle;
+			}
 			} 
 		}
 	}

@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return SameSense;
 			} 
 		}
 	}

@@ -55,14 +55,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Usense;
 			} 
 		}
 		bool IIfcRectangularTrimmedSurface.Vsense 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Vsense;
 			} 
 		}
 	}

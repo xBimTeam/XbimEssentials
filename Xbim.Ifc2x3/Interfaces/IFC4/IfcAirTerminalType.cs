@@ -20,7 +20,43 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.GRILLE:
+						return Xbim.Ifc4.HvacDomain.IfcAirTerminalTypeEnum.GRILLE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.REGISTER:
+						return Xbim.Ifc4.HvacDomain.IfcAirTerminalTypeEnum.REGISTER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.DIFFUSER:
+						return Xbim.Ifc4.HvacDomain.IfcAirTerminalTypeEnum.DIFFUSER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.EYEBALL:
+						//TODO: Handle translation of EYEBALL member from IfcAirTerminalTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.IRIS:
+						//TODO: Handle translation of IRIS member from IfcAirTerminalTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.LINEARGRILLE:
+						//TODO: Handle translation of LINEARGRILLE member from IfcAirTerminalTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.LINEARDIFFUSER:
+						//TODO: Handle translation of LINEARDIFFUSER member from IfcAirTerminalTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcAirTerminalTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

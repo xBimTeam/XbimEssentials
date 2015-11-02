@@ -20,7 +20,27 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ProductExtension.IfcTransportElementTypeEnum.ELEVATOR:
+						return Xbim.Ifc4.ProductExtension.IfcTransportElementTypeEnum.ELEVATOR;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcTransportElementTypeEnum.ESCALATOR:
+						return Xbim.Ifc4.ProductExtension.IfcTransportElementTypeEnum.ESCALATOR;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcTransportElementTypeEnum.MOVINGWALKWAY:
+						return Xbim.Ifc4.ProductExtension.IfcTransportElementTypeEnum.MOVINGWALKWAY;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcTransportElementTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ProductExtension.IfcTransportElementTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcTransportElementTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ProductExtension.IfcTransportElementTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

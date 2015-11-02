@@ -27,13 +27,17 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in RelatedOrganizations)
+			{
+				yield return member as IIfcOrganization;
+			}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
 			{
+				//TODO: Handle return of Name for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -41,6 +45,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Description for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

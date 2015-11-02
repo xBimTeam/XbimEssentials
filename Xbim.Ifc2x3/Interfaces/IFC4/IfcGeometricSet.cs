@@ -20,7 +20,18 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Elements)
+			{
+				var ifcpoint = member as Xbim.Ifc2x3.GeometryResource.IfcPoint;
+				if (ifcpoint != null) 
+					yield return ifcpoint;
+				var ifccurve = member as Xbim.Ifc2x3.GeometryResource.IfcCurve;
+				if (ifccurve != null) 
+					yield return ifccurve;
+				var ifcsurface = member as Xbim.Ifc2x3.GeometryResource.IfcSurface;
+				if (ifcsurface != null) 
+					yield return ifcsurface;
+			}
 			} 
 		}
 	}

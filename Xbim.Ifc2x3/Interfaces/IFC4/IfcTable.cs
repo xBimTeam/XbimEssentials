@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Name for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,13 +28,17 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Rows)
+			{
+				yield return member as IIfcTableRow;
+			}
 			} 
 		}
 		IEnumerable<IIfcTableColumn> IIfcTable.Columns 
 		{ 
 			get
 			{
+				//TODO: Handle return of Columns for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

@@ -20,7 +20,27 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ElectricalDomain.IfcTransformerTypeEnum.CURRENT:
+						return Xbim.Ifc4.ElectricalDomain.IfcTransformerTypeEnum.CURRENT;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcTransformerTypeEnum.FREQUENCY:
+						return Xbim.Ifc4.ElectricalDomain.IfcTransformerTypeEnum.FREQUENCY;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcTransformerTypeEnum.VOLTAGE:
+						return Xbim.Ifc4.ElectricalDomain.IfcTransformerTypeEnum.VOLTAGE;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcTransformerTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcTransformerTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcTransformerTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcTransformerTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

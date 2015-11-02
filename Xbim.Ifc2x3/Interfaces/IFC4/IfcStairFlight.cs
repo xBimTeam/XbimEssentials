@@ -20,14 +20,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (NumberOfRiser == null) return null;
+				return NumberOfRiser;
 			} 
 		}
 		long? IIfcStairFlight.NumberOfTreads 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (NumberOfTreads == null) return null;
+				return NumberOfTreads;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight 
@@ -50,6 +52,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

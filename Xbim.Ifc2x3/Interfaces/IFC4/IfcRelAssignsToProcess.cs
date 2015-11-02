@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
+				//TODO: Handle return of RelatingProcess for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

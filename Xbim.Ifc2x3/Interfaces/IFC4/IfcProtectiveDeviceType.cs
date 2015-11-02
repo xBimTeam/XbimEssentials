@@ -20,7 +20,37 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.FUSEDISCONNECTOR:
+						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.FUSEDISCONNECTOR;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.CIRCUITBREAKER:
+						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.CIRCUITBREAKER;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.EARTHFAILUREDEVICE:
+						//TODO: Handle translation of EARTHFAILUREDEVICE member from IfcProtectiveDeviceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+										
+					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTCIRCUITBREAKER:
+						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTCIRCUITBREAKER;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTSWITCH:
+						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTSWITCH;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.VARISTOR:
+						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.VARISTOR;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

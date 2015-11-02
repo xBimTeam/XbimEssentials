@@ -20,7 +20,24 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ElectricalDomain.IfcLightFixtureTypeEnum.POINTSOURCE:
+						return Xbim.Ifc4.ElectricalDomain.IfcLightFixtureTypeEnum.POINTSOURCE;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcLightFixtureTypeEnum.DIRECTIONSOURCE:
+						return Xbim.Ifc4.ElectricalDomain.IfcLightFixtureTypeEnum.DIRECTIONSOURCE;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcLightFixtureTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcLightFixtureTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcLightFixtureTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcLightFixtureTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

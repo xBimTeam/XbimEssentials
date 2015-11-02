@@ -28,7 +28,36 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PanelOperation)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.SWINGING:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.SWINGING;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.DOUBLE_ACTING:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.DOUBLE_ACTING;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.SLIDING:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.SLIDING;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.FOLDING:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.FOLDING;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.REVOLVING:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.REVOLVING;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.ROLLINGUP:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.ROLLINGUP;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.USERDEFINED:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.NOTDEFINED:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcDoorPanelProperties.PanelWidth 
@@ -43,7 +72,24 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PanelPosition)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelPositionEnum.LEFT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.LEFT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelPositionEnum.MIDDLE:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.MIDDLE;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelPositionEnum.RIGHT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.RIGHT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelPositionEnum.NOTDEFINED:
+						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		IIfcShapeAspect IIfcDoorPanelProperties.ShapeAspectStyle 

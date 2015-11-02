@@ -20,7 +20,33 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcPumpTypeEnum.CIRCULATOR:
+						return Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum.CIRCULATOR;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcPumpTypeEnum.ENDSUCTION:
+						return Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum.ENDSUCTION;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcPumpTypeEnum.SPLITCASE:
+						return Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum.SPLITCASE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcPumpTypeEnum.VERTICALINLINE:
+						return Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum.VERTICALINLINE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcPumpTypeEnum.VERTICALTURBINE:
+						return Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum.VERTICALTURBINE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcPumpTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcPumpTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

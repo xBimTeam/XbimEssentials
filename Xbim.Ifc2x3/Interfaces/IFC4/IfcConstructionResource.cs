@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get
 			{
+				//TODO: Handle return of Usage for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get
 			{
+				//TODO: Handle return of BaseCosts for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -34,6 +36,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get
 			{
+				//TODO: Handle return of BaseQuantity for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

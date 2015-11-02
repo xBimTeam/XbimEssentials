@@ -27,7 +27,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Precision == null) return null;
+				return Precision;
 			} 
 		}
 		Xbim.Ifc4.GeometryResource.IfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem 

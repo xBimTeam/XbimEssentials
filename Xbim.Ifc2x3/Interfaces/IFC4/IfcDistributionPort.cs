@@ -20,13 +20,31 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (FlowDirection)
+				{
+					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcFlowDirectionEnum.SOURCE:
+						return Xbim.Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.SOURCE;
+					
+					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcFlowDirectionEnum.SINK:
+						return Xbim.Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.SINK;
+					
+					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcFlowDirectionEnum.SOURCEANDSINK:
+						return Xbim.Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.SOURCEANDSINK;
+					
+					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcFlowDirectionEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionPortTypeEnum? IIfcDistributionPort.PredefinedType 
 		{ 
 			get
 			{
+				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -34,6 +52,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get
 			{
+				//TODO: Handle return of SystemType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

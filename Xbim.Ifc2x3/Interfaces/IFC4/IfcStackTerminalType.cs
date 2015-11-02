@@ -20,7 +20,27 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.BIRDCAGE:
+						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.BIRDCAGE;
+					
+					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.COWL:
+						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.COWL;
+					
+					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.RAINWATERHOPPER:
+						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.RAINWATERHOPPER;
+					
+					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

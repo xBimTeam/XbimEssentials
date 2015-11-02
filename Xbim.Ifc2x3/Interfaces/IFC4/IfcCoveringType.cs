@@ -20,7 +20,42 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.CEILING:
+						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.CEILING;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.FLOORING:
+						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.FLOORING;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.CLADDING:
+						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.CLADDING;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.ROOFING:
+						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.ROOFING;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.INSULATION:
+						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.INSULATION;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.MEMBRANE:
+						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.MEMBRANE;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.SLEEVING:
+						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.SLEEVING;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.WRAPPING:
+						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.WRAPPING;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

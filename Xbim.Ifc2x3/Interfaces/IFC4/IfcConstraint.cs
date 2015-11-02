@@ -35,7 +35,27 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (ConstraintGrade)
+				{
+					case Xbim.Ifc2x3.ConstraintResource.IfcConstraintEnum.HARD:
+						return Xbim.Ifc4.ConstraintResource.IfcConstraintEnum.HARD;
+					
+					case Xbim.Ifc2x3.ConstraintResource.IfcConstraintEnum.SOFT:
+						return Xbim.Ifc4.ConstraintResource.IfcConstraintEnum.SOFT;
+					
+					case Xbim.Ifc2x3.ConstraintResource.IfcConstraintEnum.ADVISORY:
+						return Xbim.Ifc4.ConstraintResource.IfcConstraintEnum.ADVISORY;
+					
+					case Xbim.Ifc2x3.ConstraintResource.IfcConstraintEnum.USERDEFINED:
+						return Xbim.Ifc4.ConstraintResource.IfcConstraintEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ConstraintResource.IfcConstraintEnum.NOTDEFINED:
+						return Xbim.Ifc4.ConstraintResource.IfcConstraintEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcConstraint.ConstraintSource 
@@ -67,6 +87,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
+				//TODO: Handle return of CreationTime for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

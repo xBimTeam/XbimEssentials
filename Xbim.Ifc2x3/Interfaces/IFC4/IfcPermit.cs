@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get
 			{
+				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get
 			{
+				//TODO: Handle return of Status for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -34,6 +36,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get
 			{
+				//TODO: Handle return of LongDescription for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

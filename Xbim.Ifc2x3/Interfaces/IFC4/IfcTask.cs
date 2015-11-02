@@ -36,20 +36,22 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return IsMilestone;
 			} 
 		}
 		long? IIfcTask.Priority 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				if (Priority == null) return null;
+				return Priority;
 			} 
 		}
 		IIfcTaskTime IIfcTask.TaskTime 
 		{ 
 			get
 			{
+				//TODO: Handle return of TaskTime for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -57,6 +59,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
+				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

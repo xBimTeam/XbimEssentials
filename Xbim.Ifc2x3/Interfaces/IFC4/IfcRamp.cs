@@ -20,7 +20,36 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (ShapeType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.STRAIGHT_RUN_RAMP:
+						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.STRAIGHT_RUN_RAMP;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP:
+						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.QUARTER_TURN_RAMP:
+						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.QUARTER_TURN_RAMP;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP:
+						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.HALF_TURN_RAMP:
+						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.HALF_TURN_RAMP;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.SPIRAL_RAMP:
+						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.SPIRAL_RAMP;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

@@ -20,13 +20,28 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (CompositionType)
+				{
+					case Xbim.Ifc2x3.ProductExtension.IfcElementCompositionEnum.COMPLEX:
+						return Xbim.Ifc4.ProductExtension.IfcElementCompositionEnum.COMPLEX;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcElementCompositionEnum.ELEMENT:
+						return Xbim.Ifc4.ProductExtension.IfcElementCompositionEnum.ELEMENT;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcElementCompositionEnum.PARTIAL:
+						return Xbim.Ifc4.ProductExtension.IfcElementCompositionEnum.PARTIAL;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get
 			{
+				//TODO: Handle return of LongName for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

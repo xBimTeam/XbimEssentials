@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
+				//TODO: Handle return of TranslationalStiffnessByLengthX for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
+				//TODO: Handle return of TranslationalStiffnessByLengthY for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -34,6 +36,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
+				//TODO: Handle return of TranslationalStiffnessByLengthZ for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -41,6 +44,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
+				//TODO: Handle return of RotationalStiffnessByLengthX for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -48,6 +52,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
+				//TODO: Handle return of RotationalStiffnessByLengthY for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -55,6 +60,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
+				//TODO: Handle return of RotationalStiffnessByLengthZ for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

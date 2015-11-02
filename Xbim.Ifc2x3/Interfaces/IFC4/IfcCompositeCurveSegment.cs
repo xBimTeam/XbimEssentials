@@ -20,14 +20,31 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (Transition)
+				{
+					case Xbim.Ifc2x3.GeometryResource.IfcTransitionCode.DISCONTINUOUS:
+						return Xbim.Ifc4.GeometryResource.IfcTransitionCode.DISCONTINUOUS;
+					
+					case Xbim.Ifc2x3.GeometryResource.IfcTransitionCode.CONTINUOUS:
+						return Xbim.Ifc4.GeometryResource.IfcTransitionCode.CONTINUOUS;
+					
+					case Xbim.Ifc2x3.GeometryResource.IfcTransitionCode.CONTSAMEGRADIENT:
+						return Xbim.Ifc4.GeometryResource.IfcTransitionCode.CONTSAMEGRADIENT;
+					
+					case Xbim.Ifc2x3.GeometryResource.IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE:
+						return Xbim.Ifc4.GeometryResource.IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		bool IIfcCompositeCurveSegment.SameSense 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return SameSense;
 			} 
 		}
 		IIfcCurve IIfcCompositeCurveSegment.ParentCurve 

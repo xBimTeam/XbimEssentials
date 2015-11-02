@@ -21,103 +21,200 @@ namespace Xbim.Ifc2x3.PropertyResource
 			get
 			{
 				if (UpperBoundValue == null) return null;
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcVolumeMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcVolumeMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcVolumeMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcTimeMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcTimeMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcTimeMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcThermodynamicTemperatureMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcThermodynamicTemperatureMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcSolidAngleMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcSolidAngleMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcSolidAngleMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPositivePlaneAngleMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositivePlaneAngleMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPlaneAngleMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPlaneAngleMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcParameterValue) 
+					return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)(Xbim.Ifc2x3.MeasureResource.IfcParameterValue)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcNumericMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcNumericMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNumericMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMassMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMassMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMassMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcElectricCurrentMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcElectricCurrentMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcElectricCurrentMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcCountMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcCountMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcCountMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcContextDependentMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcContextDependentMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcContextDependentMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcAreaMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcAreaMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcAreaMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcAmountOfSubstanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcAmountOfSubstanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcAmountOfSubstanceMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLuminousIntensityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLuminousIntensityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLuminousIntensityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcComplexNumber) 
+					return new Xbim.Ifc4.MeasureResource.IfcComplexNumber((List<double>)(Xbim.Ifc2x3.MeasureResource.IfcComplexNumber)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcInteger) 
+					return new Xbim.Ifc4.MeasureResource.IfcInteger((long)(Xbim.Ifc2x3.MeasureResource.IfcInteger)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcReal) 
+					return new Xbim.Ifc4.MeasureResource.IfcReal((double)(Xbim.Ifc2x3.MeasureResource.IfcReal)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcBoolean) 
+					return new Xbim.Ifc4.MeasureResource.IfcBoolean((bool)(Xbim.Ifc2x3.MeasureResource.IfcBoolean)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcIdentifier) 
+					return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)(Xbim.Ifc2x3.MeasureResource.IfcIdentifier)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcText) 
+					return new Xbim.Ifc4.MeasureResource.IfcText((string)(Xbim.Ifc2x3.MeasureResource.IfcText)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLabel) 
+					return new Xbim.Ifc4.MeasureResource.IfcLabel((string)(Xbim.Ifc2x3.MeasureResource.IfcLabel)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLogical) 
+					return new Xbim.Ifc4.MeasureResource.IfcLogical((bool?)(Xbim.Ifc2x3.MeasureResource.IfcLogical)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcVolumetricFlowRateMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcVolumetricFlowRateMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcVolumetricFlowRateMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcTimeStamp) 
+					return new Xbim.Ifc4.DateTimeResource.IfcTimeStamp((long)(Xbim.Ifc2x3.MeasureResource.IfcTimeStamp)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcThermalTransmittanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcThermalTransmittanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcThermalTransmittanceMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcThermalResistanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcThermalResistanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcThermalResistanceMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcThermalAdmittanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcThermalAdmittanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcThermalAdmittanceMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPressureMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPressureMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPressureMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPowerMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPowerMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPowerMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMassFlowRateMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMassFlowRateMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMassFlowRateMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMassDensityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMassDensityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMassDensityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLinearVelocityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLinearVelocityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLinearVelocityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcKinematicViscosityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcKinematicViscosityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcKinematicViscosityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcIntegerCountRateMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcIntegerCountRateMeasure((long)(Xbim.Ifc2x3.MeasureResource.IfcIntegerCountRateMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcHeatFluxDensityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcHeatFluxDensityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcHeatFluxDensityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcFrequencyMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcFrequencyMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcFrequencyMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcEnergyMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcEnergyMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcEnergyMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcElectricVoltageMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcElectricVoltageMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcElectricVoltageMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcDynamicViscosityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcDynamicViscosityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcDynamicViscosityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcCompoundPlaneAngleMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure((List<long>)(Xbim.Ifc2x3.MeasureResource.IfcCompoundPlaneAngleMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcAngularVelocityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcAngularVelocityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcAngularVelocityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcThermalConductivityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcThermalConductivityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcThermalConductivityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMolecularWeightMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMolecularWeightMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMolecularWeightMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcVaporPermeabilityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcVaporPermeabilityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcVaporPermeabilityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMoistureDiffusivityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMoistureDiffusivityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMoistureDiffusivityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcIsothermalMoistureCapacityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcIsothermalMoistureCapacityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcIsothermalMoistureCapacityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcSpecificHeatCapacityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcSpecificHeatCapacityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcSpecificHeatCapacityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMonetaryMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMonetaryMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMonetaryMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMagneticFluxDensityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMagneticFluxDensityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMagneticFluxDensityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMagneticFluxMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMagneticFluxMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMagneticFluxMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLuminousFluxMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLuminousFluxMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLuminousFluxMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcForceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcForceMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcInductanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcInductanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcInductanceMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcIlluminanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcIlluminanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcIlluminanceMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcElectricResistanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcElectricResistanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcElectricResistanceMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcElectricConductanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcElectricConductanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcElectricConductanceMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcElectricChargeMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcElectricChargeMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcElectricChargeMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcDoseEquivalentMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcDoseEquivalentMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcDoseEquivalentMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcElectricCapacitanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcElectricCapacitanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcElectricCapacitanceMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcAbsorbedDoseMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcAbsorbedDoseMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcAbsorbedDoseMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcRadioActivityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcRadioActivityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRadioActivityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcRotationalFrequencyMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcRotationalFrequencyMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRotationalFrequencyMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcTorqueMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcTorqueMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcTorqueMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcAccelerationMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcAccelerationMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcAccelerationMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLinearForceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLinearForceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLinearForceMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLinearStiffnessMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLinearStiffnessMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLinearStiffnessMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcModulusOfSubgradeReactionMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcModulusOfSubgradeReactionMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcModulusOfElasticityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcModulusOfElasticityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcModulusOfElasticityMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMomentOfInertiaMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMomentOfInertiaMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMomentOfInertiaMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPlanarForceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPlanarForceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPlanarForceMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcRotationalStiffnessMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcRotationalStiffnessMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRotationalStiffnessMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcShearModulusMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcShearModulusMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcShearModulusMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLinearMomentMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLinearMomentMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLinearMomentMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLuminousIntensityDistributionMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLuminousIntensityDistributionMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcCurvatureMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcCurvatureMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcCurvatureMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMassPerLengthMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMassPerLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMassPerLengthMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcRotationalMassMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcRotationalMassMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRotationalMassMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcSectionalAreaIntegralMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcSectionalAreaIntegralMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcSectionalAreaIntegralMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcSectionModulusMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcSectionModulusMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcSectionModulusMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcTemperatureGradientMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcTemperatureGradientMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcTemperatureGradientMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcThermalExpansionCoefficientMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcThermalExpansionCoefficientMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcThermalExpansionCoefficientMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcWarpingConstantMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcWarpingConstantMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcWarpingConstantMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcWarpingMomentMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcWarpingMomentMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcWarpingMomentMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcSoundPowerMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcSoundPowerMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcSoundPowerMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcSoundPressureMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcSoundPressureMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcSoundPressureMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcHeatingValueMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcHeatingValueMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcHeatingValueMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPHMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPHMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPHMeasure)UpperBoundValue);
+				if (UpperBoundValue is Xbim.Ifc2x3.MeasureResource.IfcIonConcentrationMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcIonConcentrationMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcIonConcentrationMeasure)UpperBoundValue);
 				return null;
 			} 
 		}
@@ -126,103 +223,200 @@ namespace Xbim.Ifc2x3.PropertyResource
 			get
 			{
 				if (LowerBoundValue == null) return null;
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcVolumeMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcVolumeMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcVolumeMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcTimeMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcTimeMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcTimeMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcThermodynamicTemperatureMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcThermodynamicTemperatureMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcSolidAngleMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcSolidAngleMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcSolidAngleMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPositivePlaneAngleMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositivePlaneAngleMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPlaneAngleMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPlaneAngleMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcParameterValue) 
+					return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)(Xbim.Ifc2x3.MeasureResource.IfcParameterValue)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcNumericMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcNumericMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNumericMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMassMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMassMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMassMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcElectricCurrentMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcElectricCurrentMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcElectricCurrentMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcCountMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcCountMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcCountMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcContextDependentMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcContextDependentMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcContextDependentMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcAreaMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcAreaMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcAreaMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcAmountOfSubstanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcAmountOfSubstanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcAmountOfSubstanceMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLuminousIntensityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLuminousIntensityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLuminousIntensityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcComplexNumber) 
+					return new Xbim.Ifc4.MeasureResource.IfcComplexNumber((List<double>)(Xbim.Ifc2x3.MeasureResource.IfcComplexNumber)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcInteger) 
+					return new Xbim.Ifc4.MeasureResource.IfcInteger((long)(Xbim.Ifc2x3.MeasureResource.IfcInteger)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcReal) 
+					return new Xbim.Ifc4.MeasureResource.IfcReal((double)(Xbim.Ifc2x3.MeasureResource.IfcReal)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcBoolean) 
+					return new Xbim.Ifc4.MeasureResource.IfcBoolean((bool)(Xbim.Ifc2x3.MeasureResource.IfcBoolean)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcIdentifier) 
+					return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)(Xbim.Ifc2x3.MeasureResource.IfcIdentifier)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcText) 
+					return new Xbim.Ifc4.MeasureResource.IfcText((string)(Xbim.Ifc2x3.MeasureResource.IfcText)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLabel) 
+					return new Xbim.Ifc4.MeasureResource.IfcLabel((string)(Xbim.Ifc2x3.MeasureResource.IfcLabel)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLogical) 
+					return new Xbim.Ifc4.MeasureResource.IfcLogical((bool?)(Xbim.Ifc2x3.MeasureResource.IfcLogical)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcVolumetricFlowRateMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcVolumetricFlowRateMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcVolumetricFlowRateMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcTimeStamp) 
+					return new Xbim.Ifc4.DateTimeResource.IfcTimeStamp((long)(Xbim.Ifc2x3.MeasureResource.IfcTimeStamp)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcThermalTransmittanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcThermalTransmittanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcThermalTransmittanceMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcThermalResistanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcThermalResistanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcThermalResistanceMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcThermalAdmittanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcThermalAdmittanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcThermalAdmittanceMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPressureMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPressureMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPressureMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPowerMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPowerMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPowerMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMassFlowRateMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMassFlowRateMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMassFlowRateMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMassDensityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMassDensityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMassDensityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLinearVelocityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLinearVelocityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLinearVelocityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcKinematicViscosityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcKinematicViscosityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcKinematicViscosityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcIntegerCountRateMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcIntegerCountRateMeasure((long)(Xbim.Ifc2x3.MeasureResource.IfcIntegerCountRateMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcHeatFluxDensityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcHeatFluxDensityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcHeatFluxDensityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcFrequencyMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcFrequencyMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcFrequencyMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcEnergyMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcEnergyMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcEnergyMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcElectricVoltageMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcElectricVoltageMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcElectricVoltageMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcDynamicViscosityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcDynamicViscosityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcDynamicViscosityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcCompoundPlaneAngleMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure((List<long>)(Xbim.Ifc2x3.MeasureResource.IfcCompoundPlaneAngleMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcAngularVelocityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcAngularVelocityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcAngularVelocityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcThermalConductivityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcThermalConductivityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcThermalConductivityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMolecularWeightMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMolecularWeightMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMolecularWeightMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcVaporPermeabilityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcVaporPermeabilityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcVaporPermeabilityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMoistureDiffusivityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMoistureDiffusivityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMoistureDiffusivityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcIsothermalMoistureCapacityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcIsothermalMoistureCapacityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcIsothermalMoistureCapacityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcSpecificHeatCapacityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcSpecificHeatCapacityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcSpecificHeatCapacityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMonetaryMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMonetaryMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMonetaryMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMagneticFluxDensityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMagneticFluxDensityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMagneticFluxDensityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMagneticFluxMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMagneticFluxMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMagneticFluxMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLuminousFluxMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLuminousFluxMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLuminousFluxMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcForceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcForceMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcInductanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcInductanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcInductanceMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcIlluminanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcIlluminanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcIlluminanceMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcElectricResistanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcElectricResistanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcElectricResistanceMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcElectricConductanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcElectricConductanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcElectricConductanceMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcElectricChargeMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcElectricChargeMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcElectricChargeMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcDoseEquivalentMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcDoseEquivalentMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcDoseEquivalentMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcElectricCapacitanceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcElectricCapacitanceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcElectricCapacitanceMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcAbsorbedDoseMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcAbsorbedDoseMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcAbsorbedDoseMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcRadioActivityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcRadioActivityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRadioActivityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcRotationalFrequencyMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcRotationalFrequencyMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRotationalFrequencyMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcTorqueMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcTorqueMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcTorqueMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcAccelerationMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcAccelerationMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcAccelerationMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLinearForceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLinearForceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLinearForceMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLinearStiffnessMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLinearStiffnessMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLinearStiffnessMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcModulusOfSubgradeReactionMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcModulusOfSubgradeReactionMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcModulusOfElasticityMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcModulusOfElasticityMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcModulusOfElasticityMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMomentOfInertiaMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMomentOfInertiaMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMomentOfInertiaMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPlanarForceMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPlanarForceMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPlanarForceMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcRotationalStiffnessMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcRotationalStiffnessMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRotationalStiffnessMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcShearModulusMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcShearModulusMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcShearModulusMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLinearMomentMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLinearMomentMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLinearMomentMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcLuminousIntensityDistributionMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLuminousIntensityDistributionMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcCurvatureMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcCurvatureMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcCurvatureMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcMassPerLengthMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMassPerLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMassPerLengthMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcRotationalMassMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcRotationalMassMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRotationalMassMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcSectionalAreaIntegralMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcSectionalAreaIntegralMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcSectionalAreaIntegralMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcSectionModulusMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcSectionModulusMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcSectionModulusMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcTemperatureGradientMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcTemperatureGradientMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcTemperatureGradientMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcThermalExpansionCoefficientMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcThermalExpansionCoefficientMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcThermalExpansionCoefficientMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcWarpingConstantMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcWarpingConstantMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcWarpingConstantMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcWarpingMomentMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcWarpingMomentMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcWarpingMomentMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcSoundPowerMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcSoundPowerMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcSoundPowerMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcSoundPressureMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcSoundPressureMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcSoundPressureMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcHeatingValueMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcHeatingValueMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcHeatingValueMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcPHMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPHMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPHMeasure)LowerBoundValue);
+				if (LowerBoundValue is Xbim.Ifc2x3.MeasureResource.IfcIonConcentrationMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcIonConcentrationMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcIonConcentrationMeasure)LowerBoundValue);
 				return null;
 			} 
 		}
@@ -247,6 +441,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
+				//TODO: Handle return of SetPointValue for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

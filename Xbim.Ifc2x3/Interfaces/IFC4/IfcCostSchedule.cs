@@ -20,7 +20,39 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.BUDGET:
+						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.BUDGET;
+					
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.COSTPLAN:
+						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.COSTPLAN;
+					
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.ESTIMATE:
+						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.ESTIMATE;
+					
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.TENDER:
+						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.TENDER;
+					
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES:
+						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES;
+					
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES:
+						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES;
+					
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.SCHEDULEOFRATES:
+						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.SCHEDULEOFRATES;
+					
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcCostSchedule.Status 
@@ -35,6 +67,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get
 			{
+				//TODO: Handle return of SubmittedOn for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -42,6 +75,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get
 			{
+				//TODO: Handle return of UpdateDate for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

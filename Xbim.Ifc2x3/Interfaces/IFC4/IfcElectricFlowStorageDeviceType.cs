@@ -20,7 +20,33 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.BATTERY:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.BATTERY;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.CAPACITORBANK:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.CAPACITORBANK;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.HARMONICFILTER:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.HARMONICFILTER;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.INDUCTORBANK:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.INDUCTORBANK;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.UPS:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.UPS;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

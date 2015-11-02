@@ -27,6 +27,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
+				//TODO: Handle return of PlacementRefDirection for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

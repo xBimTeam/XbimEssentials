@@ -27,6 +27,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of RasterCode for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

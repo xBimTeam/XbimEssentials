@@ -35,6 +35,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
+				//TODO: Handle return of StartTime for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -42,6 +43,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
+				//TODO: Handle return of EndTime for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -49,14 +51,60 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (TimeSeriesDataType)
+				{
+					case Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeriesDataTypeEnum.CONTINUOUS:
+						return Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.CONTINUOUS;
+					
+					case Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeriesDataTypeEnum.DISCRETE:
+						return Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.DISCRETE;
+					
+					case Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeriesDataTypeEnum.DISCRETEBINARY:
+						return Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.DISCRETEBINARY;
+					
+					case Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeriesDataTypeEnum.PIECEWISEBINARY:
+						return Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.PIECEWISEBINARY;
+					
+					case Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeriesDataTypeEnum.PIECEWISECONSTANT:
+						return Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.PIECEWISECONSTANT;
+					
+					case Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeriesDataTypeEnum.PIECEWISECONTINUOUS:
+						return Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.PIECEWISECONTINUOUS;
+					
+					case Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeriesDataTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDataOriginEnum IIfcTimeSeries.DataOrigin 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (DataOrigin)
+				{
+					case Xbim.Ifc2x3.TimeSeriesResource.IfcDataOriginEnum.MEASURED:
+						return Xbim.Ifc4.DateTimeResource.IfcDataOriginEnum.MEASURED;
+					
+					case Xbim.Ifc2x3.TimeSeriesResource.IfcDataOriginEnum.PREDICTED:
+						return Xbim.Ifc4.DateTimeResource.IfcDataOriginEnum.PREDICTED;
+					
+					case Xbim.Ifc2x3.TimeSeriesResource.IfcDataOriginEnum.SIMULATED:
+						return Xbim.Ifc4.DateTimeResource.IfcDataOriginEnum.SIMULATED;
+					
+					case Xbim.Ifc2x3.TimeSeriesResource.IfcDataOriginEnum.USERDEFINED:
+						return Xbim.Ifc4.DateTimeResource.IfcDataOriginEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.TimeSeriesResource.IfcDataOriginEnum.NOTDEFINED:
+						return Xbim.Ifc4.DateTimeResource.IfcDataOriginEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcTimeSeries.UserDefinedDataOrigin 

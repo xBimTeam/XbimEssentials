@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in FontFamily)
+			{
+				yield return new Xbim.Ifc4.PresentationAppearanceResource.IfcTextFontName((string)member);
+			}
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcFontStyle? IIfcTextStyleFontModel.FontStyle 
@@ -52,12 +55,18 @@ namespace Xbim.Ifc2x3.PresentationResource
 			get
 			{
 				if (FontSize == null) return null;
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
+				if (FontSize is Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure)FontSize);
+				if (FontSize is Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure)FontSize);
+				if (FontSize is Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure)FontSize);
+				if (FontSize is Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure)FontSize);
+				if (FontSize is Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure)FontSize);
+				if (FontSize is Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure)FontSize);
 				return null;
 			} 
 		}

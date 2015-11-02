@@ -32,7 +32,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				var ifccolourrgb = DiffuseColour as Xbim.Ifc2x3.PresentationResource.IfcColourRgb;
 				if (ifccolourrgb != null) 
 					return ifccolourrgb;
-				throw new System.NotImplementedException();
+				if (DiffuseColour is Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure)DiffuseColour);
 				return null;
 			} 
 		}
@@ -44,7 +45,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				var ifccolourrgb = TransmissionColour as Xbim.Ifc2x3.PresentationResource.IfcColourRgb;
 				if (ifccolourrgb != null) 
 					return ifccolourrgb;
-				throw new System.NotImplementedException();
+				if (TransmissionColour is Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure)TransmissionColour);
 				return null;
 			} 
 		}
@@ -56,7 +58,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				var ifccolourrgb = DiffuseTransmissionColour as Xbim.Ifc2x3.PresentationResource.IfcColourRgb;
 				if (ifccolourrgb != null) 
 					return ifccolourrgb;
-				throw new System.NotImplementedException();
+				if (DiffuseTransmissionColour is Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure)DiffuseTransmissionColour);
 				return null;
 			} 
 		}
@@ -68,7 +71,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				var ifccolourrgb = ReflectionColour as Xbim.Ifc2x3.PresentationResource.IfcColourRgb;
 				if (ifccolourrgb != null) 
 					return ifccolourrgb;
-				throw new System.NotImplementedException();
+				if (ReflectionColour is Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure)ReflectionColour);
 				return null;
 			} 
 		}
@@ -80,7 +84,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				var ifccolourrgb = SpecularColour as Xbim.Ifc2x3.PresentationResource.IfcColourRgb;
 				if (ifccolourrgb != null) 
 					return ifccolourrgb;
-				throw new System.NotImplementedException();
+				if (SpecularColour is Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure)SpecularColour);
 				return null;
 			} 
 		}
@@ -89,8 +94,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get
 			{
 				if (SpecularHighlight == null) return null;
-				throw new System.NotImplementedException();
-				throw new System.NotImplementedException();
+				if (SpecularHighlight is Xbim.Ifc2x3.PresentationAppearanceResource.IfcSpecularExponent) 
+					return new Xbim.Ifc4.PresentationAppearanceResource.IfcSpecularExponent((double)(Xbim.Ifc2x3.PresentationAppearanceResource.IfcSpecularExponent)SpecularHighlight);
+				if (SpecularHighlight is Xbim.Ifc2x3.PresentationAppearanceResource.IfcSpecularRoughness) 
+					return new Xbim.Ifc4.PresentationAppearanceResource.IfcSpecularRoughness((double)(Xbim.Ifc2x3.PresentationAppearanceResource.IfcSpecularRoughness)SpecularHighlight);
 				return null;
 			} 
 		}
@@ -98,7 +105,42 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (ReflectanceMethod)
+				{
+					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcReflectanceMethodEnum.BLINN:
+						return Xbim.Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.BLINN;
+					
+					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcReflectanceMethodEnum.FLAT:
+						return Xbim.Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.FLAT;
+					
+					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcReflectanceMethodEnum.GLASS:
+						return Xbim.Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.GLASS;
+					
+					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcReflectanceMethodEnum.MATT:
+						return Xbim.Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.MATT;
+					
+					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcReflectanceMethodEnum.METAL:
+						return Xbim.Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.METAL;
+					
+					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcReflectanceMethodEnum.MIRROR:
+						return Xbim.Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.MIRROR;
+					
+					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcReflectanceMethodEnum.PHONG:
+						return Xbim.Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.PHONG;
+					
+					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcReflectanceMethodEnum.PLASTIC:
+						return Xbim.Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.PLASTIC;
+					
+					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcReflectanceMethodEnum.STRAUSS:
+						return Xbim.Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.STRAUSS;
+					
+					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcReflectanceMethodEnum.NOTDEFINED:
+						return Xbim.Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

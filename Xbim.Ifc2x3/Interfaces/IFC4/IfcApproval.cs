@@ -42,6 +42,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get
 			{
+				//TODO: Handle return of TimeOfApproval for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -49,6 +50,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Status for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -56,6 +58,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Level for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -63,6 +66,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Qualifier for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -70,6 +74,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get
 			{
+				//TODO: Handle return of RequestingApproval for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -77,6 +82,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get
 			{
+				//TODO: Handle return of GivingApproval for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

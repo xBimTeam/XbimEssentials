@@ -20,35 +20,61 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Degree;
 			} 
 		}
 		IEnumerable<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in ControlPointsList)
+			{
+				yield return member as IIfcCartesianPoint;
+			}
 			} 
 		}
 		Xbim.Ifc4.GeometryResource.IfcBSplineCurveForm IIfcBSplineCurve.CurveForm 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (CurveForm)
+				{
+					case Xbim.Ifc2x3.GeometryResource.IfcBSplineCurveForm.POLYLINE_FORM:
+						return Xbim.Ifc4.GeometryResource.IfcBSplineCurveForm.POLYLINE_FORM;
+					
+					case Xbim.Ifc2x3.GeometryResource.IfcBSplineCurveForm.CIRCULAR_ARC:
+						return Xbim.Ifc4.GeometryResource.IfcBSplineCurveForm.CIRCULAR_ARC;
+					
+					case Xbim.Ifc2x3.GeometryResource.IfcBSplineCurveForm.ELLIPTIC_ARC:
+						return Xbim.Ifc4.GeometryResource.IfcBSplineCurveForm.ELLIPTIC_ARC;
+					
+					case Xbim.Ifc2x3.GeometryResource.IfcBSplineCurveForm.PARABOLIC_ARC:
+						return Xbim.Ifc4.GeometryResource.IfcBSplineCurveForm.PARABOLIC_ARC;
+					
+					case Xbim.Ifc2x3.GeometryResource.IfcBSplineCurveForm.HYPERBOLIC_ARC:
+						return Xbim.Ifc4.GeometryResource.IfcBSplineCurveForm.HYPERBOLIC_ARC;
+					
+					case Xbim.Ifc2x3.GeometryResource.IfcBSplineCurveForm.UNSPECIFIED:
+						return Xbim.Ifc4.GeometryResource.IfcBSplineCurveForm.UNSPECIFIED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		bool? IIfcBSplineCurve.ClosedCurve 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ClosedCurve;
 			} 
 		}
 		bool? IIfcBSplineCurve.SelfIntersect 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return SelfIntersect;
 			} 
 		}
 	}

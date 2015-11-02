@@ -20,7 +20,27 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctSilencerTypeEnum.FLATOVAL:
+						return Xbim.Ifc4.HvacDomain.IfcDuctSilencerTypeEnum.FLATOVAL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctSilencerTypeEnum.RECTANGULAR:
+						return Xbim.Ifc4.HvacDomain.IfcDuctSilencerTypeEnum.RECTANGULAR;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctSilencerTypeEnum.ROUND:
+						return Xbim.Ifc4.HvacDomain.IfcDuctSilencerTypeEnum.ROUND;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctSilencerTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcDuctSilencerTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctSilencerTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcDuctSilencerTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

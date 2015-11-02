@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
+				//TODO: Handle return of TranslationalStiffnessByAreaX for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
+				//TODO: Handle return of TranslationalStiffnessByAreaY for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -34,6 +36,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
+				//TODO: Handle return of TranslationalStiffnessByAreaZ for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

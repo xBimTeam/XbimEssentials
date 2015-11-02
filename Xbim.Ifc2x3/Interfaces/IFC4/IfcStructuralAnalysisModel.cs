@@ -20,7 +20,27 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D:
+						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D;
+					
+					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D:
+						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D;
+					
+					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.LOADING_3D:
+						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.LOADING_3D;
+					
+					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		IIfcAxis2Placement3D IIfcStructuralAnalysisModel.OrientationOf2DPlane 
@@ -34,20 +54,27 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in LoadedBy)
+			{
+				yield return member as IIfcStructuralLoadGroup;
+			}
 			} 
 		}
 		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in HasResults)
+			{
+				yield return member as IIfcStructuralResultGroup;
+			}
 			} 
 		}
 		IIfcObjectPlacement IIfcStructuralAnalysisModel.SharedPlacement 
 		{ 
 			get
 			{
+				//TODO: Handle return of SharedPlacement for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

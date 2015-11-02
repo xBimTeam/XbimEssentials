@@ -20,7 +20,27 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (InventoryType)
+				{
+					case Xbim.Ifc2x3.SharedFacilitiesElements.IfcInventoryTypeEnum.ASSETINVENTORY:
+						return Xbim.Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.ASSETINVENTORY;
+					
+					case Xbim.Ifc2x3.SharedFacilitiesElements.IfcInventoryTypeEnum.SPACEINVENTORY:
+						return Xbim.Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.SPACEINVENTORY;
+					
+					case Xbim.Ifc2x3.SharedFacilitiesElements.IfcInventoryTypeEnum.FURNITUREINVENTORY:
+						return Xbim.Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.FURNITUREINVENTORY;
+					
+					case Xbim.Ifc2x3.SharedFacilitiesElements.IfcInventoryTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedFacilitiesElements.IfcInventoryTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcInventory.Jurisdiction 
@@ -44,13 +64,17 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in ResponsiblePersons)
+			{
+				yield return member as IIfcPerson;
+			}
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDate? IIfcInventory.LastUpdateDate 
 		{ 
 			get
 			{
+				//TODO: Handle return of LastUpdateDate for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

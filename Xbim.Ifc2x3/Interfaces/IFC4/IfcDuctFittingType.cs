@@ -20,7 +20,39 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.BEND:
+						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.BEND;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.CONNECTOR:
+						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.CONNECTOR;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.ENTRY:
+						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.ENTRY;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.EXIT:
+						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.EXIT;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.JUNCTION:
+						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.JUNCTION;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.OBSTRUCTION:
+						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.OBSTRUCTION;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.TRANSITION:
+						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.TRANSITION;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

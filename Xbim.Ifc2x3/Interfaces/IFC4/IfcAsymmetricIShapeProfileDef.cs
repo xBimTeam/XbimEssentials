@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
+				//TODO: Handle return of BottomFlangeWidth for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
+				//TODO: Handle return of OverallDepth for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -34,6 +36,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
+				//TODO: Handle return of WebThickness for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -41,6 +44,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
+				//TODO: Handle return of BottomFlangeThickness for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -48,6 +52,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
+				//TODO: Handle return of BottomFlangeFilletRadius for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -78,6 +83,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
+				//TODO: Handle return of BottomFlangeEdgeRadius for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -85,6 +91,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
+				//TODO: Handle return of BottomFlangeSlope for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -92,6 +99,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
+				//TODO: Handle return of TopFlangeEdgeRadius for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -99,6 +107,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
+				//TODO: Handle return of TopFlangeSlope for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

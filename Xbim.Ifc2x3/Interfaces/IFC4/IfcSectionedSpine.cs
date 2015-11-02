@@ -27,14 +27,20 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in CrossSections)
+			{
+				yield return member as IIfcProfileDef;
+			}
 			} 
 		}
 		IEnumerable<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in CrossSectionPositions)
+			{
+				yield return member as IIfcAxis2Placement3D;
+			}
 			} 
 		}
 	}

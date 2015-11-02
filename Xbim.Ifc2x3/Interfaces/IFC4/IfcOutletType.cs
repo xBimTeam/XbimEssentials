@@ -20,7 +20,27 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ElectricalDomain.IfcOutletTypeEnum.AUDIOVISUALOUTLET:
+						return Xbim.Ifc4.ElectricalDomain.IfcOutletTypeEnum.AUDIOVISUALOUTLET;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcOutletTypeEnum.COMMUNICATIONSOUTLET:
+						return Xbim.Ifc4.ElectricalDomain.IfcOutletTypeEnum.COMMUNICATIONSOUTLET;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcOutletTypeEnum.POWEROUTLET:
+						return Xbim.Ifc4.ElectricalDomain.IfcOutletTypeEnum.POWEROUTLET;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcOutletTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcOutletTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcOutletTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcOutletTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

@@ -20,7 +20,33 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ElectricalDomain.IfcSwitchingDeviceTypeEnum.CONTACTOR:
+						return Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.CONTACTOR;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP:
+						return Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcSwitchingDeviceTypeEnum.STARTER:
+						return Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.STARTER;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR:
+						return Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcSwitchingDeviceTypeEnum.TOGGLESWITCH:
+						return Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.TOGGLESWITCH;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcSwitchingDeviceTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcSwitchingDeviceTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

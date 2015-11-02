@@ -20,7 +20,33 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONSHELLANDTUBE:
+						return Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONSHELLANDTUBE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONTUBEINTUBE:
+						return Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONTUBEINTUBE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE:
+						return Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcEvaporatorTypeEnum.FLOODEDSHELLANDTUBE:
+						return Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum.FLOODEDSHELLANDTUBE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcEvaporatorTypeEnum.SHELLANDCOIL:
+						return Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum.SHELLANDCOIL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcEvaporatorTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcEvaporatorTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

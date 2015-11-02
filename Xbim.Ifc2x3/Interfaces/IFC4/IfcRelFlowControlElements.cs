@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in RelatedControlElements)
+			{
+				yield return member as IIfcDistributionControlElement;
+			}
 			} 
 		}
 		IIfcDistributionFlowElement IIfcRelFlowControlElements.RelatingFlowElement 

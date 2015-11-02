@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Points)
+			{
+				yield return member as IIfcCartesianPoint;
+			}
 			} 
 		}
 	}

@@ -41,7 +41,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Pixel)
+			{
+				yield return member;
+			}
 			} 
 		}
 	}

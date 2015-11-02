@@ -20,7 +20,18 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (ProfileType)
+				{
+					case Xbim.Ifc2x3.ProfileResource.IfcProfileTypeEnum.CURVE:
+						return Xbim.Ifc4.ProfileResource.IfcProfileTypeEnum.CURVE;
+					
+					case Xbim.Ifc2x3.ProfileResource.IfcProfileTypeEnum.AREA:
+						return Xbim.Ifc4.ProfileResource.IfcProfileTypeEnum.AREA;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcProfileDef.ProfileName 

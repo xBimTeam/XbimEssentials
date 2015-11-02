@@ -34,6 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
+				//TODO: Handle return of TimeLag for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -41,13 +42,34 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (SequenceType)
+				{
+					case Xbim.Ifc2x3.Kernel.IfcSequenceEnum.START_START:
+						return Xbim.Ifc4.ProcessExtension.IfcSequenceEnum.START_START;
+					
+					case Xbim.Ifc2x3.Kernel.IfcSequenceEnum.START_FINISH:
+						return Xbim.Ifc4.ProcessExtension.IfcSequenceEnum.START_FINISH;
+					
+					case Xbim.Ifc2x3.Kernel.IfcSequenceEnum.FINISH_START:
+						return Xbim.Ifc4.ProcessExtension.IfcSequenceEnum.FINISH_START;
+					
+					case Xbim.Ifc2x3.Kernel.IfcSequenceEnum.FINISH_FINISH:
+						return Xbim.Ifc4.ProcessExtension.IfcSequenceEnum.FINISH_FINISH;
+					
+					case Xbim.Ifc2x3.Kernel.IfcSequenceEnum.NOTDEFINED:
+						return Xbim.Ifc4.ProcessExtension.IfcSequenceEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcRelSequence.UserDefinedSequenceType 
 		{ 
 			get
 			{
+				//TODO: Handle return of UserDefinedSequenceType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

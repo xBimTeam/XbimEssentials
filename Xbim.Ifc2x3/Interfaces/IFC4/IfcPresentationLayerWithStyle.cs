@@ -20,27 +20,28 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return LayerOn;
 			} 
 		}
 		bool? IIfcPresentationLayerWithStyle.LayerFrozen 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return LayerFrozen;
 			} 
 		}
 		bool? IIfcPresentationLayerWithStyle.LayerBlocked 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return LayerBlocked;
 			} 
 		}
 		IEnumerable<IIfcPresentationStyle> IIfcPresentationLayerWithStyle.LayerStyles 
 		{ 
 			get
 			{
+				//TODO: Handle return of LayerStyles for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

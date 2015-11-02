@@ -28,7 +28,10 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in HasPropertySets)
+			{
+				yield return member as IIfcPropertySetDefinition;
+			}
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByType> IIfcTypeObject.Types 

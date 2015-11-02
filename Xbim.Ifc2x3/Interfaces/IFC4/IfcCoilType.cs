@@ -20,7 +20,36 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.DXCOOLINGCOIL:
+						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.DXCOOLINGCOIL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.WATERCOOLINGCOIL:
+						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.WATERCOOLINGCOIL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.STEAMHEATINGCOIL:
+						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.STEAMHEATINGCOIL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.WATERHEATINGCOIL:
+						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.WATERHEATINGCOIL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.ELECTRICHEATINGCOIL:
+						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.ELECTRICHEATINGCOIL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.GASHEATINGCOIL:
+						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.GASHEATINGCOIL;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

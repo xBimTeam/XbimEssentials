@@ -41,7 +41,24 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (Path)
+				{
+					case Xbim.Ifc2x3.PresentationDefinitionResource.IfcTextPath.LEFT:
+						return Xbim.Ifc4.PresentationDefinitionResource.IfcTextPath.LEFT;
+					
+					case Xbim.Ifc2x3.PresentationDefinitionResource.IfcTextPath.RIGHT:
+						return Xbim.Ifc4.PresentationDefinitionResource.IfcTextPath.RIGHT;
+					
+					case Xbim.Ifc2x3.PresentationDefinitionResource.IfcTextPath.UP:
+						return Xbim.Ifc4.PresentationDefinitionResource.IfcTextPath.UP;
+					
+					case Xbim.Ifc2x3.PresentationDefinitionResource.IfcTextPath.DOWN:
+						return Xbim.Ifc4.PresentationDefinitionResource.IfcTextPath.DOWN;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

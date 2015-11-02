@@ -27,7 +27,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in RelatedCoverings)
+			{
+				yield return member as IIfcCovering;
+			}
 			} 
 		}
 	}

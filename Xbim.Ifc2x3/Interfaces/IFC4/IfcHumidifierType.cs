@@ -20,7 +20,57 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.STEAMINJECTION:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.STEAMINJECTION;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.ADIABATICAIRWASHER:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.ADIABATICAIRWASHER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.ADIABATICPAN:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.ADIABATICPAN;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.ADIABATICWETTEDELEMENT:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.ADIABATICWETTEDELEMENT;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.ADIABATICATOMIZING:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.ADIABATICATOMIZING;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.ADIABATICULTRASONIC:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.ADIABATICULTRASONIC;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.ADIABATICRIGIDMEDIA:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.ADIABATICRIGIDMEDIA;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.ADIABATICCOMPRESSEDAIRNOZZLE:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.ADIABATICCOMPRESSEDAIRNOZZLE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.ASSISTEDELECTRIC:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.ASSISTEDELECTRIC;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.ASSISTEDNATURALGAS:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.ASSISTEDNATURALGAS;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.ASSISTEDPROPANE:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.ASSISTEDPROPANE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.ASSISTEDBUTANE:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.ASSISTEDBUTANE;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.ASSISTEDSTEAM:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.ASSISTEDSTEAM;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcHumidifierTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcHumidifierTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

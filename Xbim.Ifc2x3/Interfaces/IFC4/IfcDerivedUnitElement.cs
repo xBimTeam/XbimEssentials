@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return Exponent;
 			} 
 		}
 	}

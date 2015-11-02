@@ -20,49 +20,49 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return LengthExponent;
 			} 
 		}
 		long IIfcDimensionalExponents.MassExponent 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return MassExponent;
 			} 
 		}
 		long IIfcDimensionalExponents.TimeExponent 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return TimeExponent;
 			} 
 		}
 		long IIfcDimensionalExponents.ElectricCurrentExponent 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ElectricCurrentExponent;
 			} 
 		}
 		long IIfcDimensionalExponents.ThermodynamicTemperatureExponent 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return ThermodynamicTemperatureExponent;
 			} 
 		}
 		long IIfcDimensionalExponents.AmountOfSubstanceExponent 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return AmountOfSubstanceExponent;
 			} 
 		}
 		long IIfcDimensionalExponents.LuminousIntensityExponent 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return LuminousIntensityExponent;
 			} 
 		}
 	}

@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return AgreementFlag;
 			} 
 		}
 	}

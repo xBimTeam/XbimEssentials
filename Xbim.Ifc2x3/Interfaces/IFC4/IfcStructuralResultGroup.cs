@@ -20,7 +20,30 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (TheoryType)
+				{
+					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY:
+						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY;
+					
+					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY:
+						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY;
+					
+					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY:
+						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY;
+					
+					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY:
+						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY;
+					
+					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		IIfcStructuralLoadGroup IIfcStructuralResultGroup.ResultForLoadGroup 
@@ -34,7 +57,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return IsLinear;
 			} 
 		}
 		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralResultGroup.ResultGroupFor 

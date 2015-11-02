@@ -20,7 +20,33 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcActuatorTypeEnum.ELECTRICACTUATOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum.ELECTRICACTUATOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcActuatorTypeEnum.HANDOPERATEDACTUATOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum.HANDOPERATEDACTUATOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcActuatorTypeEnum.HYDRAULICACTUATOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum.HYDRAULICACTUATOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcActuatorTypeEnum.PNEUMATICACTUATOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum.PNEUMATICACTUATOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcActuatorTypeEnum.THERMOSTATICACTUATOR:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum.THERMOSTATICACTUATOR;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcActuatorTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcActuatorTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

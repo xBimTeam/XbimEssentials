@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//TODO: Handle return of RelatingSpace for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -41,14 +42,42 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PhysicalOrVirtualBoundary)
+				{
+					case Xbim.Ifc2x3.ProductExtension.IfcPhysicalOrVirtualEnum.PHYSICAL:
+						return Xbim.Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum.PHYSICAL;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcPhysicalOrVirtualEnum.VIRTUAL:
+						return Xbim.Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum.VIRTUAL;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcPhysicalOrVirtualEnum.NOTDEFINED:
+						return Xbim.Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.ProductExtension.IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (InternalOrExternalBoundary)
+				{
+					case Xbim.Ifc2x3.ProductExtension.IfcInternalOrExternalEnum.INTERNAL:
+						return Xbim.Ifc4.ProductExtension.IfcInternalOrExternalEnum.INTERNAL;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcInternalOrExternalEnum.EXTERNAL:
+						return Xbim.Ifc4.ProductExtension.IfcInternalOrExternalEnum.EXTERNAL;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcInternalOrExternalEnum.NOTDEFINED:
+						return Xbim.Ifc4.ProductExtension.IfcInternalOrExternalEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

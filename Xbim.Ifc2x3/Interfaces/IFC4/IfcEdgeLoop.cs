@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in EdgeList)
+			{
+				yield return member as IIfcOrientedEdge;
+			}
 			} 
 		}
 	}

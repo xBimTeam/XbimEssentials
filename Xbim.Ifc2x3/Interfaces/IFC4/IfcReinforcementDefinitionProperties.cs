@@ -28,7 +28,10 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in ReinforcementSectionDefinitions)
+			{
+				yield return member as IIfcSectionReinforcementProperties;
+			}
 			} 
 		}
 	}

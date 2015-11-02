@@ -20,7 +20,18 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ElectricalDomain.IfcJunctionBoxTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcJunctionBoxTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcJunctionBoxTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcJunctionBoxTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

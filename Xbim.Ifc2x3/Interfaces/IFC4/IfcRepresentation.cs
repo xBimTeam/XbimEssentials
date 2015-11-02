@@ -43,7 +43,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Items)
+			{
+				yield return member as IIfcRepresentationItem;
+			}
 			} 
 		}
 		IEnumerable<IIfcRepresentationMap> IIfcRepresentation.RepresentationMap 

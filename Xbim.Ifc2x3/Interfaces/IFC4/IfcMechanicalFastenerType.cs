@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 		{ 
 			get
 			{
+				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 		{ 
 			get
 			{
+				//TODO: Handle return of NominalDiameter for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -34,6 +36,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 		{ 
 			get
 			{
+				//TODO: Handle return of NominalLength for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

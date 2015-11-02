@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Profiles)
+			{
+				yield return member as IIfcProfileDef;
+			}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcCompositeProfileDef.Label 

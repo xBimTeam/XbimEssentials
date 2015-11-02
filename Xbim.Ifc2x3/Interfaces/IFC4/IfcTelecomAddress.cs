@@ -20,14 +20,20 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in TelephoneNumbers)
+			{
+				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+			}
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.FacsimileNumbers 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in FacsimileNumbers)
+			{
+				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+			}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcTelecomAddress.PagerNumber 
@@ -42,7 +48,10 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in ElectronicMailAddresses)
+			{
+				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+			}
 			} 
 		}
 		Xbim.Ifc4.ExternalReferenceResource.IfcURIReference? IIfcTelecomAddress.WWWHomePageURL 
@@ -57,6 +66,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
+				//TODO: Handle return of MessagingIDs for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

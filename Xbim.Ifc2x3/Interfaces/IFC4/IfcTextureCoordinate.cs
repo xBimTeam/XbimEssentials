@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Maps for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

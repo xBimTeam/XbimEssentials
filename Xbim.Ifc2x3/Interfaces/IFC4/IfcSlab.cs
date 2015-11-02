@@ -20,7 +20,30 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcSlabTypeEnum.FLOOR:
+						return Xbim.Ifc4.SharedBldgElements.IfcSlabTypeEnum.FLOOR;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcSlabTypeEnum.ROOF:
+						return Xbim.Ifc4.SharedBldgElements.IfcSlabTypeEnum.ROOF;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcSlabTypeEnum.LANDING:
+						return Xbim.Ifc4.SharedBldgElements.IfcSlabTypeEnum.LANDING;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcSlabTypeEnum.BASESLAB:
+						return Xbim.Ifc4.SharedBldgElements.IfcSlabTypeEnum.BASESLAB;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcSlabTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcSlabTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcSlabTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcSlabTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

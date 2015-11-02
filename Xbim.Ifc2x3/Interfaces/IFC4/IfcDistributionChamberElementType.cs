@@ -20,7 +20,42 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.FORMEDDUCT:
+						return Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.FORMEDDUCT;
+					
+					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.INSPECTIONCHAMBER:
+						return Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.INSPECTIONCHAMBER;
+					
+					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.INSPECTIONPIT:
+						return Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.INSPECTIONPIT;
+					
+					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.MANHOLE:
+						return Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.MANHOLE;
+					
+					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.METERCHAMBER:
+						return Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.METERCHAMBER;
+					
+					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.SUMP:
+						return Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.SUMP;
+					
+					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.TRENCH:
+						return Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.TRENCH;
+					
+					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.VALVECHAMBER:
+						return Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.VALVECHAMBER;
+					
+					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

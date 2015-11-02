@@ -20,7 +20,30 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcFootingTypeEnum.FOOTING_BEAM:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.FOOTING_BEAM;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcFootingTypeEnum.PAD_FOOTING:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.PAD_FOOTING;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcFootingTypeEnum.PILE_CAP:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.PILE_CAP;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcFootingTypeEnum.STRIP_FOOTING:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.STRIP_FOOTING;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcFootingTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.StructuralElementsDomain.IfcFootingTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

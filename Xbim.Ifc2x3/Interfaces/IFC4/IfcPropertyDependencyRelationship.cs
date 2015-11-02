@@ -42,6 +42,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Name for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -49,6 +50,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Description for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

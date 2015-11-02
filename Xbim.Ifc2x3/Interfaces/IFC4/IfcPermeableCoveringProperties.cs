@@ -20,14 +20,57 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (OperationType)
+				{
+					case Xbim.Ifc2x3.ArchitectureDomain.IfcPermeableCoveringOperationEnum.GRILL:
+						return Xbim.Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.GRILL;
+					
+					case Xbim.Ifc2x3.ArchitectureDomain.IfcPermeableCoveringOperationEnum.LOUVER:
+						return Xbim.Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.LOUVER;
+					
+					case Xbim.Ifc2x3.ArchitectureDomain.IfcPermeableCoveringOperationEnum.SCREEN:
+						return Xbim.Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.SCREEN;
+					
+					case Xbim.Ifc2x3.ArchitectureDomain.IfcPermeableCoveringOperationEnum.USERDEFINED:
+						return Xbim.Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ArchitectureDomain.IfcPermeableCoveringOperationEnum.NOTDEFINED:
+						return Xbim.Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum IIfcPermeableCoveringProperties.PanelPosition 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PanelPosition)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.LEFT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.LEFT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.MIDDLE:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.MIDDLE;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.RIGHT:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.RIGHT;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.BOTTOM:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.BOTTOM;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.TOP:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.TOP;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.NOTDEFINED:
+						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameDepth 

@@ -20,7 +20,18 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcCurtainWallTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcCurtainWallTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcCurtainWallTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcCurtainWallTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

@@ -28,7 +28,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in PatternList)
+			{
+				yield return member as IIfcCurveStyleFontPattern;
+			}
 			} 
 		}
 	}

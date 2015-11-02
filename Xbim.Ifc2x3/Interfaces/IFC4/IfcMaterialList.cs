@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Materials)
+			{
+				yield return member as IIfcMaterial;
+			}
 			} 
 		}
 	}

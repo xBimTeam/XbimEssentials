@@ -20,7 +20,33 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWallTypeEnum.STANDARD:
+						return Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum.STANDARD;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWallTypeEnum.POLYGONAL:
+						return Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum.POLYGONAL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWallTypeEnum.SHEAR:
+						return Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum.SHEAR;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWallTypeEnum.ELEMENTEDWALL:
+						return Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum.ELEMENTEDWALL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWallTypeEnum.PLUMBINGWALL:
+						return Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum.PLUMBINGWALL;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWallTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.SharedBldgElements.IfcWallTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

@@ -28,7 +28,10 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in AddressLines)
+			{
+				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+			}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.PostalBox 

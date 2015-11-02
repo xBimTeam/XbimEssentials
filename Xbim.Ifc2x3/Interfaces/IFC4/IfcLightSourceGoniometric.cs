@@ -48,7 +48,45 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (LightEmissionSource)
+				{
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.COMPACTFLUORESCENT:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.COMPACTFLUORESCENT;
+					
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.FLUORESCENT:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.FLUORESCENT;
+					
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY;
+					
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM;
+					
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE;
+					
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LOWPRESSURESODIUM:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LOWPRESSURESODIUM;
+					
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN;
+					
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN;
+					
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.METALHALIDE:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.METALHALIDE;
+					
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.TUNGSTENFILAMENT:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.TUNGSTENFILAMENT;
+					
+					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.NOTDEFINED:
+						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.PresentationOrganizationResource.IfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource 

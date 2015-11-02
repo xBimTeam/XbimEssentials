@@ -37,11 +37,13 @@ namespace Xbim.Ifc2x3.CostResource
 			get
 			{
 				if (AppliedValue == null) return null;
-				throw new System.NotImplementedException();
+				if (AppliedValue is Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure)AppliedValue);
 				var ifcmeasurewithunit = AppliedValue as Xbim.Ifc2x3.MeasureResource.IfcMeasureWithUnit;
 				if (ifcmeasurewithunit != null) 
 					return ifcmeasurewithunit;
-				throw new System.NotImplementedException();
+				if (AppliedValue is Xbim.Ifc2x3.MeasureResource.IfcMonetaryMeasure) 
+					return new Xbim.Ifc4.MeasureResource.IfcMonetaryMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMonetaryMeasure)AppliedValue);
 				return null;
 			} 
 		}
@@ -56,6 +58,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of ApplicableDate for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -63,6 +66,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of FixedUntilDate for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -70,6 +74,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Category for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -77,6 +82,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Condition for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -84,6 +90,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of ArithmeticOperator for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -91,6 +98,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Components for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

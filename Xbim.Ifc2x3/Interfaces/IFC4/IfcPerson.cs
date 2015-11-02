@@ -44,35 +44,50 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in MiddleNames)
+			{
+				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+			}
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.PrefixTitles 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in PrefixTitles)
+			{
+				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+			}
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.SuffixTitles 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in SuffixTitles)
+			{
+				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+			}
 			} 
 		}
 		IEnumerable<IIfcActorRole> IIfcPerson.Roles 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Roles)
+			{
+				yield return member as IIfcActorRole;
+			}
 			} 
 		}
 		IEnumerable<IIfcAddress> IIfcPerson.Addresses 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Addresses)
+			{
+				yield return member as IIfcAddress;
+			}
 			} 
 		}
 		IEnumerable<IIfcPersonAndOrganization> IIfcPerson.EngagedIn 

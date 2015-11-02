@@ -20,7 +20,36 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcAlarmTypeEnum.BELL:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.BELL;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcAlarmTypeEnum.BREAKGLASSBUTTON:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.BREAKGLASSBUTTON;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcAlarmTypeEnum.LIGHT:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.LIGHT;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcAlarmTypeEnum.MANUALPULLBOX:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.MANUALPULLBOX;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcAlarmTypeEnum.SIREN:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.SIREN;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcAlarmTypeEnum.WHISTLE:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.WHISTLE;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcAlarmTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcAlarmTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

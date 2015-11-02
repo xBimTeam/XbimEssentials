@@ -20,7 +20,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Coordinates)
+			{
+				yield return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)member);
+			}
 			} 
 		}
 	}

@@ -20,7 +20,27 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcCoolingTowerTypeEnum.NATURALDRAFT:
+						return Xbim.Ifc4.HvacDomain.IfcCoolingTowerTypeEnum.NATURALDRAFT;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCoolingTowerTypeEnum.MECHANICALINDUCEDDRAFT:
+						return Xbim.Ifc4.HvacDomain.IfcCoolingTowerTypeEnum.MECHANICALINDUCEDDRAFT;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCoolingTowerTypeEnum.MECHANICALFORCEDDRAFT:
+						return Xbim.Ifc4.HvacDomain.IfcCoolingTowerTypeEnum.MECHANICALFORCEDDRAFT;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCoolingTowerTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcCoolingTowerTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcCoolingTowerTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcCoolingTowerTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

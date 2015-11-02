@@ -27,7 +27,18 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (GlobalOrLocal)
+				{
+					case Xbim.Ifc2x3.RepresentationResource.IfcGlobalOrLocalEnum.GLOBAL_COORDS:
+						return Xbim.Ifc4.RepresentationResource.IfcGlobalOrLocalEnum.GLOBAL_COORDS;
+					
+					case Xbim.Ifc2x3.RepresentationResource.IfcGlobalOrLocalEnum.LOCAL_COORDS:
+						return Xbim.Ifc4.RepresentationResource.IfcGlobalOrLocalEnum.LOCAL_COORDS;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		IEnumerable<IIfcRelConnectsStructuralActivity> IIfcStructuralActivity.AssignedToStructuralItem 

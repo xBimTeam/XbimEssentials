@@ -35,7 +35,39 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (TargetView)
+				{
+					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.GRAPH_VIEW:
+						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.GRAPH_VIEW;
+					
+					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.SKETCH_VIEW:
+						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.SKETCH_VIEW;
+					
+					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.MODEL_VIEW:
+						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.MODEL_VIEW;
+					
+					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.PLAN_VIEW:
+						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.PLAN_VIEW;
+					
+					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW:
+						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW;
+					
+					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.SECTION_VIEW:
+						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.SECTION_VIEW;
+					
+					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.ELEVATION_VIEW:
+						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.ELEVATION_VIEW;
+					
+					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.USERDEFINED:
+						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.NOTDEFINED:
+						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView 

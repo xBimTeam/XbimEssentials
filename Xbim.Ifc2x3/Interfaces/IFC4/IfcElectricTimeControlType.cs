@@ -20,7 +20,27 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricTimeControlTypeEnum.TIMECLOCK:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricTimeControlTypeEnum.TIMECLOCK;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricTimeControlTypeEnum.TIMEDELAY:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricTimeControlTypeEnum.TIMEDELAY;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricTimeControlTypeEnum.RELAY:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricTimeControlTypeEnum.RELAY;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricTimeControlTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricTimeControlTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ElectricalDomain.IfcElectricTimeControlTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.ElectricalDomain.IfcElectricTimeControlTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

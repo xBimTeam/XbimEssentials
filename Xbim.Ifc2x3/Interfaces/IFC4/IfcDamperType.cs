@@ -20,7 +20,51 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.CONTROLDAMPER:
+						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.CONTROLDAMPER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.FIREDAMPER:
+						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.FIREDAMPER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.SMOKEDAMPER:
+						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.SMOKEDAMPER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.FIRESMOKEDAMPER:
+						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.FIRESMOKEDAMPER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.BACKDRAFTDAMPER:
+						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.BACKDRAFTDAMPER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.RELIEFDAMPER:
+						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.RELIEFDAMPER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.BLASTDAMPER:
+						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.BLASTDAMPER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.GRAVITYDAMPER:
+						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.GRAVITYDAMPER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.GRAVITYRELIEFDAMPER:
+						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.GRAVITYRELIEFDAMPER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.BALANCINGDAMPER:
+						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.BALANCINGDAMPER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.FUMEHOODEXHAUST:
+						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.FUMEHOODEXHAUST;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

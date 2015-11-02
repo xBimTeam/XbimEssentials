@@ -20,7 +20,18 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.ProductExtension.IfcBuildingElementProxyTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcBuildingElementProxyTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ProductExtension.IfcBuildingElementProxyTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.SharedBldgElements.IfcBuildingElementProxyTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

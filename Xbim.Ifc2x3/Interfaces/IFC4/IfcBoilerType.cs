@@ -20,7 +20,24 @@ namespace Xbim.Ifc2x3.HVACDomain
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (PredefinedType)
+				{
+					case Xbim.Ifc2x3.HVACDomain.IfcBoilerTypeEnum.WATER:
+						return Xbim.Ifc4.HvacDomain.IfcBoilerTypeEnum.WATER;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcBoilerTypeEnum.STEAM:
+						return Xbim.Ifc4.HvacDomain.IfcBoilerTypeEnum.STEAM;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcBoilerTypeEnum.USERDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcBoilerTypeEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.HVACDomain.IfcBoilerTypeEnum.NOTDEFINED:
+						return Xbim.Ifc4.HvacDomain.IfcBoilerTypeEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 	}

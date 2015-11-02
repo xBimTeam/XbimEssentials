@@ -20,20 +20,21 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RepeatS;
 			} 
 		}
 		bool IIfcSurfaceTexture.RepeatT 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				return RepeatT;
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcSurfaceTexture.Mode 
 		{ 
 			get
 			{
+				//TODO: Handle return of Mode for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -48,6 +49,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Parameter for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

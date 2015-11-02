@@ -89,6 +89,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
+				//TODO: Handle return of IncorporationDate for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

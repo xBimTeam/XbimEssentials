@@ -27,6 +27,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//TODO: Handle return of RelatedBuildings for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}

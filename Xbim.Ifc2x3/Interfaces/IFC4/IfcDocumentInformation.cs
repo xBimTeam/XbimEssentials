@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Identification for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -42,6 +43,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Location for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -98,13 +100,25 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+			foreach (var member in Editors)
+			{
+				var ifcorganization = member as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+					yield return ifcorganization;
+				var ifcperson = member as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				if (ifcperson != null) 
+					yield return ifcperson;
+				var ifcpersonandorganization = member as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+					yield return ifcpersonandorganization;
+			}
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcDocumentInformation.CreationTime 
 		{ 
 			get
 			{
+				//TODO: Handle return of CreationTime for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -112,6 +126,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of LastRevisionTime for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -119,6 +134,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of ElectronicFormat for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -126,6 +142,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of ValidFrom for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -133,6 +150,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//TODO: Handle return of ValidUntil for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -140,14 +158,57 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (Confidentiality)
+				{
+					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentConfidentialityEnum.PUBLIC:
+						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.PUBLIC;
+					
+					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentConfidentialityEnum.RESTRICTED:
+						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.RESTRICTED;
+					
+					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentConfidentialityEnum.CONFIDENTIAL:
+						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.CONFIDENTIAL;
+					
+					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentConfidentialityEnum.PERSONAL:
+						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.PERSONAL;
+					
+					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentConfidentialityEnum.USERDEFINED:
+						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.USERDEFINED;
+					
+					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentConfidentialityEnum.NOTDEFINED:
+						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		Xbim.Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum? IIfcDocumentInformation.Status 
 		{ 
 			get
 			{
-				throw new System.NotImplementedException();
+				switch (Status)
+				{
+					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentStatusEnum.DRAFT:
+						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.DRAFT;
+					
+					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentStatusEnum.FINALDRAFT:
+						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.FINALDRAFT;
+					
+					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentStatusEnum.FINAL:
+						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.FINAL;
+					
+					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentStatusEnum.REVISION:
+						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.REVISION;
+					
+					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentStatusEnum.NOTDEFINED:
+						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.NOTDEFINED;
+					
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentInformation.DocumentInfoForObjects 

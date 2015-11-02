@@ -20,6 +20,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
+				//TODO: Handle return of Vertices for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
@@ -27,6 +28,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
+				//TODO: Handle return of MappedTo for which no match was found
 				throw new System.NotImplementedException();
 			} 
 		}
