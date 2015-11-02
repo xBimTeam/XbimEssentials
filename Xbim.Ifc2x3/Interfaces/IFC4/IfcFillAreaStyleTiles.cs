@@ -20,16 +20,20 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
+				//## Handle return of TilingPattern for which no match was found
 				//TODO: Handle return of TilingPattern for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcStyledItem> IIfcFillAreaStyleTiles.Tiles 
 		{ 
 			get
 			{
+				//## Handle return of Tiles for which no match was found
 				//TODO: Handle return of Tiles for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale 

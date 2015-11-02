@@ -27,8 +27,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Handle return of RelatedElement for which no match was found
 				//TODO: Handle return of RelatedElement for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

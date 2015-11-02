@@ -23,15 +23,19 @@ namespace Xbim.Ifc2x3.HVACDomain
 				switch (PredefinedType)
 				{
 					case Xbim.Ifc2x3.HVACDomain.IfcFlowMeterTypeEnum.ELECTRICMETER:
+						//## Handle translation of ELECTRICMETER member from IfcFlowMeterTypeEnum in property PredefinedType
 						//TODO: Handle translation of ELECTRICMETER member from IfcFlowMeterTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
+						//##
 										
 					case Xbim.Ifc2x3.HVACDomain.IfcFlowMeterTypeEnum.ENERGYMETER:
 						return Xbim.Ifc4.HvacDomain.IfcFlowMeterTypeEnum.ENERGYMETER;
 					
 					case Xbim.Ifc2x3.HVACDomain.IfcFlowMeterTypeEnum.FLOWMETER:
+						//## Handle translation of FLOWMETER member from IfcFlowMeterTypeEnum in property PredefinedType
 						//TODO: Handle translation of FLOWMETER member from IfcFlowMeterTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
+						//##
 										
 					case Xbim.Ifc2x3.HVACDomain.IfcFlowMeterTypeEnum.GASMETER:
 						return Xbim.Ifc4.HvacDomain.IfcFlowMeterTypeEnum.GASMETER;

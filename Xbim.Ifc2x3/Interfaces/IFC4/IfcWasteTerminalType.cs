@@ -35,16 +35,22 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.GULLYTRAP;
 					
 					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.GREASEINTERCEPTOR:
+						//## Handle translation of GREASEINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
 						//TODO: Handle translation of GREASEINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
+						//##
 										
 					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.OILINTERCEPTOR:
+						//## Handle translation of OILINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
 						//TODO: Handle translation of OILINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
+						//##
 										
 					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.PETROLINTERCEPTOR:
+						//## Handle translation of PETROLINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
 						//TODO: Handle translation of PETROLINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
+						//##
 										
 					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.ROOFDRAIN:
 						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.ROOFDRAIN;

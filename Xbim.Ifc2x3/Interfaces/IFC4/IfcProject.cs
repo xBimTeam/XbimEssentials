@@ -20,40 +20,50 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
+				//## Handle return of ObjectType for which no match was found
 				//TODO: Handle return of ObjectType for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcContext.LongName 
 		{ 
 			get
 			{
+				//## Handle return of LongName for which no match was found
 				//TODO: Handle return of LongName for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcContext.Phase 
 		{ 
 			get
 			{
+				//## Handle return of Phase for which no match was found
 				//TODO: Handle return of Phase for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcRepresentationContext> IIfcContext.RepresentationContexts 
 		{ 
 			get
 			{
+				//## Handle return of RepresentationContexts for which no match was found
 				//TODO: Handle return of RepresentationContexts for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IIfcUnitAssignment IIfcContext.UnitsInContext 
 		{ 
 			get
 			{
+				//## Handle return of UnitsInContext for which no match was found
 				//TODO: Handle return of UnitsInContext for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByProperties> IIfcContext.IsDefinedBy 

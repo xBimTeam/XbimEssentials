@@ -23,12 +23,16 @@ namespace Xbim.Ifc2x3.HVACDomain
 				switch (PredefinedType)
 				{
 					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.PREFORMED:
+						//## Handle translation of PREFORMED member from IfcTankTypeEnum in property PredefinedType
 						//TODO: Handle translation of PREFORMED member from IfcTankTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
+						//##
 										
 					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.SECTIONAL:
+						//## Handle translation of SECTIONAL member from IfcTankTypeEnum in property PredefinedType
 						//TODO: Handle translation of SECTIONAL member from IfcTankTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
+						//##
 										
 					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.EXPANSION:
 						return Xbim.Ifc4.HvacDomain.IfcTankTypeEnum.EXPANSION;

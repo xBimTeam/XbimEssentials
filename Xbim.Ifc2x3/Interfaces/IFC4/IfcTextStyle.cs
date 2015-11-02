@@ -20,16 +20,20 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
+				//## Handle return of TextCharacterAppearance for which no match was found
 				//TODO: Handle return of TextCharacterAppearance for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IIfcTextStyleTextModel IIfcTextStyle.TextStyle 
 		{ 
 			get
 			{
+				//## Handle return of TextStyle for which no match was found
 				//TODO: Handle return of TextStyle for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.PresentationAppearanceResource.IfcTextFontSelect IIfcTextStyle.TextFontStyle 
@@ -50,8 +54,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
+				//## Handle return of ModelOrDraughting for which no match was found
 				//TODO: Handle return of ModelOrDraughting for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

@@ -35,16 +35,20 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
+				//## Handle return of StartTime for which no match was found
 				//TODO: Handle return of StartTime for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDateTime IIfcTimeSeries.EndTime 
 		{ 
 			get
 			{
+				//## Handle return of EndTime for which no match was found
 				//TODO: Handle return of EndTime for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType 

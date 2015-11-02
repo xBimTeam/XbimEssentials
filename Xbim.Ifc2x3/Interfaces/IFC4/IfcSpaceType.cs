@@ -38,16 +38,20 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Handle return of LongName for which no match was found
 				//TODO: Handle return of LongName for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpatialElementType.ElementType 
 		{ 
 			get
 			{
+				//## Handle return of ElementType for which no match was found
 				//TODO: Handle return of ElementType for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

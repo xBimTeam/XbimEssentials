@@ -74,8 +74,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
+				//## Handle return of SharedPlacement for which no match was found
 				//TODO: Handle return of SharedPlacement for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

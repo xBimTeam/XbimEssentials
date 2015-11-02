@@ -34,8 +34,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
+				//## Handle return of Mode for which no match was found
 				//TODO: Handle return of Mode for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform 
@@ -49,8 +51,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
+				//## Handle return of Parameter for which no match was found
 				//TODO: Handle return of Parameter for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcTextureCoordinate> IIfcSurfaceTexture.IsMappedBy 

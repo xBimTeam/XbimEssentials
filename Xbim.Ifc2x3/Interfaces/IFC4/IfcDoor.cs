@@ -36,24 +36,30 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//## Handle return of PredefinedType for which no match was found
 				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.SharedBldgElements.IfcDoorTypeOperationEnum? IIfcDoor.OperationType 
 		{ 
 			get
 			{
+				//## Handle return of OperationType for which no match was found
 				//TODO: Handle return of OperationType for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcDoor.UserDefinedOperationType 
 		{ 
 			get
 			{
+				//## Handle return of UserDefinedOperationType for which no match was found
 				//TODO: Handle return of UserDefinedOperationType for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

@@ -36,24 +36,30 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//## Handle return of PredefinedType for which no match was found
 				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.SharedBldgElements.IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType 
 		{ 
 			get
 			{
+				//## Handle return of PartitioningType for which no match was found
 				//TODO: Handle return of PartitioningType for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcWindow.UserDefinedPartitioningType 
 		{ 
 			get
 			{
+				//## Handle return of UserDefinedPartitioningType for which no match was found
 				//TODO: Handle return of UserDefinedPartitioningType for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

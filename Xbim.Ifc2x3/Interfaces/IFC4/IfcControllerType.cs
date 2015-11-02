@@ -29,16 +29,22 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 						return Xbim.Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.PROPORTIONAL;
 					
 					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.PROPORTIONALINTEGRAL:
+						//## Handle translation of PROPORTIONALINTEGRAL member from IfcControllerTypeEnum in property PredefinedType
 						//TODO: Handle translation of PROPORTIONALINTEGRAL member from IfcControllerTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
+						//##
 										
 					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.PROPORTIONALINTEGRALDERIVATIVE:
+						//## Handle translation of PROPORTIONALINTEGRALDERIVATIVE member from IfcControllerTypeEnum in property PredefinedType
 						//TODO: Handle translation of PROPORTIONALINTEGRALDERIVATIVE member from IfcControllerTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
+						//##
 										
 					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.TIMEDTWOPOSITION:
+						//## Handle translation of TIMEDTWOPOSITION member from IfcControllerTypeEnum in property PredefinedType
 						//TODO: Handle translation of TIMEDTWOPOSITION member from IfcControllerTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
+						//##
 										
 					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.TWOPOSITION:
 						return Xbim.Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.TWOPOSITION;

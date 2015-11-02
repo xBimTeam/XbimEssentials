@@ -41,8 +41,10 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
+				//## Handle return of LayerStyles for which no match was found
 				//TODO: Handle return of LayerStyles for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

@@ -67,16 +67,20 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get
 			{
+				//## Handle return of SubmittedOn for which no match was found
 				//TODO: Handle return of SubmittedOn for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcCostSchedule.UpdateDate 
 		{ 
 			get
 			{
+				//## Handle return of UpdateDate for which no match was found
 				//TODO: Handle return of UpdateDate for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

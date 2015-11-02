@@ -35,32 +35,40 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//## Handle return of Publisher for which no match was found
 				//TODO: Handle return of Publisher for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcLibraryInformation.VersionDate 
 		{ 
 			get
 			{
+				//## Handle return of VersionDate for which no match was found
 				//TODO: Handle return of VersionDate for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.ExternalReferenceResource.IfcURIReference? IIfcLibraryInformation.Location 
 		{ 
 			get
 			{
+				//## Handle return of Location for which no match was found
 				//TODO: Handle return of Location for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcLibraryInformation.Description 
 		{ 
 			get
 			{
+				//## Handle return of Description for which no match was found
 				//TODO: Handle return of Description for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryInformation.LibraryInfoForObjects 

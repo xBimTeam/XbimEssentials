@@ -29,8 +29,10 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.CIRCUITBREAKER;
 					
 					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.EARTHFAILUREDEVICE:
+						//## Handle translation of EARTHFAILUREDEVICE member from IfcProtectiveDeviceTypeEnum in property PredefinedType
 						//TODO: Handle translation of EARTHFAILUREDEVICE member from IfcProtectiveDeviceTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
+						//##
 										
 					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTCIRCUITBREAKER:
 						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTCIRCUITBREAKER;

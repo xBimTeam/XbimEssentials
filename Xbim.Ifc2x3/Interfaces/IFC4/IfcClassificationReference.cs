@@ -20,24 +20,30 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//## Handle return of ReferencedSource for which no match was found
 				//TODO: Handle return of ReferencedSource for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcClassificationReference.Description 
 		{ 
 			get
 			{
+				//## Handle return of Description for which no match was found
 				//TODO: Handle return of Description for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcClassificationReference.Sort 
 		{ 
 			get
 			{
+				//## Handle return of Sort for which no match was found
 				//TODO: Handle return of Sort for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesClassification> IIfcClassificationReference.ClassificationRefForObjects 

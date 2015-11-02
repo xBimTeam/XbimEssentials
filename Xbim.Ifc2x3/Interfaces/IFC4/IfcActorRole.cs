@@ -68,8 +68,10 @@ namespace Xbim.Ifc2x3.ActorResource
 						return Xbim.Ifc4.ActorResource.IfcRoleEnum.CIVILENGINEER;
 					
 					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.COMISSIONINGENGINEER:
+						//## Handle translation of COMISSIONINGENGINEER member from IfcRoleEnum in property Role
 						//TODO: Handle translation of COMISSIONINGENGINEER member from IfcRoleEnum in property Role
 						throw new System.NotImplementedException();
+						//##
 										
 					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.ENGINEER:
 						return Xbim.Ifc4.ActorResource.IfcRoleEnum.ENGINEER;

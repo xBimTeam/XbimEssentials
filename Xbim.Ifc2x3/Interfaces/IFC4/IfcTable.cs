@@ -20,8 +20,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get
 			{
+				//## Handle return of Name for which no match was found
 				//TODO: Handle return of Name for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcTableRow> IIfcTable.Rows 
@@ -38,8 +40,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get
 			{
+				//## Handle return of Columns for which no match was found
 				//TODO: Handle return of Columns for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

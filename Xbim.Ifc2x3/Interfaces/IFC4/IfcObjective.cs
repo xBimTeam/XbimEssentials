@@ -20,16 +20,20 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
+				//## Handle return of BenchmarkValues for which no match was found
 				//TODO: Handle return of BenchmarkValues for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.ConstraintResource.IfcLogicalOperatorEnum? IIfcObjective.LogicalAggregator 
 		{ 
 			get
 			{
+				//## Handle return of LogicalAggregator for which no match was found
 				//TODO: Handle return of LogicalAggregator for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.ConstraintResource.IfcObjectiveEnum IIfcObjective.ObjectiveQualifier 

@@ -20,16 +20,20 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
+				//## Handle return of RelatingPriorities for which no match was found
 				//TODO: Handle return of RelatingPriorities for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<double> IIfcRelConnectsPathElements.RelatedPriorities 
 		{ 
 			get
 			{
+				//## Handle return of RelatedPriorities for which no match was found
 				//TODO: Handle return of RelatedPriorities for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType 

@@ -441,8 +441,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
+				//## Handle return of SetPointValue for which no match was found
 				//TODO: Handle return of SetPointValue for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 

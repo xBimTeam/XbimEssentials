@@ -20,8 +20,10 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
+				//## Handle return of TimeStamp for which no match was found
 				//TODO: Handle return of TimeStamp for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcValue> IIfcIrregularTimeSeriesValue.ListValues 

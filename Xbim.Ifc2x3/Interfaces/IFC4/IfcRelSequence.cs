@@ -34,8 +34,10 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
+				//## Handle return of TimeLag for which no match was found
 				//TODO: Handle return of TimeLag for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.ProcessExtension.IfcSequenceEnum? IIfcRelSequence.SequenceType 
@@ -69,8 +71,10 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
+				//## Handle return of UserDefinedSequenceType for which no match was found
 				//TODO: Handle return of UserDefinedSequenceType for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

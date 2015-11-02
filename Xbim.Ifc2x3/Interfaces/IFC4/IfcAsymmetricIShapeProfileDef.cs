@@ -20,8 +20,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
+				//## Handle return of BottomFlangeWidth for which no match was found
 				//TODO: Handle return of BottomFlangeWidth for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.OverallDepth 
@@ -42,16 +44,20 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
+				//## Handle return of BottomFlangeThickness for which no match was found
 				//TODO: Handle return of BottomFlangeThickness for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeFilletRadius 
 		{ 
 			get
 			{
+				//## Handle return of BottomFlangeFilletRadius for which no match was found
 				//TODO: Handle return of BottomFlangeFilletRadius for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth 
@@ -81,32 +87,40 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
+				//## Handle return of BottomFlangeEdgeRadius for which no match was found
 				//TODO: Handle return of BottomFlangeEdgeRadius for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeSlope 
 		{ 
 			get
 			{
+				//## Handle return of BottomFlangeSlope for which no match was found
 				//TODO: Handle return of BottomFlangeSlope for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeEdgeRadius 
 		{ 
 			get
 			{
+				//## Handle return of TopFlangeEdgeRadius for which no match was found
 				//TODO: Handle return of TopFlangeEdgeRadius for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeSlope 
 		{ 
 			get
 			{
+				//## Handle return of TopFlangeSlope for which no match was found
 				//TODO: Handle return of TopFlangeSlope for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

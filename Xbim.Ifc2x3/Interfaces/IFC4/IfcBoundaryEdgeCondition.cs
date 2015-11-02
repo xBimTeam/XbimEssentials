@@ -20,48 +20,60 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
+				//## Handle return of TranslationalStiffnessByLengthX for which no match was found
 				//TODO: Handle return of TranslationalStiffnessByLengthX for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.StructuralLoadResource.IfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthY 
 		{ 
 			get
 			{
+				//## Handle return of TranslationalStiffnessByLengthY for which no match was found
 				//TODO: Handle return of TranslationalStiffnessByLengthY for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.StructuralLoadResource.IfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthZ 
 		{ 
 			get
 			{
+				//## Handle return of TranslationalStiffnessByLengthZ for which no match was found
 				//TODO: Handle return of TranslationalStiffnessByLengthZ for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.StructuralLoadResource.IfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthX 
 		{ 
 			get
 			{
+				//## Handle return of RotationalStiffnessByLengthX for which no match was found
 				//TODO: Handle return of RotationalStiffnessByLengthX for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.StructuralLoadResource.IfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthY 
 		{ 
 			get
 			{
+				//## Handle return of RotationalStiffnessByLengthY for which no match was found
 				//TODO: Handle return of RotationalStiffnessByLengthY for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.StructuralLoadResource.IfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthZ 
 		{ 
 			get
 			{
+				//## Handle return of RotationalStiffnessByLengthZ for which no match was found
 				//TODO: Handle return of RotationalStiffnessByLengthZ for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

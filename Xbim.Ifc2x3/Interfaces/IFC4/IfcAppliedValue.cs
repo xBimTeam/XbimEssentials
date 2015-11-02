@@ -58,48 +58,60 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
+				//## Handle return of ApplicableDate for which no match was found
 				//TODO: Handle return of ApplicableDate for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDate? IIfcAppliedValue.FixedUntilDate 
 		{ 
 			get
 			{
+				//## Handle return of FixedUntilDate for which no match was found
 				//TODO: Handle return of FixedUntilDate for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Category 
 		{ 
 			get
 			{
+				//## Handle return of Category for which no match was found
 				//TODO: Handle return of Category for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Condition 
 		{ 
 			get
 			{
+				//## Handle return of Condition for which no match was found
 				//TODO: Handle return of Condition for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.CostResource.IfcArithmeticOperatorEnum? IIfcAppliedValue.ArithmeticOperator 
 		{ 
 			get
 			{
+				//## Handle return of ArithmeticOperator for which no match was found
 				//TODO: Handle return of ArithmeticOperator for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcAppliedValue> IIfcAppliedValue.Components 
 		{ 
 			get
 			{
+				//## Handle return of Components for which no match was found
 				//TODO: Handle return of Components for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcAppliedValue.HasExternalReference 

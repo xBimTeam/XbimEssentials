@@ -20,24 +20,30 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//## Handle return of Description for which no match was found
 				//TODO: Handle return of Description for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.ExternalReferenceResource.IfcLanguageId? IIfcLibraryReference.Language 
 		{ 
 			get
 			{
+				//## Handle return of Language for which no match was found
 				//TODO: Handle return of Language for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IIfcLibraryInformation IIfcLibraryReference.ReferencedLibrary 
 		{ 
 			get
 			{
+				//## Handle return of ReferencedLibrary for which no match was found
 				//TODO: Handle return of ReferencedLibrary for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryReference.LibraryRefForObjects 

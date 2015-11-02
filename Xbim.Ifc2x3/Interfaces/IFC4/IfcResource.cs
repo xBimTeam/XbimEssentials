@@ -20,16 +20,20 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
+				//## Handle return of Identification for which no match was found
 				//TODO: Handle return of Identification for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcResource.LongDescription 
 		{ 
 			get
 			{
+				//## Handle return of LongDescription for which no match was found
 				//TODO: Handle return of LongDescription for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcRelAssignsToResource> IIfcResource.ResourceOf 

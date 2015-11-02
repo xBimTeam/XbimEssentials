@@ -42,32 +42,40 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
+				//## Handle return of Name for which no match was found
 				//TODO: Handle return of Name for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcMaterialLayer.Description 
 		{ 
 			get
 			{
+				//## Handle return of Description for which no match was found
 				//TODO: Handle return of Description for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayer.Category 
 		{ 
 			get
 			{
+				//## Handle return of Category for which no match was found
 				//TODO: Handle return of Category for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcMaterialLayer.Priority 
 		{ 
 			get
 			{
+				//## Handle return of Priority for which no match was found
 				//TODO: Handle return of Priority for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IIfcMaterialLayerSet IIfcMaterialLayer.ToMaterialLayerSet 

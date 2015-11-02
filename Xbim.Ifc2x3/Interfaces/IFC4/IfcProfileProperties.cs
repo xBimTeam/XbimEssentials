@@ -27,24 +27,30 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
+				//## Handle return of Name for which no match was found
 				//TODO: Handle return of Name for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcExtendedProperties.Description 
 		{ 
 			get
 			{
+				//## Handle return of Description for which no match was found
 				//TODO: Handle return of Description for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties 
 		{ 
 			get
 			{
+				//## Handle return of Properties for which no match was found
 				//TODO: Handle return of Properties for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 

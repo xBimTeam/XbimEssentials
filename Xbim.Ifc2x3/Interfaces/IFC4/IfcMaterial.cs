@@ -27,16 +27,20 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
+				//## Handle return of Description for which no match was found
 				//TODO: Handle return of Description for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcMaterial.Category 
 		{ 
 			get
 			{
+				//## Handle return of Category for which no match was found
 				//TODO: Handle return of Category for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcMaterialDefinitionRepresentation> IIfcMaterial.HasRepresentation 

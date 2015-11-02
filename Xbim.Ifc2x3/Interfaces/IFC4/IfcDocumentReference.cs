@@ -20,16 +20,20 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//## Handle return of Description for which no match was found
 				//TODO: Handle return of Description for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IIfcDocumentInformation IIfcDocumentReference.ReferencedDocument 
 		{ 
 			get
 			{
+				//## Handle return of ReferencedDocument for which no match was found
 				//TODO: Handle return of ReferencedDocument for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentReference.DocumentRefForObjects 

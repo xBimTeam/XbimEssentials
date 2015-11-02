@@ -76,12 +76,16 @@ namespace Xbim.Ifc2x3.UtilityResource
 						return Xbim.Ifc4.UtilityResource.IfcChangeActionEnum.DELETED;
 					
 					case Xbim.Ifc2x3.UtilityResource.IfcChangeActionEnum.MODIFIEDADDED:
+						//## Handle translation of MODIFIEDADDED member from IfcChangeActionEnum in property ChangeAction
 						//TODO: Handle translation of MODIFIEDADDED member from IfcChangeActionEnum in property ChangeAction
 						throw new System.NotImplementedException();
+						//##
 										
 					case Xbim.Ifc2x3.UtilityResource.IfcChangeActionEnum.MODIFIEDDELETED:
+						//## Handle translation of MODIFIEDDELETED member from IfcChangeActionEnum in property ChangeAction
 						//TODO: Handle translation of MODIFIEDDELETED member from IfcChangeActionEnum in property ChangeAction
 						throw new System.NotImplementedException();
+						//##
 										
 					
 					default:

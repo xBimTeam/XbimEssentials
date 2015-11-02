@@ -27,8 +27,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
+				//## Handle return of Parameter for which no match was found
 				//TODO: Handle return of Parameter for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

@@ -42,48 +42,60 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get
 			{
+				//## Handle return of TimeOfApproval for which no match was found
 				//TODO: Handle return of TimeOfApproval for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcApproval.Status 
 		{ 
 			get
 			{
+				//## Handle return of Status for which no match was found
 				//TODO: Handle return of Status for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcApproval.Level 
 		{ 
 			get
 			{
+				//## Handle return of Level for which no match was found
 				//TODO: Handle return of Level for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcApproval.Qualifier 
 		{ 
 			get
 			{
+				//## Handle return of Qualifier for which no match was found
 				//TODO: Handle return of Qualifier for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcApproval.RequestingApproval 
 		{ 
 			get
 			{
+				//## Handle return of RequestingApproval for which no match was found
 				//TODO: Handle return of RequestingApproval for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcApproval.GivingApproval 
 		{ 
 			get
 			{
+				//## Handle return of GivingApproval for which no match was found
 				//TODO: Handle return of GivingApproval for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcApproval.HasExternalReferences 

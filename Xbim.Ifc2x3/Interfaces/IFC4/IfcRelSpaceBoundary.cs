@@ -20,8 +20,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Handle return of RelatingSpace for which no match was found
 				//TODO: Handle return of RelatingSpace for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IIfcElement IIfcRelSpaceBoundary.RelatedBuildingElement 

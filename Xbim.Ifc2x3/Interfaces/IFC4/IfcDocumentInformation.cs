@@ -20,8 +20,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//## Handle return of Identification for which no match was found
 				//TODO: Handle return of Identification for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel IIfcDocumentInformation.Name 
@@ -43,8 +45,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//## Handle return of Location for which no match was found
 				//TODO: Handle return of Location for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Purpose 
@@ -118,40 +122,50 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
+				//## Handle return of CreationTime for which no match was found
 				//TODO: Handle return of CreationTime for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcDocumentInformation.LastRevisionTime 
 		{ 
 			get
 			{
+				//## Handle return of LastRevisionTime for which no match was found
 				//TODO: Handle return of LastRevisionTime for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcDocumentInformation.ElectronicFormat 
 		{ 
 			get
 			{
+				//## Handle return of ElectronicFormat for which no match was found
 				//TODO: Handle return of ElectronicFormat for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidFrom 
 		{ 
 			get
 			{
+				//## Handle return of ValidFrom for which no match was found
 				//TODO: Handle return of ValidFrom for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidUntil 
 		{ 
 			get
 			{
+				//## Handle return of ValidUntil for which no match was found
 				//TODO: Handle return of ValidUntil for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality 

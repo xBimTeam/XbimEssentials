@@ -66,8 +66,10 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
+				//## Handle return of MessagingIDs for which no match was found
 				//TODO: Handle return of MessagingIDs for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

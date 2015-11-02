@@ -20,8 +20,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
+				//## Handle return of MaterialClassifications for which no match was found
 				//TODO: Handle return of MaterialClassifications for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IIfcMaterial IIfcMaterialClassificationRelationship.ClassifiedMaterial 

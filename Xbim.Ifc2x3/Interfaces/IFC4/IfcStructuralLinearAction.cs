@@ -20,16 +20,20 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
+				//## Handle return of ProjectedOrTrue for which no match was found
 				//TODO: Handle return of ProjectedOrTrue for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralCurveActivityTypeEnum IIfcStructuralCurveAction.PredefinedType 
 		{ 
 			get
 			{
+				//## Handle return of PredefinedType for which no match was found
 				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

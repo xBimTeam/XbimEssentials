@@ -50,8 +50,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
+				//## Handle return of PredefinedType for which no match was found
 				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcGrid.ContainedInStructure 

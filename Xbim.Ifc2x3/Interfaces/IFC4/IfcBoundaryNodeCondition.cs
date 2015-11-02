@@ -20,48 +20,60 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
+				//## Handle return of TranslationalStiffnessX for which no match was found
 				//TODO: Handle return of TranslationalStiffnessX for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.StructuralLoadResource.IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessY 
 		{ 
 			get
 			{
+				//## Handle return of TranslationalStiffnessY for which no match was found
 				//TODO: Handle return of TranslationalStiffnessY for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.StructuralLoadResource.IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessZ 
 		{ 
 			get
 			{
+				//## Handle return of TranslationalStiffnessZ for which no match was found
 				//TODO: Handle return of TranslationalStiffnessZ for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.StructuralLoadResource.IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessX 
 		{ 
 			get
 			{
+				//## Handle return of RotationalStiffnessX for which no match was found
 				//TODO: Handle return of RotationalStiffnessX for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.StructuralLoadResource.IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessY 
 		{ 
 			get
 			{
+				//## Handle return of RotationalStiffnessY for which no match was found
 				//TODO: Handle return of RotationalStiffnessY for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.StructuralLoadResource.IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessZ 
 		{ 
 			get
 			{
+				//## Handle return of RotationalStiffnessZ for which no match was found
 				//TODO: Handle return of RotationalStiffnessZ for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

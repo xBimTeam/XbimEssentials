@@ -20,8 +20,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
+				//## Handle return of CreationDate for which no match was found
 				//TODO: Handle return of CreationDate for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcPerson> IIfcWorkControl.Creators 
@@ -46,32 +48,40 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
+				//## Handle return of Duration for which no match was found
 				//TODO: Handle return of Duration for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.TotalFloat 
 		{ 
 			get
 			{
+				//## Handle return of TotalFloat for which no match was found
 				//TODO: Handle return of TotalFloat for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDateTime IIfcWorkControl.StartTime 
 		{ 
 			get
 			{
+				//## Handle return of StartTime for which no match was found
 				//TODO: Handle return of StartTime for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcWorkControl.FinishTime 
 		{ 
 			get
 			{
+				//## Handle return of FinishTime for which no match was found
 				//TODO: Handle return of FinishTime for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

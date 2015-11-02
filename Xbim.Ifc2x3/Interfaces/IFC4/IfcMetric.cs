@@ -61,16 +61,22 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (DataValue == null) return null;
 				var ifccalendardate = DataValue as Xbim.Ifc2x3.DateTimeResource.IfcCalendarDate;
 				if (ifccalendardate != null) 
-					//TODO: Handle entity ifccalendardate which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
+					//## Handle entity IfcCalendarDate which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
+					//TODO: Handle entity IfcCalendarDate which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
 					throw new System.NotImplementedException();
+					//##
 				var ifclocaltime = DataValue as Xbim.Ifc2x3.DateTimeResource.IfcLocalTime;
 				if (ifclocaltime != null) 
-					//TODO: Handle entity ifclocaltime which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
+					//## Handle entity IfcLocalTime which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
+					//TODO: Handle entity IfcLocalTime which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
 					throw new System.NotImplementedException();
+					//##
 				var ifcdateandtime = DataValue as Xbim.Ifc2x3.DateTimeResource.IfcDateAndTime;
 				if (ifcdateandtime != null) 
-					//TODO: Handle entity ifcdateandtime which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
+					//## Handle entity IfcDateAndTime which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
+					//TODO: Handle entity IfcDateAndTime which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
 					throw new System.NotImplementedException();
+					//##
 				var ifcmeasurewithunit = DataValue as Xbim.Ifc2x3.MeasureResource.IfcMeasureWithUnit;
 				if (ifcmeasurewithunit != null) 
 					return ifcmeasurewithunit;
@@ -92,8 +98,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
+				//## Handle return of ReferencePath for which no match was found
 				//TODO: Handle return of ReferencePath for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}

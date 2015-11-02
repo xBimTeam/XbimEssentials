@@ -51,16 +51,20 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
+				//## Handle return of TaskTime for which no match was found
 				//TODO: Handle return of TaskTime for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Xbim.Ifc4.ProcessExtension.IfcTaskTypeEnum? IIfcTask.PredefinedType 
 		{ 
 			get
 			{
+				//## Handle return of PredefinedType for which no match was found
 				//TODO: Handle return of PredefinedType for which no match was found
 				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	}
