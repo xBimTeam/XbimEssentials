@@ -53,9 +53,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 			get
 			{
 				//## Handle return of Description for which no match was found
-				//TODO: Handle return of Description for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayer.Category 

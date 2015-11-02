@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Ifc4.MeasureResource;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
@@ -21,9 +22,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			get
 			{
 				//## Handle return of LongName for which no match was found
-				//TODO: Handle return of LongName for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return new IfcLabel(Name);
+			    //##
 			} 
 		}
 		IEnumerable<IIfcRelServicesBuildings> IIfcSystem.ServicesBuildings 
