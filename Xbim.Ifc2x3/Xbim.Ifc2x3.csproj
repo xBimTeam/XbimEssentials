@@ -140,6 +140,7 @@
     <Compile Include="GeometryResource\IfcPlacementPartial.cs" />
     <Compile Include="GeometryResource\IfcPolylinePartial.cs" />
     <Compile Include="GeometryResource\IfcTrimmedCurvePartial.cs" />
+    <Compile Include="Interfaces\Conversions\DateAndTimeExtensions.cs" />
     <Compile Include="Interfaces\IFC4\IfcActionRequest.cs" />
     <Compile Include="Interfaces\IFC4\IfcActor.cs" />
     <Compile Include="Interfaces\IFC4\IfcActorRole.cs" />
@@ -1626,9 +1627,7 @@
   <ItemGroup>
     <None Include="XbimOpenSourceKeyFile.snk" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

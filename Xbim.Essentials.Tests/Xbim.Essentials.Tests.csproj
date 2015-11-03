@@ -65,6 +65,7 @@
     <Compile Include="EqualityTests.cs" />
     <Compile Include="ComplexDefinedTypeTests.cs" />
     <Compile Include="ActivationTests.cs" />
+    <Compile Include="DateTimeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">

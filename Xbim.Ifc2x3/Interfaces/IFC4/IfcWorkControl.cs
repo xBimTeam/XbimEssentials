@@ -10,7 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-
+using Xbim.Ifc2x3.Interfaces.Conversions;
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProcessExtension
 {
@@ -20,9 +20,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
-				//## Handle return of CreationDate for which no match was found
-				//TODO: Handle return of CreationDate for which no match was found
-				throw new System.NotImplementedException();
+				//## Handle return of CreationDate for which no match was found               
+                return new Xbim.Ifc4.DateTimeResource.IfcDateTime(CreationDate.ToISODateTimeString());
 				//##
 			} 
 		}
