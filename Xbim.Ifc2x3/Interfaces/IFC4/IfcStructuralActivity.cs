@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				return AppliedLoad as IIfcStructuralLoad;
+				return AppliedLoad;
 			} 
 		}
 		Ifc4.RepresentationResource.IfcGlobalOrLocalEnum IIfcStructuralActivity.GlobalOrLocal 

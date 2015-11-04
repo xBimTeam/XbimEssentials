@@ -38,14 +38,14 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				return StartProfile as IIfcProfileDef;
+				return StartProfile;
 			} 
 		}
 		IIfcProfileDef IIfcSectionProperties.EndProfile 
 		{ 
 			get
 			{
-				return EndProfile as IIfcProfileDef;
+				return EndProfile;
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 

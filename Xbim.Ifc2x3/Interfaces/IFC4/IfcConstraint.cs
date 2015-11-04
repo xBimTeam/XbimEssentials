@@ -20,15 +20,15 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcConstraint.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 		Ifc4.ConstraintResource.IfcConstraintEnum IIfcConstraint.ConstraintGrade 
@@ -62,8 +62,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
-				if (ConstraintSource == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)ConstraintSource);
+				if (!ConstraintSource.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ConstraintSource.Value);
 			} 
 		}
 		Ifc4.ActorResource.IfcActorSelect IIfcConstraint.CreatingActor 
@@ -97,8 +97,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
-				if (UserDefinedGrade == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)UserDefinedGrade);
+				if (!UserDefinedGrade.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(UserDefinedGrade.Value);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcConstraint.HasExternalReferences 

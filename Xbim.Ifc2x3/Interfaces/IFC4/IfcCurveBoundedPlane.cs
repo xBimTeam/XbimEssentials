@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return BasisSurface as IIfcPlane;
+				return BasisSurface;
 			} 
 		}
 		IIfcCurve IIfcCurveBoundedPlane.OuterBoundary 
 		{ 
 			get
 			{
-				return OuterBoundary as IIfcCurve;
+				return OuterBoundary;
 			} 
 		}
 		IEnumerable<IIfcCurve> IIfcCurveBoundedPlane.InnerBoundaries 

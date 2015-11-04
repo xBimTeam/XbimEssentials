@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				return Position as IIfcAxis2Placement2D;
+				return Position;
 			} 
 		}
 	}

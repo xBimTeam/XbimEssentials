@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)WallThickness);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(WallThickness);
 			} 
 		}
 	}

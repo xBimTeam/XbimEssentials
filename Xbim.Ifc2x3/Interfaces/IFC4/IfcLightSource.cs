@@ -20,31 +20,31 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				if (Name == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Name);
+				if (!Name.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
 		IIfcColourRgb IIfcLightSource.LightColour 
 		{ 
 			get
 			{
-				return LightColour as IIfcColourRgb;
+				return LightColour;
 			} 
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcLightSource.AmbientIntensity 
 		{ 
 			get
 			{
-				if (AmbientIntensity == null) return null;
-				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)AmbientIntensity);
+				if (!AmbientIntensity.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(AmbientIntensity.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcLightSource.Intensity 
 		{ 
 			get
 			{
-				if (Intensity == null) return null;
-				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)Intensity);
+				if (!Intensity.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(Intensity.Value);
 			} 
 		}
 	}

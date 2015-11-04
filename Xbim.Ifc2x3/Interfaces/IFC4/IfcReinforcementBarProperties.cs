@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcAreaMeasure((double)TotalCrossSectionArea);
+				return new Ifc4.MeasureResource.IfcAreaMeasure(TotalCrossSectionArea);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel IIfcReinforcementBarProperties.SteelGrade 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel((string)SteelGrade);
+				return new Ifc4.MeasureResource.IfcLabel(SteelGrade);
 			} 
 		}
 		Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface 
@@ -52,24 +52,24 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				if (EffectiveDepth == null) return null;
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)EffectiveDepth);
+				if (!EffectiveDepth.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(EffectiveDepth.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcementBarProperties.NominalBarDiameter 
 		{ 
 			get
 			{
-				if (NominalBarDiameter == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)NominalBarDiameter);
+				if (!NominalBarDiameter.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalBarDiameter.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcCountMeasure? IIfcReinforcementBarProperties.BarCount 
 		{ 
 			get
 			{
-				if (BarCount == null) return null;
-				return new Ifc4.MeasureResource.IfcCountMeasure((double)BarCount);
+				if (!BarCount.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcCountMeasure(BarCount.Value);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 

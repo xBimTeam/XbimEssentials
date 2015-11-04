@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return RelatingObject as IIfcObjectDefinition;
+				return RelatingObject;
 			} 
 		}
 		IEnumerable<IIfcObjectDefinition> IIfcRelAggregates.RelatedObjects 

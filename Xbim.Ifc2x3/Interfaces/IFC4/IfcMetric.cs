@@ -50,8 +50,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
-				if (ValueSource == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)ValueSource);
+				if (!ValueSource.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ValueSource.Value);
 			} 
 		}
 		Ifc4.ConstraintResource.IfcMetricValueSelect IIfcMetric.DataValue 

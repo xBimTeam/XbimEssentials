@@ -30,8 +30,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				if (Tag == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Tag);
+				if (!Tag.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Tag.Value);
 			} 
 		}
 		IEnumerable<IIfcRelAssignsToProduct> IIfcTypeProduct.ReferencedBy 

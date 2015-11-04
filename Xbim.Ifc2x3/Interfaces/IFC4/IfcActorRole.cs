@@ -103,16 +103,16 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				if (UserDefinedRole == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)UserDefinedRole);
+				if (!UserDefinedRole.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(UserDefinedRole.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcActorRole.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcActorRole.HasExternalReference 

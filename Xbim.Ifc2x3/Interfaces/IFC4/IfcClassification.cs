@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel((string)Source);
+				return new Ifc4.MeasureResource.IfcLabel(Source);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcClassification.Edition 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel((string)Edition);
+				return new Ifc4.MeasureResource.IfcLabel(Edition);
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcClassification.EditionDate 
@@ -44,7 +44,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcClassification.Description 

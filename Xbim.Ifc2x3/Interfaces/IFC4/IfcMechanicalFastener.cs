@@ -20,16 +20,16 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 		{ 
 			get
 			{
-				if (NominalDiameter == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)NominalDiameter);
+				if (!NominalDiameter.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalDiameter.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength 
 		{ 
 			get
 			{
-				if (NominalLength == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)NominalLength);
+				if (!NominalLength.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalLength.Value);
 			} 
 		}
 		Ifc4.SharedComponentElements.IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType 

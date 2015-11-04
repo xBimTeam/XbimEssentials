@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
 	}

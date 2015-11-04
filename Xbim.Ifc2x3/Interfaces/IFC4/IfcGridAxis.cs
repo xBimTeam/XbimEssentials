@@ -20,22 +20,22 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				if (AxisTag == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)AxisTag);
+				if (!AxisTag.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(AxisTag.Value);
 			} 
 		}
 		IIfcCurve IIfcGridAxis.AxisCurve 
 		{ 
 			get
 			{
-				return AxisCurve as IIfcCurve;
+				return AxisCurve;
 			} 
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcGridAxis.SameSense 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcBoolean((bool)SameSense);
+				return new Ifc4.MeasureResource.IfcBoolean(SameSense);
 			} 
 		}
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfW 

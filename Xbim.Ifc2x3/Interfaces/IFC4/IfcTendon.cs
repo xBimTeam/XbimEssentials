@@ -50,54 +50,54 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)NominalDiameter);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalDiameter);
 			} 
 		}
 		Ifc4.MeasureResource.IfcAreaMeasure? IIfcTendon.CrossSectionArea 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcAreaMeasure((double)CrossSectionArea);
+				return new Ifc4.MeasureResource.IfcAreaMeasure(CrossSectionArea);
 			} 
 		}
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcTendon.TensionForce 
 		{ 
 			get
 			{
-				if (TensionForce == null) return null;
-				return new Ifc4.MeasureResource.IfcForceMeasure((double)TensionForce);
+				if (!TensionForce.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcForceMeasure(TensionForce.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPressureMeasure? IIfcTendon.PreStress 
 		{ 
 			get
 			{
-				if (PreStress == null) return null;
-				return new Ifc4.MeasureResource.IfcPressureMeasure((double)PreStress);
+				if (!PreStress.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPressureMeasure(PreStress.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcTendon.FrictionCoefficient 
 		{ 
 			get
 			{
-				if (FrictionCoefficient == null) return null;
-				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)FrictionCoefficient);
+				if (!FrictionCoefficient.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(FrictionCoefficient.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.AnchorageSlip 
 		{ 
 			get
 			{
-				if (AnchorageSlip == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)AnchorageSlip);
+				if (!AnchorageSlip.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(AnchorageSlip.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.MinCurvatureRadius 
 		{ 
 			get
 			{
-				if (MinCurvatureRadius == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)MinCurvatureRadius);
+				if (!MinCurvatureRadius.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(MinCurvatureRadius.Value);
 			} 
 		}
 	}

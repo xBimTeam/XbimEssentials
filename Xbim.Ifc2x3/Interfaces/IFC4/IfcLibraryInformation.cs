@@ -20,15 +20,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcLibraryInformation.Version 
 		{ 
 			get
 			{
-				if (Version == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Version);
+				if (!Version.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Version.Value);
 			} 
 		}
 		Ifc4.ActorResource.IfcActorSelect IIfcLibraryInformation.Publisher 

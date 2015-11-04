@@ -30,15 +30,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcDocumentInformation.Location 
@@ -55,32 +55,32 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				if (Purpose == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)Purpose);
+				if (!Purpose.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Purpose.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.IntendedUse 
 		{ 
 			get
 			{
-				if (IntendedUse == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)IntendedUse);
+				if (!IntendedUse.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(IntendedUse.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Scope 
 		{ 
 			get
 			{
-				if (Scope == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)Scope);
+				if (!Scope.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Scope.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformation.Revision 
 		{ 
 			get
 			{
-				if (Revision == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Revision);
+				if (!Revision.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Revision.Value);
 			} 
 		}
 		Ifc4.ActorResource.IfcActorSelect IIfcDocumentInformation.DocumentOwner 

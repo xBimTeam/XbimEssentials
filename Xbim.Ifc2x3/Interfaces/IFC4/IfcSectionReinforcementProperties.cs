@@ -20,22 +20,22 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)LongitudinalStartPosition);
+				return new Ifc4.MeasureResource.IfcLengthMeasure(LongitudinalStartPosition);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalEndPosition 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)LongitudinalEndPosition);
+				return new Ifc4.MeasureResource.IfcLengthMeasure(LongitudinalEndPosition);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSectionReinforcementProperties.TransversePosition 
 		{ 
 			get
 			{
-				if (TransversePosition == null) return null;
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)TransversePosition);
+				if (!TransversePosition.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(TransversePosition.Value);
 			} 
 		}
 		Ifc4.ProfileResource.IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole 
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				return SectionDefinition as IIfcSectionProperties;
+				return SectionDefinition;
 			} 
 		}
 		IEnumerable<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions 

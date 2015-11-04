@@ -20,22 +20,22 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				return Material as IIfcMaterial;
+				return Material;
 			} 
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure IIfcMaterialLayer.LayerThickness 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)LayerThickness);
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(LayerThickness);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLogical? IIfcMaterialLayer.IsVentilated 
 		{ 
 			get
 			{
-				if (IsVentilated == null) return null;
-				return new Ifc4.MeasureResource.IfcLogical((bool?)IsVentilated);
+				if (!IsVentilated.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLogical(IsVentilated.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayer.Name 

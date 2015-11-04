@@ -20,16 +20,16 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				if (ContextIdentifier == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)ContextIdentifier);
+				if (!ContextIdentifier.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ContextIdentifier.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcRepresentationContext.ContextType 
 		{ 
 			get
 			{
-				if (ContextType == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)ContextType);
+				if (!ContextType.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ContextType.Value);
 			} 
 		}
 		IEnumerable<IIfcRepresentation> IIfcRepresentationContext.RepresentationsInContext 

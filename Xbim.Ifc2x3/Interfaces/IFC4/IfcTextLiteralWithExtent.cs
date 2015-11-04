@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
-				return Extent as IIfcPlanarExtent;
+				return Extent;
 			} 
 		}
 		Ifc4.PresentationDefinitionResource.IfcBoxAlignment IIfcTextLiteralWithExtent.BoxAlignment 
 		{ 
 			get
 			{
-				return new Ifc4.PresentationDefinitionResource.IfcBoxAlignment((string)BoxAlignment);
+				return new Ifc4.PresentationDefinitionResource.IfcBoxAlignment(BoxAlignment);
 			} 
 		}
 	}

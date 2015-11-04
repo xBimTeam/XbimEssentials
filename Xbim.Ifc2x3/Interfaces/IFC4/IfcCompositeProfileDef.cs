@@ -30,8 +30,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				if (Label == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Label);
+				if (!Label.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Label.Value);
 			} 
 		}
 	}

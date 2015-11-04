@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Radius);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Radius);
 			} 
 		}
 	}

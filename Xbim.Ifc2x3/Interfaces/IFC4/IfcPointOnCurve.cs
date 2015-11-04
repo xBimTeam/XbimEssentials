@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return BasisCurve as IIfcCurve;
+				return BasisCurve;
 			} 
 		}
 		Ifc4.MeasureResource.IfcParameterValue IIfcPointOnCurve.PointParameter 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcParameterValue((double)PointParameter);
+				return new Ifc4.MeasureResource.IfcParameterValue(PointParameter);
 			} 
 		}
 	}

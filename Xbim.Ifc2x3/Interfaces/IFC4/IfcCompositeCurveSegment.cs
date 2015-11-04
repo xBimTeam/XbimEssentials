@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return ParentCurve as IIfcCurve;
+				return ParentCurve;
 			} 
 		}
 		IEnumerable<IIfcCompositeCurve> IIfcCompositeCurveSegment.UsingCurves 

@@ -20,21 +20,21 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)XLength);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(XLength);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBlock.YLength 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)YLength);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(YLength);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBlock.ZLength 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)ZLength);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(ZLength);
 			} 
 		}
 	}

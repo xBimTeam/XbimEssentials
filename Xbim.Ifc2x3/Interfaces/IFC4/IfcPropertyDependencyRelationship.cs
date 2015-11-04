@@ -20,22 +20,22 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				return DependingProperty as IIfcProperty;
+				return DependingProperty;
 			} 
 		}
 		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty 
 		{ 
 			get
 			{
-				return DependantProperty as IIfcProperty;
+				return DependantProperty;
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcPropertyDependencyRelationship.Expression 
 		{ 
 			get
 			{
-				if (Expression == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)Expression);
+				if (!Expression.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Expression.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 

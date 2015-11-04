@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcValue> IIfcPropertyEnumeration.EnumerationValues 

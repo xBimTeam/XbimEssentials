@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				return new Ifc4.ExternalReferenceResource.IfcURIReference((string)UrlReference);
+				return new Ifc4.ExternalReferenceResource.IfcURIReference(UrlReference);
 			} 
 		}
 	}

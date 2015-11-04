@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				if (PanelDepth == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)PanelDepth);
+				if (!PanelDepth.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(PanelDepth.Value);
 			} 
 		}
 		Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum IIfcDoorPanelProperties.PanelOperation 
@@ -64,8 +64,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				if (PanelWidth == null) return null;
-				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)PanelWidth);
+				if (!PanelWidth.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(PanelWidth.Value);
 			} 
 		}
 		Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum IIfcDoorPanelProperties.PanelPosition 
@@ -96,7 +96,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				return ShapeAspectStyle as IIfcShapeAspect;
+				return ShapeAspectStyle;
 			} 
 		}
 	}

@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
-				if (DefinitionType == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)DefinitionType);
+				if (!DefinitionType.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(DefinitionType.Value);
 			} 
 		}
 		IEnumerable<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions 

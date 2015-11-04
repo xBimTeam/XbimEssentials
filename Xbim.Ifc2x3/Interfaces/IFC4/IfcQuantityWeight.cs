@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcMassMeasure((double)WeightValue);
+				return new Ifc4.MeasureResource.IfcMassMeasure(WeightValue);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityWeight.Formula 

@@ -20,21 +20,21 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)XLength);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(XLength);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangularPyramid.YLength 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)YLength);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(YLength);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangularPyramid.Height 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Height);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Height);
 			} 
 		}
 	}

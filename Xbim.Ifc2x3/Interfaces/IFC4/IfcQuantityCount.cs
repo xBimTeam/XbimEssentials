@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcCountMeasure((double)CountValue);
+				return new Ifc4.MeasureResource.IfcCountMeasure(CountValue);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityCount.Formula 

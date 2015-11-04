@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				return RelatingOrganization as IIfcOrganization;
+				return RelatingOrganization;
 			} 
 		}
 		IEnumerable<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations 

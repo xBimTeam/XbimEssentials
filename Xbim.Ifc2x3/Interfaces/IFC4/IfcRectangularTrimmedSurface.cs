@@ -20,35 +20,35 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return BasisSurface as IIfcSurface;
+				return BasisSurface;
 			} 
 		}
 		Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.U1 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcParameterValue((double)U1);
+				return new Ifc4.MeasureResource.IfcParameterValue(U1);
 			} 
 		}
 		Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.V1 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcParameterValue((double)V1);
+				return new Ifc4.MeasureResource.IfcParameterValue(V1);
 			} 
 		}
 		Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.U2 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcParameterValue((double)U2);
+				return new Ifc4.MeasureResource.IfcParameterValue(U2);
 			} 
 		}
 		Ifc4.MeasureResource.IfcParameterValue IIfcRectangularTrimmedSurface.V2 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcParameterValue((double)V2);
+				return new Ifc4.MeasureResource.IfcParameterValue(V2);
 			} 
 		}
 		bool IIfcRectangularTrimmedSurface.Usense 

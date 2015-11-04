@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return MappedRepresentation as IIfcRepresentation;
+				return MappedRepresentation;
 			} 
 		}
 		IEnumerable<IIfcShapeAspect> IIfcRepresentationMap.HasShapeAspects 

@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)SizeInX);
+				return new Ifc4.MeasureResource.IfcLengthMeasure(SizeInX);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcPlanarExtent.SizeInY 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)SizeInY);
+				return new Ifc4.MeasureResource.IfcLengthMeasure(SizeInY);
 			} 
 		}
 	}

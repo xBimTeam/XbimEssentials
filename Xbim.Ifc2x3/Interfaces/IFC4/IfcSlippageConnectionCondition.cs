@@ -20,24 +20,24 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
-				if (SlippageX == null) return null;
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)SlippageX);
+				if (!SlippageX.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(SlippageX.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageY 
 		{ 
 			get
 			{
-				if (SlippageY == null) return null;
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)SlippageY);
+				if (!SlippageY.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(SlippageY.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageZ 
 		{ 
 			get
 			{
-				if (SlippageZ == null) return null;
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)SlippageZ);
+				if (!SlippageZ.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(SlippageZ.Value);
 			} 
 		}
 	}

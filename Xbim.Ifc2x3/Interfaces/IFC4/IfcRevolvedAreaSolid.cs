@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				return Axis as IIfcAxis1Placement;
+				return Axis;
 			} 
 		}
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure IIfcRevolvedAreaSolid.Angle 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)Angle);
+				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(Angle);
 			} 
 		}
 	}

@@ -20,46 +20,46 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Depth);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Depth);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcLShapeProfileDef.Width 
 		{ 
 			get
 			{
-				if (Width == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Width);
+				if (!Width.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Width.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcLShapeProfileDef.Thickness 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Thickness);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Thickness);
 			} 
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcLShapeProfileDef.FilletRadius 
 		{ 
 			get
 			{
-				if (FilletRadius == null) return null;
-				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)FilletRadius);
+				if (!FilletRadius.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(FilletRadius.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcLShapeProfileDef.EdgeRadius 
 		{ 
 			get
 			{
-				if (EdgeRadius == null) return null;
-				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)EdgeRadius);
+				if (!EdgeRadius.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(EdgeRadius.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcLShapeProfileDef.LegSlope 
 		{ 
 			get
 			{
-				if (LegSlope == null) return null;
-				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)LegSlope);
+				if (!LegSlope.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(LegSlope.Value);
 			} 
 		}
 	}

@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				if (InternalLocation == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)InternalLocation);
+				if (!InternalLocation.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(InternalLocation.Value);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPostalAddress.AddressLines 
@@ -38,40 +38,40 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				if (PostalBox == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)PostalBox);
+				if (!PostalBox.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(PostalBox.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Town 
 		{ 
 			get
 			{
-				if (Town == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Town);
+				if (!Town.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Town.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Region 
 		{ 
 			get
 			{
-				if (Region == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Region);
+				if (!Region.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Region.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.PostalCode 
 		{ 
 			get
 			{
-				if (PostalCode == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)PostalCode);
+				if (!PostalCode.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(PostalCode.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Country 
 		{ 
 			get
 			{
-				if (Country == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Country);
+				if (!Country.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Country.Value);
 			} 
 		}
 	}

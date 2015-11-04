@@ -20,28 +20,28 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				return Position as IIfcAxis2Placement3D;
+				return Position;
 			} 
 		}
 		IIfcColourRgb IIfcLightSourceGoniometric.ColourAppearance 
 		{ 
 			get
 			{
-				return ColourAppearance as IIfcColourRgb;
+				return ColourAppearance;
 			} 
 		}
 		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure((double)ColourTemperature);
+				return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(ColourTemperature);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLuminousFluxMeasure((double)LuminousFlux);
+				return new Ifc4.MeasureResource.IfcLuminousFluxMeasure(LuminousFlux);
 			} 
 		}
 		Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource 

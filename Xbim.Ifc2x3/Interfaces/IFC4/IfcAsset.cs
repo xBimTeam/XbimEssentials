@@ -20,28 +20,28 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcIdentifier((string)AssetID);
+				return new Ifc4.MeasureResource.IfcIdentifier(AssetID);
 			} 
 		}
 		IIfcCostValue IIfcAsset.OriginalValue 
 		{ 
 			get
 			{
-				return OriginalValue as IIfcCostValue;
+				return OriginalValue;
 			} 
 		}
 		IIfcCostValue IIfcAsset.CurrentValue 
 		{ 
 			get
 			{
-				return CurrentValue as IIfcCostValue;
+				return CurrentValue;
 			} 
 		}
 		IIfcCostValue IIfcAsset.TotalReplacementCost 
 		{ 
 			get
 			{
-				return TotalReplacementCost as IIfcCostValue;
+				return TotalReplacementCost;
 			} 
 		}
 		Ifc4.ActorResource.IfcActorSelect IIfcAsset.Owner 
@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
-				return ResponsiblePerson as IIfcPerson;
+				return ResponsiblePerson;
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcAsset.IncorporationDate 
@@ -90,16 +90,17 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			get
 			{
 				//## Handle return of IncorporationDate for which no match was found
-				//TODO: Handle return of IncorporationDate for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return IncorporationDate != null
+			        ? new Ifc4.DateTimeResource.IfcDate(IncorporationDate.ToISODateTimeString())
+			        : null;
+			    //##
 			} 
 		}
 		IIfcCostValue IIfcAsset.DepreciatedValue 
 		{ 
 			get
 			{
-				return DepreciatedValue as IIfcCostValue;
+				return DepreciatedValue;
 			} 
 		}
 	}

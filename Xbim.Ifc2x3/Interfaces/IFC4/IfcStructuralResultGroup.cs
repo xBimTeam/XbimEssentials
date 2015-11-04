@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				return ResultForLoadGroup as IIfcStructuralLoadGroup;
+				return ResultForLoadGroup;
 			} 
 		}
 		bool IIfcStructuralResultGroup.IsLinear 

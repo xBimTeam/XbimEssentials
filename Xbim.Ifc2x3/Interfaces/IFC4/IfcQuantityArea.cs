@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcAreaMeasure((double)AreaValue);
+				return new Ifc4.MeasureResource.IfcAreaMeasure(AreaValue);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityArea.Formula 

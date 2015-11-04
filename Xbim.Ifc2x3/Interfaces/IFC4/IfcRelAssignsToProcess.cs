@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return QuantityInProcess as IIfcMeasureWithUnit;
+				return QuantityInProcess;
 			} 
 		}
 	}

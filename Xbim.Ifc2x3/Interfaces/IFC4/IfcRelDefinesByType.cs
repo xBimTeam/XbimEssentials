@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return RelatingType as IIfcTypeObject;
+				return RelatingType;
 			} 
 		}
 	}

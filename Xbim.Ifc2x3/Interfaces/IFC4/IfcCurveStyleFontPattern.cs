@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)VisibleSegmentLength);
+				return new Ifc4.MeasureResource.IfcLengthMeasure(VisibleSegmentLength);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCurveStyleFontPattern.InvisibleSegmentLength 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)InvisibleSegmentLength);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(InvisibleSegmentLength);
 			} 
 		}
 	}

@@ -47,16 +47,16 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcAddress.UserDefinedPurpose 
 		{ 
 			get
 			{
-				if (UserDefinedPurpose == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)UserDefinedPurpose);
+				if (!UserDefinedPurpose.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(UserDefinedPurpose.Value);
 			} 
 		}
 		IEnumerable<IIfcPerson> IIfcAddress.OfPerson 

@@ -53,15 +53,15 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get
 			{
-				if (Status == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Status);
+				if (!Status.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Status.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcProjectOrder.LongDescription 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcText((string)ID);
+				return new Ifc4.MeasureResource.IfcText(ID);
 			} 
 		}
 	}

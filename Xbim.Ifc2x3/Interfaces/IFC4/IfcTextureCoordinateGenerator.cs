@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel((string)Mode);
+				return new Ifc4.MeasureResource.IfcLabel(Mode);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcReal> IIfcTextureCoordinateGenerator.Parameter 

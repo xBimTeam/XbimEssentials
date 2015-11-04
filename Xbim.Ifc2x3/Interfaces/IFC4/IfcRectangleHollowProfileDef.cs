@@ -20,23 +20,23 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)WallThickness);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(WallThickness);
 			} 
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.InnerFilletRadius 
 		{ 
 			get
 			{
-				if (InnerFilletRadius == null) return null;
-				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)InnerFilletRadius);
+				if (!InnerFilletRadius.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(InnerFilletRadius.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.OuterFilletRadius 
 		{ 
 			get
 			{
-				if (OuterFilletRadius == null) return null;
-				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)OuterFilletRadius);
+				if (!OuterFilletRadius.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(OuterFilletRadius.Value);
 			} 
 		}
 	}

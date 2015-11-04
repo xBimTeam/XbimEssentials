@@ -20,28 +20,28 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				return DiffuseTransmissionColour as IIfcColourRgb;
+				return DiffuseTransmissionColour;
 			} 
 		}
 		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseReflectionColour 
 		{ 
 			get
 			{
-				return DiffuseReflectionColour as IIfcColourRgb;
+				return DiffuseReflectionColour;
 			} 
 		}
 		IIfcColourRgb IIfcSurfaceStyleLighting.TransmissionColour 
 		{ 
 			get
 			{
-				return TransmissionColour as IIfcColourRgb;
+				return TransmissionColour;
 			} 
 		}
 		IIfcColourRgb IIfcSurfaceStyleLighting.ReflectanceColour 
 		{ 
 			get
 			{
-				return ReflectanceColour as IIfcColourRgb;
+				return ReflectanceColour;
 			} 
 		}
 	}

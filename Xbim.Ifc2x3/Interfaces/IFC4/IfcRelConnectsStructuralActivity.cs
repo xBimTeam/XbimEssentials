@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				return RelatedStructuralActivity as IIfcStructuralActivity;
+				return RelatedStructuralActivity;
 			} 
 		}
 	}

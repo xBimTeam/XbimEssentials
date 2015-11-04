@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				if (MethodOfMeasurement == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)MethodOfMeasurement);
+				if (!MethodOfMeasurement.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(MethodOfMeasurement.Value);
 			} 
 		}
 		IEnumerable<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities 

@@ -20,24 +20,24 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				if (Id == null) return null;
-				return new Ifc4.MeasureResource.IfcIdentifier((string)Id);
+				if (!Id.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcIdentifier(Id.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPerson.FamilyName 
 		{ 
 			get
 			{
-				if (FamilyName == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)FamilyName);
+				if (!FamilyName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(FamilyName.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPerson.GivenName 
 		{ 
 			get
 			{
-				if (GivenName == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)GivenName);
+				if (!GivenName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(GivenName.Value);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.MiddleNames 

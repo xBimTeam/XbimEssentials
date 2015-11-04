@@ -20,48 +20,48 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
-				if (LinearForceX == null) return null;
-				return new Ifc4.MeasureResource.IfcLinearForceMeasure((double)LinearForceX);
+				if (!LinearForceX.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLinearForceMeasure(LinearForceX.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceY 
 		{ 
 			get
 			{
-				if (LinearForceY == null) return null;
-				return new Ifc4.MeasureResource.IfcLinearForceMeasure((double)LinearForceY);
+				if (!LinearForceY.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLinearForceMeasure(LinearForceY.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceZ 
 		{ 
 			get
 			{
-				if (LinearForceZ == null) return null;
-				return new Ifc4.MeasureResource.IfcLinearForceMeasure((double)LinearForceZ);
+				if (!LinearForceZ.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLinearForceMeasure(LinearForceZ.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentX 
 		{ 
 			get
 			{
-				if (LinearMomentX == null) return null;
-				return new Ifc4.MeasureResource.IfcLinearMomentMeasure((double)LinearMomentX);
+				if (!LinearMomentX.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLinearMomentMeasure(LinearMomentX.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentY 
 		{ 
 			get
 			{
-				if (LinearMomentY == null) return null;
-				return new Ifc4.MeasureResource.IfcLinearMomentMeasure((double)LinearMomentY);
+				if (!LinearMomentY.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLinearMomentMeasure(LinearMomentY.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentZ 
 		{ 
 			get
 			{
-				if (LinearMomentZ == null) return null;
-				return new Ifc4.MeasureResource.IfcLinearMomentMeasure((double)LinearMomentZ);
+				if (!LinearMomentZ.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLinearMomentMeasure(LinearMomentZ.Value);
 			} 
 		}
 	}

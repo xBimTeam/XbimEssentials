@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
-				return OuterBoundary as IIfcCurve;
+				return OuterBoundary;
 			} 
 		}
 		IEnumerable<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries 

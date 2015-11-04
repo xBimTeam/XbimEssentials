@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.ControlExtension
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel((string)Intent);
+				return new Ifc4.MeasureResource.IfcLabel(Intent);
 			} 
 		}
 		IIfcConstraint IIfcRelAssociatesConstraint.RelatingConstraint 
 		{ 
 			get
 			{
-				return RelatingConstraint as IIfcConstraint;
+				return RelatingConstraint;
 			} 
 		}
 	}

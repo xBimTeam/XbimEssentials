@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				return ConnectionConstraint as IIfcConnectionGeometry;
+				return ConnectionConstraint;
 			} 
 		}
 	}

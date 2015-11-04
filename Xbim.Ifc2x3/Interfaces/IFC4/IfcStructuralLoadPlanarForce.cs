@@ -20,24 +20,24 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
-				if (PlanarForceX == null) return null;
-				return new Ifc4.MeasureResource.IfcPlanarForceMeasure((double)PlanarForceX);
+				if (!PlanarForceX.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPlanarForceMeasure(PlanarForceX.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceY 
 		{ 
 			get
 			{
-				if (PlanarForceY == null) return null;
-				return new Ifc4.MeasureResource.IfcPlanarForceMeasure((double)PlanarForceY);
+				if (!PlanarForceY.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPlanarForceMeasure(PlanarForceY.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceZ 
 		{ 
 			get
 			{
-				if (PlanarForceZ == null) return null;
-				return new Ifc4.MeasureResource.IfcPlanarForceMeasure((double)PlanarForceZ);
+				if (!PlanarForceZ.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPlanarForceMeasure(PlanarForceZ.Value);
 			} 
 		}
 	}

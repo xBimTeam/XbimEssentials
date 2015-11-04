@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				if (ApplicableOccurrence == null) return null;
-				return new Ifc4.MeasureResource.IfcIdentifier((string)ApplicableOccurrence);
+				if (!ApplicableOccurrence.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcIdentifier(ApplicableOccurrence.Value);
 			} 
 		}
 		IEnumerable<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets 

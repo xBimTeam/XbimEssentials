@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)SemiAxis1);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(SemiAxis1);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis2 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)SemiAxis2);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(SemiAxis2);
 			} 
 		}
 	}

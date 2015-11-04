@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
-				return Dimensions as IIfcDimensionalExponents;
+				return Dimensions;
 			} 
 		}
 		Ifc4.MeasureResource.IfcUnitEnum IIfcNamedUnit.UnitType 

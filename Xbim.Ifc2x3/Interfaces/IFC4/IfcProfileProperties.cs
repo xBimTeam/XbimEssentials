@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				return ProfileDefinition as IIfcProfileDef;
+				return ProfileDefinition;
 			} 
 		}
 		Ifc4.MeasureResource.IfcIdentifier? IIfcExtendedProperties.Name 

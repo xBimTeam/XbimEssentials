@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
-				if (SteelGrade == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)SteelGrade);
+				if (!SteelGrade.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(SteelGrade.Value);
 			} 
 		}
 	}

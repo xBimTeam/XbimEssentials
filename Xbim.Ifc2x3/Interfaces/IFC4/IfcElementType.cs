@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				if (ElementType == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)ElementType);
+				if (!ElementType.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ElementType.Value);
 			} 
 		}
 	}

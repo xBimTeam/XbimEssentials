@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				return OrientationOf2DPlane as IIfcAxis2Placement3D;
+				return OrientationOf2DPlane;
 			} 
 		}
 		IEnumerable<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy 

@@ -20,21 +20,21 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				return ConnectionGeometry as IIfcConnectionGeometry;
+				return ConnectionGeometry;
 			} 
 		}
 		IIfcElement IIfcRelConnectsElements.RelatingElement 
 		{ 
 			get
 			{
-				return RelatingElement as IIfcElement;
+				return RelatingElement;
 			} 
 		}
 		IIfcElement IIfcRelConnectsElements.RelatedElement 
 		{ 
 			get
 			{
-				return RelatedElement as IIfcElement;
+				return RelatedElement;
 			} 
 		}
 	}

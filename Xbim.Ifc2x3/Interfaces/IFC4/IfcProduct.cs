@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return ObjectPlacement as IIfcObjectPlacement;
+				return ObjectPlacement;
 			} 
 		}
 		IIfcProductRepresentation IIfcProduct.Representation 
 		{ 
 			get
 			{
-				return Representation as IIfcProductRepresentation;
+				return Representation;
 			} 
 		}
 		IEnumerable<IIfcRelAssignsToProduct> IIfcProduct.ReferencedBy 

@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				return ClassifiedMaterial as IIfcMaterial;
+				return ClassifiedMaterial;
 			} 
 		}
 	}

@@ -20,15 +20,15 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcTimeSeries.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDateTime IIfcTimeSeries.StartTime 
@@ -115,8 +115,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
-				if (UserDefinedDataOrigin == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)UserDefinedDataOrigin);
+				if (!UserDefinedDataOrigin.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(UserDefinedDataOrigin.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcUnit IIfcTimeSeries.Unit 

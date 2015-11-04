@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcVolumeMeasure((double)VolumeValue);
+				return new Ifc4.MeasureResource.IfcVolumeMeasure(VolumeValue);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityVolume.Formula 

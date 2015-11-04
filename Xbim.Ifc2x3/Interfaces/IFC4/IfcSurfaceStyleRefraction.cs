@@ -20,16 +20,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				if (RefractionIndex == null) return null;
-				return new Ifc4.MeasureResource.IfcReal((double)RefractionIndex);
+				if (!RefractionIndex.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcReal(RefractionIndex.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcReal? IIfcSurfaceStyleRefraction.DispersionFactor 
 		{ 
 			get
 			{
-				if (DispersionFactor == null) return null;
-				return new Ifc4.MeasureResource.IfcReal((double)DispersionFactor);
+				if (!DispersionFactor.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcReal(DispersionFactor.Value);
 			} 
 		}
 	}

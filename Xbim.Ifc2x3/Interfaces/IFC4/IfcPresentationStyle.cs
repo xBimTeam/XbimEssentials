@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				if (Name == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Name);
+				if (!Name.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
 	}

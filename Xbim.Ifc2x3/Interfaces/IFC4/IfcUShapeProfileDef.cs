@@ -20,52 +20,52 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Depth);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Depth);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcUShapeProfileDef.FlangeWidth 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FlangeWidth);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FlangeWidth);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcUShapeProfileDef.WebThickness 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)WebThickness);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(WebThickness);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcUShapeProfileDef.FlangeThickness 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FlangeThickness);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FlangeThickness);
 			} 
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcUShapeProfileDef.FilletRadius 
 		{ 
 			get
 			{
-				if (FilletRadius == null) return null;
-				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)FilletRadius);
+				if (!FilletRadius.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(FilletRadius.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcUShapeProfileDef.EdgeRadius 
 		{ 
 			get
 			{
-				if (EdgeRadius == null) return null;
-				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)EdgeRadius);
+				if (!EdgeRadius.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(EdgeRadius.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcUShapeProfileDef.FlangeSlope 
 		{ 
 			get
 			{
-				if (FlangeSlope == null) return null;
-				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)FlangeSlope);
+				if (!FlangeSlope.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(FlangeSlope.Value);
 			} 
 		}
 	}

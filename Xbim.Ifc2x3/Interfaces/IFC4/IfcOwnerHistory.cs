@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get
 			{
-				return OwningUser as IIfcPersonAndOrganization;
+				return OwningUser;
 			} 
 		}
 		IIfcApplication IIfcOwnerHistory.OwningApplication 
 		{ 
 			get
 			{
-				return OwningApplication as IIfcApplication;
+				return OwningApplication;
 			} 
 		}
 		Ifc4.UtilityResource.IfcStateEnum? IIfcOwnerHistory.State 
@@ -97,29 +97,29 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get
 			{
-				if (LastModifiedDate == null) return null;
-				return new Ifc4.DateTimeResource.IfcTimeStamp((long)LastModifiedDate);
+				if (!LastModifiedDate.HasValue) return null;
+				return new Ifc4.DateTimeResource.IfcTimeStamp(LastModifiedDate.Value);
 			} 
 		}
 		IIfcPersonAndOrganization IIfcOwnerHistory.LastModifyingUser 
 		{ 
 			get
 			{
-				return LastModifyingUser as IIfcPersonAndOrganization;
+				return LastModifyingUser;
 			} 
 		}
 		IIfcApplication IIfcOwnerHistory.LastModifyingApplication 
 		{ 
 			get
 			{
-				return LastModifyingApplication as IIfcApplication;
+				return LastModifyingApplication;
 			} 
 		}
 		Ifc4.DateTimeResource.IfcTimeStamp IIfcOwnerHistory.CreationDate 
 		{ 
 			get
 			{
-				return new Ifc4.DateTimeResource.IfcTimeStamp((long)CreationDate);
+				return new Ifc4.DateTimeResource.IfcTimeStamp(CreationDate);
 			} 
 		}
 	}

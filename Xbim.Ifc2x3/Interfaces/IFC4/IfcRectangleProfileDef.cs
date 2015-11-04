@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)XDim);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(XDim);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangleProfileDef.YDim 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)YDim);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(YDim);
 			} 
 		}
 	}

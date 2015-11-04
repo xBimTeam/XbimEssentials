@@ -39,8 +39,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
-				if (Purpose == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Purpose);
+				if (!Purpose.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Purpose.Value);
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.Duration 

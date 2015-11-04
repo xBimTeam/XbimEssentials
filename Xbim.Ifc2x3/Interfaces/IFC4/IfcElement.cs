@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				if (Tag == null) return null;
-				return new Ifc4.MeasureResource.IfcIdentifier((string)Tag);
+				if (!Tag.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcIdentifier(Tag.Value);
 			} 
 		}
 		IEnumerable<IIfcRelFillsElement> IIfcElement.FillsVoids 

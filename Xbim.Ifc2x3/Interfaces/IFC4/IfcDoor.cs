@@ -20,16 +20,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				if (OverallHeight == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)OverallHeight);
+				if (!OverallHeight.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallHeight.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoor.OverallWidth 
 		{ 
 			get
 			{
-				if (OverallWidth == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)OverallWidth);
+				if (!OverallWidth.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth.Value);
 			} 
 		}
 		Ifc4.SharedBldgElements.IfcDoorTypeEnum? IIfcDoor.PredefinedType 

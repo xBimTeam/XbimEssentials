@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				return new Ifc4.GeometryResource.IfcDimensionCount((long)CoordinateSpaceDimension);
+				return new Ifc4.GeometryResource.IfcDimensionCount(CoordinateSpaceDimension);
 			} 
 		}
 		double? IIfcGeometricRepresentationContext.Precision 
@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				return TrueNorth as IIfcDirection;
+				return TrueNorth;
 			} 
 		}
 		IEnumerable<IIfcGeometricRepresentationSubContext> IIfcGeometricRepresentationContext.HasSubContexts 

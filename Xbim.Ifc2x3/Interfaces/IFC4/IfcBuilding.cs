@@ -20,23 +20,23 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				if (ElevationOfRefHeight == null) return null;
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)ElevationOfRefHeight);
+				if (!ElevationOfRefHeight.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(ElevationOfRefHeight.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfTerrain 
 		{ 
 			get
 			{
-				if (ElevationOfTerrain == null) return null;
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)ElevationOfTerrain);
+				if (!ElevationOfTerrain.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(ElevationOfTerrain.Value);
 			} 
 		}
 		IIfcPostalAddress IIfcBuilding.BuildingAddress 
 		{ 
 			get
 			{
-				return BuildingAddress as IIfcPostalAddress;
+				return BuildingAddress;
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 

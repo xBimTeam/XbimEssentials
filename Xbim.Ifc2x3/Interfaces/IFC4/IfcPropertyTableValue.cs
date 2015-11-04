@@ -426,8 +426,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				if (Expression == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)Expression);
+				if (!Expression.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Expression.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcUnit IIfcPropertyTableValue.DefiningUnit 

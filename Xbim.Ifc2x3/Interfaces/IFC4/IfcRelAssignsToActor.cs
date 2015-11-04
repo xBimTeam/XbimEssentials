@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return RelatingActor as IIfcActor;
+				return RelatingActor;
 			} 
 		}
 		IIfcActorRole IIfcRelAssignsToActor.ActingRole 
 		{ 
 			get
 			{
-				return ActingRole as IIfcActorRole;
+				return ActingRole;
 			} 
 		}
 	}

@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				return RelatingSystem as IIfcSystem;
+				return RelatingSystem;
 			} 
 		}
 		IEnumerable<IIfcSpatialElement> IIfcRelServicesBuildings.RelatedBuildings 

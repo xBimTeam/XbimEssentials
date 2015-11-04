@@ -33,26 +33,22 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case IfcAirTerminalTypeEnum.EYEBALL:
 						//## Handle translation of EYEBALL member from IfcAirTerminalTypeEnum in property PredefinedType
-						//TODO: Handle translation of EYEBALL member from IfcAirTerminalTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
 						//##
 										
 					case IfcAirTerminalTypeEnum.IRIS:
 						//## Handle translation of IRIS member from IfcAirTerminalTypeEnum in property PredefinedType
-						//TODO: Handle translation of IRIS member from IfcAirTerminalTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
 						//##
 										
 					case IfcAirTerminalTypeEnum.LINEARGRILLE:
 						//## Handle translation of LINEARGRILLE member from IfcAirTerminalTypeEnum in property PredefinedType
-						//TODO: Handle translation of LINEARGRILLE member from IfcAirTerminalTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
 						//##
 										
 					case IfcAirTerminalTypeEnum.LINEARDIFFUSER:
 						//## Handle translation of LINEARDIFFUSER member from IfcAirTerminalTypeEnum in property PredefinedType
-						//TODO: Handle translation of LINEARDIFFUSER member from IfcAirTerminalTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
 						//##
 										
 					case IfcAirTerminalTypeEnum.USERDEFINED:

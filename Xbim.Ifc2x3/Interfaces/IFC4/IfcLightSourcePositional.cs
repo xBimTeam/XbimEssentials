@@ -20,35 +20,35 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				return Position as IIfcCartesianPoint;
+				return Position;
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcLightSourcePositional.Radius 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Radius);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Radius);
 			} 
 		}
 		Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.ConstantAttenuation 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcReal((double)ConstantAttenuation);
+				return new Ifc4.MeasureResource.IfcReal(ConstantAttenuation);
 			} 
 		}
 		Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.DistanceAttenuation 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcReal((double)DistanceAttenuation);
+				return new Ifc4.MeasureResource.IfcReal(DistanceAttenuation);
 			} 
 		}
 		Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.QuadricAttenuation 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcReal((double)QuadricAttenuation);
+				return new Ifc4.MeasureResource.IfcReal(QuadricAttenuation);
 			} 
 		}
 	}

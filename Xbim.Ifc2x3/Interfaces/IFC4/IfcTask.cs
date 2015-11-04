@@ -20,16 +20,16 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
-				if (Status == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Status);
+				if (!Status.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Status.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcTask.WorkMethod 
 		{ 
 			get
 			{
-				if (WorkMethod == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)WorkMethod);
+				if (!WorkMethod.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(WorkMethod.Value);
 			} 
 		}
 		bool IIfcTask.IsMilestone 

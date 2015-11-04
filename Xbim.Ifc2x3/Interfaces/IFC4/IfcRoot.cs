@@ -20,30 +20,30 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return new Ifc4.UtilityResource.IfcGloballyUniqueId((string)GlobalId);
+				return new Ifc4.UtilityResource.IfcGloballyUniqueId(GlobalId);
 			} 
 		}
 		IIfcOwnerHistory IIfcRoot.OwnerHistory 
 		{ 
 			get
 			{
-				return OwnerHistory as IIfcOwnerHistory;
+				return OwnerHistory;
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcRoot.Name 
 		{ 
 			get
 			{
-				if (Name == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Name);
+				if (!Name.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcRoot.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 	}

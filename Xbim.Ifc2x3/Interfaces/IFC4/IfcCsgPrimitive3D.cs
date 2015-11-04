@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				return Position as IIfcAxis2Placement3D;
+				return Position;
 			} 
 		}
 	}

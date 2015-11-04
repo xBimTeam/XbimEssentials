@@ -223,7 +223,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				return EnumerationReference as IIfcPropertyEnumeration;
+				return EnumerationReference;
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 

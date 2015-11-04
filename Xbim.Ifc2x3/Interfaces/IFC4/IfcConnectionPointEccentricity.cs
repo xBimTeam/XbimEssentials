@@ -20,24 +20,24 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				if (EccentricityInX == null) return null;
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)EccentricityInX);
+				if (!EccentricityInX.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(EccentricityInX.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInY 
 		{ 
 			get
 			{
-				if (EccentricityInY == null) return null;
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)EccentricityInY);
+				if (!EccentricityInY.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(EccentricityInY.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInZ 
 		{ 
 			get
 			{
-				if (EccentricityInZ == null) return null;
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)EccentricityInZ);
+				if (!EccentricityInZ.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(EccentricityInZ.Value);
 			} 
 		}
 	}

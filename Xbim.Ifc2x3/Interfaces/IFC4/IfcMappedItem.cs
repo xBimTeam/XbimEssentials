@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return MappingSource as IIfcRepresentationMap;
+				return MappingSource;
 			} 
 		}
 		IIfcCartesianTransformationOperator IIfcMappedItem.MappingTarget 
 		{ 
 			get
 			{
-				return MappingTarget as IIfcCartesianTransformationOperator;
+				return MappingTarget;
 			} 
 		}
 	}

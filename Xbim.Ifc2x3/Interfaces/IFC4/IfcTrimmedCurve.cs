@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return BasisCurve as IIfcCurve;
+				return BasisCurve;
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.GeometryResource.IfcTrimmingSelect> IIfcTrimmedCurve.Trim1 

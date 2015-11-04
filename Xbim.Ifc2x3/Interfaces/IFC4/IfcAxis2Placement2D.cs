@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return RefDirection as IIfcDirection;
+				return RefDirection;
 			} 
 		}
 	}

@@ -173,16 +173,16 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				if (Coefficient == null) return null;
-				return new Ifc4.MeasureResource.IfcRatioMeasure((double)Coefficient);
+				if (!Coefficient.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcRatioMeasure(Coefficient.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcStructuralLoadGroup.Purpose 
 		{ 
 			get
 			{
-				if (Purpose == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Purpose);
+				if (!Purpose.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Purpose.Value);
 			} 
 		}
 		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralLoadGroup.SourceOfResultGroup 

@@ -20,28 +20,28 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				return Corner as IIfcCartesianPoint;
+				return Corner;
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBoundingBox.XDim 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)XDim);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(XDim);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBoundingBox.YDim 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)YDim);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(YDim);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBoundingBox.ZDim 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)ZDim);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(ZDim);
 			} 
 		}
 	}

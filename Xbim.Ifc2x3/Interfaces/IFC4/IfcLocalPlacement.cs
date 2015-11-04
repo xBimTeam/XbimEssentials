@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				return PlacementRelTo as IIfcObjectPlacement;
+				return PlacementRelTo;
 			} 
 		}
 		Ifc4.GeometryResource.IfcAxis2Placement IIfcLocalPlacement.RelativePlacement 

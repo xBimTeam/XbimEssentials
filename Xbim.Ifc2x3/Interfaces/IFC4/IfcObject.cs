@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				if (ObjectType == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)ObjectType);
+				if (!ObjectType.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ObjectType.Value);
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByObject> IIfcObject.IsDeclaredBy 

@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Height);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Height);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRightCircularCylinder.Radius 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Radius);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Radius);
 			} 
 		}
 	}

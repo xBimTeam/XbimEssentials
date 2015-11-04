@@ -77,23 +77,23 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get
 			{
-				if (FrameDepth == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FrameDepth);
+				if (!FrameDepth.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FrameDepth.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameThickness 
 		{ 
 			get
 			{
-				if (FrameThickness == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FrameThickness);
+				if (!FrameThickness.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FrameThickness.Value);
 			} 
 		}
 		IIfcShapeAspect IIfcPermeableCoveringProperties.ShapeAspectStyle 
 		{ 
 			get
 			{
-				return ShapeAspectStyle as IIfcShapeAspect;
+				return ShapeAspectStyle;
 			} 
 		}
 	}

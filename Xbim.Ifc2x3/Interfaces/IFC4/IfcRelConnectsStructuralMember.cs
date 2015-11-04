@@ -20,43 +20,43 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				return RelatingStructuralMember as IIfcStructuralMember;
+				return RelatingStructuralMember;
 			} 
 		}
 		IIfcStructuralConnection IIfcRelConnectsStructuralMember.RelatedStructuralConnection 
 		{ 
 			get
 			{
-				return RelatedStructuralConnection as IIfcStructuralConnection;
+				return RelatedStructuralConnection;
 			} 
 		}
 		IIfcBoundaryCondition IIfcRelConnectsStructuralMember.AppliedCondition 
 		{ 
 			get
 			{
-				return AppliedCondition as IIfcBoundaryCondition;
+				return AppliedCondition;
 			} 
 		}
 		IIfcStructuralConnectionCondition IIfcRelConnectsStructuralMember.AdditionalConditions 
 		{ 
 			get
 			{
-				return AdditionalConditions as IIfcStructuralConnectionCondition;
+				return AdditionalConditions;
 			} 
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcRelConnectsStructuralMember.SupportedLength 
 		{ 
 			get
 			{
-				if (SupportedLength == null) return null;
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)SupportedLength);
+				if (!SupportedLength.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(SupportedLength.Value);
 			} 
 		}
 		IIfcAxis2Placement3D IIfcRelConnectsStructuralMember.ConditionCoordinateSystem 
 		{ 
 			get
 			{
-				return ConditionCoordinateSystem as IIfcAxis2Placement3D;
+				return ConditionCoordinateSystem;
 			} 
 		}
 	}

@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
 		IIfcMeasureWithUnit IIfcConversionBasedUnit.ConversionFactor 
 		{ 
 			get
 			{
-				return ConversionFactor as IIfcMeasureWithUnit;
+				return ConversionFactor;
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcConversionBasedUnit.HasExternalReference 

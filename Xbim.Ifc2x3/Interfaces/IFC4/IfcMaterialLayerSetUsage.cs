@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				return ForLayerSet as IIfcMaterialLayerSet;
+				return ForLayerSet;
 			} 
 		}
 		Ifc4.MaterialResource.IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection 
@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)OffsetFromReferenceLine);
+				return new Ifc4.MeasureResource.IfcLengthMeasure(OffsetFromReferenceLine);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMaterialLayerSetUsage.ReferenceExtent 

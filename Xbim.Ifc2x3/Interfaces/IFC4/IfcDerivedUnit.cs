@@ -189,8 +189,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
-				if (UserDefinedType == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)UserDefinedType);
+				if (!UserDefinedType.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(UserDefinedType.Value);
 			} 
 		}
 	}

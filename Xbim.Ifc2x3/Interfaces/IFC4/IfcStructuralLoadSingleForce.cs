@@ -20,48 +20,48 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
-				if (ForceX == null) return null;
-				return new Ifc4.MeasureResource.IfcForceMeasure((double)ForceX);
+				if (!ForceX.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcForceMeasure(ForceX.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceY 
 		{ 
 			get
 			{
-				if (ForceY == null) return null;
-				return new Ifc4.MeasureResource.IfcForceMeasure((double)ForceY);
+				if (!ForceY.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcForceMeasure(ForceY.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceZ 
 		{ 
 			get
 			{
-				if (ForceZ == null) return null;
-				return new Ifc4.MeasureResource.IfcForceMeasure((double)ForceZ);
+				if (!ForceZ.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcForceMeasure(ForceZ.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentX 
 		{ 
 			get
 			{
-				if (MomentX == null) return null;
-				return new Ifc4.MeasureResource.IfcTorqueMeasure((double)MomentX);
+				if (!MomentX.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcTorqueMeasure(MomentX.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentY 
 		{ 
 			get
 			{
-				if (MomentY == null) return null;
-				return new Ifc4.MeasureResource.IfcTorqueMeasure((double)MomentY);
+				if (!MomentY.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcTorqueMeasure(MomentY.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentZ 
 		{ 
 			get
 			{
-				if (MomentZ == null) return null;
-				return new Ifc4.MeasureResource.IfcTorqueMeasure((double)MomentZ);
+				if (!MomentZ.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcTorqueMeasure(MomentZ.Value);
 			} 
 		}
 	}

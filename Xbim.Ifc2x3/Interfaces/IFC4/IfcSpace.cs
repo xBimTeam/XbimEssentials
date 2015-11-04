@@ -30,8 +30,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				if (ElevationWithFlooring == null) return null;
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)ElevationWithFlooring);
+				if (!ElevationWithFlooring.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(ElevationWithFlooring.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 

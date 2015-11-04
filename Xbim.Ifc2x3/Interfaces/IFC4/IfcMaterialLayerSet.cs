@@ -30,8 +30,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				if (LayerSetName == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)LayerSetName);
+				if (!LayerSetName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(LayerSetName.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcMaterialLayerSet.Description 

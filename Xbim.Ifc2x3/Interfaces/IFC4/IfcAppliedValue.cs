@@ -20,16 +20,16 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
-				if (Name == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Name);
+				if (!Name.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcAppliedValue.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 		Ifc4.CostResource.IfcAppliedValueSelect IIfcAppliedValue.AppliedValue 
@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
-				return UnitBasis as IIfcMeasureWithUnit;
+				return UnitBasis;
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcAppliedValue.ApplicableDate 
@@ -59,9 +59,8 @@ namespace Xbim.Ifc2x3.CostResource
 			get
 			{
 				//## Handle return of ApplicableDate for which no match was found
-				//TODO: Handle return of ApplicableDate for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				return ApplicableDate != null ? new Ifc4.DateTimeResource.IfcDate(ApplicableDate.ToISODateTimeString()) : null;
+			    //##
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcAppliedValue.FixedUntilDate 
@@ -69,8 +68,7 @@ namespace Xbim.Ifc2x3.CostResource
 			get
 			{
 				//## Handle return of FixedUntilDate for which no match was found
-				//TODO: Handle return of FixedUntilDate for which no match was found
-				throw new System.NotImplementedException();
+                return FixedUntilDate != null ? new Ifc4.DateTimeResource.IfcDate(FixedUntilDate.ToISODateTimeString()) : null;
 				//##
 			} 
 		}
@@ -79,9 +77,8 @@ namespace Xbim.Ifc2x3.CostResource
 			get
 			{
 				//## Handle return of Category for which no match was found
-				//TODO: Handle return of Category for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Condition 
@@ -89,8 +86,7 @@ namespace Xbim.Ifc2x3.CostResource
 			get
 			{
 				//## Handle return of Condition for which no match was found
-				//TODO: Handle return of Condition for which no match was found
-				throw new System.NotImplementedException();
+                return null;
 				//##
 			} 
 		}
@@ -99,9 +95,23 @@ namespace Xbim.Ifc2x3.CostResource
 			get
 			{
 				//## Handle return of ArithmeticOperator for which no match was found
-				//TODO: Handle return of ArithmeticOperator for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    var relation = ValueOfComponents.FirstOrDefault();
+                if(relation == null)
+                    return null;
+			    switch (relation.ArithmeticOperator)
+			    {
+			        case IfcArithmeticOperatorEnum.ADD:
+			            return Ifc4.CostResource.IfcArithmeticOperatorEnum.ADD;
+			        case IfcArithmeticOperatorEnum.DIVIDE:
+			            return Ifc4.CostResource.IfcArithmeticOperatorEnum.DIVIDE;
+			        case IfcArithmeticOperatorEnum.MULTIPLY:
+			            return Ifc4.CostResource.IfcArithmeticOperatorEnum.MULTIPLY;
+			        case IfcArithmeticOperatorEnum.SUBTRACT:
+			            return Ifc4.CostResource.IfcArithmeticOperatorEnum.SUBTRACT;
+			        default:
+			            throw new System.ArgumentOutOfRangeException();
+			    }
+			    //##
 			} 
 		}
 		IEnumerable<IIfcAppliedValue> IIfcAppliedValue.Components 
@@ -109,9 +119,8 @@ namespace Xbim.Ifc2x3.CostResource
 			get
 			{
 				//## Handle return of Components for which no match was found
-				//TODO: Handle return of Components for which no match was found
-				throw new System.NotImplementedException();
-				//##
+	            return ValueOfComponents.SelectMany(relationship => relationship.Components);
+	            //##
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcAppliedValue.HasExternalReference 

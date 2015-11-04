@@ -30,14 +30,14 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				return RelatedBuildingElement as IIfcElement;
+				return RelatedBuildingElement;
 			} 
 		}
 		IIfcConnectionGeometry IIfcRelSpaceBoundary.ConnectionGeometry 
 		{ 
 			get
 			{
-				return ConnectionGeometry as IIfcConnectionGeometry;
+				return ConnectionGeometry;
 			} 
 		}
 		Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary 

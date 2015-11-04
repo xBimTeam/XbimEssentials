@@ -104,23 +104,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-				if (FrameDepth == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FrameDepth);
+				if (!FrameDepth.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FrameDepth.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameThickness 
 		{ 
 			get
 			{
-				if (FrameThickness == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FrameThickness);
+				if (!FrameThickness.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FrameThickness.Value);
 			} 
 		}
 		IIfcShapeAspect IIfcWindowPanelProperties.ShapeAspectStyle 
 		{ 
 			get
 			{
-				return ShapeAspectStyle as IIfcShapeAspect;
+				return ShapeAspectStyle;
 			} 
 		}
 	}

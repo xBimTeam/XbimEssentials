@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return ExtrudedDirection as IIfcDirection;
+				return ExtrudedDirection;
 			} 
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcSurfaceOfLinearExtrusion.Depth 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)Depth);
+				return new Ifc4.MeasureResource.IfcLengthMeasure(Depth);
 			} 
 		}
 	}

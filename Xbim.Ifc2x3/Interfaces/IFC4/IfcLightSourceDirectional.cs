@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				return Orientation as IIfcDirection;
+				return Orientation;
 			} 
 		}
 	}

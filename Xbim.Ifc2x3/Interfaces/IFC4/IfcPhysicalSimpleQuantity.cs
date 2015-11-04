@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get
 			{
-				return Unit as IIfcNamedUnit;
+				return Unit;
 			} 
 		}
 	}

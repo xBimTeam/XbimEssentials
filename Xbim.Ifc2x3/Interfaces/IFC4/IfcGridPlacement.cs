@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				return PlacementLocation as IIfcVirtualGridIntersection;
+				return PlacementLocation;
 			} 
 		}
 		Ifc4.GeometricConstraintResource.IfcGridPlacementDirectionSelect IIfcGridPlacement.PlacementRefDirection 

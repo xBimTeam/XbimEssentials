@@ -20,15 +20,15 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcPresentationLayerAssignment.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.PresentationOrganizationResource.IfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems 
@@ -50,8 +50,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				if (Identifier == null) return null;
-				return new Ifc4.MeasureResource.IfcIdentifier((string)Identifier);
+				if (!Identifier.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcIdentifier(Identifier.Value);
 			} 
 		}
 	}

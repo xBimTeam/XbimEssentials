@@ -20,21 +20,21 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcInteger((long)Width);
+				return new Ifc4.MeasureResource.IfcInteger(Width);
 			} 
 		}
 		Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.Height 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcInteger((long)Height);
+				return new Ifc4.MeasureResource.IfcInteger(Height);
 			} 
 		}
 		Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.ColourComponents 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcInteger((long)ColourComponents);
+				return new Ifc4.MeasureResource.IfcInteger(ColourComponents);
 			} 
 		}
 		IEnumerable<long> IIfcPixelTexture.Pixel 

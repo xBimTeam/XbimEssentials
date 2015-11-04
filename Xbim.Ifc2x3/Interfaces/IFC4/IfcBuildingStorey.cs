@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				if (Elevation == null) return null;
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)Elevation);
+				if (!Elevation.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(Elevation.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 

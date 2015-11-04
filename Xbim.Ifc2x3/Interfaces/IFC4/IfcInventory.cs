@@ -84,14 +84,14 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
-				return CurrentValue as IIfcCostValue;
+				return CurrentValue;
 			} 
 		}
 		IIfcCostValue IIfcInventory.OriginalValue 
 		{ 
 			get
 			{
-				return OriginalValue as IIfcCostValue;
+				return OriginalValue;
 			} 
 		}
 	}

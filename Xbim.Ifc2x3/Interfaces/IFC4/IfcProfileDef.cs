@@ -38,8 +38,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				if (ProfileName == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)ProfileName);
+				if (!ProfileName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ProfileName.Value);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcProfileDef.HasExternalReference 

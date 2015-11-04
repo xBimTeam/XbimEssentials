@@ -20,15 +20,15 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcIdentifier((string)Name);
+				return new Ifc4.MeasureResource.IfcIdentifier(Name);
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcProperty.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 		IEnumerable<IIfcPropertySet> IIfcProperty.PartOfPset 

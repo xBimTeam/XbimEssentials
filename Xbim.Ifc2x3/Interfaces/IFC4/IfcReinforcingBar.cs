@@ -20,22 +20,22 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)NominalDiameter);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalDiameter);
 			} 
 		}
 		Ifc4.MeasureResource.IfcAreaMeasure? IIfcReinforcingBar.CrossSectionArea 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcAreaMeasure((double)CrossSectionArea);
+				return new Ifc4.MeasureResource.IfcAreaMeasure(CrossSectionArea);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingBar.BarLength 
 		{ 
 			get
 			{
-				if (BarLength == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)BarLength);
+				if (!BarLength.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(BarLength.Value);
 			} 
 		}
 		Ifc4.StructuralElementsDomain.IfcReinforcingBarTypeEnum? IIfcReinforcingBar.PredefinedType 

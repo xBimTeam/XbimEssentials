@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)TilingScale);
+				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure(TilingScale);
 			} 
 		}
 	}

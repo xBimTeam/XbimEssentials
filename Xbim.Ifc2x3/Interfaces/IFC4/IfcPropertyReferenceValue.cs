@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				if (UsageName == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)UsageName);
+				if (!UsageName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(UsageName.Value);
 			} 
 		}
 		Ifc4.PropertyResource.IfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference 

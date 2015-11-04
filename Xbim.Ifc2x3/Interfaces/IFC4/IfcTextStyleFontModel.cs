@@ -30,24 +30,24 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get
 			{
-				if (FontStyle == null) return null;
-				return new Ifc4.PresentationAppearanceResource.IfcFontStyle((string)FontStyle);
+				if (!FontStyle.HasValue) return null;
+				return new Ifc4.PresentationAppearanceResource.IfcFontStyle(FontStyle.Value);
 			} 
 		}
 		Ifc4.PresentationAppearanceResource.IfcFontVariant? IIfcTextStyleFontModel.FontVariant 
 		{ 
 			get
 			{
-				if (FontVariant == null) return null;
-				return new Ifc4.PresentationAppearanceResource.IfcFontVariant((string)FontVariant);
+				if (!FontVariant.HasValue) return null;
+				return new Ifc4.PresentationAppearanceResource.IfcFontVariant(FontVariant.Value);
 			} 
 		}
 		Ifc4.PresentationAppearanceResource.IfcFontWeight? IIfcTextStyleFontModel.FontWeight 
 		{ 
 			get
 			{
-				if (FontWeight == null) return null;
-				return new Ifc4.PresentationAppearanceResource.IfcFontWeight((string)FontWeight);
+				if (!FontWeight.HasValue) return null;
+				return new Ifc4.PresentationAppearanceResource.IfcFontWeight(FontWeight.Value);
 			} 
 		}
 		Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleFontModel.FontSize 

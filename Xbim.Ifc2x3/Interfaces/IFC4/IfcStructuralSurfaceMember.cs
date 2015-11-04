@@ -30,8 +30,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				if (Thickness == null) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Thickness);
+				if (!Thickness.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Thickness.Value);
 			} 
 		}
 	}

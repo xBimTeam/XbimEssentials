@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				return HatchLineAppearance as IIfcCurveStyle;
+				return HatchLineAppearance;
 			} 
 		}
 		Ifc4.PresentationAppearanceResource.IfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine 
@@ -43,21 +43,21 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				return PointOfReferenceHatchLine as IIfcCartesianPoint;
+				return PointOfReferenceHatchLine;
 			} 
 		}
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PatternStart 
 		{ 
 			get
 			{
-				return PatternStart as IIfcCartesianPoint;
+				return PatternStart;
 			} 
 		}
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure IIfcFillAreaStyleHatching.HatchLineAngle 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)HatchLineAngle);
+				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(HatchLineAngle);
 			} 
 		}
 	}

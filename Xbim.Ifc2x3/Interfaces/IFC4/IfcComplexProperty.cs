@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcIdentifier((string)UsageName);
+				return new Ifc4.MeasureResource.IfcIdentifier(UsageName);
 			} 
 		}
 		IEnumerable<IIfcProperty> IIfcComplexProperty.HasProperties 

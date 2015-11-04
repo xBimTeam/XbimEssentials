@@ -40,16 +40,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				if (TextAlign == null) return null;
-				return new Ifc4.PresentationAppearanceResource.IfcTextAlignment((string)TextAlign);
+				if (!TextAlign.HasValue) return null;
+				return new Ifc4.PresentationAppearanceResource.IfcTextAlignment(TextAlign.Value);
 			} 
 		}
 		Ifc4.PresentationAppearanceResource.IfcTextDecoration? IIfcTextStyleTextModel.TextDecoration 
 		{ 
 			get
 			{
-				if (TextDecoration == null) return null;
-				return new Ifc4.PresentationAppearanceResource.IfcTextDecoration((string)TextDecoration);
+				if (!TextDecoration.HasValue) return null;
+				return new Ifc4.PresentationAppearanceResource.IfcTextDecoration(TextDecoration.Value);
 			} 
 		}
 		Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.LetterSpacing 
@@ -96,8 +96,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				if (TextTransform == null) return null;
-				return new Ifc4.PresentationAppearanceResource.IfcTextTransformation((string)TextTransform);
+				if (!TextTransform.HasValue) return null;
+				return new Ifc4.PresentationAppearanceResource.IfcTextTransformation(TextTransform.Value);
 			} 
 		}
 		Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.LineHeight 

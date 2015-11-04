@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				return RelatingPort as IIfcPort;
+				return RelatingPort;
 			} 
 		}
 		IIfcDistributionElement IIfcRelConnectsPortToElement.RelatedElement 

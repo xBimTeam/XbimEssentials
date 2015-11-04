@@ -20,28 +20,28 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)BottomXDim);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(BottomXDim);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.TopXDim 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)TopXDim);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(TopXDim);
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.YDim 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)YDim);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(YDim);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcTrapeziumProfileDef.TopXOffset 
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLengthMeasure((double)TopXOffset);
+				return new Ifc4.MeasureResource.IfcLengthMeasure(TopXOffset);
 			} 
 		}
 	}

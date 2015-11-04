@@ -30,16 +30,16 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				if (Name == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)Name);
+				if (!Name.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcShapeAspect.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 		bool? IIfcShapeAspect.ProductDefinitional 

@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcTimeMeasure((double)TimeValue);
+				return new Ifc4.MeasureResource.IfcTimeMeasure(TimeValue);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityTime.Formula 

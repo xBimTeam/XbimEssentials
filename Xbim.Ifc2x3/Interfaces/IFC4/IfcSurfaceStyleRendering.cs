@@ -20,8 +20,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				if (Transparency == null) return null;
-				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)Transparency);
+				if (!Transparency.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(Transparency.Value);
 			} 
 		}
 		Ifc4.PresentationAppearanceResource.IfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour 

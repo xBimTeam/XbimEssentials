@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return RelatingProcess as IIfcProcess;
+				return RelatingProcess;
 			} 
 		}
 		IIfcProcess IIfcRelSequence.RelatedProcess 
 		{ 
 			get
 			{
-				return RelatedProcess as IIfcProcess;
+				return RelatedProcess;
 			} 
 		}
 		IIfcLagTime IIfcRelSequence.TimeLag 

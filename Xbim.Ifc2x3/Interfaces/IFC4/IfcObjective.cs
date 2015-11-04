@@ -76,8 +76,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
-				if (UserDefinedQualifier == null) return null;
-				return new Ifc4.MeasureResource.IfcLabel((string)UserDefinedQualifier);
+				if (!UserDefinedQualifier.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(UserDefinedQualifier.Value);
 			} 
 		}
 	}

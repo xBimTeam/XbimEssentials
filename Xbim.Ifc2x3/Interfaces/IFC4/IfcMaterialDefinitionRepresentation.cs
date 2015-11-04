@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				return RepresentedMaterial as IIfcMaterial;
+				return RepresentedMaterial;
 			} 
 		}
 	}
