@@ -30,17 +30,17 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 					
 					case IfcControllerTypeEnum.PROPORTIONALINTEGRAL:
 						//## Handle translation of PROPORTIONALINTEGRAL member from IfcControllerTypeEnum in property PredefinedType
-				        return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.NOTDEFINED;
+						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcControllerTypeEnum.PROPORTIONALINTEGRALDERIVATIVE:
 						//## Handle translation of PROPORTIONALINTEGRALDERIVATIVE member from IfcControllerTypeEnum in property PredefinedType
-				        return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.NOTDEFINED;
+						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcControllerTypeEnum.TIMEDTWOPOSITION:
 						//## Handle translation of TIMEDTWOPOSITION member from IfcControllerTypeEnum in property PredefinedType
-				        return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.NOTDEFINED;
+						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcControllerTypeEnum.TWOPOSITION:
@@ -58,5 +58,24 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 				}
 			} 
 		}
+
+	//## Custom code
+        Ifc4.MeasureResource.IfcLabel? IIfcElementType.ElementType
+        {
+            get
+            {
+                switch (PredefinedType)
+                {
+                    case IfcControllerTypeEnum.PROPORTIONALINTEGRAL:
+                        return new Ifc4.MeasureResource.IfcLabel("PROPORTIONALINTEGRAL");
+                    case IfcControllerTypeEnum.PROPORTIONALINTEGRALDERIVATIVE:
+                        return new Ifc4.MeasureResource.IfcLabel("PROPORTIONALINTEGRALDERIVATIVE");
+                    case IfcControllerTypeEnum.TIMEDTWOPOSITION:
+                        return new Ifc4.MeasureResource.IfcLabel("TIMEDTWOPOSITION");
+                }
+                return !ElementType.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(ElementType.Value);
+            }
+        }
+	//##
 	}
 }

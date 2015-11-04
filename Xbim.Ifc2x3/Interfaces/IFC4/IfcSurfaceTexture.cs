@@ -71,5 +71,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return Model.Instances.Where<IIfcSurfaceStyleWithTextures>(e => e.Textures != null &&  e.Textures.Contains(this));
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

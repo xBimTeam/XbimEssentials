@@ -51,5 +51,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return null;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

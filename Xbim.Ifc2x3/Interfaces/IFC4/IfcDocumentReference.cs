@@ -21,9 +21,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of Description for which no match was found
-				//TODO: Handle return of Description for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		IIfcDocumentInformation IIfcDocumentReference.ReferencedDocument 
@@ -31,9 +30,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of ReferencedDocument for which no match was found
-				//TODO: Handle return of ReferencedDocument for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return ReferenceToDocument.FirstOrDefault();
+			    //##
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentReference.DocumentRefForObjects 
@@ -43,5 +41,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				return Model.Instances.Where<IIfcRelAssociatesDocument>(e => (e.RelatingDocument as IfcDocumentReference) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

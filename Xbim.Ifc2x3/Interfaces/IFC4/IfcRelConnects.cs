@@ -16,5 +16,8 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelConnects : IIfcRelConnects
 	{
+
+	//## Custom code
+	//##
 	}
 }

@@ -16,5 +16,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCartesianTransformationOperator2D : IIfcCartesianTransformationOperator2D
 	{
+
+	//## Custom code
+	//##
 	}
 }

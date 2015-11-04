@@ -23,5 +23,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.FirstOrDefault<IIfcRelProjectsElement>(e => (e.RelatedFeatureElement as IfcFeatureElementAddition) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

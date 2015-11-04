@@ -74,5 +74,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				return new Ifc4.MeasureResource.IfcLabel(Country.Value);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

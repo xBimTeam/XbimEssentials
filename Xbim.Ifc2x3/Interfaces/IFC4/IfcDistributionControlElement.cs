@@ -23,5 +23,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				return Model.Instances.Where<IIfcRelFlowControlElements>(e => e.RelatedControlElements != null &&  e.RelatedControlElements.Contains(this));
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

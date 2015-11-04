@@ -233,5 +233,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				return Model.Instances.FirstOrDefault<IIfcTable>(e => e.Rows != null &&  e.Rows.Contains(this));
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

@@ -40,5 +40,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				return new Ifc4.MeasureResource.IfcLengthMeasure(EccentricityInZ.Value);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

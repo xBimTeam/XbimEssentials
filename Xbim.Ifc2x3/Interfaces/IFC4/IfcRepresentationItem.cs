@@ -30,5 +30,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return Model.Instances.Where<IIfcStyledItem>(e => (e.Item as IfcRepresentationItem) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

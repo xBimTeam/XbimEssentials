@@ -30,5 +30,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return Dir;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

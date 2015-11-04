@@ -32,5 +32,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return Scale3;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

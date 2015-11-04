@@ -46,5 +46,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 				//##
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

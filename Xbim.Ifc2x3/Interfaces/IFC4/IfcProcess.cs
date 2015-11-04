@@ -57,5 +57,8 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IIfcRelAssignsToProcess>(e => (e.RelatingProcess as IfcProcess) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

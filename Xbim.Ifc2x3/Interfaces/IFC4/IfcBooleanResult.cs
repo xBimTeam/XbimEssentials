@@ -77,5 +77,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				return null;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

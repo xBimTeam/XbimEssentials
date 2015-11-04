@@ -26,5 +26,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			}
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

@@ -23,5 +23,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Thickness);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

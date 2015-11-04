@@ -30,5 +30,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				return Model.Instances.Where<IIfcLocalPlacement>(e => (e.PlacementRelTo as IfcObjectPlacement) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

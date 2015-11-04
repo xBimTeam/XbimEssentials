@@ -30,5 +30,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 				return null;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

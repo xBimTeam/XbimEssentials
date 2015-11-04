@@ -65,5 +65,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 				return LuminousIntensityExponent;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

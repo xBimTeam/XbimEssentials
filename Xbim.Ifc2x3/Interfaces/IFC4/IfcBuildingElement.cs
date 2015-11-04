@@ -23,5 +23,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IIfcRelCoversBldgElements>(e => (e.RelatingBuildingElement as IfcBuildingElement) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

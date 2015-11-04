@@ -80,5 +80,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedQualifier.Value);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

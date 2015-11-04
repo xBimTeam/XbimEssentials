@@ -56,5 +56,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				return Model.Instances.Where<IIfcProfileProperties>(e => (e.ProfileDefinition as IfcProfileDef) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

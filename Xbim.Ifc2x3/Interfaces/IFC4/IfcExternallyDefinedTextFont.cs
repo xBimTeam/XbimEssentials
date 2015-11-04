@@ -16,5 +16,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcExternallyDefinedTextFont : IIfcExternallyDefinedTextFont
 	{
+
+	//## Custom code
+	//##
 	}
 }

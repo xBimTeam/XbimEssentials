@@ -33,5 +33,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return RelatingStructure as IIfcSpatialElement;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

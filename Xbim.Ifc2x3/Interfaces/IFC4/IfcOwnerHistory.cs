@@ -122,5 +122,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				return new Ifc4.DateTimeResource.IfcTimeStamp(CreationDate);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

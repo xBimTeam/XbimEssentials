@@ -78,5 +78,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedTargetView.Value);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

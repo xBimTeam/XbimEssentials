@@ -42,5 +42,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			}
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

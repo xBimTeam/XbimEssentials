@@ -66,5 +66,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				return Model.Instances.Where<IIfcVirtualGridIntersection>(e => e.IntersectingAxes != null &&  e.IntersectingAxes.Contains(this));
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

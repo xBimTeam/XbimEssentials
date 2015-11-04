@@ -24,5 +24,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				return new Ifc4.MeasureResource.IfcLabel(SteelGrade.Value);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

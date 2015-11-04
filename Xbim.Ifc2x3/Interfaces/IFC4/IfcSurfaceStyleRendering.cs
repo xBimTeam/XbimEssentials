@@ -143,5 +143,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				}
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

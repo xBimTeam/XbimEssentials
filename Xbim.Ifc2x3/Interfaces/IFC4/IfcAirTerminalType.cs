@@ -33,22 +33,22 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case IfcAirTerminalTypeEnum.EYEBALL:
 						//## Handle translation of EYEBALL member from IfcAirTerminalTypeEnum in property PredefinedType
-						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
+						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcAirTerminalTypeEnum.IRIS:
 						//## Handle translation of IRIS member from IfcAirTerminalTypeEnum in property PredefinedType
-						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
+						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcAirTerminalTypeEnum.LINEARGRILLE:
 						//## Handle translation of LINEARGRILLE member from IfcAirTerminalTypeEnum in property PredefinedType
-                        return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
+						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcAirTerminalTypeEnum.LINEARDIFFUSER:
 						//## Handle translation of LINEARDIFFUSER member from IfcAirTerminalTypeEnum in property PredefinedType
-                        return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
+						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcAirTerminalTypeEnum.USERDEFINED:
@@ -63,5 +63,26 @@ namespace Xbim.Ifc2x3.HVACDomain
 				}
 			} 
 		}
+
+	//## Custom code
+        Ifc4.MeasureResource.IfcLabel? IIfcElementType.ElementType
+        {
+            get
+            {
+                switch (PredefinedType)
+                {
+                    case IfcAirTerminalTypeEnum.EYEBALL:
+                        return new Ifc4.MeasureResource.IfcLabel("EYEBALL");
+                    case IfcAirTerminalTypeEnum.IRIS:
+                        return new Ifc4.MeasureResource.IfcLabel("IRIS");
+                    case IfcAirTerminalTypeEnum.LINEARGRILLE:
+                        return new Ifc4.MeasureResource.IfcLabel("LINEARGRILLE");
+                    case IfcAirTerminalTypeEnum.LINEARDIFFUSER:
+                        return new Ifc4.MeasureResource.IfcLabel("LINEARDIFFUSER");
+                }
+                return !ElementType.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(ElementType.Value);
+            }
+        }
+	//##
 	}
 }

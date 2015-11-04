@@ -34,5 +34,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Thickness.Value);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

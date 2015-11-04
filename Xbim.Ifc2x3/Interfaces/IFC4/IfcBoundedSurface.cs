@@ -16,5 +16,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcBoundedSurface : IIfcBoundedSurface
 	{
+
+	//## Custom code
+	//##
 	}
 }

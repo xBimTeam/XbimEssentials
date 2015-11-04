@@ -62,5 +62,8 @@ namespace Xbim.Ifc2x3.Kernel
 				}
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

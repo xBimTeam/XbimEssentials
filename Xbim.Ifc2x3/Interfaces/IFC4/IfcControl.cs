@@ -32,5 +32,8 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IIfcRelAssignsToControl>(e => (e.RelatingControl as IfcControl) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

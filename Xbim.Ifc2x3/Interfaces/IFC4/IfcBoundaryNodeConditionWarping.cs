@@ -27,5 +27,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				//##
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

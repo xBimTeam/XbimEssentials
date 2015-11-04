@@ -22,7 +22,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			get
 			{
 				//## Handle return of Name for which no match was found
-                if(string.IsNullOrWhiteSpace(Name) 
+                if(string.IsNullOrWhiteSpace(Name)) 
                     return null; 
                 else  
                     return new IfcLabel(Name);
@@ -48,5 +48,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 				//##
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

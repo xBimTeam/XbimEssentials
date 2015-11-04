@@ -16,5 +16,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	public partial class @IfcElementComponentType : IIfcElementComponentType
 	{
+
+	//## Custom code
+	//##
 	}
 }

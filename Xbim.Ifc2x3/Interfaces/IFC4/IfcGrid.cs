@@ -63,5 +63,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IIfcRelContainedInSpatialStructure>(e => e.RelatedElements != null &&  e.RelatedElements.Contains(this));
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

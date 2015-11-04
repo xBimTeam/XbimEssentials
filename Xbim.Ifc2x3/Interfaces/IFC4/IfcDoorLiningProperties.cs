@@ -108,9 +108,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Handle return of LiningToPanelOffsetX for which no match was found
-				//TODO: Handle return of LiningToPanelOffsetX for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetY 
@@ -118,10 +117,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Handle return of LiningToPanelOffsetY for which no match was found
-				//TODO: Handle return of LiningToPanelOffsetY for which no match was found
-				throw new System.NotImplementedException();
+                return null;
 				//##
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

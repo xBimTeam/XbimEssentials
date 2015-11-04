@@ -16,5 +16,8 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	public partial class @IfcCostValue : IIfcCostValue
 	{
+
+	//## Custom code
+	//##
 	}
 }

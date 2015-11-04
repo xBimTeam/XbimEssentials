@@ -25,10 +25,10 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcReal> IIfcTextureCoordinateGenerator.Parameter 
-		{
-            get
-            {
-                //## Handle return of Parameter for which no match was found
+		{ 
+			get
+			{
+				//## Handle return of Parameter for which no match was found
                 foreach (var param in this.Parameter)
                 {
                     if (param.UnderlyingSystemType == typeof(double) || param.UnderlyingSystemType == typeof(int))
@@ -40,8 +40,11 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
                             yield return new Xbim.Ifc4.MeasureResource.IfcReal(ret);
                     }
                 }
-                //##
-            }
-        }
+				//##
+			} 
+		}
+
+	//## Custom code
+	//##
 	}
 }

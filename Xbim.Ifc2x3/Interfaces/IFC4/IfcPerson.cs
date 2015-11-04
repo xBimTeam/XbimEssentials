@@ -97,5 +97,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				return Model.Instances.Where<IIfcPersonAndOrganization>(e => (e.ThePerson as IfcPerson) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

@@ -44,5 +44,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				return ReferenceSurface;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

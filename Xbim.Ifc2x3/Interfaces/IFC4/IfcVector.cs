@@ -30,5 +30,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return new Ifc4.MeasureResource.IfcLengthMeasure(Magnitude);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

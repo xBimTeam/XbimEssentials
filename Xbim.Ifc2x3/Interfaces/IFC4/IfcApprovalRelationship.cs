@@ -50,5 +50,8 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			    //##
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

@@ -30,5 +30,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(InvisibleSegmentLength);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

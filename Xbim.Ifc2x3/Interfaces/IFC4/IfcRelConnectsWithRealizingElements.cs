@@ -34,5 +34,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return new Ifc4.MeasureResource.IfcLabel(ConnectionType.Value);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

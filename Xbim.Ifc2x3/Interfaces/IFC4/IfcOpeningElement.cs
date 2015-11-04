@@ -33,5 +33,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IIfcRelFillsElement>(e => (e.RelatingOpeningElement as IfcOpeningElement) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

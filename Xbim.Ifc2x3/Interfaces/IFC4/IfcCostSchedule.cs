@@ -85,5 +85,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				//##
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

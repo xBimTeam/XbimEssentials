@@ -41,5 +41,8 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IIfcRelDefinesByType>(e => (e.RelatingType as IfcTypeObject) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }
