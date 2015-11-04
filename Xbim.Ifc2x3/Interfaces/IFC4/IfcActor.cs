@@ -40,5 +40,8 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IIfcRelAssignsToActor>(e => (e.RelatingActor as IfcActor) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

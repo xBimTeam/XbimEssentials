@@ -94,5 +94,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				return OriginalValue;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

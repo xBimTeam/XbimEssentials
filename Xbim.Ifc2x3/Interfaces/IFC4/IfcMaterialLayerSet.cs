@@ -65,5 +65,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 				return Model.Instances.Where<IIfcMaterialProperties>(e => (e.Material as IfcMaterialLayerSet) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

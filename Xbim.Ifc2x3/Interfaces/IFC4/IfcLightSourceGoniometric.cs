@@ -103,5 +103,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				return null;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

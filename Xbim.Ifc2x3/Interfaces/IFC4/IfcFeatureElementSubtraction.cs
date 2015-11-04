@@ -23,5 +23,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.FirstOrDefault<IIfcRelVoidsElement>(e => (e.RelatedOpeningElement as IfcFeatureElementSubtraction) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

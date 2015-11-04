@@ -16,5 +16,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcFurnishingElement : IIfcFurnishingElement
 	{
+
+	//## Custom code
+	//##
 	}
 }

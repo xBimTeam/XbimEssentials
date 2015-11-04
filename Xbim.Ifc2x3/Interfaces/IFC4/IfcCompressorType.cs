@@ -79,5 +79,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 				}
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

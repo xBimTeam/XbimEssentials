@@ -46,5 +46,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 				//##
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

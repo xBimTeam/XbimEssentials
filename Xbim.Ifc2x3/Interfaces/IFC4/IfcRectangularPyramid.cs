@@ -37,5 +37,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Height);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

@@ -34,10 +34,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-			    //## Handle return of EditionDate for which no match was found
+				//## Handle return of EditionDate for which no match was found
                 return EditionDate == null ? null : new Ifc4.DateTimeResource.IfcDate(EditionDate.ToISODateTimeString());
 			    //##
-			}
+			} 
 		}
 		Ifc4.MeasureResource.IfcLabel IIfcClassification.Name 
 		{ 
@@ -87,5 +87,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				return Model.Instances.Where<IIfcClassificationReference>(e => (e.ReferencedSource as IfcClassification) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

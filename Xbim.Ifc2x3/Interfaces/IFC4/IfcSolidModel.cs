@@ -16,5 +16,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcSolidModel : IIfcSolidModel
 	{
+
+	//## Custom code
+	//##
 	}
 }

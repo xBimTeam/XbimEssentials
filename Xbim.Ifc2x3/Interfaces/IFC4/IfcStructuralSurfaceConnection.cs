@@ -16,5 +16,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralSurfaceConnection : IIfcStructuralSurfaceConnection
 	{
+
+	//## Custom code
+	//##
 	}
 }

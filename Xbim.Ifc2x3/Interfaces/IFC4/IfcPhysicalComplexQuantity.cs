@@ -49,5 +49,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 				return new Ifc4.MeasureResource.IfcLabel(Usage.Value);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

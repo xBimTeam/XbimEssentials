@@ -33,5 +33,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return SelfIntersect;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

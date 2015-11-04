@@ -23,5 +23,8 @@ namespace Xbim.Ifc2x3.Kernel
 				return RelatingControl;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

@@ -45,5 +45,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				return new Ifc4.MeasureResource.IfcPositivePlaneAngleMeasure(BeamWidthAngle);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

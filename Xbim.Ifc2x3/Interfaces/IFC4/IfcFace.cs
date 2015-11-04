@@ -33,5 +33,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 				return Model.Instances.Where<IIfcTextureMap>(e => (e.MappedTo as IfcFace) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

@@ -72,5 +72,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IIfcRelCoversBldgElements>(e => e.RelatedCoverings != null &&  e.RelatedCoverings.Contains(this));
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

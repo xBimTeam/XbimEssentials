@@ -61,5 +61,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return Model.Instances.Where<IIfcCompositeCurve>(e => e.Segments != null &&  e.Segments.Contains(this));
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

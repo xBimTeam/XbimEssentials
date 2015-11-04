@@ -43,10 +43,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-			    //## Handle return of LongName for which no match was found
+				//## Handle return of LongName for which no match was found
 			    return !Name.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			    //##
-			}
+			} 
 		}
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements 
 		{ 
@@ -69,5 +69,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IIfcRelReferencedInSpatialStructure>(e => (e.RelatingStructure as IfcBuilding) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

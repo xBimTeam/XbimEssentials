@@ -30,5 +30,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return MappingTarget;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

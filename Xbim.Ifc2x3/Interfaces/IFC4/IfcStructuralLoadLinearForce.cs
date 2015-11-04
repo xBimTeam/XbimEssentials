@@ -64,5 +64,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				return new Ifc4.MeasureResource.IfcLinearMomentMeasure(LinearMomentZ.Value);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

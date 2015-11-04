@@ -199,5 +199,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				return Model.Instances.Where<IIfcStructuralAnalysisModel>(e => e.LoadedBy != null &&  e.LoadedBy.Contains(this));
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

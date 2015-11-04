@@ -60,5 +60,8 @@ namespace Xbim.Ifc2x3.Kernel
 				return new Ifc4.MeasureResource.IfcLabel(Tag.Value);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

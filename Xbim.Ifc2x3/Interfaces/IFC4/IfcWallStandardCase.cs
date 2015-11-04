@@ -16,5 +16,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcWallStandardCase : IIfcWallStandardCase
 	{
+
+	//## Custom code
+	//##
 	}
 }

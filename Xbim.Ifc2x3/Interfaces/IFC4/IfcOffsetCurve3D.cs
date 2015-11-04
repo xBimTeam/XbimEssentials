@@ -44,5 +44,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return RefDirection;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

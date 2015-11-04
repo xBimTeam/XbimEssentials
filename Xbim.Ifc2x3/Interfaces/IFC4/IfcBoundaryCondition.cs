@@ -24,5 +24,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

@@ -40,5 +40,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				return new Ifc4.MeasureResource.IfcPlanarForceMeasure(PlanarForceZ.Value);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

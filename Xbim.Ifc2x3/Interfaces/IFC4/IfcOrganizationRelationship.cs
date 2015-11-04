@@ -53,5 +53,8 @@ namespace Xbim.Ifc2x3.ActorResource
 				//##
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

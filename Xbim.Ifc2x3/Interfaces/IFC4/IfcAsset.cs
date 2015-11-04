@@ -103,5 +103,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				return DepreciatedValue;
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

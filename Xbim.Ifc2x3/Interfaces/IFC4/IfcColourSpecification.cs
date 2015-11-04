@@ -24,5 +24,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

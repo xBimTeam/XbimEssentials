@@ -104,5 +104,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				//##
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

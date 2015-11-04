@@ -64,5 +64,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				return new Ifc4.MeasureResource.IfcText(ID);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

@@ -25,5 +25,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			    //##
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

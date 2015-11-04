@@ -59,5 +59,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return Model.Instances.Where<IIfcGeometricRepresentationSubContext>(e => (e.ParentContext as IfcGeometricRepresentationContext) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

@@ -265,5 +265,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				return Model.Instances.Where<IIfcDocumentInformationRelationship>(e => (e.RelatingDocument as IfcDocumentInformation) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

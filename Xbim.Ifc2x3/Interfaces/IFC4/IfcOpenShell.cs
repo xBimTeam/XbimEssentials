@@ -16,5 +16,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcOpenShell : IIfcOpenShell
 	{
+
+	//## Custom code
+	//##
 	}
 }

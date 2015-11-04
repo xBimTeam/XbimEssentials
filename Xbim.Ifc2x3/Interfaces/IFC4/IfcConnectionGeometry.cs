@@ -16,5 +16,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcConnectionGeometry : IIfcConnectionGeometry
 	{
+
+	//## Custom code
+	//##
 	}
 }

@@ -23,5 +23,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IIfcRelConnectsPortToElement>(e => (e.RelatedElement as IfcDistributionElement) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

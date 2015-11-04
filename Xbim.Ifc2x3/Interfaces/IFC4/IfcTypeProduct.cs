@@ -41,5 +41,8 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IIfcRelAssignsToProduct>(e => (e.RelatingProduct as IfcTypeProduct) == this);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

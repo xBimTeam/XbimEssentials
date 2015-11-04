@@ -37,5 +37,8 @@ namespace Xbim.Ifc2x3.PresentationResource
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(Blue);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

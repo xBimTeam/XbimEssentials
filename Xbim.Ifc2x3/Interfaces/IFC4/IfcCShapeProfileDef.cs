@@ -52,5 +52,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(InternalFilletRadius.Value);
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

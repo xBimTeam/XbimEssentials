@@ -16,5 +16,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcLightSourceAmbient : IIfcLightSourceAmbient
 	{
+
+	//## Custom code
+	//##
 	}
 }

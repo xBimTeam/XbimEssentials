@@ -70,5 +70,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return Model.Instances.Where<IIfcProductRepresentation>(e => e.Representations != null &&  e.Representations.Contains(this));
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }

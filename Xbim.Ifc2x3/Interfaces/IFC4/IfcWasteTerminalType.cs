@@ -73,5 +73,8 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 				}
 			} 
 		}
+
+	//## Custom code
+	//##
 	}
 }
