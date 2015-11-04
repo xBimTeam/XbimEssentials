@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				return Outer as IIfcClosedShell;
+				return Outer;
 			} 
 		}
 	}

@@ -16,20 +16,20 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcRepresentationContext : IIfcRepresentationContext
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcRepresentationContext.ContextIdentifier 
+		Ifc4.MeasureResource.IfcLabel? IIfcRepresentationContext.ContextIdentifier 
 		{ 
 			get
 			{
-				if (ContextIdentifier == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ContextIdentifier);
+				if (!ContextIdentifier.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ContextIdentifier.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcRepresentationContext.ContextType 
+		Ifc4.MeasureResource.IfcLabel? IIfcRepresentationContext.ContextType 
 		{ 
 			get
 			{
-				if (ContextType == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ContextType);
+				if (!ContextType.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ContextType.Value);
 			} 
 		}
 		IEnumerable<IIfcRepresentation> IIfcRepresentationContext.RepresentationsInContext 

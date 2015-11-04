@@ -16,19 +16,19 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcPhysicalQuantity : IIfcPhysicalQuantity
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcPhysicalQuantity.Name 
+		Ifc4.MeasureResource.IfcLabel IIfcPhysicalQuantity.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcPhysicalQuantity.Description 
+		Ifc4.MeasureResource.IfcText? IIfcPhysicalQuantity.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPhysicalQuantity.HasExternalReferences 

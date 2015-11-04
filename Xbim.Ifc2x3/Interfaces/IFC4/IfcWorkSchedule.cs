@@ -10,19 +10,18 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using Xbim.Ifc4.ProcessExtension;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcWorkSchedule : IIfcWorkSchedule
 	{
-		Xbim.Ifc4.ProcessExtension.IfcWorkScheduleTypeEnum? IIfcWorkSchedule.PredefinedType 
+		Ifc4.ProcessExtension.IfcWorkScheduleTypeEnum? IIfcWorkSchedule.PredefinedType 
 		{ 
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				return IfcWorkScheduleTypeEnum.NOTDEFINED;
+                return Ifc4.ProcessExtension.IfcWorkScheduleTypeEnum.NOTDEFINED;
 				//##
 			} 
 		}

@@ -16,20 +16,20 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSpatialStructureElement : IIfcSpatialStructureElement
 	{
-		Xbim.Ifc4.ProductExtension.IfcElementCompositionEnum? IIfcSpatialStructureElement.CompositionType 
+		Ifc4.ProductExtension.IfcElementCompositionEnum? IIfcSpatialStructureElement.CompositionType 
 		{ 
 			get
 			{
 				switch (CompositionType)
 				{
-					case Xbim.Ifc2x3.ProductExtension.IfcElementCompositionEnum.COMPLEX:
-						return Xbim.Ifc4.ProductExtension.IfcElementCompositionEnum.COMPLEX;
+					case IfcElementCompositionEnum.COMPLEX:
+						return Ifc4.ProductExtension.IfcElementCompositionEnum.COMPLEX;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcElementCompositionEnum.ELEMENT:
-						return Xbim.Ifc4.ProductExtension.IfcElementCompositionEnum.ELEMENT;
+					case IfcElementCompositionEnum.ELEMENT:
+						return Ifc4.ProductExtension.IfcElementCompositionEnum.ELEMENT;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcElementCompositionEnum.PARTIAL:
-						return Xbim.Ifc4.ProductExtension.IfcElementCompositionEnum.PARTIAL;
+					case IfcElementCompositionEnum.PARTIAL:
+						return Ifc4.ProductExtension.IfcElementCompositionEnum.PARTIAL;
 					
 					
 					default:
@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
+		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get
 			{

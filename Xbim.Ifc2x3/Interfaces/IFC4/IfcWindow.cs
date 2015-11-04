@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcWindow : IIfcWindow
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindow.OverallHeight 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindow.OverallHeight 
 		{ 
 			get
 			{
-				if (OverallHeight == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)OverallHeight);
+				if (!OverallHeight.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallHeight.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindow.OverallWidth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindow.OverallWidth 
 		{ 
 			get
 			{
-				if (OverallWidth == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)OverallWidth);
+				if (!OverallWidth.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth.Value);
 			} 
 		}
-		Xbim.Ifc4.SharedBldgElements.IfcWindowTypeEnum? IIfcWindow.PredefinedType 
+		Ifc4.SharedBldgElements.IfcWindowTypeEnum? IIfcWindow.PredefinedType 
 		{ 
 			get
 			{
@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				//##
 			} 
 		}
-		Xbim.Ifc4.SharedBldgElements.IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType 
+		Ifc4.SharedBldgElements.IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType 
 		{ 
 			get
 			{
@@ -52,7 +52,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcWindow.UserDefinedPartitioningType 
+		Ifc4.MeasureResource.IfcLabel? IIfcWindow.UserDefinedPartitioningType 
 		{ 
 			get
 			{

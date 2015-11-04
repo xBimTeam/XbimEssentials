@@ -36,15 +36,15 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.PresentationAppearanceResource.IfcTextFontSelect IIfcTextStyle.TextFontStyle 
+		Ifc4.PresentationAppearanceResource.IfcTextFontSelect IIfcTextStyle.TextFontStyle 
 		{ 
 			get
 			{
 				if (TextFontStyle == null) return null;
-				var ifcpredefinedtextfont = TextFontStyle as Xbim.Ifc2x3.PresentationResource.IfcPreDefinedTextFont;
+				var ifcpredefinedtextfont = TextFontStyle as PresentationResource.IfcPreDefinedTextFont;
 				if (ifcpredefinedtextfont != null) 
 					return ifcpredefinedtextfont;
-				var ifcexternallydefinedtextfont = TextFontStyle as Xbim.Ifc2x3.PresentationResource.IfcExternallyDefinedTextFont;
+				var ifcexternallydefinedtextfont = TextFontStyle as PresentationResource.IfcExternallyDefinedTextFont;
 				if (ifcexternallydefinedtextfont != null) 
 					return ifcexternallydefinedtextfont;
 				return null;

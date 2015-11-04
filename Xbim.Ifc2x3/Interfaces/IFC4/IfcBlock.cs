@@ -16,25 +16,25 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcBlock : IIfcBlock
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBlock.XLength 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBlock.XLength 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)XLength);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(XLength);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBlock.YLength 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBlock.YLength 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)YLength);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(YLength);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBlock.ZLength 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcBlock.ZLength 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)ZLength);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(ZLength);
 			} 
 		}
 	}

@@ -16,14 +16,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	public partial class @IfcDistributionChamberElement : IIfcDistributionChamberElement
 	{
-		Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum? IIfcDistributionChamberElement.PredefinedType 
+		Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementTypeEnum? IIfcDistributionChamberElement.PredefinedType 
 		{ 
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				//TODO: Handle return of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 	}

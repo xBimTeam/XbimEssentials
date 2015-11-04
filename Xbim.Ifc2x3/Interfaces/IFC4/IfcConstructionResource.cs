@@ -21,9 +21,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			get
 			{
 				//## Handle return of Usage for which no match was found
-				//TODO: Handle return of Usage for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		IEnumerable<IIfcAppliedValue> IIfcConstructionResource.BaseCosts 
@@ -31,8 +30,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			get
 			{
 				//## Handle return of BaseCosts for which no match was found
-				//TODO: Handle return of BaseCosts for which no match was found
-				throw new System.NotImplementedException();
+				yield break;
 				//##
 			} 
 		}
@@ -41,8 +39,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			get
 			{
 				//## Handle return of BaseQuantity for which no match was found
-				//TODO: Handle return of BaseQuantity for which no match was found
-				throw new System.NotImplementedException();
+			    return BaseQuantity.ToPhysicalSimpleQuantity();
 				//##
 			} 
 		}

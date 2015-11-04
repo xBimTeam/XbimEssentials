@@ -22,7 +22,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 			foreach (var member in Coordinates)
 			{
-				yield return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)member);
+				yield return new Ifc4.MeasureResource.IfcLengthMeasure((double)member);
 			}
 			} 
 		}

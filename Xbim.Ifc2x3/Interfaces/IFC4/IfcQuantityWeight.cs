@@ -16,14 +16,14 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcQuantityWeight : IIfcQuantityWeight
 	{
-		Xbim.Ifc4.MeasureResource.IfcMassMeasure IIfcQuantityWeight.WeightValue 
+		Ifc4.MeasureResource.IfcMassMeasure IIfcQuantityWeight.WeightValue 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcMassMeasure((double)WeightValue);
+				return new Ifc4.MeasureResource.IfcMassMeasure(WeightValue);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcQuantityWeight.Formula 
+		Ifc4.MeasureResource.IfcLabel? IIfcQuantityWeight.Formula 
 		{ 
 			get
 			{

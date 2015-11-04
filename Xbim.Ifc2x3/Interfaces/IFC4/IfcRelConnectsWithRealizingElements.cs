@@ -26,12 +26,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 			}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcRelConnectsWithRealizingElements.ConnectionType 
+		Ifc4.MeasureResource.IfcLabel? IIfcRelConnectsWithRealizingElements.ConnectionType 
 		{ 
 			get
 			{
-				if (ConnectionType == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ConnectionType);
+				if (!ConnectionType.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ConnectionType.Value);
 			} 
 		}
 	}

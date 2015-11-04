@@ -26,158 +26,158 @@ namespace Xbim.Ifc2x3.MeasureResource
 			}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum IIfcDerivedUnit.UnitType 
+		Ifc4.MeasureResource.IfcDerivedUnitEnum IIfcDerivedUnit.UnitType 
 		{ 
 			get
 			{
 				switch (UnitType)
 				{
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.ANGULARVELOCITYUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.ANGULARVELOCITYUNIT;
+					case IfcDerivedUnitEnum.ANGULARVELOCITYUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.ANGULARVELOCITYUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.COMPOUNDPLANEANGLEUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.COMPOUNDPLANEANGLEUNIT;
+					case IfcDerivedUnitEnum.COMPOUNDPLANEANGLEUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.COMPOUNDPLANEANGLEUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.DYNAMICVISCOSITYUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.DYNAMICVISCOSITYUNIT;
+					case IfcDerivedUnitEnum.DYNAMICVISCOSITYUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.DYNAMICVISCOSITYUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.HEATFLUXDENSITYUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.HEATFLUXDENSITYUNIT;
+					case IfcDerivedUnitEnum.HEATFLUXDENSITYUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.HEATFLUXDENSITYUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.INTEGERCOUNTRATEUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.INTEGERCOUNTRATEUNIT;
+					case IfcDerivedUnitEnum.INTEGERCOUNTRATEUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.INTEGERCOUNTRATEUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.ISOTHERMALMOISTURECAPACITYUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.ISOTHERMALMOISTURECAPACITYUNIT;
+					case IfcDerivedUnitEnum.ISOTHERMALMOISTURECAPACITYUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.ISOTHERMALMOISTURECAPACITYUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.KINEMATICVISCOSITYUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.KINEMATICVISCOSITYUNIT;
+					case IfcDerivedUnitEnum.KINEMATICVISCOSITYUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.KINEMATICVISCOSITYUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.LINEARVELOCITYUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.LINEARVELOCITYUNIT;
+					case IfcDerivedUnitEnum.LINEARVELOCITYUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.LINEARVELOCITYUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.MASSDENSITYUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.MASSDENSITYUNIT;
+					case IfcDerivedUnitEnum.MASSDENSITYUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.MASSDENSITYUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.MASSFLOWRATEUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.MASSFLOWRATEUNIT;
+					case IfcDerivedUnitEnum.MASSFLOWRATEUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.MASSFLOWRATEUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.MOISTUREDIFFUSIVITYUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.MOISTUREDIFFUSIVITYUNIT;
+					case IfcDerivedUnitEnum.MOISTUREDIFFUSIVITYUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.MOISTUREDIFFUSIVITYUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.MOLECULARWEIGHTUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.MOLECULARWEIGHTUNIT;
+					case IfcDerivedUnitEnum.MOLECULARWEIGHTUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.MOLECULARWEIGHTUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.SPECIFICHEATCAPACITYUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.SPECIFICHEATCAPACITYUNIT;
+					case IfcDerivedUnitEnum.SPECIFICHEATCAPACITYUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.SPECIFICHEATCAPACITYUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.THERMALADMITTANCEUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.THERMALADMITTANCEUNIT;
+					case IfcDerivedUnitEnum.THERMALADMITTANCEUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.THERMALADMITTANCEUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.THERMALCONDUCTANCEUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.THERMALCONDUCTANCEUNIT;
+					case IfcDerivedUnitEnum.THERMALCONDUCTANCEUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.THERMALCONDUCTANCEUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.THERMALRESISTANCEUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.THERMALRESISTANCEUNIT;
+					case IfcDerivedUnitEnum.THERMALRESISTANCEUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.THERMALRESISTANCEUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.THERMALTRANSMITTANCEUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.THERMALTRANSMITTANCEUNIT;
+					case IfcDerivedUnitEnum.THERMALTRANSMITTANCEUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.THERMALTRANSMITTANCEUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.VAPORPERMEABILITYUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.VAPORPERMEABILITYUNIT;
+					case IfcDerivedUnitEnum.VAPORPERMEABILITYUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.VAPORPERMEABILITYUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.VOLUMETRICFLOWRATEUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.VOLUMETRICFLOWRATEUNIT;
+					case IfcDerivedUnitEnum.VOLUMETRICFLOWRATEUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.VOLUMETRICFLOWRATEUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.ROTATIONALFREQUENCYUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.ROTATIONALFREQUENCYUNIT;
+					case IfcDerivedUnitEnum.ROTATIONALFREQUENCYUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.ROTATIONALFREQUENCYUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.TORQUEUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.TORQUEUNIT;
+					case IfcDerivedUnitEnum.TORQUEUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.TORQUEUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.MOMENTOFINERTIAUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.MOMENTOFINERTIAUNIT;
+					case IfcDerivedUnitEnum.MOMENTOFINERTIAUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.MOMENTOFINERTIAUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.LINEARMOMENTUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.LINEARMOMENTUNIT;
+					case IfcDerivedUnitEnum.LINEARMOMENTUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.LINEARMOMENTUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.LINEARFORCEUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.LINEARFORCEUNIT;
+					case IfcDerivedUnitEnum.LINEARFORCEUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.LINEARFORCEUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.PLANARFORCEUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.PLANARFORCEUNIT;
+					case IfcDerivedUnitEnum.PLANARFORCEUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.PLANARFORCEUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.MODULUSOFELASTICITYUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.MODULUSOFELASTICITYUNIT;
+					case IfcDerivedUnitEnum.MODULUSOFELASTICITYUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.MODULUSOFELASTICITYUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.SHEARMODULUSUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.SHEARMODULUSUNIT;
+					case IfcDerivedUnitEnum.SHEARMODULUSUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.SHEARMODULUSUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.LINEARSTIFFNESSUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.LINEARSTIFFNESSUNIT;
+					case IfcDerivedUnitEnum.LINEARSTIFFNESSUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.LINEARSTIFFNESSUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.ROTATIONALSTIFFNESSUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.ROTATIONALSTIFFNESSUNIT;
+					case IfcDerivedUnitEnum.ROTATIONALSTIFFNESSUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.ROTATIONALSTIFFNESSUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.MODULUSOFSUBGRADEREACTIONUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.MODULUSOFSUBGRADEREACTIONUNIT;
+					case IfcDerivedUnitEnum.MODULUSOFSUBGRADEREACTIONUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.MODULUSOFSUBGRADEREACTIONUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.ACCELERATIONUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.ACCELERATIONUNIT;
+					case IfcDerivedUnitEnum.ACCELERATIONUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.ACCELERATIONUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.CURVATUREUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.CURVATUREUNIT;
+					case IfcDerivedUnitEnum.CURVATUREUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.CURVATUREUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.HEATINGVALUEUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.HEATINGVALUEUNIT;
+					case IfcDerivedUnitEnum.HEATINGVALUEUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.HEATINGVALUEUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.IONCONCENTRATIONUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.IONCONCENTRATIONUNIT;
+					case IfcDerivedUnitEnum.IONCONCENTRATIONUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.IONCONCENTRATIONUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.LUMINOUSINTENSITYDISTRIBUTIONUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.LUMINOUSINTENSITYDISTRIBUTIONUNIT;
+					case IfcDerivedUnitEnum.LUMINOUSINTENSITYDISTRIBUTIONUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.LUMINOUSINTENSITYDISTRIBUTIONUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.MASSPERLENGTHUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.MASSPERLENGTHUNIT;
+					case IfcDerivedUnitEnum.MASSPERLENGTHUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.MASSPERLENGTHUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.MODULUSOFLINEARSUBGRADEREACTIONUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.MODULUSOFLINEARSUBGRADEREACTIONUNIT;
+					case IfcDerivedUnitEnum.MODULUSOFLINEARSUBGRADEREACTIONUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.MODULUSOFLINEARSUBGRADEREACTIONUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.MODULUSOFROTATIONALSUBGRADEREACTIONUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.MODULUSOFROTATIONALSUBGRADEREACTIONUNIT;
+					case IfcDerivedUnitEnum.MODULUSOFROTATIONALSUBGRADEREACTIONUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.MODULUSOFROTATIONALSUBGRADEREACTIONUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.PHUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.PHUNIT;
+					case IfcDerivedUnitEnum.PHUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.PHUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.ROTATIONALMASSUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.ROTATIONALMASSUNIT;
+					case IfcDerivedUnitEnum.ROTATIONALMASSUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.ROTATIONALMASSUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.SECTIONAREAINTEGRALUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.SECTIONAREAINTEGRALUNIT;
+					case IfcDerivedUnitEnum.SECTIONAREAINTEGRALUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.SECTIONAREAINTEGRALUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.SECTIONMODULUSUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.SECTIONMODULUSUNIT;
+					case IfcDerivedUnitEnum.SECTIONMODULUSUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.SECTIONMODULUSUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.SOUNDPOWERUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.SOUNDPOWERUNIT;
+					case IfcDerivedUnitEnum.SOUNDPOWERUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.SOUNDPOWERUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.SOUNDPRESSUREUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.SOUNDPRESSUREUNIT;
+					case IfcDerivedUnitEnum.SOUNDPRESSUREUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.SOUNDPRESSUREUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.TEMPERATUREGRADIENTUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.TEMPERATUREGRADIENTUNIT;
+					case IfcDerivedUnitEnum.TEMPERATUREGRADIENTUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.TEMPERATUREGRADIENTUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.THERMALEXPANSIONCOEFFICIENTUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.THERMALEXPANSIONCOEFFICIENTUNIT;
+					case IfcDerivedUnitEnum.THERMALEXPANSIONCOEFFICIENTUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.THERMALEXPANSIONCOEFFICIENTUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.WARPINGCONSTANTUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.WARPINGCONSTANTUNIT;
+					case IfcDerivedUnitEnum.WARPINGCONSTANTUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.WARPINGCONSTANTUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.WARPINGMOMENTUNIT:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.WARPINGMOMENTUNIT;
+					case IfcDerivedUnitEnum.WARPINGMOMENTUNIT:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.WARPINGMOMENTUNIT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcDerivedUnitEnum.USERDEFINED:
-						return Xbim.Ifc4.MeasureResource.IfcDerivedUnitEnum.USERDEFINED;
+					case IfcDerivedUnitEnum.USERDEFINED:
+						return Ifc4.MeasureResource.IfcDerivedUnitEnum.USERDEFINED;
 					
 					
 					default:
@@ -185,12 +185,12 @@ namespace Xbim.Ifc2x3.MeasureResource
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcDerivedUnit.UserDefinedType 
+		Ifc4.MeasureResource.IfcLabel? IIfcDerivedUnit.UserDefinedType 
 		{ 
 			get
 			{
-				if (UserDefinedType == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)UserDefinedType);
+				if (!UserDefinedType.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(UserDefinedType.Value);
 			} 
 		}
 	}

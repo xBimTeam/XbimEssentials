@@ -20,22 +20,22 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				return ParentProfile as IIfcProfileDef;
+				return ParentProfile;
 			} 
 		}
 		IIfcCartesianTransformationOperator2D IIfcDerivedProfileDef.Operator 
 		{ 
 			get
 			{
-				return Operator as IIfcCartesianTransformationOperator2D;
+				return Operator;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcDerivedProfileDef.Label 
+		Ifc4.MeasureResource.IfcLabel? IIfcDerivedProfileDef.Label 
 		{ 
 			get
 			{
-				if (Label == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Label);
+				if (!Label.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Label.Value);
 			} 
 		}
 	}

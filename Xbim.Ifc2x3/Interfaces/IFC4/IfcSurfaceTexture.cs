@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return RepeatT;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcSurfaceTexture.Mode 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcSurfaceTexture.Mode 
 		{ 
 			get
 			{
@@ -44,7 +44,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				return TextureTransform as IIfcCartesianTransformationOperator2D;
+				return TextureTransform;
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcSurfaceTexture.Parameter 

@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	public partial class @IfcProjectOrder : IIfcProjectOrder
 	{
-		Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum? IIfcProjectOrder.PredefinedType 
+		Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum? IIfcProjectOrder.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcProjectOrderTypeEnum.CHANGEORDER:
-						return Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.CHANGEORDER;
+					case IfcProjectOrderTypeEnum.CHANGEORDER:
+						return Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.CHANGEORDER;
 					
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER:
-						return Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER;
+					case IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER:
+						return Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER;
 					
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcProjectOrderTypeEnum.MOVEORDER:
-						return Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.MOVEORDER;
+					case IfcProjectOrderTypeEnum.MOVEORDER:
+						return Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.MOVEORDER;
 					
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcProjectOrderTypeEnum.PURCHASEORDER:
-						return Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.PURCHASEORDER;
+					case IfcProjectOrderTypeEnum.PURCHASEORDER:
+						return Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.PURCHASEORDER;
 					
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcProjectOrderTypeEnum.WORKORDER:
-						return Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.WORKORDER;
+					case IfcProjectOrderTypeEnum.WORKORDER:
+						return Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.WORKORDER;
 					
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcProjectOrderTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.USERDEFINED;
+					case IfcProjectOrderTypeEnum.USERDEFINED:
+						return Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcProjectOrderTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.NOTDEFINED;
+					case IfcProjectOrderTypeEnum.NOTDEFINED:
+						return Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.NOTDEFINED;
 					
 					
 					default:
@@ -49,19 +49,19 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcProjectOrder.Status 
+		Ifc4.MeasureResource.IfcLabel? IIfcProjectOrder.Status 
 		{ 
 			get
 			{
-				if (Status == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Status);
+				if (!Status.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Status.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcProjectOrder.LongDescription 
+		Ifc4.MeasureResource.IfcText? IIfcProjectOrder.LongDescription 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)ID);
+				return new Ifc4.MeasureResource.IfcText(ID);
 			} 
 		}
 	}

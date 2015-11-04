@@ -16,50 +16,50 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcDamperType : IIfcDamperType
 	{
-		Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum IIfcDamperType.PredefinedType 
+		Ifc4.HvacDomain.IfcDamperTypeEnum IIfcDamperType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.CONTROLDAMPER:
-						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.CONTROLDAMPER;
+					case IfcDamperTypeEnum.CONTROLDAMPER:
+						return Ifc4.HvacDomain.IfcDamperTypeEnum.CONTROLDAMPER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.FIREDAMPER:
-						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.FIREDAMPER;
+					case IfcDamperTypeEnum.FIREDAMPER:
+						return Ifc4.HvacDomain.IfcDamperTypeEnum.FIREDAMPER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.SMOKEDAMPER:
-						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.SMOKEDAMPER;
+					case IfcDamperTypeEnum.SMOKEDAMPER:
+						return Ifc4.HvacDomain.IfcDamperTypeEnum.SMOKEDAMPER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.FIRESMOKEDAMPER:
-						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.FIRESMOKEDAMPER;
+					case IfcDamperTypeEnum.FIRESMOKEDAMPER:
+						return Ifc4.HvacDomain.IfcDamperTypeEnum.FIRESMOKEDAMPER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.BACKDRAFTDAMPER:
-						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.BACKDRAFTDAMPER;
+					case IfcDamperTypeEnum.BACKDRAFTDAMPER:
+						return Ifc4.HvacDomain.IfcDamperTypeEnum.BACKDRAFTDAMPER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.RELIEFDAMPER:
-						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.RELIEFDAMPER;
+					case IfcDamperTypeEnum.RELIEFDAMPER:
+						return Ifc4.HvacDomain.IfcDamperTypeEnum.RELIEFDAMPER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.BLASTDAMPER:
-						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.BLASTDAMPER;
+					case IfcDamperTypeEnum.BLASTDAMPER:
+						return Ifc4.HvacDomain.IfcDamperTypeEnum.BLASTDAMPER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.GRAVITYDAMPER:
-						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.GRAVITYDAMPER;
+					case IfcDamperTypeEnum.GRAVITYDAMPER:
+						return Ifc4.HvacDomain.IfcDamperTypeEnum.GRAVITYDAMPER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.GRAVITYRELIEFDAMPER:
-						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.GRAVITYRELIEFDAMPER;
+					case IfcDamperTypeEnum.GRAVITYRELIEFDAMPER:
+						return Ifc4.HvacDomain.IfcDamperTypeEnum.GRAVITYRELIEFDAMPER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.BALANCINGDAMPER:
-						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.BALANCINGDAMPER;
+					case IfcDamperTypeEnum.BALANCINGDAMPER:
+						return Ifc4.HvacDomain.IfcDamperTypeEnum.BALANCINGDAMPER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.FUMEHOODEXHAUST:
-						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.FUMEHOODEXHAUST;
+					case IfcDamperTypeEnum.FUMEHOODEXHAUST:
+						return Ifc4.HvacDomain.IfcDamperTypeEnum.FUMEHOODEXHAUST;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.USERDEFINED;
+					case IfcDamperTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcDamperTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDamperTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcDamperTypeEnum.NOTDEFINED;
+					case IfcDamperTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcDamperTypeEnum.NOTDEFINED;
 					
 					
 					default:

@@ -16,33 +16,33 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcCurveStyleFontAndScaling : IIfcCurveStyleFontAndScaling
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcCurveStyleFontAndScaling.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcCurveStyleFontAndScaling.Name 
 		{ 
 			get
 			{
-				if (Name == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				if (!Name.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
-		Xbim.Ifc4.PresentationAppearanceResource.IfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont 
+		Ifc4.PresentationAppearanceResource.IfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont 
 		{ 
 			get
 			{
 				if (CurveFont == null) return null;
-				var ifcpredefinedcurvefont = CurveFont as Xbim.Ifc2x3.PresentationAppearanceResource.IfcPreDefinedCurveFont;
+				var ifcpredefinedcurvefont = CurveFont as IfcPreDefinedCurveFont;
 				if (ifcpredefinedcurvefont != null) 
 					return ifcpredefinedcurvefont;
-				var ifccurvestylefont = CurveFont as Xbim.Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFont;
+				var ifccurvestylefont = CurveFont as IfcCurveStyleFont;
 				if (ifccurvestylefont != null) 
 					return ifccurvestylefont;
 				return null;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling 
+		Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)CurveFontScaling);
+				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure(CurveFontScaling);
 			} 
 		}
 	}

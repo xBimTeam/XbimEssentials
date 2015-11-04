@@ -16,18 +16,18 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcEllipseProfileDef : IIfcEllipseProfileDef
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis1 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis1 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)SemiAxis1);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(SemiAxis1);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis2 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis2 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)SemiAxis2);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(SemiAxis2);
 			} 
 		}
 	}

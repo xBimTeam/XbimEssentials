@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcLibraryReference : IIfcLibraryReference
 	{
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcLibraryReference.Description 
+		Ifc4.MeasureResource.IfcText? IIfcLibraryReference.Description 
 		{ 
 			get
 			{
@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.ExternalReferenceResource.IfcLanguageId? IIfcLibraryReference.Language 
+		Ifc4.ExternalReferenceResource.IfcLanguageId? IIfcLibraryReference.Language 
 		{ 
 			get
 			{

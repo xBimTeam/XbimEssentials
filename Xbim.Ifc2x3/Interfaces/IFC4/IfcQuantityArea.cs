@@ -16,14 +16,14 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcQuantityArea : IIfcQuantityArea
 	{
-		Xbim.Ifc4.MeasureResource.IfcAreaMeasure IIfcQuantityArea.AreaValue 
+		Ifc4.MeasureResource.IfcAreaMeasure IIfcQuantityArea.AreaValue 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcAreaMeasure((double)AreaValue);
+				return new Ifc4.MeasureResource.IfcAreaMeasure(AreaValue);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcQuantityArea.Formula 
+		Ifc4.MeasureResource.IfcLabel? IIfcQuantityArea.Formula 
 		{ 
 			get
 			{

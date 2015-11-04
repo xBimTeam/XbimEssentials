@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	public partial class @IfcInventory : IIfcInventory
 	{
-		Xbim.Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum? IIfcInventory.PredefinedType 
+		Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum? IIfcInventory.PredefinedType 
 		{ 
 			get
 			{
 				switch (InventoryType)
 				{
-					case Xbim.Ifc2x3.SharedFacilitiesElements.IfcInventoryTypeEnum.ASSETINVENTORY:
-						return Xbim.Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.ASSETINVENTORY;
+					case IfcInventoryTypeEnum.ASSETINVENTORY:
+						return Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.ASSETINVENTORY;
 					
-					case Xbim.Ifc2x3.SharedFacilitiesElements.IfcInventoryTypeEnum.SPACEINVENTORY:
-						return Xbim.Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.SPACEINVENTORY;
+					case IfcInventoryTypeEnum.SPACEINVENTORY:
+						return Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.SPACEINVENTORY;
 					
-					case Xbim.Ifc2x3.SharedFacilitiesElements.IfcInventoryTypeEnum.FURNITUREINVENTORY:
-						return Xbim.Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.FURNITUREINVENTORY;
+					case IfcInventoryTypeEnum.FURNITUREINVENTORY:
+						return Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.FURNITUREINVENTORY;
 					
-					case Xbim.Ifc2x3.SharedFacilitiesElements.IfcInventoryTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.USERDEFINED;
+					case IfcInventoryTypeEnum.USERDEFINED:
+						return Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.SharedFacilitiesElements.IfcInventoryTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.NOTDEFINED;
+					case IfcInventoryTypeEnum.NOTDEFINED:
+						return Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.NOTDEFINED;
 					
 					
 					default:
@@ -43,18 +43,18 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				}
 			} 
 		}
-		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcInventory.Jurisdiction 
+		Ifc4.ActorResource.IfcActorSelect IIfcInventory.Jurisdiction 
 		{ 
 			get
 			{
 				if (Jurisdiction == null) return null;
-				var ifcorganization = Jurisdiction as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				var ifcorganization = Jurisdiction as ActorResource.IfcOrganization;
 				if (ifcorganization != null) 
 					return ifcorganization;
-				var ifcperson = Jurisdiction as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				var ifcperson = Jurisdiction as ActorResource.IfcPerson;
 				if (ifcperson != null) 
 					return ifcperson;
-				var ifcpersonandorganization = Jurisdiction as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				var ifcpersonandorganization = Jurisdiction as ActorResource.IfcPersonAndOrganization;
 				if (ifcpersonandorganization != null) 
 					return ifcpersonandorganization;
 				return null;
@@ -70,7 +70,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			}
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDate? IIfcInventory.LastUpdateDate 
+		Ifc4.DateTimeResource.IfcDate? IIfcInventory.LastUpdateDate 
 		{ 
 			get
 			{
@@ -84,14 +84,14 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
-				return CurrentValue as IIfcCostValue;
+				return CurrentValue;
 			} 
 		}
 		IIfcCostValue IIfcInventory.OriginalValue 
 		{ 
 			get
 			{
-				return OriginalValue as IIfcCostValue;
+				return OriginalValue;
 			} 
 		}
 	}

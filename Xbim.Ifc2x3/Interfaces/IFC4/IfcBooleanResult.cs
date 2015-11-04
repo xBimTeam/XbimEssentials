@@ -16,20 +16,20 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcBooleanResult : IIfcBooleanResult
 	{
-		Xbim.Ifc4.GeometricModelResource.IfcBooleanOperator IIfcBooleanResult.Operator 
+		Ifc4.GeometricModelResource.IfcBooleanOperator IIfcBooleanResult.Operator 
 		{ 
 			get
 			{
 				switch (Operator)
 				{
-					case Xbim.Ifc2x3.GeometricModelResource.IfcBooleanOperator.UNION:
-						return Xbim.Ifc4.GeometricModelResource.IfcBooleanOperator.UNION;
+					case IfcBooleanOperator.UNION:
+						return Ifc4.GeometricModelResource.IfcBooleanOperator.UNION;
 					
-					case Xbim.Ifc2x3.GeometricModelResource.IfcBooleanOperator.INTERSECTION:
-						return Xbim.Ifc4.GeometricModelResource.IfcBooleanOperator.INTERSECTION;
+					case IfcBooleanOperator.INTERSECTION:
+						return Ifc4.GeometricModelResource.IfcBooleanOperator.INTERSECTION;
 					
-					case Xbim.Ifc2x3.GeometricModelResource.IfcBooleanOperator.DIFFERENCE:
-						return Xbim.Ifc4.GeometricModelResource.IfcBooleanOperator.DIFFERENCE;
+					case IfcBooleanOperator.DIFFERENCE:
+						return Ifc4.GeometricModelResource.IfcBooleanOperator.DIFFERENCE;
 					
 					
 					default:
@@ -37,41 +37,41 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				}
 			} 
 		}
-		Xbim.Ifc4.GeometricModelResource.IfcBooleanOperand IIfcBooleanResult.FirstOperand 
+		Ifc4.GeometricModelResource.IfcBooleanOperand IIfcBooleanResult.FirstOperand 
 		{ 
 			get
 			{
 				if (FirstOperand == null) return null;
-				var ifcsolidmodel = FirstOperand as Xbim.Ifc2x3.GeometricModelResource.IfcSolidModel;
+				var ifcsolidmodel = FirstOperand as IfcSolidModel;
 				if (ifcsolidmodel != null) 
 					return ifcsolidmodel;
-				var ifchalfspacesolid = FirstOperand as Xbim.Ifc2x3.GeometricModelResource.IfcHalfSpaceSolid;
+				var ifchalfspacesolid = FirstOperand as IfcHalfSpaceSolid;
 				if (ifchalfspacesolid != null) 
 					return ifchalfspacesolid;
-				var ifcbooleanresult = FirstOperand as Xbim.Ifc2x3.GeometricModelResource.IfcBooleanResult;
+				var ifcbooleanresult = FirstOperand as IfcBooleanResult;
 				if (ifcbooleanresult != null) 
 					return ifcbooleanresult;
-				var ifccsgprimitive3d = FirstOperand as Xbim.Ifc2x3.GeometricModelResource.IfcCsgPrimitive3D;
+				var ifccsgprimitive3d = FirstOperand as IfcCsgPrimitive3D;
 				if (ifccsgprimitive3d != null) 
 					return ifccsgprimitive3d;
 				return null;
 			} 
 		}
-		Xbim.Ifc4.GeometricModelResource.IfcBooleanOperand IIfcBooleanResult.SecondOperand 
+		Ifc4.GeometricModelResource.IfcBooleanOperand IIfcBooleanResult.SecondOperand 
 		{ 
 			get
 			{
 				if (SecondOperand == null) return null;
-				var ifcsolidmodel = SecondOperand as Xbim.Ifc2x3.GeometricModelResource.IfcSolidModel;
+				var ifcsolidmodel = SecondOperand as IfcSolidModel;
 				if (ifcsolidmodel != null) 
 					return ifcsolidmodel;
-				var ifchalfspacesolid = SecondOperand as Xbim.Ifc2x3.GeometricModelResource.IfcHalfSpaceSolid;
+				var ifchalfspacesolid = SecondOperand as IfcHalfSpaceSolid;
 				if (ifchalfspacesolid != null) 
 					return ifchalfspacesolid;
-				var ifcbooleanresult = SecondOperand as Xbim.Ifc2x3.GeometricModelResource.IfcBooleanResult;
+				var ifcbooleanresult = SecondOperand as IfcBooleanResult;
 				if (ifcbooleanresult != null) 
 					return ifcbooleanresult;
-				var ifccsgprimitive3d = SecondOperand as Xbim.Ifc2x3.GeometricModelResource.IfcCsgPrimitive3D;
+				var ifccsgprimitive3d = SecondOperand as IfcCsgPrimitive3D;
 				if (ifccsgprimitive3d != null) 
 					return ifccsgprimitive3d;
 				return null;

@@ -16,14 +16,14 @@ namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterial : IIfcMaterial
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcMaterial.Name 
+		Ifc4.MeasureResource.IfcLabel IIfcMaterial.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcMaterial.Description 
+		Ifc4.MeasureResource.IfcText? IIfcMaterial.Description 
 		{ 
 			get
 			{
@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcMaterial.Category 
+		Ifc4.MeasureResource.IfcLabel? IIfcMaterial.Category 
 		{ 
 			get
 			{

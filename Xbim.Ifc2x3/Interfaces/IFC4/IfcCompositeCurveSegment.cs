@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCompositeCurveSegment : IIfcCompositeCurveSegment
 	{
-		Xbim.Ifc4.GeometryResource.IfcTransitionCode IIfcCompositeCurveSegment.Transition 
+		Ifc4.GeometryResource.IfcTransitionCode IIfcCompositeCurveSegment.Transition 
 		{ 
 			get
 			{
 				switch (Transition)
 				{
-					case Xbim.Ifc2x3.GeometryResource.IfcTransitionCode.DISCONTINUOUS:
-						return Xbim.Ifc4.GeometryResource.IfcTransitionCode.DISCONTINUOUS;
+					case IfcTransitionCode.DISCONTINUOUS:
+						return Ifc4.GeometryResource.IfcTransitionCode.DISCONTINUOUS;
 					
-					case Xbim.Ifc2x3.GeometryResource.IfcTransitionCode.CONTINUOUS:
-						return Xbim.Ifc4.GeometryResource.IfcTransitionCode.CONTINUOUS;
+					case IfcTransitionCode.CONTINUOUS:
+						return Ifc4.GeometryResource.IfcTransitionCode.CONTINUOUS;
 					
-					case Xbim.Ifc2x3.GeometryResource.IfcTransitionCode.CONTSAMEGRADIENT:
-						return Xbim.Ifc4.GeometryResource.IfcTransitionCode.CONTSAMEGRADIENT;
+					case IfcTransitionCode.CONTSAMEGRADIENT:
+						return Ifc4.GeometryResource.IfcTransitionCode.CONTSAMEGRADIENT;
 					
-					case Xbim.Ifc2x3.GeometryResource.IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE:
-						return Xbim.Ifc4.GeometryResource.IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE;
+					case IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE:
+						return Ifc4.GeometryResource.IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE;
 					
 					
 					default:
@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return ParentCurve as IIfcCurve;
+				return ParentCurve;
 			} 
 		}
 		IEnumerable<IIfcCompositeCurve> IIfcCompositeCurveSegment.UsingCurves 

@@ -16,65 +16,65 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcReinforcingMesh : IIfcReinforcingMesh
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshLength 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshLength 
 		{ 
 			get
 			{
-				if (MeshLength == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)MeshLength);
+				if (!MeshLength.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(MeshLength.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshWidth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshWidth 
 		{ 
 			get
 			{
-				if (MeshWidth == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)MeshWidth);
+				if (!MeshWidth.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(MeshWidth.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingMesh.LongitudinalBarNominalDiameter 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingMesh.LongitudinalBarNominalDiameter 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)LongitudinalBarNominalDiameter);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(LongitudinalBarNominalDiameter);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingMesh.TransverseBarNominalDiameter 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingMesh.TransverseBarNominalDiameter 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)TransverseBarNominalDiameter);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(TransverseBarNominalDiameter);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcAreaMeasure? IIfcReinforcingMesh.LongitudinalBarCrossSectionArea 
+		Ifc4.MeasureResource.IfcAreaMeasure? IIfcReinforcingMesh.LongitudinalBarCrossSectionArea 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcAreaMeasure((double)LongitudinalBarCrossSectionArea);
+				return new Ifc4.MeasureResource.IfcAreaMeasure(LongitudinalBarCrossSectionArea);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcAreaMeasure? IIfcReinforcingMesh.TransverseBarCrossSectionArea 
+		Ifc4.MeasureResource.IfcAreaMeasure? IIfcReinforcingMesh.TransverseBarCrossSectionArea 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcAreaMeasure((double)TransverseBarCrossSectionArea);
+				return new Ifc4.MeasureResource.IfcAreaMeasure(TransverseBarCrossSectionArea);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingMesh.LongitudinalBarSpacing 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingMesh.LongitudinalBarSpacing 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)LongitudinalBarSpacing);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(LongitudinalBarSpacing);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingMesh.TransverseBarSpacing 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingMesh.TransverseBarSpacing 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)TransverseBarSpacing);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(TransverseBarSpacing);
 			} 
 		}
-		Xbim.Ifc4.StructuralElementsDomain.IfcReinforcingMeshTypeEnum? IIfcReinforcingMesh.PredefinedType 
+		Ifc4.StructuralElementsDomain.IfcReinforcingMeshTypeEnum? IIfcReinforcingMesh.PredefinedType 
 		{ 
 			get
 			{

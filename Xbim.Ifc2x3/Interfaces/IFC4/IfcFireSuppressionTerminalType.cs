@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
 	public partial class @IfcFireSuppressionTerminalType : IIfcFireSuppressionTerminalType
 	{
-		Xbim.Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum IIfcFireSuppressionTerminalType.PredefinedType 
+		Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum IIfcFireSuppressionTerminalType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.BREECHINGINLET:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.BREECHINGINLET;
+					case IfcFireSuppressionTerminalTypeEnum.BREECHINGINLET:
+						return Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.BREECHINGINLET;
 					
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.FIREHYDRANT:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.FIREHYDRANT;
+					case IfcFireSuppressionTerminalTypeEnum.FIREHYDRANT:
+						return Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.FIREHYDRANT;
 					
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.HOSEREEL:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.HOSEREEL;
+					case IfcFireSuppressionTerminalTypeEnum.HOSEREEL:
+						return Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.HOSEREEL;
 					
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.SPRINKLER:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.SPRINKLER;
+					case IfcFireSuppressionTerminalTypeEnum.SPRINKLER:
+						return Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.SPRINKLER;
 					
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.SPRINKLERDEFLECTOR:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.SPRINKLERDEFLECTOR;
+					case IfcFireSuppressionTerminalTypeEnum.SPRINKLERDEFLECTOR:
+						return Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.SPRINKLERDEFLECTOR;
 					
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.USERDEFINED;
+					case IfcFireSuppressionTerminalTypeEnum.USERDEFINED:
+						return Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.NOTDEFINED;
+					case IfcFireSuppressionTerminalTypeEnum.NOTDEFINED:
+						return Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.NOTDEFINED;
 					
 					
 					default:

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcTransportElement : IIfcTransportElement
 	{
-		Xbim.Ifc4.ProductExtension.IfcTransportElementTypeEnum? IIfcTransportElement.PredefinedType 
+		Ifc4.ProductExtension.IfcTransportElementTypeEnum? IIfcTransportElement.PredefinedType 
 		{ 
 			get
 			{

@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return Pnt as IIfcCartesianPoint;
+				return Pnt;
 			} 
 		}
 		IIfcVector IIfcLine.Dir 
 		{ 
 			get
 			{
-				return Dir as IIfcVector;
+				return Dir;
 			} 
 		}
 	}

@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				return AppliedCondition as IIfcBoundaryCondition;
+				return AppliedCondition;
 			} 
 		}
 		IEnumerable<IIfcRelConnectsStructuralMember> IIfcStructuralConnection.ConnectsStructuralMembers 

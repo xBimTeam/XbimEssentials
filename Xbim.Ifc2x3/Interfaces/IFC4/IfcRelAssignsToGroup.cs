@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return RelatingGroup as IIfcGroup;
+				return RelatingGroup;
 			} 
 		}
 	}

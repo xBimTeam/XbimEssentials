@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadSingleForceWarping : IIfcStructuralLoadSingleForceWarping
 	{
-		Xbim.Ifc4.MeasureResource.IfcWarpingMomentMeasure? IIfcStructuralLoadSingleForceWarping.WarpingMoment 
+		Ifc4.MeasureResource.IfcWarpingMomentMeasure? IIfcStructuralLoadSingleForceWarping.WarpingMoment 
 		{ 
 			get
 			{
-				if (WarpingMoment == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcWarpingMomentMeasure((double)WarpingMoment);
+				if (!WarpingMoment.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcWarpingMomentMeasure(WarpingMoment.Value);
 			} 
 		}
 	}

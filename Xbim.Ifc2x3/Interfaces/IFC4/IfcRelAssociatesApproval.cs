@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 		{ 
 			get
 			{
-				return RelatingApproval as IIfcApproval;
+				return RelatingApproval;
 			} 
 		}
 	}

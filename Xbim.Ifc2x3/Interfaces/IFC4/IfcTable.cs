@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 {
 	public partial class @IfcTable : IIfcTable
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcTable.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcTable.Name 
 		{ 
 			get
 			{

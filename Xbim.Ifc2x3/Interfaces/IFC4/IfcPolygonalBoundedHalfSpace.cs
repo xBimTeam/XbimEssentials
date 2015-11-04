@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				return Position as IIfcAxis2Placement3D;
+				return Position;
 			} 
 		}
 		IIfcBoundedCurve IIfcPolygonalBoundedHalfSpace.PolygonalBoundary 
 		{ 
 			get
 			{
-				return PolygonalBoundary as IIfcBoundedCurve;
+				return PolygonalBoundary;
 			} 
 		}
 	}

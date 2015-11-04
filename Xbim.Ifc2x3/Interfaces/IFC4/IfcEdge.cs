@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-				return EdgeStart as IIfcVertex;
+				return EdgeStart;
 			} 
 		}
 		IIfcVertex IIfcEdge.EdgeEnd 
 		{ 
 			get
 			{
-				return EdgeEnd as IIfcVertex;
+				return EdgeEnd;
 			} 
 		}
 	}

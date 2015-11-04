@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			{
 			foreach (var member in OffsetDistances)
 			{
-				yield return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)member);
+				yield return new Ifc4.MeasureResource.IfcLengthMeasure((double)member);
 			}
 			} 
 		}

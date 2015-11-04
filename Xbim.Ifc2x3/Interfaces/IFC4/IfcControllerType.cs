@@ -16,44 +16,41 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	public partial class @IfcControllerType : IIfcControllerType
 	{
-		Xbim.Ifc4.BuildingControlsDomain.IfcControllerTypeEnum IIfcControllerType.PredefinedType 
+		Ifc4.BuildingControlsDomain.IfcControllerTypeEnum IIfcControllerType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.FLOATING:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.FLOATING;
+					case IfcControllerTypeEnum.FLOATING:
+						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.FLOATING;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.PROPORTIONAL:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.PROPORTIONAL;
+					case IfcControllerTypeEnum.PROPORTIONAL:
+						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.PROPORTIONAL;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.PROPORTIONALINTEGRAL:
+					case IfcControllerTypeEnum.PROPORTIONALINTEGRAL:
 						//## Handle translation of PROPORTIONALINTEGRAL member from IfcControllerTypeEnum in property PredefinedType
-						//TODO: Handle translation of PROPORTIONALINTEGRAL member from IfcControllerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+				        return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.NOTDEFINED;
 						//##
 										
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.PROPORTIONALINTEGRALDERIVATIVE:
+					case IfcControllerTypeEnum.PROPORTIONALINTEGRALDERIVATIVE:
 						//## Handle translation of PROPORTIONALINTEGRALDERIVATIVE member from IfcControllerTypeEnum in property PredefinedType
-						//TODO: Handle translation of PROPORTIONALINTEGRALDERIVATIVE member from IfcControllerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+				        return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.NOTDEFINED;
 						//##
 										
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.TIMEDTWOPOSITION:
+					case IfcControllerTypeEnum.TIMEDTWOPOSITION:
 						//## Handle translation of TIMEDTWOPOSITION member from IfcControllerTypeEnum in property PredefinedType
-						//TODO: Handle translation of TIMEDTWOPOSITION member from IfcControllerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+				        return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.NOTDEFINED;
 						//##
 										
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.TWOPOSITION:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.TWOPOSITION;
+					case IfcControllerTypeEnum.TWOPOSITION:
+						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.TWOPOSITION;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.USERDEFINED;
+					case IfcControllerTypeEnum.USERDEFINED:
+						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcControllerTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.NOTDEFINED;
+					case IfcControllerTypeEnum.NOTDEFINED:
+						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.NOTDEFINED;
 					
 					
 					default:

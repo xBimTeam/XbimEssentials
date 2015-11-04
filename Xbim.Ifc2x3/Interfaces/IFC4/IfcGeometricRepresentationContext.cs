@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcGeometricRepresentationContext : IIfcGeometricRepresentationContext
 	{
-		Xbim.Ifc4.GeometryResource.IfcDimensionCount IIfcGeometricRepresentationContext.CoordinateSpaceDimension 
+		Ifc4.GeometryResource.IfcDimensionCount IIfcGeometricRepresentationContext.CoordinateSpaceDimension 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.GeometryResource.IfcDimensionCount((long)CoordinateSpaceDimension);
+				return new Ifc4.GeometryResource.IfcDimensionCount(CoordinateSpaceDimension);
 			} 
 		}
 		double? IIfcGeometricRepresentationContext.Precision 
@@ -31,15 +31,15 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return Precision;
 			} 
 		}
-		Xbim.Ifc4.GeometryResource.IfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem 
+		Ifc4.GeometryResource.IfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem 
 		{ 
 			get
 			{
 				if (WorldCoordinateSystem == null) return null;
-				var ifcaxis2placement2d = WorldCoordinateSystem as Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement2D;
+				var ifcaxis2placement2d = WorldCoordinateSystem as GeometryResource.IfcAxis2Placement2D;
 				if (ifcaxis2placement2d != null) 
 					return ifcaxis2placement2d;
-				var ifcaxis2placement3d = WorldCoordinateSystem as Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement3D;
+				var ifcaxis2placement3d = WorldCoordinateSystem as GeometryResource.IfcAxis2Placement3D;
 				if (ifcaxis2placement3d != null) 
 					return ifcaxis2placement3d;
 				return null;
@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				return TrueNorth as IIfcDirection;
+				return TrueNorth;
 			} 
 		}
 		IEnumerable<IIfcGeometricRepresentationSubContext> IIfcGeometricRepresentationContext.HasSubContexts 

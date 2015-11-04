@@ -20,68 +20,68 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-				return Position as IIfcAxis2Placement3D;
+				return Position;
 			} 
 		}
 		IIfcColourRgb IIfcLightSourceGoniometric.ColourAppearance 
 		{ 
 			get
 			{
-				return ColourAppearance as IIfcColourRgb;
+				return ColourAppearance;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature 
+		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure((double)ColourTemperature);
+				return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(ColourTemperature);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux 
+		Ifc4.MeasureResource.IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLuminousFluxMeasure((double)LuminousFlux);
+				return new Ifc4.MeasureResource.IfcLuminousFluxMeasure(LuminousFlux);
 			} 
 		}
-		Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource 
+		Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource 
 		{ 
 			get
 			{
 				switch (LightEmissionSource)
 				{
-					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.COMPACTFLUORESCENT:
-						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.COMPACTFLUORESCENT;
+					case IfcLightEmissionSourceEnum.COMPACTFLUORESCENT:
+						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.COMPACTFLUORESCENT;
 					
-					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.FLUORESCENT:
-						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.FLUORESCENT;
+					case IfcLightEmissionSourceEnum.FLUORESCENT:
+						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.FLUORESCENT;
 					
-					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY:
-						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY;
+					case IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY:
+						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY;
 					
-					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM:
-						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM;
+					case IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM:
+						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM;
 					
-					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE:
-						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE;
+					case IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE:
+						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE;
 					
-					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LOWPRESSURESODIUM:
-						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LOWPRESSURESODIUM;
+					case IfcLightEmissionSourceEnum.LOWPRESSURESODIUM:
+						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LOWPRESSURESODIUM;
 					
-					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN:
-						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN;
+					case IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN:
+						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN;
 					
-					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN:
-						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN;
+					case IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN:
+						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN;
 					
-					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.METALHALIDE:
-						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.METALHALIDE;
+					case IfcLightEmissionSourceEnum.METALHALIDE:
+						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.METALHALIDE;
 					
-					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.TUNGSTENFILAMENT:
-						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.TUNGSTENFILAMENT;
+					case IfcLightEmissionSourceEnum.TUNGSTENFILAMENT:
+						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.TUNGSTENFILAMENT;
 					
-					case Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightEmissionSourceEnum.NOTDEFINED:
-						return Xbim.Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.NOTDEFINED;
+					case IfcLightEmissionSourceEnum.NOTDEFINED:
+						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.NOTDEFINED;
 					
 					
 					default:
@@ -89,15 +89,15 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				}
 			} 
 		}
-		Xbim.Ifc4.PresentationOrganizationResource.IfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource 
+		Ifc4.PresentationOrganizationResource.IfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource 
 		{ 
 			get
 			{
 				if (LightDistributionDataSource == null) return null;
-				var ifcexternalreference = LightDistributionDataSource as Xbim.Ifc2x3.ExternalReferenceResource.IfcExternalReference;
+				var ifcexternalreference = LightDistributionDataSource as ExternalReferenceResource.IfcExternalReference;
 				if (ifcexternalreference != null) 
 					return ifcexternalreference;
-				var ifclightintensitydistribution = LightDistributionDataSource as Xbim.Ifc2x3.PresentationOrganizationResource.IfcLightIntensityDistribution;
+				var ifclightintensitydistribution = LightDistributionDataSource as IfcLightIntensityDistribution;
 				if (ifclightintensitydistribution != null) 
 					return ifclightintensitydistribution;
 				return null;

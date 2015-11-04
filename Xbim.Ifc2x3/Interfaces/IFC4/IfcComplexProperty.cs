@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcComplexProperty : IIfcComplexProperty
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier IIfcComplexProperty.UsageName 
+		Ifc4.MeasureResource.IfcIdentifier IIfcComplexProperty.UsageName 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)UsageName);
+				return new Ifc4.MeasureResource.IfcIdentifier(UsageName);
 			} 
 		}
 		IEnumerable<IIfcProperty> IIfcComplexProperty.HasProperties 

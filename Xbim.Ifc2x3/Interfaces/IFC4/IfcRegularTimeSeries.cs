@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	public partial class @IfcRegularTimeSeries : IIfcRegularTimeSeries
 	{
-		Xbim.Ifc4.MeasureResource.IfcTimeMeasure IIfcRegularTimeSeries.TimeStep 
+		Ifc4.MeasureResource.IfcTimeMeasure IIfcRegularTimeSeries.TimeStep 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcTimeMeasure((double)TimeStep);
+				return new Ifc4.MeasureResource.IfcTimeMeasure(TimeStep);
 			} 
 		}
 		IEnumerable<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values 

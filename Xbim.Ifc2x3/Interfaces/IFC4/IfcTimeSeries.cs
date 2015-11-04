@@ -16,22 +16,22 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	public partial class @IfcTimeSeries : IIfcTimeSeries
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcTimeSeries.Name 
+		Ifc4.MeasureResource.IfcLabel IIfcTimeSeries.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcTimeSeries.Description 
+		Ifc4.MeasureResource.IfcText? IIfcTimeSeries.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime IIfcTimeSeries.StartTime 
+		Ifc4.DateTimeResource.IfcDateTime IIfcTimeSeries.StartTime 
 		{ 
 			get
 			{
@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime IIfcTimeSeries.EndTime 
+		Ifc4.DateTimeResource.IfcDateTime IIfcTimeSeries.EndTime 
 		{ 
 			get
 			{
@@ -51,32 +51,32 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType 
+		Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType 
 		{ 
 			get
 			{
 				switch (TimeSeriesDataType)
 				{
-					case Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeriesDataTypeEnum.CONTINUOUS:
-						return Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.CONTINUOUS;
+					case IfcTimeSeriesDataTypeEnum.CONTINUOUS:
+						return Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.CONTINUOUS;
 					
-					case Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeriesDataTypeEnum.DISCRETE:
-						return Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.DISCRETE;
+					case IfcTimeSeriesDataTypeEnum.DISCRETE:
+						return Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.DISCRETE;
 					
-					case Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeriesDataTypeEnum.DISCRETEBINARY:
-						return Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.DISCRETEBINARY;
+					case IfcTimeSeriesDataTypeEnum.DISCRETEBINARY:
+						return Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.DISCRETEBINARY;
 					
-					case Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeriesDataTypeEnum.PIECEWISEBINARY:
-						return Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.PIECEWISEBINARY;
+					case IfcTimeSeriesDataTypeEnum.PIECEWISEBINARY:
+						return Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.PIECEWISEBINARY;
 					
-					case Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeriesDataTypeEnum.PIECEWISECONSTANT:
-						return Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.PIECEWISECONSTANT;
+					case IfcTimeSeriesDataTypeEnum.PIECEWISECONSTANT:
+						return Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.PIECEWISECONSTANT;
 					
-					case Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeriesDataTypeEnum.PIECEWISECONTINUOUS:
-						return Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.PIECEWISECONTINUOUS;
+					case IfcTimeSeriesDataTypeEnum.PIECEWISECONTINUOUS:
+						return Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.PIECEWISECONTINUOUS;
 					
-					case Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeriesDataTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.NOTDEFINED;
+					case IfcTimeSeriesDataTypeEnum.NOTDEFINED:
+						return Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.NOTDEFINED;
 					
 					
 					default:
@@ -84,26 +84,26 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				}
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDataOriginEnum IIfcTimeSeries.DataOrigin 
+		Ifc4.DateTimeResource.IfcDataOriginEnum IIfcTimeSeries.DataOrigin 
 		{ 
 			get
 			{
 				switch (DataOrigin)
 				{
-					case Xbim.Ifc2x3.TimeSeriesResource.IfcDataOriginEnum.MEASURED:
-						return Xbim.Ifc4.DateTimeResource.IfcDataOriginEnum.MEASURED;
+					case IfcDataOriginEnum.MEASURED:
+						return Ifc4.DateTimeResource.IfcDataOriginEnum.MEASURED;
 					
-					case Xbim.Ifc2x3.TimeSeriesResource.IfcDataOriginEnum.PREDICTED:
-						return Xbim.Ifc4.DateTimeResource.IfcDataOriginEnum.PREDICTED;
+					case IfcDataOriginEnum.PREDICTED:
+						return Ifc4.DateTimeResource.IfcDataOriginEnum.PREDICTED;
 					
-					case Xbim.Ifc2x3.TimeSeriesResource.IfcDataOriginEnum.SIMULATED:
-						return Xbim.Ifc4.DateTimeResource.IfcDataOriginEnum.SIMULATED;
+					case IfcDataOriginEnum.SIMULATED:
+						return Ifc4.DateTimeResource.IfcDataOriginEnum.SIMULATED;
 					
-					case Xbim.Ifc2x3.TimeSeriesResource.IfcDataOriginEnum.USERDEFINED:
-						return Xbim.Ifc4.DateTimeResource.IfcDataOriginEnum.USERDEFINED;
+					case IfcDataOriginEnum.USERDEFINED:
+						return Ifc4.DateTimeResource.IfcDataOriginEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.TimeSeriesResource.IfcDataOriginEnum.NOTDEFINED:
-						return Xbim.Ifc4.DateTimeResource.IfcDataOriginEnum.NOTDEFINED;
+					case IfcDataOriginEnum.NOTDEFINED:
+						return Ifc4.DateTimeResource.IfcDataOriginEnum.NOTDEFINED;
 					
 					
 					default:
@@ -111,26 +111,26 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcTimeSeries.UserDefinedDataOrigin 
+		Ifc4.MeasureResource.IfcLabel? IIfcTimeSeries.UserDefinedDataOrigin 
 		{ 
 			get
 			{
-				if (UserDefinedDataOrigin == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)UserDefinedDataOrigin);
+				if (!UserDefinedDataOrigin.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(UserDefinedDataOrigin.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcUnit IIfcTimeSeries.Unit 
+		Ifc4.MeasureResource.IfcUnit IIfcTimeSeries.Unit 
 		{ 
 			get
 			{
 				if (Unit == null) return null;
-				var ifcderivedunit = Unit as Xbim.Ifc2x3.MeasureResource.IfcDerivedUnit;
+				var ifcderivedunit = Unit as MeasureResource.IfcDerivedUnit;
 				if (ifcderivedunit != null) 
 					return ifcderivedunit;
-				var ifcnamedunit = Unit as Xbim.Ifc2x3.MeasureResource.IfcNamedUnit;
+				var ifcnamedunit = Unit as MeasureResource.IfcNamedUnit;
 				if (ifcnamedunit != null) 
 					return ifcnamedunit;
-				var ifcmonetaryunit = Unit as Xbim.Ifc2x3.MeasureResource.IfcMonetaryUnit;
+				var ifcmonetaryunit = Unit as MeasureResource.IfcMonetaryUnit;
 				if (ifcmonetaryunit != null) 
 					return ifcmonetaryunit;
 				return null;

@@ -26,20 +26,20 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcShapeAspect.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcShapeAspect.Name 
 		{ 
 			get
 			{
-				if (Name == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				if (!Name.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcShapeAspect.Description 
+		Ifc4.MeasureResource.IfcText? IIfcShapeAspect.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 		bool? IIfcShapeAspect.ProductDefinitional 
@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return ProductDefinitional;
 			} 
 		}
-		Xbim.Ifc4.RepresentationResource.IfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape 
+		Ifc4.RepresentationResource.IfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape 
 		{ 
 			get
 			{

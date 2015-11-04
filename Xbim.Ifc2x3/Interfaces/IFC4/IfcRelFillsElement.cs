@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				return RelatingOpeningElement as IIfcOpeningElement;
+				return RelatingOpeningElement;
 			} 
 		}
 		IIfcElement IIfcRelFillsElement.RelatedBuildingElement 
 		{ 
 			get
 			{
-				return RelatedBuildingElement as IIfcElement;
+				return RelatedBuildingElement;
 			} 
 		}
 	}

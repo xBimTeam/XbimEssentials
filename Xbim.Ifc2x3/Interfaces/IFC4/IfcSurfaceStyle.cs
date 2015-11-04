@@ -16,20 +16,20 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceStyle : IIfcSurfaceStyle
 	{
-		Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceSide IIfcSurfaceStyle.Side 
+		Ifc4.PresentationAppearanceResource.IfcSurfaceSide IIfcSurfaceStyle.Side 
 		{ 
 			get
 			{
 				switch (Side)
 				{
-					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceSide.POSITIVE:
-						return Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceSide.POSITIVE;
+					case IfcSurfaceSide.POSITIVE:
+						return Ifc4.PresentationAppearanceResource.IfcSurfaceSide.POSITIVE;
 					
-					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceSide.NEGATIVE:
-						return Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceSide.NEGATIVE;
+					case IfcSurfaceSide.NEGATIVE:
+						return Ifc4.PresentationAppearanceResource.IfcSurfaceSide.NEGATIVE;
 					
-					case Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceSide.BOTH:
-						return Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceSide.BOTH;
+					case IfcSurfaceSide.BOTH:
+						return Ifc4.PresentationAppearanceResource.IfcSurfaceSide.BOTH;
 					
 					
 					default:
@@ -43,19 +43,19 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 			foreach (var member in Styles)
 			{
-				var ifcsurfacestyleshading = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleShading;
+				var ifcsurfacestyleshading = member as IfcSurfaceStyleShading;
 				if (ifcsurfacestyleshading != null) 
 					yield return ifcsurfacestyleshading;
-				var ifcsurfacestylelighting = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleLighting;
+				var ifcsurfacestylelighting = member as IfcSurfaceStyleLighting;
 				if (ifcsurfacestylelighting != null) 
 					yield return ifcsurfacestylelighting;
-				var ifcsurfacestylewithtextures = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleWithTextures;
+				var ifcsurfacestylewithtextures = member as IfcSurfaceStyleWithTextures;
 				if (ifcsurfacestylewithtextures != null) 
 					yield return ifcsurfacestylewithtextures;
-				var ifcexternallydefinedsurfacestyle = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcExternallyDefinedSurfaceStyle;
+				var ifcexternallydefinedsurfacestyle = member as IfcExternallyDefinedSurfaceStyle;
 				if (ifcexternallydefinedsurfacestyle != null) 
 					yield return ifcexternallydefinedsurfacestyle;
-				var ifcsurfacestylerefraction = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleRefraction;
+				var ifcsurfacestylerefraction = member as IfcSurfaceStyleRefraction;
 				if (ifcsurfacestylerefraction != null) 
 					yield return ifcsurfacestylerefraction;
 			}

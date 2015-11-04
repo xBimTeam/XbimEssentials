@@ -16,18 +16,18 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcConversionBasedUnit : IIfcConversionBasedUnit
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcConversionBasedUnit.Name 
+		Ifc4.MeasureResource.IfcLabel IIfcConversionBasedUnit.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
 		IIfcMeasureWithUnit IIfcConversionBasedUnit.ConversionFactor 
 		{ 
 			get
 			{
-				return ConversionFactor as IIfcMeasureWithUnit;
+				return ConversionFactor;
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcConversionBasedUnit.HasExternalReference 

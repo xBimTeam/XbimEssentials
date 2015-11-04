@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcBlobTexture : IIfcBlobTexture
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier IIfcBlobTexture.RasterFormat 
+		Ifc4.MeasureResource.IfcIdentifier IIfcBlobTexture.RasterFormat 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)RasterFormat);
+				return new Ifc4.MeasureResource.IfcIdentifier(RasterFormat);
 			} 
 		}
 		long IIfcBlobTexture.RasterCode 
@@ -28,9 +28,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get
 			{
 				//## Handle return of RasterCode for which no match was found
-				//TODO: Handle return of RasterCode for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return 0;
+			    //##
 			} 
 		}
 	}

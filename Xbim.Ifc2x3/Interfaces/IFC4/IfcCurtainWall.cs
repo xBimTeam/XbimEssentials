@@ -16,14 +16,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcCurtainWall : IIfcCurtainWall
 	{
-		Xbim.Ifc4.SharedBldgElements.IfcCurtainWallTypeEnum? IIfcCurtainWall.PredefinedType 
+		Ifc4.SharedBldgElements.IfcCurtainWallTypeEnum? IIfcCurtainWall.PredefinedType 
 		{ 
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				//TODO: Handle return of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 	}

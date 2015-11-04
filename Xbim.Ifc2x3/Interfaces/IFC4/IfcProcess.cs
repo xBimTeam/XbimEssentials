@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcProcess : IIfcProcess
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcProcess.Identification 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcProcess.Identification 
 		{ 
 			get
 			{
@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Kernel
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcProcess.LongDescription 
+		Ifc4.MeasureResource.IfcText? IIfcProcess.LongDescription 
 		{ 
 			get
 			{

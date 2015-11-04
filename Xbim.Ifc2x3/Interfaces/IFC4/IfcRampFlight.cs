@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRampFlight : IIfcRampFlight
 	{
-		Xbim.Ifc4.SharedBldgElements.IfcRampFlightTypeEnum? IIfcRampFlight.PredefinedType 
+		Ifc4.SharedBldgElements.IfcRampFlightTypeEnum? IIfcRampFlight.PredefinedType 
 		{ 
 			get
 			{

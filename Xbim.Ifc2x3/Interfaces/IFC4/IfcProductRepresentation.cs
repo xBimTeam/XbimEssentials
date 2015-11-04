@@ -16,20 +16,20 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcProductRepresentation : IIfcProductRepresentation
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcProductRepresentation.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcProductRepresentation.Name 
 		{ 
 			get
 			{
-				if (Name == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				if (!Name.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcProductRepresentation.Description 
+		Ifc4.MeasureResource.IfcText? IIfcProductRepresentation.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 		IEnumerable<IIfcRepresentation> IIfcProductRepresentation.Representations 

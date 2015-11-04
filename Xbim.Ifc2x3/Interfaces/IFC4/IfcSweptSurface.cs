@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return SweptCurve as IIfcProfileDef;
+				return SweptCurve;
 			} 
 		}
 		IIfcAxis2Placement3D IIfcSweptSurface.Position 
 		{ 
 			get
 			{
-				return Position as IIfcAxis2Placement3D;
+				return Position;
 			} 
 		}
 	}

@@ -36,7 +36,7 @@ namespace Xbim.Essentials.Tests
                     res = ifc2x3DateAndTime.TimeComponent.ToISODateTimeString();
                     Assert.IsTrue(res == "0001-01-01T12:11:32.123");
                 }
-            }        
+            }
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@ namespace Xbim.Essentials.Tests
             var ifc4Duration = new Xbim.Ifc4.DateTimeResource.IfcDuration(isoDuration);
             var timeSpan = ifc4Duration.ToTimeSpan();
             Assert.IsTrue(timeSpan.TotalSeconds == numSeconds);
-
+           
             timeMeasure = new Xbim.Ifc2x3.MeasureResource.IfcTimeMeasure(Math.Truncate(numSeconds));
             isoDuration = timeMeasure.ToISODateTimeString();
             Assert.IsTrue(isoDuration == "P34DT17H28M21S");

@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadSingleDisplacementDistortion : IIfcStructuralLoadSingleDisplacementDistortion
 	{
-		Xbim.Ifc4.MeasureResource.IfcCurvatureMeasure? IIfcStructuralLoadSingleDisplacementDistortion.Distortion 
+		Ifc4.MeasureResource.IfcCurvatureMeasure? IIfcStructuralLoadSingleDisplacementDistortion.Distortion 
 		{ 
 			get
 			{
-				if (Distortion == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcCurvatureMeasure((double)Distortion);
+				if (!Distortion.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcCurvatureMeasure(Distortion.Value);
 			} 
 		}
 	}

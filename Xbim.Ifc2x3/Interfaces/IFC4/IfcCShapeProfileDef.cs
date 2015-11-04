@@ -16,40 +16,40 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcCShapeProfileDef : IIfcCShapeProfileDef
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCShapeProfileDef.Depth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCShapeProfileDef.Depth 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Depth);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Depth);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCShapeProfileDef.Width 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCShapeProfileDef.Width 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Width);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Width);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCShapeProfileDef.WallThickness 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCShapeProfileDef.WallThickness 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)WallThickness);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(WallThickness);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCShapeProfileDef.Girth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCShapeProfileDef.Girth 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Girth);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Girth);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcCShapeProfileDef.InternalFilletRadius 
+		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcCShapeProfileDef.InternalFilletRadius 
 		{ 
 			get
 			{
-				if (InternalFilletRadius == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)InternalFilletRadius);
+				if (!InternalFilletRadius.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(InternalFilletRadius.Value);
 			} 
 		}
 	}

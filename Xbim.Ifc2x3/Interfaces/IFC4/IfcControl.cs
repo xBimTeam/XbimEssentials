@@ -16,14 +16,13 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcControl : IIfcControl
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcControl.Identification 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcControl.Identification 
 		{ 
 			get
 			{
 				//## Handle return of Identification for which no match was found
-				//TODO: Handle return of Identification for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		IEnumerable<IIfcRelAssignsToControl> IIfcControl.Controls 

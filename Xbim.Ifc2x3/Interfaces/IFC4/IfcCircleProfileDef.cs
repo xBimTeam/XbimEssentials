@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcCircleProfileDef : IIfcCircleProfileDef
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCircleProfileDef.Radius 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCircleProfileDef.Radius 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Radius);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Radius);
 			} 
 		}
 	}

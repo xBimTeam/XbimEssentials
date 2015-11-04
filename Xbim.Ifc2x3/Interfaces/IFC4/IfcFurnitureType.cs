@@ -16,20 +16,20 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	public partial class @IfcFurnitureType : IIfcFurnitureType
 	{
-		Xbim.Ifc4.ProductExtension.IfcAssemblyPlaceEnum IIfcFurnitureType.AssemblyPlace 
+		Ifc4.ProductExtension.IfcAssemblyPlaceEnum IIfcFurnitureType.AssemblyPlace 
 		{ 
 			get
 			{
 				switch (AssemblyPlace)
 				{
-					case Xbim.Ifc2x3.ProductExtension.IfcAssemblyPlaceEnum.SITE:
-						return Xbim.Ifc4.ProductExtension.IfcAssemblyPlaceEnum.SITE;
+					case ProductExtension.IfcAssemblyPlaceEnum.SITE:
+						return Ifc4.ProductExtension.IfcAssemblyPlaceEnum.SITE;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcAssemblyPlaceEnum.FACTORY:
-						return Xbim.Ifc4.ProductExtension.IfcAssemblyPlaceEnum.FACTORY;
+					case ProductExtension.IfcAssemblyPlaceEnum.FACTORY:
+						return Ifc4.ProductExtension.IfcAssemblyPlaceEnum.FACTORY;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcAssemblyPlaceEnum.NOTDEFINED:
-						return Xbim.Ifc4.ProductExtension.IfcAssemblyPlaceEnum.NOTDEFINED;
+					case ProductExtension.IfcAssemblyPlaceEnum.NOTDEFINED:
+						return Ifc4.ProductExtension.IfcAssemblyPlaceEnum.NOTDEFINED;
 					
 					
 					default:
@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				}
 			} 
 		}
-		Xbim.Ifc4.SharedFacilitiesElements.IfcFurnitureTypeEnum? IIfcFurnitureType.PredefinedType 
+		Ifc4.SharedFacilitiesElements.IfcFurnitureTypeEnum? IIfcFurnitureType.PredefinedType 
 		{ 
 			get
 			{

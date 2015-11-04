@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSpace : IIfcSpace
 	{
-		Xbim.Ifc4.ProductExtension.IfcSpaceTypeEnum? IIfcSpace.PredefinedType 
+		Ifc4.ProductExtension.IfcSpaceTypeEnum? IIfcSpace.PredefinedType 
 		{ 
 			get
 			{
@@ -26,21 +26,20 @@ namespace Xbim.Ifc2x3.ProductExtension
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcSpace.ElevationWithFlooring 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSpace.ElevationWithFlooring 
 		{ 
 			get
 			{
-				if (ElevationWithFlooring == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)ElevationWithFlooring);
+				if (!ElevationWithFlooring.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(ElevationWithFlooring.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
+		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get
 			{
 				//## Handle return of LongName for which no match was found
-				//TODO: Handle return of LongName for which no match was found
-				throw new System.NotImplementedException();
+                return !Name.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(Name.Value);
 				//##
 			} 
 		}

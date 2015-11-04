@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xbim.Ifc2x3.DateTimeResource;
 using Xbim.Ifc4.MeasureResource;
 
@@ -12,18 +9,20 @@ namespace Xbim.Ifc4.Interfaces
   
         public static string ToISODateTimeString(this IfcDateTimeSelect ifcDateTimeSelect)
         {
-
-            if (ifcDateTimeSelect is IfcDateAndTime)
+            var dateAndTime = ifcDateTimeSelect as IfcDateAndTime;
+            if (dateAndTime != null)
             {
-                return ((IfcDateAndTime)ifcDateTimeSelect).ToISODateTimeString();
+                return dateAndTime.ToISODateTimeString();
             }
-            else if (ifcDateTimeSelect is IfcCalendarDate)
+            var calendarDate = ifcDateTimeSelect as IfcCalendarDate;
+            if (calendarDate != null)
             {
-                return ((IfcCalendarDate)ifcDateTimeSelect).ToISODateTimeString();               
+                return ToISODateTimeString(calendarDate);               
             }
-            else if (ifcDateTimeSelect is IfcLocalTime)
+            var localTime = ifcDateTimeSelect as IfcLocalTime;
+            if (localTime != null)
             {
-                return ((IfcLocalTime)ifcDateTimeSelect).ToISODateTimeString();                  
+                return ToISODateTimeString(localTime);                  
             }
             var dateTime = new DateTime(1, 1, 1, 12, 0, 0);
             return dateTime.ToString("yyyy-MM-ddThh:mm:ss");

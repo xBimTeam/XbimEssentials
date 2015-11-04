@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcCircleHollowProfileDef : IIfcCircleHollowProfileDef
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCircleHollowProfileDef.WallThickness 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCircleHollowProfileDef.WallThickness 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)WallThickness);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(WallThickness);
 			} 
 		}
 	}

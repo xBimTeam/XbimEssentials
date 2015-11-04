@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get
 			{
-				return RelatingFlowElement as IIfcDistributionFlowElement;
+				return RelatingFlowElement;
 			} 
 		}
 	}

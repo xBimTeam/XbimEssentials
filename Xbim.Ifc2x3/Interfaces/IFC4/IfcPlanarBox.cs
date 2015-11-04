@@ -16,15 +16,15 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcPlanarBox : IIfcPlanarBox
 	{
-		Xbim.Ifc4.GeometryResource.IfcAxis2Placement IIfcPlanarBox.Placement 
+		Ifc4.GeometryResource.IfcAxis2Placement IIfcPlanarBox.Placement 
 		{ 
 			get
 			{
 				if (Placement == null) return null;
-				var ifcaxis2placement2d = Placement as Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement2D;
+				var ifcaxis2placement2d = Placement as GeometryResource.IfcAxis2Placement2D;
 				if (ifcaxis2placement2d != null) 
 					return ifcaxis2placement2d;
-				var ifcaxis2placement3d = Placement as Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement3D;
+				var ifcaxis2placement3d = Placement as GeometryResource.IfcAxis2Placement3D;
 				if (ifcaxis2placement3d != null) 
 					return ifcaxis2placement3d;
 				return null;

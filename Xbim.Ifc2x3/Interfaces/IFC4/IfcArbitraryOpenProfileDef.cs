@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				return Curve as IIfcBoundedCurve;
+				return Curve;
 			} 
 		}
 	}

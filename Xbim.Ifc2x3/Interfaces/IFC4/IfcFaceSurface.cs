@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-				return FaceSurface as IIfcSurface;
+				return FaceSurface;
 			} 
 		}
 		bool IIfcFaceSurface.SameSense 

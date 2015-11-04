@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcSwitchingDeviceType : IIfcSwitchingDeviceType
 	{
-		Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum IIfcSwitchingDeviceType.PredefinedType 
+		Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum IIfcSwitchingDeviceType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.ElectricalDomain.IfcSwitchingDeviceTypeEnum.CONTACTOR:
-						return Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.CONTACTOR;
+					case IfcSwitchingDeviceTypeEnum.CONTACTOR:
+						return Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.CONTACTOR;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP:
-						return Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP;
+					case IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP:
+						return Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcSwitchingDeviceTypeEnum.STARTER:
-						return Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.STARTER;
+					case IfcSwitchingDeviceTypeEnum.STARTER:
+						return Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.STARTER;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR:
-						return Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR;
+					case IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR:
+						return Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcSwitchingDeviceTypeEnum.TOGGLESWITCH:
-						return Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.TOGGLESWITCH;
+					case IfcSwitchingDeviceTypeEnum.TOGGLESWITCH:
+						return Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.TOGGLESWITCH;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcSwitchingDeviceTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.USERDEFINED;
+					case IfcSwitchingDeviceTypeEnum.USERDEFINED:
+						return Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcSwitchingDeviceTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.NOTDEFINED;
+					case IfcSwitchingDeviceTypeEnum.NOTDEFINED:
+						return Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.NOTDEFINED;
 					
 					
 					default:

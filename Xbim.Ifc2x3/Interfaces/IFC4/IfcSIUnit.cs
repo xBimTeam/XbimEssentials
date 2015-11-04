@@ -16,59 +16,59 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcSIUnit : IIfcSIUnit
 	{
-		Xbim.Ifc4.MeasureResource.IfcSIPrefix? IIfcSIUnit.Prefix 
+		Ifc4.MeasureResource.IfcSIPrefix? IIfcSIUnit.Prefix 
 		{ 
 			get
 			{
 				switch (Prefix)
 				{
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.EXA:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.EXA;
+					case IfcSIPrefix.EXA:
+						return Ifc4.MeasureResource.IfcSIPrefix.EXA;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.PETA:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.PETA;
+					case IfcSIPrefix.PETA:
+						return Ifc4.MeasureResource.IfcSIPrefix.PETA;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.TERA:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.TERA;
+					case IfcSIPrefix.TERA:
+						return Ifc4.MeasureResource.IfcSIPrefix.TERA;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.GIGA:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.GIGA;
+					case IfcSIPrefix.GIGA:
+						return Ifc4.MeasureResource.IfcSIPrefix.GIGA;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.MEGA:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.MEGA;
+					case IfcSIPrefix.MEGA:
+						return Ifc4.MeasureResource.IfcSIPrefix.MEGA;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.KILO:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.KILO;
+					case IfcSIPrefix.KILO:
+						return Ifc4.MeasureResource.IfcSIPrefix.KILO;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.HECTO:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.HECTO;
+					case IfcSIPrefix.HECTO:
+						return Ifc4.MeasureResource.IfcSIPrefix.HECTO;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.DECA:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.DECA;
+					case IfcSIPrefix.DECA:
+						return Ifc4.MeasureResource.IfcSIPrefix.DECA;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.DECI:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.DECI;
+					case IfcSIPrefix.DECI:
+						return Ifc4.MeasureResource.IfcSIPrefix.DECI;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.CENTI:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.CENTI;
+					case IfcSIPrefix.CENTI:
+						return Ifc4.MeasureResource.IfcSIPrefix.CENTI;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.MILLI:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.MILLI;
+					case IfcSIPrefix.MILLI:
+						return Ifc4.MeasureResource.IfcSIPrefix.MILLI;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.MICRO:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.MICRO;
+					case IfcSIPrefix.MICRO:
+						return Ifc4.MeasureResource.IfcSIPrefix.MICRO;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.NANO:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.NANO;
+					case IfcSIPrefix.NANO:
+						return Ifc4.MeasureResource.IfcSIPrefix.NANO;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.PICO:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.PICO;
+					case IfcSIPrefix.PICO:
+						return Ifc4.MeasureResource.IfcSIPrefix.PICO;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.FEMTO:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.FEMTO;
+					case IfcSIPrefix.FEMTO:
+						return Ifc4.MeasureResource.IfcSIPrefix.FEMTO;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIPrefix.ATTO:
-						return Xbim.Ifc4.MeasureResource.IfcSIPrefix.ATTO;
+					case IfcSIPrefix.ATTO:
+						return Ifc4.MeasureResource.IfcSIPrefix.ATTO;
 					
 					
 					default:
@@ -76,101 +76,101 @@ namespace Xbim.Ifc2x3.MeasureResource
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcSIUnitName IIfcSIUnit.Name 
+		Ifc4.MeasureResource.IfcSIUnitName IIfcSIUnit.Name 
 		{ 
 			get
 			{
 				switch (Name)
 				{
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.AMPERE:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.AMPERE;
+					case IfcSIUnitName.AMPERE:
+						return Ifc4.MeasureResource.IfcSIUnitName.AMPERE;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.BECQUEREL:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.BECQUEREL;
+					case IfcSIUnitName.BECQUEREL:
+						return Ifc4.MeasureResource.IfcSIUnitName.BECQUEREL;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.CANDELA:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.CANDELA;
+					case IfcSIUnitName.CANDELA:
+						return Ifc4.MeasureResource.IfcSIUnitName.CANDELA;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.COULOMB:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.COULOMB;
+					case IfcSIUnitName.COULOMB:
+						return Ifc4.MeasureResource.IfcSIUnitName.COULOMB;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.CUBIC_METRE:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.CUBIC_METRE;
+					case IfcSIUnitName.CUBIC_METRE:
+						return Ifc4.MeasureResource.IfcSIUnitName.CUBIC_METRE;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.DEGREE_CELSIUS:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.DEGREE_CELSIUS;
+					case IfcSIUnitName.DEGREE_CELSIUS:
+						return Ifc4.MeasureResource.IfcSIUnitName.DEGREE_CELSIUS;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.FARAD:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.FARAD;
+					case IfcSIUnitName.FARAD:
+						return Ifc4.MeasureResource.IfcSIUnitName.FARAD;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.GRAM:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.GRAM;
+					case IfcSIUnitName.GRAM:
+						return Ifc4.MeasureResource.IfcSIUnitName.GRAM;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.GRAY:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.GRAY;
+					case IfcSIUnitName.GRAY:
+						return Ifc4.MeasureResource.IfcSIUnitName.GRAY;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.HENRY:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.HENRY;
+					case IfcSIUnitName.HENRY:
+						return Ifc4.MeasureResource.IfcSIUnitName.HENRY;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.HERTZ:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.HERTZ;
+					case IfcSIUnitName.HERTZ:
+						return Ifc4.MeasureResource.IfcSIUnitName.HERTZ;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.JOULE:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.JOULE;
+					case IfcSIUnitName.JOULE:
+						return Ifc4.MeasureResource.IfcSIUnitName.JOULE;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.KELVIN:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.KELVIN;
+					case IfcSIUnitName.KELVIN:
+						return Ifc4.MeasureResource.IfcSIUnitName.KELVIN;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.LUMEN:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.LUMEN;
+					case IfcSIUnitName.LUMEN:
+						return Ifc4.MeasureResource.IfcSIUnitName.LUMEN;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.LUX:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.LUX;
+					case IfcSIUnitName.LUX:
+						return Ifc4.MeasureResource.IfcSIUnitName.LUX;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.METRE:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.METRE;
+					case IfcSIUnitName.METRE:
+						return Ifc4.MeasureResource.IfcSIUnitName.METRE;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.MOLE:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.MOLE;
+					case IfcSIUnitName.MOLE:
+						return Ifc4.MeasureResource.IfcSIUnitName.MOLE;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.NEWTON:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.NEWTON;
+					case IfcSIUnitName.NEWTON:
+						return Ifc4.MeasureResource.IfcSIUnitName.NEWTON;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.OHM:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.OHM;
+					case IfcSIUnitName.OHM:
+						return Ifc4.MeasureResource.IfcSIUnitName.OHM;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.PASCAL:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.PASCAL;
+					case IfcSIUnitName.PASCAL:
+						return Ifc4.MeasureResource.IfcSIUnitName.PASCAL;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.RADIAN:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.RADIAN;
+					case IfcSIUnitName.RADIAN:
+						return Ifc4.MeasureResource.IfcSIUnitName.RADIAN;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.SECOND:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.SECOND;
+					case IfcSIUnitName.SECOND:
+						return Ifc4.MeasureResource.IfcSIUnitName.SECOND;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.SIEMENS:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.SIEMENS;
+					case IfcSIUnitName.SIEMENS:
+						return Ifc4.MeasureResource.IfcSIUnitName.SIEMENS;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.SIEVERT:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.SIEVERT;
+					case IfcSIUnitName.SIEVERT:
+						return Ifc4.MeasureResource.IfcSIUnitName.SIEVERT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.SQUARE_METRE:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.SQUARE_METRE;
+					case IfcSIUnitName.SQUARE_METRE:
+						return Ifc4.MeasureResource.IfcSIUnitName.SQUARE_METRE;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.STERADIAN:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.STERADIAN;
+					case IfcSIUnitName.STERADIAN:
+						return Ifc4.MeasureResource.IfcSIUnitName.STERADIAN;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.TESLA:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.TESLA;
+					case IfcSIUnitName.TESLA:
+						return Ifc4.MeasureResource.IfcSIUnitName.TESLA;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.VOLT:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.VOLT;
+					case IfcSIUnitName.VOLT:
+						return Ifc4.MeasureResource.IfcSIUnitName.VOLT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.WATT:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.WATT;
+					case IfcSIUnitName.WATT:
+						return Ifc4.MeasureResource.IfcSIUnitName.WATT;
 					
-					case Xbim.Ifc2x3.MeasureResource.IfcSIUnitName.WEBER:
-						return Xbim.Ifc4.MeasureResource.IfcSIUnitName.WEBER;
+					case IfcSIUnitName.WEBER:
+						return Ifc4.MeasureResource.IfcSIUnitName.WEBER;
 					
 					
 					default:

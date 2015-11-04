@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralSurfaceMember : IIfcStructuralSurfaceMember
 	{
-		Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceMemberTypeEnum IIfcStructuralSurfaceMember.PredefinedType 
+		Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceMemberTypeEnum IIfcStructuralSurfaceMember.PredefinedType 
 		{ 
 			get
 			{
@@ -26,12 +26,12 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStructuralSurfaceMember.Thickness 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStructuralSurfaceMember.Thickness 
 		{ 
 			get
 			{
-				if (Thickness == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Thickness);
+				if (!Thickness.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Thickness.Value);
 			} 
 		}
 	}

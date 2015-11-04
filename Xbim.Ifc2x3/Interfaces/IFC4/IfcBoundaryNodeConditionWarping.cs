@@ -16,13 +16,14 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcBoundaryNodeConditionWarping : IIfcBoundaryNodeConditionWarping
 	{
-		Xbim.Ifc4.StructuralLoadResource.IfcWarpingStiffnessSelect IIfcBoundaryNodeConditionWarping.WarpingStiffness 
+		Ifc4.StructuralLoadResource.IfcWarpingStiffnessSelect IIfcBoundaryNodeConditionWarping.WarpingStiffness 
 		{ 
 			get
 			{
 				//## Handle return of WarpingStiffness for which no match was found
-				//TODO: Handle return of WarpingStiffness for which no match was found
-				throw new System.NotImplementedException();
+                var value = WarpingStiffness;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcWarpingMomentMeasure(value.Value);
 				//##
 			} 
 		}

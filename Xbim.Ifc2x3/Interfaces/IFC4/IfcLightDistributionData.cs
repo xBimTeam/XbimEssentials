@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcLightDistributionData : IIfcLightDistributionData
 	{
-		Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure IIfcLightDistributionData.MainPlaneAngle 
+		Ifc4.MeasureResource.IfcPlaneAngleMeasure IIfcLightDistributionData.MainPlaneAngle 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)MainPlaneAngle);
+				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(MainPlaneAngle);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure> IIfcLightDistributionData.SecondaryPlaneAngle 
@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 			foreach (var member in SecondaryPlaneAngle)
 			{
-				yield return new Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)member);
+				yield return new Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)member);
 			}
 			} 
 		}
@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 			foreach (var member in LuminousIntensity)
 			{
-				yield return new Xbim.Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure((double)member);
+				yield return new Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure((double)member);
 			}
 			} 
 		}

@@ -16,44 +16,44 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcTextLiteral : IIfcTextLiteral
 	{
-		Xbim.Ifc4.PresentationAppearanceResource.IfcPresentableText IIfcTextLiteral.Literal 
+		Ifc4.PresentationAppearanceResource.IfcPresentableText IIfcTextLiteral.Literal 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.PresentationAppearanceResource.IfcPresentableText((string)Literal);
+				return new Ifc4.PresentationAppearanceResource.IfcPresentableText(Literal);
 			} 
 		}
-		Xbim.Ifc4.GeometryResource.IfcAxis2Placement IIfcTextLiteral.Placement 
+		Ifc4.GeometryResource.IfcAxis2Placement IIfcTextLiteral.Placement 
 		{ 
 			get
 			{
 				if (Placement == null) return null;
-				var ifcaxis2placement2d = Placement as Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement2D;
+				var ifcaxis2placement2d = Placement as GeometryResource.IfcAxis2Placement2D;
 				if (ifcaxis2placement2d != null) 
 					return ifcaxis2placement2d;
-				var ifcaxis2placement3d = Placement as Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement3D;
+				var ifcaxis2placement3d = Placement as GeometryResource.IfcAxis2Placement3D;
 				if (ifcaxis2placement3d != null) 
 					return ifcaxis2placement3d;
 				return null;
 			} 
 		}
-		Xbim.Ifc4.PresentationDefinitionResource.IfcTextPath IIfcTextLiteral.Path 
+		Ifc4.PresentationDefinitionResource.IfcTextPath IIfcTextLiteral.Path 
 		{ 
 			get
 			{
 				switch (Path)
 				{
-					case Xbim.Ifc2x3.PresentationDefinitionResource.IfcTextPath.LEFT:
-						return Xbim.Ifc4.PresentationDefinitionResource.IfcTextPath.LEFT;
+					case IfcTextPath.LEFT:
+						return Ifc4.PresentationDefinitionResource.IfcTextPath.LEFT;
 					
-					case Xbim.Ifc2x3.PresentationDefinitionResource.IfcTextPath.RIGHT:
-						return Xbim.Ifc4.PresentationDefinitionResource.IfcTextPath.RIGHT;
+					case IfcTextPath.RIGHT:
+						return Ifc4.PresentationDefinitionResource.IfcTextPath.RIGHT;
 					
-					case Xbim.Ifc2x3.PresentationDefinitionResource.IfcTextPath.UP:
-						return Xbim.Ifc4.PresentationDefinitionResource.IfcTextPath.UP;
+					case IfcTextPath.UP:
+						return Ifc4.PresentationDefinitionResource.IfcTextPath.UP;
 					
-					case Xbim.Ifc2x3.PresentationDefinitionResource.IfcTextPath.DOWN:
-						return Xbim.Ifc4.PresentationDefinitionResource.IfcTextPath.DOWN;
+					case IfcTextPath.DOWN:
+						return Ifc4.PresentationDefinitionResource.IfcTextPath.DOWN;
 					
 					
 					default:

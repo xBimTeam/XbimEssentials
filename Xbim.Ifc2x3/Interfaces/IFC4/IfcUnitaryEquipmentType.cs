@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcUnitaryEquipmentType : IIfcUnitaryEquipmentType
 	{
-		Xbim.Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum IIfcUnitaryEquipmentType.PredefinedType 
+		Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum IIfcUnitaryEquipmentType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcUnitaryEquipmentTypeEnum.AIRHANDLER:
-						return Xbim.Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.AIRHANDLER;
+					case IfcUnitaryEquipmentTypeEnum.AIRHANDLER:
+						return Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.AIRHANDLER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT:
-						return Xbim.Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT;
+					case IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT:
+						return Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM:
-						return Xbim.Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM;
+					case IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM:
+						return Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT:
-						return Xbim.Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT;
+					case IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT:
+						return Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcUnitaryEquipmentTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.USERDEFINED;
+					case IfcUnitaryEquipmentTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcUnitaryEquipmentTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.NOTDEFINED;
+					case IfcUnitaryEquipmentTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.NOTDEFINED;
 					
 					
 					default:

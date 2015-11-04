@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return Orientation as IIfcDirection;
+				return Orientation;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure IIfcVector.Magnitude 
+		Ifc4.MeasureResource.IfcLengthMeasure IIfcVector.Magnitude 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)Magnitude);
+				return new Ifc4.MeasureResource.IfcLengthMeasure(Magnitude);
 			} 
 		}
 	}

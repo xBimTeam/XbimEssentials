@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				return Item as IIfcRepresentationItem;
+				return Item;
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.PresentationAppearanceResource.IfcStyleAssignmentSelect> IIfcStyledItem.Styles 
@@ -33,12 +33,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcStyledItem.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcStyledItem.Name 
 		{ 
 			get
 			{
-				if (Name == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				if (!Name.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
 	}

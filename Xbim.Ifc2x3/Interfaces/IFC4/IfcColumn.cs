@@ -16,13 +16,12 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcColumn : IIfcColumn
 	{
-		Xbim.Ifc4.SharedBldgElements.IfcColumnTypeEnum? IIfcColumn.PredefinedType 
+		Ifc4.SharedBldgElements.IfcColumnTypeEnum? IIfcColumn.PredefinedType 
 		{ 
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				//TODO: Handle return of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
+				return null;
 				//##
 			} 
 		}

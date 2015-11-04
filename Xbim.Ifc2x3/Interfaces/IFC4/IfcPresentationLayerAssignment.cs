@@ -16,19 +16,19 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcPresentationLayerAssignment : IIfcPresentationLayerAssignment
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcPresentationLayerAssignment.Name 
+		Ifc4.MeasureResource.IfcLabel IIfcPresentationLayerAssignment.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcPresentationLayerAssignment.Description 
+		Ifc4.MeasureResource.IfcText? IIfcPresentationLayerAssignment.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.PresentationOrganizationResource.IfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems 
@@ -37,21 +37,21 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			{
 			foreach (var member in AssignedItems)
 			{
-				var ifcrepresentationitem = member as Xbim.Ifc2x3.GeometryResource.IfcRepresentationItem;
+				var ifcrepresentationitem = member as GeometryResource.IfcRepresentationItem;
 				if (ifcrepresentationitem != null) 
 					yield return ifcrepresentationitem;
-				var ifcrepresentation = member as Xbim.Ifc2x3.RepresentationResource.IfcRepresentation;
+				var ifcrepresentation = member as RepresentationResource.IfcRepresentation;
 				if (ifcrepresentation != null) 
 					yield return ifcrepresentation;
 			}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcPresentationLayerAssignment.Identifier 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcPresentationLayerAssignment.Identifier 
 		{ 
 			get
 			{
-				if (Identifier == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)Identifier);
+				if (!Identifier.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcIdentifier(Identifier.Value);
 			} 
 		}
 	}

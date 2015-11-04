@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcFooting : IIfcFooting
 	{
-		Xbim.Ifc4.StructuralElementsDomain.IfcFootingTypeEnum? IIfcFooting.PredefinedType 
+		Ifc4.StructuralElementsDomain.IfcFootingTypeEnum? IIfcFooting.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcFootingTypeEnum.FOOTING_BEAM:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.FOOTING_BEAM;
+					case IfcFootingTypeEnum.FOOTING_BEAM:
+						return Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.FOOTING_BEAM;
 					
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcFootingTypeEnum.PAD_FOOTING:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.PAD_FOOTING;
+					case IfcFootingTypeEnum.PAD_FOOTING:
+						return Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.PAD_FOOTING;
 					
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcFootingTypeEnum.PILE_CAP:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.PILE_CAP;
+					case IfcFootingTypeEnum.PILE_CAP:
+						return Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.PILE_CAP;
 					
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcFootingTypeEnum.STRIP_FOOTING:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.STRIP_FOOTING;
+					case IfcFootingTypeEnum.STRIP_FOOTING:
+						return Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.STRIP_FOOTING;
 					
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcFootingTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.USERDEFINED;
+					case IfcFootingTypeEnum.USERDEFINED:
+						return Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcFootingTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.NOTDEFINED;
+					case IfcFootingTypeEnum.NOTDEFINED:
+						return Ifc4.StructuralElementsDomain.IfcFootingTypeEnum.NOTDEFINED;
 					
 					
 					default:

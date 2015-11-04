@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralCurveMember : IIfcStructuralCurveMember
 	{
-		Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum IIfcStructuralCurveMember.PredefinedType 
+		Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum IIfcStructuralCurveMember.PredefinedType 
 		{ 
 			get
 			{

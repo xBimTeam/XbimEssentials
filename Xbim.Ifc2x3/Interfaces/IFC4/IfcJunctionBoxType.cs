@@ -16,17 +16,17 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcJunctionBoxType : IIfcJunctionBoxType
 	{
-		Xbim.Ifc4.ElectricalDomain.IfcJunctionBoxTypeEnum IIfcJunctionBoxType.PredefinedType 
+		Ifc4.ElectricalDomain.IfcJunctionBoxTypeEnum IIfcJunctionBoxType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.ElectricalDomain.IfcJunctionBoxTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.ElectricalDomain.IfcJunctionBoxTypeEnum.USERDEFINED;
+					case IfcJunctionBoxTypeEnum.USERDEFINED:
+						return Ifc4.ElectricalDomain.IfcJunctionBoxTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcJunctionBoxTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.ElectricalDomain.IfcJunctionBoxTypeEnum.NOTDEFINED;
+					case IfcJunctionBoxTypeEnum.NOTDEFINED:
+						return Ifc4.ElectricalDomain.IfcJunctionBoxTypeEnum.NOTDEFINED;
 					
 					
 					default:

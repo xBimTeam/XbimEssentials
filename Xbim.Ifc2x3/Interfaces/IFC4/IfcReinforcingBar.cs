@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcReinforcingBar : IIfcReinforcingBar
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingBar.NominalDiameter 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingBar.NominalDiameter 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)NominalDiameter);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalDiameter);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcAreaMeasure? IIfcReinforcingBar.CrossSectionArea 
+		Ifc4.MeasureResource.IfcAreaMeasure? IIfcReinforcingBar.CrossSectionArea 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcAreaMeasure((double)CrossSectionArea);
+				return new Ifc4.MeasureResource.IfcAreaMeasure(CrossSectionArea);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingBar.BarLength 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcingBar.BarLength 
 		{ 
 			get
 			{
-				if (BarLength == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)BarLength);
+				if (!BarLength.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(BarLength.Value);
 			} 
 		}
-		Xbim.Ifc4.StructuralElementsDomain.IfcReinforcingBarTypeEnum? IIfcReinforcingBar.PredefinedType 
+		Ifc4.StructuralElementsDomain.IfcReinforcingBarTypeEnum? IIfcReinforcingBar.PredefinedType 
 		{ 
 			get
 			{
@@ -48,17 +48,17 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				//##
 			} 
 		}
-		Xbim.Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum? IIfcReinforcingBar.BarSurface 
+		Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum? IIfcReinforcingBar.BarSurface 
 		{ 
 			get
 			{
 				switch (BarSurface)
 				{
-					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.PLAIN:
-						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum.PLAIN;
+					case ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.PLAIN:
+						return Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum.PLAIN;
 					
-					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.TEXTURED:
-						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum.TEXTURED;
+					case ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.TEXTURED:
+						return Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum.TEXTURED;
 					
 					
 					default:

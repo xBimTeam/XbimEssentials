@@ -16,50 +16,46 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcAirTerminalType : IIfcAirTerminalType
 	{
-		Xbim.Ifc4.HvacDomain.IfcAirTerminalTypeEnum IIfcAirTerminalType.PredefinedType 
+		Ifc4.HvacDomain.IfcAirTerminalTypeEnum IIfcAirTerminalType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.GRILLE:
-						return Xbim.Ifc4.HvacDomain.IfcAirTerminalTypeEnum.GRILLE;
+					case IfcAirTerminalTypeEnum.GRILLE:
+						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.GRILLE;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.REGISTER:
-						return Xbim.Ifc4.HvacDomain.IfcAirTerminalTypeEnum.REGISTER;
+					case IfcAirTerminalTypeEnum.REGISTER:
+						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.REGISTER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.DIFFUSER:
-						return Xbim.Ifc4.HvacDomain.IfcAirTerminalTypeEnum.DIFFUSER;
+					case IfcAirTerminalTypeEnum.DIFFUSER:
+						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.DIFFUSER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.EYEBALL:
+					case IfcAirTerminalTypeEnum.EYEBALL:
 						//## Handle translation of EYEBALL member from IfcAirTerminalTypeEnum in property PredefinedType
-						//TODO: Handle translation of EYEBALL member from IfcAirTerminalTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
 						//##
 										
-					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.IRIS:
+					case IfcAirTerminalTypeEnum.IRIS:
 						//## Handle translation of IRIS member from IfcAirTerminalTypeEnum in property PredefinedType
-						//TODO: Handle translation of IRIS member from IfcAirTerminalTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
 						//##
 										
-					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.LINEARGRILLE:
+					case IfcAirTerminalTypeEnum.LINEARGRILLE:
 						//## Handle translation of LINEARGRILLE member from IfcAirTerminalTypeEnum in property PredefinedType
-						//TODO: Handle translation of LINEARGRILLE member from IfcAirTerminalTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
 						//##
 										
-					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.LINEARDIFFUSER:
+					case IfcAirTerminalTypeEnum.LINEARDIFFUSER:
 						//## Handle translation of LINEARDIFFUSER member from IfcAirTerminalTypeEnum in property PredefinedType
-						//TODO: Handle translation of LINEARDIFFUSER member from IfcAirTerminalTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
 						//##
 										
-					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcAirTerminalTypeEnum.USERDEFINED;
+					case IfcAirTerminalTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
+					case IfcAirTerminalTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
 					
 					
 					default:

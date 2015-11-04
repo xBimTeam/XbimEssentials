@@ -16,13 +16,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcBuildingElementPart : IIfcBuildingElementPart
 	{
-		Xbim.Ifc4.SharedComponentElements.IfcBuildingElementPartTypeEnum? IIfcBuildingElementPart.PredefinedType 
+		Ifc4.SharedComponentElements.IfcBuildingElementPartTypeEnum? IIfcBuildingElementPart.PredefinedType 
 		{ 
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				//TODO: Handle return of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
+                return null;
 				//##
 			} 
 		}

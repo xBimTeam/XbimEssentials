@@ -15,7 +15,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcWorkControl : IIfcWorkControl
 	{
-		Xbim.Ifc4.DateTimeResource.IfcDateTime IIfcWorkControl.CreationDate 
+		Ifc4.DateTimeResource.IfcDateTime IIfcWorkControl.CreationDate 
 		{ 
 			get
 			{
@@ -34,25 +34,25 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcWorkControl.Purpose 
+		Ifc4.MeasureResource.IfcLabel? IIfcWorkControl.Purpose 
 		{ 
 			get
 			{
-				if (Purpose == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Purpose);
+				if (!Purpose.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Purpose.Value);
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.Duration 
+		Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.Duration 
 		{ 
 			get
 			{
-				//## Handle return of Duration for which no match was found				
+				//## Handle return of Duration for which no match was found
                 if (!Duration.HasValue) return null;
                 return new Xbim.Ifc4.DateTimeResource.IfcDuration(Duration.Value.ToISODateTimeString());
 				//##
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.TotalFloat 
+		Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.TotalFloat 
 		{ 
 			get
 			{
@@ -62,7 +62,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				//##
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime IIfcWorkControl.StartTime 
+		Ifc4.DateTimeResource.IfcDateTime IIfcWorkControl.StartTime 
 		{ 
 			get
 			{
@@ -71,11 +71,11 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				//##
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcWorkControl.FinishTime 
+		Ifc4.DateTimeResource.IfcDateTime? IIfcWorkControl.FinishTime 
 		{ 
 			get
 			{
-				//## Handle return of FinishTime for which no match was found				
+				//## Handle return of FinishTime for which no match was found
                 return new Xbim.Ifc4.DateTimeResource.IfcDateTime(FinishTime.ToISODateTimeString());
 				//##
 			} 

@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	public partial class @IfcMechanicalFastener : IIfcMechanicalFastener
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalDiameter 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalDiameter 
 		{ 
 			get
 			{
-				if (NominalDiameter == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)NominalDiameter);
+				if (!NominalDiameter.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalDiameter.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength 
 		{ 
 			get
 			{
-				if (NominalLength == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)NominalLength);
+				if (!NominalLength.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalLength.Value);
 			} 
 		}
-		Xbim.Ifc4.SharedComponentElements.IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType 
+		Ifc4.SharedComponentElements.IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType 
 		{ 
 			get
 			{

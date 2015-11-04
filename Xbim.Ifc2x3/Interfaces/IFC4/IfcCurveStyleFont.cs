@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcCurveStyleFont : IIfcCurveStyleFont
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcCurveStyleFont.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcCurveStyleFont.Name 
 		{ 
 			get
 			{
-				if (Name == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				if (!Name.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
 		IEnumerable<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList 

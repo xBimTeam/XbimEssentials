@@ -16,20 +16,20 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcTask : IIfcTask
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcTask.Status 
+		Ifc4.MeasureResource.IfcLabel? IIfcTask.Status 
 		{ 
 			get
 			{
-				if (Status == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Status);
+				if (!Status.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Status.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcTask.WorkMethod 
+		Ifc4.MeasureResource.IfcLabel? IIfcTask.WorkMethod 
 		{ 
 			get
 			{
-				if (WorkMethod == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)WorkMethod);
+				if (!WorkMethod.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(WorkMethod.Value);
 			} 
 		}
 		bool IIfcTask.IsMilestone 
@@ -57,7 +57,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				//##
 			} 
 		}
-		Xbim.Ifc4.ProcessExtension.IfcTaskTypeEnum? IIfcTask.PredefinedType 
+		Ifc4.ProcessExtension.IfcTaskTypeEnum? IIfcTask.PredefinedType 
 		{ 
 			get
 			{

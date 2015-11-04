@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return BasisCurve as IIfcCurve;
+				return BasisCurve;
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.GeometryResource.IfcTrimmingSelect> IIfcTrimmedCurve.Trim1 
@@ -29,11 +29,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 			foreach (var member in Trim1)
 			{
-				var ifccartesianpoint = member as Xbim.Ifc2x3.GeometryResource.IfcCartesianPoint;
+				var ifccartesianpoint = member as IfcCartesianPoint;
 				if (ifccartesianpoint != null) 
 					yield return ifccartesianpoint;
-				if (member is Xbim.Ifc2x3.MeasureResource.IfcParameterValue) 
-					yield return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)(Xbim.Ifc2x3.MeasureResource.IfcParameterValue)member);
+				if (member is MeasureResource.IfcParameterValue) 
+					yield return new Ifc4.MeasureResource.IfcParameterValue((double)(MeasureResource.IfcParameterValue)member);
 			}
 			} 
 		}
@@ -43,11 +43,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 			foreach (var member in Trim2)
 			{
-				var ifccartesianpoint = member as Xbim.Ifc2x3.GeometryResource.IfcCartesianPoint;
+				var ifccartesianpoint = member as IfcCartesianPoint;
 				if (ifccartesianpoint != null) 
 					yield return ifccartesianpoint;
-				if (member is Xbim.Ifc2x3.MeasureResource.IfcParameterValue) 
-					yield return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)(Xbim.Ifc2x3.MeasureResource.IfcParameterValue)member);
+				if (member is MeasureResource.IfcParameterValue) 
+					yield return new Ifc4.MeasureResource.IfcParameterValue((double)(MeasureResource.IfcParameterValue)member);
 			}
 			} 
 		}
@@ -58,20 +58,20 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return SenseAgreement;
 			} 
 		}
-		Xbim.Ifc4.GeometryResource.IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation 
+		Ifc4.GeometryResource.IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation 
 		{ 
 			get
 			{
 				switch (MasterRepresentation)
 				{
-					case Xbim.Ifc2x3.GeometryResource.IfcTrimmingPreference.CARTESIAN:
-						return Xbim.Ifc4.GeometryResource.IfcTrimmingPreference.CARTESIAN;
+					case IfcTrimmingPreference.CARTESIAN:
+						return Ifc4.GeometryResource.IfcTrimmingPreference.CARTESIAN;
 					
-					case Xbim.Ifc2x3.GeometryResource.IfcTrimmingPreference.PARAMETER:
-						return Xbim.Ifc4.GeometryResource.IfcTrimmingPreference.PARAMETER;
+					case IfcTrimmingPreference.PARAMETER:
+						return Ifc4.GeometryResource.IfcTrimmingPreference.PARAMETER;
 					
-					case Xbim.Ifc2x3.GeometryResource.IfcTrimmingPreference.UNSPECIFIED:
-						return Xbim.Ifc4.GeometryResource.IfcTrimmingPreference.UNSPECIFIED;
+					case IfcTrimmingPreference.UNSPECIFIED:
+						return Ifc4.GeometryResource.IfcTrimmingPreference.UNSPECIFIED;
 					
 					
 					default:

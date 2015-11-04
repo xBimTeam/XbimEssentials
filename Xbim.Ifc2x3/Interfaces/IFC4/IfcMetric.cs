@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.ConstraintResource
 {
 	public partial class @IfcMetric : IIfcMetric
 	{
-		Xbim.Ifc4.ConstraintResource.IfcBenchmarkEnum IIfcMetric.Benchmark 
+		Ifc4.ConstraintResource.IfcBenchmarkEnum IIfcMetric.Benchmark 
 		{ 
 			get
 			{
 				switch (Benchmark)
 				{
-					case Xbim.Ifc2x3.ConstraintResource.IfcBenchmarkEnum.GREATERTHAN:
-						return Xbim.Ifc4.ConstraintResource.IfcBenchmarkEnum.GREATERTHAN;
+					case IfcBenchmarkEnum.GREATERTHAN:
+						return Ifc4.ConstraintResource.IfcBenchmarkEnum.GREATERTHAN;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcBenchmarkEnum.GREATERTHANOREQUALTO:
-						return Xbim.Ifc4.ConstraintResource.IfcBenchmarkEnum.GREATERTHANOREQUALTO;
+					case IfcBenchmarkEnum.GREATERTHANOREQUALTO:
+						return Ifc4.ConstraintResource.IfcBenchmarkEnum.GREATERTHANOREQUALTO;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcBenchmarkEnum.LESSTHAN:
-						return Xbim.Ifc4.ConstraintResource.IfcBenchmarkEnum.LESSTHAN;
+					case IfcBenchmarkEnum.LESSTHAN:
+						return Ifc4.ConstraintResource.IfcBenchmarkEnum.LESSTHAN;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcBenchmarkEnum.LESSTHANOREQUALTO:
-						return Xbim.Ifc4.ConstraintResource.IfcBenchmarkEnum.LESSTHANOREQUALTO;
+					case IfcBenchmarkEnum.LESSTHANOREQUALTO:
+						return Ifc4.ConstraintResource.IfcBenchmarkEnum.LESSTHANOREQUALTO;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcBenchmarkEnum.EQUALTO:
-						return Xbim.Ifc4.ConstraintResource.IfcBenchmarkEnum.EQUALTO;
+					case IfcBenchmarkEnum.EQUALTO:
+						return Ifc4.ConstraintResource.IfcBenchmarkEnum.EQUALTO;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcBenchmarkEnum.NOTEQUALTO:
-						return Xbim.Ifc4.ConstraintResource.IfcBenchmarkEnum.NOTEQUALTO;
+					case IfcBenchmarkEnum.NOTEQUALTO:
+						return Ifc4.ConstraintResource.IfcBenchmarkEnum.NOTEQUALTO;
 					
 					
 					default:
@@ -46,49 +46,49 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcMetric.ValueSource 
+		Ifc4.MeasureResource.IfcLabel? IIfcMetric.ValueSource 
 		{ 
 			get
 			{
-				if (ValueSource == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ValueSource);
+				if (!ValueSource.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(ValueSource.Value);
 			} 
 		}
-		Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect IIfcMetric.DataValue 
+		Ifc4.ConstraintResource.IfcMetricValueSelect IIfcMetric.DataValue 
 		{ 
 			get
 			{
 				if (DataValue == null) return null;
-				var ifccalendardate = DataValue as Xbim.Ifc2x3.DateTimeResource.IfcCalendarDate;
+				var ifccalendardate = DataValue as DateTimeResource.IfcCalendarDate;
 				if (ifccalendardate != null) 
-					//## Handle entity IfcCalendarDate which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
-					//TODO: Handle entity IfcCalendarDate which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
+					//## Handle entity IfcCalendarDate which is not a part of the target select interface Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
+					//TODO: Handle entity IfcCalendarDate which is not a part of the target select interface Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
 					throw new System.NotImplementedException();
 					//##
-				var ifclocaltime = DataValue as Xbim.Ifc2x3.DateTimeResource.IfcLocalTime;
+				var ifclocaltime = DataValue as DateTimeResource.IfcLocalTime;
 				if (ifclocaltime != null) 
-					//## Handle entity IfcLocalTime which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
-					//TODO: Handle entity IfcLocalTime which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
+					//## Handle entity IfcLocalTime which is not a part of the target select interface Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
+					//TODO: Handle entity IfcLocalTime which is not a part of the target select interface Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
 					throw new System.NotImplementedException();
 					//##
-				var ifcdateandtime = DataValue as Xbim.Ifc2x3.DateTimeResource.IfcDateAndTime;
+				var ifcdateandtime = DataValue as DateTimeResource.IfcDateAndTime;
 				if (ifcdateandtime != null) 
-					//## Handle entity IfcDateAndTime which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
-					//TODO: Handle entity IfcDateAndTime which is not a part of the target select interface Xbim.Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
+					//## Handle entity IfcDateAndTime which is not a part of the target select interface Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
+					//TODO: Handle entity IfcDateAndTime which is not a part of the target select interface Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
 					throw new System.NotImplementedException();
 					//##
-				var ifcmeasurewithunit = DataValue as Xbim.Ifc2x3.MeasureResource.IfcMeasureWithUnit;
+				var ifcmeasurewithunit = DataValue as MeasureResource.IfcMeasureWithUnit;
 				if (ifcmeasurewithunit != null) 
 					return ifcmeasurewithunit;
-				var ifctable = DataValue as Xbim.Ifc2x3.UtilityResource.IfcTable;
+				var ifctable = DataValue as UtilityResource.IfcTable;
 				if (ifctable != null) 
 					return ifctable;
-				if (DataValue is Xbim.Ifc2x3.MeasureResource.IfcText) 
-					return new Xbim.Ifc4.MeasureResource.IfcText((string)(Xbim.Ifc2x3.MeasureResource.IfcText)DataValue);
-				var ifctimeseries = DataValue as Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeries;
+				if (DataValue is MeasureResource.IfcText) 
+					return new Ifc4.MeasureResource.IfcText((string)(MeasureResource.IfcText)DataValue);
+				var ifctimeseries = DataValue as TimeSeriesResource.IfcTimeSeries;
 				if (ifctimeseries != null) 
 					return ifctimeseries;
-				var ifccostvalue = DataValue as Xbim.Ifc2x3.CostResource.IfcCostValue;
+				var ifccostvalue = DataValue as CostResource.IfcCostValue;
 				if (ifccostvalue != null) 
 					return ifccostvalue;
 				return null;

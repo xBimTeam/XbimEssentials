@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcPile : IIfcPile
 	{
-		Xbim.Ifc4.StructuralElementsDomain.IfcPileTypeEnum? IIfcPile.PredefinedType 
+		Ifc4.StructuralElementsDomain.IfcPileTypeEnum? IIfcPile.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileTypeEnum.COHESION:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcPileTypeEnum.COHESION;
+					case IfcPileTypeEnum.COHESION:
+						return Ifc4.StructuralElementsDomain.IfcPileTypeEnum.COHESION;
 					
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileTypeEnum.FRICTION:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcPileTypeEnum.FRICTION;
+					case IfcPileTypeEnum.FRICTION:
+						return Ifc4.StructuralElementsDomain.IfcPileTypeEnum.FRICTION;
 					
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileTypeEnum.SUPPORT:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcPileTypeEnum.SUPPORT;
+					case IfcPileTypeEnum.SUPPORT:
+						return Ifc4.StructuralElementsDomain.IfcPileTypeEnum.SUPPORT;
 					
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcPileTypeEnum.USERDEFINED;
+					case IfcPileTypeEnum.USERDEFINED:
+						return Ifc4.StructuralElementsDomain.IfcPileTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcPileTypeEnum.NOTDEFINED;
+					case IfcPileTypeEnum.NOTDEFINED:
+						return Ifc4.StructuralElementsDomain.IfcPileTypeEnum.NOTDEFINED;
 					
 					
 					default:
@@ -43,29 +43,29 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				}
 			} 
 		}
-		Xbim.Ifc4.StructuralElementsDomain.IfcPileConstructionEnum? IIfcPile.ConstructionType 
+		Ifc4.StructuralElementsDomain.IfcPileConstructionEnum? IIfcPile.ConstructionType 
 		{ 
 			get
 			{
 				switch (ConstructionType)
 				{
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileConstructionEnum.CAST_IN_PLACE:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.CAST_IN_PLACE;
+					case IfcPileConstructionEnum.CAST_IN_PLACE:
+						return Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.CAST_IN_PLACE;
 					
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileConstructionEnum.COMPOSITE:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.COMPOSITE;
+					case IfcPileConstructionEnum.COMPOSITE:
+						return Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.COMPOSITE;
 					
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileConstructionEnum.PRECAST_CONCRETE:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.PRECAST_CONCRETE;
+					case IfcPileConstructionEnum.PRECAST_CONCRETE:
+						return Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.PRECAST_CONCRETE;
 					
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileConstructionEnum.PREFAB_STEEL:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.PREFAB_STEEL;
+					case IfcPileConstructionEnum.PREFAB_STEEL:
+						return Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.PREFAB_STEEL;
 					
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileConstructionEnum.USERDEFINED:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.USERDEFINED;
+					case IfcPileConstructionEnum.USERDEFINED:
+						return Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.StructuralElementsDomain.IfcPileConstructionEnum.NOTDEFINED:
-						return Xbim.Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.NOTDEFINED;
+					case IfcPileConstructionEnum.NOTDEFINED:
+						return Ifc4.StructuralElementsDomain.IfcPileConstructionEnum.NOTDEFINED;
 					
 					
 					default:

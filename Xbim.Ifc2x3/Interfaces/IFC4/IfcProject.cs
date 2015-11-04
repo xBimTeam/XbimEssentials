@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcProject : IIfcProject
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcContext.ObjectType 
+		Ifc4.MeasureResource.IfcLabel? IIfcContext.ObjectType 
 		{ 
 			get
 			{
@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Kernel
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcContext.LongName 
+		Ifc4.MeasureResource.IfcLabel? IIfcContext.LongName 
 		{ 
 			get
 			{
@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Kernel
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcContext.Phase 
+		Ifc4.MeasureResource.IfcLabel? IIfcContext.Phase 
 		{ 
 			get
 			{

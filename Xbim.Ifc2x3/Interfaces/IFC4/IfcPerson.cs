@@ -16,28 +16,28 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcPerson : IIfcPerson
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcPerson.Identification 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcPerson.Identification 
 		{ 
 			get
 			{
-				if (Id == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)Id);
+				if (!Id.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcIdentifier(Id.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPerson.FamilyName 
+		Ifc4.MeasureResource.IfcLabel? IIfcPerson.FamilyName 
 		{ 
 			get
 			{
-				if (FamilyName == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)FamilyName);
+				if (!FamilyName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(FamilyName.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPerson.GivenName 
+		Ifc4.MeasureResource.IfcLabel? IIfcPerson.GivenName 
 		{ 
 			get
 			{
-				if (GivenName == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)GivenName);
+				if (!GivenName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(GivenName.Value);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.MiddleNames 
@@ -46,7 +46,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 			foreach (var member in MiddleNames)
 			{
-				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
 			}
 			} 
 		}
@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 			foreach (var member in PrefixTitles)
 			{
-				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
 			}
 			} 
 		}
@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 			foreach (var member in SuffixTitles)
 			{
-				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
 			}
 			} 
 		}

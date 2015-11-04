@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.ConstraintResource.IfcLogicalOperatorEnum? IIfcObjective.LogicalAggregator 
+		Ifc4.ConstraintResource.IfcLogicalOperatorEnum? IIfcObjective.LogicalAggregator 
 		{ 
 			get
 			{
@@ -36,35 +36,35 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.ConstraintResource.IfcObjectiveEnum IIfcObjective.ObjectiveQualifier 
+		Ifc4.ConstraintResource.IfcObjectiveEnum IIfcObjective.ObjectiveQualifier 
 		{ 
 			get
 			{
 				switch (ObjectiveQualifier)
 				{
-					case Xbim.Ifc2x3.ConstraintResource.IfcObjectiveEnum.CODECOMPLIANCE:
-						return Xbim.Ifc4.ConstraintResource.IfcObjectiveEnum.CODECOMPLIANCE;
+					case IfcObjectiveEnum.CODECOMPLIANCE:
+						return Ifc4.ConstraintResource.IfcObjectiveEnum.CODECOMPLIANCE;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcObjectiveEnum.DESIGNINTENT:
-						return Xbim.Ifc4.ConstraintResource.IfcObjectiveEnum.DESIGNINTENT;
+					case IfcObjectiveEnum.DESIGNINTENT:
+						return Ifc4.ConstraintResource.IfcObjectiveEnum.DESIGNINTENT;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcObjectiveEnum.HEALTHANDSAFETY:
-						return Xbim.Ifc4.ConstraintResource.IfcObjectiveEnum.HEALTHANDSAFETY;
+					case IfcObjectiveEnum.HEALTHANDSAFETY:
+						return Ifc4.ConstraintResource.IfcObjectiveEnum.HEALTHANDSAFETY;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcObjectiveEnum.REQUIREMENT:
-						return Xbim.Ifc4.ConstraintResource.IfcObjectiveEnum.REQUIREMENT;
+					case IfcObjectiveEnum.REQUIREMENT:
+						return Ifc4.ConstraintResource.IfcObjectiveEnum.REQUIREMENT;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcObjectiveEnum.SPECIFICATION:
-						return Xbim.Ifc4.ConstraintResource.IfcObjectiveEnum.SPECIFICATION;
+					case IfcObjectiveEnum.SPECIFICATION:
+						return Ifc4.ConstraintResource.IfcObjectiveEnum.SPECIFICATION;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcObjectiveEnum.TRIGGERCONDITION:
-						return Xbim.Ifc4.ConstraintResource.IfcObjectiveEnum.TRIGGERCONDITION;
+					case IfcObjectiveEnum.TRIGGERCONDITION:
+						return Ifc4.ConstraintResource.IfcObjectiveEnum.TRIGGERCONDITION;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcObjectiveEnum.USERDEFINED:
-						return Xbim.Ifc4.ConstraintResource.IfcObjectiveEnum.USERDEFINED;
+					case IfcObjectiveEnum.USERDEFINED:
+						return Ifc4.ConstraintResource.IfcObjectiveEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcObjectiveEnum.NOTDEFINED:
-						return Xbim.Ifc4.ConstraintResource.IfcObjectiveEnum.NOTDEFINED;
+					case IfcObjectiveEnum.NOTDEFINED:
+						return Ifc4.ConstraintResource.IfcObjectiveEnum.NOTDEFINED;
 					
 					
 					default:
@@ -72,12 +72,12 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcObjective.UserDefinedQualifier 
+		Ifc4.MeasureResource.IfcLabel? IIfcObjective.UserDefinedQualifier 
 		{ 
 			get
 			{
-				if (UserDefinedQualifier == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)UserDefinedQualifier);
+				if (!UserDefinedQualifier.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(UserDefinedQualifier.Value);
 			} 
 		}
 	}

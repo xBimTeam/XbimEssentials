@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcReinforcementDefinitionProperties : IIfcReinforcementDefinitionProperties
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcReinforcementDefinitionProperties.DefinitionType 
+		Ifc4.MeasureResource.IfcLabel? IIfcReinforcementDefinitionProperties.DefinitionType 
 		{ 
 			get
 			{
-				if (DefinitionType == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)DefinitionType);
+				if (!DefinitionType.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(DefinitionType.Value);
 			} 
 		}
 		IEnumerable<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions 

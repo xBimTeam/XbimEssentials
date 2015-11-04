@@ -22,7 +22,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			{
 			foreach (var member in Coordinates)
 			{
-				yield return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)member);
+				yield return new Ifc4.MeasureResource.IfcParameterValue((double)member);
 			}
 			} 
 		}

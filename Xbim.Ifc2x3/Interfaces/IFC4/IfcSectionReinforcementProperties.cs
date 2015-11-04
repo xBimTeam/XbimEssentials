@@ -16,60 +16,60 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	public partial class @IfcSectionReinforcementProperties : IIfcSectionReinforcementProperties
 	{
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalStartPosition 
+		Ifc4.MeasureResource.IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalStartPosition 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)LongitudinalStartPosition);
+				return new Ifc4.MeasureResource.IfcLengthMeasure(LongitudinalStartPosition);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalEndPosition 
+		Ifc4.MeasureResource.IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalEndPosition 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)LongitudinalEndPosition);
+				return new Ifc4.MeasureResource.IfcLengthMeasure(LongitudinalEndPosition);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcSectionReinforcementProperties.TransversePosition 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSectionReinforcementProperties.TransversePosition 
 		{ 
 			get
 			{
-				if (TransversePosition == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)TransversePosition);
+				if (!TransversePosition.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(TransversePosition.Value);
 			} 
 		}
-		Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole 
+		Ifc4.ProfileResource.IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole 
 		{ 
 			get
 			{
 				switch (ReinforcementRole)
 				{
-					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.MAIN:
-						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.MAIN;
+					case IfcReinforcingBarRoleEnum.MAIN:
+						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.MAIN;
 					
-					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.SHEAR:
-						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.SHEAR;
+					case IfcReinforcingBarRoleEnum.SHEAR:
+						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.SHEAR;
 					
-					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.LIGATURE:
-						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.LIGATURE;
+					case IfcReinforcingBarRoleEnum.LIGATURE:
+						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.LIGATURE;
 					
-					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.STUD:
-						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.STUD;
+					case IfcReinforcingBarRoleEnum.STUD:
+						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.STUD;
 					
-					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.PUNCHING:
-						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.PUNCHING;
+					case IfcReinforcingBarRoleEnum.PUNCHING:
+						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.PUNCHING;
 					
-					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.EDGE:
-						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.EDGE;
+					case IfcReinforcingBarRoleEnum.EDGE:
+						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.EDGE;
 					
-					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.RING:
-						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.RING;
+					case IfcReinforcingBarRoleEnum.RING:
+						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.RING;
 					
-					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.USERDEFINED:
-						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.USERDEFINED;
+					case IfcReinforcingBarRoleEnum.USERDEFINED:
+						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarRoleEnum.NOTDEFINED:
-						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.NOTDEFINED;
+					case IfcReinforcingBarRoleEnum.NOTDEFINED:
+						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.NOTDEFINED;
 					
 					
 					default:
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-				return SectionDefinition as IIfcSectionProperties;
+				return SectionDefinition;
 			} 
 		}
 		IEnumerable<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions 

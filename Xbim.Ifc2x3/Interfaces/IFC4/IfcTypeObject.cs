@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcTypeObject : IIfcTypeObject
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcTypeObject.ApplicableOccurrence 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcTypeObject.ApplicableOccurrence 
 		{ 
 			get
 			{
-				if (ApplicableOccurrence == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)ApplicableOccurrence);
+				if (!ApplicableOccurrence.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcIdentifier(ApplicableOccurrence.Value);
 			} 
 		}
 		IEnumerable<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets 

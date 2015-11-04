@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcGridAxis : IIfcGridAxis
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcGridAxis.AxisTag 
+		Ifc4.MeasureResource.IfcLabel? IIfcGridAxis.AxisTag 
 		{ 
 			get
 			{
-				if (AxisTag == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)AxisTag);
+				if (!AxisTag.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(AxisTag.Value);
 			} 
 		}
 		IIfcCurve IIfcGridAxis.AxisCurve 
 		{ 
 			get
 			{
-				return AxisCurve as IIfcCurve;
+				return AxisCurve;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcBoolean IIfcGridAxis.SameSense 
+		Ifc4.MeasureResource.IfcBoolean IIfcGridAxis.SameSense 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcBoolean((bool)SameSense);
+				return new Ifc4.MeasureResource.IfcBoolean(SameSense);
 			} 
 		}
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfW 

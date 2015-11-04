@@ -16,13 +16,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcBuildingElementProxy : IIfcBuildingElementProxy
 	{
-		Xbim.Ifc4.SharedBldgElements.IfcBuildingElementProxyTypeEnum? IIfcBuildingElementProxy.PredefinedType 
+		Ifc4.SharedBldgElements.IfcBuildingElementProxyTypeEnum? IIfcBuildingElementProxy.PredefinedType 
 		{ 
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				//TODO: Handle return of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
+				return null;
 				//##
 			} 
 		}

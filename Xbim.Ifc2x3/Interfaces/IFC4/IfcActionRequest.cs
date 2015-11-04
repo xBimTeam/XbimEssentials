@@ -16,34 +16,31 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	public partial class @IfcActionRequest : IIfcActionRequest
 	{
-		Xbim.Ifc4.SharedMgmtElements.IfcActionRequestTypeEnum? IIfcActionRequest.PredefinedType 
+		Ifc4.SharedMgmtElements.IfcActionRequestTypeEnum? IIfcActionRequest.PredefinedType 
 		{ 
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				//TODO: Handle return of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
+                return Ifc4.SharedMgmtElements.IfcActionRequestTypeEnum.NOTDEFINED;
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcActionRequest.Status 
+		Ifc4.MeasureResource.IfcLabel? IIfcActionRequest.Status 
 		{ 
 			get
 			{
 				//## Handle return of Status for which no match was found
-				//TODO: Handle return of Status for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcActionRequest.LongDescription 
+		Ifc4.MeasureResource.IfcText? IIfcActionRequest.LongDescription 
 		{ 
 			get
 			{
 				//## Handle return of LongDescription for which no match was found
-				//TODO: Handle return of LongDescription for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return Name != null ? new Ifc4.MeasureResource.IfcText(Name) : null;
+			    //##
 			} 
 		}
 	}

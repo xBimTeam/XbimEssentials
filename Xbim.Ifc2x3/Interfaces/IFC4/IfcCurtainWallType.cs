@@ -16,17 +16,17 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcCurtainWallType : IIfcCurtainWallType
 	{
-		Xbim.Ifc4.SharedBldgElements.IfcCurtainWallTypeEnum IIfcCurtainWallType.PredefinedType 
+		Ifc4.SharedBldgElements.IfcCurtainWallTypeEnum IIfcCurtainWallType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcCurtainWallTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcCurtainWallTypeEnum.USERDEFINED;
+					case IfcCurtainWallTypeEnum.USERDEFINED:
+						return Ifc4.SharedBldgElements.IfcCurtainWallTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcCurtainWallTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcCurtainWallTypeEnum.NOTDEFINED;
+					case IfcCurtainWallTypeEnum.NOTDEFINED:
+						return Ifc4.SharedBldgElements.IfcCurtainWallTypeEnum.NOTDEFINED;
 					
 					
 					default:

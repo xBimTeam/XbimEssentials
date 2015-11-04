@@ -16,55 +16,52 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcClassification : IIfcClassification
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcClassification.Source 
+		Ifc4.MeasureResource.IfcLabel? IIfcClassification.Source 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Source);
+				return new Ifc4.MeasureResource.IfcLabel(Source);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcClassification.Edition 
+		Ifc4.MeasureResource.IfcLabel? IIfcClassification.Edition 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Edition);
+				return new Ifc4.MeasureResource.IfcLabel(Edition);
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDate? IIfcClassification.EditionDate 
+		Ifc4.DateTimeResource.IfcDate? IIfcClassification.EditionDate 
 		{ 
 			get
 			{
-				//## Handle return of EditionDate for which no match was found
-				//TODO: Handle return of EditionDate for which no match was found
-				throw new System.NotImplementedException();
-				//##
-			} 
+			    //## Handle return of EditionDate for which no match was found
+                return EditionDate == null ? null : new Ifc4.DateTimeResource.IfcDate(EditionDate.ToISODateTimeString());
+			    //##
+			}
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcClassification.Name 
+		Ifc4.MeasureResource.IfcLabel IIfcClassification.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcClassification.Description 
+		Ifc4.MeasureResource.IfcText? IIfcClassification.Description 
 		{ 
 			get
 			{
 				//## Handle return of Description for which no match was found
-				//TODO: Handle return of Description for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
-		Xbim.Ifc4.ExternalReferenceResource.IfcURIReference? IIfcClassification.Location 
+		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcClassification.Location 
 		{ 
 			get
 			{
 				//## Handle return of Location for which no match was found
-				//TODO: Handle return of Location for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcClassification.ReferenceTokens 
@@ -72,9 +69,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of ReferenceTokens for which no match was found
-				//TODO: Handle return of ReferenceTokens for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesClassification> IIfcClassification.ClassificationForObjects 

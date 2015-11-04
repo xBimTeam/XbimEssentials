@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRampFlightType : IIfcRampFlightType
 	{
-		Xbim.Ifc4.SharedBldgElements.IfcRampFlightTypeEnum IIfcRampFlightType.PredefinedType 
+		Ifc4.SharedBldgElements.IfcRampFlightTypeEnum IIfcRampFlightType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRampFlightTypeEnum.STRAIGHT:
-						return Xbim.Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.STRAIGHT;
+					case IfcRampFlightTypeEnum.STRAIGHT:
+						return Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.STRAIGHT;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRampFlightTypeEnum.SPIRAL:
-						return Xbim.Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.SPIRAL;
+					case IfcRampFlightTypeEnum.SPIRAL:
+						return Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.SPIRAL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRampFlightTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.USERDEFINED;
+					case IfcRampFlightTypeEnum.USERDEFINED:
+						return Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRampFlightTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.NOTDEFINED;
+					case IfcRampFlightTypeEnum.NOTDEFINED:
+						return Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.NOTDEFINED;
 					
 					
 					default:

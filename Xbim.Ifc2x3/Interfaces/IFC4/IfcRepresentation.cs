@@ -20,23 +20,23 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				return ContextOfItems as IIfcRepresentationContext;
+				return ContextOfItems;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcRepresentation.RepresentationIdentifier 
+		Ifc4.MeasureResource.IfcLabel? IIfcRepresentation.RepresentationIdentifier 
 		{ 
 			get
 			{
-				if (RepresentationIdentifier == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)RepresentationIdentifier);
+				if (!RepresentationIdentifier.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(RepresentationIdentifier.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcRepresentation.RepresentationType 
+		Ifc4.MeasureResource.IfcLabel? IIfcRepresentation.RepresentationType 
 		{ 
 			get
 			{
-				if (RepresentationType == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)RepresentationType);
+				if (!RepresentationType.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(RepresentationType.Value);
 			} 
 		}
 		IEnumerable<IIfcRepresentationItem> IIfcRepresentation.Items 

@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				return ThePerson as IIfcPerson;
+				return ThePerson;
 			} 
 		}
 		IIfcOrganization IIfcPersonAndOrganization.TheOrganization 
 		{ 
 			get
 			{
-				return TheOrganization as IIfcOrganization;
+				return TheOrganization;
 			} 
 		}
 		IEnumerable<IIfcActorRole> IIfcPersonAndOrganization.Roles 

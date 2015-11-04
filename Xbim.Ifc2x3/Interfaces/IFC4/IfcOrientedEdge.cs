@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-				return EdgeElement as IIfcEdge;
+				return EdgeElement;
 			} 
 		}
 		bool IIfcOrientedEdge.Orientation 

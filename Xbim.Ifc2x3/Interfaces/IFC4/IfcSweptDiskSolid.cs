@@ -20,36 +20,36 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-				return Directrix as IIfcCurve;
+				return Directrix;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcSweptDiskSolid.Radius 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcSweptDiskSolid.Radius 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Radius);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Radius);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcSweptDiskSolid.InnerRadius 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcSweptDiskSolid.InnerRadius 
 		{ 
 			get
 			{
-				if (InnerRadius == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)InnerRadius);
+				if (!InnerRadius.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(InnerRadius.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcParameterValue? IIfcSweptDiskSolid.StartParam 
+		Ifc4.MeasureResource.IfcParameterValue? IIfcSweptDiskSolid.StartParam 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)StartParam);
+				return new Ifc4.MeasureResource.IfcParameterValue(StartParam);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcParameterValue? IIfcSweptDiskSolid.EndParam 
+		Ifc4.MeasureResource.IfcParameterValue? IIfcSweptDiskSolid.EndParam 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)EndParam);
+				return new Ifc4.MeasureResource.IfcParameterValue(EndParam);
 			} 
 		}
 	}

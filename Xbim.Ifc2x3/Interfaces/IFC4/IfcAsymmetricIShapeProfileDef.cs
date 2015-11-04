@@ -16,111 +16,107 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcAsymmetricIShapeProfileDef : IIfcAsymmetricIShapeProfileDef
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeWidth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeWidth 
 		{ 
 			get
 			{
 				//## Handle return of BottomFlangeWidth for which no match was found
-				//TODO: Handle return of BottomFlangeWidth for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth);
+			    //##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.OverallDepth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.OverallDepth 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)OverallDepth);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallDepth);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.WebThickness 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.WebThickness 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)WebThickness);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(WebThickness);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeThickness 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeThickness 
 		{ 
 			get
 			{
 				//## Handle return of BottomFlangeThickness for which no match was found
-				//TODO: Handle return of BottomFlangeThickness for which no match was found
-				throw new System.NotImplementedException();
+                return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FlangeThickness);
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeFilletRadius 
+		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeFilletRadius 
 		{ 
 			get
 			{
 				//## Handle return of BottomFlangeFilletRadius for which no match was found
-				//TODO: Handle return of BottomFlangeFilletRadius for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    if (FilletRadius.HasValue)
+			        return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(FilletRadius.Value);
+			    return null;
+			    //##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)TopFlangeWidth);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(TopFlangeWidth);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness 
 		{ 
 			get
 			{
-				if (TopFlangeThickness == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)TopFlangeThickness);
+				if (!TopFlangeThickness.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(TopFlangeThickness.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius 
+		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius 
 		{ 
 			get
 			{
-				if (TopFlangeFilletRadius == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)TopFlangeFilletRadius);
+				if (!TopFlangeFilletRadius.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(TopFlangeFilletRadius.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeEdgeRadius 
+		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeEdgeRadius 
 		{ 
 			get
 			{
 				//## Handle return of BottomFlangeEdgeRadius for which no match was found
-				//TODO: Handle return of BottomFlangeEdgeRadius for which no match was found
-				throw new System.NotImplementedException();
+                if (!CentreOfGravityInY.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(CentreOfGravityInY.Value);
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeSlope 
+		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeSlope 
 		{ 
 			get
 			{
 				//## Handle return of BottomFlangeSlope for which no match was found
-				//TODO: Handle return of BottomFlangeSlope for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeEdgeRadius 
+		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeEdgeRadius 
 		{ 
 			get
 			{
 				//## Handle return of TopFlangeEdgeRadius for which no match was found
-				//TODO: Handle return of TopFlangeEdgeRadius for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeSlope 
+		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeSlope 
 		{ 
 			get
 			{
 				//## Handle return of TopFlangeSlope for which no match was found
-				//TODO: Handle return of TopFlangeSlope for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 	}

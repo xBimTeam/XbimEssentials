@@ -16,25 +16,25 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcPixelTexture : IIfcPixelTexture
 	{
-		Xbim.Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.Width 
+		Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.Width 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcInteger((long)Width);
+				return new Ifc4.MeasureResource.IfcInteger(Width);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.Height 
+		Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.Height 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcInteger((long)Height);
+				return new Ifc4.MeasureResource.IfcInteger(Height);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.ColourComponents 
+		Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.ColourComponents 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcInteger((long)ColourComponents);
+				return new Ifc4.MeasureResource.IfcInteger(ColourComponents);
 			} 
 		}
 		IEnumerable<long> IIfcPixelTexture.Pixel 

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	public partial class @IfcPermit : IIfcPermit
 	{
-		Xbim.Ifc4.SharedMgmtElements.IfcPermitTypeEnum? IIfcPermit.PredefinedType 
+		Ifc4.SharedMgmtElements.IfcPermitTypeEnum? IIfcPermit.PredefinedType 
 		{ 
 			get
 			{
@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPermit.Status 
+		Ifc4.MeasureResource.IfcLabel? IIfcPermit.Status 
 		{ 
 			get
 			{
@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcPermit.LongDescription 
+		Ifc4.MeasureResource.IfcText? IIfcPermit.LongDescription 
 		{ 
 			get
 			{

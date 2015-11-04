@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcVibrationIsolatorType : IIfcVibrationIsolatorType
 	{
-		Xbim.Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum IIfcVibrationIsolatorType.PredefinedType 
+		Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum IIfcVibrationIsolatorType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcVibrationIsolatorTypeEnum.COMPRESSION:
-						return Xbim.Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.COMPRESSION;
+					case IfcVibrationIsolatorTypeEnum.COMPRESSION:
+						return Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.COMPRESSION;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcVibrationIsolatorTypeEnum.SPRING:
-						return Xbim.Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.SPRING;
+					case IfcVibrationIsolatorTypeEnum.SPRING:
+						return Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.SPRING;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcVibrationIsolatorTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.USERDEFINED;
+					case IfcVibrationIsolatorTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcVibrationIsolatorTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.NOTDEFINED;
+					case IfcVibrationIsolatorTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.NOTDEFINED;
 					
 					
 					default:

@@ -16,34 +16,31 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcClassificationReference : IIfcClassificationReference
 	{
-		Xbim.Ifc4.ExternalReferenceResource.IfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource 
+		Ifc4.ExternalReferenceResource.IfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource 
 		{ 
 			get
 			{
 				//## Handle return of ReferencedSource for which no match was found
-				//TODO: Handle return of ReferencedSource for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return ReferencedSource;
+			    //##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcClassificationReference.Description 
+		Ifc4.MeasureResource.IfcText? IIfcClassificationReference.Description 
 		{ 
 			get
 			{
 				//## Handle return of Description for which no match was found
-				//TODO: Handle return of Description for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcClassificationReference.Sort 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcClassificationReference.Sort 
 		{ 
 			get
 			{
 				//## Handle return of Sort for which no match was found
-				//TODO: Handle return of Sort for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesClassification> IIfcClassificationReference.ClassificationRefForObjects 

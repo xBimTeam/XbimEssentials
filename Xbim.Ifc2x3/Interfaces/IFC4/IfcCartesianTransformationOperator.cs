@@ -20,21 +20,21 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return Axis1 as IIfcDirection;
+				return Axis1;
 			} 
 		}
 		IIfcDirection IIfcCartesianTransformationOperator.Axis2 
 		{ 
 			get
 			{
-				return Axis2 as IIfcDirection;
+				return Axis2;
 			} 
 		}
 		IIfcCartesianPoint IIfcCartesianTransformationOperator.LocalOrigin 
 		{ 
 			get
 			{
-				return LocalOrigin as IIfcCartesianPoint;
+				return LocalOrigin;
 			} 
 		}
 		double? IIfcCartesianTransformationOperator.Scale 

@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-				return VertexGeometry as IIfcPoint;
+				return VertexGeometry;
 			} 
 		}
 	}

@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcConnectionCurveGeometry : IIfcConnectionCurveGeometry
 	{
-		Xbim.Ifc4.GeometricConstraintResource.IfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatingElement 
+		Ifc4.GeometricConstraintResource.IfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatingElement 
 		{ 
 			get
 			{
 				if (CurveOnRelatingElement == null) return null;
-				var ifcboundedcurve = CurveOnRelatingElement as Xbim.Ifc2x3.GeometryResource.IfcBoundedCurve;
+				var ifcboundedcurve = CurveOnRelatingElement as GeometryResource.IfcBoundedCurve;
 				if (ifcboundedcurve != null) 
 					return ifcboundedcurve;
-				var ifcedgecurve = CurveOnRelatingElement as Xbim.Ifc2x3.TopologyResource.IfcEdgeCurve;
+				var ifcedgecurve = CurveOnRelatingElement as TopologyResource.IfcEdgeCurve;
 				if (ifcedgecurve != null) 
 					return ifcedgecurve;
 				return null;
 			} 
 		}
-		Xbim.Ifc4.GeometricConstraintResource.IfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatedElement 
+		Ifc4.GeometricConstraintResource.IfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatedElement 
 		{ 
 			get
 			{
 				if (CurveOnRelatedElement == null) return null;
-				var ifcboundedcurve = CurveOnRelatedElement as Xbim.Ifc2x3.GeometryResource.IfcBoundedCurve;
+				var ifcboundedcurve = CurveOnRelatedElement as GeometryResource.IfcBoundedCurve;
 				if (ifcboundedcurve != null) 
 					return ifcboundedcurve;
-				var ifcedgecurve = CurveOnRelatedElement as Xbim.Ifc2x3.TopologyResource.IfcEdgeCurve;
+				var ifcedgecurve = CurveOnRelatedElement as TopologyResource.IfcEdgeCurve;
 				if (ifcedgecurve != null) 
 					return ifcedgecurve;
 				return null;

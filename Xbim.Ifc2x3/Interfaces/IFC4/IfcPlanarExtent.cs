@@ -16,18 +16,18 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcPlanarExtent : IIfcPlanarExtent
 	{
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure IIfcPlanarExtent.SizeInX 
+		Ifc4.MeasureResource.IfcLengthMeasure IIfcPlanarExtent.SizeInX 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)SizeInX);
+				return new Ifc4.MeasureResource.IfcLengthMeasure(SizeInX);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure IIfcPlanarExtent.SizeInY 
+		Ifc4.MeasureResource.IfcLengthMeasure IIfcPlanarExtent.SizeInY 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)SizeInY);
+				return new Ifc4.MeasureResource.IfcLengthMeasure(SizeInY);
 			} 
 		}
 	}

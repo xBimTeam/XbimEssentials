@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcCenterLineProfileDef : IIfcCenterLineProfileDef
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCenterLineProfileDef.Thickness 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCenterLineProfileDef.Thickness 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Thickness);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Thickness);
 			} 
 		}
 	}

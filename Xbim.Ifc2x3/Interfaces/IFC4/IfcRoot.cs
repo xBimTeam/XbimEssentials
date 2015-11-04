@@ -16,34 +16,34 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRoot : IIfcRoot
 	{
-		Xbim.Ifc4.UtilityResource.IfcGloballyUniqueId IIfcRoot.GlobalId 
+		Ifc4.UtilityResource.IfcGloballyUniqueId IIfcRoot.GlobalId 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.UtilityResource.IfcGloballyUniqueId((string)GlobalId);
+				return new Ifc4.UtilityResource.IfcGloballyUniqueId(GlobalId);
 			} 
 		}
 		IIfcOwnerHistory IIfcRoot.OwnerHistory 
 		{ 
 			get
 			{
-				return OwnerHistory as IIfcOwnerHistory;
+				return OwnerHistory;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcRoot.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcRoot.Name 
 		{ 
 			get
 			{
-				if (Name == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				if (!Name.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcRoot.Description 
+		Ifc4.MeasureResource.IfcText? IIfcRoot.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
 	}

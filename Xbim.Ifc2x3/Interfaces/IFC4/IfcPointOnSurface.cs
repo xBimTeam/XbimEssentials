@@ -20,21 +20,21 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return BasisSurface as IIfcSurface;
+				return BasisSurface;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcParameterValue IIfcPointOnSurface.PointParameterU 
+		Ifc4.MeasureResource.IfcParameterValue IIfcPointOnSurface.PointParameterU 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)PointParameterU);
+				return new Ifc4.MeasureResource.IfcParameterValue(PointParameterU);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcParameterValue IIfcPointOnSurface.PointParameterV 
+		Ifc4.MeasureResource.IfcParameterValue IIfcPointOnSurface.PointParameterV 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)PointParameterV);
+				return new Ifc4.MeasureResource.IfcParameterValue(PointParameterV);
 			} 
 		}
 	}

@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
-				return Unit as IIfcNamedUnit;
+				return Unit;
 			} 
 		}
 		long IIfcDerivedUnitElement.Exponent 

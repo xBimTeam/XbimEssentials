@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcCooledBeamType : IIfcCooledBeamType
 	{
-		Xbim.Ifc4.HvacDomain.IfcCooledBeamTypeEnum IIfcCooledBeamType.PredefinedType 
+		Ifc4.HvacDomain.IfcCooledBeamTypeEnum IIfcCooledBeamType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcCooledBeamTypeEnum.ACTIVE:
-						return Xbim.Ifc4.HvacDomain.IfcCooledBeamTypeEnum.ACTIVE;
+					case IfcCooledBeamTypeEnum.ACTIVE:
+						return Ifc4.HvacDomain.IfcCooledBeamTypeEnum.ACTIVE;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCooledBeamTypeEnum.PASSIVE:
-						return Xbim.Ifc4.HvacDomain.IfcCooledBeamTypeEnum.PASSIVE;
+					case IfcCooledBeamTypeEnum.PASSIVE:
+						return Ifc4.HvacDomain.IfcCooledBeamTypeEnum.PASSIVE;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCooledBeamTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcCooledBeamTypeEnum.USERDEFINED;
+					case IfcCooledBeamTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcCooledBeamTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCooledBeamTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcCooledBeamTypeEnum.NOTDEFINED;
+					case IfcCooledBeamTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcCooledBeamTypeEnum.NOTDEFINED;
 					
 					
 					default:

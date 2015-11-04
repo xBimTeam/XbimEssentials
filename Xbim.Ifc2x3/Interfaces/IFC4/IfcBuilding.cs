@@ -16,38 +16,37 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcBuilding : IIfcBuilding
 	{
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfRefHeight 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfRefHeight 
 		{ 
 			get
 			{
-				if (ElevationOfRefHeight == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)ElevationOfRefHeight);
+				if (!ElevationOfRefHeight.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(ElevationOfRefHeight.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfTerrain 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfTerrain 
 		{ 
 			get
 			{
-				if (ElevationOfTerrain == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)ElevationOfTerrain);
+				if (!ElevationOfTerrain.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(ElevationOfTerrain.Value);
 			} 
 		}
 		IIfcPostalAddress IIfcBuilding.BuildingAddress 
 		{ 
 			get
 			{
-				return BuildingAddress as IIfcPostalAddress;
+				return BuildingAddress;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
+		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-				//TODO: Handle return of LongName for which no match was found
-				throw new System.NotImplementedException();
-				//##
-			} 
+			    //## Handle return of LongName for which no match was found
+			    return !Name.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(Name.Value);
+			    //##
+			}
 		}
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements 
 		{ 

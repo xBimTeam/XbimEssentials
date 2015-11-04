@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcPipeSegmentType : IIfcPipeSegmentType
 	{
-		Xbim.Ifc4.HvacDomain.IfcPipeSegmentTypeEnum IIfcPipeSegmentType.PredefinedType 
+		Ifc4.HvacDomain.IfcPipeSegmentTypeEnum IIfcPipeSegmentType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT:
-						return Xbim.Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT;
+					case IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT:
+						return Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeSegmentTypeEnum.RIGIDSEGMENT:
-						return Xbim.Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.RIGIDSEGMENT;
+					case IfcPipeSegmentTypeEnum.RIGIDSEGMENT:
+						return Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.RIGIDSEGMENT;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeSegmentTypeEnum.GUTTER:
-						return Xbim.Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.GUTTER;
+					case IfcPipeSegmentTypeEnum.GUTTER:
+						return Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.GUTTER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeSegmentTypeEnum.SPOOL:
-						return Xbim.Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.SPOOL;
+					case IfcPipeSegmentTypeEnum.SPOOL:
+						return Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.SPOOL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeSegmentTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.USERDEFINED;
+					case IfcPipeSegmentTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeSegmentTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.NOTDEFINED;
+					case IfcPipeSegmentTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.NOTDEFINED;
 					
 					
 					default:

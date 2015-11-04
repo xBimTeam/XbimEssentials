@@ -16,52 +16,51 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSite : IIfcSite
 	{
-		Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure? IIfcSite.RefLatitude 
+		Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure? IIfcSite.RefLatitude 
 		{ 
 			get
 			{
-				if (RefLatitude == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure((List<long>)RefLatitude);
+				if (!RefLatitude.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure(RefLatitude.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure? IIfcSite.RefLongitude 
+		Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure? IIfcSite.RefLongitude 
 		{ 
 			get
 			{
-				if (RefLongitude == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure((List<long>)RefLongitude);
+				if (!RefLongitude.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure(RefLongitude.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcSite.RefElevation 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSite.RefElevation 
 		{ 
 			get
 			{
-				if (RefElevation == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)RefElevation);
+				if (!RefElevation.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(RefElevation.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSite.LandTitleNumber 
+		Ifc4.MeasureResource.IfcLabel? IIfcSite.LandTitleNumber 
 		{ 
 			get
 			{
-				if (LandTitleNumber == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)LandTitleNumber);
+				if (!LandTitleNumber.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(LandTitleNumber.Value);
 			} 
 		}
 		IIfcPostalAddress IIfcSite.SiteAddress 
 		{ 
 			get
 			{
-				return SiteAddress as IIfcPostalAddress;
+				return SiteAddress;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
+		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get
 			{
 				//## Handle return of LongName for which no match was found
-				//TODO: Handle return of LongName for which no match was found
-				throw new System.NotImplementedException();
+                return !Name.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(Name.Value);
 				//##
 			} 
 		}

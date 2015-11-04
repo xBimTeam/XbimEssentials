@@ -16,18 +16,18 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcActor : IIfcActor
 	{
-		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcActor.TheActor 
+		Ifc4.ActorResource.IfcActorSelect IIfcActor.TheActor 
 		{ 
 			get
 			{
 				if (TheActor == null) return null;
-				var ifcorganization = TheActor as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				var ifcorganization = TheActor as ActorResource.IfcOrganization;
 				if (ifcorganization != null) 
 					return ifcorganization;
-				var ifcperson = TheActor as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				var ifcperson = TheActor as ActorResource.IfcPerson;
 				if (ifcperson != null) 
 					return ifcperson;
-				var ifcpersonandorganization = TheActor as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				var ifcpersonandorganization = TheActor as ActorResource.IfcPersonAndOrganization;
 				if (ifcpersonandorganization != null) 
 					return ifcpersonandorganization;
 				return null;

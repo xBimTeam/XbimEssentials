@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				return RelatedSpace as IIfcSpace;
+				return RelatedSpace;
 			} 
 		}
 		IEnumerable<IIfcCovering> IIfcRelCoversSpaces.RelatedCoverings 

@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-				return LoopVertex as IIfcVertex;
+				return LoopVertex;
 			} 
 		}
 	}

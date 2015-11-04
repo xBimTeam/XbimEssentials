@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcWallType : IIfcWallType
 	{
-		Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum IIfcWallType.PredefinedType 
+		Ifc4.SharedBldgElements.IfcWallTypeEnum IIfcWallType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWallTypeEnum.STANDARD:
-						return Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum.STANDARD;
+					case IfcWallTypeEnum.STANDARD:
+						return Ifc4.SharedBldgElements.IfcWallTypeEnum.STANDARD;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWallTypeEnum.POLYGONAL:
-						return Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum.POLYGONAL;
+					case IfcWallTypeEnum.POLYGONAL:
+						return Ifc4.SharedBldgElements.IfcWallTypeEnum.POLYGONAL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWallTypeEnum.SHEAR:
-						return Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum.SHEAR;
+					case IfcWallTypeEnum.SHEAR:
+						return Ifc4.SharedBldgElements.IfcWallTypeEnum.SHEAR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWallTypeEnum.ELEMENTEDWALL:
-						return Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum.ELEMENTEDWALL;
+					case IfcWallTypeEnum.ELEMENTEDWALL:
+						return Ifc4.SharedBldgElements.IfcWallTypeEnum.ELEMENTEDWALL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWallTypeEnum.PLUMBINGWALL:
-						return Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum.PLUMBINGWALL;
+					case IfcWallTypeEnum.PLUMBINGWALL:
+						return Ifc4.SharedBldgElements.IfcWallTypeEnum.PLUMBINGWALL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWallTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum.USERDEFINED;
+					case IfcWallTypeEnum.USERDEFINED:
+						return Ifc4.SharedBldgElements.IfcWallTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWallTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum.NOTDEFINED;
+					case IfcWallTypeEnum.NOTDEFINED:
+						return Ifc4.SharedBldgElements.IfcWallTypeEnum.NOTDEFINED;
 					
 					
 					default:

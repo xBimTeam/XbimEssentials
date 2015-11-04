@@ -16,35 +16,35 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcTankType : IIfcTankType
 	{
-		Xbim.Ifc4.HvacDomain.IfcTankTypeEnum IIfcTankType.PredefinedType 
+		Ifc4.HvacDomain.IfcTankTypeEnum IIfcTankType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.PREFORMED:
+					case IfcTankTypeEnum.PREFORMED:
 						//## Handle translation of PREFORMED member from IfcTankTypeEnum in property PredefinedType
 						//TODO: Handle translation of PREFORMED member from IfcTankTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.SECTIONAL:
+					case IfcTankTypeEnum.SECTIONAL:
 						//## Handle translation of SECTIONAL member from IfcTankTypeEnum in property PredefinedType
 						//TODO: Handle translation of SECTIONAL member from IfcTankTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.EXPANSION:
-						return Xbim.Ifc4.HvacDomain.IfcTankTypeEnum.EXPANSION;
+					case IfcTankTypeEnum.EXPANSION:
+						return Ifc4.HvacDomain.IfcTankTypeEnum.EXPANSION;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.PRESSUREVESSEL:
-						return Xbim.Ifc4.HvacDomain.IfcTankTypeEnum.PRESSUREVESSEL;
+					case IfcTankTypeEnum.PRESSUREVESSEL:
+						return Ifc4.HvacDomain.IfcTankTypeEnum.PRESSUREVESSEL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcTankTypeEnum.USERDEFINED;
+					case IfcTankTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcTankTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcTankTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcTankTypeEnum.NOTDEFINED;
+					case IfcTankTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcTankTypeEnum.NOTDEFINED;
 					
 					
 					default:

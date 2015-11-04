@@ -16,85 +16,116 @@ namespace Xbim.Ifc2x3.ApprovalResource
 {
 	public partial class @IfcApproval : IIfcApproval
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcApproval.Identifier 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcApproval.Identifier 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)Identifier);
+				return new Ifc4.MeasureResource.IfcIdentifier(Identifier);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcApproval.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcApproval.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcApproval.Description 
+		Ifc4.MeasureResource.IfcText? IIfcApproval.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcApproval.TimeOfApproval 
+		Ifc4.DateTimeResource.IfcDateTime? IIfcApproval.TimeOfApproval 
 		{ 
 			get
 			{
 				//## Handle return of TimeOfApproval for which no match was found
-				//TODO: Handle return of TimeOfApproval for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return ApprovalDateTime != null
+			        ? new Ifc4.DateTimeResource.IfcDateTime(ApprovalDateTime.ToISODateTimeString())
+			        : null;
+			    //##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcApproval.Status 
+		Ifc4.MeasureResource.IfcLabel? IIfcApproval.Status 
 		{ 
 			get
 			{
 				//## Handle return of Status for which no match was found
-				//TODO: Handle return of Status for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return ApprovalStatus.HasValue
+			        ? new Ifc4.MeasureResource.IfcLabel(ApprovalStatus)
+			        : null;
+			    //##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcApproval.Level 
+		Ifc4.MeasureResource.IfcLabel? IIfcApproval.Level 
 		{ 
 			get
 			{
 				//## Handle return of Level for which no match was found
-				//TODO: Handle return of Level for which no match was found
-				throw new System.NotImplementedException();
+                return ApprovalLevel.HasValue
+                    ? new Ifc4.MeasureResource.IfcLabel(ApprovalLevel)
+                    : null;
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcApproval.Qualifier 
+		Ifc4.MeasureResource.IfcText? IIfcApproval.Qualifier 
 		{ 
 			get
 			{
 				//## Handle return of Qualifier for which no match was found
-				//TODO: Handle return of Qualifier for which no match was found
-				throw new System.NotImplementedException();
+                return ApprovalQualifier.HasValue
+                    ? new Ifc4.MeasureResource.IfcText(ApprovalQualifier)
+                    : null;
 				//##
 			} 
 		}
-		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcApproval.RequestingApproval 
+		Ifc4.ActorResource.IfcActorSelect IIfcApproval.RequestingApproval 
 		{ 
 			get
 			{
 				//## Handle return of RequestingApproval for which no match was found
-				//TODO: Handle return of RequestingApproval for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    var actorRel = Actors.FirstOrDefault();
+			    if (actorRel == null)
+			        return null;
+			    if (actorRel.Actor == null)
+			        return null;
+
+			    var organization = actorRel.Actor as IIfcOrganization;
+			    if (organization != null) return organization;
+
+			    var person = actorRel.Actor as IIfcPerson;
+			    if (person != null) return person;
+
+			    var personAndOrganization = actorRel.Actor as IIfcPersonAndOrganization;
+			    return personAndOrganization;
+			    //##
 			} 
 		}
-		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcApproval.GivingApproval 
+		Ifc4.ActorResource.IfcActorSelect IIfcApproval.GivingApproval 
 		{ 
 			get
 			{
 				//## Handle return of GivingApproval for which no match was found
-				//TODO: Handle return of GivingApproval for which no match was found
-				throw new System.NotImplementedException();
+			    var rels = Actors.ToList();
+			    if (rels.Count < 2)
+			        return null;
+                var actorRel = rels[1];
+                if (actorRel == null)
+                    return null;
+                if (actorRel.Actor == null)
+                    return null;
+
+                var organization = actorRel.Actor as IIfcOrganization;
+                if (organization != null) return organization;
+
+                var person = actorRel.Actor as IIfcPerson;
+                if (person != null) return person;
+
+                var personAndOrganization = actorRel.Actor as IIfcPersonAndOrganization;
+                return personAndOrganization;
 				//##
 			} 
 		}

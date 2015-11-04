@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 {
 	public partial class @IfcPermeableCoveringProperties : IIfcPermeableCoveringProperties
 	{
-		Xbim.Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum IIfcPermeableCoveringProperties.OperationType 
+		Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum IIfcPermeableCoveringProperties.OperationType 
 		{ 
 			get
 			{
 				switch (OperationType)
 				{
-					case Xbim.Ifc2x3.ArchitectureDomain.IfcPermeableCoveringOperationEnum.GRILL:
-						return Xbim.Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.GRILL;
+					case IfcPermeableCoveringOperationEnum.GRILL:
+						return Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.GRILL;
 					
-					case Xbim.Ifc2x3.ArchitectureDomain.IfcPermeableCoveringOperationEnum.LOUVER:
-						return Xbim.Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.LOUVER;
+					case IfcPermeableCoveringOperationEnum.LOUVER:
+						return Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.LOUVER;
 					
-					case Xbim.Ifc2x3.ArchitectureDomain.IfcPermeableCoveringOperationEnum.SCREEN:
-						return Xbim.Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.SCREEN;
+					case IfcPermeableCoveringOperationEnum.SCREEN:
+						return Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.SCREEN;
 					
-					case Xbim.Ifc2x3.ArchitectureDomain.IfcPermeableCoveringOperationEnum.USERDEFINED:
-						return Xbim.Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.USERDEFINED;
+					case IfcPermeableCoveringOperationEnum.USERDEFINED:
+						return Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ArchitectureDomain.IfcPermeableCoveringOperationEnum.NOTDEFINED:
-						return Xbim.Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.NOTDEFINED;
+					case IfcPermeableCoveringOperationEnum.NOTDEFINED:
+						return Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.NOTDEFINED;
 					
 					
 					default:
@@ -43,29 +43,29 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				}
 			} 
 		}
-		Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum IIfcPermeableCoveringProperties.PanelPosition 
+		Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum IIfcPermeableCoveringProperties.PanelPosition 
 		{ 
 			get
 			{
 				switch (PanelPosition)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.LEFT:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.LEFT;
+					case SharedBldgElements.IfcWindowPanelPositionEnum.LEFT:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.LEFT;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.MIDDLE:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.MIDDLE;
+					case SharedBldgElements.IfcWindowPanelPositionEnum.MIDDLE:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.MIDDLE;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.RIGHT:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.RIGHT;
+					case SharedBldgElements.IfcWindowPanelPositionEnum.RIGHT:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.RIGHT;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.BOTTOM:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.BOTTOM;
+					case SharedBldgElements.IfcWindowPanelPositionEnum.BOTTOM:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.BOTTOM;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.TOP:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.TOP;
+					case SharedBldgElements.IfcWindowPanelPositionEnum.TOP:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.TOP;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.NOTDEFINED:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.NOTDEFINED;
+					case SharedBldgElements.IfcWindowPanelPositionEnum.NOTDEFINED:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.NOTDEFINED;
 					
 					
 					default:
@@ -73,27 +73,27 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameDepth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameDepth 
 		{ 
 			get
 			{
-				if (FrameDepth == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FrameDepth);
+				if (!FrameDepth.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FrameDepth.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameThickness 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameThickness 
 		{ 
 			get
 			{
-				if (FrameThickness == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FrameThickness);
+				if (!FrameThickness.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FrameThickness.Value);
 			} 
 		}
 		IIfcShapeAspect IIfcPermeableCoveringProperties.ShapeAspectStyle 
 		{ 
 			get
 			{
-				return ShapeAspectStyle as IIfcShapeAspect;
+				return ShapeAspectStyle;
 			} 
 		}
 	}

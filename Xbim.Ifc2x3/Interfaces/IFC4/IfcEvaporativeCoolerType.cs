@@ -16,44 +16,44 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcEvaporativeCoolerType : IIfcEvaporativeCoolerType
 	{
-		Xbim.Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum IIfcEvaporativeCoolerType.PredefinedType 
+		Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum IIfcEvaporativeCoolerType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER;
+					case IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER:
+						return Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER;
+					case IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER:
+						return Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER;
+					case IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER:
+						return Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER;
+					case IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER:
+						return Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEAIRWASHER:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEAIRWASHER;
+					case IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEAIRWASHER:
+						return Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEAIRWASHER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEPACKAGEAIRCOOLER:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEPACKAGEAIRCOOLER;
+					case IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEPACKAGEAIRCOOLER:
+						return Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEPACKAGEAIRCOOLER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEWETCOIL:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEWETCOIL;
+					case IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEWETCOIL:
+						return Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEWETCOIL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER;
+					case IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER:
+						return Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporativeCoolerTypeEnum.INDIRECTDIRECTCOMBINATION:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.INDIRECTDIRECTCOMBINATION;
+					case IfcEvaporativeCoolerTypeEnum.INDIRECTDIRECTCOMBINATION:
+						return Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.INDIRECTDIRECTCOMBINATION;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporativeCoolerTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.USERDEFINED;
+					case IfcEvaporativeCoolerTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporativeCoolerTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.NOTDEFINED;
+					case IfcEvaporativeCoolerTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcEvaporativeCoolerTypeEnum.NOTDEFINED;
 					
 					
 					default:

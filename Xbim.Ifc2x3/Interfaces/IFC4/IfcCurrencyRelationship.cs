@@ -20,58 +20,57 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get
 			{
-				return RelatingMonetaryUnit as IIfcMonetaryUnit;
+				return RelatingMonetaryUnit;
 			} 
 		}
 		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatedMonetaryUnit 
 		{ 
 			get
 			{
-				return RelatedMonetaryUnit as IIfcMonetaryUnit;
+				return RelatedMonetaryUnit;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate 
+		Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)ExchangeRate);
+				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure(ExchangeRate);
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcCurrencyRelationship.RateDateTime 
+		Ifc4.DateTimeResource.IfcDateTime? IIfcCurrencyRelationship.RateDateTime 
 		{ 
 			get
 			{
 				//## Handle return of RateDateTime for which no match was found
-				//TODO: Handle return of RateDateTime for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return RateDateTime != null
+			        ? new Ifc4.DateTimeResource.IfcDateTime(RateDateTime.ToISODateTimeString())
+			        : null;
+			    //##
 			} 
 		}
 		IIfcLibraryInformation IIfcCurrencyRelationship.RateSource 
 		{ 
 			get
 			{
-				return RateSource as IIfcLibraryInformation;
+				return RateSource;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
 			{
 				//## Handle return of Name for which no match was found
-				//TODO: Handle return of Name for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
+		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
 			{
 				//## Handle return of Description for which no match was found
-				//TODO: Handle return of Description for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 	}

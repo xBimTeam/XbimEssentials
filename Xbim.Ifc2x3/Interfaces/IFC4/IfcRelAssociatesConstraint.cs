@@ -16,18 +16,18 @@ namespace Xbim.Ifc2x3.ControlExtension
 {
 	public partial class @IfcRelAssociatesConstraint : IIfcRelAssociatesConstraint
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcRelAssociatesConstraint.Intent 
+		Ifc4.MeasureResource.IfcLabel? IIfcRelAssociatesConstraint.Intent 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Intent);
+				return new Ifc4.MeasureResource.IfcLabel(Intent);
 			} 
 		}
 		IIfcConstraint IIfcRelAssociatesConstraint.RelatingConstraint 
 		{ 
 			get
 			{
-				return RelatingConstraint as IIfcConstraint;
+				return RelatingConstraint;
 			} 
 		}
 	}

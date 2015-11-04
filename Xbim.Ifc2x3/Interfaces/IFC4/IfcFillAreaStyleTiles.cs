@@ -36,11 +36,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale 
+		Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)TilingScale);
+				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure(TilingScale);
 			} 
 		}
 	}

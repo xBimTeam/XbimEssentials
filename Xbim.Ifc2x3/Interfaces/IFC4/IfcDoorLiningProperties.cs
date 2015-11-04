@@ -16,94 +16,94 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcDoorLiningProperties : IIfcDoorLiningProperties
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningDepth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningDepth 
 		{ 
 			get
 			{
-				if (LiningDepth == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)LiningDepth);
+				if (!LiningDepth.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(LiningDepth.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.LiningThickness 
+		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.LiningThickness 
 		{ 
 			get
 			{
-				if (LiningThickness == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)LiningThickness);
+				if (!LiningThickness.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(LiningThickness.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdDepth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdDepth 
 		{ 
 			get
 			{
-				if (ThresholdDepth == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)ThresholdDepth);
+				if (!ThresholdDepth.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(ThresholdDepth.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.ThresholdThickness 
+		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.ThresholdThickness 
 		{ 
 			get
 			{
-				if (ThresholdThickness == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)ThresholdThickness);
+				if (!ThresholdThickness.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(ThresholdThickness.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.TransomThickness 
+		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcDoorLiningProperties.TransomThickness 
 		{ 
 			get
 			{
-				if (TransomThickness == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)TransomThickness);
+				if (!TransomThickness.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(TransomThickness.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.TransomOffset 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.TransomOffset 
 		{ 
 			get
 			{
-				if (TransomOffset == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)TransomOffset);
+				if (!TransomOffset.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(TransomOffset.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.LiningOffset 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.LiningOffset 
 		{ 
 			get
 			{
-				if (LiningOffset == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)LiningOffset);
+				if (!LiningOffset.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(LiningOffset.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.ThresholdOffset 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.ThresholdOffset 
 		{ 
 			get
 			{
-				if (ThresholdOffset == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)ThresholdOffset);
+				if (!ThresholdOffset.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLengthMeasure(ThresholdOffset.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingThickness 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingThickness 
 		{ 
 			get
 			{
-				if (CasingThickness == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)CasingThickness);
+				if (!CasingThickness.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(CasingThickness.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingDepth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingDepth 
 		{ 
 			get
 			{
-				if (CasingDepth == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)CasingDepth);
+				if (!CasingDepth.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(CasingDepth.Value);
 			} 
 		}
 		IIfcShapeAspect IIfcDoorLiningProperties.ShapeAspectStyle 
 		{ 
 			get
 			{
-				return ShapeAspectStyle as IIfcShapeAspect;
+				return ShapeAspectStyle;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetX 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetX 
 		{ 
 			get
 			{
@@ -113,7 +113,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetY 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcDoorLiningProperties.LiningToPanelOffsetY 
 		{ 
 			get
 			{

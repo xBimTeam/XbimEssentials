@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcAddress : IIfcAddress
 	{
-		Xbim.Ifc4.ActorResource.IfcAddressTypeEnum? IIfcAddress.Purpose 
+		Ifc4.ActorResource.IfcAddressTypeEnum? IIfcAddress.Purpose 
 		{ 
 			get
 			{
 				switch (Purpose)
 				{
-					case Xbim.Ifc2x3.ActorResource.IfcAddressTypeEnum.OFFICE:
-						return Xbim.Ifc4.ActorResource.IfcAddressTypeEnum.OFFICE;
+					case IfcAddressTypeEnum.OFFICE:
+						return Ifc4.ActorResource.IfcAddressTypeEnum.OFFICE;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcAddressTypeEnum.SITE:
-						return Xbim.Ifc4.ActorResource.IfcAddressTypeEnum.SITE;
+					case IfcAddressTypeEnum.SITE:
+						return Ifc4.ActorResource.IfcAddressTypeEnum.SITE;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcAddressTypeEnum.HOME:
-						return Xbim.Ifc4.ActorResource.IfcAddressTypeEnum.HOME;
+					case IfcAddressTypeEnum.HOME:
+						return Ifc4.ActorResource.IfcAddressTypeEnum.HOME;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcAddressTypeEnum.DISTRIBUTIONPOINT:
-						return Xbim.Ifc4.ActorResource.IfcAddressTypeEnum.DISTRIBUTIONPOINT;
+					case IfcAddressTypeEnum.DISTRIBUTIONPOINT:
+						return Ifc4.ActorResource.IfcAddressTypeEnum.DISTRIBUTIONPOINT;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcAddressTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.ActorResource.IfcAddressTypeEnum.USERDEFINED;
+					case IfcAddressTypeEnum.USERDEFINED:
+						return Ifc4.ActorResource.IfcAddressTypeEnum.USERDEFINED;
 					
 					
 					default:
@@ -43,20 +43,20 @@ namespace Xbim.Ifc2x3.ActorResource
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcAddress.Description 
+		Ifc4.MeasureResource.IfcText? IIfcAddress.Description 
 		{ 
 			get
 			{
-				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcAddress.UserDefinedPurpose 
+		Ifc4.MeasureResource.IfcLabel? IIfcAddress.UserDefinedPurpose 
 		{ 
 			get
 			{
-				if (UserDefinedPurpose == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)UserDefinedPurpose);
+				if (!UserDefinedPurpose.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(UserDefinedPurpose.Value);
 			} 
 		}
 		IEnumerable<IIfcPerson> IIfcAddress.OfPerson 

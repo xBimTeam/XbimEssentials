@@ -16,41 +16,41 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcFlowMeterType : IIfcFlowMeterType
 	{
-		Xbim.Ifc4.HvacDomain.IfcFlowMeterTypeEnum IIfcFlowMeterType.PredefinedType 
+		Ifc4.HvacDomain.IfcFlowMeterTypeEnum IIfcFlowMeterType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcFlowMeterTypeEnum.ELECTRICMETER:
+					case IfcFlowMeterTypeEnum.ELECTRICMETER:
 						//## Handle translation of ELECTRICMETER member from IfcFlowMeterTypeEnum in property PredefinedType
 						//TODO: Handle translation of ELECTRICMETER member from IfcFlowMeterTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.HVACDomain.IfcFlowMeterTypeEnum.ENERGYMETER:
-						return Xbim.Ifc4.HvacDomain.IfcFlowMeterTypeEnum.ENERGYMETER;
+					case IfcFlowMeterTypeEnum.ENERGYMETER:
+						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.ENERGYMETER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcFlowMeterTypeEnum.FLOWMETER:
+					case IfcFlowMeterTypeEnum.FLOWMETER:
 						//## Handle translation of FLOWMETER member from IfcFlowMeterTypeEnum in property PredefinedType
 						//TODO: Handle translation of FLOWMETER member from IfcFlowMeterTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.HVACDomain.IfcFlowMeterTypeEnum.GASMETER:
-						return Xbim.Ifc4.HvacDomain.IfcFlowMeterTypeEnum.GASMETER;
+					case IfcFlowMeterTypeEnum.GASMETER:
+						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.GASMETER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcFlowMeterTypeEnum.OILMETER:
-						return Xbim.Ifc4.HvacDomain.IfcFlowMeterTypeEnum.OILMETER;
+					case IfcFlowMeterTypeEnum.OILMETER:
+						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.OILMETER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcFlowMeterTypeEnum.WATERMETER:
-						return Xbim.Ifc4.HvacDomain.IfcFlowMeterTypeEnum.WATERMETER;
+					case IfcFlowMeterTypeEnum.WATERMETER:
+						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.WATERMETER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcFlowMeterTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcFlowMeterTypeEnum.USERDEFINED;
+					case IfcFlowMeterTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcFlowMeterTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcFlowMeterTypeEnum.NOTDEFINED;
+					case IfcFlowMeterTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.NOTDEFINED;
 					
 					
 					default:

@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcTransportElementType : IIfcTransportElementType
 	{
-		Xbim.Ifc4.ProductExtension.IfcTransportElementTypeEnum IIfcTransportElementType.PredefinedType 
+		Ifc4.ProductExtension.IfcTransportElementTypeEnum IIfcTransportElementType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.ProductExtension.IfcTransportElementTypeEnum.ELEVATOR:
-						return Xbim.Ifc4.ProductExtension.IfcTransportElementTypeEnum.ELEVATOR;
+					case IfcTransportElementTypeEnum.ELEVATOR:
+						return Ifc4.ProductExtension.IfcTransportElementTypeEnum.ELEVATOR;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcTransportElementTypeEnum.ESCALATOR:
-						return Xbim.Ifc4.ProductExtension.IfcTransportElementTypeEnum.ESCALATOR;
+					case IfcTransportElementTypeEnum.ESCALATOR:
+						return Ifc4.ProductExtension.IfcTransportElementTypeEnum.ESCALATOR;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcTransportElementTypeEnum.MOVINGWALKWAY:
-						return Xbim.Ifc4.ProductExtension.IfcTransportElementTypeEnum.MOVINGWALKWAY;
+					case IfcTransportElementTypeEnum.MOVINGWALKWAY:
+						return Ifc4.ProductExtension.IfcTransportElementTypeEnum.MOVINGWALKWAY;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcTransportElementTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.ProductExtension.IfcTransportElementTypeEnum.USERDEFINED;
+					case IfcTransportElementTypeEnum.USERDEFINED:
+						return Ifc4.ProductExtension.IfcTransportElementTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcTransportElementTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.ProductExtension.IfcTransportElementTypeEnum.NOTDEFINED;
+					case IfcTransportElementTypeEnum.NOTDEFINED:
+						return Ifc4.ProductExtension.IfcTransportElementTypeEnum.NOTDEFINED;
 					
 					
 					default:

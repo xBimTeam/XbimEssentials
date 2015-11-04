@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				return SurfaceColour as IIfcColourRgb;
+				return SurfaceColour;
 			} 
 		}
 	}

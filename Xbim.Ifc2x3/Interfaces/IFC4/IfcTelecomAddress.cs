@@ -22,7 +22,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 			foreach (var member in TelephoneNumbers)
 			{
-				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
 			}
 			} 
 		}
@@ -32,16 +32,16 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 			foreach (var member in FacsimileNumbers)
 			{
-				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
 			}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcTelecomAddress.PagerNumber 
+		Ifc4.MeasureResource.IfcLabel? IIfcTelecomAddress.PagerNumber 
 		{ 
 			get
 			{
-				if (PagerNumber == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)PagerNumber);
+				if (!PagerNumber.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(PagerNumber.Value);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses 
@@ -50,16 +50,16 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 			foreach (var member in ElectronicMailAddresses)
 			{
-				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
 			}
 			} 
 		}
-		Xbim.Ifc4.ExternalReferenceResource.IfcURIReference? IIfcTelecomAddress.WWWHomePageURL 
+		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcTelecomAddress.WWWHomePageURL 
 		{ 
 			get
 			{
-				if (WWWHomePageURL == null) return null;
-				return new Xbim.Ifc4.ExternalReferenceResource.IfcURIReference((string)WWWHomePageURL);
+				if (!WWWHomePageURL.HasValue) return null;
+				return new Ifc4.ExternalReferenceResource.IfcURIReference(WWWHomePageURL.Value);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.ExternalReferenceResource.IfcURIReference> IIfcTelecomAddress.MessagingIDs 
