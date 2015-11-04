@@ -21,8 +21,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessX for which no match was found
-				//TODO: Handle return of TranslationalStiffnessX for which no match was found
-				throw new System.NotImplementedException();
+                var value = LinearStiffnessX;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcLinearStiffnessMeasure(value.Value);
 				//##
 			} 
 		}
@@ -31,8 +32,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessY for which no match was found
-				//TODO: Handle return of TranslationalStiffnessY for which no match was found
-				throw new System.NotImplementedException();
+                var value = LinearStiffnessY;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcLinearStiffnessMeasure(value.Value);
 				//##
 			} 
 		}
@@ -41,8 +43,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessZ for which no match was found
-				//TODO: Handle return of TranslationalStiffnessZ for which no match was found
-				throw new System.NotImplementedException();
+                var value = LinearStiffnessZ;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcLinearStiffnessMeasure(value.Value);
 				//##
 			} 
 		}
@@ -51,8 +54,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of RotationalStiffnessX for which no match was found
-				//TODO: Handle return of RotationalStiffnessX for which no match was found
-				throw new System.NotImplementedException();
+                var value = RotationalStiffnessX;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(value.Value);
 				//##
 			} 
 		}
@@ -61,8 +65,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of RotationalStiffnessY for which no match was found
-				//TODO: Handle return of RotationalStiffnessY for which no match was found
-				throw new System.NotImplementedException();
+                var value = RotationalStiffnessY;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(value.Value);
 				//##
 			} 
 		}
@@ -71,8 +76,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of RotationalStiffnessZ for which no match was found
-				//TODO: Handle return of RotationalStiffnessZ for which no match was found
-				throw new System.NotImplementedException();
+                var value = RotationalStiffnessZ;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(value.Value);
 				//##
 			} 
 		}

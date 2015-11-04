@@ -42,9 +42,10 @@ namespace Xbim.Ifc2x3.CostResource
 			get
 			{
 				//## Handle return of RateDateTime for which no match was found
-				//TODO: Handle return of RateDateTime for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return RateDateTime != null
+			        ? new Ifc4.DateTimeResource.IfcDateTime(RateDateTime.ToISODateTimeString())
+			        : null;
+			    //##
 			} 
 		}
 		IIfcLibraryInformation IIfcCurrencyRelationship.RateSource 
@@ -59,9 +60,8 @@ namespace Xbim.Ifc2x3.CostResource
 			get
 			{
 				//## Handle return of Name for which no match was found
-				//TODO: Handle return of Name for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
@@ -69,9 +69,8 @@ namespace Xbim.Ifc2x3.CostResource
 			get
 			{
 				//## Handle return of Description for which no match was found
-				//TODO: Handle return of Description for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 	}

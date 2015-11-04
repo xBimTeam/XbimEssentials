@@ -43,11 +43,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-				//TODO: Handle return of LongName for which no match was found
-				throw new System.NotImplementedException();
-				//##
-			} 
+			    //## Handle return of LongName for which no match was found
+			    return !Name.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(Name.Value);
+			    //##
+			}
 		}
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements 
 		{ 

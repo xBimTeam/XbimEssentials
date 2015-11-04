@@ -30,20 +30,17 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 					
 					case IfcControllerTypeEnum.PROPORTIONALINTEGRAL:
 						//## Handle translation of PROPORTIONALINTEGRAL member from IfcControllerTypeEnum in property PredefinedType
-						//TODO: Handle translation of PROPORTIONALINTEGRAL member from IfcControllerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+				        return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.NOTDEFINED;
 						//##
 										
 					case IfcControllerTypeEnum.PROPORTIONALINTEGRALDERIVATIVE:
 						//## Handle translation of PROPORTIONALINTEGRALDERIVATIVE member from IfcControllerTypeEnum in property PredefinedType
-						//TODO: Handle translation of PROPORTIONALINTEGRALDERIVATIVE member from IfcControllerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+				        return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.NOTDEFINED;
 						//##
 										
 					case IfcControllerTypeEnum.TIMEDTWOPOSITION:
 						//## Handle translation of TIMEDTWOPOSITION member from IfcControllerTypeEnum in property PredefinedType
-						//TODO: Handle translation of TIMEDTWOPOSITION member from IfcControllerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+				        return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.NOTDEFINED;
 						//##
 										
 					case IfcControllerTypeEnum.TWOPOSITION:

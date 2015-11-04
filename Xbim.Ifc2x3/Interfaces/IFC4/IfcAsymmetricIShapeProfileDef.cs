@@ -97,9 +97,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 			get
 			{
 				//## Handle return of BottomFlangeSlope for which no match was found
-				//TODO: Handle return of BottomFlangeSlope for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeEdgeRadius 
@@ -107,9 +106,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 			get
 			{
 				//## Handle return of TopFlangeEdgeRadius for which no match was found
-				//TODO: Handle return of TopFlangeEdgeRadius for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeSlope 
@@ -117,9 +115,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 			get
 			{
 				//## Handle return of TopFlangeSlope for which no match was found
-				//TODO: Handle return of TopFlangeSlope for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 	}

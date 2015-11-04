@@ -21,8 +21,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of WarpingStiffness for which no match was found
-				//TODO: Handle return of WarpingStiffness for which no match was found
-				throw new System.NotImplementedException();
+                var value = WarpingStiffness;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcWarpingMomentMeasure(value.Value);
 				//##
 			} 
 		}

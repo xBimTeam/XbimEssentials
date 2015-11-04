@@ -88,9 +88,10 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			get
 			{
 				//## Handle return of CreationTime for which no match was found
-				//TODO: Handle return of CreationTime for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return CreationTime == null
+			        ? null
+			        : new Ifc4.DateTimeResource.IfcDateTime(CreationTime.ToISODateTimeString());
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcConstraint.UserDefinedGrade 

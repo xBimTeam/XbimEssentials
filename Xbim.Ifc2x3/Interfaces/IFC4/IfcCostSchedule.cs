@@ -68,9 +68,10 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			get
 			{
 				//## Handle return of SubmittedOn for which no match was found
-				//TODO: Handle return of SubmittedOn for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return SubmittedOn != null
+			        ? new Ifc4.DateTimeResource.IfcDateTime(SubmittedOn.ToISODateTimeString())
+			        : null;
+			    //##
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcCostSchedule.UpdateDate 
@@ -78,8 +79,9 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			get
 			{
 				//## Handle return of UpdateDate for which no match was found
-				//TODO: Handle return of UpdateDate for which no match was found
-				throw new System.NotImplementedException();
+                return UpdateDate != null
+                    ? new Ifc4.DateTimeResource.IfcDateTime(UpdateDate.ToISODateTimeString())
+                    : null;
 				//##
 			} 
 		}

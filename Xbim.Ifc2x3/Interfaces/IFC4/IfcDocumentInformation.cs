@@ -21,9 +21,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of Identification for which no match was found
-				//TODO: Handle return of Identification for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return new Ifc4.MeasureResource.IfcIdentifier(DocumentId);
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel IIfcDocumentInformation.Name 
@@ -46,9 +45,11 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of Location for which no match was found
-				//TODO: Handle return of Location for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    var reference = DocumentReferences.FirstOrDefault(r => r.Location != null);
+			    return reference != null
+			        ? new Ifc4.ExternalReferenceResource.IfcURIReference(reference.Location)
+			        : null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Purpose 
@@ -123,8 +124,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of CreationTime for which no match was found
-				//TODO: Handle return of CreationTime for which no match was found
-				throw new System.NotImplementedException();
+			    return CreationTime != null
+			        ? new Ifc4.DateTimeResource.IfcDateTime(CreationTime.ToISODateTimeString())
+			        : null;
 				//##
 			} 
 		}
@@ -133,8 +135,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of LastRevisionTime for which no match was found
-				//TODO: Handle return of LastRevisionTime for which no match was found
-				throw new System.NotImplementedException();
+                return LastRevisionTime != null
+                    ? new Ifc4.DateTimeResource.IfcDateTime(LastRevisionTime.ToISODateTimeString())
+                    : null;
 				//##
 			} 
 		}
@@ -143,9 +146,16 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of ElectronicFormat for which no match was found
-				//TODO: Handle return of ElectronicFormat for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    if (ElectronicFormat == null) return null;
+			    if (ElectronicFormat.MimeContentType.HasValue)
+                    return new Ifc4.MeasureResource.IfcIdentifier(ElectronicFormat.MimeContentType.Value);
+			    if (!ElectronicFormat.FileExtension.HasValue) return null;
+
+			    string ext = ElectronicFormat.FileExtension.Value;
+			    ext = ext.Trim('.').ToLowerInvariant();
+			    string mime;
+			    return MimeTypeLoopUp.Types.TryGetValue(ext, out mime) ? mime : null;
+			    //##
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidFrom 
@@ -153,8 +163,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of ValidFrom for which no match was found
-				//TODO: Handle return of ValidFrom for which no match was found
-				throw new System.NotImplementedException();
+                return ValidFrom != null
+                    ? new Ifc4.DateTimeResource.IfcDate(ValidFrom.ToISODateTimeString())
+                    : null;
 				//##
 			} 
 		}
@@ -163,8 +174,9 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of ValidUntil for which no match was found
-				//TODO: Handle return of ValidUntil for which no match was found
-				throw new System.NotImplementedException();
+                return ValidUntil != null
+                    ? new Ifc4.DateTimeResource.IfcDate(ValidUntil.ToISODateTimeString())
+                    : null;
 				//##
 			} 
 		}

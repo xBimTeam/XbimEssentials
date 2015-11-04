@@ -34,11 +34,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				//## Handle return of EditionDate for which no match was found
-				//TODO: Handle return of EditionDate for which no match was found
-				throw new System.NotImplementedException();
-				//##
-			} 
+			    //## Handle return of EditionDate for which no match was found
+                return EditionDate == null ? null : new Ifc4.DateTimeResource.IfcDate(EditionDate.ToISODateTimeString());
+			    //##
+			}
 		}
 		Ifc4.MeasureResource.IfcLabel IIfcClassification.Name 
 		{ 
@@ -52,9 +51,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of Description for which no match was found
-				//TODO: Handle return of Description for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcClassification.Location 
@@ -62,9 +60,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of Location for which no match was found
-				//TODO: Handle return of Location for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcClassification.ReferenceTokens 
@@ -72,9 +69,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of ReferenceTokens for which no match was found
-				//TODO: Handle return of ReferenceTokens for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesClassification> IIfcClassification.ClassificationForObjects 

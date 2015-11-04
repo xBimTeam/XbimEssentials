@@ -21,9 +21,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of ReferencedSource for which no match was found
-				//TODO: Handle return of ReferencedSource for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return ReferencedSource;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcClassificationReference.Description 
@@ -31,9 +30,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of Description for which no match was found
-				//TODO: Handle return of Description for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcIdentifier? IIfcClassificationReference.Sort 
@@ -41,9 +39,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of Sort for which no match was found
-				//TODO: Handle return of Sort for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesClassification> IIfcClassificationReference.ClassificationRefForObjects 

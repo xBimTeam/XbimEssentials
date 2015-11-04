@@ -21,9 +21,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessByAreaX for which no match was found
-				//TODO: Handle return of TranslationalStiffnessByAreaX for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    var value = LinearStiffnessByAreaX;
+                if(!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure(value.Value);
+			    //##
 			} 
 		}
 		Ifc4.StructuralLoadResource.IfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaY 
@@ -31,8 +32,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessByAreaY for which no match was found
-				//TODO: Handle return of TranslationalStiffnessByAreaY for which no match was found
-				throw new System.NotImplementedException();
+                var value = LinearStiffnessByAreaY;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure(value.Value);
 				//##
 			} 
 		}
@@ -41,8 +43,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessByAreaZ for which no match was found
-				//TODO: Handle return of TranslationalStiffnessByAreaZ for which no match was found
-				throw new System.NotImplementedException();
+                var value = LinearStiffnessByAreaZ;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcModulusOfSubgradeReactionMeasure(value.Value);
 				//##
 			} 
 		}

@@ -21,9 +21,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessByLengthX for which no match was found
-				//TODO: Handle return of TranslationalStiffnessByLengthX for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    var value = LinearStiffnessByLengthX;
+			    if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure(value.Value);
+			    //##
 			} 
 		}
 		Ifc4.StructuralLoadResource.IfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthY 
@@ -31,8 +32,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessByLengthY for which no match was found
-				//TODO: Handle return of TranslationalStiffnessByLengthY for which no match was found
-				throw new System.NotImplementedException();
+                var value = LinearStiffnessByLengthY;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure(value.Value);
 				//##
 			} 
 		}
@@ -41,8 +43,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of TranslationalStiffnessByLengthZ for which no match was found
-				//TODO: Handle return of TranslationalStiffnessByLengthZ for which no match was found
-				throw new System.NotImplementedException();
+                var value = LinearStiffnessByLengthZ;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcModulusOfLinearSubgradeReactionMeasure(value.Value);
 				//##
 			} 
 		}
@@ -51,8 +54,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of RotationalStiffnessByLengthX for which no match was found
-				//TODO: Handle return of RotationalStiffnessByLengthX for which no match was found
-				throw new System.NotImplementedException();
+                var value = RotationalStiffnessByLengthX;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(value.Value);
 				//##
 			} 
 		}
@@ -61,8 +65,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of RotationalStiffnessByLengthY for which no match was found
-				//TODO: Handle return of RotationalStiffnessByLengthY for which no match was found
-				throw new System.NotImplementedException();
+                var value = RotationalStiffnessByLengthY;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(value.Value);
 				//##
 			} 
 		}
@@ -71,8 +76,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of RotationalStiffnessByLengthZ for which no match was found
-				//TODO: Handle return of RotationalStiffnessByLengthZ for which no match was found
-				throw new System.NotImplementedException();
+                var value = RotationalStiffnessByLengthZ;
+                if (!value.HasValue) return null;
+                return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(value.Value);
 				//##
 			} 
 		}
