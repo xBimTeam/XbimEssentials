@@ -631,6 +631,7 @@
     <Compile Include="Interfaces\IFC4\IfcTable.cs" />
     <Compile Include="Interfaces\IFC4\IfcTableRow.cs" />
     <Compile Include="Interfaces\IFC4\IfcTankType.cs" />
+    <Compile Include="Interfaces\IFC4\IfcTankTypePartial.cs" />
     <Compile Include="Interfaces\IFC4\IfcTask.cs" />
     <Compile Include="Interfaces\IFC4\IfcTelecomAddress.cs" />
     <Compile Include="Interfaces\IFC4\IfcTendon.cs" />

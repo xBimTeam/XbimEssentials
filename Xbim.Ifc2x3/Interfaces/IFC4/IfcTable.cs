@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Ifc4.MeasureResource;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.UtilityResource
@@ -21,28 +22,29 @@ namespace Xbim.Ifc2x3.UtilityResource
 			get
 			{
 				//## Handle return of Name for which no match was found
-				//TODO: Handle return of Name for which no match was found
-				throw new System.NotImplementedException();
+                if(string.IsNullOrWhiteSpace(Name) 
+                    return null; 
+                else  
+                    return new IfcLabel(Name);
 				//##
 			} 
 		}
-		IEnumerable<IIfcTableRow> IIfcTable.Rows 
-		{ 
-			get
-			{
-			foreach (var member in Rows)
-			{
-				yield return member as IIfcTableRow;
-			}
-			} 
-		}
-		IEnumerable<IIfcTableColumn> IIfcTable.Columns 
+        IEnumerable<IIfcTableRow> IIfcTable.Rows
+        {
+            get
+            {
+                foreach (var member in Rows)
+                {
+                    yield return member as IIfcTableRow;
+                }
+            }
+        }
+        IEnumerable<IIfcTableColumn> IIfcTable.Columns 
 		{ 
 			get
 			{
 				//## Handle return of Columns for which no match was found
-				//TODO: Handle return of Columns for which no match was found
-				throw new System.NotImplementedException();
+                return null;
 				//##
 			} 
 		}
