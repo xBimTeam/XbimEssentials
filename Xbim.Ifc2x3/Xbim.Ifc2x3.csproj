@@ -143,6 +143,11 @@
     <Compile Include="Interfaces\Conversions\DateAndTimeExtensions.cs" />
     <Compile Include="Interfaces\Conversions\IfcPhysicalSimpleQuantityTransient.cs" />
     <Compile Include="Interfaces\Conversions\IfcQuantityAreaTransient.cs" />
+    <Compile Include="Interfaces\Conversions\IfcQuantityCountTransient.cs" />
+    <Compile Include="Interfaces\Conversions\IfcQuantityLengthTransient.cs" />
+    <Compile Include="Interfaces\Conversions\IfcQuantityTimeTransient.cs" />
+    <Compile Include="Interfaces\Conversions\IfcQuantityVolumeTransient.cs" />
+    <Compile Include="Interfaces\Conversions\IfcQuantityWeightTransient.cs" />
     <Compile Include="Interfaces\Conversions\MeasureWithUnitExtensions.cs" />
     <Compile Include="Interfaces\Conversions\MimeTypeLoopUp.cs" />
     <Compile Include="Interfaces\IFC4\IfcActionRequest.cs" />
