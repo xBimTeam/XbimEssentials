@@ -52,8 +52,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			get
 			{
 				//## Handle return of TaskTime for which no match was found
-				//TODO: Handle return of TaskTime for which no match was found
-				throw new System.NotImplementedException();
+                return null;
 				//##
 			} 
 		}
@@ -62,8 +61,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				//TODO: Handle return of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
+				return null;
 				//##
 			} 
 		}

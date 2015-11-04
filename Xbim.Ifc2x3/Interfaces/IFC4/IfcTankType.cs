@@ -24,16 +24,13 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcTankTypeEnum.PREFORMED:
 						//## Handle translation of PREFORMED member from IfcTankTypeEnum in property PredefinedType
-						//TODO: Handle translation of PREFORMED member from IfcTankTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        return Ifc4.HvacDomain.IfcTankTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcTankTypeEnum.SECTIONAL:
 						//## Handle translation of SECTIONAL member from IfcTankTypeEnum in property PredefinedType
-						//TODO: Handle translation of SECTIONAL member from IfcTankTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-										
+                        return Ifc4.HvacDomain.IfcTankTypeEnum.USERDEFINED;
+						//##										
 					case IfcTankTypeEnum.EXPANSION:
 						return Ifc4.HvacDomain.IfcTankTypeEnum.EXPANSION;
 					

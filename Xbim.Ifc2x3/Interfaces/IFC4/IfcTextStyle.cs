@@ -21,8 +21,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get
 			{
 				//## Handle return of TextCharacterAppearance for which no match was found
-				//TODO: Handle return of TextCharacterAppearance for which no match was found
-				throw new System.NotImplementedException();
+                if (TextCharacterAppearance is IfcTextStyleForDefinedFont)
+                    return (IIfcTextStyleForDefinedFont)TextCharacterAppearance;
+                else
+                    return null;
 				//##
 			} 
 		}
@@ -31,8 +33,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get
 			{
 				//## Handle return of TextStyle for which no match was found
-				//TODO: Handle return of TextStyle for which no match was found
-				throw new System.NotImplementedException();
+                if (this.TextStyle is Xbim.Ifc2x3.PresentationAppearanceResource.IfcTextStyleTextModel)
+                    return (IIfcTextStyleTextModel)TextCharacterAppearance;
+                else
+                    return null;
 				//##
 			} 
 		}
@@ -55,8 +59,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get
 			{
 				//## Handle return of ModelOrDraughting for which no match was found
-				//TODO: Handle return of ModelOrDraughting for which no match was found
-				throw new System.NotImplementedException();
+                return null;
 				//##
 			} 
 		}
