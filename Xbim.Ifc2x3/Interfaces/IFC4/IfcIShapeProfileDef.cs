@@ -57,9 +57,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 			get
 			{
 				//## Handle return of FlangeEdgeRadius for which no match was found
-				//TODO: Handle return of FlangeEdgeRadius for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcIShapeProfileDef.FlangeSlope 
@@ -67,9 +66,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 			get
 			{
 				//## Handle return of FlangeSlope for which no match was found
-				//TODO: Handle return of FlangeSlope for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 

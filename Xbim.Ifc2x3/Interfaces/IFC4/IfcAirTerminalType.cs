@@ -72,13 +72,10 @@ namespace Xbim.Ifc2x3.HVACDomain
                 switch (PredefinedType)
                 {
                     case IfcAirTerminalTypeEnum.EYEBALL:
-                        return new Ifc4.MeasureResource.IfcLabel("EYEBALL");
                     case IfcAirTerminalTypeEnum.IRIS:
-                        return new Ifc4.MeasureResource.IfcLabel("IRIS");
                     case IfcAirTerminalTypeEnum.LINEARGRILLE:
-                        return new Ifc4.MeasureResource.IfcLabel("LINEARGRILLE");
                     case IfcAirTerminalTypeEnum.LINEARDIFFUSER:
-                        return new Ifc4.MeasureResource.IfcLabel("LINEARDIFFUSER");
+                        return new Ifc4.MeasureResource.IfcLabel(System.Enum.GetName(typeof(IfcAirTerminalTypeEnum), PredefinedType));
                 }
                 return !ElementType.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(ElementType.Value);
             }

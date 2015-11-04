@@ -45,9 +45,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get
 			{
 				//## Handle return of ModelorDraughting for which no match was found
-				//TODO: Handle return of ModelorDraughting for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 

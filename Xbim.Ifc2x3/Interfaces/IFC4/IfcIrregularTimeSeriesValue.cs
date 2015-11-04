@@ -21,8 +21,9 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			get
 			{
 				//## Handle return of TimeStamp for which no match was found
-				//TODO: Handle return of TimeStamp for which no match was found
-				throw new System.NotImplementedException();
+			    return TimeStamp != null
+			        ? new Ifc4.DateTimeResource.IfcDateTime(TimeStamp.ToISODateTimeString())
+                    : new Ifc4.DateTimeResource.IfcDateTime();
 				//##
 			} 
 		}

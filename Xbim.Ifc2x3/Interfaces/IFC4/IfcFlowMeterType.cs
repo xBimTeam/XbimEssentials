@@ -24,8 +24,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcFlowMeterTypeEnum.ELECTRICMETER:
 						//## Handle translation of ELECTRICMETER member from IfcFlowMeterTypeEnum in property PredefinedType
-						//TODO: Handle translation of ELECTRICMETER member from IfcFlowMeterTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcFlowMeterTypeEnum.ENERGYMETER:
@@ -33,8 +32,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case IfcFlowMeterTypeEnum.FLOWMETER:
 						//## Handle translation of FLOWMETER member from IfcFlowMeterTypeEnum in property PredefinedType
-						//TODO: Handle translation of FLOWMETER member from IfcFlowMeterTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcFlowMeterTypeEnum.GASMETER:
@@ -60,6 +58,19 @@ namespace Xbim.Ifc2x3.HVACDomain
 		}
 
 	//## Custom code
+        Ifc4.MeasureResource.IfcLabel? IIfcElementType.ElementType
+        {
+            get
+            {
+                switch (PredefinedType)
+                {
+                    case IfcFlowMeterTypeEnum.FLOWMETER:
+                    case IfcFlowMeterTypeEnum.ELECTRICMETER:
+                        return new Ifc4.MeasureResource.IfcLabel(System.Enum.GetName(typeof(IfcAirTerminalTypeEnum), PredefinedType));
+                }
+                return !ElementType.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(ElementType.Value);
+            }
+        }
 	//##
 	}
 }
