@@ -149,6 +149,7 @@
     <Compile Include="DateTimeResource\IfcDayInMonthNumber.cs" />
     <Compile Include="DateTimeResource\IfcDayInWeekNumber.cs" />
     <Compile Include="DateTimeResource\IfcDuration.cs" />
+    <Compile Include="DateTimeResource\IfcDurationPartial.cs" />
     <Compile Include="DateTimeResource\IfcEventTime.cs" />
     <Compile Include="DateTimeResource\IfcIrregularTimeSeries.cs" />
     <Compile Include="DateTimeResource\IfcIrregularTimeSeriesValue.cs" />

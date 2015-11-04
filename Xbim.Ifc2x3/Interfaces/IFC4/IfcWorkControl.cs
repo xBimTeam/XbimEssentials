@@ -10,7 +10,6 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using Xbim.Ifc2x3.Interfaces.Conversions;
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProcessExtension
 {
@@ -47,9 +46,9 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
-				//## Handle return of Duration for which no match was found
-				//TODO: Handle return of Duration for which no match was found
-				throw new System.NotImplementedException();
+				//## Handle return of Duration for which no match was found				
+                if (!Duration.HasValue) return null;
+                return new Xbim.Ifc4.DateTimeResource.IfcDuration(Duration.Value.ToISODateTimeString());
 				//##
 			} 
 		}
@@ -58,8 +57,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			get
 			{
 				//## Handle return of TotalFloat for which no match was found
-				//TODO: Handle return of TotalFloat for which no match was found
-				throw new System.NotImplementedException();
+                if (!Duration.HasValue) return null;
+                return new Xbim.Ifc4.DateTimeResource.IfcDuration(Duration.Value.ToISODateTimeString());
 				//##
 			} 
 		}
@@ -68,8 +67,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			get
 			{
 				//## Handle return of StartTime for which no match was found
-				//TODO: Handle return of StartTime for which no match was found
-				throw new System.NotImplementedException();
+                return new Xbim.Ifc4.DateTimeResource.IfcDateTime(StartTime.ToISODateTimeString());
 				//##
 			} 
 		}
@@ -77,9 +75,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
-				//## Handle return of FinishTime for which no match was found
-				//TODO: Handle return of FinishTime for which no match was found
-				throw new System.NotImplementedException();
+				//## Handle return of FinishTime for which no match was found				
+                return new Xbim.Ifc4.DateTimeResource.IfcDateTime(FinishTime.ToISODateTimeString());
 				//##
 			} 
 		}
