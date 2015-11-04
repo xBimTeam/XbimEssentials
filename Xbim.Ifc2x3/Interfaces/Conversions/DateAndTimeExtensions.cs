@@ -1,7 +1,7 @@
 ﻿using System;
 using Xbim.Ifc2x3.DateTimeResource;
+using Xbim.Ifc4.MeasureResource;
 
-// ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4.Interfaces
 {
     public static class DateAndTimeExtensions
@@ -78,6 +78,20 @@ namespace Xbim.Ifc4.Interfaces
             var dateTime = new DateTime(1,1,1,(int)localTime.HourComponent,minute, (int)seconds, milliSeconds);
             return dateTime.ToString("yyyy-MM-ddThh:mm:ss.fff");
         }
+
+        public static string ToISODateTimeString(this Xbim.Ifc2x3.MeasureResource.IfcTimeMeasure timeMeasure)
+        {
+            var duration = TimeSpan.FromSeconds(timeMeasure);           
+            var milliSecs = timeMeasure-Math.Truncate(timeMeasure);
+            string str;
+            if (milliSecs > 0)
+                str = string.Format("{0}{1}.{2}S", duration.ToString("'P'd'DT'h'H'm'M'"), duration.Seconds, duration.Milliseconds);
+            else
+                 str =  duration.ToString("'P'd'DT'h'H'm'M's'S'");
+            return str;
+        }
+
+       
     }
 }
 

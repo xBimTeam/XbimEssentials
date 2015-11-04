@@ -37,8 +37,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				//TODO: Handle return of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
+                return Ifc4.SharedBldgElements.IfcWindowTypeEnum.NOTDEFINED;
 				//##
 			} 
 		}
@@ -47,8 +46,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Handle return of PartitioningType for which no match was found
-				//TODO: Handle return of PartitioningType for which no match was found
-				throw new System.NotImplementedException();
+                return Ifc4.SharedBldgElements.IfcWindowTypePartitioningEnum.NOTDEFINED;
 				//##
 			} 
 		}
@@ -57,8 +55,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Handle return of UserDefinedPartitioningType for which no match was found
-				//TODO: Handle return of UserDefinedPartitioningType for which no match was found
-				throw new System.NotImplementedException();
+                return null;
 				//##
 			} 
 		}

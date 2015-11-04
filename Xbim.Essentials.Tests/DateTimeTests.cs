@@ -4,7 +4,7 @@ using Xbim.Ifc2x3.DateTimeResource;
 using Xbim.IO.Memory;
 using Xbim.Ifc2x3;
 using Xbim.Ifc4.Interfaces;
-
+using Xbim.Ifc2x3.MeasureResource;
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
@@ -37,7 +37,24 @@ namespace Xbim.Essentials.Tests
                     Assert.IsTrue(res == "0001-01-01T12:11:32.123");
                 }
             }
-           
         }
+
+        [TestMethod]
+        public void IfcTimeMeasureToIfcDurationTest()
+        {
+            const double numSeconds = 3000501.32;
+            var timeMeasure = new Xbim.Ifc2x3.MeasureResource.IfcTimeMeasure(numSeconds);
+            var isoDuration = timeMeasure.ToISODateTimeString();
+            Assert.IsTrue(isoDuration == "P34DT17H28M21.320S");
+            //convert back
+            var ifc4Duration = new Xbim.Ifc4.DateTimeResource.IfcDuration(isoDuration);
+            var timeSpan = ifc4Duration.ToTimeSpan();
+            Assert.IsTrue(timeSpan.TotalSeconds == numSeconds);
+           
+            timeMeasure = new Xbim.Ifc2x3.MeasureResource.IfcTimeMeasure(Math.Truncate(numSeconds));
+            isoDuration = timeMeasure.ToISODateTimeString();
+            Assert.IsTrue(isoDuration == "P34DT17H28M21S");
+        }
+
     }
 }
