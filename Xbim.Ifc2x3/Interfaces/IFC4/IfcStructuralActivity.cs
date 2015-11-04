@@ -23,17 +23,17 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				return AppliedLoad as IIfcStructuralLoad;
 			} 
 		}
-		Xbim.Ifc4.RepresentationResource.IfcGlobalOrLocalEnum IIfcStructuralActivity.GlobalOrLocal 
+		Ifc4.RepresentationResource.IfcGlobalOrLocalEnum IIfcStructuralActivity.GlobalOrLocal 
 		{ 
 			get
 			{
 				switch (GlobalOrLocal)
 				{
-					case Xbim.Ifc2x3.RepresentationResource.IfcGlobalOrLocalEnum.GLOBAL_COORDS:
-						return Xbim.Ifc4.RepresentationResource.IfcGlobalOrLocalEnum.GLOBAL_COORDS;
+					case RepresentationResource.IfcGlobalOrLocalEnum.GLOBAL_COORDS:
+						return Ifc4.RepresentationResource.IfcGlobalOrLocalEnum.GLOBAL_COORDS;
 					
-					case Xbim.Ifc2x3.RepresentationResource.IfcGlobalOrLocalEnum.LOCAL_COORDS:
-						return Xbim.Ifc4.RepresentationResource.IfcGlobalOrLocalEnum.LOCAL_COORDS;
+					case RepresentationResource.IfcGlobalOrLocalEnum.LOCAL_COORDS:
+						return Ifc4.RepresentationResource.IfcGlobalOrLocalEnum.LOCAL_COORDS;
 					
 					
 					default:

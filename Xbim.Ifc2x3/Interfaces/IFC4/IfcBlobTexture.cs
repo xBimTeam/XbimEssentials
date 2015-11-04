@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcBlobTexture : IIfcBlobTexture
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier IIfcBlobTexture.RasterFormat 
+		Ifc4.MeasureResource.IfcIdentifier IIfcBlobTexture.RasterFormat 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)RasterFormat);
+				return new Ifc4.MeasureResource.IfcIdentifier((string)RasterFormat);
 			} 
 		}
 		long IIfcBlobTexture.RasterCode 

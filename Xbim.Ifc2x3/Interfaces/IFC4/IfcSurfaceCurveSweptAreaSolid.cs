@@ -23,18 +23,18 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				return Directrix as IIfcCurve;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.StartParam 
+		Ifc4.MeasureResource.IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.StartParam 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)StartParam);
+				return new Ifc4.MeasureResource.IfcParameterValue((double)StartParam);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.EndParam 
+		Ifc4.MeasureResource.IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.EndParam 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcParameterValue((double)EndParam);
+				return new Ifc4.MeasureResource.IfcParameterValue((double)EndParam);
 			} 
 		}
 		IIfcSurface IIfcSurfaceCurveSweptAreaSolid.ReferenceSurface 

@@ -16,28 +16,28 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcPerson : IIfcPerson
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcPerson.Identification 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcPerson.Identification 
 		{ 
 			get
 			{
 				if (Id == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)Id);
+				return new Ifc4.MeasureResource.IfcIdentifier((string)Id);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPerson.FamilyName 
+		Ifc4.MeasureResource.IfcLabel? IIfcPerson.FamilyName 
 		{ 
 			get
 			{
 				if (FamilyName == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)FamilyName);
+				return new Ifc4.MeasureResource.IfcLabel((string)FamilyName);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPerson.GivenName 
+		Ifc4.MeasureResource.IfcLabel? IIfcPerson.GivenName 
 		{ 
 			get
 			{
 				if (GivenName == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)GivenName);
+				return new Ifc4.MeasureResource.IfcLabel((string)GivenName);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.MiddleNames 
@@ -46,7 +46,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 			foreach (var member in MiddleNames)
 			{
-				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
 			}
 			} 
 		}
@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 			foreach (var member in PrefixTitles)
 			{
-				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
 			}
 			} 
 		}
@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			{
 			foreach (var member in SuffixTitles)
 			{
-				yield return new Xbim.Ifc4.MeasureResource.IfcLabel((string)member);
+				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
 			}
 			} 
 		}

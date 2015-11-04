@@ -26,12 +26,12 @@ namespace Xbim.Ifc2x3.ProfileResource
 			}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcCompositeProfileDef.Label 
+		Ifc4.MeasureResource.IfcLabel? IIfcCompositeProfileDef.Label 
 		{ 
 			get
 			{
 				if (Label == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Label);
+				return new Ifc4.MeasureResource.IfcLabel((string)Label);
 			} 
 		}
 	}

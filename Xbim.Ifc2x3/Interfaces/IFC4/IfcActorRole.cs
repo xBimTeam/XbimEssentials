@@ -16,83 +16,82 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcActorRole : IIfcActorRole
 	{
-		Xbim.Ifc4.ActorResource.IfcRoleEnum IIfcActorRole.Role 
+		Ifc4.ActorResource.IfcRoleEnum IIfcActorRole.Role 
 		{ 
 			get
 			{
 				switch (Role)
 				{
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.SUPPLIER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.SUPPLIER;
+					case IfcRoleEnum.SUPPLIER:
+						return Ifc4.ActorResource.IfcRoleEnum.SUPPLIER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.MANUFACTURER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.MANUFACTURER;
+					case IfcRoleEnum.MANUFACTURER:
+						return Ifc4.ActorResource.IfcRoleEnum.MANUFACTURER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.CONTRACTOR:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.CONTRACTOR;
+					case IfcRoleEnum.CONTRACTOR:
+						return Ifc4.ActorResource.IfcRoleEnum.CONTRACTOR;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.SUBCONTRACTOR:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.SUBCONTRACTOR;
+					case IfcRoleEnum.SUBCONTRACTOR:
+						return Ifc4.ActorResource.IfcRoleEnum.SUBCONTRACTOR;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.ARCHITECT:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.ARCHITECT;
+					case IfcRoleEnum.ARCHITECT:
+						return Ifc4.ActorResource.IfcRoleEnum.ARCHITECT;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.STRUCTURALENGINEER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.STRUCTURALENGINEER;
+					case IfcRoleEnum.STRUCTURALENGINEER:
+						return Ifc4.ActorResource.IfcRoleEnum.STRUCTURALENGINEER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.COSTENGINEER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.COSTENGINEER;
+					case IfcRoleEnum.COSTENGINEER:
+						return Ifc4.ActorResource.IfcRoleEnum.COSTENGINEER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.CLIENT:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.CLIENT;
+					case IfcRoleEnum.CLIENT:
+						return Ifc4.ActorResource.IfcRoleEnum.CLIENT;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.BUILDINGOWNER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.BUILDINGOWNER;
+					case IfcRoleEnum.BUILDINGOWNER:
+						return Ifc4.ActorResource.IfcRoleEnum.BUILDINGOWNER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.BUILDINGOPERATOR:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.BUILDINGOPERATOR;
+					case IfcRoleEnum.BUILDINGOPERATOR:
+						return Ifc4.ActorResource.IfcRoleEnum.BUILDINGOPERATOR;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.MECHANICALENGINEER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.MECHANICALENGINEER;
+					case IfcRoleEnum.MECHANICALENGINEER:
+						return Ifc4.ActorResource.IfcRoleEnum.MECHANICALENGINEER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.ELECTRICALENGINEER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.ELECTRICALENGINEER;
+					case IfcRoleEnum.ELECTRICALENGINEER:
+						return Ifc4.ActorResource.IfcRoleEnum.ELECTRICALENGINEER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.PROJECTMANAGER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.PROJECTMANAGER;
+					case IfcRoleEnum.PROJECTMANAGER:
+						return Ifc4.ActorResource.IfcRoleEnum.PROJECTMANAGER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.FACILITIESMANAGER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.FACILITIESMANAGER;
+					case IfcRoleEnum.FACILITIESMANAGER:
+						return Ifc4.ActorResource.IfcRoleEnum.FACILITIESMANAGER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.CIVILENGINEER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.CIVILENGINEER;
+					case IfcRoleEnum.CIVILENGINEER:
+						return Ifc4.ActorResource.IfcRoleEnum.CIVILENGINEER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.COMISSIONINGENGINEER:
+					case IfcRoleEnum.COMISSIONINGENGINEER:
 						//## Handle translation of COMISSIONINGENGINEER member from IfcRoleEnum in property Role
-						//TODO: Handle translation of COMISSIONINGENGINEER member from IfcRoleEnum in property Role
-						throw new System.NotImplementedException();
+						return Ifc4.ActorResource.IfcRoleEnum.COMMISSIONINGENGINEER;
 						//##
 										
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.ENGINEER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.ENGINEER;
+					case IfcRoleEnum.ENGINEER:
+						return Ifc4.ActorResource.IfcRoleEnum.ENGINEER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.OWNER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.OWNER;
+					case IfcRoleEnum.OWNER:
+						return Ifc4.ActorResource.IfcRoleEnum.OWNER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.CONSULTANT:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.CONSULTANT;
+					case IfcRoleEnum.CONSULTANT:
+						return Ifc4.ActorResource.IfcRoleEnum.CONSULTANT;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.CONSTRUCTIONMANAGER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.CONSTRUCTIONMANAGER;
+					case IfcRoleEnum.CONSTRUCTIONMANAGER:
+						return Ifc4.ActorResource.IfcRoleEnum.CONSTRUCTIONMANAGER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.FIELDCONSTRUCTIONMANAGER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.FIELDCONSTRUCTIONMANAGER;
+					case IfcRoleEnum.FIELDCONSTRUCTIONMANAGER:
+						return Ifc4.ActorResource.IfcRoleEnum.FIELDCONSTRUCTIONMANAGER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.RESELLER:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.RESELLER;
+					case IfcRoleEnum.RESELLER:
+						return Ifc4.ActorResource.IfcRoleEnum.RESELLER;
 					
-					case Xbim.Ifc2x3.ActorResource.IfcRoleEnum.USERDEFINED:
-						return Xbim.Ifc4.ActorResource.IfcRoleEnum.USERDEFINED;
+					case IfcRoleEnum.USERDEFINED:
+						return Ifc4.ActorResource.IfcRoleEnum.USERDEFINED;
 					
 					
 					default:
@@ -100,20 +99,20 @@ namespace Xbim.Ifc2x3.ActorResource
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcActorRole.UserDefinedRole 
+		Ifc4.MeasureResource.IfcLabel? IIfcActorRole.UserDefinedRole 
 		{ 
 			get
 			{
 				if (UserDefinedRole == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)UserDefinedRole);
+				return new Ifc4.MeasureResource.IfcLabel((string)UserDefinedRole);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcActorRole.Description 
+		Ifc4.MeasureResource.IfcText? IIfcActorRole.Description 
 		{ 
 			get
 			{
 				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				return new Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcActorRole.HasExternalReference 

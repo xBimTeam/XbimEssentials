@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcContextDependentUnit : IIfcContextDependentUnit
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcContextDependentUnit.Name 
+		Ifc4.MeasureResource.IfcLabel IIfcContextDependentUnit.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcContextDependentUnit.HasExternalReference 

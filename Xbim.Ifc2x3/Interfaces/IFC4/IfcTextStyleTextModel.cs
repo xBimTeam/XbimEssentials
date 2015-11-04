@@ -16,107 +16,107 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcTextStyleTextModel : IIfcTextStyleTextModel
 	{
-		Xbim.Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.TextIndent 
+		Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.TextIndent 
 		{ 
 			get
 			{
 				if (TextIndent == null) return null;
-				if (TextIndent is Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure)TextIndent);
-				if (TextIndent is Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure)TextIndent);
-				if (TextIndent is Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure)TextIndent);
-				if (TextIndent is Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure)TextIndent);
-				if (TextIndent is Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure)TextIndent);
-				if (TextIndent is Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure)TextIndent);
+				if (TextIndent is MeasureResource.IfcRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcRatioMeasure((double)(MeasureResource.IfcRatioMeasure)TextIndent);
+				if (TextIndent is MeasureResource.IfcLengthMeasure) 
+					return new Ifc4.MeasureResource.IfcLengthMeasure((double)(MeasureResource.IfcLengthMeasure)TextIndent);
+				if (TextIndent is MeasureResource.IfcDescriptiveMeasure) 
+					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(MeasureResource.IfcDescriptiveMeasure)TextIndent);
+				if (TextIndent is MeasureResource.IfcPositiveLengthMeasure) 
+					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)TextIndent);
+				if (TextIndent is MeasureResource.IfcNormalisedRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)TextIndent);
+				if (TextIndent is MeasureResource.IfcPositiveRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)TextIndent);
 				return null;
 			} 
 		}
-		Xbim.Ifc4.PresentationAppearanceResource.IfcTextAlignment? IIfcTextStyleTextModel.TextAlign 
+		Ifc4.PresentationAppearanceResource.IfcTextAlignment? IIfcTextStyleTextModel.TextAlign 
 		{ 
 			get
 			{
 				if (TextAlign == null) return null;
-				return new Xbim.Ifc4.PresentationAppearanceResource.IfcTextAlignment((string)TextAlign);
+				return new Ifc4.PresentationAppearanceResource.IfcTextAlignment((string)TextAlign);
 			} 
 		}
-		Xbim.Ifc4.PresentationAppearanceResource.IfcTextDecoration? IIfcTextStyleTextModel.TextDecoration 
+		Ifc4.PresentationAppearanceResource.IfcTextDecoration? IIfcTextStyleTextModel.TextDecoration 
 		{ 
 			get
 			{
 				if (TextDecoration == null) return null;
-				return new Xbim.Ifc4.PresentationAppearanceResource.IfcTextDecoration((string)TextDecoration);
+				return new Ifc4.PresentationAppearanceResource.IfcTextDecoration((string)TextDecoration);
 			} 
 		}
-		Xbim.Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.LetterSpacing 
+		Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.LetterSpacing 
 		{ 
 			get
 			{
 				if (LetterSpacing == null) return null;
-				if (LetterSpacing is Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure)LetterSpacing);
-				if (LetterSpacing is Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure)LetterSpacing);
-				if (LetterSpacing is Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure)LetterSpacing);
-				if (LetterSpacing is Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure)LetterSpacing);
-				if (LetterSpacing is Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure)LetterSpacing);
-				if (LetterSpacing is Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure)LetterSpacing);
+				if (LetterSpacing is MeasureResource.IfcRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcRatioMeasure((double)(MeasureResource.IfcRatioMeasure)LetterSpacing);
+				if (LetterSpacing is MeasureResource.IfcLengthMeasure) 
+					return new Ifc4.MeasureResource.IfcLengthMeasure((double)(MeasureResource.IfcLengthMeasure)LetterSpacing);
+				if (LetterSpacing is MeasureResource.IfcDescriptiveMeasure) 
+					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(MeasureResource.IfcDescriptiveMeasure)LetterSpacing);
+				if (LetterSpacing is MeasureResource.IfcPositiveLengthMeasure) 
+					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)LetterSpacing);
+				if (LetterSpacing is MeasureResource.IfcNormalisedRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)LetterSpacing);
+				if (LetterSpacing is MeasureResource.IfcPositiveRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)LetterSpacing);
 				return null;
 			} 
 		}
-		Xbim.Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.WordSpacing 
+		Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.WordSpacing 
 		{ 
 			get
 			{
 				if (WordSpacing == null) return null;
-				if (WordSpacing is Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure)WordSpacing);
-				if (WordSpacing is Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure)WordSpacing);
-				if (WordSpacing is Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure)WordSpacing);
-				if (WordSpacing is Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure)WordSpacing);
-				if (WordSpacing is Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure)WordSpacing);
-				if (WordSpacing is Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure)WordSpacing);
+				if (WordSpacing is MeasureResource.IfcRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcRatioMeasure((double)(MeasureResource.IfcRatioMeasure)WordSpacing);
+				if (WordSpacing is MeasureResource.IfcLengthMeasure) 
+					return new Ifc4.MeasureResource.IfcLengthMeasure((double)(MeasureResource.IfcLengthMeasure)WordSpacing);
+				if (WordSpacing is MeasureResource.IfcDescriptiveMeasure) 
+					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(MeasureResource.IfcDescriptiveMeasure)WordSpacing);
+				if (WordSpacing is MeasureResource.IfcPositiveLengthMeasure) 
+					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)WordSpacing);
+				if (WordSpacing is MeasureResource.IfcNormalisedRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)WordSpacing);
+				if (WordSpacing is MeasureResource.IfcPositiveRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)WordSpacing);
 				return null;
 			} 
 		}
-		Xbim.Ifc4.PresentationAppearanceResource.IfcTextTransformation? IIfcTextStyleTextModel.TextTransform 
+		Ifc4.PresentationAppearanceResource.IfcTextTransformation? IIfcTextStyleTextModel.TextTransform 
 		{ 
 			get
 			{
 				if (TextTransform == null) return null;
-				return new Xbim.Ifc4.PresentationAppearanceResource.IfcTextTransformation((string)TextTransform);
+				return new Ifc4.PresentationAppearanceResource.IfcTextTransformation((string)TextTransform);
 			} 
 		}
-		Xbim.Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.LineHeight 
+		Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.LineHeight 
 		{ 
 			get
 			{
 				if (LineHeight == null) return null;
-				if (LineHeight is Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure)LineHeight);
-				if (LineHeight is Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure)LineHeight);
-				if (LineHeight is Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure)LineHeight);
-				if (LineHeight is Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure)LineHeight);
-				if (LineHeight is Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure)LineHeight);
-				if (LineHeight is Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure)LineHeight);
+				if (LineHeight is MeasureResource.IfcRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcRatioMeasure((double)(MeasureResource.IfcRatioMeasure)LineHeight);
+				if (LineHeight is MeasureResource.IfcLengthMeasure) 
+					return new Ifc4.MeasureResource.IfcLengthMeasure((double)(MeasureResource.IfcLengthMeasure)LineHeight);
+				if (LineHeight is MeasureResource.IfcDescriptiveMeasure) 
+					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(MeasureResource.IfcDescriptiveMeasure)LineHeight);
+				if (LineHeight is MeasureResource.IfcPositiveLengthMeasure) 
+					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)LineHeight);
+				if (LineHeight is MeasureResource.IfcNormalisedRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)LineHeight);
+				if (LineHeight is MeasureResource.IfcPositiveRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)LineHeight);
 				return null;
 			} 
 		}

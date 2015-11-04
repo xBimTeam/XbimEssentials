@@ -16,35 +16,35 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcLampType : IIfcLampType
 	{
-		Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum IIfcLampType.PredefinedType 
+		Ifc4.ElectricalDomain.IfcLampTypeEnum IIfcLampType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.COMPACTFLUORESCENT:
-						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.COMPACTFLUORESCENT;
+					case IfcLampTypeEnum.COMPACTFLUORESCENT:
+						return Ifc4.ElectricalDomain.IfcLampTypeEnum.COMPACTFLUORESCENT;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.FLUORESCENT:
-						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.FLUORESCENT;
+					case IfcLampTypeEnum.FLUORESCENT:
+						return Ifc4.ElectricalDomain.IfcLampTypeEnum.FLUORESCENT;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.HIGHPRESSUREMERCURY:
-						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.HIGHPRESSUREMERCURY;
+					case IfcLampTypeEnum.HIGHPRESSUREMERCURY:
+						return Ifc4.ElectricalDomain.IfcLampTypeEnum.HIGHPRESSUREMERCURY;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.HIGHPRESSURESODIUM:
-						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.HIGHPRESSURESODIUM;
+					case IfcLampTypeEnum.HIGHPRESSURESODIUM:
+						return Ifc4.ElectricalDomain.IfcLampTypeEnum.HIGHPRESSURESODIUM;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.METALHALIDE:
-						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.METALHALIDE;
+					case IfcLampTypeEnum.METALHALIDE:
+						return Ifc4.ElectricalDomain.IfcLampTypeEnum.METALHALIDE;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.TUNGSTENFILAMENT:
-						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.TUNGSTENFILAMENT;
+					case IfcLampTypeEnum.TUNGSTENFILAMENT:
+						return Ifc4.ElectricalDomain.IfcLampTypeEnum.TUNGSTENFILAMENT;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.USERDEFINED;
+					case IfcLampTypeEnum.USERDEFINED:
+						return Ifc4.ElectricalDomain.IfcLampTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcLampTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.ElectricalDomain.IfcLampTypeEnum.NOTDEFINED;
+					case IfcLampTypeEnum.NOTDEFINED:
+						return Ifc4.ElectricalDomain.IfcLampTypeEnum.NOTDEFINED;
 					
 					
 					default:

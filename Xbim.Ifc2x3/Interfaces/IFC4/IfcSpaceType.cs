@@ -16,17 +16,17 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSpaceType : IIfcSpaceType
 	{
-		Xbim.Ifc4.ProductExtension.IfcSpaceTypeEnum IIfcSpaceType.PredefinedType 
+		Ifc4.ProductExtension.IfcSpaceTypeEnum IIfcSpaceType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.ProductExtension.IfcSpaceTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.ProductExtension.IfcSpaceTypeEnum.USERDEFINED;
+					case IfcSpaceTypeEnum.USERDEFINED:
+						return Ifc4.ProductExtension.IfcSpaceTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcSpaceTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.ProductExtension.IfcSpaceTypeEnum.NOTDEFINED;
+					case IfcSpaceTypeEnum.NOTDEFINED:
+						return Ifc4.ProductExtension.IfcSpaceTypeEnum.NOTDEFINED;
 					
 					
 					default:
@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpaceType.LongName 
+		Ifc4.MeasureResource.IfcLabel? IIfcSpaceType.LongName 
 		{ 
 			get
 			{
@@ -44,7 +44,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpatialElementType.ElementType 
+		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElementType.ElementType 
 		{ 
 			get
 			{

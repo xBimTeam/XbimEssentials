@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcTrapeziumProfileDef : IIfcTrapeziumProfileDef
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.BottomXDim 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.BottomXDim 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)BottomXDim);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)BottomXDim);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.TopXDim 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.TopXDim 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)TopXDim);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)TopXDim);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.YDim 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.YDim 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)YDim);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)YDim);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure IIfcTrapeziumProfileDef.TopXOffset 
+		Ifc4.MeasureResource.IfcLengthMeasure IIfcTrapeziumProfileDef.TopXOffset 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)TopXOffset);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)TopXOffset);
 			} 
 		}
 	}

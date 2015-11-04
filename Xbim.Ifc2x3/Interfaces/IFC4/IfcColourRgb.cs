@@ -16,25 +16,25 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcColourRgb : IIfcColourRgb
 	{
-		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure IIfcColourRgb.Red 
+		Ifc4.MeasureResource.IfcNormalisedRatioMeasure IIfcColourRgb.Red 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)Red);
+				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)Red);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure IIfcColourRgb.Green 
+		Ifc4.MeasureResource.IfcNormalisedRatioMeasure IIfcColourRgb.Green 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)Green);
+				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)Green);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure IIfcColourRgb.Blue 
+		Ifc4.MeasureResource.IfcNormalisedRatioMeasure IIfcColourRgb.Blue 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)Blue);
+				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)Blue);
 			} 
 		}
 	}

@@ -30,14 +30,14 @@ namespace Xbim.Ifc2x3.CostResource
 				return RelatedMonetaryUnit as IIfcMonetaryUnit;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate 
+		Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)ExchangeRate);
+				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)ExchangeRate);
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcCurrencyRelationship.RateDateTime 
+		Ifc4.DateTimeResource.IfcDateTime? IIfcCurrencyRelationship.RateDateTime 
 		{ 
 			get
 			{
@@ -54,7 +54,7 @@ namespace Xbim.Ifc2x3.CostResource
 				return RateSource as IIfcLibraryInformation;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
 			{
@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.CostResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
+		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
 			{

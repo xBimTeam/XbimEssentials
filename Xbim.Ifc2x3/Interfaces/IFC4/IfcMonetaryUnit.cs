@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcMonetaryUnit : IIfcMonetaryUnit
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcMonetaryUnit.Currency 
+		Ifc4.MeasureResource.IfcLabel IIfcMonetaryUnit.Currency 
 		{ 
 			get
 			{

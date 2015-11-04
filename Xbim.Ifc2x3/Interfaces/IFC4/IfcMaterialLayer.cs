@@ -23,22 +23,22 @@ namespace Xbim.Ifc2x3.MaterialResource
 				return Material as IIfcMaterial;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure IIfcMaterialLayer.LayerThickness 
+		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure IIfcMaterialLayer.LayerThickness 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)LayerThickness);
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)LayerThickness);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLogical? IIfcMaterialLayer.IsVentilated 
+		Ifc4.MeasureResource.IfcLogical? IIfcMaterialLayer.IsVentilated 
 		{ 
 			get
 			{
 				if (IsVentilated == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLogical((bool?)IsVentilated);
+				return new Ifc4.MeasureResource.IfcLogical((bool?)IsVentilated);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayer.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayer.Name 
 		{ 
 			get
 			{
@@ -48,7 +48,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcMaterialLayer.Description 
+		Ifc4.MeasureResource.IfcText? IIfcMaterialLayer.Description 
 		{ 
 			get
 			{
@@ -57,7 +57,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			    //##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayer.Category 
+		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayer.Category 
 		{ 
 			get
 			{
@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcMaterialLayer.Priority 
+		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcMaterialLayer.Priority 
 		{ 
 			get
 			{

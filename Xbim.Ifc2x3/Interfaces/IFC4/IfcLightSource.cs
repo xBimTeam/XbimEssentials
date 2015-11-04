@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcLightSource : IIfcLightSource
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcLightSource.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcLightSource.Name 
 		{ 
 			get
 			{
 				if (Name == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		IIfcColourRgb IIfcLightSource.LightColour 
@@ -31,20 +31,20 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				return LightColour as IIfcColourRgb;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcLightSource.AmbientIntensity 
+		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcLightSource.AmbientIntensity 
 		{ 
 			get
 			{
 				if (AmbientIntensity == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)AmbientIntensity);
+				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)AmbientIntensity);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcLightSource.Intensity 
+		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcLightSource.Intensity 
 		{ 
 			get
 			{
 				if (Intensity == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)Intensity);
+				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)Intensity);
 			} 
 		}
 	}

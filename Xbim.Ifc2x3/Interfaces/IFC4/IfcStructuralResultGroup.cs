@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralResultGroup : IIfcStructuralResultGroup
 	{
-		Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType 
+		Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType 
 		{ 
 			get
 			{
 				switch (TheoryType)
 				{
-					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY:
-						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY;
+					case IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY:
+						return Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY;
 					
-					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY:
-						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY;
+					case IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY:
+						return Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY;
 					
-					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY:
-						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY;
+					case IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY:
+						return Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY;
 					
-					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY:
-						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY;
+					case IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY:
+						return Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY;
 					
-					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.USERDEFINED;
+					case IfcAnalysisTheoryTypeEnum.USERDEFINED:
+						return Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.NOTDEFINED;
+					case IfcAnalysisTheoryTypeEnum.NOTDEFINED:
+						return Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.NOTDEFINED;
 					
 					
 					default:

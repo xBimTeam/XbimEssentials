@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadTemperature : IIfcStructuralLoadTemperature
 	{
-		Xbim.Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTConstant 
+		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTConstant 
 		{ 
 			get
 			{
@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTY 
+		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTY 
 		{ 
 			get
 			{
@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTZ 
+		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTZ 
 		{ 
 			get
 			{

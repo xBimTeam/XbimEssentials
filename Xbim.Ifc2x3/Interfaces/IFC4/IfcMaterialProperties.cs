@@ -23,7 +23,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				return Material as IIfcMaterialDefinition;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcExtendedProperties.Name 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcExtendedProperties.Name 
 		{ 
 			get
 			{
@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcExtendedProperties.Description 
+		Ifc4.MeasureResource.IfcText? IIfcExtendedProperties.Description 
 		{ 
 			get
 			{

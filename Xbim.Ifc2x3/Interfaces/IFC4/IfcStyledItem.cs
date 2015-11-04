@@ -33,12 +33,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcStyledItem.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcStyledItem.Name 
 		{ 
 			get
 			{
 				if (Name == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 	}

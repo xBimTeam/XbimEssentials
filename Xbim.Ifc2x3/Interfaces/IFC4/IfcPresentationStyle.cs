@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcPresentationStyle : IIfcPresentationStyle
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPresentationStyle.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcPresentationStyle.Name 
 		{ 
 			get
 			{
 				if (Name == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 	}

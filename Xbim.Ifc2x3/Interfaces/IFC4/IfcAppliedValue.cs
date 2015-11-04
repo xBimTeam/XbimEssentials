@@ -16,34 +16,34 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	public partial class @IfcAppliedValue : IIfcAppliedValue
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Name 
 		{ 
 			get
 			{
 				if (Name == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcAppliedValue.Description 
+		Ifc4.MeasureResource.IfcText? IIfcAppliedValue.Description 
 		{ 
 			get
 			{
 				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				return new Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
-		Xbim.Ifc4.CostResource.IfcAppliedValueSelect IIfcAppliedValue.AppliedValue 
+		Ifc4.CostResource.IfcAppliedValueSelect IIfcAppliedValue.AppliedValue 
 		{ 
 			get
 			{
 				if (AppliedValue == null) return null;
-				if (AppliedValue is Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure)AppliedValue);
-				var ifcmeasurewithunit = AppliedValue as Xbim.Ifc2x3.MeasureResource.IfcMeasureWithUnit;
+				if (AppliedValue is MeasureResource.IfcRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcRatioMeasure((double)(MeasureResource.IfcRatioMeasure)AppliedValue);
+				var ifcmeasurewithunit = AppliedValue as MeasureResource.IfcMeasureWithUnit;
 				if (ifcmeasurewithunit != null) 
 					return ifcmeasurewithunit;
-				if (AppliedValue is Xbim.Ifc2x3.MeasureResource.IfcMonetaryMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcMonetaryMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcMonetaryMeasure)AppliedValue);
+				if (AppliedValue is MeasureResource.IfcMonetaryMeasure) 
+					return new Ifc4.MeasureResource.IfcMonetaryMeasure((double)(MeasureResource.IfcMonetaryMeasure)AppliedValue);
 				return null;
 			} 
 		}
@@ -54,7 +54,7 @@ namespace Xbim.Ifc2x3.CostResource
 				return UnitBasis as IIfcMeasureWithUnit;
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDate? IIfcAppliedValue.ApplicableDate 
+		Ifc4.DateTimeResource.IfcDate? IIfcAppliedValue.ApplicableDate 
 		{ 
 			get
 			{
@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.CostResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDate? IIfcAppliedValue.FixedUntilDate 
+		Ifc4.DateTimeResource.IfcDate? IIfcAppliedValue.FixedUntilDate 
 		{ 
 			get
 			{
@@ -74,7 +74,7 @@ namespace Xbim.Ifc2x3.CostResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Category 
+		Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Category 
 		{ 
 			get
 			{
@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.CostResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Condition 
+		Ifc4.MeasureResource.IfcLabel? IIfcAppliedValue.Condition 
 		{ 
 			get
 			{
@@ -94,7 +94,7 @@ namespace Xbim.Ifc2x3.CostResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.CostResource.IfcArithmeticOperatorEnum? IIfcAppliedValue.ArithmeticOperator 
+		Ifc4.CostResource.IfcArithmeticOperatorEnum? IIfcAppliedValue.ArithmeticOperator 
 		{ 
 			get
 			{

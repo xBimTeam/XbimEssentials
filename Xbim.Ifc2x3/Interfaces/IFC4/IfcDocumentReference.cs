@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcDocumentReference : IIfcDocumentReference
 	{
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcDocumentReference.Description 
+		Ifc4.MeasureResource.IfcText? IIfcDocumentReference.Description 
 		{ 
 			get
 			{

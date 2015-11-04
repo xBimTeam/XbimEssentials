@@ -16,27 +16,27 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcOrganization : IIfcOrganization
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcOrganization.Identification 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcOrganization.Identification 
 		{ 
 			get
 			{
 				if (Id == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)Id);
+				return new Ifc4.MeasureResource.IfcIdentifier((string)Id);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcOrganization.Name 
+		Ifc4.MeasureResource.IfcLabel IIfcOrganization.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcOrganization.Description 
+		Ifc4.MeasureResource.IfcText? IIfcOrganization.Description 
 		{ 
 			get
 			{
 				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				return new Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
 		IEnumerable<IIfcActorRole> IIfcOrganization.Roles 

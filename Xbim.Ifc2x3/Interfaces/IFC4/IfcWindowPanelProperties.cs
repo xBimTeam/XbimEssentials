@@ -16,53 +16,53 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcWindowPanelProperties : IIfcWindowPanelProperties
 	{
-		Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum IIfcWindowPanelProperties.OperationType 
+		Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum IIfcWindowPanelProperties.OperationType 
 		{ 
 			get
 			{
 				switch (OperationType)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelOperationEnum.SIDEHUNGRIGHTHAND:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.SIDEHUNGRIGHTHAND;
+					case IfcWindowPanelOperationEnum.SIDEHUNGRIGHTHAND:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.SIDEHUNGRIGHTHAND;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelOperationEnum.SIDEHUNGLEFTHAND:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.SIDEHUNGLEFTHAND;
+					case IfcWindowPanelOperationEnum.SIDEHUNGLEFTHAND:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.SIDEHUNGLEFTHAND;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelOperationEnum.TILTANDTURNRIGHTHAND:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.TILTANDTURNRIGHTHAND;
+					case IfcWindowPanelOperationEnum.TILTANDTURNRIGHTHAND:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.TILTANDTURNRIGHTHAND;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelOperationEnum.TILTANDTURNLEFTHAND:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.TILTANDTURNLEFTHAND;
+					case IfcWindowPanelOperationEnum.TILTANDTURNLEFTHAND:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.TILTANDTURNLEFTHAND;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelOperationEnum.TOPHUNG:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.TOPHUNG;
+					case IfcWindowPanelOperationEnum.TOPHUNG:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.TOPHUNG;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelOperationEnum.BOTTOMHUNG:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.BOTTOMHUNG;
+					case IfcWindowPanelOperationEnum.BOTTOMHUNG:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.BOTTOMHUNG;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelOperationEnum.PIVOTHORIZONTAL:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.PIVOTHORIZONTAL;
+					case IfcWindowPanelOperationEnum.PIVOTHORIZONTAL:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.PIVOTHORIZONTAL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelOperationEnum.PIVOTVERTICAL:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.PIVOTVERTICAL;
+					case IfcWindowPanelOperationEnum.PIVOTVERTICAL:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.PIVOTVERTICAL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelOperationEnum.SLIDINGHORIZONTAL:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.SLIDINGHORIZONTAL;
+					case IfcWindowPanelOperationEnum.SLIDINGHORIZONTAL:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.SLIDINGHORIZONTAL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelOperationEnum.SLIDINGVERTICAL:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.SLIDINGVERTICAL;
+					case IfcWindowPanelOperationEnum.SLIDINGVERTICAL:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.SLIDINGVERTICAL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelOperationEnum.REMOVABLECASEMENT:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.REMOVABLECASEMENT;
+					case IfcWindowPanelOperationEnum.REMOVABLECASEMENT:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.REMOVABLECASEMENT;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelOperationEnum.FIXEDCASEMENT:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.FIXEDCASEMENT;
+					case IfcWindowPanelOperationEnum.FIXEDCASEMENT:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.FIXEDCASEMENT;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelOperationEnum.OTHEROPERATION:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.OTHEROPERATION;
+					case IfcWindowPanelOperationEnum.OTHEROPERATION:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.OTHEROPERATION;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelOperationEnum.NOTDEFINED:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.NOTDEFINED;
+					case IfcWindowPanelOperationEnum.NOTDEFINED:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelOperationEnum.NOTDEFINED;
 					
 					
 					default:
@@ -70,29 +70,29 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				}
 			} 
 		}
-		Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum IIfcWindowPanelProperties.PanelPosition 
+		Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum IIfcWindowPanelProperties.PanelPosition 
 		{ 
 			get
 			{
 				switch (PanelPosition)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.LEFT:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.LEFT;
+					case IfcWindowPanelPositionEnum.LEFT:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.LEFT;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.MIDDLE:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.MIDDLE;
+					case IfcWindowPanelPositionEnum.MIDDLE:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.MIDDLE;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.RIGHT:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.RIGHT;
+					case IfcWindowPanelPositionEnum.RIGHT:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.RIGHT;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.BOTTOM:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.BOTTOM;
+					case IfcWindowPanelPositionEnum.BOTTOM:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.BOTTOM;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.TOP:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.TOP;
+					case IfcWindowPanelPositionEnum.TOP:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.TOP;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowPanelPositionEnum.NOTDEFINED:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.NOTDEFINED;
+					case IfcWindowPanelPositionEnum.NOTDEFINED:
+						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.NOTDEFINED;
 					
 					
 					default:
@@ -100,20 +100,20 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameDepth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameDepth 
 		{ 
 			get
 			{
 				if (FrameDepth == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FrameDepth);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FrameDepth);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameThickness 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameThickness 
 		{ 
 			get
 			{
 				if (FrameThickness == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FrameThickness);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)FrameThickness);
 			} 
 		}
 		IIfcShapeAspect IIfcWindowPanelProperties.ShapeAspectStyle 

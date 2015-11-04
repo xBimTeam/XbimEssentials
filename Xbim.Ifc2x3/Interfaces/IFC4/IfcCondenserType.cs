@@ -16,35 +16,35 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcCondenserType : IIfcCondenserType
 	{
-		Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum IIfcCondenserType.PredefinedType 
+		Ifc4.HvacDomain.IfcCondenserTypeEnum IIfcCondenserType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE:
-						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE;
+					case IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE:
+						return Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL:
-						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL;
+					case IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL:
+						return Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE:
-						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE;
+					case IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE:
+						return Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE:
-						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE;
+					case IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE:
+						return Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.AIRCOOLED:
-						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.AIRCOOLED;
+					case IfcCondenserTypeEnum.AIRCOOLED:
+						return Ifc4.HvacDomain.IfcCondenserTypeEnum.AIRCOOLED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.EVAPORATIVECOOLED:
-						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.EVAPORATIVECOOLED;
+					case IfcCondenserTypeEnum.EVAPORATIVECOOLED:
+						return Ifc4.HvacDomain.IfcCondenserTypeEnum.EVAPORATIVECOOLED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.USERDEFINED;
+					case IfcCondenserTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcCondenserTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCondenserTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcCondenserTypeEnum.NOTDEFINED;
+					case IfcCondenserTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcCondenserTypeEnum.NOTDEFINED;
 					
 					
 					default:

@@ -16,56 +16,56 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcSpaceHeaterType : IIfcSpaceHeaterType
 	{
-		Xbim.Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum IIfcSpaceHeaterType.PredefinedType 
+		Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum IIfcSpaceHeaterType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.SECTIONALRADIATOR:
+					case IfcSpaceHeaterTypeEnum.SECTIONALRADIATOR:
 						//## Handle translation of SECTIONALRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
 						//TODO: Handle translation of SECTIONALRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.PANELRADIATOR:
+					case IfcSpaceHeaterTypeEnum.PANELRADIATOR:
 						//## Handle translation of PANELRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
 						//TODO: Handle translation of PANELRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.TUBULARRADIATOR:
+					case IfcSpaceHeaterTypeEnum.TUBULARRADIATOR:
 						//## Handle translation of TUBULARRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
 						//TODO: Handle translation of TUBULARRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.CONVECTOR:
-						return Xbim.Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.CONVECTOR;
+					case IfcSpaceHeaterTypeEnum.CONVECTOR:
+						return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.CONVECTOR;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.BASEBOARDHEATER:
+					case IfcSpaceHeaterTypeEnum.BASEBOARDHEATER:
 						//## Handle translation of BASEBOARDHEATER member from IfcSpaceHeaterTypeEnum in property PredefinedType
 						//TODO: Handle translation of BASEBOARDHEATER member from IfcSpaceHeaterTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.FINNEDTUBEUNIT:
+					case IfcSpaceHeaterTypeEnum.FINNEDTUBEUNIT:
 						//## Handle translation of FINNEDTUBEUNIT member from IfcSpaceHeaterTypeEnum in property PredefinedType
 						//TODO: Handle translation of FINNEDTUBEUNIT member from IfcSpaceHeaterTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.UNITHEATER:
+					case IfcSpaceHeaterTypeEnum.UNITHEATER:
 						//## Handle translation of UNITHEATER member from IfcSpaceHeaterTypeEnum in property PredefinedType
 						//TODO: Handle translation of UNITHEATER member from IfcSpaceHeaterTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
+					case IfcSpaceHeaterTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcSpaceHeaterTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.NOTDEFINED;
+					case IfcSpaceHeaterTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.NOTDEFINED;
 					
 					
 					default:

@@ -16,59 +16,59 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcStair : IIfcStair
 	{
-		Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum? IIfcStair.PredefinedType 
+		Ifc4.SharedBldgElements.IfcStairTypeEnum? IIfcStair.PredefinedType 
 		{ 
 			get
 			{
 				switch (ShapeType)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.STRAIGHT_RUN_STAIR:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.STRAIGHT_RUN_STAIR;
+					case IfcStairTypeEnum.STRAIGHT_RUN_STAIR:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.STRAIGHT_RUN_STAIR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.TWO_STRAIGHT_RUN_STAIR:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.TWO_STRAIGHT_RUN_STAIR;
+					case IfcStairTypeEnum.TWO_STRAIGHT_RUN_STAIR:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.TWO_STRAIGHT_RUN_STAIR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.QUARTER_WINDING_STAIR:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.QUARTER_WINDING_STAIR;
+					case IfcStairTypeEnum.QUARTER_WINDING_STAIR:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.QUARTER_WINDING_STAIR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.QUARTER_TURN_STAIR:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.QUARTER_TURN_STAIR;
+					case IfcStairTypeEnum.QUARTER_TURN_STAIR:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.QUARTER_TURN_STAIR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.HALF_WINDING_STAIR:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.HALF_WINDING_STAIR;
+					case IfcStairTypeEnum.HALF_WINDING_STAIR:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.HALF_WINDING_STAIR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.HALF_TURN_STAIR:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.HALF_TURN_STAIR;
+					case IfcStairTypeEnum.HALF_TURN_STAIR:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.HALF_TURN_STAIR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.TWO_QUARTER_WINDING_STAIR:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.TWO_QUARTER_WINDING_STAIR;
+					case IfcStairTypeEnum.TWO_QUARTER_WINDING_STAIR:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.TWO_QUARTER_WINDING_STAIR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.TWO_QUARTER_TURN_STAIR:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.TWO_QUARTER_TURN_STAIR;
+					case IfcStairTypeEnum.TWO_QUARTER_TURN_STAIR:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.TWO_QUARTER_TURN_STAIR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.THREE_QUARTER_WINDING_STAIR:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.THREE_QUARTER_WINDING_STAIR;
+					case IfcStairTypeEnum.THREE_QUARTER_WINDING_STAIR:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.THREE_QUARTER_WINDING_STAIR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.THREE_QUARTER_TURN_STAIR:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.THREE_QUARTER_TURN_STAIR;
+					case IfcStairTypeEnum.THREE_QUARTER_TURN_STAIR:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.THREE_QUARTER_TURN_STAIR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.SPIRAL_STAIR:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.SPIRAL_STAIR;
+					case IfcStairTypeEnum.SPIRAL_STAIR:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.SPIRAL_STAIR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.DOUBLE_RETURN_STAIR:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.DOUBLE_RETURN_STAIR;
+					case IfcStairTypeEnum.DOUBLE_RETURN_STAIR:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.DOUBLE_RETURN_STAIR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.CURVED_RUN_STAIR:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.CURVED_RUN_STAIR;
+					case IfcStairTypeEnum.CURVED_RUN_STAIR:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.CURVED_RUN_STAIR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.TWO_CURVED_RUN_STAIR:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.TWO_CURVED_RUN_STAIR;
+					case IfcStairTypeEnum.TWO_CURVED_RUN_STAIR:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.TWO_CURVED_RUN_STAIR;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.USERDEFINED;
+					case IfcStairTypeEnum.USERDEFINED:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcStairTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcStairTypeEnum.NOTDEFINED;
+					case IfcStairTypeEnum.NOTDEFINED:
+						return Ifc4.SharedBldgElements.IfcStairTypeEnum.NOTDEFINED;
 					
 					
 					default:

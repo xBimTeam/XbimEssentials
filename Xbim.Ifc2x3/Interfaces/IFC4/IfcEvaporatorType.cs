@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcEvaporatorType : IIfcEvaporatorType
 	{
-		Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum IIfcEvaporatorType.PredefinedType 
+		Ifc4.HvacDomain.IfcEvaporatorTypeEnum IIfcEvaporatorType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONSHELLANDTUBE:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONSHELLANDTUBE;
+					case IfcEvaporatorTypeEnum.DIRECTEXPANSIONSHELLANDTUBE:
+						return Ifc4.HvacDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONSHELLANDTUBE;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONTUBEINTUBE:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONTUBEINTUBE;
+					case IfcEvaporatorTypeEnum.DIRECTEXPANSIONTUBEINTUBE:
+						return Ifc4.HvacDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONTUBEINTUBE;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE;
+					case IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE:
+						return Ifc4.HvacDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporatorTypeEnum.FLOODEDSHELLANDTUBE:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum.FLOODEDSHELLANDTUBE;
+					case IfcEvaporatorTypeEnum.FLOODEDSHELLANDTUBE:
+						return Ifc4.HvacDomain.IfcEvaporatorTypeEnum.FLOODEDSHELLANDTUBE;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporatorTypeEnum.SHELLANDCOIL:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum.SHELLANDCOIL;
+					case IfcEvaporatorTypeEnum.SHELLANDCOIL:
+						return Ifc4.HvacDomain.IfcEvaporatorTypeEnum.SHELLANDCOIL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporatorTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum.USERDEFINED;
+					case IfcEvaporatorTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcEvaporatorTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcEvaporatorTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcEvaporatorTypeEnum.NOTDEFINED;
+					case IfcEvaporatorTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcEvaporatorTypeEnum.NOTDEFINED;
 					
 					
 					default:

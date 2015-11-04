@@ -26,27 +26,27 @@ namespace Xbim.Ifc2x3.QuantityResource
 			}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcPhysicalComplexQuantity.Discrimination 
+		Ifc4.MeasureResource.IfcLabel IIfcPhysicalComplexQuantity.Discrimination 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Discrimination);
+				return new Ifc4.MeasureResource.IfcLabel((string)Discrimination);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPhysicalComplexQuantity.Quality 
+		Ifc4.MeasureResource.IfcLabel? IIfcPhysicalComplexQuantity.Quality 
 		{ 
 			get
 			{
 				if (Quality == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Quality);
+				return new Ifc4.MeasureResource.IfcLabel((string)Quality);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcPhysicalComplexQuantity.Usage 
+		Ifc4.MeasureResource.IfcLabel? IIfcPhysicalComplexQuantity.Usage 
 		{ 
 			get
 			{
 				if (Usage == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Usage);
+				return new Ifc4.MeasureResource.IfcLabel((string)Usage);
 			} 
 		}
 	}

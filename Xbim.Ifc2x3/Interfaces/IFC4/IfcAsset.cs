@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	public partial class @IfcAsset : IIfcAsset
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcAsset.Identification 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcAsset.Identification 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)AssetID);
+				return new Ifc4.MeasureResource.IfcIdentifier((string)AssetID);
 			} 
 		}
 		IIfcCostValue IIfcAsset.OriginalValue 
@@ -44,35 +44,35 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				return TotalReplacementCost as IIfcCostValue;
 			} 
 		}
-		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcAsset.Owner 
+		Ifc4.ActorResource.IfcActorSelect IIfcAsset.Owner 
 		{ 
 			get
 			{
 				if (Owner == null) return null;
-				var ifcorganization = Owner as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				var ifcorganization = Owner as ActorResource.IfcOrganization;
 				if (ifcorganization != null) 
 					return ifcorganization;
-				var ifcperson = Owner as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				var ifcperson = Owner as ActorResource.IfcPerson;
 				if (ifcperson != null) 
 					return ifcperson;
-				var ifcpersonandorganization = Owner as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				var ifcpersonandorganization = Owner as ActorResource.IfcPersonAndOrganization;
 				if (ifcpersonandorganization != null) 
 					return ifcpersonandorganization;
 				return null;
 			} 
 		}
-		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcAsset.User 
+		Ifc4.ActorResource.IfcActorSelect IIfcAsset.User 
 		{ 
 			get
 			{
 				if (User == null) return null;
-				var ifcorganization = User as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				var ifcorganization = User as ActorResource.IfcOrganization;
 				if (ifcorganization != null) 
 					return ifcorganization;
-				var ifcperson = User as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				var ifcperson = User as ActorResource.IfcPerson;
 				if (ifcperson != null) 
 					return ifcperson;
-				var ifcpersonandorganization = User as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				var ifcpersonandorganization = User as ActorResource.IfcPersonAndOrganization;
 				if (ifcpersonandorganization != null) 
 					return ifcpersonandorganization;
 				return null;
@@ -85,7 +85,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				return ResponsiblePerson as IIfcPerson;
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDate? IIfcAsset.IncorporationDate 
+		Ifc4.DateTimeResource.IfcDate? IIfcAsset.IncorporationDate 
 		{ 
 			get
 			{

@@ -16,35 +16,35 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcWindowStyle : IIfcWindowStyle
 	{
-		Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum IIfcWindowStyle.ConstructionType 
+		Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum IIfcWindowStyle.ConstructionType 
 		{ 
 			get
 			{
 				switch (ConstructionType)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.ALUMINIUM:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.ALUMINIUM;
+					case IfcWindowStyleConstructionEnum.ALUMINIUM:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.ALUMINIUM;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.HIGH_GRADE_STEEL:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.HIGH_GRADE_STEEL;
+					case IfcWindowStyleConstructionEnum.HIGH_GRADE_STEEL:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.HIGH_GRADE_STEEL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.STEEL:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.STEEL;
+					case IfcWindowStyleConstructionEnum.STEEL:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.STEEL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.WOOD:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.WOOD;
+					case IfcWindowStyleConstructionEnum.WOOD:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.WOOD;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.ALUMINIUM_WOOD:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.ALUMINIUM_WOOD;
+					case IfcWindowStyleConstructionEnum.ALUMINIUM_WOOD:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.ALUMINIUM_WOOD;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.PLASTIC:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.PLASTIC;
+					case IfcWindowStyleConstructionEnum.PLASTIC:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.PLASTIC;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.OTHER_CONSTRUCTION:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.OTHER_CONSTRUCTION;
+					case IfcWindowStyleConstructionEnum.OTHER_CONSTRUCTION:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.OTHER_CONSTRUCTION;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleConstructionEnum.NOTDEFINED:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.NOTDEFINED;
+					case IfcWindowStyleConstructionEnum.NOTDEFINED:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleConstructionEnum.NOTDEFINED;
 					
 					
 					default:
@@ -52,44 +52,44 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				}
 			} 
 		}
-		Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum IIfcWindowStyle.OperationType 
+		Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum IIfcWindowStyle.OperationType 
 		{ 
 			get
 			{
 				switch (OperationType)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.SINGLE_PANEL:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.SINGLE_PANEL;
+					case IfcWindowStyleOperationEnum.SINGLE_PANEL:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.SINGLE_PANEL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.DOUBLE_PANEL_VERTICAL:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.DOUBLE_PANEL_VERTICAL;
+					case IfcWindowStyleOperationEnum.DOUBLE_PANEL_VERTICAL:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.DOUBLE_PANEL_VERTICAL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.DOUBLE_PANEL_HORIZONTAL:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.DOUBLE_PANEL_HORIZONTAL;
+					case IfcWindowStyleOperationEnum.DOUBLE_PANEL_HORIZONTAL:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.DOUBLE_PANEL_HORIZONTAL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.TRIPLE_PANEL_VERTICAL:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_VERTICAL;
+					case IfcWindowStyleOperationEnum.TRIPLE_PANEL_VERTICAL:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_VERTICAL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.TRIPLE_PANEL_BOTTOM:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_BOTTOM;
+					case IfcWindowStyleOperationEnum.TRIPLE_PANEL_BOTTOM:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_BOTTOM;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.TRIPLE_PANEL_TOP:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_TOP;
+					case IfcWindowStyleOperationEnum.TRIPLE_PANEL_TOP:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_TOP;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.TRIPLE_PANEL_LEFT:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_LEFT;
+					case IfcWindowStyleOperationEnum.TRIPLE_PANEL_LEFT:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_LEFT;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.TRIPLE_PANEL_RIGHT:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_RIGHT;
+					case IfcWindowStyleOperationEnum.TRIPLE_PANEL_RIGHT:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_RIGHT;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.TRIPLE_PANEL_HORIZONTAL:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_HORIZONTAL;
+					case IfcWindowStyleOperationEnum.TRIPLE_PANEL_HORIZONTAL:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.TRIPLE_PANEL_HORIZONTAL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.USERDEFINED:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.USERDEFINED;
+					case IfcWindowStyleOperationEnum.USERDEFINED:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcWindowStyleOperationEnum.NOTDEFINED:
-						return Xbim.Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.NOTDEFINED;
+					case IfcWindowStyleOperationEnum.NOTDEFINED:
+						return Ifc4.ArchitectureDomain.IfcWindowStyleOperationEnum.NOTDEFINED;
 					
 					
 					default:

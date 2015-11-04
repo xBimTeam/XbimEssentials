@@ -16,22 +16,22 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcLibraryInformation : IIfcLibraryInformation
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcLibraryInformation.Name 
+		Ifc4.MeasureResource.IfcLabel IIfcLibraryInformation.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcLibraryInformation.Version 
+		Ifc4.MeasureResource.IfcLabel? IIfcLibraryInformation.Version 
 		{ 
 			get
 			{
 				if (Version == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Version);
+				return new Ifc4.MeasureResource.IfcLabel((string)Version);
 			} 
 		}
-		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcLibraryInformation.Publisher 
+		Ifc4.ActorResource.IfcActorSelect IIfcLibraryInformation.Publisher 
 		{ 
 			get
 			{
@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcLibraryInformation.VersionDate 
+		Ifc4.DateTimeResource.IfcDateTime? IIfcLibraryInformation.VersionDate 
 		{ 
 			get
 			{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.ExternalReferenceResource.IfcURIReference? IIfcLibraryInformation.Location 
+		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcLibraryInformation.Location 
 		{ 
 			get
 			{
@@ -61,7 +61,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcLibraryInformation.Description 
+		Ifc4.MeasureResource.IfcText? IIfcLibraryInformation.Description 
 		{ 
 			get
 			{

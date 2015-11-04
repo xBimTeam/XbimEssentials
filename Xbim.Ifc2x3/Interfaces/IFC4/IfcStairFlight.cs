@@ -32,23 +32,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				return NumberOfTreads;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight 
 		{ 
 			get
 			{
 				if (RiserHeight == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)RiserHeight);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)RiserHeight);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength 
 		{ 
 			get
 			{
 				if (TreadLength == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)TreadLength);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)TreadLength);
 			} 
 		}
-		Xbim.Ifc4.SharedBldgElements.IfcStairFlightTypeEnum? IIfcStairFlight.PredefinedType 
+		Ifc4.SharedBldgElements.IfcStairFlightTypeEnum? IIfcStairFlight.PredefinedType 
 		{ 
 			get
 			{

@@ -16,17 +16,17 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcProfileDef : IIfcProfileDef
 	{
-		Xbim.Ifc4.ProfileResource.IfcProfileTypeEnum IIfcProfileDef.ProfileType 
+		Ifc4.ProfileResource.IfcProfileTypeEnum IIfcProfileDef.ProfileType 
 		{ 
 			get
 			{
 				switch (ProfileType)
 				{
-					case Xbim.Ifc2x3.ProfileResource.IfcProfileTypeEnum.CURVE:
-						return Xbim.Ifc4.ProfileResource.IfcProfileTypeEnum.CURVE;
+					case IfcProfileTypeEnum.CURVE:
+						return Ifc4.ProfileResource.IfcProfileTypeEnum.CURVE;
 					
-					case Xbim.Ifc2x3.ProfileResource.IfcProfileTypeEnum.AREA:
-						return Xbim.Ifc4.ProfileResource.IfcProfileTypeEnum.AREA;
+					case IfcProfileTypeEnum.AREA:
+						return Ifc4.ProfileResource.IfcProfileTypeEnum.AREA;
 					
 					
 					default:
@@ -34,12 +34,12 @@ namespace Xbim.Ifc2x3.ProfileResource
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcProfileDef.ProfileName 
+		Ifc4.MeasureResource.IfcLabel? IIfcProfileDef.ProfileName 
 		{ 
 			get
 			{
 				if (ProfileName == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ProfileName);
+				return new Ifc4.MeasureResource.IfcLabel((string)ProfileName);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcProfileDef.HasExternalReference 

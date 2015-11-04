@@ -16,14 +16,14 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcQuantityVolume : IIfcQuantityVolume
 	{
-		Xbim.Ifc4.MeasureResource.IfcVolumeMeasure IIfcQuantityVolume.VolumeValue 
+		Ifc4.MeasureResource.IfcVolumeMeasure IIfcQuantityVolume.VolumeValue 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcVolumeMeasure((double)VolumeValue);
+				return new Ifc4.MeasureResource.IfcVolumeMeasure((double)VolumeValue);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcQuantityVolume.Formula 
+		Ifc4.MeasureResource.IfcLabel? IIfcQuantityVolume.Formula 
 		{ 
 			get
 			{

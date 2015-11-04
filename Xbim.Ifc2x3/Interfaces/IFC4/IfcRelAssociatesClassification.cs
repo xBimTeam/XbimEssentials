@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssociatesClassification : IIfcRelAssociatesClassification
 	{
-		Xbim.Ifc4.ExternalReferenceResource.IfcClassificationSelect IIfcRelAssociatesClassification.RelatingClassification 
+		Ifc4.ExternalReferenceResource.IfcClassificationSelect IIfcRelAssociatesClassification.RelatingClassification 
 		{ 
 			get
 			{

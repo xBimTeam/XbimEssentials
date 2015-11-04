@@ -30,12 +30,12 @@ namespace Xbim.Ifc2x3.ProfileResource
 				return Operator as IIfcCartesianTransformationOperator2D;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcDerivedProfileDef.Label 
+		Ifc4.MeasureResource.IfcLabel? IIfcDerivedProfileDef.Label 
 		{ 
 			get
 			{
 				if (Label == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Label);
+				return new Ifc4.MeasureResource.IfcLabel((string)Label);
 			} 
 		}
 	}

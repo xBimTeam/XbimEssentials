@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcOutletType : IIfcOutletType
 	{
-		Xbim.Ifc4.ElectricalDomain.IfcOutletTypeEnum IIfcOutletType.PredefinedType 
+		Ifc4.ElectricalDomain.IfcOutletTypeEnum IIfcOutletType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.ElectricalDomain.IfcOutletTypeEnum.AUDIOVISUALOUTLET:
-						return Xbim.Ifc4.ElectricalDomain.IfcOutletTypeEnum.AUDIOVISUALOUTLET;
+					case IfcOutletTypeEnum.AUDIOVISUALOUTLET:
+						return Ifc4.ElectricalDomain.IfcOutletTypeEnum.AUDIOVISUALOUTLET;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcOutletTypeEnum.COMMUNICATIONSOUTLET:
-						return Xbim.Ifc4.ElectricalDomain.IfcOutletTypeEnum.COMMUNICATIONSOUTLET;
+					case IfcOutletTypeEnum.COMMUNICATIONSOUTLET:
+						return Ifc4.ElectricalDomain.IfcOutletTypeEnum.COMMUNICATIONSOUTLET;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcOutletTypeEnum.POWEROUTLET:
-						return Xbim.Ifc4.ElectricalDomain.IfcOutletTypeEnum.POWEROUTLET;
+					case IfcOutletTypeEnum.POWEROUTLET:
+						return Ifc4.ElectricalDomain.IfcOutletTypeEnum.POWEROUTLET;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcOutletTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.ElectricalDomain.IfcOutletTypeEnum.USERDEFINED;
+					case IfcOutletTypeEnum.USERDEFINED:
+						return Ifc4.ElectricalDomain.IfcOutletTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcOutletTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.ElectricalDomain.IfcOutletTypeEnum.NOTDEFINED;
+					case IfcOutletTypeEnum.NOTDEFINED:
+						return Ifc4.ElectricalDomain.IfcOutletTypeEnum.NOTDEFINED;
 					
 					
 					default:

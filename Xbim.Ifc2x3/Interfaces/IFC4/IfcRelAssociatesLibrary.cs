@@ -16,15 +16,15 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssociatesLibrary : IIfcRelAssociatesLibrary
 	{
-		Xbim.Ifc4.ExternalReferenceResource.IfcLibrarySelect IIfcRelAssociatesLibrary.RelatingLibrary 
+		Ifc4.ExternalReferenceResource.IfcLibrarySelect IIfcRelAssociatesLibrary.RelatingLibrary 
 		{ 
 			get
 			{
 				if (RelatingLibrary == null) return null;
-				var ifclibraryreference = RelatingLibrary as Xbim.Ifc2x3.ExternalReferenceResource.IfcLibraryReference;
+				var ifclibraryreference = RelatingLibrary as ExternalReferenceResource.IfcLibraryReference;
 				if (ifclibraryreference != null) 
 					return ifclibraryreference;
-				var ifclibraryinformation = RelatingLibrary as Xbim.Ifc2x3.ExternalReferenceResource.IfcLibraryInformation;
+				var ifclibraryinformation = RelatingLibrary as ExternalReferenceResource.IfcLibraryInformation;
 				if (ifclibraryinformation != null) 
 					return ifclibraryinformation;
 				return null;

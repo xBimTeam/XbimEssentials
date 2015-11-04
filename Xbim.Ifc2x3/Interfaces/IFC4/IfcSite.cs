@@ -16,36 +16,36 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSite : IIfcSite
 	{
-		Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure? IIfcSite.RefLatitude 
+		Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure? IIfcSite.RefLatitude 
 		{ 
 			get
 			{
 				if (RefLatitude == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure((List<long>)RefLatitude);
+				return new Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure((List<long>)RefLatitude);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure? IIfcSite.RefLongitude 
+		Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure? IIfcSite.RefLongitude 
 		{ 
 			get
 			{
 				if (RefLongitude == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure((List<long>)RefLongitude);
+				return new Ifc4.MeasureResource.IfcCompoundPlaneAngleMeasure((List<long>)RefLongitude);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcSite.RefElevation 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSite.RefElevation 
 		{ 
 			get
 			{
 				if (RefElevation == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)RefElevation);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)RefElevation);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSite.LandTitleNumber 
+		Ifc4.MeasureResource.IfcLabel? IIfcSite.LandTitleNumber 
 		{ 
 			get
 			{
 				if (LandTitleNumber == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)LandTitleNumber);
+				return new Ifc4.MeasureResource.IfcLabel((string)LandTitleNumber);
 			} 
 		}
 		IIfcPostalAddress IIfcSite.SiteAddress 
@@ -55,7 +55,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return SiteAddress as IIfcPostalAddress;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
+		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get
 			{

@@ -16,35 +16,35 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRamp : IIfcRamp
 	{
-		Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum? IIfcRamp.PredefinedType 
+		Ifc4.SharedBldgElements.IfcRampTypeEnum? IIfcRamp.PredefinedType 
 		{ 
 			get
 			{
 				switch (ShapeType)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.STRAIGHT_RUN_RAMP:
-						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.STRAIGHT_RUN_RAMP;
+					case IfcRampTypeEnum.STRAIGHT_RUN_RAMP:
+						return Ifc4.SharedBldgElements.IfcRampTypeEnum.STRAIGHT_RUN_RAMP;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP:
-						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP;
+					case IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP:
+						return Ifc4.SharedBldgElements.IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.QUARTER_TURN_RAMP:
-						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.QUARTER_TURN_RAMP;
+					case IfcRampTypeEnum.QUARTER_TURN_RAMP:
+						return Ifc4.SharedBldgElements.IfcRampTypeEnum.QUARTER_TURN_RAMP;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP:
-						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP;
+					case IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP:
+						return Ifc4.SharedBldgElements.IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.HALF_TURN_RAMP:
-						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.HALF_TURN_RAMP;
+					case IfcRampTypeEnum.HALF_TURN_RAMP:
+						return Ifc4.SharedBldgElements.IfcRampTypeEnum.HALF_TURN_RAMP;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.SPIRAL_RAMP:
-						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.SPIRAL_RAMP;
+					case IfcRampTypeEnum.SPIRAL_RAMP:
+						return Ifc4.SharedBldgElements.IfcRampTypeEnum.SPIRAL_RAMP;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.USERDEFINED;
+					case IfcRampTypeEnum.USERDEFINED:
+						return Ifc4.SharedBldgElements.IfcRampTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRampTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcRampTypeEnum.NOTDEFINED;
+					case IfcRampTypeEnum.NOTDEFINED:
+						return Ifc4.SharedBldgElements.IfcRampTypeEnum.NOTDEFINED;
 					
 					
 					default:

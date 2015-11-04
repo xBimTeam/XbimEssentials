@@ -16,31 +16,31 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	public partial class @IfcReinforcementBarProperties : IIfcReinforcementBarProperties
 	{
-		Xbim.Ifc4.MeasureResource.IfcAreaMeasure IIfcReinforcementBarProperties.TotalCrossSectionArea 
+		Ifc4.MeasureResource.IfcAreaMeasure IIfcReinforcementBarProperties.TotalCrossSectionArea 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcAreaMeasure((double)TotalCrossSectionArea);
+				return new Ifc4.MeasureResource.IfcAreaMeasure((double)TotalCrossSectionArea);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcReinforcementBarProperties.SteelGrade 
+		Ifc4.MeasureResource.IfcLabel IIfcReinforcementBarProperties.SteelGrade 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)SteelGrade);
+				return new Ifc4.MeasureResource.IfcLabel((string)SteelGrade);
 			} 
 		}
-		Xbim.Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface 
+		Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface 
 		{ 
 			get
 			{
 				switch (BarSurface)
 				{
-					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.PLAIN:
-						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum.PLAIN;
+					case IfcReinforcingBarSurfaceEnum.PLAIN:
+						return Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum.PLAIN;
 					
-					case Xbim.Ifc2x3.ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.TEXTURED:
-						return Xbim.Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum.TEXTURED;
+					case IfcReinforcingBarSurfaceEnum.TEXTURED:
+						return Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum.TEXTURED;
 					
 					
 					default:
@@ -48,28 +48,28 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcReinforcementBarProperties.EffectiveDepth 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcReinforcementBarProperties.EffectiveDepth 
 		{ 
 			get
 			{
 				if (EffectiveDepth == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)EffectiveDepth);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)EffectiveDepth);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcementBarProperties.NominalBarDiameter 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcReinforcementBarProperties.NominalBarDiameter 
 		{ 
 			get
 			{
 				if (NominalBarDiameter == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)NominalBarDiameter);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)NominalBarDiameter);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcCountMeasure? IIfcReinforcementBarProperties.BarCount 
+		Ifc4.MeasureResource.IfcCountMeasure? IIfcReinforcementBarProperties.BarCount 
 		{ 
 			get
 			{
 				if (BarCount == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcCountMeasure((double)BarCount);
+				return new Ifc4.MeasureResource.IfcCountMeasure((double)BarCount);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 

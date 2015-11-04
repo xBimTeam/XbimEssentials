@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcElementType : IIfcElementType
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcElementType.ElementType 
+		Ifc4.MeasureResource.IfcLabel? IIfcElementType.ElementType 
 		{ 
 			get
 			{
 				if (ElementType == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ElementType);
+				return new Ifc4.MeasureResource.IfcLabel((string)ElementType);
 			} 
 		}
 	}

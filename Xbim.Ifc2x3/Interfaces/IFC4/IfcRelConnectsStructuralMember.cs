@@ -44,12 +44,12 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				return AdditionalConditions as IIfcStructuralConnectionCondition;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcRelConnectsStructuralMember.SupportedLength 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcRelConnectsStructuralMember.SupportedLength 
 		{ 
 			get
 			{
 				if (SupportedLength == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)SupportedLength);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)SupportedLength);
 			} 
 		}
 		IIfcAxis2Placement3D IIfcRelConnectsStructuralMember.ConditionCoordinateSystem 

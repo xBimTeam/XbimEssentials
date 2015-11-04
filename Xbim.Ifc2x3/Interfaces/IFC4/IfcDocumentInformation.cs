@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcDocumentInformation : IIfcDocumentInformation
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier IIfcDocumentInformation.Identification 
+		Ifc4.MeasureResource.IfcIdentifier IIfcDocumentInformation.Identification 
 		{ 
 			get
 			{
@@ -26,22 +26,22 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcDocumentInformation.Name 
+		Ifc4.MeasureResource.IfcLabel IIfcDocumentInformation.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Description 
+		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Description 
 		{ 
 			get
 			{
 				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				return new Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
-		Xbim.Ifc4.ExternalReferenceResource.IfcURIReference? IIfcDocumentInformation.Location 
+		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcDocumentInformation.Location 
 		{ 
 			get
 			{
@@ -51,50 +51,50 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Purpose 
+		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Purpose 
 		{ 
 			get
 			{
 				if (Purpose == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Purpose);
+				return new Ifc4.MeasureResource.IfcText((string)Purpose);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.IntendedUse 
+		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.IntendedUse 
 		{ 
 			get
 			{
 				if (IntendedUse == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)IntendedUse);
+				return new Ifc4.MeasureResource.IfcText((string)IntendedUse);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Scope 
+		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Scope 
 		{ 
 			get
 			{
 				if (Scope == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Scope);
+				return new Ifc4.MeasureResource.IfcText((string)Scope);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformation.Revision 
+		Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformation.Revision 
 		{ 
 			get
 			{
 				if (Revision == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Revision);
+				return new Ifc4.MeasureResource.IfcLabel((string)Revision);
 			} 
 		}
-		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcDocumentInformation.DocumentOwner 
+		Ifc4.ActorResource.IfcActorSelect IIfcDocumentInformation.DocumentOwner 
 		{ 
 			get
 			{
 				if (DocumentOwner == null) return null;
-				var ifcorganization = DocumentOwner as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				var ifcorganization = DocumentOwner as ActorResource.IfcOrganization;
 				if (ifcorganization != null) 
 					return ifcorganization;
-				var ifcperson = DocumentOwner as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				var ifcperson = DocumentOwner as ActorResource.IfcPerson;
 				if (ifcperson != null) 
 					return ifcperson;
-				var ifcpersonandorganization = DocumentOwner as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				var ifcpersonandorganization = DocumentOwner as ActorResource.IfcPersonAndOrganization;
 				if (ifcpersonandorganization != null) 
 					return ifcpersonandorganization;
 				return null;
@@ -106,19 +106,19 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			{
 			foreach (var member in Editors)
 			{
-				var ifcorganization = member as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				var ifcorganization = member as ActorResource.IfcOrganization;
 				if (ifcorganization != null) 
 					yield return ifcorganization;
-				var ifcperson = member as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				var ifcperson = member as ActorResource.IfcPerson;
 				if (ifcperson != null) 
 					yield return ifcperson;
-				var ifcpersonandorganization = member as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				var ifcpersonandorganization = member as ActorResource.IfcPersonAndOrganization;
 				if (ifcpersonandorganization != null) 
 					yield return ifcpersonandorganization;
 			}
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcDocumentInformation.CreationTime 
+		Ifc4.DateTimeResource.IfcDateTime? IIfcDocumentInformation.CreationTime 
 		{ 
 			get
 			{
@@ -128,7 +128,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcDocumentInformation.LastRevisionTime 
+		Ifc4.DateTimeResource.IfcDateTime? IIfcDocumentInformation.LastRevisionTime 
 		{ 
 			get
 			{
@@ -138,7 +138,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcDocumentInformation.ElectronicFormat 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcDocumentInformation.ElectronicFormat 
 		{ 
 			get
 			{
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidFrom 
+		Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidFrom 
 		{ 
 			get
 			{
@@ -158,7 +158,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidUntil 
+		Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidUntil 
 		{ 
 			get
 			{
@@ -168,29 +168,29 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality 
+		Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality 
 		{ 
 			get
 			{
 				switch (Confidentiality)
 				{
-					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentConfidentialityEnum.PUBLIC:
-						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.PUBLIC;
+					case IfcDocumentConfidentialityEnum.PUBLIC:
+						return Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.PUBLIC;
 					
-					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentConfidentialityEnum.RESTRICTED:
-						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.RESTRICTED;
+					case IfcDocumentConfidentialityEnum.RESTRICTED:
+						return Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.RESTRICTED;
 					
-					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentConfidentialityEnum.CONFIDENTIAL:
-						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.CONFIDENTIAL;
+					case IfcDocumentConfidentialityEnum.CONFIDENTIAL:
+						return Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.CONFIDENTIAL;
 					
-					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentConfidentialityEnum.PERSONAL:
-						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.PERSONAL;
+					case IfcDocumentConfidentialityEnum.PERSONAL:
+						return Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.PERSONAL;
 					
-					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentConfidentialityEnum.USERDEFINED:
-						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.USERDEFINED;
+					case IfcDocumentConfidentialityEnum.USERDEFINED:
+						return Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentConfidentialityEnum.NOTDEFINED:
-						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.NOTDEFINED;
+					case IfcDocumentConfidentialityEnum.NOTDEFINED:
+						return Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.NOTDEFINED;
 					
 					
 					default:
@@ -198,26 +198,26 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				}
 			} 
 		}
-		Xbim.Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum? IIfcDocumentInformation.Status 
+		Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum? IIfcDocumentInformation.Status 
 		{ 
 			get
 			{
 				switch (Status)
 				{
-					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentStatusEnum.DRAFT:
-						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.DRAFT;
+					case IfcDocumentStatusEnum.DRAFT:
+						return Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.DRAFT;
 					
-					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentStatusEnum.FINALDRAFT:
-						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.FINALDRAFT;
+					case IfcDocumentStatusEnum.FINALDRAFT:
+						return Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.FINALDRAFT;
 					
-					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentStatusEnum.FINAL:
-						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.FINAL;
+					case IfcDocumentStatusEnum.FINAL:
+						return Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.FINAL;
 					
-					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentStatusEnum.REVISION:
-						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.REVISION;
+					case IfcDocumentStatusEnum.REVISION:
+						return Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.REVISION;
 					
-					case Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentStatusEnum.NOTDEFINED:
-						return Xbim.Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.NOTDEFINED;
+					case IfcDocumentStatusEnum.NOTDEFINED:
+						return Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.NOTDEFINED;
 					
 					
 					default:

@@ -16,52 +16,52 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcCurveStyle : IIfcCurveStyle
 	{
-		Xbim.Ifc4.PresentationAppearanceResource.IfcCurveFontOrScaledCurveFontSelect IIfcCurveStyle.CurveFont 
+		Ifc4.PresentationAppearanceResource.IfcCurveFontOrScaledCurveFontSelect IIfcCurveStyle.CurveFont 
 		{ 
 			get
 			{
 				if (CurveFont == null) return null;
-				var ifcpredefinedcurvefont = CurveFont as Xbim.Ifc2x3.PresentationAppearanceResource.IfcPreDefinedCurveFont;
+				var ifcpredefinedcurvefont = CurveFont as IfcPreDefinedCurveFont;
 				if (ifcpredefinedcurvefont != null) 
 					return ifcpredefinedcurvefont;
-				var ifccurvestylefont = CurveFont as Xbim.Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFont;
+				var ifccurvestylefont = CurveFont as IfcCurveStyleFont;
 				if (ifccurvestylefont != null) 
 					return ifccurvestylefont;
-				var ifccurvestylefontandscaling = CurveFont as Xbim.Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFontAndScaling;
+				var ifccurvestylefontandscaling = CurveFont as IfcCurveStyleFontAndScaling;
 				if (ifccurvestylefontandscaling != null) 
 					return ifccurvestylefontandscaling;
 				return null;
 			} 
 		}
-		Xbim.Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcCurveStyle.CurveWidth 
+		Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcCurveStyle.CurveWidth 
 		{ 
 			get
 			{
 				if (CurveWidth == null) return null;
-				if (CurveWidth is Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcRatioMeasure)CurveWidth);
-				if (CurveWidth is Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcLengthMeasure)CurveWidth);
-				if (CurveWidth is Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(Xbim.Ifc2x3.MeasureResource.IfcDescriptiveMeasure)CurveWidth);
-				if (CurveWidth is Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveLengthMeasure)CurveWidth);
-				if (CurveWidth is Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcNormalisedRatioMeasure)CurveWidth);
-				if (CurveWidth is Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure) 
-					return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(Xbim.Ifc2x3.MeasureResource.IfcPositiveRatioMeasure)CurveWidth);
+				if (CurveWidth is MeasureResource.IfcRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcRatioMeasure((double)(MeasureResource.IfcRatioMeasure)CurveWidth);
+				if (CurveWidth is MeasureResource.IfcLengthMeasure) 
+					return new Ifc4.MeasureResource.IfcLengthMeasure((double)(MeasureResource.IfcLengthMeasure)CurveWidth);
+				if (CurveWidth is MeasureResource.IfcDescriptiveMeasure) 
+					return new Ifc4.MeasureResource.IfcDescriptiveMeasure((string)(MeasureResource.IfcDescriptiveMeasure)CurveWidth);
+				if (CurveWidth is MeasureResource.IfcPositiveLengthMeasure) 
+					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)CurveWidth);
+				if (CurveWidth is MeasureResource.IfcNormalisedRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)(MeasureResource.IfcNormalisedRatioMeasure)CurveWidth);
+				if (CurveWidth is MeasureResource.IfcPositiveRatioMeasure) 
+					return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)(MeasureResource.IfcPositiveRatioMeasure)CurveWidth);
 				return null;
 			} 
 		}
-		Xbim.Ifc4.PresentationAppearanceResource.IfcColour IIfcCurveStyle.CurveColour 
+		Ifc4.PresentationAppearanceResource.IfcColour IIfcCurveStyle.CurveColour 
 		{ 
 			get
 			{
 				if (CurveColour == null) return null;
-				var ifccolourspecification = CurveColour as Xbim.Ifc2x3.PresentationResource.IfcColourSpecification;
+				var ifccolourspecification = CurveColour as PresentationResource.IfcColourSpecification;
 				if (ifccolourspecification != null) 
 					return ifccolourspecification;
-				var ifcpredefinedcolour = CurveColour as Xbim.Ifc2x3.PresentationResource.IfcPreDefinedColour;
+				var ifcpredefinedcolour = CurveColour as PresentationResource.IfcPreDefinedColour;
 				if (ifcpredefinedcolour != null) 
 					return ifcpredefinedcolour;
 				return null;

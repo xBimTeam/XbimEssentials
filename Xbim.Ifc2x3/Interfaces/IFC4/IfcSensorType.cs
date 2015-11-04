@@ -16,59 +16,59 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	public partial class @IfcSensorType : IIfcSensorType
 	{
-		Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum IIfcSensorType.PredefinedType 
+		Ifc4.BuildingControlsDomain.IfcSensorTypeEnum IIfcSensorType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.CO2SENSOR:
+					case IfcSensorTypeEnum.CO2SENSOR:
 						//## Handle translation of CO2SENSOR member from IfcSensorTypeEnum in property PredefinedType
 						//TODO: Handle translation of CO2SENSOR member from IfcSensorTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.FIRESENSOR:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.FIRESENSOR;
+					case IfcSensorTypeEnum.FIRESENSOR:
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.FIRESENSOR;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.FLOWSENSOR:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.FLOWSENSOR;
+					case IfcSensorTypeEnum.FLOWSENSOR:
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.FLOWSENSOR;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.GASSENSOR:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.GASSENSOR;
+					case IfcSensorTypeEnum.GASSENSOR:
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.GASSENSOR;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.HEATSENSOR:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.HEATSENSOR;
+					case IfcSensorTypeEnum.HEATSENSOR:
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.HEATSENSOR;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.HUMIDITYSENSOR:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.HUMIDITYSENSOR;
+					case IfcSensorTypeEnum.HUMIDITYSENSOR:
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.HUMIDITYSENSOR;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.LIGHTSENSOR:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.LIGHTSENSOR;
+					case IfcSensorTypeEnum.LIGHTSENSOR:
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.LIGHTSENSOR;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.MOISTURESENSOR:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.MOISTURESENSOR;
+					case IfcSensorTypeEnum.MOISTURESENSOR:
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.MOISTURESENSOR;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.MOVEMENTSENSOR:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.MOVEMENTSENSOR;
+					case IfcSensorTypeEnum.MOVEMENTSENSOR:
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.MOVEMENTSENSOR;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.PRESSURESENSOR:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.PRESSURESENSOR;
+					case IfcSensorTypeEnum.PRESSURESENSOR:
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.PRESSURESENSOR;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.SMOKESENSOR:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.SMOKESENSOR;
+					case IfcSensorTypeEnum.SMOKESENSOR:
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.SMOKESENSOR;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.SOUNDSENSOR:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.SOUNDSENSOR;
+					case IfcSensorTypeEnum.SOUNDSENSOR:
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.SOUNDSENSOR;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.TEMPERATURESENSOR:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.TEMPERATURESENSOR;
+					case IfcSensorTypeEnum.TEMPERATURESENSOR:
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.TEMPERATURESENSOR;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.USERDEFINED;
+					case IfcSensorTypeEnum.USERDEFINED:
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.BuildingcontrolsDomain.IfcSensorTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.NOTDEFINED;
+					case IfcSensorTypeEnum.NOTDEFINED:
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.NOTDEFINED;
 					
 					
 					default:

@@ -16,15 +16,15 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcBuildingStorey : IIfcBuildingStorey
 	{
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuildingStorey.Elevation 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuildingStorey.Elevation 
 		{ 
 			get
 			{
 				if (Elevation == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)Elevation);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)Elevation);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
+		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get
 			{

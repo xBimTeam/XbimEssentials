@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcObject : IIfcObject
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcObject.ObjectType 
+		Ifc4.MeasureResource.IfcLabel? IIfcObject.ObjectType 
 		{ 
 			get
 			{
 				if (ObjectType == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ObjectType);
+				return new Ifc4.MeasureResource.IfcLabel((string)ObjectType);
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByObject> IIfcObject.IsDeclaredBy 

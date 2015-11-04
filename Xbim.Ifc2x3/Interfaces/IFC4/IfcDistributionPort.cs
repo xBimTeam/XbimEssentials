@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	public partial class @IfcDistributionPort : IIfcDistributionPort
 	{
-		Xbim.Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum? IIfcDistributionPort.FlowDirection 
+		Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum? IIfcDistributionPort.FlowDirection 
 		{ 
 			get
 			{
 				switch (FlowDirection)
 				{
-					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcFlowDirectionEnum.SOURCE:
-						return Xbim.Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.SOURCE;
+					case IfcFlowDirectionEnum.SOURCE:
+						return Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.SOURCE;
 					
-					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcFlowDirectionEnum.SINK:
-						return Xbim.Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.SINK;
+					case IfcFlowDirectionEnum.SINK:
+						return Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.SINK;
 					
-					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcFlowDirectionEnum.SOURCEANDSINK:
-						return Xbim.Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.SOURCEANDSINK;
+					case IfcFlowDirectionEnum.SOURCEANDSINK:
+						return Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.SOURCEANDSINK;
 					
-					case Xbim.Ifc2x3.SharedBldgServiceElements.IfcFlowDirectionEnum.NOTDEFINED:
-						return Xbim.Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.NOTDEFINED;
+					case IfcFlowDirectionEnum.NOTDEFINED:
+						return Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.NOTDEFINED;
 					
 					
 					default:
@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				}
 			} 
 		}
-		Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionPortTypeEnum? IIfcDistributionPort.PredefinedType 
+		Ifc4.SharedBldgServiceElements.IfcDistributionPortTypeEnum? IIfcDistributionPort.PredefinedType 
 		{ 
 			get
 			{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				//##
 			} 
 		}
-		Xbim.Ifc4.SharedBldgServiceElements.IfcDistributionSystemEnum? IIfcDistributionPort.SystemType 
+		Ifc4.SharedBldgServiceElements.IfcDistributionSystemEnum? IIfcDistributionPort.SystemType 
 		{ 
 			get
 			{

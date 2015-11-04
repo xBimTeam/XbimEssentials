@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcPumpType : IIfcPumpType
 	{
-		Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum IIfcPumpType.PredefinedType 
+		Ifc4.HvacDomain.IfcPumpTypeEnum IIfcPumpType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcPumpTypeEnum.CIRCULATOR:
-						return Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum.CIRCULATOR;
+					case IfcPumpTypeEnum.CIRCULATOR:
+						return Ifc4.HvacDomain.IfcPumpTypeEnum.CIRCULATOR;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPumpTypeEnum.ENDSUCTION:
-						return Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum.ENDSUCTION;
+					case IfcPumpTypeEnum.ENDSUCTION:
+						return Ifc4.HvacDomain.IfcPumpTypeEnum.ENDSUCTION;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPumpTypeEnum.SPLITCASE:
-						return Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum.SPLITCASE;
+					case IfcPumpTypeEnum.SPLITCASE:
+						return Ifc4.HvacDomain.IfcPumpTypeEnum.SPLITCASE;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPumpTypeEnum.VERTICALINLINE:
-						return Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum.VERTICALINLINE;
+					case IfcPumpTypeEnum.VERTICALINLINE:
+						return Ifc4.HvacDomain.IfcPumpTypeEnum.VERTICALINLINE;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPumpTypeEnum.VERTICALTURBINE:
-						return Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum.VERTICALTURBINE;
+					case IfcPumpTypeEnum.VERTICALTURBINE:
+						return Ifc4.HvacDomain.IfcPumpTypeEnum.VERTICALTURBINE;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPumpTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum.USERDEFINED;
+					case IfcPumpTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcPumpTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPumpTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcPumpTypeEnum.NOTDEFINED;
+					case IfcPumpTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcPumpTypeEnum.NOTDEFINED;
 					
 					
 					default:

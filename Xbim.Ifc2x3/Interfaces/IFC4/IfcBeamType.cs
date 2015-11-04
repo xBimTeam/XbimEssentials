@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcBeamType : IIfcBeamType
 	{
-		Xbim.Ifc4.SharedBldgElements.IfcBeamTypeEnum IIfcBeamType.PredefinedType 
+		Ifc4.SharedBldgElements.IfcBeamTypeEnum IIfcBeamType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcBeamTypeEnum.BEAM:
-						return Xbim.Ifc4.SharedBldgElements.IfcBeamTypeEnum.BEAM;
+					case IfcBeamTypeEnum.BEAM:
+						return Ifc4.SharedBldgElements.IfcBeamTypeEnum.BEAM;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcBeamTypeEnum.JOIST:
-						return Xbim.Ifc4.SharedBldgElements.IfcBeamTypeEnum.JOIST;
+					case IfcBeamTypeEnum.JOIST:
+						return Ifc4.SharedBldgElements.IfcBeamTypeEnum.JOIST;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcBeamTypeEnum.LINTEL:
-						return Xbim.Ifc4.SharedBldgElements.IfcBeamTypeEnum.LINTEL;
+					case IfcBeamTypeEnum.LINTEL:
+						return Ifc4.SharedBldgElements.IfcBeamTypeEnum.LINTEL;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcBeamTypeEnum.T_BEAM:
-						return Xbim.Ifc4.SharedBldgElements.IfcBeamTypeEnum.T_BEAM;
+					case IfcBeamTypeEnum.T_BEAM:
+						return Ifc4.SharedBldgElements.IfcBeamTypeEnum.T_BEAM;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcBeamTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcBeamTypeEnum.USERDEFINED;
+					case IfcBeamTypeEnum.USERDEFINED:
+						return Ifc4.SharedBldgElements.IfcBeamTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcBeamTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcBeamTypeEnum.NOTDEFINED;
+					case IfcBeamTypeEnum.NOTDEFINED:
+						return Ifc4.SharedBldgElements.IfcBeamTypeEnum.NOTDEFINED;
 					
 					
 					default:

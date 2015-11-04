@@ -22,13 +22,13 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 			foreach (var member in Elements)
 			{
-				var ifcpoint = member as Xbim.Ifc2x3.GeometryResource.IfcPoint;
+				var ifcpoint = member as GeometryResource.IfcPoint;
 				if (ifcpoint != null) 
 					yield return ifcpoint;
-				var ifccurve = member as Xbim.Ifc2x3.GeometryResource.IfcCurve;
+				var ifccurve = member as GeometryResource.IfcCurve;
 				if (ifccurve != null) 
 					yield return ifccurve;
-				var ifcsurface = member as Xbim.Ifc2x3.GeometryResource.IfcSurface;
+				var ifcsurface = member as GeometryResource.IfcSurface;
 				if (ifcsurface != null) 
 					yield return ifcsurface;
 			}

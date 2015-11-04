@@ -16,14 +16,14 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcQuantityTime : IIfcQuantityTime
 	{
-		Xbim.Ifc4.MeasureResource.IfcTimeMeasure IIfcQuantityTime.TimeValue 
+		Ifc4.MeasureResource.IfcTimeMeasure IIfcQuantityTime.TimeValue 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcTimeMeasure((double)TimeValue);
+				return new Ifc4.MeasureResource.IfcTimeMeasure((double)TimeValue);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcQuantityTime.Formula 
+		Ifc4.MeasureResource.IfcLabel? IIfcQuantityTime.Formula 
 		{ 
 			get
 			{

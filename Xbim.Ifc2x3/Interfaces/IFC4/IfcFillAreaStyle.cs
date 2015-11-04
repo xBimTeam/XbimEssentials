@@ -22,19 +22,19 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 			foreach (var member in FillStyles)
 			{
-				var ifcfillareastylehatching = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleHatching;
+				var ifcfillareastylehatching = member as IfcFillAreaStyleHatching;
 				if (ifcfillareastylehatching != null) 
 					yield return ifcfillareastylehatching;
-				var ifcfillareastyletiles = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleTiles;
+				var ifcfillareastyletiles = member as IfcFillAreaStyleTiles;
 				if (ifcfillareastyletiles != null) 
 					yield return ifcfillareastyletiles;
-				var ifccolourspecification = member as Xbim.Ifc2x3.PresentationResource.IfcColourSpecification;
+				var ifccolourspecification = member as PresentationResource.IfcColourSpecification;
 				if (ifccolourspecification != null) 
 					yield return ifccolourspecification;
-				var ifcpredefinedcolour = member as Xbim.Ifc2x3.PresentationResource.IfcPreDefinedColour;
+				var ifcpredefinedcolour = member as PresentationResource.IfcPreDefinedColour;
 				if (ifcpredefinedcolour != null) 
 					yield return ifcpredefinedcolour;
-				var ifcexternallydefinedhatchstyle = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcExternallyDefinedHatchStyle;
+				var ifcexternallydefinedhatchstyle = member as IfcExternallyDefinedHatchStyle;
 				if (ifcexternallydefinedhatchstyle != null) 
 					yield return ifcexternallydefinedhatchstyle;
 			}

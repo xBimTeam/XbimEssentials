@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcTextureCoordinateGenerator : IIfcTextureCoordinateGenerator
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcTextureCoordinateGenerator.Mode 
+		Ifc4.MeasureResource.IfcLabel IIfcTextureCoordinateGenerator.Mode 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Mode);
+				return new Ifc4.MeasureResource.IfcLabel((string)Mode);
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcReal> IIfcTextureCoordinateGenerator.Parameter 

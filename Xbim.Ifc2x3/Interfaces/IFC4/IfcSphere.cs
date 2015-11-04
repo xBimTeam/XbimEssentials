@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcSphere : IIfcSphere
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcSphere.Radius 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcSphere.Radius 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Radius);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Radius);
 			} 
 		}
 	}

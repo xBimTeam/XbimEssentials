@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcElement : IIfcElement
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcElement.Tag 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcElement.Tag 
 		{ 
 			get
 			{
 				if (Tag == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)Tag);
+				return new Ifc4.MeasureResource.IfcIdentifier((string)Tag);
 			} 
 		}
 		IEnumerable<IIfcRelFillsElement> IIfcElement.FillsVoids 

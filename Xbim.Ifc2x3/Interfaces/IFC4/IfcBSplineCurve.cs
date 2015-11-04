@@ -33,29 +33,29 @@ namespace Xbim.Ifc2x3.GeometryResource
 			}
 			} 
 		}
-		Xbim.Ifc4.GeometryResource.IfcBSplineCurveForm IIfcBSplineCurve.CurveForm 
+		Ifc4.GeometryResource.IfcBSplineCurveForm IIfcBSplineCurve.CurveForm 
 		{ 
 			get
 			{
 				switch (CurveForm)
 				{
-					case Xbim.Ifc2x3.GeometryResource.IfcBSplineCurveForm.POLYLINE_FORM:
-						return Xbim.Ifc4.GeometryResource.IfcBSplineCurveForm.POLYLINE_FORM;
+					case IfcBSplineCurveForm.POLYLINE_FORM:
+						return Ifc4.GeometryResource.IfcBSplineCurveForm.POLYLINE_FORM;
 					
-					case Xbim.Ifc2x3.GeometryResource.IfcBSplineCurveForm.CIRCULAR_ARC:
-						return Xbim.Ifc4.GeometryResource.IfcBSplineCurveForm.CIRCULAR_ARC;
+					case IfcBSplineCurveForm.CIRCULAR_ARC:
+						return Ifc4.GeometryResource.IfcBSplineCurveForm.CIRCULAR_ARC;
 					
-					case Xbim.Ifc2x3.GeometryResource.IfcBSplineCurveForm.ELLIPTIC_ARC:
-						return Xbim.Ifc4.GeometryResource.IfcBSplineCurveForm.ELLIPTIC_ARC;
+					case IfcBSplineCurveForm.ELLIPTIC_ARC:
+						return Ifc4.GeometryResource.IfcBSplineCurveForm.ELLIPTIC_ARC;
 					
-					case Xbim.Ifc2x3.GeometryResource.IfcBSplineCurveForm.PARABOLIC_ARC:
-						return Xbim.Ifc4.GeometryResource.IfcBSplineCurveForm.PARABOLIC_ARC;
+					case IfcBSplineCurveForm.PARABOLIC_ARC:
+						return Ifc4.GeometryResource.IfcBSplineCurveForm.PARABOLIC_ARC;
 					
-					case Xbim.Ifc2x3.GeometryResource.IfcBSplineCurveForm.HYPERBOLIC_ARC:
-						return Xbim.Ifc4.GeometryResource.IfcBSplineCurveForm.HYPERBOLIC_ARC;
+					case IfcBSplineCurveForm.HYPERBOLIC_ARC:
+						return Ifc4.GeometryResource.IfcBSplineCurveForm.HYPERBOLIC_ARC;
 					
-					case Xbim.Ifc2x3.GeometryResource.IfcBSplineCurveForm.UNSPECIFIED:
-						return Xbim.Ifc4.GeometryResource.IfcBSplineCurveForm.UNSPECIFIED;
+					case IfcBSplineCurveForm.UNSPECIFIED:
+						return Ifc4.GeometryResource.IfcBSplineCurveForm.UNSPECIFIED;
 					
 					
 					default:

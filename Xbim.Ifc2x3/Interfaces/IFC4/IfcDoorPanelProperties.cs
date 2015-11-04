@@ -16,43 +16,43 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcDoorPanelProperties : IIfcDoorPanelProperties
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoorPanelProperties.PanelDepth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoorPanelProperties.PanelDepth 
 		{ 
 			get
 			{
 				if (PanelDepth == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)PanelDepth);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)PanelDepth);
 			} 
 		}
-		Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum IIfcDoorPanelProperties.PanelOperation 
+		Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum IIfcDoorPanelProperties.PanelOperation 
 		{ 
 			get
 			{
 				switch (PanelOperation)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.SWINGING:
-						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.SWINGING;
+					case IfcDoorPanelOperationEnum.SWINGING:
+						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.SWINGING;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.DOUBLE_ACTING:
-						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.DOUBLE_ACTING;
+					case IfcDoorPanelOperationEnum.DOUBLE_ACTING:
+						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.DOUBLE_ACTING;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.SLIDING:
-						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.SLIDING;
+					case IfcDoorPanelOperationEnum.SLIDING:
+						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.SLIDING;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.FOLDING:
-						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.FOLDING;
+					case IfcDoorPanelOperationEnum.FOLDING:
+						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.FOLDING;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.REVOLVING:
-						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.REVOLVING;
+					case IfcDoorPanelOperationEnum.REVOLVING:
+						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.REVOLVING;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.ROLLINGUP:
-						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.ROLLINGUP;
+					case IfcDoorPanelOperationEnum.ROLLINGUP:
+						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.ROLLINGUP;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.USERDEFINED:
-						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.USERDEFINED;
+					case IfcDoorPanelOperationEnum.USERDEFINED:
+						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelOperationEnum.NOTDEFINED:
-						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.NOTDEFINED;
+					case IfcDoorPanelOperationEnum.NOTDEFINED:
+						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.NOTDEFINED;
 					
 					
 					default:
@@ -60,31 +60,31 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcDoorPanelProperties.PanelWidth 
+		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcDoorPanelProperties.PanelWidth 
 		{ 
 			get
 			{
 				if (PanelWidth == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)PanelWidth);
+				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double)PanelWidth);
 			} 
 		}
-		Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum IIfcDoorPanelProperties.PanelPosition 
+		Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum IIfcDoorPanelProperties.PanelPosition 
 		{ 
 			get
 			{
 				switch (PanelPosition)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelPositionEnum.LEFT:
-						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.LEFT;
+					case IfcDoorPanelPositionEnum.LEFT:
+						return Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.LEFT;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelPositionEnum.MIDDLE:
-						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.MIDDLE;
+					case IfcDoorPanelPositionEnum.MIDDLE:
+						return Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.MIDDLE;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelPositionEnum.RIGHT:
-						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.RIGHT;
+					case IfcDoorPanelPositionEnum.RIGHT:
+						return Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.RIGHT;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcDoorPanelPositionEnum.NOTDEFINED:
-						return Xbim.Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.NOTDEFINED;
+					case IfcDoorPanelPositionEnum.NOTDEFINED:
+						return Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.NOTDEFINED;
 					
 					
 					default:

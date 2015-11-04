@@ -33,15 +33,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformationRelationship.RelationshipType 
+		Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformationRelationship.RelationshipType 
 		{ 
 			get
 			{
 				if (RelationshipType == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)RelationshipType);
+				return new Ifc4.MeasureResource.IfcLabel((string)RelationshipType);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
 			{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
+		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
 			{

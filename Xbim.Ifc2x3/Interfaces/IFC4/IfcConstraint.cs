@@ -16,41 +16,41 @@ namespace Xbim.Ifc2x3.ConstraintResource
 {
 	public partial class @IfcConstraint : IIfcConstraint
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcConstraint.Name 
+		Ifc4.MeasureResource.IfcLabel IIfcConstraint.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcConstraint.Description 
+		Ifc4.MeasureResource.IfcText? IIfcConstraint.Description 
 		{ 
 			get
 			{
 				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				return new Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
-		Xbim.Ifc4.ConstraintResource.IfcConstraintEnum IIfcConstraint.ConstraintGrade 
+		Ifc4.ConstraintResource.IfcConstraintEnum IIfcConstraint.ConstraintGrade 
 		{ 
 			get
 			{
 				switch (ConstraintGrade)
 				{
-					case Xbim.Ifc2x3.ConstraintResource.IfcConstraintEnum.HARD:
-						return Xbim.Ifc4.ConstraintResource.IfcConstraintEnum.HARD;
+					case IfcConstraintEnum.HARD:
+						return Ifc4.ConstraintResource.IfcConstraintEnum.HARD;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcConstraintEnum.SOFT:
-						return Xbim.Ifc4.ConstraintResource.IfcConstraintEnum.SOFT;
+					case IfcConstraintEnum.SOFT:
+						return Ifc4.ConstraintResource.IfcConstraintEnum.SOFT;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcConstraintEnum.ADVISORY:
-						return Xbim.Ifc4.ConstraintResource.IfcConstraintEnum.ADVISORY;
+					case IfcConstraintEnum.ADVISORY:
+						return Ifc4.ConstraintResource.IfcConstraintEnum.ADVISORY;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcConstraintEnum.USERDEFINED:
-						return Xbim.Ifc4.ConstraintResource.IfcConstraintEnum.USERDEFINED;
+					case IfcConstraintEnum.USERDEFINED:
+						return Ifc4.ConstraintResource.IfcConstraintEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ConstraintResource.IfcConstraintEnum.NOTDEFINED:
-						return Xbim.Ifc4.ConstraintResource.IfcConstraintEnum.NOTDEFINED;
+					case IfcConstraintEnum.NOTDEFINED:
+						return Ifc4.ConstraintResource.IfcConstraintEnum.NOTDEFINED;
 					
 					
 					default:
@@ -58,32 +58,32 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcConstraint.ConstraintSource 
+		Ifc4.MeasureResource.IfcLabel? IIfcConstraint.ConstraintSource 
 		{ 
 			get
 			{
 				if (ConstraintSource == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ConstraintSource);
+				return new Ifc4.MeasureResource.IfcLabel((string)ConstraintSource);
 			} 
 		}
-		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcConstraint.CreatingActor 
+		Ifc4.ActorResource.IfcActorSelect IIfcConstraint.CreatingActor 
 		{ 
 			get
 			{
 				if (CreatingActor == null) return null;
-				var ifcorganization = CreatingActor as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				var ifcorganization = CreatingActor as ActorResource.IfcOrganization;
 				if (ifcorganization != null) 
 					return ifcorganization;
-				var ifcperson = CreatingActor as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				var ifcperson = CreatingActor as ActorResource.IfcPerson;
 				if (ifcperson != null) 
 					return ifcperson;
-				var ifcpersonandorganization = CreatingActor as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				var ifcpersonandorganization = CreatingActor as ActorResource.IfcPersonAndOrganization;
 				if (ifcpersonandorganization != null) 
 					return ifcpersonandorganization;
 				return null;
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcConstraint.CreationTime 
+		Ifc4.DateTimeResource.IfcDateTime? IIfcConstraint.CreationTime 
 		{ 
 			get
 			{
@@ -93,12 +93,12 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcConstraint.UserDefinedGrade 
+		Ifc4.MeasureResource.IfcLabel? IIfcConstraint.UserDefinedGrade 
 		{ 
 			get
 			{
 				if (UserDefinedGrade == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)UserDefinedGrade);
+				return new Ifc4.MeasureResource.IfcLabel((string)UserDefinedGrade);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcConstraint.HasExternalReferences 

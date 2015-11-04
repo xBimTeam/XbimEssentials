@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRoot : IIfcRoot
 	{
-		Xbim.Ifc4.UtilityResource.IfcGloballyUniqueId IIfcRoot.GlobalId 
+		Ifc4.UtilityResource.IfcGloballyUniqueId IIfcRoot.GlobalId 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.UtilityResource.IfcGloballyUniqueId((string)GlobalId);
+				return new Ifc4.UtilityResource.IfcGloballyUniqueId((string)GlobalId);
 			} 
 		}
 		IIfcOwnerHistory IIfcRoot.OwnerHistory 
@@ -30,20 +30,20 @@ namespace Xbim.Ifc2x3.Kernel
 				return OwnerHistory as IIfcOwnerHistory;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcRoot.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcRoot.Name 
 		{ 
 			get
 			{
 				if (Name == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcRoot.Description 
+		Ifc4.MeasureResource.IfcText? IIfcRoot.Description 
 		{ 
 			get
 			{
 				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				return new Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
 	}

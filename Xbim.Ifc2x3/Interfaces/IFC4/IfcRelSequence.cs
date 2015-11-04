@@ -40,26 +40,26 @@ namespace Xbim.Ifc2x3.Kernel
 				//##
 			} 
 		}
-		Xbim.Ifc4.ProcessExtension.IfcSequenceEnum? IIfcRelSequence.SequenceType 
+		Ifc4.ProcessExtension.IfcSequenceEnum? IIfcRelSequence.SequenceType 
 		{ 
 			get
 			{
 				switch (SequenceType)
 				{
-					case Xbim.Ifc2x3.Kernel.IfcSequenceEnum.START_START:
-						return Xbim.Ifc4.ProcessExtension.IfcSequenceEnum.START_START;
+					case IfcSequenceEnum.START_START:
+						return Ifc4.ProcessExtension.IfcSequenceEnum.START_START;
 					
-					case Xbim.Ifc2x3.Kernel.IfcSequenceEnum.START_FINISH:
-						return Xbim.Ifc4.ProcessExtension.IfcSequenceEnum.START_FINISH;
+					case IfcSequenceEnum.START_FINISH:
+						return Ifc4.ProcessExtension.IfcSequenceEnum.START_FINISH;
 					
-					case Xbim.Ifc2x3.Kernel.IfcSequenceEnum.FINISH_START:
-						return Xbim.Ifc4.ProcessExtension.IfcSequenceEnum.FINISH_START;
+					case IfcSequenceEnum.FINISH_START:
+						return Ifc4.ProcessExtension.IfcSequenceEnum.FINISH_START;
 					
-					case Xbim.Ifc2x3.Kernel.IfcSequenceEnum.FINISH_FINISH:
-						return Xbim.Ifc4.ProcessExtension.IfcSequenceEnum.FINISH_FINISH;
+					case IfcSequenceEnum.FINISH_FINISH:
+						return Ifc4.ProcessExtension.IfcSequenceEnum.FINISH_FINISH;
 					
-					case Xbim.Ifc2x3.Kernel.IfcSequenceEnum.NOTDEFINED:
-						return Xbim.Ifc4.ProcessExtension.IfcSequenceEnum.NOTDEFINED;
+					case IfcSequenceEnum.NOTDEFINED:
+						return Ifc4.ProcessExtension.IfcSequenceEnum.NOTDEFINED;
 					
 					
 					default:
@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.Kernel
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcRelSequence.UserDefinedSequenceType 
+		Ifc4.MeasureResource.IfcLabel? IIfcRelSequence.UserDefinedSequenceType 
 		{ 
 			get
 			{

@@ -36,23 +36,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				//##
 			} 
 		}
-		Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType 
+		Ifc4.SharedBldgElements.IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType 
 		{ 
 			get
 			{
 				switch (RelatedConnectionType)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.ATPATH:
-						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATPATH;
+					case IfcConnectionTypeEnum.ATPATH:
+						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATPATH;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.ATSTART:
-						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATSTART;
+					case IfcConnectionTypeEnum.ATSTART:
+						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATSTART;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.ATEND:
-						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATEND;
+					case IfcConnectionTypeEnum.ATEND:
+						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATEND;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.NOTDEFINED;
+					case IfcConnectionTypeEnum.NOTDEFINED:
+						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.NOTDEFINED;
 					
 					
 					default:
@@ -60,23 +60,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				}
 			} 
 		}
-		Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType 
+		Ifc4.SharedBldgElements.IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType 
 		{ 
 			get
 			{
 				switch (RelatingConnectionType)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.ATPATH:
-						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATPATH;
+					case IfcConnectionTypeEnum.ATPATH:
+						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATPATH;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.ATSTART:
-						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATSTART;
+					case IfcConnectionTypeEnum.ATSTART:
+						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATSTART;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.ATEND:
-						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATEND;
+					case IfcConnectionTypeEnum.ATEND:
+						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATEND;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcConnectionTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcConnectionTypeEnum.NOTDEFINED;
+					case IfcConnectionTypeEnum.NOTDEFINED:
+						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.NOTDEFINED;
 					
 					
 					default:

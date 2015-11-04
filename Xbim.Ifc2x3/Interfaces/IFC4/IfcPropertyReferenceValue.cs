@@ -16,74 +16,74 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcPropertyReferenceValue : IIfcPropertyReferenceValue
 	{
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcPropertyReferenceValue.UsageName 
+		Ifc4.MeasureResource.IfcText? IIfcPropertyReferenceValue.UsageName 
 		{ 
 			get
 			{
 				if (UsageName == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)UsageName);
+				return new Ifc4.MeasureResource.IfcText((string)UsageName);
 			} 
 		}
-		Xbim.Ifc4.PropertyResource.IfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference 
+		Ifc4.PropertyResource.IfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference 
 		{ 
 			get
 			{
 				if (PropertyReference == null) return null;
-				var ifcmaterial = PropertyReference as Xbim.Ifc2x3.MaterialResource.IfcMaterial;
+				var ifcmaterial = PropertyReference as MaterialResource.IfcMaterial;
 				if (ifcmaterial != null) 
-					//## Handle entity IfcMaterial which is not a part of the target select interface Xbim.Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					//TODO: Handle entity IfcMaterial which is not a part of the target select interface Xbim.Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+					//## Handle entity IfcMaterial which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+					//TODO: Handle entity IfcMaterial which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
 					throw new System.NotImplementedException();
 					//##
-				var ifcperson = PropertyReference as Xbim.Ifc2x3.ActorResource.IfcPerson;
+				var ifcperson = PropertyReference as ActorResource.IfcPerson;
 				if (ifcperson != null) 
 					return ifcperson;
-				var ifcdateandtime = PropertyReference as Xbim.Ifc2x3.DateTimeResource.IfcDateAndTime;
+				var ifcdateandtime = PropertyReference as DateTimeResource.IfcDateAndTime;
 				if (ifcdateandtime != null) 
-					//## Handle entity IfcDateAndTime which is not a part of the target select interface Xbim.Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					//TODO: Handle entity IfcDateAndTime which is not a part of the target select interface Xbim.Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+					//## Handle entity IfcDateAndTime which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+					//TODO: Handle entity IfcDateAndTime which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
 					throw new System.NotImplementedException();
 					//##
-				var ifcmateriallist = PropertyReference as Xbim.Ifc2x3.MaterialResource.IfcMaterialList;
+				var ifcmateriallist = PropertyReference as MaterialResource.IfcMaterialList;
 				if (ifcmateriallist != null) 
-					//## Handle entity IfcMaterialList which is not a part of the target select interface Xbim.Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					//TODO: Handle entity IfcMaterialList which is not a part of the target select interface Xbim.Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+					//## Handle entity IfcMaterialList which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+					//TODO: Handle entity IfcMaterialList which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
 					throw new System.NotImplementedException();
 					//##
-				var ifcorganization = PropertyReference as Xbim.Ifc2x3.ActorResource.IfcOrganization;
+				var ifcorganization = PropertyReference as ActorResource.IfcOrganization;
 				if (ifcorganization != null) 
 					return ifcorganization;
-				var ifccalendardate = PropertyReference as Xbim.Ifc2x3.DateTimeResource.IfcCalendarDate;
+				var ifccalendardate = PropertyReference as DateTimeResource.IfcCalendarDate;
 				if (ifccalendardate != null) 
-					//## Handle entity IfcCalendarDate which is not a part of the target select interface Xbim.Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					//TODO: Handle entity IfcCalendarDate which is not a part of the target select interface Xbim.Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+					//## Handle entity IfcCalendarDate which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+					//TODO: Handle entity IfcCalendarDate which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
 					throw new System.NotImplementedException();
 					//##
-				var ifclocaltime = PropertyReference as Xbim.Ifc2x3.DateTimeResource.IfcLocalTime;
+				var ifclocaltime = PropertyReference as DateTimeResource.IfcLocalTime;
 				if (ifclocaltime != null) 
-					//## Handle entity IfcLocalTime which is not a part of the target select interface Xbim.Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					//TODO: Handle entity IfcLocalTime which is not a part of the target select interface Xbim.Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+					//## Handle entity IfcLocalTime which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+					//TODO: Handle entity IfcLocalTime which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
 					throw new System.NotImplementedException();
 					//##
-				var ifcpersonandorganization = PropertyReference as Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization;
+				var ifcpersonandorganization = PropertyReference as ActorResource.IfcPersonAndOrganization;
 				if (ifcpersonandorganization != null) 
 					return ifcpersonandorganization;
-				var ifcmateriallayer = PropertyReference as Xbim.Ifc2x3.MaterialResource.IfcMaterialLayer;
+				var ifcmateriallayer = PropertyReference as MaterialResource.IfcMaterialLayer;
 				if (ifcmateriallayer != null) 
-					//## Handle entity IfcMaterialLayer which is not a part of the target select interface Xbim.Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					//TODO: Handle entity IfcMaterialLayer which is not a part of the target select interface Xbim.Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+					//## Handle entity IfcMaterialLayer which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+					//TODO: Handle entity IfcMaterialLayer which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
 					throw new System.NotImplementedException();
 					//##
-				var ifcexternalreference = PropertyReference as Xbim.Ifc2x3.ExternalReferenceResource.IfcExternalReference;
+				var ifcexternalreference = PropertyReference as ExternalReferenceResource.IfcExternalReference;
 				if (ifcexternalreference != null) 
 					return ifcexternalreference;
-				var ifctimeseries = PropertyReference as Xbim.Ifc2x3.TimeSeriesResource.IfcTimeSeries;
+				var ifctimeseries = PropertyReference as TimeSeriesResource.IfcTimeSeries;
 				if (ifctimeseries != null) 
 					return ifctimeseries;
-				var ifcaddress = PropertyReference as Xbim.Ifc2x3.ActorResource.IfcAddress;
+				var ifcaddress = PropertyReference as ActorResource.IfcAddress;
 				if (ifcaddress != null) 
 					return ifcaddress;
-				var ifcappliedvalue = PropertyReference as Xbim.Ifc2x3.CostResource.IfcAppliedValue;
+				var ifcappliedvalue = PropertyReference as CostResource.IfcAppliedValue;
 				if (ifcappliedvalue != null) 
 					return ifcappliedvalue;
 				return null;

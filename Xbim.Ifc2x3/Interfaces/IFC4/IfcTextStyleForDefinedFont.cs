@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcTextStyleForDefinedFont : IIfcTextStyleForDefinedFont
 	{
-		Xbim.Ifc4.PresentationAppearanceResource.IfcColour IIfcTextStyleForDefinedFont.Colour 
+		Ifc4.PresentationAppearanceResource.IfcColour IIfcTextStyleForDefinedFont.Colour 
 		{ 
 			get
 			{
 				if (Colour == null) return null;
-				var ifccolourspecification = Colour as Xbim.Ifc2x3.PresentationResource.IfcColourSpecification;
+				var ifccolourspecification = Colour as PresentationResource.IfcColourSpecification;
 				if (ifccolourspecification != null) 
 					return ifccolourspecification;
-				var ifcpredefinedcolour = Colour as Xbim.Ifc2x3.PresentationResource.IfcPreDefinedColour;
+				var ifcpredefinedcolour = Colour as PresentationResource.IfcPreDefinedColour;
 				if (ifcpredefinedcolour != null) 
 					return ifcpredefinedcolour;
 				return null;
 			} 
 		}
-		Xbim.Ifc4.PresentationAppearanceResource.IfcColour IIfcTextStyleForDefinedFont.BackgroundColour 
+		Ifc4.PresentationAppearanceResource.IfcColour IIfcTextStyleForDefinedFont.BackgroundColour 
 		{ 
 			get
 			{
 				if (BackgroundColour == null) return null;
-				var ifccolourspecification = BackgroundColour as Xbim.Ifc2x3.PresentationResource.IfcColourSpecification;
+				var ifccolourspecification = BackgroundColour as PresentationResource.IfcColourSpecification;
 				if (ifccolourspecification != null) 
 					return ifccolourspecification;
-				var ifcpredefinedcolour = BackgroundColour as Xbim.Ifc2x3.PresentationResource.IfcPreDefinedColour;
+				var ifcpredefinedcolour = BackgroundColour as PresentationResource.IfcPreDefinedColour;
 				if (ifcpredefinedcolour != null) 
 					return ifcpredefinedcolour;
 				return null;

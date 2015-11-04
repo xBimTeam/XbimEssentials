@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelSpaceBoundary : IIfcRelSpaceBoundary
 	{
-		Xbim.Ifc4.ProductExtension.IfcSpaceBoundarySelect IIfcRelSpaceBoundary.RelatingSpace 
+		Ifc4.ProductExtension.IfcSpaceBoundarySelect IIfcRelSpaceBoundary.RelatingSpace 
 		{ 
 			get
 			{
@@ -40,20 +40,20 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return ConnectionGeometry as IIfcConnectionGeometry;
 			} 
 		}
-		Xbim.Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary 
+		Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary 
 		{ 
 			get
 			{
 				switch (PhysicalOrVirtualBoundary)
 				{
-					case Xbim.Ifc2x3.ProductExtension.IfcPhysicalOrVirtualEnum.PHYSICAL:
-						return Xbim.Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum.PHYSICAL;
+					case IfcPhysicalOrVirtualEnum.PHYSICAL:
+						return Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum.PHYSICAL;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcPhysicalOrVirtualEnum.VIRTUAL:
-						return Xbim.Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum.VIRTUAL;
+					case IfcPhysicalOrVirtualEnum.VIRTUAL:
+						return Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum.VIRTUAL;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcPhysicalOrVirtualEnum.NOTDEFINED:
-						return Xbim.Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum.NOTDEFINED;
+					case IfcPhysicalOrVirtualEnum.NOTDEFINED:
+						return Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum.NOTDEFINED;
 					
 					
 					default:
@@ -61,20 +61,20 @@ namespace Xbim.Ifc2x3.ProductExtension
 				}
 			} 
 		}
-		Xbim.Ifc4.ProductExtension.IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary 
+		Ifc4.ProductExtension.IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary 
 		{ 
 			get
 			{
 				switch (InternalOrExternalBoundary)
 				{
-					case Xbim.Ifc2x3.ProductExtension.IfcInternalOrExternalEnum.INTERNAL:
-						return Xbim.Ifc4.ProductExtension.IfcInternalOrExternalEnum.INTERNAL;
+					case IfcInternalOrExternalEnum.INTERNAL:
+						return Ifc4.ProductExtension.IfcInternalOrExternalEnum.INTERNAL;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcInternalOrExternalEnum.EXTERNAL:
-						return Xbim.Ifc4.ProductExtension.IfcInternalOrExternalEnum.EXTERNAL;
+					case IfcInternalOrExternalEnum.EXTERNAL:
+						return Ifc4.ProductExtension.IfcInternalOrExternalEnum.EXTERNAL;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcInternalOrExternalEnum.NOTDEFINED:
-						return Xbim.Ifc4.ProductExtension.IfcInternalOrExternalEnum.NOTDEFINED;
+					case IfcInternalOrExternalEnum.NOTDEFINED:
+						return Ifc4.ProductExtension.IfcInternalOrExternalEnum.NOTDEFINED;
 					
 					
 					default:

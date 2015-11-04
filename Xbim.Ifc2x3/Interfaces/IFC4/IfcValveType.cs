@@ -16,80 +16,80 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcValveType : IIfcValveType
 	{
-		Xbim.Ifc4.HvacDomain.IfcValveTypeEnum IIfcValveType.PredefinedType 
+		Ifc4.HvacDomain.IfcValveTypeEnum IIfcValveType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.AIRRELEASE:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.AIRRELEASE;
+					case IfcValveTypeEnum.AIRRELEASE:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.AIRRELEASE;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.ANTIVACUUM:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.ANTIVACUUM;
+					case IfcValveTypeEnum.ANTIVACUUM:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.ANTIVACUUM;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.CHANGEOVER:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.CHANGEOVER;
+					case IfcValveTypeEnum.CHANGEOVER:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.CHANGEOVER;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.CHECK:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.CHECK;
+					case IfcValveTypeEnum.CHECK:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.CHECK;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.COMMISSIONING:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.COMMISSIONING;
+					case IfcValveTypeEnum.COMMISSIONING:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.COMMISSIONING;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.DIVERTING:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.DIVERTING;
+					case IfcValveTypeEnum.DIVERTING:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.DIVERTING;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.DRAWOFFCOCK:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.DRAWOFFCOCK;
+					case IfcValveTypeEnum.DRAWOFFCOCK:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.DRAWOFFCOCK;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.DOUBLECHECK:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.DOUBLECHECK;
+					case IfcValveTypeEnum.DOUBLECHECK:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.DOUBLECHECK;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.DOUBLEREGULATING:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.DOUBLEREGULATING;
+					case IfcValveTypeEnum.DOUBLEREGULATING:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.DOUBLEREGULATING;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.FAUCET:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.FAUCET;
+					case IfcValveTypeEnum.FAUCET:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.FAUCET;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.FLUSHING:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.FLUSHING;
+					case IfcValveTypeEnum.FLUSHING:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.FLUSHING;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.GASCOCK:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.GASCOCK;
+					case IfcValveTypeEnum.GASCOCK:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.GASCOCK;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.GASTAP:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.GASTAP;
+					case IfcValveTypeEnum.GASTAP:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.GASTAP;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.ISOLATING:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.ISOLATING;
+					case IfcValveTypeEnum.ISOLATING:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.ISOLATING;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.MIXING:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.MIXING;
+					case IfcValveTypeEnum.MIXING:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.MIXING;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.PRESSUREREDUCING:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.PRESSUREREDUCING;
+					case IfcValveTypeEnum.PRESSUREREDUCING:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.PRESSUREREDUCING;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.PRESSURERELIEF:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.PRESSURERELIEF;
+					case IfcValveTypeEnum.PRESSURERELIEF:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.PRESSURERELIEF;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.REGULATING:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.REGULATING;
+					case IfcValveTypeEnum.REGULATING:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.REGULATING;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.SAFETYCUTOFF:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.SAFETYCUTOFF;
+					case IfcValveTypeEnum.SAFETYCUTOFF:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.SAFETYCUTOFF;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.STEAMTRAP:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.STEAMTRAP;
+					case IfcValveTypeEnum.STEAMTRAP:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.STEAMTRAP;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.STOPCOCK:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.STOPCOCK;
+					case IfcValveTypeEnum.STOPCOCK:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.STOPCOCK;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.USERDEFINED;
+					case IfcValveTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcValveTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcValveTypeEnum.NOTDEFINED;
+					case IfcValveTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcValveTypeEnum.NOTDEFINED;
 					
 					
 					default:

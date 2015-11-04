@@ -16,35 +16,35 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcCoilType : IIfcCoilType
 	{
-		Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum IIfcCoilType.PredefinedType 
+		Ifc4.HvacDomain.IfcCoilTypeEnum IIfcCoilType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.DXCOOLINGCOIL:
-						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.DXCOOLINGCOIL;
+					case IfcCoilTypeEnum.DXCOOLINGCOIL:
+						return Ifc4.HvacDomain.IfcCoilTypeEnum.DXCOOLINGCOIL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.WATERCOOLINGCOIL:
-						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.WATERCOOLINGCOIL;
+					case IfcCoilTypeEnum.WATERCOOLINGCOIL:
+						return Ifc4.HvacDomain.IfcCoilTypeEnum.WATERCOOLINGCOIL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.STEAMHEATINGCOIL:
-						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.STEAMHEATINGCOIL;
+					case IfcCoilTypeEnum.STEAMHEATINGCOIL:
+						return Ifc4.HvacDomain.IfcCoilTypeEnum.STEAMHEATINGCOIL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.WATERHEATINGCOIL:
-						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.WATERHEATINGCOIL;
+					case IfcCoilTypeEnum.WATERHEATINGCOIL:
+						return Ifc4.HvacDomain.IfcCoilTypeEnum.WATERHEATINGCOIL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.ELECTRICHEATINGCOIL:
-						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.ELECTRICHEATINGCOIL;
+					case IfcCoilTypeEnum.ELECTRICHEATINGCOIL:
+						return Ifc4.HvacDomain.IfcCoilTypeEnum.ELECTRICHEATINGCOIL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.GASHEATINGCOIL:
-						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.GASHEATINGCOIL;
+					case IfcCoilTypeEnum.GASHEATINGCOIL:
+						return Ifc4.HvacDomain.IfcCoilTypeEnum.GASHEATINGCOIL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.USERDEFINED;
+					case IfcCoilTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcCoilTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcCoilTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcCoilTypeEnum.NOTDEFINED;
+					case IfcCoilTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcCoilTypeEnum.NOTDEFINED;
 					
 					
 					default:

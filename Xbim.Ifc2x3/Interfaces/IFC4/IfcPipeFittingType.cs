@@ -16,38 +16,38 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcPipeFittingType : IIfcPipeFittingType
 	{
-		Xbim.Ifc4.HvacDomain.IfcPipeFittingTypeEnum IIfcPipeFittingType.PredefinedType 
+		Ifc4.HvacDomain.IfcPipeFittingTypeEnum IIfcPipeFittingType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeFittingTypeEnum.BEND:
-						return Xbim.Ifc4.HvacDomain.IfcPipeFittingTypeEnum.BEND;
+					case IfcPipeFittingTypeEnum.BEND:
+						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.BEND;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeFittingTypeEnum.CONNECTOR:
-						return Xbim.Ifc4.HvacDomain.IfcPipeFittingTypeEnum.CONNECTOR;
+					case IfcPipeFittingTypeEnum.CONNECTOR:
+						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.CONNECTOR;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeFittingTypeEnum.ENTRY:
-						return Xbim.Ifc4.HvacDomain.IfcPipeFittingTypeEnum.ENTRY;
+					case IfcPipeFittingTypeEnum.ENTRY:
+						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.ENTRY;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeFittingTypeEnum.EXIT:
-						return Xbim.Ifc4.HvacDomain.IfcPipeFittingTypeEnum.EXIT;
+					case IfcPipeFittingTypeEnum.EXIT:
+						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.EXIT;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeFittingTypeEnum.JUNCTION:
-						return Xbim.Ifc4.HvacDomain.IfcPipeFittingTypeEnum.JUNCTION;
+					case IfcPipeFittingTypeEnum.JUNCTION:
+						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.JUNCTION;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeFittingTypeEnum.OBSTRUCTION:
-						return Xbim.Ifc4.HvacDomain.IfcPipeFittingTypeEnum.OBSTRUCTION;
+					case IfcPipeFittingTypeEnum.OBSTRUCTION:
+						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.OBSTRUCTION;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeFittingTypeEnum.TRANSITION:
-						return Xbim.Ifc4.HvacDomain.IfcPipeFittingTypeEnum.TRANSITION;
+					case IfcPipeFittingTypeEnum.TRANSITION:
+						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.TRANSITION;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeFittingTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcPipeFittingTypeEnum.USERDEFINED;
+					case IfcPipeFittingTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcPipeFittingTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcPipeFittingTypeEnum.NOTDEFINED;
+					case IfcPipeFittingTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.NOTDEFINED;
 					
 					
 					default:

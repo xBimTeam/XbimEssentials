@@ -16,28 +16,28 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcSlippageConnectionCondition : IIfcSlippageConnectionCondition
 	{
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageX 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageX 
 		{ 
 			get
 			{
 				if (SlippageX == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)SlippageX);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)SlippageX);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageY 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageY 
 		{ 
 			get
 			{
 				if (SlippageY == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)SlippageY);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)SlippageY);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageZ 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageZ 
 		{ 
 			get
 			{
 				if (SlippageZ == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)SlippageZ);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)SlippageZ);
 			} 
 		}
 	}

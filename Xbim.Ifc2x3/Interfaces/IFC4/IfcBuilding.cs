@@ -16,20 +16,20 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcBuilding : IIfcBuilding
 	{
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfRefHeight 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfRefHeight 
 		{ 
 			get
 			{
 				if (ElevationOfRefHeight == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)ElevationOfRefHeight);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)ElevationOfRefHeight);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfTerrain 
+		Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfTerrain 
 		{ 
 			get
 			{
 				if (ElevationOfTerrain == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)ElevationOfTerrain);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)ElevationOfTerrain);
 			} 
 		}
 		IIfcPostalAddress IIfcBuilding.BuildingAddress 
@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return BuildingAddress as IIfcPostalAddress;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
+		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get
 			{

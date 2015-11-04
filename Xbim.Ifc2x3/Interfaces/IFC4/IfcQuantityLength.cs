@@ -16,14 +16,14 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcQuantityLength : IIfcQuantityLength
 	{
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure IIfcQuantityLength.LengthValue 
+		Ifc4.MeasureResource.IfcLengthMeasure IIfcQuantityLength.LengthValue 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)LengthValue);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)LengthValue);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcQuantityLength.Formula 
+		Ifc4.MeasureResource.IfcLabel? IIfcQuantityLength.Formula 
 		{ 
 			get
 			{

@@ -23,11 +23,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return BasisCurve as IIfcCurve;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure IIfcOffsetCurve3D.Distance 
+		Ifc4.MeasureResource.IfcLengthMeasure IIfcOffsetCurve3D.Distance 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)Distance);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)Distance);
 			} 
 		}
 		bool? IIfcOffsetCurve3D.SelfIntersect 

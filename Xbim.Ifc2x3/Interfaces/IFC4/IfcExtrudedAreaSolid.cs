@@ -23,11 +23,11 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				return ExtrudedDirection as IIfcDirection;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcExtrudedAreaSolid.Depth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcExtrudedAreaSolid.Depth 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Depth);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Depth);
 			} 
 		}
 	}

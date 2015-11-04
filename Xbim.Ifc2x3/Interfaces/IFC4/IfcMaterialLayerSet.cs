@@ -26,15 +26,15 @@ namespace Xbim.Ifc2x3.MaterialResource
 			}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayerSet.LayerSetName 
+		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayerSet.LayerSetName 
 		{ 
 			get
 			{
 				if (LayerSetName == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)LayerSetName);
+				return new Ifc4.MeasureResource.IfcLabel((string)LayerSetName);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcMaterialLayerSet.Description 
+		Ifc4.MeasureResource.IfcText? IIfcMaterialLayerSet.Description 
 		{ 
 			get
 			{

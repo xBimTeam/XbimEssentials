@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcDuctSegmentType : IIfcDuctSegmentType
 	{
-		Xbim.Ifc4.HvacDomain.IfcDuctSegmentTypeEnum IIfcDuctSegmentType.PredefinedType 
+		Ifc4.HvacDomain.IfcDuctSegmentTypeEnum IIfcDuctSegmentType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcDuctSegmentTypeEnum.RIGIDSEGMENT:
-						return Xbim.Ifc4.HvacDomain.IfcDuctSegmentTypeEnum.RIGIDSEGMENT;
+					case IfcDuctSegmentTypeEnum.RIGIDSEGMENT:
+						return Ifc4.HvacDomain.IfcDuctSegmentTypeEnum.RIGIDSEGMENT;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDuctSegmentTypeEnum.FLEXIBLESEGMENT:
-						return Xbim.Ifc4.HvacDomain.IfcDuctSegmentTypeEnum.FLEXIBLESEGMENT;
+					case IfcDuctSegmentTypeEnum.FLEXIBLESEGMENT:
+						return Ifc4.HvacDomain.IfcDuctSegmentTypeEnum.FLEXIBLESEGMENT;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDuctSegmentTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcDuctSegmentTypeEnum.USERDEFINED;
+					case IfcDuctSegmentTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcDuctSegmentTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDuctSegmentTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcDuctSegmentTypeEnum.NOTDEFINED;
+					case IfcDuctSegmentTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcDuctSegmentTypeEnum.NOTDEFINED;
 					
 					
 					default:

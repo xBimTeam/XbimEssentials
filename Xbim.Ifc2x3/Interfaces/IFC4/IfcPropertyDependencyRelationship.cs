@@ -30,15 +30,15 @@ namespace Xbim.Ifc2x3.PropertyResource
 				return DependantProperty as IIfcProperty;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcPropertyDependencyRelationship.Expression 
+		Ifc4.MeasureResource.IfcText? IIfcPropertyDependencyRelationship.Expression 
 		{ 
 			get
 			{
 				if (Expression == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Expression);
+				return new Ifc4.MeasureResource.IfcText((string)Expression);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
 			{
@@ -48,7 +48,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
+		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
 			{

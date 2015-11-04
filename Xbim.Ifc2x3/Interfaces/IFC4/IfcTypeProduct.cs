@@ -26,12 +26,12 @@ namespace Xbim.Ifc2x3.Kernel
 			}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcTypeProduct.Tag 
+		Ifc4.MeasureResource.IfcLabel? IIfcTypeProduct.Tag 
 		{ 
 			get
 			{
 				if (Tag == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Tag);
+				return new Ifc4.MeasureResource.IfcLabel((string)Tag);
 			} 
 		}
 		IEnumerable<IIfcRelAssignsToProduct> IIfcTypeProduct.ReferencedBy 

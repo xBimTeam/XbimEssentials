@@ -16,15 +16,15 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcRepresentationMap : IIfcRepresentationMap
 	{
-		Xbim.Ifc4.GeometryResource.IfcAxis2Placement IIfcRepresentationMap.MappingOrigin 
+		Ifc4.GeometryResource.IfcAxis2Placement IIfcRepresentationMap.MappingOrigin 
 		{ 
 			get
 			{
 				if (MappingOrigin == null) return null;
-				var ifcaxis2placement2d = MappingOrigin as Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement2D;
+				var ifcaxis2placement2d = MappingOrigin as IfcAxis2Placement2D;
 				if (ifcaxis2placement2d != null) 
 					return ifcaxis2placement2d;
-				var ifcaxis2placement3d = MappingOrigin as Xbim.Ifc2x3.GeometryResource.IfcAxis2Placement3D;
+				var ifcaxis2placement3d = MappingOrigin as IfcAxis2Placement3D;
 				if (ifcaxis2placement3d != null) 
 					return ifcaxis2placement3d;
 				return null;

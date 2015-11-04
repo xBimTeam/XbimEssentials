@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcDoor : IIfcDoor
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoor.OverallHeight 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoor.OverallHeight 
 		{ 
 			get
 			{
 				if (OverallHeight == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)OverallHeight);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)OverallHeight);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoor.OverallWidth 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoor.OverallWidth 
 		{ 
 			get
 			{
 				if (OverallWidth == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)OverallWidth);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)OverallWidth);
 			} 
 		}
-		Xbim.Ifc4.SharedBldgElements.IfcDoorTypeEnum? IIfcDoor.PredefinedType 
+		Ifc4.SharedBldgElements.IfcDoorTypeEnum? IIfcDoor.PredefinedType 
 		{ 
 			get
 			{
@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				//##
 			} 
 		}
-		Xbim.Ifc4.SharedBldgElements.IfcDoorTypeOperationEnum? IIfcDoor.OperationType 
+		Ifc4.SharedBldgElements.IfcDoorTypeOperationEnum? IIfcDoor.OperationType 
 		{ 
 			get
 			{
@@ -52,7 +52,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcDoor.UserDefinedOperationType 
+		Ifc4.MeasureResource.IfcLabel? IIfcDoor.UserDefinedOperationType 
 		{ 
 			get
 			{

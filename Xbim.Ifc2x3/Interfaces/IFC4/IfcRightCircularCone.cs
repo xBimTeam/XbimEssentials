@@ -16,18 +16,18 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcRightCircularCone : IIfcRightCircularCone
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRightCircularCone.Height 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRightCircularCone.Height 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Height);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Height);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRightCircularCone.BottomRadius 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRightCircularCone.BottomRadius 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)BottomRadius);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)BottomRadius);
 			} 
 		}
 	}

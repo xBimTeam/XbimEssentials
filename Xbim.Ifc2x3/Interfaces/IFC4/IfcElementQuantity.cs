@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcElementQuantity : IIfcElementQuantity
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcElementQuantity.MethodOfMeasurement 
+		Ifc4.MeasureResource.IfcLabel? IIfcElementQuantity.MethodOfMeasurement 
 		{ 
 			get
 			{
 				if (MethodOfMeasurement == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)MethodOfMeasurement);
+				return new Ifc4.MeasureResource.IfcLabel((string)MethodOfMeasurement);
 			} 
 		}
 		IEnumerable<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities 

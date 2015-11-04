@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcProcedure : IIfcProcedure
 	{
-		Xbim.Ifc4.ProcessExtension.IfcProcedureTypeEnum? IIfcProcedure.PredefinedType 
+		Ifc4.ProcessExtension.IfcProcedureTypeEnum? IIfcProcedure.PredefinedType 
 		{ 
 			get
 			{

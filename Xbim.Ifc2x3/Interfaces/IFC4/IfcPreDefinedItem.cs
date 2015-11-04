@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcPreDefinedItem : IIfcPreDefinedItem
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcPreDefinedItem.Name 
+		Ifc4.MeasureResource.IfcLabel IIfcPreDefinedItem.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 	}

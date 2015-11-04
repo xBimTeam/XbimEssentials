@@ -16,19 +16,19 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcProperty : IIfcProperty
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier IIfcProperty.Name 
+		Ifc4.MeasureResource.IfcIdentifier IIfcProperty.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)Name);
+				return new Ifc4.MeasureResource.IfcIdentifier((string)Name);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcProperty.Description 
+		Ifc4.MeasureResource.IfcText? IIfcProperty.Description 
 		{ 
 			get
 			{
 				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				return new Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
 		IEnumerable<IIfcPropertySet> IIfcProperty.PartOfPset 

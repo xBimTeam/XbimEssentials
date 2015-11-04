@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcColumn : IIfcColumn
 	{
-		Xbim.Ifc4.SharedBldgElements.IfcColumnTypeEnum? IIfcColumn.PredefinedType 
+		Ifc4.SharedBldgElements.IfcColumnTypeEnum? IIfcColumn.PredefinedType 
 		{ 
 			get
 			{

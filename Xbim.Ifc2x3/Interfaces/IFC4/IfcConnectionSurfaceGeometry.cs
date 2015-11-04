@@ -16,35 +16,35 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcConnectionSurfaceGeometry : IIfcConnectionSurfaceGeometry
 	{
-		Xbim.Ifc4.GeometricConstraintResource.IfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatingElement 
+		Ifc4.GeometricConstraintResource.IfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatingElement 
 		{ 
 			get
 			{
 				if (SurfaceOnRelatingElement == null) return null;
-				var ifcsurface = SurfaceOnRelatingElement as Xbim.Ifc2x3.GeometryResource.IfcSurface;
+				var ifcsurface = SurfaceOnRelatingElement as GeometryResource.IfcSurface;
 				if (ifcsurface != null) 
 					return ifcsurface;
-				var ifcfacesurface = SurfaceOnRelatingElement as Xbim.Ifc2x3.TopologyResource.IfcFaceSurface;
+				var ifcfacesurface = SurfaceOnRelatingElement as TopologyResource.IfcFaceSurface;
 				if (ifcfacesurface != null) 
 					return ifcfacesurface;
-				var ifcfacebasedsurfacemodel = SurfaceOnRelatingElement as Xbim.Ifc2x3.GeometricModelResource.IfcFaceBasedSurfaceModel;
+				var ifcfacebasedsurfacemodel = SurfaceOnRelatingElement as GeometricModelResource.IfcFaceBasedSurfaceModel;
 				if (ifcfacebasedsurfacemodel != null) 
 					return ifcfacebasedsurfacemodel;
 				return null;
 			} 
 		}
-		Xbim.Ifc4.GeometricConstraintResource.IfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatedElement 
+		Ifc4.GeometricConstraintResource.IfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatedElement 
 		{ 
 			get
 			{
 				if (SurfaceOnRelatedElement == null) return null;
-				var ifcsurface = SurfaceOnRelatedElement as Xbim.Ifc2x3.GeometryResource.IfcSurface;
+				var ifcsurface = SurfaceOnRelatedElement as GeometryResource.IfcSurface;
 				if (ifcsurface != null) 
 					return ifcsurface;
-				var ifcfacesurface = SurfaceOnRelatedElement as Xbim.Ifc2x3.TopologyResource.IfcFaceSurface;
+				var ifcfacesurface = SurfaceOnRelatedElement as TopologyResource.IfcFaceSurface;
 				if (ifcfacesurface != null) 
 					return ifcfacesurface;
-				var ifcfacebasedsurfacemodel = SurfaceOnRelatedElement as Xbim.Ifc2x3.GeometricModelResource.IfcFaceBasedSurfaceModel;
+				var ifcfacebasedsurfacemodel = SurfaceOnRelatedElement as GeometricModelResource.IfcFaceBasedSurfaceModel;
 				if (ifcfacebasedsurfacemodel != null) 
 					return ifcfacebasedsurfacemodel;
 				return null;

@@ -23,25 +23,25 @@ namespace Xbim.Ifc2x3.UtilityResource
 				return ApplicationDeveloper as IIfcOrganization;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcApplication.Version 
+		Ifc4.MeasureResource.IfcLabel IIfcApplication.Version 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Version);
+				return new Ifc4.MeasureResource.IfcLabel((string)Version);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcApplication.ApplicationFullName 
+		Ifc4.MeasureResource.IfcLabel IIfcApplication.ApplicationFullName 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)ApplicationFullName);
+				return new Ifc4.MeasureResource.IfcLabel((string)ApplicationFullName);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcIdentifier IIfcApplication.ApplicationIdentifier 
+		Ifc4.MeasureResource.IfcIdentifier IIfcApplication.ApplicationIdentifier 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)ApplicationIdentifier);
+				return new Ifc4.MeasureResource.IfcIdentifier((string)ApplicationIdentifier);
 			} 
 		}
 	}

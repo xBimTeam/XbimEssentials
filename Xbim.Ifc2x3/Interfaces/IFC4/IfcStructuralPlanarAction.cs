@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralPlanarAction : IIfcStructuralPlanarAction
 	{
-		Xbim.Ifc4.StructuralAnalysisDomain.IfcProjectedOrTrueLengthEnum? IIfcStructuralSurfaceAction.ProjectedOrTrue 
+		Ifc4.StructuralAnalysisDomain.IfcProjectedOrTrueLengthEnum? IIfcStructuralSurfaceAction.ProjectedOrTrue 
 		{ 
 			get
 			{
@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				//##
 			} 
 		}
-		Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceActivityTypeEnum IIfcStructuralSurfaceAction.PredefinedType 
+		Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceActivityTypeEnum IIfcStructuralSurfaceAction.PredefinedType 
 		{ 
 			get
 			{

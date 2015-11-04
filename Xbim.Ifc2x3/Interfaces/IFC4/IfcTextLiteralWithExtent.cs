@@ -23,11 +23,11 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				return Extent as IIfcPlanarExtent;
 			} 
 		}
-		Xbim.Ifc4.PresentationDefinitionResource.IfcBoxAlignment IIfcTextLiteralWithExtent.BoxAlignment 
+		Ifc4.PresentationDefinitionResource.IfcBoxAlignment IIfcTextLiteralWithExtent.BoxAlignment 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.PresentationDefinitionResource.IfcBoxAlignment((string)BoxAlignment);
+				return new Ifc4.PresentationDefinitionResource.IfcBoxAlignment((string)BoxAlignment);
 			} 
 		}
 	}

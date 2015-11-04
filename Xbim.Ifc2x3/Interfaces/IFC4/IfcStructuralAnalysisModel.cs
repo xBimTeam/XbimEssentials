@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralAnalysisModel : IIfcStructuralAnalysisModel
 	{
-		Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum IIfcStructuralAnalysisModel.PredefinedType 
+		Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum IIfcStructuralAnalysisModel.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D:
-						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D;
+					case IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D:
+						return Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D;
 					
-					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D:
-						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D;
+					case IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D:
+						return Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D;
 					
-					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.LOADING_3D:
-						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.LOADING_3D;
+					case IfcAnalysisModelTypeEnum.LOADING_3D:
+						return Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.LOADING_3D;
 					
-					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.USERDEFINED;
+					case IfcAnalysisModelTypeEnum.USERDEFINED:
+						return Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.NOTDEFINED;
+					case IfcAnalysisModelTypeEnum.NOTDEFINED:
+						return Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.NOTDEFINED;
 					
 					
 					default:

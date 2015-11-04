@@ -10,19 +10,18 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using Xbim.Ifc4.MeasureResource;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcZone : IIfcZone
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcZone.LongName 
+		Ifc4.MeasureResource.IfcLabel? IIfcZone.LongName 
 		{ 
 			get
 			{
 				//## Handle return of LongName for which no match was found
-			    return new IfcLabel(Name);
+                return Name != null ? new Ifc4.MeasureResource.IfcLabel(Name) : null;
 			    //##
 			} 
 		}

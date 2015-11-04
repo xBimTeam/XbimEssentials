@@ -22,22 +22,22 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			{
 			foreach (var member in Styles)
 			{
-				var ifccurvestyle = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcCurveStyle;
+				var ifccurvestyle = member as IfcCurveStyle;
 				if (ifccurvestyle != null) 
 					yield return ifccurvestyle;
-				var ifcsymbolstyle = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcSymbolStyle;
+				var ifcsymbolstyle = member as IfcSymbolStyle;
 				if (ifcsymbolstyle != null) 
-					//## Handle entity IfcSymbolStyle which is not a part of the target select interface Xbim.Ifc4.PresentationAppearanceResource.IfcPresentationStyleSelect in property Styles
-					//TODO: Handle entity IfcSymbolStyle which is not a part of the target select interface Xbim.Ifc4.PresentationAppearanceResource.IfcPresentationStyleSelect in property Styles
+					//## Handle entity IfcSymbolStyle which is not a part of the target select interface Ifc4.PresentationAppearanceResource.IfcPresentationStyleSelect in property Styles
+					//TODO: Handle entity IfcSymbolStyle which is not a part of the target select interface Ifc4.PresentationAppearanceResource.IfcPresentationStyleSelect in property Styles
 					throw new System.NotImplementedException();
 					//##
-				var ifcfillareastyle = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyle;
+				var ifcfillareastyle = member as IfcFillAreaStyle;
 				if (ifcfillareastyle != null) 
 					yield return ifcfillareastyle;
-				var ifctextstyle = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcTextStyle;
+				var ifctextstyle = member as IfcTextStyle;
 				if (ifctextstyle != null) 
 					yield return ifctextstyle;
-				var ifcsurfacestyle = member as Xbim.Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle;
+				var ifcsurfacestyle = member as IfcSurfaceStyle;
 				if (ifcsurfacestyle != null) 
 					yield return ifcsurfacestyle;
 			}

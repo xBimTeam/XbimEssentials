@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
 			{
@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
+		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
 			{

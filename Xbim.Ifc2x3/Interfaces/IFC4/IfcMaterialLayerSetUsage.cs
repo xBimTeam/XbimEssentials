@@ -23,20 +23,20 @@ namespace Xbim.Ifc2x3.MaterialResource
 				return ForLayerSet as IIfcMaterialLayerSet;
 			} 
 		}
-		Xbim.Ifc4.MaterialResource.IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection 
+		Ifc4.MaterialResource.IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection 
 		{ 
 			get
 			{
 				switch (LayerSetDirection)
 				{
-					case Xbim.Ifc2x3.MaterialResource.IfcLayerSetDirectionEnum.AXIS1:
-						return Xbim.Ifc4.MaterialResource.IfcLayerSetDirectionEnum.AXIS1;
+					case IfcLayerSetDirectionEnum.AXIS1:
+						return Ifc4.MaterialResource.IfcLayerSetDirectionEnum.AXIS1;
 					
-					case Xbim.Ifc2x3.MaterialResource.IfcLayerSetDirectionEnum.AXIS2:
-						return Xbim.Ifc4.MaterialResource.IfcLayerSetDirectionEnum.AXIS2;
+					case IfcLayerSetDirectionEnum.AXIS2:
+						return Ifc4.MaterialResource.IfcLayerSetDirectionEnum.AXIS2;
 					
-					case Xbim.Ifc2x3.MaterialResource.IfcLayerSetDirectionEnum.AXIS3:
-						return Xbim.Ifc4.MaterialResource.IfcLayerSetDirectionEnum.AXIS3;
+					case IfcLayerSetDirectionEnum.AXIS3:
+						return Ifc4.MaterialResource.IfcLayerSetDirectionEnum.AXIS3;
 					
 					
 					default:
@@ -44,17 +44,17 @@ namespace Xbim.Ifc2x3.MaterialResource
 				}
 			} 
 		}
-		Xbim.Ifc4.MaterialResource.IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense 
+		Ifc4.MaterialResource.IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense 
 		{ 
 			get
 			{
 				switch (DirectionSense)
 				{
-					case Xbim.Ifc2x3.MaterialResource.IfcDirectionSenseEnum.POSITIVE:
-						return Xbim.Ifc4.MaterialResource.IfcDirectionSenseEnum.POSITIVE;
+					case IfcDirectionSenseEnum.POSITIVE:
+						return Ifc4.MaterialResource.IfcDirectionSenseEnum.POSITIVE;
 					
-					case Xbim.Ifc2x3.MaterialResource.IfcDirectionSenseEnum.NEGATIVE:
-						return Xbim.Ifc4.MaterialResource.IfcDirectionSenseEnum.NEGATIVE;
+					case IfcDirectionSenseEnum.NEGATIVE:
+						return Ifc4.MaterialResource.IfcDirectionSenseEnum.NEGATIVE;
 					
 					
 					default:
@@ -62,14 +62,14 @@ namespace Xbim.Ifc2x3.MaterialResource
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine 
+		Ifc4.MeasureResource.IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)OffsetFromReferenceLine);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)OffsetFromReferenceLine);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMaterialLayerSetUsage.ReferenceExtent 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMaterialLayerSetUsage.ReferenceExtent 
 		{ 
 			get
 			{

@@ -16,41 +16,41 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcCovering : IIfcCovering
 	{
-		Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum? IIfcCovering.PredefinedType 
+		Ifc4.SharedBldgElements.IfcCoveringTypeEnum? IIfcCovering.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.CEILING:
-						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.CEILING;
+					case IfcCoveringTypeEnum.CEILING:
+						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.CEILING;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.FLOORING:
-						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.FLOORING;
+					case IfcCoveringTypeEnum.FLOORING:
+						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.FLOORING;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.CLADDING:
-						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.CLADDING;
+					case IfcCoveringTypeEnum.CLADDING:
+						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.CLADDING;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.ROOFING:
-						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.ROOFING;
+					case IfcCoveringTypeEnum.ROOFING:
+						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.ROOFING;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.INSULATION:
-						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.INSULATION;
+					case IfcCoveringTypeEnum.INSULATION:
+						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.INSULATION;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.MEMBRANE:
-						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.MEMBRANE;
+					case IfcCoveringTypeEnum.MEMBRANE:
+						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.MEMBRANE;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.SLEEVING:
-						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.SLEEVING;
+					case IfcCoveringTypeEnum.SLEEVING:
+						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.SLEEVING;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.WRAPPING:
-						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.WRAPPING;
+					case IfcCoveringTypeEnum.WRAPPING:
+						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.WRAPPING;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.USERDEFINED;
+					case IfcCoveringTypeEnum.USERDEFINED:
+						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ProductExtension.IfcCoveringTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcCoveringTypeEnum.NOTDEFINED;
+					case IfcCoveringTypeEnum.NOTDEFINED:
+						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.NOTDEFINED;
 					
 					
 					default:

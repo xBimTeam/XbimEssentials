@@ -22,10 +22,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			{
 			foreach (var member in SbsmBoundary)
 			{
-				var ifcclosedshell = member as Xbim.Ifc2x3.TopologyResource.IfcClosedShell;
+				var ifcclosedshell = member as TopologyResource.IfcClosedShell;
 				if (ifcclosedshell != null) 
 					yield return ifcclosedshell;
-				var ifcopenshell = member as Xbim.Ifc2x3.TopologyResource.IfcOpenShell;
+				var ifcopenshell = member as TopologyResource.IfcOpenShell;
 				if (ifcopenshell != null) 
 					yield return ifcopenshell;
 			}

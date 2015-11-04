@@ -16,28 +16,28 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcExternalReference : IIfcExternalReference
 	{
-		Xbim.Ifc4.ExternalReferenceResource.IfcURIReference? IIfcExternalReference.Location 
+		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcExternalReference.Location 
 		{ 
 			get
 			{
 				if (Location == null) return null;
-				return new Xbim.Ifc4.ExternalReferenceResource.IfcURIReference((string)Location);
+				return new Ifc4.ExternalReferenceResource.IfcURIReference((string)Location);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcExternalReference.Identification 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcExternalReference.Identification 
 		{ 
 			get
 			{
 				if (ItemReference == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)ItemReference);
+				return new Ifc4.MeasureResource.IfcIdentifier((string)ItemReference);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcExternalReference.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcExternalReference.Name 
 		{ 
 			get
 			{
 				if (Name == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcExternalReference.ExternalReferenceForResources 

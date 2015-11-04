@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssignsToProduct : IIfcRelAssignsToProduct
 	{
-		Xbim.Ifc4.Kernel.IfcProductSelect IIfcRelAssignsToProduct.RelatingProduct 
+		Ifc4.Kernel.IfcProductSelect IIfcRelAssignsToProduct.RelatingProduct 
 		{ 
 			get
 			{

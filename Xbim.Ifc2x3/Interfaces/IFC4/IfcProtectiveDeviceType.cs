@@ -16,38 +16,38 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcProtectiveDeviceType : IIfcProtectiveDeviceType
 	{
-		Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum IIfcProtectiveDeviceType.PredefinedType 
+		Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum IIfcProtectiveDeviceType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.FUSEDISCONNECTOR:
-						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.FUSEDISCONNECTOR;
+					case IfcProtectiveDeviceTypeEnum.FUSEDISCONNECTOR:
+						return Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.FUSEDISCONNECTOR;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.CIRCUITBREAKER:
-						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.CIRCUITBREAKER;
+					case IfcProtectiveDeviceTypeEnum.CIRCUITBREAKER:
+						return Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.CIRCUITBREAKER;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.EARTHFAILUREDEVICE:
+					case IfcProtectiveDeviceTypeEnum.EARTHFAILUREDEVICE:
 						//## Handle translation of EARTHFAILUREDEVICE member from IfcProtectiveDeviceTypeEnum in property PredefinedType
 						//TODO: Handle translation of EARTHFAILUREDEVICE member from IfcProtectiveDeviceTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTCIRCUITBREAKER:
-						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTCIRCUITBREAKER;
+					case IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTCIRCUITBREAKER:
+						return Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTCIRCUITBREAKER;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTSWITCH:
-						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTSWITCH;
+					case IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTSWITCH:
+						return Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTSWITCH;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.VARISTOR:
-						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.VARISTOR;
+					case IfcProtectiveDeviceTypeEnum.VARISTOR:
+						return Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.VARISTOR;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.USERDEFINED;
+					case IfcProtectiveDeviceTypeEnum.USERDEFINED:
+						return Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcProtectiveDeviceTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.NOTDEFINED;
+					case IfcProtectiveDeviceTypeEnum.NOTDEFINED:
+						return Ifc4.ElectricalDomain.IfcProtectiveDeviceTypeEnum.NOTDEFINED;
 					
 					
 					default:

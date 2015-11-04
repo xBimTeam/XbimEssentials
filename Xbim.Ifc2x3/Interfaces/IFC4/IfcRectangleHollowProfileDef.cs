@@ -16,27 +16,27 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcRectangleHollowProfileDef : IIfcRectangleHollowProfileDef
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangleHollowProfileDef.WallThickness 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangleHollowProfileDef.WallThickness 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)WallThickness);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)WallThickness);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.InnerFilletRadius 
+		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.InnerFilletRadius 
 		{ 
 			get
 			{
 				if (InnerFilletRadius == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)InnerFilletRadius);
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)InnerFilletRadius);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.OuterFilletRadius 
+		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.OuterFilletRadius 
 		{ 
 			get
 			{
 				if (OuterFilletRadius == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)OuterFilletRadius);
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure((double)OuterFilletRadius);
 			} 
 		}
 	}

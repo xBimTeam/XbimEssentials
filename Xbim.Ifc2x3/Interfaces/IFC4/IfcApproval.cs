@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.ApprovalResource
 {
 	public partial class @IfcApproval : IIfcApproval
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcApproval.Identifier 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcApproval.Identifier 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcIdentifier((string)Identifier);
+				return new Ifc4.MeasureResource.IfcIdentifier((string)Identifier);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcApproval.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcApproval.Name 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcApproval.Description 
+		Ifc4.MeasureResource.IfcText? IIfcApproval.Description 
 		{ 
 			get
 			{
 				if (Description == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcText((string)Description);
+				return new Ifc4.MeasureResource.IfcText((string)Description);
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcApproval.TimeOfApproval 
+		Ifc4.DateTimeResource.IfcDateTime? IIfcApproval.TimeOfApproval 
 		{ 
 			get
 			{
@@ -48,7 +48,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcApproval.Status 
+		Ifc4.MeasureResource.IfcLabel? IIfcApproval.Status 
 		{ 
 			get
 			{
@@ -58,7 +58,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcApproval.Level 
+		Ifc4.MeasureResource.IfcLabel? IIfcApproval.Level 
 		{ 
 			get
 			{
@@ -68,7 +68,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcApproval.Qualifier 
+		Ifc4.MeasureResource.IfcText? IIfcApproval.Qualifier 
 		{ 
 			get
 			{
@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcApproval.RequestingApproval 
+		Ifc4.ActorResource.IfcActorSelect IIfcApproval.RequestingApproval 
 		{ 
 			get
 			{
@@ -88,7 +88,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.ActorResource.IfcActorSelect IIfcApproval.GivingApproval 
+		Ifc4.ActorResource.IfcActorSelect IIfcApproval.GivingApproval 
 		{ 
 			get
 			{

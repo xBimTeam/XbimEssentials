@@ -16,14 +16,14 @@ namespace Xbim.Ifc2x3.ControlExtension
 {
 	public partial class @IfcPerformanceHistory : IIfcPerformanceHistory
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel IIfcPerformanceHistory.LifeCyclePhase 
+		Ifc4.MeasureResource.IfcLabel IIfcPerformanceHistory.LifeCyclePhase 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)LifeCyclePhase);
+				return new Ifc4.MeasureResource.IfcLabel((string)LifeCyclePhase);
 			} 
 		}
-		Xbim.Ifc4.ControlExtension.IfcPerformanceHistoryTypeEnum? IIfcPerformanceHistory.PredefinedType 
+		Ifc4.ControlExtension.IfcPerformanceHistoryTypeEnum? IIfcPerformanceHistory.PredefinedType 
 		{ 
 			get
 			{

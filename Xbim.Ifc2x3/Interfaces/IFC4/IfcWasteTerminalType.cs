@@ -16,56 +16,56 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
 	public partial class @IfcWasteTerminalType : IIfcWasteTerminalType
 	{
-		Xbim.Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum IIfcWasteTerminalType.PredefinedType 
+		Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum IIfcWasteTerminalType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.FLOORTRAP:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.FLOORTRAP;
+					case IfcWasteTerminalTypeEnum.FLOORTRAP:
+						return Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.FLOORTRAP;
 					
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.FLOORWASTE:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.FLOORWASTE;
+					case IfcWasteTerminalTypeEnum.FLOORWASTE:
+						return Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.FLOORWASTE;
 					
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.GULLYSUMP:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.GULLYSUMP;
+					case IfcWasteTerminalTypeEnum.GULLYSUMP:
+						return Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.GULLYSUMP;
 					
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.GULLYTRAP:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.GULLYTRAP;
+					case IfcWasteTerminalTypeEnum.GULLYTRAP:
+						return Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.GULLYTRAP;
 					
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.GREASEINTERCEPTOR:
+					case IfcWasteTerminalTypeEnum.GREASEINTERCEPTOR:
 						//## Handle translation of GREASEINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
 						//TODO: Handle translation of GREASEINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.OILINTERCEPTOR:
+					case IfcWasteTerminalTypeEnum.OILINTERCEPTOR:
 						//## Handle translation of OILINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
 						//TODO: Handle translation of OILINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.PETROLINTERCEPTOR:
+					case IfcWasteTerminalTypeEnum.PETROLINTERCEPTOR:
 						//## Handle translation of PETROLINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
 						//TODO: Handle translation of PETROLINTERCEPTOR member from IfcWasteTerminalTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 										
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.ROOFDRAIN:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.ROOFDRAIN;
+					case IfcWasteTerminalTypeEnum.ROOFDRAIN:
+						return Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.ROOFDRAIN;
 					
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.WASTEDISPOSALUNIT:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.WASTEDISPOSALUNIT;
+					case IfcWasteTerminalTypeEnum.WASTEDISPOSALUNIT:
+						return Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.WASTEDISPOSALUNIT;
 					
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.WASTETRAP:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.WASTETRAP;
+					case IfcWasteTerminalTypeEnum.WASTETRAP:
+						return Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.WASTETRAP;
 					
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.USERDEFINED;
+					case IfcWasteTerminalTypeEnum.USERDEFINED:
+						return Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.NOTDEFINED;
+					case IfcWasteTerminalTypeEnum.NOTDEFINED:
+						return Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum.NOTDEFINED;
 					
 					
 					default:

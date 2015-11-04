@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcTransformerType : IIfcTransformerType
 	{
-		Xbim.Ifc4.ElectricalDomain.IfcTransformerTypeEnum IIfcTransformerType.PredefinedType 
+		Ifc4.ElectricalDomain.IfcTransformerTypeEnum IIfcTransformerType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.ElectricalDomain.IfcTransformerTypeEnum.CURRENT:
-						return Xbim.Ifc4.ElectricalDomain.IfcTransformerTypeEnum.CURRENT;
+					case IfcTransformerTypeEnum.CURRENT:
+						return Ifc4.ElectricalDomain.IfcTransformerTypeEnum.CURRENT;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcTransformerTypeEnum.FREQUENCY:
-						return Xbim.Ifc4.ElectricalDomain.IfcTransformerTypeEnum.FREQUENCY;
+					case IfcTransformerTypeEnum.FREQUENCY:
+						return Ifc4.ElectricalDomain.IfcTransformerTypeEnum.FREQUENCY;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcTransformerTypeEnum.VOLTAGE:
-						return Xbim.Ifc4.ElectricalDomain.IfcTransformerTypeEnum.VOLTAGE;
+					case IfcTransformerTypeEnum.VOLTAGE:
+						return Ifc4.ElectricalDomain.IfcTransformerTypeEnum.VOLTAGE;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcTransformerTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.ElectricalDomain.IfcTransformerTypeEnum.USERDEFINED;
+					case IfcTransformerTypeEnum.USERDEFINED:
+						return Ifc4.ElectricalDomain.IfcTransformerTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcTransformerTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.ElectricalDomain.IfcTransformerTypeEnum.NOTDEFINED;
+					case IfcTransformerTypeEnum.NOTDEFINED:
+						return Ifc4.ElectricalDomain.IfcTransformerTypeEnum.NOTDEFINED;
 					
 					
 					default:

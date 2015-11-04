@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcWall : IIfcWall
 	{
-		Xbim.Ifc4.SharedBldgElements.IfcWallTypeEnum? IIfcWall.PredefinedType 
+		Ifc4.SharedBldgElements.IfcWallTypeEnum? IIfcWall.PredefinedType 
 		{ 
 			get
 			{

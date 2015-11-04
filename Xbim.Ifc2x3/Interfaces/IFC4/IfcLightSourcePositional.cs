@@ -23,32 +23,32 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				return Position as IIfcCartesianPoint;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcLightSourcePositional.Radius 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcLightSourcePositional.Radius 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Radius);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Radius);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.ConstantAttenuation 
+		Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.ConstantAttenuation 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcReal((double)ConstantAttenuation);
+				return new Ifc4.MeasureResource.IfcReal((double)ConstantAttenuation);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.DistanceAttenuation 
+		Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.DistanceAttenuation 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcReal((double)DistanceAttenuation);
+				return new Ifc4.MeasureResource.IfcReal((double)DistanceAttenuation);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.QuadricAttenuation 
+		Ifc4.MeasureResource.IfcReal IIfcLightSourcePositional.QuadricAttenuation 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcReal((double)QuadricAttenuation);
+				return new Ifc4.MeasureResource.IfcReal((double)QuadricAttenuation);
 			} 
 		}
 	}

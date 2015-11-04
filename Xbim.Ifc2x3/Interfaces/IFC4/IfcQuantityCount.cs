@@ -16,14 +16,14 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcQuantityCount : IIfcQuantityCount
 	{
-		Xbim.Ifc4.MeasureResource.IfcCountMeasure IIfcQuantityCount.CountValue 
+		Ifc4.MeasureResource.IfcCountMeasure IIfcQuantityCount.CountValue 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcCountMeasure((double)CountValue);
+				return new Ifc4.MeasureResource.IfcCountMeasure((double)CountValue);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcQuantityCount.Formula 
+		Ifc4.MeasureResource.IfcLabel? IIfcQuantityCount.Formula 
 		{ 
 			get
 			{

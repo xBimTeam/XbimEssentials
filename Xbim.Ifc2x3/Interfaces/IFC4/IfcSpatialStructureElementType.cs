@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSpatialStructureElementType : IIfcSpatialStructureElementType
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcSpatialElementType.ElementType 
+		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElementType.ElementType 
 		{ 
 			get
 			{

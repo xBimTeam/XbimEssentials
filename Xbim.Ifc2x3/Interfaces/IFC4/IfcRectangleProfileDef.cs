@@ -16,18 +16,18 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcRectangleProfileDef : IIfcRectangleProfileDef
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangleProfileDef.XDim 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangleProfileDef.XDim 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)XDim);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)XDim);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangleProfileDef.YDim 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangleProfileDef.YDim 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)YDim);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)YDim);
 			} 
 		}
 	}

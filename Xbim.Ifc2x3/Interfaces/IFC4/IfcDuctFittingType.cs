@@ -16,38 +16,38 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcDuctFittingType : IIfcDuctFittingType
 	{
-		Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum IIfcDuctFittingType.PredefinedType 
+		Ifc4.HvacDomain.IfcDuctFittingTypeEnum IIfcDuctFittingType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.BEND:
-						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.BEND;
+					case IfcDuctFittingTypeEnum.BEND:
+						return Ifc4.HvacDomain.IfcDuctFittingTypeEnum.BEND;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.CONNECTOR:
-						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.CONNECTOR;
+					case IfcDuctFittingTypeEnum.CONNECTOR:
+						return Ifc4.HvacDomain.IfcDuctFittingTypeEnum.CONNECTOR;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.ENTRY:
-						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.ENTRY;
+					case IfcDuctFittingTypeEnum.ENTRY:
+						return Ifc4.HvacDomain.IfcDuctFittingTypeEnum.ENTRY;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.EXIT:
-						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.EXIT;
+					case IfcDuctFittingTypeEnum.EXIT:
+						return Ifc4.HvacDomain.IfcDuctFittingTypeEnum.EXIT;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.JUNCTION:
-						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.JUNCTION;
+					case IfcDuctFittingTypeEnum.JUNCTION:
+						return Ifc4.HvacDomain.IfcDuctFittingTypeEnum.JUNCTION;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.OBSTRUCTION:
-						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.OBSTRUCTION;
+					case IfcDuctFittingTypeEnum.OBSTRUCTION:
+						return Ifc4.HvacDomain.IfcDuctFittingTypeEnum.OBSTRUCTION;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.TRANSITION:
-						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.TRANSITION;
+					case IfcDuctFittingTypeEnum.TRANSITION:
+						return Ifc4.HvacDomain.IfcDuctFittingTypeEnum.TRANSITION;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.USERDEFINED;
+					case IfcDuctFittingTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcDuctFittingTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcDuctFittingTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcDuctFittingTypeEnum.NOTDEFINED;
+					case IfcDuctFittingTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcDuctFittingTypeEnum.NOTDEFINED;
 					
 					
 					default:

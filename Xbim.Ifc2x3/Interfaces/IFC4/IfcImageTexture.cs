@@ -16,11 +16,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcImageTexture : IIfcImageTexture
 	{
-		Xbim.Ifc4.ExternalReferenceResource.IfcURIReference IIfcImageTexture.URLReference 
+		Ifc4.ExternalReferenceResource.IfcURIReference IIfcImageTexture.URLReference 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.ExternalReferenceResource.IfcURIReference((string)UrlReference);
+				return new Ifc4.ExternalReferenceResource.IfcURIReference((string)UrlReference);
 			} 
 		}
 	}

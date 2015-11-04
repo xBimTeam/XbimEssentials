@@ -16,18 +16,18 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcCurveStyleFontPattern : IIfcCurveStyleFontPattern
 	{
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure IIfcCurveStyleFontPattern.VisibleSegmentLength 
+		Ifc4.MeasureResource.IfcLengthMeasure IIfcCurveStyleFontPattern.VisibleSegmentLength 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)VisibleSegmentLength);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)VisibleSegmentLength);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCurveStyleFontPattern.InvisibleSegmentLength 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCurveStyleFontPattern.InvisibleSegmentLength 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)InvisibleSegmentLength);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)InvisibleSegmentLength);
 			} 
 		}
 	}

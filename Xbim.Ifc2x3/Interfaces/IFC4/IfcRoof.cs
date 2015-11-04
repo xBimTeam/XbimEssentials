@@ -16,53 +16,53 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRoof : IIfcRoof
 	{
-		Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum? IIfcRoof.PredefinedType 
+		Ifc4.SharedBldgElements.IfcRoofTypeEnum? IIfcRoof.PredefinedType 
 		{ 
 			get
 			{
 				switch (ShapeType)
 				{
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.FLAT_ROOF:
-						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.FLAT_ROOF;
+					case IfcRoofTypeEnum.FLAT_ROOF:
+						return Ifc4.SharedBldgElements.IfcRoofTypeEnum.FLAT_ROOF;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.SHED_ROOF:
-						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.SHED_ROOF;
+					case IfcRoofTypeEnum.SHED_ROOF:
+						return Ifc4.SharedBldgElements.IfcRoofTypeEnum.SHED_ROOF;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.GABLE_ROOF:
-						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.GABLE_ROOF;
+					case IfcRoofTypeEnum.GABLE_ROOF:
+						return Ifc4.SharedBldgElements.IfcRoofTypeEnum.GABLE_ROOF;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.HIP_ROOF:
-						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.HIP_ROOF;
+					case IfcRoofTypeEnum.HIP_ROOF:
+						return Ifc4.SharedBldgElements.IfcRoofTypeEnum.HIP_ROOF;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.HIPPED_GABLE_ROOF:
-						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.HIPPED_GABLE_ROOF;
+					case IfcRoofTypeEnum.HIPPED_GABLE_ROOF:
+						return Ifc4.SharedBldgElements.IfcRoofTypeEnum.HIPPED_GABLE_ROOF;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.GAMBREL_ROOF:
-						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.GAMBREL_ROOF;
+					case IfcRoofTypeEnum.GAMBREL_ROOF:
+						return Ifc4.SharedBldgElements.IfcRoofTypeEnum.GAMBREL_ROOF;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.MANSARD_ROOF:
-						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.MANSARD_ROOF;
+					case IfcRoofTypeEnum.MANSARD_ROOF:
+						return Ifc4.SharedBldgElements.IfcRoofTypeEnum.MANSARD_ROOF;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.BARREL_ROOF:
-						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.BARREL_ROOF;
+					case IfcRoofTypeEnum.BARREL_ROOF:
+						return Ifc4.SharedBldgElements.IfcRoofTypeEnum.BARREL_ROOF;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.RAINBOW_ROOF:
-						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.RAINBOW_ROOF;
+					case IfcRoofTypeEnum.RAINBOW_ROOF:
+						return Ifc4.SharedBldgElements.IfcRoofTypeEnum.RAINBOW_ROOF;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.BUTTERFLY_ROOF:
-						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.BUTTERFLY_ROOF;
+					case IfcRoofTypeEnum.BUTTERFLY_ROOF:
+						return Ifc4.SharedBldgElements.IfcRoofTypeEnum.BUTTERFLY_ROOF;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.PAVILION_ROOF:
-						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.PAVILION_ROOF;
+					case IfcRoofTypeEnum.PAVILION_ROOF:
+						return Ifc4.SharedBldgElements.IfcRoofTypeEnum.PAVILION_ROOF;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.DOME_ROOF:
-						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.DOME_ROOF;
+					case IfcRoofTypeEnum.DOME_ROOF:
+						return Ifc4.SharedBldgElements.IfcRoofTypeEnum.DOME_ROOF;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.FREEFORM:
-						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.FREEFORM;
+					case IfcRoofTypeEnum.FREEFORM:
+						return Ifc4.SharedBldgElements.IfcRoofTypeEnum.FREEFORM;
 					
-					case Xbim.Ifc2x3.SharedBldgElements.IfcRoofTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.SharedBldgElements.IfcRoofTypeEnum.NOTDEFINED;
+					case IfcRoofTypeEnum.NOTDEFINED:
+						return Ifc4.SharedBldgElements.IfcRoofTypeEnum.NOTDEFINED;
 					
 					
 					default:

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcBoundaryNodeCondition : IIfcBoundaryNodeCondition
 	{
-		Xbim.Ifc4.StructuralLoadResource.IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessX 
+		Ifc4.StructuralLoadResource.IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessX 
 		{ 
 			get
 			{
@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.StructuralLoadResource.IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessY 
+		Ifc4.StructuralLoadResource.IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessY 
 		{ 
 			get
 			{
@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.StructuralLoadResource.IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessZ 
+		Ifc4.StructuralLoadResource.IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessZ 
 		{ 
 			get
 			{
@@ -46,7 +46,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.StructuralLoadResource.IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessX 
+		Ifc4.StructuralLoadResource.IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessX 
 		{ 
 			get
 			{
@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.StructuralLoadResource.IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessY 
+		Ifc4.StructuralLoadResource.IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessY 
 		{ 
 			get
 			{
@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.StructuralLoadResource.IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessZ 
+		Ifc4.StructuralLoadResource.IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessZ 
 		{ 
 			get
 			{

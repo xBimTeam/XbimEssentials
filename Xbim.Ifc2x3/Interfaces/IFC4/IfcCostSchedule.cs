@@ -16,38 +16,38 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	public partial class @IfcCostSchedule : IIfcCostSchedule
 	{
-		Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum? IIfcCostSchedule.PredefinedType 
+		Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum? IIfcCostSchedule.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.BUDGET:
-						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.BUDGET;
+					case IfcCostScheduleTypeEnum.BUDGET:
+						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.BUDGET;
 					
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.COSTPLAN:
-						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.COSTPLAN;
+					case IfcCostScheduleTypeEnum.COSTPLAN:
+						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.COSTPLAN;
 					
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.ESTIMATE:
-						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.ESTIMATE;
+					case IfcCostScheduleTypeEnum.ESTIMATE:
+						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.ESTIMATE;
 					
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.TENDER:
-						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.TENDER;
+					case IfcCostScheduleTypeEnum.TENDER:
+						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.TENDER;
 					
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES:
-						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES;
+					case IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES:
+						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES;
 					
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES:
-						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES;
+					case IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES:
+						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES;
 					
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.SCHEDULEOFRATES:
-						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.SCHEDULEOFRATES;
+					case IfcCostScheduleTypeEnum.SCHEDULEOFRATES:
+						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.SCHEDULEOFRATES;
 					
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.USERDEFINED;
+					case IfcCostScheduleTypeEnum.USERDEFINED:
+						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.SharedMgmtElements.IfcCostScheduleTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.NOTDEFINED;
+					case IfcCostScheduleTypeEnum.NOTDEFINED:
+						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.NOTDEFINED;
 					
 					
 					default:
@@ -55,15 +55,15 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcCostSchedule.Status 
+		Ifc4.MeasureResource.IfcLabel? IIfcCostSchedule.Status 
 		{ 
 			get
 			{
 				if (Status == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Status);
+				return new Ifc4.MeasureResource.IfcLabel((string)Status);
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcCostSchedule.SubmittedOn 
+		Ifc4.DateTimeResource.IfcDateTime? IIfcCostSchedule.SubmittedOn 
 		{ 
 			get
 			{
@@ -73,7 +73,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				//##
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcCostSchedule.UpdateDate 
+		Ifc4.DateTimeResource.IfcDateTime? IIfcCostSchedule.UpdateDate 
 		{ 
 			get
 			{

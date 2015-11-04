@@ -16,52 +16,52 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcFailureConnectionCondition : IIfcFailureConnectionCondition
 	{
-		Xbim.Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureX 
+		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureX 
 		{ 
 			get
 			{
 				if (TensionFailureX == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)TensionFailureX);
+				return new Ifc4.MeasureResource.IfcForceMeasure((double)TensionFailureX);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureY 
+		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureY 
 		{ 
 			get
 			{
 				if (TensionFailureY == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)TensionFailureY);
+				return new Ifc4.MeasureResource.IfcForceMeasure((double)TensionFailureY);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureZ 
+		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureZ 
 		{ 
 			get
 			{
 				if (TensionFailureZ == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)TensionFailureZ);
+				return new Ifc4.MeasureResource.IfcForceMeasure((double)TensionFailureZ);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureX 
+		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureX 
 		{ 
 			get
 			{
 				if (CompressionFailureX == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)CompressionFailureX);
+				return new Ifc4.MeasureResource.IfcForceMeasure((double)CompressionFailureX);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureY 
+		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureY 
 		{ 
 			get
 			{
 				if (CompressionFailureY == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)CompressionFailureY);
+				return new Ifc4.MeasureResource.IfcForceMeasure((double)CompressionFailureY);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureZ 
+		Ifc4.MeasureResource.IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureZ 
 		{ 
 			get
 			{
 				if (CompressionFailureZ == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcForceMeasure((double)CompressionFailureZ);
+				return new Ifc4.MeasureResource.IfcForceMeasure((double)CompressionFailureZ);
 			} 
 		}
 	}

@@ -10,13 +10,13 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using Xbim.Ifc2x3.Interfaces.Conversions;
+
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcWorkControl : IIfcWorkControl
 	{
-		Xbim.Ifc4.DateTimeResource.IfcDateTime IIfcWorkControl.CreationDate 
+		Ifc4.DateTimeResource.IfcDateTime IIfcWorkControl.CreationDate 
 		{ 
 			get
 			{
@@ -35,15 +35,15 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcWorkControl.Purpose 
+		Ifc4.MeasureResource.IfcLabel? IIfcWorkControl.Purpose 
 		{ 
 			get
 			{
 				if (Purpose == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Purpose);
+				return new Ifc4.MeasureResource.IfcLabel((string)Purpose);
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.Duration 
+		Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.Duration 
 		{ 
 			get
 			{
@@ -53,7 +53,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				//##
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.TotalFloat 
+		Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.TotalFloat 
 		{ 
 			get
 			{
@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				//##
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime IIfcWorkControl.StartTime 
+		Ifc4.DateTimeResource.IfcDateTime IIfcWorkControl.StartTime 
 		{ 
 			get
 			{
@@ -73,7 +73,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				//##
 			} 
 		}
-		Xbim.Ifc4.DateTimeResource.IfcDateTime? IIfcWorkControl.FinishTime 
+		Ifc4.DateTimeResource.IfcDateTime? IIfcWorkControl.FinishTime 
 		{ 
 			get
 			{

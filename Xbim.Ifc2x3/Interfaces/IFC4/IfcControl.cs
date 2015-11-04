@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcControl : IIfcControl
 	{
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcControl.Identification 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcControl.Identification 
 		{ 
 			get
 			{

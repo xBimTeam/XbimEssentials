@@ -16,15 +16,15 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssociatesDocument : IIfcRelAssociatesDocument
 	{
-		Xbim.Ifc4.ExternalReferenceResource.IfcDocumentSelect IIfcRelAssociatesDocument.RelatingDocument 
+		Ifc4.ExternalReferenceResource.IfcDocumentSelect IIfcRelAssociatesDocument.RelatingDocument 
 		{ 
 			get
 			{
 				if (RelatingDocument == null) return null;
-				var ifcdocumentreference = RelatingDocument as Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentReference;
+				var ifcdocumentreference = RelatingDocument as ExternalReferenceResource.IfcDocumentReference;
 				if (ifcdocumentreference != null) 
 					return ifcdocumentreference;
-				var ifcdocumentinformation = RelatingDocument as Xbim.Ifc2x3.ExternalReferenceResource.IfcDocumentInformation;
+				var ifcdocumentinformation = RelatingDocument as ExternalReferenceResource.IfcDocumentInformation;
 				if (ifcdocumentinformation != null) 
 					return ifcdocumentinformation;
 				return null;

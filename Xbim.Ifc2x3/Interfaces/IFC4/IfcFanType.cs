@@ -16,38 +16,38 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcFanType : IIfcFanType
 	{
-		Xbim.Ifc4.HvacDomain.IfcFanTypeEnum IIfcFanType.PredefinedType 
+		Ifc4.HvacDomain.IfcFanTypeEnum IIfcFanType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.CENTRIFUGALFORWARDCURVED:
-						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.CENTRIFUGALFORWARDCURVED;
+					case IfcFanTypeEnum.CENTRIFUGALFORWARDCURVED:
+						return Ifc4.HvacDomain.IfcFanTypeEnum.CENTRIFUGALFORWARDCURVED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.CENTRIFUGALRADIAL:
-						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.CENTRIFUGALRADIAL;
+					case IfcFanTypeEnum.CENTRIFUGALRADIAL:
+						return Ifc4.HvacDomain.IfcFanTypeEnum.CENTRIFUGALRADIAL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED:
-						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED;
+					case IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED:
+						return Ifc4.HvacDomain.IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.CENTRIFUGALAIRFOIL:
-						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.CENTRIFUGALAIRFOIL;
+					case IfcFanTypeEnum.CENTRIFUGALAIRFOIL:
+						return Ifc4.HvacDomain.IfcFanTypeEnum.CENTRIFUGALAIRFOIL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.TUBEAXIAL:
-						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.TUBEAXIAL;
+					case IfcFanTypeEnum.TUBEAXIAL:
+						return Ifc4.HvacDomain.IfcFanTypeEnum.TUBEAXIAL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.VANEAXIAL:
-						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.VANEAXIAL;
+					case IfcFanTypeEnum.VANEAXIAL:
+						return Ifc4.HvacDomain.IfcFanTypeEnum.VANEAXIAL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.PROPELLORAXIAL:
-						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.PROPELLORAXIAL;
+					case IfcFanTypeEnum.PROPELLORAXIAL:
+						return Ifc4.HvacDomain.IfcFanTypeEnum.PROPELLORAXIAL;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.USERDEFINED;
+					case IfcFanTypeEnum.USERDEFINED:
+						return Ifc4.HvacDomain.IfcFanTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.HVACDomain.IfcFanTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.HvacDomain.IfcFanTypeEnum.NOTDEFINED;
+					case IfcFanTypeEnum.NOTDEFINED:
+						return Ifc4.HvacDomain.IfcFanTypeEnum.NOTDEFINED;
 					
 					
 					default:

@@ -23,11 +23,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return ExtrudedDirection as IIfcDirection;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLengthMeasure IIfcSurfaceOfLinearExtrusion.Depth 
+		Ifc4.MeasureResource.IfcLengthMeasure IIfcSurfaceOfLinearExtrusion.Depth 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcLengthMeasure((double)Depth);
+				return new Ifc4.MeasureResource.IfcLengthMeasure((double)Depth);
 			} 
 		}
 	}

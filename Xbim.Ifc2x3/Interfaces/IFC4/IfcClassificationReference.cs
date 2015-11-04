@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcClassificationReference : IIfcClassificationReference
 	{
-		Xbim.Ifc4.ExternalReferenceResource.IfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource 
+		Ifc4.ExternalReferenceResource.IfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource 
 		{ 
 			get
 			{
@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcText? IIfcClassificationReference.Description 
+		Ifc4.MeasureResource.IfcText? IIfcClassificationReference.Description 
 		{ 
 			get
 			{
@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcIdentifier? IIfcClassificationReference.Sort 
+		Ifc4.MeasureResource.IfcIdentifier? IIfcClassificationReference.Sort 
 		{ 
 			get
 			{

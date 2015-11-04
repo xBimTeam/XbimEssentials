@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	public partial class @IfcFastenerType : IIfcFastenerType
 	{
-		Xbim.Ifc4.SharedComponentElements.IfcFastenerTypeEnum IIfcFastenerType.PredefinedType 
+		Ifc4.SharedComponentElements.IfcFastenerTypeEnum IIfcFastenerType.PredefinedType 
 		{ 
 			get
 			{

@@ -16,25 +16,25 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcRectangularPyramid : IIfcRectangularPyramid
 	{
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangularPyramid.XLength 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangularPyramid.XLength 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)XLength);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)XLength);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangularPyramid.YLength 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangularPyramid.YLength 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)YLength);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)YLength);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangularPyramid.Height 
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangularPyramid.Height 
 		{ 
 			get
 			{
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Height);
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)Height);
 			} 
 		}
 	}

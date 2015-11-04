@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoad : IIfcStructuralLoad
 	{
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcStructuralLoad.Name 
+		Ifc4.MeasureResource.IfcLabel? IIfcStructuralLoad.Name 
 		{ 
 			get
 			{
 				if (Name == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)Name);
+				return new Ifc4.MeasureResource.IfcLabel((string)Name);
 			} 
 		}
 	}

@@ -16,15 +16,15 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcCsgSolid : IIfcCsgSolid
 	{
-		Xbim.Ifc4.GeometricModelResource.IfcCsgSelect IIfcCsgSolid.TreeRootExpression 
+		Ifc4.GeometricModelResource.IfcCsgSelect IIfcCsgSolid.TreeRootExpression 
 		{ 
 			get
 			{
 				if (TreeRootExpression == null) return null;
-				var ifcbooleanresult = TreeRootExpression as Xbim.Ifc2x3.GeometricModelResource.IfcBooleanResult;
+				var ifcbooleanresult = TreeRootExpression as IfcBooleanResult;
 				if (ifcbooleanresult != null) 
 					return ifcbooleanresult;
-				var ifccsgprimitive3d = TreeRootExpression as Xbim.Ifc2x3.GeometricModelResource.IfcCsgPrimitive3D;
+				var ifccsgprimitive3d = TreeRootExpression as IfcCsgPrimitive3D;
 				if (ifccsgprimitive3d != null) 
 					return ifccsgprimitive3d;
 				return null;

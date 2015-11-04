@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcMotorConnectionType : IIfcMotorConnectionType
 	{
-		Xbim.Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum IIfcMotorConnectionType.PredefinedType 
+		Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum IIfcMotorConnectionType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
-					case Xbim.Ifc2x3.ElectricalDomain.IfcMotorConnectionTypeEnum.BELTDRIVE:
-						return Xbim.Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.BELTDRIVE;
+					case IfcMotorConnectionTypeEnum.BELTDRIVE:
+						return Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.BELTDRIVE;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcMotorConnectionTypeEnum.COUPLING:
-						return Xbim.Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.COUPLING;
+					case IfcMotorConnectionTypeEnum.COUPLING:
+						return Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.COUPLING;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcMotorConnectionTypeEnum.DIRECTDRIVE:
-						return Xbim.Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.DIRECTDRIVE;
+					case IfcMotorConnectionTypeEnum.DIRECTDRIVE:
+						return Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.DIRECTDRIVE;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcMotorConnectionTypeEnum.USERDEFINED:
-						return Xbim.Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.USERDEFINED;
+					case IfcMotorConnectionTypeEnum.USERDEFINED:
+						return Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.ElectricalDomain.IfcMotorConnectionTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.NOTDEFINED;
+					case IfcMotorConnectionTypeEnum.NOTDEFINED:
+						return Ifc4.ElectricalDomain.IfcMotorConnectionTypeEnum.NOTDEFINED;
 					
 					
 					default:

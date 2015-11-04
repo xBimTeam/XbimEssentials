@@ -26,35 +26,35 @@ namespace Xbim.Ifc2x3.Kernel
 			}
 			} 
 		}
-		Xbim.Ifc4.Kernel.IfcObjectTypeEnum? IIfcRelAssigns.RelatedObjectsType 
+		Ifc4.Kernel.IfcObjectTypeEnum? IIfcRelAssigns.RelatedObjectsType 
 		{ 
 			get
 			{
 				switch (RelatedObjectsType)
 				{
-					case Xbim.Ifc2x3.Kernel.IfcObjectTypeEnum.PRODUCT:
-						return Xbim.Ifc4.Kernel.IfcObjectTypeEnum.PRODUCT;
+					case IfcObjectTypeEnum.PRODUCT:
+						return Ifc4.Kernel.IfcObjectTypeEnum.PRODUCT;
 					
-					case Xbim.Ifc2x3.Kernel.IfcObjectTypeEnum.PROCESS:
-						return Xbim.Ifc4.Kernel.IfcObjectTypeEnum.PROCESS;
+					case IfcObjectTypeEnum.PROCESS:
+						return Ifc4.Kernel.IfcObjectTypeEnum.PROCESS;
 					
-					case Xbim.Ifc2x3.Kernel.IfcObjectTypeEnum.CONTROL:
-						return Xbim.Ifc4.Kernel.IfcObjectTypeEnum.CONTROL;
+					case IfcObjectTypeEnum.CONTROL:
+						return Ifc4.Kernel.IfcObjectTypeEnum.CONTROL;
 					
-					case Xbim.Ifc2x3.Kernel.IfcObjectTypeEnum.RESOURCE:
-						return Xbim.Ifc4.Kernel.IfcObjectTypeEnum.RESOURCE;
+					case IfcObjectTypeEnum.RESOURCE:
+						return Ifc4.Kernel.IfcObjectTypeEnum.RESOURCE;
 					
-					case Xbim.Ifc2x3.Kernel.IfcObjectTypeEnum.ACTOR:
-						return Xbim.Ifc4.Kernel.IfcObjectTypeEnum.ACTOR;
+					case IfcObjectTypeEnum.ACTOR:
+						return Ifc4.Kernel.IfcObjectTypeEnum.ACTOR;
 					
-					case Xbim.Ifc2x3.Kernel.IfcObjectTypeEnum.GROUP:
-						return Xbim.Ifc4.Kernel.IfcObjectTypeEnum.GROUP;
+					case IfcObjectTypeEnum.GROUP:
+						return Ifc4.Kernel.IfcObjectTypeEnum.GROUP;
 					
-					case Xbim.Ifc2x3.Kernel.IfcObjectTypeEnum.PROJECT:
-						return Xbim.Ifc4.Kernel.IfcObjectTypeEnum.PROJECT;
+					case IfcObjectTypeEnum.PROJECT:
+						return Ifc4.Kernel.IfcObjectTypeEnum.PROJECT;
 					
-					case Xbim.Ifc2x3.Kernel.IfcObjectTypeEnum.NOTDEFINED:
-						return Xbim.Ifc4.Kernel.IfcObjectTypeEnum.NOTDEFINED;
+					case IfcObjectTypeEnum.NOTDEFINED:
+						return Ifc4.Kernel.IfcObjectTypeEnum.NOTDEFINED;
 					
 					
 					default:

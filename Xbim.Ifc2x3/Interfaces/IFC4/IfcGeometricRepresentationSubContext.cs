@@ -23,46 +23,46 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return ParentContext as IIfcGeometricRepresentationContext;
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale 
+		Ifc4.MeasureResource.IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale 
 		{ 
 			get
 			{
 				if (TargetScale == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)TargetScale);
+				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure((double)TargetScale);
 			} 
 		}
-		Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView 
+		Ifc4.RepresentationResource.IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView 
 		{ 
 			get
 			{
 				switch (TargetView)
 				{
-					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.GRAPH_VIEW:
-						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.GRAPH_VIEW;
+					case IfcGeometricProjectionEnum.GRAPH_VIEW:
+						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.GRAPH_VIEW;
 					
-					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.SKETCH_VIEW:
-						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.SKETCH_VIEW;
+					case IfcGeometricProjectionEnum.SKETCH_VIEW:
+						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.SKETCH_VIEW;
 					
-					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.MODEL_VIEW:
-						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.MODEL_VIEW;
+					case IfcGeometricProjectionEnum.MODEL_VIEW:
+						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.MODEL_VIEW;
 					
-					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.PLAN_VIEW:
-						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.PLAN_VIEW;
+					case IfcGeometricProjectionEnum.PLAN_VIEW:
+						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.PLAN_VIEW;
 					
-					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW:
-						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW;
+					case IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW:
+						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW;
 					
-					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.SECTION_VIEW:
-						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.SECTION_VIEW;
+					case IfcGeometricProjectionEnum.SECTION_VIEW:
+						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.SECTION_VIEW;
 					
-					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.ELEVATION_VIEW:
-						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.ELEVATION_VIEW;
+					case IfcGeometricProjectionEnum.ELEVATION_VIEW:
+						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.ELEVATION_VIEW;
 					
-					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.USERDEFINED:
-						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.USERDEFINED;
+					case IfcGeometricProjectionEnum.USERDEFINED:
+						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.USERDEFINED;
 					
-					case Xbim.Ifc2x3.RepresentationResource.IfcGeometricProjectionEnum.NOTDEFINED:
-						return Xbim.Ifc4.RepresentationResource.IfcGeometricProjectionEnum.NOTDEFINED;
+					case IfcGeometricProjectionEnum.NOTDEFINED:
+						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.NOTDEFINED;
 					
 					
 					default:
@@ -70,12 +70,12 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				}
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView 
+		Ifc4.MeasureResource.IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView 
 		{ 
 			get
 			{
 				if (UserDefinedTargetView == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcLabel((string)UserDefinedTargetView);
+				return new Ifc4.MeasureResource.IfcLabel((string)UserDefinedTargetView);
 			} 
 		}
 	}

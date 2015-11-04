@@ -16,28 +16,28 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadPlanarForce : IIfcStructuralLoadPlanarForce
 	{
-		Xbim.Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceX 
+		Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceX 
 		{ 
 			get
 			{
 				if (PlanarForceX == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPlanarForceMeasure((double)PlanarForceX);
+				return new Ifc4.MeasureResource.IfcPlanarForceMeasure((double)PlanarForceX);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceY 
+		Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceY 
 		{ 
 			get
 			{
 				if (PlanarForceY == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPlanarForceMeasure((double)PlanarForceY);
+				return new Ifc4.MeasureResource.IfcPlanarForceMeasure((double)PlanarForceY);
 			} 
 		}
-		Xbim.Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceZ 
+		Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceZ 
 		{ 
 			get
 			{
 				if (PlanarForceZ == null) return null;
-				return new Xbim.Ifc4.MeasureResource.IfcPlanarForceMeasure((double)PlanarForceZ);
+				return new Ifc4.MeasureResource.IfcPlanarForceMeasure((double)PlanarForceZ);
 			} 
 		}
 	}

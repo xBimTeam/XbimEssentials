@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcConnectionPointGeometry : IIfcConnectionPointGeometry
 	{
-		Xbim.Ifc4.GeometricConstraintResource.IfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatingElement 
+		Ifc4.GeometricConstraintResource.IfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatingElement 
 		{ 
 			get
 			{
 				if (PointOnRelatingElement == null) return null;
-				var ifcpoint = PointOnRelatingElement as Xbim.Ifc2x3.GeometryResource.IfcPoint;
+				var ifcpoint = PointOnRelatingElement as GeometryResource.IfcPoint;
 				if (ifcpoint != null) 
 					return ifcpoint;
-				var ifcvertexpoint = PointOnRelatingElement as Xbim.Ifc2x3.TopologyResource.IfcVertexPoint;
+				var ifcvertexpoint = PointOnRelatingElement as TopologyResource.IfcVertexPoint;
 				if (ifcvertexpoint != null) 
 					return ifcvertexpoint;
 				return null;
 			} 
 		}
-		Xbim.Ifc4.GeometricConstraintResource.IfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatedElement 
+		Ifc4.GeometricConstraintResource.IfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatedElement 
 		{ 
 			get
 			{
 				if (PointOnRelatedElement == null) return null;
-				var ifcpoint = PointOnRelatedElement as Xbim.Ifc2x3.GeometryResource.IfcPoint;
+				var ifcpoint = PointOnRelatedElement as GeometryResource.IfcPoint;
 				if (ifcpoint != null) 
 					return ifcpoint;
-				var ifcvertexpoint = PointOnRelatedElement as Xbim.Ifc2x3.TopologyResource.IfcVertexPoint;
+				var ifcvertexpoint = PointOnRelatedElement as TopologyResource.IfcVertexPoint;
 				if (ifcvertexpoint != null) 
 					return ifcvertexpoint;
 				return null;

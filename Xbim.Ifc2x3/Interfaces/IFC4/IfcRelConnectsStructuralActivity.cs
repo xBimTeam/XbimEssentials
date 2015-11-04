@@ -16,15 +16,15 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcRelConnectsStructuralActivity : IIfcRelConnectsStructuralActivity
 	{
-		Xbim.Ifc4.StructuralAnalysisDomain.IfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement 
+		Ifc4.StructuralAnalysisDomain.IfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement 
 		{ 
 			get
 			{
 				if (RelatingElement == null) return null;
-				var ifcstructuralitem = RelatingElement as Xbim.Ifc2x3.StructuralAnalysisDomain.IfcStructuralItem;
+				var ifcstructuralitem = RelatingElement as IfcStructuralItem;
 				if (ifcstructuralitem != null) 
 					return ifcstructuralitem;
-				var ifcelement = RelatingElement as Xbim.Ifc2x3.ProductExtension.IfcElement;
+				var ifcelement = RelatingElement as ProductExtension.IfcElement;
 				if (ifcelement != null) 
 					return ifcelement;
 				return null;

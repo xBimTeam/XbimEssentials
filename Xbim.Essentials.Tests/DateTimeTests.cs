@@ -3,7 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Ifc2x3.DateTimeResource;
 using Xbim.IO.Memory;
 using Xbim.Ifc2x3;
-using Xbim.Ifc2x3.Interfaces.Conversions;
+using Xbim.Ifc4.Interfaces;
+
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
