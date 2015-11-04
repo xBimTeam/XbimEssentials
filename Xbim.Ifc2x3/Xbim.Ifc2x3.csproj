@@ -673,6 +673,7 @@
     <Compile Include="Interfaces\IFC4\IfcWallStandardCase.cs" />
     <Compile Include="Interfaces\IFC4\IfcWallType.cs" />
     <Compile Include="Interfaces\IFC4\IfcWasteTerminalType.cs" />
+    <Compile Include="Interfaces\IFC4\IfcWasteTerminalTypePartial.cs" />
     <Compile Include="Interfaces\IFC4\IfcWindow.cs" />
     <Compile Include="Interfaces\IFC4\IfcWindowLiningProperties.cs" />
     <Compile Include="Interfaces\IFC4\IfcWindowPanelProperties.cs" />

@@ -36,8 +36,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			get
 			{
 				//## Handle return of StartTime for which no match was found
-				//TODO: Handle return of StartTime for which no match was found
-				throw new System.NotImplementedException();
+                return new Ifc4.DateTimeResource.IfcDateTime(StartTime.ToISODateTimeString());
 				//##
 			} 
 		}
@@ -46,8 +45,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			get
 			{
 				//## Handle return of EndTime for which no match was found
-				//TODO: Handle return of EndTime for which no match was found
-				throw new System.NotImplementedException();
+                return new Ifc4.DateTimeResource.IfcDateTime(EndTime.ToISODateTimeString());
 				//##
 			} 
 		}
