@@ -243,7 +243,7 @@ namespace Xbim.IO.Memory
         /// </summary>
         /// <param name="stream">Path to the file</param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
-        public virtual int Open(Stream stream)
+        public virtual int Open(Stream stream, bool parseHeaderOnly = false)
         {
             var parser = new XbimP21Parser(stream, Metadata);
             var first = true;
@@ -266,6 +266,7 @@ namespace Xbim.IO.Memory
                             return null;
                     }
                 }
+                if (parseHeaderOnly) parser.Cancel = true;
                 if (label == null)
                     return _instances.Factory.New(name);
                 //if this is a first non-header entity header is read completely by now. 
@@ -295,11 +296,11 @@ namespace Xbim.IO.Memory
         /// </summary>
         /// <param name="file">Path to the file</param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
-        public virtual int Open(string file)
+        public virtual int Open(string file, bool parseHeaderOnly = false)
         {
             using (var stream = File.OpenRead(file))
             {
-                var result = Open(stream);
+                var result = Open(stream, parseHeaderOnly);
                 stream.Close();
                 return result;
             }

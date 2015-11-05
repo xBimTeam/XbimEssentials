@@ -43,7 +43,7 @@ namespace Xbim.IO.Step21
         public static int MaxErrorCount = 100;
         private int _percentageParsed;
         private bool _deferListItems;
-
+        public bool Cancel = false;
         private readonly List<int> _nestedIndex = new List<int>();
         public int[] NestedIndex { get { return _listNestLevel > 0 ? _nestedIndex.ToArray() : null; } }
 
@@ -164,6 +164,7 @@ namespace Xbim.IO.Step21
             if (newPercentage <= _percentageParsed) return;
             _percentageParsed = newPercentage;
             ProgressStatus(_percentageParsed, "Parsing");
+            if (Cancel) YYAccept();
         }
 
         internal override void SetType(string entityTypeName)
@@ -184,6 +185,7 @@ namespace Xbim.IO.Step21
                 p21.Entity = EntityCreate(entityTypeName, p21.EntityLabel, InHeader, out reqProps);
                 p21.RequiredParameters = reqProps;
             }
+            if (Cancel) YYAccept();
         }
 
         internal override void EndEntity()
@@ -321,6 +323,7 @@ namespace Xbim.IO.Step21
                     RequiredParameters = reqProps
                 };
             _processStack.Push(_currentInstance);
+            if (Cancel) YYAccept();
         }
 
         private void SetEntityParameter(string value)
