@@ -36,9 +36,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of Publisher for which no match was found
-				//TODO: Handle return of Publisher for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return Publisher;
+			    //##
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcLibraryInformation.VersionDate 
@@ -46,9 +45,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of VersionDate for which no match was found
-				//TODO: Handle return of VersionDate for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return VersionDate != null
+			        ? new Ifc4.DateTimeResource.IfcDateTime(VersionDate.ToISODateTimeString())
+			        : null;
+			    //##
 			} 
 		}
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcLibraryInformation.Location 
