@@ -21,8 +21,7 @@ namespace Xbim.Ifc2x3.Kernel
 			get
 			{
 				//## Handle return of RelatingResource for which no match was found
-				//TODO: Handle return of RelatingResource for which no match was found
-				throw new System.NotImplementedException();
+                return RelatingResource;
 				//##
 			} 
 		}

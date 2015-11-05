@@ -28,8 +28,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 			get
 			{
 				//## Handle return of Formula for which no match was found
-				//TODO: Handle return of Formula for which no match was found
-				throw new System.NotImplementedException();
+                return null;
 				//##
 			} 
 		}

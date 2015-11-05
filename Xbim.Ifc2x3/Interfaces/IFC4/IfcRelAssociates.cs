@@ -21,8 +21,7 @@ namespace Xbim.Ifc2x3.Kernel
 			get
 			{
 				//## Handle return of RelatedObjects for which no match was found
-				//TODO: Handle return of RelatedObjects for which no match was found
-				throw new System.NotImplementedException();
+                return RelatedObjects.OfType<Xbim.Ifc4.Kernel.IfcDefinitionSelect>();              
 				//##
 			} 
 		}

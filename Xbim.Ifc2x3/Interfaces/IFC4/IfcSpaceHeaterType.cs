@@ -24,20 +24,17 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcSpaceHeaterTypeEnum.SECTIONALRADIATOR:
 						//## Handle translation of SECTIONALRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						//TODO: Handle translation of SECTIONALRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcSpaceHeaterTypeEnum.PANELRADIATOR:
 						//## Handle translation of PANELRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						//TODO: Handle translation of PANELRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcSpaceHeaterTypeEnum.TUBULARRADIATOR:
 						//## Handle translation of TUBULARRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						//TODO: Handle translation of TUBULARRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcSpaceHeaterTypeEnum.CONVECTOR:
@@ -45,20 +42,17 @@ namespace Xbim.Ifc2x3.HVACDomain
 					
 					case IfcSpaceHeaterTypeEnum.BASEBOARDHEATER:
 						//## Handle translation of BASEBOARDHEATER member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						//TODO: Handle translation of BASEBOARDHEATER member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcSpaceHeaterTypeEnum.FINNEDTUBEUNIT:
 						//## Handle translation of FINNEDTUBEUNIT member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						//TODO: Handle translation of FINNEDTUBEUNIT member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcSpaceHeaterTypeEnum.UNITHEATER:
 						//## Handle translation of UNITHEATER member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						//TODO: Handle translation of UNITHEATER member from IfcSpaceHeaterTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcSpaceHeaterTypeEnum.USERDEFINED:
