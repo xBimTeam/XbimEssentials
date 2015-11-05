@@ -20,9 +20,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				//## Handle return of RelatingResource for which no match was found
-                return RelatingResource;
-				//##
+				return RelatingResource;
 			} 
 		}
 

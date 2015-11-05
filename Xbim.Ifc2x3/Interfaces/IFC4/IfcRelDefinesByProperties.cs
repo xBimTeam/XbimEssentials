@@ -30,9 +30,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				//## Handle return of RelatingPropertyDefinition for which no match was found
-                return RelatingPropertyDefinition;
-				//##
+				return RelatingPropertyDefinition;
 			} 
 		}
 

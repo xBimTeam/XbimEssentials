@@ -10,6 +10,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	public enum IfcSensorTypeEnum : byte
 	{
+		@CO2SENSOR ,
 		@CONDUCTANCESENSOR ,
 		@CONTACTSENSOR ,
 		@FIRESENSOR ,

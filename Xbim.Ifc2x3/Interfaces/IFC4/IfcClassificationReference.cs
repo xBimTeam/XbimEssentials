@@ -20,9 +20,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				//## Handle return of ReferencedSource for which no match was found
-			    return ReferencedSource;
-			    //##
+				return ReferencedSource;
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcClassificationReference.Description 

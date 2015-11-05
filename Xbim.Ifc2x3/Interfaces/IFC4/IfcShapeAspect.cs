@@ -53,9 +53,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				//## Handle return of PartOfProductDefinitionShape for which no match was found
-                return PartOfProductDefinitionShape;
-				//##
+				return PartOfProductDefinitionShape;
 			} 
 		}
 

@@ -20,9 +20,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				//## Handle return of RelatingProcess for which no match was found
-                return RelatingProcess;
-				//##
+				return RelatingProcess;
 			} 
 		}
 		IIfcMeasureWithUnit IIfcRelAssignsToProcess.QuantityInProcess 

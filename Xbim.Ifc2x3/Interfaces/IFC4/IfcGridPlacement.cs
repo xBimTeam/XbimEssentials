@@ -27,9 +27,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				//## Handle return of PlacementRefDirection for which no match was found
-			    return PlacementRefDirection;
-			    //##
+				return PlacementRefDirection;
 			} 
 		}
 

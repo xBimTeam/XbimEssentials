@@ -10,7 +10,6 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using Xbim.Ifc2x3.Interfaces.Conversions;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MaterialResource
@@ -32,11 +31,11 @@ namespace Xbim.Ifc2x3.MaterialResource
                         if (items.Any())
                         {
                             foreach (var item in items)
-                                yield return new IfcClassificationReferenceTransient(item);
+                                yield return new Interfaces.Conversions.IfcClassificationReferenceTransient(item);
                         }
                         else
                         {
-                            yield return new IfcClassificationNotationTransient(notation);
+                            yield return new Interfaces.Conversions.IfcClassificationNotationTransient(notation);
                         }
 			            continue;
 			        }

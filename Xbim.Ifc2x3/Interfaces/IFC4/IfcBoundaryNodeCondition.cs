@@ -53,33 +53,27 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
-				//## Handle return of RotationalStiffnessX for which no match was found
-                var value = RotationalStiffnessX;
-                if (!value.HasValue) return null;
-                return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(value.Value);
-				//##
+ 
+				if(!RotationalStiffnessX.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(RotationalStiffnessX.Value);
 			} 
 		}
 		Ifc4.StructuralLoadResource.IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessY 
 		{ 
 			get
 			{
-				//## Handle return of RotationalStiffnessY for which no match was found
-                var value = RotationalStiffnessY;
-                if (!value.HasValue) return null;
-                return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(value.Value);
-				//##
+ 
+				if(!RotationalStiffnessY.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(RotationalStiffnessY.Value);
 			} 
 		}
 		Ifc4.StructuralLoadResource.IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessZ 
 		{ 
 			get
 			{
-				//## Handle return of RotationalStiffnessZ for which no match was found
-                var value = RotationalStiffnessZ;
-                if (!value.HasValue) return null;
-                return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(value.Value);
-				//##
+ 
+				if(!RotationalStiffnessZ.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(RotationalStiffnessZ.Value);
 			} 
 		}
 
