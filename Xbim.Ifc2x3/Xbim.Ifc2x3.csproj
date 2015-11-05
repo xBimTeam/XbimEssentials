@@ -579,6 +579,7 @@
     <Compile Include="Interfaces\IFC4\IfcSolidModel.cs" />
     <Compile Include="Interfaces\IFC4\IfcSpace.cs" />
     <Compile Include="Interfaces\IFC4\IfcSpaceHeaterType.cs" />
+    <Compile Include="Interfaces\IFC4\IfcSpaceHeaterTypePartial.cs" />
     <Compile Include="Interfaces\IFC4\IfcSpaceType.cs" />
     <Compile Include="Interfaces\IFC4\IfcSpatialStructureElement.cs" />
     <Compile Include="Interfaces\IFC4\IfcSpatialStructureElementType.cs" />

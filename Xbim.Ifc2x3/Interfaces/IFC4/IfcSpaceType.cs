@@ -39,8 +39,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			get
 			{
 				//## Handle return of LongName for which no match was found
-				//TODO: Handle return of LongName for which no match was found
-				throw new System.NotImplementedException();
+                return null;
 				//##
 			} 
 		}
@@ -49,8 +48,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			get
 			{
 				//## Handle return of ElementType for which no match was found
-				//TODO: Handle return of ElementType for which no match was found
-				throw new System.NotImplementedException();
+                if (!this.ElementType.HasValue) return null; else return new Xbim.Ifc4.MeasureResource.IfcLabel(this.ElementType.Value);
 				//##
 			} 
 		}

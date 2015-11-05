@@ -21,8 +21,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Handle return of RelatingPriorities for which no match was found
-				//TODO: Handle return of RelatingPriorities for which no match was found
-				throw new System.NotImplementedException();
+                foreach (var priority in RelatingPriorities)
+                {
+                    yield return (double)priority;
+                }
 				//##
 			} 
 		}
@@ -31,8 +33,10 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Handle return of RelatedPriorities for which no match was found
-				//TODO: Handle return of RelatedPriorities for which no match was found
-				throw new System.NotImplementedException();
+                foreach (var priority in RelatedPriorities)
+                {
+                    yield return (double)priority;
+                }
 				//##
 			} 
 		}
