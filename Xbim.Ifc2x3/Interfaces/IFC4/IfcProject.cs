@@ -21,9 +21,10 @@ namespace Xbim.Ifc2x3.Kernel
 			get
 			{
 				//## Handle return of ObjectType for which no match was found
-				//TODO: Handle return of ObjectType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return ObjectType.HasValue
+			        ? new Ifc4.MeasureResource.IfcLabel(ObjectType.Value)
+			        : null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcContext.LongName 
@@ -31,9 +32,8 @@ namespace Xbim.Ifc2x3.Kernel
 			get
 			{
 				//## Handle return of LongName for which no match was found
-				//TODO: Handle return of LongName for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcContext.Phase 
@@ -41,29 +41,28 @@ namespace Xbim.Ifc2x3.Kernel
 			get
 			{
 				//## Handle return of Phase for which no match was found
-				//TODO: Handle return of Phase for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return Phase.HasValue
+			        ? new Ifc4.MeasureResource.IfcLabel(Phase.Value)
+			        : null;
+			    //##
 			} 
 		}
 		IEnumerable<IIfcRepresentationContext> IIfcContext.RepresentationContexts 
 		{ 
 			get
 			{
-				//## Handle return of RepresentationContexts for which no match was found
-				//TODO: Handle return of RepresentationContexts for which no match was found
-				throw new System.NotImplementedException();
-				//##
-			} 
+			    //## Handle return of RepresentationContexts for which no match was found
+			    return RepresentationContexts;
+			    //##
+			}
 		}
 		IIfcUnitAssignment IIfcContext.UnitsInContext 
 		{ 
 			get
 			{
 				//## Handle return of UnitsInContext for which no match was found
-				//TODO: Handle return of UnitsInContext for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return UnitsInContext;
+			    //##
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByProperties> IIfcContext.IsDefinedBy 

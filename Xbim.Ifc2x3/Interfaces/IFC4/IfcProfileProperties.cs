@@ -28,9 +28,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			get
 			{
 				//## Handle return of Name for which no match was found
-				//TODO: Handle return of Name for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return new Ifc4.MeasureResource.IfcIdentifier(ProfileName);
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcExtendedProperties.Description 
@@ -38,9 +37,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			get
 			{
 				//## Handle return of Description for which no match was found
-				//TODO: Handle return of Description for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties 
@@ -48,9 +46,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			get
 			{
 				//## Handle return of Properties for which no match was found
-				//TODO: Handle return of Properties for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    yield break;
+			    //##
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
