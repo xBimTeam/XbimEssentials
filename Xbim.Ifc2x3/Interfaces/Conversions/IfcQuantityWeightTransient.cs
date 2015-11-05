@@ -2,7 +2,7 @@
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
-    public class IfcQuantityWeightTransient : IfcPhysicalSimpleQuantityTransient, Ifc4.Interfaces.IIfcQuantityWeight
+    internal class IfcQuantityWeightTransient : IfcPhysicalSimpleQuantityTransient, Ifc4.Interfaces.IIfcQuantityWeight
     {
         internal IfcQuantityWeightTransient()
         {

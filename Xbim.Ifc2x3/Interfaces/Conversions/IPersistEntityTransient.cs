@@ -4,7 +4,7 @@ using Xbim.Common.Metadata;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
-    public abstract class PersistEntityTransient: IPersistEntity
+    internal abstract class PersistEntityTransient : IPersistEntity
     {
         public void Parse(int propIndex, IPropertyValue value, int[] nested)
         {

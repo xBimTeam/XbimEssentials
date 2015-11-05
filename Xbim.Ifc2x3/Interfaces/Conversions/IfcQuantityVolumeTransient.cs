@@ -2,7 +2,7 @@
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
-    public class IfcQuantityVolumeTransient : IfcPhysicalSimpleQuantityTransient, Ifc4.Interfaces.IIfcQuantityVolume
+    internal class IfcQuantityVolumeTransient : IfcPhysicalSimpleQuantityTransient, Ifc4.Interfaces.IIfcQuantityVolume
     {
         internal IfcQuantityVolumeTransient()
         {

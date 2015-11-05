@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Xbim.Ifc4.Interfaces
 {
-    public class MimeTypeLoopUp
+    internal class MimeTypeLoopUp
     {
         public static readonly Dictionary<string, string> Types = new Dictionary<string, string>
         {

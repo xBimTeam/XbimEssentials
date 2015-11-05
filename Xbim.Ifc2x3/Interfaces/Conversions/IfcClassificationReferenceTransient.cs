@@ -9,7 +9,7 @@ using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
-    public class IfcClassificationReferenceTransient : PersistEntityTransient, Ifc4.Interfaces.IIfcClassificationReference
+    internal class IfcClassificationReferenceTransient : PersistEntityTransient, Ifc4.Interfaces.IIfcClassificationReference
     {
         private readonly IfcClassificationItem _item;
         public override IModel Model { get { return _item.Model; } }

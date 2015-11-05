@@ -5,7 +5,7 @@ using Xbim.Ifc2x3.QuantityResource;
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4.Interfaces
 {
-    public static class MeasureWithUnitExtensions
+    internal static class MeasureWithUnitExtensions
     {
         public static IIfcPhysicalSimpleQuantity ToPhysicalSimpleQuantity(this IfcMeasureWithUnit measure)
         {

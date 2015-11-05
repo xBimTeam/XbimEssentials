@@ -4,7 +4,7 @@ using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
-    public abstract class IfcPhysicalSimpleQuantityTransient : PersistEntityTransient, Ifc4.Interfaces.IIfcPhysicalSimpleQuantity
+    internal abstract class IfcPhysicalSimpleQuantityTransient : PersistEntityTransient, Ifc4.Interfaces.IIfcPhysicalSimpleQuantity
     {
         public IfcLabel Name { get; internal set; }
         public IfcText? Description { get; internal set; }

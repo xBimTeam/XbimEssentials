@@ -4,7 +4,7 @@ using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
-    public class IfcPropertySingleValueTransient : PersistEntityTransient, Ifc4.Interfaces.IIfcPropertySingleValue
+    internal class IfcPropertySingleValueTransient : PersistEntityTransient, Ifc4.Interfaces.IIfcPropertySingleValue
     {
         public IEnumerable<IIfcExternalReferenceRelationship> HasExternalReferences { get { yield break; } }
         public IfcIdentifier Name { get; internal set; }

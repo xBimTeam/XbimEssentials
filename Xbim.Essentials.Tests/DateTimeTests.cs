@@ -13,7 +13,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void IfcDateAndTimeToIfcDateTimeTest()
         {
-            using (var iModel = new MemoryModel<EntityFactory>())
+            using (var iModel = new MemoryModel<Xbim.Ifc2x3.EntityFactory>())
             {
                 using (var txn = iModel.BeginTransaction("Insert date time"))
                 { 

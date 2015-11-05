@@ -2,7 +2,7 @@
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
-    public class IfcQuantityAreaTransient : IfcPhysicalSimpleQuantityTransient, Ifc4.Interfaces.IIfcQuantityArea
+    internal class IfcQuantityAreaTransient : IfcPhysicalSimpleQuantityTransient, Ifc4.Interfaces.IIfcQuantityArea
     {
         internal IfcQuantityAreaTransient()
         {
