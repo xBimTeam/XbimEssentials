@@ -21,9 +21,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of Description for which no match was found
-				//TODO: Handle return of Description for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.ExternalReferenceResource.IfcLanguageId? IIfcLibraryReference.Language 
@@ -31,9 +30,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of Language for which no match was found
-				//TODO: Handle return of Language for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		IIfcLibraryInformation IIfcLibraryReference.ReferencedLibrary 
@@ -41,9 +39,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of ReferencedLibrary for which no match was found
-				//TODO: Handle return of ReferencedLibrary for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryReference.LibraryRefForObjects 

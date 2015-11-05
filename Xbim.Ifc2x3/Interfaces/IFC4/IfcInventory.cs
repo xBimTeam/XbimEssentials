@@ -75,8 +75,9 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			get
 			{
 				//## Handle return of LastUpdateDate for which no match was found
-				//TODO: Handle return of LastUpdateDate for which no match was found
-				throw new System.NotImplementedException();
+			    return LastUpdateDate != null
+			        ? new Ifc4.DateTimeResource.IfcDate(LastUpdateDate.ToISODateTimeString())
+			        : null;
 				//##
 			} 
 		}

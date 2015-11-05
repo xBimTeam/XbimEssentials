@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using System;
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,34 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				//TODO: Handle return of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
-				//##
-			} 
+			    switch (ProcedureType)
+			    {
+			        case IfcProcedureTypeEnum.ADVICE_CAUTION:
+			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.ADVICE_CAUTION;
+			        case IfcProcedureTypeEnum.ADVICE_NOTE:
+			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.ADVICE_NOTE;
+			        case IfcProcedureTypeEnum.ADVICE_WARNING:
+			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.ADVICE_WARNING;
+			        case IfcProcedureTypeEnum.CALIBRATION:
+			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.CALIBRATION;
+			        case IfcProcedureTypeEnum.DIAGNOSTIC:
+			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.DIAGNOSTIC;
+			        case IfcProcedureTypeEnum.SHUTDOWN:
+			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.SHUTDOWN;
+			        case IfcProcedureTypeEnum.STARTUP:
+			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.STARTUP;
+			        case IfcProcedureTypeEnum.USERDEFINED:
+			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.USERDEFINED;
+			        case IfcProcedureTypeEnum.NOTDEFINED:
+			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.NOTDEFINED;
+			        default:
+			            throw new ArgumentOutOfRangeException();
+			    }
+			    //##
+			}
 		}
 
-	//## Custom code
-	//##
+	    //## Custom code
+	    //##
 	}
 }

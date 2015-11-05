@@ -21,9 +21,8 @@ namespace Xbim.Ifc2x3.Kernel
 			get
 			{
 				//## Handle return of Identification for which no match was found
-				//TODO: Handle return of Identification for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcProcess.LongDescription 
@@ -31,8 +30,7 @@ namespace Xbim.Ifc2x3.Kernel
 			get
 			{
 				//## Handle return of LongDescription for which no match was found
-				//TODO: Handle return of LongDescription for which no match was found
-				throw new System.NotImplementedException();
+                return null;
 				//##
 			} 
 		}

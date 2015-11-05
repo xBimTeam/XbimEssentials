@@ -10,7 +10,6 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using System;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
@@ -32,7 +31,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
                 foreach (var param in this.Parameter)
                 {
                     if (param.UnderlyingSystemType == typeof(double) || param.UnderlyingSystemType == typeof(int))
-                        yield return new Xbim.Ifc4.MeasureResource.IfcReal(Convert.ToDouble(param.Value));
+                        yield return new Xbim.Ifc4.MeasureResource.IfcReal(System.Convert.ToDouble(param.Value));
                     else if (param.UnderlyingSystemType == typeof(string))
                     {
                         double ret;

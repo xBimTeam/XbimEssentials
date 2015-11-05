@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Ifc2x3.Interfaces.Conversions;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MaterialResource
@@ -21,8 +22,28 @@ namespace Xbim.Ifc2x3.MaterialResource
 			get
 			{
 				//## Handle return of MaterialClassifications for which no match was found
-				//TODO: Handle return of MaterialClassifications for which no match was found
-				throw new System.NotImplementedException();
+			    foreach (var materialClassification in MaterialClassifications)
+			    {
+			        var notation = materialClassification as ExternalReferenceResource.IfcClassificationNotation;
+			        if (notation != null)
+			        {
+                        var items =
+                                Model.Instances.Where<ExternalReferenceResource.IfcClassificationItem>(i => notation.NotationFacets.Any(f => i.Notation == f)).ToList();
+                        if (items.Any())
+                        {
+                            foreach (var item in items)
+                                yield return new IfcClassificationReferenceTransient(item);
+                        }
+                        else
+                        {
+                            yield return new IfcClassificationNotationTransient(notation);
+                        }
+			            continue;
+			        }
+                    var reference = materialClassification as ExternalReferenceResource.IfcClassificationReference;
+			        if (reference != null)
+			            yield return reference;
+			    }
 				//##
 			} 
 		}

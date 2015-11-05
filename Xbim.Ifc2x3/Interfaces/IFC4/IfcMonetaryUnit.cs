@@ -21,9 +21,8 @@ namespace Xbim.Ifc2x3.MeasureResource
 			get
 			{
 				//## Handle return of Currency for which no match was found
-				//TODO: Handle return of Currency for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return new Ifc4.MeasureResource.IfcLabel(System.Enum.GetName(typeof(IfcCurrencyEnum),Currency));
+			    //##
 			} 
 		}
 

@@ -12,6 +12,7 @@ using Xbim.Ifc2x3.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
@@ -102,6 +103,8 @@ namespace Xbim.Ifc2x3.CostResource
 			activation();
 			ActivationStatus = ActivationStatus.ActivatedRead;
 		}
+
+		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
