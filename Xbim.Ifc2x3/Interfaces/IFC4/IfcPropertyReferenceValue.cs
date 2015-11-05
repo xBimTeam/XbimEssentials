@@ -38,10 +38,9 @@ namespace Xbim.Ifc2x3.PropertyResource
 				if (ifcperson != null) 
 					return ifcperson;
 				var ifcdateandtime = PropertyReference as DateTimeResource.IfcDateAndTime;
-				if (ifcdateandtime != null) 
-					//## Handle entity IfcDateAndTime which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					//TODO: Handle entity IfcDateAndTime which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					throw new System.NotImplementedException();
+                if (ifcdateandtime != null)
+                    //## Handle entity IfcDateAndTime which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+                    return null;
 					//##
 				var ifcmateriallist = PropertyReference as MaterialResource.IfcMaterialList;
 				if (ifcmateriallist != null) 
@@ -54,14 +53,12 @@ namespace Xbim.Ifc2x3.PropertyResource
 				var ifccalendardate = PropertyReference as DateTimeResource.IfcCalendarDate;
 				if (ifccalendardate != null) 
 					//## Handle entity IfcCalendarDate which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					//TODO: Handle entity IfcCalendarDate which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					throw new System.NotImplementedException();
+                    return null;
 					//##
 				var ifclocaltime = PropertyReference as DateTimeResource.IfcLocalTime;
 				if (ifclocaltime != null) 
 					//## Handle entity IfcLocalTime which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					//TODO: Handle entity IfcLocalTime which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					throw new System.NotImplementedException();
+                    return null;
 					//##
 				var ifcpersonandorganization = PropertyReference as ActorResource.IfcPersonAndOrganization;
 				if (ifcpersonandorganization != null) 

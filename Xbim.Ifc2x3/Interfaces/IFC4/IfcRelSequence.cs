@@ -35,8 +35,10 @@ namespace Xbim.Ifc2x3.Kernel
 			get
 			{
 				//## Handle return of TimeLag for which no match was found
-				//TODO: Handle return of TimeLag for which no match was found
-				throw new System.NotImplementedException();
+                var lag =  new Xbim.Ifc2x3.Interfaces.Conversions.IfcLagTimeTransient();
+                lag.DurationType = Ifc4.DateTimeResource.IfcTaskDurationEnum.NOTDEFINED;
+                lag.LagValue = new Xbim.Ifc4.DateTimeResource.IfcDuration(TimeLag.ToISODateTimeString());
+                return lag;
 				//##
 			} 
 		}

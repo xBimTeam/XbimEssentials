@@ -28,10 +28,5 @@ namespace Xbim.XbimExtensions.DataProviders
             this._model = model;
         }
 
-        //TODO: MC: Need to review with SRL. Commented out during refactoring. This is from IFC4 so it shouldn't be in IFC2x3 specific code.
-        //public IEnumerable<IfcResourceApprovalRelationship> Items
-        //{
-        //    get { return this._model.Instances.OfType<IfcResourceApprovalRelationship>(); }
-        //}
     }
 }

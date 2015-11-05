@@ -21,8 +21,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			get
 			{
 				//## Handle return of Vertices for which no match was found
-				//TODO: Handle return of Vertices for which no match was found
-				throw new System.NotImplementedException();
+                return new Xbim.Ifc2x3.Interfaces.Conversions.IfcTextureMapTransient(this).Vertices;
 				//##
 			} 
 		}
@@ -31,8 +30,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			get
 			{
 				//## Handle return of MappedTo for which no match was found
-				//TODO: Handle return of MappedTo for which no match was found
-				throw new System.NotImplementedException();
+                return new Xbim.Ifc2x3.Interfaces.Conversions.IfcTextureMapTransient(this).MappedTo;
 				//##
 			} 
 		}

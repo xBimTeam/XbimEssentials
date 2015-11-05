@@ -143,6 +143,12 @@
     <Compile Include="Interfaces\Conversions\DateAndTimeExtensions.cs" />
     <Compile Include="Interfaces\Conversions\IfcClassificationNotationTransient.cs" />
     <Compile Include="Interfaces\Conversions\IfcClassificationReferenceTransient.cs" />
+    <Compile Include="Interfaces\Conversions\IfcDirectionTransient.cs" />
+    <Compile Include="Interfaces\Conversions\IfcDistributionElementTransient.cs" />
+    <Compile Include="Interfaces\Conversions\IfcFaceBoundTransient.cs" />
+    <Compile Include="Interfaces\Conversions\IfcFaceTransient.cs" />
+    <Compile Include="Interfaces\Conversions\IfcLagTimeTransient.cs" />
+    <Compile Include="Interfaces\Conversions\IfcPolyLoopTransient.cs" />
     <Compile Include="Interfaces\Conversions\IfcPhysicalSimpleQuantityTransient.cs" />
     <Compile Include="Interfaces\Conversions\IfcPropertySingleValueTransient.cs" />
     <Compile Include="Interfaces\Conversions\IfcQuantityAreaTransient.cs" />
@@ -151,6 +157,7 @@
     <Compile Include="Interfaces\Conversions\IfcQuantityTimeTransient.cs" />
     <Compile Include="Interfaces\Conversions\IfcQuantityVolumeTransient.cs" />
     <Compile Include="Interfaces\Conversions\IfcQuantityWeightTransient.cs" />
+    <Compile Include="Interfaces\Conversions\IfcTextureMapTransient.cs" />
     <Compile Include="Interfaces\Conversions\IPersistEntityTransient.cs" />
     <Compile Include="Interfaces\Conversions\MeasureWithUnitExtensions.cs" />
     <Compile Include="Interfaces\Conversions\MimeTypeLoopUp.cs" />
