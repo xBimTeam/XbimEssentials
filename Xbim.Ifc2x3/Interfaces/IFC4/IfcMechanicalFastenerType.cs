@@ -21,9 +21,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				//TODO: Handle return of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return Ifc4.SharedComponentElements.IfcMechanicalFastenerTypeEnum.NOTDEFINED;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastenerType.NominalDiameter 
@@ -31,9 +30,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			get
 			{
 				//## Handle return of NominalDiameter for which no match was found
-				//TODO: Handle return of NominalDiameter for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastenerType.NominalLength 
@@ -41,8 +39,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			get
 			{
 				//## Handle return of NominalLength for which no match was found
-				//TODO: Handle return of NominalLength for which no match was found
-				throw new System.NotImplementedException();
+                return null;
 				//##
 			} 
 		}

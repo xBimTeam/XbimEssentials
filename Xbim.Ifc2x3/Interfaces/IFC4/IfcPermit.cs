@@ -21,9 +21,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				//TODO: Handle return of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPermit.Status 
@@ -31,9 +30,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			get
 			{
 				//## Handle return of Status for which no match was found
-				//TODO: Handle return of Status for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcPermit.LongDescription 
@@ -41,8 +39,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			get
 			{
 				//## Handle return of LongDescription for which no match was found
-				//TODO: Handle return of LongDescription for which no match was found
-				throw new System.NotImplementedException();
+                return null;
 				//##
 			} 
 		}

@@ -43,9 +43,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 			get
 			{
 				//## Handle return of Name for which no match was found
-				//TODO: Handle return of Name for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcMaterialLayer.Description 
@@ -62,9 +61,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 			get
 			{
 				//## Handle return of Category for which no match was found
-				//TODO: Handle return of Category for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcMaterialLayer.Priority 
@@ -72,9 +70,8 @@ namespace Xbim.Ifc2x3.MaterialResource
 			get
 			{
 				//## Handle return of Priority for which no match was found
-				//TODO: Handle return of Priority for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		IIfcMaterialLayerSet IIfcMaterialLayer.ToMaterialLayerSet 

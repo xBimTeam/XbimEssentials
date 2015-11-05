@@ -56,9 +56,12 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of Location for which no match was found
-				//TODO: Handle return of Location for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    var reference = LibraryReference.FirstOrDefault(r => r.Location.HasValue);
+			    return reference != null
+			        // ReSharper disable once PossibleInvalidOperationException
+			        ? new Ifc4.ExternalReferenceResource.IfcURIReference(reference.Location.Value)
+			        : null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcText? IIfcLibraryInformation.Description 
@@ -66,9 +69,8 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			get
 			{
 				//## Handle return of Description for which no match was found
-				//TODO: Handle return of Description for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return null;
+			    //##
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryInformation.LibraryInfoForObjects 
