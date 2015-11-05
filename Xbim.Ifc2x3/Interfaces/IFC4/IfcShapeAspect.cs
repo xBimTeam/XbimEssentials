@@ -53,10 +53,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				//## Handle return of PartOfProductDefinitionShape for which no match was found
-				//TODO: Handle return of PartOfProductDefinitionShape for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				return PartOfProductDefinitionShape;
 			} 
 		}
 

@@ -35,9 +35,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				//## Handle return of Publisher for which no match was found
-			    return Publisher;
-			    //##
+				return Publisher;
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcLibraryInformation.VersionDate 

@@ -23,11 +23,8 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 				switch (PredefinedType)
 				{
 					case IfcSensorTypeEnum.CO2SENSOR:
-						//## Handle translation of CO2SENSOR member from IfcSensorTypeEnum in property PredefinedType
-						//TODO: Handle translation of CO2SENSOR member from IfcSensorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-										
+						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.CO2SENSOR;
+					
 					case IfcSensorTypeEnum.FIRESENSOR:
 						return Ifc4.BuildingControlsDomain.IfcSensorTypeEnum.FIRESENSOR;
 					

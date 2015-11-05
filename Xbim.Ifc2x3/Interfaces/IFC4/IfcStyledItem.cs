@@ -27,10 +27,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				//## Handle return of Styles for which no match was found
-				//TODO: Handle return of Styles for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			foreach (var member in Styles)
+			{
+				yield return member;
+			}
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcStyledItem.Name 

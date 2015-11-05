@@ -7,12 +7,9 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using System;
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using Xbim.Ifc2x3.Interfaces.Conversions;
-using Xbim.Ifc2x3.MeasureResource;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MaterialPropertyResource
@@ -44,15 +41,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				//##
 			} 
 		}
-
-
 		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties 
 		{ 
 			get
 			{
 				//## Handle return of Properties for which no match was found
                 // Properties which are represented as objects in IFC2x3 has to be represented as transient property objects
-			    var properties = GetType().GetProperties().Where(p => typeof (IfcValue).IsAssignableFrom(p.PropertyType));
+			    var properties = GetType().GetProperties().Where(p => typeof (MeasureResource.IfcValue).IsAssignableFrom(p.PropertyType));
 			    foreach (var property in properties)
 			    {
 			        var name = property.Name;
@@ -68,10 +63,10 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			                .FirstOrDefault(
 			                    t => t.IsValueType &&
 			                        string.Compare(t.Name, sourceType.Name,
-			                            StringComparison.InvariantCultureIgnoreCase) == 0);
+			                            System.StringComparison.InvariantCultureIgnoreCase) == 0);
 			        if (targetType == null) continue;
-			        var targetValue = Activator.CreateInstance(targetType, value) as Ifc4.MeasureResource.IfcValue;
-                    yield return new IfcPropertySingleValueTransient
+			        var targetValue = System.Activator.CreateInstance(targetType, value) as Ifc4.MeasureResource.IfcValue;
+                    yield return new Interfaces.Conversions.IfcPropertySingleValueTransient
                     {
                         Name = name, 
                         NominalValue = targetValue

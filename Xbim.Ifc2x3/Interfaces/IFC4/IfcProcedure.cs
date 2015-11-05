@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using System;
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,13 +42,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			        case IfcProcedureTypeEnum.NOTDEFINED:
 			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.NOTDEFINED;
 			        default:
-			            throw new ArgumentOutOfRangeException();
+			            throw new System.ArgumentOutOfRangeException();
 			    }
 			    //##
-			}
+			} 
 		}
 
-	    //## Custom code
+	//## Custom code
 	    //##
 	}
 }

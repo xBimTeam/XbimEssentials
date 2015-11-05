@@ -20,12 +20,12 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get
 			{
-			    //## Handle return of Name for which no match was found
+				//## Handle return of Name for which no match was found
                 if(string.IsNullOrWhiteSpace(Name)) 
                     return null;
 			    return new Ifc4.MeasureResource.IfcLabel(Name);
 			    //##
-			}
+			} 
 		}
 		IEnumerable<IIfcTableRow> IIfcTable.Rows 
 		{ 

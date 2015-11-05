@@ -30,10 +30,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				//## Handle return of RelatingPropertyDefinition for which no match was found
-				//TODO: Handle return of RelatingPropertyDefinition for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				return RelatingPropertyDefinition;
 			} 
 		}
 

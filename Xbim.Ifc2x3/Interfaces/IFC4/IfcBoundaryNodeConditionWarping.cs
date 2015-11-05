@@ -20,11 +20,9 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get
 			{
-				//## Handle return of WarpingStiffness for which no match was found
-                var value = WarpingStiffness;
-                if (!value.HasValue) return null;
-                return new Ifc4.MeasureResource.IfcWarpingMomentMeasure(value.Value);
-				//##
+ 
+				if(!WarpingStiffness.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcWarpingMomentMeasure(WarpingStiffness.Value);
 			} 
 		}
 
