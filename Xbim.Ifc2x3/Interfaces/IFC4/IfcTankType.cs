@@ -30,7 +30,8 @@ namespace Xbim.Ifc2x3.HVACDomain
 					case IfcTankTypeEnum.SECTIONAL:
 						//## Handle translation of SECTIONAL member from IfcTankTypeEnum in property PredefinedType
                         return Ifc4.HvacDomain.IfcTankTypeEnum.USERDEFINED;
-						//##										
+						//##
+										
 					case IfcTankTypeEnum.EXPANSION:
 						return Ifc4.HvacDomain.IfcTankTypeEnum.EXPANSION;
 					

@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using System;
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -151,7 +150,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
                     case IfcElectricApplianceTypeEnum.TV:
                     case IfcElectricApplianceTypeEnum.WATERHEATER:
                     case IfcElectricApplianceTypeEnum.WATERCOOLER:
-                        return new Ifc4.MeasureResource.IfcLabel(Enum.GetName(typeof(IfcElectricApplianceTypeEnum), PredefinedType));
+                        return new Ifc4.MeasureResource.IfcLabel(System.Enum.GetName(typeof(IfcElectricApplianceTypeEnum), PredefinedType));
                 }
                 return !ElementType.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(ElementType.Value);
             }

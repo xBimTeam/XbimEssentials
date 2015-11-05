@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Xbim.Common;
+using Xbim.Common.Metadata;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
 
@@ -31,6 +32,8 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         public void Activate(Action activation)
         {
         }
+
+        public ExpressType ExpressType { get { return null; } }
 
         public IModel ModelOf { get { return Model; } }
         public IfcLabel Name { get; internal set; }

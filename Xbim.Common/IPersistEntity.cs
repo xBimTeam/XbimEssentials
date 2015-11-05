@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 using System;
+using Xbim.Common.Metadata;
 
 namespace Xbim.Common
 {
@@ -17,6 +18,7 @@ namespace Xbim.Common
 		ActivationStatus ActivationStatus { get; }
 		void Activate (bool write);
 		void Activate (Action activation);
+		ExpressType ExpressType { get; }
 
 		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
 		IModel ModelOf { get; }

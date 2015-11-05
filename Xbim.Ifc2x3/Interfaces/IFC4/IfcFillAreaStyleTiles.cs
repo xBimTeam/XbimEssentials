@@ -29,10 +29,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-			    //## Handle return of Tiles for which no match was found
+				//## Handle return of Tiles for which no match was found
 			    return Tiles.OfType<IfcFillAreaStyleTileSymbolWithStyle>().Select(tile => tile.Symbol.Item).OfType<IIfcStyledItem>();
 			    //##
-			}
+			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale 
 		{ 
