@@ -43,8 +43,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			get
 			{
 				//## Handle return of Name for which no match was found
-				//TODO: Handle return of Name for which no match was found
-				throw new System.NotImplementedException();
+                return Name.HasValue ? new Ifc4.MeasureResource.IfcLabel(Name.Value) : null;
 				//##
 			} 
 		}
@@ -53,8 +52,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			get
 			{
 				//## Handle return of Description for which no match was found
-				//TODO: Handle return of Description for which no match was found
-				throw new System.NotImplementedException();
+                return Description.HasValue ? new Ifc4.MeasureResource.IfcText(Description.Value) : null;
 				//##
 			} 
 		}

@@ -30,10 +30,9 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				if (PropertyReference == null) return null;
 				var ifcmaterial = PropertyReference as MaterialResource.IfcMaterial;
-				if (ifcmaterial != null) 
-					//## Handle entity IfcMaterial which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					//TODO: Handle entity IfcMaterial which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					throw new System.NotImplementedException();
+                if (ifcmaterial != null)
+                    //## Handle entity IfcMaterial which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+                    return (IIfcMaterialDefinition)ifcmaterial;
 					//##
 				var ifcperson = PropertyReference as ActorResource.IfcPerson;
 				if (ifcperson != null) 
@@ -47,8 +46,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				var ifcmateriallist = PropertyReference as MaterialResource.IfcMaterialList;
 				if (ifcmateriallist != null) 
 					//## Handle entity IfcMaterialList which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					//TODO: Handle entity IfcMaterialList which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					throw new System.NotImplementedException();
+                    return (IIfcMaterialDefinition)ifcmateriallist;
 					//##
 				var ifcorganization = PropertyReference as ActorResource.IfcOrganization;
 				if (ifcorganization != null) 
@@ -71,8 +69,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				var ifcmateriallayer = PropertyReference as MaterialResource.IfcMaterialLayer;
 				if (ifcmateriallayer != null) 
 					//## Handle entity IfcMaterialLayer which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					//TODO: Handle entity IfcMaterialLayer which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
-					throw new System.NotImplementedException();
+                    return (IIfcMaterialDefinition)ifcmateriallayer;
 					//##
 				var ifcexternalreference = PropertyReference as ExternalReferenceResource.IfcExternalReference;
 				if (ifcexternalreference != null) 
