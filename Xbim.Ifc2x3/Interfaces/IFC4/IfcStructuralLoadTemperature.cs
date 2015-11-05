@@ -21,8 +21,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of DeltaTConstant for which no match was found
-				//TODO: Handle return of DeltaTConstant for which no match was found
-				throw new System.NotImplementedException();
+                if (!DeltaT_Constant.HasValue)
+                    return null;
+                else
+                    return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Constant.Value);
 				//##
 			} 
 		}
@@ -31,8 +33,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of DeltaTY for which no match was found
-				//TODO: Handle return of DeltaTY for which no match was found
-				throw new System.NotImplementedException();
+                if (!DeltaT_Y.HasValue)
+                    return null;
+                else
+                    return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Y.Value);
 				//##
 			} 
 		}
@@ -41,8 +45,10 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			get
 			{
 				//## Handle return of DeltaTZ for which no match was found
-				//TODO: Handle return of DeltaTZ for which no match was found
-				throw new System.NotImplementedException();
+                if (!DeltaT_Z.HasValue) 
+                    return null;
+                else
+                    return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Z.Value);
 				//##
 			} 
 		}

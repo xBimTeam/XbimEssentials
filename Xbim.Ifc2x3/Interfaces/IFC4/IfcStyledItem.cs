@@ -28,8 +28,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get
 			{
 				//## Handle return of Styles for which no match was found
-				//TODO: Handle return of Styles for which no match was found
-				throw new System.NotImplementedException();
+                foreach (var style in Styles)
+                {
+                    foreach (var item in style.Styles)
+                    {
+                        yield return (Xbim.Ifc4.PresentationAppearanceResource.IfcStyleAssignmentSelect)item;
+                    }
+                }
 				//##
 			} 
 		}
