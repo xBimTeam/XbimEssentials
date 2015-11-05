@@ -599,6 +599,7 @@
     <Compile Include="Interfaces\IFC4\IfcStructuralLinearAction.cs" />
     <Compile Include="Interfaces\IFC4\IfcStructuralLoad.cs" />
     <Compile Include="Interfaces\IFC4\IfcStructuralLoadGroup.cs" />
+    <Compile Include="Interfaces\IFC4\IfcStructuralLoadGroupPartial.cs" />
     <Compile Include="Interfaces\IFC4\IfcStructuralLoadLinearForce.cs" />
     <Compile Include="Interfaces\IFC4\IfcStructuralLoadPlanarForce.cs" />
     <Compile Include="Interfaces\IFC4\IfcStructuralLoadSingleDisplacement.cs" />

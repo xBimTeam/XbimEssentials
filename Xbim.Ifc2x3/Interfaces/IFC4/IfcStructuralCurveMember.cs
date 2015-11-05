@@ -21,8 +21,26 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				//TODO: Handle return of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
+              switch(PredefinedType)
+              {
+                  case IfcStructuralCurveTypeEnum.CABLE:
+                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.CABLE;
+                  case IfcStructuralCurveTypeEnum.COMPRESSION_MEMBER:
+                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.COMPRESSION_MEMBER;
+                  case IfcStructuralCurveTypeEnum.NOTDEFINED:
+                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.NOTDEFINED;
+                  case IfcStructuralCurveTypeEnum.PIN_JOINED_MEMBER:
+                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.PIN_JOINED_MEMBER;
+                  case IfcStructuralCurveTypeEnum.RIGID_JOINED_MEMBER:
+                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.RIGID_JOINED_MEMBER;
+                  case IfcStructuralCurveTypeEnum.TENSION_MEMBER:
+                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.TENSION_MEMBER;
+                  case IfcStructuralCurveTypeEnum.USERDEFINED:
+                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.USERDEFINED;
+                  default:
+                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.NOTDEFINED;
+              }
+                
 				//##
 			} 
 		}

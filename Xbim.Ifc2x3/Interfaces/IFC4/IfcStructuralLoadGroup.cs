@@ -30,8 +30,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					
 					case IfcLoadGroupTypeEnum.LOAD_COMBINATION_GROUP:
 						//## Handle translation of LOAD_COMBINATION_GROUP member from IfcLoadGroupTypeEnum in property PredefinedType
-						//TODO: Handle translation of LOAD_COMBINATION_GROUP member from IfcLoadGroupTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        return Ifc4.StructuralAnalysisDomain.IfcLoadGroupTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcLoadGroupTypeEnum.LOAD_COMBINATION:

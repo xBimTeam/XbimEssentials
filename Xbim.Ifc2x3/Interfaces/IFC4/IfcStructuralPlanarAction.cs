@@ -21,8 +21,12 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			get
 			{
 				//## Handle return of ProjectedOrTrue for which no match was found
-				//TODO: Handle return of ProjectedOrTrue for which no match was found
-				throw new System.NotImplementedException();
+                if (ProjectedOrTrue == IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH)
+                    return Ifc4.StructuralAnalysisDomain.IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH;
+                else if (ProjectedOrTrue == IfcProjectedOrTrueLengthEnum.TRUE_LENGTH)
+                    return Ifc4.StructuralAnalysisDomain.IfcProjectedOrTrueLengthEnum.TRUE_LENGTH;
+                else
+                    return null;
 				//##
 			} 
 		}
@@ -31,8 +35,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-				//TODO: Handle return of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
+                return Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceActivityTypeEnum.NOTDEFINED;
 				//##
 			} 
 		}

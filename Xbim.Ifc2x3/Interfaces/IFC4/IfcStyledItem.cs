@@ -27,10 +27,15 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-			foreach (var member in Styles)
-			{
-				yield return member;
-			}
+				//## Handle return of Styles for which no match was found
+                foreach (var style in Styles)
+                {
+                    foreach (var item in style.Styles)
+                    {
+                        yield return (Xbim.Ifc4.PresentationAppearanceResource.IfcStyleAssignmentSelect)item;
+                    }
+                }
+				//##
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcStyledItem.Name 
