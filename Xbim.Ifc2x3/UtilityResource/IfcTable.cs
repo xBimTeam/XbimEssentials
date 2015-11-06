@@ -150,9 +150,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 			get 
 			{
 				//## Getter for NumberOfCellsInRow
-				//TODO: Implement getter for derived attribute NumberOfCellsInRow
-				throw new System.NotImplementedException();
-				//##
+			    return Rows != null
+			        ? Rows[0].RowCells.Count
+			        : 0;
+			    //##
 			}
 		}
 
@@ -162,9 +163,8 @@ namespace Xbim.Ifc2x3.UtilityResource
 			get 
 			{
 				//## Getter for NumberOfHeadings
-				//TODO: Implement getter for derived attribute NumberOfHeadings
-				throw new System.NotImplementedException();
-				//##
+			    return Rows.Count(r => r.IsHeading);
+			    //##
 			}
 		}
 
@@ -174,8 +174,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			get 
 			{
 				//## Getter for NumberOfDataRows
-				//TODO: Implement getter for derived attribute NumberOfDataRows
-				throw new System.NotImplementedException();
+                return Rows.Count(r => !r.IsHeading);
 				//##
 			}
 		}

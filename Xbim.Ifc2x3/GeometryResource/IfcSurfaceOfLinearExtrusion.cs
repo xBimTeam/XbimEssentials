@@ -87,13 +87,18 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
-		public IfcVector @ExtrusionAxis 
+		public Common.Geometry.XbimVector3D @ExtrusionAxis 
 		{
 			get 
 			{
 				//## Getter for ExtrusionAxis
-				//TODO: Implement getter for derived attribute ExtrusionAxis
-				throw new System.NotImplementedException();
+                return new Common.Geometry.XbimVector3D(
+                    _extrudedDirection.X, 
+                    _extrudedDirection.Y, 
+                    _extrudedDirection.Z)
+                {
+                    Magnitude = _depth
+                };
 				//##
 			}
 		}

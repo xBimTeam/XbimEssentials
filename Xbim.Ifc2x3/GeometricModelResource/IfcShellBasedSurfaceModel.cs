@@ -72,9 +72,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			get 
 			{
 				//## Getter for Dim
-				//TODO: Implement getter for derived attribute Dim
-				throw new System.NotImplementedException();
-				//##
+			    return 3;
+			    //##
 			}
 		}
 

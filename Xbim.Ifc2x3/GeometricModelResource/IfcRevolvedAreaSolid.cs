@@ -88,13 +88,20 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
-		public IfcLine @AxisLine 
+		public GeometryResource.XbimLine @AxisLine 
 		{
 			get 
 			{
 				//## Getter for AxisLine
-				//TODO: Implement getter for derived attribute AxisLine
-				throw new System.NotImplementedException();
+                if (Axis != null)
+                {
+                    return new XbimLine
+                    {
+                        Pnt = Axis.Location,
+                        Orientation = Axis.Z,
+                    };
+                }
+                return null;
 				//##
 			}
 		}

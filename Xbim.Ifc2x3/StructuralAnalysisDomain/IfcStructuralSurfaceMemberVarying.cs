@@ -91,9 +91,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			get 
 			{
 				//## Getter for VaryingThickness
-				//TODO: Implement getter for derived attribute VaryingThickness
-				throw new System.NotImplementedException();
-				//##
+			    var result = new List<IfcPositiveLengthMeasure> {Thickness ?? 0};
+                result.AddRange(SubsequentThickness);
+			    return result;
+			    //##
 			}
 		}
 

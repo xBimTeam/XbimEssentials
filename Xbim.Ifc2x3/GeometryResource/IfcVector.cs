@@ -91,9 +91,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 			get 
 			{
 				//## Getter for Dim
-				//TODO: Implement getter for derived attribute Dim
-				throw new System.NotImplementedException();
-				//##
+			    return Orientation.Dim;
+			    //##
 			}
 		}
 

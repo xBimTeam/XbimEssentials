@@ -92,9 +92,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			get 
 			{
 				//## Getter for VaryingAppliedLoads
-				//TODO: Implement getter for derived attribute VaryingAppliedLoads
-				throw new System.NotImplementedException();
-				//##
+				var result = new List<IfcStructuralLoad>{AppliedLoad};
+                result.AddRange(SubsequentAppliedLoads);
+			    return result;
+			    //##
 			}
 		}
 
