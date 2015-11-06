@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
@@ -64,6 +65,31 @@ namespace Xbim.Ifc2x3.GeometryResource
 		}	
 		#endregion
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.List, EntityAttributeType.Class, 2, 2)]
+		public List<Common.Geometry.XbimVector3D> @P 
+		{
+			get 
+			{
+				//## Getter for P
+                var p = new List<Common.Geometry.XbimVector3D>(2);
+                if (RefDirection == null)
+                {
+                    p.Add(new Common.Geometry.XbimVector3D(1, 0, 0));
+                    p.Add(new Common.Geometry.XbimVector3D(0, 1, 0));
+                }
+                else
+                {
+                    p.Add(new Common.Geometry.XbimVector3D(RefDirection.DirectionRatios[0], RefDirection.DirectionRatios[1], 0));
+                    p.Add(new Common.Geometry.XbimVector3D(-RefDirection.DirectionRatios[1], RefDirection.DirectionRatios[0], 0));
+                }
+                return p;
+				//##
+			}
+		}
+
+		#endregion
 
 
 
@@ -145,5 +171,10 @@ namespace Xbim.Ifc2x3.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

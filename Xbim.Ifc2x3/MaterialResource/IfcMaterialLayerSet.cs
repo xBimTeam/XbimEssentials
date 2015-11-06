@@ -10,6 +10,7 @@
 using Xbim.Ifc2x3.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -142,6 +143,20 @@ namespace Xbim.Ifc2x3.MaterialResource
 		#endregion
 
 
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public IfcLengthMeasure @TotalThickness 
+		{
+			get 
+			{
+				//## Getter for TotalThickness
+			    return MaterialLayers.Aggregate(0d, (i, layer) => i + layer.LayerThickness);
+			    //##
+			}
+		}
+
+		#endregion
+
 
 		#region INotifyPropertyChanged implementation
 		 
@@ -270,5 +285,10 @@ namespace Xbim.Ifc2x3.MaterialResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

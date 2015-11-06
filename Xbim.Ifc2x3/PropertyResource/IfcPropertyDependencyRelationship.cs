@@ -10,6 +10,7 @@
 using Xbim.Ifc2x3.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -198,6 +199,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 
 
 
+
 		#region INotifyPropertyChanged implementation
 		 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -334,5 +336,10 @@ namespace Xbim.Ifc2x3.PropertyResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

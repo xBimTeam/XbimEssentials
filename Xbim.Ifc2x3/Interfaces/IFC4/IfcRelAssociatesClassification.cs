@@ -10,7 +10,6 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using Xbim.Ifc2x3.ExternalReferenceResource;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
@@ -22,11 +21,9 @@ namespace Xbim.Ifc2x3.Kernel
 			get
 			{
 				//## Handle return of RelatingClassification for which no match was found
-                if (RelatingClassification is IfcClassificationReference) 
-                    return (IfcClassificationReference)RelatingClassification;
-                else
-                    return null;
-				//##
+                var reference = RelatingClassification as ExternalReferenceResource.IfcClassificationReference;
+			    return reference;
+			    //##
 			} 
 		}
 

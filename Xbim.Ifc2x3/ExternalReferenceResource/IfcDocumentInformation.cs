@@ -12,6 +12,7 @@ using Xbim.Ifc2x3.ActorResource;
 using Xbim.Ifc2x3.DateTimeResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -400,6 +401,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		#endregion
 
 
+
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
 		public IEnumerable<IfcDocumentInformationRelationship> @IsPointedTo 
@@ -592,5 +594,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

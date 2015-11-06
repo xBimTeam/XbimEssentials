@@ -10,6 +10,7 @@
 using Xbim.Ifc2x3.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
@@ -62,6 +63,20 @@ namespace Xbim.Ifc2x3.GeometryResource
 		}	
 		#endregion
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public override IfcDimensionCount @Dim 
+		{
+			get 
+			{
+				//## Getter for Dim
+                return Coordinates.Count;
+				//##
+			}
+		}
+
+		#endregion
 
 
 
@@ -140,5 +155,10 @@ namespace Xbim.Ifc2x3.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

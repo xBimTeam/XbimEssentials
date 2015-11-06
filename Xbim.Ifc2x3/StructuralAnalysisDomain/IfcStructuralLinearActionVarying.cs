@@ -14,6 +14,7 @@ using Xbim.Ifc2x3.RepresentationResource;
 using Xbim.Ifc2x3.StructuralLoadResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
@@ -83,6 +84,21 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		}	
 		#endregion
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.List, EntityAttributeType.Class, 2, -1)]
+		public List<IfcStructuralLoad> @VaryingAppliedLoads 
+		{
+			get 
+			{
+				//## Getter for VaryingAppliedLoads
+				//TODO: Implement getter for derived attribute VaryingAppliedLoads
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
+
+		#endregion
 
 
 
@@ -177,5 +193,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

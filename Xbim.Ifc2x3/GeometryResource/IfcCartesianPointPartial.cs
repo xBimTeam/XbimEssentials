@@ -56,11 +56,6 @@ namespace Xbim.Ifc2x3.GeometryResource
             }
         }
 
-        public int Dim
-        {
-            get { return Coordinates.Count; }
-        }
-
         public void SetXY(double x, double y)
         {
             Coordinates.Clear();

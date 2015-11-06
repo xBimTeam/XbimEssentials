@@ -68,36 +68,5 @@ namespace Xbim.Ifc2x3.GeometryResource
             }
         }
 
-        /// <summary>
-        ///   Derived. The normalized directions of the placement X Axis (P[0]) and the placement Y Axis (P[1]) and the placement Z Axis (P[2]).
-        /// </summary>
-        public List<XbimVector3D> P
-        {
-            get
-            {
-                var p = new List<XbimVector3D>(3);
-                if (RefDirection == null && Axis == null)
-                {
-                    p.Add(new XbimVector3D(1, 0, 0));
-                    p.Add(new XbimVector3D(0, 1, 0));
-                    p.Add(new XbimVector3D(0, 0, 1));
-                }
-                else if (RefDirection != null && Axis != null)
-                {
-                    var za = _axis.XbimVector3D();
-                    za.Normalize();
-                    var xa = _refDirection.XbimVector3D();
-                    xa.Normalize();
-                    var ya = XbimVector3D.CrossProduct(za, xa);
-                    ya.Normalize();
-                    p.Add(xa);
-                    p.Add(ya);
-                    p.Add(za);
-                }
-                else
-                    throw new ArgumentException("RefDirection and Axis must be noth either null or both defined");
-                return p;
-            }
-        }
     }
 }

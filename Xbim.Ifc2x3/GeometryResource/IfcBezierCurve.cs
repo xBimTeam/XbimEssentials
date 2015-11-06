@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
@@ -40,6 +41,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		internal IfcBezierCurve(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 
@@ -122,5 +124,10 @@ namespace Xbim.Ifc2x3.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

@@ -67,7 +67,6 @@ namespace Xbim.Ifc2x3.GeometryResource
             return new XbimVector3D(X, Y, double.IsNaN(Z) ? 0 : Z);
         }
 
-        public int Dim { get { return DirectionRatios.Count; } }
 
         public XbimVector3D Normalise()
         {
