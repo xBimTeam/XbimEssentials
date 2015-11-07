@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
@@ -130,6 +131,31 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 
 
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Array, EntityAttributeType.Class, 0, 255)]
+		public List<Common.Geometry.XbimPoint3D> @ControlPoints 
+		{
+			get 
+			{
+				//## Getter for ControlPoints
+			    return ControlPointsList.Select(p => new Common.Geometry.XbimPoint3D(p.X, p.Y, p.Z)).ToList();
+			    //##
+			}
+		}
+
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public long @UpperIndexOnControlPoints 
+		{
+			get 
+			{
+				//## Getter for UpperIndexOnControlPoints
+			    return ControlPointsList.Count - 1;
+			    //##
+			}
+		}
+
+		#endregion
+
 
 
 		#region IPersist implementation
@@ -219,5 +245,10 @@ namespace Xbim.Ifc2x3.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

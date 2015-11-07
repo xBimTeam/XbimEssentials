@@ -30,16 +30,16 @@ namespace Xbim.Ifc2x3.PropertyResource
 			{
 				if (PropertyReference == null) return null;
 				var ifcmaterial = PropertyReference as MaterialResource.IfcMaterial;
-                if (ifcmaterial != null)
-                    //## Handle entity IfcMaterial which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+				if (ifcmaterial != null) 
+					//## Handle entity IfcMaterial which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
                     return (IIfcMaterialDefinition)ifcmaterial;
 					//##
 				var ifcperson = PropertyReference as ActorResource.IfcPerson;
 				if (ifcperson != null) 
 					return ifcperson;
 				var ifcdateandtime = PropertyReference as DateTimeResource.IfcDateAndTime;
-                if (ifcdateandtime != null)
-                    //## Handle entity IfcDateAndTime which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
+				if (ifcdateandtime != null) 
+					//## Handle entity IfcDateAndTime which is not a part of the target select interface Ifc4.PropertyResource.IfcObjectReferenceSelect in property PropertyReference
                     return null;
 					//##
 				var ifcmateriallist = PropertyReference as MaterialResource.IfcMaterialList;

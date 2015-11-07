@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
@@ -64,6 +65,21 @@ namespace Xbim.Ifc2x3.GeometryResource
 		}	
 		#endregion
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.List, EntityAttributeType.Class, 3, 3)]
+		public List<Common.Geometry.XbimVector3D> @U 
+		{
+			get 
+			{
+				//## Getter for U
+				//TODO: Implement getter for derived attribute U
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
+
+		#endregion
 
 
 
@@ -150,5 +166,10 @@ namespace Xbim.Ifc2x3.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

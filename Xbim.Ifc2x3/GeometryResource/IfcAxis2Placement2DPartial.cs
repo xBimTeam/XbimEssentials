@@ -47,26 +47,6 @@ namespace Xbim.Ifc2x3.GeometryResource
             }
         }
 
-        /// <summary>
-        ///   Optional.   P[1]: The normalized direction of the placement X Axis. This is (1.0,0.0,0.0) if RefDirection is omitted. P[2]: The normalized direction of the placement Y Axis. This is a derived attribute and is orthogonal to P[1].
-        /// </summary>
-        public List<XbimVector3D> P
-        {
-            get
-            {
-                var p = new List<XbimVector3D>(2);
-                if (RefDirection == null)
-                {
-                    p.Add(new XbimVector3D(1, 0, 0));
-                    p.Add(new XbimVector3D(0, 1, 0));
-                }
-                else
-                {
-                    p.Add(new XbimVector3D(RefDirection.DirectionRatios[0], RefDirection.DirectionRatios[1], 0));
-                    p.Add(new XbimVector3D(-RefDirection.DirectionRatios[1], RefDirection.DirectionRatios[0], 0));
-                }
-                return p;
-            }
-        }
+       
     }
 }

@@ -12,6 +12,7 @@ using Xbim.Ifc2x3.GeometryResource;
 using Xbim.Ifc2x3.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
@@ -121,6 +122,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
 
 
+
 		#region IPersist implementation
 		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
@@ -207,5 +209,10 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

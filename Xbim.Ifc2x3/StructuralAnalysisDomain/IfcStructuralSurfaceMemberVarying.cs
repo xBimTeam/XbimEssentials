@@ -13,6 +13,7 @@ using Xbim.Ifc2x3.GeometricConstraintResource;
 using Xbim.Ifc2x3.RepresentationResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
@@ -82,6 +83,22 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		}	
 		#endregion
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.List, EntityAttributeType.None, 3, -1)]
+		public List<IfcPositiveLengthMeasure> @VaryingThickness 
+		{
+			get 
+			{
+				//## Getter for VaryingThickness
+			    var result = new List<IfcPositiveLengthMeasure> {Thickness ?? 0};
+                result.AddRange(SubsequentThickness);
+			    return result;
+			    //##
+			}
+		}
+
+		#endregion
 
 
 
@@ -176,5 +193,10 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

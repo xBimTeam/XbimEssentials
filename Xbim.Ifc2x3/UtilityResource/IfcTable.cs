@@ -10,6 +10,7 @@
 using Xbim.Ifc2x3.ConstraintResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -142,6 +143,44 @@ namespace Xbim.Ifc2x3.UtilityResource
 		#endregion
 
 
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public long @NumberOfCellsInRow 
+		{
+			get 
+			{
+				//## Getter for NumberOfCellsInRow
+			    return Rows != null
+			        ? Rows[0].RowCells.Count
+			        : 0;
+			    //##
+			}
+		}
+
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public long @NumberOfHeadings 
+		{
+			get 
+			{
+				//## Getter for NumberOfHeadings
+			    return Rows.Count(r => r.IsHeading);
+			    //##
+			}
+		}
+
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public long @NumberOfDataRows 
+		{
+			get 
+			{
+				//## Getter for NumberOfDataRows
+                return Rows.Count(r => !r.IsHeading);
+				//##
+			}
+		}
+
+		#endregion
+
 
 		#region INotifyPropertyChanged implementation
 		 
@@ -273,5 +312,10 @@ namespace Xbim.Ifc2x3.UtilityResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

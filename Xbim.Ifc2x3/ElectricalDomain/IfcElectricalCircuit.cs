@@ -12,6 +12,7 @@ using Xbim.Ifc2x3.UtilityResource;
 using Xbim.Ifc2x3.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
@@ -43,6 +44,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		internal IfcElectricalCircuit(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 
@@ -125,5 +127,10 @@ namespace Xbim.Ifc2x3.ElectricalDomain
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

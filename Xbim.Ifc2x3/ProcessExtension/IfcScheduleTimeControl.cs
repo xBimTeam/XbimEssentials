@@ -13,6 +13,7 @@ using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.DateTimeResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
@@ -360,6 +361,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		#endregion
 
 
+
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
 		public IfcRelAssignsTasks @ScheduleTimeControlAssigned 
@@ -503,5 +505,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

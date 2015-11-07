@@ -51,10 +51,10 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-			    //## Handle return of RepresentationContexts for which no match was found
+				//## Handle return of RepresentationContexts for which no match was found
 			    return RepresentationContexts;
 			    //##
-			}
+			} 
 		}
 		IIfcUnitAssignment IIfcContext.UnitsInContext 
 		{ 

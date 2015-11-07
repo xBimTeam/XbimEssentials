@@ -11,6 +11,7 @@ using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.Kernel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
@@ -47,6 +48,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		internal IfcProductDefinitionShape(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 
@@ -146,5 +148,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

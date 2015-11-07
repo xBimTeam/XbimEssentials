@@ -13,6 +13,8 @@ namespace Xbim.Common.Geometry
         public double X;
         public double Y;
         public double Z;
+
+        public double Magnitude;
         
         public double Length 
         {
@@ -83,6 +85,7 @@ namespace Xbim.Common.Geometry
             X = vx;
             Y = vy;
             Z = vz;
+            Magnitude = 1;
         }
 
         public XbimVector3D(double v)
@@ -90,6 +93,8 @@ namespace Xbim.Common.Geometry
             X = v;
             Y = v;
             Z = v;
+
+            Magnitude = 1;
         }
 
         static public XbimVector3D Min(XbimVector3D a, XbimVector3D b)
