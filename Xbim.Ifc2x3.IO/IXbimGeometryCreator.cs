@@ -1,23 +1,20 @@
 ﻿using System.IO;
 using Xbim.Common.Geometry;
 using Xbim.Common.Logging;
-using Xbim.Ifc2x3.GeometricModelResource;
-using Xbim.Ifc2x3.GeometryResource;
-using Xbim.Ifc2x3.ProfileResource;
-using Xbim.Ifc2x3.TopologyResource;
+using Xbim.Ifc4.Interfaces;
 using Xbim.IO;
 using XbimGeometry.Interfaces;
 
-namespace Xbim.Ifc2x3.IO
+namespace Xbim.Ifc4.Interfaces
 {
     public interface IXbimGeometryCreator
     {
         ILogger Logger { get; }
 
-        IXbimGeometryObject Create(IfcGeometricRepresentationItem ifcRepresentation);
+        IXbimGeometryObject Create(IIfcGeometricRepresentationItem IIfcRepresentation);
 
 
-        IXbimGeometryObject Create(IfcGeometricRepresentationItem ifcRepresentation, IfcAxis2Placement3D objectLocation);
+        IXbimGeometryObject Create(IIfcGeometricRepresentationItem IIfcRepresentation, IIfcAxis2Placement3D objectLocation);
 
         /// <summary>
         /// 
@@ -38,70 +35,70 @@ namespace Xbim.Ifc2x3.IO
         /// <returns></returns>
         IXbimShapeGeometryData CreateShapeGeometry(IXbimGeometryObject geometryObject, double precision, double deflection /*, double angle=0.5, XbimGeometryType storageType = XbimGeometryType::Polyhedron*/);
         IXbimGeometryObjectSet CreateGeometryObjectSet();
-        IXbimSolid CreateSolid(IfcSweptAreaSolid ifcSolid);
-        IXbimSolid CreateSolid(IfcExtrudedAreaSolid ifcSolid);
-        IXbimSolid CreateSolid(IfcRevolvedAreaSolid ifcSolid);
-        IXbimSolid CreateSolid(IfcSweptDiskSolid ifcSolid);
-        IXbimSolid CreateSolid(IfcBoundingBox ifcSolid);
-        IXbimSolid CreateSolid(IfcSurfaceCurveSweptAreaSolid ifcSolid);
+        IXbimSolid CreateSolid(IIfcSweptAreaSolid ifcSolid);
+        IXbimSolid CreateSolid(IIfcExtrudedAreaSolid ifcSolid);
+        IXbimSolid CreateSolid(IIfcRevolvedAreaSolid ifcSolid);
+        IXbimSolid CreateSolid(IIfcSweptDiskSolid ifcSolid);
+        IXbimSolid CreateSolid(IIfcBoundingBox ifcSolid);
+        IXbimSolid CreateSolid(IIfcSurfaceCurveSweptAreaSolid ifcSolid);
 
-        IXbimSolid CreateSolid(IfcBooleanClippingResult ifcSolid);
-        IXbimSolid CreateSolid(IfcBooleanOperand ifcSolid);
-        IXbimSolid CreateSolid(IfcHalfSpaceSolid ifcSolid);
-        IXbimSolid CreateSolid(IfcPolygonalBoundedHalfSpace ifcSolid);
-        IXbimSolid CreateSolid(IfcBoxedHalfSpace ifcSolid);
+        IXbimSolid CreateSolid(IIfcBooleanClippingResult ifcSolid);
+        IXbimSolid CreateSolid(IIfcBooleanOperand ifcSolid);
+        IXbimSolid CreateSolid(IIfcHalfSpaceSolid ifcSolid);
+        IXbimSolid CreateSolid(IIfcPolygonalBoundedHalfSpace ifcSolid);
+        IXbimSolid CreateSolid(IIfcBoxedHalfSpace ifcSolid);
 
-        IXbimSolidSet CreateSolidSet(IfcManifoldSolidBrep ifcSolid);
-        IXbimSolidSet CreateSolidSet(IfcFacetedBrep ifcSolid);
-        IXbimSolidSet CreateSolidSet(IfcFacetedBrepWithVoids ifcSolid);
-        IXbimSolidSet CreateSolidSet(IfcClosedShell ifcSolid);
+        IXbimSolidSet CreateSolidSet(IIfcManifoldSolidBrep ifcSolid);
+        IXbimSolidSet CreateSolidSet(IIfcFacetedBrep ifcSolid);
+        IXbimSolidSet CreateSolidSet(IIfcFacetedBrepWithVoids ifcSolid);
+        IXbimSolidSet CreateSolidSet(IIfcClosedShell ifcSolid);
 
-        IXbimSolid CreateSolid(IfcCsgPrimitive3D ifcSolid);
-        IXbimSolid CreateSolid(IfcCsgSolid ifcSolid);
-        IXbimSolid CreateSolid(IfcSphere ifcSolid);
-        IXbimSolid CreateSolid(IfcBlock ifcSolid);
-        IXbimSolid CreateSolid(IfcRightCircularCylinder ifcSolid);
-        IXbimSolid CreateSolid(IfcRightCircularCone ifcSolid);
-        IXbimSolid CreateSolid(IfcRectangularPyramid ifcSolid);
+        IXbimSolid CreateSolid(IIfcCsgPrimitive3D ifcSolid);
+        IXbimSolid CreateSolid(IIfcCsgSolid ifcSolid);
+        IXbimSolid CreateSolid(IIfcSphere ifcSolid);
+        IXbimSolid CreateSolid(IIfcBlock ifcSolid);
+        IXbimSolid CreateSolid(IIfcRightCircularCylinder ifcSolid);
+        IXbimSolid CreateSolid(IIfcRightCircularCone ifcSolid);
+        IXbimSolid CreateSolid(IIfcRectangularPyramid ifcSolid);
 
         //Shells creation
-        IXbimShell CreateShell(IfcOpenShell shell);
-        IXbimShell CreateShell(IfcConnectedFaceSet shell);
-        IXbimShell CreateShell(IfcSurfaceOfLinearExtrusion linExt);
+        IXbimShell CreateShell(IIfcOpenShell shell);
+        IXbimShell CreateShell(IIfcConnectedFaceSet shell);
+        IXbimShell CreateShell(IIfcSurfaceOfLinearExtrusion linExt);
 
 
         //Surface Models containing one or more faces, shells or solids
-        IXbimGeometryObjectSet CreateSurfaceModel(IfcShellBasedSurfaceModel ifcSurface);
-        IXbimGeometryObjectSet CreateSurfaceModel(IfcFaceBasedSurfaceModel ifcSurface);
+        IXbimGeometryObjectSet CreateSurfaceModel(IIfcShellBasedSurfaceModel IIfcSurface);
+        IXbimGeometryObjectSet CreateSurfaceModel(IIfcFaceBasedSurfaceModel IIfcSurface);
 
         //Faces
 
-        IXbimFace CreateFace(IfcProfileDef profileDef);
-        IXbimFace CreateFace(IfcCompositeCurve cCurve);
-        IXbimFace CreateFace(IfcPolyline pline);
-        IXbimFace CreateFace(IfcPolyLoop loop);
-        IXbimFace CreateFace(IfcSurface surface);
-        IXbimFace CreateFace(IfcPlane plane);
+        IXbimFace CreateFace(IIfcProfileDef profileDef);
+        IXbimFace CreateFace(IIfcCompositeCurve cCurve);
+        IXbimFace CreateFace(IIfcPolyline pline);
+        IXbimFace CreateFace(IIfcPolyLoop loop);
+        IXbimFace CreateFace(IIfcSurface surface);
+        IXbimFace CreateFace(IIfcPlane plane);
         IXbimFace CreateFace(IXbimWire wire);
 
         //Create Wire
-        IXbimWire CreateWire(IfcCurve curve);
-        IXbimWire CreateWire(IfcCompositeCurveSegment compCurveSeg);
+        IXbimWire CreateWire(IIfcCurve curve);
+        IXbimWire CreateWire(IIfcCompositeCurveSegment compCurveSeg);
 
         IXbimPoint CreatePoint(double x, double y, double z, double tolerance);
-        IXbimPoint CreatePoint(IfcCartesianPoint p);
+        IXbimPoint CreatePoint(IIfcCartesianPoint p);
         IXbimPoint CreatePoint(XbimPoint3D p, double tolerance);
-        IXbimPoint CreatePoint(IfcPoint pt);
-        IXbimPoint CreatePoint(IfcPointOnCurve p);
-        IXbimPoint CreatePoint(IfcPointOnSurface p);
+        IXbimPoint CreatePoint(IIfcPoint pt);
+        IXbimPoint CreatePoint(IIfcPointOnCurve p);
+        IXbimPoint CreatePoint(IIfcPointOnSurface p);
 
         //Vertex Creation
         IXbimVertex CreateVertexPoint(XbimPoint3D point, double precision);
 
-        IfcFacetedBrep CreateFacetedBrep(Xbim.Ifc2x3.IO.XbimModel model, IXbimSolid solid);
+        IIfcFacetedBrep CreateFacetedBrep(Xbim.Common.IModel model, IXbimSolid solid);
         //Creates collections of objects
         IXbimSolidSet CreateSolidSet();
-        IXbimSolidSet CreateSolidSet(IfcBooleanResult boolOp);
+        IXbimSolidSet CreateSolidSet(IIfcBooleanResult boolOp);
 
         //Read and write functions
         void WriteTriangulation(TextWriter tw, IXbimGeometryObject shape, double tolerance, double deflection, double angle);

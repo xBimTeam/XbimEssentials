@@ -1,4 +1,4 @@
-﻿namespace Xbim.IO
+﻿namespace XbimGeometry.Interfaces
 {
     public interface IXbimShapeInstanceData
     {

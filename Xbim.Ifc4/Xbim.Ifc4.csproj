@@ -479,6 +479,7 @@
     <Compile Include="HvacDomain\IfcVibrationIsolatorType.cs" />
     <Compile Include="HvacDomain\IfcVibrationIsolatorTypeEnum.cs" />
     <Compile Include="ItemSet.cs" />
+    <Compile Include="IXbimGeometryEngine.cs" />
     <Compile Include="Kernel\IfcActor.cs" />
     <Compile Include="Kernel\IfcComplexPropertyTemplate.cs" />
     <Compile Include="Kernel\IfcComplexPropertyTemplateTypeEnum.cs" />

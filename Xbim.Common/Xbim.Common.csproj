@@ -63,6 +63,8 @@
     <Compile Include="Exceptions\XbimException.cs" />
     <Compile Include="Exceptions\XbimGeometryException.cs" />
     <Compile Include="Exceptions\XbimParserException.cs" />
+    <Compile Include="Geometry\IXbimShapeGeometryData.cs" />
+    <Compile Include="Geometry\IXbimShapeInstanceData.cs" />
     <Compile Include="Metadata\ExpressMetaData.cs" />
     <Compile Include="Metadata\ExpressType.cs" />
     <Compile Include="Metadata\ExpressTypeDictionary.cs" />
