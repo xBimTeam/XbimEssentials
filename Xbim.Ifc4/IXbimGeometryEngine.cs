@@ -7,7 +7,7 @@ using XbimGeometry.Interfaces;
 
 namespace Xbim.Ifc4.Interfaces
 {
-    public interface IXbimGeometryCreator
+    public interface IXbimGeometryEngine
     {
         ILogger Logger { get; }
 
