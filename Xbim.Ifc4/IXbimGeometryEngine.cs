@@ -67,16 +67,17 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolid CreateSolid(IIfcAdvancedBrep ifcSolid);
         IXbimSolid CreateSolid(IIfcAdvancedBrepWithVoids ifcSolid);
         IXbimSolid CreateSolid(IIfcSectionedSpine ifcSolid);
+
         //Shells creation
         IXbimShell CreateShell(IIfcOpenShell shell);
         IXbimShell CreateShell(IIfcConnectedFaceSet shell);
         IXbimShell CreateShell(IIfcSurfaceOfLinearExtrusion shell);
         //Ifc4 specific classes
-        IXbimShell CreateShell(IfcTessellatedItem shell);
-        IXbimShell CreateShell(IIfcTessellatedFaceSet shell);
+        //IXbimShell CreateShell(IfcTessellatedItem shell);
+        //IXbimShell CreateShell(IIfcTessellatedFaceSet shell);
         IXbimShell CreateShell(IIfcTriangulatedFaceSet shell);
 
-        IXbimShell CreateShell(IIfcSweptDiskSolidPolygonal shell);
+
 
 
         //Surface Models containing one or more faces, shells or solids
