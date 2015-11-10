@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcUnitAssignment : IIfcUnitAssignment
 	{
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcUnit> IIfcUnitAssignment.Units 
+		IEnumerable<IIfcUnit> IIfcUnitAssignment.Units 
 		{ 
 			get
 			{

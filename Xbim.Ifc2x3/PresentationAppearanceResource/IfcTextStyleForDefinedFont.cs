@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextStyleForDefinedFont : IPersistEntity, IfcCharacterStyleSelect
 	{
-		IfcColour @Colour { get; }
-		IfcColour @BackgroundColour { get; }
+		IIfcColour @Colour { get; }
+		IIfcColour @BackgroundColour { get; }
 	
 	}
 }
@@ -40,8 +40,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcTextStyleForDefinedFont : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleForDefinedFont, IEqualityComparer<@IfcTextStyleForDefinedFont>, IEquatable<@IfcTextStyleForDefinedFont>
 	{
 		#region IIfcTextStyleForDefinedFont explicit implementation
-		IfcColour IIfcTextStyleForDefinedFont.Colour { get { return @Colour; } }	
-		IfcColour IIfcTextStyleForDefinedFont.BackgroundColour { get { return @BackgroundColour; } }	
+		IIfcColour IIfcTextStyleForDefinedFont.Colour { get { return @Colour; } }	
+		IIfcColour IIfcTextStyleForDefinedFont.BackgroundColour { get { return @BackgroundColour; } }	
 		 
 		#endregion
 

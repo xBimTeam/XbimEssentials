@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcPropertySingleValue : IIfcPropertySingleValue
 	{
-		Ifc4.MeasureResource.IfcValue IIfcPropertySingleValue.NominalValue 
+		IIfcValue IIfcPropertySingleValue.NominalValue 
 		{ 
 			get
 			{
@@ -218,7 +218,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				return null;
 			} 
 		}
-		Ifc4.MeasureResource.IfcUnit IIfcPropertySingleValue.Unit 
+		IIfcUnit IIfcPropertySingleValue.Unit 
 		{ 
 			get
 			{

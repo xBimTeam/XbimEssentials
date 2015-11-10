@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcLabel? @Name { get; }
 		IfcText? @Description { get; }
 		bool? @ProductDefinitional { get; }
-		IfcProductRepresentationSelect @PartOfProductDefinitionShape { get; }
+		IIfcProductRepresentationSelect @PartOfProductDefinitionShape { get; }
 	
 	}
 }
@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		IfcLabel? IIfcShapeAspect.Name { get { return @Name; } }	
 		IfcText? IIfcShapeAspect.Description { get { return @Description; } }	
 		bool? IIfcShapeAspect.ProductDefinitional { get { return @ProductDefinitional; } }	
-		IfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape { get { return @PartOfProductDefinitionShape; } }	
+		IIfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape { get { return @PartOfProductDefinitionShape; } }	
 		 
 		#endregion
 

@@ -24,10 +24,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertyBoundedValue : IIfcSimpleProperty
 	{
-		IfcValue @UpperBoundValue { get; }
-		IfcValue @LowerBoundValue { get; }
-		IfcUnit @Unit { get; }
-		IfcValue @SetPointValue { get; }
+		IIfcValue @UpperBoundValue { get; }
+		IIfcValue @LowerBoundValue { get; }
+		IIfcUnit @Unit { get; }
+		IIfcValue @SetPointValue { get; }
 	
 	}
 }
@@ -39,10 +39,10 @@ namespace Xbim.Ifc4.PropertyResource
 	public  partial class @IfcPropertyBoundedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyBoundedValue, IEqualityComparer<@IfcPropertyBoundedValue>, IEquatable<@IfcPropertyBoundedValue>
 	{
 		#region IIfcPropertyBoundedValue explicit implementation
-		IfcValue IIfcPropertyBoundedValue.UpperBoundValue { get { return @UpperBoundValue; } }	
-		IfcValue IIfcPropertyBoundedValue.LowerBoundValue { get { return @LowerBoundValue; } }	
-		IfcUnit IIfcPropertyBoundedValue.Unit { get { return @Unit; } }	
-		IfcValue IIfcPropertyBoundedValue.SetPointValue { get { return @SetPointValue; } }	
+		IIfcValue IIfcPropertyBoundedValue.UpperBoundValue { get { return @UpperBoundValue; } }	
+		IIfcValue IIfcPropertyBoundedValue.LowerBoundValue { get { return @LowerBoundValue; } }	
+		IIfcUnit IIfcPropertyBoundedValue.Unit { get { return @Unit; } }	
+		IIfcValue IIfcPropertyBoundedValue.SetPointValue { get { return @SetPointValue; } }	
 		 
 		#endregion
 

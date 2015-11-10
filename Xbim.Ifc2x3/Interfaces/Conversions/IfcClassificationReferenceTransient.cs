@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         /// </summary>
         public IEnumerable<IIfcExternalReferenceRelationship> ExternalReferenceForResources { get{ yield break; } }
 
-        public IfcClassificationReferenceSelect ReferencedSource
+        public IIfcClassificationReferenceSelect ReferencedSource
         {
             get
             {

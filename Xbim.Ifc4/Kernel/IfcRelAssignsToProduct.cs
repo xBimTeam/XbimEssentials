@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssignsToProduct : IIfcRelAssigns
 	{
-		IfcProductSelect @RelatingProduct { get; }
+		IIfcProductSelect @RelatingProduct { get; }
 	
 	}
 }
@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcRelAssignsToProduct : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProduct, IEqualityComparer<@IfcRelAssignsToProduct>, IEquatable<@IfcRelAssignsToProduct>
 	{
 		#region IIfcRelAssignsToProduct explicit implementation
-		IfcProductSelect IIfcRelAssignsToProduct.RelatingProduct { get { return @RelatingProduct; } }	
+		IIfcProductSelect IIfcRelAssignsToProduct.RelatingProduct { get { return @RelatingProduct; } }	
 		 
 		#endregion
 

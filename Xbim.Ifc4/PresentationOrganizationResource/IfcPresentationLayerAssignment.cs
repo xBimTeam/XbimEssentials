@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcLabel @Name { get; }
 		IfcText? @Description { get; }
-		IEnumerable<IfcLayeredItem> @AssignedItems { get; }
+		IEnumerable<IIfcLayeredItem> @AssignedItems { get; }
 		IfcIdentifier? @Identifier { get; }
 	
 	}
@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		#region IIfcPresentationLayerAssignment explicit implementation
 		IfcLabel IIfcPresentationLayerAssignment.Name { get { return @Name; } }	
 		IfcText? IIfcPresentationLayerAssignment.Description { get { return @Description; } }	
-		IEnumerable<IfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems { get { return @AssignedItems; } }	
+		IEnumerable<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems { get { return @AssignedItems; } }	
 		IfcIdentifier? IIfcPresentationLayerAssignment.Identifier { get { return @Identifier; } }	
 		 
 		#endregion

@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				}
 			} 
 		}
-		Ifc4.GeometricModelResource.IfcBooleanOperand IIfcBooleanResult.FirstOperand 
+		IIfcBooleanOperand IIfcBooleanResult.FirstOperand 
 		{ 
 			get
 			{
@@ -57,7 +57,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				return null;
 			} 
 		}
-		Ifc4.GeometricModelResource.IfcBooleanOperand IIfcBooleanResult.SecondOperand 
+		IIfcBooleanOperand IIfcBooleanResult.SecondOperand 
 		{ 
 			get
 			{

@@ -24,8 +24,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertySingleValue : IIfcSimpleProperty
 	{
-		IfcValue @NominalValue { get; }
-		IfcUnit @Unit { get; }
+		IIfcValue @NominalValue { get; }
+		IIfcUnit @Unit { get; }
 	
 	}
 }
@@ -37,8 +37,8 @@ namespace Xbim.Ifc4.PropertyResource
 	public  partial class @IfcPropertySingleValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertySingleValue, IEqualityComparer<@IfcPropertySingleValue>, IEquatable<@IfcPropertySingleValue>
 	{
 		#region IIfcPropertySingleValue explicit implementation
-		IfcValue IIfcPropertySingleValue.NominalValue { get { return @NominalValue; } }	
-		IfcUnit IIfcPropertySingleValue.Unit { get { return @Unit; } }	
+		IIfcValue IIfcPropertySingleValue.NominalValue { get { return @NominalValue; } }	
+		IIfcUnit IIfcPropertySingleValue.Unit { get { return @Unit; } }	
 		 
 		#endregion
 

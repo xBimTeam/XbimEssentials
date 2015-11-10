@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcRepresentationMap : IIfcRepresentationMap
 	{
-		Ifc4.GeometryResource.IfcAxis2Placement IIfcRepresentationMap.MappingOrigin 
+		IIfcAxis2Placement IIfcRepresentationMap.MappingOrigin 
 		{ 
 			get
 			{

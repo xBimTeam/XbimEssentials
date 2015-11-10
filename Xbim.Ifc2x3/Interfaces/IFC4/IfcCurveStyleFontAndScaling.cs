@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont 
+		IIfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont 
 		{ 
 			get
 			{

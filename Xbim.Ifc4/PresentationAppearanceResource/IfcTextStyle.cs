@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IIfcTextStyleForDefinedFont @TextCharacterAppearance { get; }
 		IIfcTextStyleTextModel @TextStyle { get; }
-		IfcTextFontSelect @TextFontStyle { get; }
+		IIfcTextFontSelect @TextFontStyle { get; }
 		bool? @ModelOrDraughting { get; }
 	
 	}
@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#region IIfcTextStyle explicit implementation
 		IIfcTextStyleForDefinedFont IIfcTextStyle.TextCharacterAppearance { get { return @TextCharacterAppearance; } }	
 		IIfcTextStyleTextModel IIfcTextStyle.TextStyle { get { return @TextStyle; } }	
-		IfcTextFontSelect IIfcTextStyle.TextFontStyle { get { return @TextFontStyle; } }	
+		IIfcTextFontSelect IIfcTextStyle.TextFontStyle { get { return @TextFontStyle; } }	
 		bool? IIfcTextStyle.ModelOrDraughting { get { return @ModelOrDraughting; } }	
 		 
 		#endregion

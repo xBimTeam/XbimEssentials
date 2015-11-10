@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcTimeSeriesDataTypeEnum @TimeSeriesDataType { get; }
 		IfcDataOriginEnum @DataOrigin { get; }
 		IfcLabel? @UserDefinedDataOrigin { get; }
-		IfcUnit @Unit { get; }
+		IIfcUnit @Unit { get; }
 		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReference {  get; }
 	
 	}
@@ -57,7 +57,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType { get { return @TimeSeriesDataType; } }	
 		IfcDataOriginEnum IIfcTimeSeries.DataOrigin { get { return @DataOrigin; } }	
 		IfcLabel? IIfcTimeSeries.UserDefinedDataOrigin { get { return @UserDefinedDataOrigin; } }	
-		IfcUnit IIfcTimeSeries.Unit { get { return @Unit; } }	
+		IIfcUnit IIfcTimeSeries.Unit { get { return @Unit; } }	
 		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcTimeSeries.HasExternalReference {  get { return @HasExternalReference; } }
 		#endregion

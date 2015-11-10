@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				//##
 			} 
 		}
-		Ifc4.ActorResource.IfcActorSelect IIfcApproval.RequestingApproval 
+		IIfcActorSelect IIfcApproval.RequestingApproval 
 		{ 
 			get
 			{
@@ -104,7 +104,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			    //##
 			} 
 		}
-		Ifc4.ActorResource.IfcActorSelect IIfcApproval.GivingApproval 
+		IIfcActorSelect IIfcApproval.GivingApproval 
 		{ 
 			get
 			{

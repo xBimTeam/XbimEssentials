@@ -32,8 +32,8 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcText? @Description { get; }
 		IfcConstraintEnum @ConstraintGrade { get; }
 		IfcLabel? @ConstraintSource { get; }
-		IfcActorSelect @CreatingActor { get; }
-		IfcDateTimeSelect @CreationTime { get; }
+		IIfcActorSelect @CreatingActor { get; }
+		IIfcDateTimeSelect @CreationTime { get; }
 		IfcLabel? @UserDefinedGrade { get; }
 		IEnumerable<IIfcConstraintClassificationRelationship> @ClassifiedAs {  get; }
 		IEnumerable<IIfcConstraintRelationship> @RelatesConstraints {  get; }
@@ -57,8 +57,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		IfcText? IIfcConstraint.Description { get { return @Description; } }	
 		IfcConstraintEnum IIfcConstraint.ConstraintGrade { get { return @ConstraintGrade; } }	
 		IfcLabel? IIfcConstraint.ConstraintSource { get { return @ConstraintSource; } }	
-		IfcActorSelect IIfcConstraint.CreatingActor { get { return @CreatingActor; } }	
-		IfcDateTimeSelect IIfcConstraint.CreationTime { get { return @CreationTime; } }	
+		IIfcActorSelect IIfcConstraint.CreatingActor { get { return @CreatingActor; } }	
+		IIfcDateTimeSelect IIfcConstraint.CreationTime { get { return @CreationTime; } }	
 		IfcLabel? IIfcConstraint.UserDefinedGrade { get { return @UserDefinedGrade; } }	
 		 
 		IEnumerable<IIfcConstraintClassificationRelationship> IIfcConstraint.ClassifiedAs {  get { return @ClassifiedAs; } }

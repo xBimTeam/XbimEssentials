@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcIdentifier? @Identifier { get; }
 		IfcLabel? @Name { get; }
 		IfcText? @Description { get; }
-		IfcUnit @Unit { get; }
+		IIfcUnit @Unit { get; }
 		IIfcReference @ReferencePath { get; }
 	
 	}
@@ -46,7 +46,7 @@ namespace Xbim.Ifc4.UtilityResource
 		IfcIdentifier? IIfcTableColumn.Identifier { get { return @Identifier; } }	
 		IfcLabel? IIfcTableColumn.Name { get { return @Name; } }	
 		IfcText? IIfcTableColumn.Description { get { return @Description; } }	
-		IfcUnit IIfcTableColumn.Unit { get { return @Unit; } }	
+		IIfcUnit IIfcTableColumn.Unit { get { return @Unit; } }	
 		IIfcReference IIfcTableColumn.ReferencePath { get { return @ReferencePath; } }	
 		 
 		#endregion

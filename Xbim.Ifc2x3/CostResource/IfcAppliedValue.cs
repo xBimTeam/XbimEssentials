@@ -30,10 +30,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLabel? @Name { get; }
 		IfcText? @Description { get; }
-		IfcAppliedValueSelect @AppliedValue { get; }
+		IIfcAppliedValueSelect @AppliedValue { get; }
 		IIfcMeasureWithUnit @UnitBasis { get; }
-		IfcDateTimeSelect @ApplicableDate { get; }
-		IfcDateTimeSelect @FixedUntilDate { get; }
+		IIfcDateTimeSelect @ApplicableDate { get; }
+		IIfcDateTimeSelect @FixedUntilDate { get; }
 		IEnumerable<IIfcReferencesValueDocument> @ValuesReferenced {  get; }
 		IEnumerable<IIfcAppliedValueRelationship> @ValueOfComponents {  get; }
 		IEnumerable<IIfcAppliedValueRelationship> @IsComponentIn {  get; }
@@ -51,10 +51,10 @@ namespace Xbim.Ifc2x3.CostResource
 		#region IIfcAppliedValue explicit implementation
 		IfcLabel? IIfcAppliedValue.Name { get { return @Name; } }	
 		IfcText? IIfcAppliedValue.Description { get { return @Description; } }	
-		IfcAppliedValueSelect IIfcAppliedValue.AppliedValue { get { return @AppliedValue; } }	
+		IIfcAppliedValueSelect IIfcAppliedValue.AppliedValue { get { return @AppliedValue; } }	
 		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis { get { return @UnitBasis; } }	
-		IfcDateTimeSelect IIfcAppliedValue.ApplicableDate { get { return @ApplicableDate; } }	
-		IfcDateTimeSelect IIfcAppliedValue.FixedUntilDate { get { return @FixedUntilDate; } }	
+		IIfcDateTimeSelect IIfcAppliedValue.ApplicableDate { get { return @ApplicableDate; } }	
+		IIfcDateTimeSelect IIfcAppliedValue.FixedUntilDate { get { return @FixedUntilDate; } }	
 		 
 		IEnumerable<IIfcReferencesValueDocument> IIfcAppliedValue.ValuesReferenced {  get { return @ValuesReferenced; } }
 		IEnumerable<IIfcAppliedValueRelationship> IIfcAppliedValue.ValueOfComponents {  get { return @ValueOfComponents; } }

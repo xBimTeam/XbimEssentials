@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcActor : IIfcObject
 	{
-		IfcActorSelect @TheActor { get; }
+		IIfcActorSelect @TheActor { get; }
 		IEnumerable<IIfcRelAssignsToActor> @IsActingUpon {  get; }
 	
 	}
@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcActor : IfcObject, IInstantiableEntity, IIfcActor, IEqualityComparer<@IfcActor>, IEquatable<@IfcActor>
 	{
 		#region IIfcActor explicit implementation
-		IfcActorSelect IIfcActor.TheActor { get { return @TheActor; } }	
+		IIfcActorSelect IIfcActor.TheActor { get { return @TheActor; } }	
 		 
 		IEnumerable<IIfcRelAssignsToActor> IIfcActor.IsActingUpon {  get { return @IsActingUpon; } }
 		#endregion

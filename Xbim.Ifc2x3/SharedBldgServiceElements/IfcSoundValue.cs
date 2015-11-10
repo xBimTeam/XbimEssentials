@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcTimeSeries @SoundLevelTimeSeries { get; }
 		IfcFrequencyMeasure @Frequency { get; }
-		IfcDerivedMeasureValue @SoundLevelSingleValue { get; }
+		IIfcDerivedMeasureValue @SoundLevelSingleValue { get; }
 	
 	}
 }
@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		#region IIfcSoundValue explicit implementation
 		IIfcTimeSeries IIfcSoundValue.SoundLevelTimeSeries { get { return @SoundLevelTimeSeries; } }	
 		IfcFrequencyMeasure IIfcSoundValue.Frequency { get { return @Frequency; } }	
-		IfcDerivedMeasureValue IIfcSoundValue.SoundLevelSingleValue { get { return @SoundLevelSingleValue; } }	
+		IIfcDerivedMeasureValue IIfcSoundValue.SoundLevelSingleValue { get { return @SoundLevelSingleValue; } }	
 		 
 		#endregion
 

@@ -24,7 +24,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoundaryNodeConditionWarping : IIfcBoundaryNodeCondition
 	{
-		IfcWarpingStiffnessSelect @WarpingStiffness { get; }
+		IIfcWarpingStiffnessSelect @WarpingStiffness { get; }
 	
 	}
 }
@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	public  partial class @IfcBoundaryNodeConditionWarping : IfcBoundaryNodeCondition, IInstantiableEntity, IIfcBoundaryNodeConditionWarping, IEqualityComparer<@IfcBoundaryNodeConditionWarping>, IEquatable<@IfcBoundaryNodeConditionWarping>
 	{
 		#region IIfcBoundaryNodeConditionWarping explicit implementation
-		IfcWarpingStiffnessSelect IIfcBoundaryNodeConditionWarping.WarpingStiffness { get { return @WarpingStiffness; } }	
+		IIfcWarpingStiffnessSelect IIfcBoundaryNodeConditionWarping.WarpingStiffness { get { return @WarpingStiffness; } }	
 		 
 		#endregion
 

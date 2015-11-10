@@ -25,8 +25,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConnectionPortGeometry : IIfcConnectionGeometry
 	{
-		IfcAxis2Placement @LocationAtRelatingElement { get; }
-		IfcAxis2Placement @LocationAtRelatedElement { get; }
+		IIfcAxis2Placement @LocationAtRelatingElement { get; }
+		IIfcAxis2Placement @LocationAtRelatedElement { get; }
 		IIfcProfileDef @ProfileOfPort { get; }
 	
 	}
@@ -39,8 +39,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	public  partial class @IfcConnectionPortGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPortGeometry, IEqualityComparer<@IfcConnectionPortGeometry>, IEquatable<@IfcConnectionPortGeometry>
 	{
 		#region IIfcConnectionPortGeometry explicit implementation
-		IfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatingElement { get { return @LocationAtRelatingElement; } }	
-		IfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatedElement { get { return @LocationAtRelatedElement; } }	
+		IIfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatingElement { get { return @LocationAtRelatingElement; } }	
+		IIfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatedElement { get { return @LocationAtRelatedElement; } }	
 		IIfcProfileDef IIfcConnectionPortGeometry.ProfileOfPort { get { return @ProfileOfPort; } }	
 		 
 		#endregion

@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcPositiveLengthMeasure? @LongitudinalBarSpacing { get; }
 		IfcPositiveLengthMeasure? @TransverseBarSpacing { get; }
 		IfcLabel? @BendingShapeCode { get; }
-		IEnumerable<IfcBendingParameterSelect> @BendingParameters { get; }
+		IEnumerable<IIfcBendingParameterSelect> @BendingParameters { get; }
 	
 	}
 }
@@ -59,7 +59,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.LongitudinalBarSpacing { get { return @LongitudinalBarSpacing; } }	
 		IfcPositiveLengthMeasure? IIfcReinforcingMeshType.TransverseBarSpacing { get { return @TransverseBarSpacing; } }	
 		IfcLabel? IIfcReinforcingMeshType.BendingShapeCode { get { return @BendingShapeCode; } }	
-		IEnumerable<IfcBendingParameterSelect> IIfcReinforcingMeshType.BendingParameters { get { return @BendingParameters; } }	
+		IEnumerable<IIfcBendingParameterSelect> IIfcReinforcingMeshType.BendingParameters { get { return @BendingParameters; } }	
 		 
 		#endregion
 

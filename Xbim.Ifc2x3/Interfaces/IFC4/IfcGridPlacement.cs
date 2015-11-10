@@ -23,7 +23,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				return PlacementLocation;
 			} 
 		}
-		Ifc4.GeometricConstraintResource.IfcGridPlacementDirectionSelect IIfcGridPlacement.PlacementRefDirection 
+		IIfcGridPlacementDirectionSelect IIfcGridPlacement.PlacementRefDirection 
 		{ 
 			get
 			{

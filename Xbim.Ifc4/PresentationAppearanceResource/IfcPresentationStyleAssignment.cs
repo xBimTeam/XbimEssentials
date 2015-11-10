@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPresentationStyleAssignment : IPersistEntity, IfcStyleAssignmentSelect
 	{
-		IEnumerable<IfcPresentationStyleSelect> @Styles { get; }
+		IEnumerable<IIfcPresentationStyleSelect> @Styles { get; }
 	
 	}
 }
@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcPresentationStyleAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationStyleAssignment, IEqualityComparer<@IfcPresentationStyleAssignment>, IEquatable<@IfcPresentationStyleAssignment>
 	{
 		#region IIfcPresentationStyleAssignment explicit implementation
-		IEnumerable<IfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles { get { return @Styles; } }	
+		IEnumerable<IIfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles { get { return @Styles; } }	
 		 
 		#endregion
 

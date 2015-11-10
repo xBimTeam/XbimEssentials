@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssociatesMaterial : IIfcRelAssociates
 	{
-		IfcMaterialSelect @RelatingMaterial { get; }
+		IIfcMaterialSelect @RelatingMaterial { get; }
 	
 	}
 }
@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcRelAssociatesMaterial : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesMaterial, IEqualityComparer<@IfcRelAssociatesMaterial>, IEquatable<@IfcRelAssociatesMaterial>
 	{
 		#region IIfcRelAssociatesMaterial explicit implementation
-		IfcMaterialSelect IIfcRelAssociatesMaterial.RelatingMaterial { get { return @RelatingMaterial; } }	
+		IIfcMaterialSelect IIfcRelAssociatesMaterial.RelatingMaterial { get { return @RelatingMaterial; } }	
 		 
 		#endregion
 

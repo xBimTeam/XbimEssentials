@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcConic : IIfcConic
 	{
-		Ifc4.GeometryResource.IfcAxis2Placement IIfcConic.Position 
+		IIfcAxis2Placement IIfcConic.Position 
 		{ 
 			get
 			{

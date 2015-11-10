@@ -8,13 +8,28 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Common;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcLightDistributionDataSourceSelect : IExpressSelectType, IPersistEntity
+	public partial interface IfcLightDistributionDataSourceSelect : IExpressSelectType, IPersistEntity, IIfcLightDistributionDataSourceSelect
 	{
-		
+		#region Custom code for a select
+		//## Custom code for a select
+		//##
+		#endregion
+	}
+}
+
+namespace Xbim.Ifc4.Interfaces
+{
+	public partial interface IIfcLightDistributionDataSourceSelect 
+	{
+		#region Custom code for a select interface
+		//## Custom code for a select interface
+		//##
+		#endregion
 	}
 }

@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcFontStyle? @FontStyle { get; }
 		IfcFontVariant? @FontVariant { get; }
 		IfcFontWeight? @FontWeight { get; }
-		IfcSizeSelect @FontSize { get; }
+		IIfcSizeSelect @FontSize { get; }
 	
 	}
 }
@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IfcFontStyle? IIfcTextStyleFontModel.FontStyle { get { return @FontStyle; } }	
 		IfcFontVariant? IIfcTextStyleFontModel.FontVariant { get { return @FontVariant; } }	
 		IfcFontWeight? IIfcTextStyleFontModel.FontWeight { get { return @FontWeight; } }	
-		IfcSizeSelect IIfcTextStyleFontModel.FontSize { get { return @FontSize; } }	
+		IIfcSizeSelect IIfcTextStyleFontModel.FontSize { get { return @FontSize; } }	
 		 
 		#endregion
 

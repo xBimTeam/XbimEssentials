@@ -23,15 +23,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return HatchLineAppearance;
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine 
+		IIfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine 
 		{ 
 			get
 			{
 				if (StartOfNextHatchLine == null) return null;
 				var ifconedirectionrepeatfactor = StartOfNextHatchLine as IfcOneDirectionRepeatFactor;
 				if (ifconedirectionrepeatfactor != null) 
-					//## Handle entity IfcOneDirectionRepeatFactor which is not a part of the target select interface Ifc4.PresentationAppearanceResource.IfcHatchLineDistanceSelect in property StartOfNextHatchLine
-			        return ifconedirectionrepeatfactor.RepeatFactor;
+					//## Handle entity IfcOneDirectionRepeatFactor which is not a part of the target select interface IIfcHatchLineDistanceSelect in property StartOfNextHatchLine
+					//TODO: Handle entity IfcOneDirectionRepeatFactor which is not a part of the target select interface IIfcHatchLineDistanceSelect in property StartOfNextHatchLine
+					throw new System.NotImplementedException();
 					//##
 				if (StartOfNextHatchLine is MeasureResource.IfcPositiveLengthMeasure) 
 					return new Ifc4.MeasureResource.IfcPositiveLengthMeasure((double)(MeasureResource.IfcPositiveLengthMeasure)StartOfNextHatchLine);

@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcResourceApprovalRelationship : IIfcResourceLevelRelationship
 	{
-		IEnumerable<IfcResourceObjectSelect> @RelatedResourceObjects { get; }
+		IEnumerable<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
 		IIfcApproval @RelatingApproval { get; }
 	
 	}
@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.ApprovalResource
 	public  partial class @IfcResourceApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceApprovalRelationship, IEqualityComparer<@IfcResourceApprovalRelationship>, IEquatable<@IfcResourceApprovalRelationship>
 	{
 		#region IIfcResourceApprovalRelationship explicit implementation
-		IEnumerable<IfcResourceObjectSelect> IIfcResourceApprovalRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
+		IEnumerable<IIfcResourceObjectSelect> IIfcResourceApprovalRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
 		IIfcApproval IIfcResourceApprovalRelationship.RelatingApproval { get { return @RelatingApproval; } }	
 		 
 		#endregion

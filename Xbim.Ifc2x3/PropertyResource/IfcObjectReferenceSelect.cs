@@ -8,13 +8,28 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Common;
+using Xbim.Ifc2x3.Interfaces;
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcObjectReferenceSelect : IExpressSelectType, IPersistEntity
+	public partial interface IfcObjectReferenceSelect : IExpressSelectType, IPersistEntity, IIfcObjectReferenceSelect
 	{
-		
+		#region Custom code for a select
+		//## Custom code for a select
+		//##
+		#endregion
+	}
+}
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	public partial interface IIfcObjectReferenceSelect 
+	{
+		#region Custom code for a select interface
+		//## Custom code for a select interface
+		//##
+		#endregion
 	}
 }

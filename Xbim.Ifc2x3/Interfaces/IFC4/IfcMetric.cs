@@ -54,25 +54,28 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				return new Ifc4.MeasureResource.IfcLabel(ValueSource.Value);
 			} 
 		}
-		Ifc4.ConstraintResource.IfcMetricValueSelect IIfcMetric.DataValue 
+		IIfcMetricValueSelect IIfcMetric.DataValue 
 		{ 
 			get
 			{
 				if (DataValue == null) return null;
 				var ifccalendardate = DataValue as DateTimeResource.IfcCalendarDate;
 				if (ifccalendardate != null) 
-					//## Handle entity IfcCalendarDate which is not a part of the target select interface Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
-					return new Ifc4.DateTimeResource.IfcDate(ifccalendardate.ToISODateTimeString());
+					//## Handle entity IfcCalendarDate which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
+					//TODO: Handle entity IfcCalendarDate which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
+					throw new System.NotImplementedException();
 					//##
 				var ifclocaltime = DataValue as DateTimeResource.IfcLocalTime;
 				if (ifclocaltime != null) 
-					//## Handle entity IfcLocalTime which is not a part of the target select interface Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
-                    return new Ifc4.DateTimeResource.IfcTime(ifclocaltime.ToISODateTimeString());
+					//## Handle entity IfcLocalTime which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
+					//TODO: Handle entity IfcLocalTime which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
+					throw new System.NotImplementedException();
 					//##
 				var ifcdateandtime = DataValue as DateTimeResource.IfcDateAndTime;
 				if (ifcdateandtime != null) 
-					//## Handle entity IfcDateAndTime which is not a part of the target select interface Ifc4.ConstraintResource.IfcMetricValueSelect in property DataValue
-                    return new Ifc4.DateTimeResource.IfcDateTime(ifcdateandtime.ToISODateTimeString());
+					//## Handle entity IfcDateAndTime which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
+					//TODO: Handle entity IfcDateAndTime which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
+					throw new System.NotImplementedException();
 					//##
 				var ifcmeasurewithunit = DataValue as MeasureResource.IfcMeasureWithUnit;
 				if (ifcmeasurewithunit != null) 

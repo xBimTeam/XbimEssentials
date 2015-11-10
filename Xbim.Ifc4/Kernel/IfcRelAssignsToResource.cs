@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssignsToResource : IIfcRelAssigns
 	{
-		IfcResourceSelect @RelatingResource { get; }
+		IIfcResourceSelect @RelatingResource { get; }
 	
 	}
 }
@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcRelAssignsToResource : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToResource, IEqualityComparer<@IfcRelAssignsToResource>, IEquatable<@IfcRelAssignsToResource>
 	{
 		#region IIfcRelAssignsToResource explicit implementation
-		IfcResourceSelect IIfcRelAssignsToResource.RelatingResource { get { return @RelatingResource; } }	
+		IIfcResourceSelect IIfcRelAssignsToResource.RelatingResource { get { return @RelatingResource; } }	
 		 
 		#endregion
 

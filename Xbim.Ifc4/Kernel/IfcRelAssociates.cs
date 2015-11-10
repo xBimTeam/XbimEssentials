@@ -23,7 +23,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssociates : IIfcRelationship
 	{
-		IEnumerable<IfcDefinitionSelect> @RelatedObjects { get; }
+		IEnumerable<IIfcDefinitionSelect> @RelatedObjects { get; }
 	
 	}
 }
@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcRelAssociates : IfcRelationship, IIfcRelAssociates, IEqualityComparer<@IfcRelAssociates>, IEquatable<@IfcRelAssociates>
 	{
 		#region IIfcRelAssociates explicit implementation
-		IEnumerable<IfcDefinitionSelect> IIfcRelAssociates.RelatedObjects { get { return @RelatedObjects; } }	
+		IEnumerable<IIfcDefinitionSelect> IIfcRelAssociates.RelatedObjects { get { return @RelatedObjects; } }	
 		 
 		#endregion
 

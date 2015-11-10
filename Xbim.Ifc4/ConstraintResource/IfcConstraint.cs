@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcText? @Description { get; }
 		IfcConstraintEnum @ConstraintGrade { get; }
 		IfcLabel? @ConstraintSource { get; }
-		IfcActorSelect @CreatingActor { get; }
+		IIfcActorSelect @CreatingActor { get; }
 		IfcDateTime? @CreationTime { get; }
 		IfcLabel? @UserDefinedGrade { get; }
 		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReferences {  get; }
@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		IfcText? IIfcConstraint.Description { get { return @Description; } }	
 		IfcConstraintEnum IIfcConstraint.ConstraintGrade { get { return @ConstraintGrade; } }	
 		IfcLabel? IIfcConstraint.ConstraintSource { get { return @ConstraintSource; } }	
-		IfcActorSelect IIfcConstraint.CreatingActor { get { return @CreatingActor; } }	
+		IIfcActorSelect IIfcConstraint.CreatingActor { get { return @CreatingActor; } }	
 		IfcDateTime? IIfcConstraint.CreationTime { get { return @CreationTime; } }	
 		IfcLabel? IIfcConstraint.UserDefinedGrade { get { return @UserDefinedGrade; } }	
 		 

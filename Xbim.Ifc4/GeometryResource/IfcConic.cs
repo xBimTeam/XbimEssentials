@@ -23,7 +23,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConic : IIfcCurve
 	{
-		IfcAxis2Placement @Position { get; }
+		IIfcAxis2Placement @Position { get; }
 	
 	}
 }
@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 	public abstract partial class @IfcConic : IfcCurve, IIfcConic, IEqualityComparer<@IfcConic>, IEquatable<@IfcConic>
 	{
 		#region IIfcConic explicit implementation
-		IfcAxis2Placement IIfcConic.Position { get { return @Position; } }	
+		IIfcAxis2Placement IIfcConic.Position { get { return @Position; } }	
 		 
 		#endregion
 

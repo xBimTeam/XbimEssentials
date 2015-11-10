@@ -37,8 +37,8 @@ namespace Xbim.Ifc4.Interfaces
 		IfcLabel? @Status { get; }
 		IfcLabel? @Level { get; }
 		IfcText? @Qualifier { get; }
-		IfcActorSelect @RequestingApproval { get; }
-		IfcActorSelect @GivingApproval { get; }
+		IIfcActorSelect @RequestingApproval { get; }
+		IIfcActorSelect @GivingApproval { get; }
 		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReferences {  get; }
 		IEnumerable<IIfcRelAssociatesApproval> @ApprovedObjects {  get; }
 		IEnumerable<IIfcResourceApprovalRelationship> @ApprovedResources {  get; }
@@ -63,8 +63,8 @@ namespace Xbim.Ifc4.ApprovalResource
 		IfcLabel? IIfcApproval.Status { get { return @Status; } }	
 		IfcLabel? IIfcApproval.Level { get { return @Level; } }	
 		IfcText? IIfcApproval.Qualifier { get { return @Qualifier; } }	
-		IfcActorSelect IIfcApproval.RequestingApproval { get { return @RequestingApproval; } }	
-		IfcActorSelect IIfcApproval.GivingApproval { get { return @GivingApproval; } }	
+		IIfcActorSelect IIfcApproval.RequestingApproval { get { return @RequestingApproval; } }	
+		IIfcActorSelect IIfcApproval.GivingApproval { get { return @GivingApproval; } }	
 		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcApproval.HasExternalReferences {  get { return @HasExternalReferences; } }
 		IEnumerable<IIfcRelAssociatesApproval> IIfcApproval.ApprovedObjects {  get { return @ApprovedObjects; } }

@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcCurveStyleFontAndScaling : IPersistEntity, IfcCurveFontOrScaledCurveFontSelect
 	{
 		IfcLabel? @Name { get; }
-		IfcCurveStyleFontSelect @CurveFont { get; }
+		IIfcCurveStyleFontSelect @CurveFont { get; }
 		IfcPositiveRatioMeasure @CurveFontScaling { get; }
 	
 	}
@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcCurveStyleFontAndScaling explicit implementation
 		IfcLabel? IIfcCurveStyleFontAndScaling.Name { get { return @Name; } }	
-		IfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont { get { return @CurveFont; } }	
+		IIfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont { get { return @CurveFont; } }	
 		IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling { get { return @CurveFontScaling; } }	
 		 
 		#endregion

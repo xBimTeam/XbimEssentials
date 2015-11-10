@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcApprovalActorRelationship : IPersistEntity
 	{
-		IfcActorSelect @Actor { get; }
+		IIfcActorSelect @Actor { get; }
 		IIfcApproval @Approval { get; }
 		IIfcActorRole @Role { get; }
 	
@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 	public  partial class @IfcApprovalActorRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalActorRelationship, IEqualityComparer<@IfcApprovalActorRelationship>, IEquatable<@IfcApprovalActorRelationship>
 	{
 		#region IIfcApprovalActorRelationship explicit implementation
-		IfcActorSelect IIfcApprovalActorRelationship.Actor { get { return @Actor; } }	
+		IIfcActorSelect IIfcApprovalActorRelationship.Actor { get { return @Actor; } }	
 		IIfcApproval IIfcApprovalActorRelationship.Approval { get { return @Approval; } }	
 		IIfcActorRole IIfcApprovalActorRelationship.Role { get { return @Role; } }	
 		 

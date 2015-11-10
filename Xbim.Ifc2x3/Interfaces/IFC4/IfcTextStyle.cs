@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				//##
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcTextFontSelect IIfcTextStyle.TextFontStyle 
+		IIfcTextFontSelect IIfcTextStyle.TextFontStyle 
 		{ 
 			get
 			{

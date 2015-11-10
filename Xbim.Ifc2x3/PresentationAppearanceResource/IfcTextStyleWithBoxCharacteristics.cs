@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure? @BoxWidth { get; }
 		IfcPlaneAngleMeasure? @BoxSlantAngle { get; }
 		IfcPlaneAngleMeasure? @BoxRotateAngle { get; }
-		IfcSizeSelect @CharacterSpacing { get; }
+		IIfcSizeSelect @CharacterSpacing { get; }
 	
 	}
 }
@@ -46,7 +46,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		IfcPositiveLengthMeasure? IIfcTextStyleWithBoxCharacteristics.BoxWidth { get { return @BoxWidth; } }	
 		IfcPlaneAngleMeasure? IIfcTextStyleWithBoxCharacteristics.BoxSlantAngle { get { return @BoxSlantAngle; } }	
 		IfcPlaneAngleMeasure? IIfcTextStyleWithBoxCharacteristics.BoxRotateAngle { get { return @BoxRotateAngle; } }	
-		IfcSizeSelect IIfcTextStyleWithBoxCharacteristics.CharacterSpacing { get { return @CharacterSpacing; } }	
+		IIfcSizeSelect IIfcTextStyleWithBoxCharacteristics.CharacterSpacing { get { return @CharacterSpacing; } }	
 		 
 		#endregion
 

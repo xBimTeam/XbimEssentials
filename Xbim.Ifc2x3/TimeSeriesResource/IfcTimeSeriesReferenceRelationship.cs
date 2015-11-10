@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcTimeSeriesReferenceRelationship : IPersistEntity
 	{
 		IIfcTimeSeries @ReferencedTimeSeries { get; }
-		IEnumerable<IfcDocumentSelect> @TimeSeriesReferences { get; }
+		IEnumerable<IIfcDocumentSelect> @TimeSeriesReferences { get; }
 	
 	}
 }
@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 	{
 		#region IIfcTimeSeriesReferenceRelationship explicit implementation
 		IIfcTimeSeries IIfcTimeSeriesReferenceRelationship.ReferencedTimeSeries { get { return @ReferencedTimeSeries; } }	
-		IEnumerable<IfcDocumentSelect> IIfcTimeSeriesReferenceRelationship.TimeSeriesReferences { get { return @TimeSeriesReferences; } }	
+		IEnumerable<IIfcDocumentSelect> IIfcTimeSeriesReferenceRelationship.TimeSeriesReferences { get { return @TimeSeriesReferences; } }	
 		 
 		#endregion
 

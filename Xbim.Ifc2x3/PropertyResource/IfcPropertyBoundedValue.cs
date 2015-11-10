@@ -24,9 +24,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertyBoundedValue : IIfcSimpleProperty
 	{
-		IfcValue @UpperBoundValue { get; }
-		IfcValue @LowerBoundValue { get; }
-		IfcUnit @Unit { get; }
+		IIfcValue @UpperBoundValue { get; }
+		IIfcValue @LowerBoundValue { get; }
+		IIfcUnit @Unit { get; }
 	
 	}
 }
@@ -38,9 +38,9 @@ namespace Xbim.Ifc2x3.PropertyResource
 	public  partial class @IfcPropertyBoundedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyBoundedValue, IEqualityComparer<@IfcPropertyBoundedValue>, IEquatable<@IfcPropertyBoundedValue>
 	{
 		#region IIfcPropertyBoundedValue explicit implementation
-		IfcValue IIfcPropertyBoundedValue.UpperBoundValue { get { return @UpperBoundValue; } }	
-		IfcValue IIfcPropertyBoundedValue.LowerBoundValue { get { return @LowerBoundValue; } }	
-		IfcUnit IIfcPropertyBoundedValue.Unit { get { return @Unit; } }	
+		IIfcValue IIfcPropertyBoundedValue.UpperBoundValue { get { return @UpperBoundValue; } }	
+		IIfcValue IIfcPropertyBoundedValue.LowerBoundValue { get { return @LowerBoundValue; } }	
+		IIfcUnit IIfcPropertyBoundedValue.Unit { get { return @Unit; } }	
 		 
 		#endregion
 

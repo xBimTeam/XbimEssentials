@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcBenchmarkEnum @Benchmark { get; }
 		IfcLabel? @ValueSource { get; }
-		IfcMetricValueSelect @DataValue { get; }
+		IIfcMetricValueSelect @DataValue { get; }
 		IIfcReference @ReferencePath { get; }
 	
 	}
@@ -43,7 +43,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		#region IIfcMetric explicit implementation
 		IfcBenchmarkEnum IIfcMetric.Benchmark { get { return @Benchmark; } }	
 		IfcLabel? IIfcMetric.ValueSource { get { return @ValueSource; } }	
-		IfcMetricValueSelect IIfcMetric.DataValue { get { return @DataValue; } }	
+		IIfcMetricValueSelect IIfcMetric.DataValue { get { return @DataValue; } }	
 		IIfcReference IIfcMetric.ReferencePath { get { return @ReferencePath; } }	
 		 
 		#endregion

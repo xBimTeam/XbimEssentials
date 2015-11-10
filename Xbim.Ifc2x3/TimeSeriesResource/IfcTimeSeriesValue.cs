@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTimeSeriesValue : IPersistEntity
 	{
-		IEnumerable<IfcValue> @ListValues { get; }
+		IEnumerable<IIfcValue> @ListValues { get; }
 	
 	}
 }
@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 	public  partial class @IfcTimeSeriesValue : INotifyPropertyChanged, IInstantiableEntity, IIfcTimeSeriesValue, IEqualityComparer<@IfcTimeSeriesValue>, IEquatable<@IfcTimeSeriesValue>
 	{
 		#region IIfcTimeSeriesValue explicit implementation
-		IEnumerable<IfcValue> IIfcTimeSeriesValue.ListValues { get { return @ListValues; } }	
+		IEnumerable<IIfcValue> IIfcTimeSeriesValue.ListValues { get { return @ListValues; } }	
 		 
 		#endregion
 

@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcPropertyReferenceValue : IIfcSimpleProperty
 	{
 		IfcText? @UsageName { get; }
-		IfcObjectReferenceSelect @PropertyReference { get; }
+		IIfcObjectReferenceSelect @PropertyReference { get; }
 	
 	}
 }
@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.PropertyResource
 	{
 		#region IIfcPropertyReferenceValue explicit implementation
 		IfcText? IIfcPropertyReferenceValue.UsageName { get { return @UsageName; } }	
-		IfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference { get { return @PropertyReference; } }	
+		IIfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference { get { return @PropertyReference; } }	
 		 
 		#endregion
 

@@ -24,7 +24,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcGridPlacement : IIfcObjectPlacement
 	{
 		IIfcVirtualGridIntersection @PlacementLocation { get; }
-		IfcGridPlacementDirectionSelect @PlacementRefDirection { get; }
+		IIfcGridPlacementDirectionSelect @PlacementRefDirection { get; }
 	
 	}
 }
@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	{
 		#region IIfcGridPlacement explicit implementation
 		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementLocation { get { return @PlacementLocation; } }	
-		IfcGridPlacementDirectionSelect IIfcGridPlacement.PlacementRefDirection { get { return @PlacementRefDirection; } }	
+		IIfcGridPlacementDirectionSelect IIfcGridPlacement.PlacementRefDirection { get { return @PlacementRefDirection; } }	
 		 
 		#endregion
 

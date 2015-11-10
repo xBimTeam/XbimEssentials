@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcUnitAssignment : IPersistEntity
 	{
-		IEnumerable<IfcUnit> @Units { get; }
+		IEnumerable<IIfcUnit> @Units { get; }
 	
 	}
 }
@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 	public  partial class @IfcUnitAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcUnitAssignment, IEqualityComparer<@IfcUnitAssignment>, IEquatable<@IfcUnitAssignment>
 	{
 		#region IIfcUnitAssignment explicit implementation
-		IEnumerable<IfcUnit> IIfcUnitAssignment.Units { get { return @Units; } }	
+		IEnumerable<IIfcUnit> IIfcUnitAssignment.Units { get { return @Units; } }	
 		 
 		#endregion
 

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcTextStyleForDefinedFont : IIfcTextStyleForDefinedFont
 	{
-		Ifc4.PresentationAppearanceResource.IfcColour IIfcTextStyleForDefinedFont.Colour 
+		IIfcColour IIfcTextStyleForDefinedFont.Colour 
 		{ 
 			get
 			{
@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return null;
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcColour IIfcTextStyleForDefinedFont.BackgroundColour 
+		IIfcColour IIfcTextStyleForDefinedFont.BackgroundColour 
 		{ 
 			get
 			{

@@ -24,9 +24,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoundaryFaceCondition : IIfcBoundaryCondition
 	{
-		IfcModulusOfSubgradeReactionSelect @TranslationalStiffnessByAreaX { get; }
-		IfcModulusOfSubgradeReactionSelect @TranslationalStiffnessByAreaY { get; }
-		IfcModulusOfSubgradeReactionSelect @TranslationalStiffnessByAreaZ { get; }
+		IIfcModulusOfSubgradeReactionSelect @TranslationalStiffnessByAreaX { get; }
+		IIfcModulusOfSubgradeReactionSelect @TranslationalStiffnessByAreaY { get; }
+		IIfcModulusOfSubgradeReactionSelect @TranslationalStiffnessByAreaZ { get; }
 	
 	}
 }
@@ -38,9 +38,9 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	public  partial class @IfcBoundaryFaceCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryFaceCondition, IEqualityComparer<@IfcBoundaryFaceCondition>, IEquatable<@IfcBoundaryFaceCondition>
 	{
 		#region IIfcBoundaryFaceCondition explicit implementation
-		IfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaX { get { return @TranslationalStiffnessByAreaX; } }	
-		IfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaY { get { return @TranslationalStiffnessByAreaY; } }	
-		IfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaZ { get { return @TranslationalStiffnessByAreaZ; } }	
+		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaX { get { return @TranslationalStiffnessByAreaX; } }	
+		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaY { get { return @TranslationalStiffnessByAreaY; } }	
+		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaZ { get { return @TranslationalStiffnessByAreaZ; } }	
 		 
 		#endregion
 

@@ -1780,7 +1780,7 @@ namespace Xbim.IO.Esent
             ModifiedEntities.TryAdd(copyHandle.EntityLabel, theCopy);
 
             
-            var props = expressType.Properties.Values.Where(p => !p.EntityAttribute.IsDerivedOverride);
+            var props = expressType.Properties.Values.Where(p => !p.EntityAttribute.IsDerived );
             if (includeInverses)
                 props = props.Union(expressType.Inverses);
             

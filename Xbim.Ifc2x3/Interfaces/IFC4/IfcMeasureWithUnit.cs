@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcMeasureWithUnit : IIfcMeasureWithUnit
 	{
-		Ifc4.MeasureResource.IfcValue IIfcMeasureWithUnit.ValueComponent 
+		IIfcValue IIfcMeasureWithUnit.ValueComponent 
 		{ 
 			get
 			{
@@ -218,7 +218,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 				return null;
 			} 
 		}
-		Ifc4.MeasureResource.IfcUnit IIfcMeasureWithUnit.UnitComponent 
+		IIfcUnit IIfcMeasureWithUnit.UnitComponent 
 		{ 
 			get
 			{

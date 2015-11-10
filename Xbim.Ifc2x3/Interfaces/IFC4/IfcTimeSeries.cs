@@ -117,7 +117,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedDataOrigin.Value);
 			} 
 		}
-		Ifc4.MeasureResource.IfcUnit IIfcTimeSeries.Unit 
+		IIfcUnit IIfcTimeSeries.Unit 
 		{ 
 			get
 			{

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcBoundaryNodeCondition : IIfcBoundaryNodeCondition
 	{
-		Ifc4.StructuralLoadResource.IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessX 
+		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessX 
 		{ 
 			get
 			{
@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				//##
 			} 
 		}
-		Ifc4.StructuralLoadResource.IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessY 
+		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessY 
 		{ 
 			get
 			{
@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				//##
 			} 
 		}
-		Ifc4.StructuralLoadResource.IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessZ 
+		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessZ 
 		{ 
 			get
 			{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				//##
 			} 
 		}
-		Ifc4.StructuralLoadResource.IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessX 
+		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessX 
 		{ 
 			get
 			{
@@ -58,7 +58,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(RotationalStiffnessX.Value);
 			} 
 		}
-		Ifc4.StructuralLoadResource.IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessY 
+		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessY 
 		{ 
 			get
 			{
@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				return new Ifc4.MeasureResource.IfcRotationalStiffnessMeasure(RotationalStiffnessY.Value);
 			} 
 		}
-		Ifc4.StructuralLoadResource.IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessZ 
+		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessZ 
 		{ 
 			get
 			{

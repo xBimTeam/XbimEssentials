@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcStyledItem : IIfcRepresentationItem
 	{
 		IIfcRepresentationItem @Item { get; }
-		IEnumerable<IfcStyleAssignmentSelect> @Styles { get; }
+		IEnumerable<IIfcStyleAssignmentSelect> @Styles { get; }
 		IfcLabel? @Name { get; }
 	
 	}
@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcStyledItem explicit implementation
 		IIfcRepresentationItem IIfcStyledItem.Item { get { return @Item; } }	
-		IEnumerable<IfcStyleAssignmentSelect> IIfcStyledItem.Styles { get { return @Styles; } }	
+		IEnumerable<IIfcStyleAssignmentSelect> IIfcStyledItem.Styles { get { return @Styles; } }	
 		IfcLabel? IIfcStyledItem.Name { get { return @Name; } }	
 		 
 		#endregion

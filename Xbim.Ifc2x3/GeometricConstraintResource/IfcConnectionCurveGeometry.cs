@@ -23,8 +23,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConnectionCurveGeometry : IIfcConnectionGeometry
 	{
-		IfcCurveOrEdgeCurve @CurveOnRelatingElement { get; }
-		IfcCurveOrEdgeCurve @CurveOnRelatedElement { get; }
+		IIfcCurveOrEdgeCurve @CurveOnRelatingElement { get; }
+		IIfcCurveOrEdgeCurve @CurveOnRelatedElement { get; }
 	
 	}
 }
@@ -37,8 +37,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	public  partial class @IfcConnectionCurveGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionCurveGeometry, IEqualityComparer<@IfcConnectionCurveGeometry>, IEquatable<@IfcConnectionCurveGeometry>
 	{
 		#region IIfcConnectionCurveGeometry explicit implementation
-		IfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatingElement { get { return @CurveOnRelatingElement; } }	
-		IfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatedElement { get { return @CurveOnRelatedElement; } }	
+		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatingElement { get { return @CurveOnRelatingElement; } }	
+		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatedElement { get { return @CurveOnRelatedElement; } }	
 		 
 		#endregion
 

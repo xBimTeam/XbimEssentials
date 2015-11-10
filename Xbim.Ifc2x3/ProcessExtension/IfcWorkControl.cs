@@ -28,13 +28,13 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcWorkControl : IIfcControl
 	{
 		IfcIdentifier @Identifier { get; }
-		IfcDateTimeSelect @CreationDate { get; }
+		IIfcDateTimeSelect @CreationDate { get; }
 		IEnumerable<IIfcPerson> @Creators { get; }
 		IfcLabel? @Purpose { get; }
 		IfcTimeMeasure? @Duration { get; }
 		IfcTimeMeasure? @TotalFloat { get; }
-		IfcDateTimeSelect @StartTime { get; }
-		IfcDateTimeSelect @FinishTime { get; }
+		IIfcDateTimeSelect @StartTime { get; }
+		IIfcDateTimeSelect @FinishTime { get; }
 		IfcWorkControlTypeEnum? @WorkControlType { get; }
 		IfcLabel? @UserDefinedControlType { get; }
 	
@@ -49,13 +49,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	{
 		#region IIfcWorkControl explicit implementation
 		IfcIdentifier IIfcWorkControl.Identifier { get { return @Identifier; } }	
-		IfcDateTimeSelect IIfcWorkControl.CreationDate { get { return @CreationDate; } }	
+		IIfcDateTimeSelect IIfcWorkControl.CreationDate { get { return @CreationDate; } }	
 		IEnumerable<IIfcPerson> IIfcWorkControl.Creators { get { return @Creators; } }	
 		IfcLabel? IIfcWorkControl.Purpose { get { return @Purpose; } }	
 		IfcTimeMeasure? IIfcWorkControl.Duration { get { return @Duration; } }	
 		IfcTimeMeasure? IIfcWorkControl.TotalFloat { get { return @TotalFloat; } }	
-		IfcDateTimeSelect IIfcWorkControl.StartTime { get { return @StartTime; } }	
-		IfcDateTimeSelect IIfcWorkControl.FinishTime { get { return @FinishTime; } }	
+		IIfcDateTimeSelect IIfcWorkControl.StartTime { get { return @StartTime; } }	
+		IIfcDateTimeSelect IIfcWorkControl.FinishTime { get { return @FinishTime; } }	
 		IfcWorkControlTypeEnum? IIfcWorkControl.WorkControlType { get { return @WorkControlType; } }	
 		IfcLabel? IIfcWorkControl.UserDefinedControlType { get { return @UserDefinedControlType; } }	
 		 

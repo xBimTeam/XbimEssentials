@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcSurfaceStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
 	{
 		IfcSurfaceSide @Side { get; }
-		IEnumerable<IfcSurfaceStyleElementSelect> @Styles { get; }
+		IEnumerable<IIfcSurfaceStyleElementSelect> @Styles { get; }
 	
 	}
 }
@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcSurfaceStyle explicit implementation
 		IfcSurfaceSide IIfcSurfaceStyle.Side { get { return @Side; } }	
-		IEnumerable<IfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles { get { return @Styles; } }	
+		IEnumerable<IIfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles { get { return @Styles; } }	
 		 
 		#endregion
 

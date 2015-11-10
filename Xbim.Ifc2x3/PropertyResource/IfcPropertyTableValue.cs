@@ -24,11 +24,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertyTableValue : IIfcSimpleProperty
 	{
-		IEnumerable<IfcValue> @DefiningValues { get; }
-		IEnumerable<IfcValue> @DefinedValues { get; }
+		IEnumerable<IIfcValue> @DefiningValues { get; }
+		IEnumerable<IIfcValue> @DefinedValues { get; }
 		IfcText? @Expression { get; }
-		IfcUnit @DefiningUnit { get; }
-		IfcUnit @DefinedUnit { get; }
+		IIfcUnit @DefiningUnit { get; }
+		IIfcUnit @DefinedUnit { get; }
 	
 	}
 }
@@ -40,11 +40,11 @@ namespace Xbim.Ifc2x3.PropertyResource
 	public  partial class @IfcPropertyTableValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyTableValue, IEqualityComparer<@IfcPropertyTableValue>, IEquatable<@IfcPropertyTableValue>
 	{
 		#region IIfcPropertyTableValue explicit implementation
-		IEnumerable<IfcValue> IIfcPropertyTableValue.DefiningValues { get { return @DefiningValues; } }	
-		IEnumerable<IfcValue> IIfcPropertyTableValue.DefinedValues { get { return @DefinedValues; } }	
+		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefiningValues { get { return @DefiningValues; } }	
+		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefinedValues { get { return @DefinedValues; } }	
 		IfcText? IIfcPropertyTableValue.Expression { get { return @Expression; } }	
-		IfcUnit IIfcPropertyTableValue.DefiningUnit { get { return @DefiningUnit; } }	
-		IfcUnit IIfcPropertyTableValue.DefinedUnit { get { return @DefinedUnit; } }	
+		IIfcUnit IIfcPropertyTableValue.DefiningUnit { get { return @DefiningUnit; } }	
+		IIfcUnit IIfcPropertyTableValue.DefinedUnit { get { return @DefinedUnit; } }	
 		 
 		#endregion
 

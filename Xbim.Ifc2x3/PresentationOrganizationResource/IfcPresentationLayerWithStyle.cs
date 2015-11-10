@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		bool? @LayerOn { get; }
 		bool? @LayerFrozen { get; }
 		bool? @LayerBlocked { get; }
-		IEnumerable<IfcPresentationStyleSelect> @LayerStyles { get; }
+		IEnumerable<IIfcPresentationStyleSelect> @LayerStyles { get; }
 	
 	}
 }
@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		bool? IIfcPresentationLayerWithStyle.LayerOn { get { return @LayerOn; } }	
 		bool? IIfcPresentationLayerWithStyle.LayerFrozen { get { return @LayerFrozen; } }	
 		bool? IIfcPresentationLayerWithStyle.LayerBlocked { get { return @LayerBlocked; } }	
-		IEnumerable<IfcPresentationStyleSelect> IIfcPresentationLayerWithStyle.LayerStyles { get { return @LayerStyles; } }	
+		IEnumerable<IIfcPresentationStyleSelect> IIfcPresentationLayerWithStyle.LayerStyles { get { return @LayerStyles; } }	
 		 
 		#endregion
 

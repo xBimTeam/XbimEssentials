@@ -33,8 +33,8 @@ namespace Xbim.Ifc4.Interfaces
 		IIfcCostValue @OriginalValue { get; }
 		IIfcCostValue @CurrentValue { get; }
 		IIfcCostValue @TotalReplacementCost { get; }
-		IfcActorSelect @Owner { get; }
-		IfcActorSelect @User { get; }
+		IIfcActorSelect @Owner { get; }
+		IIfcActorSelect @User { get; }
 		IIfcPerson @ResponsiblePerson { get; }
 		IfcDate? @IncorporationDate { get; }
 		IIfcCostValue @DepreciatedValue { get; }
@@ -53,8 +53,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		IIfcCostValue IIfcAsset.OriginalValue { get { return @OriginalValue; } }	
 		IIfcCostValue IIfcAsset.CurrentValue { get { return @CurrentValue; } }	
 		IIfcCostValue IIfcAsset.TotalReplacementCost { get { return @TotalReplacementCost; } }	
-		IfcActorSelect IIfcAsset.Owner { get { return @Owner; } }	
-		IfcActorSelect IIfcAsset.User { get { return @User; } }	
+		IIfcActorSelect IIfcAsset.Owner { get { return @Owner; } }	
+		IIfcActorSelect IIfcAsset.User { get { return @User; } }	
 		IIfcPerson IIfcAsset.ResponsiblePerson { get { return @ResponsiblePerson; } }	
 		IfcDate? IIfcAsset.IncorporationDate { get { return @IncorporationDate; } }	
 		IIfcCostValue IIfcAsset.DepreciatedValue { get { return @DepreciatedValue; } }	

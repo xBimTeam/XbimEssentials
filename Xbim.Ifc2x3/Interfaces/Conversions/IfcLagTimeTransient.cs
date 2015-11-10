@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
-    internal class IfcLagTimeTransient : PersistEntityTransient, Xbim.Ifc4.Interfaces.IIfcLagTime 
+    internal class IfcLagTimeTransient : PersistEntityTransient, IIfcLagTime 
     {
-        public Ifc4.DateTimeResource.IfcTimeOrRatioSelect LagValue
+        public IIfcTimeOrRatioSelect LagValue
         {
             get;
             internal set;

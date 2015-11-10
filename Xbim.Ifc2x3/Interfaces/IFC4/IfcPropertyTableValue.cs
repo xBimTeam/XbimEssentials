@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcPropertyTableValue : IIfcPropertyTableValue
 	{
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcValue> IIfcPropertyTableValue.DefiningValues 
+		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefiningValues 
 		{ 
 			get
 			{
@@ -219,7 +219,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				}
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcValue> IIfcPropertyTableValue.DefinedValues 
+		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefinedValues 
 		{ 
 			get
 			{
@@ -430,7 +430,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				return new Ifc4.MeasureResource.IfcText(Expression.Value);
 			} 
 		}
-		Ifc4.MeasureResource.IfcUnit IIfcPropertyTableValue.DefiningUnit 
+		IIfcUnit IIfcPropertyTableValue.DefiningUnit 
 		{ 
 			get
 			{
@@ -447,7 +447,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				return null;
 			} 
 		}
-		Ifc4.MeasureResource.IfcUnit IIfcPropertyTableValue.DefinedUnit 
+		IIfcUnit IIfcPropertyTableValue.DefinedUnit 
 		{ 
 			get
 			{

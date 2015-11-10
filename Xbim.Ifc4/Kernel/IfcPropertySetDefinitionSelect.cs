@@ -8,13 +8,28 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Common;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc4.Kernel
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcPropertySetDefinitionSelect : IExpressSelectType
+	public partial interface IfcPropertySetDefinitionSelect : IExpressSelectType, IIfcPropertySetDefinitionSelect
 	{
-		
+		#region Custom code for a select
+		//## Custom code for a select
+		//##
+		#endregion
+	}
+}
+
+namespace Xbim.Ifc4.Interfaces
+{
+	public partial interface IIfcPropertySetDefinitionSelect 
+	{
+		#region Custom code for a select interface
+		//## Custom code for a select interface
+		//##
+		#endregion
 	}
 }

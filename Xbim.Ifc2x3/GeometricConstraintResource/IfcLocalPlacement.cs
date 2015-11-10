@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcLocalPlacement : IIfcObjectPlacement
 	{
 		IIfcObjectPlacement @PlacementRelTo { get; }
-		IfcAxis2Placement @RelativePlacement { get; }
+		IIfcAxis2Placement @RelativePlacement { get; }
 	
 	}
 }
@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	{
 		#region IIfcLocalPlacement explicit implementation
 		IIfcObjectPlacement IIfcLocalPlacement.PlacementRelTo { get { return @PlacementRelTo; } }	
-		IfcAxis2Placement IIfcLocalPlacement.RelativePlacement { get { return @RelativePlacement; } }	
+		IIfcAxis2Placement IIfcLocalPlacement.RelativePlacement { get { return @RelativePlacement; } }	
 		 
 		#endregion
 

@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcConstraintClassificationRelationship : IPersistEntity
 	{
 		IIfcConstraint @ClassifiedConstraint { get; }
-		IEnumerable<IfcClassificationNotationSelect> @RelatedClassifications { get; }
+		IEnumerable<IIfcClassificationNotationSelect> @RelatedClassifications { get; }
 	
 	}
 }
@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 	{
 		#region IIfcConstraintClassificationRelationship explicit implementation
 		IIfcConstraint IIfcConstraintClassificationRelationship.ClassifiedConstraint { get { return @ClassifiedConstraint; } }	
-		IEnumerable<IfcClassificationNotationSelect> IIfcConstraintClassificationRelationship.RelatedClassifications { get { return @RelatedClassifications; } }	
+		IEnumerable<IIfcClassificationNotationSelect> IIfcConstraintClassificationRelationship.RelatedClassifications { get { return @RelatedClassifications; } }	
 		 
 		#endregion
 

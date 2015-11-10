@@ -23,7 +23,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				return new Ifc4.PresentationAppearanceResource.IfcPresentableText(Literal);
 			} 
 		}
-		Ifc4.GeometryResource.IfcAxis2Placement IIfcTextLiteral.Placement 
+		IIfcAxis2Placement IIfcTextLiteral.Placement 
 		{ 
 			get
 			{

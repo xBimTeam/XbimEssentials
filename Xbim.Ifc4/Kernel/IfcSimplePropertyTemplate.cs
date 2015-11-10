@@ -30,8 +30,8 @@ namespace Xbim.Ifc4.Interfaces
 		IfcLabel? @PrimaryMeasureType { get; }
 		IfcLabel? @SecondaryMeasureType { get; }
 		IIfcPropertyEnumeration @Enumerators { get; }
-		IfcUnit @PrimaryUnit { get; }
-		IfcUnit @SecondaryUnit { get; }
+		IIfcUnit @PrimaryUnit { get; }
+		IIfcUnit @SecondaryUnit { get; }
 		IfcLabel? @Expression { get; }
 		IfcStateEnum? @AccessState { get; }
 	
@@ -49,8 +49,8 @@ namespace Xbim.Ifc4.Kernel
 		IfcLabel? IIfcSimplePropertyTemplate.PrimaryMeasureType { get { return @PrimaryMeasureType; } }	
 		IfcLabel? IIfcSimplePropertyTemplate.SecondaryMeasureType { get { return @SecondaryMeasureType; } }	
 		IIfcPropertyEnumeration IIfcSimplePropertyTemplate.Enumerators { get { return @Enumerators; } }	
-		IfcUnit IIfcSimplePropertyTemplate.PrimaryUnit { get { return @PrimaryUnit; } }	
-		IfcUnit IIfcSimplePropertyTemplate.SecondaryUnit { get { return @SecondaryUnit; } }	
+		IIfcUnit IIfcSimplePropertyTemplate.PrimaryUnit { get { return @PrimaryUnit; } }	
+		IIfcUnit IIfcSimplePropertyTemplate.SecondaryUnit { get { return @SecondaryUnit; } }	
 		IfcLabel? IIfcSimplePropertyTemplate.Expression { get { return @Expression; } }	
 		IfcStateEnum? IIfcSimplePropertyTemplate.AccessState { get { return @AccessState; } }	
 		 

@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSymbolStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
 	{
-		IfcSymbolStyleSelect @StyleOfSymbol { get; }
+		IIfcSymbolStyleSelect @StyleOfSymbol { get; }
 	
 	}
 }
@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcSymbolStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSymbolStyle, IEqualityComparer<@IfcSymbolStyle>, IEquatable<@IfcSymbolStyle>
 	{
 		#region IIfcSymbolStyle explicit implementation
-		IfcSymbolStyleSelect IIfcSymbolStyle.StyleOfSymbol { get { return @StyleOfSymbol; } }	
+		IIfcSymbolStyleSelect IIfcSymbolStyle.StyleOfSymbol { get { return @StyleOfSymbol; } }	
 		 
 		#endregion
 

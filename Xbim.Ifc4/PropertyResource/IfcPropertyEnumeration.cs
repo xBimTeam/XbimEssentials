@@ -25,8 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcPropertyEnumeration : IIfcPropertyAbstraction
 	{
 		IfcLabel @Name { get; }
-		IEnumerable<IfcValue> @EnumerationValues { get; }
-		IfcUnit @Unit { get; }
+		IEnumerable<IIfcValue> @EnumerationValues { get; }
+		IIfcUnit @Unit { get; }
 	
 	}
 }
@@ -39,8 +39,8 @@ namespace Xbim.Ifc4.PropertyResource
 	{
 		#region IIfcPropertyEnumeration explicit implementation
 		IfcLabel IIfcPropertyEnumeration.Name { get { return @Name; } }	
-		IEnumerable<IfcValue> IIfcPropertyEnumeration.EnumerationValues { get { return @EnumerationValues; } }	
-		IfcUnit IIfcPropertyEnumeration.Unit { get { return @Unit; } }	
+		IEnumerable<IIfcValue> IIfcPropertyEnumeration.EnumerationValues { get { return @EnumerationValues; } }	
+		IIfcUnit IIfcPropertyEnumeration.Unit { get { return @Unit; } }	
 		 
 		#endregion
 

@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssignsToProcess : IIfcRelAssigns
 	{
-		IfcProcessSelect @RelatingProcess { get; }
+		IIfcProcessSelect @RelatingProcess { get; }
 		IIfcMeasureWithUnit @QuantityInProcess { get; }
 	
 	}
@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProcess, IEqualityComparer<@IfcRelAssignsToProcess>, IEquatable<@IfcRelAssignsToProcess>
 	{
 		#region IIfcRelAssignsToProcess explicit implementation
-		IfcProcessSelect IIfcRelAssignsToProcess.RelatingProcess { get { return @RelatingProcess; } }	
+		IIfcProcessSelect IIfcRelAssignsToProcess.RelatingProcess { get { return @RelatingProcess; } }	
 		IIfcMeasureWithUnit IIfcRelAssignsToProcess.QuantityInProcess { get { return @QuantityInProcess; } }	
 		 
 		#endregion

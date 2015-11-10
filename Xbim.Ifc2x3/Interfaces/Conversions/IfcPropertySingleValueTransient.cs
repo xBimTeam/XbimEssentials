@@ -13,7 +13,7 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         public IEnumerable<Ifc4.Interfaces.IIfcPropertyDependencyRelationship> PropertyForDependance { get { yield break; } }
         public IEnumerable<Ifc4.Interfaces.IIfcPropertyDependencyRelationship> PropertyDependsOn { get { yield break; } }
         public IEnumerable<Ifc4.Interfaces.IIfcComplexProperty> PartOfComplex { get { yield break; } }
-        public IfcValue NominalValue { get; internal set; }
-        public IfcUnit Unit { get; internal set; }
+        public Ifc4.Interfaces.IIfcValue NominalValue { get; internal set; }
+        public Ifc4.Interfaces.IIfcUnit Unit { get; internal set; }
     }
 }

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelSpaceBoundary : IIfcRelSpaceBoundary
 	{
-		Ifc4.ProductExtension.IfcSpaceBoundarySelect IIfcRelSpaceBoundary.RelatingSpace 
+		IIfcSpaceBoundarySelect IIfcRelSpaceBoundary.RelatingSpace 
 		{ 
 			get
 			{

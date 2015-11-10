@@ -27,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcServiceLifeFactor : IIfcPropertySetDefinition
 	{
 		IfcServiceLifeFactorTypeEnum @PredefinedType { get; }
-		IfcMeasureValue @UpperValue { get; }
-		IfcMeasureValue @MostUsedValue { get; }
-		IfcMeasureValue @LowerValue { get; }
+		IIfcMeasureValue @UpperValue { get; }
+		IIfcMeasureValue @MostUsedValue { get; }
+		IIfcMeasureValue @LowerValue { get; }
 	
 	}
 }
@@ -42,9 +42,9 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 	{
 		#region IIfcServiceLifeFactor explicit implementation
 		IfcServiceLifeFactorTypeEnum IIfcServiceLifeFactor.PredefinedType { get { return @PredefinedType; } }	
-		IfcMeasureValue IIfcServiceLifeFactor.UpperValue { get { return @UpperValue; } }	
-		IfcMeasureValue IIfcServiceLifeFactor.MostUsedValue { get { return @MostUsedValue; } }	
-		IfcMeasureValue IIfcServiceLifeFactor.LowerValue { get { return @LowerValue; } }	
+		IIfcMeasureValue IIfcServiceLifeFactor.UpperValue { get { return @UpperValue; } }	
+		IIfcMeasureValue IIfcServiceLifeFactor.MostUsedValue { get { return @MostUsedValue; } }	
+		IIfcMeasureValue IIfcServiceLifeFactor.LowerValue { get { return @LowerValue; } }	
 		 
 		#endregion
 

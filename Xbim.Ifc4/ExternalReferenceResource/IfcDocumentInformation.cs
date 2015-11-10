@@ -35,8 +35,8 @@ namespace Xbim.Ifc4.Interfaces
 		IfcText? @IntendedUse { get; }
 		IfcText? @Scope { get; }
 		IfcLabel? @Revision { get; }
-		IfcActorSelect @DocumentOwner { get; }
-		IEnumerable<IfcActorSelect> @Editors { get; }
+		IIfcActorSelect @DocumentOwner { get; }
+		IEnumerable<IIfcActorSelect> @Editors { get; }
 		IfcDateTime? @CreationTime { get; }
 		IfcDateTime? @LastRevisionTime { get; }
 		IfcIdentifier? @ElectronicFormat { get; }
@@ -68,8 +68,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		IfcText? IIfcDocumentInformation.IntendedUse { get { return @IntendedUse; } }	
 		IfcText? IIfcDocumentInformation.Scope { get { return @Scope; } }	
 		IfcLabel? IIfcDocumentInformation.Revision { get { return @Revision; } }	
-		IfcActorSelect IIfcDocumentInformation.DocumentOwner { get { return @DocumentOwner; } }	
-		IEnumerable<IfcActorSelect> IIfcDocumentInformation.Editors { get { return @Editors; } }	
+		IIfcActorSelect IIfcDocumentInformation.DocumentOwner { get { return @DocumentOwner; } }	
+		IEnumerable<IIfcActorSelect> IIfcDocumentInformation.Editors { get { return @Editors; } }	
 		IfcDateTime? IIfcDocumentInformation.CreationTime { get { return @CreationTime; } }	
 		IfcDateTime? IIfcDocumentInformation.LastRevisionTime { get { return @LastRevisionTime; } }	
 		IfcIdentifier? IIfcDocumentInformation.ElectronicFormat { get { return @ElectronicFormat; } }	

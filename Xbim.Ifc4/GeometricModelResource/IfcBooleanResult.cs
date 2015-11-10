@@ -25,8 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcBooleanResult : IIfcGeometricRepresentationItem, IfcBooleanOperand, IfcCsgSelect
 	{
 		IfcBooleanOperator @Operator { get; }
-		IfcBooleanOperand @FirstOperand { get; }
-		IfcBooleanOperand @SecondOperand { get; }
+		IIfcBooleanOperand @FirstOperand { get; }
+		IIfcBooleanOperand @SecondOperand { get; }
 	
 	}
 }
@@ -40,8 +40,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 	{
 		#region IIfcBooleanResult explicit implementation
 		IfcBooleanOperator IIfcBooleanResult.Operator { get { return @Operator; } }	
-		IfcBooleanOperand IIfcBooleanResult.FirstOperand { get { return @FirstOperand; } }	
-		IfcBooleanOperand IIfcBooleanResult.SecondOperand { get { return @SecondOperand; } }	
+		IIfcBooleanOperand IIfcBooleanResult.FirstOperand { get { return @FirstOperand; } }	
+		IIfcBooleanOperand IIfcBooleanResult.SecondOperand { get { return @SecondOperand; } }	
 		 
 		#endregion
 

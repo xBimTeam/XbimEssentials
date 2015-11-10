@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcInventory : IIfcGroup
 	{
 		IfcInventoryTypeEnum? @PredefinedType { get; }
-		IfcActorSelect @Jurisdiction { get; }
+		IIfcActorSelect @Jurisdiction { get; }
 		IEnumerable<IIfcPerson> @ResponsiblePersons { get; }
 		IfcDate? @LastUpdateDate { get; }
 		IIfcCostValue @CurrentValue { get; }
@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 	{
 		#region IIfcInventory explicit implementation
 		IfcInventoryTypeEnum? IIfcInventory.PredefinedType { get { return @PredefinedType; } }	
-		IfcActorSelect IIfcInventory.Jurisdiction { get { return @Jurisdiction; } }	
+		IIfcActorSelect IIfcInventory.Jurisdiction { get { return @Jurisdiction; } }	
 		IEnumerable<IIfcPerson> IIfcInventory.ResponsiblePersons { get { return @ResponsiblePersons; } }	
 		IfcDate? IIfcInventory.LastUpdateDate { get { return @LastUpdateDate; } }	
 		IIfcCostValue IIfcInventory.CurrentValue { get { return @CurrentValue; } }	

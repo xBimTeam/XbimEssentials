@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				}
 			} 
 		}
-		Ifc4.ActorResource.IfcActorSelect IIfcInventory.Jurisdiction 
+		IIfcActorSelect IIfcInventory.Jurisdiction 
 		{ 
 			get
 			{

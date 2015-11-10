@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.PresentationOrganizationResource.IfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems 
+		IEnumerable<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems 
 		{ 
 			get
 			{

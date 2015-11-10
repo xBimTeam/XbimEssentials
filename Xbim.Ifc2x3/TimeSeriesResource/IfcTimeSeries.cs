@@ -31,12 +31,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLabel @Name { get; }
 		IfcText? @Description { get; }
-		IfcDateTimeSelect @StartTime { get; }
-		IfcDateTimeSelect @EndTime { get; }
+		IIfcDateTimeSelect @StartTime { get; }
+		IIfcDateTimeSelect @EndTime { get; }
 		IfcTimeSeriesDataTypeEnum @TimeSeriesDataType { get; }
 		IfcDataOriginEnum @DataOrigin { get; }
 		IfcLabel? @UserDefinedDataOrigin { get; }
-		IfcUnit @Unit { get; }
+		IIfcUnit @Unit { get; }
 		IEnumerable<IIfcTimeSeriesReferenceRelationship> @DocumentedBy {  get; }
 	
 	}
@@ -52,12 +52,12 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		#region IIfcTimeSeries explicit implementation
 		IfcLabel IIfcTimeSeries.Name { get { return @Name; } }	
 		IfcText? IIfcTimeSeries.Description { get { return @Description; } }	
-		IfcDateTimeSelect IIfcTimeSeries.StartTime { get { return @StartTime; } }	
-		IfcDateTimeSelect IIfcTimeSeries.EndTime { get { return @EndTime; } }	
+		IIfcDateTimeSelect IIfcTimeSeries.StartTime { get { return @StartTime; } }	
+		IIfcDateTimeSelect IIfcTimeSeries.EndTime { get { return @EndTime; } }	
 		IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType { get { return @TimeSeriesDataType; } }	
 		IfcDataOriginEnum IIfcTimeSeries.DataOrigin { get { return @DataOrigin; } }	
 		IfcLabel? IIfcTimeSeries.UserDefinedDataOrigin { get { return @UserDefinedDataOrigin; } }	
-		IfcUnit IIfcTimeSeries.Unit { get { return @Unit; } }	
+		IIfcUnit IIfcTimeSeries.Unit { get { return @Unit; } }	
 		 
 		IEnumerable<IIfcTimeSeriesReferenceRelationship> IIfcTimeSeries.DocumentedBy {  get { return @DocumentedBy; } }
 		#endregion

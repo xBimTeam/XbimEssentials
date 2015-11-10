@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcPresentationStyleAssignment : IIfcPresentationStyleAssignment
 	{
-		IEnumerable<Xbim.Ifc4.PresentationAppearanceResource.IfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles 
+		IEnumerable<IIfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles 
 		{ 
 			get
 			{
@@ -27,10 +27,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 						yield return ifccurvestyle;
 					var ifcsymbolstyle = member as IfcSymbolStyle;
 					if (ifcsymbolstyle != null) 
-						//## Handle entity IfcSymbolStyle which is not a part of the target select interface Ifc4.PresentationAppearanceResource.IfcPresentationStyleSelect in property Styles
-					//this is only for annotation symbol styles and that is removed from IFC4
-                    continue;
-					//##
+						//## Handle entity IfcSymbolStyle which is not a part of the target select interface IIfcPresentationStyleSelect in property Styles
+						//TODO: Handle entity IfcSymbolStyle which is not a part of the target select interface IIfcPresentationStyleSelect in property Styles
+						throw new System.NotImplementedException();
+						//##
 					var ifcfillareastyle = member as IfcFillAreaStyle;
 					if (ifcfillareastyle != null) 
 						yield return ifcfillareastyle;

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterialClassificationRelationship : IIfcMaterialClassificationRelationship
 	{
-		IEnumerable<Xbim.Ifc4.ExternalReferenceResource.IfcClassificationSelect> IIfcMaterialClassificationRelationship.MaterialClassifications 
+		IEnumerable<IIfcClassificationSelect> IIfcMaterialClassificationRelationship.MaterialClassifications 
 		{ 
 			get
 			{

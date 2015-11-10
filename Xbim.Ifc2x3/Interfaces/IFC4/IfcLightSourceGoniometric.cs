@@ -89,7 +89,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				}
 			} 
 		}
-		Ifc4.PresentationOrganizationResource.IfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource 
+		IIfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource 
 		{ 
 			get
 			{

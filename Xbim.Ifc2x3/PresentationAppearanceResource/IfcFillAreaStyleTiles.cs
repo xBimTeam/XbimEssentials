@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcFillAreaStyleTiles : IIfcGeometricRepresentationItem, IfcFillStyleSelect
 	{
 		IIfcOneDirectionRepeatFactor @TilingPattern { get; }
-		IEnumerable<IfcFillAreaStyleTileShapeSelect> @Tiles { get; }
+		IEnumerable<IIfcFillAreaStyleTileShapeSelect> @Tiles { get; }
 		IfcPositiveRatioMeasure @TilingScale { get; }
 	
 	}
@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcFillAreaStyleTiles explicit implementation
 		IIfcOneDirectionRepeatFactor IIfcFillAreaStyleTiles.TilingPattern { get { return @TilingPattern; } }	
-		IEnumerable<IfcFillAreaStyleTileShapeSelect> IIfcFillAreaStyleTiles.Tiles { get { return @Tiles; } }	
+		IEnumerable<IIfcFillAreaStyleTileShapeSelect> IIfcFillAreaStyleTiles.Tiles { get { return @Tiles; } }	
 		IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale { get { return @TilingScale; } }	
 		 
 		#endregion

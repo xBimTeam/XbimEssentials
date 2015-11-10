@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcTextLiteral : IIfcGeometricRepresentationItem
 	{
 		IfcPresentableText @Literal { get; }
-		IfcAxis2Placement @Placement { get; }
+		IIfcAxis2Placement @Placement { get; }
 		IfcTextPath @Path { get; }
 	
 	}
@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	{
 		#region IIfcTextLiteral explicit implementation
 		IfcPresentableText IIfcTextLiteral.Literal { get { return @Literal; } }	
-		IfcAxis2Placement IIfcTextLiteral.Placement { get { return @Placement; } }	
+		IIfcAxis2Placement IIfcTextLiteral.Placement { get { return @Placement; } }	
 		IfcTextPath IIfcTextLiteral.Path { get { return @Path; } }	
 		 
 		#endregion

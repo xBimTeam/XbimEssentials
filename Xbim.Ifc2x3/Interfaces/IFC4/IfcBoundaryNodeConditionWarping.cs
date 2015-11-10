@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcBoundaryNodeConditionWarping : IIfcBoundaryNodeConditionWarping
 	{
-		Ifc4.StructuralLoadResource.IfcWarpingStiffnessSelect IIfcBoundaryNodeConditionWarping.WarpingStiffness 
+		IIfcWarpingStiffnessSelect IIfcBoundaryNodeConditionWarping.WarpingStiffness 
 		{ 
 			get
 			{

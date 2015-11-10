@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRepresentationMap : IPersistEntity, IfcProductRepresentationSelect
 	{
-		IfcAxis2Placement @MappingOrigin { get; }
+		IIfcAxis2Placement @MappingOrigin { get; }
 		IIfcRepresentation @MappedRepresentation { get; }
 		IEnumerable<IIfcShapeAspect> @HasShapeAspects {  get; }
 		IEnumerable<IIfcMappedItem> @MapUsage {  get; }
@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcRepresentationMap : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentationMap, IEqualityComparer<@IfcRepresentationMap>, IEquatable<@IfcRepresentationMap>
 	{
 		#region IIfcRepresentationMap explicit implementation
-		IfcAxis2Placement IIfcRepresentationMap.MappingOrigin { get { return @MappingOrigin; } }	
+		IIfcAxis2Placement IIfcRepresentationMap.MappingOrigin { get { return @MappingOrigin; } }	
 		IIfcRepresentation IIfcRepresentationMap.MappedRepresentation { get { return @MappedRepresentation; } }	
 		 
 		IEnumerable<IIfcShapeAspect> IIfcRepresentationMap.HasShapeAspects {  get { return @HasShapeAspects; } }

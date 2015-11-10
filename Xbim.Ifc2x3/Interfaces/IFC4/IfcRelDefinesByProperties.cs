@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Kernel
 				}
 			} 
 		}
-		Ifc4.Kernel.IfcPropertySetDefinitionSelect IIfcRelDefinesByProperties.RelatingPropertyDefinition 
+		IIfcPropertySetDefinitionSelect IIfcRelDefinesByProperties.RelatingPropertyDefinition 
 		{ 
 			get
 			{

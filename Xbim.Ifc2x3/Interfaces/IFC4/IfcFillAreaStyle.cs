@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcFillAreaStyle : IIfcFillAreaStyle
 	{
-		IEnumerable<Xbim.Ifc4.PresentationAppearanceResource.IfcFillStyleSelect> IIfcFillAreaStyle.FillStyles 
+		IEnumerable<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles 
 		{ 
 			get
 			{

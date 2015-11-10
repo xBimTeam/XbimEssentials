@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcFillAreaStyleHatching : IIfcGeometricRepresentationItem, IfcFillStyleSelect
 	{
 		IIfcCurveStyle @HatchLineAppearance { get; }
-		IfcHatchLineDistanceSelect @StartOfNextHatchLine { get; }
+		IIfcHatchLineDistanceSelect @StartOfNextHatchLine { get; }
 		IIfcCartesianPoint @PointOfReferenceHatchLine { get; }
 		IIfcCartesianPoint @PatternStart { get; }
 		IfcPlaneAngleMeasure @HatchLineAngle { get; }
@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	{
 		#region IIfcFillAreaStyleHatching explicit implementation
 		IIfcCurveStyle IIfcFillAreaStyleHatching.HatchLineAppearance { get { return @HatchLineAppearance; } }	
-		IfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine { get { return @StartOfNextHatchLine; } }	
+		IIfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine { get { return @StartOfNextHatchLine; } }	
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PointOfReferenceHatchLine { get { return @PointOfReferenceHatchLine; } }	
 		IIfcCartesianPoint IIfcFillAreaStyleHatching.PatternStart { get { return @PatternStart; } }	
 		IfcPlaneAngleMeasure IIfcFillAreaStyleHatching.HatchLineAngle { get { return @HatchLineAngle; } }	

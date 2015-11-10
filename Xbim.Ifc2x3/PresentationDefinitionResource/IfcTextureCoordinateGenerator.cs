@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcTextureCoordinateGenerator : IIfcTextureCoordinate
 	{
 		IfcLabel @Mode { get; }
-		IEnumerable<IfcSimpleValue> @Parameter { get; }
+		IEnumerable<IIfcSimpleValue> @Parameter { get; }
 	
 	}
 }
@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	{
 		#region IIfcTextureCoordinateGenerator explicit implementation
 		IfcLabel IIfcTextureCoordinateGenerator.Mode { get { return @Mode; } }	
-		IEnumerable<IfcSimpleValue> IIfcTextureCoordinateGenerator.Parameter { get { return @Parameter; } }	
+		IEnumerable<IIfcSimpleValue> IIfcTextureCoordinateGenerator.Parameter { get { return @Parameter; } }	
 		 
 		#endregion
 

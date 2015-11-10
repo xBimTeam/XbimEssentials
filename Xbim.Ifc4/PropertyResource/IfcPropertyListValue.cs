@@ -24,8 +24,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertyListValue : IIfcSimpleProperty
 	{
-		IEnumerable<IfcValue> @ListValues { get; }
-		IfcUnit @Unit { get; }
+		IEnumerable<IIfcValue> @ListValues { get; }
+		IIfcUnit @Unit { get; }
 	
 	}
 }
@@ -37,8 +37,8 @@ namespace Xbim.Ifc4.PropertyResource
 	public  partial class @IfcPropertyListValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyListValue, IEqualityComparer<@IfcPropertyListValue>, IEquatable<@IfcPropertyListValue>
 	{
 		#region IIfcPropertyListValue explicit implementation
-		IEnumerable<IfcValue> IIfcPropertyListValue.ListValues { get { return @ListValues; } }	
-		IfcUnit IIfcPropertyListValue.Unit { get { return @Unit; } }	
+		IEnumerable<IIfcValue> IIfcPropertyListValue.ListValues { get { return @ListValues; } }	
+		IIfcUnit IIfcPropertyListValue.Unit { get { return @Unit; } }	
 		 
 		#endregion
 

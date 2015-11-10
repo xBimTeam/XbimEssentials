@@ -27,21 +27,21 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcScheduleTimeControl : IIfcControl
 	{
-		IfcDateTimeSelect @ActualStart { get; }
-		IfcDateTimeSelect @EarlyStart { get; }
-		IfcDateTimeSelect @LateStart { get; }
-		IfcDateTimeSelect @ScheduleStart { get; }
-		IfcDateTimeSelect @ActualFinish { get; }
-		IfcDateTimeSelect @EarlyFinish { get; }
-		IfcDateTimeSelect @LateFinish { get; }
-		IfcDateTimeSelect @ScheduleFinish { get; }
+		IIfcDateTimeSelect @ActualStart { get; }
+		IIfcDateTimeSelect @EarlyStart { get; }
+		IIfcDateTimeSelect @LateStart { get; }
+		IIfcDateTimeSelect @ScheduleStart { get; }
+		IIfcDateTimeSelect @ActualFinish { get; }
+		IIfcDateTimeSelect @EarlyFinish { get; }
+		IIfcDateTimeSelect @LateFinish { get; }
+		IIfcDateTimeSelect @ScheduleFinish { get; }
 		IfcTimeMeasure? @ScheduleDuration { get; }
 		IfcTimeMeasure? @ActualDuration { get; }
 		IfcTimeMeasure? @RemainingTime { get; }
 		IfcTimeMeasure? @FreeFloat { get; }
 		IfcTimeMeasure? @TotalFloat { get; }
 		bool? @IsCritical { get; }
-		IfcDateTimeSelect @StatusTime { get; }
+		IIfcDateTimeSelect @StatusTime { get; }
 		IfcTimeMeasure? @StartFloat { get; }
 		IfcTimeMeasure? @FinishFloat { get; }
 		IfcPositiveRatioMeasure? @Completion { get; }
@@ -57,21 +57,21 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	public  partial class @IfcScheduleTimeControl : IfcControl, IInstantiableEntity, IIfcScheduleTimeControl, IEqualityComparer<@IfcScheduleTimeControl>, IEquatable<@IfcScheduleTimeControl>
 	{
 		#region IIfcScheduleTimeControl explicit implementation
-		IfcDateTimeSelect IIfcScheduleTimeControl.ActualStart { get { return @ActualStart; } }	
-		IfcDateTimeSelect IIfcScheduleTimeControl.EarlyStart { get { return @EarlyStart; } }	
-		IfcDateTimeSelect IIfcScheduleTimeControl.LateStart { get { return @LateStart; } }	
-		IfcDateTimeSelect IIfcScheduleTimeControl.ScheduleStart { get { return @ScheduleStart; } }	
-		IfcDateTimeSelect IIfcScheduleTimeControl.ActualFinish { get { return @ActualFinish; } }	
-		IfcDateTimeSelect IIfcScheduleTimeControl.EarlyFinish { get { return @EarlyFinish; } }	
-		IfcDateTimeSelect IIfcScheduleTimeControl.LateFinish { get { return @LateFinish; } }	
-		IfcDateTimeSelect IIfcScheduleTimeControl.ScheduleFinish { get { return @ScheduleFinish; } }	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.ActualStart { get { return @ActualStart; } }	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.EarlyStart { get { return @EarlyStart; } }	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.LateStart { get { return @LateStart; } }	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.ScheduleStart { get { return @ScheduleStart; } }	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.ActualFinish { get { return @ActualFinish; } }	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.EarlyFinish { get { return @EarlyFinish; } }	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.LateFinish { get { return @LateFinish; } }	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.ScheduleFinish { get { return @ScheduleFinish; } }	
 		IfcTimeMeasure? IIfcScheduleTimeControl.ScheduleDuration { get { return @ScheduleDuration; } }	
 		IfcTimeMeasure? IIfcScheduleTimeControl.ActualDuration { get { return @ActualDuration; } }	
 		IfcTimeMeasure? IIfcScheduleTimeControl.RemainingTime { get { return @RemainingTime; } }	
 		IfcTimeMeasure? IIfcScheduleTimeControl.FreeFloat { get { return @FreeFloat; } }	
 		IfcTimeMeasure? IIfcScheduleTimeControl.TotalFloat { get { return @TotalFloat; } }	
 		bool? IIfcScheduleTimeControl.IsCritical { get { return @IsCritical; } }	
-		IfcDateTimeSelect IIfcScheduleTimeControl.StatusTime { get { return @StatusTime; } }	
+		IIfcDateTimeSelect IIfcScheduleTimeControl.StatusTime { get { return @StatusTime; } }	
 		IfcTimeMeasure? IIfcScheduleTimeControl.StartFloat { get { return @StartFloat; } }	
 		IfcTimeMeasure? IIfcScheduleTimeControl.FinishFloat { get { return @FinishFloat; } }	
 		IfcPositiveRatioMeasure? IIfcScheduleTimeControl.Completion { get { return @Completion; } }	

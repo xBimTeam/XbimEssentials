@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcLabel? @Name { get; }
 		IfcText? @Description { get; }
-		IfcAppliedValueSelect @AppliedValue { get; }
+		IIfcAppliedValueSelect @AppliedValue { get; }
 		IIfcMeasureWithUnit @UnitBasis { get; }
 		IfcDate? @ApplicableDate { get; }
 		IfcDate? @FixedUntilDate { get; }
@@ -55,7 +55,7 @@ namespace Xbim.Ifc4.CostResource
 		#region IIfcAppliedValue explicit implementation
 		IfcLabel? IIfcAppliedValue.Name { get { return @Name; } }	
 		IfcText? IIfcAppliedValue.Description { get { return @Description; } }	
-		IfcAppliedValueSelect IIfcAppliedValue.AppliedValue { get { return @AppliedValue; } }	
+		IIfcAppliedValueSelect IIfcAppliedValue.AppliedValue { get { return @AppliedValue; } }	
 		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis { get { return @UnitBasis; } }	
 		IfcDate? IIfcAppliedValue.ApplicableDate { get { return @ApplicableDate; } }	
 		IfcDate? IIfcAppliedValue.FixedUntilDate { get { return @FixedUntilDate; } }	

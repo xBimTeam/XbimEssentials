@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				return new Ifc4.MeasureResource.IfcLabel(ConstraintSource.Value);
 			} 
 		}
-		Ifc4.ActorResource.IfcActorSelect IIfcConstraint.CreatingActor 
+		IIfcActorSelect IIfcConstraint.CreatingActor 
 		{ 
 			get
 			{

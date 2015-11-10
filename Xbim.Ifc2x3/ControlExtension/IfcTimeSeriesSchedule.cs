@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTimeSeriesSchedule : IIfcControl
 	{
-		IEnumerable<IfcDateTimeSelect> @ApplicableDates { get; }
+		IEnumerable<IIfcDateTimeSelect> @ApplicableDates { get; }
 		IfcTimeSeriesScheduleTypeEnum @TimeSeriesScheduleType { get; }
 		IIfcTimeSeries @TimeSeries { get; }
 	
@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IIfcTimeSeriesSchedule, IEqualityComparer<@IfcTimeSeriesSchedule>, IEquatable<@IfcTimeSeriesSchedule>
 	{
 		#region IIfcTimeSeriesSchedule explicit implementation
-		IEnumerable<IfcDateTimeSelect> IIfcTimeSeriesSchedule.ApplicableDates { get { return @ApplicableDates; } }	
+		IEnumerable<IIfcDateTimeSelect> IIfcTimeSeriesSchedule.ApplicableDates { get { return @ApplicableDates; } }	
 		IfcTimeSeriesScheduleTypeEnum IIfcTimeSeriesSchedule.TimeSeriesScheduleType { get { return @TimeSeriesScheduleType; } }	
 		IIfcTimeSeries IIfcTimeSeriesSchedule.TimeSeries { get { return @TimeSeries; } }	
 		 

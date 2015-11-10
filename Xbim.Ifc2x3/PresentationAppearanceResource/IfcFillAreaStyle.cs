@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFillAreaStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
 	{
-		IEnumerable<IfcFillStyleSelect> @FillStyles { get; }
+		IEnumerable<IIfcFillStyleSelect> @FillStyles { get; }
 	
 	}
 }
@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IIfcFillAreaStyle, IEqualityComparer<@IfcFillAreaStyle>, IEquatable<@IfcFillAreaStyle>
 	{
 		#region IIfcFillAreaStyle explicit implementation
-		IEnumerable<IfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { get { return @FillStyles; } }	
+		IEnumerable<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { get { return @FillStyles; } }	
 		 
 		#endregion
 

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcBoundaryEdgeCondition : IIfcBoundaryEdgeCondition
 	{
-		Ifc4.StructuralLoadResource.IfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthX 
+		IIfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthX 
 		{ 
 			get
 			{
@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			    //##
 			} 
 		}
-		Ifc4.StructuralLoadResource.IfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthY 
+		IIfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthY 
 		{ 
 			get
 			{
@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				//##
 			} 
 		}
-		Ifc4.StructuralLoadResource.IfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthZ 
+		IIfcModulusOfTranslationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.TranslationalStiffnessByLengthZ 
 		{ 
 			get
 			{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				//##
 			} 
 		}
-		Ifc4.StructuralLoadResource.IfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthX 
+		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthX 
 		{ 
 			get
 			{
@@ -58,7 +58,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(RotationalStiffnessByLengthX.Value);
 			} 
 		}
-		Ifc4.StructuralLoadResource.IfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthY 
+		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthY 
 		{ 
 			get
 			{
@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(RotationalStiffnessByLengthY.Value);
 			} 
 		}
-		Ifc4.StructuralLoadResource.IfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthZ 
+		IIfcModulusOfRotationalSubgradeReactionSelect IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthZ 
 		{ 
 			get
 			{

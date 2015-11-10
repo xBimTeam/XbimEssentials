@@ -9,13 +9,28 @@
 
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 using Xbim.Common;
+using Xbim.Ifc2x3.Interfaces;
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcColour : IfcFillStyleSelect, IfcSymbolStyleSelect, IPersistEntity
+	public partial interface IfcColour : IfcFillStyleSelect, IfcSymbolStyleSelect, IPersistEntity, IIfcColour
 	{
-		
+		#region Custom code for a select
+		//## Custom code for a select
+		//##
+		#endregion
+	}
+}
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	public partial interface IIfcColour : IIfcFillStyleSelect, IIfcSymbolStyleSelect
+	{
+		#region Custom code for a select interface
+		//## Custom code for a select interface
+		//##
+		#endregion
 	}
 }

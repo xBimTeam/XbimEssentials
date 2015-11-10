@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcBoundaryFaceCondition : IIfcBoundaryFaceCondition
 	{
-		Ifc4.StructuralLoadResource.IfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaX 
+		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaX 
 		{ 
 			get
 			{
@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			    //##
 			} 
 		}
-		Ifc4.StructuralLoadResource.IfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaY 
+		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaY 
 		{ 
 			get
 			{
@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				//##
 			} 
 		}
-		Ifc4.StructuralLoadResource.IfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaZ 
+		IIfcModulusOfSubgradeReactionSelect IIfcBoundaryFaceCondition.TranslationalStiffnessByAreaZ 
 		{ 
 			get
 			{

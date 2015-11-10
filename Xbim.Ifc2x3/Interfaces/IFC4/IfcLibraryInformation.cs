@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				return new Ifc4.MeasureResource.IfcLabel(Version.Value);
 			} 
 		}
-		Ifc4.ActorResource.IfcActorSelect IIfcLibraryInformation.Publisher 
+		IIfcActorSelect IIfcLibraryInformation.Publisher 
 		{ 
 			get
 			{

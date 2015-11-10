@@ -11,6 +11,7 @@ namespace Xbim.Common.Metadata
 
         private readonly SortedList<int, ExpressMetaProperty> _properties = new SortedList<int, ExpressMetaProperty>();
         private readonly List<ExpressMetaProperty> _inverses = new List<ExpressMetaProperty>();
+        private readonly List<ExpressMetaProperty> _derives = new List<ExpressMetaProperty>();
         private readonly List<ExpressType> _subTypes = new List<ExpressType>();
         private List<Type> _nonAbstractSubTypes;
         private readonly List<ExpressMetaProperty> _expressEnumerableProperties = new List<ExpressMetaProperty>();
@@ -40,6 +41,11 @@ namespace Xbim.Common.Metadata
         public IEnumerable<ExpressMetaProperty> Inverses
         {
             get { return _inverses; }
+        }
+
+        public IEnumerable<ExpressMetaProperty> Derives
+        {
+            get { return _derives; }
         }
 
         public SortedList<int, ExpressMetaProperty> Properties
@@ -96,21 +102,22 @@ namespace Xbim.Common.Metadata
                 type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
             foreach (var propInfo in properties)
             {
-                var attributeIdx = -1;
                 var attribute =
                     ((EntityAttributeAttribute[])propInfo.GetCustomAttributes(typeof(EntityAttributeAttribute), false)).FirstOrDefault();
                 if(attribute == null)
                     continue;
 
+                var metaProperty = new ExpressMetaProperty {PropertyInfo = propInfo, EntityAttribute = attribute};
                 if (attribute.Order > 0)
                 {
-                    // SUPPORT: if the code breaks here there's a problem with the order attribut in a class property
-                    _properties.Add(attribute.Order,
-                                                new ExpressMetaProperty { PropertyInfo = propInfo, EntityAttribute = attribute });
-                    attributeIdx = attribute.Order;
+                    _properties.Add(attribute.Order, metaProperty);
+                }
+                else if (attribute.State == EntityAttributeState.Derived)
+                {
+                    _derives.Add(metaProperty);
                 }
                 else
-                    _inverses.Add(new ExpressMetaProperty { PropertyInfo = propInfo, EntityAttribute = attribute });
+                    _inverses.Add(metaProperty);
                
                 var isIndexed =
                     propInfo.GetCustomAttributes(typeof(IndexedProperty), false).Any();
@@ -123,7 +130,7 @@ namespace Xbim.Common.Metadata
                 if (_indexedProperties == null) _indexedProperties = new List<PropertyInfo>();
                 if (_indexedValues == null) _indexedValues = new List<int>();
                 _indexedProperties.Add(propInfo);
-                _indexedValues.Add(attributeIdx);
+                _indexedValues.Add(attribute.Order);
                 IndexedClass = true; //if it has keys it must be an indexed class
             }
 

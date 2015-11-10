@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelSpaceBoundary : IIfcRelConnects
 	{
-		IfcSpaceBoundarySelect @RelatingSpace { get; }
+		IIfcSpaceBoundarySelect @RelatingSpace { get; }
 		IIfcElement @RelatedBuildingElement { get; }
 		IIfcConnectionGeometry @ConnectionGeometry { get; }
 		IfcPhysicalOrVirtualEnum @PhysicalOrVirtualBoundary { get; }
@@ -43,7 +43,7 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcRelSpaceBoundary : IfcRelConnects, IInstantiableEntity, IIfcRelSpaceBoundary, IEqualityComparer<@IfcRelSpaceBoundary>, IEquatable<@IfcRelSpaceBoundary>
 	{
 		#region IIfcRelSpaceBoundary explicit implementation
-		IfcSpaceBoundarySelect IIfcRelSpaceBoundary.RelatingSpace { get { return @RelatingSpace; } }	
+		IIfcSpaceBoundarySelect IIfcRelSpaceBoundary.RelatingSpace { get { return @RelatingSpace; } }	
 		IIfcElement IIfcRelSpaceBoundary.RelatedBuildingElement { get { return @RelatedBuildingElement; } }	
 		IIfcConnectionGeometry IIfcRelSpaceBoundary.ConnectionGeometry { get { return @ConnectionGeometry; } }	
 		IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary { get { return @PhysicalOrVirtualBoundary; } }	

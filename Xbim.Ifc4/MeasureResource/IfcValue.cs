@@ -10,13 +10,28 @@
 using Xbim.Ifc4.CostResource;
 using Xbim.Ifc4.ConstraintResource;
 using Xbim.Common;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc4.MeasureResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcValue : IfcAppliedValueSelect, IfcMetricValueSelect, IExpressValueType
+	public partial interface IfcValue : IfcAppliedValueSelect, IfcMetricValueSelect, IExpressValueType, IIfcValue
 	{
-		
+		#region Custom code for a select
+		//## Custom code for a select
+		//##
+		#endregion
+	}
+}
+
+namespace Xbim.Ifc4.Interfaces
+{
+	public partial interface IIfcValue : IIfcAppliedValueSelect, IIfcMetricValueSelect
+	{
+		#region Custom code for a select interface
+		//## Custom code for a select interface
+		//##
+		#endregion
 	}
 }

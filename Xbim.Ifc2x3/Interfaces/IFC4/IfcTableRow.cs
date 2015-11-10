@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 {
 	public partial class @IfcTableRow : IIfcTableRow
 	{
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcValue> IIfcTableRow.RowCells 
+		IEnumerable<IIfcValue> IIfcTableRow.RowCells 
 		{ 
 			get
 			{

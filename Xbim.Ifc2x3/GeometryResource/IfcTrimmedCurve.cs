@@ -24,8 +24,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcTrimmedCurve : IIfcBoundedCurve
 	{
 		IIfcCurve @BasisCurve { get; }
-		IEnumerable<IfcTrimmingSelect> @Trim1 { get; }
-		IEnumerable<IfcTrimmingSelect> @Trim2 { get; }
+		IEnumerable<IIfcTrimmingSelect> @Trim1 { get; }
+		IEnumerable<IIfcTrimmingSelect> @Trim2 { get; }
 		bool @SenseAgreement { get; }
 		IfcTrimmingPreference @MasterRepresentation { get; }
 	
@@ -40,8 +40,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 	{
 		#region IIfcTrimmedCurve explicit implementation
 		IIfcCurve IIfcTrimmedCurve.BasisCurve { get { return @BasisCurve; } }	
-		IEnumerable<IfcTrimmingSelect> IIfcTrimmedCurve.Trim1 { get { return @Trim1; } }	
-		IEnumerable<IfcTrimmingSelect> IIfcTrimmedCurve.Trim2 { get { return @Trim2; } }	
+		IEnumerable<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim1 { get { return @Trim1; } }	
+		IEnumerable<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim2 { get { return @Trim2; } }	
 		bool IIfcTrimmedCurve.SenseAgreement { get { return @SenseAgreement; } }	
 		IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation { get { return @MasterRepresentation; } }	
 		 

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcPlanarBox : IIfcPlanarBox
 	{
-		Ifc4.GeometryResource.IfcAxis2Placement IIfcPlanarBox.Placement 
+		IIfcAxis2Placement IIfcPlanarBox.Placement 
 		{ 
 			get
 			{

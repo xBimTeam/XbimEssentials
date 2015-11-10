@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return ProductDefinitional;
 			} 
 		}
-		Ifc4.RepresentationResource.IfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape 
+		IIfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape 
 		{ 
 			get
 			{

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcPropertyBoundedValue : IIfcPropertyBoundedValue
 	{
-		Ifc4.MeasureResource.IfcValue IIfcPropertyBoundedValue.UpperBoundValue 
+		IIfcValue IIfcPropertyBoundedValue.UpperBoundValue 
 		{ 
 			get
 			{
@@ -218,7 +218,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				return null;
 			} 
 		}
-		Ifc4.MeasureResource.IfcValue IIfcPropertyBoundedValue.LowerBoundValue 
+		IIfcValue IIfcPropertyBoundedValue.LowerBoundValue 
 		{ 
 			get
 			{
@@ -420,7 +420,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				return null;
 			} 
 		}
-		Ifc4.MeasureResource.IfcUnit IIfcPropertyBoundedValue.Unit 
+		IIfcUnit IIfcPropertyBoundedValue.Unit 
 		{ 
 			get
 			{
@@ -437,7 +437,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				return null;
 			} 
 		}
-		Ifc4.MeasureResource.IfcValue IIfcPropertyBoundedValue.SetPointValue 
+		IIfcValue IIfcPropertyBoundedValue.SetPointValue 
 		{ 
 			get
 			{

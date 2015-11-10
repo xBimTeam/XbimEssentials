@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.CostResource
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
-		Ifc4.CostResource.IfcAppliedValueSelect IIfcAppliedValue.AppliedValue 
+		IIfcAppliedValueSelect IIfcAppliedValue.AppliedValue 
 		{ 
 			get
 			{

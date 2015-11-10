@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				return new Ifc4.MeasureResource.IfcLabel(Revision.Value);
 			} 
 		}
-		Ifc4.ActorResource.IfcActorSelect IIfcDocumentInformation.DocumentOwner 
+		IIfcActorSelect IIfcDocumentInformation.DocumentOwner 
 		{ 
 			get
 			{
@@ -101,7 +101,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				return null;
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.ActorResource.IfcActorSelect> IIfcDocumentInformation.Editors 
+		IEnumerable<IIfcActorSelect> IIfcDocumentInformation.Editors 
 		{ 
 			get
 			{

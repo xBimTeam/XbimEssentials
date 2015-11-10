@@ -28,12 +28,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCostSchedule : IIfcControl
 	{
-		IfcActorSelect @SubmittedBy { get; }
-		IfcActorSelect @PreparedBy { get; }
-		IfcDateTimeSelect @SubmittedOn { get; }
+		IIfcActorSelect @SubmittedBy { get; }
+		IIfcActorSelect @PreparedBy { get; }
+		IIfcDateTimeSelect @SubmittedOn { get; }
 		IfcLabel? @Status { get; }
-		IEnumerable<IfcActorSelect> @TargetUsers { get; }
-		IfcDateTimeSelect @UpdateDate { get; }
+		IEnumerable<IIfcActorSelect> @TargetUsers { get; }
+		IIfcDateTimeSelect @UpdateDate { get; }
 		IfcIdentifier @ID { get; }
 		IfcCostScheduleTypeEnum @PredefinedType { get; }
 	
@@ -47,12 +47,12 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IEqualityComparer<@IfcCostSchedule>, IEquatable<@IfcCostSchedule>
 	{
 		#region IIfcCostSchedule explicit implementation
-		IfcActorSelect IIfcCostSchedule.SubmittedBy { get { return @SubmittedBy; } }	
-		IfcActorSelect IIfcCostSchedule.PreparedBy { get { return @PreparedBy; } }	
-		IfcDateTimeSelect IIfcCostSchedule.SubmittedOn { get { return @SubmittedOn; } }	
+		IIfcActorSelect IIfcCostSchedule.SubmittedBy { get { return @SubmittedBy; } }	
+		IIfcActorSelect IIfcCostSchedule.PreparedBy { get { return @PreparedBy; } }	
+		IIfcDateTimeSelect IIfcCostSchedule.SubmittedOn { get { return @SubmittedOn; } }	
 		IfcLabel? IIfcCostSchedule.Status { get { return @Status; } }	
-		IEnumerable<IfcActorSelect> IIfcCostSchedule.TargetUsers { get { return @TargetUsers; } }	
-		IfcDateTimeSelect IIfcCostSchedule.UpdateDate { get { return @UpdateDate; } }	
+		IEnumerable<IIfcActorSelect> IIfcCostSchedule.TargetUsers { get { return @TargetUsers; } }	
+		IIfcDateTimeSelect IIfcCostSchedule.UpdateDate { get { return @UpdateDate; } }	
 		IfcIdentifier IIfcCostSchedule.ID { get { return @ID; } }	
 		IfcCostScheduleTypeEnum IIfcCostSchedule.PredefinedType { get { return @PredefinedType; } }	
 		 

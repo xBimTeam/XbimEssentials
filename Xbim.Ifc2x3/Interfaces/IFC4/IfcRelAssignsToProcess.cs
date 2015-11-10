@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssignsToProcess : IIfcRelAssignsToProcess
 	{
-		Ifc4.Kernel.IfcProcessSelect IIfcRelAssignsToProcess.RelatingProcess 
+		IIfcProcessSelect IIfcRelAssignsToProcess.RelatingProcess 
 		{ 
 			get
 			{

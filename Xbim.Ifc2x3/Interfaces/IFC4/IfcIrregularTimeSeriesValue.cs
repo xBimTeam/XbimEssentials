@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				//##
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcValue> IIfcIrregularTimeSeriesValue.ListValues 
+		IEnumerable<IIfcValue> IIfcIrregularTimeSeriesValue.ListValues 
 		{ 
 			get
 			{

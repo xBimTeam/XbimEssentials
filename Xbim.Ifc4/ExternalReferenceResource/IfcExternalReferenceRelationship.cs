@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcExternalReferenceRelationship : IIfcResourceLevelRelationship
 	{
 		IIfcExternalReference @RelatingReference { get; }
-		IEnumerable<IfcResourceObjectSelect> @RelatedResourceObjects { get; }
+		IEnumerable<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
 	
 	}
 }
@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	{
 		#region IIfcExternalReferenceRelationship explicit implementation
 		IIfcExternalReference IIfcExternalReferenceRelationship.RelatingReference { get { return @RelatingReference; } }	
-		IEnumerable<IfcResourceObjectSelect> IIfcExternalReferenceRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
+		IEnumerable<IIfcResourceObjectSelect> IIfcExternalReferenceRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
 		 
 		#endregion
 

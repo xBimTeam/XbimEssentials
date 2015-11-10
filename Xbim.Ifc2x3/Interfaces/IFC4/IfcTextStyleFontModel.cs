@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 				return new Ifc4.PresentationAppearanceResource.IfcFontWeight(FontWeight.Value);
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleFontModel.FontSize 
+		IIfcSizeSelect IIfcTextStyleFontModel.FontSize 
 		{ 
 			get
 			{

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcTextStyleTextModel : IIfcTextStyleTextModel
 	{
-		Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.TextIndent 
+		IIfcSizeSelect IIfcTextStyleTextModel.TextIndent 
 		{ 
 			get
 			{
@@ -52,7 +52,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return new Ifc4.PresentationAppearanceResource.IfcTextDecoration(TextDecoration.Value);
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.LetterSpacing 
+		IIfcSizeSelect IIfcTextStyleTextModel.LetterSpacing 
 		{ 
 			get
 			{
@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return null;
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.WordSpacing 
+		IIfcSizeSelect IIfcTextStyleTextModel.WordSpacing 
 		{ 
 			get
 			{
@@ -100,7 +100,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return new Ifc4.PresentationAppearanceResource.IfcTextTransformation(TextTransform.Value);
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcTextStyleTextModel.LineHeight 
+		IIfcSizeSelect IIfcTextStyleTextModel.LineHeight 
 		{ 
 			get
 			{

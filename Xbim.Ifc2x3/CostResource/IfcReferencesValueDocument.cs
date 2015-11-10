@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReferencesValueDocument : IPersistEntity
 	{
-		IfcDocumentSelect @ReferencedDocument { get; }
+		IIfcDocumentSelect @ReferencedDocument { get; }
 		IEnumerable<IIfcAppliedValue> @ReferencingValues { get; }
 		IfcLabel? @Name { get; }
 		IfcText? @Description { get; }
@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.CostResource
 	public  partial class @IfcReferencesValueDocument : INotifyPropertyChanged, IInstantiableEntity, IIfcReferencesValueDocument, IEqualityComparer<@IfcReferencesValueDocument>, IEquatable<@IfcReferencesValueDocument>
 	{
 		#region IIfcReferencesValueDocument explicit implementation
-		IfcDocumentSelect IIfcReferencesValueDocument.ReferencedDocument { get { return @ReferencedDocument; } }	
+		IIfcDocumentSelect IIfcReferencesValueDocument.ReferencedDocument { get { return @ReferencedDocument; } }	
 		IEnumerable<IIfcAppliedValue> IIfcReferencesValueDocument.ReferencingValues { get { return @ReferencingValues; } }	
 		IfcLabel? IIfcReferencesValueDocument.Name { get { return @Name; } }	
 		IfcText? IIfcReferencesValueDocument.Description { get { return @Description; } }	

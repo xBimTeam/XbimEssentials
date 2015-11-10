@@ -27,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMeasureWithUnit : IPersistEntity, IfcAppliedValueSelect, IfcMetricValueSelect
 	{
-		IfcValue @ValueComponent { get; }
-		IfcUnit @UnitComponent { get; }
+		IIfcValue @ValueComponent { get; }
+		IIfcUnit @UnitComponent { get; }
 	
 	}
 }
@@ -40,8 +40,8 @@ namespace Xbim.Ifc4.MeasureResource
 	public  partial class @IfcMeasureWithUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMeasureWithUnit, IEqualityComparer<@IfcMeasureWithUnit>, IEquatable<@IfcMeasureWithUnit>
 	{
 		#region IIfcMeasureWithUnit explicit implementation
-		IfcValue IIfcMeasureWithUnit.ValueComponent { get { return @ValueComponent; } }	
-		IfcUnit IIfcMeasureWithUnit.UnitComponent { get { return @UnitComponent; } }	
+		IIfcValue IIfcMeasureWithUnit.ValueComponent { get { return @ValueComponent; } }	
+		IIfcUnit IIfcMeasureWithUnit.UnitComponent { get { return @UnitComponent; } }	
 		 
 		#endregion
 

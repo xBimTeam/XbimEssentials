@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(Transparency.Value);
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour 
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour 
 		{ 
 			get
 			{
@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return null;
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcColourOrFactor IIfcSurfaceStyleRendering.TransmissionColour 
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.TransmissionColour 
 		{ 
 			get
 			{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return null;
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseTransmissionColour 
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseTransmissionColour 
 		{ 
 			get
 			{
@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return null;
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcColourOrFactor IIfcSurfaceStyleRendering.ReflectionColour 
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.ReflectionColour 
 		{ 
 			get
 			{
@@ -76,7 +76,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return null;
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcColourOrFactor IIfcSurfaceStyleRendering.SpecularColour 
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.SpecularColour 
 		{ 
 			get
 			{
@@ -89,7 +89,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return null;
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcSpecularHighlightSelect IIfcSurfaceStyleRendering.SpecularHighlight 
+		IIfcSpecularHighlightSelect IIfcSurfaceStyleRendering.SpecularHighlight 
 		{ 
 			get
 			{

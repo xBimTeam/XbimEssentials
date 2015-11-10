@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcConnectionSurfaceGeometry : IIfcConnectionSurfaceGeometry
 	{
-		Ifc4.GeometricConstraintResource.IfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatingElement 
+		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatingElement 
 		{ 
 			get
 			{
@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				return null;
 			} 
 		}
-		Ifc4.GeometricConstraintResource.IfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatedElement 
+		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatedElement 
 		{ 
 			get
 			{

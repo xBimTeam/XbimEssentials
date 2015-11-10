@@ -9,13 +9,28 @@
 
 using Xbim.Ifc2x3.ConstraintResource;
 using Xbim.Common;
+using Xbim.Ifc2x3.Interfaces;
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcDateTimeSelect : IfcMetricValueSelect, IPersistEntity
+	public partial interface IfcDateTimeSelect : IfcMetricValueSelect, IPersistEntity, IIfcDateTimeSelect
 	{
-		
+		#region Custom code for a select
+		//## Custom code for a select
+		//##
+		#endregion
+	}
+}
+
+namespace Xbim.Ifc2x3.Interfaces
+{
+	public partial interface IIfcDateTimeSelect : IIfcMetricValueSelect
+	{
+		#region Custom code for a select interface
+		//## Custom code for a select interface
+		//##
+		#endregion
 	}
 }

@@ -44,7 +44,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				return TotalReplacementCost;
 			} 
 		}
-		Ifc4.ActorResource.IfcActorSelect IIfcAsset.Owner 
+		IIfcActorSelect IIfcAsset.Owner 
 		{ 
 			get
 			{
@@ -61,7 +61,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				return null;
 			} 
 		}
-		Ifc4.ActorResource.IfcActorSelect IIfcAsset.User 
+		IIfcActorSelect IIfcAsset.User 
 		{ 
 			get
 			{

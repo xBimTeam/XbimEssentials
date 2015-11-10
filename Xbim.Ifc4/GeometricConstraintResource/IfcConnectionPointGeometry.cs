@@ -23,8 +23,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConnectionPointGeometry : IIfcConnectionGeometry
 	{
-		IfcPointOrVertexPoint @PointOnRelatingElement { get; }
-		IfcPointOrVertexPoint @PointOnRelatedElement { get; }
+		IIfcPointOrVertexPoint @PointOnRelatingElement { get; }
+		IIfcPointOrVertexPoint @PointOnRelatedElement { get; }
 	
 	}
 }
@@ -37,8 +37,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	public  partial class @IfcConnectionPointGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPointGeometry, IEqualityComparer<@IfcConnectionPointGeometry>, IEquatable<@IfcConnectionPointGeometry>
 	{
 		#region IIfcConnectionPointGeometry explicit implementation
-		IfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatingElement { get { return @PointOnRelatingElement; } }	
-		IfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatedElement { get { return @PointOnRelatedElement; } }	
+		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatingElement { get { return @PointOnRelatingElement; } }	
+		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatedElement { get { return @PointOnRelatedElement; } }	
 		 
 		#endregion
 

@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcApproval : IPersistEntity
 	{
 		IfcText? @Description { get; }
-		IfcDateTimeSelect @ApprovalDateTime { get; }
+		IIfcDateTimeSelect @ApprovalDateTime { get; }
 		IfcLabel? @ApprovalStatus { get; }
 		IfcLabel? @ApprovalLevel { get; }
 		IfcText? @ApprovalQualifier { get; }
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 	{
 		#region IIfcApproval explicit implementation
 		IfcText? IIfcApproval.Description { get { return @Description; } }	
-		IfcDateTimeSelect IIfcApproval.ApprovalDateTime { get { return @ApprovalDateTime; } }	
+		IIfcDateTimeSelect IIfcApproval.ApprovalDateTime { get { return @ApprovalDateTime; } }	
 		IfcLabel? IIfcApproval.ApprovalStatus { get { return @ApprovalStatus; } }	
 		IfcLabel? IIfcApproval.ApprovalLevel { get { return @ApprovalLevel; } }	
 		IfcText? IIfcApproval.ApprovalQualifier { get { return @ApprovalQualifier; } }	

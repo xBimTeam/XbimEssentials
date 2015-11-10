@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsStructuralActivity : IIfcRelConnects
 	{
-		IfcStructuralActivityAssignmentSelect @RelatingElement { get; }
+		IIfcStructuralActivityAssignmentSelect @RelatingElement { get; }
 		IIfcStructuralActivity @RelatedStructuralActivity { get; }
 	
 	}
@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	public  partial class @IfcRelConnectsStructuralActivity : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralActivity, IEqualityComparer<@IfcRelConnectsStructuralActivity>, IEquatable<@IfcRelConnectsStructuralActivity>
 	{
 		#region IIfcRelConnectsStructuralActivity explicit implementation
-		IfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement { get { return @RelatingElement; } }	
+		IIfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement { get { return @RelatingElement; } }	
 		IIfcStructuralActivity IIfcRelConnectsStructuralActivity.RelatedStructuralActivity { get { return @RelatedStructuralActivity; } }	
 		 
 		#endregion

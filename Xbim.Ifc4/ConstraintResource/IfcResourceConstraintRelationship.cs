@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcResourceConstraintRelationship : IIfcResourceLevelRelationship
 	{
 		IIfcConstraint @RelatingConstraint { get; }
-		IEnumerable<IfcResourceObjectSelect> @RelatedResourceObjects { get; }
+		IEnumerable<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
 	
 	}
 }
@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.ConstraintResource
 	{
 		#region IIfcResourceConstraintRelationship explicit implementation
 		IIfcConstraint IIfcResourceConstraintRelationship.RelatingConstraint { get { return @RelatingConstraint; } }	
-		IEnumerable<IfcResourceObjectSelect> IIfcResourceConstraintRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
+		IEnumerable<IIfcResourceObjectSelect> IIfcResourceConstraintRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
 		 
 		#endregion
 

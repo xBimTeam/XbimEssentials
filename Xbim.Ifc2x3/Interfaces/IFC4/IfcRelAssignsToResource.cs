@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssignsToResource : IIfcRelAssignsToResource
 	{
-		Ifc4.Kernel.IfcResourceSelect IIfcRelAssignsToResource.RelatingResource 
+		IIfcResourceSelect IIfcRelAssignsToResource.RelatingResource 
 		{ 
 			get
 			{

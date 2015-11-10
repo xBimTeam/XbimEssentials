@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcIrregularTimeSeriesValue : IPersistEntity
 	{
 		IfcDateTime @TimeStamp { get; }
-		IEnumerable<IfcValue> @ListValues { get; }
+		IEnumerable<IIfcValue> @ListValues { get; }
 	
 	}
 }
@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.DateTimeResource
 	{
 		#region IIfcIrregularTimeSeriesValue explicit implementation
 		IfcDateTime IIfcIrregularTimeSeriesValue.TimeStamp { get { return @TimeStamp; } }	
-		IEnumerable<IfcValue> IIfcIrregularTimeSeriesValue.ListValues { get { return @ListValues; } }	
+		IEnumerable<IIfcValue> IIfcIrregularTimeSeriesValue.ListValues { get { return @ListValues; } }	
 		 
 		#endregion
 

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcCurveStyle : IIfcCurveStyle
 	{
-		Ifc4.PresentationAppearanceResource.IfcCurveFontOrScaledCurveFontSelect IIfcCurveStyle.CurveFont 
+		IIfcCurveFontOrScaledCurveFontSelect IIfcCurveStyle.CurveFont 
 		{ 
 			get
 			{
@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return null;
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcSizeSelect IIfcCurveStyle.CurveWidth 
+		IIfcSizeSelect IIfcCurveStyle.CurveWidth 
 		{ 
 			get
 			{
@@ -53,7 +53,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return null;
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcColour IIfcCurveStyle.CurveColour 
+		IIfcColour IIfcCurveStyle.CurveColour 
 		{ 
 			get
 			{

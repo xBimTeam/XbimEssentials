@@ -23,7 +23,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return Item;
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.PresentationAppearanceResource.IfcStyleAssignmentSelect> IIfcStyledItem.Styles 
+		IEnumerable<IIfcStyleAssignmentSelect> IIfcStyledItem.Styles 
 		{ 
 			get
 			{

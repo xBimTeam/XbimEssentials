@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDefinedSymbol : IIfcGeometricRepresentationItem
 	{
-		IfcDefinedSymbolSelect @Definition { get; }
+		IIfcDefinedSymbolSelect @Definition { get; }
 		IIfcCartesianTransformationOperator2D @Target { get; }
 	
 	}
@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	public  partial class @IfcDefinedSymbol : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDefinedSymbol, IEqualityComparer<@IfcDefinedSymbol>, IEquatable<@IfcDefinedSymbol>
 	{
 		#region IIfcDefinedSymbol explicit implementation
-		IfcDefinedSymbolSelect IIfcDefinedSymbol.Definition { get { return @Definition; } }	
+		IIfcDefinedSymbolSelect IIfcDefinedSymbol.Definition { get { return @Definition; } }	
 		IIfcCartesianTransformationOperator2D IIfcDefinedSymbol.Target { get { return @Target; } }	
 		 
 		#endregion

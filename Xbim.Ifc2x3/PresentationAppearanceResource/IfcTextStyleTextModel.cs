@@ -25,13 +25,13 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextStyleTextModel : IPersistEntity, IfcTextStyleSelect
 	{
-		IfcSizeSelect @TextIndent { get; }
+		IIfcSizeSelect @TextIndent { get; }
 		IfcTextAlignment? @TextAlign { get; }
 		IfcTextDecoration? @TextDecoration { get; }
-		IfcSizeSelect @LetterSpacing { get; }
-		IfcSizeSelect @WordSpacing { get; }
+		IIfcSizeSelect @LetterSpacing { get; }
+		IIfcSizeSelect @WordSpacing { get; }
 		IfcTextTransformation? @TextTransform { get; }
-		IfcSizeSelect @LineHeight { get; }
+		IIfcSizeSelect @LineHeight { get; }
 	
 	}
 }
@@ -44,13 +44,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	public  partial class @IfcTextStyleTextModel : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleTextModel, IEqualityComparer<@IfcTextStyleTextModel>, IEquatable<@IfcTextStyleTextModel>
 	{
 		#region IIfcTextStyleTextModel explicit implementation
-		IfcSizeSelect IIfcTextStyleTextModel.TextIndent { get { return @TextIndent; } }	
+		IIfcSizeSelect IIfcTextStyleTextModel.TextIndent { get { return @TextIndent; } }	
 		IfcTextAlignment? IIfcTextStyleTextModel.TextAlign { get { return @TextAlign; } }	
 		IfcTextDecoration? IIfcTextStyleTextModel.TextDecoration { get { return @TextDecoration; } }	
-		IfcSizeSelect IIfcTextStyleTextModel.LetterSpacing { get { return @LetterSpacing; } }	
-		IfcSizeSelect IIfcTextStyleTextModel.WordSpacing { get { return @WordSpacing; } }	
+		IIfcSizeSelect IIfcTextStyleTextModel.LetterSpacing { get { return @LetterSpacing; } }	
+		IIfcSizeSelect IIfcTextStyleTextModel.WordSpacing { get { return @WordSpacing; } }	
 		IfcTextTransformation? IIfcTextStyleTextModel.TextTransform { get { return @TextTransform; } }	
-		IfcSizeSelect IIfcTextStyleTextModel.LineHeight { get { return @LineHeight; } }	
+		IIfcSizeSelect IIfcTextStyleTextModel.LineHeight { get { return @LineHeight; } }	
 		 
 		#endregion
 

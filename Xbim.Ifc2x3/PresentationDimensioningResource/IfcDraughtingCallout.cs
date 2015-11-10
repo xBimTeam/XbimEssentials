@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDraughtingCallout : IIfcGeometricRepresentationItem
 	{
-		IEnumerable<IfcDraughtingCalloutElement> @Contents { get; }
+		IEnumerable<IIfcDraughtingCalloutElement> @Contents { get; }
 		IEnumerable<IIfcDraughtingCalloutRelationship> @IsRelatedFromCallout {  get; }
 		IEnumerable<IIfcDraughtingCalloutRelationship> @IsRelatedToCallout {  get; }
 	
@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDraughtingCallout, IEqualityComparer<@IfcDraughtingCallout>, IEquatable<@IfcDraughtingCallout>
 	{
 		#region IIfcDraughtingCallout explicit implementation
-		IEnumerable<IfcDraughtingCalloutElement> IIfcDraughtingCallout.Contents { get { return @Contents; } }	
+		IEnumerable<IIfcDraughtingCalloutElement> IIfcDraughtingCallout.Contents { get { return @Contents; } }	
 		 
 		IEnumerable<IIfcDraughtingCalloutRelationship> IIfcDraughtingCallout.IsRelatedFromCallout {  get { return @IsRelatedFromCallout; } }
 		IEnumerable<IIfcDraughtingCalloutRelationship> IIfcDraughtingCallout.IsRelatedToCallout {  get { return @IsRelatedToCallout; } }

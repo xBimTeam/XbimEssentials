@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcActor : IIfcActor
 	{
-		Ifc4.ActorResource.IfcActorSelect IIfcActor.TheActor 
+		IIfcActorSelect IIfcActor.TheActor 
 		{ 
 			get
 			{

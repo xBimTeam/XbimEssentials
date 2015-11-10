@@ -24,7 +24,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGeometricSet : IIfcGeometricRepresentationItem
 	{
-		IEnumerable<IfcGeometricSetSelect> @Elements { get; }
+		IEnumerable<IIfcGeometricSetSelect> @Elements { get; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcGeometricSet : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcGeometricSet, IEqualityComparer<@IfcGeometricSet>, IEquatable<@IfcGeometricSet>
 	{
 		#region IIfcGeometricSet explicit implementation
-		IEnumerable<IfcGeometricSetSelect> IIfcGeometricSet.Elements { get { return @Elements; } }	
+		IEnumerable<IIfcGeometricSetSelect> IIfcGeometricSet.Elements { get { return @Elements; } }	
 		 
 		#endregion
 

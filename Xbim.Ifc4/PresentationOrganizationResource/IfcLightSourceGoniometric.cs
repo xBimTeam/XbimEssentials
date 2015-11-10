@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcThermodynamicTemperatureMeasure @ColourTemperature { get; }
 		IfcLuminousFluxMeasure @LuminousFlux { get; }
 		IfcLightEmissionSourceEnum @LightEmissionSource { get; }
-		IfcLightDistributionDataSourceSelect @LightDistributionDataSource { get; }
+		IIfcLightDistributionDataSourceSelect @LightDistributionDataSource { get; }
 	
 	}
 }
@@ -48,7 +48,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature { get { return @ColourTemperature; } }	
 		IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux { get { return @LuminousFlux; } }	
 		IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource { get { return @LightEmissionSource; } }	
-		IfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource { get { return @LightDistributionDataSource; } }	
+		IIfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource { get { return @LightDistributionDataSource; } }	
 		 
 		#endregion
 

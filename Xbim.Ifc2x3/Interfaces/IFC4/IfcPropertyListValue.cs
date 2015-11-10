@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcPropertyListValue : IIfcPropertyListValue
 	{
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcValue> IIfcPropertyListValue.ListValues 
+		IEnumerable<IIfcValue> IIfcPropertyListValue.ListValues 
 		{ 
 			get
 			{
@@ -219,7 +219,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				}
 			} 
 		}
-		Ifc4.MeasureResource.IfcUnit IIfcPropertyListValue.Unit 
+		IIfcUnit IIfcPropertyListValue.Unit 
 		{ 
 			get
 			{

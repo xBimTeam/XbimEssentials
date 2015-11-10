@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcClassificationReference : IIfcClassificationReference
 	{
-		Ifc4.ExternalReferenceResource.IfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource 
+		IIfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource 
 		{ 
 			get
 			{

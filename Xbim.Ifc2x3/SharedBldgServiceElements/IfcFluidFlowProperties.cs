@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcThermodynamicTemperatureMeasure? @WetBulbTemperatureSingleValue { get; }
 		IIfcTimeSeries @WetBulbTemperatureTimeSeries { get; }
 		IIfcTimeSeries @TemperatureTimeSeries { get; }
-		IfcDerivedMeasureValue @FlowrateSingleValue { get; }
+		IIfcDerivedMeasureValue @FlowrateSingleValue { get; }
 		IfcPositiveRatioMeasure? @FlowConditionSingleValue { get; }
 		IfcLinearVelocityMeasure? @VelocitySingleValue { get; }
 		IfcPressureMeasure? @PressureSingleValue { get; }
@@ -65,7 +65,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.WetBulbTemperatureSingleValue { get { return @WetBulbTemperatureSingleValue; } }	
 		IIfcTimeSeries IIfcFluidFlowProperties.WetBulbTemperatureTimeSeries { get { return @WetBulbTemperatureTimeSeries; } }	
 		IIfcTimeSeries IIfcFluidFlowProperties.TemperatureTimeSeries { get { return @TemperatureTimeSeries; } }	
-		IfcDerivedMeasureValue IIfcFluidFlowProperties.FlowrateSingleValue { get { return @FlowrateSingleValue; } }	
+		IIfcDerivedMeasureValue IIfcFluidFlowProperties.FlowrateSingleValue { get { return @FlowrateSingleValue; } }	
 		IfcPositiveRatioMeasure? IIfcFluidFlowProperties.FlowConditionSingleValue { get { return @FlowConditionSingleValue; } }	
 		IfcLinearVelocityMeasure? IIfcFluidFlowProperties.VelocitySingleValue { get { return @VelocitySingleValue; } }	
 		IfcPressureMeasure? IIfcFluidFlowProperties.PressureSingleValue { get { return @PressureSingleValue; } }	

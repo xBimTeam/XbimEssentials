@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcDimensionCount @CoordinateSpaceDimension { get; }
 		double? @Precision { get; }
-		IfcAxis2Placement @WorldCoordinateSystem { get; }
+		IIfcAxis2Placement @WorldCoordinateSystem { get; }
 		IIfcDirection @TrueNorth { get; }
 		IEnumerable<IIfcGeometricRepresentationSubContext> @HasSubContexts {  get; }
 	
@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		#region IIfcGeometricRepresentationContext explicit implementation
 		IfcDimensionCount IIfcGeometricRepresentationContext.CoordinateSpaceDimension { get { return @CoordinateSpaceDimension; } }	
 		double? IIfcGeometricRepresentationContext.Precision { get { return @Precision; } }	
-		IfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem { get { return @WorldCoordinateSystem; } }	
+		IIfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem { get { return @WorldCoordinateSystem; } }	
 		IIfcDirection IIfcGeometricRepresentationContext.TrueNorth { get { return @TrueNorth; } }	
 		 
 		IEnumerable<IIfcGeometricRepresentationSubContext> IIfcGeometricRepresentationContext.HasSubContexts {  get { return @HasSubContexts; } }

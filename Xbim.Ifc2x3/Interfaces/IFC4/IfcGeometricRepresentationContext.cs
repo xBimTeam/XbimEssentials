@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return Precision;
 			} 
 		}
-		Ifc4.GeometryResource.IfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem 
+		IIfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem 
 		{ 
 			get
 			{

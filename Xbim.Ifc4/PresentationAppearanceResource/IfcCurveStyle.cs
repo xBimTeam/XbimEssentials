@@ -24,9 +24,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCurveStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
 	{
-		IfcCurveFontOrScaledCurveFontSelect @CurveFont { get; }
-		IfcSizeSelect @CurveWidth { get; }
-		IfcColour @CurveColour { get; }
+		IIfcCurveFontOrScaledCurveFontSelect @CurveFont { get; }
+		IIfcSizeSelect @CurveWidth { get; }
+		IIfcColour @CurveColour { get; }
 		bool? @ModelOrDraughting { get; }
 	
 	}
@@ -39,9 +39,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcCurveStyle : IfcPresentationStyle, IInstantiableEntity, IIfcCurveStyle, IEqualityComparer<@IfcCurveStyle>, IEquatable<@IfcCurveStyle>
 	{
 		#region IIfcCurveStyle explicit implementation
-		IfcCurveFontOrScaledCurveFontSelect IIfcCurveStyle.CurveFont { get { return @CurveFont; } }	
-		IfcSizeSelect IIfcCurveStyle.CurveWidth { get { return @CurveWidth; } }	
-		IfcColour IIfcCurveStyle.CurveColour { get { return @CurveColour; } }	
+		IIfcCurveFontOrScaledCurveFontSelect IIfcCurveStyle.CurveFont { get { return @CurveFont; } }	
+		IIfcSizeSelect IIfcCurveStyle.CurveWidth { get { return @CurveWidth; } }	
+		IIfcColour IIfcCurveStyle.CurveColour { get { return @CurveColour; } }	
 		bool? IIfcCurveStyle.ModelOrDraughting { get { return @ModelOrDraughting; } }	
 		 
 		#endregion

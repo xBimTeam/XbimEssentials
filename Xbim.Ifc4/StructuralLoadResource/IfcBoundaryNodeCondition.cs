@@ -24,12 +24,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoundaryNodeCondition : IIfcBoundaryCondition
 	{
-		IfcTranslationalStiffnessSelect @TranslationalStiffnessX { get; }
-		IfcTranslationalStiffnessSelect @TranslationalStiffnessY { get; }
-		IfcTranslationalStiffnessSelect @TranslationalStiffnessZ { get; }
-		IfcRotationalStiffnessSelect @RotationalStiffnessX { get; }
-		IfcRotationalStiffnessSelect @RotationalStiffnessY { get; }
-		IfcRotationalStiffnessSelect @RotationalStiffnessZ { get; }
+		IIfcTranslationalStiffnessSelect @TranslationalStiffnessX { get; }
+		IIfcTranslationalStiffnessSelect @TranslationalStiffnessY { get; }
+		IIfcTranslationalStiffnessSelect @TranslationalStiffnessZ { get; }
+		IIfcRotationalStiffnessSelect @RotationalStiffnessX { get; }
+		IIfcRotationalStiffnessSelect @RotationalStiffnessY { get; }
+		IIfcRotationalStiffnessSelect @RotationalStiffnessZ { get; }
 	
 	}
 }
@@ -41,12 +41,12 @@ namespace Xbim.Ifc4.StructuralLoadResource
 	public  partial class @IfcBoundaryNodeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryNodeCondition, IEqualityComparer<@IfcBoundaryNodeCondition>, IEquatable<@IfcBoundaryNodeCondition>
 	{
 		#region IIfcBoundaryNodeCondition explicit implementation
-		IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessX { get { return @TranslationalStiffnessX; } }	
-		IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessY { get { return @TranslationalStiffnessY; } }	
-		IfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessZ { get { return @TranslationalStiffnessZ; } }	
-		IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessX { get { return @RotationalStiffnessX; } }	
-		IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessY { get { return @RotationalStiffnessY; } }	
-		IfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessZ { get { return @RotationalStiffnessZ; } }	
+		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessX { get { return @TranslationalStiffnessX; } }	
+		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessY { get { return @TranslationalStiffnessY; } }	
+		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessZ { get { return @TranslationalStiffnessZ; } }	
+		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessX { get { return @RotationalStiffnessX; } }	
+		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessY { get { return @RotationalStiffnessY; } }	
+		IIfcRotationalStiffnessSelect IIfcBoundaryNodeCondition.RotationalStiffnessZ { get { return @RotationalStiffnessZ; } }	
 		 
 		#endregion
 

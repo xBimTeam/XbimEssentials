@@ -26,12 +26,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcSurfaceStyleRendering : IIfcSurfaceStyleShading
 	{
 		IfcNormalisedRatioMeasure? @Transparency { get; }
-		IfcColourOrFactor @DiffuseColour { get; }
-		IfcColourOrFactor @TransmissionColour { get; }
-		IfcColourOrFactor @DiffuseTransmissionColour { get; }
-		IfcColourOrFactor @ReflectionColour { get; }
-		IfcColourOrFactor @SpecularColour { get; }
-		IfcSpecularHighlightSelect @SpecularHighlight { get; }
+		IIfcColourOrFactor @DiffuseColour { get; }
+		IIfcColourOrFactor @TransmissionColour { get; }
+		IIfcColourOrFactor @DiffuseTransmissionColour { get; }
+		IIfcColourOrFactor @ReflectionColour { get; }
+		IIfcColourOrFactor @SpecularColour { get; }
+		IIfcSpecularHighlightSelect @SpecularHighlight { get; }
 		IfcReflectanceMethodEnum @ReflectanceMethod { get; }
 	
 	}
@@ -45,12 +45,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	{
 		#region IIfcSurfaceStyleRendering explicit implementation
 		IfcNormalisedRatioMeasure? IIfcSurfaceStyleRendering.Transparency { get { return @Transparency; } }	
-		IfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour { get { return @DiffuseColour; } }	
-		IfcColourOrFactor IIfcSurfaceStyleRendering.TransmissionColour { get { return @TransmissionColour; } }	
-		IfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseTransmissionColour { get { return @DiffuseTransmissionColour; } }	
-		IfcColourOrFactor IIfcSurfaceStyleRendering.ReflectionColour { get { return @ReflectionColour; } }	
-		IfcColourOrFactor IIfcSurfaceStyleRendering.SpecularColour { get { return @SpecularColour; } }	
-		IfcSpecularHighlightSelect IIfcSurfaceStyleRendering.SpecularHighlight { get { return @SpecularHighlight; } }	
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour { get { return @DiffuseColour; } }	
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.TransmissionColour { get { return @TransmissionColour; } }	
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseTransmissionColour { get { return @DiffuseTransmissionColour; } }	
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.ReflectionColour { get { return @ReflectionColour; } }	
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.SpecularColour { get { return @SpecularColour; } }	
+		IIfcSpecularHighlightSelect IIfcSurfaceStyleRendering.SpecularHighlight { get { return @SpecularHighlight; } }	
 		IfcReflectanceMethodEnum IIfcSurfaceStyleRendering.ReflectanceMethod { get { return @ReflectanceMethod; } }	
 		 
 		#endregion

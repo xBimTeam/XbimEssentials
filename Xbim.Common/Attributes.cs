@@ -210,6 +210,11 @@ namespace Xbim.Common
             get { return (_state == EntityAttributeState.DerivedOverride); }
         }
 
+		public bool IsDerived
+        {
+            get { return (_state == EntityAttributeState.DerivedOverride || _state == EntityAttributeState.Derived); }
+        }
+
         public bool IsValueType
         {
             get { return (_entityType > EntityAttributeType.List); }

@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcCsgSolid : IIfcCsgSolid
 	{
-		Ifc4.GeometricModelResource.IfcCsgSelect IIfcCsgSolid.TreeRootExpression 
+		IIfcCsgSelect IIfcCsgSolid.TreeRootExpression 
 		{ 
 			get
 			{

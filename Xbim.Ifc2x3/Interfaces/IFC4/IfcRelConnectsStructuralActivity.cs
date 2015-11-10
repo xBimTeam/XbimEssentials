@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcRelConnectsStructuralActivity : IIfcRelConnectsStructuralActivity
 	{
-		Ifc4.StructuralAnalysisDomain.IfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement 
+		IIfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement 
 		{ 
 			get
 			{

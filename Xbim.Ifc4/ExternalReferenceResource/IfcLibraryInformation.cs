@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcLabel @Name { get; }
 		IfcLabel? @Version { get; }
-		IfcActorSelect @Publisher { get; }
+		IIfcActorSelect @Publisher { get; }
 		IfcDateTime? @VersionDate { get; }
 		IfcURIReference? @Location { get; }
 		IfcText? @Description { get; }
@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		#region IIfcLibraryInformation explicit implementation
 		IfcLabel IIfcLibraryInformation.Name { get { return @Name; } }	
 		IfcLabel? IIfcLibraryInformation.Version { get { return @Version; } }	
-		IfcActorSelect IIfcLibraryInformation.Publisher { get { return @Publisher; } }	
+		IIfcActorSelect IIfcLibraryInformation.Publisher { get { return @Publisher; } }	
 		IfcDateTime? IIfcLibraryInformation.VersionDate { get { return @VersionDate; } }	
 		IfcURIReference? IIfcLibraryInformation.Location { get { return @Location; } }	
 		IfcText? IIfcLibraryInformation.Description { get { return @Description; } }	

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcRelDefinesByProperties : IIfcRelDefines
 	{
 		IEnumerable<IIfcObjectDefinition> @RelatedObjects { get; }
-		IfcPropertySetDefinitionSelect @RelatingPropertyDefinition { get; }
+		IIfcPropertySetDefinitionSelect @RelatingPropertyDefinition { get; }
 	
 	}
 }
@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.Kernel
 	{
 		#region IIfcRelDefinesByProperties explicit implementation
 		IEnumerable<IIfcObjectDefinition> IIfcRelDefinesByProperties.RelatedObjects { get { return @RelatedObjects; } }	
-		IfcPropertySetDefinitionSelect IIfcRelDefinesByProperties.RelatingPropertyDefinition { get { return @RelatingPropertyDefinition; } }	
+		IIfcPropertySetDefinitionSelect IIfcRelDefinesByProperties.RelatingPropertyDefinition { get { return @RelatingPropertyDefinition; } }	
 		 
 		#endregion
 

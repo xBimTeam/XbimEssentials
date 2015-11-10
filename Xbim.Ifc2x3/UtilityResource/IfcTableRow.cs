@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTableRow : IPersistEntity
 	{
-		IEnumerable<IfcValue> @RowCells { get; }
+		IEnumerable<IIfcValue> @RowCells { get; }
 		bool @IsHeading { get; }
 		IIfcTable @OfTable {  get; }
 	
@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 	public  partial class @IfcTableRow : INotifyPropertyChanged, IInstantiableEntity, IIfcTableRow, IEqualityComparer<@IfcTableRow>, IEquatable<@IfcTableRow>
 	{
 		#region IIfcTableRow explicit implementation
-		IEnumerable<IfcValue> IIfcTableRow.RowCells { get { return @RowCells; } }	
+		IEnumerable<IIfcValue> IIfcTableRow.RowCells { get { return @RowCells; } }	
 		bool IIfcTableRow.IsHeading { get { return @IsHeading; } }	
 		 
 		IIfcTable IIfcTableRow.OfTable {  get { return @OfTable; } }

@@ -27,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcIrregularTimeSeriesValue : IPersistEntity
 	{
-		IfcDateTimeSelect @TimeStamp { get; }
-		IEnumerable<IfcValue> @ListValues { get; }
+		IIfcDateTimeSelect @TimeStamp { get; }
+		IEnumerable<IIfcValue> @ListValues { get; }
 	
 	}
 }
@@ -40,8 +40,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 	public  partial class @IfcIrregularTimeSeriesValue : INotifyPropertyChanged, IInstantiableEntity, IIfcIrregularTimeSeriesValue, IEqualityComparer<@IfcIrregularTimeSeriesValue>, IEquatable<@IfcIrregularTimeSeriesValue>
 	{
 		#region IIfcIrregularTimeSeriesValue explicit implementation
-		IfcDateTimeSelect IIfcIrregularTimeSeriesValue.TimeStamp { get { return @TimeStamp; } }	
-		IEnumerable<IfcValue> IIfcIrregularTimeSeriesValue.ListValues { get { return @ListValues; } }	
+		IIfcDateTimeSelect IIfcIrregularTimeSeriesValue.TimeStamp { get { return @TimeStamp; } }	
+		IEnumerable<IIfcValue> IIfcIrregularTimeSeriesValue.ListValues { get { return @ListValues; } }	
 		 
 		#endregion
 

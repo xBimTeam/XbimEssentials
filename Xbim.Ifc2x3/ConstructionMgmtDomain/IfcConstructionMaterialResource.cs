@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConstructionMaterialResource : IIfcConstructionResource
 	{
-		IEnumerable<IfcActorSelect> @Suppliers { get; }
+		IEnumerable<IIfcActorSelect> @Suppliers { get; }
 		IfcRatioMeasure? @UsageRatio { get; }
 	
 	}
@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 	public  partial class @IfcConstructionMaterialResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionMaterialResource, IEqualityComparer<@IfcConstructionMaterialResource>, IEquatable<@IfcConstructionMaterialResource>
 	{
 		#region IIfcConstructionMaterialResource explicit implementation
-		IEnumerable<IfcActorSelect> IIfcConstructionMaterialResource.Suppliers { get { return @Suppliers; } }	
+		IEnumerable<IIfcActorSelect> IIfcConstructionMaterialResource.Suppliers { get { return @Suppliers; } }	
 		IfcRatioMeasure? IIfcConstructionMaterialResource.UsageRatio { get { return @UsageRatio; } }	
 		 
 		#endregion

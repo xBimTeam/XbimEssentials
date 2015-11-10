@@ -381,7 +381,7 @@ namespace Xbim.IO.Memory
                 //key is the label in original model
                 mappings.Add(toCopyLabel, copy);
 
-                var props = expressType.Properties.Values.Where(p => !p.EntityAttribute.IsDerivedOverride);
+                var props = expressType.Properties.Values.Where(p => !p.EntityAttribute.IsDerived);
                 if (includeInverses)
                     props = props.Union(expressType.Inverses);
 

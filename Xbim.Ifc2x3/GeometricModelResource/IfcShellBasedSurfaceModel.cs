@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcShellBasedSurfaceModel : IIfcGeometricRepresentationItem
 	{
-		IEnumerable<IfcShell> @SbsmBoundary { get; }
+		IEnumerable<IIfcShell> @SbsmBoundary { get; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	public  partial class @IfcShellBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcShellBasedSurfaceModel, IEqualityComparer<@IfcShellBasedSurfaceModel>, IEquatable<@IfcShellBasedSurfaceModel>
 	{
 		#region IIfcShellBasedSurfaceModel explicit implementation
-		IEnumerable<IfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary { get { return @SbsmBoundary; } }	
+		IEnumerable<IIfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary { get { return @SbsmBoundary; } }	
 		 
 		#endregion
 

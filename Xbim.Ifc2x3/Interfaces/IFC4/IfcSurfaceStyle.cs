@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				}
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.PresentationAppearanceResource.IfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles 
+		IEnumerable<IIfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles 
 		{ 
 			get
 			{

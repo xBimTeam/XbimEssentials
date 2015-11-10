@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssociatesDocument : IIfcRelAssociatesDocument
 	{
-		Ifc4.ExternalReferenceResource.IfcDocumentSelect IIfcRelAssociatesDocument.RelatingDocument 
+		IIfcDocumentSelect IIfcRelAssociatesDocument.RelatingDocument 
 		{ 
 			get
 			{

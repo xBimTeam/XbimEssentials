@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPlanarBox : IIfcPlanarExtent
 	{
-		IfcAxis2Placement @Placement { get; }
+		IIfcAxis2Placement @Placement { get; }
 	
 	}
 }
@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 	public  partial class @IfcPlanarBox : IfcPlanarExtent, IInstantiableEntity, IIfcPlanarBox, IEqualityComparer<@IfcPlanarBox>, IEquatable<@IfcPlanarBox>
 	{
 		#region IIfcPlanarBox explicit implementation
-		IfcAxis2Placement IIfcPlanarBox.Placement { get { return @Placement; } }	
+		IIfcAxis2Placement IIfcPlanarBox.Placement { get { return @Placement; } }	
 		 
 		#endregion
 
