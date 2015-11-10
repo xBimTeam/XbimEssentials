@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure? @RibWidth { get; }
 		IfcPositiveLengthMeasure? @RibSpacing { get; }
 		IfcRibPlateDirectionEnum @Direction { get; }
-		
+	
 	}
 }
 

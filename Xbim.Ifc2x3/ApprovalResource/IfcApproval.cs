@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IIfcApprovalActorRelationship> @Actors {  get; }
 		IEnumerable<IIfcApprovalRelationship> @IsRelatedWith {  get; }
 		IEnumerable<IIfcApprovalRelationship> @Relates {  get; }
-		
+	
 	}
 }
 

@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcStructuralItem : IIfcProduct, IfcStructuralActivityAssignmentSelect
 	{
 		IEnumerable<IIfcRelConnectsStructuralActivity> @AssignedStructuralActivity {  get; }
-		
+	
 	}
 }
 

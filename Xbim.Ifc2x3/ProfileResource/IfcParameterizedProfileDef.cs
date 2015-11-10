@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcParameterizedProfileDef : IIfcProfileDef
 	{
 		IIfcAxis2Placement2D @Position { get; }
-		
+	
 	}
 }
 

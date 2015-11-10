@@ -23,30 +23,5 @@ namespace Xbim.Ifc2x3.GeometryResource
             if (maps != null) maps.TryAdd(EntityLabel, transform);
             return (XbimMatrix3D)transform;
         }
-
-        public new int Dim
-        {
-            get { return (int)((long)(base.Dim)); }
-        }
-
-        List<IfcDirection> IfcAxis2Placement.P
-        {
-            get
-            {
-                var a = new IfcDirection(Model);
-                a.DirectionRatios.InternalAdd(P[0].X);
-                a.DirectionRatios.InternalAdd(P[0].Y);
-                a.DirectionRatios.InternalAdd(P[0].Z);
-
-                var b = new IfcDirection(Model);
-                b.DirectionRatios.InternalAdd(P[1].X);
-                b.DirectionRatios.InternalAdd(P[1].Y);
-                b.DirectionRatios.InternalAdd(P[1].Z);
-
-                return new List<IfcDirection>{a, b};
-            }
-        }
-
-       
     }
 }

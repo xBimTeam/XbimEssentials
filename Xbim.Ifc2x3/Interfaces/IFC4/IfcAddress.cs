@@ -73,7 +73,6 @@ namespace Xbim.Ifc2x3.ActorResource
 				return Model.Instances.Where<IIfcOrganization>(e => e.Addresses != null &&  e.Addresses.Contains(this));
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

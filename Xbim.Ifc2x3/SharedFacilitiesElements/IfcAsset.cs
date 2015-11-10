@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcPerson @ResponsiblePerson { get; }
 		IIfcCalendarDate @IncorporationDate { get; }
 		IIfcCostValue @DepreciatedValue { get; }
-		
+	
 	}
 }
 

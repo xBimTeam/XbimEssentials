@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveRatioMeasure? @TargetScale { get; }
 		IfcGeometricProjectionEnum @TargetView { get; }
 		IfcLabel? @UserDefinedTargetView { get; }
-		
+	
 	}
 }
 

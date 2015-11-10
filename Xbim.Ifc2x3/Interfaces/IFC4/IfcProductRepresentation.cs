@@ -36,13 +36,12 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-			foreach (var member in Representations)
-			{
-				yield return member as IIfcRepresentation;
-			}
+				foreach (var member in Representations)
+				{
+					yield return member as IIfcRepresentation;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

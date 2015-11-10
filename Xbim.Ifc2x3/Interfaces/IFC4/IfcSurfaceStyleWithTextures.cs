@@ -20,13 +20,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-			foreach (var member in Textures)
-			{
-				yield return member as IIfcSurfaceTexture;
-			}
+				foreach (var member in Textures)
+				{
+					yield return member as IIfcSurfaceTexture;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

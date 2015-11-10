@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @PagerNumber { get; }
 		IEnumerable<IfcLabel> @ElectronicMailAddresses { get; }
 		IfcLabel? @WWWHomePageURL { get; }
-		
+	
 	}
 }
 

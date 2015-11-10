@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcRelConnectsPortToElement @ContainedIn {  get; }
 		IEnumerable<IIfcRelConnectsPorts> @ConnectedFrom {  get; }
 		IEnumerable<IIfcRelConnectsPorts> @ConnectedTo {  get; }
-		
+	
 	}
 }
 

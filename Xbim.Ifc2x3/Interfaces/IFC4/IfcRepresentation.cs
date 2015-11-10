@@ -43,10 +43,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-			foreach (var member in Items)
-			{
-				yield return member as IIfcRepresentationItem;
-			}
+				foreach (var member in Items)
+				{
+					yield return member as IIfcRepresentationItem;
+				}
 			} 
 		}
 		IEnumerable<IIfcRepresentationMap> IIfcRepresentation.RepresentationMap 
@@ -70,7 +70,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return Model.Instances.Where<IIfcProductRepresentation>(e => e.Representations != null &&  e.Representations.Contains(this));
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

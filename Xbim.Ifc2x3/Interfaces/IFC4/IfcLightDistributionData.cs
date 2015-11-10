@@ -27,23 +27,22 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-			foreach (var member in SecondaryPlaneAngle)
-			{
-				yield return new Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)member);
-			}
+				foreach (var member in SecondaryPlaneAngle)
+				{
+					yield return new Ifc4.MeasureResource.IfcPlaneAngleMeasure((double)member);
+				}
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure> IIfcLightDistributionData.LuminousIntensity 
 		{ 
 			get
 			{
-			foreach (var member in LuminousIntensity)
-			{
-				yield return new Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure((double)member);
-			}
+				foreach (var member in LuminousIntensity)
+				{
+					yield return new Ifc4.MeasureResource.IfcLuminousIntensityDistributionMeasure((double)member);
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

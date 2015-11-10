@@ -44,13 +44,12 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-			foreach (var member in DistributionData)
-			{
-				yield return member as IIfcLightDistributionData;
-			}
+				foreach (var member in DistributionData)
+				{
+					yield return member as IIfcLightDistributionData;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

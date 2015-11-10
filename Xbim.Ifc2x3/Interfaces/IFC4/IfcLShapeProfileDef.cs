@@ -62,7 +62,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(LegSlope.Value);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

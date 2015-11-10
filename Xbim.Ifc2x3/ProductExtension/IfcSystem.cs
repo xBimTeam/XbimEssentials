@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcSystem : IIfcGroup
 	{
 		IEnumerable<IIfcRelServicesBuildings> @ServicesBuildings {  get; }
-		
+	
 	}
 }
 

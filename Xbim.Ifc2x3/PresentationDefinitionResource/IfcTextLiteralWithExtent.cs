@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcPlanarExtent @Extent { get; }
 		IfcBoxAlignment @BoxAlignment { get; }
-		
+	
 	}
 }
 

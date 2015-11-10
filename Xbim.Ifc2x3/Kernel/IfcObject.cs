@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLabel? @ObjectType { get; }
 		IEnumerable<IIfcRelDefines> @IsDefinedBy {  get; }
-		
+	
 	}
 }
 

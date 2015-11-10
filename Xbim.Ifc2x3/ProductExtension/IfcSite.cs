@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLengthMeasure? @RefElevation { get; }
 		IfcLabel? @LandTitleNumber { get; }
 		IIfcPostalAddress @SiteAddress { get; }
-		
+	
 	}
 }
 

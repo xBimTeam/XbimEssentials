@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcNormalisedRatioMeasure @RelaxationValue { get; }
 		IfcNormalisedRatioMeasure @InitialStress { get; }
-		
+	
 	}
 }
 

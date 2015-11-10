@@ -10,6 +10,7 @@
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -27,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcText? @LongDescription { get; }
 		IfcLabel? @ResourceType { get; }
 		IEnumerable<IIfcRelAssignsToResource> @ResourceOf {  get; }
-		
+	
 	}
 }
 
@@ -100,6 +101,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 		}	
 		#endregion
+
 
 
 		#region Inverse attributes
@@ -201,5 +203,10 @@ namespace Xbim.Ifc4.Kernel
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcElectricDistributionPointFunctionEnum @DistributionPointFunction { get; }
 		IfcLabel? @UserDefinedFunction { get; }
-		
+	
 	}
 }
 

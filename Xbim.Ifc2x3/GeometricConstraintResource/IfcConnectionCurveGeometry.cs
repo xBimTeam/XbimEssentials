@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcCurveOrEdgeCurve @CurveOnRelatingElement { get; }
 		IfcCurveOrEdgeCurve @CurveOnRelatedElement { get; }
-		
+	
 	}
 }
 

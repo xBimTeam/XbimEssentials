@@ -16,7 +16,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcDraughtingPreDefinedCurveFont : IIfcDraughtingPreDefinedCurveFont
 	{
-
 	//## Custom code
 	//##
 	}

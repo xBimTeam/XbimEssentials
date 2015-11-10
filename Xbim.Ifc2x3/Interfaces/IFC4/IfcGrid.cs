@@ -20,30 +20,30 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-			foreach (var member in UAxes)
-			{
-				yield return member as IIfcGridAxis;
-			}
+				foreach (var member in UAxes)
+				{
+					yield return member as IIfcGridAxis;
+				}
 			} 
 		}
 		IEnumerable<IIfcGridAxis> IIfcGrid.VAxes 
 		{ 
 			get
 			{
-			foreach (var member in VAxes)
-			{
-				yield return member as IIfcGridAxis;
-			}
+				foreach (var member in VAxes)
+				{
+					yield return member as IIfcGridAxis;
+				}
 			} 
 		}
 		IEnumerable<IIfcGridAxis> IIfcGrid.WAxes 
 		{ 
 			get
 			{
-			foreach (var member in WAxes)
-			{
-				yield return member as IIfcGridAxis;
-			}
+				foreach (var member in WAxes)
+				{
+					yield return member as IIfcGridAxis;
+				}
 			} 
 		}
 		Ifc4.ProductExtension.IfcGridTypeEnum? IIfcGrid.PredefinedType 
@@ -62,7 +62,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IIfcRelContainedInSpatialStructure>(e => e.RelatedElements != null &&  e.RelatedElements.Contains(this));
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

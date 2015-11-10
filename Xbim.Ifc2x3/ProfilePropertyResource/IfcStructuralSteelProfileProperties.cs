@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcAreaMeasure? @ShearAreaY { get; }
 		IfcPositiveRatioMeasure? @PlasticShapeFactorY { get; }
 		IfcPositiveRatioMeasure? @PlasticShapeFactorZ { get; }
-		
+	
 	}
 }
 

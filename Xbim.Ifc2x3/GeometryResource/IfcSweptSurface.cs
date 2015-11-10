@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcProfileDef @SweptCurve { get; }
 		IIfcAxis2Placement3D @Position { get; }
-		
+	
 	}
 }
 

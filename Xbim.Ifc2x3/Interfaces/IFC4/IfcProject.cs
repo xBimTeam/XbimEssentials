@@ -79,7 +79,6 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IIfcRelDeclares>(e => (e.RelatingContext as IfcProject) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

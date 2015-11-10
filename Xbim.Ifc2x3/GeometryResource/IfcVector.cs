@@ -26,7 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcDirection @Orientation { get; }
 		IfcLengthMeasure @Magnitude { get; }
-		
+		IfcDimensionCount @Dim  { get ; }
+	
 	}
 }
 

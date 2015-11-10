@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure @Girth { get; }
 		IfcPositiveLengthMeasure? @InternalFilletRadius { get; }
 		IfcPositiveLengthMeasure? @CentreOfGravityInX { get; }
-		
+	
 	}
 }
 

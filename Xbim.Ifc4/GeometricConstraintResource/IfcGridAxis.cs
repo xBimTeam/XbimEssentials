@@ -12,6 +12,7 @@ using Xbim.Ifc4.GeometryResource;
 using Xbim.Ifc4.ProductExtension;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -34,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 		IEnumerable<IIfcGrid> @PartOfV {  get; }
 		IEnumerable<IIfcGrid> @PartOfU {  get; }
 		IEnumerable<IIfcVirtualGridIntersection> @HasIntersections {  get; }
-		
+	
 	}
 }
 
@@ -168,6 +169,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 		}	
 		#endregion
+
 
 
 		#region Inverse attributes
@@ -336,5 +338,10 @@ namespace Xbim.Ifc4.GeometricConstraintResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

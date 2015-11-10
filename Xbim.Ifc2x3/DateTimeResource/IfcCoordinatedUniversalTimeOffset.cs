@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcHourInDay @HourOffset { get; }
 		IfcMinuteInHour? @MinuteOffset { get; }
 		IfcAheadOrBehind @Sense { get; }
-		
+	
 	}
 }
 

@@ -25,7 +25,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcSurfaceOfRevolution : IIfcSweptSurface
 	{
 		IIfcAxis1Placement @AxisPosition { get; }
-		
+		Common.Geometry.XbimLine @AxisLine  { get ; }
+	
 	}
 }
 
@@ -69,16 +70,16 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
-		public GeometryResource.XbimLine @AxisLine 
+		public Common.Geometry.XbimLine @AxisLine 
 		{
 			get 
 			{
 				//## Getter for AxisLine
                 if (AxisPosition != null)
                 {
-                    return new XbimLine
+                    return new Common.Geometry.XbimLine
                     {
-                        Pnt = AxisPosition.Location,
+                        Pnt = new Common.Geometry.XbimPoint3D(AxisPosition.Location.X, AxisPosition.Location.Y, AxisPosition.Location.Z),
                         Orientation = AxisPosition.Z,
                     };
                 }

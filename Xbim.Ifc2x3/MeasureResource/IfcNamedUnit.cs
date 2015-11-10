@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcDimensionalExponents @Dimensions { get; }
 		IfcUnitEnum @UnitType { get; }
-		
+	
 	}
 }
 

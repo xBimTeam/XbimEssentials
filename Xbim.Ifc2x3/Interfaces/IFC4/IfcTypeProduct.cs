@@ -20,10 +20,10 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-			foreach (var member in RepresentationMaps)
-			{
-				yield return member as IIfcRepresentationMap;
-			}
+				foreach (var member in RepresentationMaps)
+				{
+					yield return member as IIfcRepresentationMap;
+				}
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcTypeProduct.Tag 
@@ -41,7 +41,6 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IIfcRelAssignsToProduct>(e => (e.RelatingProduct as IfcTypeProduct) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

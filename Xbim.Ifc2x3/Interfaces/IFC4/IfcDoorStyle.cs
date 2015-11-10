@@ -135,7 +135,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				return Sizeable;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

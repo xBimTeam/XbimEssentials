@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcSIPrefix? @Prefix { get; }
 		IfcSIUnitName @Name { get; }
-		
+	
 	}
 }
 

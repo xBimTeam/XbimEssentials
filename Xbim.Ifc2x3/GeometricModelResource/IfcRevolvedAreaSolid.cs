@@ -28,7 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcAxis1Placement @Axis { get; }
 		IfcPlaneAngleMeasure @Angle { get; }
-		
+		Common.Geometry.XbimLine @AxisLine  { get ; }
+	
 	}
 }
 
@@ -88,16 +89,16 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
-		public GeometryResource.XbimLine @AxisLine 
+		public Common.Geometry.XbimLine @AxisLine 
 		{
 			get 
 			{
 				//## Getter for AxisLine
                 if (Axis != null)
                 {
-                    return new XbimLine
+                    return new Common.Geometry.XbimLine
                     {
-                        Pnt = Axis.Location,
+                        Pnt = new Common.Geometry.XbimPoint3D(Axis.Location.X, Axis.Location.Y, Axis.Location.Z),
                         Orientation = Axis.Z,
                     };
                 }

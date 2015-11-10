@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcRelOverridesProperties : IIfcRelDefinesByProperties
 	{
 		IEnumerable<IIfcProperty> @OverridingProperties { get; }
-		
+	
 	}
 }
 

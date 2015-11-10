@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcClassificationItem @RelatingItem { get; }
 		IEnumerable<IIfcClassificationItem> @RelatedItems { get; }
-		
+	
 	}
 }
 

@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcThermodynamicTemperatureMeasure? @DeltaT_Constant { get; }
 		IfcThermodynamicTemperatureMeasure? @DeltaT_Y { get; }
 		IfcThermodynamicTemperatureMeasure? @DeltaT_Z { get; }
-		
+	
 	}
 }
 

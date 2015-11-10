@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcMetric @ResultValues { get; }
 		IfcObjectiveEnum @ObjectiveQualifier { get; }
 		IfcLabel? @UserDefinedQualifier { get; }
-		
+	
 	}
 }
 

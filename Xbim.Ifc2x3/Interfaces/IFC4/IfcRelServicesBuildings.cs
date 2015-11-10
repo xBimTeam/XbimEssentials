@@ -27,13 +27,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-			foreach (var member in RelatedBuildings)
-			{
-				yield return member as IIfcSpatialElement;
-			}
+				foreach (var member in RelatedBuildings)
+				{
+					yield return member as IIfcSpatialElement;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

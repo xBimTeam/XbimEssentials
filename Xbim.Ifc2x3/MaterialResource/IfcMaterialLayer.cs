@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure @LayerThickness { get; }
 		IfcLogical? @IsVentilated { get; }
 		IIfcMaterialLayerSet @ToMaterialLayerSet {  get; }
-		
+	
 	}
 }
 

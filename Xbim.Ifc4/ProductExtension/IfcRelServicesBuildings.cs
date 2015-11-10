@@ -12,6 +12,7 @@ using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -27,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IIfcSystem @RelatingSystem { get; }
 		IEnumerable<IIfcSpatialElement> @RelatedBuildings { get; }
-		
+	
 	}
 }
 
@@ -82,6 +83,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 		}	
 		#endregion
+
 
 
 
@@ -169,5 +171,10 @@ namespace Xbim.Ifc4.ProductExtension
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

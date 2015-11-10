@@ -23,7 +23,6 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IIfcRelAssignsToGroup>(e => (e.RelatingGroup as IfcGroup) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

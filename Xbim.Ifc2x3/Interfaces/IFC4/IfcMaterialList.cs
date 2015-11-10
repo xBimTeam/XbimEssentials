@@ -20,13 +20,12 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-			foreach (var member in Materials)
-			{
-				yield return member as IIfcMaterial;
-			}
+				foreach (var member in Materials)
+				{
+					yield return member as IIfcMaterial;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

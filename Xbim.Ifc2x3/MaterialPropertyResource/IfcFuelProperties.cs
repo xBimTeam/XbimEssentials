@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveRatioMeasure? @CarbonContent { get; }
 		IfcHeatingValueMeasure? @LowerHeatingValue { get; }
 		IfcHeatingValueMeasure? @HigherHeatingValue { get; }
-		
+	
 	}
 }
 

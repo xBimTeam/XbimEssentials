@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcActor @RelatingActor { get; }
 		IIfcActorRole @ActingRole { get; }
-		
+	
 	}
 }
 

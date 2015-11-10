@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcModulusOfElasticityMeasure? @ShearModulus { get; }
 		IfcPositiveRatioMeasure? @PoissonRatio { get; }
 		IfcThermalExpansionCoefficientMeasure? @ThermalExpansionCoefficient { get; }
-		
+	
 	}
 }
 

@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcCharacterStyleSelect @TextCharacterAppearance { get; }
 		IfcTextStyleSelect @TextStyle { get; }
 		IfcTextFontSelect @TextFontStyle { get; }
-		
+	
 	}
 }
 

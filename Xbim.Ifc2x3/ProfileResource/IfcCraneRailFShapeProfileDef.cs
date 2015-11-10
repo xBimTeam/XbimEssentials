@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure @BaseDepth1 { get; }
 		IfcPositiveLengthMeasure @BaseDepth2 { get; }
 		IfcPositiveLengthMeasure? @CentreOfGravityInY { get; }
-		
+	
 	}
 }
 

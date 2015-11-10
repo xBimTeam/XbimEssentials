@@ -14,6 +14,7 @@ using Xbim.Ifc4.ActorResource;
 using Xbim.Ifc4.ControlExtension;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -43,7 +44,7 @@ namespace Xbim.Ifc4.Interfaces
 		IEnumerable<IIfcResourceApprovalRelationship> @ApprovedResources {  get; }
 		IEnumerable<IIfcApprovalRelationship> @IsRelatedWith {  get; }
 		IEnumerable<IIfcApprovalRelationship> @Relates {  get; }
-		
+	
 	}
 }
 
@@ -277,6 +278,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		#endregion
 
 
+
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReferences 
@@ -468,5 +470,10 @@ namespace Xbim.Ifc4.ApprovalResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

@@ -20,13 +20,12 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-			foreach (var member in Points)
-			{
-				yield return member as IIfcCartesianPoint;
-			}
+				foreach (var member in Points)
+				{
+					yield return member as IIfcCartesianPoint;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

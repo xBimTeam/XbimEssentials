@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcValue @ValueComponent { get; }
 		IfcUnit @UnitComponent { get; }
-		
+	
 	}
 }
 

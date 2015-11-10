@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcBuildingElementProxy : IIfcBuildingElement
 	{
 		IfcElementCompositionEnum? @CompositionType { get; }
-		
+	
 	}
 }
 

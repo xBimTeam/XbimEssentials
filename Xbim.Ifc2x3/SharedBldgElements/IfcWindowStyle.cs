@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcWindowStyleOperationEnum @OperationType { get; }
 		bool @ParameterTakesPrecedence { get; }
 		bool @Sizeable { get; }
-		
+	
 	}
 }
 

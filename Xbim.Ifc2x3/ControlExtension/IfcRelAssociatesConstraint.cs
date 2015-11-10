@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLabel @Intent { get; }
 		IIfcConstraint @RelatingConstraint { get; }
-		
+	
 	}
 }
 

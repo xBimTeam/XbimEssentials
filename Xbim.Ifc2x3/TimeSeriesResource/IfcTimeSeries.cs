@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @UserDefinedDataOrigin { get; }
 		IfcUnit @Unit { get; }
 		IEnumerable<IIfcTimeSeriesReferenceRelationship> @DocumentedBy {  get; }
-		
+	
 	}
 }
 

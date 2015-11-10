@@ -14,6 +14,7 @@ using Xbim.Ifc4.StructuralLoadResource;
 using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -33,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 		IIfcStructuralConnectionCondition @AdditionalConditions { get; }
 		IfcLengthMeasure? @SupportedLength { get; }
 		IIfcAxis2Placement3D @ConditionCoordinateSystem { get; }
-		
+	
 	}
 }
 
@@ -159,6 +160,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 
 
 
+
 		#region IPersist implementation
 		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
@@ -253,5 +255,10 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

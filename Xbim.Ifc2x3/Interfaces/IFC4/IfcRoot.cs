@@ -46,7 +46,6 @@ namespace Xbim.Ifc2x3.Kernel
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

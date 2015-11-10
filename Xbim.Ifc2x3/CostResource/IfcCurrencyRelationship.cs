@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveRatioMeasure @ExchangeRate { get; }
 		IIfcDateAndTime @RateDateTime { get; }
 		IIfcLibraryInformation @RateSource { get; }
-		
+	
 	}
 }
 

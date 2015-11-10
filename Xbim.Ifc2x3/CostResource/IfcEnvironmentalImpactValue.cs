@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel @ImpactType { get; }
 		IfcEnvironmentalImpactCategoryEnum @Category { get; }
 		IfcLabel? @UserDefinedCategory { get; }
-		
+	
 	}
 }
 

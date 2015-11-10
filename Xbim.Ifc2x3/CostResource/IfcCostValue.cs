@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLabel @CostType { get; }
 		IfcText? @Condition { get; }
-		
+	
 	}
 }
 

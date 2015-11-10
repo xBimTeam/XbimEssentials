@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IIfcRelSpaceBoundary> @ProvidesBoundaries {  get; }
 		IEnumerable<IIfcRelConnectsElements> @ConnectedFrom {  get; }
 		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainedInStructure {  get; }
-		
+	
 	}
 }
 

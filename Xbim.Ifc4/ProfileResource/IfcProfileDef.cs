@@ -11,6 +11,7 @@ using Xbim.Ifc4.ExternalReferenceResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -30,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcLabel? @ProfileName { get; }
 		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReference {  get; }
 		IEnumerable<IIfcProfileProperties> @HasProperties {  get; }
-		
+	
 	}
 }
 
@@ -146,6 +147,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 		}	
 		#endregion
+
 
 
 		#region Inverse attributes
@@ -293,5 +295,10 @@ namespace Xbim.Ifc4.ProfileResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

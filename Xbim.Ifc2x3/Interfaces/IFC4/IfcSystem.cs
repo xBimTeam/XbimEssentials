@@ -23,7 +23,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IIfcRelServicesBuildings>(e => (e.RelatingSystem as IfcSystem) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

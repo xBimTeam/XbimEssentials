@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @WorkMethod { get; }
 		bool @IsMilestone { get; }
 		long? @Priority { get; }
-		
+	
 	}
 }
 

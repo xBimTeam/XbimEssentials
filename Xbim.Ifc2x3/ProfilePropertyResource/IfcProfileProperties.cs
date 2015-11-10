@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLabel? @ProfileName { get; }
 		IIfcProfileDef @ProfileDefinition { get; }
-		
+	
 	}
 }
 

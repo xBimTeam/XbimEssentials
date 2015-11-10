@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcOwnerHistory @OwnerHistory { get; }
 		IfcLabel? @Name { get; }
 		IfcText? @Description { get; }
-		
+	
 	}
 }
 

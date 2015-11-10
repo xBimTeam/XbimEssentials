@@ -41,27 +41,26 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-			foreach (var member in Styles)
-			{
-				var ifcsurfacestyleshading = member as IfcSurfaceStyleShading;
-				if (ifcsurfacestyleshading != null) 
-					yield return ifcsurfacestyleshading;
-				var ifcsurfacestylelighting = member as IfcSurfaceStyleLighting;
-				if (ifcsurfacestylelighting != null) 
-					yield return ifcsurfacestylelighting;
-				var ifcsurfacestylewithtextures = member as IfcSurfaceStyleWithTextures;
-				if (ifcsurfacestylewithtextures != null) 
-					yield return ifcsurfacestylewithtextures;
-				var ifcexternallydefinedsurfacestyle = member as IfcExternallyDefinedSurfaceStyle;
-				if (ifcexternallydefinedsurfacestyle != null) 
-					yield return ifcexternallydefinedsurfacestyle;
-				var ifcsurfacestylerefraction = member as IfcSurfaceStyleRefraction;
-				if (ifcsurfacestylerefraction != null) 
-					yield return ifcsurfacestylerefraction;
-			}
+				foreach (var member in Styles)
+				{
+					var ifcsurfacestyleshading = member as IfcSurfaceStyleShading;
+					if (ifcsurfacestyleshading != null) 
+						yield return ifcsurfacestyleshading;
+					var ifcsurfacestylelighting = member as IfcSurfaceStyleLighting;
+					if (ifcsurfacestylelighting != null) 
+						yield return ifcsurfacestylelighting;
+					var ifcsurfacestylewithtextures = member as IfcSurfaceStyleWithTextures;
+					if (ifcsurfacestylewithtextures != null) 
+						yield return ifcsurfacestylewithtextures;
+					var ifcexternallydefinedsurfacestyle = member as IfcExternallyDefinedSurfaceStyle;
+					if (ifcexternallydefinedsurfacestyle != null) 
+						yield return ifcexternallydefinedsurfacestyle;
+					var ifcsurfacestylerefraction = member as IfcSurfaceStyleRefraction;
+					if (ifcsurfacestylerefraction != null) 
+						yield return ifcsurfacestylerefraction;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

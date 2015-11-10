@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcApproval @RelatingApproval { get; }
 		IfcText? @Description { get; }
 		IfcLabel @Name { get; }
-		
+	
 	}
 }
 

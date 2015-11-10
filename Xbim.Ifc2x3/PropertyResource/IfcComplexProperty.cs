@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcIdentifier @UsageName { get; }
 		IEnumerable<IIfcProperty> @HasProperties { get; }
-		
+	
 	}
 }
 

@@ -14,6 +14,7 @@ using Xbim.Ifc4.RepresentationResource;
 using Xbim.Ifc4.SharedBldgElements;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -31,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcLengthMeasure? @ElevationWithFlooring { get; }
 		IEnumerable<IIfcRelCoversSpaces> @HasCoverings {  get; }
 		IEnumerable<IIfcRelSpaceBoundary> @BoundedBy {  get; }
-		
+	
 	}
 }
 
@@ -89,6 +90,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 		}	
 		#endregion
+
 
 
 		#region Inverse attributes
@@ -200,5 +202,10 @@ namespace Xbim.Ifc4.ProductExtension
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

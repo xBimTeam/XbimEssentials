@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		long @ThermodynamicTemperatureExponent { get; }
 		long @AmountOfSubstanceExponent { get; }
 		long @LuminousIntensityExponent { get; }
-		
+	
 	}
 }
 

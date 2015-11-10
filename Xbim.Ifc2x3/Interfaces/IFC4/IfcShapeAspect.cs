@@ -20,10 +20,10 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-			foreach (var member in ShapeRepresentations)
-			{
-				yield return member as IIfcShapeModel;
-			}
+				foreach (var member in ShapeRepresentations)
+				{
+					yield return member as IIfcShapeModel;
+				}
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcShapeAspect.Name 
@@ -56,7 +56,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return PartOfProductDefinitionShape;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

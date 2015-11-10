@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @Phase { get; }
 		IEnumerable<IIfcRepresentationContext> @RepresentationContexts { get; }
 		IIfcUnitAssignment @UnitsInContext { get; }
-		
+	
 	}
 }
 

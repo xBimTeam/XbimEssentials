@@ -28,7 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<IIfcMaterialLayer> @MaterialLayers { get; }
 		IfcLabel? @LayerSetName { get; }
-		
+		IfcLengthMeasure @TotalThickness  { get ; }
+	
 	}
 }
 

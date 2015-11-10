@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLightDistributionCurveEnum @LightDistributionCurve { get; }
 		IEnumerable<IIfcLightDistributionData> @DistributionData { get; }
-		
+	
 	}
 }
 

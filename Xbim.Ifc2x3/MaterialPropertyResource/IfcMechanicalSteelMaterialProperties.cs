@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPressureMeasure? @ProportionalStress { get; }
 		IfcPositiveRatioMeasure? @PlasticStrain { get; }
 		IEnumerable<IIfcRelaxation> @Relaxations { get; }
-		
+	
 	}
 }
 

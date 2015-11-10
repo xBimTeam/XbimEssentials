@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IIfcRelAssignsToProcess> @OperatesOn {  get; }
 		IEnumerable<IIfcRelSequence> @IsSuccessorFrom {  get; }
 		IEnumerable<IIfcRelSequence> @IsPredecessorTo {  get; }
-		
+	
 	}
 }
 

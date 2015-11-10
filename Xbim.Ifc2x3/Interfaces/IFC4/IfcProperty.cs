@@ -66,7 +66,6 @@ namespace Xbim.Ifc2x3.PropertyResource
 				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

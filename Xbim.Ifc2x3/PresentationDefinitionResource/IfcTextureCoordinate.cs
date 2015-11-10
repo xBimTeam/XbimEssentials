@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcTextureCoordinate : IPersistEntity
 	{
 		IEnumerable<IIfcAnnotationSurface> @AnnotatedSurface {  get; }
-		
+	
 	}
 }
 

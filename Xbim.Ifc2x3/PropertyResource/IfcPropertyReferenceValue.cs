@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLabel? @UsageName { get; }
 		IfcObjectReferenceSelect @PropertyReference { get; }
-		
+	
 	}
 }
 

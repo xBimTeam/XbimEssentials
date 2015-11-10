@@ -13,6 +13,7 @@ using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.ActorResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -33,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcDuration? @TotalFloat { get; }
 		IfcDateTime @StartTime { get; }
 		IfcDateTime? @FinishTime { get; }
-		
+	
 	}
 }
 
@@ -170,6 +171,7 @@ namespace Xbim.Ifc4.ProcessExtension
 
 
 
+
 		#region IPersist implementation
 		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
@@ -270,5 +272,10 @@ namespace Xbim.Ifc4.ProcessExtension
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

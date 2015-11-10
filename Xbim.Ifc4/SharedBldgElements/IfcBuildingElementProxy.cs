@@ -14,6 +14,7 @@ using Xbim.Ifc4.GeometricConstraintResource;
 using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -28,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcBuildingElementProxy : IIfcBuildingElement
 	{
 		IfcBuildingElementProxyTypeEnum? @PredefinedType { get; }
-		
+	
 	}
 }
 
@@ -68,6 +69,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 		}	
 		#endregion
+
 
 
 
@@ -158,5 +160,10 @@ namespace Xbim.Ifc4.SharedBldgElements
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

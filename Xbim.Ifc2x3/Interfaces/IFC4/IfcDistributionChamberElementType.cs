@@ -58,7 +58,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

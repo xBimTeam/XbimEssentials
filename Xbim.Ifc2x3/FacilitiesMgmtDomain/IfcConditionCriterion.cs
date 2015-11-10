@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcConditionCriterionSelect @Criterion { get; }
 		IfcDateTimeSelect @CriterionDateTime { get; }
-		
+	
 	}
 }
 

@@ -58,7 +58,6 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 				}
 			} 
 		}
-
 	//## Custom code
         Ifc4.MeasureResource.IfcLabel? IIfcElementType.ElementType
         {

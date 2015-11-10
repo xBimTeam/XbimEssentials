@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcStructuralActivityAssignmentSelect @RelatingElement { get; }
 		IIfcStructuralActivity @RelatedStructuralActivity { get; }
-		
+	
 	}
 }
 

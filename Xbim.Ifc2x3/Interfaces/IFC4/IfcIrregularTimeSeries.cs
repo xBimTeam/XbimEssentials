@@ -20,13 +20,12 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get
 			{
-			foreach (var member in Values)
-			{
-				yield return member as IIfcIrregularTimeSeriesValue;
-			}
+				foreach (var member in Values)
+				{
+					yield return member as IIfcIrregularTimeSeriesValue;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcCurveFontOrScaledCurveFontSelect @CurveFont { get; }
 		IfcSizeSelect @CurveWidth { get; }
 		IfcColour @CurveColour { get; }
-		
+	
 	}
 }
 

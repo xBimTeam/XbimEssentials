@@ -20,10 +20,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-			foreach (var member in Segments)
-			{
-				yield return member as IIfcCompositeCurveSegment;
-			}
+				foreach (var member in Segments)
+				{
+					yield return member as IIfcCompositeCurveSegment;
+				}
 			} 
 		}
 		bool? IIfcCompositeCurve.SelfIntersect 
@@ -32,6 +32,27 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return SelfIntersect;
 			} 
+		}
+		long IIfcCompositeCurve.NSegments 
+		{
+			get 
+			{
+				//## Getter for NSegments in an interface
+				//TODO: Implement getter for derived attribute NSegments in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
+
+		bool? IIfcCompositeCurve.ClosedCurve 
+		{
+			get 
+			{
+				//## Getter for ClosedCurve in an interface
+				//TODO: Implement getter for derived attribute ClosedCurve in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
 		}
 
 	//## Custom code

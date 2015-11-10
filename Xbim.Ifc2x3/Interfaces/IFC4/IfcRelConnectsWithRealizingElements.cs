@@ -20,10 +20,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-			foreach (var member in RealizingElements)
-			{
-				yield return member as IIfcElement;
-			}
+				foreach (var member in RealizingElements)
+				{
+					yield return member as IIfcElement;
+				}
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcRelConnectsWithRealizingElements.ConnectionType 
@@ -34,7 +34,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return new Ifc4.MeasureResource.IfcLabel(ConnectionType.Value);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

@@ -11,6 +11,7 @@ using Xbim.Ifc4.PresentationOrganizationResource;
 using Xbim.Ifc4.PresentationAppearanceResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -28,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IEnumerable<IIfcPresentationLayerAssignment> @LayerAssignment {  get; }
 		IEnumerable<IIfcStyledItem> @StyledByItem {  get; }
-		
+	
 	}
 }
 
@@ -106,6 +107,7 @@ namespace Xbim.Ifc4.GeometryResource
 		internal IfcRepresentationItem(IModel model) 		{ 
 			Model = model; 
 		}
+
 
 
 
@@ -245,5 +247,10 @@ namespace Xbim.Ifc4.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

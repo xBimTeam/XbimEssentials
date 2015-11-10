@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<IIfcGridAxis> @IntersectingAxes { get; }
 		IEnumerable<IfcLengthMeasure> @OffsetDistances { get; }
-		
+	
 	}
 }
 

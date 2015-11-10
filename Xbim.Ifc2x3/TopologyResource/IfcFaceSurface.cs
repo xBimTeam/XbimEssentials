@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcSurface @FaceSurface { get; }
 		bool @SameSense { get; }
-		
+	
 	}
 }
 

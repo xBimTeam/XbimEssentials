@@ -20,30 +20,29 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-			foreach (var member in Styles)
-			{
-				var ifccurvestyle = member as IfcCurveStyle;
-				if (ifccurvestyle != null) 
-					yield return ifccurvestyle;
-				var ifcsymbolstyle = member as IfcSymbolStyle;
-				if (ifcsymbolstyle != null) 
-					//## Handle entity IfcSymbolStyle which is not a part of the target select interface Ifc4.PresentationAppearanceResource.IfcPresentationStyleSelect in property Styles
+				foreach (var member in Styles)
+				{
+					var ifccurvestyle = member as IfcCurveStyle;
+					if (ifccurvestyle != null) 
+						yield return ifccurvestyle;
+					var ifcsymbolstyle = member as IfcSymbolStyle;
+					if (ifcsymbolstyle != null) 
+						//## Handle entity IfcSymbolStyle which is not a part of the target select interface Ifc4.PresentationAppearanceResource.IfcPresentationStyleSelect in property Styles
 					//this is only for annotation symbol styles and that is removed from IFC4
                     continue;
 					//##
-				var ifcfillareastyle = member as IfcFillAreaStyle;
-				if (ifcfillareastyle != null) 
-					yield return ifcfillareastyle;
-				var ifctextstyle = member as IfcTextStyle;
-				if (ifctextstyle != null) 
-					yield return ifctextstyle;
-				var ifcsurfacestyle = member as IfcSurfaceStyle;
-				if (ifcsurfacestyle != null) 
-					yield return ifcsurfacestyle;
-			}
+					var ifcfillareastyle = member as IfcFillAreaStyle;
+					if (ifcfillareastyle != null) 
+						yield return ifcfillareastyle;
+					var ifctextstyle = member as IfcTextStyle;
+					if (ifctextstyle != null) 
+						yield return ifctextstyle;
+					var ifcsurfacestyle = member as IfcSurfaceStyle;
+					if (ifcsurfacestyle != null) 
+						yield return ifcsurfacestyle;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

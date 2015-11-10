@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		bool? @LayerFrozen { get; }
 		bool? @LayerBlocked { get; }
 		IEnumerable<IfcPresentationStyleSelect> @LayerStyles { get; }
-		
+	
 	}
 }
 

@@ -32,6 +32,27 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return Scale3;
 			} 
 		}
+		double IIfcCartesianTransformationOperator3DnonUniform.Scl2 
+		{
+			get 
+			{
+				//## Getter for Scl2 in an interface
+				//TODO: Implement getter for derived attribute Scl2 in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
+
+		double IIfcCartesianTransformationOperator3DnonUniform.Scl3 
+		{
+			get 
+			{
+				//## Getter for Scl3 in an interface
+				//TODO: Implement getter for derived attribute Scl3 in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
 
 	//## Custom code
 	//##

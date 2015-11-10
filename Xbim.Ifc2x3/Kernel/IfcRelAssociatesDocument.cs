@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcRelAssociatesDocument : IIfcRelAssociates
 	{
 		IfcDocumentSelect @RelatingDocument { get; }
-		
+	
 	}
 }
 

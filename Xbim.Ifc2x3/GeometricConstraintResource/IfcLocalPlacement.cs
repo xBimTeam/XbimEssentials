@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcObjectPlacement @PlacementRelTo { get; }
 		IfcAxis2Placement @RelativePlacement { get; }
-		
+	
 	}
 }
 

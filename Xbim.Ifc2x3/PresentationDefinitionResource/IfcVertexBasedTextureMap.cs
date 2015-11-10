@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<IIfcTextureVertex> @TextureVertices { get; }
 		IEnumerable<IIfcCartesianPoint> @TexturePoints { get; }
-		
+	
 	}
 }
 

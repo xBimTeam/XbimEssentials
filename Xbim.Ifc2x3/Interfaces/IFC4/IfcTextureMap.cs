@@ -34,7 +34,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				//##
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

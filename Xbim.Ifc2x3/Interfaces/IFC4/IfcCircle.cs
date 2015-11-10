@@ -23,7 +23,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Radius);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

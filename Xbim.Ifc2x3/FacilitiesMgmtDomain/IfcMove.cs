@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcSpatialStructureElement @MoveFrom { get; }
 		IIfcSpatialStructureElement @MoveTo { get; }
 		IEnumerable<IfcText> @PunchList { get; }
-		
+	
 	}
 }
 

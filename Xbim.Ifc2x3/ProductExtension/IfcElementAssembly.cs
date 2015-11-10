@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcAssemblyPlaceEnum? @AssemblyPlace { get; }
 		IfcElementAssemblyTypeEnum @PredefinedType { get; }
-		
+	
 	}
 }
 

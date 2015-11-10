@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcSurfaceSide @Side { get; }
 		IEnumerable<IfcSurfaceStyleElementSelect> @Styles { get; }
-		
+	
 	}
 }
 

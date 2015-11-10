@@ -6,8 +6,8 @@ namespace Xbim.Ifc2x3.GeometryResource
     // ReSharper disable once InconsistentNaming
     public partial interface IfcAxis2Placement
     {
-        int Dim { get; }
-        List<IfcDirection> P { get; } 
+        IfcDimensionCount Dim { get; }
+        List<XbimVector3D> P { get; } 
     }
 
     public static class IfcAxis2PlacementExtensions

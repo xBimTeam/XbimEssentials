@@ -11,6 +11,7 @@ using Xbim.Ifc4.GeometryResource;
 using Xbim.Ifc4.ProfileResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -27,7 +28,8 @@ namespace Xbim.Ifc4.Interfaces
 		IIfcCompositeCurve @SpineCurve { get; }
 		IEnumerable<IIfcProfileDef> @CrossSections { get; }
 		IEnumerable<IIfcAxis2Placement3D> @CrossSectionPositions { get; }
-		
+		IfcDimensionCount @Dim  { get ; }
+	
 	}
 }
 
@@ -94,6 +96,20 @@ namespace Xbim.Ifc4.GeometricModelResource
 		}	
 		#endregion
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public IfcDimensionCount @Dim 
+		{
+			get 
+			{
+				//## Getter for Dim
+			    return 3;
+			    //##
+			}
+		}
+
+		#endregion
 
 
 
@@ -181,5 +197,10 @@ namespace Xbim.Ifc4.GeometricModelResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

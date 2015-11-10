@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLabel @Mode { get; }
 		IEnumerable<IfcSimpleValue> @Parameter { get; }
-		
+	
 	}
 }
 

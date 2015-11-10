@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcOrganization @Publisher { get; }
 		IIfcCalendarDate @VersionDate { get; }
 		IEnumerable<IIfcLibraryReference> @LibraryReference { get; }
-		
+	
 	}
 }
 

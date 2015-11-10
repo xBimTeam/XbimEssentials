@@ -11,6 +11,7 @@ using Xbim.Ifc4.CostResource;
 using Xbim.Ifc4.ConstraintResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -28,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcValue @ValueComponent { get; }
 		IfcUnit @UnitComponent { get; }
-		
+	
 	}
 }
 
@@ -142,6 +143,7 @@ namespace Xbim.Ifc4.MeasureResource
 			} 
 		}	
 		#endregion
+
 
 
 
@@ -271,5 +273,10 @@ namespace Xbim.Ifc4.MeasureResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

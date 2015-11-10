@@ -15,6 +15,7 @@ using Xbim.Ifc4.DateTimeResource;
 using Xbim.Ifc4.CostResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -34,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcDate? @LastUpdateDate { get; }
 		IIfcCostValue @CurrentValue { get; }
 		IIfcCostValue @OriginalValue { get; }
-		
+	
 	}
 }
 
@@ -155,6 +156,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 
 
 
+
 		#region IPersist implementation
 		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
@@ -251,5 +253,10 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

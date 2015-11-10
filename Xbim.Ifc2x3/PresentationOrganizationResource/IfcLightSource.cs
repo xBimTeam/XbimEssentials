@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcColourRgb @LightColour { get; }
 		IfcNormalisedRatioMeasure? @AmbientIntensity { get; }
 		IfcNormalisedRatioMeasure? @Intensity { get; }
-		
+	
 	}
 }
 

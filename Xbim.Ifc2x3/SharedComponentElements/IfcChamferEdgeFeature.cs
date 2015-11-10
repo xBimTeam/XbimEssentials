@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcPositiveLengthMeasure? @Width { get; }
 		IfcPositiveLengthMeasure? @Height { get; }
-		
+	
 	}
 }
 

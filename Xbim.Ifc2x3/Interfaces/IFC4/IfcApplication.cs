@@ -44,7 +44,6 @@ namespace Xbim.Ifc2x3.UtilityResource
 				return new Ifc4.MeasureResource.IfcIdentifier(ApplicationIdentifier);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcBoundaryCondition @AppliedCondition { get; }
 		IEnumerable<IIfcRelConnectsStructuralMember> @ConnectsStructuralMembers {  get; }
-		
+	
 	}
 }
 

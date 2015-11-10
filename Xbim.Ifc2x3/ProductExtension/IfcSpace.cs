@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLengthMeasure? @ElevationWithFlooring { get; }
 		IEnumerable<IIfcRelCoversSpaces> @HasCoverings {  get; }
 		IEnumerable<IIfcRelSpaceBoundary> @BoundedBy {  get; }
-		
+	
 	}
 }
 

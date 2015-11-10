@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IIfcGridAxis> @VAxes { get; }
 		IEnumerable<IIfcGridAxis> @WAxes { get; }
 		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainedInStructure {  get; }
-		
+	
 	}
 }
 

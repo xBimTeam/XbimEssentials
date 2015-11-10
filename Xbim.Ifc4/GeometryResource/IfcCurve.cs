@@ -10,6 +10,7 @@
 using Xbim.Ifc4.GeometricModelResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -23,7 +24,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCurve : IIfcGeometricRepresentationItem, IfcGeometricSetSelect
 	{
-		
+	
 	}
 }
 
@@ -43,6 +44,42 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public IfcDimensionCount @Dim 
+		{
+			get 
+			{
+				//## Getter for Dim
+			    var line = this as IfcLine;
+			    if (line != null)
+			        return line.Pnt.Dim;
+			    var conic = this as IfcConic;
+			    if (conic != null)
+			        return conic.Position.Dim;
+			    var polyline = this as IfcPolyline;
+			    if (polyline != null)
+			        return polyline.Points[1].Dim;
+			    var trimmed = this as IfcTrimmedCurve;
+			    if (trimmed != null)
+			        return trimmed.BasisCurve.Dim;
+			    var composit = this as IfcCompositeCurve;
+			    if (composit != null)
+			        return composit.Segments[1].Dim;
+			    var bspline = this as IfcBSplineCurve;
+			    if (bspline != null)
+			        return bspline.ControlPointsList[1].Dim;
+			    if (this is IfcOffsetCurve2D)
+			        return 2;
+                if (this is IfcOffsetCurve3D)
+			        return 3;
+			    return new IfcDimensionCount(0);
+			    //##
+			}
+		}
+
+		#endregion
 
 
 
@@ -113,5 +150,10 @@ namespace Xbim.Ifc4.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

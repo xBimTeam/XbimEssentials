@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcActorSelect @SubContractor { get; }
 		IfcText? @JobDescription { get; }
-		
+	
 	}
 }
 

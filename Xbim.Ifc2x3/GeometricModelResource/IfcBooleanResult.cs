@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcBooleanOperator @Operator { get; }
 		IfcBooleanOperand @FirstOperand { get; }
 		IfcBooleanOperand @SecondOperand { get; }
-		
+	
 	}
 }
 

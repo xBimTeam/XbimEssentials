@@ -27,13 +27,12 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
-			foreach (var member in InnerBoundaries)
-			{
-				yield return member as IIfcCurve;
-			}
+				foreach (var member in InnerBoundaries)
+				{
+					yield return member as IIfcCurve;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

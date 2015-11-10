@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcStructuralSurfaceTypeEnum @PredefinedType { get; }
 		IfcPositiveLengthMeasure? @Thickness { get; }
-		
+	
 	}
 }
 

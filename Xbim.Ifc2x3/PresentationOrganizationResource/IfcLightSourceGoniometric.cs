@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLuminousFluxMeasure @LuminousFlux { get; }
 		IfcLightEmissionSourceEnum @LightEmissionSource { get; }
 		IfcLightDistributionDataSourceSelect @LightDistributionDataSource { get; }
-		
+	
 	}
 }
 

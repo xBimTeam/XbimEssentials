@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<IIfcRelConnectsStructuralElement> @ReferencesElement {  get; }
 		IEnumerable<IIfcRelConnectsStructuralMember> @ConnectedBy {  get; }
-		
+	
 	}
 }
 

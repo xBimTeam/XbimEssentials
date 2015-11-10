@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcParameterValue @V2 { get; }
 		bool @Usense { get; }
 		bool @Vsense { get; }
-		
+	
 	}
 }
 

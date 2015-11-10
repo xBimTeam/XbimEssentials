@@ -20,11 +20,21 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-			foreach (var member in FbsmFaces)
-			{
-				yield return member as IIfcConnectedFaceSet;
-			}
+				foreach (var member in FbsmFaces)
+				{
+					yield return member as IIfcConnectedFaceSet;
+				}
 			} 
+		}
+		Ifc4.GeometryResource.IfcDimensionCount IIfcFaceBasedSurfaceModel.Dim 
+		{
+			get 
+			{
+				//## Getter for Dim in an interface
+				//TODO: Implement getter for derived attribute Dim in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
 		}
 
 	//## Custom code

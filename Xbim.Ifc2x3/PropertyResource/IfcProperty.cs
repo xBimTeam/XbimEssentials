@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IIfcPropertyDependencyRelationship> @PropertyForDependance {  get; }
 		IEnumerable<IIfcPropertyDependencyRelationship> @PropertyDependsOn {  get; }
 		IEnumerable<IIfcComplexProperty> @PartOfComplex {  get; }
-		
+	
 	}
 }
 

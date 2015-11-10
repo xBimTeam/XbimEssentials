@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcCartesianPoint @PointOfReferenceHatchLine { get; }
 		IIfcCartesianPoint @PatternStart { get; }
 		IfcPlaneAngleMeasure @HatchLineAngle { get; }
-		
+	
 	}
 }
 

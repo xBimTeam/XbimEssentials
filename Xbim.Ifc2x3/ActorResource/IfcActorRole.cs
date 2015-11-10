@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcRoleEnum @Role { get; }
 		IfcLabel? @UserDefinedRole { get; }
 		IfcText? @Description { get; }
-		
+	
 	}
 }
 

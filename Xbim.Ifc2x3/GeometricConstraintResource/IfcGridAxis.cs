@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IIfcGrid> @PartOfV {  get; }
 		IEnumerable<IIfcGrid> @PartOfU {  get; }
 		IEnumerable<IIfcVirtualGridIntersection> @HasIntersections {  get; }
-		
+	
 	}
 }
 

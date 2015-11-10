@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcText? @Description { get; }
 		IIfcOrganization @RelatingOrganization { get; }
 		IEnumerable<IIfcOrganization> @RelatedOrganizations { get; }
-		
+	
 	}
 }
 

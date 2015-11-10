@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel @Discrimination { get; }
 		IfcLabel? @Quality { get; }
 		IfcLabel? @Usage { get; }
-		
+	
 	}
 }
 

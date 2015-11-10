@@ -28,13 +28,12 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get
 			{
-			foreach (var member in ReinforcementSectionDefinitions)
-			{
-				yield return member as IIfcSectionReinforcementProperties;
-			}
+				foreach (var member in ReinforcementSectionDefinitions)
+				{
+					yield return member as IIfcSectionReinforcementProperties;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

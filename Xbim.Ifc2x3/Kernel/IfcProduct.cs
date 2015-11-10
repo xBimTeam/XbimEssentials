@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcObjectPlacement @ObjectPlacement { get; }
 		IIfcProductRepresentation @Representation { get; }
 		IEnumerable<IIfcRelAssignsToProduct> @ReferencedBy {  get; }
-		
+	
 	}
 }
 

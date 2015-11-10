@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcInteger @Height { get; }
 		IfcInteger @ColourComponents { get; }
 		IEnumerable<long> @Pixel { get; }
-		
+	
 	}
 }
 

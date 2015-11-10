@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcCurve @BasisCurve { get; }
 		IfcLengthMeasure @Distance { get; }
 		bool? @SelfIntersect { get; }
-		
+	
 	}
 }
 

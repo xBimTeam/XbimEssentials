@@ -27,7 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcDirection @ExtrudedDirection { get; }
 		IfcLengthMeasure @Depth { get; }
-		
+		Common.Geometry.XbimVector3D @ExtrusionAxis  { get ; }
+	
 	}
 }
 

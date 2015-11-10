@@ -30,7 +30,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcShapeAspect @VaryingAppliedLoadLocation { get; }
 		IEnumerable<IIfcStructuralLoad> @SubsequentAppliedLoads { get; }
-		
+		List<IfcStructuralLoad> @VaryingAppliedLoads  { get ; }
+	
 	}
 }
 

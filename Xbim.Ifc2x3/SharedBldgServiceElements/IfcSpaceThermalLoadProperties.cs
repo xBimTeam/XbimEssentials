@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @UserDefinedThermalLoadSource { get; }
 		IfcLabel? @UserDefinedPropertySource { get; }
 		IfcThermalLoadTypeEnum @ThermalLoadType { get; }
-		
+	
 	}
 }
 

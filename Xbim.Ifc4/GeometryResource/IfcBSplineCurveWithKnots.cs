@@ -10,6 +10,7 @@
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -26,7 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 		IEnumerable<long> @KnotMultiplicities { get; }
 		IEnumerable<IfcParameterValue> @Knots { get; }
 		IfcKnotType @KnotSpec { get; }
-		
+		long @UpperIndexOnKnots  { get ; }
+	
 	}
 }
 
@@ -93,6 +95,21 @@ namespace Xbim.Ifc4.GeometryResource
 		}	
 		#endregion
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public long @UpperIndexOnKnots 
+		{
+			get 
+			{
+				//## Getter for UpperIndexOnKnots
+				//TODO: Implement getter for derived attribute UpperIndexOnKnots
+				throw new NotImplementedException();
+				//##
+			}
+		}
+
+		#endregion
 
 
 
@@ -186,5 +203,10 @@ namespace Xbim.Ifc4.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

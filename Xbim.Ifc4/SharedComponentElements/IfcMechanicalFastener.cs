@@ -13,6 +13,7 @@ using Xbim.Ifc4.GeometricConstraintResource;
 using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -29,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcPositiveLengthMeasure? @NominalDiameter { get; }
 		IfcPositiveLengthMeasure? @NominalLength { get; }
 		IfcMechanicalFastenerTypeEnum? @PredefinedType { get; }
-		
+	
 	}
 }
 
@@ -101,6 +102,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 			} 
 		}	
 		#endregion
+
 
 
 
@@ -196,5 +198,10 @@ namespace Xbim.Ifc4.SharedComponentElements
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

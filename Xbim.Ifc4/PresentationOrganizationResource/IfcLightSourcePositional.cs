@@ -12,6 +12,7 @@ using Xbim.Ifc4.PresentationAppearanceResource;
 using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -30,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcReal @ConstantAttenuation { get; }
 		IfcReal @DistanceAttenuation { get; }
 		IfcReal @QuadricAttenuation { get; }
-		
+	
 	}
 }
 
@@ -138,6 +139,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 
 
 
+
 		#region IPersist implementation
 		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
@@ -229,5 +231,10 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

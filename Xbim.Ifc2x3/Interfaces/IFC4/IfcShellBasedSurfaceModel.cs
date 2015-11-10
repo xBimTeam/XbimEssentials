@@ -20,16 +20,26 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-			foreach (var member in SbsmBoundary)
-			{
-				var ifcclosedshell = member as TopologyResource.IfcClosedShell;
-				if (ifcclosedshell != null) 
-					yield return ifcclosedshell;
-				var ifcopenshell = member as TopologyResource.IfcOpenShell;
-				if (ifcopenshell != null) 
-					yield return ifcopenshell;
-			}
+				foreach (var member in SbsmBoundary)
+				{
+					var ifcclosedshell = member as TopologyResource.IfcClosedShell;
+					if (ifcclosedshell != null) 
+						yield return ifcclosedshell;
+					var ifcopenshell = member as TopologyResource.IfcOpenShell;
+					if (ifcopenshell != null) 
+						yield return ifcopenshell;
+				}
 			} 
+		}
+		Ifc4.GeometryResource.IfcDimensionCount IIfcShellBasedSurfaceModel.Dim 
+		{
+			get 
+			{
+				//## Getter for Dim in an interface
+				//TODO: Implement getter for derived attribute Dim in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
 		}
 
 	//## Custom code

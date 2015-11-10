@@ -12,6 +12,7 @@ using Xbim.Ifc4.PresentationAppearanceResource;
 using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -26,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcLightSourceDirectional : IIfcLightSource
 	{
 		IIfcDirection @Orientation { get; }
-		
+	
 	}
 }
 
@@ -66,6 +67,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 		}	
 		#endregion
+
 
 
 
@@ -149,5 +151,10 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

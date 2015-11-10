@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcNormalisedRatioMeasure? @PanelWidth { get; }
 		IfcDoorPanelPositionEnum @PanelPosition { get; }
 		IIfcShapeAspect @ShapeAspectStyle { get; }
-		
+	
 	}
 }
 

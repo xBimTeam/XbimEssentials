@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLabel? @DefinitionType { get; }
 		IEnumerable<IIfcSectionReinforcementProperties> @ReinforcementSectionDefinitions { get; }
-		
+	
 	}
 }
 

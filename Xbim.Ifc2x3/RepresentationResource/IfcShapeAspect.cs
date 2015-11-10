@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcText? @Description { get; }
 		bool? @ProductDefinitional { get; }
 		IIfcProductDefinitionShape @PartOfProductDefinitionShape { get; }
-		
+	
 	}
 }
 

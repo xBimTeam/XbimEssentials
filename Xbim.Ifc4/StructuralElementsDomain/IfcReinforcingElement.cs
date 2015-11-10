@@ -11,6 +11,7 @@ using Xbim.Ifc4.SharedComponentElements;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -25,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcReinforcingElement : IIfcElementComponent
 	{
 		IfcLabel? @SteelGrade { get; }
-		
+	
 	}
 }
 
@@ -65,6 +66,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 		}	
 		#endregion
+
 
 
 
@@ -152,5 +154,10 @@ namespace Xbim.Ifc4.StructuralElementsDomain
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

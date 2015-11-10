@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcColourOrFactor @SpecularColour { get; }
 		IfcSpecularHighlightSelect @SpecularHighlight { get; }
 		IfcReflectanceMethodEnum @ReflectanceMethod { get; }
-		
+	
 	}
 }
 

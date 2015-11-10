@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure @TopXDim { get; }
 		IfcPositiveLengthMeasure @YDim { get; }
 		IfcLengthMeasure @TopXOffset { get; }
-		
+	
 	}
 }
 

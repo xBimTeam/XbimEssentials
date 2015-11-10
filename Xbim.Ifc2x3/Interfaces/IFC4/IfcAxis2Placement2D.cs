@@ -23,8 +23,22 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return RefDirection;
 			} 
 		}
+		List<Common.Geometry.XbimVector3D> Ifc4.GeometryResource.IfcAxis2Placement.P 
+		{
+			get 
+			{
+				//## Getter for P in an interface
+				//TODO: Implement getter for derived attribute P in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
 
 	//## Custom code
+        Ifc4.GeometryResource.IfcDimensionCount Ifc4.GeometryResource.IfcAxis2Placement.Dim
+        {
+            get { return (this as IIfcPlacement).Dim; }
+        }
 	//##
 	}
 }

@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -22,7 +23,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCompositeCurveOnSurface : IIfcCompositeCurve, IfcCurveOnSurface
 	{
-		
+		List<IfcSurface> @BasisSurface  { get ; }
+	
 	}
 }
 
@@ -42,6 +44,21 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1)]
+		public List<IfcSurface> @BasisSurface 
+		{
+			get 
+			{
+				//## Getter for BasisSurface
+				//TODO: Implement getter for derived attribute BasisSurface
+				throw new NotImplementedException();
+				//##
+			}
+		}
+
+		#endregion
 
 
 
@@ -120,5 +137,10 @@ namespace Xbim.Ifc4.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

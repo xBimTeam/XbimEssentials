@@ -23,7 +23,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				return Outer;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

@@ -23,7 +23,6 @@ namespace Xbim.Ifc2x3.ControlExtension
 				return RelatingApproval;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthX { get; }
 		IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthY { get; }
 		IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthZ { get; }
-		
+	
 	}
 }
 

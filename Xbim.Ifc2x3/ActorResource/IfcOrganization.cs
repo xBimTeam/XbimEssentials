@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IIfcOrganizationRelationship> @IsRelatedBy {  get; }
 		IEnumerable<IIfcOrganizationRelationship> @Relates {  get; }
 		IEnumerable<IIfcPersonAndOrganization> @Engages {  get; }
-		
+	
 	}
 }
 

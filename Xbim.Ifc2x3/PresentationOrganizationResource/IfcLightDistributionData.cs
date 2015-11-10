@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPlaneAngleMeasure @MainPlaneAngle { get; }
 		IEnumerable<IfcPlaneAngleMeasure> @SecondaryPlaneAngle { get; }
 		IEnumerable<IfcLuminousIntensityDistributionMeasure> @LuminousIntensity { get; }
-		
+	
 	}
 }
 

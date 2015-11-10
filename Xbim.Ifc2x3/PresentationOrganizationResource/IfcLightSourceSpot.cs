@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcReal? @ConcentrationExponent { get; }
 		IfcPositivePlaneAngleMeasure @SpreadAngle { get; }
 		IfcPositivePlaneAngleMeasure @BeamWidthAngle { get; }
-		
+	
 	}
 }
 

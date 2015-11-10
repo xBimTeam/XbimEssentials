@@ -123,7 +123,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				return ShapeAspectStyle;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

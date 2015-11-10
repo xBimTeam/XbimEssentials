@@ -11,6 +11,7 @@ using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.Kernel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -27,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcText? @Description { get; }
 		IIfcDocumentInformation @ReferencedDocument { get; }
 		IEnumerable<IIfcRelAssociatesDocument> @DocumentRefForObjects {  get; }
-		
+	
 	}
 }
 
@@ -86,6 +87,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 		}	
 		#endregion
+
 
 
 		#region Inverse attributes
@@ -182,5 +184,10 @@ namespace Xbim.Ifc4.ExternalReferenceResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

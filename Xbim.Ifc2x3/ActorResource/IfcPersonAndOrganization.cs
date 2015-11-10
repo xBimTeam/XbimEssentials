@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcPerson @ThePerson { get; }
 		IIfcOrganization @TheOrganization { get; }
 		IEnumerable<IIfcActorRole> @Roles { get; }
-		
+	
 	}
 }
 

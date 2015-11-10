@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcDefinedSymbolSelect @Definition { get; }
 		IIfcCartesianTransformationOperator2D @Target { get; }
-		
+	
 	}
 }
 

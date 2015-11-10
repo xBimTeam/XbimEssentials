@@ -20,10 +20,10 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{ 
 			get
 			{
-			foreach (var member in Elements)
-			{
-				yield return member as IIfcDerivedUnitElement;
-			}
+				foreach (var member in Elements)
+				{
+					yield return member as IIfcDerivedUnitElement;
+				}
 			} 
 		}
 		Ifc4.MeasureResource.IfcDerivedUnitEnum IIfcDerivedUnit.UnitType 
@@ -192,6 +192,16 @@ namespace Xbim.Ifc2x3.MeasureResource
 				if (!UserDefinedType.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(UserDefinedType.Value);
 			} 
+		}
+		Common.Geometry.XbimDimensionalExponents IIfcDerivedUnit.Dimensions 
+		{
+			get 
+			{
+				//## Getter for Dimensions in an interface
+				//TODO: Implement getter for derived attribute Dimensions in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
 		}
 
 	//## Custom code

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel @Title { get; }
 		IEnumerable<IIfcClassificationItemRelationship> @IsClassifiedItemIn {  get; }
 		IEnumerable<IIfcClassificationItemRelationship> @IsClassifyingItemIn {  get; }
-		
+	
 	}
 }
 

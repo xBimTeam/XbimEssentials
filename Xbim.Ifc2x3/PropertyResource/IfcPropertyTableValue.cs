@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcText? @Expression { get; }
 		IfcUnit @DefiningUnit { get; }
 		IfcUnit @DefinedUnit { get; }
-		
+	
 	}
 }
 

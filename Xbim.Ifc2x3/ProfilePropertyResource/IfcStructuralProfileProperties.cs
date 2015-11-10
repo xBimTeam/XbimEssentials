@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcSectionModulusMeasure? @TorsionalSectionModulus { get; }
 		IfcLengthMeasure? @CentreOfGravityInX { get; }
 		IfcLengthMeasure? @CentreOfGravityInY { get; }
-		
+	
 	}
 }
 

@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcProcess @RelatedProcess { get; }
 		IfcTimeMeasure @TimeLag { get; }
 		IfcSequenceEnum @SequenceType { get; }
-		
+	
 	}
 }
 

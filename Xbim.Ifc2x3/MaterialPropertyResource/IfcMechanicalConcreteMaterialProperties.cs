@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcText? @Workability { get; }
 		IfcNormalisedRatioMeasure? @ProtectivePoreRatio { get; }
 		IfcText? @WaterImpermeability { get; }
-		
+	
 	}
 }
 

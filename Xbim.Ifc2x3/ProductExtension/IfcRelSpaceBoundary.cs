@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcConnectionGeometry @ConnectionGeometry { get; }
 		IfcPhysicalOrVirtualEnum @PhysicalOrVirtualBoundary { get; }
 		IfcInternalOrExternalEnum @InternalOrExternalBoundary { get; }
-		
+	
 	}
 }
 

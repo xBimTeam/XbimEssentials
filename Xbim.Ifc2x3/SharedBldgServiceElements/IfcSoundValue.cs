@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcTimeSeries @SoundLevelTimeSeries { get; }
 		IfcFrequencyMeasure @Frequency { get; }
 		IfcDerivedMeasureValue @SoundLevelSingleValue { get; }
-		
+	
 	}
 }
 

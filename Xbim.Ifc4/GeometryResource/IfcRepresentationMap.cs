@@ -10,6 +10,7 @@
 using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -29,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 		IIfcRepresentation @MappedRepresentation { get; }
 		IEnumerable<IIfcShapeAspect> @HasShapeAspects {  get; }
 		IEnumerable<IIfcMappedItem> @MapUsage {  get; }
-		
+	
 	}
 }
 
@@ -147,6 +148,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		#endregion
+
 
 
 		#region Inverse attributes
@@ -295,5 +297,10 @@ namespace Xbim.Ifc4.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

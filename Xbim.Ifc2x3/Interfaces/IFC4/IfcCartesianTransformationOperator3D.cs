@@ -23,6 +23,16 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return Axis3;
 			} 
 		}
+		List<Common.Geometry.XbimVector3D> IIfcCartesianTransformationOperator3D.U 
+		{
+			get 
+			{
+				//## Getter for U in an interface
+				//TODO: Implement getter for derived attribute U in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
 
 	//## Custom code
 	//##

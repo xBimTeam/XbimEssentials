@@ -16,7 +16,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcDistributionElementType : IIfcDistributionElementType
 	{
-
 	//## Custom code
 	//##
 	}

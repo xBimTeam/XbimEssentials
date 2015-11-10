@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure? @FrameDepth { get; }
 		IfcPositiveLengthMeasure? @FrameThickness { get; }
 		IIfcShapeAspect @ShapeAspectStyle { get; }
-		
+	
 	}
 }
 

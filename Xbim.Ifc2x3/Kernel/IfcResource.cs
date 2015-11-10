@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcResource : IIfcObject
 	{
 		IEnumerable<IIfcRelAssignsToResource> @ResourceOf {  get; }
-		
+	
 	}
 }
 

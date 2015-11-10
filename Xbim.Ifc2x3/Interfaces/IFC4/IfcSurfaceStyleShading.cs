@@ -23,7 +23,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return SurfaceColour;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

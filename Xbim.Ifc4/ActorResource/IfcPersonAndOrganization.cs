@@ -11,6 +11,7 @@ using Xbim.Ifc4.PropertyResource;
 using Xbim.Ifc4.ExternalReferenceResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -29,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 		IIfcPerson @ThePerson { get; }
 		IIfcOrganization @TheOrganization { get; }
 		IEnumerable<IIfcActorRole> @Roles { get; }
-		
+	
 	}
 }
 
@@ -159,6 +160,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 		}	
 		#endregion
+
 
 
 
@@ -292,5 +294,10 @@ namespace Xbim.Ifc4.ActorResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

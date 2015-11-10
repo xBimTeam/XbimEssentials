@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveRatioMeasure? @VisibleReflectanceFront { get; }
 		IfcPositiveRatioMeasure? @SolarReflectanceFront { get; }
 		IfcPositiveRatioMeasure? @SolarReflectanceBack { get; }
-		
+	
 	}
 }
 

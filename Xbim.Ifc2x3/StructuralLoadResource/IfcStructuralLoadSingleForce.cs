@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcTorqueMeasure? @MomentX { get; }
 		IfcTorqueMeasure? @MomentY { get; }
 		IfcTorqueMeasure? @MomentZ { get; }
-		
+	
 	}
 }
 

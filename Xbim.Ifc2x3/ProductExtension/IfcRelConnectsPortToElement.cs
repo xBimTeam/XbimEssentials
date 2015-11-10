@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcPort @RelatingPort { get; }
 		IIfcElement @RelatedElement { get; }
-		
+	
 	}
 }
 

@@ -20,10 +20,10 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get
 			{
-			foreach (var member in RelatedControlElements)
-			{
-				yield return member as IIfcDistributionControlElement;
-			}
+				foreach (var member in RelatedControlElements)
+				{
+					yield return member as IIfcDistributionControlElement;
+				}
 			} 
 		}
 		IIfcDistributionFlowElement IIfcRelFlowControlElements.RelatingFlowElement 
@@ -33,7 +33,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				return RelatingFlowElement;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

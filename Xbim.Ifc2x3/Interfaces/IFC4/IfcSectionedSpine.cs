@@ -27,21 +27,31 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-			foreach (var member in CrossSections)
-			{
-				yield return member as IIfcProfileDef;
-			}
+				foreach (var member in CrossSections)
+				{
+					yield return member as IIfcProfileDef;
+				}
 			} 
 		}
 		IEnumerable<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions 
 		{ 
 			get
 			{
-			foreach (var member in CrossSectionPositions)
-			{
-				yield return member as IIfcAxis2Placement3D;
-			}
+				foreach (var member in CrossSectionPositions)
+				{
+					yield return member as IIfcAxis2Placement3D;
+				}
 			} 
+		}
+		Ifc4.GeometryResource.IfcDimensionCount IIfcSectionedSpine.Dim 
+		{
+			get 
+			{
+				//## Getter for Dim in an interface
+				//TODO: Implement getter for derived attribute Dim in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
 		}
 
 	//## Custom code

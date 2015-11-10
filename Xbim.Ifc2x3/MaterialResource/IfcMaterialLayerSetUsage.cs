@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLayerSetDirectionEnum @LayerSetDirection { get; }
 		IfcDirectionSenseEnum @DirectionSense { get; }
 		IfcLengthMeasure @OffsetFromReferenceLine { get; }
-		
+	
 	}
 }
 

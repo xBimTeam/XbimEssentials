@@ -44,50 +44,50 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-			foreach (var member in MiddleNames)
-			{
-				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-			}
+				foreach (var member in MiddleNames)
+				{
+					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
+				}
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.PrefixTitles 
 		{ 
 			get
 			{
-			foreach (var member in PrefixTitles)
-			{
-				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-			}
+				foreach (var member in PrefixTitles)
+				{
+					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
+				}
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.SuffixTitles 
 		{ 
 			get
 			{
-			foreach (var member in SuffixTitles)
-			{
-				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-			}
+				foreach (var member in SuffixTitles)
+				{
+					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
+				}
 			} 
 		}
 		IEnumerable<IIfcActorRole> IIfcPerson.Roles 
 		{ 
 			get
 			{
-			foreach (var member in Roles)
-			{
-				yield return member as IIfcActorRole;
-			}
+				foreach (var member in Roles)
+				{
+					yield return member as IIfcActorRole;
+				}
 			} 
 		}
 		IEnumerable<IIfcAddress> IIfcPerson.Addresses 
 		{ 
 			get
 			{
-			foreach (var member in Addresses)
-			{
-				yield return member as IIfcAddress;
-			}
+				foreach (var member in Addresses)
+				{
+					yield return member as IIfcAddress;
+				}
 			} 
 		}
 		IEnumerable<IIfcPersonAndOrganization> IIfcPerson.EngagedIn 
@@ -97,7 +97,6 @@ namespace Xbim.Ifc2x3.ActorResource
 				return Model.Instances.Where<IIfcPersonAndOrganization>(e => (e.ThePerson as IfcPerson) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

@@ -30,6 +30,16 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(Angle);
 			} 
 		}
+		Common.Geometry.XbimLine IIfcRevolvedAreaSolid.AxisLine 
+		{
+			get 
+			{
+				//## Getter for AxisLine in an interface
+				//TODO: Implement getter for derived attribute AxisLine in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
 
 	//## Custom code
 	//##

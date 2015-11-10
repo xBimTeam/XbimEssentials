@@ -44,7 +44,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 				return new Ifc4.MeasureResource.IfcLengthMeasure(TopXOffset);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

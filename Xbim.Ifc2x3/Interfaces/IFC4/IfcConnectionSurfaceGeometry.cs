@@ -50,7 +50,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				return null;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

@@ -28,7 +28,9 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcBSplineCurveForm @CurveForm { get; }
 		bool? @ClosedCurve { get; }
 		bool? @SelfIntersect { get; }
-		
+		List<Common.Geometry.XbimPoint3D> @ControlPoints  { get ; }
+		long @UpperIndexOnControlPoints  { get ; }
+	
 	}
 }
 

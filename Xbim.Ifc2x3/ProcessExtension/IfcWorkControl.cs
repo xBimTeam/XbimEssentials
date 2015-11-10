@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcDateTimeSelect @FinishTime { get; }
 		IfcWorkControlTypeEnum? @WorkControlType { get; }
 		IfcLabel? @UserDefinedControlType { get; }
-		
+	
 	}
 }
 

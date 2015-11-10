@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -27,7 +28,9 @@ namespace Xbim.Ifc4.Interfaces
 		IfcBSplineCurveForm @CurveForm { get; }
 		bool? @ClosedCurve { get; }
 		bool? @SelfIntersect { get; }
-		
+		long @UpperIndexOnControlPoints  { get ; }
+		List<Common.Geometry.XbimPoint3D> @ControlPoints  { get ; }
+	
 	}
 }
 
@@ -130,6 +133,31 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 
 
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public long @UpperIndexOnControlPoints 
+		{
+			get 
+			{
+				//## Getter for UpperIndexOnControlPoints
+			    return ControlPointsList.Count - 1;
+			    //##
+			}
+		}
+
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Array, EntityAttributeType.Class, 0, -1)]
+		public List<Common.Geometry.XbimPoint3D> @ControlPoints 
+		{
+			get 
+			{
+				//## Getter for ControlPoints
+			    return ControlPointsList.Select(p => new Common.Geometry.XbimPoint3D(p.X, p.Y, p.Z)).ToList();
+			    //##
+			}
+		}
+
+		#endregion
+
 
 
 		#region IPersist implementation
@@ -219,5 +247,10 @@ namespace Xbim.Ifc4.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

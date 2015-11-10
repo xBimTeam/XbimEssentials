@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcAxis2Placement @WorldCoordinateSystem { get; }
 		IIfcDirection @TrueNorth { get; }
 		IEnumerable<IIfcGeometricRepresentationSubContext> @HasSubContexts {  get; }
-		
+	
 	}
 }
 

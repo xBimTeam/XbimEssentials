@@ -10,6 +10,7 @@
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -26,7 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 		IEnumerable<IIfcMaterialLayer> @MaterialLayers { get; }
 		IfcLabel? @LayerSetName { get; }
 		IfcText? @Description { get; }
-		
+		IfcLengthMeasure @TotalThickness  { get ; }
+	
 	}
 }
 
@@ -98,6 +100,20 @@ namespace Xbim.Ifc4.MaterialResource
 		}	
 		#endregion
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public IfcLengthMeasure @TotalThickness 
+		{
+			get 
+			{
+				//## Getter for TotalThickness
+			    return MaterialLayers.Aggregate(0d, (i, layer) => i + layer.LayerThickness);
+			    //##
+			}
+		}
+
+		#endregion
 
 
 
@@ -181,5 +197,10 @@ namespace Xbim.Ifc4.MaterialResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcCalendarDate @DateComponent { get; }
 		IIfcLocalTime @TimeComponent { get; }
-		
+	
 	}
 }
 

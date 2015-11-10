@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcNormalisedRatioMeasure? @ImpuritiesContent { get; }
 		IfcPHMeasure? @PHLevel { get; }
 		IfcNormalisedRatioMeasure? @DissolvedSolidsContent { get; }
-		
+	
 	}
 }
 

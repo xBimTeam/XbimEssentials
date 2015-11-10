@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel @Name { get; }
 		IEnumerable<IfcValue> @EnumerationValues { get; }
 		IfcUnit @Unit { get; }
-		
+	
 	}
 }
 

@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLinearMomentMeasure? @LinearMomentX { get; }
 		IfcLinearMomentMeasure? @LinearMomentY { get; }
 		IfcLinearMomentMeasure? @LinearMomentZ { get; }
-		
+	
 	}
 }
 

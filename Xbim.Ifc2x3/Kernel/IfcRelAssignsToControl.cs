@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcRelAssignsToControl : IIfcRelAssigns
 	{
 		IIfcControl @RelatingControl { get; }
-		
+	
 	}
 }
 

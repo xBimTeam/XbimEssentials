@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcBoolean @IsAttenuating { get; }
 		IfcSoundScaleEnum? @SoundScale { get; }
 		IEnumerable<IIfcSoundValue> @SoundValues { get; }
-		
+	
 	}
 }
 

@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcMeasureValue @UpperValue { get; }
 		IfcMeasureValue @MostUsedValue { get; }
 		IfcMeasureValue @LowerValue { get; }
-		
+	
 	}
 }
 

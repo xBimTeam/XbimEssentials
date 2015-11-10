@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -29,7 +30,10 @@ namespace Xbim.Ifc4.Interfaces
 		bool? @UClosed { get; }
 		bool? @VClosed { get; }
 		bool? @SelfIntersect { get; }
-		
+		long @UUpper  { get ; }
+		long @VUpper  { get ; }
+		List<List<Common.Geometry.XbimPoint3D>> @ControlPoints  { get ; }
+	
 	}
 }
 
@@ -164,6 +168,45 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 
 
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public long @UUpper 
+		{
+			get 
+			{
+				//## Getter for UUpper
+				//TODO: Implement getter for derived attribute UUpper
+				throw new NotImplementedException();
+				//##
+			}
+		}
+
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public long @VUpper 
+		{
+			get 
+			{
+				//## Getter for VUpper
+				//TODO: Implement getter for derived attribute VUpper
+				throw new NotImplementedException();
+				//##
+			}
+		}
+
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Array, EntityAttributeType.Array, 0, -1)]
+		public List<List<Common.Geometry.XbimPoint3D>> @ControlPoints 
+		{
+			get 
+			{
+				//## Getter for ControlPoints
+				//TODO: Implement getter for derived attribute ControlPoints
+				throw new NotImplementedException();
+				//##
+			}
+		}
+
+		#endregion
+
 
 
 		#region IPersist implementation
@@ -259,5 +302,10 @@ namespace Xbim.Ifc4.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

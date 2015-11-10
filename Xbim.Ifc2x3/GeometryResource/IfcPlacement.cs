@@ -24,7 +24,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcPlacement : IIfcGeometricRepresentationItem
 	{
 		IIfcCartesianPoint @Location { get; }
-		
+		IfcDimensionCount @Dim  { get ; }
+	
 	}
 }
 

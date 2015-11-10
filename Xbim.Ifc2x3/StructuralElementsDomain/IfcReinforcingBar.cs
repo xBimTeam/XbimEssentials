@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure? @BarLength { get; }
 		IfcReinforcingBarRoleEnum @BarRole { get; }
 		IfcReinforcingBarSurfaceEnum? @BarSurface { get; }
-		
+	
 	}
 }
 

@@ -12,6 +12,7 @@ using Xbim.Ifc4.ExternalReferenceResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -36,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 		IEnumerable<IIfcActorRole> @Roles { get; }
 		IEnumerable<IIfcAddress> @Addresses { get; }
 		IEnumerable<IIfcPersonAndOrganization> @EngagedIn {  get; }
-		
+	
 	}
 }
 
@@ -236,6 +237,7 @@ namespace Xbim.Ifc4.ActorResource
 		#endregion
 
 
+
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
 		public IEnumerable<IfcPersonAndOrganization> @EngagedIn 
@@ -398,5 +400,10 @@ namespace Xbim.Ifc4.ActorResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

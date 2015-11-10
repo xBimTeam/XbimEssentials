@@ -96,7 +96,6 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				return ShapeAspectStyle;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

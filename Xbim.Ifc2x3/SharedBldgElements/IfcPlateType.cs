@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcPlateType : IIfcBuildingElementType
 	{
 		IfcPlateTypeEnum @PredefinedType { get; }
-		
+	
 	}
 }
 

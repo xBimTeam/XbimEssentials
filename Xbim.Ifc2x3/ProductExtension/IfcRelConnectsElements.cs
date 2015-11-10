@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcConnectionGeometry @ConnectionGeometry { get; }
 		IIfcElement @RelatingElement { get; }
 		IIfcElement @RelatedElement { get; }
-		
+	
 	}
 }
 

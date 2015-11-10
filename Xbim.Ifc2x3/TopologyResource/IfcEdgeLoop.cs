@@ -24,7 +24,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcEdgeLoop : IIfcLoop
 	{
 		IEnumerable<IIfcOrientedEdge> @EdgeList { get; }
-		
+		long @Ne  { get ; }
+	
 	}
 }
 

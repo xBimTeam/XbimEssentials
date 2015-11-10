@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel @Name { get; }
 		IEnumerable<IIfcMaterialDefinitionRepresentation> @HasRepresentation {  get; }
 		IEnumerable<IIfcMaterialClassificationRelationship> @ClassifiedAs {  get; }
-		
+	
 	}
 }
 

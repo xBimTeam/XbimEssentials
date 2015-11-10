@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLengthMeasure? @ElevationOfRefHeight { get; }
 		IfcLengthMeasure? @ElevationOfTerrain { get; }
 		IIfcPostalAddress @BuildingAddress { get; }
-		
+	
 	}
 }
 

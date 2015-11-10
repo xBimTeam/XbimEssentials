@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcVirtualGridIntersection @PlacementLocation { get; }
 		IIfcVirtualGridIntersection @PlacementRefDirection { get; }
-		
+	
 	}
 }
 

@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcElementarySurface : IIfcSurface
 	{
 		IIfcAxis2Placement3D @Position { get; }
-		
+	
 	}
 }
 

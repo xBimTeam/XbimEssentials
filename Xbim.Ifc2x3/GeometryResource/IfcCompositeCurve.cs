@@ -25,7 +25,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<IIfcCompositeCurveSegment> @Segments { get; }
 		bool? @SelfIntersect { get; }
-		
+		long @NSegments  { get ; }
+		bool? @ClosedCurve  { get ; }
+	
 	}
 }
 

@@ -56,7 +56,6 @@ namespace Xbim.Ifc2x3.PropertyResource
 				//##
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

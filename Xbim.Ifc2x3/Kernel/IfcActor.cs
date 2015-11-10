@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcActorSelect @TheActor { get; }
 		IEnumerable<IIfcRelAssignsToActor> @IsActingUpon {  get; }
-		
+	
 	}
 }
 

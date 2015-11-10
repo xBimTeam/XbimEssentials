@@ -11,6 +11,7 @@ using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -28,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcPositiveRatioMeasure? @TargetScale { get; }
 		IfcGeometricProjectionEnum @TargetView { get; }
 		IfcLabel? @UserDefinedTargetView { get; }
-		
+	
 	}
 }
 
@@ -148,7 +149,14 @@ namespace Xbim.Ifc4.RepresentationResource
 		{
 			get 
 			{
-				throw new System.NotImplementedException();
+				//## Overriding derived attribute TrueNorth getter
+			    if (ParentContext.TrueNorth != null)
+			        return ParentContext.TrueNorth;
+                //IfcConvertDirectionInto2D(SELF\IfcGeometricRepresentationContext.WorldCoordinateSystem.P[2]));
+			    var dir = WorldCoordinateSystem.P[2];
+			    dir.Z = double.NaN;
+			    return dir;
+			    //##
 			}
 			set 
 			{ 
@@ -168,6 +176,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			}
 		}
 		#endregion
+
 
 
 
@@ -263,5 +272,10 @@ namespace Xbim.Ifc4.RepresentationResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

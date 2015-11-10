@@ -35,15 +35,15 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get
 			{
-			foreach (var member in AssignedItems)
-			{
-				var ifcrepresentationitem = member as GeometryResource.IfcRepresentationItem;
-				if (ifcrepresentationitem != null) 
-					yield return ifcrepresentationitem;
-				var ifcrepresentation = member as RepresentationResource.IfcRepresentation;
-				if (ifcrepresentation != null) 
-					yield return ifcrepresentation;
-			}
+				foreach (var member in AssignedItems)
+				{
+					var ifcrepresentationitem = member as GeometryResource.IfcRepresentationItem;
+					if (ifcrepresentationitem != null) 
+						yield return ifcrepresentationitem;
+					var ifcrepresentation = member as RepresentationResource.IfcRepresentation;
+					if (ifcrepresentation != null) 
+						yield return ifcrepresentation;
+				}
 			} 
 		}
 		Ifc4.MeasureResource.IfcIdentifier? IIfcPresentationLayerAssignment.Identifier 
@@ -54,7 +54,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				return new Ifc4.MeasureResource.IfcIdentifier(Identifier.Value);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

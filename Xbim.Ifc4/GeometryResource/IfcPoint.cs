@@ -11,6 +11,7 @@ using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.GeometricConstraintResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -24,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPoint : IIfcGeometricRepresentationItem, IfcGeometricSetSelect, IfcPointOrVertexPoint
 	{
-		
+	
 	}
 }
 
@@ -44,6 +45,21 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public virtual IfcDimensionCount @Dim 
+		{
+			get 
+			{
+				//## Getter for Dim
+				//TODO: Implement getter for derived attribute Dim
+				throw new NotImplementedException();
+				//##
+			}
+		}
+
+		#endregion
 
 
 
@@ -114,5 +130,10 @@ namespace Xbim.Ifc4.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

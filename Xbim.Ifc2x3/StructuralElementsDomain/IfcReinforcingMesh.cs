@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcAreaMeasure @TransverseBarCrossSectionArea { get; }
 		IfcPositiveLengthMeasure @LongitudinalBarSpacing { get; }
 		IfcPositiveLengthMeasure @TransverseBarSpacing { get; }
-		
+	
 	}
 }
 

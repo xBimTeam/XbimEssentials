@@ -116,7 +116,6 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				return Model.Instances.Where<IIfcResourceConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

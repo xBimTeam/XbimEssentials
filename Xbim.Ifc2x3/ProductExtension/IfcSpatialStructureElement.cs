@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IIfcRelReferencedInSpatialStructure> @ReferencesElements {  get; }
 		IEnumerable<IIfcRelServicesBuildings> @ServicedBySystems {  get; }
 		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainsElements {  get; }
-		
+	
 	}
 }
 

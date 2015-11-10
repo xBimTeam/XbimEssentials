@@ -73,7 +73,6 @@ namespace Xbim.Ifc2x3.CostResource
 			    //##
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

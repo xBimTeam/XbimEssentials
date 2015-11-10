@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcReinforcingBarRoleEnum @ReinforcementRole { get; }
 		IIfcSectionProperties @SectionDefinition { get; }
 		IEnumerable<IIfcReinforcementBarProperties> @CrossSectionReinforcementDefinitions { get; }
-		
+	
 	}
 }
 

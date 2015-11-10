@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcProcess @RelatingProcess { get; }
 		IIfcMeasureWithUnit @QuantityInProcess { get; }
-		
+	
 	}
 }
 

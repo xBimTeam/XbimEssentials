@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLengthMeasure @SizeInX { get; }
 		IfcLengthMeasure @SizeInY { get; }
-		
+	
 	}
 }
 

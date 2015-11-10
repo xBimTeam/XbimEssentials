@@ -45,6 +45,27 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return Scale;
 			} 
 		}
+		double IIfcCartesianTransformationOperator.Scl 
+		{
+			get 
+			{
+				//## Getter for Scl in an interface
+				//TODO: Implement getter for derived attribute Scl in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
+
+		Ifc4.GeometryResource.IfcDimensionCount IIfcCartesianTransformationOperator.Dim 
+		{
+			get 
+			{
+				//## Getter for Dim in an interface
+				//TODO: Implement getter for derived attribute Dim in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
 
 	//## Custom code
 	//##

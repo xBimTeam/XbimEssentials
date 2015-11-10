@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcOrderAction : IIfcTask
 	{
 		IfcIdentifier @ActionID { get; }
-		
+	
 	}
 }
 

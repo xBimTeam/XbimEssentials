@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcDocumentInformation @RelatingDocument { get; }
 		IEnumerable<IIfcDocumentInformation> @RelatedDocuments { get; }
 		IfcLabel? @RelationshipType { get; }
-		
+	
 	}
 }
 

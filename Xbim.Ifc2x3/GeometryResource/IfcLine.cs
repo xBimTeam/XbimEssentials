@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcCartesianPoint @Pnt { get; }
 		IIfcVector @Dir { get; }
-		
+	
 	}
 }
 

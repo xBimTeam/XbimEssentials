@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcText? @Description { get; }
 		IIfcDraughtingCallout @RelatingDraughtingCallout { get; }
 		IIfcDraughtingCallout @RelatedDraughtingCallout { get; }
-		
+	
 	}
 }
 

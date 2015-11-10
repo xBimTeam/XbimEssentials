@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @UserDefinedPurpose { get; }
 		IEnumerable<IIfcPerson> @OfPerson {  get; }
 		IEnumerable<IIfcOrganization> @OfOrganization {  get; }
-		
+	
 	}
 }
 

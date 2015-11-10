@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcPath : IIfcTopologicalRepresentationItem
 	{
 		IEnumerable<IIfcOrientedEdge> @EdgeList { get; }
-		
+	
 	}
 }
 

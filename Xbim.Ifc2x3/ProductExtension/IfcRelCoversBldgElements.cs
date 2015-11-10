@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcElement @RelatingBuildingElement { get; }
 		IEnumerable<IIfcCovering> @RelatedCoverings { get; }
-		
+	
 	}
 }
 

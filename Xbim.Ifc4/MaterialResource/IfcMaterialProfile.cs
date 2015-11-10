@@ -11,6 +11,7 @@ using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.ProfileResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -31,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcNormalisedRatioMeasure? @Priority { get; }
 		IfcLabel? @Category { get; }
 		IIfcMaterialProfileSet @ToMaterialProfileSet {  get; }
-		
+	
 	}
 }
 
@@ -154,6 +155,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#endregion
 
 
+
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
 		public IfcMaterialProfileSet @ToMaterialProfileSet 
@@ -254,5 +256,10 @@ namespace Xbim.Ifc4.MaterialResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

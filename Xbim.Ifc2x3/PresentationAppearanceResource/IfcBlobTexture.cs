@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcIdentifier @RasterFormat { get; }
 		bool @RasterCode { get; }
-		
+	
 	}
 }
 

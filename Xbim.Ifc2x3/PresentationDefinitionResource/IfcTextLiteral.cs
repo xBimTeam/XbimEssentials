@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPresentableText @Literal { get; }
 		IfcAxis2Placement @Placement { get; }
 		IfcTextPath @Path { get; }
-		
+	
 	}
 }
 

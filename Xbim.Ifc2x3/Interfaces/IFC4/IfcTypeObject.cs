@@ -28,10 +28,10 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-			foreach (var member in HasPropertySets)
-			{
-				yield return member as IIfcPropertySetDefinition;
-			}
+				foreach (var member in HasPropertySets)
+				{
+					yield return member as IIfcPropertySetDefinition;
+				}
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByType> IIfcTypeObject.Types 
@@ -41,7 +41,6 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IIfcRelDefinesByType>(e => (e.RelatingType as IfcTypeObject) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

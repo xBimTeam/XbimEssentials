@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcRelDefines : IIfcRelationship
 	{
 		IEnumerable<IIfcObject> @RelatedObjects { get; }
-		
+	
 	}
 }
 

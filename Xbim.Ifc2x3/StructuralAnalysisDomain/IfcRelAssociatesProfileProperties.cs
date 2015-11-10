@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcProfileProperties @RelatingProfileProperties { get; }
 		IIfcShapeAspect @ProfileSectionLocation { get; }
 		IfcOrientationSelect @ProfileOrientation { get; }
-		
+	
 	}
 }
 

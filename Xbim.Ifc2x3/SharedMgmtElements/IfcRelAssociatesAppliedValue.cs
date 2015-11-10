@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcRelAssociatesAppliedValue : IIfcRelAssociates
 	{
 		IIfcAppliedValue @RelatingAppliedValue { get; }
-		
+	
 	}
 }
 

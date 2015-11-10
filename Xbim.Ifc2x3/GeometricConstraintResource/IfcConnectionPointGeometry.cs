@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcPointOrVertexPoint @PointOnRelatingElement { get; }
 		IfcPointOrVertexPoint @PointOnRelatedElement { get; }
-		
+	
 	}
 }
 

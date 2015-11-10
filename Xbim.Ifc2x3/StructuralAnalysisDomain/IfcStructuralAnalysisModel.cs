@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcAxis2Placement3D @OrientationOf2DPlane { get; }
 		IEnumerable<IIfcStructuralLoadGroup> @LoadedBy { get; }
 		IEnumerable<IIfcStructuralResultGroup> @HasResults { get; }
-		
+	
 	}
 }
 

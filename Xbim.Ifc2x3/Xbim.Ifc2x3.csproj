@@ -129,7 +129,6 @@
     <Compile Include="GeometryResource\IfcCartesianPointPartial.cs" />
     <Compile Include="GeometryResource\IfcDirectionPartial.cs" />
     <Compile Include="GeometryResource\IfcPlacementPartial.cs" />
-    <Compile Include="GeometryResource\XbimLine.cs" />
     <Compile Include="MeasureResource\XbimDimensionalExponents.cs" />
     <Compile Include="Interfaces\Conversions\DateAndTimeExtensions.cs" />
     <Compile Include="Interfaces\Conversions\IfcClassificationNotationTransient.cs" />

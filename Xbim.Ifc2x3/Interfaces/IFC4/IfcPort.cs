@@ -37,7 +37,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IIfcRelConnectsPorts>(e => (e.RelatingPort as IfcPort) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

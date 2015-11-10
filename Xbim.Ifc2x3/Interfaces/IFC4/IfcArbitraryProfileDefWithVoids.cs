@@ -20,13 +20,12 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-			foreach (var member in InnerCurves)
-			{
-				yield return member as IIfcCurve;
-			}
+				foreach (var member in InnerCurves)
+				{
+					yield return member as IIfcCurve;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

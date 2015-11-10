@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcOneDirectionRepeatFactor @TilingPattern { get; }
 		IEnumerable<IfcFillAreaStyleTileShapeSelect> @Tiles { get; }
 		IfcPositiveRatioMeasure @TilingScale { get; }
-		
+	
 	}
 }
 

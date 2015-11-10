@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcRepresentationMap @MappingSource { get; }
 		IIfcCartesianTransformationOperator @MappingTarget { get; }
-		
+	
 	}
 }
 

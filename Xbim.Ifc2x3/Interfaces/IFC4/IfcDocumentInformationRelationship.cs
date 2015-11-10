@@ -27,10 +27,10 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-			foreach (var member in RelatedDocuments)
-			{
-				yield return member as IIfcDocumentInformation;
-			}
+				foreach (var member in RelatedDocuments)
+				{
+					yield return member as IIfcDocumentInformation;
+				}
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformationRelationship.RelationshipType 
@@ -59,7 +59,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    //##
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

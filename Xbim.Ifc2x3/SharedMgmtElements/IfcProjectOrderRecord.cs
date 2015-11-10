@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<IIfcRelAssignsToProjectOrder> @Records { get; }
 		IfcProjectOrderRecordTypeEnum @PredefinedType { get; }
-		
+	
 	}
 }
 

@@ -10,6 +10,7 @@
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -28,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcDirectionSenseEnum @DirectionSense { get; }
 		IfcLengthMeasure @OffsetFromReferenceLine { get; }
 		IfcPositiveLengthMeasure? @ReferenceExtent { get; }
-		
+	
 	}
 }
 
@@ -137,6 +138,7 @@ namespace Xbim.Ifc4.MaterialResource
 
 
 
+
 		#region IPersist implementation
 		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
@@ -222,5 +224,10 @@ namespace Xbim.Ifc4.MaterialResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

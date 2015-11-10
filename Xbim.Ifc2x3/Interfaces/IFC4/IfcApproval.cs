@@ -164,7 +164,6 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				return Model.Instances.Where<IIfcApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

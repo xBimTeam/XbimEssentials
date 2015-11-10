@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @FileExtension { get; }
 		IfcLabel? @MimeContentType { get; }
 		IfcLabel? @MimeSubtype { get; }
-		
+	
 	}
 }
 

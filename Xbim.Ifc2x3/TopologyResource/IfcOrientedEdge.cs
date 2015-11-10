@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcEdge @EdgeElement { get; }
 		bool @Orientation { get; }
-		
+	
 	}
 }
 
@@ -88,7 +88,11 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{
 			get 
 			{
-				throw new System.NotImplementedException();
+				//## Overriding derived attribute EdgeStart getter
+                return Orientation
+                    ? EdgeElement.EdgeStart
+                    : EdgeElement.EdgeEnd;
+				//##
 			}
 			set 
 			{ 
@@ -100,7 +104,11 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{
 			get 
 			{
-				throw new System.NotImplementedException();
+				//## Overriding derived attribute EdgeEnd getter
+                return Orientation
+                    ? EdgeElement.EdgeEnd
+                    : EdgeElement.EdgeStart;
+				//##
 			}
 			set 
 			{ 

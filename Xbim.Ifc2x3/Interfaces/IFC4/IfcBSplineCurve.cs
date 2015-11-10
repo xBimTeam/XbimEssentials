@@ -27,10 +27,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-			foreach (var member in ControlPointsList)
-			{
-				yield return member as IIfcCartesianPoint;
-			}
+				foreach (var member in ControlPointsList)
+				{
+					yield return member as IIfcCartesianPoint;
+				}
 			} 
 		}
 		Ifc4.GeometryResource.IfcBSplineCurveForm IIfcBSplineCurve.CurveForm 
@@ -76,6 +76,27 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				return SelfIntersect;
 			} 
+		}
+		long IIfcBSplineCurve.UpperIndexOnControlPoints 
+		{
+			get 
+			{
+				//## Getter for UpperIndexOnControlPoints in an interface
+				//TODO: Implement getter for derived attribute UpperIndexOnControlPoints in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
+
+		List<Common.Geometry.XbimPoint3D> IIfcBSplineCurve.ControlPoints 
+		{
+			get 
+			{
+				//## Getter for ControlPoints in an interface
+				//TODO: Implement getter for derived attribute ControlPoints in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
 		}
 
 	//## Custom code

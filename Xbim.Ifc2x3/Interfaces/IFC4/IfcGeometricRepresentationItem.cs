@@ -16,7 +16,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcGeometricRepresentationItem : IIfcGeometricRepresentationItem
 	{
-
 	//## Custom code
 	//##
 	}

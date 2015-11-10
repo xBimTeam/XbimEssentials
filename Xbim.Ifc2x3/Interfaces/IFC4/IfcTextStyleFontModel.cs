@@ -20,10 +20,10 @@ namespace Xbim.Ifc2x3.PresentationResource
 		{ 
 			get
 			{
-			foreach (var member in FontFamily)
-			{
-				yield return new Ifc4.PresentationAppearanceResource.IfcTextFontName((string)member);
-			}
+				foreach (var member in FontFamily)
+				{
+					yield return new Ifc4.PresentationAppearanceResource.IfcTextFontName((string)member);
+				}
 			} 
 		}
 		Ifc4.PresentationAppearanceResource.IfcFontStyle? IIfcTextStyleFontModel.FontStyle 
@@ -70,7 +70,6 @@ namespace Xbim.Ifc2x3.PresentationResource
 				return null;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

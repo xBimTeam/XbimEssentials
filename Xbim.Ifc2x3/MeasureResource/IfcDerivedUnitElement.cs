@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcNamedUnit @Unit { get; }
 		long @Exponent { get; }
-		
+	
 	}
 }
 

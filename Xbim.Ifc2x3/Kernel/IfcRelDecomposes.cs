@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcObjectDefinition @RelatingObject { get; }
 		IEnumerable<IIfcObjectDefinition> @RelatedObjects { get; }
-		
+	
 	}
 }
 

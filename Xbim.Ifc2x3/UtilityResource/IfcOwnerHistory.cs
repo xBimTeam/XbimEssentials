@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcPersonAndOrganization @LastModifyingUser { get; }
 		IIfcApplication @LastModifyingApplication { get; }
 		IfcTimeStamp @CreationDate { get; }
-		
+	
 	}
 }
 

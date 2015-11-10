@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLengthMeasure? @SlippageX { get; }
 		IfcLengthMeasure? @SlippageY { get; }
 		IfcLengthMeasure? @SlippageZ { get; }
-		
+	
 	}
 }
 

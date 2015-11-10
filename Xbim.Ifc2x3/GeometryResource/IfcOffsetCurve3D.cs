@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLengthMeasure @Distance { get; }
 		bool? @SelfIntersect { get; }
 		IIfcDirection @RefDirection { get; }
-		
+	
 	}
 }
 

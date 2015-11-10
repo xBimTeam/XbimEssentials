@@ -20,10 +20,10 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-			foreach (var member in Profiles)
-			{
-				yield return member as IIfcProfileDef;
-			}
+				foreach (var member in Profiles)
+				{
+					yield return member as IIfcProfileDef;
+				}
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcCompositeProfileDef.Label 
@@ -34,7 +34,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 				return new Ifc4.MeasureResource.IfcLabel(Label.Value);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

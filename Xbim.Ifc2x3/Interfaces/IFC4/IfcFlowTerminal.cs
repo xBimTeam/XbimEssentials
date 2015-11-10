@@ -16,7 +16,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	public partial class @IfcFlowTerminal : IIfcFlowTerminal
 	{
-
 	//## Custom code
 	//##
 	}

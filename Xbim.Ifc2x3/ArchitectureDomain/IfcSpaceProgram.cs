@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcAreaMeasure @StandardRequiredArea { get; }
 		IEnumerable<IIfcRelInteractionRequirements> @HasInteractionReqsFrom {  get; }
 		IEnumerable<IIfcRelInteractionRequirements> @HasInteractionReqsTo {  get; }
-		
+	
 	}
 }
 

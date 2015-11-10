@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPlaneAngleMeasure? @BoxSlantAngle { get; }
 		IfcPlaneAngleMeasure? @BoxRotateAngle { get; }
 		IfcSizeSelect @CharacterSpacing { get; }
-		
+	
 	}
 }
 

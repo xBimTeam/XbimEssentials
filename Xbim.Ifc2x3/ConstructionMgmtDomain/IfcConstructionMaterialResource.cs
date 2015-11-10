@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<IfcActorSelect> @Suppliers { get; }
 		IfcRatioMeasure? @UsageRatio { get; }
-		
+	
 	}
 }
 

@@ -20,10 +20,10 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-			foreach (var member in RelatedElements)
-			{
-				yield return member as IIfcProduct;
-			}
+				foreach (var member in RelatedElements)
+				{
+					yield return member as IIfcProduct;
+				}
 			} 
 		}
 		IIfcSpatialElement IIfcRelReferencedInSpatialStructure.RelatingStructure 
@@ -33,7 +33,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return RelatingStructure as IIfcSpatialElement;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

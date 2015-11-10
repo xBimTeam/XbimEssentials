@@ -24,7 +24,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcCartesianTransformationOperator2DnonUniform : IIfcCartesianTransformationOperator2D
 	{
 		double? @Scale2 { get; }
-		
+		double @Scl2  { get ; }
+	
 	}
 }
 

@@ -10,6 +10,7 @@
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -26,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 		IIfcRecurrencePattern @RecurrencePattern { get; }
 		IfcDate? @Start { get; }
 		IfcDate? @Finish { get; }
-		
+	
 	}
 }
 
@@ -98,6 +99,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 		}	
 		#endregion
+
 
 
 
@@ -186,5 +188,10 @@ namespace Xbim.Ifc4.DateTimeResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

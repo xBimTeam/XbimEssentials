@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLengthMeasure @VisibleSegmentLength { get; }
 		IfcPositiveLengthMeasure @InvisibleSegmentLength { get; }
-		
+	
 	}
 }
 

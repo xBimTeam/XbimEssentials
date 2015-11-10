@@ -10,6 +10,7 @@
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -27,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcDateTime @TimeStamp { get; }
 		IEnumerable<IfcValue> @ListValues { get; }
-		
+	
 	}
 }
 
@@ -138,6 +139,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 		}	
 		#endregion
+
 
 
 
@@ -268,5 +270,10 @@ namespace Xbim.Ifc4.DateTimeResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

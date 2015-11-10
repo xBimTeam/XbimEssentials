@@ -24,7 +24,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcAxis1Placement : IIfcPlacement
 	{
 		IIfcDirection @Axis { get; }
-		
+		Common.Geometry.XbimVector3D @Z  { get ; }
+	
 	}
 }
 

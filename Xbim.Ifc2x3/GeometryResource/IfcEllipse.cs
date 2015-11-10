@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcPositiveLengthMeasure @SemiAxis1 { get; }
 		IfcPositiveLengthMeasure @SemiAxis2 { get; }
-		
+	
 	}
 }
 

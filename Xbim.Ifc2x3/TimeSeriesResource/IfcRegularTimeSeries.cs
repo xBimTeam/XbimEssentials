@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcTimeMeasure @TimeStep { get; }
 		IEnumerable<IIfcTimeSeriesValue> @Values { get; }
-		
+	
 	}
 }
 

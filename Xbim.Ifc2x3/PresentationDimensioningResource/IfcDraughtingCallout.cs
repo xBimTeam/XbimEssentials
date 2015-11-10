@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IfcDraughtingCalloutElement> @Contents { get; }
 		IEnumerable<IIfcDraughtingCalloutRelationship> @IsRelatedFromCallout {  get; }
 		IEnumerable<IIfcDraughtingCalloutRelationship> @IsRelatedToCallout {  get; }
-		
+	
 	}
 }
 

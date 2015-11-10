@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcIdentifier @ProcedureID { get; }
 		IfcProcedureTypeEnum @ProcedureType { get; }
 		IfcLabel? @UserDefinedProcedureType { get; }
-		
+	
 	}
 }
 

@@ -10,6 +10,7 @@
 using Xbim.Ifc4.StructuralLoadResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -25,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IIfcBoundaryCondition @AppliedCondition { get; }
 		IEnumerable<IIfcRelConnectsStructuralMember> @ConnectsStructuralMembers {  get; }
-		
+	
 	}
 }
 
@@ -66,6 +67,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 		}	
 		#endregion
+
 
 
 		#region Inverse attributes
@@ -162,5 +164,10 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

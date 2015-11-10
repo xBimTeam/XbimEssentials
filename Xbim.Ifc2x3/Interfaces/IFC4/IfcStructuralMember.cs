@@ -23,7 +23,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				return Model.Instances.Where<IIfcRelConnectsStructuralMember>(e => (e.RelatingStructuralMember as IfcStructuralMember) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

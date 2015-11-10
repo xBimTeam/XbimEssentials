@@ -40,7 +40,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				return new Ifc4.MeasureResource.IfcLengthMeasure(SlippageZ.Value);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

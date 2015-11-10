@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IIfcActorRole> @Roles { get; }
 		IEnumerable<IIfcAddress> @Addresses { get; }
 		IEnumerable<IIfcPersonAndOrganization> @EngagedIn {  get; }
-		
+	
 	}
 }
 

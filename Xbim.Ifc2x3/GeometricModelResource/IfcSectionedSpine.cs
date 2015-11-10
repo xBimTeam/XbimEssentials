@@ -28,7 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcCompositeCurve @SpineCurve { get; }
 		IEnumerable<IIfcProfileDef> @CrossSections { get; }
 		IEnumerable<IIfcAxis2Placement3D> @CrossSectionPositions { get; }
-		
+		IfcDimensionCount @Dim  { get ; }
+	
 	}
 }
 

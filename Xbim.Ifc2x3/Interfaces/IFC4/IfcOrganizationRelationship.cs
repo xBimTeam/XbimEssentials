@@ -27,10 +27,10 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-			foreach (var member in RelatedOrganizations)
-			{
-				yield return member as IIfcOrganization;
-			}
+				foreach (var member in RelatedOrganizations)
+				{
+					yield return member as IIfcOrganization;
+				}
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
@@ -53,7 +53,6 @@ namespace Xbim.Ifc2x3.ActorResource
 			    //##
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

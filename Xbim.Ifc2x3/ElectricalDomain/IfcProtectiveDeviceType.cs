@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcProtectiveDeviceType : IIfcFlowControllerType
 	{
 		IfcProtectiveDeviceTypeEnum @PredefinedType { get; }
-		
+	
 	}
 }
 

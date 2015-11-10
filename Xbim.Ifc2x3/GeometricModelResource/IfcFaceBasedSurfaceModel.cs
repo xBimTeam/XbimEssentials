@@ -27,7 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcFaceBasedSurfaceModel : IIfcGeometricRepresentationItem, IfcSurfaceOrFaceSurface
 	{
 		IEnumerable<IIfcConnectedFaceSet> @FbsmFaces { get; }
-		
+		IfcDimensionCount @Dim  { get ; }
+	
 	}
 }
 

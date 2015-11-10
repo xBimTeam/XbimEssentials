@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcDuctFittingType : IIfcFlowFittingType
 	{
 		IfcDuctFittingTypeEnum @PredefinedType { get; }
-		
+	
 	}
 }
 

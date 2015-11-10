@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IIfcReferencesValueDocument> @ValuesReferenced {  get; }
 		IEnumerable<IIfcAppliedValueRelationship> @ValueOfComponents {  get; }
 		IEnumerable<IIfcAppliedValueRelationship> @IsComponentIn {  get; }
-		
+	
 	}
 }
 

@@ -16,7 +16,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcStyleModel : IIfcStyleModel
 	{
-
 	//## Custom code
 	//##
 	}

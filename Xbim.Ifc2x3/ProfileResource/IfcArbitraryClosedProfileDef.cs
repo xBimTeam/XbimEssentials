@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcArbitraryClosedProfileDef : IIfcProfileDef
 	{
 		IIfcCurve @OuterCurve { get; }
-		
+	
 	}
 }
 

@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLengthMeasure? @EccentricityInX { get; }
 		IfcLengthMeasure? @EccentricityInY { get; }
 		IfcLengthMeasure? @EccentricityInZ { get; }
-		
+	
 	}
 }
 

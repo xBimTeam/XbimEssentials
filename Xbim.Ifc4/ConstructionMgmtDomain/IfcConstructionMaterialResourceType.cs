@@ -14,6 +14,7 @@ using Xbim.Ifc4.Kernel;
 using Xbim.Ifc4.CostResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -28,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcConstructionMaterialResourceType : IIfcConstructionResourceType
 	{
 		IfcConstructionMaterialResourceTypeEnum @PredefinedType { get; }
-		
+	
 	}
 }
 
@@ -68,6 +69,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			} 
 		}	
 		#endregion
+
 
 
 
@@ -159,5 +161,10 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

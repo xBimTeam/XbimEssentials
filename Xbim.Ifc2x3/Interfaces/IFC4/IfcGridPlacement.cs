@@ -30,7 +30,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				return PlacementRefDirection;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

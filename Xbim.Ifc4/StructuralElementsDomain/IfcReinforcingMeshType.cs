@@ -13,6 +13,7 @@ using Xbim.Ifc4.Kernel;
 using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -37,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcPositiveLengthMeasure? @TransverseBarSpacing { get; }
 		IfcLabel? @BendingShapeCode { get; }
 		IEnumerable<IfcBendingParameterSelect> @BendingParameters { get; }
-		
+	
 	}
 }
 
@@ -238,6 +239,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 
 
 
+
 		#region IPersist implementation
 		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
@@ -355,5 +357,10 @@ namespace Xbim.Ifc4.StructuralElementsDomain
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

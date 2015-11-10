@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLengthMeasure? @EffectiveDepth { get; }
 		IfcPositiveLengthMeasure? @NominalBarDiameter { get; }
 		IfcCountMeasure? @BarCount { get; }
-		
+	
 	}
 }
 

@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcTimeSeriesValue : IPersistEntity
 	{
 		IEnumerable<IfcValue> @ListValues { get; }
-		
+	
 	}
 }
 

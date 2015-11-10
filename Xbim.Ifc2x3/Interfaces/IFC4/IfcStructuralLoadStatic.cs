@@ -16,7 +16,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadStatic : IIfcStructuralLoadStatic
 	{
-
 	//## Custom code
 	//##
 	}

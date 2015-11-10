@@ -44,6 +44,16 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(ZDim);
 			} 
 		}
+		Ifc4.GeometryResource.IfcDimensionCount IIfcBoundingBox.Dim 
+		{
+			get 
+			{
+				//## Getter for Dim in an interface
+				//TODO: Implement getter for derived attribute Dim in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
 
 	//## Custom code
 	//##

@@ -29,10 +29,10 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get
 			{
-			foreach (var member in Creators)
-			{
-				yield return member as IIfcPerson;
-			}
+				foreach (var member in Creators)
+				{
+					yield return member as IIfcPerson;
+				}
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcWorkControl.Purpose 
@@ -81,7 +81,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				//##
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

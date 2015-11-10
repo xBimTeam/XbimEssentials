@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcValue @UpperBoundValue { get; }
 		IfcValue @LowerBoundValue { get; }
 		IfcUnit @Unit { get; }
-		
+	
 	}
 }
 

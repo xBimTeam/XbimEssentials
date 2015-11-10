@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcFontVariant? @FontVariant { get; }
 		IfcFontWeight? @FontWeight { get; }
 		IfcSizeSelect @FontSize { get; }
-		
+	
 	}
 }
 

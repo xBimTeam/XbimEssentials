@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcConstraint @RelatingConstraint { get; }
 		IEnumerable<IIfcConstraint> @RelatedConstraints { get; }
 		IfcLogicalOperatorEnum @LogicalAggregator { get; }
-		
+	
 	}
 }
 

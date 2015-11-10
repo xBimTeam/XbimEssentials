@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcDimensionCurveTerminator : IIfcTerminatorSymbol
 	{
 		IfcDimensionExtentUsage @Role { get; }
-		
+	
 	}
 }
 

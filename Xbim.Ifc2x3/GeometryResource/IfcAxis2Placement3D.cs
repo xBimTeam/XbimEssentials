@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcDirection @Axis { get; }
 		IIfcDirection @RefDirection { get; }
-		
+	
 	}
 }
 

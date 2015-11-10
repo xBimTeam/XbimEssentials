@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcProfileTypeEnum @ProfileType { get; }
 		IfcLabel? @ProfileName { get; }
-		
+	
 	}
 }
 

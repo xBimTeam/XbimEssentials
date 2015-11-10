@@ -20,13 +20,12 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-			foreach (var member in Voids)
-			{
-				yield return member as IIfcClosedShell;
-			}
+				foreach (var member in Voids)
+				{
+					yield return member as IIfcClosedShell;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

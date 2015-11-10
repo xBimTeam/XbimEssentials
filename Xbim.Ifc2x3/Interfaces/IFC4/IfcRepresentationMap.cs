@@ -51,7 +51,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return Model.Instances.Where<IIfcMappedItem>(e => (e.MappingSource as IfcRepresentationMap) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

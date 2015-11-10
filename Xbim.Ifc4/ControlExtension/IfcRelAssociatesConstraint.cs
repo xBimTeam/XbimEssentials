@@ -13,6 +13,7 @@ using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.ConstraintResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -28,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcLabel? @Intent { get; }
 		IIfcConstraint @RelatingConstraint { get; }
-		
+	
 	}
 }
 
@@ -84,6 +85,7 @@ namespace Xbim.Ifc4.ControlExtension
 			} 
 		}	
 		#endregion
+
 
 
 
@@ -171,5 +173,10 @@ namespace Xbim.Ifc4.ControlExtension
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

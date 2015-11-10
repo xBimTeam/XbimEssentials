@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcOpeningElement @RelatingOpeningElement { get; }
 		IIfcElement @RelatedBuildingElement { get; }
-		
+	
 	}
 }
 

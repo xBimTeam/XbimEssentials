@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcIrregularTimeSeries : IIfcTimeSeries
 	{
 		IEnumerable<IIfcIrregularTimeSeriesValue> @Values { get; }
-		
+	
 	}
 }
 

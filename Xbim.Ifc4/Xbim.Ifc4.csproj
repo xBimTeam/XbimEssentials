@@ -279,6 +279,7 @@
     <Compile Include="GeometricModelResource\IfcBlock.cs" />
     <Compile Include="GeometricModelResource\IfcBooleanClippingResult.cs" />
     <Compile Include="GeometricModelResource\IfcBooleanOperand.cs" />
+    <Compile Include="GeometricModelResource\IfcBooleanOperandPartial.cs" />
     <Compile Include="GeometricModelResource\IfcBooleanOperator.cs" />
     <Compile Include="GeometricModelResource\IfcBooleanResult.cs" />
     <Compile Include="GeometricModelResource\IfcBoundingBox.cs" />
@@ -297,6 +298,7 @@
     <Compile Include="GeometricModelResource\IfcGeometricCurveSet.cs" />
     <Compile Include="GeometricModelResource\IfcGeometricSet.cs" />
     <Compile Include="GeometricModelResource\IfcGeometricSetSelect.cs" />
+    <Compile Include="GeometricModelResource\IfcGeometricSetSelectPartial.cs" />
     <Compile Include="GeometricModelResource\IfcHalfSpaceSolid.cs" />
     <Compile Include="GeometricModelResource\IfcManifoldSolidBrep.cs" />
     <Compile Include="GeometricModelResource\IfcPolygonalBoundedHalfSpace.cs" />
@@ -320,6 +322,7 @@
     <Compile Include="GeometryResource\IfcAxis2Placement.cs" />
     <Compile Include="GeometryResource\IfcAxis2Placement2D.cs" />
     <Compile Include="GeometryResource\IfcAxis2Placement3D.cs" />
+    <Compile Include="GeometryResource\IfcAxis2PlacementPartial.cs" />
     <Compile Include="GeometryResource\IfcBoundaryCurve.cs" />
     <Compile Include="GeometryResource\IfcBoundedCurve.cs" />
     <Compile Include="GeometryResource\IfcBoundedSurface.cs" />
@@ -330,6 +333,7 @@
     <Compile Include="GeometryResource\IfcBSplineSurfaceForm.cs" />
     <Compile Include="GeometryResource\IfcBSplineSurfaceWithKnots.cs" />
     <Compile Include="GeometryResource\IfcCartesianPoint.cs" />
+    <Compile Include="GeometryResource\IfcCartesianPointPartial.cs" />
     <Compile Include="GeometryResource\IfcCartesianTransformationOperator.cs" />
     <Compile Include="GeometryResource\IfcCartesianTransformationOperator2D.cs" />
     <Compile Include="GeometryResource\IfcCartesianTransformationOperator2DnonUniform.cs" />
@@ -347,6 +351,7 @@
     <Compile Include="GeometryResource\IfcCylindricalSurface.cs" />
     <Compile Include="GeometryResource\IfcDimensionCount.cs" />
     <Compile Include="GeometryResource\IfcDirection.cs" />
+    <Compile Include="GeometryResource\IfcDirectionPartial.cs" />
     <Compile Include="GeometryResource\IfcElementarySurface.cs" />
     <Compile Include="GeometryResource\IfcEllipse.cs" />
     <Compile Include="GeometryResource\IfcGeometricRepresentationItem.cs" />
@@ -683,6 +688,7 @@
     <Compile Include="MeasureResource\IfcVolumetricFlowRateMeasure.cs" />
     <Compile Include="MeasureResource\IfcWarpingConstantMeasure.cs" />
     <Compile Include="MeasureResource\IfcWarpingMomentMeasure.cs" />
+    <Compile Include="MeasureResource\XbimDimensionalExponents.cs" />
     <Compile Include="OptionalItemSet.cs" />
     <Compile Include="PlumbingFireProtectionDomain\IfcFireSuppressionTerminal.cs" />
     <Compile Include="PlumbingFireProtectionDomain\IfcFireSuppressionTerminalType.cs" />

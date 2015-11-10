@@ -64,10 +64,10 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get
 			{
-			foreach (var member in ResponsiblePersons)
-			{
-				yield return member as IIfcPerson;
-			}
+				foreach (var member in ResponsiblePersons)
+				{
+					yield return member as IIfcPerson;
+				}
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDate? IIfcInventory.LastUpdateDate 
@@ -95,7 +95,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				return OriginalValue;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcTransportElementTypeEnum? @OperationType { get; }
 		IfcMassMeasure? @CapacityByWeight { get; }
 		IfcCountMeasure? @CapacityByNumber { get; }
-		
+	
 	}
 }
 

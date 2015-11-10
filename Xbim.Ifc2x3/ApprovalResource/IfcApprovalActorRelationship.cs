@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcActorSelect @Actor { get; }
 		IIfcApproval @Approval { get; }
 		IIfcActorRole @Role { get; }
-		
+	
 	}
 }
 

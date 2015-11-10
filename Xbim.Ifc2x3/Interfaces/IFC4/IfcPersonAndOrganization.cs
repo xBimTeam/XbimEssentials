@@ -34,13 +34,12 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-			foreach (var member in Roles)
-			{
-				yield return member as IIfcActorRole;
-			}
+				foreach (var member in Roles)
+				{
+					yield return member as IIfcActorRole;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

@@ -23,6 +23,16 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return AxisPosition;
 			} 
 		}
+		Common.Geometry.XbimLine IIfcSurfaceOfRevolution.AxisLine 
+		{
+			get 
+			{
+				//## Getter for AxisLine in an interface
+				//TODO: Implement getter for derived attribute AxisLine in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
 
 	//## Custom code
 	//##

@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IfcTrimmingSelect> @Trim2 { get; }
 		bool @SenseAgreement { get; }
 		IfcTrimmingPreference @MasterRepresentation { get; }
-		
+	
 	}
 }
 

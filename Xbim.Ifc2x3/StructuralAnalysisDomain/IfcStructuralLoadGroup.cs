@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @Purpose { get; }
 		IEnumerable<IIfcStructuralResultGroup> @SourceOfResultGroup {  get; }
 		IEnumerable<IIfcStructuralAnalysisModel> @LoadGroupFor {  get; }
-		
+	
 	}
 }
 

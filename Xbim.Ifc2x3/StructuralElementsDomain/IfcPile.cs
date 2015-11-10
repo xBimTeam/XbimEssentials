@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcPileTypeEnum @PredefinedType { get; }
 		IfcPileConstructionEnum? @ConstructionType { get; }
-		
+	
 	}
 }
 

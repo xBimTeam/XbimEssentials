@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcDirection @ExtrudedDirection { get; }
 		IfcPositiveLengthMeasure @Depth { get; }
-		
+	
 	}
 }
 

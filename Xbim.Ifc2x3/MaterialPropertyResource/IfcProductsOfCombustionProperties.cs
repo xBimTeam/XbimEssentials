@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveRatioMeasure? @N20Content { get; }
 		IfcPositiveRatioMeasure? @COContent { get; }
 		IfcPositiveRatioMeasure? @CO2Content { get; }
-		
+	
 	}
 }
 

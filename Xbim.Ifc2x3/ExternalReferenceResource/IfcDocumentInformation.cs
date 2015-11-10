@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcDocumentStatusEnum? @Status { get; }
 		IEnumerable<IIfcDocumentInformationRelationship> @IsPointedTo {  get; }
 		IEnumerable<IIfcDocumentInformationRelationship> @IsPointer {  get; }
-		
+	
 	}
 }
 

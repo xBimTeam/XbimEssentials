@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcSystem @RelatingSystem { get; }
 		IEnumerable<IIfcSpatialStructureElement> @RelatedBuildings { get; }
-		
+	
 	}
 }
 

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @Region { get; }
 		IfcLabel? @PostalCode { get; }
 		IfcLabel? @Country { get; }
-		
+	
 	}
 }
 

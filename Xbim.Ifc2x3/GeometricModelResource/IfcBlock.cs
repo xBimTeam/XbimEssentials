@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure @XLength { get; }
 		IfcPositiveLengthMeasure @YLength { get; }
 		IfcPositiveLengthMeasure @ZLength { get; }
-		
+	
 	}
 }
 

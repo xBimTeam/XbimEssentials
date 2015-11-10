@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcElement @RelatingElement { get; }
 		IIfcStructuralMember @RelatedStructuralMember { get; }
-		
+	
 	}
 }
 

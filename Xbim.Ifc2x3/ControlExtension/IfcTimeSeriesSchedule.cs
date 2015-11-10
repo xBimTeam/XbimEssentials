@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IfcDateTimeSelect> @ApplicableDates { get; }
 		IfcTimeSeriesScheduleTypeEnum @TimeSeriesScheduleType { get; }
 		IIfcTimeSeries @TimeSeries { get; }
-		
+	
 	}
 }
 

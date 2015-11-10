@@ -88,10 +88,10 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get
 			{
-			foreach (var member in CrossSectionReinforcementDefinitions)
-			{
-				yield return member as IIfcReinforcementBarProperties;
-			}
+				foreach (var member in CrossSectionReinforcementDefinitions)
+				{
+					yield return member as IIfcReinforcementBarProperties;
+				}
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
@@ -101,7 +101,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

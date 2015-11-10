@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcNormalisedRatioMeasure? @FirstMullionOffset { get; }
 		IfcNormalisedRatioMeasure? @SecondMullionOffset { get; }
 		IIfcShapeAspect @ShapeAspectStyle { get; }
-		
+	
 	}
 }
 

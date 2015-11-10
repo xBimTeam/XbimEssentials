@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcAxis2Placement @MappingOrigin { get; }
 		IIfcRepresentation @MappedRepresentation { get; }
 		IEnumerable<IIfcMappedItem> @MapUsage {  get; }
-		
+	
 	}
 }
 

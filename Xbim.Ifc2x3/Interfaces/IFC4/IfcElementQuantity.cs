@@ -28,13 +28,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-			foreach (var member in Quantities)
-			{
-				yield return member as IIfcPhysicalQuantity;
-			}
+				foreach (var member in Quantities)
+				{
+					yield return member as IIfcPhysicalQuantity;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

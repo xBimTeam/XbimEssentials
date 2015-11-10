@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @Name { get; }
 		IfcCurveStyleFontSelect @CurveFont { get; }
 		IfcPositiveRatioMeasure @CurveFontScaling { get; }
-		
+	
 	}
 }
 

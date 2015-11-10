@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLabel? @MethodOfMeasurement { get; }
 		IEnumerable<IIfcPhysicalQuantity> @Quantities { get; }
-		
+	
 	}
 }
 

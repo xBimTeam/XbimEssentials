@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcIsothermalMoistureCapacityMeasure? @IsothermalMoistureCapacity { get; }
 		IfcVaporPermeabilityMeasure? @VaporPermeability { get; }
 		IfcMoistureDiffusivityMeasure? @MoistureDiffusivity { get; }
-		
+	
 	}
 }
 

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IIfcAppliedValue> @ReferencingValues { get; }
 		IfcLabel? @Name { get; }
 		IfcText? @Description { get; }
-		
+	
 	}
 }
 

@@ -20,13 +20,12 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-			foreach (var member in EdgeList)
-			{
-				yield return member as IIfcOrientedEdge;
-			}
+				foreach (var member in EdgeList)
+				{
+					yield return member as IIfcOrientedEdge;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

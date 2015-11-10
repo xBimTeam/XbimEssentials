@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<IIfcProfileDef> @Profiles { get; }
 		IfcLabel? @Label { get; }
-		
+	
 	}
 }
 

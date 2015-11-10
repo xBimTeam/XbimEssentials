@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<IIfcElement> @RealizingElements { get; }
 		IfcLabel? @ConnectionType { get; }
-		
+	
 	}
 }
 

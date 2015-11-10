@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -24,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IIfcDirection @Axis { get; }
 		IIfcDirection @RefDirection { get; }
-		
+	
 	}
 }
 
@@ -81,6 +82,41 @@ namespace Xbim.Ifc4.GeometryResource
 		}	
 		#endregion
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.List, EntityAttributeType.Class, 3, 3)]
+		public List<Common.Geometry.XbimVector3D> @P 
+		{
+			get 
+			{
+				//## Getter for P
+                var p = new List<Common.Geometry.XbimVector3D>(3);
+                if (RefDirection == null && Axis == null)
+                {
+                    p.Add(new Common.Geometry.XbimVector3D(1, 0, 0));
+                    p.Add(new Common.Geometry.XbimVector3D(0, 1, 0));
+                    p.Add(new Common.Geometry.XbimVector3D(0, 0, 1));
+                }
+                else if (RefDirection != null && Axis != null)
+                {
+                    var za = _axis.XbimVector3D();
+                    za.Normalize();
+                    var xa = _refDirection.XbimVector3D();
+                    xa.Normalize();
+                    var ya = Common.Geometry.XbimVector3D.CrossProduct(za, xa);
+                    ya.Normalize();
+                    p.Add(xa);
+                    p.Add(ya);
+                    p.Add(za);
+                }
+                else
+                    throw new ArgumentException("RefDirection and Axis must be noth either null or both defined");
+                return p;
+				//##
+			}
+		}
+
+		#endregion
 
 
 
@@ -168,5 +204,10 @@ namespace Xbim.Ifc4.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

@@ -23,7 +23,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				return Orientation;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

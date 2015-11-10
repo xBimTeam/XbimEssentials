@@ -10,6 +10,7 @@
 using Xbim.Ifc4.ExternalReferenceResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -26,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcPropertyAbstraction : IPersistEntity, IfcResourceObjectSelect
 	{
 		IEnumerable<IIfcExternalReferenceRelationship> @HasExternalReferences {  get; }
-		
+	
 	}
 }
 
@@ -103,6 +104,7 @@ namespace Xbim.Ifc4.PropertyResource
 		internal IfcPropertyAbstraction(IModel model) 		{ 
 			Model = model; 
 		}
+
 
 
 
@@ -234,5 +236,10 @@ namespace Xbim.Ifc4.PropertyResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

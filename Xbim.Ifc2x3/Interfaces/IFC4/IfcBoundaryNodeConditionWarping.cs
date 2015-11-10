@@ -25,7 +25,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				return new Ifc4.MeasureResource.IfcWarpingMomentMeasure(WarpingStiffness.Value);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

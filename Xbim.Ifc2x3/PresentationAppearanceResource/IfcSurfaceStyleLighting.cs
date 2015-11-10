@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcColourRgb @DiffuseReflectionColour { get; }
 		IIfcColourRgb @TransmissionColour { get; }
 		IIfcColourRgb @ReflectanceColour { get; }
-		
+	
 	}
 }
 

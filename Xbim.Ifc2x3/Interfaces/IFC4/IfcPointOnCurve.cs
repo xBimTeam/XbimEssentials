@@ -30,7 +30,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return new Ifc4.MeasureResource.IfcParameterValue(PointParameter);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

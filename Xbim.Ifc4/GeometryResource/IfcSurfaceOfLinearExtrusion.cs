@@ -11,6 +11,7 @@ using Xbim.Ifc4.ProfileResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -26,7 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IIfcDirection @ExtrudedDirection { get; }
 		IfcLengthMeasure @Depth { get; }
-		
+		Common.Geometry.XbimVector3D @ExtrusionAxis  { get ; }
+	
 	}
 }
 
@@ -83,6 +85,26 @@ namespace Xbim.Ifc4.GeometryResource
 		}	
 		#endregion
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		public Common.Geometry.XbimVector3D @ExtrusionAxis 
+		{
+			get 
+			{
+				//## Getter for ExtrusionAxis
+                return new Common.Geometry.XbimVector3D(
+                    _extrudedDirection.X, 
+                    _extrudedDirection.Y, 
+                    _extrudedDirection.Z)
+                {
+                    Magnitude = _depth
+                };
+				//##
+			}
+		}
+
+		#endregion
 
 
 
@@ -167,5 +189,10 @@ namespace Xbim.Ifc4.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

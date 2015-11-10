@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcForceMeasure? @CompressionFailureX { get; }
 		IfcForceMeasure? @CompressionFailureY { get; }
 		IfcForceMeasure? @CompressionFailureZ { get; }
-		
+	
 	}
 }
 

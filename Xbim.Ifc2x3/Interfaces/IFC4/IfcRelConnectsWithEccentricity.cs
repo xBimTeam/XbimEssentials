@@ -23,7 +23,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				return ConnectionConstraint;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

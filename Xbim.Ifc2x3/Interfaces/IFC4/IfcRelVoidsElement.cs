@@ -30,7 +30,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return RelatedOpeningElement;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcSurfaceStyleWithTextures : IPersistEntity, IfcSurfaceStyleElementSelect
 	{
 		IEnumerable<IIfcSurfaceTexture> @Textures { get; }
-		
+	
 	}
 }
 

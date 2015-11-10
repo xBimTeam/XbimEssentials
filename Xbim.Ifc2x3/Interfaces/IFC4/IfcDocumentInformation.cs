@@ -105,18 +105,18 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-			foreach (var member in Editors)
-			{
-				var ifcorganization = member as ActorResource.IfcOrganization;
-				if (ifcorganization != null) 
-					yield return ifcorganization;
-				var ifcperson = member as ActorResource.IfcPerson;
-				if (ifcperson != null) 
-					yield return ifcperson;
-				var ifcpersonandorganization = member as ActorResource.IfcPersonAndOrganization;
-				if (ifcpersonandorganization != null) 
-					yield return ifcpersonandorganization;
-			}
+				foreach (var member in Editors)
+				{
+					var ifcorganization = member as ActorResource.IfcOrganization;
+					if (ifcorganization != null) 
+						yield return ifcorganization;
+					var ifcperson = member as ActorResource.IfcPerson;
+					if (ifcperson != null) 
+						yield return ifcperson;
+					var ifcpersonandorganization = member as ActorResource.IfcPersonAndOrganization;
+					if (ifcpersonandorganization != null) 
+						yield return ifcpersonandorganization;
+				}
 			} 
 		}
 		Ifc4.DateTimeResource.IfcDateTime? IIfcDocumentInformation.CreationTime 
@@ -265,7 +265,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				return Model.Instances.Where<IIfcDocumentInformationRelationship>(e => (e.RelatingDocument as IfcDocumentInformation) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

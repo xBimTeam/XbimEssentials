@@ -28,7 +28,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		string @Name { get; }
 		IEnumerable<IIfcTableRow> @Rows { get; }
-		
+		long @NumberOfCellsInRow  { get ; }
+		long @NumberOfHeadings  { get ; }
+		long @NumberOfDataRows  { get ; }
+	
 	}
 }
 

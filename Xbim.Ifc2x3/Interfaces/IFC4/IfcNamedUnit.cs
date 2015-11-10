@@ -125,7 +125,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

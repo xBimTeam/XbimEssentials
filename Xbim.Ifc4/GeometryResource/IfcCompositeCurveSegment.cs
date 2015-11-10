@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -26,7 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 		bool @SameSense { get; }
 		IIfcCurve @ParentCurve { get; }
 		IEnumerable<IIfcCompositeCurve> @UsingCurves {  get; }
-		
+		IfcDimensionCount @Dim  { get ; }
+	
 	}
 }
 
@@ -100,6 +102,20 @@ namespace Xbim.Ifc4.GeometryResource
 		}	
 		#endregion
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public IfcDimensionCount @Dim 
+		{
+			get 
+			{
+				//## Getter for Dim
+                return ParentCurve.Dim;
+				//##
+			}
+		}
+
+		#endregion
 
 		#region Inverse attributes
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
@@ -193,5 +209,10 @@ namespace Xbim.Ifc4.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveRatioMeasure? @FlowConditionSingleValue { get; }
 		IfcLinearVelocityMeasure? @VelocitySingleValue { get; }
 		IfcPressureMeasure? @PressureSingleValue { get; }
-		
+	
 	}
 }
 

@@ -25,7 +25,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcGeometricSet : IIfcGeometricRepresentationItem
 	{
 		IEnumerable<IfcGeometricSetSelect> @Elements { get; }
-		
+		IfcDimensionCount @Dim  { get ; }
+	
 	}
 }
 

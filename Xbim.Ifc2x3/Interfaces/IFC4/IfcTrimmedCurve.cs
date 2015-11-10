@@ -27,28 +27,28 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-			foreach (var member in Trim1)
-			{
-				var ifccartesianpoint = member as IfcCartesianPoint;
-				if (ifccartesianpoint != null) 
-					yield return ifccartesianpoint;
-				if (member is MeasureResource.IfcParameterValue) 
-					yield return new Ifc4.MeasureResource.IfcParameterValue((double)(MeasureResource.IfcParameterValue)member);
-			}
+				foreach (var member in Trim1)
+				{
+					var ifccartesianpoint = member as IfcCartesianPoint;
+					if (ifccartesianpoint != null) 
+						yield return ifccartesianpoint;
+					if (member is MeasureResource.IfcParameterValue) 
+						yield return new Ifc4.MeasureResource.IfcParameterValue((double)(MeasureResource.IfcParameterValue)member);
+				}
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.GeometryResource.IfcTrimmingSelect> IIfcTrimmedCurve.Trim2 
 		{ 
 			get
 			{
-			foreach (var member in Trim2)
-			{
-				var ifccartesianpoint = member as IfcCartesianPoint;
-				if (ifccartesianpoint != null) 
-					yield return ifccartesianpoint;
-				if (member is MeasureResource.IfcParameterValue) 
-					yield return new Ifc4.MeasureResource.IfcParameterValue((double)(MeasureResource.IfcParameterValue)member);
-			}
+				foreach (var member in Trim2)
+				{
+					var ifccartesianpoint = member as IfcCartesianPoint;
+					if (ifccartesianpoint != null) 
+						yield return ifccartesianpoint;
+					if (member is MeasureResource.IfcParameterValue) 
+						yield return new Ifc4.MeasureResource.IfcParameterValue((double)(MeasureResource.IfcParameterValue)member);
+				}
 			} 
 		}
 		bool IIfcTrimmedCurve.SenseAgreement 
@@ -79,7 +79,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

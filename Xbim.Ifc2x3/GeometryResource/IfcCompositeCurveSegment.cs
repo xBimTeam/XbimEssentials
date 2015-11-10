@@ -27,7 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 		bool @SameSense { get; }
 		IIfcCurve @ParentCurve { get; }
 		IEnumerable<IIfcCompositeCurve> @UsingCurves {  get; }
-		
+		IfcDimensionCount @Dim  { get ; }
+	
 	}
 }
 

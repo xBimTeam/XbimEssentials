@@ -45,7 +45,6 @@ namespace Xbim.Ifc2x3.QuantityResource
 				return Model.Instances.Where<IIfcPhysicalComplexQuantity>(e => e.HasQuantities != null &&  e.HasQuantities.Contains(this));
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

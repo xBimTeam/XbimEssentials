@@ -85,7 +85,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				return Model.Instances.Where<IIfcLibraryReference>(e => (e.ReferencedLibrary as IfcLibraryInformation) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

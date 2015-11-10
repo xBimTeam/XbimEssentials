@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IfcValue> @RowCells { get; }
 		bool @IsHeading { get; }
 		IIfcTable @OfTable {  get; }
-		
+	
 	}
 }
 

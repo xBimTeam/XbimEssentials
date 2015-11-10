@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcReal @ConstantAttenuation { get; }
 		IfcReal @DistanceAttenuation { get; }
 		IfcReal @QuadricAttenuation { get; }
-		
+	
 	}
 }
 

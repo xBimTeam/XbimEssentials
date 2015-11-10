@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcText? @Description { get; }
 		IEnumerable<IfcLayeredItem> @AssignedItems { get; }
 		IfcIdentifier? @Identifier { get; }
-		
+	
 	}
 }
 

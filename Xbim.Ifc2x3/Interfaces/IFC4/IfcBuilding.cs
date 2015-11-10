@@ -69,7 +69,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IIfcRelReferencedInSpatialStructure>(e => (e.RelatingStructure as IfcBuilding) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

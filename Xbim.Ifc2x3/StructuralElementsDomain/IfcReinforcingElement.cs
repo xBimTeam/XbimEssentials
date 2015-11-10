@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcReinforcingElement : IIfcBuildingElementComponent
 	{
 		IfcLabel? @SteelGrade { get; }
-		
+	
 	}
 }
 

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @Location { get; }
 		IfcIdentifier? @ItemReference { get; }
 		IfcLabel? @Name { get; }
-		
+	
 	}
 }
 

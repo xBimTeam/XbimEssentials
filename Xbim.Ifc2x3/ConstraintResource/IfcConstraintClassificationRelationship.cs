@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcConstraint @ClassifiedConstraint { get; }
 		IEnumerable<IfcClassificationNotationSelect> @RelatedClassifications { get; }
-		
+	
 	}
 }
 

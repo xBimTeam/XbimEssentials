@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcNormalisedRatioMeasure? @FrictionCoefficient { get; }
 		IfcPositiveLengthMeasure? @AnchorageSlip { get; }
 		IfcPositiveLengthMeasure? @MinCurvatureRadius { get; }
-		
+	
 	}
 }
 

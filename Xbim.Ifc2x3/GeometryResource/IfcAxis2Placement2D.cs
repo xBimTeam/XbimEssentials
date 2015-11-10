@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcAxis2Placement2D : IIfcPlacement, IfcAxis2Placement
 	{
 		IIfcDirection @RefDirection { get; }
-		
+	
 	}
 }
 

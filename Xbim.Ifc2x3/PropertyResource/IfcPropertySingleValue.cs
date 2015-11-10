@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcValue @NominalValue { get; }
 		IfcUnit @Unit { get; }
-		
+	
 	}
 }
 

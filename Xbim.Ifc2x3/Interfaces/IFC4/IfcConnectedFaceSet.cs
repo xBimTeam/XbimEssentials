@@ -20,13 +20,12 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-			foreach (var member in CfsFaces)
-			{
-				yield return member as IIfcFace;
-			}
+				foreach (var member in CfsFaces)
+				{
+					yield return member as IIfcFace;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

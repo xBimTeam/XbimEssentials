@@ -31,10 +31,10 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get
 			{
-			foreach (var member in Rows)
-			{
-				yield return member as IIfcTableRow;
-			}
+				foreach (var member in Rows)
+				{
+					yield return member as IIfcTableRow;
+				}
 			} 
 		}
 		IEnumerable<IIfcTableColumn> IIfcTable.Columns 
@@ -45,6 +45,38 @@ namespace Xbim.Ifc2x3.UtilityResource
                 return null;
 				//##
 			} 
+		}
+		long IIfcTable.NumberOfCellsInRow 
+		{
+			get 
+			{
+				//## Getter for NumberOfCellsInRow in an interface
+				//TODO: Implement getter for derived attribute NumberOfCellsInRow in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
+
+		long IIfcTable.NumberOfHeadings 
+		{
+			get 
+			{
+				//## Getter for NumberOfHeadings in an interface
+				//TODO: Implement getter for derived attribute NumberOfHeadings in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
+
+		long IIfcTable.NumberOfDataRows 
+		{
+			get 
+			{
+				//## Getter for NumberOfDataRows in an interface
+				//TODO: Implement getter for derived attribute NumberOfDataRows in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
 		}
 
 	//## Custom code

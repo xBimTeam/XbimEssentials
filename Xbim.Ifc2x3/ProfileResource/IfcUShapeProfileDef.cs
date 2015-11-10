@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure? @EdgeRadius { get; }
 		IfcPlaneAngleMeasure? @FlangeSlope { get; }
 		IfcPositiveLengthMeasure? @CentreOfGravityInX { get; }
-		
+	
 	}
 }
 

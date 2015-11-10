@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<IIfcProduct> @ShapeOfProduct {  get; }
 		IEnumerable<IIfcShapeAspect> @HasShapeAspects {  get; }
-		
+	
 	}
 }
 

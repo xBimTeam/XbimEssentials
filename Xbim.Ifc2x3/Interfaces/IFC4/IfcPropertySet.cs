@@ -20,13 +20,12 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-			foreach (var member in HasProperties)
-			{
-				yield return member as IIfcProperty;
-			}
+				foreach (var member in HasProperties)
+				{
+					yield return member as IIfcProperty;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

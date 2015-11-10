@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaX { get; }
 		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaY { get; }
 		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaZ { get; }
-		
+	
 	}
 }
 

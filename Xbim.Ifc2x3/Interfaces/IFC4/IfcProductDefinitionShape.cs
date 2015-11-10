@@ -30,7 +30,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return Model.Instances.Where<IIfcShapeAspect>(e => (e.PartOfProductDefinitionShape as IfcProductDefinitionShape) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcParameterValue @StartParam { get; }
 		IfcParameterValue @EndParam { get; }
 		IIfcSurface @ReferenceSurface { get; }
-		
+	
 	}
 }
 

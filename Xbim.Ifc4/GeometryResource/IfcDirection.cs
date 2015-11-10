@@ -10,6 +10,7 @@
 using Xbim.Ifc4.GeometricConstraintResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -24,7 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcDirection : IIfcGeometricRepresentationItem, IfcGridPlacementDirectionSelect, IfcVectorOrDirection
 	{
 		IEnumerable<double> @DirectionRatios { get; }
-		
+		IfcDimensionCount @Dim  { get ; }
+	
 	}
 }
 
@@ -62,6 +64,20 @@ namespace Xbim.Ifc4.GeometryResource
 		}	
 		#endregion
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public IfcDimensionCount @Dim 
+		{
+			get 
+			{
+				//## Getter for Dim
+                return DirectionRatios.Count;
+				//##
+			}
+		}
+
+		#endregion
 
 
 
@@ -140,5 +156,28 @@ namespace Xbim.Ifc4.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+        /// <summary>
+        /// Do not use this conversion operator unless you are absolutely sure you know what you do.
+        /// Resulting object is not a properpart of the model and will throw an exception if you
+        /// try to modify it or anything. It is only used in IfcGeometricRepresentationSubContext.TrueNorth where
+        /// derived attribute is returned in derived overwriting attribute.
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <returns></returns>
+        public static implicit operator IfcDirection(Common.Geometry.XbimVector3D vector)  // explicit byte to digit conversion operator
+        {
+            var result = new IfcDirection(null);
+            result._directionRatios.InternalAdd(vector.X);
+            result._directionRatios.InternalAdd(vector.Y);
+            result._directionRatios.InternalAdd(vector.Z);
+            result.ActivationStatus = ActivationStatus.ActivatedRead;
+            result.EntityLabel = -1;
+            return result;
+        }
+		//##
+		#endregion
 	}
 }

@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure @WallThickness { get; }
 		IfcPositiveLengthMeasure? @InnerFilletRadius { get; }
 		IfcPositiveLengthMeasure? @OuterFilletRadius { get; }
-		
+	
 	}
 }
 

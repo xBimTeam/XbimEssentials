@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcMolecularWeightMeasure? @MolecularWeight { get; }
 		IfcNormalisedRatioMeasure? @Porosity { get; }
 		IfcMassDensityMeasure? @MassDensity { get; }
-		
+	
 	}
 }
 

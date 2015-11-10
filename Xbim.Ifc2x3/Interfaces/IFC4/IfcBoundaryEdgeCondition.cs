@@ -76,7 +76,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				return new Ifc4.MeasureResource.IfcModulusOfRotationalSubgradeReactionMeasure(RotationalStiffnessByLengthZ.Value);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

@@ -30,7 +30,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 				return SameSense;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

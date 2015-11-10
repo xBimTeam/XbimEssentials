@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcAxis2Placement @LocationAtRelatingElement { get; }
 		IfcAxis2Placement @LocationAtRelatedElement { get; }
 		IIfcProfileDef @ProfileOfPort { get; }
-		
+	
 	}
 }
 

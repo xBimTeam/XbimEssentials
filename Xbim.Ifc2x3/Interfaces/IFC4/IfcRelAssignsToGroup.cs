@@ -23,7 +23,6 @@ namespace Xbim.Ifc2x3.Kernel
 				return RelatingGroup;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

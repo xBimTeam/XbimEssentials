@@ -55,7 +55,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

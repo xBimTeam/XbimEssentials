@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<IIfcRelDefinesByProperties> @PropertyDefinitionOf {  get; }
 		IEnumerable<IIfcTypeObject> @DefinesType {  get; }
-		
+	
 	}
 }
 

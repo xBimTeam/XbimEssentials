@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcVertex @EdgeStart { get; }
 		IIfcVertex @EdgeEnd { get; }
-		
+	
 	}
 }
 

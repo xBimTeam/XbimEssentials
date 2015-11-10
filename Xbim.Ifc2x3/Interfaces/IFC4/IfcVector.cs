@@ -30,6 +30,16 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return new Ifc4.MeasureResource.IfcLengthMeasure(Magnitude);
 			} 
 		}
+		Ifc4.GeometryResource.IfcDimensionCount IIfcVector.Dim 
+		{
+			get 
+			{
+				//## Getter for Dim in an interface
+				//TODO: Implement getter for derived attribute Dim in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
 
 	//## Custom code
 	//##

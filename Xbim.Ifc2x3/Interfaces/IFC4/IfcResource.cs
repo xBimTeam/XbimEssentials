@@ -41,7 +41,6 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IIfcRelAssignsToResource>(e => (e.RelatingResource as IfcResource) == this);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

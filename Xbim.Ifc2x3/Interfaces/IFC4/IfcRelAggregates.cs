@@ -27,13 +27,12 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-			foreach (var member in RelatedObjects)
-			{
-				yield return member as IIfcObjectDefinition;
-			}
+				foreach (var member in RelatedObjects)
+				{
+					yield return member as IIfcObjectDefinition;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

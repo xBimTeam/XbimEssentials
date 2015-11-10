@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcProfileDef @SweptArea { get; }
 		IIfcAxis2Placement3D @Position { get; }
-		
+	
 	}
 }
 

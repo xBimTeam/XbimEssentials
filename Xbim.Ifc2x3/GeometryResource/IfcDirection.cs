@@ -25,7 +25,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcDirection : IIfcGeometricRepresentationItem, IfcOrientationSelect, IfcVectorOrDirection
 	{
 		IEnumerable<double> @DirectionRatios { get; }
-		
+		IfcDimensionCount @Dim  { get ; }
+	
 	}
 }
 
@@ -157,6 +158,24 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
+        /// <summary>
+        /// Do not use this conversion operator unless you are absolutely sure you know what you do.
+        /// Resulting object is not a properpart of the model and will throw an exception if you
+        /// try to modify it or anything. It is only used in IfcGeometricRepresentationSubContext.TrueNorth where
+        /// derived attribute is returned in derived overwriting attribute.
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <returns></returns>
+        public static implicit operator IfcDirection(Common.Geometry.XbimVector3D vector)  // explicit byte to digit conversion operator
+        {
+            var result = new IfcDirection(null);
+            result._directionRatios.InternalAdd(vector.X);
+            result._directionRatios.InternalAdd(vector.Y);
+            result._directionRatios.InternalAdd(vector.Z);
+            result.ActivationStatus = ActivationStatus.ActivatedRead;
+            result.EntityLabel = -1;
+            return result;
+        }
 		//##
 		#endregion
 	}

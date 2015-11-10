@@ -28,10 +28,10 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-			foreach (var member in AddressLines)
-			{
-				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-			}
+				foreach (var member in AddressLines)
+				{
+					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
+				}
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.PostalBox 
@@ -74,7 +74,6 @@ namespace Xbim.Ifc2x3.ActorResource
 				return new Ifc4.MeasureResource.IfcLabel(Country.Value);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

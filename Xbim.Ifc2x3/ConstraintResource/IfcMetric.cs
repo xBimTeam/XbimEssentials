@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcBenchmarkEnum @Benchmark { get; }
 		IfcLabel? @ValueSource { get; }
 		IfcMetricValueSelect @DataValue { get; }
-		
+	
 	}
 }
 

@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcReal? @RefractionIndex { get; }
 		IfcReal? @DispersionFactor { get; }
-		
+	
 	}
 }
 

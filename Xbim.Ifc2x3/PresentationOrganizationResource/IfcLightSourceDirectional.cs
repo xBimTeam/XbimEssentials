@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcLightSourceDirectional : IIfcLightSource
 	{
 		IIfcDirection @Orientation { get; }
-		
+	
 	}
 }
 

@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcDateTimeSelect @TimeStamp { get; }
 		IEnumerable<IfcValue> @ListValues { get; }
-		
+	
 	}
 }
 

@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElementComponentType : IIfcElementType
 	{
-		
+	
 	}
 }
 

@@ -23,6 +23,16 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return Axis;
 			} 
 		}
+		Common.Geometry.XbimVector3D IIfcAxis1Placement.Z 
+		{
+			get 
+			{
+				//## Getter for Z in an interface
+				//TODO: Implement getter for derived attribute Z in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
 
 	//## Custom code
 	//##

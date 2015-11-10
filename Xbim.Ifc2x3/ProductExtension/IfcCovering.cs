@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcCoveringTypeEnum? @PredefinedType { get; }
 		IEnumerable<IIfcRelCoversSpaces> @CoversSpaces {  get; }
 		IEnumerable<IIfcRelCoversBldgElements> @Covers {  get; }
-		
+	
 	}
 }
 

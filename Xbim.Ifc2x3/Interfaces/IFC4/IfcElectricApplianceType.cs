@@ -130,7 +130,6 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				}
 			} 
 		}
-
 	//## Custom code
         Ifc4.MeasureResource.IfcLabel? IIfcElementType.ElementType
         {

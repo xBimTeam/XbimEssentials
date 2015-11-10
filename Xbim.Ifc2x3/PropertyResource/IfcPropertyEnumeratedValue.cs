@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<IfcValue> @EnumerationValues { get; }
 		IIfcPropertyEnumeration @EnumerationReference { get; }
-		
+	
 	}
 }
 

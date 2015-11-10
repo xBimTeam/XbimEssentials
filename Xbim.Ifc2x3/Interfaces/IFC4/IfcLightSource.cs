@@ -47,7 +47,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(Intensity.Value);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

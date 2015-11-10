@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcPoint @FillStyleTarget { get; }
 		IfcGlobalOrLocalEnum? @GlobalOrLocal { get; }
-		
+	
 	}
 }
 

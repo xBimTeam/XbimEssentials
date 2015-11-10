@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPlanarForceMeasure? @PlanarForceX { get; }
 		IfcPlanarForceMeasure? @PlanarForceY { get; }
 		IfcPlanarForceMeasure? @PlanarForceZ { get; }
-		
+	
 	}
 }
 

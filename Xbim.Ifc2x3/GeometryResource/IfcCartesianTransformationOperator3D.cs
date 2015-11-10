@@ -24,7 +24,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcCartesianTransformationOperator3D : IIfcCartesianTransformationOperator
 	{
 		IIfcDirection @Axis3 { get; }
-		
+		List<Common.Geometry.XbimVector3D> @U  { get ; }
+	
 	}
 }
 

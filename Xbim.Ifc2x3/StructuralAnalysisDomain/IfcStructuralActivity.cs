@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcStructuralLoad @AppliedLoad { get; }
 		IfcGlobalOrLocalEnum @GlobalOrLocal { get; }
 		IIfcRelConnectsStructuralActivity @AssignedToStructuralItem {  get; }
-		
+	
 	}
 }
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IIfcRepresentationMap> @RepresentationMap {  get; }
 		IEnumerable<IIfcPresentationLayerAssignment> @LayerAssignments {  get; }
 		IEnumerable<IIfcProductRepresentation> @OfProductRepresentation {  get; }
-		
+	
 	}
 }
 

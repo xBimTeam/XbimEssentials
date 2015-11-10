@@ -20,20 +20,20 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-			foreach (var member in TelephoneNumbers)
-			{
-				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-			}
+				foreach (var member in TelephoneNumbers)
+				{
+					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
+				}
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.FacsimileNumbers 
 		{ 
 			get
 			{
-			foreach (var member in FacsimileNumbers)
-			{
-				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-			}
+				foreach (var member in FacsimileNumbers)
+				{
+					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
+				}
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcTelecomAddress.PagerNumber 
@@ -48,10 +48,10 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-			foreach (var member in ElectronicMailAddresses)
-			{
-				yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-			}
+				foreach (var member in ElectronicMailAddresses)
+				{
+					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
+				}
 			} 
 		}
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcTelecomAddress.WWWHomePageURL 
@@ -71,7 +71,6 @@ namespace Xbim.Ifc2x3.ActorResource
 				//##
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

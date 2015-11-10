@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcCalendarDate @LastUpdateDate { get; }
 		IIfcCostValue @CurrentValue { get; }
 		IIfcCostValue @OriginalValue { get; }
-		
+	
 	}
 }
 

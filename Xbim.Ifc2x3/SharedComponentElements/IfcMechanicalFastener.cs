@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcPositiveLengthMeasure? @NominalDiameter { get; }
 		IfcPositiveLengthMeasure? @NominalLength { get; }
-		
+	
 	}
 }
 

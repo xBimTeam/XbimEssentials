@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcColourSpecification : IPersistEntity, IfcColour
 	{
 		IfcLabel? @Name { get; }
-		
+	
 	}
 }
 

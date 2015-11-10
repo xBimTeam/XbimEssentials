@@ -16,6 +16,16 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcPoint : IIfcPoint
 	{
+		Ifc4.GeometryResource.IfcDimensionCount Ifc4.GeometricModelResource.IfcGeometricSetSelect.Dim 
+		{
+			get 
+			{
+				//## Getter for Dim in an interface
+				//TODO: Implement getter for derived attribute Dim in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
 
 	//## Custom code
 	//##

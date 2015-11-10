@@ -20,13 +20,12 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-			foreach (var member in Polygon)
-			{
-				yield return member as IIfcCartesianPoint;
-			}
+				foreach (var member in Polygon)
+				{
+					yield return member as IIfcCartesianPoint;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

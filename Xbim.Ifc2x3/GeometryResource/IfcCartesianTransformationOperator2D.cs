@@ -23,7 +23,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCartesianTransformationOperator2D : IIfcCartesianTransformationOperator
 	{
-		
+		List<Common.Geometry.XbimVector3D> @U  { get ; }
+	
 	}
 }
 

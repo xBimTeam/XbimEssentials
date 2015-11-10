@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcPropertyDefinition : IIfcRoot
 	{
 		IEnumerable<IIfcRelAssociates> @HasAssociations {  get; }
-		
+	
 	}
 }
 

@@ -11,6 +11,7 @@ using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.GeometricConstraintResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -24,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurface : IIfcGeometricRepresentationItem, IfcGeometricSetSelect, IfcSurfaceOrFaceSurface
 	{
-		
+	
 	}
 }
 
@@ -44,6 +45,32 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
 
+
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public IfcDimensionCount @Dim 
+		{
+			get 
+			{
+				//## Getter for Dim
+                var es = this as IfcElementarySurface;
+                if (es != null)
+                    return es.Dim;
+                var sws = this as IfcSweptSurface;
+                if (sws != null)
+                    return sws.Dim;
+                var cbd = this as IfcCurveBoundedPlane;
+                if (cbd != null)
+                    return cbd.Dim;
+                var rts = this as IfcRectangularTrimmedSurface;
+                if (rts != null)
+                    return rts.Dim;
+                return 0;
+				//##
+			}
+		}
+
+		#endregion
 
 
 
@@ -114,5 +141,10 @@ namespace Xbim.Ifc4.GeometryResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

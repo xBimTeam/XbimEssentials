@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcSecondInMinute? @SecondComponent { get; }
 		IIfcCoordinatedUniversalTimeOffset @Zone { get; }
 		IfcDaylightSavingHour? @DaylightSavingOffset { get; }
-		
+	
 	}
 }
 

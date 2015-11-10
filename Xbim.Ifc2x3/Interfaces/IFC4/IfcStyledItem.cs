@@ -27,10 +27,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-			foreach (var member in Styles)
-			{
-				yield return member;
-			}
+				foreach (var member in Styles)
+				{
+					yield return member;
+				}
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcStyledItem.Name 
@@ -41,7 +41,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

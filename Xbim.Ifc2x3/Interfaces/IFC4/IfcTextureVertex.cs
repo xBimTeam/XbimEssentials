@@ -20,13 +20,12 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get
 			{
-			foreach (var member in Coordinates)
-			{
-				yield return new Ifc4.MeasureResource.IfcParameterValue((double)member);
-			}
+				foreach (var member in Coordinates)
+				{
+					yield return new Ifc4.MeasureResource.IfcParameterValue((double)member);
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

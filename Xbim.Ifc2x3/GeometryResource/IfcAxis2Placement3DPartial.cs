@@ -40,31 +40,37 @@ namespace Xbim.Ifc2x3.GeometryResource
                 Location.Y, Location.Z, 1);
         }
 
-        public new int Dim
+        public new IfcDimensionCount Dim
         {
             get { return (int)((long)(base.Dim)); }
         }
 
-        List<IfcDirection> IfcAxis2Placement.P
+        List<XbimVector3D> IfcAxis2Placement.P
         {
             get
             {
-                var a = new IfcDirection(Model);
-                a.DirectionRatios.InternalAdd(P[0].X);
-                a.DirectionRatios.InternalAdd(P[0].Y);
-                a.DirectionRatios.InternalAdd(P[0].Z);
+                var a = new XbimVector3D
+                {
+                    X = P[0].X,
+                    Y = P[0].Y,
+                    Z = P[0].Z
+                };
 
-                var b = new IfcDirection(Model);
-                b.DirectionRatios.InternalAdd(P[1].X);
-                b.DirectionRatios.InternalAdd(P[1].Y);
-                b.DirectionRatios.InternalAdd(P[1].Z);
+                var b = new XbimVector3D
+                {
+                    X = P[1].X,
+                    Y = P[1].Y,
+                    Z = P[1].Z
+                };
 
-                var c = new IfcDirection(Model);
-                c.DirectionRatios.InternalAdd(P[2].X);
-                c.DirectionRatios.InternalAdd(P[2].Y);
-                c.DirectionRatios.InternalAdd(P[2].Z);
+                var c = new XbimVector3D
+                {
+                    X = P[2].X,
+                    Y = P[2].Y,
+                    Z = P[2].Z
+                };
 
-                return new List<IfcDirection> { a, b, c };
+                return new List<XbimVector3D> { a, b, c };
             }
         }
 

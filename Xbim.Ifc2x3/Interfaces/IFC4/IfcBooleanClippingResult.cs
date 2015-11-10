@@ -16,7 +16,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcBooleanClippingResult : IIfcBooleanClippingResult
 	{
-
 	//## Custom code
 	//##
 	}

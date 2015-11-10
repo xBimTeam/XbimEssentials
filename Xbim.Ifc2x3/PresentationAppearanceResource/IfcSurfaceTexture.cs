@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		bool @RepeatT { get; }
 		IfcSurfaceTextureEnum @TextureType { get; }
 		IIfcCartesianTransformationOperator2D @TextureTransform { get; }
-		
+	
 	}
 }
 

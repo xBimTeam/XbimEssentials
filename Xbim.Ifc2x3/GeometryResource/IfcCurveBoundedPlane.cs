@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcPlane @BasisSurface { get; }
 		IIfcCurve @OuterBoundary { get; }
 		IEnumerable<IIfcCurve> @InnerBoundaries { get; }
-		
+	
 	}
 }
 

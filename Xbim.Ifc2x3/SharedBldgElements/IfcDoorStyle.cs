@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcDoorStyleConstructionEnum @ConstructionType { get; }
 		bool @ParameterTakesPrecedence { get; }
 		bool @Sizeable { get; }
-		
+	
 	}
 }
 

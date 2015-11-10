@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcThermodynamicTemperatureMeasure? @BoilingPoint { get; }
 		IfcThermodynamicTemperatureMeasure? @FreezingPoint { get; }
 		IfcThermalConductivityMeasure? @ThermalConductivity { get; }
-		
+	
 	}
 }
 

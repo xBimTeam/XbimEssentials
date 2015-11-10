@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcSurface @BasisSurface { get; }
 		IfcParameterValue @PointParameterU { get; }
 		IfcParameterValue @PointParameterV { get; }
-		
+	
 	}
 }
 

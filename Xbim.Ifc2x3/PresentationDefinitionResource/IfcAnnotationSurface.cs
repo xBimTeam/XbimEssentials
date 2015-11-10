@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcGeometricRepresentationItem @Item { get; }
 		IIfcTextureCoordinate @TextureCoordinates { get; }
-		
+	
 	}
 }
 

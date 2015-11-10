@@ -10,6 +10,7 @@
 using Xbim.Ifc4.TopologyResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -23,7 +24,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFacetedBrep : IIfcManifoldSolidBrep
 	{
-		
+	
 	}
 }
 
@@ -41,6 +42,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		internal IfcFacetedBrep(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
+
 
 
 
@@ -119,5 +121,10 @@ namespace Xbim.Ifc4.GeometricModelResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

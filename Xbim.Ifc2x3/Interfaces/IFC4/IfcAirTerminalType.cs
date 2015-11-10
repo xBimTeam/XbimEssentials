@@ -63,7 +63,6 @@ namespace Xbim.Ifc2x3.HVACDomain
 				}
 			} 
 		}
-
 	//## Custom code
         Ifc4.MeasureResource.IfcLabel? IIfcElementType.ElementType
         {

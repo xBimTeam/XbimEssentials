@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<long> @RelatedPriorities { get; }
 		IfcConnectionTypeEnum @RelatedConnectionType { get; }
 		IfcConnectionTypeEnum @RelatingConnectionType { get; }
-		
+	
 	}
 }
 

@@ -30,7 +30,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				return new Ifc4.PresentationDefinitionResource.IfcBoxAlignment(BoxAlignment);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

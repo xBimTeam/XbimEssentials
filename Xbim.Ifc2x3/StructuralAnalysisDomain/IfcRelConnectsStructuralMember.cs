@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcStructuralConnectionCondition @AdditionalConditions { get; }
 		IfcLengthMeasure? @SupportedLength { get; }
 		IIfcAxis2Placement3D @ConditionCoordinateSystem { get; }
-		
+	
 	}
 }
 

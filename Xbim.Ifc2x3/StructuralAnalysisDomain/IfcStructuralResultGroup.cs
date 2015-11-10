@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcStructuralLoadGroup @ResultForLoadGroup { get; }
 		bool @IsLinear { get; }
 		IEnumerable<IIfcStructuralAnalysisModel> @ResultGroupFor {  get; }
-		
+	
 	}
 }
 

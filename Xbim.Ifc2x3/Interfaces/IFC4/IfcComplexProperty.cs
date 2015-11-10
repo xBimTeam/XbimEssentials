@@ -27,10 +27,10 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-			foreach (var member in HasProperties)
-			{
-				yield return member as IIfcProperty;
-			}
+				foreach (var member in HasProperties)
+				{
+					yield return member as IIfcProperty;
+				}
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
@@ -40,7 +40,6 @@ namespace Xbim.Ifc2x3.PropertyResource
 				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

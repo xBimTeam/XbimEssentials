@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcDateTimeSelect @UpdateDate { get; }
 		IfcIdentifier @ID { get; }
 		IfcCostScheduleTypeEnum @PredefinedType { get; }
-		
+	
 	}
 }
 

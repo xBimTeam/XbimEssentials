@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @Name { get; }
 		IfcText? @Description { get; }
 		IEnumerable<IIfcRepresentation> @Representations { get; }
-		
+	
 	}
 }
 

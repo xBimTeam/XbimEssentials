@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPlaneAngleMeasure? @RotationalDisplacementRX { get; }
 		IfcPlaneAngleMeasure? @RotationalDisplacementRY { get; }
 		IfcPlaneAngleMeasure? @RotationalDisplacementRZ { get; }
-		
+	
 	}
 }
 

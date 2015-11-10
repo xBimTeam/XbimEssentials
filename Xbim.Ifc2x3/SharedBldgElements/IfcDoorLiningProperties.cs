@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure? @CasingThickness { get; }
 		IfcPositiveLengthMeasure? @CasingDepth { get; }
 		IIfcShapeAspect @ShapeAspectStyle { get; }
-		
+	
 	}
 }
 

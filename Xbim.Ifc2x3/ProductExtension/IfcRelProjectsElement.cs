@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcElement @RelatingElement { get; }
 		IIfcFeatureElementAddition @RelatedFeatureElement { get; }
-		
+	
 	}
 }
 

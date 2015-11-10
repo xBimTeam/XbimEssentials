@@ -29,7 +29,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<IfcPositiveLengthMeasure> @SubsequentThickness { get; }
 		IIfcShapeAspect @VaryingThicknessLocation { get; }
-		
+		List<IfcPositiveLengthMeasure> @VaryingThickness  { get ; }
+	
 	}
 }
 

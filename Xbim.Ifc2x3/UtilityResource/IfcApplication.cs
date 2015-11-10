@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel @Version { get; }
 		IfcLabel @ApplicationFullName { get; }
 		IfcIdentifier @ApplicationIdentifier { get; }
-		
+	
 	}
 }
 

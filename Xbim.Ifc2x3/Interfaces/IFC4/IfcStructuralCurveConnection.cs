@@ -25,7 +25,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				//##
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

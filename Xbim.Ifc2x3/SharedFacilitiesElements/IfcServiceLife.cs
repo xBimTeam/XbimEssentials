@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcServiceLifeTypeEnum @ServiceLifeType { get; }
 		IfcTimeMeasure @ServiceLifeDuration { get; }
-		
+	
 	}
 }
 

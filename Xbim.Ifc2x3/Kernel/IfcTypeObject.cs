@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @ApplicableOccurrence { get; }
 		IEnumerable<IIfcPropertySetDefinition> @HasPropertySets { get; }
 		IEnumerable<IIfcRelDefinesByType> @ObjectTypeOf {  get; }
-		
+	
 	}
 }
 

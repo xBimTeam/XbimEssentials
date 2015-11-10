@@ -41,13 +41,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-			foreach (var member in Pixel)
-			{
-				yield return member;
-			}
+				foreach (var member in Pixel)
+				{
+					yield return member;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

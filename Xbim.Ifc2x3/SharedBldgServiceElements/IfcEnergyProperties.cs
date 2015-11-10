@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcEnergySequenceEnum? @EnergySequence { get; }
 		IfcLabel? @UserDefinedEnergySequence { get; }
-		
+	
 	}
 }
 

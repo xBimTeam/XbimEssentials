@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcUnitaryEquipmentType : IIfcEnergyConversionDeviceType
 	{
 		IfcUnitaryEquipmentTypeEnum @PredefinedType { get; }
-		
+	
 	}
 }
 

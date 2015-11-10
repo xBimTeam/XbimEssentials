@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -24,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IIfcEdge @EdgeElement { get; }
 		bool @Orientation { get; }
-		
+	
 	}
 }
 
@@ -87,7 +88,12 @@ namespace Xbim.Ifc4.TopologyResource
 		{
 			get 
 			{
-				throw new System.NotImplementedException();
+				//## Overriding derived attribute EdgeStart getter
+			    return Orientation
+			        ? EdgeElement.EdgeStart
+			        : EdgeElement.EdgeEnd;
+
+			    //##
 			}
 			set 
 			{ 
@@ -99,7 +105,11 @@ namespace Xbim.Ifc4.TopologyResource
 		{
 			get 
 			{
-				throw new System.NotImplementedException();
+				//## Overriding derived attribute EdgeEnd getter
+                return Orientation
+                    ? EdgeElement.EdgeEnd
+                    : EdgeElement.EdgeStart;
+				//##
 			}
 			set 
 			{ 
@@ -107,6 +117,7 @@ namespace Xbim.Ifc4.TopologyResource
 			}
 		}
 		#endregion
+
 
 
 
@@ -191,5 +202,10 @@ namespace Xbim.Ifc4.TopologyResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

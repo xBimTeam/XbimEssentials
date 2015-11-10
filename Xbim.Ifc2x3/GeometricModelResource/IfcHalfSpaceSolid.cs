@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcSurface @BaseSurface { get; }
 		bool @AgreementFlag { get; }
-		
+	
 	}
 }
 

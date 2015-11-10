@@ -23,7 +23,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 				return Curve;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

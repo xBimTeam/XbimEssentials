@@ -20,10 +20,10 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-			foreach (var member in RelatedObjects)
-			{
-				yield return member as IIfcObject;
-			}
+				foreach (var member in RelatedObjects)
+				{
+					yield return member as IIfcObject;
+				}
 			} 
 		}
 		IIfcTypeObject IIfcRelDefinesByType.RelatingType 
@@ -33,7 +33,6 @@ namespace Xbim.Ifc2x3.Kernel
 				return RelatingType;
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

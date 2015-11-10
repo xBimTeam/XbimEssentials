@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcIdentifier @ID { get; }
 		IfcProjectOrderTypeEnum @PredefinedType { get; }
 		IfcLabel? @Status { get; }
-		
+	
 	}
 }
 

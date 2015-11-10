@@ -24,7 +24,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcFace : IIfcTopologicalRepresentationItem
 	{
 		IEnumerable<IIfcFaceBound> @Bounds { get; }
-		
+	
 	}
 }
 

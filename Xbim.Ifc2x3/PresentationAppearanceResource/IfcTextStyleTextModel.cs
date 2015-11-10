@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcSizeSelect @WordSpacing { get; }
 		IfcTextTransformation? @TextTransform { get; }
 		IfcSizeSelect @LineHeight { get; }
-		
+	
 	}
 }
 

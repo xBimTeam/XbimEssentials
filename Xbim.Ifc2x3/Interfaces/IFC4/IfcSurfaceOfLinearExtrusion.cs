@@ -30,6 +30,16 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return new Ifc4.MeasureResource.IfcLengthMeasure(Depth);
 			} 
 		}
+		Common.Geometry.XbimVector3D IIfcSurfaceOfLinearExtrusion.ExtrusionAxis 
+		{
+			get 
+			{
+				//## Getter for ExtrusionAxis in an interface
+				//TODO: Implement getter for derived attribute ExtrusionAxis in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
 
 	//## Custom code
 	//##

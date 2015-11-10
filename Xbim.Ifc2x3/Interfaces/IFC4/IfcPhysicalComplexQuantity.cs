@@ -20,10 +20,10 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get
 			{
-			foreach (var member in HasQuantities)
-			{
-				yield return member as IIfcPhysicalQuantity;
-			}
+				foreach (var member in HasQuantities)
+				{
+					yield return member as IIfcPhysicalQuantity;
+				}
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel IIfcPhysicalComplexQuantity.Discrimination 
@@ -49,7 +49,6 @@ namespace Xbim.Ifc2x3.QuantityResource
 				return new Ifc4.MeasureResource.IfcLabel(Usage.Value);
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

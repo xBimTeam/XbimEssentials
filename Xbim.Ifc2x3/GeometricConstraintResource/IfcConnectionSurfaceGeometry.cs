@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcSurfaceOrFaceSurface @SurfaceOnRelatingElement { get; }
 		IfcSurfaceOrFaceSurface @SurfaceOnRelatedElement { get; }
-		
+	
 	}
 }
 

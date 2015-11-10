@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure @WebThickness { get; }
 		IfcPositiveLengthMeasure @FlangeThickness { get; }
 		IfcPositiveLengthMeasure? @FilletRadius { get; }
-		
+	
 	}
 }
 

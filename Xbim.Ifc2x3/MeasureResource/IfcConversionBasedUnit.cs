@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IfcLabel @Name { get; }
 		IIfcMeasureWithUnit @ConversionFactor { get; }
-		
+	
 	}
 }
 

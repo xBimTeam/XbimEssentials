@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPowerMeasure? @MaximumPowerInput { get; }
 		IfcPowerMeasure? @RatedPowerInput { get; }
 		long @InputPhase { get; }
-		
+	
 	}
 }
 

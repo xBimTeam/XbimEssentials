@@ -20,11 +20,21 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-			foreach (var member in EdgeList)
-			{
-				yield return member as IIfcOrientedEdge;
-			}
+				foreach (var member in EdgeList)
+				{
+					yield return member as IIfcOrientedEdge;
+				}
 			} 
+		}
+		long IIfcEdgeLoop.Ne 
+		{
+			get 
+			{
+				//## Getter for Ne in an interface
+				//TODO: Implement getter for derived attribute Ne in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
 		}
 
 	//## Custom code

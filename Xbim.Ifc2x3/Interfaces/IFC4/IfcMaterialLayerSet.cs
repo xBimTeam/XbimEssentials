@@ -20,10 +20,10 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-			foreach (var member in MaterialLayers)
-			{
-				yield return member as IIfcMaterialLayer;
-			}
+				foreach (var member in MaterialLayers)
+				{
+					yield return member as IIfcMaterialLayer;
+				}
 			} 
 		}
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayerSet.LayerSetName 
@@ -63,6 +63,16 @@ namespace Xbim.Ifc2x3.MaterialResource
 			{
 				return Model.Instances.Where<IIfcMaterialProperties>(e => (e.Material as IfcMaterialLayerSet) == this);
 			} 
+		}
+		Ifc4.MeasureResource.IfcLengthMeasure IIfcMaterialLayerSet.TotalThickness 
+		{
+			get 
+			{
+				//## Getter for TotalThickness in an interface
+				//TODO: Implement getter for derived attribute TotalThickness in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
 		}
 
 	//## Custom code

@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcLoop @Bound { get; }
 		bool @Orientation { get; }
-		
+	
 	}
 }
 

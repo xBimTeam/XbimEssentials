@@ -27,7 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcDirection @Axis2 { get; }
 		IIfcCartesianPoint @LocalOrigin { get; }
 		double? @Scale { get; }
-		
+		double @Scl  { get ; }
+		IfcDimensionCount @Dim  { get ; }
+	
 	}
 }
 

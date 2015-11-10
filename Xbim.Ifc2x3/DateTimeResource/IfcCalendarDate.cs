@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcDayInMonthNumber @DayComponent { get; }
 		IfcMonthInYearNumber @MonthComponent { get; }
 		IfcYearNumber @YearComponent { get; }
-		
+	
 	}
 }
 

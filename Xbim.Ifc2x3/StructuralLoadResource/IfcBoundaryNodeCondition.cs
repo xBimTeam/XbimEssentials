@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcRotationalStiffnessMeasure? @RotationalStiffnessX { get; }
 		IfcRotationalStiffnessMeasure? @RotationalStiffnessY { get; }
 		IfcRotationalStiffnessMeasure? @RotationalStiffnessZ { get; }
-		
+	
 	}
 }
 

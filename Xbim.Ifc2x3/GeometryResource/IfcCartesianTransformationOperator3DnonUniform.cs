@@ -25,7 +25,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		double? @Scale2 { get; }
 		double? @Scale3 { get; }
-		
+		double @Scl2  { get ; }
+		double @Scl3  { get ; }
+	
 	}
 }
 

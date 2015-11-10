@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IEnumerable<IIfcProperty> @ApprovedProperties { get; }
 		IIfcApproval @Approval { get; }
-		
+	
 	}
 }
 

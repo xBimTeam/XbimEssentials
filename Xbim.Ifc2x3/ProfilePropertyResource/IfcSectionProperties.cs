@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcSectionTypeEnum @SectionType { get; }
 		IIfcProfileDef @StartProfile { get; }
 		IIfcProfileDef @EndProfile { get; }
-		
+	
 	}
 }
 

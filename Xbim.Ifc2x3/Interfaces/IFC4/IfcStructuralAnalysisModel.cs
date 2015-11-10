@@ -54,20 +54,20 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-			foreach (var member in LoadedBy)
-			{
-				yield return member as IIfcStructuralLoadGroup;
-			}
+				foreach (var member in LoadedBy)
+				{
+					yield return member as IIfcStructuralLoadGroup;
+				}
 			} 
 		}
 		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults 
 		{ 
 			get
 			{
-			foreach (var member in HasResults)
-			{
-				yield return member as IIfcStructuralResultGroup;
-			}
+				foreach (var member in HasResults)
+				{
+					yield return member as IIfcStructuralResultGroup;
+				}
 			} 
 		}
 		IIfcObjectPlacement IIfcStructuralAnalysisModel.SharedPlacement 
@@ -79,7 +79,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				//##
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

@@ -20,11 +20,21 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-			foreach (var member in DirectionRatios)
-			{
-				yield return member;
-			}
+				foreach (var member in DirectionRatios)
+				{
+					yield return member;
+				}
 			} 
+		}
+		Ifc4.GeometryResource.IfcDimensionCount IIfcDirection.Dim 
+		{
+			get 
+			{
+				//## Getter for Dim in an interface
+				//TODO: Implement getter for derived attribute Dim in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
 		}
 
 	//## Custom code

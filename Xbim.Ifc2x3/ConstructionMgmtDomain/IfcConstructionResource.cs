@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcLabel? @ResourceGroup { get; }
 		IfcResourceConsumptionEnum? @ResourceConsumption { get; }
 		IIfcMeasureWithUnit @BaseQuantity { get; }
-		
+	
 	}
 }
 

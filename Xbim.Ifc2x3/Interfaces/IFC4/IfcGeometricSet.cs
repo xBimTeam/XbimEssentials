@@ -20,19 +20,29 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get
 			{
-			foreach (var member in Elements)
-			{
-				var ifcpoint = member as GeometryResource.IfcPoint;
-				if (ifcpoint != null) 
-					yield return ifcpoint;
-				var ifccurve = member as GeometryResource.IfcCurve;
-				if (ifccurve != null) 
-					yield return ifccurve;
-				var ifcsurface = member as GeometryResource.IfcSurface;
-				if (ifcsurface != null) 
-					yield return ifcsurface;
-			}
+				foreach (var member in Elements)
+				{
+					var ifcpoint = member as GeometryResource.IfcPoint;
+					if (ifcpoint != null) 
+						yield return ifcpoint;
+					var ifccurve = member as GeometryResource.IfcCurve;
+					if (ifccurve != null) 
+						yield return ifccurve;
+					var ifcsurface = member as GeometryResource.IfcSurface;
+					if (ifcsurface != null) 
+						yield return ifcsurface;
+				}
 			} 
+		}
+		Ifc4.GeometryResource.IfcDimensionCount IIfcGeometricSet.Dim 
+		{
+			get 
+			{
+				//## Getter for Dim in an interface
+				//TODO: Implement getter for derived attribute Dim in an interface
+				throw new System.NotImplementedException();
+				//##
+			}
 		}
 
 	//## Custom code

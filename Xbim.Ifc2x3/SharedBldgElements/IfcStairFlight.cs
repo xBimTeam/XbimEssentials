@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		long? @NumberOfTreads { get; }
 		IfcPositiveLengthMeasure? @RiserHeight { get; }
 		IfcPositiveLengthMeasure? @TreadLength { get; }
-		
+	
 	}
 }
 

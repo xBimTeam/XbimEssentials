@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcProfileDef @ParentProfile { get; }
 		IIfcCartesianTransformationOperator2D @Operator { get; }
 		IfcLabel? @Label { get; }
-		
+	
 	}
 }
 

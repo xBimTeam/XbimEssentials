@@ -119,7 +119,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 			    //##
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure? @TopFlangeThickness { get; }
 		IfcPositiveLengthMeasure? @TopFlangeFilletRadius { get; }
 		IfcPositiveLengthMeasure? @CentreOfGravityInY { get; }
-		
+	
 	}
 }
 

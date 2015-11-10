@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcCalendarDate @EditionDate { get; }
 		IfcLabel @Name { get; }
 		IEnumerable<IIfcClassificationItem> @Contains {  get; }
-		
+	
 	}
 }
 

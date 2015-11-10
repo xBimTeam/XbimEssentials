@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure? @InnerRadius { get; }
 		IfcParameterValue @StartParam { get; }
 		IfcParameterValue @EndParam { get; }
-		
+	
 	}
 }
 

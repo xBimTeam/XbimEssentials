@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IIfcRelDecomposes> @IsDecomposedBy {  get; }
 		IEnumerable<IIfcRelDecomposes> @Decomposes {  get; }
 		IEnumerable<IIfcRelAssociates> @HasAssociations {  get; }
-		
+	
 	}
 }
 

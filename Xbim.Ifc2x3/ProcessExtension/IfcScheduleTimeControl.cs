@@ -46,7 +46,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcTimeMeasure? @FinishFloat { get; }
 		IfcPositiveRatioMeasure? @Completion { get; }
 		IIfcRelAssignsTasks @ScheduleTimeControlAssigned {  get; }
-		
+	
 	}
 }
 

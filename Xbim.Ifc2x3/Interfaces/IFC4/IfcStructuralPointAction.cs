@@ -16,7 +16,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralPointAction : IIfcStructuralPointAction
 	{
-
 	//## Custom code
 	//##
 	}

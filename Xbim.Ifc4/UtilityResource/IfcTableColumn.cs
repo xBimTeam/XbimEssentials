@@ -11,6 +11,7 @@ using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.ConstraintResource;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -31,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcText? @Description { get; }
 		IfcUnit @Unit { get; }
 		IIfcReference @ReferencePath { get; }
-		
+	
 	}
 }
 
@@ -196,6 +197,7 @@ namespace Xbim.Ifc4.UtilityResource
 
 
 
+
 		#region INotifyPropertyChanged implementation
 		 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -331,5 +333,10 @@ namespace Xbim.Ifc4.UtilityResource
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

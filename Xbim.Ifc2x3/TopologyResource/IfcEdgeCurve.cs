@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcCurve @EdgeGeometry { get; }
 		bool @SameSense { get; }
-		
+	
 	}
 }
 

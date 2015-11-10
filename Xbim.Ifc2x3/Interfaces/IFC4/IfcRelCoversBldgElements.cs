@@ -27,13 +27,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-			foreach (var member in RelatedCoverings)
-			{
-				yield return member as IIfcCovering;
-			}
+				foreach (var member in RelatedCoverings)
+				{
+					yield return member as IIfcCovering;
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}

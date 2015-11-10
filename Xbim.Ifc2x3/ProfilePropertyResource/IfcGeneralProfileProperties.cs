@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcPositiveLengthMeasure? @MinimumPlateThickness { get; }
 		IfcPositiveLengthMeasure? @MaximumPlateThickness { get; }
 		IfcAreaMeasure? @CrossSectionArea { get; }
-		
+	
 	}
 }
 

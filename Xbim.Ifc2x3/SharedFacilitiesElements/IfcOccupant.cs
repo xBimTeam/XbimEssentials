@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcOccupant : IIfcActor
 	{
 		IfcOccupantTypeEnum @PredefinedType { get; }
-		
+	
 	}
 }
 

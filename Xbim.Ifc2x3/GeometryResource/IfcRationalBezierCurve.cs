@@ -24,7 +24,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	public partial interface @IIfcRationalBezierCurve : IIfcBezierCurve
 	{
 		IEnumerable<double> @WeightsData { get; }
-		
+		List<double> @Weights  { get ; }
+	
 	}
 }
 

@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		IIfcCurve @BasisCurve { get; }
 		IfcParameterValue @PointParameter { get; }
-		
+	
 	}
 }
 

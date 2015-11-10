@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IEnumerable<IIfcPropertyConstraintRelationship> @PropertiesForConstraint {  get; }
 		IEnumerable<IIfcConstraintAggregationRelationship> @Aggregates {  get; }
 		IEnumerable<IIfcConstraintAggregationRelationship> @IsAggregatedIn {  get; }
-		
+	
 	}
 }
 

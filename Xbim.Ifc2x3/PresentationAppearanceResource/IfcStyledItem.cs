@@ -28,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IIfcRepresentationItem @Item { get; }
 		IEnumerable<IIfcPresentationStyleAssignment> @Styles { get; }
 		IfcLabel? @Name { get; }
-		
+	
 	}
 }
 

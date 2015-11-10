@@ -20,23 +20,22 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-			foreach (var member in IntersectingAxes)
-			{
-				yield return member as IIfcGridAxis;
-			}
+				foreach (var member in IntersectingAxes)
+				{
+					yield return member as IIfcGridAxis;
+				}
 			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances 
 		{ 
 			get
 			{
-			foreach (var member in OffsetDistances)
-			{
-				yield return new Ifc4.MeasureResource.IfcLengthMeasure((double)member);
-			}
+				foreach (var member in OffsetDistances)
+				{
+					yield return new Ifc4.MeasureResource.IfcLengthMeasure((double)member);
+				}
 			} 
 		}
-
 	//## Custom code
 	//##
 	}
