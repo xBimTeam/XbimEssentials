@@ -23,11 +23,10 @@ namespace Xbim.Ifc4.MaterialResource
             get { return _value; }
         }
 
-        public override string ToString()
+		public override string ToString()
         {
-            return Value != null ? Value.ToString() : typeof(long).Name;
+			return _value.ToString();
         }
-
         public IfcCardinalPointReference(long val)
         {
             _value = val;

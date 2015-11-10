@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.PropertyResource
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcValue> @EnumerationValues 
 		{ 
 			get 

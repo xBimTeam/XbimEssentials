@@ -24,11 +24,10 @@ namespace Xbim.Ifc2x3.MeasureResource
             get { return _value; }
         }
 
-        public override string ToString()
+		public override string ToString()
         {
-            return Value != null ? Value.ToString() : typeof(string).Name;
+			return _value ?? "";
         }
-
         public IfcDescriptiveMeasure(string val)
         {
             _value = val;

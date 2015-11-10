@@ -23,11 +23,10 @@ namespace Xbim.Ifc2x3.PresentationResource
             get { return _value; }
         }
 
-        public override string ToString()
+		public override string ToString()
         {
-            return Value != null ? Value.ToString() : typeof(string).Name;
+			return _value ?? "";
         }
-
         public IfcFontWeight(string val)
         {
             _value = val;

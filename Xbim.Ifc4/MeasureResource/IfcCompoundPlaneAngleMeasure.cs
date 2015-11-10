@@ -38,11 +38,6 @@ namespace Xbim.Ifc4.MeasureResource
             get { return _value; }
         }
 
-        public override string ToString()
-        {
-            return Value != null ? Value.ToString() : typeof(List<long>).Name;
-        }
-
         public IfcCompoundPlaneAngleMeasure(List<long> val)
         {
 			//copy items into new inner list

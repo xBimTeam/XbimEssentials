@@ -168,7 +168,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcConstraint> @RelatedConstraints 
 		{ 
 			get 

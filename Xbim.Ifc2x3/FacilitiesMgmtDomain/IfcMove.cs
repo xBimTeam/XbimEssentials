@@ -88,7 +88,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 				SetValue( v =>  _moveTo = v, _moveTo, value,  "MoveTo");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.None, 1, -1)]
 		public OptionalItemSet<IfcText> @PunchList 
 		{ 
 			get 

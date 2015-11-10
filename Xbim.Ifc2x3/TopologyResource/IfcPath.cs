@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcOrientedEdge> @EdgeList 
 		{ 
 			get 

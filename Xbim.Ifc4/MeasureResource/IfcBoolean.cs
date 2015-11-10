@@ -24,11 +24,10 @@ namespace Xbim.Ifc4.MeasureResource
             get { return _value; }
         }
 
-        public override string ToString()
+		public override string ToString()
         {
-            return Value != null ? Value.ToString() : typeof(bool).Name;
+			return _value ? "true" : "false";
         }
-
         public IfcBoolean(bool val)
         {
             _value = val;

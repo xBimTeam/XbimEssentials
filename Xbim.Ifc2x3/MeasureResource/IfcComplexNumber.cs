@@ -38,11 +38,6 @@ namespace Xbim.Ifc2x3.MeasureResource
             get { return _value; }
         }
 
-        public override string ToString()
-        {
-            return Value != null ? Value.ToString() : typeof(List<double>).Name;
-        }
-
         public IfcComplexNumber(List<double> val)
         {
 			//copy items into new inner list

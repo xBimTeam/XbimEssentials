@@ -24,11 +24,10 @@ namespace Xbim.Ifc4.ExternalReferenceResource
             get { return _value; }
         }
 
-        public override string ToString()
+		public override string ToString()
         {
-            return Value != null ? Value.ToString() : typeof(string).Name;
+			return _value ?? "";
         }
-
         public IfcLanguageId(string val)
         {
             _value = val;

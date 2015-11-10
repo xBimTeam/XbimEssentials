@@ -23,11 +23,15 @@ namespace Xbim.Ifc2x3.MeasureResource
             get { return _value; }
         }
 
-        public override string ToString()
+		public override string ToString()
         {
-            return Value != null ? Value.ToString() : typeof(bool?).Name;
+			if (_value == true)
+                return "true";
+            else if (_value == false)
+                return "false";
+            else
+                return "unknown";
         }
-
         public IfcLogical(bool? val)
         {
             _value = val;

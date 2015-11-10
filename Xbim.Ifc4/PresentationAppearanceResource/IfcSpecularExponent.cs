@@ -23,11 +23,10 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             get { return _value; }
         }
 
-        public override string ToString()
+		public override string ToString()
         {
-            return Value != null ? Value.ToString() : typeof(double).Name;
+            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
         }
-
         public IfcSpecularExponent(double val)
         {
             _value = val;

@@ -38,11 +38,6 @@ namespace Xbim.Ifc4.Kernel
             get { return _value; }
         }
 
-        public override string ToString()
-        {
-            return Value != null ? Value.ToString() : typeof(List<IfcPropertySetDefinition>).Name;
-        }
-
         public IfcPropertySetDefinitionSet(List<IfcPropertySetDefinition> val)
         {
 			//copy items into new inner list

@@ -1,16 +1,4 @@
-﻿#region XbimHeader
-
-// The eXtensible Building Information Modelling (xBIM) Toolkit
-// Solution:    XbimComplete
-// Project:     Xbim.Ifc
-// Filename:    IfcXmlWriter.cs
-// Published:   01, 2012
-// Last Edited: 9:04 AM on 20 12 2011
-// (See accompanying copyright.rtf)
-
-#endregion
-
-#region Directives
+﻿#region Directives
 
 using System;
 using System.Collections.Generic;
@@ -19,8 +7,6 @@ using System.Xml;
 using Xbim.Common;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
-using Xbim.IO.Esent;
-using Xbim.IO.Parser;
 using Xbim.IO.Step21;
 
 #endregion
@@ -64,13 +50,22 @@ namespace Xbim.IO.Xml
             TimeStamp = string.Format("{0:0000}-{1:00}-{2:00}T{3:00}:{4:00}:{5:00}", now.Year, now.Month, now.Day,
                                       now.Hour, now.Minute, now.Second);
             PreprocessorVersion = string.Format("Xbim.Ifc File Processor version {0}",
-                                                Assembly.GetAssembly(typeof(P21Parser)).GetName().Version);
+                                                Assembly.GetAssembly(GetType()).GetName().Version);
             OriginatingSystem = string.Format("Xbim version {0}", Assembly.GetExecutingAssembly().GetName().Version);
         }
 
         private ExpressMetaData _metadata;
 
-        public void Write(EsentModel  model, XmlWriter output)
+        /// <summary>
+        /// This function writes model entities to the defined XML output. 
+        /// </summary>
+        /// <param name="model">Model to be used for serialization. If no entities are specified IModel.Instances will be used as a 
+        /// source of entities to be serialized.</param>
+        /// <param name="output">Output XML</param>
+        /// <param name="entities">Optional entities enumerable. If you define this enumerable it will be
+        /// used instead of all entities from IModel.Instances. This allows to define different way of entities retrieval
+        /// like volatile instances from persisted DB model</param>
+        public void Write(IModel  model, XmlWriter output, IEnumerable<IPersistEntity> entities = null)
         {
             _metadata = model.Metadata;
 
@@ -99,10 +94,13 @@ namespace Xbim.IO.Xml
                 output.WriteAttributeString("xmlns", "ifc", null, Namespace);
                 output.WriteAttributeString("xsi", "schemaLocation", null, string.Format("{0} {1}", Namespace, IfcXsd));
 
-                foreach (var item in model.InstanceHandles)
-                {
-                    Write(model, item.EntityLabel, output);
-                }
+                //use specified entities enumeration or just all instances in the model
+                if(entities != null)
+                    foreach (var entity in entities)
+                        Write(entity, output);
+                else
+                    foreach (var entity in model.Instances)
+                        Write(entity, output);
 
                 output.WriteEndElement(); //uos
                 output.WriteEndElement(); //iso_10303_28
@@ -149,15 +147,13 @@ namespace Xbim.IO.Xml
             output.WriteEndElement(); //end iso_10303_28_header
         }
 
-        private void Write(EsentModel model, int handle, XmlWriter output, int pos = -1)
+        private void Write(IPersistEntity entity, XmlWriter output, int pos = -1)
         {
 
-            if (_written.Contains(handle)) //we have already done it
+            if (_written.Contains(entity.EntityLabel)) //we have already done it
                 return;
-            //int nextId = _written.Count + 1;
-            _written.Add(handle);
+            _written.Add(entity.EntityLabel);
 
-            var entity = model.GetInstanceVolatile(handle);
             var expressType = _metadata.ExpressType(entity);
 
             output.WriteStartElement(expressType.Type.Name);
@@ -185,14 +181,14 @@ namespace Xbim.IO.Xml
                     var propType = ifcProperty.PropertyInfo.PropertyType;
                     var propVal = ifcProperty.PropertyInfo.GetValue(entity, null);
 
-                    WriteProperty(model, ifcProperty.PropertyInfo.Name, propType, propVal, entity, output, -1,
+                    WriteProperty(ifcProperty.PropertyInfo.Name, propType, propVal, entity, output, -1,
                                   ifcProperty.EntityAttribute);
                 }
             }
             output.WriteEndElement();
         }
 
-        private void WriteProperty(EsentModel model, string propName, Type propType, object propVal, object entity, XmlWriter output,
+        private void WriteProperty(string propName, Type propType, object propVal, object entity, XmlWriter output,
                                    int pos, EntityAttributeAttribute attr)
         {
             var optSet = propVal as IOptionalItemSet;
@@ -211,6 +207,7 @@ namespace Xbim.IO.Xml
                     output.WriteAttributeString("ex", "cType", null, attr.ListType);
                     output.WriteEndElement();
                 }
+                return;
             }
             if (propType.IsGenericType && propType.GetGenericTypeDefinition() == typeof(Nullable<>) &&
                 (propVal is IExpressValueType)) //deal with undefined types (nullables)
@@ -228,10 +225,10 @@ namespace Xbim.IO.Xml
                     if (val != null)
                     {
                         var complexProps = val.Properties;
+                        var wrapPos = 0;
                         foreach (var complexProp in complexProps)
                         {
-                            var wrapPos = 0;
-                            WriteProperty(model, propName, complexProp.GetType(), complexProp, entity, output, wrapPos, attr);
+                            WriteProperty(propName, complexProp.GetType(), complexProp, entity, output, wrapPos, attr);
                             wrapPos++;
                         }
                     }
@@ -251,7 +248,7 @@ namespace Xbim.IO.Xml
                 {
                     output.WriteStartElement(propName);
                     //WriteProperty(model, realType.Name + "-wrapper", realType, propVal, entity, output, pos, attr);
-                    WriteProperty(model, realType.Name, realType, propVal, entity, output, pos, attr);
+                    WriteProperty(realType.Name, realType, propVal, entity, output, pos, attr);
                     output.WriteEndElement();
                 }
                 else
@@ -276,7 +273,7 @@ namespace Xbim.IO.Xml
                 var i = 0;
                 foreach (var item in ((IExpressEnumerable)propVal))
                 {
-                    WriteProperty(model, item.GetType().Name, item.GetType(), item, entity, output, i, attr);
+                    WriteProperty(item.GetType().Name, item.GetType(), item, entity, output, i, attr);
                     i++;
                 }
                 output.WriteEndElement();
@@ -297,7 +294,7 @@ namespace Xbim.IO.Xml
                 }
                 else
                 {
-                    Write(model, persistVal.EntityLabel, output, pos);
+                    Write(persistVal, output, pos);
                 }
                 if (pos == -1) output.WriteEndElement();
             }
@@ -378,8 +375,7 @@ namespace Xbim.IO.Xml
                 }
 
                 else
-                    throw new ArgumentException(string.Format("Invalid Value Type {0}", pInfoType.Name),
-                        "pInfoType");
+                    throw new ArgumentException(string.Format("Invalid Value Type {0}", pInfoType.Name), "pInfoType");
 
                 output.WriteEndElement();
             }
@@ -393,11 +389,11 @@ namespace Xbim.IO.Xml
                     if (typeof(IExpressValueType).IsAssignableFrom(realType))
                     {
                         //WriteProperty(model, realType.Name + "-wrapper", realType, propVal, entity, output, pos, attr);
-                        WriteProperty(model, realType.Name, realType, propVal, entity, output, pos, attr);
+                        WriteProperty(realType.Name, realType, propVal, entity, output, pos, attr);
                     }
                     else
                     {
-                        WriteProperty(model, realType.Name, realType, propVal, entity, output, -2, attr);
+                        WriteProperty(realType.Name, realType, propVal, entity, output, -2, attr);
                     }
                 }
                 output.WriteEndElement();

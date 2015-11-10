@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 3, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 3, -1)]
 		public ItemSet<IfcCartesianPoint> @Polygon 
 		{ 
 			get 

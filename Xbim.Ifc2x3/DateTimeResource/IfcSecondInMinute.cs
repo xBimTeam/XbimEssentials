@@ -23,11 +23,10 @@ namespace Xbim.Ifc2x3.DateTimeResource
             get { return _value; }
         }
 
-        public override string ToString()
+		public override string ToString()
         {
-            return Value != null ? Value.ToString() : typeof(double).Name;
+            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
         }
-
         public IfcSecondInMinute(double val)
         {
             _value = val;

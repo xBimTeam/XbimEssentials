@@ -116,7 +116,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, 2)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 2, 2)]
 		public ItemSet<IfcGridAxis> @IntersectingAxes 
 		{ 
 			get 
