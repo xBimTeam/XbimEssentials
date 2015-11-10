@@ -96,9 +96,6 @@
     <Compile Include="Esent\XbimSurfaceStyle.cs" />
     <Compile Include="Esent\XbimSurfaceStyleMap.cs" />
     <Compile Include="FileReferenceResolver.cs" />
-    <Compile Include="IXbimShapeBounds.cs" />
-    <Compile Include="IXbimShapeGeometryData.cs" />
-    <Compile Include="IXbimShapeInstanceData.cs" />
     <Compile Include="Memory\EntityCollection.cs" />
     <Compile Include="Memory\FederatedModel.cs" />
     <Compile Include="Memory\MemoryModel.cs" />

@@ -57,7 +57,6 @@
     <Compile Include="IfcProductExtensions.cs" />
     <Compile Include="IfcRepresentationItemExtensions.cs" />
     <Compile Include="IPersistEntityExtensions.cs" />
-    <Compile Include="IXbimGeometryCreator.cs" />
     <Compile Include="XbimModel.cs" />
     <Compile Include="XbimModelIO.cs" />
     <Compile Include="XbimModelSummary.cs" />

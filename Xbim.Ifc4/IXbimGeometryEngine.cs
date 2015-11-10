@@ -1,13 +1,13 @@
 ﻿using System.IO;
 using Xbim.Common.Geometry;
 using Xbim.Common.Logging;
+using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.Interfaces;
-using Xbim.IO;
 using XbimGeometry.Interfaces;
 
 namespace Xbim.Ifc4.Interfaces
 {
-    public interface IXbimGeometryCreator
+    public interface IXbimGeometryEngine
     {
         ILogger Logger { get; }
 
@@ -43,7 +43,7 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolid CreateSolid(IIfcSurfaceCurveSweptAreaSolid ifcSolid);
 
         IXbimSolid CreateSolid(IIfcBooleanClippingResult ifcSolid);
-        IXbimSolid CreateSolid(IIfcBooleanOperand ifcSolid);
+        IXbimSolid CreateSolid(IfcBooleanOperand ifcSolid);
         IXbimSolid CreateSolid(IIfcHalfSpaceSolid ifcSolid);
         IXbimSolid CreateSolid(IIfcPolygonalBoundedHalfSpace ifcSolid);
         IXbimSolid CreateSolid(IIfcBoxedHalfSpace ifcSolid);
@@ -60,11 +60,24 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolid CreateSolid(IIfcRightCircularCylinder ifcSolid);
         IXbimSolid CreateSolid(IIfcRightCircularCone ifcSolid);
         IXbimSolid CreateSolid(IIfcRectangularPyramid ifcSolid);
+        //Ifc4 specific classes
+        IXbimSolid CreateSolid(IIfcSweptDiskSolidPolygonal ifcSolid);
+        IXbimSolid CreateSolid(IIfcRevolvedAreaSolidTapered ifcSolid);
+        IXbimSolid CreateSolid(IIfcFixedReferenceSweptAreaSolid ifcSolid);
+        IXbimSolid CreateSolid(IIfcAdvancedBrep ifcSolid);
+        IXbimSolid CreateSolid(IIfcAdvancedBrepWithVoids ifcSolid);
+        IXbimSolid CreateSolid(IIfcSectionedSpine ifcSolid);
 
         //Shells creation
         IXbimShell CreateShell(IIfcOpenShell shell);
         IXbimShell CreateShell(IIfcConnectedFaceSet shell);
-        IXbimShell CreateShell(IIfcSurfaceOfLinearExtrusion linExt);
+        IXbimShell CreateShell(IIfcSurfaceOfLinearExtrusion shell);
+        //Ifc4 specific classes
+        //IXbimShell CreateShell(IfcTessellatedItem shell);
+        //IXbimShell CreateShell(IIfcTessellatedFaceSet shell);
+        IXbimShell CreateShell(IIfcTriangulatedFaceSet shell);
+
+
 
 
         //Surface Models containing one or more faces, shells or solids

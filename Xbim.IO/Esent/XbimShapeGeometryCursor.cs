@@ -1,4 +1,5 @@
 ﻿using Microsoft.Isam.Esent.Interop;
+using XbimGeometry.Interfaces;
 
 namespace Xbim.IO.Esent
 {
