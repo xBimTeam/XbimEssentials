@@ -10,6 +10,7 @@ namespace Xbim.IO.Memory
     {
         private readonly IModel _model;
         private readonly Dictionary<Type, List<IPersistEntity>> _internal = new Dictionary<Type, List<IPersistEntity>>();
+        private readonly List<IPersistEntity> _list = new List<IPersistEntity>(); 
         private readonly Type[] _types;
         internal readonly TFactory Factory;
         internal int NextLabel = 1;
@@ -144,6 +145,7 @@ namespace Xbim.IO.Memory
             {
                 _internal.Add(key, new List<IPersistEntity> { entity });
             }
+            _list.Add(entity);
         }
 
         private void AddReversible(IPersistEntity entity)
@@ -154,8 +156,16 @@ namespace Xbim.IO.Memory
             List<IPersistEntity> list;
             if (_internal.TryGetValue(key, out list))
             {
-                Action undo = () => list.Remove(entity);
-                Action doAction = () => list.Add(entity);
+                Action undo = () =>
+                {
+                    list.Remove(entity);
+                    _list.Remove(entity);
+                };
+                Action doAction = () =>
+                {
+                    list.Add(entity);
+                    _list.Add(entity);
+                };
                 doAction();
 
                 if (!_model.IsTransactional) return;
@@ -163,8 +173,16 @@ namespace Xbim.IO.Memory
             }
             else
             {
-                Action doAction = () => _internal.Add(key, new List<IPersistEntity> { entity });
-                Action undo = () => _internal.Remove(key);
+                Action doAction = () =>
+                {
+                    _internal.Add(key, new List<IPersistEntity> {entity});
+                    _list.Add(entity);
+                };
+                Action undo = () =>
+                {
+                    _internal.Remove(key);
+                    _list.Remove(entity);
+                };
                 doAction();
 
                 if (!_model.IsTransactional) return;
@@ -181,8 +199,16 @@ namespace Xbim.IO.Memory
             if (!_internal.ContainsKey(key) || !_internal[key].Contains(entity))
                 return false;
 
-            Action doAction = () => _internal[key].Remove(entity);
-            Action undo = () => _internal[key].Add(entity);
+            Action doAction = () =>
+            {
+                _internal[key].Remove(entity);
+                _list.Remove(entity);
+            };
+            Action undo = () =>
+            {
+                _internal[key].Add(entity);
+                _list.Add(entity);
+            };
             doAction();
 
             if (!_model.IsTransactional) return true;
@@ -192,17 +218,20 @@ namespace Xbim.IO.Memory
 
         public IEnumerator<IPersistEntity> GetEnumerator()
         {
-            return _internal.SelectMany(kv => kv.Value, (pair, entity) => entity).GetEnumerator();
+            //return _internal.SelectMany(kv => kv.Value, (pair, entity) => entity).GetEnumerator();
+            return _list.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            return _internal.SelectMany(kv => kv.Value, (pair, entity) => entity).GetEnumerator();
+            //return _internal.SelectMany(kv => kv.Value, (pair, entity) => entity).GetEnumerator();
+            return _list.GetEnumerator();
         }
 
         public void Dispose()
         {
             _internal.Clear();
+            _list.Clear();
         }
     }
 }
