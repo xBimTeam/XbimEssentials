@@ -68,10 +68,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{
 			get 
 			{
-				//## Getter for TotalThickness in an interface
-				//TODO: Implement getter for derived attribute TotalThickness in an interface
-				throw new System.NotImplementedException();
-				//##
+				return new Ifc4.MeasureResource.IfcLengthMeasure(TotalThickness);
 			}
 		}
 

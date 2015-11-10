@@ -86,9 +86,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 			get 
 			{
 				//## Getter for NumberOfTriangles
-				//TODO: Implement getter for derived attribute NumberOfTriangles
-				throw new NotImplementedException();
-				//##
+			    return CoordIndex.Count;
+			    //##
 			}
 		}
 

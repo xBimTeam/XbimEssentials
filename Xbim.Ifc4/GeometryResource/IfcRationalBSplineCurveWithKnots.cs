@@ -72,9 +72,8 @@ namespace Xbim.Ifc4.GeometryResource
 			get 
 			{
 				//## Getter for Weights
-				//TODO: Implement getter for derived attribute Weights
-				throw new NotImplementedException();
-				//##
+			    return WeightsData.ToList();
+			    //##
 			}
 		}
 

@@ -197,10 +197,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 		{
 			get 
 			{
-				//## Getter for Dimensions in an interface
-				//TODO: Implement getter for derived attribute Dimensions in an interface
-				throw new System.NotImplementedException();
-				//##
+				return Dimensions;
 			}
 		}
 

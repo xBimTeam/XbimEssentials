@@ -37,10 +37,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{
 			get 
 			{
-				//## Getter for NSegments in an interface
-				//TODO: Implement getter for derived attribute NSegments in an interface
-				throw new System.NotImplementedException();
-				//##
+				return NSegments;
 			}
 		}
 
@@ -48,10 +45,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{
 			get 
 			{
-				//## Getter for ClosedCurve in an interface
-				//TODO: Implement getter for derived attribute ClosedCurve in an interface
-				throw new System.NotImplementedException();
-				//##
+				return ClosedCurve;
 			}
 		}
 

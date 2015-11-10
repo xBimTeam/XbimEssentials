@@ -28,10 +28,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{
 			get 
 			{
-				//## Getter for Scl2 in an interface
-				//TODO: Implement getter for derived attribute Scl2 in an interface
-				throw new System.NotImplementedException();
-				//##
+				return Scl2;
 			}
 		}
 

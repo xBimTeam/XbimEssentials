@@ -50,10 +50,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{
 			get 
 			{
-				//## Getter for NumberOfCellsInRow in an interface
-				//TODO: Implement getter for derived attribute NumberOfCellsInRow in an interface
-				throw new System.NotImplementedException();
-				//##
+				return NumberOfCellsInRow;
 			}
 		}
 
@@ -61,10 +58,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{
 			get 
 			{
-				//## Getter for NumberOfHeadings in an interface
-				//TODO: Implement getter for derived attribute NumberOfHeadings in an interface
-				throw new System.NotImplementedException();
-				//##
+				return NumberOfHeadings;
 			}
 		}
 
@@ -72,10 +66,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{
 			get 
 			{
-				//## Getter for NumberOfDataRows in an interface
-				//TODO: Implement getter for derived attribute NumberOfDataRows in an interface
-				throw new System.NotImplementedException();
-				//##
+				return NumberOfDataRows;
 			}
 		}
 

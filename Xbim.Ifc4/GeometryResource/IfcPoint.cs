@@ -53,8 +53,14 @@ namespace Xbim.Ifc4.GeometryResource
 			get 
 			{
 				//## Getter for Dim
-				//TODO: Implement getter for derived attribute Dim
-				throw new NotImplementedException();
+                var cart = this as IfcCartesianPoint;
+                if (cart != null)
+                    return cart.Dim;
+                var poc = this as IfcPointOnCurve;
+                if (poc != null)
+                    return poc.Dim;
+                var pos = this as IfcPointOnSurface;
+                return pos != null ? pos.Dim : 0;
 				//##
 			}
 		}

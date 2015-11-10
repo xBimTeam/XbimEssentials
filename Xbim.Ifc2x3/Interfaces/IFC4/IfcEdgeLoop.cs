@@ -30,10 +30,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{
 			get 
 			{
-				//## Getter for Ne in an interface
-				//TODO: Implement getter for derived attribute Ne in an interface
-				throw new System.NotImplementedException();
-				//##
+				return Ne;
 			}
 		}
 

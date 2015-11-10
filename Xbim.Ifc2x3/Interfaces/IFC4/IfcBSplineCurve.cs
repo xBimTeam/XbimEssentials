@@ -81,10 +81,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{
 			get 
 			{
-				//## Getter for UpperIndexOnControlPoints in an interface
-				//TODO: Implement getter for derived attribute UpperIndexOnControlPoints in an interface
-				throw new System.NotImplementedException();
-				//##
+				return UpperIndexOnControlPoints;
 			}
 		}
 
@@ -92,10 +89,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{
 			get 
 			{
-				//## Getter for ControlPoints in an interface
-				//TODO: Implement getter for derived attribute ControlPoints in an interface
-				throw new System.NotImplementedException();
-				//##
+				return ControlPoints;
 			}
 		}
 

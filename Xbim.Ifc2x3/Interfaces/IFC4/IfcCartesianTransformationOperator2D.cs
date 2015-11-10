@@ -20,10 +20,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{
 			get 
 			{
-				//## Getter for U in an interface
-				//TODO: Implement getter for derived attribute U in an interface
-				throw new System.NotImplementedException();
-				//##
+				return U;
 			}
 		}
 

@@ -34,10 +34,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{
 			get 
 			{
-				//## Getter for ExtrusionAxis in an interface
-				//TODO: Implement getter for derived attribute ExtrusionAxis in an interface
-				throw new System.NotImplementedException();
-				//##
+				return ExtrusionAxis;
 			}
 		}
 
