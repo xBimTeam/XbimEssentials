@@ -1537,8 +1537,8 @@ namespace Xbim.IO.Esent
                 var settings = new XmlWriterSettings { Indent = true };
                 using (var xmlWriter = XmlWriter.Create(xmlOutStream, settings))
                 {
-                    var writer = new IfcXmlWriter();
-                    writer.Write(_model, xmlWriter);
+                    var writer = new IfcXmlWriter3();
+                    writer.Write(_model, xmlWriter, InstanceHandles.Select(i => _model.GetInstanceVolatile(i)));
                 }
             }
             catch (Exception e)

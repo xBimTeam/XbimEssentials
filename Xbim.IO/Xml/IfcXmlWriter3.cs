@@ -13,7 +13,7 @@ using Xbim.IO.Step21;
 
 namespace Xbim.IO.Xml
 {
-    public class IfcXmlWriter
+    public class IfcXmlWriter3
     {
         #region Fields
 
@@ -44,7 +44,7 @@ namespace Xbim.IO.Xml
 
         #endregion
 
-        public IfcXmlWriter()
+        public IfcXmlWriter3()
         {
             var now = DateTime.Now;
             TimeStamp = string.Format("{0:0000}-{1:00}-{2:00}T{3:00}:{4:00}:{5:00}", now.Year, now.Month, now.Day,
@@ -247,7 +247,6 @@ namespace Xbim.IO.Xml
                     //we have a type but it is a select type use the actual value but write out explicitly
                 {
                     output.WriteStartElement(propName);
-                    //WriteProperty(model, realType.Name + "-wrapper", realType, propVal, entity, output, pos, attr);
                     WriteProperty(realType.Name, realType, propVal, entity, output, pos, attr);
                     output.WriteEndElement();
                 }

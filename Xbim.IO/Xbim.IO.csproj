@@ -48,7 +48,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\Output\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;RUNNING_ON_4</DefineConstants>
     <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">RUNNING_ON_4</DefineConstants>
     <DefineConstants Condition=" '$(TargetFrameworkVersion)' != 'v4.0' ">NOT_RUNNING_ON_4</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -115,7 +115,9 @@
     <Compile Include="Esent\XbimInstanceHandle.cs" />
     <Compile Include="Esent\PersistedEntityInstanceCache.cs" />
     <Compile Include="Xml\IfcXmlReader.cs" />
-    <Compile Include="Xml\IfcXmlWriter.cs" />
+    <Compile Include="Xml\XbimXmlSettings.cs" />
+    <Compile Include="Xml\XbimXmlWriter4.cs" />
+    <Compile Include="Xml\IfcXmlWriter3.cs" />
     <Compile Include="IPersistEntityExtensions.cs" />
     <Compile Include="Step21\Parser\IndexPropertyValue.cs" />
     <Compile Include="Step21\Parser\IStepP21Parser.cs" />

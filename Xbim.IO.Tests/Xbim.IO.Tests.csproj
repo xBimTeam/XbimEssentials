@@ -58,7 +58,8 @@
     <Compile Include="ReadIFC4InterfacesTest.cs" />
     <Compile Include="ReadIFC4Test.cs" />
     <Compile Include="ParsingTests.cs" />
-    <Compile Include="XmlTests.cs" />
+    <Compile Include="XmlTests4.cs" />
+    <Compile Include="XmlTests2x3.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.CobieExpress\Xbim.CobieExpress.csproj">

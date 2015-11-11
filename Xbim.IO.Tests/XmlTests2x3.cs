@@ -6,12 +6,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Ifc2x3;
 using Xbim.IO;
 using Xbim.IO.Esent;
+using Xbim.IO.Memory;
 
 namespace Xbim.MemoryModel.Tests
 {
     [TestClass]
     [DeploymentItem("TestFiles")]
-    public class XmlTests
+    public class XmlTests2x3
     {
         [TestMethod]
         public void Ifc2X3XMLSerialization()
@@ -24,6 +25,7 @@ namespace Xbim.MemoryModel.Tests
                 Assert.AreEqual(0, errs);
             }
         }
+
 
         /// <summary>
         /// </summary>
