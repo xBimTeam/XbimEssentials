@@ -43,7 +43,7 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolid CreateSolid(IIfcSurfaceCurveSweptAreaSolid ifcSolid);
 
         IXbimSolid CreateSolid(IIfcBooleanClippingResult ifcSolid);
-        IXbimSolid CreateSolid(IfcBooleanOperand ifcSolid);
+        IXbimSolid CreateSolid(IIfcBooleanOperand ifcSolid);
         IXbimSolid CreateSolid(IIfcHalfSpaceSolid ifcSolid);
         IXbimSolid CreateSolid(IIfcPolygonalBoundedHalfSpace ifcSolid);
         IXbimSolid CreateSolid(IIfcBoxedHalfSpace ifcSolid);
