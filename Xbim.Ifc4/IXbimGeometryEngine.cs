@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.Interfaces
         //Vertex Creation
         IXbimVertex CreateVertexPoint(XbimPoint3D point, double precision);
 
-        IIfcFacetedBrep CreateFacetedBrep(Xbim.Common.IModel model, IXbimSolid solid);
+        //IIfcFacetedBrep CreateFacetedBrep(Xbim.Common.IModel model, IXbimSolid solid);
         //Creates collections of objects
         IXbimSolidSet CreateSolidSet();
         IXbimSolidSet CreateSolidSet(IIfcBooleanResult boolOp);
