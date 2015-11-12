@@ -146,9 +146,9 @@
     <Compile Include="Esent\XbimReadOnlyDBTransaction.cs" />
     <Compile Include="Esent\XbimReadTransaction.cs" />
     <Compile Include="Esent\XbimReadWriteTransaction.cs" />
-    <Compile Include="Esent\XbimShapeGeometry.cs" />
+    <Compile Include="XbimShapeGeometry.cs" />
     <Compile Include="Esent\XbimShapeGeometryCursor.cs" />
-    <Compile Include="Esent\XbimShapeInstance.cs" />
+    <Compile Include="XbimShapeInstance.cs" />
     <Compile Include="Esent\XbimShapeInstanceCursor.cs" />
     <Compile Include="XbimStorageType.cs" />
   </ItemGroup>

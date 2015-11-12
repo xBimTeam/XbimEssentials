@@ -5,7 +5,7 @@ using System.Text;
 using Xbim.Common.Geometry;
 using XbimGeometry.Interfaces;
 
-namespace Xbim.IO.Esent
+namespace Xbim.IO
 {
     public struct XbimShapeGeometryHandle
     {
