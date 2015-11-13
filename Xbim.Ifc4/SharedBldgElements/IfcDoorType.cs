@@ -8,10 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ProductExtension;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcDoorTypeEnum @PredefinedType { get; }
 		IfcDoorTypeOperationEnum @OperationType { get; }
-		bool? @ParameterTakesPrecedence { get; }
+		IfcBoolean? @ParameterTakesPrecedence { get; }
 		IfcLabel? @UserDefinedOperationType { get; }
 	
 	}
@@ -38,14 +35,14 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCDOORTYPE", 586)]
+	[ExpressType("IFCDOORTYPE", 593)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDoorType : IfcBuildingElementType, IInstantiableEntity, IIfcDoorType, IEqualityComparer<@IfcDoorType>, IEquatable<@IfcDoorType>
 	{
 		#region IIfcDoorType explicit implementation
 		IfcDoorTypeEnum IIfcDoorType.PredefinedType { get { return @PredefinedType; } }	
 		IfcDoorTypeOperationEnum IIfcDoorType.OperationType { get { return @OperationType; } }	
-		bool? IIfcDoorType.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
+		IfcBoolean? IIfcDoorType.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
 		IfcLabel? IIfcDoorType.UserDefinedOperationType { get { return @UserDefinedOperationType; } }	
 		 
 		#endregion
@@ -58,7 +55,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#region Explicit attribute fields
 		private IfcDoorTypeEnum _predefinedType;
 		private IfcDoorTypeOperationEnum _operationType;
-		private bool? _parameterTakesPrecedence;
+		private IfcBoolean? _parameterTakesPrecedence;
 		private IfcLabel? _userDefinedOperationType;
 		#endregion
 	
@@ -92,7 +89,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @ParameterTakesPrecedence 
+		public IfcBoolean? @ParameterTakesPrecedence 
 		{ 
 			get 
 			{
@@ -161,7 +158,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcDoorTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcDoorTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
 		}
 		#endregion
 

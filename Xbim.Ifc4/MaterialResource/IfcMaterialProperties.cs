@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.PropertyResource;
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.MaterialResource
 {
 	[IndexedClass]
-	[ExpressType("IFCMATERIALPROPERTIES", 757)]
+	[ExpressType("IFCMATERIALPROPERTIES", 765)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialProperties : IfcExtendedProperties, IInstantiableEntity, IIfcMaterialProperties, IEqualityComparer<@IfcMaterialProperties>, IEquatable<@IfcMaterialProperties>
 	{

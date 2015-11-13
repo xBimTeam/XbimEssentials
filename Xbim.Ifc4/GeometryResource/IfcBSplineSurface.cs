@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,15 +24,15 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBSplineSurface : IIfcBoundedSurface
 	{
-		long @UDegree { get; }
-		long @VDegree { get; }
+		IfcInteger @UDegree { get; }
+		IfcInteger @VDegree { get; }
 		IEnumerable<IEnumerable<IIfcCartesianPoint>> @ControlPointsList { get; }
 		IfcBSplineSurfaceForm @SurfaceForm { get; }
-		bool? @UClosed { get; }
-		bool? @VClosed { get; }
-		bool? @SelfIntersect { get; }
-		long @UUpper  { get ; }
-		long @VUpper  { get ; }
+		IfcLogical @UClosed { get; }
+		IfcLogical @VClosed { get; }
+		IfcLogical @SelfIntersect { get; }
+		IfcInteger @UUpper  { get ; }
+		IfcInteger @VUpper  { get ; }
 		List<List<Common.Geometry.XbimPoint3D>> @ControlPoints  { get ; }
 	
 	}
@@ -39,18 +40,18 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCBSPLINESURFACE", 426)]
+	[ExpressType("IFCBSPLINESURFACE", 432)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcBSplineSurface : IfcBoundedSurface, IIfcBSplineSurface, IEqualityComparer<@IfcBSplineSurface>, IEquatable<@IfcBSplineSurface>
 	{
 		#region IIfcBSplineSurface explicit implementation
-		long IIfcBSplineSurface.UDegree { get { return @UDegree; } }	
-		long IIfcBSplineSurface.VDegree { get { return @VDegree; } }	
+		IfcInteger IIfcBSplineSurface.UDegree { get { return @UDegree; } }	
+		IfcInteger IIfcBSplineSurface.VDegree { get { return @VDegree; } }	
 		IEnumerable<IEnumerable<IIfcCartesianPoint>> IIfcBSplineSurface.ControlPointsList { get { return @ControlPointsList; } }	
 		IfcBSplineSurfaceForm IIfcBSplineSurface.SurfaceForm { get { return @SurfaceForm; } }	
-		bool? IIfcBSplineSurface.UClosed { get { return @UClosed; } }	
-		bool? IIfcBSplineSurface.VClosed { get { return @VClosed; } }	
-		bool? IIfcBSplineSurface.SelfIntersect { get { return @SelfIntersect; } }	
+		IfcLogical IIfcBSplineSurface.UClosed { get { return @UClosed; } }	
+		IfcLogical IIfcBSplineSurface.VClosed { get { return @VClosed; } }	
+		IfcLogical IIfcBSplineSurface.SelfIntersect { get { return @SelfIntersect; } }	
 		 
 		#endregion
 
@@ -61,18 +62,18 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
 		#region Explicit attribute fields
-		private long _uDegree;
-		private long _vDegree;
+		private IfcInteger _uDegree;
+		private IfcInteger _vDegree;
 		private ItemSet<ItemSet<IfcCartesianPoint>> _controlPointsList;
 		private IfcBSplineSurfaceForm _surfaceForm;
-		private bool? _uClosed;
-		private bool? _vClosed;
-		private bool? _selfIntersect;
+		private IfcLogical _uClosed;
+		private IfcLogical _vClosed;
+		private IfcLogical _selfIntersect;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @UDegree 
+		public IfcInteger @UDegree 
 		{ 
 			get 
 			{
@@ -86,7 +87,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @VDegree 
+		public IfcInteger @VDegree 
 		{ 
 			get 
 			{
@@ -124,7 +125,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @UClosed 
+		public IfcLogical @UClosed 
 		{ 
 			get 
 			{
@@ -138,7 +139,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @VClosed 
+		public IfcLogical @VClosed 
 		{ 
 			get 
 			{
@@ -152,7 +153,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @SelfIntersect 
+		public IfcLogical @SelfIntersect 
 		{ 
 			get 
 			{
@@ -170,7 +171,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @UUpper 
+		public IfcInteger @UUpper 
 		{
 			get 
 			{
@@ -181,7 +182,7 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @VUpper 
+		public IfcInteger @VUpper 
 		{
 			get 
 			{

@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCAXIS2PLACEMENT2D", 422)]
+	[ExpressType("IFCAXIS2PLACEMENT2D", 428)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAxis2Placement2D : IfcPlacement, IInstantiableEntity, IIfcAxis2Placement2D, IEqualityComparer<@IfcAxis2Placement2D>, IEquatable<@IfcAxis2Placement2D>
 	{

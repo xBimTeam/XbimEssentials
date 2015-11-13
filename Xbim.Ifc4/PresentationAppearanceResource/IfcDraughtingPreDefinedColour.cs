@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCDRAUGHTINGPREDEFINEDCOLOUR", 587)]
+	[ExpressType("IFCDRAUGHTINGPREDEFINEDCOLOUR", 594)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDraughtingPreDefinedColour : IfcPreDefinedColour, IInstantiableEntity, IIfcDraughtingPreDefinedColour, IEqualityComparer<@IfcDraughtingPreDefinedColour>, IEquatable<@IfcDraughtingPreDefinedColour>
 	{
@@ -64,7 +63,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*PreDefinedColourNames:                                   'magenta','cyan','white','by layer'];*/
+		/*PreDefinedColourNames:     'magenta','cyan','white','by layer'];*/
 		}
 		#endregion
 

@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCVAPORPERMEABILITYMEASURE", 121)]
+	[ExpressType("IFCVAPORPERMEABILITYMEASURE", 126)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcVaporPermeabilityMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 

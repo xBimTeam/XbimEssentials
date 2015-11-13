@@ -8,8 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.DateTimeResource;
 using System;
 using System.Collections.Generic;
@@ -36,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IFCWORKCALENDAR", 1150)]
+	[ExpressType("IFCWORKCALENDAR", 1158)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWorkCalendar : IfcControl, IInstantiableEntity, IIfcWorkCalendar, IEqualityComparer<@IfcWorkCalendar>, IEquatable<@IfcWorkCalendar>
 	{
@@ -133,7 +131,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcWorkCalendarTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcWorkCalendarTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
 		}
 		#endregion
 

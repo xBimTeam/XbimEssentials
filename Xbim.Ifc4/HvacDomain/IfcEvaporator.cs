@@ -8,10 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.SharedBldgServiceElements;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
-using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCEVAPORATOR", 626)]
+	[ExpressType("IFCEVAPORATOR", 633)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEvaporator : IfcEnergyConversionDevice, IInstantiableEntity, IIfcEvaporator, IEqualityComparer<@IfcEvaporator>, IEquatable<@IfcEvaporator>
 	{
@@ -100,8 +96,8 @@ namespace Xbim.Ifc4.HvacDomain
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                               ((PredefinedType = IfcEvaporatorTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:                                ('IFC4.IFCEVAPORATORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
+		/*CorrectPredefinedType: ((PredefinedType = IfcEvaporatorTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
+		/*CorrectTypeAssigned:  ('IFC4.IFCEVAPORATORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
 		}
 		#endregion
 

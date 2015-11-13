@@ -7,10 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +41,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IFCREINFORCINGMESHTYPE", 900)]
+	[ExpressType("IFCREINFORCINGMESHTYPE", 908)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReinforcingMeshType : IfcReinforcingElementType, IInstantiableEntity, IIfcReinforcingMeshType, IEqualityComparer<@IfcReinforcingMeshType>, IEquatable<@IfcReinforcingMeshType>
 	{
@@ -298,7 +295,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                                 ((PredefinedType = IfcReinforcingMeshTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcReinforcingMeshTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
 		/*BendingShapeCodeProvided:	BendingShapeCodeProvided : NOT EXISTS(BendingParameters) OR EXISTS(BendingShapeCode);*/
 		}
 		#endregion

@@ -7,10 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCSPACETYPE", 996)]
+	[ExpressType("IFCSPACETYPE", 1004)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSpaceType : IfcSpatialStructureElementType, IInstantiableEntity, IIfcSpaceType, IEqualityComparer<@IfcSpaceType>, IEquatable<@IfcSpaceType>
 	{
@@ -120,7 +117,7 @@ namespace Xbim.Ifc4.ProductExtension
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcSpaceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcSpatialElementType.ElementType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcSpaceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcSpatialElementType.ElementType));*/
 		}
 		#endregion
 

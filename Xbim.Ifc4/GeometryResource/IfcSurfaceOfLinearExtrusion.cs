@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.ProfileResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -34,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCSURFACEOFLINEAREXTRUSION", 1056)]
+	[ExpressType("IFCSURFACEOFLINEAREXTRUSION", 1064)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceOfLinearExtrusion : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfLinearExtrusion, IEqualityComparer<@IfcSurfaceOfLinearExtrusion>, IEquatable<@IfcSurfaceOfLinearExtrusion>
 	{

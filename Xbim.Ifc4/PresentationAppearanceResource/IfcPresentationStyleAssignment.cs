@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[IndexedClass]
-	[ExpressType("IFCPRESENTATIONSTYLEASSIGNMENT", 834)]
+	[ExpressType("IFCPRESENTATIONSTYLEASSIGNMENT", 842)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPresentationStyleAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationStyleAssignment, IEqualityComparer<@IfcPresentationStyleAssignment>, IEquatable<@IfcPresentationStyleAssignment>
 	{

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCSECTIONEDSPINE", 973)]
+	[ExpressType("IFCSECTIONEDSPINE", 981)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSectionedSpine : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcSectionedSpine, IEqualityComparer<@IfcSectionedSpine>, IEquatable<@IfcSectionedSpine>
 	{

@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,23 +24,23 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCartesianTransformationOperator3DnonUniform : IIfcCartesianTransformationOperator3D
 	{
-		double? @Scale2 { get; }
-		double? @Scale3 { get; }
-		double @Scl2  { get ; }
-		double @Scl3  { get ; }
+		IfcReal? @Scale2 { get; }
+		IfcReal? @Scale3 { get; }
+		IfcReal @Scl2  { get ; }
+		IfcReal @Scl3  { get ; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCCARTESIANTRANSFORMATIONOPERATOR3DNONUNIFORM", 474)]
+	[ExpressType("IFCCARTESIANTRANSFORMATIONOPERATOR3DNONUNIFORM", 481)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D, IInstantiableEntity, IIfcCartesianTransformationOperator3DnonUniform, IEqualityComparer<@IfcCartesianTransformationOperator3DnonUniform>, IEquatable<@IfcCartesianTransformationOperator3DnonUniform>
 	{
 		#region IIfcCartesianTransformationOperator3DnonUniform explicit implementation
-		double? IIfcCartesianTransformationOperator3DnonUniform.Scale2 { get { return @Scale2; } }	
-		double? IIfcCartesianTransformationOperator3DnonUniform.Scale3 { get { return @Scale3; } }	
+		IfcReal? IIfcCartesianTransformationOperator3DnonUniform.Scale2 { get { return @Scale2; } }	
+		IfcReal? IIfcCartesianTransformationOperator3DnonUniform.Scale3 { get { return @Scale3; } }	
 		 
 		#endregion
 
@@ -49,13 +50,13 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
 		#region Explicit attribute fields
-		private double? _scale2;
-		private double? _scale3;
+		private IfcReal? _scale2;
+		private IfcReal? _scale3;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public double? @Scale2 
+		public IfcReal? @Scale2 
 		{ 
 			get 
 			{
@@ -69,7 +70,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public double? @Scale3 
+		public IfcReal? @Scale3 
 		{ 
 			get 
 			{
@@ -87,7 +88,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public double @Scl2 
+		public IfcReal @Scl2 
 		{
 			get 
 			{
@@ -98,7 +99,7 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public double @Scl3 
+		public IfcReal @Scl3 
 		{
 			get 
 			{

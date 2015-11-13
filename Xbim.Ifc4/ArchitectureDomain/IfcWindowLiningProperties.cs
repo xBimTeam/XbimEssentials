@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.RepresentationResource;
 using System;
@@ -45,7 +44,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ArchitectureDomain
 {
-	[ExpressType("IFCWINDOWLININGPROPERTIES", 1145)]
+	[ExpressType("IFCWINDOWLININGPROPERTIES", 1153)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWindowLiningProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcWindowLiningProperties, IEqualityComparer<@IfcWindowLiningProperties>, IEquatable<@IfcWindowLiningProperties>
 	{
@@ -318,7 +317,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		/*WR31:	WR31 : NOT(EXISTS(LiningDepth) AND NOT(EXISTS(LiningThickness)));*/
 		/*WR32:	WR32 : NOT(NOT(EXISTS(FirstTransomOffset)) AND EXISTS(SecondTransomOffset));*/
 		/*WR33:	WR33 : NOT(NOT(EXISTS(FirstMullionOffset)) AND EXISTS(SecondMullionOffset));*/
-		/*WR34:             );*/
+		/*WR34:);*/
 		}
 		#endregion
 

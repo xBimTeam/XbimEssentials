@@ -16,19 +16,21 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCartesianTransformationOperator2DnonUniform : IIfcCartesianTransformationOperator2DnonUniform
 	{
-		double? IIfcCartesianTransformationOperator2DnonUniform.Scale2 
+		Ifc4.MeasureResource.IfcReal? IIfcCartesianTransformationOperator2DnonUniform.Scale2 
 		{ 
 			get
 			{
-				if (Scale2 == null) return null;
-				return Scale2;
+				//## Handle return of Scale2 for which no match was found
+				//TODO: Handle return of Scale2 for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
-		double IIfcCartesianTransformationOperator2DnonUniform.Scl2 
+		Ifc4.MeasureResource.IfcReal IIfcCartesianTransformationOperator2DnonUniform.Scl2 
 		{
 			get 
 			{
-				return Scl2;
+				return new Ifc4.MeasureResource.IfcReal(Scl2);
 			}
 		}
 

@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IFCRECURRENCEPATTERN", 890)]
+	[ExpressType("IFCRECURRENCEPATTERN", 898)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRecurrencePattern : INotifyPropertyChanged, IInstantiableEntity, IIfcRecurrencePattern, IEqualityComparer<@IfcRecurrencePattern>, IEquatable<@IfcRecurrencePattern>
 	{

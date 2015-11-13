@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.PresentationDefinitionResource;
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,18 +26,20 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcSurfaceStyleShading : IIfcPresentationItem, IfcSurfaceStyleElementSelect
 	{
 		IIfcColourRgb @SurfaceColour { get; }
+		IfcNormalisedRatioMeasure? @Transparency { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCSURFACESTYLESHADING", 1063)]
+	[ExpressType("IFCSURFACESTYLESHADING", 1071)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceStyleShading : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleShading, IEqualityComparer<@IfcSurfaceStyleShading>, IEquatable<@IfcSurfaceStyleShading>
 	{
 		#region IIfcSurfaceStyleShading explicit implementation
 		IIfcColourRgb IIfcSurfaceStyleShading.SurfaceColour { get { return @SurfaceColour; } }	
+		IfcNormalisedRatioMeasure? IIfcSurfaceStyleShading.Transparency { get { return @Transparency; } }	
 		 
 		#endregion
 
@@ -47,6 +50,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		#region Explicit attribute fields
 		private IfcColourRgb _surfaceColour;
+		private IfcNormalisedRatioMeasure? _transparency;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -64,6 +68,20 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _surfaceColour = v, _surfaceColour, value,  "SurfaceColour");
 			} 
 		}	
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public IfcNormalisedRatioMeasure? @Transparency 
+		{ 
+			get 
+			{
+				if(ActivationStatus != ActivationStatus.NotActivated) return _transparency;
+				((IPersistEntity)this).Activate(false);
+				return _transparency;
+			} 
+			set
+			{
+				SetValue( v =>  _transparency = v, _transparency, value,  "Transparency");
+			} 
+		}	
 		#endregion
 
 
@@ -77,6 +95,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			{
 				case 0: 
 					_surfaceColour = (IfcColourRgb)(value.EntityVal);
+					return;
+				case 1: 
+					_transparency = value.RealVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

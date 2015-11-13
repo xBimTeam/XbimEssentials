@@ -7,8 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCRELASSIGNSTOPRODUCT", 908)]
+	[ExpressType("IFCRELASSIGNSTOPRODUCT", 916)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssignsToProduct : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProduct, IEqualityComparer<@IfcRelAssignsToProduct>, IEquatable<@IfcRelAssignsToProduct>
 	{

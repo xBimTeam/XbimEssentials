@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCROUNDEDRECTANGLEPROFILEDEF", 966)]
+	[ExpressType("IFCROUNDEDRECTANGLEPROFILEDEF", 974)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRoundedRectangleProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRoundedRectangleProfileDef, IEqualityComparer<@IfcRoundedRectangleProfileDef>, IEquatable<@IfcRoundedRectangleProfileDef>
 	{
@@ -94,7 +93,7 @@ namespace Xbim.Ifc4.ProfileResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*ValidRadius:                     (RoundingRadius <= (SELF\IfcRectangleProfileDef.YDim/2.)));*/
+		/*ValidRadius: (RoundingRadius <= (SELF\IfcRectangleProfileDef.YDim/2.)));*/
 		}
 		#endregion
 

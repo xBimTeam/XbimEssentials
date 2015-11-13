@@ -9,6 +9,8 @@
 
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.Kernel;
+using Xbim.Ifc4.ConstraintResource;
+using Xbim.Ifc4.ApprovalResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +33,8 @@ namespace Xbim.Ifc4.Interfaces
 		IEnumerable<IIfcPropertyDependencyRelationship> @PropertyForDependance {  get; }
 		IEnumerable<IIfcPropertyDependencyRelationship> @PropertyDependsOn {  get; }
 		IEnumerable<IIfcComplexProperty> @PartOfComplex {  get; }
+		IEnumerable<IIfcResourceConstraintRelationship> @HasConstraints {  get; }
+		IEnumerable<IIfcResourceApprovalRelationship> @HasApprovals {  get; }
 	
 	}
 }
@@ -38,7 +42,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.PropertyResource
 {
 	[IndexedClass]
-	[ExpressType("IFCPROPERTY", 848)]
+	[ExpressType("IFCPROPERTY", 856)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcProperty : IfcPropertyAbstraction, IIfcProperty, IEqualityComparer<@IfcProperty>, IEquatable<@IfcProperty>
 	{
@@ -50,6 +54,8 @@ namespace Xbim.Ifc4.PropertyResource
 		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyForDependance {  get { return @PropertyForDependance; } }
 		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyDependsOn {  get { return @PropertyDependsOn; } }
 		IEnumerable<IIfcComplexProperty> IIfcProperty.PartOfComplex {  get { return @PartOfComplex; } }
+		IEnumerable<IIfcResourceConstraintRelationship> IIfcProperty.HasConstraints {  get { return @HasConstraints; } }
+		IEnumerable<IIfcResourceApprovalRelationship> IIfcProperty.HasApprovals {  get { return @HasApprovals; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -126,6 +132,22 @@ namespace Xbim.Ifc4.PropertyResource
 			get 
 			{
 				return Model.Instances.Where<IfcComplexProperty>(e => e.HasProperties != null &&  e.HasProperties.Contains(this));
+			} 
+		}
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		public IEnumerable<IfcResourceConstraintRelationship> @HasConstraints 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<IfcResourceConstraintRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+			} 
+		}
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		public IEnumerable<IfcResourceApprovalRelationship> @HasApprovals 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<IfcResourceApprovalRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
 		#endregion

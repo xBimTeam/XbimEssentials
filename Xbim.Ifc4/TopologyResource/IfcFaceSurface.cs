@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.GeometricConstraintResource;
 using Xbim.Ifc4.GeometryResource;
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,20 +27,20 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcFaceSurface : IIfcFace, IfcSurfaceOrFaceSurface
 	{
 		IIfcSurface @FaceSurface { get; }
-		bool @SameSense { get; }
+		IfcBoolean @SameSense { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCFACESURFACE", 646)]
+	[ExpressType("IFCFACESURFACE", 653)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFaceSurface : IfcFace, IInstantiableEntity, IIfcFaceSurface, IEqualityComparer<@IfcFaceSurface>, IEquatable<@IfcFaceSurface>
 	{
 		#region IIfcFaceSurface explicit implementation
 		IIfcSurface IIfcFaceSurface.FaceSurface { get { return @FaceSurface; } }	
-		bool IIfcFaceSurface.SameSense { get { return @SameSense; } }	
+		IfcBoolean IIfcFaceSurface.SameSense { get { return @SameSense; } }	
 		 
 		#endregion
 
@@ -50,7 +51,7 @@ namespace Xbim.Ifc4.TopologyResource
 
 		#region Explicit attribute fields
 		private IfcSurface _faceSurface;
-		private bool _sameSense;
+		private IfcBoolean _sameSense;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -69,7 +70,7 @@ namespace Xbim.Ifc4.TopologyResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @SameSense 
+		public IfcBoolean @SameSense 
 		{ 
 			get 
 			{

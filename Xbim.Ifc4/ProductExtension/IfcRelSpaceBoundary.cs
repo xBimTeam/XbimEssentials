@@ -8,8 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.GeometricConstraintResource;
 using System;
 using System.Collections.Generic;
@@ -38,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCRELSPACEBOUNDARY", 944)]
+	[ExpressType("IFCRELSPACEBOUNDARY", 952)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelSpaceBoundary : IfcRelConnects, IInstantiableEntity, IIfcRelSpaceBoundary, IEqualityComparer<@IfcRelSpaceBoundary>, IEquatable<@IfcRelSpaceBoundary>
 	{
@@ -177,7 +175,7 @@ namespace Xbim.Ifc4.ProductExtension
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPhysOrVirt:                          (PhysicalOrVirtualBoundary = IfcPhysicalOrVirtualEnum.NotDefined);*/
+		/*CorrectPhysOrVirt:(PhysicalOrVirtualBoundary = IfcPhysicalOrVirtualEnum.NotDefined);*/
 		}
 		#endregion
 

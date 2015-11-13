@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCFILLAREASTYLEHATCHING", 658)]
+	[ExpressType("IFCFILLAREASTYLEHATCHING", 665)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleHatching, IEqualityComparer<@IfcFillAreaStyleHatching>, IEquatable<@IfcFillAreaStyleHatching>
 	{

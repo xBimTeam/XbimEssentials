@@ -16,14 +16,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcDirection : IIfcDirection
 	{
-		IEnumerable<double> IIfcDirection.DirectionRatios 
+		IEnumerable<Xbim.Ifc4.MeasureResource.IfcReal> IIfcDirection.DirectionRatios 
 		{ 
 			get
 			{
-				foreach (var member in DirectionRatios)
-				{
-					yield return member;
-				}
+				//## Handle return of DirectionRatios for which no match was found
+				//TODO: Handle return of DirectionRatios for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Ifc4.GeometryResource.IfcDimensionCount IIfcDirection.Dim 

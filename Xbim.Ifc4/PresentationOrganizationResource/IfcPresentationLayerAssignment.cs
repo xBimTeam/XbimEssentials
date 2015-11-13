@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[IndexedClass]
-	[ExpressType("IFCPRESENTATIONLAYERASSIGNMENT", 831)]
+	[ExpressType("IFCPRESENTATIONLAYERASSIGNMENT", 839)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPresentationLayerAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationLayerAssignment, IEqualityComparer<@IfcPresentationLayerAssignment>, IEquatable<@IfcPresentationLayerAssignment>
 	{
@@ -255,7 +255,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		public virtual string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*ApplicableItems:                        )) = SIZEOF(AssignedItems);*/
+		/*ApplicableItems:)) = SIZEOF(AssignedItems);*/
 		}
 		#endregion
 

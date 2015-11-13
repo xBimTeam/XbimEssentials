@@ -23,7 +23,7 @@ namespace Xbim.Ifc4.GeometryResource
         {
             get
             {
-                return DirectionRatios.Count == 0 ? double.NaN : DirectionRatios[0];
+                return DirectionRatios.Count == 0 ? double.NaN : (double)DirectionRatios[0];
             }
             set
             {
@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
         {
             get
             {
-                return DirectionRatios.Count < 2 ? double.NaN : DirectionRatios[1];
+                return DirectionRatios.Count < 2 ? double.NaN : (double)DirectionRatios[1];
             }
             set
             {
@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.GeometryResource
         {
             get
             {
-                return DirectionRatios.Count < 3 ? double.NaN : DirectionRatios[2];
+                return DirectionRatios.Count < 3 ? double.NaN : (double)DirectionRatios[2];
             }
             set
             {

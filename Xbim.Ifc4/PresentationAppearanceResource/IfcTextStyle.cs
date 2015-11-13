@@ -27,14 +27,14 @@ namespace Xbim.Ifc4.Interfaces
 		IIfcTextStyleForDefinedFont @TextCharacterAppearance { get; }
 		IIfcTextStyleTextModel @TextStyle { get; }
 		IIfcTextFontSelect @TextFontStyle { get; }
-		bool? @ModelOrDraughting { get; }
+		IfcBoolean? @ModelOrDraughting { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCTEXTSTYLE", 1094)]
+	[ExpressType("IFCTEXTSTYLE", 1102)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextStyle : IfcPresentationStyle, IInstantiableEntity, IIfcTextStyle, IEqualityComparer<@IfcTextStyle>, IEquatable<@IfcTextStyle>
 	{
@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IIfcTextStyleForDefinedFont IIfcTextStyle.TextCharacterAppearance { get { return @TextCharacterAppearance; } }	
 		IIfcTextStyleTextModel IIfcTextStyle.TextStyle { get { return @TextStyle; } }	
 		IIfcTextFontSelect IIfcTextStyle.TextFontStyle { get { return @TextFontStyle; } }	
-		bool? IIfcTextStyle.ModelOrDraughting { get { return @ModelOrDraughting; } }	
+		IfcBoolean? IIfcTextStyle.ModelOrDraughting { get { return @ModelOrDraughting; } }	
 		 
 		#endregion
 
@@ -55,7 +55,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		private IfcTextStyleForDefinedFont _textCharacterAppearance;
 		private IfcTextStyleTextModel _textStyle;
 		private IfcTextFontSelect _textFontStyle;
-		private bool? _modelOrDraughting;
+		private IfcBoolean? _modelOrDraughting;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @ModelOrDraughting 
+		public IfcBoolean? @ModelOrDraughting 
 		{ 
 			get 
 			{

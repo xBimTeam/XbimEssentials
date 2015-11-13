@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBSplineCurve : IIfcBoundedCurve
 	{
-		long @Degree { get; }
+		IfcInteger @Degree { get; }
 		IEnumerable<IIfcCartesianPoint> @ControlPointsList { get; }
 		IfcBSplineCurveForm @CurveForm { get; }
-		bool? @ClosedCurve { get; }
-		bool? @SelfIntersect { get; }
-		long @UpperIndexOnControlPoints  { get ; }
+		IfcLogical @ClosedCurve { get; }
+		IfcLogical @SelfIntersect { get; }
+		IfcInteger @UpperIndexOnControlPoints  { get ; }
 		List<Common.Geometry.XbimPoint3D> @ControlPoints  { get ; }
 	
 	}
@@ -36,16 +37,16 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCBSPLINECURVE", 424)]
+	[ExpressType("IFCBSPLINECURVE", 430)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcBSplineCurve : IfcBoundedCurve, IIfcBSplineCurve, IEqualityComparer<@IfcBSplineCurve>, IEquatable<@IfcBSplineCurve>
 	{
 		#region IIfcBSplineCurve explicit implementation
-		long IIfcBSplineCurve.Degree { get { return @Degree; } }	
+		IfcInteger IIfcBSplineCurve.Degree { get { return @Degree; } }	
 		IEnumerable<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList { get { return @ControlPointsList; } }	
 		IfcBSplineCurveForm IIfcBSplineCurve.CurveForm { get { return @CurveForm; } }	
-		bool? IIfcBSplineCurve.ClosedCurve { get { return @ClosedCurve; } }	
-		bool? IIfcBSplineCurve.SelfIntersect { get { return @SelfIntersect; } }	
+		IfcLogical IIfcBSplineCurve.ClosedCurve { get { return @ClosedCurve; } }	
+		IfcLogical IIfcBSplineCurve.SelfIntersect { get { return @SelfIntersect; } }	
 		 
 		#endregion
 
@@ -56,16 +57,16 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
 		#region Explicit attribute fields
-		private long _degree;
+		private IfcInteger _degree;
 		private ItemSet<IfcCartesianPoint> _controlPointsList;
 		private IfcBSplineCurveForm _curveForm;
-		private bool? _closedCurve;
-		private bool? _selfIntersect;
+		private IfcLogical _closedCurve;
+		private IfcLogical _selfIntersect;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @Degree 
+		public IfcInteger @Degree 
 		{ 
 			get 
 			{
@@ -103,7 +104,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @ClosedCurve 
+		public IfcLogical @ClosedCurve 
 		{ 
 			get 
 			{
@@ -117,7 +118,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @SelfIntersect 
+		public IfcLogical @SelfIntersect 
 		{ 
 			get 
 			{
@@ -135,7 +136,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @UpperIndexOnControlPoints 
+		public IfcInteger @UpperIndexOnControlPoints 
 		{
 			get 
 			{
@@ -189,7 +190,7 @@ namespace Xbim.Ifc4.GeometryResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*SameDim:                = 0;*/
+		/*SameDim:= 0;*/
 		}
 		#endregion
 

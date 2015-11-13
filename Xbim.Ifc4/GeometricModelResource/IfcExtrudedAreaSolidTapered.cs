@@ -8,8 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ProfileResource;
-using Xbim.Ifc4.GeometryResource;
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCEXTRUDEDAREASOLIDTAPERED", 641)]
+	[ExpressType("IFCEXTRUDEDAREASOLIDTAPERED", 648)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcExtrudedAreaSolidTapered : IfcExtrudedAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolidTapered, IEqualityComparer<@IfcExtrudedAreaSolidTapered>, IEquatable<@IfcExtrudedAreaSolidTapered>
 	{

@@ -7,10 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
-using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
-	[ExpressType("IFCFLOWSTORAGEDEVICE", 677)]
+	[ExpressType("IFCFLOWSTORAGEDEVICE", 684)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFlowStorageDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowStorageDevice, IEqualityComparer<@IfcFlowStorageDevice>, IEquatable<@IfcFlowStorageDevice>
 	{

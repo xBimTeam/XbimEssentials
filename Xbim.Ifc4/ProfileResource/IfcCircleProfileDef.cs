@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCCIRCLEPROFILEDEF", 482)]
+	[ExpressType("IFCCIRCLEPROFILEDEF", 489)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCircleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCircleProfileDef, IEqualityComparer<@IfcCircleProfileDef>, IEquatable<@IfcCircleProfileDef>
 	{

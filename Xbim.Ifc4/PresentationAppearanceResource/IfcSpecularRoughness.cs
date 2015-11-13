@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCSPECULARROUGHNESS", 102)]
+	[ExpressType("IFCSPECULARROUGHNESS", 107)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcSpecularRoughness : IfcSpecularHighlightSelect, IExpressValueType, System.IEquatable<double>
 	{ 

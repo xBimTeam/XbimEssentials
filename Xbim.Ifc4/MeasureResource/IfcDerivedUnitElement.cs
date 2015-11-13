@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCDERIVEDUNITELEMENT", 562)]
+	[ExpressType("IFCDERIVEDUNITELEMENT", 569)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDerivedUnitElement : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnitElement, IEqualityComparer<@IfcDerivedUnitElement>, IEquatable<@IfcDerivedUnitElement>
 	{

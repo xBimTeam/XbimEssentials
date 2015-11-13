@@ -7,10 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
-using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCELEMENTASSEMBLY", 611)]
+	[ExpressType("IFCELEMENTASSEMBLY", 618)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElementAssembly : IfcElement, IInstantiableEntity, IIfcElementAssembly, IEqualityComparer<@IfcElementAssembly>, IEquatable<@IfcElementAssembly>
 	{
@@ -119,8 +115,8 @@ namespace Xbim.Ifc4.ProductExtension
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                               ((PredefinedType = IfcElementAssemblyTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:                                ('IFC4.IFCELEMENTASSEMBLYTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
+		/*CorrectPredefinedType: ((PredefinedType = IfcElementAssemblyTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
+		/*CorrectTypeAssigned:  ('IFC4.IFCELEMENTASSEMBLYTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
 		}
 		#endregion
 

@@ -7,9 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc2x3.UtilityResource;
 using Xbim.Ifc2x3.MeasureResource;
-using Xbim.Ifc2x3.GeometricConstraintResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;

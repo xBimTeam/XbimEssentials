@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -34,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ControlExtension
 {
-	[ExpressType("IFCPERFORMANCEHISTORY", 794)]
+	[ExpressType("IFCPERFORMANCEHISTORY", 802)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IIfcPerformanceHistory, IEqualityComparer<@IfcPerformanceHistory>, IEquatable<@IfcPerformanceHistory>
 	{

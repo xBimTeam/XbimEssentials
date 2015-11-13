@@ -13,7 +13,7 @@ using Xbim.Ifc4.PresentationAppearanceResource;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCPOSITIVELENGTHMEASURE", 79)]
+	[ExpressType("IFCPOSITIVELENGTHMEASURE", 84)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcPositiveLengthMeasure : IfcHatchLineDistanceSelect, IfcMeasureValue, IfcSizeSelect, IExpressValueType, System.IEquatable<double>
 	{ 

@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PropertyResource
 {
-	[ExpressType("IFCPROPERTYENUMERATEDVALUE", 853)]
+	[ExpressType("IFCPROPERTYENUMERATEDVALUE", 861)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPropertyEnumeratedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyEnumeratedValue, IEqualityComparer<@IfcPropertyEnumeratedValue>, IEquatable<@IfcPropertyEnumeratedValue>
 	{
@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.PropertyResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR21:                 = SIZEOF(EnumerationValues));*/
+		/*WR21:    = SIZEOF(EnumerationValues));*/
 		}
 		#endregion
 

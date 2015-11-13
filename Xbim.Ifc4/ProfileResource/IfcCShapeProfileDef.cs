@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCCSHAPEPROFILEDEF", 458)]
+	[ExpressType("IFCCSHAPEPROFILEDEF", 464)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCShapeProfileDef, IEqualityComparer<@IfcCShapeProfileDef>, IEquatable<@IfcCShapeProfileDef>
 	{
@@ -173,7 +172,7 @@ namespace Xbim.Ifc4.ProfileResource
 		{
             throw new System.NotImplementedException();
 		/*ValidGirth:	ValidGirth : Girth < (Depth / 2.);*/
-		/*ValidInternalFilletRadius:                                  ((InternalFilletRadius <= Width/2. - WallThickness) AND (InternalFilletRadius <= Depth/2. - WallThickness));*/
+		/*ValidInternalFilletRadius:((InternalFilletRadius <= Width/2. - WallThickness) AND (InternalFilletRadius <= Depth/2. - WallThickness));*/
 		/*ValidWallThickness:	ValidWallThickness : (WallThickness < Width/2.) AND (WallThickness < Depth/2.);*/
 		}
 		#endregion

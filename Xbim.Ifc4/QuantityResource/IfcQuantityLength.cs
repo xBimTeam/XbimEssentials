@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.QuantityResource
 {
-	[ExpressType("IFCQUANTITYLENGTH", 873)]
+	[ExpressType("IFCQUANTITYLENGTH", 881)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcQuantityLength : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityLength, IEqualityComparer<@IfcQuantityLength>, IEquatable<@IfcQuantityLength>
 	{
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.QuantityResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR21:                (SELF\IfcPhysicalSimpleQuantity.Unit.UnitType = IfcUnitEnum.LENGTHUNIT);*/
+		/*WR21:   (SELF\IfcPhysicalSimpleQuantity.Unit.UnitType = IfcUnitEnum.LENGTHUNIT);*/
 		/*WR22:	WR22 : LengthValue >= 0.;*/
 		}
 		#endregion

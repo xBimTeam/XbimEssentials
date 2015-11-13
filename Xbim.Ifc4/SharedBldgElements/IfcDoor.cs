@@ -8,10 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ProductExtension;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
-using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCDOOR", 581)]
+	[ExpressType("IFCDOOR", 588)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IIfcDoor, IEqualityComparer<@IfcDoor>, IEquatable<@IfcDoor>
 	{
@@ -180,7 +177,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectStyleAssigned:                             OR ('IFC4.IFCDOORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
+		/*CorrectStyleAssigned:OR ('IFC4.IFCDOORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
 		}
 		#endregion
 

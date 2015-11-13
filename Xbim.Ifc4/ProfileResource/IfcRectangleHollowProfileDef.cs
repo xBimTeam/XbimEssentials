@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCRECTANGLEHOLLOWPROFILEDEF", 886)]
+	[ExpressType("IFCRECTANGLEHOLLOWPROFILEDEF", 894)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRectangleHollowProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRectangleHollowProfileDef, IEqualityComparer<@IfcRectangleHollowProfileDef>, IEquatable<@IfcRectangleHollowProfileDef>
 	{
@@ -134,9 +133,9 @@ namespace Xbim.Ifc4.ProfileResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*ValidWallThickness:                           (WallThickness < (SELF\IfcRectangleProfileDef.YDim/2.));*/
-		/*ValidInnerRadius:                            (InnerFilletRadius <= (SELF\IfcRectangleProfileDef.YDim/2. - WallThickness)));*/
-		/*ValidOuterRadius:                            (OuterFilletRadius <= (SELF\IfcRectangleProfileDef.YDim/2.)));*/
+		/*ValidWallThickness:(WallThickness < (SELF\IfcRectangleProfileDef.YDim/2.));*/
+		/*ValidInnerRadius: (InnerFilletRadius <= (SELF\IfcRectangleProfileDef.YDim/2. - WallThickness)));*/
+		/*ValidOuterRadius: (OuterFilletRadius <= (SELF\IfcRectangleProfileDef.YDim/2.)));*/
 		}
 		#endregion
 

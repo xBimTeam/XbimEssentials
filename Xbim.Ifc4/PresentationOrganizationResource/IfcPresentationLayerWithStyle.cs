@@ -25,9 +25,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPresentationLayerWithStyle : IIfcPresentationLayerAssignment
 	{
-		bool? @LayerOn { get; }
-		bool? @LayerFrozen { get; }
-		bool? @LayerBlocked { get; }
+		IfcLogical @LayerOn { get; }
+		IfcLogical @LayerFrozen { get; }
+		IfcLogical @LayerBlocked { get; }
 		IEnumerable<IIfcPresentationStyle> @LayerStyles { get; }
 	
 	}
@@ -35,14 +35,14 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
-	[ExpressType("IFCPRESENTATIONLAYERWITHSTYLE", 832)]
+	[ExpressType("IFCPRESENTATIONLAYERWITHSTYLE", 840)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IIfcPresentationLayerWithStyle, IEqualityComparer<@IfcPresentationLayerWithStyle>, IEquatable<@IfcPresentationLayerWithStyle>
 	{
 		#region IIfcPresentationLayerWithStyle explicit implementation
-		bool? IIfcPresentationLayerWithStyle.LayerOn { get { return @LayerOn; } }	
-		bool? IIfcPresentationLayerWithStyle.LayerFrozen { get { return @LayerFrozen; } }	
-		bool? IIfcPresentationLayerWithStyle.LayerBlocked { get { return @LayerBlocked; } }	
+		IfcLogical IIfcPresentationLayerWithStyle.LayerOn { get { return @LayerOn; } }	
+		IfcLogical IIfcPresentationLayerWithStyle.LayerFrozen { get { return @LayerFrozen; } }	
+		IfcLogical IIfcPresentationLayerWithStyle.LayerBlocked { get { return @LayerBlocked; } }	
 		IEnumerable<IIfcPresentationStyle> IIfcPresentationLayerWithStyle.LayerStyles { get { return @LayerStyles; } }	
 		 
 		#endregion
@@ -54,15 +54,15 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		}
 
 		#region Explicit attribute fields
-		private bool? _layerOn;
-		private bool? _layerFrozen;
-		private bool? _layerBlocked;
+		private IfcLogical _layerOn;
+		private IfcLogical _layerFrozen;
+		private IfcLogical _layerBlocked;
 		private ItemSet<IfcPresentationStyle> _layerStyles;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @LayerOn 
+		public IfcLogical @LayerOn 
 		{ 
 			get 
 			{
@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @LayerFrozen 
+		public IfcLogical @LayerFrozen 
 		{ 
 			get 
 			{
@@ -90,7 +90,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @LayerBlocked 
+		public IfcLogical @LayerBlocked 
 		{ 
 			get 
 			{
@@ -151,7 +151,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*ApplicableOnlyToItems:                              )) = SIZEOF(AssignedItems);*/
+		/*ApplicableOnlyToItems:)) = SIZEOF(AssignedItems);*/
 		}
 		#endregion
 

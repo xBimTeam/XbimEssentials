@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCCLOSEDSHELL", 487)]
+	[ExpressType("IFCCLOSEDSHELL", 494)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcClosedShell : IfcConnectedFaceSet, IInstantiableEntity, IIfcClosedShell, IEqualityComparer<@IfcClosedShell>, IEquatable<@IfcClosedShell>
 	{

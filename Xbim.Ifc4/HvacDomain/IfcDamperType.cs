@@ -8,10 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.SharedBldgServiceElements;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCDAMPERTYPE", 559)]
+	[ExpressType("IFCDAMPERTYPE", 566)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDamperType : IfcFlowControllerType, IInstantiableEntity, IIfcDamperType, IEqualityComparer<@IfcDamperType>, IEquatable<@IfcDamperType>
 	{
@@ -101,7 +97,7 @@ namespace Xbim.Ifc4.HvacDomain
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcDamperTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcDamperTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
 		}
 		#endregion
 

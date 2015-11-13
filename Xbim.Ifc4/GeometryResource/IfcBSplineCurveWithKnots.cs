@@ -24,22 +24,22 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBSplineCurveWithKnots : IIfcBSplineCurve
 	{
-		IEnumerable<long> @KnotMultiplicities { get; }
+		IEnumerable<IfcInteger> @KnotMultiplicities { get; }
 		IEnumerable<IfcParameterValue> @Knots { get; }
 		IfcKnotType @KnotSpec { get; }
-		long @UpperIndexOnKnots  { get ; }
+		IfcInteger @UpperIndexOnKnots  { get ; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCBSPLINECURVEWITHKNOTS", 425)]
+	[ExpressType("IFCBSPLINECURVEWITHKNOTS", 431)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBSplineCurveWithKnots : IfcBSplineCurve, IInstantiableEntity, IIfcBSplineCurveWithKnots, IEqualityComparer<@IfcBSplineCurveWithKnots>, IEquatable<@IfcBSplineCurveWithKnots>
 	{
 		#region IIfcBSplineCurveWithKnots explicit implementation
-		IEnumerable<long> IIfcBSplineCurveWithKnots.KnotMultiplicities { get { return @KnotMultiplicities; } }	
+		IEnumerable<IfcInteger> IIfcBSplineCurveWithKnots.KnotMultiplicities { get { return @KnotMultiplicities; } }	
 		IEnumerable<IfcParameterValue> IIfcBSplineCurveWithKnots.Knots { get { return @Knots; } }	
 		IfcKnotType IIfcBSplineCurveWithKnots.KnotSpec { get { return @KnotSpec; } }	
 		 
@@ -48,19 +48,19 @@ namespace Xbim.Ifc4.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineCurveWithKnots(IModel model) : base(model) 		{ 
 			Model = model; 
-			_knotMultiplicities = new ItemSet<long>( this, 0 );
+			_knotMultiplicities = new ItemSet<IfcInteger>( this, 0 );
 			_knots = new ItemSet<IfcParameterValue>( this, 0 );
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<long> _knotMultiplicities;
+		private ItemSet<IfcInteger> _knotMultiplicities;
 		private ItemSet<IfcParameterValue> _knots;
 		private IfcKnotType _knotSpec;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1)]
-		public ItemSet<long> @KnotMultiplicities 
+		public ItemSet<IfcInteger> @KnotMultiplicities 
 		{ 
 			get 
 			{
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @UpperIndexOnKnots 
+		public IfcInteger @UpperIndexOnKnots 
 		{
 			get 
 			{
@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.GeometryResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 5: 
-					if (_knotMultiplicities == null) _knotMultiplicities = new ItemSet<long>( this );
+					if (_knotMultiplicities == null) _knotMultiplicities = new ItemSet<IfcInteger>( this );
 					_knotMultiplicities.InternalAdd(value.IntegerVal);
 					return;
 				case 6: 
@@ -143,7 +143,7 @@ namespace Xbim.Ifc4.GeometryResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*ConsistentBSpline:                               UpperIndexOnControlPoints, KnotMultiplicities, Knots);*/
+		/*ConsistentBSpline:UpperIndexOnControlPoints, KnotMultiplicities, Knots);*/
 		/*CorrespondingKnotLists:	CorrespondingKnotLists : SIZEOF(KnotMultiplicities) = UpperIndexOnKnots;*/
 		}
 		#endregion

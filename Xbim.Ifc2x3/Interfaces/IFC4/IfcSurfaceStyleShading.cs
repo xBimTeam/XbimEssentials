@@ -23,6 +23,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return SurfaceColour;
 			} 
 		}
+		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcSurfaceStyleShading.Transparency 
+		{ 
+			get
+			{
+				//## Handle return of Transparency for which no match was found
+				//TODO: Handle return of Transparency for which no match was found
+				throw new System.NotImplementedException();
+				//##
+			} 
+		}
 	//## Custom code
 	//##
 	}

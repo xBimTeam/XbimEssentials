@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.ProfileResource;
 using System;
@@ -35,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IFCREINFORCEMENTDEFINITIONPROPERTIES", 894)]
+	[ExpressType("IFCREINFORCEMENTDEFINITIONPROPERTIES", 902)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReinforcementDefinitionProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcReinforcementDefinitionProperties, IEqualityComparer<@IfcReinforcementDefinitionProperties>, IEquatable<@IfcReinforcementDefinitionProperties>
 	{

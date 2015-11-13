@@ -7,8 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.ExternalReferenceResource;
 using System;
 using System.Collections.Generic;
@@ -33,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCRELASSOCIATESLIBRARY", 915)]
+	[ExpressType("IFCRELASSOCIATESLIBRARY", 923)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssociatesLibrary : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesLibrary, IEqualityComparer<@IfcRelAssociatesLibrary>, IEquatable<@IfcRelAssociatesLibrary>
 	{

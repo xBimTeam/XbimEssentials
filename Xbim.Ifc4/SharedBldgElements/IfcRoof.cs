@@ -8,10 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ProductExtension;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
-using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCROOF", 963)]
+	[ExpressType("IFCROOF", 971)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRoof : IfcBuildingElement, IInstantiableEntity, IIfcRoof, IEqualityComparer<@IfcRoof>, IEquatable<@IfcRoof>
 	{
@@ -100,9 +96,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectShapeDecomposition:                                  );*/
-		/*CorrectPredefinedType:                                   ((PredefinedType = IfcRoofTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:                                    ('IFC4.IFCROOFTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
+		/*CorrectPredefinedType: ((PredefinedType = IfcRoofTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
+		/*CorrectTypeAssigned:  ('IFC4.IFCROOFTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
 		}
 		#endregion
 

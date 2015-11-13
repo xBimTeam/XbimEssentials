@@ -8,9 +8,8 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.DateTimeResource;
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IFCRELSEQUENCE", 942)]
+	[ExpressType("IFCRELSEQUENCE", 950)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IIfcRelSequence, IEqualityComparer<@IfcRelSequence>, IEquatable<@IfcRelSequence>
 	{

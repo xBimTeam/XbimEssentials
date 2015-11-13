@@ -27,8 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcTableRow : IPersistEntity
 	{
 		IEnumerable<IIfcValue> @RowCells { get; }
-		bool? @IsHeading { get; }
-		IIfcTable @OfTable {  get; }
+		IfcBoolean? @IsHeading { get; }
 	
 	}
 }
@@ -36,15 +35,14 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.UtilityResource
 {
 	[IndexedClass]
-	[ExpressType("IFCTABLEROW", 1078)]
+	[ExpressType("IFCTABLEROW", 1086)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTableRow : INotifyPropertyChanged, IInstantiableEntity, IIfcTableRow, IEqualityComparer<@IfcTableRow>, IEquatable<@IfcTableRow>
 	{
 		#region IIfcTableRow explicit implementation
 		IEnumerable<IIfcValue> IIfcTableRow.RowCells { get { return @RowCells; } }	
-		bool? IIfcTableRow.IsHeading { get { return @IsHeading; } }	
+		IfcBoolean? IIfcTableRow.IsHeading { get { return @IsHeading; } }	
 		 
-		IIfcTable IIfcTableRow.OfTable {  get { return @OfTable; } }
 		#endregion
 
 		#region Implementation of IPersistEntity
@@ -113,7 +111,7 @@ namespace Xbim.Ifc4.UtilityResource
 
 		#region Explicit attribute fields
 		private OptionalItemSet<IfcValue> _rowCells;
-		private bool? _isHeading;
+		private IfcBoolean? _isHeading;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -128,7 +126,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @IsHeading 
+		public IfcBoolean? @IsHeading 
 		{ 
 			get 
 			{
@@ -145,16 +143,6 @@ namespace Xbim.Ifc4.UtilityResource
 
 
 
-		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
-		public IfcTable @OfTable 
-		{ 
-			get 
-			{
-				return Model.Instances.FirstOrDefault<IfcTable>(e => e.Rows != null &&  e.Rows.Contains(this));
-			} 
-		}
-		#endregion
 
 		#region INotifyPropertyChanged implementation
 		 

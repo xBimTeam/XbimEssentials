@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PropertyResource
 {
-	[ExpressType("IFCSIMPLEPROPERTY", 982)]
+	[ExpressType("IFCSIMPLEPROPERTY", 990)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcSimpleProperty : IfcProperty, IIfcSimpleProperty, IEqualityComparer<@IfcSimpleProperty>, IEquatable<@IfcSimpleProperty>
 	{

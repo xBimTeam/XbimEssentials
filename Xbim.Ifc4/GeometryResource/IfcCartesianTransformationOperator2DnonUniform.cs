@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,20 +24,20 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCartesianTransformationOperator2DnonUniform : IIfcCartesianTransformationOperator2D
 	{
-		double? @Scale2 { get; }
-		double @Scl2  { get ; }
+		IfcReal? @Scale2 { get; }
+		IfcReal @Scl2  { get ; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCCARTESIANTRANSFORMATIONOPERATOR2DNONUNIFORM", 472)]
+	[ExpressType("IFCCARTESIANTRANSFORMATIONOPERATOR2DNONUNIFORM", 479)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCartesianTransformationOperator2DnonUniform : IfcCartesianTransformationOperator2D, IInstantiableEntity, IIfcCartesianTransformationOperator2DnonUniform, IEqualityComparer<@IfcCartesianTransformationOperator2DnonUniform>, IEquatable<@IfcCartesianTransformationOperator2DnonUniform>
 	{
 		#region IIfcCartesianTransformationOperator2DnonUniform explicit implementation
-		double? IIfcCartesianTransformationOperator2DnonUniform.Scale2 { get { return @Scale2; } }	
+		IfcReal? IIfcCartesianTransformationOperator2DnonUniform.Scale2 { get { return @Scale2; } }	
 		 
 		#endregion
 
@@ -46,12 +47,12 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
 		#region Explicit attribute fields
-		private double? _scale2;
+		private IfcReal? _scale2;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public double? @Scale2 
+		public IfcReal? @Scale2 
 		{ 
 			get 
 			{
@@ -69,7 +70,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public double @Scl2 
+		public IfcReal @Scl2 
 		{
 			get 
 			{

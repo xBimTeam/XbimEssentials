@@ -51,18 +51,24 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return new Ifc4.MeasureResource.IfcParameterValue(V2);
 			} 
 		}
-		bool IIfcRectangularTrimmedSurface.Usense 
+		Ifc4.MeasureResource.IfcBoolean IIfcRectangularTrimmedSurface.Usense 
 		{ 
 			get
 			{
-				return Usense;
+				//## Handle return of Usense for which no match was found
+				//TODO: Handle return of Usense for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
-		bool IIfcRectangularTrimmedSurface.Vsense 
+		Ifc4.MeasureResource.IfcBoolean IIfcRectangularTrimmedSurface.Vsense 
 		{ 
 			get
 			{
-				return Vsense;
+				//## Handle return of Vsense for which no match was found
+				//TODO: Handle return of Vsense for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	//## Custom code

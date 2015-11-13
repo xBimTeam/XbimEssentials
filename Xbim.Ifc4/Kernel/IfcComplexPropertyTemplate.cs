@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -34,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCCOMPLEXPROPERTYTEMPLATE", 499)]
+	[ExpressType("IFCCOMPLEXPROPERTYTEMPLATE", 506)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcComplexPropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcComplexPropertyTemplate, IEqualityComparer<@IfcComplexPropertyTemplate>, IEquatable<@IfcComplexPropertyTemplate>
 	{

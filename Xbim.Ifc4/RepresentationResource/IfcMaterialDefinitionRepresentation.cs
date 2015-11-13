@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.MaterialResource;
 using System;
 using System.Collections.Generic;
@@ -32,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCMATERIALDEFINITIONREPRESENTATION", 746)]
+	[ExpressType("IFCMATERIALDEFINITIONREPRESENTATION", 754)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialDefinitionRepresentation : IfcProductRepresentation, IInstantiableEntity, IIfcMaterialDefinitionRepresentation, IEqualityComparer<@IfcMaterialDefinitionRepresentation>, IEquatable<@IfcMaterialDefinitionRepresentation>
 	{
@@ -93,7 +92,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*OnlyStyledRepresentations:                                  )) = 0;*/
+		/*OnlyStyledRepresentations:)) = 0;*/
 		}
 		#endregion
 

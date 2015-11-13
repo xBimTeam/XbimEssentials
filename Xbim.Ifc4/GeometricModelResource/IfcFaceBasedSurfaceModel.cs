@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCFACEBASEDSURFACEMODEL", 643)]
+	[ExpressType("IFCFACEBASEDSURFACEMODEL", 650)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFaceBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFaceBasedSurfaceModel, IEqualityComparer<@IfcFaceBasedSurfaceModel>, IEquatable<@IfcFaceBasedSurfaceModel>
 	{

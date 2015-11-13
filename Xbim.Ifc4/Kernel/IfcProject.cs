@@ -7,9 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCPROJECT", 843)]
+	[ExpressType("IFCPROJECT", 851)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProject : IfcContext, IInstantiableEntity, IIfcProject, IEqualityComparer<@IfcProject>, IEquatable<@IfcProject>
 	{
@@ -75,9 +72,8 @@ namespace Xbim.Ifc4.Kernel
 		{
             throw new System.NotImplementedException();
 		/*HasName:	HasName : EXISTS(SELF\IfcRoot.Name);*/
-		/*CorrectContext:                          )) = 0);*/
+		/*CorrectContext:  )) = 0);*/
 		/*NoDecomposition:	NoDecomposition : SIZEOF(SELF\IfcObjectDefinition.Decomposes) = 0;*/
-		/*HasOwnerHistory:	HasOwnerHistory : EXISTS(SELF\IfcRoot.OwnerHistory);*/
 		}
 		#endregion
 

@@ -7,11 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
-using Xbim.Ifc4.RepresentationResource;
-using Xbim.Ifc4.StructuralLoadResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALCURVEACTION", 1015)]
+	[ExpressType("IFCSTRUCTURALCURVEACTION", 1023)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralCurveAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralCurveAction, IEqualityComparer<@IfcStructuralCurveAction>, IEquatable<@IfcStructuralCurveAction>
 	{
@@ -122,7 +117,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*ProjectedIsGlobal:                                (SELF\IfcStructuralActivity.GlobalOrLocal = GLOBAL_COORDS));*/
+		/*ProjectedIsGlobal: (SELF\IfcStructuralActivity.GlobalOrLocal = GLOBAL_COORDS));*/
 		/*HasObjectType:	HasObjectType : (PredefinedType <> IfcStructuralCurveActivityTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);*/
 		/*SuitablePredefinedType:	SuitablePredefinedType : PredefinedType <> IfcStructuralCurveActivityTypeEnum.EQUIDISTANT;*/
 		}

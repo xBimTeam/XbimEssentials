@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ConstraintResource
 {
 	[IndexedClass]
-	[ExpressType("IFCCONSTRAINT", 516)]
+	[ExpressType("IFCCONSTRAINT", 523)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcConstraint : IPersistEntity, INotifyPropertyChanged, IIfcConstraint, IEqualityComparer<@IfcConstraint>, IEquatable<@IfcConstraint>
 	{
@@ -341,7 +341,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		public virtual string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR11:             ((ConstraintGrade = IfcConstraintEnum.USERDEFINED) AND EXISTS(SELF\IfcConstraint.UserDefinedGrade));*/
+		/*WR11:((ConstraintGrade = IfcConstraintEnum.USERDEFINED) AND EXISTS(SELF\IfcConstraint.UserDefinedGrade));*/
 		}
 		#endregion
 

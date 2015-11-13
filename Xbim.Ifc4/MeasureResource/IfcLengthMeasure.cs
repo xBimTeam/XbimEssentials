@@ -14,7 +14,7 @@ using Xbim.Ifc4.PresentationAppearanceResource;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCLENGTHMEASURE", 48)]
+	[ExpressType("IFCLENGTHMEASURE", 51)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcLengthMeasure : IfcBendingParameterSelect, IfcMeasureValue, IfcSizeSelect, IExpressValueType, System.IEquatable<double>
 	{ 

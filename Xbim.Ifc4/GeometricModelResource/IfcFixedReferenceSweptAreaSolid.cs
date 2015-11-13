@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.ProfileResource;
 using Xbim.Ifc4.GeometryResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
@@ -36,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCFIXEDREFERENCESWEPTAREASOLID", 664)]
+	[ExpressType("IFCFIXEDREFERENCESWEPTAREASOLID", 671)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFixedReferenceSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcFixedReferenceSweptAreaSolid, IEqualityComparer<@IfcFixedReferenceSweptAreaSolid>, IEquatable<@IfcFixedReferenceSweptAreaSolid>
 	{
@@ -152,7 +151,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*DirectrixBounded:                         (SIZEOF(['IFC4.IFCCONIC', 'IFC4.IFCBOUNDEDCURVE'] * TYPEOF(Directrix)) = 1);*/
+		/*DirectrixBounded:(SIZEOF(['IFC4.IFCCONIC', 'IFC4.IFCBOUNDEDCURVE'] * TYPEOF(Directrix)) = 1);*/
 		}
 		#endregion
 

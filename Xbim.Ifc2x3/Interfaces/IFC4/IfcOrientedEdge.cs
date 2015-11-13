@@ -23,11 +23,14 @@ namespace Xbim.Ifc2x3.TopologyResource
 				return EdgeElement;
 			} 
 		}
-		bool IIfcOrientedEdge.Orientation 
+		Ifc4.MeasureResource.IfcBoolean IIfcOrientedEdge.Orientation 
 		{ 
 			get
 			{
-				return Orientation;
+				//## Handle return of Orientation for which no match was found
+				//TODO: Handle return of Orientation for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	//## Custom code

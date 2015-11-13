@@ -10,6 +10,7 @@
 using Xbim.Ifc4.StructuralAnalysisDomain;
 using Xbim.Ifc4.Kernel;
 using Xbim.Ifc4.MeasureResource;
+using Xbim.Ifc4.SharedBldgElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,13 +39,14 @@ namespace Xbim.Ifc4.Interfaces
 		IEnumerable<IIfcRelSpaceBoundary> @ProvidesBoundaries {  get; }
 		IEnumerable<IIfcRelConnectsElements> @ConnectedFrom {  get; }
 		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainedInStructure {  get; }
+		IEnumerable<IIfcRelCoversBldgElements> @HasCoverings {  get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCELEMENT", 610)]
+	[ExpressType("IFCELEMENT", 617)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcElement : IfcProduct, IIfcElement, IEqualityComparer<@IfcElement>, IEquatable<@IfcElement>
 	{
@@ -62,6 +64,7 @@ namespace Xbim.Ifc4.ProductExtension
 		IEnumerable<IIfcRelSpaceBoundary> IIfcElement.ProvidesBoundaries {  get { return @ProvidesBoundaries; } }
 		IEnumerable<IIfcRelConnectsElements> IIfcElement.ConnectedFrom {  get { return @ConnectedFrom; } }
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcElement.ContainedInStructure {  get { return @ContainedInStructure; } }
+		IEnumerable<IIfcRelCoversBldgElements> IIfcElement.HasCoverings {  get { return @HasCoverings; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -179,6 +182,14 @@ namespace Xbim.Ifc4.ProductExtension
 			get 
 			{
 				return Model.Instances.Where<IfcRelContainedInSpatialStructure>(e => e.RelatedElements != null &&  e.RelatedElements.Contains(this));
+			} 
+		}
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		public IEnumerable<IfcRelCoversBldgElements> @HasCoverings 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<IfcRelCoversBldgElements>(e => (e.RelatingBuildingElement as IfcElement) == this);
 			} 
 		}
 		#endregion

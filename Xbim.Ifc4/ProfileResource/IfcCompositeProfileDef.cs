@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCCOMPOSITEPROFILEDEF", 503)]
+	[ExpressType("IFCCOMPOSITEPROFILEDEF", 510)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCompositeProfileDef : IfcProfileDef, IInstantiableEntity, IIfcCompositeProfileDef, IEqualityComparer<@IfcCompositeProfileDef>, IEquatable<@IfcCompositeProfileDef>
 	{

@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,21 +26,21 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IIfcSurface @BasisSurface { get; }
 		IEnumerable<IIfcBoundaryCurve> @Boundaries { get; }
-		bool @ImplicitOuter { get; }
+		IfcBoolean @ImplicitOuter { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCCURVEBOUNDEDSURFACE", 552)]
+	[ExpressType("IFCCURVEBOUNDEDSURFACE", 559)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCurveBoundedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcCurveBoundedSurface, IEqualityComparer<@IfcCurveBoundedSurface>, IEquatable<@IfcCurveBoundedSurface>
 	{
 		#region IIfcCurveBoundedSurface explicit implementation
 		IIfcSurface IIfcCurveBoundedSurface.BasisSurface { get { return @BasisSurface; } }	
 		IEnumerable<IIfcBoundaryCurve> IIfcCurveBoundedSurface.Boundaries { get { return @Boundaries; } }	
-		bool IIfcCurveBoundedSurface.ImplicitOuter { get { return @ImplicitOuter; } }	
+		IfcBoolean IIfcCurveBoundedSurface.ImplicitOuter { get { return @ImplicitOuter; } }	
 		 
 		#endregion
 
@@ -52,7 +53,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#region Explicit attribute fields
 		private IfcSurface _basisSurface;
 		private ItemSet<IfcBoundaryCurve> _boundaries;
-		private bool _implicitOuter;
+		private IfcBoolean _implicitOuter;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -81,7 +82,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @ImplicitOuter 
+		public IfcBoolean @ImplicitOuter 
 		{ 
 			get 
 			{

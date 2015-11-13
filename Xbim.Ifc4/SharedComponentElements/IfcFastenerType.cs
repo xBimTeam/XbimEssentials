@@ -7,10 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedComponentElements
 {
-	[ExpressType("IFCFASTENERTYPE", 653)]
+	[ExpressType("IFCFASTENERTYPE", 660)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFastenerType : IfcElementComponentType, IInstantiableEntity, IIfcFastenerType, IEqualityComparer<@IfcFastenerType>, IEquatable<@IfcFastenerType>
 	{
@@ -100,7 +96,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcFastenerTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcFastenerTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
 		}
 		#endregion
 

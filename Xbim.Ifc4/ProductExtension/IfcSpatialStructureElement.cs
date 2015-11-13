@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCSPATIALSTRUCTUREELEMENT", 999)]
+	[ExpressType("IFCSPATIALSTRUCTUREELEMENT", 1007)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcSpatialStructureElement : IfcSpatialElement, IIfcSpatialStructureElement, IEqualityComparer<@IfcSpatialStructureElement>, IEquatable<@IfcSpatialStructureElement>
 	{
@@ -95,7 +95,7 @@ namespace Xbim.Ifc4.ProductExtension
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR41:             );*/
+		/*WR41:);*/
 		}
 		#endregion
 

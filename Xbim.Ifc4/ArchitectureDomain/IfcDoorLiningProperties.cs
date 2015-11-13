@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.RepresentationResource;
 using System;
@@ -46,7 +45,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ArchitectureDomain
 {
-	[ExpressType("IFCDOORLININGPROPERTIES", 582)]
+	[ExpressType("IFCDOORLININGPROPERTIES", 589)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDoorLiningProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcDoorLiningProperties, IEqualityComparer<@IfcDoorLiningProperties>, IEquatable<@IfcDoorLiningProperties>
 	{
@@ -337,9 +336,9 @@ namespace Xbim.Ifc4.ArchitectureDomain
             throw new System.NotImplementedException();
 		/*WR31:	WR31 : NOT(EXISTS(LiningDepth) AND NOT(EXISTS(LiningThickness)));*/
 		/*WR32:	WR32 : NOT(EXISTS(ThresholdDepth) AND NOT(EXISTS(ThresholdThickness)));*/
-		/*WR33:             (NOT(EXISTS(TransomOffset)) AND NOT(EXISTS(TransomThickness)));*/
-		/*WR34:             (NOT(EXISTS(CasingDepth)) AND NOT(EXISTS(CasingThickness)));*/
-		/*WR35:             );*/
+		/*WR33:(NOT(EXISTS(TransomOffset)) AND NOT(EXISTS(TransomThickness)));*/
+		/*WR34:(NOT(EXISTS(CasingDepth)) AND NOT(EXISTS(CasingThickness)));*/
+		/*WR35:);*/
 		}
 		#endregion
 

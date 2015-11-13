@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
-	[ExpressType("IFCFLOWTERMINALTYPE", 680)]
+	[ExpressType("IFCFLOWTERMINALTYPE", 687)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcFlowTerminalType : IfcDistributionFlowElementType, IIfcFlowTerminalType, IEqualityComparer<@IfcFlowTerminalType>, IEquatable<@IfcFlowTerminalType>
 	{

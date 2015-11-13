@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -32,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALLOADCASE", 1023)]
+	[ExpressType("IFCSTRUCTURALLOADCASE", 1031)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralLoadCase : IfcStructuralLoadGroup, IInstantiableEntity, IIfcStructuralLoadCase, IEqualityComparer<@IfcStructuralLoadCase>, IEquatable<@IfcStructuralLoadCase>
 	{

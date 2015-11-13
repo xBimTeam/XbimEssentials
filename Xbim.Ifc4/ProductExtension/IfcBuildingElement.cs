@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.SharedBldgElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,20 +23,18 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBuildingElement : IIfcElement
 	{
-		IEnumerable<IIfcRelCoversBldgElements> @HasCoverings {  get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCBUILDINGELEMENT", 448)]
+	[ExpressType("IFCBUILDINGELEMENT", 454)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcBuildingElement : IfcElement, IIfcBuildingElement, IEqualityComparer<@IfcBuildingElement>, IEquatable<@IfcBuildingElement>
 	{
 		#region IIfcBuildingElement explicit implementation
 		 
-		IEnumerable<IIfcRelCoversBldgElements> IIfcBuildingElement.HasCoverings {  get { return @HasCoverings; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -48,16 +45,6 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 
-		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
-		public IEnumerable<IfcRelCoversBldgElements> @HasCoverings 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<IfcRelCoversBldgElements>(e => (e.RelatingBuildingElement as IfcBuildingElement) == this);
-			} 
-		}
-		#endregion
 
 
 		#region IPersist implementation
@@ -83,7 +70,7 @@ namespace Xbim.Ifc4.ProductExtension
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*MaxOneMaterialAssociation:                                    )) <= 1;*/
+		/*MaxOneMaterialAssociation:  )) <= 1;*/
 		}
 		#endregion
 

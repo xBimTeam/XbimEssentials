@@ -26,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceTexture : IIfcPresentationItem
 	{
-		bool @RepeatS { get; }
-		bool @RepeatT { get; }
+		IfcBoolean @RepeatS { get; }
+		IfcBoolean @RepeatT { get; }
 		IfcIdentifier? @Mode { get; }
 		IIfcCartesianTransformationOperator2D @TextureTransform { get; }
 		IEnumerable<IfcIdentifier> @Parameter { get; }
@@ -39,13 +39,13 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCSURFACETEXTURE", 1065)]
+	[ExpressType("IFCSURFACETEXTURE", 1073)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcSurfaceTexture : IfcPresentationItem, IIfcSurfaceTexture, IEqualityComparer<@IfcSurfaceTexture>, IEquatable<@IfcSurfaceTexture>
 	{
 		#region IIfcSurfaceTexture explicit implementation
-		bool IIfcSurfaceTexture.RepeatS { get { return @RepeatS; } }	
-		bool IIfcSurfaceTexture.RepeatT { get { return @RepeatT; } }	
+		IfcBoolean IIfcSurfaceTexture.RepeatS { get { return @RepeatS; } }	
+		IfcBoolean IIfcSurfaceTexture.RepeatT { get { return @RepeatT; } }	
 		IfcIdentifier? IIfcSurfaceTexture.Mode { get { return @Mode; } }	
 		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform { get { return @TextureTransform; } }	
 		IEnumerable<IfcIdentifier> IIfcSurfaceTexture.Parameter { get { return @Parameter; } }	
@@ -61,8 +61,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		}
 
 		#region Explicit attribute fields
-		private bool _repeatS;
-		private bool _repeatT;
+		private IfcBoolean _repeatS;
+		private IfcBoolean _repeatT;
 		private IfcIdentifier? _mode;
 		private IfcCartesianTransformationOperator2D _textureTransform;
 		private OptionalItemSet<IfcIdentifier> _parameter;
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @RepeatS 
+		public IfcBoolean @RepeatS 
 		{ 
 			get 
 			{
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @RepeatT 
+		public IfcBoolean @RepeatT 
 		{ 
 			get 
 			{

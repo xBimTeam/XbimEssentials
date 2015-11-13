@@ -7,10 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCCIVILELEMENTTYPE", 484)]
+	[ExpressType("IFCCIVILELEMENTTYPE", 491)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCivilElementType : IfcElementType, IInstantiableEntity, IIfcCivilElementType, IEqualityComparer<@IfcCivilElementType>, IEquatable<@IfcCivilElementType>
 	{

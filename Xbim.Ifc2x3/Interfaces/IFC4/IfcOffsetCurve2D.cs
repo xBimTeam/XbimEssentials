@@ -30,11 +30,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return new Ifc4.MeasureResource.IfcLengthMeasure(Distance);
 			} 
 		}
-		bool? IIfcOffsetCurve2D.SelfIntersect 
+		Ifc4.MeasureResource.IfcLogical IIfcOffsetCurve2D.SelfIntersect 
 		{ 
 			get
 			{
-				return SelfIntersect;
+				//## Handle return of SelfIntersect for which no match was found
+				//TODO: Handle return of SelfIntersect for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	//## Custom code

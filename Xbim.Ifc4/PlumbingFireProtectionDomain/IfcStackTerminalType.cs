@@ -8,10 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.SharedBldgServiceElements;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
-	[ExpressType("IFCSTACKTERMINALTYPE", 1005)]
+	[ExpressType("IFCSTACKTERMINALTYPE", 1013)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStackTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcStackTerminalType, IEqualityComparer<@IfcStackTerminalType>, IEquatable<@IfcStackTerminalType>
 	{
@@ -101,7 +97,7 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcStackTerminalTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcStackTerminalTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
 		}
 		#endregion
 

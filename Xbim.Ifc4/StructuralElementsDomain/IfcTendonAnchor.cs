@@ -7,10 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
-using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IFCTENDONANCHOR", 1087)]
+	[ExpressType("IFCTENDONANCHOR", 1095)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTendonAnchor : IfcReinforcingElement, IInstantiableEntity, IIfcTendonAnchor, IEqualityComparer<@IfcTendonAnchor>, IEquatable<@IfcTendonAnchor>
 	{
@@ -100,8 +96,8 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcTendonAnchorTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:                              ('IFC4.IFCTENDONANCHORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcTendonAnchorTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
+		/*CorrectTypeAssigned:('IFC4.IFCTENDONANCHORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
 		}
 		#endregion
 

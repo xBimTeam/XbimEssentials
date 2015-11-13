@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCAREADENSITYMEASURE", 4)]
+	[ExpressType("IFCAREADENSITYMEASURE", 6)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcAreaDensityMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 

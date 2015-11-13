@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCDERIVEDUNIT", 561)]
+	[ExpressType("IFCDERIVEDUNIT", 568)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDerivedUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnit, IEqualityComparer<@IfcDerivedUnit>, IEquatable<@IfcDerivedUnit>
 	{
@@ -274,7 +274,7 @@ namespace Xbim.Ifc4.MeasureResource
 		{
             throw new System.NotImplementedException();
 		/*WR1:	WR1 : (SIZEOF (Elements) > 1) OR ((SIZEOF (Elements) = 1) AND (Elements[1].Exponent <> 1 ));*/
-		/*WR2:             (EXISTS(SELF.UserDefinedType)));*/
+		/*WR2: (EXISTS(SELF.UserDefinedType)));*/
 		}
 		#endregion
 

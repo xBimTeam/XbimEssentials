@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
-	[ExpressType("IFCGRIDPLACEMENT", 698)]
+	[ExpressType("IFCGRIDPLACEMENT", 705)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGridPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcGridPlacement, IEqualityComparer<@IfcGridPlacement>, IEquatable<@IfcGridPlacement>
 	{

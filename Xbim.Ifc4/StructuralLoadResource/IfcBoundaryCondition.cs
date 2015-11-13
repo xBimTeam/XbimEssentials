@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[IndexedClass]
-	[ExpressType("IFCBOUNDARYCONDITION", 437)]
+	[ExpressType("IFCBOUNDARYCONDITION", 443)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcBoundaryCondition : IPersistEntity, INotifyPropertyChanged, IIfcBoundaryCondition, IEqualityComparer<@IfcBoundaryCondition>, IEquatable<@IfcBoundaryCondition>
 	{

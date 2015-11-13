@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCFEATUREELEMENTADDITION", 655)]
+	[ExpressType("IFCFEATUREELEMENTADDITION", 662)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcFeatureElementAddition : IfcFeatureElement, IIfcFeatureElementAddition, IEqualityComparer<@IfcFeatureElementAddition>, IEquatable<@IfcFeatureElementAddition>
 	{

@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcDateTime? @ScheduleFinish { get; }
 		IfcLabel? @ScheduleContour { get; }
 		IfcDuration? @LevelingDelay { get; }
-		bool? @IsOverAllocated { get; }
+		IfcBoolean? @IsOverAllocated { get; }
 		IfcDateTime? @StatusTime { get; }
 		IfcDuration? @ActualWork { get; }
 		IfcPositiveRatioMeasure? @ActualUsage { get; }
@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IFCRESOURCETIME", 958)]
+	[ExpressType("IFCRESOURCETIME", 966)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcResourceTime : IfcSchedulingTime, IInstantiableEntity, IIfcResourceTime, IEqualityComparer<@IfcResourceTime>, IEquatable<@IfcResourceTime>
 	{
@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		IfcDateTime? IIfcResourceTime.ScheduleFinish { get { return @ScheduleFinish; } }	
 		IfcLabel? IIfcResourceTime.ScheduleContour { get { return @ScheduleContour; } }	
 		IfcDuration? IIfcResourceTime.LevelingDelay { get { return @LevelingDelay; } }	
-		bool? IIfcResourceTime.IsOverAllocated { get { return @IsOverAllocated; } }	
+		IfcBoolean? IIfcResourceTime.IsOverAllocated { get { return @IsOverAllocated; } }	
 		IfcDateTime? IIfcResourceTime.StatusTime { get { return @StatusTime; } }	
 		IfcDuration? IIfcResourceTime.ActualWork { get { return @ActualWork; } }	
 		IfcPositiveRatioMeasure? IIfcResourceTime.ActualUsage { get { return @ActualUsage; } }	
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		private IfcDateTime? _scheduleFinish;
 		private IfcLabel? _scheduleContour;
 		private IfcDuration? _levelingDelay;
-		private bool? _isOverAllocated;
+		private IfcBoolean? _isOverAllocated;
 		private IfcDateTime? _statusTime;
 		private IfcDuration? _actualWork;
 		private IfcPositiveRatioMeasure? _actualUsage;
@@ -177,7 +177,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @IsOverAllocated 
+		public IfcBoolean? @IsOverAllocated 
 		{ 
 			get 
 			{

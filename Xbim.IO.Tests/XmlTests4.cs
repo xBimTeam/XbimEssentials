@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Ifc4;
 using Xbim.IO.Memory;
 using Xbim.IO.Xml;
+using Xbim.IO.Xml.BsConf;
 
 namespace Xbim.MemoryModel.Tests
 {
@@ -65,6 +66,12 @@ namespace Xbim.MemoryModel.Tests
             }
         }
 
+        [TestMethod]
+        public void XmlConfigLoadingTest()
+        {
+            var conf = configuration.LoadIFC4();
+        }
+
         /// <summary>
         /// </summary>
         /// <param name="path">Path of the file to be validated</param>
@@ -86,7 +93,7 @@ namespace Xbim.MemoryModel.Tests
                     {
                         if (
                             args.Message.Contains(
-                                "'http://www.buildingsmart-tech.org/ifcXML/IFC4/final:IfcGeometricRepresentationSubContext' cannot contain child element") ||
+                                "IfcGeometricRepresentationSubContext' cannot contain child element") ||
                             args.Message.Contains("The element cannot contain white space. Content model is empty.") ||
                             args.Message.Contains("'IfcStyledItem' in namespace 'http://www.buildingsmart-tech.org/ifcXML/IFC4/final' has invalid child element 'Item'") ||
                             args.Message.Contains("'IfcMaterialDefinitionRepresentation' in namespace 'http://www.buildingsmart-tech.org/ifcXML/IFC4/final' has invalid child element 'RepresentedMaterial'"))

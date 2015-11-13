@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCSECTIONPROPERTIES", 971)]
+	[ExpressType("IFCSECTIONPROPERTIES", 979)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSectionProperties : IfcPreDefinedProperties, IInstantiableEntity, IIfcSectionProperties, IEqualityComparer<@IfcSectionProperties>, IEquatable<@IfcSectionProperties>
 	{

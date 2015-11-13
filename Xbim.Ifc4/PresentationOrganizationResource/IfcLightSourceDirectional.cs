@@ -7,8 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.PresentationAppearanceResource;
 using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
@@ -33,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
-	[ExpressType("IFCLIGHTSOURCEDIRECTIONAL", 731)]
+	[ExpressType("IFCLIGHTSOURCEDIRECTIONAL", 739)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLightSourceDirectional : IfcLightSource, IInstantiableEntity, IIfcLightSourceDirectional, IEqualityComparer<@IfcLightSourceDirectional>, IEquatable<@IfcLightSourceDirectional>
 	{

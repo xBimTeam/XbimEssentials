@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCSWEPTSURFACE", 1069)]
+	[ExpressType("IFCSWEPTSURFACE", 1077)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcSweptSurface : IfcSurface, IIfcSweptSurface, IEqualityComparer<@IfcSweptSurface>, IEquatable<@IfcSweptSurface>
 	{

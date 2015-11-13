@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCINTEGER", 41)]
+	[ExpressType("IFCINTEGER", 44)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcInteger : IfcSimpleValue, IExpressValueType, System.IEquatable<long>
 	{ 

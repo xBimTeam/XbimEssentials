@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCSHAPEMODEL", 979)]
+	[ExpressType("IFCSHAPEMODEL", 987)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcShapeModel : IfcRepresentation, IIfcShapeModel, IEqualityComparer<@IfcShapeModel>, IEquatable<@IfcShapeModel>
 	{
@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR11:             (SIZEOF(OfShapeAspect) = 1);*/
+		/*WR11:(SIZEOF(OfShapeAspect) = 1);*/
 		}
 		#endregion
 

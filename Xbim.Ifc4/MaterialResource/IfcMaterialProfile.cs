@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcText? @Description { get; }
 		IIfcMaterial @Material { get; }
 		IIfcProfileDef @Profile { get; }
-		IfcNormalisedRatioMeasure? @Priority { get; }
+		IfcInteger? @Priority { get; }
 		IfcLabel? @Category { get; }
 		IIfcMaterialProfileSet @ToMaterialProfileSet {  get; }
 	
@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IFCMATERIALPROFILE", 752)]
+	[ExpressType("IFCMATERIALPROFILE", 760)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialProfile : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialProfile, IEqualityComparer<@IfcMaterialProfile>, IEquatable<@IfcMaterialProfile>
 	{
@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.MaterialResource
 		IfcText? IIfcMaterialProfile.Description { get { return @Description; } }	
 		IIfcMaterial IIfcMaterialProfile.Material { get { return @Material; } }	
 		IIfcProfileDef IIfcMaterialProfile.Profile { get { return @Profile; } }	
-		IfcNormalisedRatioMeasure? IIfcMaterialProfile.Priority { get { return @Priority; } }	
+		IfcInteger? IIfcMaterialProfile.Priority { get { return @Priority; } }	
 		IfcLabel? IIfcMaterialProfile.Category { get { return @Category; } }	
 		 
 		IIfcMaterialProfileSet IIfcMaterialProfile.ToMaterialProfileSet {  get { return @ToMaterialProfileSet; } }
@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.MaterialResource
 		private IfcText? _description;
 		private IfcMaterial _material;
 		private IfcProfileDef _profile;
-		private IfcNormalisedRatioMeasure? _priority;
+		private IfcInteger? _priority;
 		private IfcLabel? _category;
 		#endregion
 	
@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public IfcNormalisedRatioMeasure? @Priority 
+		public IfcInteger? @Priority 
 		{ 
 			get 
 			{
@@ -186,7 +186,7 @@ namespace Xbim.Ifc4.MaterialResource
 					_profile = (IfcProfileDef)(value.EntityVal);
 					return;
 				case 4: 
-					_priority = value.RealVal;
+					_priority = value.IntegerVal;
 					return;
 				case 5: 
 					_category = value.StringVal;
@@ -198,7 +198,8 @@ namespace Xbim.Ifc4.MaterialResource
 		
 		public  override string WhereRule() 
 		{
-			return "";
+            throw new System.NotImplementedException();
+		/*NormalizedPriority:	NormalizedPriority : NOT(EXISTS(Priority)) OR {0 <= Priority <= 100};*/
 		}
 		#endregion
 

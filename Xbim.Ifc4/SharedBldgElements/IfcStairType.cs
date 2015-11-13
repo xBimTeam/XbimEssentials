@@ -8,10 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ProductExtension;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCSTAIRTYPE", 1009)]
+	[ExpressType("IFCSTAIRTYPE", 1017)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStairType : IfcBuildingElementType, IInstantiableEntity, IIfcStairType, IEqualityComparer<@IfcStairType>, IEquatable<@IfcStairType>
 	{
@@ -101,7 +97,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcStairTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcStairTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
 		}
 		#endregion
 

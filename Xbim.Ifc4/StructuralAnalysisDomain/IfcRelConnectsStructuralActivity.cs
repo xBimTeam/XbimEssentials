@@ -8,8 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCRELCONNECTSSTRUCTURALACTIVITY", 922)]
+	[ExpressType("IFCRELCONNECTSSTRUCTURALACTIVITY", 930)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelConnectsStructuralActivity : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralActivity, IEqualityComparer<@IfcRelConnectsStructuralActivity>, IEquatable<@IfcRelConnectsStructuralActivity>
 	{

@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
-	[ExpressType("IFCGRIDAXIS", 697)]
+	[ExpressType("IFCGRIDAXIS", 704)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGridAxis : INotifyPropertyChanged, IInstantiableEntity, IIfcGridAxis, IEqualityComparer<@IfcGridAxis>, IEquatable<@IfcGridAxis>
 	{

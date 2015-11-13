@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcCompositeCurveSegment : IIfcGeometricRepresentationItem
 	{
 		IfcTransitionCode @Transition { get; }
-		bool @SameSense { get; }
+		IfcBoolean @SameSense { get; }
 		IIfcCurve @ParentCurve { get; }
 		IEnumerable<IIfcCompositeCurve> @UsingCurves {  get; }
 		IfcDimensionCount @Dim  { get ; }
@@ -34,13 +35,13 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCCOMPOSITECURVESEGMENT", 502)]
+	[ExpressType("IFCCOMPOSITECURVESEGMENT", 509)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCompositeCurveSegment : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcCompositeCurveSegment, IEqualityComparer<@IfcCompositeCurveSegment>, IEquatable<@IfcCompositeCurveSegment>
 	{
 		#region IIfcCompositeCurveSegment explicit implementation
 		IfcTransitionCode IIfcCompositeCurveSegment.Transition { get { return @Transition; } }	
-		bool IIfcCompositeCurveSegment.SameSense { get { return @SameSense; } }	
+		IfcBoolean IIfcCompositeCurveSegment.SameSense { get { return @SameSense; } }	
 		IIfcCurve IIfcCompositeCurveSegment.ParentCurve { get { return @ParentCurve; } }	
 		 
 		IEnumerable<IIfcCompositeCurve> IIfcCompositeCurveSegment.UsingCurves {  get { return @UsingCurves; } }
@@ -53,7 +54,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Explicit attribute fields
 		private IfcTransitionCode _transition;
-		private bool _sameSense;
+		private IfcBoolean _sameSense;
 		private IfcCurve _parentCurve;
 		#endregion
 	
@@ -73,7 +74,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @SameSense 
+		public IfcBoolean @SameSense 
 		{ 
 			get 
 			{

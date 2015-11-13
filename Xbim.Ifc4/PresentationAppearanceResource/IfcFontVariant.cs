@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCFONTVARIANT", 31)]
+	[ExpressType("IFCFONTVARIANT", 34)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcFontVariant : IExpressValueType, System.IEquatable<string>
 	{ 

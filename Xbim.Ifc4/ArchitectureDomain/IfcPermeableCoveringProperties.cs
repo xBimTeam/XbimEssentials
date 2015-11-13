@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.RepresentationResource;
 using System;
@@ -38,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ArchitectureDomain
 {
-	[ExpressType("IFCPERMEABLECOVERINGPROPERTIES", 795)]
+	[ExpressType("IFCPERMEABLECOVERINGPROPERTIES", 803)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPermeableCoveringProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcPermeableCoveringProperties, IEqualityComparer<@IfcPermeableCoveringProperties>, IEquatable<@IfcPermeableCoveringProperties>
 	{

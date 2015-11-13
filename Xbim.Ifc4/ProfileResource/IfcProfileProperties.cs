@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.PropertyResource;
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCPROFILEPROPERTIES", 842)]
+	[ExpressType("IFCPROFILEPROPERTIES", 850)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProfileProperties : IfcExtendedProperties, IInstantiableEntity, IIfcProfileProperties, IEqualityComparer<@IfcProfileProperties>, IEquatable<@IfcProfileProperties>
 	{

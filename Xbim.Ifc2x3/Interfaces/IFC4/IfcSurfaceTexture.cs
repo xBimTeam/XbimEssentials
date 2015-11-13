@@ -16,18 +16,24 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceTexture : IIfcSurfaceTexture
 	{
-		bool IIfcSurfaceTexture.RepeatS 
+		Ifc4.MeasureResource.IfcBoolean IIfcSurfaceTexture.RepeatS 
 		{ 
 			get
 			{
-				return RepeatS;
+				//## Handle return of RepeatS for which no match was found
+				//TODO: Handle return of RepeatS for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
-		bool IIfcSurfaceTexture.RepeatT 
+		Ifc4.MeasureResource.IfcBoolean IIfcSurfaceTexture.RepeatT 
 		{ 
 			get
 			{
-				return RepeatT;
+				//## Handle return of RepeatT for which no match was found
+				//TODO: Handle return of RepeatT for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Ifc4.MeasureResource.IfcIdentifier? IIfcSurfaceTexture.Mode 

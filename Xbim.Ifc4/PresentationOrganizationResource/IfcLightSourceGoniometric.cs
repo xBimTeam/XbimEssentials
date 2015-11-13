@@ -7,9 +7,9 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.PresentationAppearanceResource;
 using Xbim.Ifc4.GeometryResource;
+using Xbim.Ifc4.PresentationAppearanceResource;
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
-	[ExpressType("IFCLIGHTSOURCEGONIOMETRIC", 732)]
+	[ExpressType("IFCLIGHTSOURCEGONIOMETRIC", 740)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLightSourceGoniometric : IfcLightSource, IInstantiableEntity, IIfcLightSourceGoniometric, IEqualityComparer<@IfcLightSourceGoniometric>, IEquatable<@IfcLightSourceGoniometric>
 	{

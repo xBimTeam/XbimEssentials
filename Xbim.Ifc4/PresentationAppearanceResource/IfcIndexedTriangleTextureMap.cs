@@ -7,7 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.GeometricModelResource;
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,35 +24,35 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcIndexedTriangleTextureMap : IIfcIndexedTextureMap
 	{
-		IEnumerable<IEnumerable<long>> @TexCoordIndex { get; }
+		IEnumerable<IEnumerable<IfcPositiveInteger>> @TexCoordIndex { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCINDEXEDTRIANGLETEXTUREMAP", 709)]
+	[ExpressType("IFCINDEXEDTRIANGLETEXTUREMAP", 717)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcIndexedTriangleTextureMap : IfcIndexedTextureMap, IInstantiableEntity, IIfcIndexedTriangleTextureMap, IEqualityComparer<@IfcIndexedTriangleTextureMap>, IEquatable<@IfcIndexedTriangleTextureMap>
 	{
 		#region IIfcIndexedTriangleTextureMap explicit implementation
-		IEnumerable<IEnumerable<long>> IIfcIndexedTriangleTextureMap.TexCoordIndex { get { return @TexCoordIndex; } }	
+		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcIndexedTriangleTextureMap.TexCoordIndex { get { return @TexCoordIndex; } }	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIndexedTriangleTextureMap(IModel model) : base(model) 		{ 
 			Model = model; 
-			_texCoordIndex = new OptionalItemSet<ItemSet<long>>( this, 0 );
+			_texCoordIndex = new OptionalItemSet<ItemSet<IfcPositiveInteger>>( this, 0 );
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<ItemSet<long>> _texCoordIndex;
+		private OptionalItemSet<ItemSet<IfcPositiveInteger>> _texCoordIndex;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 1, -1)]
-		public OptionalItemSet<ItemSet<long>> @TexCoordIndex 
+		public OptionalItemSet<ItemSet<IfcPositiveInteger>> @TexCoordIndex 
 		{ 
 			get 
 			{
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				case 3: 
 					_texCoordIndex
 						.InternalGetAt(nestedIndex[0])
-						.InternalAdd((long)(value.IntegerVal));
+						.InternalAdd((IfcPositiveInteger)(value.IntegerVal));
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IFCMATERIALPROFILESETUSAGETAPERING", 755)]
+	[ExpressType("IFCMATERIALPROFILESETUSAGETAPERING", 763)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialProfileSetUsageTapering : IfcMaterialProfileSetUsage, IInstantiableEntity, IIfcMaterialProfileSetUsageTapering, IEqualityComparer<@IfcMaterialProfileSetUsageTapering>, IEquatable<@IfcMaterialProfileSetUsageTapering>
 	{

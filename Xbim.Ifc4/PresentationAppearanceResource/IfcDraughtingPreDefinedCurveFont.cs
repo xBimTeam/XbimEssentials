@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCDRAUGHTINGPREDEFINEDCURVEFONT", 588)]
+	[ExpressType("IFCDRAUGHTINGPREDEFINEDCURVEFONT", 595)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDraughtingPreDefinedCurveFont : IfcPreDefinedCurveFont, IInstantiableEntity, IIfcDraughtingPreDefinedCurveFont, IEqualityComparer<@IfcDraughtingPreDefinedCurveFont>, IEquatable<@IfcDraughtingPreDefinedCurveFont>
 	{
@@ -64,7 +63,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*PreDefinedCurveFontNames:                                         'by layer'];*/
+		/*PreDefinedCurveFontNames:        'by layer'];*/
 		}
 		#endregion
 

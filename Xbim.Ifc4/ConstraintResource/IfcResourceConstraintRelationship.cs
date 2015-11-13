@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ExternalReferenceResource;
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstraintResource
 {
-	[ExpressType("IFCRESOURCECONSTRAINTRELATIONSHIP", 956)]
+	[ExpressType("IFCRESOURCECONSTRAINTRELATIONSHIP", 964)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcResourceConstraintRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceConstraintRelationship, IEqualityComparer<@IfcResourceConstraintRelationship>, IEquatable<@IfcResourceConstraintRelationship>
 	{
@@ -70,6 +69,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _relatingConstraint = v, _relatingConstraint, value,  "RelatingConstraint");
 			} 
 		}	
+		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
 		{ 

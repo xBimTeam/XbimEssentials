@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCPREDEFINEDCURVEFONT", 825)]
+	[ExpressType("IFCPREDEFINEDCURVEFONT", 833)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPreDefinedCurveFont : IfcPreDefinedItem, IIfcPreDefinedCurveFont, IEqualityComparer<@IfcPreDefinedCurveFont>, IEquatable<@IfcPreDefinedCurveFont>
 	{

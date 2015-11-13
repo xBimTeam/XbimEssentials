@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xbim.Ifc2x3.GeometryResource;
+using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
@@ -19,7 +20,7 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
             get { return _polyLoop; }
         }
 
-        public bool Orientation
+        public IfcBoolean Orientation
         {
             get { return true; }
         }

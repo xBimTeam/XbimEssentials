@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +42,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCASYMMETRICISHAPEPROFILEDEF", 418)]
+	[ExpressType("IFCASYMMETRICISHAPEPROFILEDEF", 424)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAsymmetricIShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcAsymmetricIShapeProfileDef, IEqualityComparer<@IfcAsymmetricIShapeProfileDef>, IEquatable<@IfcAsymmetricIShapeProfileDef>
 	{
@@ -314,8 +313,8 @@ namespace Xbim.Ifc4.ProfileResource
             throw new System.NotImplementedException();
 		/*ValidFlangeThickness:	ValidFlangeThickness : NOT(EXISTS(TopFlangeThickness)) OR ((BottomFlangeThickness + TopFlangeThickness) < OverallDepth);*/
 		/*ValidWebThickness:	ValidWebThickness : (WebThickness < BottomFlangeWidth) AND (WebThickness < TopFlangeWidth);*/
-		/*ValidBottomFilletRadius:                                (BottomFlangeFilletRadius <= (BottomFlangeWidth - WebThickness)/2.);*/
-		/*ValidTopFilletRadius:                                (TopFlangeFilletRadius <= (TopFlangeWidth - WebThickness)/2.);*/
+		/*ValidBottomFilletRadius:(BottomFlangeFilletRadius <= (BottomFlangeWidth - WebThickness)/2.);*/
+		/*ValidTopFilletRadius:(TopFlangeFilletRadius <= (TopFlangeWidth - WebThickness)/2.);*/
 		}
 		#endregion
 

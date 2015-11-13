@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCPROJECTEDCRS", 846)]
+	[ExpressType("IFCPROJECTEDCRS", 854)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProjectedCRS : IfcCoordinateReferenceSystem, IInstantiableEntity, IIfcProjectedCRS, IEqualityComparer<@IfcProjectedCRS>, IEquatable<@IfcProjectedCRS>
 	{
@@ -132,7 +132,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR11:	WR11 : NOT(EXISTS(MapUnit)) OR (MapUnit.UnitType = IfcUnitEnum.LENGTHUNIT);*/
+		/*IsLengthUnit:	IsLengthUnit : NOT(EXISTS(MapUnit)) OR (MapUnit.UnitType = IfcUnitEnum.LENGTHUNIT);*/
 		}
 		#endregion
 

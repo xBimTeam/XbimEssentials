@@ -8,8 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCRELCONNECTSPORTTOELEMENT", 920)]
+	[ExpressType("IFCRELCONNECTSPORTTOELEMENT", 928)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelConnectsPortToElement : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsPortToElement, IEqualityComparer<@IfcRelConnectsPortToElement>, IEquatable<@IfcRelConnectsPortToElement>
 	{

@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCQUANTITYSET", 874)]
+	[ExpressType("IFCQUANTITYSET", 882)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcQuantitySet : IfcPropertySetDefinition, IIfcQuantitySet, IEqualityComparer<@IfcQuantitySet>, IEquatable<@IfcQuantitySet>
 	{

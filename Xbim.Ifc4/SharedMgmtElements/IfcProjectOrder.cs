@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -35,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedMgmtElements
 {
-	[ExpressType("IFCPROJECTORDER", 845)]
+	[ExpressType("IFCPROJECTORDER", 853)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProjectOrder : IfcControl, IInstantiableEntity, IIfcProjectOrder, IEqualityComparer<@IfcProjectOrder>, IEquatable<@IfcProjectOrder>
 	{

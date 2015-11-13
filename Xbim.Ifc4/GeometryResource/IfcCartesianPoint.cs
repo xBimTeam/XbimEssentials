@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCCARTESIANPOINT", 467)]
+	[ExpressType("IFCCARTESIANPOINT", 473)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IIfcCartesianPoint, IEqualityComparer<@IfcCartesianPoint>, IEquatable<@IfcCartesianPoint>
 	{

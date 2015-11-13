@@ -8,9 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ProductExtension;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsPathElements : IIfcRelConnectsElements
 	{
-		IEnumerable<double> @RelatingPriorities { get; }
-		IEnumerable<double> @RelatedPriorities { get; }
+		IEnumerable<IfcInteger> @RelatingPriorities { get; }
+		IEnumerable<IfcInteger> @RelatedPriorities { get; }
 		IfcConnectionTypeEnum @RelatedConnectionType { get; }
 		IfcConnectionTypeEnum @RelatingConnectionType { get; }
 	
@@ -37,13 +35,13 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCRELCONNECTSPATHELEMENTS", 919)]
+	[ExpressType("IFCRELCONNECTSPATHELEMENTS", 927)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelConnectsPathElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsPathElements, IEqualityComparer<@IfcRelConnectsPathElements>, IEquatable<@IfcRelConnectsPathElements>
 	{
 		#region IIfcRelConnectsPathElements explicit implementation
-		IEnumerable<double> IIfcRelConnectsPathElements.RelatingPriorities { get { return @RelatingPriorities; } }	
-		IEnumerable<double> IIfcRelConnectsPathElements.RelatedPriorities { get { return @RelatedPriorities; } }	
+		IEnumerable<IfcInteger> IIfcRelConnectsPathElements.RelatingPriorities { get { return @RelatingPriorities; } }	
+		IEnumerable<IfcInteger> IIfcRelConnectsPathElements.RelatedPriorities { get { return @RelatedPriorities; } }	
 		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType { get { return @RelatedConnectionType; } }	
 		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType { get { return @RelatingConnectionType; } }	
 		 
@@ -52,20 +50,20 @@ namespace Xbim.Ifc4.SharedBldgElements
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsPathElements(IModel model) : base(model) 		{ 
 			Model = model; 
-			_relatingPriorities = new ItemSet<double>( this, 0 );
-			_relatedPriorities = new ItemSet<double>( this, 0 );
+			_relatingPriorities = new ItemSet<IfcInteger>( this, 0 );
+			_relatedPriorities = new ItemSet<IfcInteger>( this, 0 );
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<double> _relatingPriorities;
-		private ItemSet<double> _relatedPriorities;
+		private ItemSet<IfcInteger> _relatingPriorities;
+		private ItemSet<IfcInteger> _relatedPriorities;
 		private IfcConnectionTypeEnum _relatedConnectionType;
 		private IfcConnectionTypeEnum _relatingConnectionType;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 0, -1)]
-		public ItemSet<double> @RelatingPriorities 
+		public ItemSet<IfcInteger> @RelatingPriorities 
 		{ 
 			get 
 			{
@@ -75,7 +73,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 0, -1)]
-		public ItemSet<double> @RelatedPriorities 
+		public ItemSet<IfcInteger> @RelatedPriorities 
 		{ 
 			get 
 			{
@@ -133,12 +131,12 @@ namespace Xbim.Ifc4.SharedBldgElements
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 7: 
-					if (_relatingPriorities == null) _relatingPriorities = new ItemSet<double>( this );
-					_relatingPriorities.InternalAdd(value.NumberVal);
+					if (_relatingPriorities == null) _relatingPriorities = new ItemSet<IfcInteger>( this );
+					_relatingPriorities.InternalAdd(value.IntegerVal);
 					return;
 				case 8: 
-					if (_relatedPriorities == null) _relatedPriorities = new ItemSet<double>( this );
-					_relatedPriorities.InternalAdd(value.NumberVal);
+					if (_relatedPriorities == null) _relatedPriorities = new ItemSet<IfcInteger>( this );
+					_relatedPriorities.InternalAdd(value.IntegerVal);
 					return;
 				case 9: 
                     _relatedConnectionType = (IfcConnectionTypeEnum) System.Enum.Parse(typeof (IfcConnectionTypeEnum), value.EnumVal, true);
@@ -154,8 +152,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*NormalizedRelatingPriorities:                                       )) = SIZEOF(RelatingPriorities));*/
-		/*NormalizedRelatedPriorities:                                       )) = SIZEOF(RelatedPriorities));*/
+		/*NormalizedRelatingPriorities:  )) = SIZEOF(RelatingPriorities));*/
+		/*NormalizedRelatedPriorities:  )) = SIZEOF(RelatedPriorities));*/
 		}
 		#endregion
 

@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
-	[ExpressType("IFCBOUNDARYNODECONDITION", 441)]
+	[ExpressType("IFCBOUNDARYNODECONDITION", 447)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBoundaryNodeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryNodeCondition, IEqualityComparer<@IfcBoundaryNodeCondition>, IEquatable<@IfcBoundaryNodeCondition>
 	{

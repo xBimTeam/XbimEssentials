@@ -7,8 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCRELDEFINESBYPROPERTIES", 933)]
+	[ExpressType("IFCRELDEFINESBYPROPERTIES", 941)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelDefinesByProperties : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByProperties, IEqualityComparer<@IfcRelDefinesByProperties>, IEquatable<@IfcRelDefinesByProperties>
 	{
@@ -46,7 +44,7 @@ namespace Xbim.Ifc4.Kernel
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDefinesByProperties(IModel model) : base(model) 		{ 
 			Model = model; 
-			_relatedObjects = new ItemSet<IfcObjectDefinition>( this, 1 );
+			_relatedObjects = new ItemSet<IfcObjectDefinition>( this, 0 );
 		}
 
 		#region Explicit attribute fields
@@ -56,7 +54,7 @@ namespace Xbim.Ifc4.Kernel
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcObjectDefinition> @RelatedObjects 
 		{ 
 			get 

@@ -8,9 +8,8 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc2x3.Kernel;
-using Xbim.Ifc2x3.UtilityResource;
-using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.SharedBldgElements;
+using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.RepresentationResource;
 using System;
 using System.Collections.Generic;

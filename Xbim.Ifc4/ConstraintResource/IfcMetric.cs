@@ -8,8 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.ActorResource;
-using Xbim.Ifc4.DateTimeResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstraintResource
 {
-	[ExpressType("IFCMETRIC", 768)]
+	[ExpressType("IFCMETRIC", 776)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IIfcMetric, IEqualityComparer<@IfcMetric>, IEquatable<@IfcMetric>
 	{
@@ -89,7 +87,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _valueSource = v, _valueSource, value,  "ValueSource");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcMetricValueSelect @DataValue 
 		{ 
 			get 

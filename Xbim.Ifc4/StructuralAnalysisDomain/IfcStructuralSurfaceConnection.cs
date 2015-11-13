@@ -7,11 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
-using Xbim.Ifc4.RepresentationResource;
-using Xbim.Ifc4.StructuralLoadResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALSURFACECONNECTION", 1043)]
+	[ExpressType("IFCSTRUCTURALSURFACECONNECTION", 1051)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralSurfaceConnection : IfcStructuralConnection, IInstantiableEntity, IIfcStructuralSurfaceConnection, IEqualityComparer<@IfcStructuralSurfaceConnection>, IEquatable<@IfcStructuralSurfaceConnection>
 	{

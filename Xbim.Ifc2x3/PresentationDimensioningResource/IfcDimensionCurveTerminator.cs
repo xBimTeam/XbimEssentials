@@ -7,10 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc2x3.GeometryResource;
-using Xbim.Ifc2x3.MeasureResource;
-using Xbim.Ifc2x3.PresentationDefinitionResource;
-using Xbim.Ifc2x3.PresentationAppearanceResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;

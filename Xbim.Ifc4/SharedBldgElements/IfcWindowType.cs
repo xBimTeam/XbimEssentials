@@ -8,10 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ProductExtension;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcWindowTypeEnum @PredefinedType { get; }
 		IfcWindowTypePartitioningEnum @PartitioningType { get; }
-		bool? @ParameterTakesPrecedence { get; }
+		IfcBoolean? @ParameterTakesPrecedence { get; }
 		IfcLabel? @UserDefinedPartitioningType { get; }
 	
 	}
@@ -38,14 +35,14 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCWINDOWTYPE", 1149)]
+	[ExpressType("IFCWINDOWTYPE", 1157)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWindowType : IfcBuildingElementType, IInstantiableEntity, IIfcWindowType, IEqualityComparer<@IfcWindowType>, IEquatable<@IfcWindowType>
 	{
 		#region IIfcWindowType explicit implementation
 		IfcWindowTypeEnum IIfcWindowType.PredefinedType { get { return @PredefinedType; } }	
 		IfcWindowTypePartitioningEnum IIfcWindowType.PartitioningType { get { return @PartitioningType; } }	
-		bool? IIfcWindowType.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
+		IfcBoolean? IIfcWindowType.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
 		IfcLabel? IIfcWindowType.UserDefinedPartitioningType { get { return @UserDefinedPartitioningType; } }	
 		 
 		#endregion
@@ -58,7 +55,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#region Explicit attribute fields
 		private IfcWindowTypeEnum _predefinedType;
 		private IfcWindowTypePartitioningEnum _partitioningType;
-		private bool? _parameterTakesPrecedence;
+		private IfcBoolean? _parameterTakesPrecedence;
 		private IfcLabel? _userDefinedPartitioningType;
 		#endregion
 	
@@ -92,7 +89,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @ParameterTakesPrecedence 
+		public IfcBoolean? @ParameterTakesPrecedence 
 		{ 
 			get 
 			{
@@ -161,7 +158,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcWindowTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcWindowTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
 		}
 		#endregion
 

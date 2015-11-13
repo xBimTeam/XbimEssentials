@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCSURFACESTYLEREFRACTION", 1061)]
+	[ExpressType("IFCSURFACESTYLEREFRACTION", 1069)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceStyleRefraction : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleRefraction, IEqualityComparer<@IfcSurfaceStyleRefraction>, IEquatable<@IfcSurfaceStyleRefraction>
 	{

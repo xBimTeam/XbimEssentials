@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.GeometryResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -34,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCRECTANGULARPYRAMID", 888)]
+	[ExpressType("IFCRECTANGULARPYRAMID", 896)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRectangularPyramid : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRectangularPyramid, IEqualityComparer<@IfcRectangularPyramid>, IEquatable<@IfcRectangularPyramid>
 	{

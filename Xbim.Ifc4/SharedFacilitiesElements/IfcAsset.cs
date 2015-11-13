@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.CostResource;
 using Xbim.Ifc4.ActorResource;
@@ -44,7 +43,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedFacilitiesElements
 {
-	[ExpressType("IFCASSET", 417)]
+	[ExpressType("IFCASSET", 423)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IIfcAsset, IEqualityComparer<@IfcAsset>, IEquatable<@IfcAsset>
 	{

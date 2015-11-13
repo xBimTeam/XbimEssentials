@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
-	[ExpressType("IFCSURFACEREINFORCEMENTAREA", 1058)]
+	[ExpressType("IFCSURFACEREINFORCEMENTAREA", 1066)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceReinforcementArea : IfcStructuralLoadOrResult, IInstantiableEntity, IIfcSurfaceReinforcementArea, IEqualityComparer<@IfcSurfaceReinforcementArea>, IEquatable<@IfcSurfaceReinforcementArea>
 	{
@@ -126,8 +126,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		{
             throw new System.NotImplementedException();
 		/*SurfaceAndOrShearAreaSpecified:	SurfaceAndOrShearAreaSpecified : EXISTS(SurfaceReinforcement1) OR EXISTS(SurfaceReinforcement2) OR EXISTS(ShearReinforcement);*/
-		/*NonnegativeArea1:                                       );*/
-		/*NonnegativeArea2:                                       );*/
+		/*NonnegativeArea1:);*/
+		/*NonnegativeArea2:);*/
 		/*NonnegativeArea3:	NonnegativeArea3 : (NOT EXISTS(ShearReinforcement)) OR (ShearReinforcement >= 0.);*/
 		}
 		#endregion

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCPOLYLOOP", 819)]
+	[ExpressType("IFCPOLYLOOP", 827)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPolyLoop : IfcLoop, IInstantiableEntity, IIfcPolyLoop, IEqualityComparer<@IfcPolyLoop>, IEquatable<@IfcPolyLoop>
 	{

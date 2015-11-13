@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcDateTime? @LateFinish { get; }
 		IfcDuration? @FreeFloat { get; }
 		IfcDuration? @TotalFloat { get; }
-		bool? @IsCritical { get; }
+		IfcBoolean? @IsCritical { get; }
 		IfcDateTime? @StatusTime { get; }
 		IfcDuration? @ActualDuration { get; }
 		IfcDateTime? @ActualStart { get; }
@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IFCTASKTIME", 1082)]
+	[ExpressType("IFCTASKTIME", 1090)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTaskTime : IfcSchedulingTime, IInstantiableEntity, IIfcTaskTime, IEqualityComparer<@IfcTaskTime>, IEquatable<@IfcTaskTime>
 	{
@@ -62,7 +62,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		IfcDateTime? IIfcTaskTime.LateFinish { get { return @LateFinish; } }	
 		IfcDuration? IIfcTaskTime.FreeFloat { get { return @FreeFloat; } }	
 		IfcDuration? IIfcTaskTime.TotalFloat { get { return @TotalFloat; } }	
-		bool? IIfcTaskTime.IsCritical { get { return @IsCritical; } }	
+		IfcBoolean? IIfcTaskTime.IsCritical { get { return @IsCritical; } }	
 		IfcDateTime? IIfcTaskTime.StatusTime { get { return @StatusTime; } }	
 		IfcDuration? IIfcTaskTime.ActualDuration { get { return @ActualDuration; } }	
 		IfcDateTime? IIfcTaskTime.ActualStart { get { return @ActualStart; } }	
@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		private IfcDateTime? _lateFinish;
 		private IfcDuration? _freeFloat;
 		private IfcDuration? _totalFloat;
-		private bool? _isCritical;
+		private IfcBoolean? _isCritical;
 		private IfcDateTime? _statusTime;
 		private IfcDuration? _actualDuration;
 		private IfcDateTime? _actualStart;
@@ -239,7 +239,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @IsCritical 
+		public IfcBoolean? @IsCritical 
 		{ 
 			get 
 			{

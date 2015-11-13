@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCOBJECTDEFINITION", 775)]
+	[ExpressType("IFCOBJECTDEFINITION", 783)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcObjectDefinition : IfcRoot, IIfcObjectDefinition, IEqualityComparer<@IfcObjectDefinition>, IEquatable<@IfcObjectDefinition>
 	{

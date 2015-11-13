@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.Kernel;
 using System;
 using System.Collections.Generic;
@@ -34,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.RepresentationResource
 {
 	[IndexedClass]
-	[ExpressType("IFCPRODUCTDEFINITIONSHAPE", 839)]
+	[ExpressType("IFCPRODUCTDEFINITIONSHAPE", 847)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProductDefinitionShape : IfcProductRepresentation, IInstantiableEntity, IIfcProductDefinitionShape, IEqualityComparer<@IfcProductDefinitionShape>, IEquatable<@IfcProductDefinitionShape>
 	{
@@ -90,7 +89,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*OnlyShapeModel:                       )) = 0;*/
+		/*OnlyShapeModel:)) = 0;*/
 		}
 		#endregion
 

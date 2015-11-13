@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,19 +23,19 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTaskTimeRecurring : IIfcTaskTime
 	{
-		IIfcRecurrencePattern @Recurrance { get; }
+		IIfcRecurrencePattern @Recurrence { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IFCTASKTIMERECURRING", 1083)]
+	[ExpressType("IFCTASKTIMERECURRING", 1091)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTaskTimeRecurring : IfcTaskTime, IInstantiableEntity, IIfcTaskTimeRecurring, IEqualityComparer<@IfcTaskTimeRecurring>, IEquatable<@IfcTaskTimeRecurring>
 	{
 		#region IIfcTaskTimeRecurring explicit implementation
-		IIfcRecurrencePattern IIfcTaskTimeRecurring.Recurrance { get { return @Recurrance; } }	
+		IIfcRecurrencePattern IIfcTaskTimeRecurring.Recurrence { get { return @Recurrence; } }	
 		 
 		#endregion
 
@@ -46,22 +45,22 @@ namespace Xbim.Ifc4.DateTimeResource
 		}
 
 		#region Explicit attribute fields
-		private IfcRecurrencePattern _recurrance;
+		private IfcRecurrencePattern _recurrence;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(21, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
-		public IfcRecurrencePattern @Recurrance 
+		public IfcRecurrencePattern @Recurrence 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _recurrance;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _recurrence;
 				((IPersistEntity)this).Activate(false);
-				return _recurrance;
+				return _recurrence;
 			} 
 			set
 			{
-				SetValue( v =>  _recurrance = v, _recurrance, value,  "Recurrance");
+				SetValue( v =>  _recurrence = v, _recurrence, value,  "Recurrence");
 			} 
 		}	
 		#endregion
@@ -98,7 +97,7 @@ namespace Xbim.Ifc4.DateTimeResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 20: 
-					_recurrance = (IfcRecurrencePattern)(value.EntityVal);
+					_recurrence = (IfcRecurrencePattern)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

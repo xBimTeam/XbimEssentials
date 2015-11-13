@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.QuantityResource
 {
-	[ExpressType("IFCQUANTITYVOLUME", 876)]
+	[ExpressType("IFCQUANTITYVOLUME", 884)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcQuantityVolume : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityVolume, IEqualityComparer<@IfcQuantityVolume>, IEquatable<@IfcQuantityVolume>
 	{
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.QuantityResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR21:                (SELF\IfcPhysicalSimpleQuantity.Unit.UnitType = IfcUnitEnum.VOLUMEUNIT);*/
+		/*WR21:   (SELF\IfcPhysicalSimpleQuantity.Unit.UnitType = IfcUnitEnum.VOLUMEUNIT);*/
 		/*WR22:	WR22 : VolumeValue >= 0.;*/
 		}
 		#endregion

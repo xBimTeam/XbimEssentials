@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ExternalReferenceResource;
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCEXTERNALLYDEFINEDHATCHSTYLE", 637)]
+	[ExpressType("IFCEXTERNALLYDEFINEDHATCHSTYLE", 644)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcExternallyDefinedHatchStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedHatchStyle, IEqualityComparer<@IfcExternallyDefinedHatchStyle>, IEquatable<@IfcExternallyDefinedHatchStyle>
 	{

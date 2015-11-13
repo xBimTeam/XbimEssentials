@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IFCIRREGULARTIMESERIESVALUE", 714)]
+	[ExpressType("IFCIRREGULARTIMESERIESVALUE", 722)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcIrregularTimeSeriesValue : INotifyPropertyChanged, IInstantiableEntity, IIfcIrregularTimeSeriesValue, IEqualityComparer<@IfcIrregularTimeSeriesValue>, IEquatable<@IfcIrregularTimeSeriesValue>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCPCURVE", 793)]
+	[ExpressType("IFCPCURVE", 801)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPcurve : IfcCurve, IInstantiableEntity, IIfcPcurve, IEqualityComparer<@IfcPcurve>, IEquatable<@IfcPcurve>
 	{

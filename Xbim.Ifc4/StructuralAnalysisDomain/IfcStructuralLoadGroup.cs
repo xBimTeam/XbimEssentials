@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -39,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALLOADGROUP", 1025)]
+	[ExpressType("IFCSTRUCTURALLOADGROUP", 1033)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralLoadGroup : IfcGroup, IInstantiableEntity, IIfcStructuralLoadGroup, IEqualityComparer<@IfcStructuralLoadGroup>, IEquatable<@IfcStructuralLoadGroup>
 	{
@@ -197,7 +196,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*HasObjectType:                      ) OR EXISTS(SELF\IfcObject.ObjectType);*/
+		/*HasObjectType:) OR EXISTS(SELF\IfcObject.ObjectType);*/
 		}
 		#endregion
 

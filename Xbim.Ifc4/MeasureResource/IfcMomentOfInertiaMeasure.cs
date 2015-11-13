@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCMOMENTOFINERTIAMEASURE", 69)]
+	[ExpressType("IFCMOMENTOFINERTIAMEASURE", 73)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcMomentOfInertiaMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 

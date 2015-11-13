@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
@@ -32,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCARBITRARYOPENPROFILEDEF", 415)]
+	[ExpressType("IFCARBITRARYOPENPROFILEDEF", 421)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcArbitraryOpenProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryOpenProfileDef, IEqualityComparer<@IfcArbitraryOpenProfileDef>, IEquatable<@IfcArbitraryOpenProfileDef>
 	{
@@ -91,7 +90,7 @@ namespace Xbim.Ifc4.ProfileResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR11:              (SELF\IfcProfileDef.ProfileType = IfcProfileTypeEnum.CURVE);*/
+		/*WR11: (SELF\IfcProfileDef.ProfileType = IfcProfileTypeEnum.CURVE);*/
 		/*WR12:	WR12 : Curve.Dim = 2;*/
 		}
 		#endregion

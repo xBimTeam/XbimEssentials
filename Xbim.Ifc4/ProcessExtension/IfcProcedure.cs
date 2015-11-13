@@ -8,8 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IFCPROCEDURE", 835)]
+	[ExpressType("IFCPROCEDURE", 843)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProcedure : IfcProcess, IInstantiableEntity, IIfcProcedure, IEqualityComparer<@IfcProcedure>, IEquatable<@IfcProcedure>
 	{
@@ -98,7 +96,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		{
             throw new System.NotImplementedException();
 		/*HasName:	HasName : EXISTS(SELF\IfcRoot.Name);*/
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcProcedureTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcProcedureTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
 		}
 		#endregion
 

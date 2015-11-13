@@ -42,11 +42,14 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
-		bool? IIfcShapeAspect.ProductDefinitional 
+		Ifc4.MeasureResource.IfcLogical IIfcShapeAspect.ProductDefinitional 
 		{ 
 			get
 			{
-				return ProductDefinitional;
+				//## Handle return of ProductDefinitional for which no match was found
+				//TODO: Handle return of ProductDefinitional for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IIfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape 

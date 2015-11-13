@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCISHAPEPROFILEDEF", 705)]
+	[ExpressType("IFCISHAPEPROFILEDEF", 712)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcIShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcIShapeProfileDef, IEqualityComparer<@IfcIShapeProfileDef>, IEquatable<@IfcIShapeProfileDef>
 	{
@@ -214,7 +213,7 @@ namespace Xbim.Ifc4.ProfileResource
             throw new System.NotImplementedException();
 		/*ValidFlangeThickness:	ValidFlangeThickness : (2. * FlangeThickness) < OverallDepth;*/
 		/*ValidWebThickness:	ValidWebThickness : WebThickness < OverallWidth;*/
-		/*ValidFilletRadius:                              (FilletRadius <= (OverallDepth - (2. * FlangeThickness))/2.));*/
+		/*ValidFilletRadius: (FilletRadius <= (OverallDepth - (2. * FlangeThickness))/2.));*/
 		}
 		#endregion
 

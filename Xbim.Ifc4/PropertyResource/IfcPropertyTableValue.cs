@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PropertyResource
 {
-	[ExpressType("IFCPROPERTYTABLEVALUE", 861)]
+	[ExpressType("IFCPROPERTYTABLEVALUE", 869)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPropertyTableValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyTableValue, IEqualityComparer<@IfcPropertyTableValue>, IEquatable<@IfcPropertyTableValue>
 	{
@@ -186,9 +186,9 @@ namespace Xbim.Ifc4.PropertyResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR21:             OR (SIZEOF(DefiningValues) = SIZEOF(DefinedValues));*/
-		/*WR22:             )) = 0);*/
-		/*WR23:             )) = 0);*/
+		/*WR21:OR (SIZEOF(DefiningValues) = SIZEOF(DefinedValues));*/
+		/*WR22:)) = 0);*/
+		/*WR23:)) = 0);*/
 		}
 		#endregion
 

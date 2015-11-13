@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc2x3.ProfileResource;
 using Xbim.Ifc2x3.GeometryResource;
 using Xbim.Ifc2x3.MeasureResource;
 using System;

@@ -7,11 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
-using Xbim.Ifc4.RepresentationResource;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALCURVEMEMBERVARYING", 1018)]
+	[ExpressType("IFCSTRUCTURALCURVEMEMBERVARYING", 1026)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralCurveMemberVarying : IfcStructuralCurveMember, IInstantiableEntity, IIfcStructuralCurveMemberVarying, IEqualityComparer<@IfcStructuralCurveMemberVarying>, IEquatable<@IfcStructuralCurveMemberVarying>
 	{

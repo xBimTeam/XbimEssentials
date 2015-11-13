@@ -7,10 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCTRANSPORTELEMENTTYPE", 1111)]
+	[ExpressType("IFCTRANSPORTELEMENTTYPE", 1119)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTransportElementType : IfcElementType, IInstantiableEntity, IIfcTransportElementType, IEqualityComparer<@IfcTransportElementType>, IEquatable<@IfcTransportElementType>
 	{
@@ -100,7 +96,7 @@ namespace Xbim.Ifc4.ProductExtension
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcTransportElementTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcTransportElementTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
 		}
 		#endregion
 

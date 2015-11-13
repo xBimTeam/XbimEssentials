@@ -8,10 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.SharedBldgServiceElements;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCCOMMUNICATIONSAPPLIANCETYPE", 497)]
+	[ExpressType("IFCCOMMUNICATIONSAPPLIANCETYPE", 504)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCommunicationsApplianceType : IfcFlowTerminalType, IInstantiableEntity, IIfcCommunicationsApplianceType, IEqualityComparer<@IfcCommunicationsApplianceType>, IEquatable<@IfcCommunicationsApplianceType>
 	{
@@ -101,7 +97,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcCommunicationsApplianceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcCommunicationsApplianceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
 		}
 		#endregion
 

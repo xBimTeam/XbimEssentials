@@ -8,10 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.SharedBldgServiceElements;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.BuildingControlsDomain
 {
-	[ExpressType("IFCALARMTYPE", 407)]
+	[ExpressType("IFCALARMTYPE", 413)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAlarmType : IfcDistributionControlElementType, IInstantiableEntity, IIfcAlarmType, IEqualityComparer<@IfcAlarmType>, IEquatable<@IfcAlarmType>
 	{
@@ -101,7 +97,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcAlarmTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcAlarmTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
 		}
 		#endregion
 

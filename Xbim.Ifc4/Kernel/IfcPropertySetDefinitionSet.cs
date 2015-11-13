@@ -9,12 +9,13 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Ifc4.Kernel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCPROPERTYSETDEFINITIONSET", 85)]
+	[ExpressType("IFCPROPERTYSETDEFINITIONSET", 90)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcPropertySetDefinitionSet : IfcPropertySetDefinitionSelect, IExpressComplexType, System.IEquatable<List<IfcPropertySetDefinition>>
 	{ 

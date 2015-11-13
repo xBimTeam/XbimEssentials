@@ -13,7 +13,7 @@ using Xbim.Ifc4.PresentationAppearanceResource;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCNORMALISEDRATIOMEASURE", 73)]
+	[ExpressType("IFCNORMALISEDRATIOMEASURE", 77)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcNormalisedRatioMeasure : IfcColourOrFactor, IfcMeasureValue, IfcSizeSelect, IExpressValueType, System.IEquatable<double>
 	{ 

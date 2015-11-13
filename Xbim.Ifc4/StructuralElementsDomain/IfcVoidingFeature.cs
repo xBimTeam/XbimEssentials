@@ -8,10 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ProductExtension;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
-using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IFCVOIDINGFEATURE", 1137)]
+	[ExpressType("IFCVOIDINGFEATURE", 1145)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVoidingFeature : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcVoidingFeature, IEqualityComparer<@IfcVoidingFeature>, IEquatable<@IfcVoidingFeature>
 	{

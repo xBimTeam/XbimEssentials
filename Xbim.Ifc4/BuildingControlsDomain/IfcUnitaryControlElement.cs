@@ -8,10 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.SharedBldgServiceElements;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
-using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.BuildingControlsDomain
 {
-	[ExpressType("IFCUNITARYCONTROLELEMENT", 1123)]
+	[ExpressType("IFCUNITARYCONTROLELEMENT", 1131)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcUnitaryControlElement : IfcDistributionControlElement, IInstantiableEntity, IIfcUnitaryControlElement, IEqualityComparer<@IfcUnitaryControlElement>, IEquatable<@IfcUnitaryControlElement>
 	{
@@ -100,8 +96,8 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                               ((PredefinedType = IfcUnitaryControlElementTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:                              ('IFC4.IFCUNITARYCONTROLELEMENTTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
+		/*CorrectPredefinedType: ((PredefinedType = IfcUnitaryControlElementTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
+		/*CorrectTypeAssigned:('IFC4.IFCUNITARYCONTROLELEMENTTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
 		}
 		#endregion
 

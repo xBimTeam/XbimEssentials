@@ -7,10 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.DateTimeResource;
-using Xbim.Ifc4.ActorResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IFCWORKSCHEDULE", 1153)]
+	[ExpressType("IFCWORKSCHEDULE", 1161)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWorkSchedule : IfcWorkControl, IInstantiableEntity, IIfcWorkSchedule, IEqualityComparer<@IfcWorkSchedule>, IEquatable<@IfcWorkSchedule>
 	{
@@ -104,7 +100,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcWorkScheduleTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcWorkScheduleTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
 		}
 		#endregion
 

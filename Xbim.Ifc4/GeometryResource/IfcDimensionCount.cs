@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCDIMENSIONCOUNT", 19)]
+	[ExpressType("IFCDIMENSIONCOUNT", 22)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcDimensionCount : IExpressValueType, System.IEquatable<long>
 	{ 

@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCELEMENTARYSURFACE", 617)]
+	[ExpressType("IFCELEMENTARYSURFACE", 624)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcElementarySurface : IfcSurface, IIfcElementarySurface, IEqualityComparer<@IfcElementarySurface>, IEquatable<@IfcElementarySurface>
 	{

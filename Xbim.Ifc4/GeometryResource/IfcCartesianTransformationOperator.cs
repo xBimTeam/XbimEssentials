@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 		IIfcDirection @Axis1 { get; }
 		IIfcDirection @Axis2 { get; }
 		IIfcCartesianPoint @LocalOrigin { get; }
-		double? @Scale { get; }
-		double @Scl  { get ; }
+		IfcReal? @Scale { get; }
+		IfcReal @Scl  { get ; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -35,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCCARTESIANTRANSFORMATIONOPERATOR", 470)]
+	[ExpressType("IFCCARTESIANTRANSFORMATIONOPERATOR", 477)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcCartesianTransformationOperator : IfcGeometricRepresentationItem, IIfcCartesianTransformationOperator, IEqualityComparer<@IfcCartesianTransformationOperator>, IEquatable<@IfcCartesianTransformationOperator>
 	{
@@ -43,7 +44,7 @@ namespace Xbim.Ifc4.GeometryResource
 		IIfcDirection IIfcCartesianTransformationOperator.Axis1 { get { return @Axis1; } }	
 		IIfcDirection IIfcCartesianTransformationOperator.Axis2 { get { return @Axis2; } }	
 		IIfcCartesianPoint IIfcCartesianTransformationOperator.LocalOrigin { get { return @LocalOrigin; } }	
-		double? IIfcCartesianTransformationOperator.Scale { get { return @Scale; } }	
+		IfcReal? IIfcCartesianTransformationOperator.Scale { get { return @Scale; } }	
 		 
 		#endregion
 
@@ -56,7 +57,7 @@ namespace Xbim.Ifc4.GeometryResource
 		private IfcDirection _axis1;
 		private IfcDirection _axis2;
 		private IfcCartesianPoint _localOrigin;
-		private double? _scale;
+		private IfcReal? _scale;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -103,7 +104,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public double? @Scale 
+		public IfcReal? @Scale 
 		{ 
 			get 
 			{
@@ -121,7 +122,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public double @Scl 
+		public IfcReal @Scl 
 		{
 			get 
 			{

@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ActorResource
 {
-	[ExpressType("IFCPOSTALADDRESS", 823)]
+	[ExpressType("IFCPOSTALADDRESS", 831)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IIfcPostalAddress, IEqualityComparer<@IfcPostalAddress>, IEquatable<@IfcPostalAddress>
 	{
@@ -209,7 +209,7 @@ namespace Xbim.Ifc4.ActorResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR1:            EXISTS (Country);*/
+		/*WR1:EXISTS (Country);*/
 		}
 		#endregion
 

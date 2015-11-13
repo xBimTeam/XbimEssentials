@@ -219,18 +219,14 @@ namespace Xbim.Ifc2x3.UtilityResource
 				}
 			} 
 		}
-		bool? IIfcTableRow.IsHeading 
+		Ifc4.MeasureResource.IfcBoolean? IIfcTableRow.IsHeading 
 		{ 
 			get
 			{
-				return IsHeading;
-			} 
-		}
-		IIfcTable IIfcTableRow.OfTable 
-		{ 
-			get
-			{
-				return Model.Instances.FirstOrDefault<IIfcTable>(e => e.Rows != null &&  e.Rows.Contains(this));
+				//## Handle return of IsHeading for which no match was found
+				//TODO: Handle return of IsHeading for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	//## Custom code

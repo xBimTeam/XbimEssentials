@@ -13,7 +13,7 @@ using Xbim.Ifc4.StructuralLoadResource;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCMODULUSOFLINEARSUBGRADEREACTIONMEASURE", 64)]
+	[ExpressType("IFCMODULUSOFLINEARSUBGRADEREACTIONMEASURE", 68)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcModulusOfLinearSubgradeReactionMeasure : IfcDerivedMeasureValue, IfcModulusOfTranslationalSubgradeReactionSelect, IExpressValueType, System.IEquatable<double>
 	{ 

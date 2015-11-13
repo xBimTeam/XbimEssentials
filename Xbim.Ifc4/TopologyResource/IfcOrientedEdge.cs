@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,20 +25,20 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcOrientedEdge : IIfcEdge
 	{
 		IIfcEdge @EdgeElement { get; }
-		bool @Orientation { get; }
+		IfcBoolean @Orientation { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCORIENTEDEDGE", 786)]
+	[ExpressType("IFCORIENTEDEDGE", 794)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOrientedEdge : IfcEdge, IInstantiableEntity, IIfcOrientedEdge, IEqualityComparer<@IfcOrientedEdge>, IEquatable<@IfcOrientedEdge>
 	{
 		#region IIfcOrientedEdge explicit implementation
 		IIfcEdge IIfcOrientedEdge.EdgeElement { get { return @EdgeElement; } }	
-		bool IIfcOrientedEdge.Orientation { get { return @Orientation; } }	
+		IfcBoolean IIfcOrientedEdge.Orientation { get { return @Orientation; } }	
 		 
 		#endregion
 
@@ -48,7 +49,7 @@ namespace Xbim.Ifc4.TopologyResource
 
 		#region Explicit attribute fields
 		private IfcEdge _edgeElement;
-		private bool _orientation;
+		private IfcBoolean _orientation;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -67,7 +68,7 @@ namespace Xbim.Ifc4.TopologyResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @Orientation 
+		public IfcBoolean @Orientation 
 		{ 
 			get 
 			{
