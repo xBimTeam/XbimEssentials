@@ -1,20 +1,19 @@
 ﻿using System.IO;
 using Xbim.Common.Geometry;
 using Xbim.Common.Logging;
-using Xbim.Ifc4.GeometricModelResource;
-using Xbim.Ifc4.Interfaces;
 using XbimGeometry.Interfaces;
 
+// ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4.Interfaces
 {
     public interface IXbimGeometryEngine
     {
         ILogger Logger { get; }
 
-        IXbimGeometryObject Create(IIfcGeometricRepresentationItem IIfcRepresentation);
+        IXbimGeometryObject Create(IIfcGeometricRepresentationItem ifcRepresentation);
 
 
-        IXbimGeometryObject Create(IIfcGeometricRepresentationItem IIfcRepresentation, IIfcAxis2Placement3D objectLocation);
+        IXbimGeometryObject Create(IIfcGeometricRepresentationItem ifcRepresentation, IIfcAxis2Placement3D objectLocation);
 
         /// <summary>
         /// 
@@ -81,8 +80,8 @@ namespace Xbim.Ifc4.Interfaces
 
 
         //Surface Models containing one or more faces, shells or solids
-        IXbimGeometryObjectSet CreateSurfaceModel(IIfcShellBasedSurfaceModel IIfcSurface);
-        IXbimGeometryObjectSet CreateSurfaceModel(IIfcFaceBasedSurfaceModel IIfcSurface);
+        IXbimGeometryObjectSet CreateSurfaceModel(IIfcShellBasedSurfaceModel ifcSurface);
+        IXbimGeometryObjectSet CreateSurfaceModel(IIfcFaceBasedSurfaceModel ifcSurface);
 
         //Faces
 

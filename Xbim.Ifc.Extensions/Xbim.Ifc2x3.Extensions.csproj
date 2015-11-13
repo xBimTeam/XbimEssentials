@@ -701,7 +701,6 @@
     <Compile Include="PropertySetDefinitionExtensions.cs" />
     <Compile Include="PropertyTableExtension.cs" />
     <Compile Include="RepresentationContextExtension.cs" />
-    <Compile Include="RepresentationExtension.cs" />
     <Compile Include="RepresentationItemExtension.cs" />
     <Compile Include="RoofExtensions.cs" />
     <Compile Include="RootExtensions.cs" />
