@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
@@ -186,6 +187,7 @@ namespace Xbim.CobieExpress
 		}
 	
 		#endregion
+
 
 
 		#region INotifyPropertyChanged implementation

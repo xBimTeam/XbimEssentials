@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCBOOLEANCLIPPINGRESULT", 435)]
+	[ExpressType("IFCBOOLEANCLIPPINGRESULT", 441)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBooleanClippingResult : IfcBooleanResult, IInstantiableEntity, IIfcBooleanClippingResult, IEqualityComparer<@IfcBooleanClippingResult>, IEquatable<@IfcBooleanClippingResult>
 	{
@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*FirstOperandType:                          ('IFC4.IFCBOOLEANCLIPPINGRESULT' IN TYPEOF(FirstOperand));*/
+		/*FirstOperandType:('IFC4.IFCBOOLEANCLIPPINGRESULT' IN TYPEOF(FirstOperand));*/
 		/*SecondOperandType:	SecondOperandType : ('IFC4.IFCHALFSPACESOLID' IN TYPEOF(SecondOperand));*/
 		/*OperatorType:	OperatorType : Operator = DIFFERENCE;*/
 		}

@@ -23,7 +23,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return new Ifc4.MeasureResource.IfcIdentifier(RasterFormat);
 			} 
 		}
-		long IIfcBlobTexture.RasterCode 
+		Ifc4.MeasureResource.IfcBinary IIfcBlobTexture.RasterCode 
 		{ 
 			get
 			{

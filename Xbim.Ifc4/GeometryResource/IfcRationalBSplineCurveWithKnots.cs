@@ -24,36 +24,36 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRationalBSplineCurveWithKnots : IIfcBSplineCurveWithKnots
 	{
-		IEnumerable<double> @WeightsData { get; }
-		List<double> @Weights  { get ; }
+		IEnumerable<IfcReal> @WeightsData { get; }
+		List<IfcReal> @Weights  { get ; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCRATIONALBSPLINECURVEWITHKNOTS", 884)]
+	[ExpressType("IFCRATIONALBSPLINECURVEWITHKNOTS", 892)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRationalBSplineCurveWithKnots : IfcBSplineCurveWithKnots, IInstantiableEntity, IIfcRationalBSplineCurveWithKnots, IEqualityComparer<@IfcRationalBSplineCurveWithKnots>, IEquatable<@IfcRationalBSplineCurveWithKnots>
 	{
 		#region IIfcRationalBSplineCurveWithKnots explicit implementation
-		IEnumerable<double> IIfcRationalBSplineCurveWithKnots.WeightsData { get { return @WeightsData; } }	
+		IEnumerable<IfcReal> IIfcRationalBSplineCurveWithKnots.WeightsData { get { return @WeightsData; } }	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRationalBSplineCurveWithKnots(IModel model) : base(model) 		{ 
 			Model = model; 
-			_weightsData = new ItemSet<double>( this, 0 );
+			_weightsData = new ItemSet<IfcReal>( this, 0 );
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<double> _weightsData;
+		private ItemSet<IfcReal> _weightsData;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1)]
-		public ItemSet<double> @WeightsData 
+		public ItemSet<IfcReal> @WeightsData 
 		{ 
 			get 
 			{
@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Array, EntityAttributeType.None, 0, -1)]
-		public List<double> @Weights 
+		public List<IfcReal> @Weights 
 		{
 			get 
 			{
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.GeometryResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 8: 
-					if (_weightsData == null) _weightsData = new ItemSet<double>( this );
+					if (_weightsData == null) _weightsData = new ItemSet<IfcReal>( this );
 					_weightsData.InternalAdd(value.RealVal);
 					return;
 				default:

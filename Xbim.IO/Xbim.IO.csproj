@@ -102,6 +102,11 @@
     <Compile Include="Memory\FederatedModel.cs" />
     <Compile Include="Memory\MemoryModel.cs" />
     <Compile Include="Memory\Transaction.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="PropertyInfoExtensions.cs" />
     <Compile Include="Step21\Parser\StepForwardReference.cs" />
     <Compile Include="Step21\StepDateTimeHelper.cs" />
@@ -116,6 +121,8 @@
     <Compile Include="Esent\XbimInstanceCollection.cs" />
     <Compile Include="Esent\XbimInstanceHandle.cs" />
     <Compile Include="Esent\PersistedEntityInstanceCache.cs" />
+    <Compile Include="Xml\BsConf\cnf.custom.cs" />
+    <Compile Include="Xml\BsConf\cnf.designer.cs" />
     <Compile Include="Xml\IfcXmlReader.cs" />
     <Compile Include="Xml\XbimXmlSettings.cs" />
     <Compile Include="Xml\XbimXmlWriter4.cs" />
@@ -177,6 +184,9 @@
     <None Include="Step21\Parser\StepP21Lex.lex" />
     <None Include="Step21\Parser\StepP21Parser.y" />
     <None Include="XbimOpenSourceKeyFile.snk" />
+    <None Include="Xml\BsConf\cnf.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Step21\Parser\gplex.exe" />
@@ -193,7 +203,15 @@
       <Name>Xbim.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Xml\BsConf\IFC4_ADD1_config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -7,8 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCTOPOLOGYREPRESENTATION", 1107)]
+	[ExpressType("IFCTOPOLOGYREPRESENTATION", 1115)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTopologyRepresentation : IfcShapeModel, IInstantiableEntity, IIfcTopologyRepresentation, IEqualityComparer<@IfcTopologyRepresentation>, IEquatable<@IfcTopologyRepresentation>
 	{
@@ -68,7 +66,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR21:             )) = 0;*/
+		/*WR21:)) = 0;*/
 		/*WR22:	WR22 : EXISTS(SELF\IfcRepresentation.RepresentationType);*/
 		/*WR23:	WR23 : IfcTopologyRepresentationTypes(SELF\IfcRepresentation.RepresentationType, SELF\IfcRepresentation.Items);*/
 		}

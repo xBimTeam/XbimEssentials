@@ -101,6 +101,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IIfcRelContainedInSpatialStructure>(e => e.RelatedElements != null &&  e.RelatedElements.Contains(this));
 			} 
 		}
+		IEnumerable<IIfcRelCoversBldgElements> IIfcElement.HasCoverings 
+		{ 
+			get
+			{
+				return Model.Instances.Where<IIfcRelCoversBldgElements>(e => (e.RelatingBuildingElement as IfcElement) == this);
+			} 
+		}
 	//## Custom code
 	//##
 	}

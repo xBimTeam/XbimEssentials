@@ -16,13 +16,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcBuildingElement : IIfcBuildingElement
 	{
-		IEnumerable<IIfcRelCoversBldgElements> IIfcBuildingElement.HasCoverings 
-		{ 
-			get
-			{
-				return Model.Instances.Where<IIfcRelCoversBldgElements>(e => (e.RelatingBuildingElement as IfcBuildingElement) == this);
-			} 
-		}
 	//## Custom code
 	//##
 	}

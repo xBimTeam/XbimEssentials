@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return null;
 			} 
 		}
-		bool? IIfcCurveStyle.ModelOrDraughting 
+		Ifc4.MeasureResource.IfcBoolean? IIfcCurveStyle.ModelOrDraughting 
 		{ 
 			get
 			{

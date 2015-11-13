@@ -9,7 +9,6 @@
 
 using Xbim.Ifc2x3.ConstraintResource;
 using Xbim.Ifc2x3.MeasureResource;
-using Xbim.Ifc2x3.DateTimeResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;

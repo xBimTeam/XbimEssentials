@@ -16,11 +16,14 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralAction : IIfcStructuralAction
 	{
-		bool? IIfcStructuralAction.DestabilizingLoad 
+		Ifc4.MeasureResource.IfcBoolean? IIfcStructuralAction.DestabilizingLoad 
 		{ 
 			get
 			{
-				return DestabilizingLoad;
+				//## Handle return of DestabilizingLoad for which no match was found
+				//TODO: Handle return of DestabilizingLoad for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	//## Custom code

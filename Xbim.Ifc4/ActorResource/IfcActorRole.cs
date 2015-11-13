@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ActorResource
 {
 	[IndexedClass]
-	[ExpressType("IFCACTORROLE", 393)]
+	[ExpressType("IFCACTORROLE", 399)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcActorRole : INotifyPropertyChanged, IInstantiableEntity, IIfcActorRole, IEqualityComparer<@IfcActorRole>, IEquatable<@IfcActorRole>
 	{
@@ -249,7 +249,7 @@ namespace Xbim.Ifc4.ActorResource
 		public virtual string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR1:              EXISTS(SELF.UserDefinedRole));*/
+		/*WR1:  EXISTS(SELF.UserDefinedRole));*/
 		}
 		#endregion
 

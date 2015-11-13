@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCRELDECOMPOSES", 930)]
+	[ExpressType("IFCRELDECOMPOSES", 938)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcRelDecomposes : IfcRelationship, IIfcRelDecomposes, IEqualityComparer<@IfcRelDecomposes>, IEquatable<@IfcRelDecomposes>
 	{

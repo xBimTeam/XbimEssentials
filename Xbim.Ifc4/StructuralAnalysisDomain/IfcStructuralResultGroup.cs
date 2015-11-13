@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -28,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcAnalysisTheoryTypeEnum @TheoryType { get; }
 		IIfcStructuralLoadGroup @ResultForLoadGroup { get; }
-		bool @IsLinear { get; }
+		IfcBoolean @IsLinear { get; }
 		IEnumerable<IIfcStructuralAnalysisModel> @ResultGroupFor {  get; }
 	
 	}
@@ -36,14 +35,14 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALRESULTGROUP", 1041)]
+	[ExpressType("IFCSTRUCTURALRESULTGROUP", 1049)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralResultGroup : IfcGroup, IInstantiableEntity, IIfcStructuralResultGroup, IEqualityComparer<@IfcStructuralResultGroup>, IEquatable<@IfcStructuralResultGroup>
 	{
 		#region IIfcStructuralResultGroup explicit implementation
 		IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType { get { return @TheoryType; } }	
 		IIfcStructuralLoadGroup IIfcStructuralResultGroup.ResultForLoadGroup { get { return @ResultForLoadGroup; } }	
-		bool IIfcStructuralResultGroup.IsLinear { get { return @IsLinear; } }	
+		IfcBoolean IIfcStructuralResultGroup.IsLinear { get { return @IsLinear; } }	
 		 
 		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralResultGroup.ResultGroupFor {  get { return @ResultGroupFor; } }
 		#endregion
@@ -56,7 +55,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		#region Explicit attribute fields
 		private IfcAnalysisTheoryTypeEnum _theoryType;
 		private IfcStructuralLoadGroup _resultForLoadGroup;
-		private bool _isLinear;
+		private IfcBoolean _isLinear;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -90,7 +89,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @IsLinear 
+		public IfcBoolean @IsLinear 
 		{ 
 			get 
 			{

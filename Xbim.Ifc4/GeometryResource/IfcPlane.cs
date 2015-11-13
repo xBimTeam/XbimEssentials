@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCPLANE", 812)]
+	[ExpressType("IFCPLANE", 820)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPlane : IfcElementarySurface, IInstantiableEntity, IIfcPlane, IEqualityComparer<@IfcPlane>, IEquatable<@IfcPlane>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCADVANCEDBREPWITHVOIDS", 398)]
+	[ExpressType("IFCADVANCEDBREPWITHVOIDS", 404)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAdvancedBrepWithVoids : IfcAdvancedBrep, IInstantiableEntity, IIfcAdvancedBrepWithVoids, IEqualityComparer<@IfcAdvancedBrepWithVoids>, IEquatable<@IfcAdvancedBrepWithVoids>
 	{
@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*VoidsHaveAdvancedFaces:                               )) = 0;*/
+		/*VoidsHaveAdvancedFaces:)) = 0;*/
 		}
 		#endregion
 

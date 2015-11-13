@@ -8,9 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,23 +27,23 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcWindowStyleConstructionEnum @ConstructionType { get; }
 		IfcWindowStyleOperationEnum @OperationType { get; }
-		bool @ParameterTakesPrecedence { get; }
-		bool @Sizeable { get; }
+		IfcBoolean @ParameterTakesPrecedence { get; }
+		IfcBoolean @Sizeable { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ArchitectureDomain
 {
-	[ExpressType("IFCWINDOWSTYLE", 1148)]
+	[ExpressType("IFCWINDOWSTYLE", 1156)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWindowStyle : IfcTypeProduct, IInstantiableEntity, IIfcWindowStyle, IEqualityComparer<@IfcWindowStyle>, IEquatable<@IfcWindowStyle>
 	{
 		#region IIfcWindowStyle explicit implementation
 		IfcWindowStyleConstructionEnum IIfcWindowStyle.ConstructionType { get { return @ConstructionType; } }	
 		IfcWindowStyleOperationEnum IIfcWindowStyle.OperationType { get { return @OperationType; } }	
-		bool IIfcWindowStyle.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
-		bool IIfcWindowStyle.Sizeable { get { return @Sizeable; } }	
+		IfcBoolean IIfcWindowStyle.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
+		IfcBoolean IIfcWindowStyle.Sizeable { get { return @Sizeable; } }	
 		 
 		#endregion
 
@@ -57,8 +55,8 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		#region Explicit attribute fields
 		private IfcWindowStyleConstructionEnum _constructionType;
 		private IfcWindowStyleOperationEnum _operationType;
-		private bool _parameterTakesPrecedence;
-		private bool _sizeable;
+		private IfcBoolean _parameterTakesPrecedence;
+		private IfcBoolean _sizeable;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -91,7 +89,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @ParameterTakesPrecedence 
+		public IfcBoolean @ParameterTakesPrecedence 
 		{ 
 			get 
 			{
@@ -105,7 +103,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @Sizeable 
+		public IfcBoolean @Sizeable 
 		{ 
 			get 
 			{

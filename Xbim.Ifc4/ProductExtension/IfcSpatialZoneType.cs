@@ -7,10 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCSPATIALZONETYPE", 1002)]
+	[ExpressType("IFCSPATIALZONETYPE", 1010)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSpatialZoneType : IfcSpatialElementType, IInstantiableEntity, IIfcSpatialZoneType, IEqualityComparer<@IfcSpatialZoneType>, IEquatable<@IfcSpatialZoneType>
 	{
@@ -120,7 +117,7 @@ namespace Xbim.Ifc4.ProductExtension
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcSpatialZoneTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcSpatialElementType.ElementType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcSpatialZoneTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcSpatialElementType.ElementType));*/
 		}
 		#endregion
 

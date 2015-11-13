@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,14 +27,14 @@ namespace Xbim.Ifc4.Interfaces
 		IfcInteger @Width { get; }
 		IfcInteger @Height { get; }
 		IfcInteger @ColourComponents { get; }
-		IEnumerable<long> @Pixel { get; }
+		IEnumerable<IfcBinary> @Pixel { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCPIXELTEXTURE", 808)]
+	[ExpressType("IFCPIXELTEXTURE", 816)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPixelTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcPixelTexture, IEqualityComparer<@IfcPixelTexture>, IEquatable<@IfcPixelTexture>
 	{
@@ -43,21 +42,21 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IfcInteger IIfcPixelTexture.Width { get { return @Width; } }	
 		IfcInteger IIfcPixelTexture.Height { get { return @Height; } }	
 		IfcInteger IIfcPixelTexture.ColourComponents { get { return @ColourComponents; } }	
-		IEnumerable<long> IIfcPixelTexture.Pixel { get { return @Pixel; } }	
+		IEnumerable<IfcBinary> IIfcPixelTexture.Pixel { get { return @Pixel; } }	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPixelTexture(IModel model) : base(model) 		{ 
 			Model = model; 
-			_pixel = new ItemSet<long>( this, 0 );
+			_pixel = new ItemSet<IfcBinary>( this, 0 );
 		}
 
 		#region Explicit attribute fields
 		private IfcInteger _width;
 		private IfcInteger _height;
 		private IfcInteger _colourComponents;
-		private ItemSet<long> _pixel;
+		private ItemSet<IfcBinary> _pixel;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -104,7 +103,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
-		public ItemSet<long> @Pixel 
+		public ItemSet<IfcBinary> @Pixel 
 		{ 
 			get 
 			{
@@ -141,7 +140,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					_colourComponents = value.IntegerVal;
 					return;
 				case 8: 
-					if (_pixel == null) _pixel = new ItemSet<long>( this );
+					if (_pixel == null) _pixel = new ItemSet<IfcBinary>( this );
 					_pixel.InternalAdd(value.HexadecimalVal);
 					return;
 				default:
@@ -156,7 +155,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		/*MinPixelInT:	MinPixelInT : Height >= 1;*/
 		/*NumberOfColours:	NumberOfColours : {1 <= ColourComponents <= 4};*/
 		/*SizeOfPixelList:	SizeOfPixelList : SIZEOF(Pixel) = (Width * Height);*/
-		/*PixelAsByteAndSameLength:                                 )) = SIZEOF(Pixel);*/
+		/*PixelAsByteAndSameLength:)) = SIZEOF(Pixel);*/
 		}
 		#endregion
 

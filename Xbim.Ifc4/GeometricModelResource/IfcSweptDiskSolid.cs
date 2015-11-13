@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCSWEPTDISKSOLID", 1067)]
+	[ExpressType("IFCSWEPTDISKSOLID", 1075)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IIfcSweptDiskSolid, IEqualityComparer<@IfcSweptDiskSolid>, IEquatable<@IfcSweptDiskSolid>
 	{
@@ -169,7 +169,7 @@ namespace Xbim.Ifc4.GeometricModelResource
             throw new System.NotImplementedException();
 		/*DirectrixDim:	DirectrixDim : Directrix.Dim = 3;*/
 		/*InnerRadiusSize:	InnerRadiusSize : (NOT EXISTS(InnerRadius)) OR (Radius > InnerRadius);*/
-		/*DirectrixBounded:                         (SIZEOF(['IFC4.IFCCONIC', 'IFC4.IFCBOUNDEDCURVE'] * TYPEOF(Directrix)) = 1);*/
+		/*DirectrixBounded:(SIZEOF(['IFC4.IFCCONIC', 'IFC4.IFCBOUNDEDCURVE'] * TYPEOF(Directrix)) = 1);*/
 		}
 		#endregion
 

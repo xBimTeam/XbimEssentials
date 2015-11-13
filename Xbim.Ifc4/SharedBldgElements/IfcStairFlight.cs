@@ -8,10 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ProductExtension;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
-using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +25,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStairFlight : IIfcBuildingElement
 	{
-		long? @NumberOfRiser { get; }
-		long? @NumberOfTreads { get; }
+		IfcInteger? @NumberOfRisers { get; }
+		IfcInteger? @NumberOfTreads { get; }
 		IfcPositiveLengthMeasure? @RiserHeight { get; }
 		IfcPositiveLengthMeasure? @TreadLength { get; }
 		IfcStairFlightTypeEnum? @PredefinedType { get; }
@@ -39,13 +36,13 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCSTAIRFLIGHT", 1007)]
+	[ExpressType("IFCSTAIRFLIGHT", 1015)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStairFlight : IfcBuildingElement, IInstantiableEntity, IIfcStairFlight, IEqualityComparer<@IfcStairFlight>, IEquatable<@IfcStairFlight>
 	{
 		#region IIfcStairFlight explicit implementation
-		long? IIfcStairFlight.NumberOfRiser { get { return @NumberOfRiser; } }	
-		long? IIfcStairFlight.NumberOfTreads { get { return @NumberOfTreads; } }	
+		IfcInteger? IIfcStairFlight.NumberOfRisers { get { return @NumberOfRisers; } }	
+		IfcInteger? IIfcStairFlight.NumberOfTreads { get { return @NumberOfTreads; } }	
 		IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight { get { return @RiserHeight; } }	
 		IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength { get { return @TreadLength; } }	
 		IfcStairFlightTypeEnum? IIfcStairFlight.PredefinedType { get { return @PredefinedType; } }	
@@ -58,8 +55,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		}
 
 		#region Explicit attribute fields
-		private long? _numberOfRiser;
-		private long? _numberOfTreads;
+		private IfcInteger? _numberOfRisers;
+		private IfcInteger? _numberOfTreads;
 		private IfcPositiveLengthMeasure? _riserHeight;
 		private IfcPositiveLengthMeasure? _treadLength;
 		private IfcStairFlightTypeEnum? _predefinedType;
@@ -67,21 +64,21 @@ namespace Xbim.Ifc4.SharedBldgElements
 	
 		#region Explicit attribute properties
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long? @NumberOfRiser 
+		public IfcInteger? @NumberOfRisers 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _numberOfRiser;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _numberOfRisers;
 				((IPersistEntity)this).Activate(false);
-				return _numberOfRiser;
+				return _numberOfRisers;
 			} 
 			set
 			{
-				SetValue( v =>  _numberOfRiser = v, _numberOfRiser, value,  "NumberOfRiser");
+				SetValue( v =>  _numberOfRisers = v, _numberOfRisers, value,  "NumberOfRisers");
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long? @NumberOfTreads 
+		public IfcInteger? @NumberOfTreads 
 		{ 
 			get 
 			{
@@ -158,7 +155,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 8: 
-					_numberOfRiser = value.IntegerVal;
+					_numberOfRisers = value.IntegerVal;
 					return;
 				case 9: 
 					_numberOfTreads = value.IntegerVal;
@@ -180,8 +177,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                               ((PredefinedType = IfcStairFlightTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:                                ('IFC4.IFCSTAIRFLIGHTTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
+		/*CorrectPredefinedType: ((PredefinedType = IfcStairFlightTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
+		/*CorrectTypeAssigned:  ('IFC4.IFCSTAIRFLIGHTTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
 		}
 		#endregion
 

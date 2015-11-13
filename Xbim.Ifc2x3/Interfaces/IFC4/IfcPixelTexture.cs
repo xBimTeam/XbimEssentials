@@ -37,14 +37,14 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return new Ifc4.MeasureResource.IfcInteger(ColourComponents);
 			} 
 		}
-		IEnumerable<long> IIfcPixelTexture.Pixel 
+		IEnumerable<Xbim.Ifc4.MeasureResource.IfcBinary> IIfcPixelTexture.Pixel 
 		{ 
 			get
 			{
-				foreach (var member in Pixel)
-				{
-					yield return member;
-				}
+				//## Handle return of Pixel for which no match was found
+				//TODO: Handle return of Pixel for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	//## Custom code

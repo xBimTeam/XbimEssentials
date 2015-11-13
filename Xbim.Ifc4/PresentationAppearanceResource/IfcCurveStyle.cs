@@ -27,14 +27,14 @@ namespace Xbim.Ifc4.Interfaces
 		IIfcCurveFontOrScaledCurveFontSelect @CurveFont { get; }
 		IIfcSizeSelect @CurveWidth { get; }
 		IIfcColour @CurveColour { get; }
-		bool? @ModelOrDraughting { get; }
+		IfcBoolean? @ModelOrDraughting { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCCURVESTYLE", 553)]
+	[ExpressType("IFCCURVESTYLE", 560)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCurveStyle : IfcPresentationStyle, IInstantiableEntity, IIfcCurveStyle, IEqualityComparer<@IfcCurveStyle>, IEquatable<@IfcCurveStyle>
 	{
@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IIfcCurveFontOrScaledCurveFontSelect IIfcCurveStyle.CurveFont { get { return @CurveFont; } }	
 		IIfcSizeSelect IIfcCurveStyle.CurveWidth { get { return @CurveWidth; } }	
 		IIfcColour IIfcCurveStyle.CurveColour { get { return @CurveColour; } }	
-		bool? IIfcCurveStyle.ModelOrDraughting { get { return @ModelOrDraughting; } }	
+		IfcBoolean? IIfcCurveStyle.ModelOrDraughting { get { return @ModelOrDraughting; } }	
 		 
 		#endregion
 
@@ -55,7 +55,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		private IfcCurveFontOrScaledCurveFontSelect _curveFont;
 		private IfcSizeSelect _curveWidth;
 		private IfcColour _curveColour;
-		private bool? _modelOrDraughting;
+		private IfcBoolean? _modelOrDraughting;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @ModelOrDraughting 
+		public IfcBoolean? @ModelOrDraughting 
 		{ 
 			get 
 			{
@@ -149,7 +149,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*MeasureOfWidth:                                (CurveWidth = 'by layer'));*/
+		/*MeasureOfWidth: (CurveWidth = 'by layer'));*/
 		/*IdentifiableCurveStyle:	IdentifiableCurveStyle : EXISTS(CurveFont) OR EXISTS(CurveWidth) OR EXISTS(CurveColour);*/
 		}
 		#endregion

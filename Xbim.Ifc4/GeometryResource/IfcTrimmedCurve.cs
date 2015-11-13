@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 		IIfcCurve @BasisCurve { get; }
 		IEnumerable<IIfcTrimmingSelect> @Trim1 { get; }
 		IEnumerable<IIfcTrimmingSelect> @Trim2 { get; }
-		bool @SenseAgreement { get; }
+		IfcBoolean @SenseAgreement { get; }
 		IfcTrimmingPreference @MasterRepresentation { get; }
 	
 	}
@@ -34,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCTRIMMEDCURVE", 1114)]
+	[ExpressType("IFCTRIMMEDCURVE", 1122)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTrimmedCurve : IfcBoundedCurve, IInstantiableEntity, IIfcTrimmedCurve, IEqualityComparer<@IfcTrimmedCurve>, IEquatable<@IfcTrimmedCurve>
 	{
@@ -42,7 +43,7 @@ namespace Xbim.Ifc4.GeometryResource
 		IIfcCurve IIfcTrimmedCurve.BasisCurve { get { return @BasisCurve; } }	
 		IEnumerable<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim1 { get { return @Trim1; } }	
 		IEnumerable<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim2 { get { return @Trim2; } }	
-		bool IIfcTrimmedCurve.SenseAgreement { get { return @SenseAgreement; } }	
+		IfcBoolean IIfcTrimmedCurve.SenseAgreement { get { return @SenseAgreement; } }	
 		IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation { get { return @MasterRepresentation; } }	
 		 
 		#endregion
@@ -58,7 +59,7 @@ namespace Xbim.Ifc4.GeometryResource
 		private IfcCurve _basisCurve;
 		private ItemSet<IfcTrimmingSelect> _trim1;
 		private ItemSet<IfcTrimmingSelect> _trim2;
-		private bool _senseAgreement;
+		private IfcBoolean _senseAgreement;
 		private IfcTrimmingPreference _masterRepresentation;
 		#endregion
 	
@@ -98,7 +99,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @SenseAgreement 
+		public IfcBoolean @SenseAgreement 
 		{ 
 			get 
 			{

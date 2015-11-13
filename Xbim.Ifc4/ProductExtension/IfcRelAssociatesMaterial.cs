@@ -8,8 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.MaterialResource;
 using System;
 using System.Collections.Generic;
@@ -34,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCRELASSOCIATESMATERIAL", 916)]
+	[ExpressType("IFCRELASSOCIATESMATERIAL", 924)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssociatesMaterial : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesMaterial, IEqualityComparer<@IfcRelAssociatesMaterial>, IEquatable<@IfcRelAssociatesMaterial>
 	{
@@ -97,8 +95,8 @@ namespace Xbim.Ifc4.ProductExtension
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*NoVoidElement:                        )) = 0;*/
-		/*AllowedElements:                        )) = 0;*/
+		/*NoVoidElement:)) = 0;*/
+		/*AllowedElements:)) = 0;*/
 		}
 		#endregion
 

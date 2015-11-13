@@ -37,19 +37,21 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return LocalOrigin;
 			} 
 		}
-		double? IIfcCartesianTransformationOperator.Scale 
+		Ifc4.MeasureResource.IfcReal? IIfcCartesianTransformationOperator.Scale 
 		{ 
 			get
 			{
-				if (Scale == null) return null;
-				return Scale;
+				//## Handle return of Scale for which no match was found
+				//TODO: Handle return of Scale for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
-		double IIfcCartesianTransformationOperator.Scl 
+		Ifc4.MeasureResource.IfcReal IIfcCartesianTransformationOperator.Scl 
 		{
 			get 
 			{
-				return Scl;
+				return new Ifc4.MeasureResource.IfcReal(Scl);
 			}
 		}
 

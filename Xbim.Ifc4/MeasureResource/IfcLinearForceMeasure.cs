@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCLINEARFORCEMEASURE", 49)]
+	[ExpressType("IFCLINEARFORCEMEASURE", 53)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcLinearForceMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 

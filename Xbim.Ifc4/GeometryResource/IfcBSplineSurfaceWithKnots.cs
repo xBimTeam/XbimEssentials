@@ -24,26 +24,26 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBSplineSurfaceWithKnots : IIfcBSplineSurface
 	{
-		IEnumerable<long> @UMultiplicities { get; }
-		IEnumerable<long> @VMultiplicities { get; }
+		IEnumerable<IfcInteger> @UMultiplicities { get; }
+		IEnumerable<IfcInteger> @VMultiplicities { get; }
 		IEnumerable<IfcParameterValue> @UKnots { get; }
 		IEnumerable<IfcParameterValue> @VKnots { get; }
 		IfcKnotType @KnotSpec { get; }
-		long @KnotVUpper  { get ; }
-		long @KnotUUpper  { get ; }
+		IfcInteger @KnotVUpper  { get ; }
+		IfcInteger @KnotUUpper  { get ; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCBSPLINESURFACEWITHKNOTS", 427)]
+	[ExpressType("IFCBSPLINESURFACEWITHKNOTS", 433)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBSplineSurfaceWithKnots : IfcBSplineSurface, IInstantiableEntity, IIfcBSplineSurfaceWithKnots, IEqualityComparer<@IfcBSplineSurfaceWithKnots>, IEquatable<@IfcBSplineSurfaceWithKnots>
 	{
 		#region IIfcBSplineSurfaceWithKnots explicit implementation
-		IEnumerable<long> IIfcBSplineSurfaceWithKnots.UMultiplicities { get { return @UMultiplicities; } }	
-		IEnumerable<long> IIfcBSplineSurfaceWithKnots.VMultiplicities { get { return @VMultiplicities; } }	
+		IEnumerable<IfcInteger> IIfcBSplineSurfaceWithKnots.UMultiplicities { get { return @UMultiplicities; } }	
+		IEnumerable<IfcInteger> IIfcBSplineSurfaceWithKnots.VMultiplicities { get { return @VMultiplicities; } }	
 		IEnumerable<IfcParameterValue> IIfcBSplineSurfaceWithKnots.UKnots { get { return @UKnots; } }	
 		IEnumerable<IfcParameterValue> IIfcBSplineSurfaceWithKnots.VKnots { get { return @VKnots; } }	
 		IfcKnotType IIfcBSplineSurfaceWithKnots.KnotSpec { get { return @KnotSpec; } }	
@@ -53,15 +53,15 @@ namespace Xbim.Ifc4.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineSurfaceWithKnots(IModel model) : base(model) 		{ 
 			Model = model; 
-			_uMultiplicities = new ItemSet<long>( this, 0 );
-			_vMultiplicities = new ItemSet<long>( this, 0 );
+			_uMultiplicities = new ItemSet<IfcInteger>( this, 0 );
+			_vMultiplicities = new ItemSet<IfcInteger>( this, 0 );
 			_uKnots = new ItemSet<IfcParameterValue>( this, 0 );
 			_vKnots = new ItemSet<IfcParameterValue>( this, 0 );
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<long> _uMultiplicities;
-		private ItemSet<long> _vMultiplicities;
+		private ItemSet<IfcInteger> _uMultiplicities;
+		private ItemSet<IfcInteger> _vMultiplicities;
 		private ItemSet<IfcParameterValue> _uKnots;
 		private ItemSet<IfcParameterValue> _vKnots;
 		private IfcKnotType _knotSpec;
@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.GeometryResource
 	
 		#region Explicit attribute properties
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1)]
-		public ItemSet<long> @UMultiplicities 
+		public ItemSet<IfcInteger> @UMultiplicities 
 		{ 
 			get 
 			{
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1)]
-		public ItemSet<long> @VMultiplicities 
+		public ItemSet<IfcInteger> @VMultiplicities 
 		{ 
 			get 
 			{
@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @KnotVUpper 
+		public IfcInteger @KnotVUpper 
 		{
 			get 
 			{
@@ -138,7 +138,7 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @KnotUUpper 
+		public IfcInteger @KnotUUpper 
 		{
 			get 
 			{
@@ -167,11 +167,11 @@ namespace Xbim.Ifc4.GeometryResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 7: 
-					if (_uMultiplicities == null) _uMultiplicities = new ItemSet<long>( this );
+					if (_uMultiplicities == null) _uMultiplicities = new ItemSet<IfcInteger>( this );
 					_uMultiplicities.InternalAdd(value.IntegerVal);
 					return;
 				case 8: 
-					if (_vMultiplicities == null) _vMultiplicities = new ItemSet<long>( this );
+					if (_vMultiplicities == null) _vMultiplicities = new ItemSet<IfcInteger>( this );
 					_vMultiplicities.InternalAdd(value.IntegerVal);
 					return;
 				case 9: 
@@ -193,8 +193,8 @@ namespace Xbim.Ifc4.GeometryResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*UDirectionConstraints:                                SELF\IfcBSplineSurface.UUpper, UMultiplicities, UKnots);*/
-		/*VDirectionConstraints:                                SELF\IfcBSplineSurface.VUpper, VMultiplicities, VKnots);*/
+		/*UDirectionConstraints:  SELF\IfcBSplineSurface.UUpper, UMultiplicities, UKnots);*/
+		/*VDirectionConstraints:  SELF\IfcBSplineSurface.VUpper, VMultiplicities, VKnots);*/
 		/*CorrespondingULists:	CorrespondingULists : SIZEOF(UMultiplicities) = KnotUUpper;*/
 		/*CorrespondingVLists:	CorrespondingVLists : SIZEOF(VMultiplicities) = KnotVUpper;*/
 		}

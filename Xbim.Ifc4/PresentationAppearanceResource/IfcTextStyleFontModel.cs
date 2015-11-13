@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[IndexedClass]
-	[ExpressType("IFCTEXTSTYLEFONTMODEL", 1095)]
+	[ExpressType("IFCTEXTSTYLEFONTMODEL", 1103)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextStyleFontModel : IfcPreDefinedTextFont, IInstantiableEntity, IIfcTextStyleFontModel, IEqualityComparer<@IfcTextStyleFontModel>, IEquatable<@IfcTextStyleFontModel>
 	{
@@ -168,7 +167,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*MeasureOfFontSize:                          (SELF.FontSize > 0.);*/
+		/*MeasureOfFontSize:(SELF.FontSize > 0.);*/
 		}
 		#endregion
 

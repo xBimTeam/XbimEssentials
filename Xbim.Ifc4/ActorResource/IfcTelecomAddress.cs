@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ActorResource
 {
-	[ExpressType("IFCTELECOMADDRESS", 1085)]
+	[ExpressType("IFCTELECOMADDRESS", 1093)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IIfcTelecomAddress, IEqualityComparer<@IfcTelecomAddress>, IEquatable<@IfcTelecomAddress>
 	{
@@ -184,7 +184,7 @@ namespace Xbim.Ifc4.ActorResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*MinimumDataProvided:                            EXISTS (MessagingIDs);*/
+		/*MinimumDataProvided:EXISTS (MessagingIDs);*/
 		}
 		#endregion
 

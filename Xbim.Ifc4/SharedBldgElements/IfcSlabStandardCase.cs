@@ -7,10 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
-using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCSLABSTANDARDCASE", 987)]
+	[ExpressType("IFCSLABSTANDARDCASE", 995)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSlabStandardCase : IfcSlab, IInstantiableEntity, IIfcSlabStandardCase, IEqualityComparer<@IfcSlabStandardCase>, IEquatable<@IfcSlabStandardCase>
 	{
@@ -75,7 +71,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*HasMaterialLayerSetusage:                                               )) = 1;*/
+		/*HasMaterialLayerSetusage:              )) = 1;*/
 		}
 		#endregion
 

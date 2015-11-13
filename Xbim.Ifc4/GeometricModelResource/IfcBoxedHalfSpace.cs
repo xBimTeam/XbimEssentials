@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCBOXEDHALFSPACE", 446)]
+	[ExpressType("IFCBOXEDHALFSPACE", 452)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBoxedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcBoxedHalfSpace, IEqualityComparer<@IfcBoxedHalfSpace>, IEquatable<@IfcBoxedHalfSpace>
 	{
@@ -89,7 +88,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		
 		public  override string WhereRule() 
 		{
-			return "";
+            throw new System.NotImplementedException();
+		/*UnboundedSurface:	UnboundedSurface : NOT ('IFC4.IFCCURVEBOUNDEDPLANE' IN TYPEOF(SELF\IfcHalfSpaceSolid.BaseSurface));*/
 		}
 		#endregion
 

@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCSUBEDGE", 1052)]
+	[ExpressType("IFCSUBEDGE", 1060)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSubedge : IfcEdge, IInstantiableEntity, IIfcSubedge, IEqualityComparer<@IfcSubedge>, IEquatable<@IfcSubedge>
 	{

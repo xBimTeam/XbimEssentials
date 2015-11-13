@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,14 +25,14 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcEdgeLoop : IIfcLoop
 	{
 		IEnumerable<IIfcOrientedEdge> @EdgeList { get; }
-		long @Ne  { get ; }
+		IfcInteger @Ne  { get ; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCEDGELOOP", 597)]
+	[ExpressType("IFCEDGELOOP", 604)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEdgeLoop : IfcLoop, IInstantiableEntity, IIfcEdgeLoop, IEqualityComparer<@IfcEdgeLoop>, IEquatable<@IfcEdgeLoop>
 	{
@@ -66,7 +67,7 @@ namespace Xbim.Ifc4.TopologyResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @Ne 
+		public IfcInteger @Ne 
 		{
 			get 
 			{

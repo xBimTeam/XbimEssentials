@@ -7,9 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCPROJECTLIBRARY", 844)]
+	[ExpressType("IFCPROJECTLIBRARY", 852)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProjectLibrary : IfcContext, IInstantiableEntity, IIfcProjectLibrary, IEqualityComparer<@IfcProjectLibrary>, IEquatable<@IfcProjectLibrary>
 	{

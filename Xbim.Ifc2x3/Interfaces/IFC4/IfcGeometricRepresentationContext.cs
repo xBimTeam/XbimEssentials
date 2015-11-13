@@ -23,12 +23,14 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return new Ifc4.GeometryResource.IfcDimensionCount(CoordinateSpaceDimension);
 			} 
 		}
-		double? IIfcGeometricRepresentationContext.Precision 
+		Ifc4.MeasureResource.IfcReal? IIfcGeometricRepresentationContext.Precision 
 		{ 
 			get
 			{
-				if (Precision == null) return null;
-				return Precision;
+				//## Handle return of Precision for which no match was found
+				//TODO: Handle return of Precision for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IIfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem 
@@ -57,6 +59,13 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			get
 			{
 				return Model.Instances.Where<IIfcGeometricRepresentationSubContext>(e => (e.ParentContext as IfcGeometricRepresentationContext) == this);
+			} 
+		}
+		IEnumerable<IIfcCoordinateOperation> IIfcGeometricRepresentationContext.HasCoordinateOperation 
+		{ 
+			get
+			{
+				return Model.Instances.Where<IIfcCoordinateOperation>(e => (e.SourceCRS as IfcGeometricRepresentationContext) == this);
 			} 
 		}
 	//## Custom code

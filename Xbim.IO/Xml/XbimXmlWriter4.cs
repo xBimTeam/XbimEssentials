@@ -24,8 +24,6 @@ namespace Xbim.IO.Xml
         private readonly string _rootElementName = "ifcXML";
         private HashSet<long> _written;
 
-        public bool WriteInverses;
-
         #endregion
 
         #region Properties
@@ -158,17 +156,7 @@ namespace Xbim.IO.Xml
 
         private void WriteProperties(IPersistEntity entity, XmlWriter output, ExpressType expressType)
         {
-            IEnumerable<ExpressMetaProperty> toWrite;
-            if (WriteInverses)
-            {
-                var l = new List<ExpressMetaProperty>(expressType.Properties.Values);
-                l.AddRange(expressType.Inverses);
-                toWrite = l;
-            }
-            else
-            {
-                toWrite = expressType.Properties.Values;
-            }
+            IEnumerable<ExpressMetaProperty> toWrite = expressType.Properties.Values.ToList();
 
             //sort toWrite properties so that value types go first. They will be written as attributes and that has to
             //happen before any nested elements are written
@@ -260,11 +248,6 @@ namespace Xbim.IO.Xml
             {
                 var generic = propType.GetGenericArguments().FirstOrDefault();
                 if(generic != null && generic.IsValueType)
-                //if ((propName == "Coordinates" && entity.GetType().Name == "IfcCartesianPoint")
-                //    || (propName == "DirectionRatios" && entity.GetType().Name == "IfcDirection")
-                //    || (propName == "RelatingPriorities" && entity.GetType().Name == "IfcRelConnectsPathElements")
-                //    || (propName == "RelatedPriorities" && entity.GetType().Name == "IfcRelConnectsPathElements")
-                //    )
                 {
                     output.WriteAttributeString(propName, string.Join(" ", ((IEnumerable)propVal).Cast<object>()));
                     return;

@@ -23,11 +23,14 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				return BaseSurface;
 			} 
 		}
-		bool IIfcHalfSpaceSolid.AgreementFlag 
+		Ifc4.MeasureResource.IfcBoolean IIfcHalfSpaceSolid.AgreementFlag 
 		{ 
 			get
 			{
-				return AgreementFlag;
+				//## Handle return of AgreementFlag for which no match was found
+				//TODO: Handle return of AgreementFlag for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Ifc4.GeometryResource.IfcDimensionCount Ifc4.GeometricModelResource.IfcBooleanOperand.Dim 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.MaterialResource
 {
 	[IndexedClass]
-	[ExpressType("IFCMATERIALCLASSIFICATIONRELATIONSHIP", 742)]
+	[ExpressType("IFCMATERIALCLASSIFICATIONRELATIONSHIP", 750)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialClassificationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialClassificationRelationship, IEqualityComparer<@IfcMaterialClassificationRelationship>, IEquatable<@IfcMaterialClassificationRelationship>
 	{

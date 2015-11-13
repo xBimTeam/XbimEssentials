@@ -7,8 +7,8 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.GeometryResource;
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,27 +26,29 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcGeometricRepresentationContext : IIfcRepresentationContext, IfcCoordinateReferenceSystemSelect
 	{
 		IfcDimensionCount @CoordinateSpaceDimension { get; }
-		double? @Precision { get; }
+		IfcReal? @Precision { get; }
 		IIfcAxis2Placement @WorldCoordinateSystem { get; }
 		IIfcDirection @TrueNorth { get; }
 		IEnumerable<IIfcGeometricRepresentationSubContext> @HasSubContexts {  get; }
+		IEnumerable<IIfcCoordinateOperation> @HasCoordinateOperation {  get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCGEOMETRICREPRESENTATIONCONTEXT", 692)]
+	[ExpressType("IFCGEOMETRICREPRESENTATIONCONTEXT", 699)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGeometricRepresentationContext : IfcRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationContext, IEqualityComparer<@IfcGeometricRepresentationContext>, IEquatable<@IfcGeometricRepresentationContext>
 	{
 		#region IIfcGeometricRepresentationContext explicit implementation
 		IfcDimensionCount IIfcGeometricRepresentationContext.CoordinateSpaceDimension { get { return @CoordinateSpaceDimension; } }	
-		double? IIfcGeometricRepresentationContext.Precision { get { return @Precision; } }	
+		IfcReal? IIfcGeometricRepresentationContext.Precision { get { return @Precision; } }	
 		IIfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem { get { return @WorldCoordinateSystem; } }	
 		IIfcDirection IIfcGeometricRepresentationContext.TrueNorth { get { return @TrueNorth; } }	
 		 
 		IEnumerable<IIfcGeometricRepresentationSubContext> IIfcGeometricRepresentationContext.HasSubContexts {  get { return @HasSubContexts; } }
+		IEnumerable<IIfcCoordinateOperation> IIfcGeometricRepresentationContext.HasCoordinateOperation {  get { return @HasCoordinateOperation; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -56,7 +58,7 @@ namespace Xbim.Ifc4.RepresentationResource
 
 		#region Explicit attribute fields
 		private IfcDimensionCount _coordinateSpaceDimension;
-		private double? _precision;
+		private IfcReal? _precision;
 		private IfcAxis2Placement _worldCoordinateSystem;
 		private IfcDirection _trueNorth;
 		#endregion
@@ -77,7 +79,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public virtual double? @Precision 
+		public virtual IfcReal? @Precision 
 		{ 
 			get 
 			{
@@ -131,6 +133,14 @@ namespace Xbim.Ifc4.RepresentationResource
 				return Model.Instances.Where<IfcGeometricRepresentationSubContext>(e => (e.ParentContext as IfcGeometricRepresentationContext) == this);
 			} 
 		}
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		public IEnumerable<IfcCoordinateOperation> @HasCoordinateOperation 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<IfcCoordinateOperation>(e => (e.SourceCRS as IfcGeometricRepresentationContext) == this);
+			} 
+		}
 		#endregion
 
 
@@ -163,7 +173,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR11:	WR11 : NOT(EXISTS(TrueNorth)) OR (HIINDEX(TrueNorth.DirectionRatios) = 2);*/
+		/*North2D:	North2D : NOT(EXISTS(TrueNorth)) OR (HIINDEX(TrueNorth.DirectionRatios) = 2);*/
 		}
 		#endregion
 

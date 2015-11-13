@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCGEOMETRICREPRESENTATIONSUBCONTEXT", 694)]
+	[ExpressType("IFCGEOMETRICREPRESENTATIONSUBCONTEXT", 701)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationSubContext, IEqualityComparer<@IfcGeometricRepresentationSubContext>, IEquatable<@IfcGeometricRepresentationSubContext>
 	{
@@ -164,7 +164,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			}
 		}
 		[EntityAttribute(4, EntityAttributeState.DerivedOverride, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public override double? @Precision 
+		public override IfcReal? @Precision 
 		{
 			get 
 			{
@@ -213,8 +213,9 @@ namespace Xbim.Ifc4.RepresentationResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR31:	WR31 : NOT('IFC4.IFCGEOMETRICREPRESENTATIONSUBCONTEXT' IN TYPEOF(ParentContext));*/
-		/*WR32:              EXISTS(UserDefinedTargetView));*/
+		/*ParentNoSub:	ParentNoSub : NOT('IFC4.IFCGEOMETRICREPRESENTATIONSUBCONTEXT' IN TYPEOF(ParentContext));*/
+		/*UserTargetProvided:((TargetView =  IfcGeometricProjectionEnum.USERDEFINED) AND EXISTS(UserDefinedTargetView));*/
+		/*NoCoordOperation:	NoCoordOperation : SIZEOF(SELF\IfcGeometricRepresentationContext.HasCoordinateOperation) = 0;*/
 		}
 		#endregion
 

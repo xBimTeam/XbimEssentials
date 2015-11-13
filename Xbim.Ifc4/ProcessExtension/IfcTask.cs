@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.DateTimeResource;
 using System;
@@ -29,8 +28,8 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IfcLabel? @Status { get; }
 		IfcLabel? @WorkMethod { get; }
-		bool @IsMilestone { get; }
-		long? @Priority { get; }
+		IfcBoolean @IsMilestone { get; }
+		IfcInteger? @Priority { get; }
 		IIfcTaskTime @TaskTime { get; }
 		IfcTaskTypeEnum? @PredefinedType { get; }
 	
@@ -39,15 +38,15 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IFCTASK", 1081)]
+	[ExpressType("IFCTASK", 1089)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IIfcTask, IEqualityComparer<@IfcTask>, IEquatable<@IfcTask>
 	{
 		#region IIfcTask explicit implementation
 		IfcLabel? IIfcTask.Status { get { return @Status; } }	
 		IfcLabel? IIfcTask.WorkMethod { get { return @WorkMethod; } }	
-		bool IIfcTask.IsMilestone { get { return @IsMilestone; } }	
-		long? IIfcTask.Priority { get { return @Priority; } }	
+		IfcBoolean IIfcTask.IsMilestone { get { return @IsMilestone; } }	
+		IfcInteger? IIfcTask.Priority { get { return @Priority; } }	
 		IIfcTaskTime IIfcTask.TaskTime { get { return @TaskTime; } }	
 		IfcTaskTypeEnum? IIfcTask.PredefinedType { get { return @PredefinedType; } }	
 		 
@@ -61,8 +60,8 @@ namespace Xbim.Ifc4.ProcessExtension
 		#region Explicit attribute fields
 		private IfcLabel? _status;
 		private IfcLabel? _workMethod;
-		private bool _isMilestone;
-		private long? _priority;
+		private IfcBoolean _isMilestone;
+		private IfcInteger? _priority;
 		private IfcTaskTime _taskTime;
 		private IfcTaskTypeEnum? _predefinedType;
 		#endregion
@@ -97,7 +96,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @IsMilestone 
+		public IfcBoolean @IsMilestone 
 		{ 
 			get 
 			{
@@ -111,7 +110,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long? @Priority 
+		public IfcInteger? @Priority 
 		{ 
 			get 
 			{

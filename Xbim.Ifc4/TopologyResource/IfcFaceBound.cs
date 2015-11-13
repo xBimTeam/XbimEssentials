@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,20 +25,20 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcFaceBound : IIfcTopologicalRepresentationItem
 	{
 		IIfcLoop @Bound { get; }
-		bool @Orientation { get; }
+		IfcBoolean @Orientation { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCFACEBOUND", 644)]
+	[ExpressType("IFCFACEBOUND", 651)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFaceBound : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFaceBound, IEqualityComparer<@IfcFaceBound>, IEquatable<@IfcFaceBound>
 	{
 		#region IIfcFaceBound explicit implementation
 		IIfcLoop IIfcFaceBound.Bound { get { return @Bound; } }	
-		bool IIfcFaceBound.Orientation { get { return @Orientation; } }	
+		IfcBoolean IIfcFaceBound.Orientation { get { return @Orientation; } }	
 		 
 		#endregion
 
@@ -48,7 +49,7 @@ namespace Xbim.Ifc4.TopologyResource
 
 		#region Explicit attribute fields
 		private IfcLoop _bound;
-		private bool _orientation;
+		private IfcBoolean _orientation;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -67,7 +68,7 @@ namespace Xbim.Ifc4.TopologyResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @Orientation 
+		public IfcBoolean @Orientation 
 		{ 
 			get 
 			{

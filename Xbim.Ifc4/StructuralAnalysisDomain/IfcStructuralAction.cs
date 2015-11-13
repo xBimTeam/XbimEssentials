@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,19 +24,19 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralAction : IIfcStructuralActivity
 	{
-		bool? @DestabilizingLoad { get; }
+		IfcBoolean? @DestabilizingLoad { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALACTION", 1010)]
+	[ExpressType("IFCSTRUCTURALACTION", 1018)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralAction : IfcStructuralActivity, IIfcStructuralAction, IEqualityComparer<@IfcStructuralAction>, IEquatable<@IfcStructuralAction>
 	{
 		#region IIfcStructuralAction explicit implementation
-		bool? IIfcStructuralAction.DestabilizingLoad { get { return @DestabilizingLoad; } }	
+		IfcBoolean? IIfcStructuralAction.DestabilizingLoad { get { return @DestabilizingLoad; } }	
 		 
 		#endregion
 
@@ -45,12 +46,12 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		}
 
 		#region Explicit attribute fields
-		private bool? _destabilizingLoad;
+		private IfcBoolean? _destabilizingLoad;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @DestabilizingLoad 
+		public IfcBoolean? @DestabilizingLoad 
 		{ 
 			get 
 			{

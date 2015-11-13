@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 
@@ -253,6 +254,7 @@ namespace Xbim.CobieExpress
 		}
 	
 		#endregion
+
 
 
 

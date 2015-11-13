@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.GeometricConstraintResource;
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDirection : IIfcGeometricRepresentationItem, IfcGridPlacementDirectionSelect, IfcVectorOrDirection
 	{
-		IEnumerable<double> @DirectionRatios { get; }
+		IEnumerable<IfcReal> @DirectionRatios { get; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -32,28 +33,28 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCDIRECTION", 564)]
+	[ExpressType("IFCDIRECTION", 571)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDirection, IEqualityComparer<@IfcDirection>, IEquatable<@IfcDirection>
 	{
 		#region IIfcDirection explicit implementation
-		IEnumerable<double> IIfcDirection.DirectionRatios { get { return @DirectionRatios; } }	
+		IEnumerable<IfcReal> IIfcDirection.DirectionRatios { get { return @DirectionRatios; } }	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDirection(IModel model) : base(model) 		{ 
 			Model = model; 
-			_directionRatios = new ItemSet<double>( this, 3 );
+			_directionRatios = new ItemSet<IfcReal>( this, 3 );
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<double> _directionRatios;
+		private ItemSet<IfcReal> _directionRatios;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, 3)]
-		public ItemSet<double> @DirectionRatios 
+		public ItemSet<IfcReal> @DirectionRatios 
 		{ 
 			get 
 			{
@@ -87,7 +88,7 @@ namespace Xbim.Ifc4.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_directionRatios == null) _directionRatios = new ItemSet<double>( this );
+					if (_directionRatios == null) _directionRatios = new ItemSet<IfcReal>( this );
 					_directionRatios.InternalAdd(value.RealVal);
 					return;
 				default:

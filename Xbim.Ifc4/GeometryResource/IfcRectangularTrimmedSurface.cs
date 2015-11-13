@@ -29,15 +29,15 @@ namespace Xbim.Ifc4.Interfaces
 		IfcParameterValue @V1 { get; }
 		IfcParameterValue @U2 { get; }
 		IfcParameterValue @V2 { get; }
-		bool @Usense { get; }
-		bool @Vsense { get; }
+		IfcBoolean @Usense { get; }
+		IfcBoolean @Vsense { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCRECTANGULARTRIMMEDSURFACE", 889)]
+	[ExpressType("IFCRECTANGULARTRIMMEDSURFACE", 897)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRectangularTrimmedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcRectangularTrimmedSurface, IEqualityComparer<@IfcRectangularTrimmedSurface>, IEquatable<@IfcRectangularTrimmedSurface>
 	{
@@ -47,8 +47,8 @@ namespace Xbim.Ifc4.GeometryResource
 		IfcParameterValue IIfcRectangularTrimmedSurface.V1 { get { return @V1; } }	
 		IfcParameterValue IIfcRectangularTrimmedSurface.U2 { get { return @U2; } }	
 		IfcParameterValue IIfcRectangularTrimmedSurface.V2 { get { return @V2; } }	
-		bool IIfcRectangularTrimmedSurface.Usense { get { return @Usense; } }	
-		bool IIfcRectangularTrimmedSurface.Vsense { get { return @Vsense; } }	
+		IfcBoolean IIfcRectangularTrimmedSurface.Usense { get { return @Usense; } }	
+		IfcBoolean IIfcRectangularTrimmedSurface.Vsense { get { return @Vsense; } }	
 		 
 		#endregion
 
@@ -63,8 +63,8 @@ namespace Xbim.Ifc4.GeometryResource
 		private IfcParameterValue _v1;
 		private IfcParameterValue _u2;
 		private IfcParameterValue _v2;
-		private bool _usense;
-		private bool _vsense;
+		private IfcBoolean _usense;
+		private IfcBoolean _vsense;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -139,7 +139,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @Usense 
+		public IfcBoolean @Usense 
 		{ 
 			get 
 			{
@@ -153,7 +153,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @Vsense 
+		public IfcBoolean @Vsense 
 		{ 
 			get 
 			{
@@ -208,7 +208,7 @@ namespace Xbim.Ifc4.GeometryResource
             throw new System.NotImplementedException();
 		/*U1AndU2Different:	U1AndU2Different : U1 <> U2;*/
 		/*V1AndV2Different:	V1AndV2Different : V1 <> V2;*/
-		/*UsenseCompatible:                                  (Usense = (U2 > U1));*/
+		/*UsenseCompatible:         (Usense = (U2 > U1));*/
 		/*VsenseCompatible:	VsenseCompatible : Vsense = (V2 > V1);*/
 		}
 		#endregion

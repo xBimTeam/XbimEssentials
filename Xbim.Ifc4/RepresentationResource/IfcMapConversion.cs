@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCMAPCONVERSION", 739)]
+	[ExpressType("IFCMAPCONVERSION", 747)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMapConversion : IfcCoordinateOperation, IInstantiableEntity, IIfcMapConversion, IEqualityComparer<@IfcMapConversion>, IEquatable<@IfcMapConversion>
 	{

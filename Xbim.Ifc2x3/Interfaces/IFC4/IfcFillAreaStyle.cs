@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				}
 			} 
 		}
-		bool? IIfcFillAreaStyle.ModelorDraughting 
+		Ifc4.MeasureResource.IfcBoolean? IIfcFillAreaStyle.ModelorDraughting 
 		{ 
 			get
 			{

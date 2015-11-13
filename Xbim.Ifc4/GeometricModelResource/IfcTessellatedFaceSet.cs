@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IIfcCartesianPointList3D @Coordinates { get; }
 		IEnumerable<IEnumerable<IfcParameterValue>> @Normals { get; }
-		bool? @Closed { get; }
+		IfcBoolean? @Closed { get; }
 		IEnumerable<IIfcIndexedColourMap> @HasColours {  get; }
 		IEnumerable<IIfcIndexedTextureMap> @HasTextures {  get; }
 	
@@ -36,14 +36,14 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCTESSELLATEDFACESET", 1090)]
+	[ExpressType("IFCTESSELLATEDFACESET", 1098)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcTessellatedFaceSet : IfcTessellatedItem, IIfcTessellatedFaceSet, IEqualityComparer<@IfcTessellatedFaceSet>, IEquatable<@IfcTessellatedFaceSet>
 	{
 		#region IIfcTessellatedFaceSet explicit implementation
 		IIfcCartesianPointList3D IIfcTessellatedFaceSet.Coordinates { get { return @Coordinates; } }	
 		IEnumerable<IEnumerable<IfcParameterValue>> IIfcTessellatedFaceSet.Normals { get { return @Normals; } }	
-		bool? IIfcTessellatedFaceSet.Closed { get { return @Closed; } }	
+		IfcBoolean? IIfcTessellatedFaceSet.Closed { get { return @Closed; } }	
 		 
 		IEnumerable<IIfcIndexedColourMap> IIfcTessellatedFaceSet.HasColours {  get { return @HasColours; } }
 		IEnumerable<IIfcIndexedTextureMap> IIfcTessellatedFaceSet.HasTextures {  get { return @HasTextures; } }
@@ -58,7 +58,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#region Explicit attribute fields
 		private IfcCartesianPointList3D _coordinates;
 		private OptionalItemSet<ItemSet<IfcParameterValue>> _normals;
-		private bool? _closed;
+		private IfcBoolean? _closed;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @Closed 
+		public IfcBoolean? @Closed 
 		{ 
 			get 
 			{

@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
-	[ExpressType("IFCCONNECTIONPOINTECCENTRICITY", 512)]
+	[ExpressType("IFCCONNECTIONPOINTECCENTRICITY", 519)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConnectionPointEccentricity : IfcConnectionPointGeometry, IInstantiableEntity, IIfcConnectionPointEccentricity, IEqualityComparer<@IfcConnectionPointEccentricity>, IEquatable<@IfcConnectionPointEccentricity>
 	{

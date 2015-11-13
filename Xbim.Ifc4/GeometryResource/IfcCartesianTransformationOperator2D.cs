@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCCARTESIANTRANSFORMATIONOPERATOR2D", 471)]
+	[ExpressType("IFCCARTESIANTRANSFORMATIONOPERATOR2D", 478)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCartesianTransformationOperator2D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator2D, IEqualityComparer<@IfcCartesianTransformationOperator2D>, IEquatable<@IfcCartesianTransformationOperator2D>
 	{
@@ -82,8 +82,8 @@ namespace Xbim.Ifc4.GeometryResource
 		{
             throw new System.NotImplementedException();
 		/*DimEqual2:	DimEqual2 : SELF\IfcCartesianTransformationOperator.Dim = 2;*/
-		/*Axis1Is2D:                  (SELF\IfcCartesianTransformationOperator.Axis1.Dim = 2);*/
-		/*Axis2Is2D:                  (SELF\IfcCartesianTransformationOperator.Axis2.Dim = 2);*/
+		/*Axis1Is2D:(SELF\IfcCartesianTransformationOperator.Axis1.Dim = 2);*/
+		/*Axis2Is2D:(SELF\IfcCartesianTransformationOperator.Axis2.Dim = 2);*/
 		}
 		#endregion
 

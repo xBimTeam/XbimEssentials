@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xbim.Ifc4.GeometryResource;
+using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
-    internal class IfcDirectionTransient :PersistEntityTransient, Xbim.Ifc4.Interfaces.IIfcDirection
+    internal class IfcDirectionTransient :PersistEntityTransient, Ifc4.Interfaces.IIfcDirection
     {
-        List<double> _ratios = new List<double>(){0,0,1} ;
+        readonly List<double> _ratios = new List<double>{0,0,1} ;
         
-        public IEnumerable<double> DirectionRatios
+        public IEnumerable<IfcReal> DirectionRatios
         {
-            get { return _ratios; }
+            get { return _ratios.Select(r => (IfcReal)r); }
         }
 
         public IfcDimensionCount Dim { get { return _ratios.Count(r => !double.IsNaN(r)); } }

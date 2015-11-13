@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCPLACEMENT", 809)]
+	[ExpressType("IFCPLACEMENT", 817)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPlacement : IfcGeometricRepresentationItem, IIfcPlacement, IEqualityComparer<@IfcPlacement>, IEquatable<@IfcPlacement>
 	{

@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.QuantityResource
 {
-	[ExpressType("IFCQUANTITYTIME", 875)]
+	[ExpressType("IFCQUANTITYTIME", 883)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcQuantityTime : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityTime, IEqualityComparer<@IfcQuantityTime>, IEquatable<@IfcQuantityTime>
 	{
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.QuantityResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR21:                (SELF\IfcPhysicalSimpleQuantity.Unit.UnitType = IfcUnitEnum.TIMEUNIT);*/
+		/*WR21:   (SELF\IfcPhysicalSimpleQuantity.Unit.UnitType = IfcUnitEnum.TIMEUNIT);*/
 		/*WR22:	WR22 : TimeValue >= 0.;*/
 		}
 		#endregion

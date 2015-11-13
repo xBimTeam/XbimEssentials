@@ -121,18 +121,24 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				}
 			} 
 		}
-		bool IIfcDoorStyle.ParameterTakesPrecedence 
+		Ifc4.MeasureResource.IfcBoolean IIfcDoorStyle.ParameterTakesPrecedence 
 		{ 
 			get
 			{
-				return ParameterTakesPrecedence;
+				//## Handle return of ParameterTakesPrecedence for which no match was found
+				//TODO: Handle return of ParameterTakesPrecedence for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
-		bool IIfcDoorStyle.Sizeable 
+		Ifc4.MeasureResource.IfcBoolean IIfcDoorStyle.Sizeable 
 		{ 
 			get
 			{
-				return Sizeable;
+				//## Handle return of Sizeable for which no match was found
+				//TODO: Handle return of Sizeable for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	//## Custom code

@@ -16,14 +16,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceStyleRendering : IIfcSurfaceStyleRendering
 	{
-		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcSurfaceStyleRendering.Transparency 
-		{ 
-			get
-			{
-				if (!Transparency.HasValue) return null;
-				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(Transparency.Value);
-			} 
-		}
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour 
 		{ 
 			get

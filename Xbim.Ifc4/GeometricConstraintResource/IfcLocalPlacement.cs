@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[IndexedClass]
-	[ExpressType("IFCLOCALPLACEMENT", 736)]
+	[ExpressType("IFCLOCALPLACEMENT", 744)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLocalPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcLocalPlacement, IEqualityComparer<@IfcLocalPlacement>, IEquatable<@IfcLocalPlacement>
 	{

@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcLabel? @Name { get; }
 		IfcText? @Description { get; }
 		IfcLabel? @Category { get; }
-		IfcNormalisedRatioMeasure? @Priority { get; }
+		IfcInteger? @Priority { get; }
 		IIfcMaterialLayerSet @ToMaterialLayerSet {  get; }
 	
 	}
@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.MaterialResource
 {
 	[IndexedClass]
-	[ExpressType("IFCMATERIALLAYER", 747)]
+	[ExpressType("IFCMATERIALLAYER", 755)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialLayer : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialLayer, IEqualityComparer<@IfcMaterialLayer>, IEquatable<@IfcMaterialLayer>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.MaterialResource
 		IfcLabel? IIfcMaterialLayer.Name { get { return @Name; } }	
 		IfcText? IIfcMaterialLayer.Description { get { return @Description; } }	
 		IfcLabel? IIfcMaterialLayer.Category { get { return @Category; } }	
-		IfcNormalisedRatioMeasure? IIfcMaterialLayer.Priority { get { return @Priority; } }	
+		IfcInteger? IIfcMaterialLayer.Priority { get { return @Priority; } }	
 		 
 		IIfcMaterialLayerSet IIfcMaterialLayer.ToMaterialLayerSet {  get { return @ToMaterialLayerSet; } }
 		#endregion
@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.MaterialResource
 		private IfcLabel? _name;
 		private IfcText? _description;
 		private IfcLabel? _category;
-		private IfcNormalisedRatioMeasure? _priority;
+		private IfcInteger? _priority;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -156,7 +156,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public IfcNormalisedRatioMeasure? @Priority 
+		public IfcInteger? @Priority 
 		{ 
 			get 
 			{
@@ -209,7 +209,7 @@ namespace Xbim.Ifc4.MaterialResource
 					_category = value.StringVal;
 					return;
 				case 6: 
-					_priority = value.RealVal;
+					_priority = value.IntegerVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -218,7 +218,8 @@ namespace Xbim.Ifc4.MaterialResource
 		
 		public  override string WhereRule() 
 		{
-			return "";
+            throw new System.NotImplementedException();
+		/*NormalizedPriority:	NormalizedPriority : NOT(EXISTS(Priority)) OR {0 <= Priority <= 100};*/
 		}
 		#endregion
 

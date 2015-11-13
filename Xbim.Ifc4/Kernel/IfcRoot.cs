@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.Kernel
 {
 	[IndexedClass]
-	[ExpressType("IFCROOT", 965)]
+	[ExpressType("IFCROOT", 973)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcRoot : IPersistEntity, INotifyPropertyChanged, IIfcRoot, IEqualityComparer<@IfcRoot>, IEquatable<@IfcRoot>
 	{

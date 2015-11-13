@@ -285,6 +285,7 @@
     <Compile Include="GeometricModelResource\IfcBoundingBox.cs" />
     <Compile Include="GeometricModelResource\IfcBoxedHalfSpace.cs" />
     <Compile Include="GeometricModelResource\IfcCartesianPointList.cs" />
+    <Compile Include="GeometricModelResource\IfcCartesianPointList2D.cs" />
     <Compile Include="GeometricModelResource\IfcCartesianPointList3D.cs" />
     <Compile Include="GeometricModelResource\IfcCsgPrimitive3D.cs" />
     <Compile Include="GeometricModelResource\IfcCsgSelect.cs" />
@@ -318,6 +319,7 @@
     <Compile Include="GeometricModelResource\IfcTessellatedFaceSet.cs" />
     <Compile Include="GeometricModelResource\IfcTessellatedItem.cs" />
     <Compile Include="GeometricModelResource\IfcTriangulatedFaceSet.cs" />
+    <Compile Include="GeometryResource\IfcArcIndex.cs" />
     <Compile Include="GeometryResource\IfcAxis1Placement.cs" />
     <Compile Include="GeometryResource\IfcAxis2Placement.cs" />
     <Compile Include="GeometryResource\IfcAxis2Placement2D.cs" />
@@ -355,8 +357,10 @@
     <Compile Include="GeometryResource\IfcElementarySurface.cs" />
     <Compile Include="GeometryResource\IfcEllipse.cs" />
     <Compile Include="GeometryResource\IfcGeometricRepresentationItem.cs" />
+    <Compile Include="GeometryResource\IfcIndexedPolyCurve.cs" />
     <Compile Include="GeometryResource\IfcKnotType.cs" />
     <Compile Include="GeometryResource\IfcLine.cs" />
+    <Compile Include="GeometryResource\IfcLineIndex.cs" />
     <Compile Include="GeometryResource\IfcMappedItem.cs" />
     <Compile Include="GeometryResource\IfcOffsetCurve2D.cs" />
     <Compile Include="GeometryResource\IfcOffsetCurve3D.cs" />
@@ -374,6 +378,7 @@
     <Compile Include="GeometryResource\IfcReparametrisedCompositeCurveSegment.cs" />
     <Compile Include="GeometryResource\IfcRepresentationItem.cs" />
     <Compile Include="GeometryResource\IfcRepresentationMap.cs" />
+    <Compile Include="GeometryResource\IfcSegmentIndexSelect.cs" />
     <Compile Include="GeometryResource\IfcSurface.cs" />
     <Compile Include="GeometryResource\IfcSurfaceOfLinearExtrusion.cs" />
     <Compile Include="GeometryResource\IfcSurfaceOfRevolution.cs" />
@@ -483,6 +488,7 @@
     <Compile Include="HvacDomain\IfcVibrationIsolator.cs" />
     <Compile Include="HvacDomain\IfcVibrationIsolatorType.cs" />
     <Compile Include="HvacDomain\IfcVibrationIsolatorTypeEnum.cs" />
+    <Compile Include="IfcStrippedOptional.cs" />
     <Compile Include="ItemSet.cs" />
     <Compile Include="IXbimGeometryEngine.cs" />
     <Compile Include="Kernel\IfcActor.cs" />
@@ -573,6 +579,7 @@
     <Compile Include="MeasureResource\IfcAngularVelocityMeasure.cs" />
     <Compile Include="MeasureResource\IfcAreaDensityMeasure.cs" />
     <Compile Include="MeasureResource\IfcAreaMeasure.cs" />
+    <Compile Include="MeasureResource\IfcBinary.cs" />
     <Compile Include="MeasureResource\IfcBoolean.cs" />
     <Compile Include="MeasureResource\IfcComplexNumber.cs" />
     <Compile Include="MeasureResource\IfcCompoundPlaneAngleMeasure.cs" />
@@ -644,6 +651,7 @@
     <Compile Include="MeasureResource\IfcPHMeasure.cs" />
     <Compile Include="MeasureResource\IfcPlanarForceMeasure.cs" />
     <Compile Include="MeasureResource\IfcPlaneAngleMeasure.cs" />
+    <Compile Include="MeasureResource\IfcPositiveInteger.cs" />
     <Compile Include="MeasureResource\IfcPositiveLengthMeasure.cs" />
     <Compile Include="MeasureResource\IfcPositivePlaneAngleMeasure.cs" />
     <Compile Include="MeasureResource\IfcPositiveRatioMeasure.cs" />

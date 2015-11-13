@@ -24,13 +24,14 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCartesianPointList : IIfcGeometricRepresentationItem
 	{
+		IfcDimensionCount @Dim  { get ; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCCARTESIANPOINTLIST", 468)]
+	[ExpressType("IFCCARTESIANPOINTLIST", 474)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcCartesianPointList : IfcGeometricRepresentationItem, IIfcCartesianPointList, IEqualityComparer<@IfcCartesianPointList>, IEquatable<@IfcCartesianPointList>
 	{
@@ -45,6 +46,20 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public IfcDimensionCount @Dim 
+		{
+			get 
+			{
+				//## Getter for Dim
+				//TODO: Implement getter for derived attribute Dim
+				throw new NotImplementedException();
+				//##
+			}
+		}
+
+		#endregion
 
 
 

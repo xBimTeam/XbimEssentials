@@ -40,11 +40,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 				}
 			} 
 		}
-		bool IIfcCompositeCurveSegment.SameSense 
+		Ifc4.MeasureResource.IfcBoolean IIfcCompositeCurveSegment.SameSense 
 		{ 
 			get
 			{
-				return SameSense;
+				//## Handle return of SameSense for which no match was found
+				//TODO: Handle return of SameSense for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IIfcCurve IIfcCompositeCurveSegment.ParentCurve 

@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -34,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCTYPEOBJECT", 1117)]
+	[ExpressType("IFCTYPEOBJECT", 1125)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTypeObject : IfcObjectDefinition, IInstantiableEntity, IIfcTypeObject, IEqualityComparer<@IfcTypeObject>, IEquatable<@IfcTypeObject>
 	{
@@ -124,7 +123,8 @@ namespace Xbim.Ifc4.Kernel
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR1:	WR1 : EXISTS(SELF\IfcRoot.Name);*/
+		/*NameRequired:	NameRequired : EXISTS(SELF\IfcRoot.Name);*/
+		/*UniquePropertySetNames:	UniquePropertySetNames : (NOT(EXISTS(HasPropertySets))) OR IfcUniquePropertySetNames(HasPropertySets);*/
 		}
 		#endregion
 

@@ -23,11 +23,14 @@ namespace Xbim.Ifc2x3.TopologyResource
 				return Bound;
 			} 
 		}
-		bool IIfcFaceBound.Orientation 
+		Ifc4.MeasureResource.IfcBoolean IIfcFaceBound.Orientation 
 		{ 
 			get
 			{
-				return Orientation;
+				//## Handle return of Orientation for which no match was found
+				//TODO: Handle return of Orientation for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 	//## Custom code

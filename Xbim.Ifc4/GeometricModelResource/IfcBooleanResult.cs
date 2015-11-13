@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[IndexedClass]
-	[ExpressType("IFCBOOLEANRESULT", 436)]
+	[ExpressType("IFCBOOLEANRESULT", 442)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBooleanResult : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBooleanResult, IEqualityComparer<@IfcBooleanResult>, IEquatable<@IfcBooleanResult>
 	{

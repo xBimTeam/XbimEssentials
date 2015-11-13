@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ExternalReferenceResource;
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ApprovalResource
 {
 	[IndexedClass]
-	[ExpressType("IFCRESOURCEAPPROVALRELATIONSHIP", 955)]
+	[ExpressType("IFCRESOURCEAPPROVALRELATIONSHIP", 963)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcResourceApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceApprovalRelationship, IEqualityComparer<@IfcResourceApprovalRelationship>, IEquatable<@IfcResourceApprovalRelationship>
 	{
@@ -56,6 +55,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		#endregion
 	
 		#region Explicit attribute properties
+		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
 		public ItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
 		{ 

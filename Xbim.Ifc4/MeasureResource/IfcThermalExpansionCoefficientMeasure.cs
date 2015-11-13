@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCTHERMALEXPANSIONCOEFFICIENTMEASURE", 112)]
+	[ExpressType("IFCTHERMALEXPANSIONCOEFFICIENTMEASURE", 117)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcThermalExpansionCoefficientMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 

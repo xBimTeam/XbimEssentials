@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCMODULUSOFELASTICITYMEASURE", 63)]
+	[ExpressType("IFCMODULUSOFELASTICITYMEASURE", 67)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcModulusOfElasticityMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 

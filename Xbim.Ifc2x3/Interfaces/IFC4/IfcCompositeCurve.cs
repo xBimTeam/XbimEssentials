@@ -26,26 +26,29 @@ namespace Xbim.Ifc2x3.GeometryResource
 				}
 			} 
 		}
-		bool? IIfcCompositeCurve.SelfIntersect 
+		Ifc4.MeasureResource.IfcLogical IIfcCompositeCurve.SelfIntersect 
 		{ 
 			get
 			{
-				return SelfIntersect;
+				//## Handle return of SelfIntersect for which no match was found
+				//TODO: Handle return of SelfIntersect for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
-		long IIfcCompositeCurve.NSegments 
+		Ifc4.MeasureResource.IfcInteger IIfcCompositeCurve.NSegments 
 		{
 			get 
 			{
-				return NSegments;
+				return new Ifc4.MeasureResource.IfcInteger(NSegments);
 			}
 		}
 
-		bool? IIfcCompositeCurve.ClosedCurve 
+		Ifc4.MeasureResource.IfcLogical IIfcCompositeCurve.ClosedCurve 
 		{
 			get 
 			{
-				return ClosedCurve;
+				return new Ifc4.MeasureResource.IfcLogical(ClosedCurve);
 			}
 		}
 

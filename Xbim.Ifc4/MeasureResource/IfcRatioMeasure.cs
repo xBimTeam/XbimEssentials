@@ -14,7 +14,7 @@ using Xbim.Ifc4.DateTimeResource;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCRATIOMEASURE", 87)]
+	[ExpressType("IFCRATIOMEASURE", 92)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcRatioMeasure : IfcMeasureValue, IfcSizeSelect, IfcTimeOrRatioSelect, IExpressValueType, System.IEquatable<double>
 	{ 

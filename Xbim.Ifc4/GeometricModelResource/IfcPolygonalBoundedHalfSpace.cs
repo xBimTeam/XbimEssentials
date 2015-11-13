@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCPOLYGONALBOUNDEDHALFSPACE", 820)]
+	[ExpressType("IFCPOLYGONALBOUNDEDHALFSPACE", 828)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPolygonalBoundedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcPolygonalBoundedHalfSpace, IEqualityComparer<@IfcPolygonalBoundedHalfSpace>, IEquatable<@IfcPolygonalBoundedHalfSpace>
 	{
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{
             throw new System.NotImplementedException();
 		/*BoundaryDim:	BoundaryDim : PolygonalBoundary.Dim = 2;*/
-		/*BoundaryType:                     ) = 1;*/
+		/*BoundaryType:) = 1;*/
 		}
 		#endregion
 

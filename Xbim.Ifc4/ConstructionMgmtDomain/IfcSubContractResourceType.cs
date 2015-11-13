@@ -7,11 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.QuantityResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.CostResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
-	[ExpressType("IFCSUBCONTRACTRESOURCETYPE", 1051)]
+	[ExpressType("IFCSUBCONTRACTRESOURCETYPE", 1059)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSubContractResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcSubContractResourceType, IEqualityComparer<@IfcSubContractResourceType>, IEquatable<@IfcSubContractResourceType>
 	{
@@ -103,7 +98,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcSubContractResourceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcTypeResource.ResourceType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcSubContractResourceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcTypeResource.ResourceType));*/
 		}
 		#endregion
 

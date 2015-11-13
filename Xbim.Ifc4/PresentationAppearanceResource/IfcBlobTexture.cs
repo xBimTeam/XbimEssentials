@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,20 +25,20 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcBlobTexture : IIfcSurfaceTexture
 	{
 		IfcIdentifier @RasterFormat { get; }
-		long @RasterCode { get; }
+		IfcBinary @RasterCode { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCBLOBTEXTURE", 431)]
+	[ExpressType("IFCBLOBTEXTURE", 437)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcBlobTexture, IEqualityComparer<@IfcBlobTexture>, IEquatable<@IfcBlobTexture>
 	{
 		#region IIfcBlobTexture explicit implementation
 		IfcIdentifier IIfcBlobTexture.RasterFormat { get { return @RasterFormat; } }	
-		long IIfcBlobTexture.RasterCode { get { return @RasterCode; } }	
+		IfcBinary IIfcBlobTexture.RasterCode { get { return @RasterCode; } }	
 		 
 		#endregion
 
@@ -50,7 +49,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		#region Explicit attribute fields
 		private IfcIdentifier _rasterFormat;
-		private long _rasterCode;
+		private IfcBinary _rasterCode;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -69,7 +68,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @RasterCode 
+		public IfcBinary @RasterCode 
 		{ 
 			get 
 			{

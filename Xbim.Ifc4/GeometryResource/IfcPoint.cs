@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCPOINT", 816)]
+	[ExpressType("IFCPOINT", 824)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPoint : IfcGeometricRepresentationItem, IIfcPoint, IEqualityComparer<@IfcPoint>, IEquatable<@IfcPoint>
 	{
@@ -53,15 +53,9 @@ namespace Xbim.Ifc4.GeometryResource
 			get 
 			{
 				//## Getter for Dim
-                var cart = this as IfcCartesianPoint;
-                if (cart != null)
-                    return cart.Dim;
-                var poc = this as IfcPointOnCurve;
-                if (poc != null)
-                    return poc.Dim;
-                var pos = this as IfcPointOnSurface;
-                return pos != null ? pos.Dim : 0;
-				//##
+                //this gets override in all non-abstract implementations
+			    return 0;
+			    //##
 			}
 		}
 
@@ -139,6 +133,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
+
 		//##
 		#endregion
 	}

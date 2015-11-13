@@ -25,20 +25,20 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcFillAreaStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
 	{
 		IEnumerable<IIfcFillStyleSelect> @FillStyles { get; }
-		bool? @ModelorDraughting { get; }
+		IfcBoolean? @ModelorDraughting { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCFILLAREASTYLE", 657)]
+	[ExpressType("IFCFILLAREASTYLE", 664)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IIfcFillAreaStyle, IEqualityComparer<@IfcFillAreaStyle>, IEquatable<@IfcFillAreaStyle>
 	{
 		#region IIfcFillAreaStyle explicit implementation
 		IEnumerable<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { get { return @FillStyles; } }	
-		bool? IIfcFillAreaStyle.ModelorDraughting { get { return @ModelorDraughting; } }	
+		IfcBoolean? IIfcFillAreaStyle.ModelorDraughting { get { return @ModelorDraughting; } }	
 		 
 		#endregion
 
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		#region Explicit attribute fields
 		private ItemSet<IfcFillStyleSelect> _fillStyles;
-		private bool? _modelorDraughting;
+		private IfcBoolean? _modelorDraughting;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @ModelorDraughting 
+		public IfcBoolean? @ModelorDraughting 
 		{ 
 			get 
 			{
@@ -107,8 +107,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*MaxOneColour:                                  )) <= 1;*/
-		/*MaxOneExtHatchStyle:                                  )) <= 1;*/
+		/*MaxOneColour:  )) <= 1;*/
+		/*MaxOneExtHatchStyle:  )) <= 1;*/
 		/*ConsistentHatchStyleDef:	ConsistentHatchStyleDef : IfcCorrectFillAreaStyle(SELF.FillStyles);*/
 		}
 		#endregion

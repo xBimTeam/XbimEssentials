@@ -51,11 +51,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 				}
 			} 
 		}
-		bool IIfcTrimmedCurve.SenseAgreement 
+		Ifc4.MeasureResource.IfcBoolean IIfcTrimmedCurve.SenseAgreement 
 		{ 
 			get
 			{
-				return SenseAgreement;
+				//## Handle return of SenseAgreement for which no match was found
+				//TODO: Handle return of SenseAgreement for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Ifc4.GeometryResource.IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation 

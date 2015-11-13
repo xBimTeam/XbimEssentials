@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCPRODUCTREPRESENTATION", 840)]
+	[ExpressType("IFCPRODUCTREPRESENTATION", 848)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcProductRepresentation : IPersistEntity, INotifyPropertyChanged, IIfcProductRepresentation, IEqualityComparer<@IfcProductRepresentation>, IEquatable<@IfcProductRepresentation>
 	{

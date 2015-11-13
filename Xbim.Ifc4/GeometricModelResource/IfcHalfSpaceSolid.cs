@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.GeometryResource;
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,20 +26,20 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcHalfSpaceSolid : IIfcGeometricRepresentationItem, IfcBooleanOperand
 	{
 		IIfcSurface @BaseSurface { get; }
-		bool @AgreementFlag { get; }
+		IfcBoolean @AgreementFlag { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCHALFSPACESOLID", 700)]
+	[ExpressType("IFCHALFSPACESOLID", 707)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcHalfSpaceSolid : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcHalfSpaceSolid, IEqualityComparer<@IfcHalfSpaceSolid>, IEquatable<@IfcHalfSpaceSolid>
 	{
 		#region IIfcHalfSpaceSolid explicit implementation
 		IIfcSurface IIfcHalfSpaceSolid.BaseSurface { get { return @BaseSurface; } }	
-		bool IIfcHalfSpaceSolid.AgreementFlag { get { return @AgreementFlag; } }	
+		IfcBoolean IIfcHalfSpaceSolid.AgreementFlag { get { return @AgreementFlag; } }	
 		 
 		#endregion
 
@@ -49,7 +50,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 		#region Explicit attribute fields
 		private IfcSurface _baseSurface;
-		private bool _agreementFlag;
+		private IfcBoolean _agreementFlag;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -68,7 +69,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool @AgreementFlag 
+		public IfcBoolean @AgreementFlag 
 		{ 
 			get 
 			{

@@ -32,19 +32,24 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				return new Ifc4.MeasureResource.IfcLabel(WorkMethod.Value);
 			} 
 		}
-		bool IIfcTask.IsMilestone 
+		Ifc4.MeasureResource.IfcBoolean IIfcTask.IsMilestone 
 		{ 
 			get
 			{
-				return IsMilestone;
+				//## Handle return of IsMilestone for which no match was found
+				//TODO: Handle return of IsMilestone for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
-		long? IIfcTask.Priority 
+		Ifc4.MeasureResource.IfcInteger? IIfcTask.Priority 
 		{ 
 			get
 			{
-				if (Priority == null) return null;
-				return Priority;
+				//## Handle return of Priority for which no match was found
+				//TODO: Handle return of Priority for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IIfcTaskTime IIfcTask.TaskTime 

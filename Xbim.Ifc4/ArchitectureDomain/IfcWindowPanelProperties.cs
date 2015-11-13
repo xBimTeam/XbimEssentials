@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.RepresentationResource;
 using System;
@@ -38,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ArchitectureDomain
 {
-	[ExpressType("IFCWINDOWPANELPROPERTIES", 1146)]
+	[ExpressType("IFCWINDOWPANELPROPERTIES", 1154)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWindowPanelProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcWindowPanelProperties, IEqualityComparer<@IfcWindowPanelProperties>, IEquatable<@IfcWindowPanelProperties>
 	{
@@ -175,7 +174,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*ApplicableToType:                         );*/
+		/*ApplicableToType:);*/
 		}
 		#endregion
 

@@ -16,11 +16,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcBSplineCurve : IIfcBSplineCurve
 	{
-		long IIfcBSplineCurve.Degree 
+		Ifc4.MeasureResource.IfcInteger IIfcBSplineCurve.Degree 
 		{ 
 			get
 			{
-				return Degree;
+				//## Handle return of Degree for which no match was found
+				//TODO: Handle return of Degree for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList 
@@ -63,25 +66,31 @@ namespace Xbim.Ifc2x3.GeometryResource
 				}
 			} 
 		}
-		bool? IIfcBSplineCurve.ClosedCurve 
+		Ifc4.MeasureResource.IfcLogical IIfcBSplineCurve.ClosedCurve 
 		{ 
 			get
 			{
-				return ClosedCurve;
+				//## Handle return of ClosedCurve for which no match was found
+				//TODO: Handle return of ClosedCurve for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
-		bool? IIfcBSplineCurve.SelfIntersect 
+		Ifc4.MeasureResource.IfcLogical IIfcBSplineCurve.SelfIntersect 
 		{ 
 			get
 			{
-				return SelfIntersect;
+				//## Handle return of SelfIntersect for which no match was found
+				//TODO: Handle return of SelfIntersect for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
-		long IIfcBSplineCurve.UpperIndexOnControlPoints 
+		Ifc4.MeasureResource.IfcInteger IIfcBSplineCurve.UpperIndexOnControlPoints 
 		{
 			get 
 			{
-				return UpperIndexOnControlPoints;
+				return new Ifc4.MeasureResource.IfcInteger(UpperIndexOnControlPoints);
 			}
 		}
 

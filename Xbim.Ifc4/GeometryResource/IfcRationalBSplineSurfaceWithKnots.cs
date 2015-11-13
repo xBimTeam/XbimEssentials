@@ -24,36 +24,36 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRationalBSplineSurfaceWithKnots : IIfcBSplineSurfaceWithKnots
 	{
-		IEnumerable<IEnumerable<double>> @WeightsData { get; }
-		List<List<double>> @Weights  { get ; }
+		IEnumerable<IEnumerable<IfcReal>> @WeightsData { get; }
+		List<List<IfcReal>> @Weights  { get ; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCRATIONALBSPLINESURFACEWITHKNOTS", 885)]
+	[ExpressType("IFCRATIONALBSPLINESURFACEWITHKNOTS", 893)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRationalBSplineSurfaceWithKnots : IfcBSplineSurfaceWithKnots, IInstantiableEntity, IIfcRationalBSplineSurfaceWithKnots, IEqualityComparer<@IfcRationalBSplineSurfaceWithKnots>, IEquatable<@IfcRationalBSplineSurfaceWithKnots>
 	{
 		#region IIfcRationalBSplineSurfaceWithKnots explicit implementation
-		IEnumerable<IEnumerable<double>> IIfcRationalBSplineSurfaceWithKnots.WeightsData { get { return @WeightsData; } }	
+		IEnumerable<IEnumerable<IfcReal>> IIfcRationalBSplineSurfaceWithKnots.WeightsData { get { return @WeightsData; } }	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRationalBSplineSurfaceWithKnots(IModel model) : base(model) 		{ 
 			Model = model; 
-			_weightsData = new ItemSet<ItemSet<double>>( this, 0 );
+			_weightsData = new ItemSet<ItemSet<IfcReal>>( this, 0 );
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<ItemSet<double>> _weightsData;
+		private ItemSet<ItemSet<IfcReal>> _weightsData;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 2, -1)]
-		public ItemSet<ItemSet<double>> @WeightsData 
+		public ItemSet<ItemSet<IfcReal>> @WeightsData 
 		{ 
 			get 
 			{
@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Array, EntityAttributeType.Array, 0, -1)]
-		public List<List<double>> @Weights 
+		public List<List<IfcReal>> @Weights 
 		{
 			get 
 			{
@@ -103,7 +103,7 @@ namespace Xbim.Ifc4.GeometryResource
 				case 12: 
 					_weightsData
 						.InternalGetAt(nestedIndex[0])
-						.InternalAdd((double)(value.RealVal));
+						.InternalAdd((IfcReal)(value.RealVal));
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.GeometryResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrespondingWeightsDataLists:                                      (SIZEOF(WeightsData[1]) = SIZEOF(SELF\IfcBSplineSurface.ControlPointsList[1]));*/
+		/*CorrespondingWeightsDataLists:(SIZEOF(WeightsData[1]) = SIZEOF(SELF\IfcBSplineSurface.ControlPointsList[1]));*/
 		/*WeightValuesGreaterZero:	WeightValuesGreaterZero : IfcSurfaceWeightsPositive(SELF);*/
 		}
 		#endregion

@@ -7,10 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometricConstraintResource;
-using Xbim.Ifc4.RepresentationResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCEXTERNALSPATIALELEMENT", 635)]
+	[ExpressType("IFCEXTERNALSPATIALELEMENT", 642)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcExternalSpatialElement : IfcExternalSpatialStructureElement, IInstantiableEntity, IIfcExternalSpatialElement, IEqualityComparer<@IfcExternalSpatialElement>, IEquatable<@IfcExternalSpatialElement>
 	{

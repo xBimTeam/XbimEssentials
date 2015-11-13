@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCPRODUCT", 838)]
+	[ExpressType("IFCPRODUCT", 846)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcProduct : IfcObject, IIfcProduct, IEqualityComparer<@IfcProduct>, IEquatable<@IfcProduct>
 	{
@@ -128,7 +128,7 @@ namespace Xbim.Ifc4.Kernel
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*PlacementForShapeRepresentation:                                                    OR (NOT(EXISTS(Representation)));*/
+		/*PlacementForShapeRepresentation:            OR (NOT(EXISTS(Representation)));*/
 		}
 		#endregion
 

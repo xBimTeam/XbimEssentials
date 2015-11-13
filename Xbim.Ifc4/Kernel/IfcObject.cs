@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCOBJECT", 774)]
+	[ExpressType("IFCOBJECT", 782)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcObject : IfcObjectDefinition, IIfcObject, IEqualityComparer<@IfcObject>, IEquatable<@IfcObject>
 	{
@@ -133,7 +133,8 @@ namespace Xbim.Ifc4.Kernel
 		
 		public  override string WhereRule() 
 		{
-			return "";
+            throw new System.NotImplementedException();
+		/*UniquePropertySetNames:	UniquePropertySetNames : ((SIZEOF(IsDefinedBy) = 0) OR IfcUniqueDefinitionNames(IsDefinedBy));*/
 		}
 		#endregion
 

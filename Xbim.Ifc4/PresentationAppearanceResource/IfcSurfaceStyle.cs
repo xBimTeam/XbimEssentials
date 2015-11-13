@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCSURFACESTYLE", 1059)]
+	[ExpressType("IFCSURFACESTYLE", 1067)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSurfaceStyle, IEqualityComparer<@IfcSurfaceStyle>, IEquatable<@IfcSurfaceStyle>
 	{
@@ -107,11 +106,11 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*MaxOneShading:                           )) <= 1;*/
-		/*MaxOneLighting:                           )) <= 1;*/
-		/*MaxOneRefraction:                           )) <= 1;*/
-		/*MaxOneTextures:                           )) <= 1;*/
-		/*MaxOneExtDefined:                           )) <= 1;*/
+		/*MaxOneShading:  )) <= 1;*/
+		/*MaxOneLighting:  )) <= 1;*/
+		/*MaxOneRefraction:  )) <= 1;*/
+		/*MaxOneTextures:  )) <= 1;*/
+		/*MaxOneExtDefined:  )) <= 1;*/
 		}
 		#endregion
 

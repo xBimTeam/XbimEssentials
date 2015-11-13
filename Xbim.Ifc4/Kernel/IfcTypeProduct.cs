@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.GeometryResource;
 using System;
@@ -35,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCTYPEPRODUCT", 1119)]
+	[ExpressType("IFCTYPEPRODUCT", 1127)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTypeProduct : IfcTypeObject, IInstantiableEntity, IIfcTypeProduct, IEqualityComparer<@IfcTypeProduct>, IEquatable<@IfcTypeProduct>
 	{
@@ -126,7 +125,7 @@ namespace Xbim.Ifc4.Kernel
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*ApplicableOccurrence:                             ) = 0);*/
+		/*ApplicableOccurrence:) = 0);*/
 		}
 		#endregion
 

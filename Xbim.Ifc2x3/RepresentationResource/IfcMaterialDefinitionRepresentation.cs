@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.MaterialResource;
 using System;
 using System.Collections.Generic;

@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		IIfcCurve @BasisCurve { get; }
 		IfcLengthMeasure @Distance { get; }
-		bool? @SelfIntersect { get; }
+		IfcLogical @SelfIntersect { get; }
 		IIfcDirection @RefDirection { get; }
 	
 	}
@@ -34,14 +34,14 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCOFFSETCURVE3D", 780)]
+	[ExpressType("IFCOFFSETCURVE3D", 788)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOffsetCurve3D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve3D, IEqualityComparer<@IfcOffsetCurve3D>, IEquatable<@IfcOffsetCurve3D>
 	{
 		#region IIfcOffsetCurve3D explicit implementation
 		IIfcCurve IIfcOffsetCurve3D.BasisCurve { get { return @BasisCurve; } }	
 		IfcLengthMeasure IIfcOffsetCurve3D.Distance { get { return @Distance; } }	
-		bool? IIfcOffsetCurve3D.SelfIntersect { get { return @SelfIntersect; } }	
+		IfcLogical IIfcOffsetCurve3D.SelfIntersect { get { return @SelfIntersect; } }	
 		IIfcDirection IIfcOffsetCurve3D.RefDirection { get { return @RefDirection; } }	
 		 
 		#endregion
@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#region Explicit attribute fields
 		private IfcCurve _basisCurve;
 		private IfcLengthMeasure _distance;
-		private bool? _selfIntersect;
+		private IfcLogical _selfIntersect;
 		private IfcDirection _refDirection;
 		#endregion
 	
@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @SelfIntersect 
+		public IfcLogical @SelfIntersect 
 		{ 
 			get 
 			{

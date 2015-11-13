@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ProductExtension;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -27,18 +26,20 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcBuildingSystem : IIfcSystem
 	{
 		IfcBuildingSystemTypeEnum? @PredefinedType { get; }
+		IfcLabel? @LongName { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCBUILDINGSYSTEM", 455)]
+	[ExpressType("IFCBUILDINGSYSTEM", 461)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBuildingSystem : IfcSystem, IInstantiableEntity, IIfcBuildingSystem, IEqualityComparer<@IfcBuildingSystem>, IEquatable<@IfcBuildingSystem>
 	{
 		#region IIfcBuildingSystem explicit implementation
 		IfcBuildingSystemTypeEnum? IIfcBuildingSystem.PredefinedType { get { return @PredefinedType; } }	
+		IfcLabel? IIfcBuildingSystem.LongName { get { return @LongName; } }	
 		 
 		#endregion
 
@@ -49,6 +50,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 
 		#region Explicit attribute fields
 		private IfcBuildingSystemTypeEnum? _predefinedType;
+		private IfcLabel? _longName;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -64,6 +66,20 @@ namespace Xbim.Ifc4.SharedBldgElements
 			set
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+			} 
+		}	
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public IfcLabel? @LongName 
+		{ 
+			get 
+			{
+				if(ActivationStatus != ActivationStatus.NotActivated) return _longName;
+				((IPersistEntity)this).Activate(false);
+				return _longName;
+			} 
+			set
+			{
+				SetValue( v =>  _longName = v, _longName, value,  "LongName");
 			} 
 		}	
 		#endregion
@@ -86,6 +102,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 					return;
 				case 5: 
                     _predefinedType = (IfcBuildingSystemTypeEnum) System.Enum.Parse(typeof (IfcBuildingSystemTypeEnum), value.EnumVal, true);
+					return;
+				case 6: 
+					_longName = value.StringVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

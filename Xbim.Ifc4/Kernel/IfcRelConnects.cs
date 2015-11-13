@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCRELCONNECTS", 917)]
+	[ExpressType("IFCRELCONNECTS", 925)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcRelConnects : IfcRelationship, IIfcRelConnects, IEqualityComparer<@IfcRelConnects>, IEquatable<@IfcRelConnects>
 	{

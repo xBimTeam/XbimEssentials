@@ -65,7 +65,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			    //##
 			} 
 		}
-		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcMaterialLayer.Priority 
+		Ifc4.MeasureResource.IfcInteger? IIfcMaterialLayer.Priority 
 		{ 
 			get
 			{

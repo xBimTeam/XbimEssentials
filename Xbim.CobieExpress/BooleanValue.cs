@@ -23,11 +23,10 @@ namespace Xbim.CobieExpress
             get { return _value; }
         }
 
-        public override string ToString()
+		public override string ToString()
         {
-            return Value != null ? Value.ToString() : typeof(bool).Name;
+			return _value ? "true" : "false";
         }
-
         public BooleanValue(bool val)
         {
             _value = val;

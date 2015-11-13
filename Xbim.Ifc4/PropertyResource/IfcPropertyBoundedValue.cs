@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PropertyResource
 {
-	[ExpressType("IFCPROPERTYBOUNDEDVALUE", 850)]
+	[ExpressType("IFCPROPERTYBOUNDEDVALUE", 858)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPropertyBoundedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyBoundedValue, IEqualityComparer<@IfcPropertyBoundedValue>, IEquatable<@IfcPropertyBoundedValue>
 	{
@@ -150,9 +150,9 @@ namespace Xbim.Ifc4.PropertyResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*SameUnitUpperLower:                           (TYPEOF(UpperBoundValue) = TYPEOF(LowerBoundValue));*/
-		/*SameUnitUpperSet:                           (TYPEOF(UpperBoundValue) = TYPEOF(SetPointValue));*/
-		/*SameUnitLowerSet:                           (TYPEOF(LowerBoundValue) = TYPEOF(SetPointValue));*/
+		/*SameUnitUpperLower:(TYPEOF(UpperBoundValue) = TYPEOF(LowerBoundValue));*/
+		/*SameUnitUpperSet:(TYPEOF(UpperBoundValue) = TYPEOF(SetPointValue));*/
+		/*SameUnitLowerSet:(TYPEOF(LowerBoundValue) = TYPEOF(SetPointValue));*/
 		}
 		#endregion
 

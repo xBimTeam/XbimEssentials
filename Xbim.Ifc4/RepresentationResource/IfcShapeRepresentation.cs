@@ -7,8 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCSHAPEREPRESENTATION", 980)]
+	[ExpressType("IFCSHAPEREPRESENTATION", 988)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcShapeRepresentation : IfcShapeModel, IInstantiableEntity, IIfcShapeRepresentation, IEqualityComparer<@IfcShapeRepresentation>, IEquatable<@IfcShapeRepresentation>
 	{
@@ -68,10 +66,11 @@ namespace Xbim.Ifc4.RepresentationResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR21:             IN TYPEOF(SELF\IfcRepresentation.ContextOfItems);*/
-		/*WR22:             )) = 0;*/
-		/*WR23:	WR23 : EXISTS(SELF\IfcRepresentation.RepresentationType);*/
-		/*WR24:	WR24 : IfcShapeRepresentationTypes(SELF\IfcRepresentation.RepresentationType, SELF\IfcRepresentation.Items);*/
+		/*CorrectContext:IN TYPEOF(SELF\IfcRepresentation.ContextOfItems);*/
+		/*NoTopologicalItem:)) = 0;*/
+		/*HasRepresentationType:	HasRepresentationType : EXISTS(SELF\IfcRepresentation.RepresentationType);*/
+		/*CorrectItemsForType:	CorrectItemsForType : IfcShapeRepresentationTypes(SELF\IfcRepresentation.RepresentationType, SELF\IfcRepresentation.Items);*/
+		/*HasRepresentationIdentifier:	HasRepresentationIdentifier : EXISTS(SELF\IfcRepresentation.RepresentationIdentifier);*/
 		}
 		#endregion
 

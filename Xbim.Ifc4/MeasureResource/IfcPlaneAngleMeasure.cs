@@ -13,7 +13,7 @@ using Xbim.Ifc4.StructuralElementsDomain;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCPLANEANGLEMEASURE", 78)]
+	[ExpressType("IFCPLANEANGLEMEASURE", 82)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcPlaneAngleMeasure : IfcBendingParameterSelect, IfcMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 

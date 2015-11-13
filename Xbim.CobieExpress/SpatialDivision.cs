@@ -8,13 +8,28 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Common;
+using Xbim.CobieExpress.Interfaces;
 
 namespace Xbim.CobieExpress
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface SpatialDivision : IExpressSelectType, IPersistEntity
+	public partial interface SpatialDivision : IExpressSelectType, IPersistEntity, ISpatialDivision
 	{
-		
+		#region Custom code for a select
+		//## Custom code for a select
+		//##
+		#endregion
+	}
+}
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	public partial interface ISpatialDivision 
+	{
+		#region Custom code for a select interface
+		//## Custom code for a select interface
+		//##
+		#endregion
 	}
 }

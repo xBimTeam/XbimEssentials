@@ -8,9 +8,8 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.GeometricConstraintResource;
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCRELINTERFERESELEMENTS", 938)]
+	[ExpressType("IFCRELINTERFERESELEMENTS", 946)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelInterferesElements : IfcRelConnects, IInstantiableEntity, IIfcRelInterferesElements, IEqualityComparer<@IfcRelInterferesElements>, IEquatable<@IfcRelInterferesElements>
 	{

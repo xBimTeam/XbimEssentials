@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +23,6 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceStyleRendering : IIfcSurfaceStyleShading
 	{
-		IfcNormalisedRatioMeasure? @Transparency { get; }
 		IIfcColourOrFactor @DiffuseColour { get; }
 		IIfcColourOrFactor @TransmissionColour { get; }
 		IIfcColourOrFactor @DiffuseTransmissionColour { get; }
@@ -38,12 +36,11 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCSURFACESTYLERENDERING", 1062)]
+	[ExpressType("IFCSURFACESTYLERENDERING", 1070)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IIfcSurfaceStyleRendering, IEqualityComparer<@IfcSurfaceStyleRendering>, IEquatable<@IfcSurfaceStyleRendering>
 	{
 		#region IIfcSurfaceStyleRendering explicit implementation
-		IfcNormalisedRatioMeasure? IIfcSurfaceStyleRendering.Transparency { get { return @Transparency; } }	
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour { get { return @DiffuseColour; } }	
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.TransmissionColour { get { return @TransmissionColour; } }	
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseTransmissionColour { get { return @DiffuseTransmissionColour; } }	
@@ -60,7 +57,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		}
 
 		#region Explicit attribute fields
-		private IfcNormalisedRatioMeasure? _transparency;
 		private IfcColourOrFactor _diffuseColour;
 		private IfcColourOrFactor _transmissionColour;
 		private IfcColourOrFactor _diffuseTransmissionColour;
@@ -71,20 +67,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public IfcNormalisedRatioMeasure? @Transparency 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transparency;
-				((IPersistEntity)this).Activate(false);
-				return _transparency;
-			} 
-			set
-			{
-				SetValue( v =>  _transparency = v, _transparency, value,  "Transparency");
-			} 
-		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
 		public IfcColourOrFactor @DiffuseColour 
 		{ 
@@ -195,10 +177,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			switch (propIndex)
 			{
 				case 0: 
-					base.Parse(propIndex, value, nestedIndex); 
-					return;
 				case 1: 
-					_transparency = value.RealVal;
+					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 2: 
 					_diffuseColour = (IfcColourOrFactor)(value.EntityVal);

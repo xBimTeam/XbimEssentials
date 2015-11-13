@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCGEOMETRICCURVESET", 691)]
+	[ExpressType("IFCGEOMETRICCURVESET", 698)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGeometricCurveSet : IfcGeometricSet, IInstantiableEntity, IIfcGeometricCurveSet, IEqualityComparer<@IfcGeometricCurveSet>, IEquatable<@IfcGeometricCurveSet>
 	{
@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*NoSurfaces:                   'IFC4.IFCSURFACE' IN TYPEOF(Temp))) = 0;*/
+		/*NoSurfaces:'IFC4.IFCSURFACE' IN TYPEOF(Temp))) = 0;*/
 		}
 		#endregion
 

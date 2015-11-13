@@ -59,6 +59,20 @@ namespace Xbim.Ifc2x3.PropertyResource
 				return Model.Instances.Where<IIfcComplexProperty>(e => e.HasProperties != null &&  e.HasProperties.Contains(this));
 			} 
 		}
+		IEnumerable<IIfcResourceConstraintRelationship> IIfcProperty.HasConstraints 
+		{ 
+			get
+			{
+				return Model.Instances.Where<IIfcResourceConstraintRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+			} 
+		}
+		IEnumerable<IIfcResourceApprovalRelationship> IIfcProperty.HasApprovals 
+		{ 
+			get
+			{
+				return Model.Instances.Where<IIfcResourceApprovalRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+			} 
+		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 
 			get

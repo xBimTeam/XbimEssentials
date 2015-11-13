@@ -8,9 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.ActorResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedFacilitiesElements
 {
-	[ExpressType("IFCOCCUPANT", 778)]
+	[ExpressType("IFCOCCUPANT", 786)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOccupant : IfcActor, IInstantiableEntity, IIfcOccupant, IEqualityComparer<@IfcOccupant>, IEquatable<@IfcOccupant>
 	{
@@ -97,7 +94,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR31:             OR EXISTS(SELF\IfcObject.ObjectType);*/
+		/*WR31:OR EXISTS(SELF\IfcObject.ObjectType);*/
 		}
 		#endregion
 

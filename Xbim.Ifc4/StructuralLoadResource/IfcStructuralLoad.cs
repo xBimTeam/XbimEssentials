@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[IndexedClass]
-	[ExpressType("IFCSTRUCTURALLOAD", 1022)]
+	[ExpressType("IFCSTRUCTURALLOAD", 1030)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralLoad : IPersistEntity, INotifyPropertyChanged, IIfcStructuralLoad, IEqualityComparer<@IfcStructuralLoad>, IEquatable<@IfcStructuralLoad>
 	{

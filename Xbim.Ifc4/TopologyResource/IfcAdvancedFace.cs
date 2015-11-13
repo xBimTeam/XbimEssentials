@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCADVANCEDFACE", 399)]
+	[ExpressType("IFCADVANCEDFACE", 405)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAdvancedFace : IfcFaceSurface, IInstantiableEntity, IIfcAdvancedFace, IEqualityComparer<@IfcAdvancedFace>, IEquatable<@IfcAdvancedFace>
 	{
@@ -66,9 +65,9 @@ namespace Xbim.Ifc4.TopologyResource
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*ApplicableSurface:                             TYPEOF(SELF\IfcFaceSurface.FaceSurface)) = 1;*/
-		/*RequiresEdgeCurve:                             ))) = 0;*/
-		/*ApplicableEdgeCurves:                             ))) = 0;*/
+		/*ApplicableSurface:TYPEOF(SELF\IfcFaceSurface.FaceSurface)) = 1;*/
+		/*RequiresEdgeCurve:))) = 0;*/
+		/*ApplicableEdgeCurves:))) = 0;*/
 		}
 		#endregion
 

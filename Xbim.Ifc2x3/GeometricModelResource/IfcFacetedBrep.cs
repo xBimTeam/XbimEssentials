@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc2x3.TopologyResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;

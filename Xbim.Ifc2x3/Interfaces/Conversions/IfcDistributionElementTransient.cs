@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xbim.Ifc2x3.ProductExtension;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
-    internal class IfcDistributionElementTransient : Xbim.Ifc4.Interfaces.IIfcDistributionElement
+    internal class IfcDistributionElementTransient : Ifc4.Interfaces.IIfcDistributionElement
     {
-        Ifc4.Interfaces.IIfcElement _element;
+        readonly Ifc4.Interfaces.IIfcElement _element;
         internal IfcDistributionElementTransient(IfcElement element)
         {
             _element = element;
@@ -80,6 +79,11 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         {
             get { return _element.ContainedInStructure; }
         }
+
+        public IEnumerable<Ifc4.Interfaces.IIfcRelCoversBldgElements> HasCoverings { get
+        {
+            return _element.HasCoverings;
+        } }
 
         public Ifc4.Interfaces.IIfcObjectPlacement ObjectPlacement
         {
@@ -193,22 +197,22 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
 
         public void Activate(bool write)
         {
-            ((Xbim.Common.IPersistEntity)_element).Activate(write);
+            _element.Activate(write);
         }
 
         public void Activate(Action activation)
         {
-            ((Xbim.Common.IPersistEntity)_element).Activate(activation);
+            _element.Activate(activation);
         }
 
         public Common.Metadata.ExpressType ExpressType
         {
-            get { return ((Xbim.Common.IPersistEntity)_element).ExpressType; }
+            get { return _element.ExpressType; }
         }
 
         public Common.IModel ModelOf
         {
-            get { return _element.ModelOf; }
+            get { return _element.Model; }
         }
 
         public void Parse(int propIndex, Common.IPropertyValue value, int[] nested)

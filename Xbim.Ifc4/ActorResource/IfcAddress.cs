@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ActorResource
 {
 	[IndexedClass]
-	[ExpressType("IFCADDRESS", 396)]
+	[ExpressType("IFCADDRESS", 402)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcAddress : IPersistEntity, INotifyPropertyChanged, IIfcAddress, IEqualityComparer<@IfcAddress>, IEquatable<@IfcAddress>
 	{
@@ -259,7 +259,7 @@ namespace Xbim.Ifc4.ActorResource
 		public virtual string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*WR1:              EXISTS(SELF.UserDefinedPurpose)));*/
+		/*WR1:  EXISTS(SELF.UserDefinedPurpose)));*/
 		}
 		#endregion
 

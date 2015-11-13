@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCDYNAMICVISCOSITYMEASURE", 22)]
+	[ExpressType("IFCDYNAMICVISCOSITYMEASURE", 25)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcDynamicViscosityMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 

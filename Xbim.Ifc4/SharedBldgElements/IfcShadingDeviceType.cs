@@ -8,10 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ProductExtension;
-using Xbim.Ifc4.UtilityResource;
-using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCSHADINGDEVICETYPE", 977)]
+	[ExpressType("IFCSHADINGDEVICETYPE", 985)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcShadingDeviceType : IfcBuildingElementType, IInstantiableEntity, IIfcShadingDeviceType, IEqualityComparer<@IfcShadingDeviceType>, IEquatable<@IfcShadingDeviceType>
 	{
@@ -101,7 +97,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		public  override string WhereRule() 
 		{
             throw new System.NotImplementedException();
-		/*CorrectPredefinedType:                              ((PredefinedType = IfcShadingDeviceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
+		/*CorrectPredefinedType:((PredefinedType = IfcShadingDeviceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
 		}
 		#endregion
 

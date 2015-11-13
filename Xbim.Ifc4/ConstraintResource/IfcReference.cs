@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcIdentifier? @TypeIdentifier { get; }
 		IfcIdentifier? @AttributeIdentifier { get; }
 		IfcLabel? @InstanceName { get; }
-		IEnumerable<long> @ListPositions { get; }
+		IEnumerable<IfcInteger> @ListPositions { get; }
 		IIfcReference @InnerReference { get; }
 	
 	}
@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstraintResource
 {
-	[ExpressType("IFCREFERENCE", 891)]
+	[ExpressType("IFCREFERENCE", 899)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReference : INotifyPropertyChanged, IInstantiableEntity, IIfcReference, IEqualityComparer<@IfcReference>, IEquatable<@IfcReference>
 	{
@@ -46,7 +46,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		IfcIdentifier? IIfcReference.TypeIdentifier { get { return @TypeIdentifier; } }	
 		IfcIdentifier? IIfcReference.AttributeIdentifier { get { return @AttributeIdentifier; } }	
 		IfcLabel? IIfcReference.InstanceName { get { return @InstanceName; } }	
-		IEnumerable<long> IIfcReference.ListPositions { get { return @ListPositions; } }	
+		IEnumerable<IfcInteger> IIfcReference.ListPositions { get { return @ListPositions; } }	
 		IIfcReference IIfcReference.InnerReference { get { return @InnerReference; } }	
 		 
 		#endregion
@@ -112,14 +112,14 @@ namespace Xbim.Ifc4.ConstraintResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReference(IModel model) 		{ 
 			Model = model; 
-			_listPositions = new OptionalItemSet<long>( this, 0 );
+			_listPositions = new OptionalItemSet<IfcInteger>( this, 0 );
 		}
 
 		#region Explicit attribute fields
 		private IfcIdentifier? _typeIdentifier;
 		private IfcIdentifier? _attributeIdentifier;
 		private IfcLabel? _instanceName;
-		private OptionalItemSet<long> _listPositions;
+		private OptionalItemSet<IfcInteger> _listPositions;
 		private IfcReference _innerReference;
 		#endregion
 	
@@ -167,7 +167,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
-		public OptionalItemSet<long> @ListPositions 
+		public OptionalItemSet<IfcInteger> @ListPositions 
 		{ 
 			get 
 			{
@@ -260,7 +260,7 @@ namespace Xbim.Ifc4.ConstraintResource
 					_instanceName = value.StringVal;
 					return;
 				case 3: 
-					if (_listPositions == null) _listPositions = new OptionalItemSet<long>( this );
+					if (_listPositions == null) _listPositions = new OptionalItemSet<IfcInteger>( this );
 					_listPositions.InternalAdd(value.IntegerVal);
 					return;
 				case 4: 

@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 		IEnumerable<IIfcShapeModel> @ShapeRepresentations { get; }
 		IfcLabel? @Name { get; }
 		IfcText? @Description { get; }
-		bool? @ProductDefinitional { get; }
+		IfcLogical @ProductDefinitional { get; }
 		IIfcProductRepresentationSelect @PartOfProductDefinitionShape { get; }
 	
 	}
@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.RepresentationResource
 {
 	[IndexedClass]
-	[ExpressType("IFCSHAPEASPECT", 978)]
+	[ExpressType("IFCSHAPEASPECT", 986)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcShapeAspect : INotifyPropertyChanged, IInstantiableEntity, IIfcShapeAspect, IEqualityComparer<@IfcShapeAspect>, IEquatable<@IfcShapeAspect>
 	{
@@ -46,7 +46,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		IEnumerable<IIfcShapeModel> IIfcShapeAspect.ShapeRepresentations { get { return @ShapeRepresentations; } }	
 		IfcLabel? IIfcShapeAspect.Name { get { return @Name; } }	
 		IfcText? IIfcShapeAspect.Description { get { return @Description; } }	
-		bool? IIfcShapeAspect.ProductDefinitional { get { return @ProductDefinitional; } }	
+		IfcLogical IIfcShapeAspect.ProductDefinitional { get { return @ProductDefinitional; } }	
 		IIfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape { get { return @PartOfProductDefinitionShape; } }	
 		 
 		#endregion
@@ -119,7 +119,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		private ItemSet<IfcShapeModel> _shapeRepresentations;
 		private IfcLabel? _name;
 		private IfcText? _description;
-		private bool? _productDefinitional;
+		private IfcLogical _productDefinitional;
 		private IfcProductRepresentationSelect _partOfProductDefinitionShape;
 		#endregion
 	
@@ -164,7 +164,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @ProductDefinitional 
+		public IfcLogical @ProductDefinitional 
 		{ 
 			get 
 			{

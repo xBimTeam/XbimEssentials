@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.PresentationDefinitionResource;
 using Xbim.Ifc4.GeometricModelResource;
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,38 +27,38 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcIndexedColourMap : IIfcPresentationItem
 	{
 		IIfcTessellatedFaceSet @MappedTo { get; }
-		IIfcSurfaceStyleShading @Overrides { get; }
+		IfcNormalisedRatioMeasure? @Opacity { get; }
 		IIfcColourRgbList @Colours { get; }
-		IEnumerable<long> @ColourIndex { get; }
+		IEnumerable<IfcPositiveInteger> @ColourIndex { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCINDEXEDCOLOURMAP", 707)]
+	[ExpressType("IFCINDEXEDCOLOURMAP", 714)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcIndexedColourMap : IfcPresentationItem, IInstantiableEntity, IIfcIndexedColourMap, IEqualityComparer<@IfcIndexedColourMap>, IEquatable<@IfcIndexedColourMap>
 	{
 		#region IIfcIndexedColourMap explicit implementation
 		IIfcTessellatedFaceSet IIfcIndexedColourMap.MappedTo { get { return @MappedTo; } }	
-		IIfcSurfaceStyleShading IIfcIndexedColourMap.Overrides { get { return @Overrides; } }	
+		IfcNormalisedRatioMeasure? IIfcIndexedColourMap.Opacity { get { return @Opacity; } }	
 		IIfcColourRgbList IIfcIndexedColourMap.Colours { get { return @Colours; } }	
-		IEnumerable<long> IIfcIndexedColourMap.ColourIndex { get { return @ColourIndex; } }	
+		IEnumerable<IfcPositiveInteger> IIfcIndexedColourMap.ColourIndex { get { return @ColourIndex; } }	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIndexedColourMap(IModel model) : base(model) 		{ 
 			Model = model; 
-			_colourIndex = new ItemSet<long>( this, 0 );
+			_colourIndex = new ItemSet<IfcPositiveInteger>( this, 0 );
 		}
 
 		#region Explicit attribute fields
 		private IfcTessellatedFaceSet _mappedTo;
-		private IfcSurfaceStyleShading _overrides;
+		private IfcNormalisedRatioMeasure? _opacity;
 		private IfcColourRgbList _colours;
-		private ItemSet<long> _colourIndex;
+		private ItemSet<IfcPositiveInteger> _colourIndex;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -76,18 +77,18 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _mappedTo = v, _mappedTo, value,  "MappedTo");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
-		public IfcSurfaceStyleShading @Overrides 
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		public IfcNormalisedRatioMeasure? @Opacity 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _overrides;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _opacity;
 				((IPersistEntity)this).Activate(false);
-				return _overrides;
+				return _opacity;
 			} 
 			set
 			{
-				SetValue( v =>  _overrides = v, _overrides, value,  "Overrides");
+				SetValue( v =>  _opacity = v, _opacity, value,  "Opacity");
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
@@ -105,7 +106,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
-		public ItemSet<long> @ColourIndex 
+		public ItemSet<IfcPositiveInteger> @ColourIndex 
 		{ 
 			get 
 			{
@@ -129,13 +130,13 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					_mappedTo = (IfcTessellatedFaceSet)(value.EntityVal);
 					return;
 				case 1: 
-					_overrides = (IfcSurfaceStyleShading)(value.EntityVal);
+					_opacity = value.RealVal;
 					return;
 				case 2: 
 					_colours = (IfcColourRgbList)(value.EntityVal);
 					return;
 				case 3: 
-					if (_colourIndex == null) _colourIndex = new ItemSet<long>( this );
+					if (_colourIndex == null) _colourIndex = new ItemSet<IfcPositiveInteger>( this );
 					_colourIndex.InternalAdd(value.IntegerVal);
 					return;
 				default:

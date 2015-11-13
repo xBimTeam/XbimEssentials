@@ -46,27 +46,27 @@ namespace Xbim.Ifc2x3.UtilityResource
 				//##
 			} 
 		}
-		long IIfcTable.NumberOfCellsInRow 
+		Ifc4.MeasureResource.IfcInteger IIfcTable.NumberOfCellsInRow 
 		{
 			get 
 			{
-				return NumberOfCellsInRow;
+				return new Ifc4.MeasureResource.IfcInteger(NumberOfCellsInRow);
 			}
 		}
 
-		long IIfcTable.NumberOfHeadings 
+		Ifc4.MeasureResource.IfcInteger IIfcTable.NumberOfHeadings 
 		{
 			get 
 			{
-				return NumberOfHeadings;
+				return new Ifc4.MeasureResource.IfcInteger(NumberOfHeadings);
 			}
 		}
 
-		long IIfcTable.NumberOfDataRows 
+		Ifc4.MeasureResource.IfcInteger IIfcTable.NumberOfDataRows 
 		{
 			get 
 			{
-				return NumberOfDataRows;
+				return new Ifc4.MeasureResource.IfcInteger(NumberOfDataRows);
 			}
 		}
 

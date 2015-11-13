@@ -16,20 +16,24 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcStairFlight : IIfcStairFlight
 	{
-		long? IIfcStairFlight.NumberOfRiser 
+		Ifc4.MeasureResource.IfcInteger? IIfcStairFlight.NumberOfRisers 
 		{ 
 			get
 			{
-				if (NumberOfRiser == null) return null;
-				return NumberOfRiser;
+				//## Handle return of NumberOfRisers for which no match was found
+				//TODO: Handle return of NumberOfRisers for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
-		long? IIfcStairFlight.NumberOfTreads 
+		Ifc4.MeasureResource.IfcInteger? IIfcStairFlight.NumberOfTreads 
 		{ 
 			get
 			{
-				if (NumberOfTreads == null) return null;
-				return NumberOfTreads;
+				//## Handle return of NumberOfTreads for which no match was found
+				//TODO: Handle return of NumberOfTreads for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight 

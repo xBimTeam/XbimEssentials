@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCPOINTONSURFACE", 818)]
+	[ExpressType("IFCPOINTONSURFACE", 826)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPointOnSurface : IfcPoint, IInstantiableEntity, IIfcPointOnSurface, IEqualityComparer<@IfcPointOnSurface>, IEquatable<@IfcPointOnSurface>
 	{

@@ -31,9 +31,9 @@ namespace Xbim.Ifc4.Interfaces
 		IfcLabel? @Name { get; }
 		IEnumerable<IIfcTableRow> @Rows { get; }
 		IEnumerable<IIfcTableColumn> @Columns { get; }
-		long @NumberOfCellsInRow  { get ; }
-		long @NumberOfHeadings  { get ; }
-		long @NumberOfDataRows  { get ; }
+		IfcInteger @NumberOfCellsInRow  { get ; }
+		IfcInteger @NumberOfHeadings  { get ; }
+		IfcInteger @NumberOfDataRows  { get ; }
 	
 	}
 }
@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.UtilityResource
 {
 	[IndexedClass]
-	[ExpressType("IFCTABLE", 1076)]
+	[ExpressType("IFCTABLE", 1084)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTable : INotifyPropertyChanged, IInstantiableEntity, IIfcTable, IEqualityComparer<@IfcTable>, IEquatable<@IfcTable>
 	{
@@ -138,7 +138,6 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
 		public OptionalItemSet<IfcTableRow> @Rows 
 		{ 
@@ -164,7 +163,7 @@ namespace Xbim.Ifc4.UtilityResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @NumberOfCellsInRow 
+		public IfcInteger @NumberOfCellsInRow 
 		{
 			get 
 			{
@@ -177,7 +176,7 @@ namespace Xbim.Ifc4.UtilityResource
 		}
 
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @NumberOfHeadings 
+		public IfcInteger @NumberOfHeadings 
 		{
 			get 
 			{
@@ -188,7 +187,7 @@ namespace Xbim.Ifc4.UtilityResource
 		}
 
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @NumberOfDataRows 
+		public IfcInteger @NumberOfDataRows 
 		{
 			get 
 			{

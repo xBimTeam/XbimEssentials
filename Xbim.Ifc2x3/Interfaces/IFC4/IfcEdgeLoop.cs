@@ -26,11 +26,11 @@ namespace Xbim.Ifc2x3.TopologyResource
 				}
 			} 
 		}
-		long IIfcEdgeLoop.Ne 
+		Ifc4.MeasureResource.IfcInteger IIfcEdgeLoop.Ne 
 		{
 			get 
 			{
-				return Ne;
+				return new Ifc4.MeasureResource.IfcInteger(Ne);
 			}
 		}
 

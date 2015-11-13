@@ -16,25 +16,34 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcPresentationLayerWithStyle : IIfcPresentationLayerWithStyle
 	{
-		bool? IIfcPresentationLayerWithStyle.LayerOn 
+		Ifc4.MeasureResource.IfcLogical IIfcPresentationLayerWithStyle.LayerOn 
 		{ 
 			get
 			{
-				return LayerOn;
+				//## Handle return of LayerOn for which no match was found
+				//TODO: Handle return of LayerOn for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
-		bool? IIfcPresentationLayerWithStyle.LayerFrozen 
+		Ifc4.MeasureResource.IfcLogical IIfcPresentationLayerWithStyle.LayerFrozen 
 		{ 
 			get
 			{
-				return LayerFrozen;
+				//## Handle return of LayerFrozen for which no match was found
+				//TODO: Handle return of LayerFrozen for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
-		bool? IIfcPresentationLayerWithStyle.LayerBlocked 
+		Ifc4.MeasureResource.IfcLogical IIfcPresentationLayerWithStyle.LayerBlocked 
 		{ 
 			get
 			{
-				return LayerBlocked;
+				//## Handle return of LayerBlocked for which no match was found
+				//TODO: Handle return of LayerBlocked for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 		IEnumerable<IIfcPresentationStyle> IIfcPresentationLayerWithStyle.LayerStyles 

@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,9 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcCompositeCurve : IIfcBoundedCurve
 	{
 		IEnumerable<IIfcCompositeCurveSegment> @Segments { get; }
-		bool? @SelfIntersect { get; }
-		long @NSegments  { get ; }
-		bool? @ClosedCurve  { get ; }
+		IfcLogical @SelfIntersect { get; }
+		IfcInteger @NSegments  { get ; }
+		IfcLogical @ClosedCurve  { get ; }
 	
 	}
 }
@@ -34,13 +35,13 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.GeometryResource
 {
 	[IndexedClass]
-	[ExpressType("IFCCOMPOSITECURVE", 500)]
+	[ExpressType("IFCCOMPOSITECURVE", 507)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCompositeCurve : IfcBoundedCurve, IInstantiableEntity, IIfcCompositeCurve, IEqualityComparer<@IfcCompositeCurve>, IEquatable<@IfcCompositeCurve>
 	{
 		#region IIfcCompositeCurve explicit implementation
 		IEnumerable<IIfcCompositeCurveSegment> IIfcCompositeCurve.Segments { get { return @Segments; } }	
-		bool? IIfcCompositeCurve.SelfIntersect { get { return @SelfIntersect; } }	
+		IfcLogical IIfcCompositeCurve.SelfIntersect { get { return @SelfIntersect; } }	
 		 
 		#endregion
 
@@ -52,7 +53,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Explicit attribute fields
 		private ItemSet<IfcCompositeCurveSegment> _segments;
-		private bool? _selfIntersect;
+		private IfcLogical _selfIntersect;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -68,7 +69,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @SelfIntersect 
+		public IfcLogical @SelfIntersect 
 		{ 
 			get 
 			{
@@ -86,7 +87,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public long @NSegments 
+		public IfcInteger @NSegments 
 		{
 			get 
 			{
@@ -97,7 +98,7 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
-		public bool? @ClosedCurve 
+		public IfcLogical @ClosedCurve 
 		{
 			get 
 			{
