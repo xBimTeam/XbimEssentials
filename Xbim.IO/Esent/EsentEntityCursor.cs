@@ -11,7 +11,7 @@ using Xbim.Common.Step21;
 
 namespace Xbim.IO.Esent
 {
-    public class XbimEntityCursor : XbimCursor
+    public class EsentEntityCursor : EsentCursor
     {
 
 
@@ -57,7 +57,7 @@ namespace Xbim.IO.Esent
             }
         }
 
-        public static implicit operator JET_TABLEID(XbimEntityCursor table)
+        public static implicit operator JET_TABLEID(EsentEntityCursor table)
         {
             return table;
         }
@@ -190,7 +190,7 @@ namespace Xbim.IO.Esent
 
         }
 
-        public XbimEntityCursor(EsentModel model, string database)
+        public EsentEntityCursor(EsentModel model, string database)
             : this(model, database, OpenDatabaseGrbit.None)
         {
         }
@@ -199,7 +199,7 @@ namespace Xbim.IO.Esent
         /// </summary>
         /// <param name="instance"></param>
         /// <param name="database"></param>
-        public XbimEntityCursor(EsentModel model, string database, OpenDatabaseGrbit mode)
+        public EsentEntityCursor(EsentModel model, string database, OpenDatabaseGrbit mode)
             : base(model, database, mode)
         {
             Api.JetOpenTable(Sesid, DbId, ifcEntityTableName, null, 0,
@@ -378,7 +378,7 @@ namespace Xbim.IO.Esent
         /// <param name="typeId">Type identifer</param>
         /// <param name="indexKeys">Search keys to use specifiy null if no indices</param>
         /// <param name="data">property data</param>
-        internal void AddEntity(int currentLabel, short typeId, IEnumerable<int> indexKeys, byte[] data, bool? indexed, XbimLazyDBTransaction? trans = null)
+        internal void AddEntity(int currentLabel, short typeId, IEnumerable<int> indexKeys, byte[] data, bool? indexed, EsentLazyDBTransaction? trans = null)
         {
             try
             {
@@ -678,7 +678,7 @@ namespace Xbim.IO.Esent
     internal class XbimInstancesLabelEnumerator : IEnumerator<int>, IEnumerator
     {
         private PersistedEntityInstanceCache cache;
-        private XbimEntityCursor cursor;
+        private EsentEntityCursor cursor;
         private int current;
 
         public XbimInstancesLabelEnumerator(PersistedEntityInstanceCache cache)
@@ -728,7 +728,7 @@ namespace Xbim.IO.Esent
     internal class XbimInstancesEntityEnumerator : IEnumerator<IPersistEntity>, IEnumerator
     {
         private PersistedEntityInstanceCache cache;
-        private XbimEntityCursor cursor;
+        private EsentEntityCursor cursor;
         private int current;
 
         public XbimInstancesEntityEnumerator(PersistedEntityInstanceCache cache)

@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Xbim.Common;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.IO.Step21;
+using XbimGeometry.Interfaces;
 
 namespace Xbim.IO.Memory
 {
@@ -447,6 +447,12 @@ namespace Xbim.IO.Memory
                 //make sure model is transactional at the end again
                 IsTransactional = true;
             }
+        }
+
+
+        public IGeometryStore GeometryStore
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 

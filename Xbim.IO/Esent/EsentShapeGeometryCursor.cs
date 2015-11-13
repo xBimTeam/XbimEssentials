@@ -4,7 +4,7 @@ using XbimGeometry.Interfaces;
 namespace Xbim.IO.Esent
 {
 
-    public class XbimShapeGeometryCursor : XbimCursor
+    public class EsentShapeGeometryCursor : EsentCursor
     {
         #region Field Definition
 
@@ -48,11 +48,11 @@ namespace Xbim.IO.Esent
 
 
         #region Constructors
-        public XbimShapeGeometryCursor(EsentModel model, string database)
+        public EsentShapeGeometryCursor(EsentModel model, string database)
             : this(model, database, OpenDatabaseGrbit.None)
         {
         }
-        public XbimShapeGeometryCursor(EsentModel model, string database, OpenDatabaseGrbit mode)
+        public EsentShapeGeometryCursor(EsentModel model, string database, OpenDatabaseGrbit mode)
             : base(model, database, mode)
         {
             Api.JetOpenTable(this.Sesid, this.DbId, GeometryTableName, null, 0, mode == OpenDatabaseGrbit.ReadOnly ? OpenTableGrbit.ReadOnly :

@@ -4,7 +4,7 @@ using Microsoft.Isam.Esent.Interop;
 
 namespace Xbim.IO.Esent
 {
-    public abstract class XbimCursor : IDisposable
+    public abstract class EsentCursor : IDisposable
     {
         protected const int TransactionBatchSize = 100;
         /// <summary>
@@ -52,7 +52,7 @@ namespace Xbim.IO.Esent
 
         public bool ReadOnly { get; set; }
 
-        protected XbimCursor(EsentModel model, string database,  OpenDatabaseGrbit mode)
+        protected EsentCursor(EsentModel model, string database,  OpenDatabaseGrbit mode)
         {
             LockObject = new Object();
             Model = model;
@@ -148,9 +148,9 @@ namespace Xbim.IO.Esent
 
        
 
-        public XbimLazyDBTransaction BeginLazyTransaction()
+        public EsentLazyDBTransaction BeginLazyTransaction()
         {
-            return new XbimLazyDBTransaction(Sesid);
+            return new EsentLazyDBTransaction(Sesid);
         }
 
         /// <summary>

@@ -43,7 +43,7 @@ namespace Xbim.IO.Esent
 
         private bool _disposed;
 
-        private XbimEntityCursor _editTransactionEntityCursor;
+        private EsentEntityCursor _editTransactionEntityCursor;
         private bool _deleteOnClose;
         
 
@@ -200,7 +200,7 @@ namespace Xbim.IO.Esent
         /// Returns the table to the cache for reuse
         /// </summary>
         /// <param name="table"></param>
-        public void FreeTable(XbimEntityCursor table)
+        public void FreeTable(EsentEntityCursor table)
         {
             InstanceCache.FreeTable(table);
         }
@@ -208,7 +208,7 @@ namespace Xbim.IO.Esent
         /// Returns the table to the cache for reuse
         /// </summary>
         /// <param name="table"></param>
-        public void FreeTable(XbimShapeGeometryCursor table)
+        public void FreeTable(EsentShapeGeometryCursor table)
         {
             InstanceCache.FreeTable(table);
         }
@@ -216,7 +216,7 @@ namespace Xbim.IO.Esent
         /// Returns the table to the cache for reuse
         /// </summary>
         /// <param name="table"></param>
-        public void FreeTable(XbimShapeInstanceCursor table)
+        public void FreeTable(EsentShapeInstanceCursor table)
         {
             InstanceCache.FreeTable(table);
         }
@@ -951,7 +951,7 @@ namespace Xbim.IO.Esent
             return InstanceCache.GetGeometryData(ofType);
         }
 
-        internal XbimEntityCursor GetEntityTable()
+        internal EsentEntityCursor GetEntityTable()
         {
             return InstanceCache.GetEntityTable();
         }
@@ -993,7 +993,7 @@ namespace Xbim.IO.Esent
             InstanceCache.Write(_editTransactionEntityCursor);
         }
 
-        internal XbimEntityCursor GetTransactingCursor()
+        internal EsentEntityCursor GetTransactingCursor()
         {
             Debug.Assert(_editTransactionEntityCursor != null);
             return _editTransactionEntityCursor;
@@ -1042,12 +1042,12 @@ namespace Xbim.IO.Esent
 
         public object Tag { get; set; }
         
-        public XbimShapeGeometryCursor GetShapeGeometryTable()
+        internal EsentShapeGeometryCursor GetShapeGeometryTable()
         {
             return InstanceCache.GetShapeGeometryTable();
         }
 
-        public XbimShapeInstanceCursor GetShapeInstanceTable()
+        internal EsentShapeInstanceCursor GetShapeInstanceTable()
         {
             return InstanceCache.GetShapeInstanceTable();
         }
@@ -1118,6 +1118,7 @@ namespace Xbim.IO.Esent
 
         #region Federation 
         private readonly XbimReferencedModelCollection _referencedModels = new XbimReferencedModelCollection();
+        private EsentGeometryStore _geometryStore;
 
         public IEnumerable<IReferencedModel> ReferencedModels
         {
@@ -1182,6 +1183,19 @@ namespace Xbim.IO.Esent
         }
         #endregion
 
+
+
+        public IGeometryStore GeometryStore
+        {
+            get
+            {
+                if (_geometryStore == null && (InstanceCache.AccessMode==XbimDBAccess.ReadWrite ||InstanceCache.AccessMode==XbimDBAccess.Exclusive))
+                {
+                    _geometryStore = new EsentGeometryStore(this);
+                }
+                return _geometryStore;
+            }
+        }
     }
 
     public delegate object PropertyTranformDelegate(ExpressMetaProperty property, object parentObject);

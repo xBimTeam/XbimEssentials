@@ -10,12 +10,21 @@ using System;
 using Xbim.Common.Geometry;
 using Xbim.Common.Step21;
 using Xbim.Common.Metadata;
+using XbimGeometry.Interfaces;
 
 namespace Xbim.Common
 {
 	public interface IModel
 	{
-        int UserDefinedId { get; }
+        /// <summary>
+        /// Returns or sets a user defined id for the model
+        /// </summary>
+        int UserDefinedId { get; set; }
+
+        /// <summary>
+        /// Returns a geometry store, null if geometry storage is not supported
+        /// </summary>
+        IGeometryStore GeometryStore { get; }
 		IStepFileHeader Header { get; }
 
 		bool IsTransactional { get; }

@@ -200,7 +200,7 @@ namespace Xbim.IO.Xml
         private string _cTypeAttribute;
         private string _posAttribute;
 
-        private void StartElement(PersistedEntityInstanceCache cache, XmlReader input, XbimEntityCursor entityTable, XbimLazyDBTransaction transaction)
+        private void StartElement(PersistedEntityInstanceCache cache, XmlReader input, EsentEntityCursor entityTable, EsentLazyDBTransaction transaction)
         {
             var elementName = input.LocalName;
             bool isRefType;
@@ -765,7 +765,7 @@ namespace Xbim.IO.Xml
 
         private ExpressMetaData _metadata;
 
-        internal StepFileHeader Read(PersistedEntityInstanceCache entityInstanceCache, XbimEntityCursor entityTable,  XmlReader input)
+        internal StepFileHeader Read(PersistedEntityInstanceCache entityInstanceCache, EsentEntityCursor entityTable,  XmlReader input)
         {
 
             _metadata = entityInstanceCache.Model.Metadata;

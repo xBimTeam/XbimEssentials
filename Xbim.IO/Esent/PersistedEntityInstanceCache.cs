@@ -61,8 +61,8 @@ namespace Xbim.IO.Esent
         /// Holds the session and transaction state
         /// </summary>
         private readonly object _lockObject;
-        private readonly XbimEntityCursor[] _entityTables;
-        private readonly XbimCursor[] _geometryTables;
+        private readonly EsentEntityCursor[] _entityTables;
+        private readonly EsentCursor[] _geometryTables;
         private XbimDBAccess _accessMode;
         private string _systemPath;
 
@@ -114,8 +114,8 @@ namespace Xbim.IO.Esent
             _jetInstance = CreateInstance("XbimInstance");
             _lockObject = new object();
             _model = model;
-            _entityTables = new XbimEntityCursor[MaxCachedEntityTables];
-            _geometryTables = new XbimCursor[MaxCachedGeometryTables];
+            _entityTables = new EsentEntityCursor[MaxCachedEntityTables];
+            _geometryTables = new EsentCursor[MaxCachedGeometryTables];
         }
 
         public XbimDBAccess AccessMode
@@ -136,8 +136,8 @@ namespace Xbim.IO.Esent
                 Api.JetCreateDatabase(session, fileName, null, out dbid, CreateDatabaseGrbit.OverwriteExisting);
                 try
                 {
-                    XbimEntityCursor.CreateTable(session, dbid);
-                    XbimCursor.CreateGlobalsTable(session, dbid); //create the gobals table
+                    EsentEntityCursor.CreateTable(session, dbid);
+                    EsentCursor.CreateGlobalsTable(session, dbid); //create the gobals table
                     EnsureGeometryTables(session, dbid);
                 }
                 catch (Exception)
@@ -164,10 +164,10 @@ namespace Xbim.IO.Esent
             
             if (!HasTable(XbimGeometryCursor.GeometryTableName, session, dbid))
                 XbimGeometryCursor.CreateTable(session, dbid);
-            if (!HasTable(XbimShapeGeometryCursor.GeometryTableName, session, dbid))
-                XbimShapeGeometryCursor.CreateTable(session, dbid);
-            if (!HasTable(XbimShapeInstanceCursor.InstanceTableName, session, dbid))
-                XbimShapeInstanceCursor.CreateTable(session, dbid);
+            if (!HasTable(EsentShapeGeometryCursor.GeometryTableName, session, dbid))
+                EsentShapeGeometryCursor.CreateTable(session, dbid);
+            if (!HasTable(EsentShapeInstanceCursor.InstanceTableName, session, dbid))
+                EsentShapeInstanceCursor.CreateTable(session, dbid);
             return true;
         }
 
@@ -177,7 +177,7 @@ namespace Xbim.IO.Esent
         /// Returns a cached or new entity table, assumes the database filename has been specified
         /// </summary>
         /// <returns></returns>
-        internal XbimEntityCursor GetEntityTable()
+        internal EsentEntityCursor GetEntityTable()
         {
             Debug.Assert(!string.IsNullOrEmpty(_databaseName));
             lock (_lockObject)
@@ -193,7 +193,7 @@ namespace Xbim.IO.Esent
                 }
             }
             var openMode = AttachedDatabase();
-            return new XbimEntityCursor(_model, _databaseName, openMode);
+            return new EsentEntityCursor(_model, _databaseName, openMode);
         }
 
         private OpenDatabaseGrbit AttachedDatabase()
@@ -290,7 +290,7 @@ namespace Xbim.IO.Esent
         /// and dispose of it otherwise.
         /// </summary>
         /// <param name="table">The cursor to free.</param>
-        internal void FreeTable(XbimEntityCursor table)
+        internal void FreeTable(EsentEntityCursor table)
         {
             Debug.Assert(null != table, "Freeing a null table");
 
@@ -340,7 +340,7 @@ namespace Xbim.IO.Esent
         /// and dispose of it otherwise.
         /// </summary>
         /// <param name="table">The cursor to free.</param>
-        public void FreeTable(XbimShapeGeometryCursor table)
+        public void FreeTable(EsentShapeGeometryCursor table)
         {
             Debug.Assert(null != table, "Freeing a null table");
 
@@ -365,7 +365,7 @@ namespace Xbim.IO.Esent
         /// and dispose of it otherwise.
         /// </summary>
         /// <param name="table">The cursor to free.</param>
-        public void FreeTable(XbimShapeInstanceCursor table)
+        public void FreeTable(EsentShapeInstanceCursor table)
         {
             Debug.Assert(null != table, "Freeing a null table");
 
@@ -1946,7 +1946,7 @@ namespace Xbim.IO.Esent
         /// <summary>
         /// Writes the content of the modified cache to the table, assumes a transaction is in scope, modified and createnew caches are cleared
         /// </summary>
-        internal void Write(XbimEntityCursor entityTable)
+        internal void Write(EsentEntityCursor entityTable)
         {
             foreach (var entity in ModifiedEntities.Values)
             {
@@ -2106,23 +2106,23 @@ namespace Xbim.IO.Esent
             }
         }
 
-        internal XbimShapeGeometryCursor GetShapeGeometryTable()
+        internal EsentShapeGeometryCursor GetShapeGeometryTable()
         {
             Debug.Assert(!string.IsNullOrEmpty(_databaseName));
             lock (_lockObject)
             {
                 for (var i = 0; i < _geometryTables.Length; ++i)
                 {
-                    if (null != _geometryTables[i] && _geometryTables[i] is XbimShapeGeometryCursor)
+                    if (null != _geometryTables[i] && _geometryTables[i] is EsentShapeGeometryCursor)
                     {
                         var table = _geometryTables[i];
                         _geometryTables[i] = null;
-                        return (XbimShapeGeometryCursor)table;
+                        return (EsentShapeGeometryCursor)table;
                     }
                 }
             }
             var openMode = AttachedDatabase();
-            return new XbimShapeGeometryCursor(_model, _databaseName, openMode);
+            return new EsentShapeGeometryCursor(_model, _databaseName, openMode);
         }
 
         internal bool DeleteJetTable(string name)
@@ -2149,16 +2149,16 @@ namespace Xbim.IO.Esent
         {
             CleanTableArrays(true);
             var  returnVal  = true;
-            returnVal &= DeleteJetTable(XbimShapeInstanceCursor.InstanceTableName);
+            returnVal &= DeleteJetTable(EsentShapeInstanceCursor.InstanceTableName);
             returnVal &= DeleteJetTable(XbimGeometryCursor.GeometryTableName);
-            returnVal &= DeleteJetTable(XbimShapeGeometryCursor.GeometryTableName);                
+            returnVal &= DeleteJetTable(EsentShapeGeometryCursor.GeometryTableName);                
             return returnVal;
         }
 
 
         internal bool DatabaseHasInstanceTable()
         {
-            return HasTable(XbimShapeInstanceCursor.InstanceTableName);
+            return HasTable(EsentShapeInstanceCursor.InstanceTableName);
         }
 
         internal bool DatabaseHasGeometryTable()
@@ -2190,23 +2190,23 @@ namespace Xbim.IO.Esent
             return has;
         }
 
-        internal XbimShapeInstanceCursor GetShapeInstanceTable()
+        internal EsentShapeInstanceCursor GetShapeInstanceTable()
         {
             Debug.Assert(!string.IsNullOrEmpty(_databaseName));
             lock (_lockObject)
             {
                 for (var i = 0; i < _geometryTables.Length; ++i)
                 {
-                    if (null != _geometryTables[i] && _geometryTables[i] is XbimShapeInstanceCursor)
+                    if (null != _geometryTables[i] && _geometryTables[i] is EsentShapeInstanceCursor)
                     {
                         var table = _geometryTables[i];
                         _geometryTables[i] = null;
-                        return (XbimShapeInstanceCursor)table;
+                        return (EsentShapeInstanceCursor)table;
                     }
                 }
             }
             var openMode = AttachedDatabase();
-            return new XbimShapeInstanceCursor(_model, _databaseName, openMode);
+            return new EsentShapeInstanceCursor(_model, _databaseName, openMode);
         }
     }
 }

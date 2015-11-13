@@ -7,7 +7,7 @@ namespace Xbim.IO.Esent
     /// Used for wrapping a Database Lazy Transaction, if commit is not called the Dispose function rolls back the transaction
     /// </summary>
     // ReSharper disable once InconsistentNaming
-    public struct  XbimLazyDBTransaction : IDisposable
+    public struct  EsentLazyDBTransaction : IDisposable
     {
             /// <summary>
             /// The session that has the transaction.
@@ -20,12 +20,12 @@ namespace Xbim.IO.Esent
             private bool _inTransaction;
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="XbimLazyDBTransaction"/> struct.
+            /// Initializes a new instance of the <see cref="EsentLazyDBTransaction"/> struct.
             /// </summary>
             /// <param name="sesid">
             /// The sesid.
             /// </param>
-            public XbimLazyDBTransaction(JET_SESID sesid)
+            public EsentLazyDBTransaction(JET_SESID sesid)
             {
                 _sesid = sesid;
                 Api.JetBeginTransaction(_sesid);

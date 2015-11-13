@@ -11,7 +11,7 @@ using System.Security.Cryptography;
 
 namespace Xbim.IO.Esent
 {
-    public class XbimGeometryCursor : XbimCursor
+    public class XbimGeometryCursor : EsentCursor
     {
        
     

@@ -7,7 +7,7 @@ namespace Xbim.IO.Esent
     /// <summary>
     /// Provides a table of instantiations of shapes at specific tranformations
     /// </summary>
-    public class XbimShapeInstanceCursor : XbimCursor
+    public class EsentShapeInstanceCursor : EsentCursor
     {
 
         const int MaxSizeOfTransformation = 16 * sizeof(double); //the 16 floats that make a transformation
@@ -54,11 +54,11 @@ namespace Xbim.IO.Esent
 
 
         #region Constructors
-        public XbimShapeInstanceCursor(EsentModel model, string database)
+        public EsentShapeInstanceCursor(EsentModel model, string database)
             : this(model, database, OpenDatabaseGrbit.None)
         {
         }
-        public XbimShapeInstanceCursor(EsentModel model, string database, OpenDatabaseGrbit mode)
+        public EsentShapeInstanceCursor(EsentModel model, string database, OpenDatabaseGrbit mode)
             : base(model, database, mode)
         {
             Api.JetOpenTable(this.Sesid, this.DbId, InstanceTableName, null, 0, mode == OpenDatabaseGrbit.ReadOnly ? OpenTableGrbit.ReadOnly :

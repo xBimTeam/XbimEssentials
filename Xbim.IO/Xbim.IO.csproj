@@ -91,6 +91,8 @@
     <Compile Include="..\SharedFileVersionInfo.cs">
       <Link>Properties\SharedFileVersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Esent\EsentGeometryStore.cs" />
+    <Compile Include="Esent\EsentGeometryTransaction.cs" />
     <Compile Include="Esent\XbimFederatedModelInstances.cs" />
     <Compile Include="Esent\XbimReferencedModelCollection.cs" />
     <Compile Include="Esent\XbimSurfaceStyle.cs" />
@@ -133,11 +135,11 @@
     <Compile Include="Step21\Part21Formatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeExtensions.cs" />
-    <Compile Include="Esent\XbimCursor.cs" />
-    <Compile Include="Esent\XbimEntityCursor.cs" />
+    <Compile Include="Esent\EsentCursor.cs" />
+    <Compile Include="Esent\EsentEntityCursor.cs" />
     <Compile Include="Esent\XbimGeometryCursor.cs" />
     <Compile Include="Esent\XbimInstanceHandleMap.cs" />
-    <Compile Include="Esent\XbimLazyDBTransaction.cs" />
+    <Compile Include="Esent\EsentLazyDBTransaction.cs" />
     <Compile Include="Esent\EsentModel.cs" />
     <Compile Include="Binary\XbimInputStream.cs" />
     <Compile Include="Binary\XbimOutputStream.cs" />
@@ -147,9 +149,9 @@
     <Compile Include="Esent\XbimReadTransaction.cs" />
     <Compile Include="Esent\XbimReadWriteTransaction.cs" />
     <Compile Include="XbimShapeGeometry.cs" />
-    <Compile Include="Esent\XbimShapeGeometryCursor.cs" />
+    <Compile Include="Esent\EsentShapeGeometryCursor.cs" />
     <Compile Include="XbimShapeInstance.cs" />
-    <Compile Include="Esent\XbimShapeInstanceCursor.cs" />
+    <Compile Include="Esent\EsentShapeInstanceCursor.cs" />
     <Compile Include="XbimStorageType.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,7 +12,7 @@ namespace Xbim.IO.Esent
     /// </summary>
     public class XbimReadWriteTransaction : XbimReadTransaction, ITransaction
     {
-        private XbimLazyDBTransaction _readWriteTransaction;
+        private EsentLazyDBTransaction _readWriteTransaction;
         private int _pulseCount;
         private int _transactionBatchSize;
 
@@ -27,7 +27,7 @@ namespace Xbim.IO.Esent
 
         public string Name { get; protected set; }
 
-        internal XbimReadWriteTransaction(EsentModel model, XbimLazyDBTransaction txn, string name = null)
+        internal XbimReadWriteTransaction(EsentModel model, EsentLazyDBTransaction txn, string name = null)
         {
             Name = name;
             Model = model;
