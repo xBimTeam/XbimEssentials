@@ -15,6 +15,7 @@ namespace Xbim.Common
 {
 	public interface IModel
 	{
+        int UserDefinedId { get; }
 		IStepFileHeader Header { get; }
 
 		bool IsTransactional { get; }

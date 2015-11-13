@@ -1,20 +1,19 @@
 ﻿using System.IO;
 using Xbim.Common.Geometry;
 using Xbim.Common.Logging;
-using Xbim.Ifc4.GeometricModelResource;
-using Xbim.Ifc4.Interfaces;
 using XbimGeometry.Interfaces;
 
+// ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4.Interfaces
 {
     public interface IXbimGeometryEngine
     {
         ILogger Logger { get; }
 
-        IXbimGeometryObject Create(IIfcGeometricRepresentationItem IIfcRepresentation);
+        IXbimGeometryObject Create(IIfcGeometricRepresentationItem ifcRepresentation);
 
 
-        IXbimGeometryObject Create(IIfcGeometricRepresentationItem IIfcRepresentation, IIfcAxis2Placement3D objectLocation);
+        IXbimGeometryObject Create(IIfcGeometricRepresentationItem ifcRepresentation, IIfcAxis2Placement3D objectLocation);
 
         /// <summary>
         /// 
@@ -43,7 +42,7 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolid CreateSolid(IIfcSurfaceCurveSweptAreaSolid ifcSolid);
 
         IXbimSolid CreateSolid(IIfcBooleanClippingResult ifcSolid);
-        IXbimSolid CreateSolid(IfcBooleanOperand ifcSolid);
+        IXbimSolid CreateSolid(IIfcBooleanOperand ifcSolid);
         IXbimSolid CreateSolid(IIfcHalfSpaceSolid ifcSolid);
         IXbimSolid CreateSolid(IIfcPolygonalBoundedHalfSpace ifcSolid);
         IXbimSolid CreateSolid(IIfcBoxedHalfSpace ifcSolid);
@@ -81,8 +80,8 @@ namespace Xbim.Ifc4.Interfaces
 
 
         //Surface Models containing one or more faces, shells or solids
-        IXbimGeometryObjectSet CreateSurfaceModel(IIfcShellBasedSurfaceModel IIfcSurface);
-        IXbimGeometryObjectSet CreateSurfaceModel(IIfcFaceBasedSurfaceModel IIfcSurface);
+        IXbimGeometryObjectSet CreateSurfaceModel(IIfcShellBasedSurfaceModel ifcSurface);
+        IXbimGeometryObjectSet CreateSurfaceModel(IIfcFaceBasedSurfaceModel ifcSurface);
 
         //Faces
 
@@ -108,7 +107,7 @@ namespace Xbim.Ifc4.Interfaces
         //Vertex Creation
         IXbimVertex CreateVertexPoint(XbimPoint3D point, double precision);
 
-        IIfcFacetedBrep CreateFacetedBrep(Xbim.Common.IModel model, IXbimSolid solid);
+        //IIfcFacetedBrep CreateFacetedBrep(Xbim.Common.IModel model, IXbimSolid solid);
         //Creates collections of objects
         IXbimSolidSet CreateSolidSet();
         IXbimSolidSet CreateSolidSet(IIfcBooleanResult boolOp);
