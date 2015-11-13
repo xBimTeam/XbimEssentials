@@ -18,7 +18,24 @@ namespace Xbim.IO.Xml.BsConf
             return
                 Items.OfType<entity>()
                     .Where(e => e.ChangedInverses.Any());
-        } }  
+        } }
+
+        public IEnumerable<entity> IgnoredAttributes
+        {
+            get
+            {
+                return
+                    Items.OfType<entity>()
+                        .Where(e => e.IgnoredAttributes.Any());
+            }
+        }
+
+        public entity GetEntity(string name)
+        {
+            return
+                    Items
+                        .OfType<entity>().FirstOrDefault(e => e.EntityName == name);
+        }
     }
 
     public partial class entity
@@ -38,6 +55,8 @@ namespace Xbim.IO.Xml.BsConf
             {
                 return Items.OfType<attribute>().Where(i => i.keep == false);
             }
-        } 
+        }
+
+        public string EntityName { get { return select.FirstOrDefault(); } }
     }
 }
