@@ -14,6 +14,7 @@ namespace Xbim.IO.Memory
     public class MemoryModel<TFactory> : IModel, IDisposable where TFactory: IEntityFactory, new()
     {
         private readonly EntityCollection<TFactory> _instances;
+        public int UserDefinedId { get; set; }
         public MemoryModel()
         {
             _instances = new EntityCollection<TFactory>(this);

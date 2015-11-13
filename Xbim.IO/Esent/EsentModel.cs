@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using ICSharpCode.SharpZipLib.Zip;
 using Xbim.Common;
 using Xbim.Common.Enumerations;
@@ -53,7 +52,7 @@ namespace Xbim.IO.Esent
         /// <summary>
         /// An identifier that an application can use to identify this model uniquely
         /// </summary>
-        public short UserDefinedId { get; set; }
+        public int UserDefinedId { get; set; }
 
         #endregion
 
@@ -1182,6 +1181,7 @@ namespace Xbim.IO.Esent
             }
         }
         #endregion
+
     }
 
     public delegate object PropertyTranformDelegate(ExpressMetaProperty property, object parentObject);
