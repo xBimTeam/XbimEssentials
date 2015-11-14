@@ -1,4 +1,5 @@
 ﻿using System;
+using Xbim.Common.Geometry;
 using XbimGeometry.Interfaces;
 
 namespace Xbim.IO.Esent
@@ -55,6 +56,12 @@ namespace Xbim.IO.Esent
             _instanceCount++;
             shapeInstance.ShapeGeometryLabel = geometryId;
             return _shapeInstanceCursor.AddInstance(shapeInstance);
+        }
+
+        public int AddRegions(XbimRegionCollection regions)
+        {
+            _geometryCount++;
+            return _shapeGeometryCursor.AddGeometry(regions);
         }
 
         public void Dispose()

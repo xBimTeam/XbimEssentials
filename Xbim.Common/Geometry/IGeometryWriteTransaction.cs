@@ -1,4 +1,5 @@
 ﻿using System;
+using Xbim.Common.Geometry;
 
 namespace XbimGeometry.Interfaces
 {
@@ -17,5 +18,12 @@ namespace XbimGeometry.Interfaces
         /// <param name="geometryId">the Id of the geometry shape, must be obtained from AddShapeGeometry</param>
         /// <returns>return the Id of the shape instance</returns>
         int AddShapeInstance(IXbimShapeInstanceData shapeInstance, int geometryId);
+
+        /// <summary>
+        /// Adds a collection of geometric regions to the store, this groups geometries into major spatial collection areas 
+        /// </summary>
+        /// <param name="regions"></param>
+        /// <returns>the unique Id of the region collection</returns>
+        int AddRegions(XbimRegionCollection regions);
     }
 }

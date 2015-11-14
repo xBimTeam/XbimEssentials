@@ -2,10 +2,9 @@
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
-using Xbim.Common.Geometry;
 using XbimGeometry.Interfaces;
 
-namespace Xbim.IO
+namespace Xbim.Common.Geometry
 {
     public struct XbimShapeGeometryHandle
     {

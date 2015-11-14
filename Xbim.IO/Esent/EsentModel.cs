@@ -182,7 +182,7 @@ namespace Xbim.IO.Esent
         /// Starts a transaction to allow bulk updates on the geometry table, FreeGeometry Table should be called when no longer required
         /// </summary>
         /// <returns></returns>
-        public XbimGeometryCursor GetGeometryTable()
+        internal XbimGeometryCursor GetGeometryTable()
         {
             return InstanceCache.GetGeometryTable();
         }

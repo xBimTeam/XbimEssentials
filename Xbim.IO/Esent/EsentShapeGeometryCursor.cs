@@ -442,5 +442,7 @@ namespace Xbim.IO.Esent
         {
             return Api.RetrieveColumnAsInt32(Sesid, Table, _colIdShapeLabel, RetrieveColumnGrbit.RetrieveFromIndex).Value;
         }
+
+        
     }
 }

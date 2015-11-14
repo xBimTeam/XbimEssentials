@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Xbim.Common.Geometry;
 using XbimGeometry.Interfaces;
 
-namespace Xbim.IO
+namespace Xbim.Common.Geometry
 {
-
-  
 
     public class XbimShapeInstanceStyleGrouping : IGrouping<int, XbimShapeInstance>
     {
