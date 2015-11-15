@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xbim.Common.Geometry;
 
 namespace Xbim.IO.Esent
@@ -65,9 +62,11 @@ namespace Xbim.IO.Esent
 
         public void EndInit(IGeometryStoreInitialiser transaction)
         {
+            //update the reference counts
             if (transaction == _currentTransaction)
             {
-                _currentTransaction.Commit();
+                _currentTransaction.UpdateReferenceCounts();
+                _currentTransaction.Commit();              
                 _currentTransaction.Dispose();
                 _currentTransaction = null;
             }
@@ -91,5 +90,7 @@ namespace Xbim.IO.Esent
         {
              return new EsentGeometryStoreReader(_esentModel); 
         }
+
+        
     }
 }

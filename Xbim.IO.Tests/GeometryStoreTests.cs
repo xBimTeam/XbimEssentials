@@ -63,7 +63,7 @@ namespace Xbim.EsentModel.Tests
                 var store = model.GeometryStore;
                 using (var txn = store.BeginInit())
                 {
-                    for (int i = 0; i < 300; i++)
+                    for (int i = 0; i < 100; i++)
                     {
                         //ADD A GEOMETRY SHAPE
                         var geomData = new XbimShapeGeometry()
@@ -78,7 +78,7 @@ namespace Xbim.EsentModel.Tests
                         };
                         var shapeGeomLabel = txn.AddShapeGeometry(geomData);
                     }
-                    for (int i = 0; i < 300; i++)
+                    for (int i = 0; i < 100; i++)
                     {
                         //ADD A SHAPE INSTANCE
                         var shapeInstance = new XbimShapeInstance()
@@ -88,6 +88,28 @@ namespace Xbim.EsentModel.Tests
 
                         var instanceId = txn.AddShapeInstance(shapeInstance, i + 1);
                         Assert.IsTrue(instanceId == i+1);
+                    }
+                    for (int i = 0; i < 100; i++)
+                    {
+                        //ADD A SHAPE INSTANCE
+                        var shapeInstance = new XbimShapeInstance()
+                        {
+                            ShapeGeometryLabel = i + 1
+                        };
+
+                        var instanceId = txn.AddShapeInstance(shapeInstance, i + 1);
+                        Assert.IsTrue(instanceId == i + 101);
+                    }
+                    for (int i = 0; i < 100; i++)
+                    {
+                        //ADD A SHAPE INSTANCE
+                        var shapeInstance = new XbimShapeInstance()
+                        {
+                            ShapeGeometryLabel = i + 1
+                        };
+
+                        var instanceId = txn.AddShapeInstance(shapeInstance, i + 1);
+                        Assert.IsTrue(instanceId == i + 201);
                     }
                     //ADD A REGIONCOLLECTION
                     var regions = new XbimRegionCollection {ContextLabel = 50};

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Xbim.Common.Geometry;
 
 namespace Xbim.IO.Esent
@@ -64,6 +65,7 @@ namespace Xbim.IO.Esent
             return _shapeGeometryCursor.AddGeometry(regions);
         }
 
+        
         public void Dispose()
         {
             _shapeInstanceTransaction.Dispose();
@@ -75,6 +77,39 @@ namespace Xbim.IO.Esent
         { 
             _shapeGeometryTransaction.Commit();
             _shapeInstanceTransaction.Commit();            
+        }
+
+        /// <summary>
+        /// Updates the reference counts for each grometry on completion
+        /// </summary>
+        internal void UpdateReferenceCounts()
+        {
+            _shapeGeometryTransaction.Commit();
+            _shapeGeometryTransaction.Begin();
+            _shapeInstanceTransaction.Commit();
+            _shapeInstanceTransaction.Begin();
+            using (var reader = _esentGeometryStore.BeginRead())
+            {
+                //Get the meta data about the instances
+                var counts = reader.ShapeInstances.GroupBy(
+                    i => i.ShapeGeometryLabel,
+                    (label, instances) => new
+                    {
+                        Label = label,
+                        Count = instances.Count()
+                    });
+                foreach (var item in counts)
+                {
+                    long remainder = _geometryCount % TransactionBatchSize; //pulse transactions
+                    if (remainder == TransactionBatchSize - 1)
+                    {
+                        _shapeGeometryTransaction.Commit();
+                        _shapeGeometryTransaction.Begin();
+                    }
+                    _geometryCount++;
+                    _shapeGeometryCursor.UpdateReferenceCount(item.Label, item.Count);
+                }
+            }
         }
     }
 }
