@@ -162,6 +162,13 @@ namespace Xbim.IO.Esent
         {
             try
             {
+                for (var i = 0; i < _geometryTables.Length; ++i)
+                {
+                    if (null == _geometryTables[i])
+                        continue;
+                     _geometryTables[i].Dispose();
+                    _geometryTables[i] = null;
+                }
                 Api.JetDeleteTable(_session,_databaseId,EsentShapeGeometryCursor.GeometryTableName);
                 Api.JetDeleteTable(_session,_databaseId,EsentShapeInstanceCursor.InstanceTableName);
                 EnsureGeometryTables(_session,_databaseId);
