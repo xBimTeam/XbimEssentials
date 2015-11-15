@@ -215,5 +215,23 @@ namespace Xbim.IO.Esent
             if (_shapeGeometryCursor != null) _esentModel.FreeTable(_shapeGeometryCursor);
             if (_shapeInstanceCursor != null) _esentModel.FreeTable(_shapeInstanceCursor);
         }
+
+
+        public IEnumerable<XbimShapeInstance> ShapeInstancesOfEntityType(int entityTypeId, int contextId)
+        {
+            IXbimShapeInstanceData shapeInstance = new XbimShapeInstance();
+            if (_shapeInstanceCursor.TrySeekProductType((short)entityTypeId, ref shapeInstance))
+            {
+                do
+                {
+                    if (contextId == shapeInstance.RepresentationContext)
+                    {
+                        yield return (XbimShapeInstance)shapeInstance;
+                        shapeInstance = new XbimShapeInstance();
+                    }
+                } while (_shapeInstanceCursor.TryMoveNextShapeInstance(ref shapeInstance) &&
+                         shapeInstance.IfcTypeId == entityTypeId);
+            }
+        }
     }
 }

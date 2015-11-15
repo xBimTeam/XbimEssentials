@@ -39,6 +39,8 @@ namespace Xbim.Common.Geometry
         /// <returns></returns>
         IEnumerable<XbimShapeInstance> ShapeInstancesOfEntity(IPersistEntity entity, int contextId);
 
+        IEnumerable<XbimShapeInstance> ShapeInstancesOfEntityType(int entityTypeId, int contextId);
+
         /// <summary>
         /// Returns an enumerable of all the shape instances in the store for the specified style
         /// </summary>
