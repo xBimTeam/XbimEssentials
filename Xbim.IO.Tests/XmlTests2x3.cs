@@ -17,7 +17,7 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void Ifc2X3XMLSerialization()
         {
-            using (var esent = new EsentModel(new EntityFactory()))
+            using (var esent = new IO.Esent.EsentModel(new EntityFactory()))
             {
                 esent.CreateFrom("4walls1floorSite.ifc", null, null, true, true);
                 esent.SaveAs("..\\..\\4walls1floorSite.xml", XbimStorageType.IFCXML);

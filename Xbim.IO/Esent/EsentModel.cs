@@ -15,7 +15,6 @@ using Xbim.Common.Geometry;
 using Xbim.Common.Logging;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
-using XbimGeometry.Interfaces;
 
 namespace Xbim.IO.Esent
 {
@@ -424,6 +423,12 @@ namespace Xbim.IO.Esent
             InstanceCache.CreateDatabase(tmpFileName);
         }
 
+        internal void ClearGeometryTables()
+        {
+            InstanceCache.ClearGeometryTables();
+        }
+
+
         /// <summary>
         ///  Creates and opens a new Xbim Database
         /// </summary>
@@ -621,6 +626,11 @@ namespace Xbim.IO.Esent
             
             if (_editTransactionEntityCursor != null)
                 EndTransaction();
+            if (_geometryStore != null)
+            {
+                _geometryStore.Dispose();
+                _geometryStore = null;
+            }
             InstanceCache.Close();
 
             //dispose any referenced models
@@ -852,16 +862,17 @@ namespace Xbim.IO.Esent
             {
                 try
                 {
-                // If disposing equals true, dispose all managed 
-                // and unmanaged resources.
-                if (disposing)
-                {
-                   //managed resources
-                    Close();
+                    // If disposing equals true, dispose all managed 
+                    // and unmanaged resources.
+                    if (disposing)
+                    {
+                        //managed resources
+                        Close();
+                    }
+                    //unmanaged, mostly esent related
+                    if (_geometryStore != null) _geometryStore.Dispose();
+                    InstanceCache.Dispose();
                 }
-                //unmanaged, mostly esent related
-                InstanceCache.Dispose();
-            }
                 catch
                 {
                     // ignored

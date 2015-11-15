@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common.Geometry;
 using Xbim.Ifc2x3.GeometricModelResource;
 using Xbim.Ifc2x3.GeometryResource;
 using Xbim.Ifc2x3.TopologyResource;
-using XbimGeometry.Interfaces;
 
 namespace Xbim.Ifc2x3.Extensions
 {

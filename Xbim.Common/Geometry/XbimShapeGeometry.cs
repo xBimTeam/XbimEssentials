@@ -2,7 +2,6 @@
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
-using XbimGeometry.Interfaces;
 
 namespace Xbim.Common.Geometry
 {

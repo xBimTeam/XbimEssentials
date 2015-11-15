@@ -92,7 +92,8 @@
       <Link>Properties\SharedFileVersionInfo.cs</Link>
     </Compile>
     <Compile Include="Esent\EsentGeometryStore.cs" />
-    <Compile Include="Esent\EsentGeometryTransaction.cs" />
+    <Compile Include="Esent\EsentGeometryInitialiser.cs" />
+    <Compile Include="Esent\EsentGeometryStoreReader.cs" />
     <Compile Include="Esent\XbimFederatedModelInstances.cs" />
     <Compile Include="Esent\XbimReferencedModelCollection.cs" />
     <Compile Include="Esent\XbimSurfaceStyle.cs" />
@@ -152,7 +153,7 @@
     <Compile Include="Binary\XbimOutputStream.cs" />
     <Compile Include="Binary\XbimPackage.cs" />
     <Compile Include="Esent\XbimParserState.cs" />
-    <Compile Include="Esent\XbimReadOnlyDBTransaction.cs" />
+    <Compile Include="Esent\EsentReadOnlyTransaction.cs" />
     <Compile Include="Esent\XbimReadTransaction.cs" />
     <Compile Include="Esent\XbimReadWriteTransaction.cs" />
     <Compile Include="Esent\EsentShapeGeometryCursor.cs" />

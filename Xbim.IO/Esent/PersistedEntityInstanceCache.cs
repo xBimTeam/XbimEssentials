@@ -19,7 +19,6 @@ using Xbim.Common.Metadata;
 using Xbim.IO.Step21;
 using Xbim.IO.Step21.Parser;
 using Xbim.IO.Xml;
-using XbimGeometry.Interfaces;
 
 namespace Xbim.IO.Esent
 {
@@ -159,6 +158,20 @@ namespace Xbim.IO.Esent
             return EnsureGeometryTables(_session, _databaseId);
         }
 
+        internal void ClearGeometryTables()
+        {
+            try
+            {
+                Api.JetDeleteTable(_session,_databaseId,EsentShapeGeometryCursor.GeometryTableName);
+                Api.JetDeleteTable(_session,_databaseId,EsentShapeInstanceCursor.InstanceTableName);
+                EnsureGeometryTables(_session,_databaseId);
+            }
+            catch (Exception e)
+            {
+                
+                throw new Exception("Could not clear existing geometry tables");
+            }
+        }
         private static bool EnsureGeometryTables(Session session, JET_DBID dbid)
         {
             

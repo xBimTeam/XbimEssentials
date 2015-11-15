@@ -10,7 +10,6 @@ using System;
 using Xbim.Common.Geometry;
 using Xbim.Common.Step21;
 using Xbim.Common.Metadata;
-using XbimGeometry.Interfaces;
 
 namespace Xbim.Common
 {

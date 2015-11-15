@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Xbim.Common;
+using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.IO.Step21;
-using XbimGeometry.Interfaces;
 
 namespace Xbim.IO.Memory
 {

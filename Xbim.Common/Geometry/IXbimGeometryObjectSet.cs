@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace XbimGeometry.Interfaces
+namespace Xbim.Common.Geometry
 {
     /// <summary>
     /// A mixed collection of geometry objects

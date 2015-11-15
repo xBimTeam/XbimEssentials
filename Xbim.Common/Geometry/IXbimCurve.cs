@@ -1,4 +1,4 @@
-﻿namespace XbimGeometry.Interfaces
+﻿namespace Xbim.Common.Geometry
 {
     /// <summary>
     /// A wire that is open

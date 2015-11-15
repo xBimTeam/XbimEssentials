@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using XbimGeometry.Interfaces;
 
 namespace Xbim.Common.Geometry
 {

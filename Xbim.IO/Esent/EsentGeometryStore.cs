@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using XbimGeometry.Interfaces;
+using Xbim.Common.Geometry;
 
 namespace Xbim.IO.Esent
 {
@@ -10,7 +10,9 @@ namespace Xbim.IO.Esent
     {
         private readonly EsentModel _esentModel;
 
-        private EsentGeometryTransaction _currentTransaction = null;
+        private EsentGeometryInitialiser _currentTransaction = null;
+        private EsentShapeInstanceCursor _shapeInstanceCursor;
+        private EsentShapeGeometryCursor _shapeGeometryCursor;
 
         public EsentGeometryStore(EsentModel esentModel )
         {           
@@ -24,35 +26,44 @@ namespace Xbim.IO.Esent
         }
 
 
-        public IGeometryWriteTransaction BeginInit()
-        {
-            EsentShapeGeometryCursor shapeGeometryCursor = null;
-            EsentShapeInstanceCursor shapeInstanceCursor = null;
+        public IGeometryStoreInitialiser BeginInit()
+        {            
             try
             {
-
-
                 if (_currentTransaction == null) //we can start a new one
                 {
-                    
-                     shapeGeometryCursor = _esentModel.GetShapeGeometryTable();
-                     shapeInstanceCursor = _esentModel.GetShapeInstanceTable();
-                    _currentTransaction = new EsentGeometryTransaction(this, shapeGeometryCursor, shapeInstanceCursor);
+                    //dispose of any tables because we are going to clear them
+                    if (_shapeGeometryCursor != null) 
+                    {
+                        _shapeGeometryCursor.Dispose();
+                        _shapeGeometryCursor = null;
+                    }
+                    if (_shapeInstanceCursor != null) 
+                    {
+                        _shapeInstanceCursor.Dispose();
+                        _shapeInstanceCursor = null;
+                    }
                     //delete any geometries in the database
+                    _esentModel.ClearGeometryTables();
+                     _shapeGeometryCursor = _esentModel.GetShapeGeometryTable();
+                     _shapeInstanceCursor = _esentModel.GetShapeInstanceTable();
+                    _currentTransaction = new EsentGeometryInitialiser(this, _shapeGeometryCursor, _shapeInstanceCursor);                            
                     return _currentTransaction;
-                }
+                } 
+                throw new Exception("A transaction is in operation on the geometry store");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                if (shapeGeometryCursor != null) _esentModel.FreeTable(shapeGeometryCursor);
-                if (shapeInstanceCursor != null) _esentModel.FreeTable(shapeInstanceCursor);
+                if (_shapeGeometryCursor != null) _esentModel.FreeTable(_shapeGeometryCursor);
+                if (_shapeInstanceCursor != null) _esentModel.FreeTable(_shapeInstanceCursor);
                 _currentTransaction = null;
+                throw new Exception("Begin initialisation failed on Geometry Store",e);
             }
             return null;
             
         }
 
-        public void EndInit(IGeometryWriteTransaction transaction)
+        public void EndInit(IGeometryStoreInitialiser transaction)
         {
             if (transaction == _currentTransaction)
             {
@@ -71,6 +82,14 @@ namespace Xbim.IO.Esent
                 _currentTransaction.Dispose();
                 _currentTransaction = null;
             }
+            if (_shapeGeometryCursor != null) _esentModel.FreeTable(_shapeGeometryCursor);
+            if (_shapeInstanceCursor != null) _esentModel.FreeTable(_shapeInstanceCursor);
+        }
+
+
+        public IGeometryStoreReader BeginRead()
+        {
+             return new EsentGeometryStoreReader(_esentModel); 
         }
     }
 }

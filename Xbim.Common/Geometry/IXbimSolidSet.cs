@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-namespace XbimGeometry.Interfaces
+
+namespace Xbim.Common.Geometry
 {
     public interface IXbimSolidSet : IEnumerable<IXbimSolid>, IXbimGeometryObject
     {

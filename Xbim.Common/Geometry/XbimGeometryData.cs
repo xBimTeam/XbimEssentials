@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using XbimGeometry.Interfaces;
+using Xbim.Common.XbimExtensions;
 
 namespace Xbim.Common.Geometry
 {
@@ -32,8 +33,21 @@ namespace Xbim.Common.Geometry
         readonly public short IfcTypeId;
         readonly public int StyleLabel;
         readonly public int Counter;
-       
-     
+
+        /// <summary>
+        /// Generates a triangulated face set from the binary shape data
+        /// </summary>
+        public XbimShapeTriangulation TriangulatedFaceSet()
+        {
+            using (var ms = new MemoryStream(ShapeData))
+            {
+                using (var br = new BinaryReader(ms))
+                {
+                    return br.ReadShapeTriangulation();                   
+                }
+            }
+        }
+
         public XbimGeometryData(int geometrylabel, int productLabel, XbimGeometryType geomType, short ifcTypeId, byte[] shape, byte[] dataArray2, int geometryHash, int styleLabel, int counter)
         {
             GeometryLabel = geometrylabel;

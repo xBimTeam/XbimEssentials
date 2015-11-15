@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using XbimGeometry.Interfaces;
 
 namespace Xbim.Common.Geometry
 {
@@ -11,6 +10,7 @@ namespace Xbim.Common.Geometry
         /// The IFC label of the geometric represenation context this region represents
         /// </summary>
         public int ContextLabel;
+
         #region Serialisation
         new public byte[] ToArray()
         {
@@ -126,17 +126,7 @@ namespace Xbim.Common.Geometry
             return largest;
         }
 
-        int IXbimShapeGeometryData.ShapeLabel
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                
-            }
-        }
+        int IXbimShapeGeometryData.ShapeLabel { get; set; }
 
         int IXbimShapeGeometryData.IfcShapeLabel
         {
@@ -158,14 +148,14 @@ namespace Xbim.Common.Geometry
 
         int IXbimShapeGeometryData.Cost
         {
-            get { return 0; }
+            get { return -1; }
         }
 
         int IXbimShapeGeometryData.ReferenceCount
         {
             get
             {
-                return 0;
+                return -1;
             }
             set
             {
@@ -198,7 +188,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                return null;
+                return XbimRect3D.Empty.ToFloatArray();
             }
             set
             {

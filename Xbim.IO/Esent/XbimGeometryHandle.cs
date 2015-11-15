@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using XbimGeometry.Interfaces;
+using Xbim.Common.Geometry;
 
 namespace Xbim.IO.Esent
 {

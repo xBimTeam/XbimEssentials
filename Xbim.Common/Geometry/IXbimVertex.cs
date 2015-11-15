@@ -1,6 +1,6 @@
 ﻿using System;
-using Xbim.Common.Geometry;
-namespace XbimGeometry.Interfaces
+
+namespace Xbim.Common.Geometry
 {
     public interface IXbimVertex : IXbimGeometryObject, IEquatable<IXbimVertex>
     {

@@ -2,7 +2,6 @@
 using Xbim.Common.Geometry;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.IO.Esent;
-using XbimGeometry.Interfaces;
 
 namespace Xbim.Ifc2x3.IO
 {

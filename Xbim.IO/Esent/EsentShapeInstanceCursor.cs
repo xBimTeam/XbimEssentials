@@ -1,6 +1,5 @@
 ﻿using Microsoft.Isam.Esent.Interop;
 using Xbim.Common.Geometry;
-using XbimGeometry.Interfaces;
 
 namespace Xbim.IO.Esent
 {
@@ -388,13 +387,12 @@ namespace Xbim.IO.Esent
         /// <returns></returns>
         public bool TryMoveNextShapeInstance(ref IXbimShapeInstanceData si)
         {
-            if (Api.TryMoveNext(this.Sesid, this.Table))
+            if (Api.TryMoveNext(Sesid, Table))
             {
                 GetShapeInstanceData(si);
                 return true;
             }
-            else 
-                return false;
+            return false;
         }
 
         /// <summary>
@@ -628,6 +626,17 @@ namespace Xbim.IO.Esent
             return false;
         }
 
-       
+
+
+        internal bool TrySeekShapeInstance(ref IXbimShapeInstanceData shapeInstance)
+        {
+            Api.JetSetCurrentIndex(Sesid, Table, instanceTablePrimaryIndex);           
+            if (Api.TryMoveFirst(Sesid, Table))
+            {
+                GetShapeInstanceData(shapeInstance);
+                return true;                
+            }
+            return false;
+        }
     }
 }

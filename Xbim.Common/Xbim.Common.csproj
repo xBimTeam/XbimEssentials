@@ -63,12 +63,14 @@
     <Compile Include="Exceptions\XbimException.cs" />
     <Compile Include="Exceptions\XbimGeometryException.cs" />
     <Compile Include="Exceptions\XbimParserException.cs" />
+    <Compile Include="Geometry\IXbimTriangulatedFaceSet.cs" />
+    <Compile Include="Geometry\IGeometryStoreReader.cs" />
     <Compile Include="Geometry\XbimDimensionalExponents.cs" />
     <Compile Include="Geometry\XbimLine.cs" />
     <Compile Include="Geometry\IXbimShapeGeometryData.cs" />
     <Compile Include="Geometry\IXbimShapeInstanceData.cs" />
     <Compile Include="Geometry\IGeometryStore.cs" />
-    <Compile Include="Geometry\IGeometryWriteTransaction.cs" />
+    <Compile Include="Geometry\IGeometryStoreInitialiser.cs" />
     <Compile Include="Geometry\XbimRegion.cs" />
     <Compile Include="Geometry\XbimRegionCollection.cs" />
     <Compile Include="Geometry\XbimShapeGeometry.cs" />
@@ -116,8 +118,6 @@
     <Compile Include="Geometry\XbimQuaternion.cs" />
     <Compile Include="Geometry\XbimRect3D.cs" />
     <Compile Include="Geometry\XbimShapeTriangulation.cs" />
-    <Compile Include="Geometry\XbimTriangulationIndexCollection.cs" />
-    <Compile Include="Geometry\XbimTriangulationVertexCollection.cs" />
     <Compile Include="Geometry\XbimVector3D.cs" />
     <Compile Include="Logging\Providers\AttributeHelper.cs" />
     <Compile Include="IEntityCollection.cs" />

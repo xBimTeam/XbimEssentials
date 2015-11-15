@@ -17,14 +17,14 @@ namespace Xbim.IO.Esent
         /// </summary>
         protected bool InTransaction;
         protected EsentModel Model;
-        private XbimReadOnlyDBTransaction _readTransaction;
+        private EsentReadOnlyTransaction _readTransaction;
 
         protected XbimReadTransaction()
         {
 
         }
 
-        internal XbimReadTransaction(EsentModel theModel, XbimReadOnlyDBTransaction txn)
+        internal XbimReadTransaction(EsentModel theModel, EsentReadOnlyTransaction txn)
         {
             Model = theModel;
             _readTransaction = txn;

@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using Xbim.Common.Geometry;
 using Xbim.Common.Logging;
-using XbimGeometry.Interfaces;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4.Interfaces

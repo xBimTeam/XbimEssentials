@@ -16,7 +16,6 @@ using Xbim.Ifc2x3.RepresentationResource;
 using Xbim.Ifc2x3.UtilityResource;
 using Xbim.IO;
 using Xbim.IO.Esent;
-using XbimGeometry.Interfaces;
 
 namespace Xbim.Ifc2x3.IO
 {

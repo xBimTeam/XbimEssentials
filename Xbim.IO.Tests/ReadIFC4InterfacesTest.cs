@@ -30,7 +30,7 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void LoadIfc4IntoDbTest()
         {
-            var model = new EsentModel(new EntityFactory());
+            var model = new IO.Esent.EsentModel(new EntityFactory());
             model.CreateFrom("SampleHouse4.ifc", null, null, true, true);
 
             var project = model.Instances.FirstOrDefault<IIfcProject>();

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Isam.Esent.Interop;
-using XbimGeometry.Interfaces;
+using Xbim.Common.Geometry;
 
 namespace Xbim.IO.Esent
 {
@@ -237,7 +237,7 @@ namespace Xbim.IO.Esent
                 indexDef = string.Format("+{0}\0\0", colNameGeometryHash);
               //  Api.JetCreateIndex(sesid, tableid, geometryTableHashIndex, CreateIndexGrbit.None, indexDef, indexDef.Length, 100);
 
-                //create indexfor reference count
+                //create index for reference count
                 indexDef = string.Format("-{0}\0{1}\0{2}\0\0", colNameCost, colNameReferenceCount, colNameShapeLabel);
                 Api.JetCreateIndex(sesid, tableid, geometryTableReferenceIndex, CreateIndexGrbit.None, indexDef, indexDef.Length, 100);
 
@@ -407,7 +407,23 @@ namespace Xbim.IO.Esent
             return TryMoveFirst();
         }
 
-
+        public bool TryMoveFirstRegion(ref IXbimShapeGeometryData sg)
+        {
+            Api.JetSetCurrentIndex(Sesid, Table, geometryTableReferenceIndex);
+            Api.MakeKey(Sesid, Table, -1, MakeKeyGrbit.NewKey); //regions are store with cost = -1 and ref count = -1
+            Api.MakeKey(Sesid, Table, -1, MakeKeyGrbit.None);
+            if (Api.TrySeek(Sesid, Table, SeekGrbit.SeekGE))
+            {
+                Api.MakeKey(Sesid, Table, -1, MakeKeyGrbit.NewKey);
+                Api.MakeKey(Sesid, Table, -1, MakeKeyGrbit.FullColumnEndLimit);
+                if (Api.TrySetIndexRange(Sesid, Table, SetIndexRangeGrbit.RangeUpperLimit | SetIndexRangeGrbit.RangeInclusive))
+                {
+                    GetShapeGeometryData(sg);
+                    return true;
+                }
+            }
+            return false;
+        }
         /// <summary> Moves to the next shape geometry assumes TryMoveFirstReferenceCounter has been called
         /// 
         /// </summary>
@@ -443,6 +459,16 @@ namespace Xbim.IO.Esent
             return Api.RetrieveColumnAsInt32(Sesid, Table, _colIdShapeLabel, RetrieveColumnGrbit.RetrieveFromIndex).Value;
         }
 
-        
+
+
+        internal bool TryMoveNextRegion(ref IXbimShapeGeometryData regions)
+        {
+            if (TryMoveNext())
+            {
+                GetShapeGeometryData(regions);
+                return true;
+            }
+            return false;
+        }
     }
 }

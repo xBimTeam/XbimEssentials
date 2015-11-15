@@ -1,9 +1,8 @@
 ﻿using System;
-using Xbim.Common.Geometry;
 
-namespace XbimGeometry.Interfaces
+namespace Xbim.Common.Geometry
 {
-    public interface IGeometryWriteTransaction:IDisposable
+    public interface IGeometryStoreInitialiser : IDisposable
     {
         /// <summary>
         /// Adds a shape geometry to the store under transaction

@@ -167,9 +167,9 @@ namespace Xbim.IO.Esent
         /// commit call has to be made.
         /// </summary>
         /// <returns>The new transaction.</returns>
-        public XbimReadOnlyDBTransaction BeginReadOnlyTransaction()
+        public EsentReadOnlyTransaction BeginReadOnlyTransaction()
         {
-            return new XbimReadOnlyDBTransaction(Sesid);
+            return new EsentReadOnlyTransaction(Sesid);
         }
 
         /// <summary>

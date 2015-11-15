@@ -1,10 +1,9 @@
 ﻿using System;
 using Xbim.Common.Geometry;
-using XbimGeometry.Interfaces;
 
 namespace Xbim.IO.Esent
 {
-    internal class EsentGeometryTransaction : IGeometryWriteTransaction
+    internal class EsentGeometryInitialiser : IGeometryStoreInitialiser
     {
         const int TransactionBatchSize = 100;
         private EsentGeometryStore _esentGeometryStore;
@@ -14,7 +13,8 @@ namespace Xbim.IO.Esent
         private EsentLazyDBTransaction _shapeInstanceTransaction;
         private int _geometryCount;
         private int _instanceCount;
-        public EsentGeometryTransaction(EsentGeometryStore esentGeometryStore, EsentShapeGeometryCursor shapeGeometryCursor, EsentShapeInstanceCursor shapeInstanceCursor)
+        
+        public EsentGeometryInitialiser(EsentGeometryStore esentGeometryStore, EsentShapeGeometryCursor shapeGeometryCursor, EsentShapeInstanceCursor shapeInstanceCursor)
         {
             try
             {
@@ -68,6 +68,7 @@ namespace Xbim.IO.Esent
         {
             _shapeInstanceTransaction.Dispose();
             _shapeGeometryTransaction.Dispose();
+
         }
 
         internal void Commit()

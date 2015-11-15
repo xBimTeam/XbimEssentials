@@ -76,7 +76,7 @@ namespace Xbim.MemoryModel.Tests
             var model = CreateTestModel();
             model.Save(file);
 
-            var db = new EsentModel(new EntityFactory());
+            var db = new IO.Esent.EsentModel(new EntityFactory());
             db.CreateFrom(file, null, null, true);
 
             var spaces = db.Instances.OfType<CobieSpace>();

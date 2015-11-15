@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XbimGeometry.Interfaces
+namespace Xbim.Common.Geometry
 {
     /// <summary>
     /// A manifold closed shell

@@ -2,11 +2,10 @@
 
 using System;
 using System.Collections.Generic;
-using Xbim.Common.Geometry;
 
 #endregion
 
-namespace XbimGeometry.Interfaces
+namespace Xbim.Common.Geometry
 {
     /// <summary>
     ///     A wire is a connected set of one or more edges

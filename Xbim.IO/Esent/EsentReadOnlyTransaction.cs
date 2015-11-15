@@ -3,23 +3,23 @@ using Microsoft.Isam.Esent.Interop;
 
 namespace Xbim.IO.Esent
 {
-    public struct XbimReadOnlyDBTransaction: IDisposable
+    public struct EsentReadOnlyTransaction: IDisposable
     {
          /// <summary>
         /// The session that has the transaction.
         /// </summary>
-        private readonly JET_SESID sesid;
+        private readonly JET_SESID _sesid;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="XbimReadOnlyDBTransaction"/> struct.
+        /// Initializes a new instance of the <see cref="EsentReadOnlyTransaction"/> struct.
         /// </summary>
         /// <param name="sesid">
         /// The sesid.
         /// </param>
-        public XbimReadOnlyDBTransaction(JET_SESID sesid)
+        public EsentReadOnlyTransaction(JET_SESID sesid)
         {
-            this.sesid = sesid;
-            Api.JetBeginTransaction2(this.sesid, BeginTransactionGrbit.ReadOnly);
+            _sesid = sesid;
+            Api.JetBeginTransaction2(_sesid, BeginTransactionGrbit.ReadOnly);
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Xbim.IO.Esent
         /// </summary>
         public void Dispose()
         {
-            Api.JetCommitTransaction(this.sesid, CommitTransactionGrbit.LazyFlush);
+            Api.JetCommitTransaction(_sesid, CommitTransactionGrbit.LazyFlush);
         }
     }
 }
