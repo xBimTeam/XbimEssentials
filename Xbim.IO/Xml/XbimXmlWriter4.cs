@@ -8,6 +8,7 @@ using Xbim.Common;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.IO.Step21;
+using Xbim.IO.Xml.BsConf;
 
 namespace Xbim.IO.Xml
 {
@@ -17,13 +18,13 @@ namespace Xbim.IO.Xml
 
         private const string Xsi = "http://www.w3.org/2001/XMLSchema-instance";
         private const string Xlink = "http://www.w3.org/1999/xlink";
-        private readonly string _ns = "http://www.buildingsmart-tech.org/ifcXML/IFC4/final";
-        private readonly string _nsLocation = "http://www.buildingsmart-tech.org/ifcXML/IFC4/final/ifcXML4.xsd";
-        private readonly string _expressUri = "http://www.buildingsmart-tech.org/ifc/IFC4/final/IFC4.exp";
-        private readonly string _configuration = "http://www.buildingsmart-tech.org/ifcXML/IFC4/final/config/ifcXML4_config.xml";
+        private readonly string _ns = "http://www.buildingsmart-tech.org/ifcXML/MVD4/IFC4";
+        private readonly string _nsLocation = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1.xsd";
+        private readonly string _expressUri = "http://www.buildingsmart-tech.org/ifc/IFC4/Add1/IFC4_ADD1.exp";
+        private readonly string _configuration = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1_config.xml";
         private readonly string _rootElementName = "ifcXML";
         private HashSet<long> _written;
-
+        private readonly configuration _conf;
         #endregion
 
         #region Properties
@@ -41,15 +42,20 @@ namespace Xbim.IO.Xml
 
         #endregion
 
-        public XbimXmlWriter4(XbimXmlSettings settings = null)
+        /// <summary>
+        /// Constructor of the XML writer. This writer implements conventions for IFC4 XML and needs to
+        /// get configuration with speficic cases like inversed inverses and other special cases.
+        /// Default settings and configuration are for IFC4 Add1. If you pass configuration and settings
+        /// make sure both are for the same schema definition.
+        /// </summary>
+        /// <param name="configuration">XML to Express configuration</param>
+        /// <param name="settings">Settings for writer like namespaces and root element name</param>
+        public XbimXmlWriter4(configuration configuration = null, XbimXmlSettings settings = null)
         {
-            var now = DateTime.Now;
-            TimeStamp = string.Format("{0:0000}-{1:00}-{2:00}T{3:00}:{4:00}:{5:00}", now.Year, now.Month, now.Day,
-                                      now.Hour, now.Minute, now.Second);
-            PreprocessorVersion = string.Format("Xbim File Processor version {0}",
-                                                Assembly.GetAssembly(GetType()).GetName().Version);
+            _conf = configuration ?? configuration.IFC4Add1;
+            TimeStamp = DateTime.Now.ToString("s");
+            PreprocessorVersion = string.Format("Xbim File Processor version {0}", Assembly.GetAssembly(GetType()).GetName().Version);
             OriginatingSystem = string.Format("Xbim version {0}", Assembly.GetExecutingAssembly().GetName().Version);
-
             if (settings == null)
             return;
 
@@ -154,13 +160,48 @@ namespace Xbim.IO.Xml
             output.WriteEndElement();
         }
 
+        private readonly Dictionary<Type, List<ExpressMetaProperty>> _propertiesCache 
+            = new Dictionary<Type, List<ExpressMetaProperty>>(); 
+
         private void WriteProperties(IPersistEntity entity, XmlWriter output, ExpressType expressType)
         {
-            IEnumerable<ExpressMetaProperty> toWrite = expressType.Properties.Values.ToList();
+            List<ExpressMetaProperty> toWrite;
+            if (!_propertiesCache.TryGetValue(expressType.Type, out toWrite))
+            {
+                var typeConf = _conf.GetEntity(expressType.ExpressName);
+                if (typeConf != null)
+                {
+                    //all properties which are not ignored
+                    toWrite = expressType.Properties.Values
+                        .Where(p => typeConf.IgnoredAttributes
+                            .All(ia => string.Compare(ia.select, p.PropertyInfo.Name, StringComparison.OrdinalIgnoreCase) != 0))
+                            .ToList();
 
-            //sort toWrite properties so that value types go first. They will be written as attributes and that has to
-            //happen before any nested elements are written
-            toWrite = toWrite.OrderByDescending(p => IsAttributeValue(p.PropertyInfo.PropertyType));
+                    //all inverses which are added
+                    var inverses = expressType.Inverses
+                        .Where(i => typeConf.ChangedInverses
+                            .Any(
+                                ci =>
+                                    string.Compare(ci.select, i.PropertyInfo.Name, StringComparison.CurrentCultureIgnoreCase) == 0));
+                    toWrite.AddRange(inverses);
+                }
+                else
+                {
+                    toWrite = expressType.Properties.Values.ToList();
+                }
+                
+                
+
+                //sort properties so that attribute values go first (value types and some string lists). 
+                //They will be written as attributes and that has to
+                //happen before any nested elements are written
+                toWrite = toWrite.OrderByDescending(p => IsAttributeValue(p.PropertyInfo.PropertyType)).ToList();
+
+
+                //cache
+                _propertiesCache.Add(expressType.Type, toWrite);
+            }
+            
 
             foreach (var ifcProperty in toWrite) //only write out persistent attributes, ignore inverses
             {

@@ -36,7 +36,7 @@ namespace Xbim.MemoryModel.Tests
 
                 using (var xml = XmlWriter.Create(outPath, new XmlWriterSettings{Indent = true}))
                 {
-                    var writer = new XbimXmlWriter4();
+                    var writer = new XbimXmlWriter4(configuration.IFC4Add1);
                     writer.Write(model, xml);   
                     xml.Close();
                 }
@@ -56,7 +56,7 @@ namespace Xbim.MemoryModel.Tests
 
                 using (var xml = XmlWriter.Create(outPath, new XmlWriterSettings { Indent = true }))
                 {
-                    var writer = new XbimXmlWriter4();
+                    var writer = new XbimXmlWriter4(configuration.IFC4Add1);
                     writer.Write(model, xml);
                     xml.Close();
                 }
@@ -66,17 +66,11 @@ namespace Xbim.MemoryModel.Tests
             }
         }
 
-        [TestMethod]
-        public void XmlConfigLoadingTest()
-        {
-            var conf = configuration.LoadIFC4();
-        }
-
         /// <summary>
         /// </summary>
         /// <param name="path">Path of the file to be validated</param>
         /// <returns>Number of errors</returns>
-        private int ValidateIfc4(string path)
+        private static int ValidateIfc4(string path)
         {
             var logPath = Path.ChangeExtension(path, ".log");
             var errCount = 0;
@@ -91,14 +85,6 @@ namespace Xbim.MemoryModel.Tests
                     settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessSchemaLocation;
                     settings.ValidationEventHandler += (sender, args) =>
                     {
-                        if (
-                            args.Message.Contains(
-                                "IfcGeometricRepresentationSubContext' cannot contain child element") ||
-                            args.Message.Contains("The element cannot contain white space. Content model is empty.") ||
-                            args.Message.Contains("'IfcStyledItem' in namespace 'http://www.buildingsmart-tech.org/ifcXML/IFC4/final' has invalid child element 'Item'") ||
-                            args.Message.Contains("'IfcMaterialDefinitionRepresentation' in namespace 'http://www.buildingsmart-tech.org/ifcXML/IFC4/final' has invalid child element 'RepresentedMaterial'"))
-                            return;
-
                         Debug.WriteLine("Validation {0}: {1} \nLine: {2}, Position: {3}", args.Severity, args.Message, args.Exception.LineNumber, args.Exception.LinePosition);
                         logFile.WriteLine("Validation {0}: {1} \nLine: {2}, Position: {3}", args.Severity, args.Message, args.Exception.LineNumber, args.Exception.LinePosition);
                         errCount++;

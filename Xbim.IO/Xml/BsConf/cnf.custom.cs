@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 // ReSharper disable InconsistentNaming
@@ -7,10 +8,22 @@ namespace Xbim.IO.Xml.BsConf
 {
     public partial class configuration
     {
-        public static configuration LoadIFC4()
+        public static configuration IFC4Add1
         {
-            var data = Properties.Resources.IFC4_ADD1_config;
-            return Deserialize(data);
+            get
+            {
+                var data = Properties.Resources.IFC4_ADD1_config;
+                return Deserialize(data);    
+            }
+        }
+
+        public static configuration IFC4
+        {
+            get
+            {
+                var data = Properties.Resources.IFC4_config;
+                return Deserialize(data);
+            }
         }
 
         public IEnumerable<entity> ChangedInverses { get
@@ -34,7 +47,7 @@ namespace Xbim.IO.Xml.BsConf
         {
             return
                     Items
-                        .OfType<entity>().FirstOrDefault(e => e.EntityName == name);
+                        .OfType<entity>().FirstOrDefault(e => string.Compare(e.EntityName, name, StringComparison.InvariantCultureIgnoreCase) == 0);
         }
     }
 
