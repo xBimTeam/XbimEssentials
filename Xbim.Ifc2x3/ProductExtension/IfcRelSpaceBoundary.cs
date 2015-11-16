@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCRELSPACEBOUNDARY", 15)]
+	[ExpressType("IfcRelSpaceBoundary", 15)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelSpaceBoundary : IfcRelConnects, IInstantiableEntity, IIfcRelSpaceBoundary, IEqualityComparer<@IfcRelSpaceBoundary>, IEquatable<@IfcRelSpaceBoundary>
 	{

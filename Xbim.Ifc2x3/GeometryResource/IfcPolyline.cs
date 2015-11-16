@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCPOLYLINE", 500)]
+	[ExpressType("IfcPolyline", 500)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPolyline : IfcBoundedCurve, IInstantiableEntity, IIfcPolyline, IEqualityComparer<@IfcPolyline>, IEquatable<@IfcPolyline>
 	{

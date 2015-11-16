@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCCONIC", 299)]
+	[ExpressType("IfcConic", 299)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcConic : IfcCurve, IIfcConic, IEqualityComparer<@IfcConic>, IEquatable<@IfcConic>
 	{

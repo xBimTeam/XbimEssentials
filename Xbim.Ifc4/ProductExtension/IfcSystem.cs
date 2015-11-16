@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCSYSTEM", 1080)]
+	[ExpressType("IfcSystem", 1080)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSystem : IfcGroup, IInstantiableEntity, IIfcSystem, IEqualityComparer<@IfcSystem>, IEquatable<@IfcSystem>
 	{

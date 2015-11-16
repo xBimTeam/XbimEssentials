@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.Kernel
 {
-	[ExpressType("IFCRELASSIGNSTOPRODUCT", 309)]
+	[ExpressType("IfcRelAssignsToProduct", 309)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssignsToProduct : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProduct, IEqualityComparer<@IfcRelAssignsToProduct>, IEquatable<@IfcRelAssignsToProduct>
 	{

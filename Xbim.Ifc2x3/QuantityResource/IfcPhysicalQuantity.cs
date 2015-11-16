@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
-	[ExpressType("IFCPHYSICALQUANTITY", 102)]
+	[ExpressType("IfcPhysicalQuantity", 102)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPhysicalQuantity : IPersistEntity, INotifyPropertyChanged, IIfcPhysicalQuantity, IEqualityComparer<@IfcPhysicalQuantity>, IEquatable<@IfcPhysicalQuantity>
 	{

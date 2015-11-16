@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCHALFSPACESOLID", 707)]
+	[ExpressType("IfcHalfSpaceSolid", 707)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcHalfSpaceSolid : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcHalfSpaceSolid, IEqualityComparer<@IfcHalfSpaceSolid>, IEquatable<@IfcHalfSpaceSolid>
 	{

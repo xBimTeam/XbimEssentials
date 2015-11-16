@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
-	[ExpressType("IFCRADIUSDIMENSION", 751)]
+	[ExpressType("IfcRadiusDimension", 751)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRadiusDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IIfcRadiusDimension, IEqualityComparer<@IfcRadiusDimension>, IEquatable<@IfcRadiusDimension>
 	{

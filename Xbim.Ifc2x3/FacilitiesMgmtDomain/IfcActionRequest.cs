@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
-	[ExpressType("IFCACTIONREQUEST", 516)]
+	[ExpressType("IfcActionRequest", 516)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcActionRequest : IfcControl, IInstantiableEntity, IIfcActionRequest, IEqualityComparer<@IfcActionRequest>, IEquatable<@IfcActionRequest>
 	{

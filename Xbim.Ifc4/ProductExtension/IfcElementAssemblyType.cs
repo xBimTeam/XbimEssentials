@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCELEMENTASSEMBLYTYPE", 619)]
+	[ExpressType("IfcElementAssemblyType", 619)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElementAssemblyType : IfcElementType, IInstantiableEntity, IIfcElementAssemblyType, IEqualityComparer<@IfcElementAssemblyType>, IEquatable<@IfcElementAssemblyType>
 	{

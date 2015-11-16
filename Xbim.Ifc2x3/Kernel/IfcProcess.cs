@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.Kernel
 {
-	[ExpressType("IFCPROCESS", 73)]
+	[ExpressType("IfcProcess", 73)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcProcess : IfcObject, IIfcProcess, IEqualityComparer<@IfcProcess>, IEquatable<@IfcProcess>
 	{

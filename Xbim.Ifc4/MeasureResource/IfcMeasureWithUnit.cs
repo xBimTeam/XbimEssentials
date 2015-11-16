@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCMEASUREWITHUNIT", 768)]
+	[ExpressType("IfcMeasureWithUnit", 768)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMeasureWithUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMeasureWithUnit, IEqualityComparer<@IfcMeasureWithUnit>, IEquatable<@IfcMeasureWithUnit>
 	{

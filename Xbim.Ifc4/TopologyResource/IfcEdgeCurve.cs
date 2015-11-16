@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCEDGECURVE", 603)]
+	[ExpressType("IfcEdgeCurve", 603)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEdgeCurve : IfcEdge, IInstantiableEntity, IIfcEdgeCurve, IEqualityComparer<@IfcEdgeCurve>, IEquatable<@IfcEdgeCurve>
 	{

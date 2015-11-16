@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCCARTESIANTRANSFORMATIONOPERATOR", 477)]
+	[ExpressType("IfcCartesianTransformationOperator", 477)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcCartesianTransformationOperator : IfcGeometricRepresentationItem, IIfcCartesianTransformationOperator, IEqualityComparer<@IfcCartesianTransformationOperator>, IEquatable<@IfcCartesianTransformationOperator>
 	{

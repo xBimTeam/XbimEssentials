@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
-	[ExpressType("IFCDATEANDTIME", 373)]
+	[ExpressType("IfcDateAndTime", 373)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDateAndTime : INotifyPropertyChanged, IInstantiableEntity, IIfcDateAndTime, IEqualityComparer<@IfcDateAndTime>, IEquatable<@IfcDateAndTime>
 	{

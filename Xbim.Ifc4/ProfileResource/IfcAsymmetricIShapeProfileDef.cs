@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCASYMMETRICISHAPEPROFILEDEF", 424)]
+	[ExpressType("IfcAsymmetricIShapeProfileDef", 424)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAsymmetricIShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcAsymmetricIShapeProfileDef, IEqualityComparer<@IfcAsymmetricIShapeProfileDef>, IEquatable<@IfcAsymmetricIShapeProfileDef>
 	{

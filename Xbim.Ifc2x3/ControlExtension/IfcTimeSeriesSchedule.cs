@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ControlExtension
 {
-	[ExpressType("IFCTIMESERIESSCHEDULE", 712)]
+	[ExpressType("IfcTimeSeriesSchedule", 712)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IIfcTimeSeriesSchedule, IEqualityComparer<@IfcTimeSeriesSchedule>, IEquatable<@IfcTimeSeriesSchedule>
 	{

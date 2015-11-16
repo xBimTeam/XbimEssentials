@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
-	[ExpressType("IFCFACETEDBREPWITHVOIDS", 369)]
+	[ExpressType("IfcFacetedBrepWithVoids", 369)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFacetedBrepWithVoids : IfcManifoldSolidBrep, IInstantiableEntity, IIfcFacetedBrepWithVoids, IEqualityComparer<@IfcFacetedBrepWithVoids>, IEquatable<@IfcFacetedBrepWithVoids>
 	{

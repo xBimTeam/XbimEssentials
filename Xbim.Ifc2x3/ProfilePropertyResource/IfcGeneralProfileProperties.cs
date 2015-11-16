@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
-	[ExpressType("IFCGENERALPROFILEPROPERTIES", 648)]
+	[ExpressType("IfcGeneralProfileProperties", 648)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGeneralProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcGeneralProfileProperties, IEqualityComparer<@IfcGeneralProfileProperties>, IEquatable<@IfcGeneralProfileProperties>
 	{

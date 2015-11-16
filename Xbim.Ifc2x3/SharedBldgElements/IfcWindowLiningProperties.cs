@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
-	[ExpressType("IFCWINDOWLININGPROPERTIES", 252)]
+	[ExpressType("IfcWindowLiningProperties", 252)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWindowLiningProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcWindowLiningProperties, IEqualityComparer<@IfcWindowLiningProperties>, IEquatable<@IfcWindowLiningProperties>
 	{

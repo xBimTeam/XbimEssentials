@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.BuildingControlsDomain
 {
-	[ExpressType("IFCALARMTYPE", 413)]
+	[ExpressType("IfcAlarmType", 413)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAlarmType : IfcDistributionControlElementType, IInstantiableEntity, IIfcAlarmType, IEqualityComparer<@IfcAlarmType>, IEquatable<@IfcAlarmType>
 	{

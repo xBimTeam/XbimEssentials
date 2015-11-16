@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
-	[ExpressType("IFCCSGSOLID", 548)]
+	[ExpressType("IfcCsgSolid", 548)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCsgSolid : IfcSolidModel, IInstantiableEntity, IIfcCsgSolid, IEqualityComparer<@IfcCsgSolid>, IEquatable<@IfcCsgSolid>
 	{

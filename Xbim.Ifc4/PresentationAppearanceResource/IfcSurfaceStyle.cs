@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCSURFACESTYLE", 1067)]
+	[ExpressType("IfcSurfaceStyle", 1067)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSurfaceStyle, IEqualityComparer<@IfcSurfaceStyle>, IEquatable<@IfcSurfaceStyle>
 	{

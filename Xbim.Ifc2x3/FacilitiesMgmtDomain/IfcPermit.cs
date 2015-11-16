@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
-	[ExpressType("IFCPERMIT", 189)]
+	[ExpressType("IfcPermit", 189)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IIfcPermit, IEqualityComparer<@IfcPermit>, IEquatable<@IfcPermit>
 	{

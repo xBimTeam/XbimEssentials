@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedMgmtElements
 {
-	[ExpressType("IFCPROJECTORDER", 853)]
+	[ExpressType("IfcProjectOrder", 853)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProjectOrder : IfcControl, IInstantiableEntity, IIfcProjectOrder, IEqualityComparer<@IfcProjectOrder>, IEquatable<@IfcProjectOrder>
 	{

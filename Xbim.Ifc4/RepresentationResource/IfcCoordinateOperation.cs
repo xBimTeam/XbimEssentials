@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCCOORDINATEOPERATION", 543)]
+	[ExpressType("IfcCoordinateOperation", 543)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcCoordinateOperation : IPersistEntity, INotifyPropertyChanged, IIfcCoordinateOperation, IEqualityComparer<@IfcCoordinateOperation>, IEquatable<@IfcCoordinateOperation>
 	{

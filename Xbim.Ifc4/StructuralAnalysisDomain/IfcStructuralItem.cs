@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALITEM", 1028)]
+	[ExpressType("IfcStructuralItem", 1028)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralItem : IfcProduct, IIfcStructuralItem, IEqualityComparer<@IfcStructuralItem>, IEquatable<@IfcStructuralItem>
 	{

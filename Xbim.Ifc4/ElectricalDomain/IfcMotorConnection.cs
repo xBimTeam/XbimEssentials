@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCMOTORCONNECTION", 779)]
+	[ExpressType("IfcMotorConnection", 779)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMotorConnection : IfcEnergyConversionDevice, IInstantiableEntity, IIfcMotorConnection, IEqualityComparer<@IfcMotorConnection>, IEquatable<@IfcMotorConnection>
 	{

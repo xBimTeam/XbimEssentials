@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCOPENINGELEMENT", 498)]
+	[ExpressType("IfcOpeningElement", 498)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOpeningElement : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcOpeningElement, IEqualityComparer<@IfcOpeningElement>, IEquatable<@IfcOpeningElement>
 	{

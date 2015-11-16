@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCHUMIDIFIERTYPE", 711)]
+	[ExpressType("IfcHumidifierType", 711)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcHumidifierType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcHumidifierType, IEqualityComparer<@IfcHumidifierType>, IEquatable<@IfcHumidifierType>
 	{

@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALSURFACEMEMBERVARYING", 421)]
+	[ExpressType("IfcStructuralSurfaceMemberVarying", 421)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IIfcStructuralSurfaceMemberVarying, IEqualityComparer<@IfcStructuralSurfaceMemberVarying>, IEquatable<@IfcStructuralSurfaceMemberVarying>
 	{

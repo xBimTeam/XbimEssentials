@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCVIRTUALELEMENT", 168)]
+	[ExpressType("IfcVirtualElement", 168)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVirtualElement : IfcElement, IInstantiableEntity, IIfcVirtualElement, IEqualityComparer<@IfcVirtualElement>, IEquatable<@IfcVirtualElement>
 	{

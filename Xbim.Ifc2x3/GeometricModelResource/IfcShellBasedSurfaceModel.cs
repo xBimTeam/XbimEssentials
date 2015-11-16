@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
-	[ExpressType("IFCSHELLBASEDSURFACEMODEL", 235)]
+	[ExpressType("IfcShellBasedSurfaceModel", 235)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcShellBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcShellBasedSurfaceModel, IEqualityComparer<@IfcShellBasedSurfaceModel>, IEquatable<@IfcShellBasedSurfaceModel>
 	{

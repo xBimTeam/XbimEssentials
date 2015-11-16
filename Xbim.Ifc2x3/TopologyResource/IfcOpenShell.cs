@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
-	[ExpressType("IFCOPENSHELL", 488)]
+	[ExpressType("IfcOpenShell", 488)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOpenShell : IfcConnectedFaceSet, IInstantiableEntity, IIfcOpenShell, IEqualityComparer<@IfcOpenShell>, IEquatable<@IfcOpenShell>
 	{

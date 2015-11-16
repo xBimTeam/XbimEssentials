@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCCYLINDRICALSURFACE", 564)]
+	[ExpressType("IfcCylindricalSurface", 564)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCylindricalSurface : IfcElementarySurface, IInstantiableEntity, IIfcCylindricalSurface, IEqualityComparer<@IfcCylindricalSurface>, IEquatable<@IfcCylindricalSurface>
 	{

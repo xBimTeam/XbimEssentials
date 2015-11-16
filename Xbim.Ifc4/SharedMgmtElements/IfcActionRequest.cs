@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedMgmtElements
 {
-	[ExpressType("IFCACTIONREQUEST", 397)]
+	[ExpressType("IfcActionRequest", 397)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcActionRequest : IfcControl, IInstantiableEntity, IIfcActionRequest, IEqualityComparer<@IfcActionRequest>, IEquatable<@IfcActionRequest>
 	{

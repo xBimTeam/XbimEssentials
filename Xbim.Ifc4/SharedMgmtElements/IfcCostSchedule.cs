@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedMgmtElements
 {
-	[ExpressType("IFCCOSTSCHEDULE", 546)]
+	[ExpressType("IfcCostSchedule", 546)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IEqualityComparer<@IfcCostSchedule>, IEquatable<@IfcCostSchedule>
 	{

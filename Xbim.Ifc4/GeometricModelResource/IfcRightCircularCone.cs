@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCRIGHTCIRCULARCONE", 969)]
+	[ExpressType("IfcRightCircularCone", 969)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRightCircularCone : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCone, IEqualityComparer<@IfcRightCircularCone>, IEquatable<@IfcRightCircularCone>
 	{

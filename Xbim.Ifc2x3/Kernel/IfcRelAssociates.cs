@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.Kernel
 {
-	[ExpressType("IFCRELASSOCIATES", 308)]
+	[ExpressType("IfcRelAssociates", 308)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssociates : IfcRelationship, IInstantiableEntity, IIfcRelAssociates, IEqualityComparer<@IfcRelAssociates>, IEquatable<@IfcRelAssociates>
 	{

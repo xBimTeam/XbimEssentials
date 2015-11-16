@@ -48,7 +48,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
-	[ExpressType("IFCFLUIDFLOWPROPERTIES", 466)]
+	[ExpressType("IfcFluidFlowProperties", 466)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFluidFlowProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcFluidFlowProperties, IEqualityComparer<@IfcFluidFlowProperties>, IEquatable<@IfcFluidFlowProperties>
 	{

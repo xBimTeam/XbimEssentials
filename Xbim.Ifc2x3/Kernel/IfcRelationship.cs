@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.Kernel
 {
-	[ExpressType("IFCRELATIONSHIP", 11)]
+	[ExpressType("IfcRelationship", 11)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcRelationship : IfcRoot, IIfcRelationship, IEqualityComparer<@IfcRelationship>, IEquatable<@IfcRelationship>
 	{

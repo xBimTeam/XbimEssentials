@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCCOORDINATEREFERENCESYSTEM", 544)]
+	[ExpressType("IfcCoordinateReferenceSystem", 544)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcCoordinateReferenceSystem : IPersistEntity, INotifyPropertyChanged, IIfcCoordinateReferenceSystem, IEqualityComparer<@IfcCoordinateReferenceSystem>, IEquatable<@IfcCoordinateReferenceSystem>
 	{

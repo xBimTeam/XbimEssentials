@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
-	[ExpressType("IFCSANITARYTERMINAL", 976)]
+	[ExpressType("IfcSanitaryTerminal", 976)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSanitaryTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcSanitaryTerminal, IEqualityComparer<@IfcSanitaryTerminal>, IEquatable<@IfcSanitaryTerminal>
 	{

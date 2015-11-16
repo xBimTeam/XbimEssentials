@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.BuildingControlsDomain
 {
-	[ExpressType("IFCFLOWINSTRUMENTTYPE", 677)]
+	[ExpressType("IfcFlowInstrumentType", 677)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFlowInstrumentType : IfcDistributionControlElementType, IInstantiableEntity, IIfcFlowInstrumentType, IEqualityComparer<@IfcFlowInstrumentType>, IEquatable<@IfcFlowInstrumentType>
 	{

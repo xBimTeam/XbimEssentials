@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
-	[ExpressType("IFCREINFORCEMENTDEFINITIONPROPERTIES", 263)]
+	[ExpressType("IfcReinforcementDefinitionProperties", 263)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReinforcementDefinitionProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcReinforcementDefinitionProperties, IEqualityComparer<@IfcReinforcementDefinitionProperties>, IEquatable<@IfcReinforcementDefinitionProperties>
 	{

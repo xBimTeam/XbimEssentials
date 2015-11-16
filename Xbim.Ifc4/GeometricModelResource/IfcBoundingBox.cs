@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCBOUNDINGBOX", 451)]
+	[ExpressType("IfcBoundingBox", 451)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBoundingBox : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBoundingBox, IEqualityComparer<@IfcBoundingBox>, IEquatable<@IfcBoundingBox>
 	{

@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IFCREINFORCINGMESHTYPE", 908)]
+	[ExpressType("IfcReinforcingMeshType", 908)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReinforcingMeshType : IfcReinforcingElementType, IInstantiableEntity, IIfcReinforcingMeshType, IEqualityComparer<@IfcReinforcingMeshType>, IEquatable<@IfcReinforcingMeshType>
 	{

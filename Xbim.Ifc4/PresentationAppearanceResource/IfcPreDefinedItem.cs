@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCPREDEFINEDITEM", 834)]
+	[ExpressType("IfcPreDefinedItem", 834)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPreDefinedItem : IfcPresentationItem, IIfcPreDefinedItem, IEqualityComparer<@IfcPreDefinedItem>, IEquatable<@IfcPreDefinedItem>
 	{

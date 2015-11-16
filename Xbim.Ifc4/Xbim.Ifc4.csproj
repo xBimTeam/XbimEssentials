@@ -744,6 +744,7 @@
     <Compile Include="PresentationAppearanceResource\IfcIndexedTextureMap.cs" />
     <Compile Include="PresentationAppearanceResource\IfcIndexedTriangleTextureMap.cs" />
     <Compile Include="PresentationAppearanceResource\IfcNullStyle.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcNullStyleEnum.cs" />
     <Compile Include="PresentationAppearanceResource\IfcPixelTexture.cs" />
     <Compile Include="PresentationAppearanceResource\IfcPreDefinedColour.cs" />
     <Compile Include="PresentationAppearanceResource\IfcPreDefinedCurveFont.cs" />

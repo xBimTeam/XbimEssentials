@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCCURVEBOUNDEDSURFACE", 559)]
+	[ExpressType("IfcCurveBoundedSurface", 559)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCurveBoundedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcCurveBoundedSurface, IEqualityComparer<@IfcCurveBoundedSurface>, IEquatable<@IfcCurveBoundedSurface>
 	{

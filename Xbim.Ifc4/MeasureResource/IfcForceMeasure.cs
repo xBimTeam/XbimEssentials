@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCFORCEMEASURE", 36)]
+	[ExpressType("IfcForceMeasure", 36)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcForceMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcForceMeasure(double val)
         {

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[IndexedClass]
-	[ExpressType("IFCREPRESENTATIONCONTEXT", 378)]
+	[ExpressType("IfcRepresentationContext", 378)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRepresentationContext : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentationContext, IEqualityComparer<@IfcRepresentationContext>, IEquatable<@IfcRepresentationContext>
 	{

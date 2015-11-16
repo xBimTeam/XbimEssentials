@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
-	[ExpressType("IFCLOCALTIME", 483)]
+	[ExpressType("IfcLocalTime", 483)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLocalTime : INotifyPropertyChanged, IInstantiableEntity, IIfcLocalTime, IEqualityComparer<@IfcLocalTime>, IEquatable<@IfcLocalTime>
 	{

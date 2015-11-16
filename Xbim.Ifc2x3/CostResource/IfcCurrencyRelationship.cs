@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.CostResource
 {
 	[IndexedClass]
-	[ExpressType("IFCCURRENCYRELATIONSHIP", 195)]
+	[ExpressType("IfcCurrencyRelationship", 195)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCurrencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcCurrencyRelationship, IEqualityComparer<@IfcCurrencyRelationship>, IEquatable<@IfcCurrencyRelationship>
 	{

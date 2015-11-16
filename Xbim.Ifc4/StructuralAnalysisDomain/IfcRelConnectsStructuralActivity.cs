@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCRELCONNECTSSTRUCTURALACTIVITY", 930)]
+	[ExpressType("IfcRelConnectsStructuralActivity", 930)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelConnectsStructuralActivity : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralActivity, IEqualityComparer<@IfcRelConnectsStructuralActivity>, IEquatable<@IfcRelConnectsStructuralActivity>
 	{

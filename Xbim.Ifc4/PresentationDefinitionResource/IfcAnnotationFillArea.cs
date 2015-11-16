@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationDefinitionResource
 {
-	[ExpressType("IFCANNOTATIONFILLAREA", 415)]
+	[ExpressType("IfcAnnotationFillArea", 415)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAnnotationFillArea : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationFillArea, IEqualityComparer<@IfcAnnotationFillArea>, IEquatable<@IfcAnnotationFillArea>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationDefinitionResource
 {
-	[ExpressType("IFCPLANARBOX", 818)]
+	[ExpressType("IfcPlanarBox", 818)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPlanarBox : IfcPlanarExtent, IInstantiableEntity, IIfcPlanarBox, IEqualityComparer<@IfcPlanarBox>, IEquatable<@IfcPlanarBox>
 	{

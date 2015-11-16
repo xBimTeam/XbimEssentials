@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
-	[ExpressType("IFCSOUNDPROPERTIES", 474)]
+	[ExpressType("IfcSoundProperties", 474)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSoundProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundProperties, IEqualityComparer<@IfcSoundProperties>, IEquatable<@IfcSoundProperties>
 	{

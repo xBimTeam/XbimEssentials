@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
-	[ExpressType("IFCSENSORTYPE", 375)]
+	[ExpressType("IfcSensorType", 375)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSensorType : IfcDistributionControlElementType, IInstantiableEntity, IIfcSensorType, IEqualityComparer<@IfcSensorType>, IEquatable<@IfcSensorType>
 	{

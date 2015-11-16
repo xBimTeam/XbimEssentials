@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
-	[ExpressType("IFCRIBPLATEPROFILEPROPERTIES", 763)]
+	[ExpressType("IfcRibPlateProfileProperties", 763)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRibPlateProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcRibPlateProfileProperties, IEqualityComparer<@IfcRibPlateProfileProperties>, IEquatable<@IfcRibPlateProfileProperties>
 	{

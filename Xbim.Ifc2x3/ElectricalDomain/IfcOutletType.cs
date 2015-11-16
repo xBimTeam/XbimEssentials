@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
-	[ExpressType("IFCOUTLETTYPE", 240)]
+	[ExpressType("IfcOutletType", 240)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOutletType : IfcFlowTerminalType, IInstantiableEntity, IIfcOutletType, IEqualityComparer<@IfcOutletType>, IEquatable<@IfcOutletType>
 	{

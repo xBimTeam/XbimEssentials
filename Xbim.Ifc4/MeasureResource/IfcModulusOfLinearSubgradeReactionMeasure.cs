@@ -13,7 +13,7 @@ using Xbim.Ifc4.StructuralLoadResource;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCMODULUSOFLINEARSUBGRADEREACTIONMEASURE", 68)]
+	[ExpressType("IfcModulusOfLinearSubgradeReactionMeasure", 68)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcModulusOfLinearSubgradeReactionMeasure : IfcDerivedMeasureValue, IfcModulusOfTranslationalSubgradeReactionSelect, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -26,7 +26,7 @@ namespace Xbim.Ifc4.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcModulusOfLinearSubgradeReactionMeasure(double val)
         {

@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
-	[ExpressType("IFCWINDOW", 667)]
+	[ExpressType("IfcWindow", 667)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWindow : IfcBuildingElement, IInstantiableEntity, IIfcWindow, IEqualityComparer<@IfcWindow>, IEquatable<@IfcWindow>
 	{

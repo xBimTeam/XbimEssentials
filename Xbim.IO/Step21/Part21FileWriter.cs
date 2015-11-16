@@ -45,7 +45,7 @@ namespace Xbim.IO.Step21
                 {
                     FileSchema = new StepFileSchema(model.Factory.SchemasIds.FirstOrDefault())
                 }));
-            foreach (var item in model.InstanceHandles /*.Types.OrderBy(t=>t.Name)*/)
+            foreach (var item in model.InstanceHandles)
             {
                 var entity = model.GetInstanceVolatile(item);
                 entity.WriteEntity(output, metadata, map);

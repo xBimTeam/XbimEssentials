@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
-	[ExpressType("IFCRELFLOWCONTROLELEMENTS", 945)]
+	[ExpressType("IfcRelFlowControlElements", 945)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelFlowControlElements : IfcRelConnects, IInstantiableEntity, IIfcRelFlowControlElements, IEqualityComparer<@IfcRelFlowControlElements>, IEquatable<@IfcRelFlowControlElements>
 	{

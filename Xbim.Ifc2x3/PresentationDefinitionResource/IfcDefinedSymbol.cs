@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
-	[ExpressType("IFCDEFINEDSYMBOL", 461)]
+	[ExpressType("IfcDefinedSymbol", 461)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDefinedSymbol : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDefinedSymbol, IEqualityComparer<@IfcDefinedSymbol>, IEquatable<@IfcDefinedSymbol>
 	{

@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCPORT", 830)]
+	[ExpressType("IfcPort", 830)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPort : IfcProduct, IIfcPort, IEqualityComparer<@IfcPort>, IEquatable<@IfcPort>
 	{

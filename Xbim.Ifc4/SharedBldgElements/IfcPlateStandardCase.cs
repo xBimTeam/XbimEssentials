@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCPLATESTANDARDCASE", 822)]
+	[ExpressType("IfcPlateStandardCase", 822)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPlateStandardCase : IfcPlate, IInstantiableEntity, IIfcPlateStandardCase, IEqualityComparer<@IfcPlateStandardCase>, IEquatable<@IfcPlateStandardCase>
 	{

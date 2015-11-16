@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedComponentElements
 {
-	[ExpressType("IFCMECHANICALFASTENERTYPE", 770)]
+	[ExpressType("IfcMechanicalFastenerType", 770)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMechanicalFastenerType : IfcElementComponentType, IInstantiableEntity, IIfcMechanicalFastenerType, IEqualityComparer<@IfcMechanicalFastenerType>, IEquatable<@IfcMechanicalFastenerType>
 	{

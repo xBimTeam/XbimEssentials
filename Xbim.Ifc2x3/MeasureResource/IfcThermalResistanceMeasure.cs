@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
-	[ExpressType("IFCTHERMALRESISTANCEMEASURE", 124)]
+	[ExpressType("IfcThermalResistanceMeasure", 124)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcThermalResistanceMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcThermalResistanceMeasure(double val)
         {

@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCSLABELEMENTEDCASE", 994)]
+	[ExpressType("IfcSlabElementedCase", 994)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSlabElementedCase : IfcSlab, IInstantiableEntity, IIfcSlabElementedCase, IEqualityComparer<@IfcSlabElementedCase>, IEquatable<@IfcSlabElementedCase>
 	{

@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IFCMATERIALLAYERWITHOFFSETS", 758)]
+	[ExpressType("IfcMaterialLayerWithOffsets", 758)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialLayerWithOffsets : IfcMaterialLayer, IInstantiableEntity, IIfcMaterialLayerWithOffsets, IEqualityComparer<@IfcMaterialLayerWithOffsets>, IEquatable<@IfcMaterialLayerWithOffsets>
 	{

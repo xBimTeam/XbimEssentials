@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCPIPEFITTING", 812)]
+	[ExpressType("IfcPipeFitting", 812)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPipeFitting : IfcFlowFitting, IInstantiableEntity, IIfcPipeFitting, IEqualityComparer<@IfcPipeFitting>, IEquatable<@IfcPipeFitting>
 	{

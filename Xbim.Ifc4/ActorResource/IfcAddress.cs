@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ActorResource
 {
 	[IndexedClass]
-	[ExpressType("IFCADDRESS", 402)]
+	[ExpressType("IfcAddress", 402)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcAddress : IPersistEntity, INotifyPropertyChanged, IIfcAddress, IEqualityComparer<@IfcAddress>, IEquatable<@IfcAddress>
 	{

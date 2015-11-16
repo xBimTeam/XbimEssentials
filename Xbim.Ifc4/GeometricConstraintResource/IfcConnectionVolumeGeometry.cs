@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
-	[ExpressType("IFCCONNECTIONVOLUMEGEOMETRY", 522)]
+	[ExpressType("IfcConnectionVolumeGeometry", 522)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConnectionVolumeGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionVolumeGeometry, IEqualityComparer<@IfcConnectionVolumeGeometry>, IEquatable<@IfcConnectionVolumeGeometry>
 	{

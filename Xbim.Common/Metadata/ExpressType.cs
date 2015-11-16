@@ -19,6 +19,7 @@ namespace Xbim.Common.Metadata
         private readonly short _typeId;
         private readonly List<PropertyInfo> _indexedProperties;
         private readonly List<int> _indexedValues;
+        private readonly string _expressNameUpper;
 
         #endregion
 
@@ -31,6 +32,11 @@ namespace Xbim.Common.Metadata
         public string ExpressName
         {
             get { return _expressName; }
+        }
+
+        public string ExpressNameUpper
+        {
+            get { return _expressNameUpper; }
         }
 
         public short TypeId
@@ -93,6 +99,7 @@ namespace Xbim.Common.Metadata
 #endif
             _typeId = (short)((ExpressTypeAttribute)entNameAttr).EntityTypeId;
             _expressName = ((ExpressTypeAttribute)entNameAttr).Name;
+            _expressNameUpper = _expressName.ToUpperInvariant();
 
             IndexedClass = type.GetCustomAttributes(typeof(IndexedClass), true).Any();
 

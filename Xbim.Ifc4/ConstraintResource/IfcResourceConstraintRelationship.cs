@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstraintResource
 {
-	[ExpressType("IFCRESOURCECONSTRAINTRELATIONSHIP", 964)]
+	[ExpressType("IfcResourceConstraintRelationship", 964)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcResourceConstraintRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceConstraintRelationship, IEqualityComparer<@IfcResourceConstraintRelationship>, IEquatable<@IfcResourceConstraintRelationship>
 	{

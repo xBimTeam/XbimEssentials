@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
-	[ExpressType("IFCFILTERTYPE", 139)]
+	[ExpressType("IfcFilterType", 139)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFilterType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IIfcFilterType, IEqualityComparer<@IfcFilterType>, IEquatable<@IfcFilterType>
 	{

@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[IndexedClass]
-	[ExpressType("IFCSOLIDMODEL", 1000)]
+	[ExpressType("IfcSolidModel", 1000)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcSolidModel : IfcGeometricRepresentationItem, IIfcSolidModel, IEqualityComparer<@IfcSolidModel>, IEquatable<@IfcSolidModel>
 	{

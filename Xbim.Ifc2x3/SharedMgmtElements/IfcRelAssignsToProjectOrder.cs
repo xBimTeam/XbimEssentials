@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedMgmtElements
 {
-	[ExpressType("IFCRELASSIGNSTOPROJECTORDER", 698)]
+	[ExpressType("IfcRelAssignsToProjectOrder", 698)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssignsToProjectOrder : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsToProjectOrder, IEqualityComparer<@IfcRelAssignsToProjectOrder>, IEquatable<@IfcRelAssignsToProjectOrder>
 	{

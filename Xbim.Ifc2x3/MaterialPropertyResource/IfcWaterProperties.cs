@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
-	[ExpressType("IFCWATERPROPERTIES", 721)]
+	[ExpressType("IfcWaterProperties", 721)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWaterProperties : IfcMaterialProperties, IInstantiableEntity, IIfcWaterProperties, IEqualityComparer<@IfcWaterProperties>, IEquatable<@IfcWaterProperties>
 	{

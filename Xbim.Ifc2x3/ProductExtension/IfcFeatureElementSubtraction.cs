@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCFEATUREELEMENTSUBTRACTION", 499)]
+	[ExpressType("IfcFeatureElementSubtraction", 499)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcFeatureElementSubtraction : IfcFeatureElement, IIfcFeatureElementSubtraction, IEqualityComparer<@IfcFeatureElementSubtraction>, IEquatable<@IfcFeatureElementSubtraction>
 	{

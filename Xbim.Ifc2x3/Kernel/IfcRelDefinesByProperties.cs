@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.Kernel
 {
-	[ExpressType("IFCRELDEFINESBYPROPERTIES", 247)]
+	[ExpressType("IfcRelDefinesByProperties", 247)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelDefinesByProperties : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByProperties, IEqualityComparer<@IfcRelDefinesByProperties>, IEquatable<@IfcRelDefinesByProperties>
 	{

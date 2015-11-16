@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCRELSPACEBOUNDARY1STLEVEL", 953)]
+	[ExpressType("IfcRelSpaceBoundary1stLevel", 953)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelSpaceBoundary1stLevel : IfcRelSpaceBoundary, IInstantiableEntity, IIfcRelSpaceBoundary1stLevel, IEqualityComparer<@IfcRelSpaceBoundary1stLevel>, IEquatable<@IfcRelSpaceBoundary1stLevel>
 	{

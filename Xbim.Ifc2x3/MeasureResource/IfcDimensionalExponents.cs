@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
-	[ExpressType("IFCDIMENSIONALEXPONENTS", 303)]
+	[ExpressType("IfcDimensionalExponents", 303)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDimensionalExponents : INotifyPropertyChanged, IInstantiableEntity, IIfcDimensionalExponents, IEqualityComparer<@IfcDimensionalExponents>, IEquatable<@IfcDimensionalExponents>
 	{

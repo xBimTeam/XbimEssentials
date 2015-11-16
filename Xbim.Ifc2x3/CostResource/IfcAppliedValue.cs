@@ -44,7 +44,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.CostResource
 {
 	[IndexedClass]
-	[ExpressType("IFCAPPLIEDVALUE", 79)]
+	[ExpressType("IfcAppliedValue", 79)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcAppliedValue : IPersistEntity, INotifyPropertyChanged, IIfcAppliedValue, IEqualityComparer<@IfcAppliedValue>, IEquatable<@IfcAppliedValue>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
-	[ExpressType("IFCQUANTITYWEIGHT", 603)]
+	[ExpressType("IfcQuantityWeight", 603)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcQuantityWeight : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityWeight, IEqualityComparer<@IfcQuantityWeight>, IEquatable<@IfcQuantityWeight>
 	{

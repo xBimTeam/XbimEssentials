@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
-	[ExpressType("IFCDOCUMENTELECTRONICFORMAT", 599)]
+	[ExpressType("IfcDocumentElectronicFormat", 599)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDocumentElectronicFormat : INotifyPropertyChanged, IInstantiableEntity, IIfcDocumentElectronicFormat, IEqualityComparer<@IfcDocumentElectronicFormat>, IEquatable<@IfcDocumentElectronicFormat>
 	{

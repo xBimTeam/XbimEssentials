@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCBURNERTYPE", 463)]
+	[ExpressType("IfcBurnerType", 463)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBurnerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcBurnerType, IEqualityComparer<@IfcBurnerType>, IEquatable<@IfcBurnerType>
 	{

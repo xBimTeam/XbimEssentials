@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCEXTRUDEDAREASOLID", 647)]
+	[ExpressType("IfcExtrudedAreaSolid", 647)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcExtrudedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolid, IEqualityComparer<@IfcExtrudedAreaSolid>, IEquatable<@IfcExtrudedAreaSolid>
 	{

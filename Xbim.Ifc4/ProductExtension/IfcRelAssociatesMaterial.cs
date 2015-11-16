@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCRELASSOCIATESMATERIAL", 924)]
+	[ExpressType("IfcRelAssociatesMaterial", 924)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssociatesMaterial : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesMaterial, IEqualityComparer<@IfcRelAssociatesMaterial>, IEquatable<@IfcRelAssociatesMaterial>
 	{

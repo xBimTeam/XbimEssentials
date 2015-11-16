@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
-	[ExpressType("IFCTEXTURECOORDINATE", 732)]
+	[ExpressType("IfcTextureCoordinate", 732)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcTextureCoordinate : IPersistEntity, INotifyPropertyChanged, IIfcTextureCoordinate, IEqualityComparer<@IfcTextureCoordinate>, IEquatable<@IfcTextureCoordinate>
 	{

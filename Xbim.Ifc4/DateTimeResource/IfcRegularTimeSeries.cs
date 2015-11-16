@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IFCREGULARTIMESERIES", 900)]
+	[ExpressType("IfcRegularTimeSeries", 900)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRegularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcRegularTimeSeries, IEqualityComparer<@IfcRegularTimeSeries>, IEquatable<@IfcRegularTimeSeries>
 	{

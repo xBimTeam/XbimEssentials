@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
-	[ExpressType("IFCSERVICELIFE", 769)]
+	[ExpressType("IfcServiceLife", 769)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IIfcServiceLife, IEqualityComparer<@IfcServiceLife>, IEquatable<@IfcServiceLife>
 	{

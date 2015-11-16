@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.Kernel
 {
-	[ExpressType("IFCRELASSIGNSTOPROCESS", 249)]
+	[ExpressType("IfcRelAssignsToProcess", 249)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProcess, IEqualityComparer<@IfcRelAssignsToProcess>, IEquatable<@IfcRelAssignsToProcess>
 	{

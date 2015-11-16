@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCTANKTYPE", 1088)]
+	[ExpressType("IfcTankType", 1088)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTankType : IfcFlowStorageDeviceType, IInstantiableEntity, IIfcTankType, IEqualityComparer<@IfcTankType>, IEquatable<@IfcTankType>
 	{

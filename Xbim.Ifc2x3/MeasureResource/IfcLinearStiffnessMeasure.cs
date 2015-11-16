@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
-	[ExpressType("IFCLINEARSTIFFNESSMEASURE", 399)]
+	[ExpressType("IfcLinearStiffnessMeasure", 399)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcLinearStiffnessMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcLinearStiffnessMeasure(double val)
         {

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCRELCONNECTSWITHECCENTRICITY", 932)]
+	[ExpressType("IfcRelConnectsWithEccentricity", 932)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelConnectsWithEccentricity : IfcRelConnectsStructuralMember, IInstantiableEntity, IIfcRelConnectsWithEccentricity, IEqualityComparer<@IfcRelConnectsWithEccentricity>, IEquatable<@IfcRelConnectsWithEccentricity>
 	{

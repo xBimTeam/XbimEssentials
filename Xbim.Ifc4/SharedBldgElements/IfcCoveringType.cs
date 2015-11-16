@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCCOVERINGTYPE", 549)]
+	[ExpressType("IfcCoveringType", 549)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCoveringType : IfcBuildingElementType, IInstantiableEntity, IIfcCoveringType, IEqualityComparer<@IfcCoveringType>, IEquatable<@IfcCoveringType>
 	{

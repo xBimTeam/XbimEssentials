@@ -13,7 +13,7 @@ using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IFCDURATION", 24)]
+	[ExpressType("IfcDuration", 24)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcDuration : IfcSimpleValue, IfcTimeOrRatioSelect, IExpressValueType, System.IEquatable<string>
 	{ 

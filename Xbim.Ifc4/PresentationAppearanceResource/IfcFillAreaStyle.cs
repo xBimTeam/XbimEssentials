@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCFILLAREASTYLE", 664)]
+	[ExpressType("IfcFillAreaStyle", 664)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IIfcFillAreaStyle, IEqualityComparer<@IfcFillAreaStyle>, IEquatable<@IfcFillAreaStyle>
 	{

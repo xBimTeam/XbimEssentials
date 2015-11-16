@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
-	[ExpressType("IFCSURFACESTYLEWITHTEXTURES", 392)]
+	[ExpressType("IfcSurfaceStyleWithTextures", 392)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceStyleWithTextures : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleWithTextures, IEqualityComparer<@IfcSurfaceStyleWithTextures>, IEquatable<@IfcSurfaceStyleWithTextures>
 	{

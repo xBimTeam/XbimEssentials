@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
-	[ExpressType("IFCCOLOURSPECIFICATION", 28)]
+	[ExpressType("IfcColourSpecification", 28)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcColourSpecification : IPersistEntity, INotifyPropertyChanged, IIfcColourSpecification, IEqualityComparer<@IfcColourSpecification>, IEquatable<@IfcColourSpecification>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCRELASSOCIATESLIBRARY", 923)]
+	[ExpressType("IfcRelAssociatesLibrary", 923)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssociatesLibrary : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesLibrary, IEqualityComparer<@IfcRelAssociatesLibrary>, IEquatable<@IfcRelAssociatesLibrary>
 	{

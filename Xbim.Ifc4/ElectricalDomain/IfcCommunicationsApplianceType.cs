@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCCOMMUNICATIONSAPPLIANCETYPE", 504)]
+	[ExpressType("IfcCommunicationsApplianceType", 504)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCommunicationsApplianceType : IfcFlowTerminalType, IInstantiableEntity, IIfcCommunicationsApplianceType, IEqualityComparer<@IfcCommunicationsApplianceType>, IEquatable<@IfcCommunicationsApplianceType>
 	{

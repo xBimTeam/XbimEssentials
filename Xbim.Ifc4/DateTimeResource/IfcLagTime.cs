@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IFCLAGTIME", 728)]
+	[ExpressType("IfcLagTime", 728)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLagTime : IfcSchedulingTime, IInstantiableEntity, IIfcLagTime, IEqualityComparer<@IfcLagTime>, IEquatable<@IfcLagTime>
 	{

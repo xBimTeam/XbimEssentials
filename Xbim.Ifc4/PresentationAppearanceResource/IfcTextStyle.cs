@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCTEXTSTYLE", 1102)]
+	[ExpressType("IfcTextStyle", 1102)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextStyle : IfcPresentationStyle, IInstantiableEntity, IIfcTextStyle, IEqualityComparer<@IfcTextStyle>, IEquatable<@IfcTextStyle>
 	{

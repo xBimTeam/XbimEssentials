@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.PropertyResource
 {
 	[IndexedClass]
-	[ExpressType("IFCPROPERTYDEPENDENCYRELATIONSHIP", 860)]
+	[ExpressType("IfcPropertyDependencyRelationship", 860)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPropertyDependencyRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcPropertyDependencyRelationship, IEqualityComparer<@IfcPropertyDependencyRelationship>, IEquatable<@IfcPropertyDependencyRelationship>
 	{

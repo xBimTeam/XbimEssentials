@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
-	[ExpressType("IFCVIRTUALGRIDINTERSECTION", 589)]
+	[ExpressType("IfcVirtualGridIntersection", 589)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVirtualGridIntersection : INotifyPropertyChanged, IInstantiableEntity, IIfcVirtualGridIntersection, IEqualityComparer<@IfcVirtualGridIntersection>, IEquatable<@IfcVirtualGridIntersection>
 	{

@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
-	[ExpressType("IFCENERGYCONVERSIONDEVICE", 175)]
+	[ExpressType("IfcEnergyConversionDevice", 175)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEnergyConversionDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcEnergyConversionDevice, IEqualityComparer<@IfcEnergyConversionDevice>, IEquatable<@IfcEnergyConversionDevice>
 	{

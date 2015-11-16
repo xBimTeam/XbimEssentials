@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
-	[ExpressType("IFCACTUATORTYPE", 485)]
+	[ExpressType("IfcActuatorType", 485)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcActuatorType : IfcDistributionControlElementType, IInstantiableEntity, IIfcActuatorType, IEqualityComparer<@IfcActuatorType>, IEquatable<@IfcActuatorType>
 	{

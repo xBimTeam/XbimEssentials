@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCSURFACECURVESWEPTAREASOLID", 1062)]
+	[ExpressType("IfcSurfaceCurveSweptAreaSolid", 1062)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceCurveSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcSurfaceCurveSweptAreaSolid, IEqualityComparer<@IfcSurfaceCurveSweptAreaSolid>, IEquatable<@IfcSurfaceCurveSweptAreaSolid>
 	{

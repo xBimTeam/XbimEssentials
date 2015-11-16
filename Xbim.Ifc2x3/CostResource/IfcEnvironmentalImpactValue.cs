@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.CostResource
 {
-	[ExpressType("IFCENVIRONMENTALIMPACTVALUE", 78)]
+	[ExpressType("IfcEnvironmentalImpactValue", 78)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEnvironmentalImpactValue : IfcAppliedValue, IInstantiableEntity, IIfcEnvironmentalImpactValue, IEqualityComparer<@IfcEnvironmentalImpactValue>, IEquatable<@IfcEnvironmentalImpactValue>
 	{

@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCGROUP", 706)]
+	[ExpressType("IfcGroup", 706)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGroup : IfcObject, IInstantiableEntity, IIfcGroup, IEqualityComparer<@IfcGroup>, IEquatable<@IfcGroup>
 	{

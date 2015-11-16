@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
-	[ExpressType("IFCVERTEXLOOP", 244)]
+	[ExpressType("IfcVertexLoop", 244)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVertexLoop : IfcLoop, IInstantiableEntity, IIfcVertexLoop, IEqualityComparer<@IfcVertexLoop>, IEquatable<@IfcVertexLoop>
 	{

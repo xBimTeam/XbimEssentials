@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCRECTANGULARPYRAMID", 896)]
+	[ExpressType("IfcRectangularPyramid", 896)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRectangularPyramid : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRectangularPyramid, IEqualityComparer<@IfcRectangularPyramid>, IEquatable<@IfcRectangularPyramid>
 	{

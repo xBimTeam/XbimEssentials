@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCCOLUMN", 500)]
+	[ExpressType("IfcColumn", 500)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcColumn : IfcBuildingElement, IInstantiableEntity, IIfcColumn, IEqualityComparer<@IfcColumn>, IEquatable<@IfcColumn>
 	{

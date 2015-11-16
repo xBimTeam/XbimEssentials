@@ -16,7 +16,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("FLOOR", 19)]
+	[ExpressType("Floor", 19)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieFloor : CobieAsset, SpatialDivision, IInstantiableEntity, IEqualityComparer<@CobieFloor>, IEquatable<@CobieFloor>
 	{

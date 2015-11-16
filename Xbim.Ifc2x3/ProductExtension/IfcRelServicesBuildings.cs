@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCRELSERVICESBUILDINGS", 600)]
+	[ExpressType("IfcRelServicesBuildings", 600)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelServicesBuildings : IfcRelConnects, IInstantiableEntity, IIfcRelServicesBuildings, IEqualityComparer<@IfcRelServicesBuildings>, IEquatable<@IfcRelServicesBuildings>
 	{

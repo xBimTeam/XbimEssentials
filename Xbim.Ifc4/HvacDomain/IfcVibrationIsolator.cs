@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCVIBRATIONISOLATOR", 1141)]
+	[ExpressType("IfcVibrationIsolator", 1141)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVibrationIsolator : IfcElementComponent, IInstantiableEntity, IIfcVibrationIsolator, IEqualityComparer<@IfcVibrationIsolator>, IEquatable<@IfcVibrationIsolator>
 	{

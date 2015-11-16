@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
-	[ExpressType("IFCELECTRICTIMECONTROLTYPE", 273)]
+	[ExpressType("IfcElectricTimeControlType", 273)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricTimeControlType : IfcFlowControllerType, IInstantiableEntity, IIfcElectricTimeControlType, IEqualityComparer<@IfcElectricTimeControlType>, IEquatable<@IfcElectricTimeControlType>
 	{

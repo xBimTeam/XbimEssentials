@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
-	[ExpressType("IFCGASTERMINALTYPE", 701)]
+	[ExpressType("IfcGasTerminalType", 701)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGasTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcGasTerminalType, IEqualityComparer<@IfcGasTerminalType>, IEquatable<@IfcGasTerminalType>
 	{

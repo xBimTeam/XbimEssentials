@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
-	[ExpressType("IFCPARAMETERIZEDPROFILEDEF", 104)]
+	[ExpressType("IfcParameterizedProfileDef", 104)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcParameterizedProfileDef : IfcProfileDef, IIfcParameterizedProfileDef, IEqualityComparer<@IfcParameterizedProfileDef>, IEquatable<@IfcParameterizedProfileDef>
 	{

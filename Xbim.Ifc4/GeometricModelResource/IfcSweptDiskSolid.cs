@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCSWEPTDISKSOLID", 1075)]
+	[ExpressType("IfcSweptDiskSolid", 1075)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IIfcSweptDiskSolid, IEqualityComparer<@IfcSweptDiskSolid>, IEquatable<@IfcSweptDiskSolid>
 	{

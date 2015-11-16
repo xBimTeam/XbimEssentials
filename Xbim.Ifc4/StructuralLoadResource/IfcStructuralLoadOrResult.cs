@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
-	[ExpressType("IFCSTRUCTURALLOADORRESULT", 1035)]
+	[ExpressType("IfcStructuralLoadOrResult", 1035)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralLoadOrResult : IfcStructuralLoad, IIfcStructuralLoadOrResult, IEqualityComparer<@IfcStructuralLoadOrResult>, IEquatable<@IfcStructuralLoadOrResult>
 	{

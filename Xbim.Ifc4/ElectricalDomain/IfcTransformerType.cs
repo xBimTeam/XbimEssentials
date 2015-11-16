@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCTRANSFORMERTYPE", 1117)]
+	[ExpressType("IfcTransformerType", 1117)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTransformerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcTransformerType, IEqualityComparer<@IfcTransformerType>, IEquatable<@IfcTransformerType>
 	{

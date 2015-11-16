@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCPROTECTIVEDEVICETRIPPINGUNITTYPE", 874)]
+	[ExpressType("IfcProtectiveDeviceTrippingUnitType", 874)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProtectiveDeviceTrippingUnitType : IfcDistributionControlElementType, IInstantiableEntity, IIfcProtectiveDeviceTrippingUnitType, IEqualityComparer<@IfcProtectiveDeviceTrippingUnitType>, IEquatable<@IfcProtectiveDeviceTrippingUnitType>
 	{

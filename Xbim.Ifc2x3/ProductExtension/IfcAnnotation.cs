@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCANNOTATION", 634)]
+	[ExpressType("IfcAnnotation", 634)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAnnotation : IfcProduct, IInstantiableEntity, IIfcAnnotation, IEqualityComparer<@IfcAnnotation>, IEquatable<@IfcAnnotation>
 	{

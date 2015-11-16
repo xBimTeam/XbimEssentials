@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
-	[ExpressType("IFCSTRUCTUREDDIMENSIONCALLOUT", 752)]
+	[ExpressType("IfcStructuredDimensionCallout", 752)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuredDimensionCallout : IfcDraughtingCallout, IInstantiableEntity, IIfcStructuredDimensionCallout, IEqualityComparer<@IfcStructuredDimensionCallout>, IEquatable<@IfcStructuredDimensionCallout>
 	{

@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.Kernel
 {
-	[ExpressType("IFCRELASSIGNSTOCONTROL", 558)]
+	[ExpressType("IfcRelAssignsToControl", 558)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssignsToControl : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToControl, IEqualityComparer<@IfcRelAssignsToControl>, IEquatable<@IfcRelAssignsToControl>
 	{

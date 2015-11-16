@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IFCWORKCALENDAR", 1158)]
+	[ExpressType("IfcWorkCalendar", 1158)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWorkCalendar : IfcControl, IInstantiableEntity, IIfcWorkCalendar, IEqualityComparer<@IfcWorkCalendar>, IEquatable<@IfcWorkCalendar>
 	{

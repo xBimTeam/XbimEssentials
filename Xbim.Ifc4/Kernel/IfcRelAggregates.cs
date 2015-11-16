@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCRELAGGREGATES", 909)]
+	[ExpressType("IfcRelAggregates", 909)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAggregates : IfcRelDecomposes, IInstantiableEntity, IIfcRelAggregates, IEqualityComparer<@IfcRelAggregates>, IEquatable<@IfcRelAggregates>
 	{

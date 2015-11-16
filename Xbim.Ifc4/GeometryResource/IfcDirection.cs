@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCDIRECTION", 571)]
+	[ExpressType("IfcDirection", 571)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDirection, IEqualityComparer<@IfcDirection>, IEquatable<@IfcDirection>
 	{

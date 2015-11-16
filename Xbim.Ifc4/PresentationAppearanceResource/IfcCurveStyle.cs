@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCCURVESTYLE", 560)]
+	[ExpressType("IfcCurveStyle", 560)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCurveStyle : IfcPresentationStyle, IInstantiableEntity, IIfcCurveStyle, IEqualityComparer<@IfcCurveStyle>, IEquatable<@IfcCurveStyle>
 	{

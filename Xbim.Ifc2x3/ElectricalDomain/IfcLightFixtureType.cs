@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
-	[ExpressType("IFCLIGHTFIXTURETYPE", 517)]
+	[ExpressType("IfcLightFixtureType", 517)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLightFixtureType : IfcFlowTerminalType, IInstantiableEntity, IIfcLightFixtureType, IEqualityComparer<@IfcLightFixtureType>, IEquatable<@IfcLightFixtureType>
 	{

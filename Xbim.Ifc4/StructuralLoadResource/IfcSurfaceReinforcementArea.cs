@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
-	[ExpressType("IFCSURFACEREINFORCEMENTAREA", 1066)]
+	[ExpressType("IfcSurfaceReinforcementArea", 1066)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceReinforcementArea : IfcStructuralLoadOrResult, IInstantiableEntity, IIfcSurfaceReinforcementArea, IEqualityComparer<@IfcSurfaceReinforcementArea>, IEquatable<@IfcSurfaceReinforcementArea>
 	{

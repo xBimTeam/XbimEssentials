@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
-	[ExpressType("IFCSLABTYPE", 381)]
+	[ExpressType("IfcSlabType", 381)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSlabType : IfcBuildingElementType, IInstantiableEntity, IIfcSlabType, IEqualityComparer<@IfcSlabType>, IEquatable<@IfcSlabType>
 	{

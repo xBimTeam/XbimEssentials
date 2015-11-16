@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCPATH", 800)]
+	[ExpressType("IfcPath", 800)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPath : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcPath, IEqualityComparer<@IfcPath>, IEquatable<@IfcPath>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.RepresentationResource
 {
-	[ExpressType("IFCMATERIALDEFINITIONREPRESENTATION", 2)]
+	[ExpressType("IfcMaterialDefinitionRepresentation", 2)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialDefinitionRepresentation : IfcProductRepresentation, IInstantiableEntity, IIfcMaterialDefinitionRepresentation, IEqualityComparer<@IfcMaterialDefinitionRepresentation>, IEquatable<@IfcMaterialDefinitionRepresentation>
 	{

@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCPOINTONCURVE", 654)]
+	[ExpressType("IfcPointOnCurve", 654)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPointOnCurve : IfcPoint, IInstantiableEntity, IIfcPointOnCurve, IEqualityComparer<@IfcPointOnCurve>, IEquatable<@IfcPointOnCurve>
 	{

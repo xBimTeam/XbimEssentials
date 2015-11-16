@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IFCWORKPLAN", 1160)]
+	[ExpressType("IfcWorkPlan", 1160)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWorkPlan : IfcWorkControl, IInstantiableEntity, IIfcWorkPlan, IEqualityComparer<@IfcWorkPlan>, IEquatable<@IfcWorkPlan>
 	{

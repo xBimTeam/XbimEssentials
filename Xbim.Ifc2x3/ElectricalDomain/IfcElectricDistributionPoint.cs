@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
-	[ExpressType("IFCELECTRICDISTRIBUTIONPOINT", 242)]
+	[ExpressType("IfcElectricDistributionPoint", 242)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricDistributionPoint : IfcFlowController, IInstantiableEntity, IIfcElectricDistributionPoint, IEqualityComparer<@IfcElectricDistributionPoint>, IEquatable<@IfcElectricDistributionPoint>
 	{

@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCDISTRIBUTIONELEMENTTYPE", 580)]
+	[ExpressType("IfcDistributionElementType", 580)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDistributionElementType : IfcElementType, IInstantiableEntity, IIfcDistributionElementType, IEqualityComparer<@IfcDistributionElementType>, IEquatable<@IfcDistributionElementType>
 	{

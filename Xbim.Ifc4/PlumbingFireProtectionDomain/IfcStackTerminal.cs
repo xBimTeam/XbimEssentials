@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
-	[ExpressType("IFCSTACKTERMINAL", 1012)]
+	[ExpressType("IfcStackTerminal", 1012)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStackTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcStackTerminal, IEqualityComparer<@IfcStackTerminal>, IEquatable<@IfcStackTerminal>
 	{

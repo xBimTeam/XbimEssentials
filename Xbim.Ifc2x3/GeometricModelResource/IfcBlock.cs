@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
-	[ExpressType("IFCBLOCK", 702)]
+	[ExpressType("IfcBlock", 702)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBlock : IfcCsgPrimitive3D, IInstantiableEntity, IIfcBlock, IEqualityComparer<@IfcBlock>, IEquatable<@IfcBlock>
 	{

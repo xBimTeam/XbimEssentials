@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.ActorResource
 {
 	[IndexedClass]
-	[ExpressType("IFCACTORROLE", 595)]
+	[ExpressType("IfcActorRole", 595)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcActorRole : INotifyPropertyChanged, IInstantiableEntity, IIfcActorRole, IEqualityComparer<@IfcActorRole>, IEquatable<@IfcActorRole>
 	{

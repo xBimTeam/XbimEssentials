@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCENGINE", 629)]
+	[ExpressType("IfcEngine", 629)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEngine : IfcEnergyConversionDevice, IInstantiableEntity, IIfcEngine, IEqualityComparer<@IfcEngine>, IEquatable<@IfcEngine>
 	{

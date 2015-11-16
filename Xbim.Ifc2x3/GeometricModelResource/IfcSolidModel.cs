@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[IndexedClass]
-	[ExpressType("IFCSOLIDMODEL", 150)]
+	[ExpressType("IfcSolidModel", 150)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcSolidModel : IfcGeometricRepresentationItem, IIfcSolidModel, IEqualityComparer<@IfcSolidModel>, IEquatable<@IfcSolidModel>
 	{

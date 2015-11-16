@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
-	[ExpressType("IFCPLANAREXTENT", 469)]
+	[ExpressType("IfcPlanarExtent", 469)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPlanarExtent : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcPlanarExtent, IEqualityComparer<@IfcPlanarExtent>, IEquatable<@IfcPlanarExtent>
 	{

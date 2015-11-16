@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
-	[ExpressType("IFCARBITRARYPROFILEDEFWITHVOIDS", 116)]
+	[ExpressType("IfcArbitraryProfileDefWithVoids", 116)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IIfcArbitraryProfileDefWithVoids, IEqualityComparer<@IfcArbitraryProfileDefWithVoids>, IEquatable<@IfcArbitraryProfileDefWithVoids>
 	{

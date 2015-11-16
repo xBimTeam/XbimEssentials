@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
-	[ExpressType("IFCCHAMFEREDGEFEATURE", 765)]
+	[ExpressType("IfcChamferEdgeFeature", 765)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcChamferEdgeFeature : IfcEdgeFeature, IInstantiableEntity, IIfcChamferEdgeFeature, IEqualityComparer<@IfcChamferEdgeFeature>, IEquatable<@IfcChamferEdgeFeature>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCFILTERTYPE", 668)]
+	[ExpressType("IfcFilterType", 668)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFilterType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IIfcFilterType, IEqualityComparer<@IfcFilterType>, IEquatable<@IfcFilterType>
 	{

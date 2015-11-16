@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
-	[ExpressType("IFCSIUNIT", 164)]
+	[ExpressType("IfcSIUnit", 164)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSIUnit : IfcNamedUnit, IInstantiableEntity, IIfcSIUnit, IEqualityComparer<@IfcSIUnit>, IEquatable<@IfcSIUnit>
 	{

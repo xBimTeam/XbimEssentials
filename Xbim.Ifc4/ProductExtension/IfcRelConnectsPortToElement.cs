@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCRELCONNECTSPORTTOELEMENT", 928)]
+	[ExpressType("IfcRelConnectsPortToElement", 928)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelConnectsPortToElement : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsPortToElement, IEqualityComparer<@IfcRelConnectsPortToElement>, IEquatable<@IfcRelConnectsPortToElement>
 	{

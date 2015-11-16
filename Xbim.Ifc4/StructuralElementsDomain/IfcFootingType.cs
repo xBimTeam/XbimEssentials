@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IFCFOOTINGTYPE", 691)]
+	[ExpressType("IfcFootingType", 691)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFootingType : IfcBuildingElementType, IInstantiableEntity, IIfcFootingType, IEqualityComparer<@IfcFootingType>, IEquatable<@IfcFootingType>
 	{

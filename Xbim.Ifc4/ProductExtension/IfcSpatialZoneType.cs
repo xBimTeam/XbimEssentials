@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCSPATIALZONETYPE", 1010)]
+	[ExpressType("IfcSpatialZoneType", 1010)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSpatialZoneType : IfcSpatialElementType, IInstantiableEntity, IIfcSpatialZoneType, IEqualityComparer<@IfcSpatialZoneType>, IEquatable<@IfcSpatialZoneType>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
-	[ExpressType("IFCIMAGETEXTURE", 727)]
+	[ExpressType("IfcImageTexture", 727)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcImageTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcImageTexture, IEqualityComparer<@IfcImageTexture>, IEquatable<@IfcImageTexture>
 	{

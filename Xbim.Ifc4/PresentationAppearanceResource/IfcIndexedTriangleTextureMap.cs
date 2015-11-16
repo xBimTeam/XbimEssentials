@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCINDEXEDTRIANGLETEXTUREMAP", 717)]
+	[ExpressType("IfcIndexedTriangleTextureMap", 717)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcIndexedTriangleTextureMap : IfcIndexedTextureMap, IInstantiableEntity, IIfcIndexedTriangleTextureMap, IEqualityComparer<@IfcIndexedTriangleTextureMap>, IEquatable<@IfcIndexedTriangleTextureMap>
 	{

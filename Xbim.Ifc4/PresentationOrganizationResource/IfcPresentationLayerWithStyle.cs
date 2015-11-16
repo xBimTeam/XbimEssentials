@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
-	[ExpressType("IFCPRESENTATIONLAYERWITHSTYLE", 840)]
+	[ExpressType("IfcPresentationLayerWithStyle", 840)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IIfcPresentationLayerWithStyle, IEqualityComparer<@IfcPresentationLayerWithStyle>, IEquatable<@IfcPresentationLayerWithStyle>
 	{

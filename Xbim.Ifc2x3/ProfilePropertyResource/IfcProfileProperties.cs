@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
-	[ExpressType("IFCPROFILEPROPERTIES", 649)]
+	[ExpressType("IfcProfileProperties", 649)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcProfileProperties : IPersistEntity, INotifyPropertyChanged, IIfcProfileProperties, IEqualityComparer<@IfcProfileProperties>, IEquatable<@IfcProfileProperties>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
-	[ExpressType("IFCSPACEHEATERTYPE", 59)]
+	[ExpressType("IfcSpaceHeaterType", 59)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSpaceHeaterType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcSpaceHeaterType, IEqualityComparer<@IfcSpaceHeaterType>, IEquatable<@IfcSpaceHeaterType>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCSURFACEOFREVOLUTION", 109)]
+	[ExpressType("IfcSurfaceOfRevolution", 109)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceOfRevolution : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfRevolution, IEqualityComparer<@IfcSurfaceOfRevolution>, IEquatable<@IfcSurfaceOfRevolution>
 	{

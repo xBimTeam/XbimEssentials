@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCEDGELOOP", 604)]
+	[ExpressType("IfcEdgeLoop", 604)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEdgeLoop : IfcLoop, IInstantiableEntity, IIfcEdgeLoop, IEqualityComparer<@IfcEdgeLoop>, IEquatable<@IfcEdgeLoop>
 	{

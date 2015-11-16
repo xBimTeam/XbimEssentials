@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCRELASSIGNSTOGROUP", 913)]
+	[ExpressType("IfcRelAssignsToGroup", 913)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssignsToGroup : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToGroup, IEqualityComparer<@IfcRelAssignsToGroup>, IEquatable<@IfcRelAssignsToGroup>
 	{

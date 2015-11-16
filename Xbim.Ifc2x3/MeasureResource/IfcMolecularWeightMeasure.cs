@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
-	[ExpressType("IFCMOLECULARWEIGHTMEASURE", 397)]
+	[ExpressType("IfcMolecularWeightMeasure", 397)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcMolecularWeightMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcMolecularWeightMeasure(double val)
         {

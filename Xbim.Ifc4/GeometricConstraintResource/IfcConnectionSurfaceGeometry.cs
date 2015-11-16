@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[IndexedClass]
-	[ExpressType("IFCCONNECTIONSURFACEGEOMETRY", 521)]
+	[ExpressType("IfcConnectionSurfaceGeometry", 521)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConnectionSurfaceGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionSurfaceGeometry, IEqualityComparer<@IfcConnectionSurfaceGeometry>, IEquatable<@IfcConnectionSurfaceGeometry>
 	{

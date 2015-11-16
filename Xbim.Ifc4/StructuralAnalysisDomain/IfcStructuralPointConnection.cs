@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALPOINTCONNECTION", 1046)]
+	[ExpressType("IfcStructuralPointConnection", 1046)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralPointConnection : IfcStructuralConnection, IInstantiableEntity, IIfcStructuralPointConnection, IEqualityComparer<@IfcStructuralPointConnection>, IEquatable<@IfcStructuralPointConnection>
 	{

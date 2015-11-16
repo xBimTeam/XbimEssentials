@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCELLIPSEPROFILEDEF", 626)]
+	[ExpressType("IfcEllipseProfileDef", 626)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEllipseProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcEllipseProfileDef, IEqualityComparer<@IfcEllipseProfileDef>, IEquatable<@IfcEllipseProfileDef>
 	{

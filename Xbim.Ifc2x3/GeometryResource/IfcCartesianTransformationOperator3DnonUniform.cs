@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCCARTESIANTRANSFORMATIONOPERATOR3DNONUNIFORM", 479)]
+	[ExpressType("IfcCartesianTransformationOperator3DnonUniform", 479)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D, IInstantiableEntity, IIfcCartesianTransformationOperator3DnonUniform, IEqualityComparer<@IfcCartesianTransformationOperator3DnonUniform>, IEquatable<@IfcCartesianTransformationOperator3DnonUniform>
 	{

@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCPROJECTEDCRS", 854)]
+	[ExpressType("IfcProjectedCRS", 854)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProjectedCRS : IfcCoordinateReferenceSystem, IInstantiableEntity, IIfcProjectedCRS, IEqualityComparer<@IfcProjectedCRS>, IEquatable<@IfcProjectedCRS>
 	{

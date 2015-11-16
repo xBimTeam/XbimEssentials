@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[IndexedClass]
-	[ExpressType("IFCPRESENTATIONLAYERASSIGNMENT", 839)]
+	[ExpressType("IfcPresentationLayerAssignment", 839)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPresentationLayerAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationLayerAssignment, IEqualityComparer<@IfcPresentationLayerAssignment>, IEquatable<@IfcPresentationLayerAssignment>
 	{

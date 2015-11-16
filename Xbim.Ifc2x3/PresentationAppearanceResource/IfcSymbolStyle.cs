@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
-	[ExpressType("IFCSYMBOLSTYLE", 729)]
+	[ExpressType("IfcSymbolStyle", 729)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSymbolStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSymbolStyle, IEqualityComparer<@IfcSymbolStyle>, IEquatable<@IfcSymbolStyle>
 	{

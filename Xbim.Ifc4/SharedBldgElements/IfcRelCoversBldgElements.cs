@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCRELCOVERSBLDGELEMENTS", 935)]
+	[ExpressType("IfcRelCoversBldgElements", 935)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelCoversBldgElements : IfcRelConnects, IInstantiableEntity, IIfcRelCoversBldgElements, IEqualityComparer<@IfcRelCoversBldgElements>, IEquatable<@IfcRelCoversBldgElements>
 	{

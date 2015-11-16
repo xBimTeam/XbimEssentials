@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
-	[ExpressType("IFCDISTRIBUTIONPORT", 583)]
+	[ExpressType("IfcDistributionPort", 583)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDistributionPort : IfcPort, IInstantiableEntity, IIfcDistributionPort, IEqualityComparer<@IfcDistributionPort>, IEquatable<@IfcDistributionPort>
 	{

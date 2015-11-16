@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
-	[ExpressType("IFCDAYLIGHTSAVINGHOUR", 624)]
+	[ExpressType("IfcDaylightSavingHour", 624)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcDaylightSavingHour : IExpressValueType, System.IEquatable<long>
 	{ 

@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
-	[ExpressType("IFCEXTERNALLYDEFINEDSYMBOL", 391)]
+	[ExpressType("IfcExternallyDefinedSymbol", 391)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcExternallyDefinedSymbol : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedSymbol, IEqualityComparer<@IfcExternallyDefinedSymbol>, IEquatable<@IfcExternallyDefinedSymbol>
 	{

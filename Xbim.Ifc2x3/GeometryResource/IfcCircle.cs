@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCCIRCLE", 336)]
+	[ExpressType("IfcCircle", 336)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCircle : IfcConic, IInstantiableEntity, IIfcCircle, IEqualityComparer<@IfcCircle>, IEquatable<@IfcCircle>
 	{

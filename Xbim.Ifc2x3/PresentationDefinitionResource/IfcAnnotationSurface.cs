@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
-	[ExpressType("IFCANNOTATIONSURFACE", 731)]
+	[ExpressType("IfcAnnotationSurface", 731)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAnnotationSurface : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationSurface, IEqualityComparer<@IfcAnnotationSurface>, IEquatable<@IfcAnnotationSurface>
 	{

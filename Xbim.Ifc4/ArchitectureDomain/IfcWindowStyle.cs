@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ArchitectureDomain
 {
-	[ExpressType("IFCWINDOWSTYLE", 1156)]
+	[ExpressType("IfcWindowStyle", 1156)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWindowStyle : IfcTypeProduct, IInstantiableEntity, IIfcWindowStyle, IEqualityComparer<@IfcWindowStyle>, IEquatable<@IfcWindowStyle>
 	{

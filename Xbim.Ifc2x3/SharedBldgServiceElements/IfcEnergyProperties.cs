@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
-	[ExpressType("IFCENERGYPROPERTIES", 176)]
+	[ExpressType("IfcEnergyProperties", 176)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEnergyProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcEnergyProperties, IEqualityComparer<@IfcEnergyProperties>, IEquatable<@IfcEnergyProperties>
 	{

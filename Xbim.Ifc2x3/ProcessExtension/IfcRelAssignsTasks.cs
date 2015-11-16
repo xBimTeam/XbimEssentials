@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
-	[ExpressType("IFCRELASSIGNSTASKS", 618)]
+	[ExpressType("IfcRelAssignsTasks", 618)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssignsTasks : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsTasks, IEqualityComparer<@IfcRelAssignsTasks>, IEquatable<@IfcRelAssignsTasks>
 	{

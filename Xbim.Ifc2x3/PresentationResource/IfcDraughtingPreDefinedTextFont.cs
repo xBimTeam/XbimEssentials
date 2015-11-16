@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
-	[ExpressType("IFCDRAUGHTINGPREDEFINEDTEXTFONT", 761)]
+	[ExpressType("IfcDraughtingPreDefinedTextFont", 761)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDraughtingPreDefinedTextFont : IfcPreDefinedTextFont, IInstantiableEntity, IIfcDraughtingPreDefinedTextFont, IEqualityComparer<@IfcDraughtingPreDefinedTextFont>, IEquatable<@IfcDraughtingPreDefinedTextFont>
 	{

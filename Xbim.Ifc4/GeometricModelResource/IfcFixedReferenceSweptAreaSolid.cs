@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCFIXEDREFERENCESWEPTAREASOLID", 671)]
+	[ExpressType("IfcFixedReferenceSweptAreaSolid", 671)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFixedReferenceSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcFixedReferenceSweptAreaSolid, IEqualityComparer<@IfcFixedReferenceSweptAreaSolid>, IEquatable<@IfcFixedReferenceSweptAreaSolid>
 	{

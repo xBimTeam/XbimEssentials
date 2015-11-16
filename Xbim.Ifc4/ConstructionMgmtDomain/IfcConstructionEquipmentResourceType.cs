@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
-	[ExpressType("IFCCONSTRUCTIONEQUIPMENTRESOURCETYPE", 525)]
+	[ExpressType("IfcConstructionEquipmentResourceType", 525)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConstructionEquipmentResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcConstructionEquipmentResourceType, IEqualityComparer<@IfcConstructionEquipmentResourceType>, IEquatable<@IfcConstructionEquipmentResourceType>
 	{

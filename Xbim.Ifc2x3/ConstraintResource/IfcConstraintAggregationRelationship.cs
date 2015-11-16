@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[IndexedClass]
-	[ExpressType("IFCCONSTRAINTAGGREGATIONRELATIONSHIP", 82)]
+	[ExpressType("IfcConstraintAggregationRelationship", 82)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConstraintAggregationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintAggregationRelationship, IEqualityComparer<@IfcConstraintAggregationRelationship>, IEquatable<@IfcConstraintAggregationRelationship>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCPROPERTYSET", 865)]
+	[ExpressType("IfcPropertySet", 865)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPropertySet : IfcPropertySetDefinition, IInstantiableEntity, IIfcPropertySet, IEqualityComparer<@IfcPropertySet>, IEquatable<@IfcPropertySet>
 	{

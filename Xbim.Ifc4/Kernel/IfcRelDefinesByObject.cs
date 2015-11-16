@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCRELDEFINESBYOBJECT", 940)]
+	[ExpressType("IfcRelDefinesByObject", 940)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelDefinesByObject : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByObject, IEqualityComparer<@IfcRelDefinesByObject>, IEquatable<@IfcRelDefinesByObject>
 	{

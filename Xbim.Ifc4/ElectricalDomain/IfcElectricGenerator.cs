@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCELECTRICGENERATOR", 611)]
+	[ExpressType("IfcElectricGenerator", 611)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricGenerator : IfcEnergyConversionDevice, IInstantiableEntity, IIfcElectricGenerator, IEqualityComparer<@IfcElectricGenerator>, IEquatable<@IfcElectricGenerator>
 	{

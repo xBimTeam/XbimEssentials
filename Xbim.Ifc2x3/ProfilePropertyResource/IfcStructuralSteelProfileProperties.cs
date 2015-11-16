@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
-	[ExpressType("IFCSTRUCTURALSTEELPROFILEPROPERTIES", 692)]
+	[ExpressType("IfcStructuralSteelProfileProperties", 692)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralSteelProfileProperties : IfcStructuralProfileProperties, IInstantiableEntity, IIfcStructuralSteelProfileProperties, IEqualityComparer<@IfcStructuralSteelProfileProperties>, IEquatable<@IfcStructuralSteelProfileProperties>
 	{

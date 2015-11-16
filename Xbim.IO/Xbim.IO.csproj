@@ -128,6 +128,7 @@
     <Compile Include="Esent\PersistedEntityInstanceCache.cs" />
     <Compile Include="Xml\BsConf\cnf.custom.cs" />
     <Compile Include="Xml\BsConf\cnf.designer.cs" />
+    <Compile Include="Xml\BsConf\XmlMetaProperty.cs" />
     <Compile Include="Xml\IfcXmlReader.cs" />
     <Compile Include="Xml\XbimXmlSettings.cs" />
     <Compile Include="Xml\XbimXmlWriter4.cs" />

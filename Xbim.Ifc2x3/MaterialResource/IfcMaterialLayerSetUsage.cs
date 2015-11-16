@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	[IndexedClass]
-	[ExpressType("IFCMATERIALLAYERSETUSAGE", 165)]
+	[ExpressType("IfcMaterialLayerSetUsage", 165)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialLayerSetUsage : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialLayerSetUsage, IEqualityComparer<@IfcMaterialLayerSetUsage>, IEquatable<@IfcMaterialLayerSetUsage>
 	{

@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCTHERMODYNAMICTEMPERATUREMEASURE", 120)]
+	[ExpressType("IfcThermodynamicTemperatureMeasure", 120)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcThermodynamicTemperatureMeasure : IfcMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcThermodynamicTemperatureMeasure(double val)
         {

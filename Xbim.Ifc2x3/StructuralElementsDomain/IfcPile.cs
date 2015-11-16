@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
-	[ExpressType("IFCPILE", 572)]
+	[ExpressType("IfcPile", 572)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPile : IfcBuildingElement, IInstantiableEntity, IIfcPile, IEqualityComparer<@IfcPile>, IEquatable<@IfcPile>
 	{

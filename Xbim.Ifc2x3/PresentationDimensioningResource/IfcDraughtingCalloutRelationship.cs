@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
-	[ExpressType("IFCDRAUGHTINGCALLOUTRELATIONSHIP", 740)]
+	[ExpressType("IfcDraughtingCalloutRelationship", 740)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDraughtingCalloutRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcDraughtingCalloutRelationship, IEqualityComparer<@IfcDraughtingCalloutRelationship>, IEquatable<@IfcDraughtingCalloutRelationship>
 	{

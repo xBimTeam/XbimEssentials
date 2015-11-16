@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCINDEXEDCOLOURMAP", 714)]
+	[ExpressType("IfcIndexedColourMap", 714)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcIndexedColourMap : IfcPresentationItem, IInstantiableEntity, IIfcIndexedColourMap, IEqualityComparer<@IfcIndexedColourMap>, IEquatable<@IfcIndexedColourMap>
 	{

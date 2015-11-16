@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
-	[ExpressType("IFCMOVE", 74)]
+	[ExpressType("IfcMove", 74)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMove : IfcTask, IInstantiableEntity, IIfcMove, IEqualityComparer<@IfcMove>, IEquatable<@IfcMove>
 	{

@@ -43,7 +43,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedFacilitiesElements
 {
-	[ExpressType("IFCASSET", 423)]
+	[ExpressType("IfcAsset", 423)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IIfcAsset, IEqualityComparer<@IfcAsset>, IEquatable<@IfcAsset>
 	{

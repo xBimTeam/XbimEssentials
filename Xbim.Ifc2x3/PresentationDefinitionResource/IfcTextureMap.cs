@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
-	[ExpressType("IFCTEXTUREMAP", 734)]
+	[ExpressType("IfcTextureMap", 734)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureMap, IEqualityComparer<@IfcTextureMap>, IEquatable<@IfcTextureMap>
 	{

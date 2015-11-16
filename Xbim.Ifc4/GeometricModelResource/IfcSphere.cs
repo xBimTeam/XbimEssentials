@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCSPHERE", 1011)]
+	[ExpressType("IfcSphere", 1011)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSphere : IfcCsgPrimitive3D, IInstantiableEntity, IIfcSphere, IEqualityComparer<@IfcSphere>, IEquatable<@IfcSphere>
 	{

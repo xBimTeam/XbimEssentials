@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.UtilityResource
 {
 	[IndexedClass]
-	[ExpressType("IFCOWNERHISTORY", 798)]
+	[ExpressType("IfcOwnerHistory", 798)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOwnerHistory : INotifyPropertyChanged, IInstantiableEntity, IIfcOwnerHistory, IEqualityComparer<@IfcOwnerHistory>, IEquatable<@IfcOwnerHistory>
 	{

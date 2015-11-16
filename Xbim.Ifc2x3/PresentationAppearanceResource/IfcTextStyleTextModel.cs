@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[IndexedClass]
-	[ExpressType("IFCTEXTSTYLETEXTMODEL", 581)]
+	[ExpressType("IfcTextStyleTextModel", 581)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextStyleTextModel : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleTextModel, IEqualityComparer<@IfcTextStyleTextModel>, IEquatable<@IfcTextStyleTextModel>
 	{

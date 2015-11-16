@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.TimeSeriesResource
 {
-	[ExpressType("IFCTIMESERIESREFERENCERELATIONSHIP", 673)]
+	[ExpressType("IfcTimeSeriesReferenceRelationship", 673)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTimeSeriesReferenceRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcTimeSeriesReferenceRelationship, IEqualityComparer<@IfcTimeSeriesReferenceRelationship>, IEquatable<@IfcTimeSeriesReferenceRelationship>
 	{

@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ArchitectureDomain
 {
-	[ExpressType("IFCPERMEABLECOVERINGPROPERTIES", 803)]
+	[ExpressType("IfcPermeableCoveringProperties", 803)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPermeableCoveringProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcPermeableCoveringProperties, IEqualityComparer<@IfcPermeableCoveringProperties>, IEquatable<@IfcPermeableCoveringProperties>
 	{

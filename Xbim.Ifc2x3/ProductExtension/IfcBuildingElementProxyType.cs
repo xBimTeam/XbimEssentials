@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCBUILDINGELEMENTPROXYTYPE", 107)]
+	[ExpressType("IfcBuildingElementProxyType", 107)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBuildingElementProxyType : IfcBuildingElementType, IInstantiableEntity, IIfcBuildingElementProxyType, IEqualityComparer<@IfcBuildingElementProxyType>, IEquatable<@IfcBuildingElementProxyType>
 	{

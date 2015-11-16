@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationDefinitionResource
 {
-	[ExpressType("IFCTEXTLITERALWITHEXTENT", 1101)]
+	[ExpressType("IfcTextLiteralWithExtent", 1101)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextLiteralWithExtent : IfcTextLiteral, IInstantiableEntity, IIfcTextLiteralWithExtent, IEqualityComparer<@IfcTextLiteralWithExtent>, IEquatable<@IfcTextLiteralWithExtent>
 	{

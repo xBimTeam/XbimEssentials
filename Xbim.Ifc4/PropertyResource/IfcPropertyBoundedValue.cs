@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PropertyResource
 {
-	[ExpressType("IFCPROPERTYBOUNDEDVALUE", 858)]
+	[ExpressType("IfcPropertyBoundedValue", 858)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPropertyBoundedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyBoundedValue, IEqualityComparer<@IfcPropertyBoundedValue>, IEquatable<@IfcPropertyBoundedValue>
 	{

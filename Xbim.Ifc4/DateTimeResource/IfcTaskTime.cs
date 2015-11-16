@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IFCTASKTIME", 1090)]
+	[ExpressType("IfcTaskTime", 1090)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTaskTime : IfcSchedulingTime, IInstantiableEntity, IIfcTaskTime, IEqualityComparer<@IfcTaskTime>, IEquatable<@IfcTaskTime>
 	{

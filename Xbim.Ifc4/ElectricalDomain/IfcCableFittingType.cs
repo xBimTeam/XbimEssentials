@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCCABLEFITTINGTYPE", 470)]
+	[ExpressType("IfcCableFittingType", 470)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCableFittingType : IfcFlowFittingType, IInstantiableEntity, IIfcCableFittingType, IEqualityComparer<@IfcCableFittingType>, IEquatable<@IfcCableFittingType>
 	{

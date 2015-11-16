@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ControlExtension
 {
-	[ExpressType("IFCRELASSOCIATESCONSTRAINT", 711)]
+	[ExpressType("IfcRelAssociatesConstraint", 711)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssociatesConstraint : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesConstraint, IEqualityComparer<@IfcRelAssociatesConstraint>, IEquatable<@IfcRelAssociatesConstraint>
 	{

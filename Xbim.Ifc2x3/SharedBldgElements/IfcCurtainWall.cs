@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
-	[ExpressType("IFCCURTAINWALL", 456)]
+	[ExpressType("IfcCurtainWall", 456)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCurtainWall : IfcBuildingElement, IInstantiableEntity, IIfcCurtainWall, IEqualityComparer<@IfcCurtainWall>, IEquatable<@IfcCurtainWall>
 	{

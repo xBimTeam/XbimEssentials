@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
-	[ExpressType("IFCOPTICALMATERIALPROPERTIES", 718)]
+	[ExpressType("IfcOpticalMaterialProperties", 718)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOpticalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcOpticalMaterialProperties, IEqualityComparer<@IfcOpticalMaterialProperties>, IEquatable<@IfcOpticalMaterialProperties>
 	{

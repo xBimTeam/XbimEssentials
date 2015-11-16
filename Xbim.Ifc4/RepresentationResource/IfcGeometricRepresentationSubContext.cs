@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCGEOMETRICREPRESENTATIONSUBCONTEXT", 701)]
+	[ExpressType("IfcGeometricRepresentationSubContext", 701)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationSubContext, IEqualityComparer<@IfcGeometricRepresentationSubContext>, IEquatable<@IfcGeometricRepresentationSubContext>
 	{

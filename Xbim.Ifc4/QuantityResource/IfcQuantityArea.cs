@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.QuantityResource
 {
-	[ExpressType("IFCQUANTITYAREA", 879)]
+	[ExpressType("IfcQuantityArea", 879)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcQuantityArea : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityArea, IEqualityComparer<@IfcQuantityArea>, IEquatable<@IfcQuantityArea>
 	{

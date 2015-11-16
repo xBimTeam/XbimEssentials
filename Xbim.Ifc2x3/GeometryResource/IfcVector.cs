@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCVECTOR", 652)]
+	[ExpressType("IfcVector", 652)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVector : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcVector, IEqualityComparer<@IfcVector>, IEquatable<@IfcVector>
 	{

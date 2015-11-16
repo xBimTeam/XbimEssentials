@@ -44,7 +44,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.ApprovalResource
 {
 	[IndexedClass]
-	[ExpressType("IFCAPPROVAL", 626)]
+	[ExpressType("IfcApproval", 626)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcApproval : INotifyPropertyChanged, IInstantiableEntity, IIfcApproval, IEqualityComparer<@IfcApproval>, IEquatable<@IfcApproval>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
-	[ExpressType("IFCROUNDEDEDGEFEATURE", 766)]
+	[ExpressType("IfcRoundedEdgeFeature", 766)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRoundedEdgeFeature : IfcEdgeFeature, IInstantiableEntity, IIfcRoundedEdgeFeature, IEqualityComparer<@IfcRoundedEdgeFeature>, IEquatable<@IfcRoundedEdgeFeature>
 	{

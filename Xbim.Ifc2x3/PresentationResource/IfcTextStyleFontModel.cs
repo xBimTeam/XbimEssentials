@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	[IndexedClass]
-	[ExpressType("IFCTEXTSTYLEFONTMODEL", 503)]
+	[ExpressType("IfcTextStyleFontModel", 503)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextStyleFontModel : IfcPreDefinedTextFont, IInstantiableEntity, IIfcTextStyleFontModel, IEqualityComparer<@IfcTextStyleFontModel>, IEquatable<@IfcTextStyleFontModel>
 	{

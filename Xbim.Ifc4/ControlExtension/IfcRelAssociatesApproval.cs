@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ControlExtension
 {
-	[ExpressType("IFCRELASSOCIATESAPPROVAL", 919)]
+	[ExpressType("IfcRelAssociatesApproval", 919)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssociatesApproval : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesApproval, IEqualityComparer<@IfcRelAssociatesApproval>, IEquatable<@IfcRelAssociatesApproval>
 	{

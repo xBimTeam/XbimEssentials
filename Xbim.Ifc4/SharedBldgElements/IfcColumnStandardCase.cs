@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCCOLUMNSTANDARDCASE", 501)]
+	[ExpressType("IfcColumnStandardCase", 501)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcColumnStandardCase : IfcColumn, IInstantiableEntity, IIfcColumnStandardCase, IEqualityComparer<@IfcColumnStandardCase>, IEquatable<@IfcColumnStandardCase>
 	{

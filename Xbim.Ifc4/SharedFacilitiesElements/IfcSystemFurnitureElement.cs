@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedFacilitiesElements
 {
-	[ExpressType("IFCSYSTEMFURNITUREELEMENT", 1081)]
+	[ExpressType("IfcSystemFurnitureElement", 1081)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSystemFurnitureElement : IfcFurnishingElement, IInstantiableEntity, IIfcSystemFurnitureElement, IEqualityComparer<@IfcSystemFurnitureElement>, IEquatable<@IfcSystemFurnitureElement>
 	{

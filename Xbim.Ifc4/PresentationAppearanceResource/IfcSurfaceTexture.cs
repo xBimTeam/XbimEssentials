@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCSURFACETEXTURE", 1073)]
+	[ExpressType("IfcSurfaceTexture", 1073)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcSurfaceTexture : IfcPresentationItem, IIfcSurfaceTexture, IEqualityComparer<@IfcSurfaceTexture>, IEquatable<@IfcSurfaceTexture>
 	{

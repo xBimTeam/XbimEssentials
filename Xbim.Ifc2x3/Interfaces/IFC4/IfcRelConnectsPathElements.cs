@@ -10,7 +10,6 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using Xbim.Ifc4.MeasureResource;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgElements
@@ -21,19 +20,19 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get
 			{
-			    //## Handle return of RelatingPriorities for which no match was found
-			    return RelatingPriorities.Select(priority => (IfcInteger) priority);
+				//## Handle return of RelatingPriorities for which no match was found
+			    return RelatingPriorities.Select(priority => (Xbim.Ifc4.MeasureResource.IfcInteger) priority);
 			    //##
-			}
+			} 
 		}
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcInteger> IIfcRelConnectsPathElements.RelatedPriorities 
 		{ 
 			get
 			{
-			    //## Handle return of RelatedPriorities for which no match was found
-			    return RelatedPriorities.Select(priority => (IfcInteger) priority);
+				//## Handle return of RelatedPriorities for which no match was found
+			    return RelatedPriorities.Select(priority => (Xbim.Ifc4.MeasureResource.IfcInteger) priority);
 			    //##
-			}
+			} 
 		}
 		Ifc4.SharedBldgElements.IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType 
 		{ 

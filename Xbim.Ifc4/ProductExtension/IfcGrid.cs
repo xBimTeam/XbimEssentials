@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCGRID", 703)]
+	[ExpressType("IfcGrid", 703)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IIfcGrid, IEqualityComparer<@IfcGrid>, IEquatable<@IfcGrid>
 	{

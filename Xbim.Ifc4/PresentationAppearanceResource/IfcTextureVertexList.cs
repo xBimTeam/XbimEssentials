@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCTEXTUREVERTEXLIST", 1110)]
+	[ExpressType("IfcTextureVertexList", 1110)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextureVertexList : IfcPresentationItem, IInstantiableEntity, IIfcTextureVertexList, IEqualityComparer<@IfcTextureVertexList>, IEquatable<@IfcTextureVertexList>
 	{

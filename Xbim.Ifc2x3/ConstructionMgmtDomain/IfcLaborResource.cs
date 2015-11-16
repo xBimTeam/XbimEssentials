@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
-	[ExpressType("IFCLABORRESOURCE", 156)]
+	[ExpressType("IfcLaborResource", 156)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLaborResource : IfcConstructionResource, IInstantiableEntity, IIfcLaborResource, IEqualityComparer<@IfcLaborResource>, IEquatable<@IfcLaborResource>
 	{

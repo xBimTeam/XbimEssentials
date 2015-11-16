@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IFCVOIDINGFEATURE", 1145)]
+	[ExpressType("IfcVoidingFeature", 1145)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVoidingFeature : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcVoidingFeature, IEqualityComparer<@IfcVoidingFeature>, IEquatable<@IfcVoidingFeature>
 	{

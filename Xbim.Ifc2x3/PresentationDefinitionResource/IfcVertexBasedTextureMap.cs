@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
-	[ExpressType("IFCVERTEXBASEDTEXTUREMAP", 736)]
+	[ExpressType("IfcVertexBasedTextureMap", 736)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVertexBasedTextureMap : INotifyPropertyChanged, IInstantiableEntity, IIfcVertexBasedTextureMap, IEqualityComparer<@IfcVertexBasedTextureMap>, IEquatable<@IfcVertexBasedTextureMap>
 	{

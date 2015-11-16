@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCCOVERINGTYPE", 565)]
+	[ExpressType("IfcCoveringType", 565)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCoveringType : IfcBuildingElementType, IInstantiableEntity, IIfcCoveringType, IEqualityComparer<@IfcCoveringType>, IEquatable<@IfcCoveringType>
 	{

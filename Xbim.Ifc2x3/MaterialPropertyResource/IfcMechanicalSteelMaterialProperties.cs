@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
-	[ExpressType("IFCMECHANICALSTEELMATERIALPROPERTIES", 510)]
+	[ExpressType("IfcMechanicalSteelMaterialProperties", 510)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMechanicalSteelMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalSteelMaterialProperties, IEqualityComparer<@IfcMechanicalSteelMaterialProperties>, IEquatable<@IfcMechanicalSteelMaterialProperties>
 	{

@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCVERTEXPOINT", 1140)]
+	[ExpressType("IfcVertexPoint", 1140)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVertexPoint : IfcVertex, IInstantiableEntity, IIfcVertexPoint, IEqualityComparer<@IfcVertexPoint>, IEquatable<@IfcVertexPoint>
 	{

@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCRELASSIGNSTOACTOR", 911)]
+	[ExpressType("IfcRelAssignsToActor", 911)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssignsToActor : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToActor, IEqualityComparer<@IfcRelAssignsToActor>, IEquatable<@IfcRelAssignsToActor>
 	{

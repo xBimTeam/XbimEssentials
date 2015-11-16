@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
-	[ExpressType("IFCONEDIRECTIONREPEATFACTOR", 32)]
+	[ExpressType("IfcOneDirectionRepeatFactor", 32)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOneDirectionRepeatFactor : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcOneDirectionRepeatFactor, IEqualityComparer<@IfcOneDirectionRepeatFactor>, IEquatable<@IfcOneDirectionRepeatFactor>
 	{

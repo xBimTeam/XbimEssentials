@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCBUILDING", 169)]
+	[ExpressType("IfcBuilding", 169)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBuilding : IfcSpatialStructureElement, IInstantiableEntity, IIfcBuilding, IEqualityComparer<@IfcBuilding>, IEquatable<@IfcBuilding>
 	{

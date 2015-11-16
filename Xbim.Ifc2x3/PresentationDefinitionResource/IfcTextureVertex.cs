@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
-	[ExpressType("IFCTEXTUREVERTEX", 735)]
+	[ExpressType("IfcTextureVertex", 735)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextureVertex : INotifyPropertyChanged, IInstantiableEntity, IIfcTextureVertex, IEqualityComparer<@IfcTextureVertex>, IEquatable<@IfcTextureVertex>
 	{

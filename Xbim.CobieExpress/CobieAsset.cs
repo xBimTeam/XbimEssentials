@@ -16,7 +16,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("ASSET", 15)]
+	[ExpressType("Asset", 15)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @CobieAsset : CobieReferencedObject, IEqualityComparer<@CobieAsset>, IEquatable<@CobieAsset>
 	{

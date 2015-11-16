@@ -18,7 +18,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("PICKVALUE", 8)]
+	[ExpressType("PickValue", 8)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobiePickValue : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@CobiePickValue>, IEquatable<@CobiePickValue>
 	{

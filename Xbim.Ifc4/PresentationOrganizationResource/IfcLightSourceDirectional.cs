@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
-	[ExpressType("IFCLIGHTSOURCEDIRECTIONAL", 739)]
+	[ExpressType("IfcLightSourceDirectional", 739)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLightSourceDirectional : IfcLightSource, IInstantiableEntity, IIfcLightSourceDirectional, IEqualityComparer<@IfcLightSourceDirectional>, IEquatable<@IfcLightSourceDirectional>
 	{

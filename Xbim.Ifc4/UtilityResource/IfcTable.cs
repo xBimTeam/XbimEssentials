@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.UtilityResource
 {
 	[IndexedClass]
-	[ExpressType("IFCTABLE", 1084)]
+	[ExpressType("IfcTable", 1084)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTable : INotifyPropertyChanged, IInstantiableEntity, IIfcTable, IEqualityComparer<@IfcTable>, IEquatable<@IfcTable>
 	{

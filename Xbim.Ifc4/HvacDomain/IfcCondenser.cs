@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCCONDENSER", 513)]
+	[ExpressType("IfcCondenser", 513)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCondenser : IfcEnergyConversionDevice, IInstantiableEntity, IIfcCondenser, IEqualityComparer<@IfcCondenser>, IEquatable<@IfcCondenser>
 	{

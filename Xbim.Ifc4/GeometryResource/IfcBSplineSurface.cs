@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCBSPLINESURFACE", 432)]
+	[ExpressType("IfcBSplineSurface", 432)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcBSplineSurface : IfcBoundedSurface, IIfcBSplineSurface, IEqualityComparer<@IfcBSplineSurface>, IEquatable<@IfcBSplineSurface>
 	{

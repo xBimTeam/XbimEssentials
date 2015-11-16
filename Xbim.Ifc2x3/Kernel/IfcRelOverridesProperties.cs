@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.Kernel
 {
-	[ExpressType("IFCRELOVERRIDESPROPERTIES", 248)]
+	[ExpressType("IfcRelOverridesProperties", 248)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelOverridesProperties : IfcRelDefinesByProperties, IInstantiableEntity, IIfcRelOverridesProperties, IEqualityComparer<@IfcRelOverridesProperties>, IEquatable<@IfcRelOverridesProperties>
 	{

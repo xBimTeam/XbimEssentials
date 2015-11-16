@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
-	[ExpressType("IFCHYGROSCOPICMATERIALPROPERTIES", 717)]
+	[ExpressType("IfcHygroscopicMaterialProperties", 717)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcHygroscopicMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcHygroscopicMaterialProperties, IEqualityComparer<@IfcHygroscopicMaterialProperties>, IEquatable<@IfcHygroscopicMaterialProperties>
 	{

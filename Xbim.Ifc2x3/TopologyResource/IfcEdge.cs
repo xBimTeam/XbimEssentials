@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
-	[ExpressType("IFCEDGE", 202)]
+	[ExpressType("IfcEdge", 202)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEdge : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcEdge, IEqualityComparer<@IfcEdge>, IEquatable<@IfcEdge>
 	{

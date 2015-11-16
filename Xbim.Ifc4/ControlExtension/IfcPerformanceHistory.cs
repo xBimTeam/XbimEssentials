@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ControlExtension
 {
-	[ExpressType("IFCPERFORMANCEHISTORY", 802)]
+	[ExpressType("IfcPerformanceHistory", 802)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IIfcPerformanceHistory, IEqualityComparer<@IfcPerformanceHistory>, IEquatable<@IfcPerformanceHistory>
 	{

@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
-	[ExpressType("IFCFONTWEIGHT", 580)]
+	[ExpressType("IfcFontWeight", 580)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcFontWeight : IExpressValueType, System.IEquatable<string>
 	{ 

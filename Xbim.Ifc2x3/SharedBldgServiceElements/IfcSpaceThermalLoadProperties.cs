@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
-	[ExpressType("IFCSPACETHERMALLOADPROPERTIES", 610)]
+	[ExpressType("IfcSpaceThermalLoadProperties", 610)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSpaceThermalLoadProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSpaceThermalLoadProperties, IEqualityComparer<@IfcSpaceThermalLoadProperties>, IEquatable<@IfcSpaceThermalLoadProperties>
 	{

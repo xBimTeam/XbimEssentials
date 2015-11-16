@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCPRESENTABLETEXT", 88)]
+	[ExpressType("IfcPresentableText", 88)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcPresentableText : IExpressValueType, System.IEquatable<string>
 	{ 

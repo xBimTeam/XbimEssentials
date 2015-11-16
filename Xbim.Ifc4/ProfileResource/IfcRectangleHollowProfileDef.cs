@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCRECTANGLEHOLLOWPROFILEDEF", 894)]
+	[ExpressType("IfcRectangleHollowProfileDef", 894)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRectangleHollowProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRectangleHollowProfileDef, IEqualityComparer<@IfcRectangleHollowProfileDef>, IEquatable<@IfcRectangleHollowProfileDef>
 	{

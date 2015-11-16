@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
-	[ExpressType("IFCPROPERTYENUMERATEDVALUE", 629)]
+	[ExpressType("IfcPropertyEnumeratedValue", 629)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPropertyEnumeratedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyEnumeratedValue, IEqualityComparer<@IfcPropertyEnumeratedValue>, IEquatable<@IfcPropertyEnumeratedValue>
 	{

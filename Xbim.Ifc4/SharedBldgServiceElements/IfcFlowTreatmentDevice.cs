@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
-	[ExpressType("IFCFLOWTREATMENTDEVICE", 688)]
+	[ExpressType("IfcFlowTreatmentDevice", 688)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFlowTreatmentDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowTreatmentDevice, IEqualityComparer<@IfcFlowTreatmentDevice>, IEquatable<@IfcFlowTreatmentDevice>
 	{

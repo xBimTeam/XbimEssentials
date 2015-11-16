@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.Kernel
 {
-	[ExpressType("IFCRELASSIGNSTOACTOR", 323)]
+	[ExpressType("IfcRelAssignsToActor", 323)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssignsToActor : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToActor, IEqualityComparer<@IfcRelAssignsToActor>, IEquatable<@IfcRelAssignsToActor>
 	{

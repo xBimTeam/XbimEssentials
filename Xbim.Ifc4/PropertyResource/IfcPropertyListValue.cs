@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PropertyResource
 {
-	[ExpressType("IFCPROPERTYLISTVALUE", 863)]
+	[ExpressType("IfcPropertyListValue", 863)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPropertyListValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyListValue, IEqualityComparer<@IfcPropertyListValue>, IEquatable<@IfcPropertyListValue>
 	{

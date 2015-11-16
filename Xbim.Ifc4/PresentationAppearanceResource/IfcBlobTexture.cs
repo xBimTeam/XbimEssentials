@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCBLOBTEXTURE", 437)]
+	[ExpressType("IfcBlobTexture", 437)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcBlobTexture, IEqualityComparer<@IfcBlobTexture>, IEquatable<@IfcBlobTexture>
 	{

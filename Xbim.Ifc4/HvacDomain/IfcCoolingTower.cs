@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCCOOLINGTOWER", 541)]
+	[ExpressType("IfcCoolingTower", 541)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCoolingTower : IfcEnergyConversionDevice, IInstantiableEntity, IIfcCoolingTower, IEqualityComparer<@IfcCoolingTower>, IEquatable<@IfcCoolingTower>
 	{

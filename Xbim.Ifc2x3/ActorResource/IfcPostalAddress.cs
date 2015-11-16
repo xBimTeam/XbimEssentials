@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ActorResource
 {
-	[ExpressType("IFCPOSTALADDRESS", 662)]
+	[ExpressType("IfcPostalAddress", 662)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IIfcPostalAddress, IEqualityComparer<@IfcPostalAddress>, IEquatable<@IfcPostalAddress>
 	{

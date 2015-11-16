@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
-	[ExpressType("IFCPREDEFINEDDIMENSIONSYMBOL", 747)]
+	[ExpressType("IfcPreDefinedDimensionSymbol", 747)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPreDefinedDimensionSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedDimensionSymbol, IEqualityComparer<@IfcPreDefinedDimensionSymbol>, IEquatable<@IfcPreDefinedDimensionSymbol>
 	{

@@ -13,7 +13,7 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
-	[ExpressType("IFCLENGTHMEASURE", 409)]
+	[ExpressType("IfcLengthMeasure", 409)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcLengthMeasure : IfcMeasureValue, IfcSizeSelect, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcLengthMeasure(double val)
         {

@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
-	[ExpressType("IFCSLIPPAGECONNECTIONCONDITION", 638)]
+	[ExpressType("IfcSlippageConnectionCondition", 638)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSlippageConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcSlippageConnectionCondition, IEqualityComparer<@IfcSlippageConnectionCondition>, IEquatable<@IfcSlippageConnectionCondition>
 	{

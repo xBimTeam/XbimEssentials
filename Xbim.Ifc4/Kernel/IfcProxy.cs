@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCPROXY", 876)]
+	[ExpressType("IfcProxy", 876)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProxy : IfcProduct, IInstantiableEntity, IIfcProxy, IEqualityComparer<@IfcProxy>, IEquatable<@IfcProxy>
 	{

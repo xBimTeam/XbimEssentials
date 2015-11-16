@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IFCMATERIALPROFILE", 760)]
+	[ExpressType("IfcMaterialProfile", 760)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialProfile : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialProfile, IEqualityComparer<@IfcMaterialProfile>, IEquatable<@IfcMaterialProfile>
 	{

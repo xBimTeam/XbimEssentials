@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
-	[ExpressType("IFCBOXEDHALFSPACE", 655)]
+	[ExpressType("IfcBoxedHalfSpace", 655)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBoxedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcBoxedHalfSpace, IEqualityComparer<@IfcBoxedHalfSpace>, IEquatable<@IfcBoxedHalfSpace>
 	{

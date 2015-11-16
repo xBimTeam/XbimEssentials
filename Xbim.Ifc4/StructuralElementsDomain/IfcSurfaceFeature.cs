@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IFCSURFACEFEATURE", 1063)]
+	[ExpressType("IfcSurfaceFeature", 1063)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceFeature : IfcFeatureElement, IInstantiableEntity, IIfcSurfaceFeature, IEqualityComparer<@IfcSurfaceFeature>, IEquatable<@IfcSurfaceFeature>
 	{

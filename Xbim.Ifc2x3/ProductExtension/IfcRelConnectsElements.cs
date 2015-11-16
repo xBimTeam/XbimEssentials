@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCRELCONNECTSELEMENTS", 312)]
+	[ExpressType("IfcRelConnectsElements", 312)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelConnectsElements : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsElements, IEqualityComparer<@IfcRelConnectsElements>, IEquatable<@IfcRelConnectsElements>
 	{

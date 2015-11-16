@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCTUBEBUNDLE", 1123)]
+	[ExpressType("IfcTubeBundle", 1123)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTubeBundle : IfcEnergyConversionDevice, IInstantiableEntity, IIfcTubeBundle, IEqualityComparer<@IfcTubeBundle>, IEquatable<@IfcTubeBundle>
 	{

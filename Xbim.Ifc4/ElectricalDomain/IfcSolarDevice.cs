@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCSOLARDEVICE", 998)]
+	[ExpressType("IfcSolarDevice", 998)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSolarDevice : IfcEnergyConversionDevice, IInstantiableEntity, IIfcSolarDevice, IEqualityComparer<@IfcSolarDevice>, IEquatable<@IfcSolarDevice>
 	{

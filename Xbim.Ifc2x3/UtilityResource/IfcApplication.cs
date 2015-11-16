@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.UtilityResource
 {
 	[IndexedClass]
-	[ExpressType("IFCAPPLICATION", 627)]
+	[ExpressType("IfcApplication", 627)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcApplication : INotifyPropertyChanged, IInstantiableEntity, IIfcApplication, IEqualityComparer<@IfcApplication>, IEquatable<@IfcApplication>
 	{

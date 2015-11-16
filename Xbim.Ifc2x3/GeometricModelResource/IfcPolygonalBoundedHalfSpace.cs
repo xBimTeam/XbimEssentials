@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
-	[ExpressType("IFCPOLYGONALBOUNDEDHALFSPACE", 623)]
+	[ExpressType("IfcPolygonalBoundedHalfSpace", 623)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPolygonalBoundedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcPolygonalBoundedHalfSpace, IEqualityComparer<@IfcPolygonalBoundedHalfSpace>, IEquatable<@IfcPolygonalBoundedHalfSpace>
 	{

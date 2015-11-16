@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCELEMENTQUANTITY", 458)]
+	[ExpressType("IfcElementQuantity", 458)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElementQuantity : IfcPropertySetDefinition, IInstantiableEntity, IIfcElementQuantity, IEqualityComparer<@IfcElementQuantity>, IEquatable<@IfcElementQuantity>
 	{

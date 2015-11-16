@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCAUDIOVISUALAPPLIANCETYPE", 426)]
+	[ExpressType("IfcAudioVisualApplianceType", 426)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAudioVisualApplianceType : IfcFlowTerminalType, IInstantiableEntity, IIfcAudioVisualApplianceType, IEqualityComparer<@IfcAudioVisualApplianceType>, IEquatable<@IfcAudioVisualApplianceType>
 	{

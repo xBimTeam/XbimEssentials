@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCVALVETYPE", 1136)]
+	[ExpressType("IfcValveType", 1136)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcValveType : IfcFlowControllerType, IInstantiableEntity, IIfcValveType, IEqualityComparer<@IfcValveType>, IEquatable<@IfcValveType>
 	{

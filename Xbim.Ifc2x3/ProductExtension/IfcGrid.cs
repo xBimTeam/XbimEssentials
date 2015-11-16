@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCGRID", 564)]
+	[ExpressType("IfcGrid", 564)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IIfcGrid, IEqualityComparer<@IfcGrid>, IEquatable<@IfcGrid>
 	{

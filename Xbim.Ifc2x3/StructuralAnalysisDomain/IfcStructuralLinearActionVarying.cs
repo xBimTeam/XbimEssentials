@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALLINEARACTIONVARYING", 464)]
+	[ExpressType("IfcStructuralLinearActionVarying", 464)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralLinearActionVarying : IfcStructuralLinearAction, IInstantiableEntity, IIfcStructuralLinearActionVarying, IEqualityComparer<@IfcStructuralLinearActionVarying>, IEquatable<@IfcStructuralLinearActionVarying>
 	{

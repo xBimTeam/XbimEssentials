@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCLINE", 272)]
+	[ExpressType("IfcLine", 272)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IIfcLine, IEqualityComparer<@IfcLine>, IEquatable<@IfcLine>
 	{

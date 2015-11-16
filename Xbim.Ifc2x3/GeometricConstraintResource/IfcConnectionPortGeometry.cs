@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
-	[ExpressType("IFCCONNECTIONPORTGEOMETRY", 713)]
+	[ExpressType("IfcConnectionPortGeometry", 713)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConnectionPortGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPortGeometry, IEqualityComparer<@IfcConnectionPortGeometry>, IEquatable<@IfcConnectionPortGeometry>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
-	[ExpressType("IFCRAILINGTYPE", 415)]
+	[ExpressType("IfcRailingType", 415)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRailingType : IfcBuildingElementType, IInstantiableEntity, IIfcRailingType, IEqualityComparer<@IfcRailingType>, IEquatable<@IfcRailingType>
 	{

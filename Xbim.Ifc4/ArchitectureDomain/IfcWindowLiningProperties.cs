@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ArchitectureDomain
 {
-	[ExpressType("IFCWINDOWLININGPROPERTIES", 1153)]
+	[ExpressType("IfcWindowLiningProperties", 1153)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWindowLiningProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcWindowLiningProperties, IEqualityComparer<@IfcWindowLiningProperties>, IEquatable<@IfcWindowLiningProperties>
 	{

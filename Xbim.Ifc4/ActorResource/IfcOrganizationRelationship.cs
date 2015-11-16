@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ActorResource
 {
 	[IndexedClass]
-	[ExpressType("IFCORGANIZATIONRELATIONSHIP", 793)]
+	[ExpressType("IfcOrganizationRelationship", 793)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOrganizationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcOrganizationRelationship, IEqualityComparer<@IfcOrganizationRelationship>, IEquatable<@IfcOrganizationRelationship>
 	{

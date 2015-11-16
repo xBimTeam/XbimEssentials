@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
-	[ExpressType("IFCCLASSIFICATIONITEMRELATIONSHIP", 210)]
+	[ExpressType("IfcClassificationItemRelationship", 210)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcClassificationItemRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationItemRelationship, IEqualityComparer<@IfcClassificationItemRelationship>, IEquatable<@IfcClassificationItemRelationship>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
-	[ExpressType("IFCDUCTSILENCERTYPE", 141)]
+	[ExpressType("IfcDuctSilencerType", 141)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDuctSilencerType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IIfcDuctSilencerType, IEqualityComparer<@IfcDuctSilencerType>, IEquatable<@IfcDuctSilencerType>
 	{

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.ActorResource
 {
 	[IndexedClass]
-	[ExpressType("IFCPERSONANDORGANIZATION", 663)]
+	[ExpressType("IfcPersonAndOrganization", 663)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPersonAndOrganization : INotifyPropertyChanged, IInstantiableEntity, IIfcPersonAndOrganization, IEqualityComparer<@IfcPersonAndOrganization>, IEquatable<@IfcPersonAndOrganization>
 	{

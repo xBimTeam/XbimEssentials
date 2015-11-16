@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
-	[ExpressType("IFCELECTRICAPPLIANCETYPE", 192)]
+	[ExpressType("IfcElectricApplianceType", 192)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricApplianceType : IfcFlowTerminalType, IInstantiableEntity, IIfcElectricApplianceType, IEqualityComparer<@IfcElectricApplianceType>, IEquatable<@IfcElectricApplianceType>
 	{

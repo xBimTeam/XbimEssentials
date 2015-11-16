@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
-	[ExpressType("IFCREVOLVEDAREASOLID", 515)]
+	[ExpressType("IfcRevolvedAreaSolid", 515)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRevolvedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcRevolvedAreaSolid, IEqualityComparer<@IfcRevolvedAreaSolid>, IEquatable<@IfcRevolvedAreaSolid>
 	{

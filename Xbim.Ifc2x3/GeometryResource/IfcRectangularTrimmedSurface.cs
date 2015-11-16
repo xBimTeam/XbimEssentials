@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCRECTANGULARTRIMMEDSURFACE", 653)]
+	[ExpressType("IfcRectangularTrimmedSurface", 653)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRectangularTrimmedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcRectangularTrimmedSurface, IEqualityComparer<@IfcRectangularTrimmedSurface>, IEquatable<@IfcRectangularTrimmedSurface>
 	{

@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
-	[ExpressType("IFCDIMENSIONCURVETERMINATOR", 744)]
+	[ExpressType("IfcDimensionCurveTerminator", 744)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDimensionCurveTerminator : IfcTerminatorSymbol, IInstantiableEntity, IIfcDimensionCurveTerminator, IEqualityComparer<@IfcDimensionCurveTerminator>, IEquatable<@IfcDimensionCurveTerminator>
 	{

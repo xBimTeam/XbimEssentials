@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
-	[ExpressType("IFCPREDEFINEDITEM", 288)]
+	[ExpressType("IfcPreDefinedItem", 288)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPreDefinedItem : IPersistEntity, INotifyPropertyChanged, IIfcPreDefinedItem, IEqualityComparer<@IfcPreDefinedItem>, IEquatable<@IfcPreDefinedItem>
 	{

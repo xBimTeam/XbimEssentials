@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstraintResource
 {
-	[ExpressType("IFCREFERENCE", 899)]
+	[ExpressType("IfcReference", 899)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReference : INotifyPropertyChanged, IInstantiableEntity, IIfcReference, IEqualityComparer<@IfcReference>, IEquatable<@IfcReference>
 	{

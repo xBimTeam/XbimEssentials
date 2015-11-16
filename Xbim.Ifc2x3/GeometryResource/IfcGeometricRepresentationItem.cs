@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCGEOMETRICREPRESENTATIONITEM", 30)]
+	[ExpressType("IfcGeometricRepresentationItem", 30)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcGeometricRepresentationItem : IfcRepresentationItem, IIfcGeometricRepresentationItem, IEqualityComparer<@IfcGeometricRepresentationItem>, IEquatable<@IfcGeometricRepresentationItem>
 	{

@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALCONNECTION", 265)]
+	[ExpressType("IfcStructuralConnection", 265)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralConnection : IfcStructuralItem, IIfcStructuralConnection, IEqualityComparer<@IfcStructuralConnection>, IEquatable<@IfcStructuralConnection>
 	{

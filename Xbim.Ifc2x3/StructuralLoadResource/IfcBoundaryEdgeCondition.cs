@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
-	[ExpressType("IFCBOUNDARYEDGECONDITION", 319)]
+	[ExpressType("IfcBoundaryEdgeCondition", 319)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBoundaryEdgeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryEdgeCondition, IEqualityComparer<@IfcBoundaryEdgeCondition>, IEquatable<@IfcBoundaryEdgeCondition>
 	{

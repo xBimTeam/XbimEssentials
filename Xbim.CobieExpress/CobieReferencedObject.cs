@@ -18,7 +18,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("REFERENCEDOBJECT", 13)]
+	[ExpressType("ReferencedObject", 13)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @CobieReferencedObject : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@CobieReferencedObject>, IEquatable<@CobieReferencedObject>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCCARTESIANPOINTLIST", 474)]
+	[ExpressType("IfcCartesianPointList", 474)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcCartesianPointList : IfcGeometricRepresentationItem, IIfcCartesianPointList, IEqualityComparer<@IfcCartesianPointList>, IEquatable<@IfcCartesianPointList>
 	{

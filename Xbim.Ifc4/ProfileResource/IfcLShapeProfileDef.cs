@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCLSHAPEPROFILEDEF", 725)]
+	[ExpressType("IfcLShapeProfileDef", 725)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcLShapeProfileDef, IEqualityComparer<@IfcLShapeProfileDef>, IEquatable<@IfcLShapeProfileDef>
 	{

@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCADVANCEDBREP", 403)]
+	[ExpressType("IfcAdvancedBrep", 403)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAdvancedBrep : IfcManifoldSolidBrep, IInstantiableEntity, IIfcAdvancedBrep, IEqualityComparer<@IfcAdvancedBrep>, IEquatable<@IfcAdvancedBrep>
 	{

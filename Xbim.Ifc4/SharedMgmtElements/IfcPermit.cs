@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedMgmtElements
 {
-	[ExpressType("IFCPERMIT", 804)]
+	[ExpressType("IfcPermit", 804)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IIfcPermit, IEqualityComparer<@IfcPermit>, IEquatable<@IfcPermit>
 	{

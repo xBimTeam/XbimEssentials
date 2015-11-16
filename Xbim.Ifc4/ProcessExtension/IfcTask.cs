@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IFCTASK", 1089)]
+	[ExpressType("IfcTask", 1089)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IIfcTask, IEqualityComparer<@IfcTask>, IEquatable<@IfcTask>
 	{

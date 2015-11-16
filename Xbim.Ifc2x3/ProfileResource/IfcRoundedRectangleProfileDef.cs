@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
-	[ExpressType("IFCROUNDEDRECTANGLEPROFILEDEF", 106)]
+	[ExpressType("IfcRoundedRectangleProfileDef", 106)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRoundedRectangleProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRoundedRectangleProfileDef, IEqualityComparer<@IfcRoundedRectangleProfileDef>, IEquatable<@IfcRoundedRectangleProfileDef>
 	{

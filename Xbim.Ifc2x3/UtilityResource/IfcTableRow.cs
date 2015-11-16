@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.UtilityResource
 {
 	[IndexedClass]
-	[ExpressType("IFCTABLEROW", 661)]
+	[ExpressType("IfcTableRow", 661)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTableRow : INotifyPropertyChanged, IInstantiableEntity, IIfcTableRow, IEqualityComparer<@IfcTableRow>, IEquatable<@IfcTableRow>
 	{

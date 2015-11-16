@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
-	[ExpressType("IFCPREDEFINEDPOINTMARKERSYMBOL", 748)]
+	[ExpressType("IfcPreDefinedPointMarkerSymbol", 748)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPreDefinedPointMarkerSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedPointMarkerSymbol, IEqualityComparer<@IfcPreDefinedPointMarkerSymbol>, IEquatable<@IfcPreDefinedPointMarkerSymbol>
 	{

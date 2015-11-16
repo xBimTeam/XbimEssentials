@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
-	[ExpressType("IFCSTRUCTURALCONNECTIONCONDITION", 1022)]
+	[ExpressType("IfcStructuralConnectionCondition", 1022)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralConnectionCondition : IPersistEntity, INotifyPropertyChanged, IIfcStructuralConnectionCondition, IEqualityComparer<@IfcStructuralConnectionCondition>, IEquatable<@IfcStructuralConnectionCondition>
 	{

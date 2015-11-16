@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
-	[ExpressType("IFCSTRUCTURALLOADSTATIC", 37)]
+	[ExpressType("IfcStructuralLoadStatic", 37)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralLoadStatic : IfcStructuralLoad, IIfcStructuralLoadStatic, IEqualityComparer<@IfcStructuralLoadStatic>, IEquatable<@IfcStructuralLoadStatic>
 	{

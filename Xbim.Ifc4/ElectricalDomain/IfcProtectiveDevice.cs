@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCPROTECTIVEDEVICE", 872)]
+	[ExpressType("IfcProtectiveDevice", 872)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProtectiveDevice : IfcFlowController, IInstantiableEntity, IIfcProtectiveDevice, IEqualityComparer<@IfcProtectiveDevice>, IEquatable<@IfcProtectiveDevice>
 	{

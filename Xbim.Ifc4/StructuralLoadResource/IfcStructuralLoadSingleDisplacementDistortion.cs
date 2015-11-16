@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
-	[ExpressType("IFCSTRUCTURALLOADSINGLEDISPLACEMENTDISTORTION", 1038)]
+	[ExpressType("IfcStructuralLoadSingleDisplacementDistortion", 1038)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralLoadSingleDisplacementDistortion : IfcStructuralLoadSingleDisplacement, IInstantiableEntity, IIfcStructuralLoadSingleDisplacementDistortion, IEqualityComparer<@IfcStructuralLoadSingleDisplacementDistortion>, IEquatable<@IfcStructuralLoadSingleDisplacementDistortion>
 	{

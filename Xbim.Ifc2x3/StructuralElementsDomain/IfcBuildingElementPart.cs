@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
-	[ExpressType("IFCBUILDINGELEMENTPART", 220)]
+	[ExpressType("IfcBuildingElementPart", 220)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBuildingElementPart : IfcBuildingElementComponent, IInstantiableEntity, IIfcBuildingElementPart, IEqualityComparer<@IfcBuildingElementPart>, IEquatable<@IfcBuildingElementPart>
 	{

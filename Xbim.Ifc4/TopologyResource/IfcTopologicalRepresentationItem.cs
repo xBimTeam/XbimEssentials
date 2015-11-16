@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCTOPOLOGICALREPRESENTATIONITEM", 1114)]
+	[ExpressType("IfcTopologicalRepresentationItem", 1114)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcTopologicalRepresentationItem : IfcRepresentationItem, IIfcTopologicalRepresentationItem, IEqualityComparer<@IfcTopologicalRepresentationItem>, IEquatable<@IfcTopologicalRepresentationItem>
 	{

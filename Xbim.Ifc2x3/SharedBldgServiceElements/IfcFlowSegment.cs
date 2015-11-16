@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
-	[ExpressType("IFCFLOWSEGMENT", 574)]
+	[ExpressType("IfcFlowSegment", 574)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFlowSegment : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowSegment, IEqualityComparer<@IfcFlowSegment>, IEquatable<@IfcFlowSegment>
 	{

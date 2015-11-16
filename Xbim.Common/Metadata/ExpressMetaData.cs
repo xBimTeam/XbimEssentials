@@ -97,7 +97,7 @@ namespace Xbim.Common.Metadata
 
                     if (typeof(IPersistEntity).IsAssignableFrom(typeToProcess))
                     {
-                        _persistNameToExpressTypeLookup.Add(expressTypeToProcess.ExpressName, expressTypeToProcess);
+                        _persistNameToExpressTypeLookup.Add(expressTypeToProcess.ExpressNameUpper, expressTypeToProcess);
                         _typeIdToExpressTypeLookup.Add(expressTypeToProcess.TypeId, expressTypeToProcess);
                     }
 

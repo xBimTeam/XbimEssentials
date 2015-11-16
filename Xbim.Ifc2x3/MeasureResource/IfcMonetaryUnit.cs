@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[IndexedClass]
-	[ExpressType("IFCMONETARYUNIT", 545)]
+	[ExpressType("IfcMonetaryUnit", 545)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMonetaryUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMonetaryUnit, IEqualityComparer<@IfcMonetaryUnit>, IEquatable<@IfcMonetaryUnit>
 	{

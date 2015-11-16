@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ActorResource
 {
-	[ExpressType("IFCTELECOMADDRESS", 1093)]
+	[ExpressType("IfcTelecomAddress", 1093)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IIfcTelecomAddress, IEqualityComparer<@IfcTelecomAddress>, IEquatable<@IfcTelecomAddress>
 	{

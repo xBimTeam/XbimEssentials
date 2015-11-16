@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
-	[ExpressType("IFCDIMENSIONCURVE", 742)]
+	[ExpressType("IfcDimensionCurve", 742)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDimensionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IIfcDimensionCurve, IEqualityComparer<@IfcDimensionCurve>, IEquatable<@IfcDimensionCurve>
 	{

@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
-	[ExpressType("IFCLIGHTSOURCEAMBIENT", 738)]
+	[ExpressType("IfcLightSourceAmbient", 738)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLightSourceAmbient : IfcLightSource, IInstantiableEntity, IIfcLightSourceAmbient, IEqualityComparer<@IfcLightSourceAmbient>, IEquatable<@IfcLightSourceAmbient>
 	{

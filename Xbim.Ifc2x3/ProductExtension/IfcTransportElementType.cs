@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCTRANSPORTELEMENTTYPE", 475)]
+	[ExpressType("IfcTransportElementType", 475)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTransportElementType : IfcElementType, IInstantiableEntity, IIfcTransportElementType, IEqualityComparer<@IfcTransportElementType>, IEquatable<@IfcTransportElementType>
 	{

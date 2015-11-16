@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedComponentElements
 {
-	[ExpressType("IFCDISCRETEACCESSORYTYPE", 573)]
+	[ExpressType("IfcDiscreteAccessoryType", 573)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDiscreteAccessoryType : IfcElementComponentType, IInstantiableEntity, IIfcDiscreteAccessoryType, IEqualityComparer<@IfcDiscreteAccessoryType>, IEquatable<@IfcDiscreteAccessoryType>
 	{

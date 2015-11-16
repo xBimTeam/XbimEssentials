@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCTESSELLATEDFACESET", 1098)]
+	[ExpressType("IfcTessellatedFaceSet", 1098)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcTessellatedFaceSet : IfcTessellatedItem, IIfcTessellatedFaceSet, IEqualityComparer<@IfcTessellatedFaceSet>, IEquatable<@IfcTessellatedFaceSet>
 	{

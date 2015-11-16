@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ActorResource
 {
 	[IndexedClass]
-	[ExpressType("IFCPERSON", 805)]
+	[ExpressType("IfcPerson", 805)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPerson : INotifyPropertyChanged, IInstantiableEntity, IIfcPerson, IEqualityComparer<@IfcPerson>, IEquatable<@IfcPerson>
 	{

@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
-	[ExpressType("IFCDOORSTYLE", 492)]
+	[ExpressType("IfcDoorStyle", 492)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDoorStyle : IfcTypeProduct, IInstantiableEntity, IIfcDoorStyle, IEqualityComparer<@IfcDoorStyle>, IEquatable<@IfcDoorStyle>
 	{

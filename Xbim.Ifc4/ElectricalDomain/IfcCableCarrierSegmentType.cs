@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCCABLECARRIERSEGMENTTYPE", 468)]
+	[ExpressType("IfcCableCarrierSegmentType", 468)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCableCarrierSegmentType : IfcFlowSegmentType, IInstantiableEntity, IIfcCableCarrierSegmentType, IEqualityComparer<@IfcCableCarrierSegmentType>, IEquatable<@IfcCableCarrierSegmentType>
 	{

@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
-	[ExpressType("IFCLIGHTINTENSITYDISTRIBUTION", 736)]
+	[ExpressType("IfcLightIntensityDistribution", 736)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLightIntensityDistribution : INotifyPropertyChanged, IInstantiableEntity, IIfcLightIntensityDistribution, IEqualityComparer<@IfcLightIntensityDistribution>, IEquatable<@IfcLightIntensityDistribution>
 	{

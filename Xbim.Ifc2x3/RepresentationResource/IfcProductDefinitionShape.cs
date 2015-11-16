@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[IndexedClass]
-	[ExpressType("IFCPRODUCTDEFINITIONSHAPE", 90)]
+	[ExpressType("IfcProductDefinitionShape", 90)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProductDefinitionShape : IfcProductRepresentation, IInstantiableEntity, IIfcProductDefinitionShape, IEqualityComparer<@IfcProductDefinitionShape>, IEquatable<@IfcProductDefinitionShape>
 	{

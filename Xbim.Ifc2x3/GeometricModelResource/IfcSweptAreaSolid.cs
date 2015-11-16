@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
-	[ExpressType("IFCSWEPTAREASOLID", 239)]
+	[ExpressType("IfcSweptAreaSolid", 239)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcSweptAreaSolid : IfcSolidModel, IIfcSweptAreaSolid, IEqualityComparer<@IfcSweptAreaSolid>, IEquatable<@IfcSweptAreaSolid>
 	{

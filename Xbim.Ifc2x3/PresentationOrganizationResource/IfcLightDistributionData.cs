@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
-	[ExpressType("IFCLIGHTDISTRIBUTIONDATA", 753)]
+	[ExpressType("IfcLightDistributionData", 753)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLightDistributionData : INotifyPropertyChanged, IInstantiableEntity, IIfcLightDistributionData, IEqualityComparer<@IfcLightDistributionData>, IEquatable<@IfcLightDistributionData>
 	{

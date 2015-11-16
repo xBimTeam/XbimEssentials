@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALSURFACEACTION", 1050)]
+	[ExpressType("IfcStructuralSurfaceAction", 1050)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralSurfaceAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralSurfaceAction, IEqualityComparer<@IfcStructuralSurfaceAction>, IEquatable<@IfcStructuralSurfaceAction>
 	{

@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
-	[ExpressType("IFCELEMENTCOMPONENT", 424)]
+	[ExpressType("IfcElementComponent", 424)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcElementComponent : IfcElement, IIfcElementComponent, IEqualityComparer<@IfcElementComponent>, IEquatable<@IfcElementComponent>
 	{

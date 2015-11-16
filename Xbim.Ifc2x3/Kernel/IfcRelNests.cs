@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.Kernel
 {
-	[ExpressType("IFCRELNESTS", 305)]
+	[ExpressType("IfcRelNests", 305)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelNests : IfcRelDecomposes, IInstantiableEntity, IIfcRelNests, IEqualityComparer<@IfcRelNests>, IEquatable<@IfcRelNests>
 	{

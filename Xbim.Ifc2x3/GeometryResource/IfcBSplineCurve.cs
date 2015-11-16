@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCBSPLINECURVE", 167)]
+	[ExpressType("IfcBSplineCurve", 167)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcBSplineCurve : IfcBoundedCurve, IIfcBSplineCurve, IEqualityComparer<@IfcBSplineCurve>, IEquatable<@IfcBSplineCurve>
 	{

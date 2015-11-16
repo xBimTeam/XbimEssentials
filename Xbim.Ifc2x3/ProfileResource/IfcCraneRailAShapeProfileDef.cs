@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
-	[ExpressType("IFCCRANERAILASHAPEPROFILEDEF", 257)]
+	[ExpressType("IfcCraneRailAShapeProfileDef", 257)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCraneRailAShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCraneRailAShapeProfileDef, IEqualityComparer<@IfcCraneRailAShapeProfileDef>, IEquatable<@IfcCraneRailAShapeProfileDef>
 	{

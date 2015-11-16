@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALRESULTGROUP", 532)]
+	[ExpressType("IfcStructuralResultGroup", 532)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralResultGroup : IfcGroup, IInstantiableEntity, IIfcStructuralResultGroup, IEqualityComparer<@IfcStructuralResultGroup>, IEquatable<@IfcStructuralResultGroup>
 	{

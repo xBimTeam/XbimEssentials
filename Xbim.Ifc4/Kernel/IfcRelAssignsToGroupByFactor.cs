@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCRELASSIGNSTOGROUPBYFACTOR", 914)]
+	[ExpressType("IfcRelAssignsToGroupByFactor", 914)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssignsToGroupByFactor : IfcRelAssignsToGroup, IInstantiableEntity, IIfcRelAssignsToGroupByFactor, IEqualityComparer<@IfcRelAssignsToGroupByFactor>, IEquatable<@IfcRelAssignsToGroupByFactor>
 	{

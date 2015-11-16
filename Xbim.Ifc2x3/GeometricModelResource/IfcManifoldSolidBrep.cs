@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
-	[ExpressType("IFCMANIFOLDSOLIDBREP", 149)]
+	[ExpressType("IfcManifoldSolidBrep", 149)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcManifoldSolidBrep : IfcSolidModel, IIfcManifoldSolidBrep, IEqualityComparer<@IfcManifoldSolidBrep>, IEquatable<@IfcManifoldSolidBrep>
 	{

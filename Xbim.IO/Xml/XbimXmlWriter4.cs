@@ -21,7 +21,7 @@ namespace Xbim.IO.Xml
         private readonly string _ns = "http://www.buildingsmart-tech.org/ifcXML/MVD4/IFC4";
         private readonly string _nsLocation = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1.xsd";
         private readonly string _expressUri = "http://www.buildingsmart-tech.org/ifc/IFC4/Add1/IFC4_ADD1.exp";
-        private readonly string _configuration = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1_config.xml";
+        private readonly string _configurationUri = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1_config.xml";
         private readonly string _rootElementName = "ifcXML";
         private HashSet<long> _written;
         private readonly configuration _conf;
@@ -62,7 +62,7 @@ namespace Xbim.IO.Xml
             _ns = settings.Namespace;
             _nsLocation = settings.NamespaceLocation;
             _expressUri = settings.ExpressUri;
-            _configuration = settings.Configuration;
+            _configurationUri = settings.Configuration;
             _rootElementName = settings.RootName;
         }
 
@@ -96,7 +96,7 @@ namespace Xbim.IO.Xml
                 //attributes
                 output.WriteAttributeString("id", "uos_1");
                 output.WriteAttributeString("express", _expressUri);
-                output.WriteAttributeString("configuration", _configuration);
+                output.WriteAttributeString("configuration", _configurationUri);
 
                 _fileHeader = model.Header;
                 WriteHeader(output);
@@ -150,7 +150,7 @@ namespace Xbim.IO.Xml
 
             var expressType = _metadata.ExpressType(entity);
 
-            output.WriteStartElement(expressType.Type.Name);
+            output.WriteStartElement(expressType.ExpressName);
 
             output.WriteAttributeString("id", string.Format("i{0}", entity.EntityLabel));
             if (pos > -1) //we are writing out a list element
@@ -187,10 +187,11 @@ namespace Xbim.IO.Xml
                 }
                 else
                 {
+                    //only get explicit properties by default
                     toWrite = expressType.Properties.Values.ToList();
                 }
                 
-                
+                //read configuration and meta property to set the right processing (attribute vs. element)
 
                 //sort properties so that attribute values go first (value types and some string lists). 
                 //They will be written as attributes and that has to
@@ -203,15 +204,15 @@ namespace Xbim.IO.Xml
             }
             
 
-            foreach (var ifcProperty in toWrite) //only write out persistent attributes, ignore inverses
+            foreach (var property in toWrite) //only write out persistent attributes, ignore inverses
             {
-                if (ifcProperty.EntityAttribute.IsDerived) continue;
+                if (property.EntityAttribute.IsDerived) continue;
 
-                var propType = ifcProperty.PropertyInfo.PropertyType;
-                var propVal = ifcProperty.PropertyInfo.GetValue(entity, null);
+                var propType = property.PropertyInfo.PropertyType;
+                var propVal = property.PropertyInfo.GetValue(entity, null);
 
-                WriteProperty(ifcProperty.PropertyInfo.Name, propType, propVal, entity, output, -1,
-                    ifcProperty.EntityAttribute);
+                WriteProperty(property.PropertyInfo.Name, propType, propVal, entity, output, -1,
+                    property.EntityAttribute);
             }
         }
 
@@ -328,7 +329,8 @@ namespace Xbim.IO.Xml
 
                 if (pos > -1) //we are writing out a list element
                 {
-                    output.WriteStartElement(propVal.GetType().Name);
+                    var expType = _metadata.ExpressType(propVal.GetType());
+                    output.WriteStartElement(expType.ExpressName);
                     output.WriteAttributeString("ref", string.Format("i{0}", persistEntity.EntityLabel));
                     output.WriteAttributeString("nil", Xsi, "true");
                     //output.WriteAttributeString("type", Xsi, propVal.GetType().Name);

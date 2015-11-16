@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
-	[ExpressType("IFCPLATETYPE", 526)]
+	[ExpressType("IfcPlateType", 526)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPlateType : IfcBuildingElementType, IInstantiableEntity, IIfcPlateType, IEqualityComparer<@IfcPlateType>, IEquatable<@IfcPlateType>
 	{

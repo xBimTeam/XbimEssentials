@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCFACE", 649)]
+	[ExpressType("IfcFace", 649)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFace : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFace, IEqualityComparer<@IfcFace>, IEquatable<@IfcFace>
 	{

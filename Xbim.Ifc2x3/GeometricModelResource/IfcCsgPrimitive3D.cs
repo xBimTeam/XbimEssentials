@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
-	[ExpressType("IFCCSGPRIMITIVE3D", 714)]
+	[ExpressType("IfcCsgPrimitive3D", 714)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcCsgPrimitive3D : IfcGeometricRepresentationItem, IIfcCsgPrimitive3D, IEqualityComparer<@IfcCsgPrimitive3D>, IEquatable<@IfcCsgPrimitive3D>
 	{

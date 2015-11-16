@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
-	[ExpressType("IFCTEXTSTYLEWITHBOXCHARACTERISTICS", 730)]
+	[ExpressType("IfcTextStyleWithBoxCharacteristics", 730)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextStyleWithBoxCharacteristics : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleWithBoxCharacteristics, IEqualityComparer<@IfcTextStyleWithBoxCharacteristics>, IEquatable<@IfcTextStyleWithBoxCharacteristics>
 	{

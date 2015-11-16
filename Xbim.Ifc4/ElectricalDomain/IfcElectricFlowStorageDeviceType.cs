@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCELECTRICFLOWSTORAGEDEVICETYPE", 610)]
+	[ExpressType("IfcElectricFlowStorageDeviceType", 610)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricFlowStorageDeviceType : IfcFlowStorageDeviceType, IInstantiableEntity, IIfcElectricFlowStorageDeviceType, IEqualityComparer<@IfcElectricFlowStorageDeviceType>, IEquatable<@IfcElectricFlowStorageDeviceType>
 	{

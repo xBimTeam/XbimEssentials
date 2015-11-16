@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
-	[ExpressType("IFCLIGHTSOURCE", 755)]
+	[ExpressType("IfcLightSource", 755)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcLightSource : IfcGeometricRepresentationItem, IIfcLightSource, IEqualityComparer<@IfcLightSource>, IEquatable<@IfcLightSource>
 	{

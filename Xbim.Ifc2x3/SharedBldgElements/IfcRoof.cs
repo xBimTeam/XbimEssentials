@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
-	[ExpressType("IFCROOF", 347)]
+	[ExpressType("IfcRoof", 347)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRoof : IfcBuildingElement, IInstantiableEntity, IIfcRoof, IEqualityComparer<@IfcRoof>, IEquatable<@IfcRoof>
 	{

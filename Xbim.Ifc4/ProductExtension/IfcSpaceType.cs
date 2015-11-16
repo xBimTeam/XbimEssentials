@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCSPACETYPE", 1004)]
+	[ExpressType("IfcSpaceType", 1004)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSpaceType : IfcSpatialStructureElementType, IInstantiableEntity, IIfcSpaceType, IEqualityComparer<@IfcSpaceType>, IEquatable<@IfcSpaceType>
 	{

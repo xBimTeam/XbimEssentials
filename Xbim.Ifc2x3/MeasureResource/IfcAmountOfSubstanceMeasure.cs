@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
-	[ExpressType("IFCAMOUNTOFSUBSTANCEMEASURE", 293)]
+	[ExpressType("IfcAmountOfSubstanceMeasure", 293)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcAmountOfSubstanceMeasure : IfcMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcAmountOfSubstanceMeasure(double val)
         {

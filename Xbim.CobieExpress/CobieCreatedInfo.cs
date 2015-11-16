@@ -18,7 +18,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("CREATEDINFO", 12)]
+	[ExpressType("CreatedInfo", 12)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieCreatedInfo : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@CobieCreatedInfo>, IEquatable<@CobieCreatedInfo>
 	{

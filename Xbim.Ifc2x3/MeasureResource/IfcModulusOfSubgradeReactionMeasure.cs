@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
-	[ExpressType("IFCMODULUSOFSUBGRADEREACTIONMEASURE", 126)]
+	[ExpressType("IfcModulusOfSubgradeReactionMeasure", 126)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcModulusOfSubgradeReactionMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcModulusOfSubgradeReactionMeasure(double val)
         {

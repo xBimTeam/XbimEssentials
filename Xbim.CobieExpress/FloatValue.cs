@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.CobieExpress
 {
-	[ExpressType("FLOATVALUE", 4)]
+	[ExpressType("FloatValue", 4)]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct FloatValue : AttributeValue, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -25,7 +25,7 @@ namespace Xbim.CobieExpress
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public FloatValue(double val)
         {

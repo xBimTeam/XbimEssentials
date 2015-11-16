@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCMIRROREDPROFILEDEF", 777)]
+	[ExpressType("IfcMirroredProfileDef", 777)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMirroredProfileDef : IfcDerivedProfileDef, IInstantiableEntity, IIfcMirroredProfileDef, IEqualityComparer<@IfcMirroredProfileDef>, IEquatable<@IfcMirroredProfileDef>
 	{

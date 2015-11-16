@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCRELNESTS", 947)]
+	[ExpressType("IfcRelNests", 947)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelNests : IfcRelDecomposes, IInstantiableEntity, IIfcRelNests, IEqualityComparer<@IfcRelNests>, IEquatable<@IfcRelNests>
 	{

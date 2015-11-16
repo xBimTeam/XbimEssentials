@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.TimeSeriesResource
 {
-	[ExpressType("IFCTIMESERIESVALUE", 35)]
+	[ExpressType("IfcTimeSeriesValue", 35)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTimeSeriesValue : INotifyPropertyChanged, IInstantiableEntity, IIfcTimeSeriesValue, IEqualityComparer<@IfcTimeSeriesValue>, IEquatable<@IfcTimeSeriesValue>
 	{

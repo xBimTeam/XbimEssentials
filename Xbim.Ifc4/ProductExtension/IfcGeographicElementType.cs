@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCGEOGRAPHICELEMENTTYPE", 697)]
+	[ExpressType("IfcGeographicElementType", 697)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGeographicElementType : IfcElementType, IInstantiableEntity, IIfcGeographicElementType, IEqualityComparer<@IfcGeographicElementType>, IEquatable<@IfcGeographicElementType>
 	{

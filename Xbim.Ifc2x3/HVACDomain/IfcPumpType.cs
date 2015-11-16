@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
-	[ExpressType("IFCPUMPTYPE", 685)]
+	[ExpressType("IfcPumpType", 685)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPumpType : IfcFlowMovingDeviceType, IInstantiableEntity, IIfcPumpType, IEqualityComparer<@IfcPumpType>, IEquatable<@IfcPumpType>
 	{

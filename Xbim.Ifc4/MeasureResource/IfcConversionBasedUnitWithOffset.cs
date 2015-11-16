@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCCONVERSIONBASEDUNITWITHOFFSET", 538)]
+	[ExpressType("IfcConversionBasedUnitWithOffset", 538)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConversionBasedUnitWithOffset : IfcConversionBasedUnit, IInstantiableEntity, IIfcConversionBasedUnitWithOffset, IEqualityComparer<@IfcConversionBasedUnitWithOffset>, IEquatable<@IfcConversionBasedUnitWithOffset>
 	{

@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCINDEXEDPOLYCURVE", 715)]
+	[ExpressType("IfcIndexedPolyCurve", 715)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcIndexedPolyCurve : IfcBoundedCurve, IInstantiableEntity, IIfcIndexedPolyCurve, IEqualityComparer<@IfcIndexedPolyCurve>, IEquatable<@IfcIndexedPolyCurve>
 	{

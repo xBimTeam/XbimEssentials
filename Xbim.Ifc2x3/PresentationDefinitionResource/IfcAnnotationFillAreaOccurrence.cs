@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
-	[ExpressType("IFCANNOTATIONFILLAREAOCCURRENCE", 544)]
+	[ExpressType("IfcAnnotationFillAreaOccurrence", 544)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAnnotationFillAreaOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationFillAreaOccurrence, IEqualityComparer<@IfcAnnotationFillAreaOccurrence>, IEquatable<@IfcAnnotationFillAreaOccurrence>
 	{

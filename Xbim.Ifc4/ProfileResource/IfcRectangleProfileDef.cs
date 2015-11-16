@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCRECTANGLEPROFILEDEF", 895)]
+	[ExpressType("IfcRectangleProfileDef", 895)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRectangleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcRectangleProfileDef, IEqualityComparer<@IfcRectangleProfileDef>, IEquatable<@IfcRectangleProfileDef>
 	{

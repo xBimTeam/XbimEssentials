@@ -67,6 +67,7 @@
     <Compile Include="ActivationTests.cs" />
     <Compile Include="DateTimeTests.cs" />
     <Compile Include="InterfacesDataRetrieval.cs" />
+    <Compile Include="NullStyleTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">

@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
-	[ExpressType("IFCRELAXATION", 364)]
+	[ExpressType("IfcRelaxation", 364)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelaxation : INotifyPropertyChanged, IInstantiableEntity, IIfcRelaxation, IEqualityComparer<@IfcRelaxation>, IEquatable<@IfcRelaxation>
 	{

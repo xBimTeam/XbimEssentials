@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.GeometryResource
 {
 	[IndexedClass]
-	[ExpressType("IFCMAPPEDITEM", 748)]
+	[ExpressType("IfcMappedItem", 748)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMappedItem : IfcRepresentationItem, IInstantiableEntity, IIfcMappedItem, IEqualityComparer<@IfcMappedItem>, IEquatable<@IfcMappedItem>
 	{

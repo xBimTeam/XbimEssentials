@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
-	[ExpressType("IFCFAILURECONNECTIONCONDITION", 640)]
+	[ExpressType("IfcFailureConnectionCondition", 640)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFailureConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcFailureConnectionCondition, IEqualityComparer<@IfcFailureConnectionCondition>, IEquatable<@IfcFailureConnectionCondition>
 	{

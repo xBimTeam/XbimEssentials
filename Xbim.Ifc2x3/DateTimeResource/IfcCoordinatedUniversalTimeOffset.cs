@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
-	[ExpressType("IFCCOORDINATEDUNIVERSALTIMEOFFSET", 690)]
+	[ExpressType("IfcCoordinatedUniversalTimeOffset", 690)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCoordinatedUniversalTimeOffset : INotifyPropertyChanged, IInstantiableEntity, IIfcCoordinatedUniversalTimeOffset, IEqualityComparer<@IfcCoordinatedUniversalTimeOffset>, IEquatable<@IfcCoordinatedUniversalTimeOffset>
 	{

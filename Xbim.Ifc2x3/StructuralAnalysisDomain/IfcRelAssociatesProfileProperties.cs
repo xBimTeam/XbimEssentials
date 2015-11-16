@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
-	[ExpressType("IFCRELASSOCIATESPROFILEPROPERTIES", 676)]
+	[ExpressType("IfcRelAssociatesProfileProperties", 676)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssociatesProfileProperties : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesProfileProperties, IEqualityComparer<@IfcRelAssociatesProfileProperties>, IEquatable<@IfcRelAssociatesProfileProperties>
 	{

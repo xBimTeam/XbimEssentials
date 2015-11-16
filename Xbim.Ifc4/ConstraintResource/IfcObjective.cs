@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstraintResource
 {
-	[ExpressType("IFCOBJECTIVE", 785)]
+	[ExpressType("IfcObjective", 785)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcObjective : IfcConstraint, IInstantiableEntity, IIfcObjective, IEqualityComparer<@IfcObjective>, IEquatable<@IfcObjective>
 	{

@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[IndexedClass]
-	[ExpressType("IFCDOCUMENTINFORMATIONRELATIONSHIP", 586)]
+	[ExpressType("IfcDocumentInformationRelationship", 586)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDocumentInformationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcDocumentInformationRelationship, IEqualityComparer<@IfcDocumentInformationRelationship>, IEquatable<@IfcDocumentInformationRelationship>
 	{

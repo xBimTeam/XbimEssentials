@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCJUNCTIONBOXTYPE", 724)]
+	[ExpressType("IfcJunctionBoxType", 724)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcJunctionBoxType : IfcFlowFittingType, IInstantiableEntity, IIfcJunctionBoxType, IEqualityComparer<@IfcJunctionBoxType>, IEquatable<@IfcJunctionBoxType>
 	{

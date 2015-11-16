@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.CostResource
 {
 	[IndexedClass]
-	[ExpressType("IFCREFERENCESVALUEDOCUMENT", 551)]
+	[ExpressType("IfcReferencesValueDocument", 551)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReferencesValueDocument : INotifyPropertyChanged, IInstantiableEntity, IIfcReferencesValueDocument, IEqualityComparer<@IfcReferencesValueDocument>, IEquatable<@IfcReferencesValueDocument>
 	{

@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
-	[ExpressType("IFCCOMPLEXPROPERTY", 379)]
+	[ExpressType("IfcComplexProperty", 379)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcComplexProperty : IfcProperty, IInstantiableEntity, IIfcComplexProperty, IEqualityComparer<@IfcComplexProperty>, IEquatable<@IfcComplexProperty>
 	{

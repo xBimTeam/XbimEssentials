@@ -46,7 +46,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCELEMENT", 617)]
+	[ExpressType("IfcElement", 617)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcElement : IfcProduct, IIfcElement, IEqualityComparer<@IfcElement>, IEquatable<@IfcElement>
 	{

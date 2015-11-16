@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ArchitectureDomain
 {
-	[ExpressType("IFCRELINTERACTIONREQUIREMENTS", 708)]
+	[ExpressType("IfcRelInteractionRequirements", 708)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelInteractionRequirements : IfcRelConnects, IInstantiableEntity, IIfcRelInteractionRequirements, IEqualityComparer<@IfcRelInteractionRequirements>, IEquatable<@IfcRelInteractionRequirements>
 	{

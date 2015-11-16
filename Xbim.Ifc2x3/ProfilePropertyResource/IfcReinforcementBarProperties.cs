@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
-	[ExpressType("IFCREINFORCEMENTBARPROPERTIES", 684)]
+	[ExpressType("IfcReinforcementBarProperties", 684)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReinforcementBarProperties : INotifyPropertyChanged, IInstantiableEntity, IIfcReinforcementBarProperties, IEqualityComparer<@IfcReinforcementBarProperties>, IEquatable<@IfcReinforcementBarProperties>
 	{

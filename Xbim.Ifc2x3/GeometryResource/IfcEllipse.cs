@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCELLIPSE", 298)]
+	[ExpressType("IfcEllipse", 298)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEllipse : IfcConic, IInstantiableEntity, IIfcEllipse, IEqualityComparer<@IfcEllipse>, IEquatable<@IfcEllipse>
 	{

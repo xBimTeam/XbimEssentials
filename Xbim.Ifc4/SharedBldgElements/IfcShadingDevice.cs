@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCSHADINGDEVICE", 984)]
+	[ExpressType("IfcShadingDevice", 984)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcShadingDevice : IfcBuildingElement, IInstantiableEntity, IIfcShadingDevice, IEqualityComparer<@IfcShadingDevice>, IEquatable<@IfcShadingDevice>
 	{

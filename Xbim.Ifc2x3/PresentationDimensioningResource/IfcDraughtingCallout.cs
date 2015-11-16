@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
-	[ExpressType("IFCDRAUGHTINGCALLOUT", 222)]
+	[ExpressType("IfcDraughtingCallout", 222)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDraughtingCallout, IEqualityComparer<@IfcDraughtingCallout>, IEquatable<@IfcDraughtingCallout>
 	{

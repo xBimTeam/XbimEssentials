@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCPROJECTIONELEMENT", 855)]
+	[ExpressType("IfcProjectionElement", 855)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProjectionElement : IfcFeatureElementAddition, IInstantiableEntity, IIfcProjectionElement, IEqualityComparer<@IfcProjectionElement>, IEquatable<@IfcProjectionElement>
 	{

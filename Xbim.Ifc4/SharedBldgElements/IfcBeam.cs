@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCBEAM", 434)]
+	[ExpressType("IfcBeam", 434)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBeam : IfcBuildingElement, IInstantiableEntity, IIfcBeam, IEqualityComparer<@IfcBeam>, IEquatable<@IfcBeam>
 	{

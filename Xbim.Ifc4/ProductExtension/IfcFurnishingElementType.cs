@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCFURNISHINGELEMENTTYPE", 693)]
+	[ExpressType("IfcFurnishingElementType", 693)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFurnishingElementType : IfcElementType, IInstantiableEntity, IIfcFurnishingElementType, IEqualityComparer<@IfcFurnishingElementType>, IEquatable<@IfcFurnishingElementType>
 	{

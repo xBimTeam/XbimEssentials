@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
-	[ExpressType("IFCINVENTORY", 768)]
+	[ExpressType("IfcInventory", 768)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IIfcInventory, IEqualityComparer<@IfcInventory>, IEquatable<@IfcInventory>
 	{

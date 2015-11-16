@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
-	[ExpressType("IFCSTRUCTURALLOADSINGLEFORCE", 119)]
+	[ExpressType("IfcStructuralLoadSingleForce", 119)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralLoadSingleForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadSingleForce, IEqualityComparer<@IfcStructuralLoadSingleForce>, IEquatable<@IfcStructuralLoadSingleForce>
 	{

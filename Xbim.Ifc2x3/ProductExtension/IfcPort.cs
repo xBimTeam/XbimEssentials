@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCPORT", 179)]
+	[ExpressType("IfcPort", 179)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPort : IfcProduct, IIfcPort, IEqualityComparer<@IfcPort>, IEquatable<@IfcPort>
 	{

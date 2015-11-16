@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.DateTimeResource
 {
 	[IndexedClass]
-	[ExpressType("IFCTIMESERIES", 1112)]
+	[ExpressType("IfcTimeSeries", 1112)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcTimeSeries : IPersistEntity, INotifyPropertyChanged, IIfcTimeSeries, IEqualityComparer<@IfcTimeSeries>, IEquatable<@IfcTimeSeries>
 	{

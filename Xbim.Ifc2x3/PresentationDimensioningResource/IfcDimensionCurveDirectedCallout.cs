@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
-	[ExpressType("IFCDIMENSIONCURVEDIRECTEDCALLOUT", 737)]
+	[ExpressType("IfcDimensionCurveDirectedCallout", 737)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDimensionCurveDirectedCallout : IfcDraughtingCallout, IInstantiableEntity, IIfcDimensionCurveDirectedCallout, IEqualityComparer<@IfcDimensionCurveDirectedCallout>, IEquatable<@IfcDimensionCurveDirectedCallout>
 	{

@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
-	[ExpressType("IFCEXTERNALLYDEFINEDSURFACESTYLE", 318)]
+	[ExpressType("IfcExternallyDefinedSurfaceStyle", 318)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcExternallyDefinedSurfaceStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedSurfaceStyle, IEqualityComparer<@IfcExternallyDefinedSurfaceStyle>, IEquatable<@IfcExternallyDefinedSurfaceStyle>
 	{

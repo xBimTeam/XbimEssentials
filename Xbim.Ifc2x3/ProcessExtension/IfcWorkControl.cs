@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
-	[ExpressType("IFCWORKCONTROL", 185)]
+	[ExpressType("IfcWorkControl", 185)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcWorkControl : IfcControl, IIfcWorkControl, IEqualityComparer<@IfcWorkControl>, IEquatable<@IfcWorkControl>
 	{

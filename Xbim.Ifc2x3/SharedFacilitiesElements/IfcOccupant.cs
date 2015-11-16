@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
-	[ExpressType("IFCOCCUPANT", 641)]
+	[ExpressType("IfcOccupant", 641)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOccupant : IfcActor, IInstantiableEntity, IIfcOccupant, IEqualityComparer<@IfcOccupant>, IEquatable<@IfcOccupant>
 	{

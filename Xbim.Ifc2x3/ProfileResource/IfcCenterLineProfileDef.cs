@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
-	[ExpressType("IFCCENTERLINEPROFILEDEF", 353)]
+	[ExpressType("IfcCenterLineProfileDef", 353)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCenterLineProfileDef : IfcArbitraryOpenProfileDef, IInstantiableEntity, IIfcCenterLineProfileDef, IEqualityComparer<@IfcCenterLineProfileDef>, IEquatable<@IfcCenterLineProfileDef>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCRELDECLARES", 937)]
+	[ExpressType("IfcRelDeclares", 937)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelDeclares : IfcRelationship, IInstantiableEntity, IIfcRelDeclares, IEqualityComparer<@IfcRelDeclares>, IEquatable<@IfcRelDeclares>
 	{

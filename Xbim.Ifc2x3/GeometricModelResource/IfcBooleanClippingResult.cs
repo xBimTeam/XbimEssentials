@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
-	[ExpressType("IFCBOOLEANCLIPPINGRESULT", 340)]
+	[ExpressType("IfcBooleanClippingResult", 340)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBooleanClippingResult : IfcBooleanResult, IInstantiableEntity, IIfcBooleanClippingResult, IEqualityComparer<@IfcBooleanClippingResult>, IEquatable<@IfcBooleanClippingResult>
 	{

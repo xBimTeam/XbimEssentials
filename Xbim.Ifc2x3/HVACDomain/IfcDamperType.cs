@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
-	[ExpressType("IFCDAMPERTYPE", 514)]
+	[ExpressType("IfcDamperType", 514)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDamperType : IfcFlowControllerType, IInstantiableEntity, IIfcDamperType, IEqualityComparer<@IfcDamperType>, IEquatable<@IfcDamperType>
 	{

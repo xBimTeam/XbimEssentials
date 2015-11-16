@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCLAMP", 729)]
+	[ExpressType("IfcLamp", 729)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLamp : IfcFlowTerminal, IInstantiableEntity, IIfcLamp, IEqualityComparer<@IfcLamp>, IEquatable<@IfcLamp>
 	{

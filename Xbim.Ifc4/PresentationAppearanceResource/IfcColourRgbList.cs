@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCCOLOURRGBLIST", 498)]
+	[ExpressType("IfcColourRgbList", 498)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcColourRgbList : IfcPresentationItem, IInstantiableEntity, IIfcColourRgbList, IEqualityComparer<@IfcColourRgbList>, IEquatable<@IfcColourRgbList>
 	{

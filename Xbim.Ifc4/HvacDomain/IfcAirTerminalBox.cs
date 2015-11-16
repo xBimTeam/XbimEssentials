@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCAIRTERMINALBOX", 407)]
+	[ExpressType("IfcAirTerminalBox", 407)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAirTerminalBox : IfcFlowController, IInstantiableEntity, IIfcAirTerminalBox, IEqualityComparer<@IfcAirTerminalBox>, IEquatable<@IfcAirTerminalBox>
 	{

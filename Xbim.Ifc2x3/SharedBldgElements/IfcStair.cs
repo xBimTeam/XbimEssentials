@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
-	[ExpressType("IFCSTAIR", 346)]
+	[ExpressType("IfcStair", 346)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStair : IfcBuildingElement, IInstantiableEntity, IIfcStair, IEqualityComparer<@IfcStair>, IEquatable<@IfcStair>
 	{

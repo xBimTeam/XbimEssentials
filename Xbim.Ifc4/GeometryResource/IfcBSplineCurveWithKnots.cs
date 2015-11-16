@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCBSPLINECURVEWITHKNOTS", 431)]
+	[ExpressType("IfcBSplineCurveWithKnots", 431)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBSplineCurveWithKnots : IfcBSplineCurve, IInstantiableEntity, IIfcBSplineCurveWithKnots, IEqualityComparer<@IfcBSplineCurveWithKnots>, IEquatable<@IfcBSplineCurveWithKnots>
 	{

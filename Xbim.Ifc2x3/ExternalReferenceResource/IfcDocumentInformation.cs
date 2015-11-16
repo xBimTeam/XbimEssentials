@@ -54,7 +54,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
-	[ExpressType("IFCDOCUMENTINFORMATION", 208)]
+	[ExpressType("IfcDocumentInformation", 208)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDocumentInformation : INotifyPropertyChanged, IInstantiableEntity, IIfcDocumentInformation, IEqualityComparer<@IfcDocumentInformation>, IEquatable<@IfcDocumentInformation>
 	{

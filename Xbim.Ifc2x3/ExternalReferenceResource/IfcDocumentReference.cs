@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
-	[ExpressType("IFCDOCUMENTREFERENCE", 450)]
+	[ExpressType("IfcDocumentReference", 450)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDocumentReference : IfcExternalReference, IInstantiableEntity, IIfcDocumentReference, IEqualityComparer<@IfcDocumentReference>, IEquatable<@IfcDocumentReference>
 	{

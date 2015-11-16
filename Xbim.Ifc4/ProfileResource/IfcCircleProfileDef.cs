@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCCIRCLEPROFILEDEF", 489)]
+	[ExpressType("IfcCircleProfileDef", 489)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCircleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCircleProfileDef, IEqualityComparer<@IfcCircleProfileDef>, IEquatable<@IfcCircleProfileDef>
 	{

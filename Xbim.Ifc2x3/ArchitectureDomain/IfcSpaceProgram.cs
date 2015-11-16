@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ArchitectureDomain
 {
-	[ExpressType("IFCSPACEPROGRAM", 709)]
+	[ExpressType("IfcSpaceProgram", 709)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSpaceProgram : IfcControl, IInstantiableEntity, IIfcSpaceProgram, IEqualityComparer<@IfcSpaceProgram>, IEquatable<@IfcSpaceProgram>
 	{

@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCTRAPEZIUMPROFILEDEF", 1120)]
+	[ExpressType("IfcTrapeziumProfileDef", 1120)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTrapeziumProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcTrapeziumProfileDef, IEqualityComparer<@IfcTrapeziumProfileDef>, IEquatable<@IfcTrapeziumProfileDef>
 	{

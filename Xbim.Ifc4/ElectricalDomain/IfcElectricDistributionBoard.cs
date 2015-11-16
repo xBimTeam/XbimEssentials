@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCELECTRICDISTRIBUTIONBOARD", 607)]
+	[ExpressType("IfcElectricDistributionBoard", 607)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricDistributionBoard : IfcFlowController, IInstantiableEntity, IIfcElectricDistributionBoard, IEqualityComparer<@IfcElectricDistributionBoard>, IEquatable<@IfcElectricDistributionBoard>
 	{

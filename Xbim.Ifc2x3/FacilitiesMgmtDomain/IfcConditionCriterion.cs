@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
-	[ExpressType("IFCCONDITIONCRITERION", 688)]
+	[ExpressType("IfcConditionCriterion", 688)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConditionCriterion : IfcControl, IInstantiableEntity, IIfcConditionCriterion, IEqualityComparer<@IfcConditionCriterion>, IEquatable<@IfcConditionCriterion>
 	{

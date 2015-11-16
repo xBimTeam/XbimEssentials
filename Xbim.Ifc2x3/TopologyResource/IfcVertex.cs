@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
-	[ExpressType("IFCVERTEX", 520)]
+	[ExpressType("IfcVertex", 520)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVertex : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcVertex, IEqualityComparer<@IfcVertex>, IEquatable<@IfcVertex>
 	{

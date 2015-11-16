@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCBUILDINGELEMENTPROXY", 457)]
+	[ExpressType("IfcBuildingElementProxy", 457)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBuildingElementProxy : IfcBuildingElement, IInstantiableEntity, IIfcBuildingElementProxy, IEqualityComparer<@IfcBuildingElementProxy>, IEquatable<@IfcBuildingElementProxy>
 	{

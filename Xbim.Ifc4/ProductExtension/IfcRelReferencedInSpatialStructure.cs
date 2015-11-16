@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCRELREFERENCEDINSPATIALSTRUCTURE", 949)]
+	[ExpressType("IfcRelReferencedInSpatialStructure", 949)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelReferencedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IIfcRelReferencedInSpatialStructure, IEqualityComparer<@IfcRelReferencedInSpatialStructure>, IEquatable<@IfcRelReferencedInSpatialStructure>
 	{

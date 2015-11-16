@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ApprovalResource
 {
 	[IndexedClass]
-	[ExpressType("IFCRESOURCEAPPROVALRELATIONSHIP", 963)]
+	[ExpressType("IfcResourceApprovalRelationship", 963)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcResourceApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceApprovalRelationship, IEqualityComparer<@IfcResourceApprovalRelationship>, IEquatable<@IfcResourceApprovalRelationship>
 	{

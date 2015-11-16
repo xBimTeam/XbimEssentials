@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
-	[ExpressType("IFCSCHEDULETIMECONTROL", 402)]
+	[ExpressType("IfcScheduleTimeControl", 402)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcScheduleTimeControl : IfcControl, IInstantiableEntity, IIfcScheduleTimeControl, IEqualityComparer<@IfcScheduleTimeControl>, IEquatable<@IfcScheduleTimeControl>
 	{

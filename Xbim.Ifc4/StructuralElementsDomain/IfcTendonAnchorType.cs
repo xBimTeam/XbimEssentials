@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IFCTENDONANCHORTYPE", 1096)]
+	[ExpressType("IfcTendonAnchorType", 1096)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTendonAnchorType : IfcReinforcingElementType, IInstantiableEntity, IIfcTendonAnchorType, IEqualityComparer<@IfcTendonAnchorType>, IEquatable<@IfcTendonAnchorType>
 	{

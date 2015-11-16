@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
-	[ExpressType("IFCRAMP", 414)]
+	[ExpressType("IfcRamp", 414)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRamp : IfcBuildingElement, IInstantiableEntity, IIfcRamp, IEqualityComparer<@IfcRamp>, IEquatable<@IfcRamp>
 	{

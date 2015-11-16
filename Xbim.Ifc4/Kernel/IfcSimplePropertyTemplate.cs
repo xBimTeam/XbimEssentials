@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCSIMPLEPROPERTYTEMPLATE", 991)]
+	[ExpressType("IfcSimplePropertyTemplate", 991)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSimplePropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcSimplePropertyTemplate, IEqualityComparer<@IfcSimplePropertyTemplate>, IEquatable<@IfcSimplePropertyTemplate>
 	{

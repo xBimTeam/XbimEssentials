@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
-	[ExpressType("IFCSUBCONTRACTRESOURCE", 594)]
+	[ExpressType("IfcSubContractResource", 594)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSubContractResource : IfcConstructionResource, IInstantiableEntity, IIfcSubContractResource, IEqualityComparer<@IfcSubContractResource>, IEquatable<@IfcSubContractResource>
 	{

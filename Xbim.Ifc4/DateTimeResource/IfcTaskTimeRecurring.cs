@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IFCTASKTIMERECURRING", 1091)]
+	[ExpressType("IfcTaskTimeRecurring", 1091)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTaskTimeRecurring : IfcTaskTime, IInstantiableEntity, IIfcTaskTimeRecurring, IEqualityComparer<@IfcTaskTimeRecurring>, IEquatable<@IfcTaskTimeRecurring>
 	{

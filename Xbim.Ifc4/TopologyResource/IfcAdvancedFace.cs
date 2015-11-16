@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCADVANCEDFACE", 405)]
+	[ExpressType("IfcAdvancedFace", 405)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAdvancedFace : IfcFaceSurface, IInstantiableEntity, IIfcAdvancedFace, IEqualityComparer<@IfcAdvancedFace>, IEquatable<@IfcAdvancedFace>
 	{

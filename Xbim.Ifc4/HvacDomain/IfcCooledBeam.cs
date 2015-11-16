@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCCOOLEDBEAM", 539)]
+	[ExpressType("IfcCooledBeam", 539)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCooledBeam : IfcEnergyConversionDevice, IInstantiableEntity, IIfcCooledBeam, IEqualityComparer<@IfcCooledBeam>, IEquatable<@IfcCooledBeam>
 	{

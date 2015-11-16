@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCDIRECTION", 344)]
+	[ExpressType("IfcDirection", 344)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDirection, IEqualityComparer<@IfcDirection>, IEquatable<@IfcDirection>
 	{

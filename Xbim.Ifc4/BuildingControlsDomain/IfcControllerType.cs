@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.BuildingControlsDomain
 {
-	[ExpressType("IFCCONTROLLERTYPE", 536)]
+	[ExpressType("IfcControllerType", 536)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcControllerType : IfcDistributionControlElementType, IInstantiableEntity, IIfcControllerType, IEqualityComparer<@IfcControllerType>, IEquatable<@IfcControllerType>
 	{

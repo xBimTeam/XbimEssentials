@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
-	[ExpressType("IFCLIBRARYINFORMATION", 449)]
+	[ExpressType("IfcLibraryInformation", 449)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLibraryInformation : INotifyPropertyChanged, IInstantiableEntity, IIfcLibraryInformation, IEqualityComparer<@IfcLibraryInformation>, IEquatable<@IfcLibraryInformation>
 	{

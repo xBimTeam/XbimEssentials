@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCGEOMETRICSET", 702)]
+	[ExpressType("IfcGeometricSet", 702)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGeometricSet : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcGeometricSet, IEqualityComparer<@IfcGeometricSet>, IEquatable<@IfcGeometricSet>
 	{

@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
-	[ExpressType("IFCCURVESTYLEFONTPATTERN", 637)]
+	[ExpressType("IfcCurveStyleFontPattern", 637)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCurveStyleFontPattern : INotifyPropertyChanged, IInstantiableEntity, IIfcCurveStyleFontPattern, IEqualityComparer<@IfcCurveStyleFontPattern>, IEquatable<@IfcCurveStyleFontPattern>
 	{

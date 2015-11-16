@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
-	[ExpressType("IFCANGULARDIMENSION", 738)]
+	[ExpressType("IfcAngularDimension", 738)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAngularDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IIfcAngularDimension, IEqualityComparer<@IfcAngularDimension>, IEquatable<@IfcAngularDimension>
 	{

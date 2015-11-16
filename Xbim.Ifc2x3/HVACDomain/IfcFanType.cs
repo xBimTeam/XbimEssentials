@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
-	[ExpressType("IFCFANTYPE", 651)]
+	[ExpressType("IfcFanType", 651)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFanType : IfcFlowMovingDeviceType, IInstantiableEntity, IIfcFanType, IEqualityComparer<@IfcFanType>, IEquatable<@IfcFanType>
 	{

@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
-	[ExpressType("IFCRELOCCUPIESSPACES", 324)]
+	[ExpressType("IfcRelOccupiesSpaces", 324)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelOccupiesSpaces : IfcRelAssignsToActor, IInstantiableEntity, IIfcRelOccupiesSpaces, IEqualityComparer<@IfcRelOccupiesSpaces>, IEquatable<@IfcRelOccupiesSpaces>
 	{

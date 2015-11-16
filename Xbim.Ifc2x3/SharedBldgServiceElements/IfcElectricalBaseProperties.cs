@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
-	[ExpressType("IFCELECTRICALBASEPROPERTIES", 177)]
+	[ExpressType("IfcElectricalBaseProperties", 177)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricalBaseProperties : IfcEnergyProperties, IInstantiableEntity, IIfcElectricalBaseProperties, IEqualityComparer<@IfcElectricalBaseProperties>, IEquatable<@IfcElectricalBaseProperties>
 	{

@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IFCRELSEQUENCE", 950)]
+	[ExpressType("IfcRelSequence", 950)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IIfcRelSequence, IEqualityComparer<@IfcRelSequence>, IEquatable<@IfcRelSequence>
 	{

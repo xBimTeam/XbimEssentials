@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IFCEVENTTIME", 636)]
+	[ExpressType("IfcEventTime", 636)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEventTime : IfcSchedulingTime, IInstantiableEntity, IIfcEventTime, IEqualityComparer<@IfcEventTime>, IEquatable<@IfcEventTime>
 	{

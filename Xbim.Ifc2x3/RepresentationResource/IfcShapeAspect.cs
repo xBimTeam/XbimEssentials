@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[IndexedClass]
-	[ExpressType("IFCSHAPEASPECT", 665)]
+	[ExpressType("IfcShapeAspect", 665)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcShapeAspect : INotifyPropertyChanged, IInstantiableEntity, IIfcShapeAspect, IEqualityComparer<@IfcShapeAspect>, IEquatable<@IfcShapeAspect>
 	{

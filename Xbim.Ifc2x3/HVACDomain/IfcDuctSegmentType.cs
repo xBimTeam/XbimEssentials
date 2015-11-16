@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
-	[ExpressType("IFCDUCTSEGMENTTYPE", 270)]
+	[ExpressType("IfcDuctSegmentType", 270)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDuctSegmentType : IfcFlowSegmentType, IInstantiableEntity, IIfcDuctSegmentType, IEqualityComparer<@IfcDuctSegmentType>, IEquatable<@IfcDuctSegmentType>
 	{
