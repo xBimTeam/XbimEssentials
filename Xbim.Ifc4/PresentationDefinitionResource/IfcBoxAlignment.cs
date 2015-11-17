@@ -14,6 +14,7 @@ using Xbim.Ifc4.MeasureResource;
 namespace Xbim.Ifc4.PresentationDefinitionResource
 {
 	[ExpressType("IfcBoxAlignment", 10)]
+	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcBoxAlignment : IExpressValueType, System.IEquatable<string>
 	{ 

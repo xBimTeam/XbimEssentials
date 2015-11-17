@@ -14,6 +14,7 @@ using Xbim.Ifc4.StructuralLoadResource;
 namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcWarpingMomentMeasure", 130)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcWarpingMomentMeasure : IfcDerivedMeasureValue, IfcWarpingStiffnessSelect, IExpressValueType, System.IEquatable<double>
 	{ 

@@ -13,6 +13,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcPositivePlaneAngleMeasure", 680)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcPositivePlaneAngleMeasure : IfcMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 

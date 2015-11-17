@@ -14,6 +14,7 @@ using Xbim.Ifc2x3.CostResource;
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcMonetaryMeasure", 567)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcMonetaryMeasure : IfcAppliedValueSelect, IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 

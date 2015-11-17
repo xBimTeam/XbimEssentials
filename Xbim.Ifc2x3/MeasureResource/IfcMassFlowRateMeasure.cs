@@ -13,6 +13,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcMassFlowRateMeasure", 127)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcMassFlowRateMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 

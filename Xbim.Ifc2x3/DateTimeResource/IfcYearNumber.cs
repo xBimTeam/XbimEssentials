@@ -13,6 +13,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcYearNumber", 451)]
+	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcYearNumber : IExpressValueType, System.IEquatable<long>
 	{ 

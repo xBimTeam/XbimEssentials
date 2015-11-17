@@ -13,6 +13,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.CobieExpress
 {
 	[ExpressType("DateTimeValue", 6)]
+	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct DateTimeValue : AttributeValue, IExpressValueType, System.IEquatable<string>
 	{ 

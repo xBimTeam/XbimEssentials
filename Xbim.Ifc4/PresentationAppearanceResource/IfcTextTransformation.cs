@@ -13,6 +13,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextTransformation", 114)]
+	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcTextTransformation : IExpressValueType, System.IEquatable<string>
 	{ 

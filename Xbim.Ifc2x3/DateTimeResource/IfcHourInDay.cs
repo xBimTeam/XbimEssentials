@@ -13,6 +13,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcHourInDay", 341)]
+	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcHourInDay : IExpressValueType, System.IEquatable<long>
 	{ 

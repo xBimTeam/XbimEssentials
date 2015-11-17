@@ -14,6 +14,7 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcDescriptiveMeasure", 131)]
+	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcDescriptiveMeasure : IfcMeasureValue, IfcSizeSelect, IExpressValueType, System.IEquatable<string>
 	{ 

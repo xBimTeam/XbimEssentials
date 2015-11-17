@@ -14,6 +14,7 @@ using Xbim.Ifc4.MeasureResource;
 namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcTimeStamp", 123)]
+	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcTimeStamp : IfcSimpleValue, IExpressValueType, System.IEquatable<long>
 	{ 

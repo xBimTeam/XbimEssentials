@@ -13,6 +13,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.CobieExpress
 {
 	[ExpressType("FloatValue", 4)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct FloatValue : AttributeValue, IExpressValueType, System.IEquatable<double>
 	{ 

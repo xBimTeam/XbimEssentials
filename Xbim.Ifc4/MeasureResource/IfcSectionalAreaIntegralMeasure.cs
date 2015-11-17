@@ -13,6 +13,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcSectionalAreaIntegralMeasure", 98)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcSectionalAreaIntegralMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 

@@ -13,6 +13,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcTimeStamp", 605)]
+	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcTimeStamp : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<long>
 	{ 

@@ -13,6 +13,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcBoolean", 616)]
+	[DefinedType(typeof(bool))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcBoolean : IfcSimpleValue, IExpressValueType, System.IEquatable<bool>
 	{ 

@@ -14,6 +14,7 @@ using Xbim.Ifc2x3.GeometryResource;
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcParameterValue", 52)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcParameterValue : IfcMeasureValue, IfcTrimmingSelect, IExpressValueType, System.IEquatable<double>
 	{ 

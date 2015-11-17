@@ -13,6 +13,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.CobieExpress
 {
 	[ExpressType("BooleanValue", 5)]
+	[DefinedType(typeof(bool))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct BooleanValue : AttributeValue, IExpressValueType, System.IEquatable<bool>
 	{ 

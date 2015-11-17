@@ -15,6 +15,7 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcRatioMeasure", 606)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcRatioMeasure : IfcAppliedValueSelect, IfcMeasureValue, IfcSizeSelect, IExpressValueType, System.IEquatable<double>
 	{ 

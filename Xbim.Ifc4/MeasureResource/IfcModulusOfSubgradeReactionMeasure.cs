@@ -14,6 +14,7 @@ using Xbim.Ifc4.StructuralLoadResource;
 namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcModulusOfSubgradeReactionMeasure", 70)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcModulusOfSubgradeReactionMeasure : IfcDerivedMeasureValue, IfcModulusOfSubgradeReactionSelect, IExpressValueType, System.IEquatable<double>
 	{ 

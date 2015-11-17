@@ -13,6 +13,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.CobieExpress
 {
 	[ExpressType("IntegerValue", 3)]
+	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IntegerValue : AttributeValue, IExpressValueType, System.IEquatable<long>
 	{ 

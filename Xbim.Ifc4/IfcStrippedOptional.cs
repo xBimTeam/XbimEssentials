@@ -13,6 +13,7 @@ using Xbim.Common.Exceptions;
 namespace Xbim.Ifc4
 {
 	[ExpressType("IfcStrippedOptional", 0)]
+	[DefinedType(typeof(bool))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcStrippedOptional : IExpressValueType, System.IEquatable<bool>
 	{ 

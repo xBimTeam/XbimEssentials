@@ -14,6 +14,7 @@ using Xbim.Ifc2x3.ConstraintResource;
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcText", 537)]
+	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcText : IfcMetricValueSelect, IfcSimpleValue, IExpressValueType, System.IEquatable<string>
 	{ 
