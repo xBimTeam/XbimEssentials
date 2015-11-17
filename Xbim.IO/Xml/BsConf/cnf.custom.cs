@@ -70,6 +70,22 @@ namespace Xbim.IO.Xml.BsConf
             }
         }
 
+        public IEnumerable<attribute> Attributes
+        {
+            get
+            {
+                return Items.OfType<attribute>();
+            }
+        }
+
+        public IEnumerable<attribute> TaggLessAttributes
+        {
+            get
+            {
+                return Items.OfType<attribute>().Where(a => a.tagless == "true");
+            }
+        }
+
         public string EntityName { get { return select.FirstOrDefault(); } }
     }
 }

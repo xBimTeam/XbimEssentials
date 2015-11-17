@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Common;
 using Xbim.Ifc4;
+using Xbim.Ifc4.Kernel;
 using Xbim.IO.Memory;
 using Xbim.IO.Xml;
 using Xbim.IO.Xml.BsConf;
@@ -57,7 +60,10 @@ namespace Xbim.MemoryModel.Tests
                 using (var xml = XmlWriter.Create(outPath, new XmlWriterSettings { Indent = true }))
                 {
                     var writer = new XbimXmlWriter4(configuration.IFC4Add1);
-                    writer.Write(model, xml);
+                    var entities = model.Instances.OfType<IfcProduct>()
+                        .Concat(model.Instances.OfType<IfcRelationship>().Cast<IPersistEntity>())
+                        .Concat(model.Instances);
+                    writer.Write(model, xml, entities);
                     xml.Close();
                 }
 
