@@ -13,6 +13,7 @@ using Xbim.Ifc4.Kernel;
 using Xbim.Ifc4.PropertyResource;
 using Xbim.Ifc4.SharedBldgElements;
 using Xbim.Ifc4.StructuralLoadResource;
+using Xbim.Ifc4.UtilityResource;
 using Xbim.IO.Memory;
 using Xbim.IO.Xml;
 using Xbim.IO.Xml.BsConf;

@@ -8,10 +8,6 @@ namespace Xbim.Ifc4.UtilityResource
         /// <summary>
         ///   Constructs a GloballyUniqueId from a System.Guid
         /// </summary>
-        public IfcGloballyUniqueId(Guid gid)
-        {
-            _value = ConvertToBase64(gid);
-        }
 
         public static Guid ConvertFromBase64(string base64StrId)
         {

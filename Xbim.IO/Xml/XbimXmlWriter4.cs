@@ -311,7 +311,7 @@ namespace Xbim.IO.Xml
             if (propType.IsValueType || typeof(string) == propType)
             {
                 var pInfoType = propVal.GetType();
-                var pValue = "";
+                string pValue;
                 if (pInfoType.IsEnum) //convert enum
                 {
                     output.WriteStartElement(propName);
