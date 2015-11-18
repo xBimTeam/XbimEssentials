@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.MaterialResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
 		public IfcMaterialDefinition @Material 
 		{ 
 			get 

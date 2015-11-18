@@ -105,7 +105,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
 		public IfcDateTimeSelect @ActualStart 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _actualStart = v, _actualStart, value,  "ActualStart");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
 		public IfcDateTimeSelect @EarlyStart 
 		{ 
 			get 
@@ -133,7 +133,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _earlyStart = v, _earlyStart, value,  "EarlyStart");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
 		public IfcDateTimeSelect @LateStart 
 		{ 
 			get 
@@ -147,7 +147,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _lateStart = v, _lateStart, value,  "LateStart");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
 		public IfcDateTimeSelect @ScheduleStart 
 		{ 
 			get 
@@ -161,7 +161,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _scheduleStart = v, _scheduleStart, value,  "ScheduleStart");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
 		public IfcDateTimeSelect @ActualFinish 
 		{ 
 			get 
@@ -175,7 +175,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _actualFinish = v, _actualFinish, value,  "ActualFinish");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
 		public IfcDateTimeSelect @EarlyFinish 
 		{ 
 			get 
@@ -189,7 +189,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _earlyFinish = v, _earlyFinish, value,  "EarlyFinish");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
 		public IfcDateTimeSelect @LateFinish 
 		{ 
 			get 
@@ -203,7 +203,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _lateFinish = v, _lateFinish, value,  "LateFinish");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
 		public IfcDateTimeSelect @ScheduleFinish 
 		{ 
 			get 
@@ -217,7 +217,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _scheduleFinish = v, _scheduleFinish, value,  "ScheduleFinish");
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
 		public IfcTimeMeasure? @ScheduleDuration 
 		{ 
 			get 
@@ -231,7 +231,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _scheduleDuration = v, _scheduleDuration, value,  "ScheduleDuration");
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
 		public IfcTimeMeasure? @ActualDuration 
 		{ 
 			get 
@@ -245,7 +245,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _actualDuration = v, _actualDuration, value,  "ActualDuration");
 			} 
 		}	
-		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
 		public IfcTimeMeasure? @RemainingTime 
 		{ 
 			get 
@@ -259,7 +259,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _remainingTime = v, _remainingTime, value,  "RemainingTime");
 			} 
 		}	
-		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
 		public IfcTimeMeasure? @FreeFloat 
 		{ 
 			get 
@@ -273,7 +273,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _freeFloat = v, _freeFloat, value,  "FreeFloat");
 			} 
 		}	
-		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
 		public IfcTimeMeasure? @TotalFloat 
 		{ 
 			get 
@@ -287,7 +287,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _totalFloat = v, _totalFloat, value,  "TotalFloat");
 			} 
 		}	
-		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
 		public bool? @IsCritical 
 		{ 
 			get 
@@ -301,7 +301,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _isCritical = v, _isCritical, value,  "IsCritical");
 			} 
 		}	
-		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 26)]
 		public IfcDateTimeSelect @StatusTime 
 		{ 
 			get 
@@ -315,7 +315,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _statusTime = v, _statusTime, value,  "StatusTime");
 			} 
 		}	
-		[EntityAttribute(21, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(21, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 27)]
 		public IfcTimeMeasure? @StartFloat 
 		{ 
 			get 
@@ -329,7 +329,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _startFloat = v, _startFloat, value,  "StartFloat");
 			} 
 		}	
-		[EntityAttribute(22, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(22, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
 		public IfcTimeMeasure? @FinishFloat 
 		{ 
 			get 
@@ -343,7 +343,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _finishFloat = v, _finishFloat, value,  "FinishFloat");
 			} 
 		}	
-		[EntityAttribute(23, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(23, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
 		public IfcPositiveRatioMeasure? @Completion 
 		{ 
 			get 
@@ -362,7 +362,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 30)]
 		public IfcRelAssignsTasks @ScheduleTimeControlAssigned 
 		{ 
 			get 

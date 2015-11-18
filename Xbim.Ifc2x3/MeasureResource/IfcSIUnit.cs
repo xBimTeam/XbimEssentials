@@ -52,7 +52,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 3)]
 		public IfcSIPrefix? @Prefix 
 		{ 
 			get 
@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 				SetValue( v =>  _prefix = v, _prefix, value,  "Prefix");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 4)]
 		public IfcSIUnitName @Name 
 		{ 
 			get 
@@ -83,7 +83,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 		#endregion
 
 		#region Overriding attributes
-		[EntityAttribute(1, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 0)]
 		public override IfcDimensionalExponents @Dimensions 
 		{
 			get 

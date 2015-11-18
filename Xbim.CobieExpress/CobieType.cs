@@ -12,14 +12,84 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieType
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieType : ICobieAsset
+	{
+		ICobiePickValue @AssetType { get; }
+		ICobieContact @Manufacturer { get; }
+		string @ModelNumber { get; }
+		ICobieWarranty @Warranty { get; }
+		double? @ReplacementCost { get; }
+		double? @ExpectedLife { get; }
+		ICobiePickValue @DurationUnit { get; }
+		double @NominalLength { get; }
+		double @NominalWidth { get; }
+		double @NominalHeight { get; }
+		string @ModelReference { get; }
+		string @Shape { get; }
+		string @Size { get; }
+		string @Color { get; }
+		string @Finish { get; }
+		string @Grade { get; }
+		string @Material { get; }
+		string @Constituents { get; }
+		string @Features { get; }
+		string @AccessibilityPerformance { get; }
+		string @CodePerformance { get; }
+		string @SustainabilityPerformance { get; }
+		IEnumerable<ICobieType> @AssemblyOf { get; }
+		IEnumerable<ICobieJob> @Jobs { get; }
+		IEnumerable<ICobieComponent> @Components {  get; }
+		IEnumerable<ICobieSpare> @Spares {  get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
 	[ExpressType("Type", 22)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieType : CobieAsset, IInstantiableEntity, IEqualityComparer<@CobieType>, IEquatable<@CobieType>
+	public  partial class @CobieType : CobieAsset, IInstantiableEntity, ICobieType, IEqualityComparer<@CobieType>, IEquatable<@CobieType>
 	{
+		#region ICobieType explicit implementation
+		ICobiePickValue ICobieType.AssetType { get { return @AssetType; } }	
+		ICobieContact ICobieType.Manufacturer { get { return @Manufacturer; } }	
+		string ICobieType.ModelNumber { get { return @ModelNumber; } }	
+		ICobieWarranty ICobieType.Warranty { get { return @Warranty; } }	
+		double? ICobieType.ReplacementCost { get { return @ReplacementCost; } }	
+		double? ICobieType.ExpectedLife { get { return @ExpectedLife; } }	
+		ICobiePickValue ICobieType.DurationUnit { get { return @DurationUnit; } }	
+		double ICobieType.NominalLength { get { return @NominalLength; } }	
+		double ICobieType.NominalWidth { get { return @NominalWidth; } }	
+		double ICobieType.NominalHeight { get { return @NominalHeight; } }	
+		string ICobieType.ModelReference { get { return @ModelReference; } }	
+		string ICobieType.Shape { get { return @Shape; } }	
+		string ICobieType.Size { get { return @Size; } }	
+		string ICobieType.Color { get { return @Color; } }	
+		string ICobieType.Finish { get { return @Finish; } }	
+		string ICobieType.Grade { get { return @Grade; } }	
+		string ICobieType.Material { get { return @Material; } }	
+		string ICobieType.Constituents { get { return @Constituents; } }	
+		string ICobieType.Features { get { return @Features; } }	
+		string ICobieType.AccessibilityPerformance { get { return @AccessibilityPerformance; } }	
+		string ICobieType.CodePerformance { get { return @CodePerformance; } }	
+		string ICobieType.SustainabilityPerformance { get { return @SustainabilityPerformance; } }	
+		IEnumerable<ICobieType> ICobieType.AssemblyOf { get { return @AssemblyOf; } }	
+		IEnumerable<ICobieJob> ICobieType.Jobs { get { return @Jobs; } }	
+		 
+		IEnumerable<ICobieComponent> ICobieType.Components {  get { return @Components; } }
+		IEnumerable<ICobieSpare> ICobieType.Spares {  get { return @Spares; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieType(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -55,7 +125,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
 		public CobiePickValue @AssetType 
 		{ 
 			get 
@@ -68,9 +138,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _assetType = v, _assetType, value,  "AssetType");
 			} 
-		}
-	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
 		public CobieContact @Manufacturer 
 		{ 
 			get 
@@ -83,9 +152,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _manufacturer = v, _manufacturer, value,  "Manufacturer");
 			} 
-		}
-	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
 		public string @ModelNumber 
 		{ 
 			get 
@@ -98,9 +166,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _modelNumber = v, _modelNumber, value,  "ModelNumber");
 			} 
-		}
-	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
 		public CobieWarranty @Warranty 
 		{ 
 			get 
@@ -113,9 +180,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _warranty = v, _warranty, value,  "Warranty");
 			} 
-		}
-	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
 		public double? @ReplacementCost 
 		{ 
 			get 
@@ -128,9 +194,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _replacementCost = v, _replacementCost, value,  "ReplacementCost");
 			} 
-		}
-	
-		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
 		public double? @ExpectedLife 
 		{ 
 			get 
@@ -143,9 +208,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _expectedLife = v, _expectedLife, value,  "ExpectedLife");
 			} 
-		}
-	
-		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
 		public CobiePickValue @DurationUnit 
 		{ 
 			get 
@@ -158,9 +222,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit");
 			} 
-		}
-	
-		[EntityAttribute(18, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(18, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
 		public double @NominalLength 
 		{ 
 			get 
@@ -173,9 +236,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _nominalLength = v, _nominalLength, value,  "NominalLength");
 			} 
-		}
-	
-		[EntityAttribute(19, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(19, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
 		public double @NominalWidth 
 		{ 
 			get 
@@ -188,9 +250,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _nominalWidth = v, _nominalWidth, value,  "NominalWidth");
 			} 
-		}
-	
-		[EntityAttribute(20, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(20, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
 		public double @NominalHeight 
 		{ 
 			get 
@@ -203,9 +264,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _nominalHeight = v, _nominalHeight, value,  "NominalHeight");
 			} 
-		}
-	
-		[EntityAttribute(21, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(21, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
 		public string @ModelReference 
 		{ 
 			get 
@@ -218,9 +278,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _modelReference = v, _modelReference, value,  "ModelReference");
 			} 
-		}
-	
-		[EntityAttribute(22, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(22, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
 		public string @Shape 
 		{ 
 			get 
@@ -233,9 +292,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _shape = v, _shape, value,  "Shape");
 			} 
-		}
-	
-		[EntityAttribute(23, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(23, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
 		public string @Size 
 		{ 
 			get 
@@ -248,9 +306,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _size = v, _size, value,  "Size");
 			} 
-		}
-	
-		[EntityAttribute(24, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(24, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 26)]
 		public string @Color 
 		{ 
 			get 
@@ -263,9 +320,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _color = v, _color, value,  "Color");
 			} 
-		}
-	
-		[EntityAttribute(25, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(25, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 27)]
 		public string @Finish 
 		{ 
 			get 
@@ -278,9 +334,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _finish = v, _finish, value,  "Finish");
 			} 
-		}
-	
-		[EntityAttribute(26, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(26, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
 		public string @Grade 
 		{ 
 			get 
@@ -293,9 +348,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _grade = v, _grade, value,  "Grade");
 			} 
-		}
-	
-		[EntityAttribute(27, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(27, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
 		public string @Material 
 		{ 
 			get 
@@ -308,9 +362,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _material = v, _material, value,  "Material");
 			} 
-		}
-	
-		[EntityAttribute(28, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(28, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 30)]
 		public string @Constituents 
 		{ 
 			get 
@@ -323,9 +376,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _constituents = v, _constituents, value,  "Constituents");
 			} 
-		}
-	
-		[EntityAttribute(29, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(29, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 31)]
 		public string @Features 
 		{ 
 			get 
@@ -338,9 +390,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _features = v, _features, value,  "Features");
 			} 
-		}
-	
-		[EntityAttribute(30, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(30, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 32)]
 		public string @AccessibilityPerformance 
 		{ 
 			get 
@@ -353,9 +404,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _accessibilityPerformance = v, _accessibilityPerformance, value,  "AccessibilityPerformance");
 			} 
-		}
-	
-		[EntityAttribute(31, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(31, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 33)]
 		public string @CodePerformance 
 		{ 
 			get 
@@ -368,9 +418,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _codePerformance = v, _codePerformance, value,  "CodePerformance");
 			} 
-		}
-	
-		[EntityAttribute(32, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(32, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 34)]
 		public string @SustainabilityPerformance 
 		{ 
 			get 
@@ -383,9 +432,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _sustainabilityPerformance = v, _sustainabilityPerformance, value,  "SustainabilityPerformance");
 			} 
-		}
-	
-		[EntityAttribute(33, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		}	
+		[EntityAttribute(33, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 35)]
 		public ItemSet<CobieType> @AssemblyOf 
 		{ 
 			get 
@@ -394,10 +442,9 @@ namespace Xbim.CobieExpress
 				((IPersistEntity)this).Activate(false);
 				return _assemblyOf;
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
-		[EntityAttribute(34, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1)]
+		[EntityAttribute(34, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 36)]
 		public ItemSet<CobieJob> @Jobs 
 		{ 
 			get 
@@ -406,13 +453,13 @@ namespace Xbim.CobieExpress
 				((IPersistEntity)this).Activate(false);
 				return _jobs;
 			} 
-		}
-	
+		}	
 		#endregion
 
 
+
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 37)]
 		public IEnumerable<CobieComponent> @Components 
 		{ 
 			get 
@@ -420,7 +467,7 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobieComponent>(e => (e.Type as CobieType) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 38)]
 		public IEnumerable<CobieSpare> @Spares 
 		{ 
 			get 
@@ -587,5 +634,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcLabel @Name 
 		{ 
 			get 
@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcLabel? @Version 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				SetValue( v =>  _version = v, _version, value,  "Version");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcActorSelect @Publisher 
 		{ 
 			get 
@@ -115,7 +115,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				SetValue( v =>  _publisher = v, _publisher, value,  "Publisher");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcDateTime? @VersionDate 
 		{ 
 			get 
@@ -129,7 +129,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				SetValue( v =>  _versionDate = v, _versionDate, value,  "VersionDate");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcURIReference? @Location 
 		{ 
 			get 
@@ -143,7 +143,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				SetValue( v =>  _location = v, _location, value,  "Location");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -162,7 +162,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 7)]
 		public IEnumerable<IfcRelAssociatesLibrary> @LibraryInfoForObjects 
 		{ 
 			get 
@@ -170,7 +170,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				return Model.Instances.Where<IfcRelAssociatesLibrary>(e => (e.RelatingLibrary as IfcLibraryInformation) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 8)]
 		public IEnumerable<IfcLibraryReference> @HasLibraryReferences 
 		{ 
 			get 

@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
 		public IfcDateTime @CreationDate 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _creationDate = v, _creationDate, value,  "CreationDate");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 20)]
 		public OptionalItemSet<IfcPerson> @Creators 
 		{ 
 			get 
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				return _creators;
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
 		public IfcLabel? @Purpose 
 		{ 
 			get 
@@ -110,7 +110,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
 		public IfcDuration? @Duration 
 		{ 
 			get 
@@ -124,7 +124,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _duration = v, _duration, value,  "Duration");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
 		public IfcDuration? @TotalFloat 
 		{ 
 			get 
@@ -138,7 +138,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _totalFloat = v, _totalFloat, value,  "TotalFloat");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
 		public IfcDateTime @StartTime 
 		{ 
 			get 
@@ -152,7 +152,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
 		public IfcDateTime? @FinishTime 
 		{ 
 			get 

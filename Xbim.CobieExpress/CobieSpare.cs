@@ -12,14 +12,46 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieSpare
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieSpare : ICobieReferencedObject
+	{
+		string @Name { get; }
+		string @Description { get; }
+		ICobiePickValue @SpareType { get; }
+		ICobieType @Type { get; }
+		IEnumerable<ICobieContact> @Suppliers { get; }
+		string @SetNumber { get; }
+		string @PartNumber { get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
 	[ExpressType("Spare", 27)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSpare : CobieReferencedObject, IInstantiableEntity, IEqualityComparer<@CobieSpare>, IEquatable<@CobieSpare>
+	public  partial class @CobieSpare : CobieReferencedObject, IInstantiableEntity, ICobieSpare, IEqualityComparer<@CobieSpare>, IEquatable<@CobieSpare>
 	{
+		#region ICobieSpare explicit implementation
+		string ICobieSpare.Name { get { return @Name; } }	
+		string ICobieSpare.Description { get { return @Description; } }	
+		ICobiePickValue ICobieSpare.SpareType { get { return @SpareType; } }	
+		ICobieType ICobieSpare.Type { get { return @Type; } }	
+		IEnumerable<ICobieContact> ICobieSpare.Suppliers { get { return @Suppliers; } }	
+		string ICobieSpare.SetNumber { get { return @SetNumber; } }	
+		string ICobieSpare.PartNumber { get { return @PartNumber; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieSpare(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -37,7 +69,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public string @Name 
 		{ 
 			get 
@@ -50,9 +82,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public string @Description 
 		{ 
 			get 
@@ -65,9 +96,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
 		public CobiePickValue @SpareType 
 		{ 
 			get 
@@ -80,10 +110,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _spareType = v, _spareType, value,  "SpareType");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobieType @Type 
 		{ 
 			get 
@@ -96,9 +125,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _type = v, _type, value,  "Type");
 			} 
-		}
-	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1)]
+		}	
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 9)]
 		public ItemSet<CobieContact> @Suppliers 
 		{ 
 			get 
@@ -107,9 +135,8 @@ namespace Xbim.CobieExpress
 				((IPersistEntity)this).Activate(false);
 				return _suppliers;
 			} 
-		}
-	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public string @SetNumber 
 		{ 
 			get 
@@ -122,9 +149,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _setNumber = v, _setNumber, value,  "SetNumber");
 			} 
-		}
-	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
 		public string @PartNumber 
 		{ 
 			get 
@@ -137,9 +163,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _partNumber = v, _partNumber, value,  "PartNumber");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
@@ -242,5 +268,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

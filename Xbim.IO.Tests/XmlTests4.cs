@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -7,7 +8,11 @@ using System.Xml.Schema;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
 using Xbim.Ifc4;
+using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.Kernel;
+using Xbim.Ifc4.PropertyResource;
+using Xbim.Ifc4.SharedBldgElements;
+using Xbim.Ifc4.StructuralLoadResource;
 using Xbim.IO.Memory;
 using Xbim.IO.Xml;
 using Xbim.IO.Xml.BsConf;
@@ -56,19 +61,163 @@ namespace Xbim.MemoryModel.Tests
             using (var model = new MemoryModel<EntityFactory>())
             {
                 model.Open("SampleHouse4.ifc");
-
-                using (var xml = XmlWriter.Create(outPath, new XmlWriterSettings { Indent = true }))
-                {
-                    var writer = new XbimXmlWriter4(configuration.IFC4Add1);
-                    var entities = model.Instances.OfType<IfcProduct>()
-                        .Concat(model.Instances.OfType<IfcRelationship>().Cast<IPersistEntity>())
-                        .Concat(model.Instances);
-                    writer.Write(model, xml, entities);
-                    xml.Close();
-                }
+                WriteXml(model, outPath);
 
                 var errs = ValidateIfc4(outPath);
                 Assert.AreEqual(0, errs);
+            }
+        }
+
+        //[TestMethod]
+        //public void ValidateOnly()
+        //{
+        //    const string outPath = "..\\..\\SampleHouse4.xml";
+        //    ValidateIfc4(outPath);
+        //}
+
+        [TestMethod]
+        public void PropertySetDefinitionSetSerialization()
+        {
+            const string outPath = "..\\..\\IfcPropertySetDefinitionSet.xml";
+            using (var model = new MemoryModel<EntityFactory>())
+            {
+                using (var txn = model.BeginTransaction("IfcPropertySetDefinitionSet"))
+                {
+                    var pSet1 = model.Instances.New<IfcPropertySet>(p =>
+                    {
+                        p.Name = "pSet_1";
+                        p.GlobalId = Guid.NewGuid();
+                        p.HasProperties.Add(model.Instances.New<IfcPropertySingleValue>(s => s.Name = "Property"));
+                    });
+                    var pSet2 = model.Instances.New<IfcPropertySet>(p =>
+                    {
+                        p.Name = "pSet_2";
+                        p.GlobalId = Guid.NewGuid();
+                        p.HasProperties.Add(model.Instances.New<IfcPropertySingleValue>(s => s.Name = "Property"));
+                    });
+                    var pSet3 = model.Instances.New<IfcPropertySet>(p =>
+                    {
+                        p.Name = "pSet_3";
+                        p.GlobalId = Guid.NewGuid();
+                        p.HasProperties.Add(model.Instances.New<IfcPropertySingleValue>(s => s.Name = "Property"));
+                    });
+
+                    var set = new IfcPropertySetDefinitionSet(new List<IfcPropertySetDefinition>{pSet1, pSet2, pSet3});
+                    var wall = model.Instances.New<IfcWall>(w =>
+                    {
+                        w.Name = "Sample wall";
+                        w.GlobalId = Guid.NewGuid();
+                    });
+
+                    model.Instances.New<IfcRelDefinesByProperties>(r =>
+                    {
+                        r.RelatingPropertyDefinition = set;
+                        r.RelatedObjects.Add(wall);
+                        r.GlobalId = Guid.NewGuid();
+                    });
+
+                    txn.Commit();
+                }
+
+
+                WriteXml(model, outPath);
+                var errs = ValidateIfc4(outPath);
+                Assert.AreEqual(0, errs);
+
+                //var xmlString = File.ReadAllText(outPath);
+            }
+        }
+        [TestMethod]
+        public void RectangularListSerialization()
+        {
+            const string outPath = "..\\..\\IfcCartesianPointList3D.xml";
+            using (var model = new MemoryModel<EntityFactory>())
+            {
+                using (var txn = model.BeginTransaction("Rect"))
+                {
+                    var pl = model.Instances.New<IfcCartesianPointList3D>();
+                    var a1 = pl.CoordList.GetAt(0);
+                    var a2 = pl.CoordList.GetAt(1);
+                    var a3 = pl.CoordList.GetAt(2);
+
+                    a1.Add(1.0);
+                    a1.Add(2.0);
+                    a1.Add(3.0);
+                    a2.Add(4.0);
+                    a2.Add(5.0);
+                    a2.Add(6.0);
+                    a3.Add(7.0);
+                    a3.Add(8.0);
+                    a3.Add(9.0);
+
+                    txn.Commit();
+                }
+
+
+                WriteXml(model, outPath);
+                var errs = ValidateIfc4(outPath);
+                
+                Assert.AreEqual(0, errs);
+
+                var xmlString = File.ReadAllText(outPath);
+                Assert.IsTrue(xmlString.Contains("CoordList=\"1 2 3 4 5 6 7 8 9\""));
+            }
+        }
+
+        [TestMethod]
+        public void NonRectangularListSerialization()
+        {
+            const string outPath = "..\\..\\IfcStructuralLoadConfiguration.xml";
+            using (var model = new MemoryModel<EntityFactory>())
+            {
+                using (var txn = model.BeginTransaction("Rect"))
+                {
+                    var slc = model.Instances.New<IfcStructuralLoadConfiguration>();
+                    var a1 = slc.Locations.GetAt(0);
+                    var a2 = slc.Locations.GetAt(1);
+                    var a3 = slc.Locations.GetAt(2);
+
+                    a1.Add(1.0);
+                    a1.Add(2.0);
+                    a2.Add(4.0);
+                    a2.Add(5.0);
+                    a3.Add(7.0);
+                    a3.Add(8.0);
+
+                    slc.Values.Add(model.Instances.New<IfcStructuralLoadLinearForce>());
+                    slc.Values.Add(model.Instances.New<IfcStructuralLoadLinearForce>());
+                    slc.Values.Add(model.Instances.New<IfcStructuralLoadLinearForce>());
+
+                    txn.Commit();
+                }
+
+
+                WriteXml(model, outPath);
+                var errs = ValidateIfc4(outPath);
+                Assert.AreEqual(0, errs);
+
+                var xmlString = File.ReadAllText(outPath);
+                Assert.IsTrue(xmlString.Contains("pos=\"0 0\""));
+                Assert.IsTrue(xmlString.Contains("pos=\"0 1\""));
+                Assert.IsTrue(xmlString.Contains("pos=\"1 0\""));
+                Assert.IsTrue(xmlString.Contains("pos=\"1 1\""));
+                Assert.IsTrue(xmlString.Contains("pos=\"2 0\""));
+                Assert.IsTrue(xmlString.Contains("pos=\"2 1\""));
+            }
+        }
+
+
+
+        private static void WriteXml(IModel model, string path)
+        {
+            using (var xml = XmlWriter.Create(path, new XmlWriterSettings { Indent = true }))
+            {
+                var writer = new XbimXmlWriter4(configuration.IFC4Add1);
+                var entities = model.Instances.OfType<IfcProduct>()
+                    .Concat(model.Instances.OfType<IfcRelationship>().Cast<IPersistEntity>())
+                    .Concat(model.Instances);
+                writer.Write(model, xml, entities);
+                xml.Close();
             }
         }
 

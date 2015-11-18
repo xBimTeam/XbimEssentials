@@ -53,7 +53,7 @@ namespace Xbim.Ifc4.Kernel
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
 		public IfcObjectTypeEnum @ProxyType 
 		{ 
 			get 
@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _proxyType = v, _proxyType, value,  "ProxyType");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
 		public IfcLabel? @Tag 
 		{ 
 			get 

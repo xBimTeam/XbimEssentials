@@ -60,7 +60,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 27)]
 		public long? @NumberOfRiser 
 		{ 
 			get 
@@ -74,7 +74,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				SetValue( v =>  _numberOfRiser = v, _numberOfRiser, value,  "NumberOfRiser");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
 		public long? @NumberOfTreads 
 		{ 
 			get 
@@ -88,7 +88,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				SetValue( v =>  _numberOfTreads = v, _numberOfTreads, value,  "NumberOfTreads");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
 		public IfcPositiveLengthMeasure? @RiserHeight 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				SetValue( v =>  _riserHeight = v, _riserHeight, value,  "RiserHeight");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 30)]
 		public IfcPositiveLengthMeasure? @TreadLength 
 		{ 
 			get 

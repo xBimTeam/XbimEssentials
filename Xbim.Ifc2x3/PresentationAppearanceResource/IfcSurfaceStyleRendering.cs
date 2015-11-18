@@ -71,7 +71,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcNormalisedRatioMeasure? @Transparency 
 		{ 
 			get 
@@ -85,7 +85,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _transparency = v, _transparency, value,  "Transparency");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcColourOrFactor @DiffuseColour 
 		{ 
 			get 
@@ -99,7 +99,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _diffuseColour = v, _diffuseColour, value,  "DiffuseColour");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcColourOrFactor @TransmissionColour 
 		{ 
 			get 
@@ -113,7 +113,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _transmissionColour = v, _transmissionColour, value,  "TransmissionColour");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
 		public IfcColourOrFactor @DiffuseTransmissionColour 
 		{ 
 			get 
@@ -127,7 +127,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _diffuseTransmissionColour = v, _diffuseTransmissionColour, value,  "DiffuseTransmissionColour");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
 		public IfcColourOrFactor @ReflectionColour 
 		{ 
 			get 
@@ -141,7 +141,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _reflectionColour = v, _reflectionColour, value,  "ReflectionColour");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
 		public IfcColourOrFactor @SpecularColour 
 		{ 
 			get 
@@ -155,7 +155,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _specularColour = v, _specularColour, value,  "SpecularColour");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public IfcSpecularHighlightSelect @SpecularHighlight 
 		{ 
 			get 
@@ -169,7 +169,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _specularHighlight = v, _specularHighlight, value,  "SpecularHighlight");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 9)]
 		public IfcReflectanceMethodEnum @ReflectanceMethod 
 		{ 
 			get 

@@ -53,7 +53,7 @@ namespace Xbim.Ifc4.QuantityResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcVolumeMeasure @VolumeValue 
 		{ 
 			get 
@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.QuantityResource
 				SetValue( v =>  _volumeValue = v, _volumeValue, value,  "VolumeValue");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcLabel? @Formula 
 		{ 
 			get 

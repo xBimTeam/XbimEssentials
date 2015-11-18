@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.Kernel
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
 		public IfcResourceSelect @RelatingResource 
 		{ 
 			get 

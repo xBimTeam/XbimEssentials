@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcNamedUnit @Unit 
 		{ 
 			get 

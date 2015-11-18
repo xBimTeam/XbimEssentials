@@ -61,7 +61,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcDirection @Axis1 
 		{ 
 			get 
@@ -75,7 +75,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _axis1 = v, _axis1, value,  "Axis1");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcDirection @Axis2 
 		{ 
 			get 
@@ -89,7 +89,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _axis2 = v, _axis2, value,  "Axis2");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
 		public IfcCartesianPoint @LocalOrigin 
 		{ 
 			get 
@@ -103,7 +103,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _localOrigin = v, _localOrigin, value,  "LocalOrigin");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcReal? @Scale 
 		{ 
 			get 
@@ -121,7 +121,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
 		public IfcReal @Scl 
 		{
 			get 
@@ -132,7 +132,7 @@ namespace Xbim.Ifc4.GeometryResource
 			}
 		}
 
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
 		public IfcDimensionCount @Dim 
 		{
 			get 

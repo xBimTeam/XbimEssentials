@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
 		public IfcAxis2Placement3D @Position 
 		{ 
 			get 
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _position = v, _position, value,  "Position");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public IfcColourRgb @ColourAppearance 
 		{ 
 			get 
@@ -95,7 +95,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _colourAppearance = v, _colourAppearance, value,  "ColourAppearance");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
 		public IfcThermodynamicTemperatureMeasure @ColourTemperature 
 		{ 
 			get 
@@ -109,7 +109,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _colourTemperature = v, _colourTemperature, value,  "ColourTemperature");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public IfcLuminousFluxMeasure @LuminousFlux 
 		{ 
 			get 
@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _luminousFlux = v, _luminousFlux, value,  "LuminousFlux");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
 		public IfcLightEmissionSourceEnum @LightEmissionSource 
 		{ 
 			get 
@@ -137,7 +137,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _lightEmissionSource = v, _lightEmissionSource, value,  "LightEmissionSource");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
 		public IfcLightDistributionDataSourceSelect @LightDistributionDataSource 
 		{ 
 			get 

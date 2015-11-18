@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcCurveStyle @HatchLineAppearance 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _hatchLineAppearance = v, _hatchLineAppearance, value,  "HatchLineAppearance");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcHatchLineDistanceSelect @StartOfNextHatchLine 
 		{ 
 			get 
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _startOfNextHatchLine = v, _startOfNextHatchLine, value,  "StartOfNextHatchLine");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
 		public IfcCartesianPoint @PointOfReferenceHatchLine 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _pointOfReferenceHatchLine = v, _pointOfReferenceHatchLine, value,  "PointOfReferenceHatchLine");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
 		public IfcCartesianPoint @PatternStart 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _patternStart = v, _patternStart, value,  "PatternStart");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcPlaneAngleMeasure @HatchLineAngle 
 		{ 
 			get 

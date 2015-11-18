@@ -60,7 +60,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcCompositeCurve @SpineCurve 
 		{ 
 			get 
@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _spineCurve = v, _spineCurve, value,  "SpineCurve");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 4)]
 		public ItemSet<IfcProfileDef> @CrossSections 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				return _crossSections;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 5)]
 		public ItemSet<IfcAxis2Placement3D> @CrossSectionPositions 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
 		public IfcDimensionCount @Dim 
 		{
 			get 

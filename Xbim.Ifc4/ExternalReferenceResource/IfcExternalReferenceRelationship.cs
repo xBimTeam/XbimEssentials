@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcExternalReference @RelatingReference 
 		{ 
 			get 
@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
 		public ItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
 		{ 
 			get 

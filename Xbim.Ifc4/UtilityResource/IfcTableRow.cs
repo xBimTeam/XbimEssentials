@@ -115,7 +115,7 @@ namespace Xbim.Ifc4.UtilityResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 1)]
 		public OptionalItemSet<IfcValue> @RowCells 
 		{ 
 			get 
@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.UtilityResource
 				return _rowCells;
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcBoolean? @IsHeading 
 		{ 
 			get 

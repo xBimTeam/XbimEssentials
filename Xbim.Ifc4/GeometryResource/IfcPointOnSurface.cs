@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcSurface @BasisSurface 
 		{ 
 			get 
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcParameterValue @PointParameterU 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _pointParameterU = v, _pointParameterU, value,  "PointParameterU");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcParameterValue @PointParameterV 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
 		public override IfcDimensionCount @Dim 
 		{
 			get 

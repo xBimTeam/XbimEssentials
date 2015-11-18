@@ -12,14 +12,50 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieFacility
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieFacility : ICobieAsset, SpatialDivision
+	{
+		ICobiePickValue @LinearUnits { get; }
+		ICobiePickValue @AreaUnits { get; }
+		ICobiePickValue @VolumeUnits { get; }
+		ICobiePickValue @CurrencyUnit { get; }
+		string @AreaMeasurement { get; }
+		ICobieProject @Project { get; }
+		ICobieSite @Site { get; }
+		ICobiePhase @Phase { get; }
+		IEnumerable<ICobieFloor> @Floors {  get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
 	[ExpressType("Facility", 16)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieFacility : CobieAsset, SpatialDivision, IInstantiableEntity, IEqualityComparer<@CobieFacility>, IEquatable<@CobieFacility>
+	public  partial class @CobieFacility : CobieAsset, IInstantiableEntity, ICobieFacility, IEqualityComparer<@CobieFacility>, IEquatable<@CobieFacility>
 	{
+		#region ICobieFacility explicit implementation
+		ICobiePickValue ICobieFacility.LinearUnits { get { return @LinearUnits; } }	
+		ICobiePickValue ICobieFacility.AreaUnits { get { return @AreaUnits; } }	
+		ICobiePickValue ICobieFacility.VolumeUnits { get { return @VolumeUnits; } }	
+		ICobiePickValue ICobieFacility.CurrencyUnit { get { return @CurrencyUnit; } }	
+		string ICobieFacility.AreaMeasurement { get { return @AreaMeasurement; } }	
+		ICobieProject ICobieFacility.Project { get { return @Project; } }	
+		ICobieSite ICobieFacility.Site { get { return @Site; } }	
+		ICobiePhase ICobieFacility.Phase { get { return @Phase; } }	
+		 
+		IEnumerable<ICobieFloor> ICobieFacility.Floors {  get { return @Floors; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieFacility(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -37,7 +73,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
 		public CobiePickValue @LinearUnits 
 		{ 
 			get 
@@ -50,9 +86,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _linearUnits = v, _linearUnits, value,  "LinearUnits");
 			} 
-		}
-	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
 		public CobiePickValue @AreaUnits 
 		{ 
 			get 
@@ -65,9 +100,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _areaUnits = v, _areaUnits, value,  "AreaUnits");
 			} 
-		}
-	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
 		public CobiePickValue @VolumeUnits 
 		{ 
 			get 
@@ -80,9 +114,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _volumeUnits = v, _volumeUnits, value,  "VolumeUnits");
 			} 
-		}
-	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
 		public CobiePickValue @CurrencyUnit 
 		{ 
 			get 
@@ -95,9 +128,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _currencyUnit = v, _currencyUnit, value,  "CurrencyUnit");
 			} 
-		}
-	
-		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
 		public string @AreaMeasurement 
 		{ 
 			get 
@@ -110,10 +142,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _areaMeasurement = v, _areaMeasurement, value,  "AreaMeasurement");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
-		[EntityAttribute(16, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(16, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
 		public CobieProject @Project 
 		{ 
 			get 
@@ -126,10 +157,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _project = v, _project, value,  "Project");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
-		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
 		public CobieSite @Site 
 		{ 
 			get 
@@ -142,9 +172,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _site = v, _site, value,  "Site");
 			} 
-		}
-	
-		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
 		public CobiePhase @Phase 
 		{ 
 			get 
@@ -157,13 +186,13 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _phase = v, _phase, value,  "Phase");
 			} 
-		}
-	
+		}	
 		#endregion
 
 
+
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 21)]
 		public IEnumerable<CobieFloor> @Floors 
 		{ 
 			get 
@@ -280,5 +309,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

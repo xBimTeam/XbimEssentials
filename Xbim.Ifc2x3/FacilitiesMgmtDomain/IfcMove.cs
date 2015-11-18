@@ -59,7 +59,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
 		public IfcSpatialStructureElement @MoveFrom 
 		{ 
 			get 
@@ -73,7 +73,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 				SetValue( v =>  _moveFrom = v, _moveFrom, value,  "MoveFrom");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
 		public IfcSpatialStructureElement @MoveTo 
 		{ 
 			get 
@@ -87,7 +87,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 				SetValue( v =>  _moveTo = v, _moveTo, value,  "MoveTo");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.None, 1, -1)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.None, 1, -1, 21)]
 		public OptionalItemSet<IfcText> @PunchList 
 		{ 
 			get 

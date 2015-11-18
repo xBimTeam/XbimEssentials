@@ -53,7 +53,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcPositiveLengthMeasure @SemiAxis1 
 		{ 
 			get 
@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _semiAxis1 = v, _semiAxis1, value,  "SemiAxis1");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcPositiveLengthMeasure @SemiAxis2 
 		{ 
 			get 

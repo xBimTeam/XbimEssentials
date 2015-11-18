@@ -58,7 +58,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcDateTime? @ActualDate 
 		{ 
 			get 
@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _actualDate = v, _actualDate, value,  "ActualDate");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcDateTime? @EarlyDate 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _earlyDate = v, _earlyDate, value,  "EarlyDate");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcDateTime? @LateDate 
 		{ 
 			get 
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _lateDate = v, _lateDate, value,  "LateDate");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcDateTime? @ScheduleDate 
 		{ 
 			get 

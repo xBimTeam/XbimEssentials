@@ -137,7 +137,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcLabel @Name 
 		{ 
 			get 
@@ -151,7 +151,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -165,7 +165,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcDateTime @StartTime 
 		{ 
 			get 
@@ -179,7 +179,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcDateTime @EndTime 
 		{ 
 			get 
@@ -193,7 +193,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _endTime = v, _endTime, value,  "EndTime");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 5)]
 		public IfcTimeSeriesDataTypeEnum @TimeSeriesDataType 
 		{ 
 			get 
@@ -207,7 +207,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _timeSeriesDataType = v, _timeSeriesDataType, value,  "TimeSeriesDataType");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 6)]
 		public IfcDataOriginEnum @DataOrigin 
 		{ 
 			get 
@@ -221,7 +221,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _dataOrigin = v, _dataOrigin, value,  "DataOrigin");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcLabel? @UserDefinedDataOrigin 
 		{ 
 			get 
@@ -235,7 +235,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _userDefinedDataOrigin = v, _userDefinedDataOrigin, value,  "UserDefinedDataOrigin");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public IfcUnit @Unit 
 		{ 
 			get 
@@ -254,7 +254,7 @@ namespace Xbim.Ifc4.DateTimeResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 9)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReference 
 		{ 
 			get 

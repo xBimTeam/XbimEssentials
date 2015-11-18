@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
 		public IfcPlanarExtent @Extent 
 		{ 
 			get 
@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 				SetValue( v =>  _extent = v, _extent, value,  "Extent");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcBoxAlignment @BoxAlignment 
 		{ 
 			get 

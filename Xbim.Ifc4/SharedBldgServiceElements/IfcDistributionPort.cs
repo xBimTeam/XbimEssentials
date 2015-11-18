@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 23)]
 		public IfcFlowDirectionEnum? @FlowDirection 
 		{ 
 			get 
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 				SetValue( v =>  _flowDirection = v, _flowDirection, value,  "FlowDirection");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 24)]
 		public IfcDistributionPortTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 25)]
 		public IfcDistributionSystemEnum? @SystemType 
 		{ 
 			get 

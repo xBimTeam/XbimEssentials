@@ -115,7 +115,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 3, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 3, -1, 1)]
 		public ItemSet<IfcTextureVertex> @TextureVertices 
 		{ 
 			get 
@@ -125,7 +125,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				return _textureVertices;
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 3, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 3, -1, 2)]
 		public ItemSet<IfcCartesianPoint> @TexturePoints 
 		{ 
 			get 

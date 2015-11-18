@@ -112,7 +112,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcTime @StartTime 
 		{ 
 			get 
@@ -126,7 +126,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcTime @EndTime 
 		{ 
 			get 

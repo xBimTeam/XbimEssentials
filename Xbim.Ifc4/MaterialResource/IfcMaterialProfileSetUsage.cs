@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
 		public IfcMaterialProfileSet @ForProfileSet 
 		{ 
 			get 
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _forProfileSet = v, _forProfileSet, value,  "ForProfileSet");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcCardinalPointReference? @CardinalPoint 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _cardinalPoint = v, _cardinalPoint, value,  "CardinalPoint");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcPositiveLengthMeasure? @ReferenceExtent 
 		{ 
 			get 

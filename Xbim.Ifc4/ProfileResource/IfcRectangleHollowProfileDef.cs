@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
 		public IfcPositiveLengthMeasure @WallThickness 
 		{ 
 			get 
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _wallThickness = v, _wallThickness, value,  "WallThickness");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
 		public IfcNonNegativeLengthMeasure? @InnerFilletRadius 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _innerFilletRadius = v, _innerFilletRadius, value,  "InnerFilletRadius");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public IfcNonNegativeLengthMeasure? @OuterFilletRadius 
 		{ 
 			get 

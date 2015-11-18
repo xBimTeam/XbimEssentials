@@ -14,14 +14,34 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieExternalSystem
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieExternalSystem : IPersistEntity
+	{
+		string @Name { get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
 	[ExpressType("ExternalSystem", 11)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieExternalSystem : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@CobieExternalSystem>, IEquatable<@CobieExternalSystem>
+	public  partial class @CobieExternalSystem : INotifyPropertyChanged, IInstantiableEntity, ICobieExternalSystem, IEqualityComparer<@CobieExternalSystem>, IEquatable<@CobieExternalSystem>
 	{
+		#region ICobieExternalSystem explicit implementation
+		string ICobieExternalSystem.Name { get { return @Name; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -78,7 +98,6 @@ namespace Xbim.CobieExpress
 		}
 
 		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -91,7 +110,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public string @Name 
 		{ 
 			get 
@@ -104,9 +123,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
@@ -233,5 +252,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

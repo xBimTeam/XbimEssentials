@@ -115,7 +115,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcLabel @Name 
 		{ 
 			get 
@@ -129,7 +129,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 3)]
 		public IEnumerable<IfcPhysicalComplexQuantity> @PartOfComplex 
 		{ 
 			get 

@@ -71,6 +71,7 @@ namespace Xbim.Common
         private readonly EntityAttributeState _state;
         private readonly EntityAttributeType _entityType;
         private readonly int _order;
+        private readonly int _globalOrder;
         private readonly int _maxCardinality = -1;
         private readonly int _minCardinality = -1;
         private readonly EntityAttributeType _memberType = EntityAttributeType.Class;
@@ -105,19 +106,19 @@ namespace Xbim.Common
             get { return _memberType; }
         }
 
-        public EntityAttributeAttribute()
-        {
-        }
+        //public EntityAttributeAttribute()
+        //{
+        //}
 
-        public EntityAttributeAttribute(int order, EntityAttributeState state)
-        {
-            _state = state;
-            _order = order;
-            _entityType = EntityAttributeType.Class;
-        }
+        //public EntityAttributeAttribute(int order, EntityAttributeState state)
+        //{
+        //    _state = state;
+        //    _order = order;
+        //    _entityType = EntityAttributeType.Class;
+        //}
 
         public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, EntityAttributeType memberType,
-                            int minCardinality, int maxCardinality)
+                            int minCardinality, int maxCardinality, int globalOrder)
         {
             _state = state;
             _order = order;
@@ -125,54 +126,62 @@ namespace Xbim.Common
             _memberType = memberType;
             _minCardinality = minCardinality;
             _maxCardinality = maxCardinality;
+            _globalOrder = globalOrder;
         }
 
-        public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, int minCardinality,
-                            int maxCardinality)
-        {
-            _state = state;
-            _order = order;
-            _entityType = entityType;
-            _minCardinality = minCardinality;
-            _maxCardinality = maxCardinality;
-        }
+        //public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, int minCardinality,
+        //                    int maxCardinality)
+        //{
+        //    _state = state;
+        //    _order = order;
+        //    _entityType = entityType;
+        //    _minCardinality = minCardinality;
+        //    _maxCardinality = maxCardinality;
+        //}
 
-        public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, int minCardinality)
-        {
-            _state = state;
-            _order = order;
-            _entityType = entityType;
-            _minCardinality = minCardinality;
-        }
+        //public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, int minCardinality)
+        //{
+        //    _state = state;
+        //    _order = order;
+        //    _entityType = entityType;
+        //    _minCardinality = minCardinality;
+        //}
 
-        public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, EntityAttributeType memberType,
-                            int minCardinality)
-        {
-            _state = state;
-            _order = order;
-            _entityType = entityType;
-            _memberType = memberType;
-            _minCardinality = minCardinality;
-        }
+        //public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, EntityAttributeType memberType,
+        //                    int minCardinality)
+        //{
+        //    _state = state;
+        //    _order = order;
+        //    _entityType = entityType;
+        //    _memberType = memberType;
+        //    _minCardinality = minCardinality;
+        //}
 
-        public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType)
-        {
-            _state = state;
-            _order = order;
-            _entityType = entityType;
-        }
+        //public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType)
+        //{
+        //    _state = state;
+        //    _order = order;
+        //    _entityType = entityType;
+        //}
 
-        public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, EntityAttributeType memberType)
-        {
-            _state = state;
-            _order = order;
-            _entityType = entityType;
-            _memberType = memberType;
-        }
+        //public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, EntityAttributeType memberType)
+        //{
+        //    _state = state;
+        //    _order = order;
+        //    _entityType = entityType;
+        //    _memberType = memberType;
+        //}
 
         public bool IsEnumerable
         {
-            get { return (_entityType == EntityAttributeType.List || _entityType == EntityAttributeType.Set); }
+            get { return
+                _entityType == EntityAttributeType.Array||
+                _entityType == EntityAttributeType.ArrayUnique ||
+                _entityType == EntityAttributeType.Bag ||
+                _entityType == EntityAttributeType.List ||
+                _entityType == EntityAttributeType.ListUnique ||
+                _entityType == EntityAttributeType.Set
+                ; }
         }
 
         public string ListType
@@ -242,6 +251,11 @@ namespace Xbim.Common
         public bool IsMandatory
         {
             get { return (_state == EntityAttributeState.Mandatory); }
+        }
+
+        public int GlobalOrder
+        {
+            get { return _globalOrder; }
         }
     }
 }

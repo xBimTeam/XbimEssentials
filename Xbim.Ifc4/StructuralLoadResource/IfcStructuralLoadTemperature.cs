@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcThermodynamicTemperatureMeasure? @DeltaTConstant 
 		{ 
 			get 
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _deltaTConstant = v, _deltaTConstant, value,  "DeltaTConstant");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcThermodynamicTemperatureMeasure? @DeltaTY 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _deltaTY = v, _deltaTY, value,  "DeltaTY");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcThermodynamicTemperatureMeasure? @DeltaTZ 
 		{ 
 			get 

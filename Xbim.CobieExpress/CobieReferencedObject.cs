@@ -14,14 +14,40 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieReferencedObject
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieReferencedObject : IPersistEntity
+	{
+		string @ExternalId { get; }
+		ICobieCreatedInfo @Created { get; }
+		ICobieExternalSystem @ExternalSystem { get; }
+		string @ExternalObject { get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
 	[ExpressType("ReferencedObject", 13)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @CobieReferencedObject : IPersistEntity, INotifyPropertyChanged, IEqualityComparer<@CobieReferencedObject>, IEquatable<@CobieReferencedObject>
+	public abstract partial class @CobieReferencedObject : IPersistEntity, INotifyPropertyChanged, ICobieReferencedObject, IEqualityComparer<@CobieReferencedObject>, IEquatable<@CobieReferencedObject>
 	{
+		#region ICobieReferencedObject explicit implementation
+		string ICobieReferencedObject.ExternalId { get { return @ExternalId; } }	
+		ICobieCreatedInfo ICobieReferencedObject.Created { get { return @Created; } }	
+		ICobieExternalSystem ICobieReferencedObject.ExternalSystem { get { return @ExternalSystem; } }	
+		string ICobieReferencedObject.ExternalObject { get { return @ExternalObject; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -78,7 +104,6 @@ namespace Xbim.CobieExpress
 		}
 
 		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -94,7 +119,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public string @ExternalId 
 		{ 
 			get 
@@ -107,9 +132,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _externalId = v, _externalId, value,  "ExternalId");
 			} 
-		}
-	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
 		public CobieCreatedInfo @Created 
 		{ 
 			get 
@@ -122,9 +146,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _created = v, _created, value,  "Created");
 			} 
-		}
-	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public CobieExternalSystem @ExternalSystem 
 		{ 
 			get 
@@ -137,9 +160,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _externalSystem = v, _externalSystem, value,  "ExternalSystem");
 			} 
-		}
-	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public string @ExternalObject 
 		{ 
 			get 
@@ -152,9 +174,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _externalObject = v, _externalObject, value,  "ExternalObject");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
@@ -290,5 +312,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

@@ -117,7 +117,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcLabel @Name 
 		{ 
 			get 
@@ -136,7 +136,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 2)]
 		public IEnumerable<IfcMaterialDefinitionRepresentation> @HasRepresentation 
 		{ 
 			get 
@@ -144,7 +144,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				return Model.Instances.Where<IfcMaterialDefinitionRepresentation>(e => (e.RepresentedMaterial as IfcMaterial) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 3)]
 		public IEnumerable<IfcMaterialClassificationRelationship> @ClassifiedAs 
 		{ 
 			get 

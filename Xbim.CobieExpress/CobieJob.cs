@@ -12,14 +12,60 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieJob
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieJob : ICobieReferencedObject
+	{
+		string @TaskNumber { get; }
+		string @Name { get; }
+		string @Description { get; }
+		ICobiePickValue @JobType { get; }
+		ICobiePickValue @JobStatusType { get; }
+		double @Duration { get; }
+		ICobiePickValue @DurationUnit { get; }
+		double @Start { get; }
+		ICobiePickValue @StartUnit { get; }
+		double @Frequency { get; }
+		ICobiePickValue @FrequencyUnit { get; }
+		ICobieJob @Priors { get; }
+		IEnumerable<ICobieResource> @Resources { get; }
+		IEnumerable<ICobieType> @ForTypes {  get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
 	[ExpressType("Job", 29)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieJob : CobieReferencedObject, IInstantiableEntity, IEqualityComparer<@CobieJob>, IEquatable<@CobieJob>
+	public  partial class @CobieJob : CobieReferencedObject, IInstantiableEntity, ICobieJob, IEqualityComparer<@CobieJob>, IEquatable<@CobieJob>
 	{
+		#region ICobieJob explicit implementation
+		string ICobieJob.TaskNumber { get { return @TaskNumber; } }	
+		string ICobieJob.Name { get { return @Name; } }	
+		string ICobieJob.Description { get { return @Description; } }	
+		ICobiePickValue ICobieJob.JobType { get { return @JobType; } }	
+		ICobiePickValue ICobieJob.JobStatusType { get { return @JobStatusType; } }	
+		double ICobieJob.Duration { get { return @Duration; } }	
+		ICobiePickValue ICobieJob.DurationUnit { get { return @DurationUnit; } }	
+		double ICobieJob.Start { get { return @Start; } }	
+		ICobiePickValue ICobieJob.StartUnit { get { return @StartUnit; } }	
+		double ICobieJob.Frequency { get { return @Frequency; } }	
+		ICobiePickValue ICobieJob.FrequencyUnit { get { return @FrequencyUnit; } }	
+		ICobieJob ICobieJob.Priors { get { return @Priors; } }	
+		IEnumerable<ICobieResource> ICobieJob.Resources { get { return @Resources; } }	
+		 
+		IEnumerable<ICobieType> ICobieJob.ForTypes {  get { return @ForTypes; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieJob(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -43,7 +89,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public string @TaskNumber 
 		{ 
 			get 
@@ -56,9 +102,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _taskNumber = v, _taskNumber, value,  "TaskNumber");
 			} 
-		}
-	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public string @Name 
 		{ 
 			get 
@@ -71,9 +116,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public string @Description 
 		{ 
 			get 
@@ -86,9 +130,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobiePickValue @JobType 
 		{ 
 			get 
@@ -101,9 +144,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _jobType = v, _jobType, value,  "JobType");
 			} 
-		}
-	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public CobiePickValue @JobStatusType 
 		{ 
 			get 
@@ -116,9 +158,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _jobStatusType = v, _jobStatusType, value,  "JobStatusType");
 			} 
-		}
-	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public double @Duration 
 		{ 
 			get 
@@ -131,9 +172,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _duration = v, _duration, value,  "Duration");
 			} 
-		}
-	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
 		public CobiePickValue @DurationUnit 
 		{ 
 			get 
@@ -146,9 +186,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit");
 			} 
-		}
-	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
 		public double @Start 
 		{ 
 			get 
@@ -161,9 +200,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _start = v, _start, value,  "Start");
 			} 
-		}
-	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
 		public CobiePickValue @StartUnit 
 		{ 
 			get 
@@ -176,9 +214,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _startUnit = v, _startUnit, value,  "StartUnit");
 			} 
-		}
-	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
 		public double @Frequency 
 		{ 
 			get 
@@ -191,9 +228,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _frequency = v, _frequency, value,  "Frequency");
 			} 
-		}
-	
-		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
 		public CobiePickValue @FrequencyUnit 
 		{ 
 			get 
@@ -206,9 +242,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _frequencyUnit = v, _frequencyUnit, value,  "FrequencyUnit");
 			} 
-		}
-	
-		[EntityAttribute(16, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(16, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
 		public CobieJob @Priors 
 		{ 
 			get 
@@ -221,9 +256,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _priors = v, _priors, value,  "Priors");
 			} 
-		}
-	
-		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1)]
+		}	
+		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 17)]
 		public ItemSet<CobieResource> @Resources 
 		{ 
 			get 
@@ -232,13 +266,13 @@ namespace Xbim.CobieExpress
 				((IPersistEntity)this).Activate(false);
 				return _resources;
 			} 
-		}
-	
+		}	
 		#endregion
 
 
+
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 18)]
 		public IEnumerable<CobieType> @ForTypes 
 		{ 
 			get 
@@ -365,5 +399,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

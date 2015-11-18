@@ -12,14 +12,34 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobiePickKeyValue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobiePickKeyValue : ICobiePickValue
+	{
+		string @Key { get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
 	[ExpressType("PickKeyValue", 9)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobiePickKeyValue : CobiePickValue, IInstantiableEntity, IEqualityComparer<@CobiePickKeyValue>, IEquatable<@CobiePickKeyValue>
+	public  partial class @CobiePickKeyValue : CobiePickValue, IInstantiableEntity, ICobiePickKeyValue, IEqualityComparer<@CobiePickKeyValue>, IEquatable<@CobiePickKeyValue>
 	{
+		#region ICobiePickKeyValue explicit implementation
+		string ICobiePickKeyValue.Key { get { return @Key; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobiePickKeyValue(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -30,7 +50,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public string @Key 
 		{ 
 			get 
@@ -43,9 +63,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _key = v, _key, value,  "Key");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
@@ -127,5 +147,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

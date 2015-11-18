@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.Kernel
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 10)]
 		public ItemSet<IfcProperty> @HasProperties 
 		{ 
 			get 

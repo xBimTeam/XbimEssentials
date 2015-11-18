@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.PropertyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 10)]
 		public OptionalItemSet<IfcValue> @DefiningValues 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.PropertyResource
 				return _definingValues;
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 11)]
 		public OptionalItemSet<IfcValue> @DefinedValues 
 		{ 
 			get 
@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.PropertyResource
 				return _definedValues;
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
 		public IfcText? @Expression 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.PropertyResource
 				SetValue( v =>  _expression = v, _expression, value,  "Expression");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
 		public IfcUnit @DefiningUnit 
 		{ 
 			get 
@@ -115,7 +115,7 @@ namespace Xbim.Ifc4.PropertyResource
 				SetValue( v =>  _definingUnit = v, _definingUnit, value,  "DefiningUnit");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
 		public IfcUnit @DefinedUnit 
 		{ 
 			get 
@@ -129,7 +129,7 @@ namespace Xbim.Ifc4.PropertyResource
 				SetValue( v =>  _definedUnit = v, _definedUnit, value,  "DefinedUnit");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcCurveInterpolationEnum? @CurveInterpolation 
 		{ 
 			get 

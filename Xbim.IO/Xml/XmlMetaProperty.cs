@@ -20,6 +20,8 @@ namespace Xbim.IO.Xml
         
         public ExpressMetaProperty MetaProperty { get; private set; }
 
+        public string Name { get { return MetaProperty.PropertyInfo.Name; } }
+
         public XmlMetaProperty(ExpressMetaProperty metaProperty)
         {
             MetaProperty = metaProperty;
@@ -28,22 +30,24 @@ namespace Xbim.IO.Xml
         public static List<XmlMetaProperty> GetProperties(ExpressType expressType, configuration configuration)
         {
             List<ExpressMetaProperty> properties;
-            var typeConf = configuration.GetEntity(expressType.ExpressName);
-            if (typeConf != null)
+            var typeConfs = configuration.GetEntities(expressType).ToList();
+            if (typeConfs.Any())
             {
                 //all properties which are not ignored
                 properties = expressType.Properties.Values
                     .Where(p => !p.EntityAttribute.IsDerived)
-                    .Where(p => typeConf.IgnoredAttributes
-                        .All(ia => string.Compare(ia.select, p.PropertyInfo.Name, StringComparison.OrdinalIgnoreCase) != 0))
+                    .Where(p => typeConfs
+                        .All(conf => conf.IgnoredAttributes
+                        .All(ia => string.Compare(ia.select, p.PropertyInfo.Name, StringComparison.OrdinalIgnoreCase) != 0)))
                         .ToList();
 
                 //all inverses which are added
                 var inverses = expressType.Inverses
-                    .Where(i => typeConf.ChangedInverses
+                    .Where(i => typeConfs
+                        .Any(conf => conf.ChangedInverses
                         .Any(
                             ci =>
-                                string.Compare(ci.select, i.PropertyInfo.Name, StringComparison.OrdinalIgnoreCase) == 0));
+                                string.Compare(ci.select, i.PropertyInfo.Name, StringComparison.OrdinalIgnoreCase) == 0)));
                 properties.AddRange(inverses);
             }
             else
@@ -55,16 +59,16 @@ namespace Xbim.IO.Xml
             }
 
             //read configuration and meta property to set the right processing (attribute vs. element)
-            var result = properties.Select(p => new XmlMetaProperty(p)).ToList();
-            foreach (var metaProperty in result)
-            {
-                SetAttributeValueHandler(metaProperty, typeConf);
-            }
+            var xmlProperties = properties.Select(p => new XmlMetaProperty(p)).ToList();
+            foreach (var metaProperty in xmlProperties)
+                SetAttributeValueHandler(metaProperty, typeConfs);
 
             //sort properties so that attribute values go first (value types and some string lists). 
             //They will be written as attributes and that has to
             //happen before any nested elements are written
-            return result.OrderByDescending(p => p.IsAttributeValue).ToList();
+            var attrProps = xmlProperties.Where(p => p.IsAttributeValue);
+            var elemProps = xmlProperties.Where(p => !p.IsAttributeValue).OrderBy(p => p.MetaProperty.EntityAttribute.GlobalOrder);
+            return attrProps.Concat(elemProps).ToList();
         }
 
         public static Type GetNonNullableType(Type type)
@@ -79,7 +83,7 @@ namespace Xbim.IO.Xml
 
         }
 
-        private static void SetAttributeValueHandler(XmlMetaProperty metaProperty, entity typeConfigurarion)
+        private static void SetAttributeValueHandler(XmlMetaProperty metaProperty, List<entity> typeConfigurarions)
         {
             //all value types will be serialized as attributes. Nullable<> is also value type which is correct for this.
             var type = metaProperty.MetaProperty.PropertyInfo.PropertyType;
@@ -124,8 +128,9 @@ namespace Xbim.IO.Xml
                 if (IsStringCompatible(genType))
                 {
                     //check type configuration
-                    if (typeConfigurarion != null &&
-                        typeConfigurarion.TaggLessAttributes.Any(a => a.@select == propName))
+                    if (typeConfigurarions != null &&
+                        typeConfigurarions.Any(conf => conf.TaggLessAttributes
+                            .Any(a => a.@select == propName)))
                     {
                         metaProperty.AttributeSetter = (value, writer) =>
                         {
@@ -146,8 +151,9 @@ namespace Xbim.IO.Xml
             }
 
             //rectangular nested lists shall also be serialized as attribute if defined in configuration
-            if (typeof (IEnumerable).IsAssignableFrom(genType) && typeConfigurarion != null &&
-                typeConfigurarion.TaggLessAttributes.Any(a => a.@select == propName))
+            if (typeof (IEnumerable).IsAssignableFrom(genType) && typeConfigurarions != null &&
+                typeConfigurarions.Any(conf => conf.TaggLessAttributes
+                    .Any(a => a.@select == propName)))
             {
                 metaProperty.AttributeSetter = (value, writer) =>
                 {

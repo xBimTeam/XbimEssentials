@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcPositiveLengthMeasure @Depth 
 		{ 
 			get 
@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _depth = v, _depth, value,  "Depth");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcPositiveLengthMeasure @FlangeWidth 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _flangeWidth = v, _flangeWidth, value,  "FlangeWidth");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
 		public IfcPositiveLengthMeasure @WebThickness 
 		{ 
 			get 
@@ -116,7 +116,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
 		public IfcPositiveLengthMeasure @FlangeThickness 
 		{ 
 			get 
@@ -130,7 +130,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _flangeThickness = v, _flangeThickness, value,  "FlangeThickness");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public IfcNonNegativeLengthMeasure? @FilletRadius 
 		{ 
 			get 
@@ -144,7 +144,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
 		public IfcNonNegativeLengthMeasure? @FlangeEdgeRadius 
 		{ 
 			get 
@@ -158,7 +158,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _flangeEdgeRadius = v, _flangeEdgeRadius, value,  "FlangeEdgeRadius");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
 		public IfcNonNegativeLengthMeasure? @WebEdgeRadius 
 		{ 
 			get 
@@ -172,7 +172,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _webEdgeRadius = v, _webEdgeRadius, value,  "WebEdgeRadius");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
 		public IfcPlaneAngleMeasure? @WebSlope 
 		{ 
 			get 
@@ -186,7 +186,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _webSlope = v, _webSlope, value,  "WebSlope");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
 		public IfcPlaneAngleMeasure? @FlangeSlope 
 		{ 
 			get 

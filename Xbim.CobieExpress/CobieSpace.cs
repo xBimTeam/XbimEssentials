@@ -12,14 +12,46 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieSpace
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieSpace : ICobieAsset, SpatialDivision
+	{
+		string @RoomTag { get; }
+		double? @UsableHeight { get; }
+		double? @GrossArea { get; }
+		double? @NetArea { get; }
+		ICobieFloor @Floor { get; }
+		IEnumerable<ICobieComponent> @Components {  get; }
+		IEnumerable<ICobieZone> @Zones {  get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
 	[ExpressType("Space", 20)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSpace : CobieAsset, SpatialDivision, IInstantiableEntity, IEqualityComparer<@CobieSpace>, IEquatable<@CobieSpace>
+	public  partial class @CobieSpace : CobieAsset, IInstantiableEntity, ICobieSpace, IEqualityComparer<@CobieSpace>, IEquatable<@CobieSpace>
 	{
+		#region ICobieSpace explicit implementation
+		string ICobieSpace.RoomTag { get { return @RoomTag; } }	
+		double? ICobieSpace.UsableHeight { get { return @UsableHeight; } }	
+		double? ICobieSpace.GrossArea { get { return @GrossArea; } }	
+		double? ICobieSpace.NetArea { get { return @NetArea; } }	
+		ICobieFloor ICobieSpace.Floor { get { return @Floor; } }	
+		 
+		IEnumerable<ICobieComponent> ICobieSpace.Components {  get { return @Components; } }
+		IEnumerable<ICobieZone> ICobieSpace.Zones {  get { return @Zones; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieSpace(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -34,7 +66,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
 		public string @RoomTag 
 		{ 
 			get 
@@ -47,9 +79,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _roomTag = v, _roomTag, value,  "RoomTag");
 			} 
-		}
-	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
 		public double? @UsableHeight 
 		{ 
 			get 
@@ -62,9 +93,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _usableHeight = v, _usableHeight, value,  "UsableHeight");
 			} 
-		}
-	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
 		public double? @GrossArea 
 		{ 
 			get 
@@ -77,9 +107,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _grossArea = v, _grossArea, value,  "GrossArea");
 			} 
-		}
-	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
 		public double? @NetArea 
 		{ 
 			get 
@@ -92,10 +121,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _netArea = v, _netArea, value,  "NetArea");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
-		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
 		public CobieFloor @Floor 
 		{ 
 			get 
@@ -108,13 +136,13 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _floor = v, _floor, value,  "Floor");
 			} 
-		}
-	
+		}	
 		#endregion
 
 
+
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 18)]
 		public IEnumerable<CobieComponent> @Components 
 		{ 
 			get 
@@ -122,7 +150,7 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobieComponent>(e => (e.Space as CobieSpace) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 19)]
 		public IEnumerable<CobieZone> @Zones 
 		{ 
 			get 
@@ -230,5 +258,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

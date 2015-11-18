@@ -54,7 +54,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 12)]
 		public ItemSet<IfcRelAssignsToProjectOrder> @Records 
 		{ 
 			get 
@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				return _records;
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 13)]
 		public IfcProjectOrderRecordTypeEnum @PredefinedType 
 		{ 
 			get 

@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcMaterial @RepresentedMaterial 
 		{ 
 			get 

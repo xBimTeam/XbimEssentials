@@ -193,20 +193,20 @@ targetNamespace="urn:iso:std:iso:10303:-28:ed-2:tech:XMLschema:configuration_lan
 	</xs:element>
 	<xs:simpleType name="exp-type">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="root"/>
-			<xs:enumeration value="value"/>
-			<xs:enumeration value="unspecified"/>
-		</xs:restriction>
+      <xs:enumeration value="unspecified"/>
+      <xs:enumeration value="root"/>
+      <xs:enumeration value="value"/>
+    </xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="exp-attribute">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="double-tag"/>
+      <xs:enumeration value="unspecified"/>
+      <xs:enumeration value="double-tag"/>
 			<xs:enumeration value="attribute-tag"/>
 			<xs:enumeration value="type-tag"/>
 			<xs:enumeration value="no-tag"/>
 			<xs:enumeration value="no-tag-simple"/>
 			<xs:enumeration value="attribute-content"/>
-			<xs:enumeration value="unspecified"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="exp-attribute-global">
@@ -218,9 +218,9 @@ targetNamespace="urn:iso:std:iso:10303:-28:ed-2:tech:XMLschema:configuration_lan
 	</xs:simpleType>
 	<xs:simpleType name="content">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="value"/>
+      <xs:enumeration value="unspecified"/>
+      <xs:enumeration value="value"/>
 			<xs:enumeration value="ref"/>
-			<xs:enumeration value="unspecified"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="naming-convention">

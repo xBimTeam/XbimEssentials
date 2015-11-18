@@ -120,7 +120,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
 		public IfcMaterial @Material 
 		{ 
 			get 
@@ -134,7 +134,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				SetValue( v =>  _material = v, _material, value,  "Material");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcPositiveLengthMeasure @LayerThickness 
 		{ 
 			get 
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				SetValue( v =>  _layerThickness = v, _layerThickness, value,  "LayerThickness");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcLogical? @IsVentilated 
 		{ 
 			get 
@@ -167,7 +167,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 4)]
 		public IfcMaterialLayerSet @ToMaterialLayerSet 
 		{ 
 			get 

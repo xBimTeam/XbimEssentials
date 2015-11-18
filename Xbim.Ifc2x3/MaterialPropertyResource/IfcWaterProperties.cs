@@ -68,7 +68,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public bool? @IsPotable 
 		{ 
 			get 
@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _isPotable = v, _isPotable, value,  "IsPotable");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcIonConcentrationMeasure? @Hardness 
 		{ 
 			get 
@@ -96,7 +96,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _hardness = v, _hardness, value,  "Hardness");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcIonConcentrationMeasure? @AlkalinityConcentration 
 		{ 
 			get 
@@ -110,7 +110,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _alkalinityConcentration = v, _alkalinityConcentration, value,  "AlkalinityConcentration");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcIonConcentrationMeasure? @AcidityConcentration 
 		{ 
 			get 
@@ -124,7 +124,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _acidityConcentration = v, _acidityConcentration, value,  "AcidityConcentration");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcNormalisedRatioMeasure? @ImpuritiesContent 
 		{ 
 			get 
@@ -138,7 +138,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _impuritiesContent = v, _impuritiesContent, value,  "ImpuritiesContent");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcPHMeasure? @PHLevel 
 		{ 
 			get 
@@ -152,7 +152,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _pHLevel = v, _pHLevel, value,  "PHLevel");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
 		public IfcNormalisedRatioMeasure? @DissolvedSolidsContent 
 		{ 
 			get 

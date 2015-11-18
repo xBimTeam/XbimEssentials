@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common.Metadata;
 
 // ReSharper disable InconsistentNaming
 
@@ -43,11 +44,25 @@ namespace Xbim.IO.Xml.BsConf
             }
         }
 
-        public entity GetEntity(string name)
+        private entity GetEntity(string name)
         {
             return
                     Items
                         .OfType<entity>().FirstOrDefault(e => string.Compare(e.EntityName, name, StringComparison.InvariantCultureIgnoreCase) == 0);
+        }
+
+        public IEnumerable<entity> GetEntities(ExpressType type)
+        {
+            //collect upper inheritance
+            var types = new List<ExpressType>{type};
+            while (type.SuperType != null)
+            {
+                types.Add(type.SuperType);
+                type = type.SuperType;
+            }
+
+            return types.Select(expressType => GetEntity(expressType.ExpressName)).Where(entity => entity != null);
+
         }
     }
 

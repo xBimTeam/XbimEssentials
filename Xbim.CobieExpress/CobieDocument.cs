@@ -12,14 +12,46 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieDocument
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieDocument : ICobieReferencedObject
+	{
+		string @Name { get; }
+		string @Description { get; }
+		ICobiePickValue @DocumentType { get; }
+		ICobiePickValue @ApprovalBy { get; }
+		ICobiePickValue @Stage { get; }
+		string @URL { get; }
+		string @Reference { get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
 	[ExpressType("Document", 31)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieDocument : CobieReferencedObject, IInstantiableEntity, IEqualityComparer<@CobieDocument>, IEquatable<@CobieDocument>
+	public  partial class @CobieDocument : CobieReferencedObject, IInstantiableEntity, ICobieDocument, IEqualityComparer<@CobieDocument>, IEquatable<@CobieDocument>
 	{
+		#region ICobieDocument explicit implementation
+		string ICobieDocument.Name { get { return @Name; } }	
+		string ICobieDocument.Description { get { return @Description; } }	
+		ICobiePickValue ICobieDocument.DocumentType { get { return @DocumentType; } }	
+		ICobiePickValue ICobieDocument.ApprovalBy { get { return @ApprovalBy; } }	
+		ICobiePickValue ICobieDocument.Stage { get { return @Stage; } }	
+		string ICobieDocument.URL { get { return @URL; } }	
+		string ICobieDocument.Reference { get { return @Reference; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieDocument(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -36,7 +68,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public string @Name 
 		{ 
 			get 
@@ -49,9 +81,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public string @Description 
 		{ 
 			get 
@@ -64,9 +95,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
 		public CobiePickValue @DocumentType 
 		{ 
 			get 
@@ -79,9 +109,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _documentType = v, _documentType, value,  "DocumentType");
 			} 
-		}
-	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobiePickValue @ApprovalBy 
 		{ 
 			get 
@@ -94,9 +123,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _approvalBy = v, _approvalBy, value,  "ApprovalBy");
 			} 
-		}
-	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public CobiePickValue @Stage 
 		{ 
 			get 
@@ -109,9 +137,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _stage = v, _stage, value,  "Stage");
 			} 
-		}
-	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public string @URL 
 		{ 
 			get 
@@ -124,9 +151,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _uRL = v, _uRL, value,  "URL");
 			} 
-		}
-	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
 		public string @Reference 
 		{ 
 			get 
@@ -139,9 +165,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _reference = v, _reference, value,  "Reference");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
@@ -243,5 +269,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

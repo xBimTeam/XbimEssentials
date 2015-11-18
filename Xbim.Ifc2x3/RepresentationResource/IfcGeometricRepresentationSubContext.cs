@@ -61,7 +61,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public IfcGeometricRepresentationContext @ParentContext 
 		{ 
 			get 
@@ -75,7 +75,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				SetValue( v =>  _parentContext = v, _parentContext, value,  "ParentContext");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public IfcPositiveRatioMeasure? @TargetScale 
 		{ 
 			get 
@@ -89,7 +89,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				SetValue( v =>  _targetScale = v, _targetScale, value,  "TargetScale");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
 		public IfcGeometricProjectionEnum @TargetView 
 		{ 
 			get 
@@ -103,7 +103,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				SetValue( v =>  _targetView = v, _targetView, value,  "TargetView");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
 		public IfcLabel? @UserDefinedTargetView 
 		{ 
 			get 
@@ -120,7 +120,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		#endregion
 
 		#region Overriding attributes
-		[EntityAttribute(5, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 0)]
 		public override IfcAxis2Placement @WorldCoordinateSystem 
 		{
 			get 
@@ -132,7 +132,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				throw new System.Exception("It is not possible to set a value of derived property WorldCoordinateSystem in IfcGeometricRepresentationSubContext"); 
 			}
 		}
-		[EntityAttribute(3, EntityAttributeState.DerivedOverride, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.DerivedOverride, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
 		public override IfcDimensionCount @CoordinateSpaceDimension 
 		{
 			get 
@@ -144,7 +144,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				throw new System.Exception("It is not possible to set a value of derived property CoordinateSpaceDimension in IfcGeometricRepresentationSubContext"); 
 			}
 		}
-		[EntityAttribute(6, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 0)]
 		public override IfcDirection @TrueNorth 
 		{
 			get 
@@ -156,7 +156,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				throw new System.Exception("It is not possible to set a value of derived property TrueNorth in IfcGeometricRepresentationSubContext"); 
 			}
 		}
-		[EntityAttribute(4, EntityAttributeState.DerivedOverride, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.DerivedOverride, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
 		public override double? @Precision 
 		{
 			get 

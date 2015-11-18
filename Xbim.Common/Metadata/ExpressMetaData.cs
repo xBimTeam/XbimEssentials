@@ -9,6 +9,7 @@ namespace Xbim.Common.Metadata
     {
         public PropertyInfo PropertyInfo;
         public EntityAttributeAttribute EntityAttribute;
+        public string Name { get { return PropertyInfo.Name; } }
     }
 
     /// <summary>

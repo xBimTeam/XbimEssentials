@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 2)]
 		public ItemSet<IfcTextFontName> @FontFamily 
 		{ 
 			get 
@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				return _fontFamily;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcFontStyle? @FontStyle 
 		{ 
 			get 
@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _fontStyle = v, _fontStyle, value,  "FontStyle");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcFontVariant? @FontVariant 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _fontVariant = v, _fontVariant, value,  "FontVariant");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcFontWeight? @FontWeight 
 		{ 
 			get 
@@ -115,7 +115,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _fontWeight = v, _fontWeight, value,  "FontWeight");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
 		public IfcSizeSelect @FontSize 
 		{ 
 			get 

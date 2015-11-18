@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 35)]
 		public IfcOutletTypeEnum? @PredefinedType 
 		{ 
 			get 

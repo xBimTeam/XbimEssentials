@@ -58,7 +58,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 2, 3)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 2, 3, 2)]
 		public OptionalItemSet<IfcLengthMeasure> @SurfaceReinforcement1 
 		{ 
 			get 
@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				return _surfaceReinforcement1;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 2, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 2, 3, 3)]
 		public OptionalItemSet<IfcLengthMeasure> @SurfaceReinforcement2 
 		{ 
 			get 
@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				return _surfaceReinforcement2;
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcRatioMeasure? @ShearReinforcement 
 		{ 
 			get 

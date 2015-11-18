@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.ProductExtension
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
 		public IfcElement @RelatingElement 
 		{ 
 			get 
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
 		public IfcElement @RelatedElement 
 		{ 
 			get 
@@ -94,7 +94,7 @@ namespace Xbim.Ifc4.ProductExtension
 				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
 		public IfcConnectionGeometry @InterferenceGeometry 
 		{ 
 			get 
@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.ProductExtension
 				SetValue( v =>  _interferenceGeometry = v, _interferenceGeometry, value,  "InterferenceGeometry");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
 		public IfcIdentifier? @InterferenceType 
 		{ 
 			get 
@@ -122,7 +122,7 @@ namespace Xbim.Ifc4.ProductExtension
 				SetValue( v =>  _interferenceType = v, _interferenceType, value,  "InterferenceType");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
 		public bool? @ImpliedOrder 
 		{ 
 			get 

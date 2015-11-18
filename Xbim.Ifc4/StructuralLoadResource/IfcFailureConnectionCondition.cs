@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcForceMeasure? @TensionFailureX 
 		{ 
 			get 
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _tensionFailureX = v, _tensionFailureX, value,  "TensionFailureX");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcForceMeasure? @TensionFailureY 
 		{ 
 			get 
@@ -93,7 +93,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _tensionFailureY = v, _tensionFailureY, value,  "TensionFailureY");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcForceMeasure? @TensionFailureZ 
 		{ 
 			get 
@@ -107,7 +107,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _tensionFailureZ = v, _tensionFailureZ, value,  "TensionFailureZ");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcForceMeasure? @CompressionFailureX 
 		{ 
 			get 
@@ -121,7 +121,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _compressionFailureX = v, _compressionFailureX, value,  "CompressionFailureX");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcForceMeasure? @CompressionFailureY 
 		{ 
 			get 
@@ -135,7 +135,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _compressionFailureY = v, _compressionFailureY, value,  "CompressionFailureY");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcForceMeasure? @CompressionFailureZ 
 		{ 
 			get 

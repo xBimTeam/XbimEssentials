@@ -60,7 +60,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
 		public IfcCurve @Directrix 
 		{ 
 			get 
@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcParameterValue? @StartParam 
 		{ 
 			get 
@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _startParam = v, _startParam, value,  "StartParam");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcParameterValue? @EndParam 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _endParam = v, _endParam, value,  "EndParam");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public IfcDirection @FixedReference 
 		{ 
 			get 

@@ -12,14 +12,52 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieImpact
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieImpact : ICobieReferencedObject
+	{
+		string @Name { get; }
+		string @Description { get; }
+		ICobiePickValue @ImpactType { get; }
+		ICobiePickValue @ImpactStage { get; }
+		double @Value { get; }
+		ICobiePickValue @ImpactUnit { get; }
+		double @LeadInTime { get; }
+		double @Duration { get; }
+		double @LeadOutTime { get; }
+		ICobiePickValue @TimeUnit { get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
 	[ExpressType("Impact", 30)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieImpact : CobieReferencedObject, IInstantiableEntity, IEqualityComparer<@CobieImpact>, IEquatable<@CobieImpact>
+	public  partial class @CobieImpact : CobieReferencedObject, IInstantiableEntity, ICobieImpact, IEqualityComparer<@CobieImpact>, IEquatable<@CobieImpact>
 	{
+		#region ICobieImpact explicit implementation
+		string ICobieImpact.Name { get { return @Name; } }	
+		string ICobieImpact.Description { get { return @Description; } }	
+		ICobiePickValue ICobieImpact.ImpactType { get { return @ImpactType; } }	
+		ICobiePickValue ICobieImpact.ImpactStage { get { return @ImpactStage; } }	
+		double ICobieImpact.Value { get { return @Value; } }	
+		ICobiePickValue ICobieImpact.ImpactUnit { get { return @ImpactUnit; } }	
+		double ICobieImpact.LeadInTime { get { return @LeadInTime; } }	
+		double ICobieImpact.Duration { get { return @Duration; } }	
+		double ICobieImpact.LeadOutTime { get { return @LeadOutTime; } }	
+		ICobiePickValue ICobieImpact.TimeUnit { get { return @TimeUnit; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieImpact(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,7 +77,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public string @Name 
 		{ 
 			get 
@@ -52,9 +90,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public string @Description 
 		{ 
 			get 
@@ -67,9 +104,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
 		public CobiePickValue @ImpactType 
 		{ 
 			get 
@@ -82,9 +118,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _impactType = v, _impactType, value,  "ImpactType");
 			} 
-		}
-	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobiePickValue @ImpactStage 
 		{ 
 			get 
@@ -97,9 +132,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _impactStage = v, _impactStage, value,  "ImpactStage");
 			} 
-		}
-	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
 		public double @Value 
 		{ 
 			get 
@@ -112,9 +146,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _value = v, _value, value,  "Value");
 			} 
-		}
-	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
 		public CobiePickValue @ImpactUnit 
 		{ 
 			get 
@@ -127,9 +160,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _impactUnit = v, _impactUnit, value,  "ImpactUnit");
 			} 
-		}
-	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
 		public double @LeadInTime 
 		{ 
 			get 
@@ -142,9 +174,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _leadInTime = v, _leadInTime, value,  "LeadInTime");
 			} 
-		}
-	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
 		public double @Duration 
 		{ 
 			get 
@@ -157,9 +188,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _duration = v, _duration, value,  "Duration");
 			} 
-		}
-	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
 		public double @LeadOutTime 
 		{ 
 			get 
@@ -172,9 +202,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _leadOutTime = v, _leadOutTime, value,  "LeadOutTime");
 			} 
-		}
-	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
 		public CobiePickValue @TimeUnit 
 		{ 
 			get 
@@ -187,9 +216,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _timeUnit = v, _timeUnit, value,  "TimeUnit");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
@@ -300,5 +329,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

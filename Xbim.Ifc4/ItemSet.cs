@@ -412,6 +412,7 @@ namespace Xbim.Ifc4
                 NotifyCollectionChanged(NotifyCollectionChangedAction.Add, item);
                 NotifyCountChanged();
             };
+			doAction();
 
             if (!Model.IsTransactional) return;
 

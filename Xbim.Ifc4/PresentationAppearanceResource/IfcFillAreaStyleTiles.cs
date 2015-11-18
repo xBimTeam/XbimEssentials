@@ -59,7 +59,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, 2)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, 2, 3)]
 		public ItemSet<IfcVector> @TilingPattern 
 		{ 
 			get 
@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				return _tilingPattern;
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
 		public ItemSet<IfcStyledItem> @Tiles 
 		{ 
 			get 
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				return _tiles;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcPositiveRatioMeasure @TilingScale 
 		{ 
 			get 

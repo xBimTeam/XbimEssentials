@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.RepresentationResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
 		public IfcCoordinateReferenceSystemSelect @SourceCRS 
 		{ 
 			get 
@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _sourceCRS = v, _sourceCRS, value,  "SourceCRS");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
 		public IfcCoordinateReferenceSystem @TargetCRS 
 		{ 
 			get 

@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcSurface @BasisSurface 
 		{ 
 			get 
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcParameterValue @U1 
 		{ 
 			get 
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _u1 = v, _u1, value,  "U1");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcParameterValue @V1 
 		{ 
 			get 
@@ -110,7 +110,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _v1 = v, _v1, value,  "V1");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcParameterValue @U2 
 		{ 
 			get 
@@ -124,7 +124,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _u2 = v, _u2, value,  "U2");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcParameterValue @V2 
 		{ 
 			get 
@@ -138,7 +138,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _v2 = v, _v2, value,  "V2");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
 		public IfcBoolean @Usense 
 		{ 
 			get 
@@ -152,7 +152,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _usense = v, _usense, value,  "Usense");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
 		public IfcBoolean @Vsense 
 		{ 
 			get 

@@ -53,7 +53,7 @@ namespace Xbim.Ifc4.TopologyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
 		public IfcEdge @EdgeElement 
 		{ 
 			get 
@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.TopologyResource
 				SetValue( v =>  _edgeElement = v, _edgeElement, value,  "EdgeElement");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcBoolean @Orientation 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.TopologyResource
 		#endregion
 
 		#region Overriding attributes
-		[EntityAttribute(1, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 0)]
 		public override IfcVertex @EdgeStart 
 		{
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.TopologyResource
 				throw new System.Exception("It is not possible to set a value of derived property EdgeStart in IfcOrientedEdge"); 
 			}
 		}
-		[EntityAttribute(2, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 0)]
 		public override IfcVertex @EdgeEnd 
 		{
 			get 

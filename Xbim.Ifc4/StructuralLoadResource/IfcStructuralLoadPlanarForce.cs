@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcPlanarForceMeasure? @PlanarForceX 
 		{ 
 			get 
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _planarForceX = v, _planarForceX, value,  "PlanarForceX");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcPlanarForceMeasure? @PlanarForceY 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _planarForceY = v, _planarForceY, value,  "PlanarForceY");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcPlanarForceMeasure? @PlanarForceZ 
 		{ 
 			get 

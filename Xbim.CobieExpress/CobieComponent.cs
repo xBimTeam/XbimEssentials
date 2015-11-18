@@ -12,14 +12,58 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieComponent
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieComponent : ICobieAsset
+	{
+		string @SerialNumber { get; }
+		DateTimeValue @InstallationDate { get; }
+		DateTimeValue @WarrantyStartDate { get; }
+		string @TagNumber { get; }
+		string @BarCode { get; }
+		string @AssetIdentifier { get; }
+		ICobieType @Type { get; }
+		ICobieSpace @Space { get; }
+		IEnumerable<ICobieComponent> @AssemblyOf { get; }
+		IEnumerable<ICobieSystem> @Systems {  get; }
+		IEnumerable<ICobieConnection> @ConnectedBefore {  get; }
+		IEnumerable<ICobieConnection> @ConnectedAfter {  get; }
+		IEnumerable<ICobieConnection> @Connecting {  get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
 	[ExpressType("Component", 24)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieComponent : CobieAsset, IInstantiableEntity, IEqualityComparer<@CobieComponent>, IEquatable<@CobieComponent>
+	public  partial class @CobieComponent : CobieAsset, IInstantiableEntity, ICobieComponent, IEqualityComparer<@CobieComponent>, IEquatable<@CobieComponent>
 	{
+		#region ICobieComponent explicit implementation
+		string ICobieComponent.SerialNumber { get { return @SerialNumber; } }	
+		DateTimeValue ICobieComponent.InstallationDate { get { return @InstallationDate; } }	
+		DateTimeValue ICobieComponent.WarrantyStartDate { get { return @WarrantyStartDate; } }	
+		string ICobieComponent.TagNumber { get { return @TagNumber; } }	
+		string ICobieComponent.BarCode { get { return @BarCode; } }	
+		string ICobieComponent.AssetIdentifier { get { return @AssetIdentifier; } }	
+		ICobieType ICobieComponent.Type { get { return @Type; } }	
+		ICobieSpace ICobieComponent.Space { get { return @Space; } }	
+		IEnumerable<ICobieComponent> ICobieComponent.AssemblyOf { get { return @AssemblyOf; } }	
+		 
+		IEnumerable<ICobieSystem> ICobieComponent.Systems {  get { return @Systems; } }
+		IEnumerable<ICobieConnection> ICobieComponent.ConnectedBefore {  get { return @ConnectedBefore; } }
+		IEnumerable<ICobieConnection> ICobieComponent.ConnectedAfter {  get { return @ConnectedAfter; } }
+		IEnumerable<ICobieConnection> ICobieComponent.Connecting {  get { return @Connecting; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieComponent(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,7 +83,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
 		public string @SerialNumber 
 		{ 
 			get 
@@ -52,9 +96,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _serialNumber = v, _serialNumber, value,  "SerialNumber");
 			} 
-		}
-	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
 		public DateTimeValue @InstallationDate 
 		{ 
 			get 
@@ -67,9 +110,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _installationDate = v, _installationDate, value,  "InstallationDate");
 			} 
-		}
-	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
 		public DateTimeValue @WarrantyStartDate 
 		{ 
 			get 
@@ -82,9 +124,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _warrantyStartDate = v, _warrantyStartDate, value,  "WarrantyStartDate");
 			} 
-		}
-	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
 		public string @TagNumber 
 		{ 
 			get 
@@ -97,9 +138,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _tagNumber = v, _tagNumber, value,  "TagNumber");
 			} 
-		}
-	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
 		public string @BarCode 
 		{ 
 			get 
@@ -112,9 +152,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _barCode = v, _barCode, value,  "BarCode");
 			} 
-		}
-	
-		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
 		public string @AssetIdentifier 
 		{ 
 			get 
@@ -127,10 +166,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _assetIdentifier = v, _assetIdentifier, value,  "AssetIdentifier");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
-		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
 		public CobieType @Type 
 		{ 
 			get 
@@ -143,10 +181,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _type = v, _type, value,  "Type");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
-		[EntityAttribute(18, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(18, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
 		public CobieSpace @Space 
 		{ 
 			get 
@@ -159,9 +196,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _space = v, _space, value,  "Space");
 			} 
-		}
-	
-		[EntityAttribute(19, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		}	
+		[EntityAttribute(19, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 21)]
 		public ItemSet<CobieComponent> @AssemblyOf 
 		{ 
 			get 
@@ -170,13 +206,13 @@ namespace Xbim.CobieExpress
 				((IPersistEntity)this).Activate(false);
 				return _assemblyOf;
 			} 
-		}
-	
+		}	
 		#endregion
 
 
+
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 22)]
 		public IEnumerable<CobieSystem> @Systems 
 		{ 
 			get 
@@ -184,7 +220,7 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobieSystem>(e => e.Components != null &&  e.Components.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 23)]
 		public IEnumerable<CobieConnection> @ConnectedBefore 
 		{ 
 			get 
@@ -192,7 +228,7 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobieConnection>(e => (e.ComponentA as CobieComponent) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 24)]
 		public IEnumerable<CobieConnection> @ConnectedAfter 
 		{ 
 			get 
@@ -200,7 +236,7 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobieConnection>(e => (e.ComponentB as CobieComponent) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 25)]
 		public IEnumerable<CobieConnection> @Connecting 
 		{ 
 			get 
@@ -321,5 +357,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

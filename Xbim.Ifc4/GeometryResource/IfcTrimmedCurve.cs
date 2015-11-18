@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcCurve @BasisCurve 
 		{ 
 			get 
@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 2, 4)]
 		public ItemSet<IfcTrimmingSelect> @Trim1 
 		{ 
 			get 
@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.GeometryResource
 				return _trim1;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 2)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 2, 5)]
 		public ItemSet<IfcTrimmingSelect> @Trim2 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.GeometryResource
 				return _trim2;
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcBoolean @SenseAgreement 
 		{ 
 			get 
@@ -112,7 +112,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _senseAgreement = v, _senseAgreement, value,  "SenseAgreement");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 7)]
 		public IfcTrimmingPreference @MasterRepresentation 
 		{ 
 			get 

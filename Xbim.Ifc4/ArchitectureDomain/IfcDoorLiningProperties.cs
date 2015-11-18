@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public IfcPositiveLengthMeasure? @LiningDepth 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _liningDepth = v, _liningDepth, value,  "LiningDepth");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
 		public IfcNonNegativeLengthMeasure? @LiningThickness 
 		{ 
 			get 
@@ -116,7 +116,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _liningThickness = v, _liningThickness, value,  "LiningThickness");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
 		public IfcPositiveLengthMeasure? @ThresholdDepth 
 		{ 
 			get 
@@ -130,7 +130,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _thresholdDepth = v, _thresholdDepth, value,  "ThresholdDepth");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
 		public IfcNonNegativeLengthMeasure? @ThresholdThickness 
 		{ 
 			get 
@@ -144,7 +144,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _thresholdThickness = v, _thresholdThickness, value,  "ThresholdThickness");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
 		public IfcNonNegativeLengthMeasure? @TransomThickness 
 		{ 
 			get 
@@ -158,7 +158,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _transomThickness = v, _transomThickness, value,  "TransomThickness");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
 		public IfcLengthMeasure? @TransomOffset 
 		{ 
 			get 
@@ -172,7 +172,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _transomOffset = v, _transomOffset, value,  "TransomOffset");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
 		public IfcLengthMeasure? @LiningOffset 
 		{ 
 			get 
@@ -186,7 +186,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _liningOffset = v, _liningOffset, value,  "LiningOffset");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
 		public IfcLengthMeasure? @ThresholdOffset 
 		{ 
 			get 
@@ -200,7 +200,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _thresholdOffset = v, _thresholdOffset, value,  "ThresholdOffset");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
 		public IfcPositiveLengthMeasure? @CasingThickness 
 		{ 
 			get 
@@ -214,7 +214,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _casingThickness = v, _casingThickness, value,  "CasingThickness");
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
 		public IfcPositiveLengthMeasure? @CasingDepth 
 		{ 
 			get 
@@ -228,7 +228,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _casingDepth = v, _casingDepth, value,  "CasingDepth");
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
 		public IfcShapeAspect @ShapeAspectStyle 
 		{ 
 			get 
@@ -242,7 +242,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle");
 			} 
 		}	
-		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
 		public IfcLengthMeasure? @LiningToPanelOffsetX 
 		{ 
 			get 
@@ -256,7 +256,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _liningToPanelOffsetX = v, _liningToPanelOffsetX, value,  "LiningToPanelOffsetX");
 			} 
 		}	
-		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
 		public IfcLengthMeasure? @LiningToPanelOffsetY 
 		{ 
 			get 

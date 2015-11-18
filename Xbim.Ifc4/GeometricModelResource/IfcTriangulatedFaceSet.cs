@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 1, -1, 8)]
 		public ItemSet<ItemSet<IfcPositiveInteger>> @CoordIndex 
 		{ 
 			get 
@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				return _coordIndex;
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 1, -1, 9)]
 		public OptionalItemSet<ItemSet<IfcPositiveInteger>> @NormalIndex 
 		{ 
 			get 
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
 		public IfcInteger @NumberOfTriangles 
 		{
 			get 

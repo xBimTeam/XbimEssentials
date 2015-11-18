@@ -14,14 +14,42 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieSite
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieSite : IPersistEntity, SpatialDivision
+	{
+		string @Name { get; }
+		string @Description { get; }
+		string @ExternalObject { get; }
+		string @ExternalId { get; }
+		IEnumerable<ICobieFacility> @Facilities {  get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
 	[ExpressType("Site", 18)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSite : INotifyPropertyChanged, SpatialDivision, IInstantiableEntity, IEqualityComparer<@CobieSite>, IEquatable<@CobieSite>
+	public  partial class @CobieSite : INotifyPropertyChanged, IInstantiableEntity, ICobieSite, IEqualityComparer<@CobieSite>, IEquatable<@CobieSite>
 	{
+		#region ICobieSite explicit implementation
+		string ICobieSite.Name { get { return @Name; } }	
+		string ICobieSite.Description { get { return @Description; } }	
+		string ICobieSite.ExternalObject { get { return @ExternalObject; } }	
+		string ICobieSite.ExternalId { get { return @ExternalId; } }	
+		 
+		IEnumerable<ICobieFacility> ICobieSite.Facilities {  get { return @Facilities; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -78,7 +106,6 @@ namespace Xbim.CobieExpress
 		}
 
 		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -94,7 +121,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public string @Name 
 		{ 
 			get 
@@ -107,9 +134,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public string @Description 
 		{ 
 			get 
@@ -122,9 +148,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public string @ExternalObject 
 		{ 
 			get 
@@ -137,9 +162,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _externalObject = v, _externalObject, value,  "ExternalObject");
 			} 
-		}
-	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public string @ExternalId 
 		{ 
 			get 
@@ -152,13 +176,13 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _externalId = v, _externalId, value,  "ExternalId");
 			} 
-		}
-	
+		}	
 		#endregion
 
 
+
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 5)]
 		public IEnumerable<CobieFacility> @Facilities 
 		{ 
 			get 
@@ -300,5 +324,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

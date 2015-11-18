@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 18)]
 		public IfcLoadGroupTypeEnum @PredefinedType 
 		{ 
 			get 
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcActionTypeEnum @ActionType 
 		{ 
 			get 
@@ -95,7 +95,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				SetValue( v =>  _actionType = v, _actionType, value,  "ActionType");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
 		public IfcActionSourceTypeEnum @ActionSource 
 		{ 
 			get 
@@ -109,7 +109,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				SetValue( v =>  _actionSource = v, _actionSource, value,  "ActionSource");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
 		public IfcRatioMeasure? @Coefficient 
 		{ 
 			get 
@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				SetValue( v =>  _coefficient = v, _coefficient, value,  "Coefficient");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
 		public IfcLabel? @Purpose 
 		{ 
 			get 
@@ -142,7 +142,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 23)]
 		public IEnumerable<IfcStructuralResultGroup> @SourceOfResultGroup 
 		{ 
 			get 
@@ -150,7 +150,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				return Model.Instances.Where<IfcStructuralResultGroup>(e => (e.ResultForLoadGroup as IfcStructuralLoadGroup) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 24)]
 		public IEnumerable<IfcStructuralAnalysisModel> @LoadGroupFor 
 		{ 
 			get 

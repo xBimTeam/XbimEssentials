@@ -1229,6 +1229,7 @@
     <Compile Include="UtilityResource\IfcApplication.cs" />
     <Compile Include="UtilityResource\IfcChangeActionEnum.cs" />
     <Compile Include="UtilityResource\IfcGloballyUniqueId.cs" />
+    <Compile Include="UtilityResource\IfcGloballyUniqueIdPartial.cs" />
     <Compile Include="UtilityResource\IfcOwnerHistory.cs" />
     <Compile Include="UtilityResource\IfcStateEnum.cs" />
     <Compile Include="UtilityResource\IfcTable.cs" />

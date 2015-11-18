@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcAudioVisualApplianceTypeEnum @PredefinedType 
 		{ 
 			get 

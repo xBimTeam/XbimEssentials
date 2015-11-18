@@ -12,14 +12,34 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieSystem
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieSystem : ICobieAsset
+	{
+		IEnumerable<ICobieComponent> @Components { get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
 	[ExpressType("System", 25)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSystem : CobieAsset, IInstantiableEntity, IEqualityComparer<@CobieSystem>, IEquatable<@CobieSystem>
+	public  partial class @CobieSystem : CobieAsset, IInstantiableEntity, ICobieSystem, IEqualityComparer<@CobieSystem>, IEquatable<@CobieSystem>
 	{
+		#region ICobieSystem explicit implementation
+		IEnumerable<ICobieComponent> ICobieSystem.Components { get { return @Components; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieSystem(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -32,7 +52,7 @@ namespace Xbim.CobieExpress
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 13)]
 		public ItemSet<CobieComponent> @Components 
 		{ 
 			get 
@@ -41,9 +61,9 @@ namespace Xbim.CobieExpress
 				((IPersistEntity)this).Activate(false);
 				return _components;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
@@ -134,5 +154,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

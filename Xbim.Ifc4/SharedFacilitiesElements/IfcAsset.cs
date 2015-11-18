@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
 		public IfcIdentifier? @Identification 
 		{ 
 			get 
@@ -92,7 +92,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _identification = v, _identification, value,  "Identification");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
 		public IfcCostValue @OriginalValue 
 		{ 
 			get 
@@ -106,7 +106,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _originalValue = v, _originalValue, value,  "OriginalValue");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
 		public IfcCostValue @CurrentValue 
 		{ 
 			get 
@@ -120,7 +120,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 21)]
 		public IfcCostValue @TotalReplacementCost 
 		{ 
 			get 
@@ -134,7 +134,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _totalReplacementCost = v, _totalReplacementCost, value,  "TotalReplacementCost");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 22)]
 		public IfcActorSelect @Owner 
 		{ 
 			get 
@@ -148,7 +148,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _owner = v, _owner, value,  "Owner");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 23)]
 		public IfcActorSelect @User 
 		{ 
 			get 
@@ -162,7 +162,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _user = v, _user, value,  "User");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 24)]
 		public IfcPerson @ResponsiblePerson 
 		{ 
 			get 
@@ -176,7 +176,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _responsiblePerson = v, _responsiblePerson, value,  "ResponsiblePerson");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
 		public IfcDate? @IncorporationDate 
 		{ 
 			get 
@@ -190,7 +190,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _incorporationDate = v, _incorporationDate, value,  "IncorporationDate");
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 26)]
 		public IfcCostValue @DepreciatedValue 
 		{ 
 			get 

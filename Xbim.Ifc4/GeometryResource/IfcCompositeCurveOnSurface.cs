@@ -46,7 +46,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 0)]
 		public List<IfcSurface> @BasisSurface 
 		{
 			get 

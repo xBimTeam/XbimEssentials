@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcLengthMeasure @LongitudinalStartPosition 
 		{ 
 			get 
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _longitudinalStartPosition = v, _longitudinalStartPosition, value,  "LongitudinalStartPosition");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcLengthMeasure @LongitudinalEndPosition 
 		{ 
 			get 
@@ -95,7 +95,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _longitudinalEndPosition = v, _longitudinalEndPosition, value,  "LongitudinalEndPosition");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcLengthMeasure? @TransversePosition 
 		{ 
 			get 
@@ -109,7 +109,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _transversePosition = v, _transversePosition, value,  "TransversePosition");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 5)]
 		public IfcReinforcingBarRoleEnum @ReinforcementRole 
 		{ 
 			get 
@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _reinforcementRole = v, _reinforcementRole, value,  "ReinforcementRole");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
 		public IfcSectionProperties @SectionDefinition 
 		{ 
 			get 
@@ -137,7 +137,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _sectionDefinition = v, _sectionDefinition, value,  "SectionDefinition");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 7)]
 		public ItemSet<IfcReinforcementBarProperties> @CrossSectionReinforcementDefinitions 
 		{ 
 			get 

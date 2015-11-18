@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcAnalysisModelTypeEnum @PredefinedType 
 		{ 
 			get 
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
 		public IfcAxis2Placement3D @OrientationOf2DPlane 
 		{ 
 			get 
@@ -95,7 +95,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 21)]
 		public OptionalItemSet<IfcStructuralLoadGroup> @LoadedBy 
 		{ 
 			get 
@@ -106,7 +106,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 22)]
 		public OptionalItemSet<IfcStructuralResultGroup> @HasResults 
 		{ 
 			get 
@@ -116,7 +116,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				return _hasResults;
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 23)]
 		public IfcObjectPlacement @SharedPlacement 
 		{ 
 			get 

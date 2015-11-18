@@ -62,7 +62,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcCartesianPointList3D @Coordinates 
 		{ 
 			get 
@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _coordinates = v, _coordinates, value,  "Coordinates");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 1, -1, 4)]
 		public OptionalItemSet<ItemSet<IfcParameterValue>> @Normals 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				return _normals;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcBoolean? @Closed 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 6)]
 		public IEnumerable<IfcIndexedColourMap> @HasColours 
 		{ 
 			get 
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				return Model.Instances.Where<IfcIndexedColourMap>(e => (e.MappedTo as IfcTessellatedFaceSet) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 7)]
 		public IEnumerable<IfcIndexedTextureMap> @HasTextures 
 		{ 
 			get 

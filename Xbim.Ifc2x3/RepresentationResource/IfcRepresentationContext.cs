@@ -116,7 +116,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcLabel? @ContextIdentifier 
 		{ 
 			get 
@@ -130,7 +130,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				SetValue( v =>  _contextIdentifier = v, _contextIdentifier, value,  "ContextIdentifier");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcLabel? @ContextType 
 		{ 
 			get 
@@ -149,7 +149,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 3)]
 		public IEnumerable<IfcRepresentation> @RepresentationsInContext 
 		{ 
 			get 

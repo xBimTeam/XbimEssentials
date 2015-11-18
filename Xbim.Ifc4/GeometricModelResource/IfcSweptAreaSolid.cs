@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcProfileDef @SweptArea 
 		{ 
 			get 
@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _sweptArea = v, _sweptArea, value,  "SweptArea");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcAxis2Placement3D @Position 
 		{ 
 			get 

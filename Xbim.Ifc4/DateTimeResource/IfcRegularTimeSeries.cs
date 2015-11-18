@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public IfcTimeMeasure @TimeStep 
 		{ 
 			get 
@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _timeStep = v, _timeStep, value,  "TimeStep");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 11)]
 		public ItemSet<IfcTimeSeriesValue> @Values 
 		{ 
 			get 

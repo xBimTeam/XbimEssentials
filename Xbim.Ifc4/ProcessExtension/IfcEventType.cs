@@ -57,7 +57,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcEventTypeEnum @PredefinedType 
 		{ 
 			get 
@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
 		public IfcEventTriggerTypeEnum @EventTriggerType 
 		{ 
 			get 
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _eventTriggerType = v, _eventTriggerType, value,  "EventTriggerType");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
 		public IfcLabel? @UserDefinedEventTriggerType 
 		{ 
 			get 

@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcBoolean @RepeatS 
 		{ 
 			get 
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _repeatS = v, _repeatS, value,  "RepeatS");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcBoolean @RepeatT 
 		{ 
 			get 
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _repeatT = v, _repeatT, value,  "RepeatT");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcIdentifier? @Mode 
 		{ 
 			get 
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _mode = v, _mode, value,  "Mode");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcCartesianTransformationOperator2D @TextureTransform 
 		{ 
 			get 
@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _textureTransform = v, _textureTransform, value,  "TextureTransform");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 5)]
 		public OptionalItemSet<IfcIdentifier> @Parameter 
 		{ 
 			get 
@@ -140,7 +140,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 6)]
 		public IEnumerable<IfcTextureCoordinate> @IsMappedBy 
 		{ 
 			get 
@@ -148,7 +148,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				return Model.Instances.Where<IfcTextureCoordinate>(e => e.Maps != null &&  e.Maps.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 7)]
 		public IEnumerable<IfcSurfaceStyleWithTextures> @UsedInStyles 
 		{ 
 			get 

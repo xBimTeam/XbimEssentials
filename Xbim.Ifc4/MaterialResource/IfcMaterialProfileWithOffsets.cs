@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Array, EntityAttributeType.None, 1, 2)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Array, EntityAttributeType.None, 1, 2, 11)]
 		public ItemSet<IfcLengthMeasure> @OffsetValues 
 		{ 
 			get 

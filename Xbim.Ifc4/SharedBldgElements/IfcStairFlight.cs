@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 33)]
 		public IfcInteger? @NumberOfRisers 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _numberOfRisers = v, _numberOfRisers, value,  "NumberOfRisers");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 34)]
 		public IfcInteger? @NumberOfTreads 
 		{ 
 			get 
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _numberOfTreads = v, _numberOfTreads, value,  "NumberOfTreads");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 35)]
 		public IfcPositiveLengthMeasure? @RiserHeight 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _riserHeight = v, _riserHeight, value,  "RiserHeight");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 36)]
 		public IfcPositiveLengthMeasure? @TreadLength 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _treadLength = v, _treadLength, value,  "TreadLength");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 37)]
 		public IfcStairFlightTypeEnum? @PredefinedType 
 		{ 
 			get 

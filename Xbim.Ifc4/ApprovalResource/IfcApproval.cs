@@ -149,7 +149,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcIdentifier? @Identifier 
 		{ 
 			get 
@@ -163,7 +163,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcLabel? @Name 
 		{ 
 			get 
@@ -177,7 +177,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -191,7 +191,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcDateTime? @TimeOfApproval 
 		{ 
 			get 
@@ -205,7 +205,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				SetValue( v =>  _timeOfApproval = v, _timeOfApproval, value,  "TimeOfApproval");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcLabel? @Status 
 		{ 
 			get 
@@ -219,7 +219,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				SetValue( v =>  _status = v, _status, value,  "Status");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcLabel? @Level 
 		{ 
 			get 
@@ -233,7 +233,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				SetValue( v =>  _level = v, _level, value,  "Level");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcText? @Qualifier 
 		{ 
 			get 
@@ -247,7 +247,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				SetValue( v =>  _qualifier = v, _qualifier, value,  "Qualifier");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public IfcActorSelect @RequestingApproval 
 		{ 
 			get 
@@ -261,7 +261,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				SetValue( v =>  _requestingApproval = v, _requestingApproval, value,  "RequestingApproval");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public IfcActorSelect @GivingApproval 
 		{ 
 			get 
@@ -280,7 +280,7 @@ namespace Xbim.Ifc4.ApprovalResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 10)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReferences 
 		{ 
 			get 
@@ -288,7 +288,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 11)]
 		public IEnumerable<IfcRelAssociatesApproval> @ApprovedObjects 
 		{ 
 			get 
@@ -296,7 +296,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				return Model.Instances.Where<IfcRelAssociatesApproval>(e => (e.RelatingApproval as IfcApproval) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 12)]
 		public IEnumerable<IfcResourceApprovalRelationship> @ApprovedResources 
 		{ 
 			get 
@@ -304,7 +304,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				return Model.Instances.Where<IfcResourceApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 13)]
 		public IEnumerable<IfcApprovalRelationship> @IsRelatedWith 
 		{ 
 			get 
@@ -312,7 +312,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				return Model.Instances.Where<IfcApprovalRelationship>(e => e.RelatedApprovals != null &&  e.RelatedApprovals.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 14)]
 		public IEnumerable<IfcApprovalRelationship> @Relates 
 		{ 
 			get 
