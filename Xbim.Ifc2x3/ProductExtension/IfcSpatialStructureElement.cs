@@ -93,7 +93,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 16)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 16)]
 		public IEnumerable<IfcRelReferencedInSpatialStructure> @ReferencesElements 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IfcRelReferencedInSpatialStructure>(e => (e.RelatingStructure as IfcSpatialStructureElement) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 17)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 17)]
 		public IEnumerable<IfcRelServicesBuildings> @ServicedBySystems 
 		{ 
 			get 
@@ -109,7 +109,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IfcRelServicesBuildings>(e => e.RelatedBuildings != null &&  e.RelatedBuildings.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 18)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 18)]
 		public IEnumerable<IfcRelContainedInSpatialStructure> @ContainsElements 
 		{ 
 			get 

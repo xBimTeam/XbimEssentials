@@ -146,7 +146,7 @@ namespace Xbim.CobieExpress
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 11)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 11)]
 		public IEnumerable<CobieIssue> @CausingIssues 
 		{ 
 			get 
@@ -154,7 +154,7 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobieIssue>(e => (e.Causing as CobieAsset) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 12)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 12)]
 		public IEnumerable<CobieIssue> @AffectedBy 
 		{ 
 			get 

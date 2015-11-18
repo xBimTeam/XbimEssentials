@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 34)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 34)]
 		public IEnumerable<IfcRelCoversSpaces> @CoversSpaces 
 		{ 
 			get 
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				return Model.Instances.Where<IfcRelCoversSpaces>(e => e.RelatedCoverings != null &&  e.RelatedCoverings.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 35)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 35)]
 		public IEnumerable<IfcRelCoversBldgElements> @CoversElements 
 		{ 
 			get 

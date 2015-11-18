@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 28)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 28)]
 		public IEnumerable<IfcRelCoversSpaces> @CoversSpaces 
 		{ 
 			get 
@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IfcRelCoversSpaces>(e => e.RelatedCoverings != null &&  e.RelatedCoverings.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 29)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 29)]
 		public IEnumerable<IfcRelCoversBldgElements> @Covers 
 		{ 
 			get 

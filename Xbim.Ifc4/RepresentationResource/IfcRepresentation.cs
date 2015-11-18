@@ -187,7 +187,7 @@ namespace Xbim.Ifc4.RepresentationResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 5)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 5)]
 		public IEnumerable<IfcRepresentationMap> @RepresentationMap 
 		{ 
 			get 
@@ -195,7 +195,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				return Model.Instances.Where<IfcRepresentationMap>(e => (e.MappedRepresentation as IfcRepresentation) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 6)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 6)]
 		public IEnumerable<IfcPresentationLayerAssignment> @LayerAssignments 
 		{ 
 			get 
@@ -203,7 +203,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				return Model.Instances.Where<IfcPresentationLayerAssignment>(e => e.AssignedItems != null &&  e.AssignedItems.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 7)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
 		public IEnumerable<IfcProductRepresentation> @OfProductRepresentation 
 		{ 
 			get 

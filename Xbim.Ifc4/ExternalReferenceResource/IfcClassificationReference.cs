@@ -110,7 +110,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 8)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcRelAssociatesClassification> @ClassificationRefForObjects 
 		{ 
 			get 
@@ -118,7 +118,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				return Model.Instances.Where<IfcRelAssociatesClassification>(e => (e.RelatingClassification as IfcClassificationReference) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 9)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
 		public IEnumerable<IfcClassificationReference> @HasReferences 
 		{ 
 			get 

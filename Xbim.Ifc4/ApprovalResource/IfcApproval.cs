@@ -280,7 +280,7 @@ namespace Xbim.Ifc4.ApprovalResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 10)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 10)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReferences 
 		{ 
 			get 
@@ -288,7 +288,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 11)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 11)]
 		public IEnumerable<IfcRelAssociatesApproval> @ApprovedObjects 
 		{ 
 			get 
@@ -296,7 +296,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				return Model.Instances.Where<IfcRelAssociatesApproval>(e => (e.RelatingApproval as IfcApproval) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 12)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 12)]
 		public IEnumerable<IfcResourceApprovalRelationship> @ApprovedResources 
 		{ 
 			get 
@@ -304,7 +304,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				return Model.Instances.Where<IfcResourceApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 13)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 13)]
 		public IEnumerable<IfcApprovalRelationship> @IsRelatedWith 
 		{ 
 			get 
@@ -312,7 +312,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				return Model.Instances.Where<IfcApprovalRelationship>(e => e.RelatedApprovals != null &&  e.RelatedApprovals.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 14)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 14)]
 		public IEnumerable<IfcApprovalRelationship> @Relates 
 		{ 
 			get 

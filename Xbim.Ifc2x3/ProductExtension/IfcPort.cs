@@ -61,7 +61,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.FirstOrDefault<IfcRelConnectsPortToElement>(e => (e.RelatingPort as IfcPort) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 15)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 15)]
 		public IEnumerable<IfcRelConnectsPorts> @ConnectedFrom 
 		{ 
 			get 
@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IfcRelConnectsPorts>(e => (e.RelatedPort as IfcPort) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 16)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 16)]
 		public IEnumerable<IfcRelConnectsPorts> @ConnectedTo 
 		{ 
 			get 

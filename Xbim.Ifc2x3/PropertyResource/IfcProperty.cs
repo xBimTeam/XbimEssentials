@@ -153,7 +153,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 3)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 3)]
 		public IEnumerable<IfcPropertyDependencyRelationship> @PropertyForDependance 
 		{ 
 			get 
@@ -161,7 +161,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependingProperty as IfcProperty) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 4)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
 		public IEnumerable<IfcPropertyDependencyRelationship> @PropertyDependsOn 
 		{ 
 			get 
@@ -169,7 +169,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependantProperty as IfcProperty) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 5)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 5)]
 		public IEnumerable<IfcComplexProperty> @PartOfComplex 
 		{ 
 			get 

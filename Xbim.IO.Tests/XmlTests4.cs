@@ -10,6 +10,7 @@ using Xbim.Common;
 using Xbim.Ifc4;
 using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.Kernel;
+using Xbim.Ifc4.MaterialResource;
 using Xbim.Ifc4.PropertyResource;
 using Xbim.Ifc4.SharedBldgElements;
 using Xbim.Ifc4.StructuralLoadResource;
@@ -214,10 +215,18 @@ namespace Xbim.MemoryModel.Tests
             using (var xml = XmlWriter.Create(path, new XmlWriterSettings { Indent = true }))
             {
                 var writer = new XbimXmlWriter4(configuration.IFC4Add1);
-                var entities = model.Instances.OfType<IfcProduct>()
-                    .Concat(model.Instances.OfType<IfcRelationship>().Cast<IPersistEntity>())
-                    .Concat(model.Instances);
-                writer.Write(model, xml, entities);
+                var project = model.Instances.OfType<IfcProject>();
+                var products = model.Instances.OfType<IfcObject>();
+                var relations = model.Instances.OfType<IfcRelationship>();
+                var materials = model.Instances.OfType<IfcMaterial>();
+                var all =
+                    new IPersistEntity[] {}
+                        .Concat(materials)
+                        .Concat(project)
+                        .Concat(products)
+                        .Concat(relations)
+                        .Concat(model.Instances);
+                writer.Write(model, xml, all);
                 xml.Close();
             }
         }

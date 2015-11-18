@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 1)]
 		public IEnumerable<IfcProduct> @PlacesObject 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				return Model.Instances.Where<IfcProduct>(e => (e.ObjectPlacement as IfcObjectPlacement) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 2)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 2)]
 		public IEnumerable<IfcLocalPlacement> @ReferencedByPlacements 
 		{ 
 			get 

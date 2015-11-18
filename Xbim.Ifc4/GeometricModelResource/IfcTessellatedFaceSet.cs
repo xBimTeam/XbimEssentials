@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 6)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 6)]
 		public IEnumerable<IfcIndexedColourMap> @HasColours 
 		{ 
 			get 
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				return Model.Instances.Where<IfcIndexedColourMap>(e => (e.MappedTo as IfcTessellatedFaceSet) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 7)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
 		public IEnumerable<IfcIndexedTextureMap> @HasTextures 
 		{ 
 			get 

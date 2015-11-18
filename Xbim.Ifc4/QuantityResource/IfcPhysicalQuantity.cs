@@ -151,7 +151,7 @@ namespace Xbim.Ifc4.QuantityResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 3)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 3)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReferences 
 		{ 
 			get 
@@ -159,7 +159,7 @@ namespace Xbim.Ifc4.QuantityResource
 				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 4)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 4)]
 		public IEnumerable<IfcPhysicalComplexQuantity> @PartOfComplex 
 		{ 
 			get 

@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 13)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 13)]
 		public IEnumerable<IfcRelSpaceBoundary2ndLevel> @Corresponds 
 		{ 
 			get 

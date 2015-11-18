@@ -184,7 +184,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 5)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
 		public IEnumerable<IfcClassificationItem> @Contains 
 		{ 
 			get 

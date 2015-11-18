@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.MeasureResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 4)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReference 
 		{ 
 			get 

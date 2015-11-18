@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 6)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 2, 6)]
 		public IEnumerable<IfcTerminatorSymbol> @AnnotatedBySymbols 
 		{ 
 			get 

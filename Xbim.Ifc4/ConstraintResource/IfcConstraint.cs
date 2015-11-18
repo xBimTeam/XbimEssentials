@@ -239,7 +239,7 @@ namespace Xbim.Ifc4.ConstraintResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 8)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReferences 
 		{ 
 			get 
@@ -247,7 +247,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 9)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
 		public IEnumerable<IfcResourceConstraintRelationship> @PropertiesForConstraint 
 		{ 
 			get 

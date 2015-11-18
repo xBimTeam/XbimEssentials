@@ -73,7 +73,9 @@ namespace Xbim.IO.Xml.BsConf
             get
             {
                 return
-                    Items.OfType<inverse>().Where(i => i.expattribute == expattribute.doubletag);
+                    Items.OfType<inverse>().Where(i => 
+                        i.expattribute == expattribute.doubletag || 
+                        i.expattribute == expattribute.attributetag);
             }
         }
 

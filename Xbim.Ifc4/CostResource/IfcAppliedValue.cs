@@ -286,7 +286,7 @@ namespace Xbim.Ifc4.CostResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 11)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 11)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReference 
 		{ 
 			get 

@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.MaterialResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 7)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 7)]
 		public IEnumerable<IfcMaterialDefinitionRepresentation> @HasRepresentation 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc4.MaterialResource
 				return Model.Instances.Where<IfcMaterialDefinitionRepresentation>(e => (e.RepresentedMaterial as IfcMaterial) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 8)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcMaterialRelationship> @IsRelatedWith 
 		{ 
 			get 
@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.MaterialResource
 				return Model.Instances.Where<IfcMaterialRelationship>(e => e.RelatedMaterials != null &&  e.RelatedMaterials.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 9)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 9)]
 		public IEnumerable<IfcMaterialRelationship> @RelatesTo 
 		{ 
 			get 

@@ -60,7 +60,7 @@ namespace Xbim.Ifc4.Kernel
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 5)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
 		public IEnumerable<IfcRelAssigns> @HasAssignments 
 		{ 
 			get 
@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.Kernel
 				return Model.Instances.Where<IfcRelAssigns>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 6)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 6)]
 		public IEnumerable<IfcRelNests> @Nests 
 		{ 
 			get 
@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.Kernel
 				return Model.Instances.Where<IfcRelNests>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 7)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
 		public IEnumerable<IfcRelNests> @IsNestedBy 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.Kernel
 				return Model.Instances.Where<IfcRelNests>(e => (e.RelatingObject as IfcObjectDefinition) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 8)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 8)]
 		public IEnumerable<IfcRelDeclares> @HasContext 
 		{ 
 			get 
@@ -92,7 +92,7 @@ namespace Xbim.Ifc4.Kernel
 				return Model.Instances.Where<IfcRelDeclares>(e => e.RelatedDefinitions != null &&  e.RelatedDefinitions.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 9)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
 		public IEnumerable<IfcRelAggregates> @IsDecomposedBy 
 		{ 
 			get 
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.Kernel
 				return Model.Instances.Where<IfcRelAggregates>(e => (e.RelatingObject as IfcObjectDefinition) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 10)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 10)]
 		public IEnumerable<IfcRelAggregates> @Decomposes 
 		{ 
 			get 
@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.Kernel
 				return Model.Instances.Where<IfcRelAggregates>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 11)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 11)]
 		public IEnumerable<IfcRelAssociates> @HasAssociations 
 		{ 
 			get 

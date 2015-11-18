@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.Kernel
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 14)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 14)]
 		public IEnumerable<IfcRelDefinesByType> @Types 
 		{ 
 			get 

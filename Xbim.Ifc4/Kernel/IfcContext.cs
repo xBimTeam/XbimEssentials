@@ -139,7 +139,7 @@ namespace Xbim.Ifc4.Kernel
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 17)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 17)]
 		public IEnumerable<IfcRelDefinesByProperties> @IsDefinedBy 
 		{ 
 			get 
@@ -147,7 +147,7 @@ namespace Xbim.Ifc4.Kernel
 				return Model.Instances.Where<IfcRelDefinesByProperties>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 18)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 18)]
 		public IEnumerable<IfcRelDeclares> @Declares 
 		{ 
 			get 

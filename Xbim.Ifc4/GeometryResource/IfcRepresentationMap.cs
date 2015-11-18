@@ -152,7 +152,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 3)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 3)]
 		public IEnumerable<IfcShapeAspect> @HasShapeAspects 
 		{ 
 			get 
@@ -160,7 +160,7 @@ namespace Xbim.Ifc4.GeometryResource
 				return Model.Instances.Where<IfcShapeAspect>(e => (e.PartOfProductDefinitionShape as IfcRepresentationMap) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 4)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
 		public IEnumerable<IfcMappedItem> @MapUsage 
 		{ 
 			get 

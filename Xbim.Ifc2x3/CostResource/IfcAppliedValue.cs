@@ -223,7 +223,7 @@ namespace Xbim.Ifc2x3.CostResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 7)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
 		public IEnumerable<IfcReferencesValueDocument> @ValuesReferenced 
 		{ 
 			get 
@@ -231,7 +231,7 @@ namespace Xbim.Ifc2x3.CostResource
 				return Model.Instances.Where<IfcReferencesValueDocument>(e => e.ReferencingValues != null &&  e.ReferencingValues.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 8)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcAppliedValueRelationship> @ValueOfComponents 
 		{ 
 			get 
@@ -239,7 +239,7 @@ namespace Xbim.Ifc2x3.CostResource
 				return Model.Instances.Where<IfcAppliedValueRelationship>(e => (e.ComponentOfTotal as IfcAppliedValue) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 9)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
 		public IEnumerable<IfcAppliedValueRelationship> @IsComponentIn 
 		{ 
 			get 

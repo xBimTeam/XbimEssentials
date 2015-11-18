@@ -142,7 +142,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 17)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 17)]
 		public IEnumerable<IfcStructuralResultGroup> @SourceOfResultGroup 
 		{ 
 			get 
@@ -150,7 +150,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				return Model.Instances.Where<IfcStructuralResultGroup>(e => (e.ResultForLoadGroup as IfcStructuralLoadGroup) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 18)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 18)]
 		public IEnumerable<IfcStructuralAnalysisModel> @LoadGroupFor 
 		{ 
 			get 

@@ -106,7 +106,7 @@ namespace Xbim.CobieExpress
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 16)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 16)]
 		public IEnumerable<CobieSpace> @Spaces 
 		{ 
 			get 

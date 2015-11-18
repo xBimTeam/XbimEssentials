@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.Kernel
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 13)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 13)]
 		public IEnumerable<IfcRelDefinesByObject> @IsDeclaredBy 
 		{ 
 			get 
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.Kernel
 				return Model.Instances.Where<IfcRelDefinesByObject>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 14)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 14)]
 		public IEnumerable<IfcRelDefinesByObject> @Declares 
 		{ 
 			get 
@@ -93,7 +93,7 @@ namespace Xbim.Ifc4.Kernel
 				return Model.Instances.Where<IfcRelDefinesByObject>(e => (e.RelatingObject as IfcObject) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 15)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 15)]
 		public IEnumerable<IfcRelDefinesByType> @IsTypedBy 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.Kernel
 				return Model.Instances.Where<IfcRelDefinesByType>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 16)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 16)]
 		public IEnumerable<IfcRelDefinesByProperties> @IsDefinedBy 
 		{ 
 			get 

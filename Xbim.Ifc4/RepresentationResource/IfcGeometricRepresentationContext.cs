@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.RepresentationResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 8)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcGeometricRepresentationSubContext> @HasSubContexts 
 		{ 
 			get 
@@ -133,7 +133,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				return Model.Instances.Where<IfcGeometricRepresentationSubContext>(e => (e.ParentContext as IfcGeometricRepresentationContext) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 9)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 9)]
 		public IEnumerable<IfcCoordinateOperation> @HasCoordinateOperation 
 		{ 
 			get 
