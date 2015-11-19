@@ -105,6 +105,9 @@
     <Compile Include="FileReferenceResolver.cs" />
     <Compile Include="Memory\EntityCollection.cs" />
     <Compile Include="Memory\FederatedModel.cs" />
+    <Compile Include="Memory\InMemoryGeometryStore.cs" />
+    <Compile Include="Memory\InMemoryGeometryStoreInitialiser.cs" />
+    <Compile Include="Memory\InMemoryGeometryStoreReader.cs" />
     <Compile Include="Memory\MemoryModel.cs" />
     <Compile Include="Memory\Transaction.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

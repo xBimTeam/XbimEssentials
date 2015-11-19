@@ -34,7 +34,7 @@ namespace Xbim.IO.Esent
         }
 
 
-        public int AddShapeGeometry(IXbimShapeGeometryData shapeGeometry)
+        public int AddShapeGeometry(XbimShapeGeometry shapeGeometry)
         {
             long remainder = _geometryCount % TransactionBatchSize; //pulse transactions
             if (remainder == TransactionBatchSize - 1)
@@ -46,7 +46,7 @@ namespace Xbim.IO.Esent
             return _shapeGeometryCursor.AddGeometry(shapeGeometry);
         }
 
-        public int AddShapeInstance(IXbimShapeInstanceData shapeInstance, int geometryId)
+        public int AddShapeInstance(XbimShapeInstance shapeInstance, int geometryId)
         {
             long remainder = _instanceCount % TransactionBatchSize; //pulse transactions
             if (remainder == TransactionBatchSize - 1)

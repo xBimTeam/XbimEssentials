@@ -237,7 +237,9 @@ namespace Xbim.IO.Memory
         /// even if it is still referenced from model. This is important for the cases where the transaction
         /// is both not commited and not rolled back either.
         /// </summary>
-        private WeakReference _transactionReference; 
+        private WeakReference _transactionReference;
+
+        private InMemoryGeometryStore _geometryStore;
 
         public virtual ITransaction CurrentTransaction
         {
@@ -535,7 +537,12 @@ namespace Xbim.IO.Memory
 
         public IGeometryStore GeometryStore
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                if(_geometryStore == null)
+                    _geometryStore=new InMemoryGeometryStore();
+                return _geometryStore;
+            }
         }
     }
 
