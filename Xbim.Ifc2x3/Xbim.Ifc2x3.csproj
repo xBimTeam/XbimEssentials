@@ -702,6 +702,7 @@
     <Compile Include="MeasureResource\IfcSIUnitPartial.cs" />
     <Compile Include="OptionalItemSet.cs" />
     <Compile Include="PresentationAppearanceResource\IfcNullStyleEnum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UtilityResource\IfcGloballyUniqueIdPartial.cs" />
     <Compile Include="MeasureResource\IfcRealPartial.cs" />
     <Compile Include="Kernel\IfcRootPartial.cs" />

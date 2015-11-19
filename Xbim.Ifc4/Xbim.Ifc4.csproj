@@ -927,6 +927,7 @@
     <Compile Include="ProfileResource\IfcTShapeProfileDef.cs" />
     <Compile Include="ProfileResource\IfcUShapeProfileDef.cs" />
     <Compile Include="ProfileResource\IfcZShapeProfileDef.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyResource\IfcComplexProperty.cs" />
     <Compile Include="PropertyResource\IfcCurveInterpolationEnum.cs" />
     <Compile Include="PropertyResource\IfcExtendedProperties.cs" />

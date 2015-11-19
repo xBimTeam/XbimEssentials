@@ -93,6 +93,7 @@
     <Compile Include="IntegerValue.cs" />
     <Compile Include="ItemSet.cs" />
     <Compile Include="OptionalItemSet.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpatialDivision.cs" />
     <Compile Include="StringValue.cs" />
   </ItemGroup>
