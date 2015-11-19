@@ -55,9 +55,7 @@ namespace Xbim.IO.Esent
                 if (_shapeInstanceCursor != null) _esentModel.FreeTable(_shapeInstanceCursor);
                 _currentTransaction = null;
                 throw new Exception("Begin initialisation failed on Geometry Store",e);
-            }
-            return null;
-            
+            }        
         }
 
         public void EndInit(IGeometryStoreInitialiser transaction)

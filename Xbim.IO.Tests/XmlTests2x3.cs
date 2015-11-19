@@ -20,7 +20,7 @@ namespace Xbim.MemoryModel.Tests
             using (var esent = new IO.Esent.EsentModel(new EntityFactory()))
             {
                 esent.CreateFrom("4walls1floorSite.ifc", null, null, true, true);
-                esent.SaveAs("..\\..\\4walls1floorSite.xml", XbimStorageType.IFCXML);
+                esent.SaveAs("..\\..\\4walls1floorSite.xml", XbimStorageType.IfcXml);
                 var errs = ValidateIfc2X3("..\\..\\4walls1floorSite.xml");
                 Assert.AreEqual(0, errs);
             }

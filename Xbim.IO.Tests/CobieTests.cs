@@ -23,7 +23,7 @@ namespace Xbim.MemoryModel.Tests
             model.Save("RandomModel.cobie");
 
             var model2 = new MemoryModel<EntityFactory>();
-            model2.Open("RandomModel.cobie");
+            model2.Open("RandomModel.cobie", null);
 
             Assert.AreEqual(model2.Instances.Count, model2.Instances.Count);
             Assert.AreEqual(model2.Instances.OfType<CobieAttribute>().Count(), model2.Instances.OfType<CobieAttribute>().Count());

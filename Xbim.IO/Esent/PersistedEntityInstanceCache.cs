@@ -35,6 +35,7 @@ namespace Xbim.IO.Esent
         private readonly IEntityFactory _factory;
         private Session _session;
         private JET_DBID _databaseId;
+        private JET_DBID _writeableDatabaseId;
         static int cacheSizeInBytes = 128 * 1024 * 1024 ;
         private const int MaxCachedEntityTables = 32;
         private const int MaxCachedGeometryTables = 32;
@@ -176,7 +177,7 @@ namespace Xbim.IO.Esent
             catch (Exception e)
             {
                 
-                throw new Exception("Could not clear existing geometry tables");
+                throw new Exception("Could not clear existing geometry tables",e);
             }
         }
         private static bool EnsureGeometryTables(Session session, JET_DBID dbid)
@@ -238,7 +239,7 @@ namespace Xbim.IO.Esent
                     _session = new Session(_jetInstance);
                     try
                     {
-                        Api.JetAttachDatabase(_session, _databaseName, openMode == OpenDatabaseGrbit.ReadOnly ? AttachDatabaseGrbit.ReadOnly : AttachDatabaseGrbit.None);
+                        Api.JetAttachDatabase(_session, _databaseName, AttachDatabaseGrbit.None);
                     }
                     catch (EsentDatabaseDirtyShutdownException)
                     {
@@ -752,6 +753,7 @@ namespace Xbim.IO.Esent
                             if (entry.IsFile &&
                                 (
                                     string.Compare(ext, ".ifc", StringComparison.OrdinalIgnoreCase) == 0 ||
+                                    string.Compare(ext, ".ifcxml", StringComparison.OrdinalIgnoreCase) == 0 ||
                                     string.Compare(ext, ".step21", StringComparison.OrdinalIgnoreCase) == 0 ||
                                     string.Compare(ext, ".stp", StringComparison.OrdinalIgnoreCase) == 0
                                 )
@@ -1464,7 +1466,7 @@ namespace Xbim.IO.Esent
         {
             switch (storageType)
             {
-                case XbimStorageType.IFCXML:
+                case XbimStorageType.IfcXml:
                     SaveAsIfcXml(storageFileName);
                     break;
                 case XbimStorageType.Step21:
@@ -1473,7 +1475,7 @@ namespace Xbim.IO.Esent
                 case XbimStorageType.Step21Zip:
                     SaveAsIfcZip(storageFileName);
                     break;
-                case XbimStorageType.XBIM:
+                case XbimStorageType.Xbim:
                     Debug.Assert(false, "Incorrect call, see XbimModel.SaveAs");
                     break;
             }
@@ -1904,12 +1906,17 @@ namespace Xbim.IO.Esent
             ModifiedEntities.TryAdd(entity.EntityLabel, entity as IInstantiableEntity);
         }
 
-        public string DatabaseName 
+        internal string DatabaseName 
         {
             get
             {
                 return _databaseName;
             }
+            set
+            { 
+                _databaseName = value;
+            }
+
         }
 
         /// <summary>
@@ -2227,6 +2234,12 @@ namespace Xbim.IO.Esent
             }
             var openMode = AttachedDatabase();
             return new EsentShapeInstanceCursor(_model, _databaseName, openMode);
+        }
+
+        internal EsentEntityCursor GetWriteableEntityTable()
+        {           
+            AttachedDatabase(); //make sure the database is attached           
+            return new EsentEntityCursor(_model, _databaseName, OpenDatabaseGrbit.None);
         }
     }
 }

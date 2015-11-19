@@ -130,6 +130,7 @@
     <Compile Include="IPersistEntity.cs" />
     <Compile Include="IPersist.cs" />
     <Compile Include="IPropertyValue.cs" />
+    <Compile Include="Step21\IfcSchemaVersion.cs" />
     <Compile Include="Step21\StepFileHeader.cs" />
     <Compile Include="Step21\IStepFileDescription.cs" />
     <Compile Include="Step21\IStepFileHeader.cs" />
