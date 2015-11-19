@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>Xbim.Essentials</id>
-        <version>4.0.0-V026</version>
+        <version>4.0.0-V027</version>
         <title>xBIM Essentials 4</title>
         <authors>xBIM team</authors>
         <owners>Steve Lockley</owners>
@@ -36,6 +36,7 @@
 		<file src="Output\Release\Xbim.Ifc2x3.dll"         target="lib\net40\Xbim.Ifc2x3.dll" />
 		<file src="Output\Release\Xbim.Ifc2x3.IO.dll"      target="lib\net40\Xbim.Ifc2x3.IO.dll" />
 		<file src="Output\Release\Xbim.Ifc4.dll"           target="lib\net40\Xbim.Ifc4.dll" />
+    <file src="Output\Release\Xbim.Ifc.dll"           target="lib\net40\Xbim.Ifc.dll" />
 		<file src="Output\Release\Xbim.IO.dll"             target="lib\net40\Xbim.IO.dll" />
 		<file src="Output\Release\Xbim.CobieExpress.pdb"   target="lib\net40\Xbim.CobieExpress.pdb" />
 		<file src="Output\Release\Xbim.Common.pdb"         target="lib\net40\Xbim.Common.pdb" />
@@ -43,6 +44,7 @@
 		<file src="Output\Release\Xbim.Ifc2x3.IO.pdb"      target="lib\net40\Xbim.Ifc2x3.IO.pdb" />
 		<file src="Output\Release\Xbim.Ifc2x3.pdb"         target="lib\net40\Xbim.Ifc2x3.pdb" />
 		<file src="Output\Release\Xbim.Ifc4.pdb"           target="lib\net40\Xbim.Ifc4.pdb" />
+    <file src="Output\Release\Xbim.Ifc.pdb"           target="lib\net40\Xbim.Ifc.pdb" />
 		<file src="Output\Release\Xbim.IO.pdb"             target="lib\net40\Xbim.IO.pdb" />
 		<file src="Output\Release\Xbim.CobieExpress.XML"   target="lib\net40\Xbim.CobieExpress.XML" />
 		<file src="Output\Release\Xbim.Common.XML"         target="lib\net40\Xbim.Common.XML" />
@@ -50,6 +52,7 @@
 		<file src="Output\Release\Xbim.Ifc2x3.IO.XML"      target="lib\net40\Xbim.Ifc2x3.IO.XML" />
 		<file src="Output\Release\Xbim.Ifc2x3.XML"         target="lib\net40\Xbim.Ifc2x3.XML" />
 		<file src="Output\Release\Xbim.Ifc4.XML"           target="lib\net40\Xbim.Ifc4.XML" />
+     <file src="Output\Release\Xbim.Ifc.XML"           target="lib\net40\Xbim.Ifc.XML" />
 		<file src="Output\Release\Xbim.IO.XML"             target="lib\net40\Xbim.IO.XML" />
     </files>
 	
