@@ -95,6 +95,9 @@
     <Compile Include="..\SharedFileVersionInfo.cs">
       <Link>Properties\SharedFileVersionInfo.cs</Link>
     </Compile>
+	<Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Esent\EsentGeometryStore.cs" />
     <Compile Include="Esent\EsentGeometryInitialiser.cs" />
     <Compile Include="Esent\EsentGeometryStoreReader.cs" />
