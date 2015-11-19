@@ -14,7 +14,8 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
-	[ExpressType("IFCCOMPOUNDPLANEANGLEMEASURE", 255)]
+	[ExpressType("IfcCompoundPlaneAngleMeasure", 255)]
+	[DefinedType(typeof(List<long>))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcCompoundPlaneAngleMeasure : IfcDerivedMeasureValue, IExpressComplexType, System.IEquatable<List<long>>
 	{ 

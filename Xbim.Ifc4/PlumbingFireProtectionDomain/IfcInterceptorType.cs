@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
-	[ExpressType("IFCINTERCEPTORTYPE", 719)]
+	[ExpressType("IfcInterceptorType", 719)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcInterceptorType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IIfcInterceptorType, IEqualityComparer<@IfcInterceptorType>, IEquatable<@IfcInterceptorType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcInterceptorTypeEnum @PredefinedType 
 		{ 
 			get 

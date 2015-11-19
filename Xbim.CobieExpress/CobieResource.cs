@@ -12,14 +12,38 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieResource
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieResource : ICobieReferencedObject
+	{
+		string @Name { get; }
+		string @Description { get; }
+		ICobiePickValue @ResourceType { get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("RESOURCE", 28)]
+	[ExpressType("Resource", 28)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieResource : CobieReferencedObject, IInstantiableEntity, IEqualityComparer<@CobieResource>, IEquatable<@CobieResource>
+	public  partial class @CobieResource : CobieReferencedObject, IInstantiableEntity, ICobieResource, IEqualityComparer<@CobieResource>, IEquatable<@CobieResource>
 	{
+		#region ICobieResource explicit implementation
+		string ICobieResource.Name { get { return @Name; } }	
+		string ICobieResource.Description { get { return @Description; } }	
+		ICobiePickValue ICobieResource.ResourceType { get { return @ResourceType; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieResource(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -32,7 +56,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public string @Name 
 		{ 
 			get 
@@ -45,9 +69,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public string @Description 
 		{ 
 			get 
@@ -60,9 +83,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
 		public CobiePickValue @ResourceType 
 		{ 
 			get 
@@ -75,9 +97,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _resourceType = v, _resourceType, value,  "ResourceType");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
@@ -167,5 +189,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

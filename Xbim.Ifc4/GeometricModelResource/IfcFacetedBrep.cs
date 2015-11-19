@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCFACETEDBREP", 654)]
+	[ExpressType("IfcFacetedBrep", 654)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFacetedBrep : IfcManifoldSolidBrep, IInstantiableEntity, IIfcFacetedBrep, IEqualityComparer<@IfcFacetedBrep>, IEquatable<@IfcFacetedBrep>
 	{

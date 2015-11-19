@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationDefinitionResource
 {
-	[ExpressType("IFCPRESENTATIONITEM", 838)]
+	[ExpressType("IfcPresentationItem", 838)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPresentationItem : IPersistEntity, INotifyPropertyChanged, IIfcPresentationItem, IEqualityComparer<@IfcPresentationItem>, IEquatable<@IfcPresentationItem>
 	{

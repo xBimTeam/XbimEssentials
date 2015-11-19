@@ -1526,6 +1526,7 @@ namespace Xbim.Ifc4
 				case "IFCVOLUMETRICFLOWRATEMEASURE": return new IfcVolumetricFlowRateMeasure ();
 				case "IFCWARPINGCONSTANTMEASURE": return new IfcWarpingConstantMeasure ();
 				case "IFCWARPINGMOMENTMEASURE": return new IfcWarpingMomentMeasure ();
+				case "IFCNULLSTYLE": return new IfcNullStyle ();
 				default:
 					return null;
 			}

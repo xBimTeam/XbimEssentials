@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstraintResource
 {
-	[ExpressType("IFCMETRIC", 776)]
+	[ExpressType("IfcMetric", 776)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IIfcMetric, IEqualityComparer<@IfcMetric>, IEquatable<@IfcMetric>
 	{
@@ -59,7 +59,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 10)]
 		public IfcBenchmarkEnum @Benchmark 
 		{ 
 			get 
@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _benchmark = v, _benchmark, value,  "Benchmark");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
 		public IfcLabel? @ValueSource 
 		{ 
 			get 
@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _valueSource = v, _valueSource, value,  "ValueSource");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
 		public IfcMetricValueSelect @DataValue 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _dataValue = v, _dataValue, value,  "DataValue");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
 		public IfcReference @ReferencePath 
 		{ 
 			get 

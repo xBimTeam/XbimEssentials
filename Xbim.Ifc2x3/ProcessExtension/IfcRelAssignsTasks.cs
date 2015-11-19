@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
-	[ExpressType("IFCRELASSIGNSTASKS", 618)]
+	[ExpressType("IfcRelAssignsTasks", 618)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssignsTasks : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsTasks, IEqualityComparer<@IfcRelAssignsTasks>, IEquatable<@IfcRelAssignsTasks>
 	{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public IfcScheduleTimeControl @TimeForTask 
 		{ 
 			get 

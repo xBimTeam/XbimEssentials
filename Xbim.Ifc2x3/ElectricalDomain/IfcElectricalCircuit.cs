@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
-	[ExpressType("IFCELECTRICALCIRCUIT", 406)]
+	[ExpressType("IfcElectricalCircuit", 406)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricalCircuit : IfcSystem, IInstantiableEntity, IIfcElectricalCircuit, IEqualityComparer<@IfcElectricalCircuit>, IEquatable<@IfcElectricalCircuit>
 	{

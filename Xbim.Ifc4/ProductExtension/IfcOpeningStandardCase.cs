@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCOPENINGSTANDARDCASE", 791)]
+	[ExpressType("IfcOpeningStandardCase", 791)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOpeningStandardCase : IfcOpeningElement, IInstantiableEntity, IIfcOpeningStandardCase, IEqualityComparer<@IfcOpeningStandardCase>, IEquatable<@IfcOpeningStandardCase>
 	{

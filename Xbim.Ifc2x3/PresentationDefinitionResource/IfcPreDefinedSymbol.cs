@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
-	[ExpressType("IFCPREDEFINEDSYMBOL", 568)]
+	[ExpressType("IfcPreDefinedSymbol", 568)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPreDefinedSymbol : IfcPreDefinedItem, IIfcPreDefinedSymbol, IEqualityComparer<@IfcPreDefinedSymbol>, IEquatable<@IfcPreDefinedSymbol>
 	{

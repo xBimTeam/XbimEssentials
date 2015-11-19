@@ -12,7 +12,8 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
-	[ExpressType("IFCSECONDINMINUTE", 656)]
+	[ExpressType("IfcSecondInMinute", 656)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcSecondInMinute : IExpressValueType, System.IEquatable<double>
 	{ 
@@ -25,7 +26,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcSecondInMinute(double val)
         {

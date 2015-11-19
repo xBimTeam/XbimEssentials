@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IFCMATERIALLAYERWITHOFFSETS", 758)]
+	[ExpressType("IfcMaterialLayerWithOffsets", 758)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialLayerWithOffsets : IfcMaterialLayer, IInstantiableEntity, IIfcMaterialLayerWithOffsets, IEqualityComparer<@IfcMaterialLayerWithOffsets>, IEquatable<@IfcMaterialLayerWithOffsets>
 	{
@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 12)]
 		public IfcLayerSetDirectionEnum @OffsetDirection 
 		{ 
 			get 
@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _offsetDirection = v, _offsetDirection, value,  "OffsetDirection");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Array, EntityAttributeType.None, 1, 2)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Array, EntityAttributeType.None, 1, 2, 13)]
 		public ItemSet<IfcLengthMeasure> @OffsetValues 
 		{ 
 			get 

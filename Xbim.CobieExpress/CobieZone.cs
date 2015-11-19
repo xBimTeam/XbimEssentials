@@ -12,14 +12,34 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieZone
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieZone : ICobieAsset
+	{
+		IEnumerable<ICobieSpace> @Spaces { get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("ZONE", 21)]
+	[ExpressType("Zone", 21)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieZone : CobieAsset, IInstantiableEntity, IEqualityComparer<@CobieZone>, IEquatable<@CobieZone>
+	public  partial class @CobieZone : CobieAsset, IInstantiableEntity, ICobieZone, IEqualityComparer<@CobieZone>, IEquatable<@CobieZone>
 	{
+		#region ICobieZone explicit implementation
+		IEnumerable<ICobieSpace> ICobieZone.Spaces { get { return @Spaces; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieZone(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -32,7 +52,7 @@ namespace Xbim.CobieExpress
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 13)]
 		public ItemSet<CobieSpace> @Spaces 
 		{ 
 			get 
@@ -41,9 +61,9 @@ namespace Xbim.CobieExpress
 				((IPersistEntity)this).Activate(false);
 				return _spaces;
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
@@ -134,5 +154,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCCOILTYPE", 496)]
+	[ExpressType("IfcCoilType", 496)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCoilType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcCoilType, IEqualityComparer<@IfcCoilType>, IEquatable<@IfcCoilType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.HvacDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcCoilTypeEnum @PredefinedType 
 		{ 
 			get 

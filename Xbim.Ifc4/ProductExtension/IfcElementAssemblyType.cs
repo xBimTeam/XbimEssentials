@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCELEMENTASSEMBLYTYPE", 619)]
+	[ExpressType("IfcElementAssemblyType", 619)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElementAssemblyType : IfcElementType, IInstantiableEntity, IIfcElementAssemblyType, IEqualityComparer<@IfcElementAssemblyType>, IEquatable<@IfcElementAssemblyType>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcElementAssemblyTypeEnum @PredefinedType 
 		{ 
 			get 

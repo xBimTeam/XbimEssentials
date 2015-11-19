@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCGRID", 703)]
+	[ExpressType("IfcGrid", 703)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IIfcGrid, IEqualityComparer<@IfcGrid>, IEquatable<@IfcGrid>
 	{
@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.ProductExtension
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 20)]
 		public ItemSet<IfcGridAxis> @UAxes 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 21)]
 		public ItemSet<IfcGridAxis> @VAxes 
 		{ 
 			get 
@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 22)]
 		public OptionalItemSet<IfcGridAxis> @WAxes 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return _wAxes;
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 23)]
 		public IfcGridTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 24)]
 		public IEnumerable<IfcRelContainedInSpatialStructure> @ContainedInStructure 
 		{ 
 			get 

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
-	[ExpressType("IFCRELCONNECTSWITHECCENTRICITY", 322)]
+	[ExpressType("IfcRelConnectsWithEccentricity", 322)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelConnectsWithEccentricity : IfcRelConnectsStructuralMember, IInstantiableEntity, IIfcRelConnectsWithEccentricity, IEqualityComparer<@IfcRelConnectsWithEccentricity>, IEquatable<@IfcRelConnectsWithEccentricity>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
 		public IfcConnectionGeometry @ConnectionConstraint 
 		{ 
 			get 

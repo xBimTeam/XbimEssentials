@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCSTAIRFLIGHTTYPE", 1016)]
+	[ExpressType("IfcStairFlightType", 1016)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStairFlightType : IfcBuildingElementType, IInstantiableEntity, IIfcStairFlightType, IEqualityComparer<@IfcStairFlightType>, IEquatable<@IfcStairFlightType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcStairFlightTypeEnum @PredefinedType 
 		{ 
 			get 

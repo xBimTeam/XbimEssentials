@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
-	[ExpressType("IFCCURTAINWALLTYPE", 494)]
+	[ExpressType("IfcCurtainWallType", 494)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCurtainWallType : IfcBuildingElementType, IInstantiableEntity, IIfcCurtainWallType, IEqualityComparer<@IfcCurtainWallType>, IEquatable<@IfcCurtainWallType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcCurtainWallTypeEnum @PredefinedType 
 		{ 
 			get 

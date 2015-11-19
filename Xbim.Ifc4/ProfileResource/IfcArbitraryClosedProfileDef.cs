@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCARBITRARYCLOSEDPROFILEDEF", 420)]
+	[ExpressType("IfcArbitraryClosedProfileDef", 420)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcArbitraryClosedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryClosedProfileDef, IEqualityComparer<@IfcArbitraryClosedProfileDef>, IEquatable<@IfcArbitraryClosedProfileDef>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
 		public IfcCurve @OuterCurve 
 		{ 
 			get 

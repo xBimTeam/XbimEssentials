@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstraintResource
 {
-	[ExpressType("IFCOBJECTIVE", 785)]
+	[ExpressType("IfcObjective", 785)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcObjective : IfcConstraint, IInstantiableEntity, IIfcObjective, IEqualityComparer<@IfcObjective>, IEquatable<@IfcObjective>
 	{
@@ -60,7 +60,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 10)]
 		public OptionalItemSet<IfcConstraint> @BenchmarkValues 
 		{ 
 			get 
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				return _benchmarkValues;
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
 		public IfcLogicalOperatorEnum? @LogicalAggregator 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _logicalAggregator = v, _logicalAggregator, value,  "LogicalAggregator");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 12)]
 		public IfcObjectiveEnum @ObjectiveQualifier 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _objectiveQualifier = v, _objectiveQualifier, value,  "ObjectiveQualifier");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
 		public IfcLabel? @UserDefinedQualifier 
 		{ 
 			get 

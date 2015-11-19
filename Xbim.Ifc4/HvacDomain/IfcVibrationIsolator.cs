@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCVIBRATIONISOLATOR", 1141)]
+	[ExpressType("IfcVibrationIsolator", 1141)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVibrationIsolator : IfcElementComponent, IInstantiableEntity, IIfcVibrationIsolator, IEqualityComparer<@IfcVibrationIsolator>, IEquatable<@IfcVibrationIsolator>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.HvacDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 33)]
 		public IfcVibrationIsolatorTypeEnum? @PredefinedType 
 		{ 
 			get 

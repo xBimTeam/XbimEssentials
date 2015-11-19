@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
-	[ExpressType("IFCDISTRIBUTIONCHAMBERELEMENT", 574)]
+	[ExpressType("IfcDistributionChamberElement", 574)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDistributionChamberElement : IfcDistributionFlowElement, IInstantiableEntity, IIfcDistributionChamberElement, IEqualityComparer<@IfcDistributionChamberElement>, IEquatable<@IfcDistributionChamberElement>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 35)]
 		public IfcDistributionChamberElementTypeEnum? @PredefinedType 
 		{ 
 			get 

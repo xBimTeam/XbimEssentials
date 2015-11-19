@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCDERIVEDUNIT", 568)]
+	[ExpressType("IfcDerivedUnit", 568)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDerivedUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnit, IEqualityComparer<@IfcDerivedUnit>, IEquatable<@IfcDerivedUnit>
 	{
@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.MeasureResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
 		public ItemSet<IfcDerivedUnitElement> @Elements 
 		{ 
 			get 
@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.MeasureResource
 				return _elements;
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 2)]
 		public IfcDerivedUnitEnum @UnitType 
 		{ 
 			get 
@@ -141,7 +141,7 @@ namespace Xbim.Ifc4.MeasureResource
 				SetValue( v =>  _unitType = v, _unitType, value,  "UnitType");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcLabel? @UserDefinedType 
 		{ 
 			get 
@@ -159,7 +159,7 @@ namespace Xbim.Ifc4.MeasureResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 0)]
 		public Common.Geometry.XbimDimensionalExponents @Dimensions 
 		{
 			get 

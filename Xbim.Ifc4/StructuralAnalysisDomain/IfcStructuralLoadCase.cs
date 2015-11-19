@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALLOADCASE", 1031)]
+	[ExpressType("IfcStructuralLoadCase", 1031)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralLoadCase : IfcStructuralLoadGroup, IInstantiableEntity, IIfcStructuralLoadCase, IEqualityComparer<@IfcStructuralLoadCase>, IEquatable<@IfcStructuralLoadCase>
 	{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 3, 3)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 3, 3, 25)]
 		public OptionalItemSet<IfcRatioMeasure> @SelfWeightCoefficients 
 		{ 
 			get 

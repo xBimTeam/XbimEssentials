@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.MeasureResource
 {
 	[IndexedClass]
-	[ExpressType("IFCMONETARYUNIT", 778)]
+	[ExpressType("IfcMonetaryUnit", 778)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMonetaryUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMonetaryUnit, IEqualityComparer<@IfcMonetaryUnit>, IEquatable<@IfcMonetaryUnit>
 	{
@@ -110,7 +110,7 @@ namespace Xbim.Ifc4.MeasureResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcLabel @Currency 
 		{ 
 			get 

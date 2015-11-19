@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
-	[ExpressType("IFCSERVICELIFE", 769)]
+	[ExpressType("IfcServiceLife", 769)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IIfcServiceLife, IEqualityComparer<@IfcServiceLife>, IEquatable<@IfcServiceLife>
 	{
@@ -54,7 +54,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 12)]
 		public IfcServiceLifeTypeEnum @ServiceLifeType 
 		{ 
 			get 
@@ -68,7 +68,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				SetValue( v =>  _serviceLifeType = v, _serviceLifeType, value,  "ServiceLifeType");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
 		public IfcTimeMeasure @ServiceLifeDuration 
 		{ 
 			get 

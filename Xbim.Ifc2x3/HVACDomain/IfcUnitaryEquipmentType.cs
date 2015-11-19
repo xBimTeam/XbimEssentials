@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
-	[ExpressType("IFCUNITARYEQUIPMENTTYPE", 234)]
+	[ExpressType("IfcUnitaryEquipmentType", 234)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcUnitaryEquipmentType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcUnitaryEquipmentType, IEqualityComparer<@IfcUnitaryEquipmentType>, IEquatable<@IfcUnitaryEquipmentType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcUnitaryEquipmentTypeEnum @PredefinedType 
 		{ 
 			get 

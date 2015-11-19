@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
-	[ExpressType("IFCCOORDINATEDUNIVERSALTIMEOFFSET", 690)]
+	[ExpressType("IfcCoordinatedUniversalTimeOffset", 690)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCoordinatedUniversalTimeOffset : INotifyPropertyChanged, IInstantiableEntity, IIfcCoordinatedUniversalTimeOffset, IEqualityComparer<@IfcCoordinatedUniversalTimeOffset>, IEquatable<@IfcCoordinatedUniversalTimeOffset>
 	{
@@ -115,7 +115,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcHourInDay @HourOffset 
 		{ 
 			get 
@@ -129,7 +129,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 				SetValue( v =>  _hourOffset = v, _hourOffset, value,  "HourOffset");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcMinuteInHour? @MinuteOffset 
 		{ 
 			get 
@@ -143,7 +143,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 				SetValue( v =>  _minuteOffset = v, _minuteOffset, value,  "MinuteOffset");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 3)]
 		public IfcAheadOrBehind @Sense 
 		{ 
 			get 

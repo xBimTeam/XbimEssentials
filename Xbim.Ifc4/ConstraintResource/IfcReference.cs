@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstraintResource
 {
-	[ExpressType("IFCREFERENCE", 899)]
+	[ExpressType("IfcReference", 899)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReference : INotifyPropertyChanged, IInstantiableEntity, IIfcReference, IEqualityComparer<@IfcReference>, IEquatable<@IfcReference>
 	{
@@ -124,7 +124,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcIdentifier? @TypeIdentifier 
 		{ 
 			get 
@@ -138,7 +138,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _typeIdentifier = v, _typeIdentifier, value,  "TypeIdentifier");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcIdentifier? @AttributeIdentifier 
 		{ 
 			get 
@@ -152,7 +152,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _attributeIdentifier = v, _attributeIdentifier, value,  "AttributeIdentifier");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcLabel? @InstanceName 
 		{ 
 			get 
@@ -166,7 +166,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _instanceName = v, _instanceName, value,  "InstanceName");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 4)]
 		public OptionalItemSet<IfcInteger> @ListPositions 
 		{ 
 			get 
@@ -176,7 +176,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				return _listPositions;
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
 		public IfcReference @InnerReference 
 		{ 
 			get 

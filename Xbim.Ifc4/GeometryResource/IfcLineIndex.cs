@@ -15,7 +15,8 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCLINEINDEX", 52)]
+	[ExpressType("IfcLineIndex", 52)]
+	[DefinedType(typeof(List<IfcPositiveInteger>))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcLineIndex : IfcSegmentIndexSelect, IExpressComplexType, System.IEquatable<List<IfcPositiveInteger>>
 	{ 

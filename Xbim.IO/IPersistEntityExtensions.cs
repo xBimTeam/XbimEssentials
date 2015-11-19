@@ -39,7 +39,7 @@ namespace Xbim.IO
         internal static void WriteEntity(this IPersistEntity entity, TextWriter tw, byte[] propertyData, ExpressMetaData metadata)
         {
             var type = metadata.ExpressType(entity);
-            tw.Write("#{0}={1}", entity.EntityLabel, type.ExpressName);
+            tw.Write("#{0}={1}", entity.EntityLabel, type.ExpressNameUpper);
             var br = new BinaryReader(new MemoryStream(propertyData));
             var action = (P21ParseAction)br.ReadByte();
             var comma = false; //the first property
@@ -148,7 +148,7 @@ namespace Xbim.IO
         {
             var type = metadata.ExpressType(entity);
             if (map != null && map.Keys.Contains(entity.EntityLabel)) return; //if the entity is replaced in the map do not write it
-            entityWriter.Write("#{0}={1}(", entity.EntityLabel, type.ExpressName);
+            entityWriter.Write("#{0}={1}(", entity.EntityLabel, type.ExpressNameUpper);
             var expressType = metadata.ExpressType(entity);
             var first = true;
             
@@ -283,7 +283,7 @@ namespace Xbim.IO
                 if (propVal.GetType().IsValueType) //we have a value type, so write out explicitly
                 {
                     var type = metadata.ExpressType(propVal.GetType());
-                    entityWriter.Write(type.ExpressName);
+                    entityWriter.Write(type.ExpressNameUpper);
                     entityWriter.Write('(');
                     WriteProperty(propVal.GetType(), propVal, entityWriter, map, metadata);
                     entityWriter.Write(')');
@@ -479,7 +479,7 @@ namespace Xbim.IO
                 {
                     var type = metadata.ExpressType(propVal.GetType());
                     entityWriter.Write(Convert.ToByte(P21ParseAction.BeginNestedType));
-                    entityWriter.Write(type.ExpressName);
+                    entityWriter.Write(type.ExpressNameUpper);
                     entityWriter.Write(Convert.ToByte(P21ParseAction.BeginList));
                     WriteProperty(propVal.GetType(), propVal, entityWriter, metadata);
                     entityWriter.Write(Convert.ToByte(P21ParseAction.EndList));

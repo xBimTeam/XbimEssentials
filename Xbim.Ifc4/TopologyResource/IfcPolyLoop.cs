@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IFCPOLYLOOP", 827)]
+	[ExpressType("IfcPolyLoop", 827)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPolyLoop : IfcLoop, IInstantiableEntity, IIfcPolyLoop, IEqualityComparer<@IfcPolyLoop>, IEquatable<@IfcPolyLoop>
 	{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.TopologyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 3, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 3, -1, 3)]
 		public ItemSet<IfcCartesianPoint> @Polygon 
 		{ 
 			get 

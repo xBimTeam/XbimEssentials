@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[IndexedClass]
-	[ExpressType("IFCCALENDARDATE", 407)]
+	[ExpressType("IfcCalendarDate", 407)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCalendarDate : INotifyPropertyChanged, IInstantiableEntity, IIfcCalendarDate, IEqualityComparer<@IfcCalendarDate>, IEquatable<@IfcCalendarDate>
 	{
@@ -117,7 +117,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcDayInMonthNumber @DayComponent 
 		{ 
 			get 
@@ -131,7 +131,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 				SetValue( v =>  _dayComponent = v, _dayComponent, value,  "DayComponent");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcMonthInYearNumber @MonthComponent 
 		{ 
 			get 
@@ -145,7 +145,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 				SetValue( v =>  _monthComponent = v, _monthComponent, value,  "MonthComponent");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcYearNumber @YearComponent 
 		{ 
 			get 

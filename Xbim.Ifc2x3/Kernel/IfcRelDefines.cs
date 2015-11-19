@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.Kernel
 {
-	[ExpressType("IFCRELDEFINES", 207)]
+	[ExpressType("IfcRelDefines", 207)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcRelDefines : IfcRelationship, IIfcRelDefines, IEqualityComparer<@IfcRelDefines>, IEquatable<@IfcRelDefines>
 	{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.Kernel
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
 		public ItemSet<IfcObject> @RelatedObjects 
 		{ 
 			get 

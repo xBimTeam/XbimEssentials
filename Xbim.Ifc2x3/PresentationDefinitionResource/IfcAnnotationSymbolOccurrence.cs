@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
-	[ExpressType("IFCANNOTATIONSYMBOLOCCURRENCE", 134)]
+	[ExpressType("IfcAnnotationSymbolOccurrence", 134)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAnnotationSymbolOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationSymbolOccurrence, IEqualityComparer<@IfcAnnotationSymbolOccurrence>, IEquatable<@IfcAnnotationSymbolOccurrence>
 	{

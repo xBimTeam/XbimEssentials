@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
-	[ExpressType("IFCFIRESUPPRESSIONTERMINALTYPE", 477)]
+	[ExpressType("IfcFireSuppressionTerminalType", 477)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFireSuppressionTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcFireSuppressionTerminalType, IEqualityComparer<@IfcFireSuppressionTerminalType>, IEquatable<@IfcFireSuppressionTerminalType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcFireSuppressionTerminalTypeEnum @PredefinedType 
 		{ 
 			get 

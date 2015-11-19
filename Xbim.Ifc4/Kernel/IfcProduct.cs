@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCPRODUCT", 846)]
+	[ExpressType("IfcProduct", 846)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcProduct : IfcObject, IIfcProduct, IEqualityComparer<@IfcProduct>, IEquatable<@IfcProduct>
 	{
@@ -57,7 +57,7 @@ namespace Xbim.Ifc4.Kernel
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
 		public IfcObjectPlacement @ObjectPlacement 
 		{ 
 			get 
@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
 		public IfcProductRepresentation @Representation 
 		{ 
 			get 
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.Kernel
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 19)]
 		public IEnumerable<IfcRelAssignsToProduct> @ReferencedBy 
 		{ 
 			get 

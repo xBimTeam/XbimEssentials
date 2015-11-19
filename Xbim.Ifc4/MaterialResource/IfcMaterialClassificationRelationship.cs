@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.MaterialResource
 {
 	[IndexedClass]
-	[ExpressType("IFCMATERIALCLASSIFICATIONRELATIONSHIP", 750)]
+	[ExpressType("IfcMaterialClassificationRelationship", 750)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialClassificationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialClassificationRelationship, IEqualityComparer<@IfcMaterialClassificationRelationship>, IEquatable<@IfcMaterialClassificationRelationship>
 	{
@@ -115,7 +115,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
 		public ItemSet<IfcClassificationSelect> @MaterialClassifications 
 		{ 
 			get 
@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.MaterialResource
 				return _materialClassifications;
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
 		public IfcMaterial @ClassifiedMaterial 
 		{ 
 			get 

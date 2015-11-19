@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCINDEXEDTRIANGLETEXTUREMAP", 717)]
+	[ExpressType("IfcIndexedTriangleTextureMap", 717)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcIndexedTriangleTextureMap : IfcIndexedTextureMap, IInstantiableEntity, IIfcIndexedTriangleTextureMap, IEqualityComparer<@IfcIndexedTriangleTextureMap>, IEquatable<@IfcIndexedTriangleTextureMap>
 	{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 1, -1, 4)]
 		public OptionalItemSet<ItemSet<IfcPositiveInteger>> @TexCoordIndex 
 		{ 
 			get 

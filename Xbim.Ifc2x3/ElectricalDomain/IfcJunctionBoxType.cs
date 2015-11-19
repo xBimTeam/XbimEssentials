@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
-	[ExpressType("IFCJUNCTIONBOXTYPE", 593)]
+	[ExpressType("IfcJunctionBoxType", 593)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcJunctionBoxType : IfcFlowFittingType, IInstantiableEntity, IIfcJunctionBoxType, IEqualityComparer<@IfcJunctionBoxType>, IEquatable<@IfcJunctionBoxType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcJunctionBoxTypeEnum @PredefinedType 
 		{ 
 			get 

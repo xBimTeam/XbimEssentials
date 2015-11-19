@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.ApprovalResource
 {
 	[IndexedClass]
-	[ExpressType("IFCAPPROVALPROPERTYRELATIONSHIP", 376)]
+	[ExpressType("IfcApprovalPropertyRelationship", 376)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcApprovalPropertyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalPropertyRelationship, IEqualityComparer<@IfcApprovalPropertyRelationship>, IEquatable<@IfcApprovalPropertyRelationship>
 	{
@@ -115,7 +115,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
 		public ItemSet<IfcProperty> @ApprovedProperties 
 		{ 
 			get 
@@ -125,7 +125,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				return _approvedProperties;
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
 		public IfcApproval @Approval 
 		{ 
 			get 

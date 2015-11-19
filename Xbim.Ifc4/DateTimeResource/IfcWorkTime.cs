@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IFCWORKTIME", 1162)]
+	[ExpressType("IfcWorkTime", 1162)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWorkTime : IfcSchedulingTime, IInstantiableEntity, IIfcWorkTime, IEqualityComparer<@IfcWorkTime>, IEquatable<@IfcWorkTime>
 	{
@@ -55,7 +55,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcRecurrencePattern @RecurrencePattern 
 		{ 
 			get 
@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _recurrencePattern = v, _recurrencePattern, value,  "RecurrencePattern");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcDate? @Start 
 		{ 
 			get 
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _start = v, _start, value,  "Start");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcDate? @Finish 
 		{ 
 			get 

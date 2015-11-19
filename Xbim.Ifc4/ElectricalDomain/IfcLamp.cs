@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCLAMP", 729)]
+	[ExpressType("IfcLamp", 729)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLamp : IfcFlowTerminal, IInstantiableEntity, IIfcLamp, IEqualityComparer<@IfcLamp>, IEquatable<@IfcLamp>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 35)]
 		public IfcLampTypeEnum? @PredefinedType 
 		{ 
 			get 

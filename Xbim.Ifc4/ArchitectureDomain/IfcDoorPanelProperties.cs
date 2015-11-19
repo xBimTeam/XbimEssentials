@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ArchitectureDomain
 {
-	[ExpressType("IFCDOORPANELPROPERTIES", 590)]
+	[ExpressType("IfcDoorPanelProperties", 590)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDoorPanelProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcDoorPanelProperties, IEqualityComparer<@IfcDoorPanelProperties>, IEquatable<@IfcDoorPanelProperties>
 	{
@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public IfcPositiveLengthMeasure? @PanelDepth 
 		{ 
 			get 
@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _panelDepth = v, _panelDepth, value,  "PanelDepth");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
 		public IfcDoorPanelOperationEnum @PanelOperation 
 		{ 
 			get 
@@ -92,7 +92,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _panelOperation = v, _panelOperation, value,  "PanelOperation");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
 		public IfcNormalisedRatioMeasure? @PanelWidth 
 		{ 
 			get 
@@ -106,7 +106,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _panelWidth = v, _panelWidth, value,  "PanelWidth");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 13)]
 		public IfcDoorPanelPositionEnum @PanelPosition 
 		{ 
 			get 
@@ -120,7 +120,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _panelPosition = v, _panelPosition, value,  "PanelPosition");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
 		public IfcShapeAspect @ShapeAspectStyle 
 		{ 
 			get 

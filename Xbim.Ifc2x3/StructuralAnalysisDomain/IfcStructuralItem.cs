@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALITEM", 226)]
+	[ExpressType("IfcStructuralItem", 226)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralItem : IfcProduct, IIfcStructuralItem, IEqualityComparer<@IfcStructuralItem>, IEquatable<@IfcStructuralItem>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 14)]
 		public IEnumerable<IfcRelConnectsStructuralActivity> @AssignedStructuralActivity 
 		{ 
 			get 

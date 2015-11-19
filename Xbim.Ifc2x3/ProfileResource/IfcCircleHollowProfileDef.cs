@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
-	[ExpressType("IFCCIRCLEHOLLOWPROFILEDEF", 114)]
+	[ExpressType("IfcCircleHollowProfileDef", 114)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCircleHollowProfileDef : IfcCircleProfileDef, IInstantiableEntity, IIfcCircleHollowProfileDef, IEqualityComparer<@IfcCircleHollowProfileDef>, IEquatable<@IfcCircleHollowProfileDef>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcPositiveLengthMeasure @WallThickness 
 		{ 
 			get 

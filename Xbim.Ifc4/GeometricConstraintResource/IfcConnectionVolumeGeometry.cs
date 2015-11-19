@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
-	[ExpressType("IFCCONNECTIONVOLUMEGEOMETRY", 522)]
+	[ExpressType("IfcConnectionVolumeGeometry", 522)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConnectionVolumeGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionVolumeGeometry, IEqualityComparer<@IfcConnectionVolumeGeometry>, IEquatable<@IfcConnectionVolumeGeometry>
 	{
@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
 		public IfcSolidOrShell @VolumeOnRelatingElement 
 		{ 
 			get 
@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				SetValue( v =>  _volumeOnRelatingElement = v, _volumeOnRelatingElement, value,  "VolumeOnRelatingElement");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
 		public IfcSolidOrShell @VolumeOnRelatedElement 
 		{ 
 			get 

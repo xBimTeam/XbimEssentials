@@ -40,6 +40,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					var ifcsurfacestyle = member as IfcSurfaceStyle;
 					if (ifcsurfacestyle != null) 
 						yield return ifcsurfacestyle;
+					if (member is IfcNullStyle) 
+						//## Handle defined type IfcNullStyle which is not a part of the target select interface IEnumerable<IIfcPresentationStyleSelect> in property Styles
+                        yield return new Ifc4.PresentationAppearanceResource.IfcNullStyle();
+						//##
 				}
 			} 
 		}

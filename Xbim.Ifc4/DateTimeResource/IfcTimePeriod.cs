@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IFCTIMEPERIOD", 1111)]
+	[ExpressType("IfcTimePeriod", 1111)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTimePeriod : INotifyPropertyChanged, IInstantiableEntity, IIfcTimePeriod, IEqualityComparer<@IfcTimePeriod>, IEquatable<@IfcTimePeriod>
 	{
@@ -112,7 +112,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcTime @StartTime 
 		{ 
 			get 
@@ -126,7 +126,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcTime @EndTime 
 		{ 
 			get 

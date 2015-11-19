@@ -12,14 +12,48 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieConnection
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieConnection : ICobieReferencedObject
+	{
+		string @Name { get; }
+		string @Description { get; }
+		ICobiePickValue @ConnectionType { get; }
+		ICobieComponent @ComponentA { get; }
+		ICobieComponent @ComponentB { get; }
+		ICobieComponent @RealizingComponent { get; }
+		string @PortNameA { get; }
+		string @PortNameB { get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("CONNECTION", 26)]
+	[ExpressType("Connection", 26)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieConnection : CobieReferencedObject, IInstantiableEntity, IEqualityComparer<@CobieConnection>, IEquatable<@CobieConnection>
+	public  partial class @CobieConnection : CobieReferencedObject, IInstantiableEntity, ICobieConnection, IEqualityComparer<@CobieConnection>, IEquatable<@CobieConnection>
 	{
+		#region ICobieConnection explicit implementation
+		string ICobieConnection.Name { get { return @Name; } }	
+		string ICobieConnection.Description { get { return @Description; } }	
+		ICobiePickValue ICobieConnection.ConnectionType { get { return @ConnectionType; } }	
+		ICobieComponent ICobieConnection.ComponentA { get { return @ComponentA; } }	
+		ICobieComponent ICobieConnection.ComponentB { get { return @ComponentB; } }	
+		ICobieComponent ICobieConnection.RealizingComponent { get { return @RealizingComponent; } }	
+		string ICobieConnection.PortNameA { get { return @PortNameA; } }	
+		string ICobieConnection.PortNameB { get { return @PortNameB; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieConnection(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -37,7 +71,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public string @Name 
 		{ 
 			get 
@@ -50,9 +84,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public string @Description 
 		{ 
 			get 
@@ -65,9 +98,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
 		public CobiePickValue @ConnectionType 
 		{ 
 			get 
@@ -80,10 +112,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _connectionType = v, _connectionType, value,  "ConnectionType");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobieComponent @ComponentA 
 		{ 
 			get 
@@ -96,10 +127,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _componentA = v, _componentA, value,  "ComponentA");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public CobieComponent @ComponentB 
 		{ 
 			get 
@@ -112,10 +142,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _componentB = v, _componentB, value,  "ComponentB");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
 		public CobieComponent @RealizingComponent 
 		{ 
 			get 
@@ -128,9 +157,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _realizingComponent = v, _realizingComponent, value,  "RealizingComponent");
 			} 
-		}
-	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
 		public string @PortNameA 
 		{ 
 			get 
@@ -143,9 +171,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _portNameA = v, _portNameA, value,  "PortNameA");
 			} 
-		}
-	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
 		public string @PortNameB 
 		{ 
 			get 
@@ -158,9 +185,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _portNameB = v, _portNameB, value,  "PortNameB");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
@@ -265,5 +292,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

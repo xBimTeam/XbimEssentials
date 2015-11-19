@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
-	[ExpressType("IFCELECTRICHEATERTYPE", 190)]
+	[ExpressType("IfcElectricHeaterType", 190)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricHeaterType : IfcFlowTerminalType, IInstantiableEntity, IIfcElectricHeaterType, IEqualityComparer<@IfcElectricHeaterType>, IEquatable<@IfcElectricHeaterType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcElectricHeaterTypeEnum @PredefinedType 
 		{ 
 			get 

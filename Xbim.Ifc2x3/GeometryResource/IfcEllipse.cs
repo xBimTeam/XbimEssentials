@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCELLIPSE", 298)]
+	[ExpressType("IfcEllipse", 298)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEllipse : IfcConic, IInstantiableEntity, IIfcEllipse, IEqualityComparer<@IfcEllipse>, IEquatable<@IfcEllipse>
 	{
@@ -53,7 +53,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcPositiveLengthMeasure @SemiAxis1 
 		{ 
 			get 
@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				SetValue( v =>  _semiAxis1 = v, _semiAxis1, value,  "SemiAxis1");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcPositiveLengthMeasure @SemiAxis2 
 		{ 
 			get 

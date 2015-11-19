@@ -14,14 +14,38 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobiePickList
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobiePickList : IPersistEntity
+	{
+		string @Name { get; }
+		string @ForType { get; }
+		IEnumerable<ICobiePickValue> @Values {  get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("PICKLIST", 7)]
+	[ExpressType("PickList", 7)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobiePickList : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@CobiePickList>, IEquatable<@CobiePickList>
+	public  partial class @CobiePickList : INotifyPropertyChanged, IInstantiableEntity, ICobiePickList, IEqualityComparer<@CobiePickList>, IEquatable<@CobiePickList>
 	{
+		#region ICobiePickList explicit implementation
+		string ICobiePickList.Name { get { return @Name; } }	
+		string ICobiePickList.ForType { get { return @ForType; } }	
+		 
+		IEnumerable<ICobiePickValue> ICobiePickList.Values {  get { return @Values; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -78,7 +102,6 @@ namespace Xbim.CobieExpress
 		}
 
 		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -92,7 +115,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public string @Name 
 		{ 
 			get 
@@ -105,9 +128,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public string @ForType 
 		{ 
 			get 
@@ -120,13 +142,13 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _forType = v, _forType, value,  "ForType");
 			} 
-		}
-	
+		}	
 		#endregion
 
 
+
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 3)]
 		public IEnumerable<CobiePickValue> @Values 
 		{ 
 			get 
@@ -262,5 +284,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

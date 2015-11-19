@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
-	[ExpressType("IFCSLABTYPE", 381)]
+	[ExpressType("IfcSlabType", 381)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSlabType : IfcBuildingElementType, IInstantiableEntity, IIfcSlabType, IEqualityComparer<@IfcSlabType>, IEquatable<@IfcSlabType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcSlabTypeEnum @PredefinedType 
 		{ 
 			get 

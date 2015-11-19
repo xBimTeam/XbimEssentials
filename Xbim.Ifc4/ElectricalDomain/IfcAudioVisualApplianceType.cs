@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCAUDIOVISUALAPPLIANCETYPE", 426)]
+	[ExpressType("IfcAudioVisualApplianceType", 426)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAudioVisualApplianceType : IfcFlowTerminalType, IInstantiableEntity, IIfcAudioVisualApplianceType, IEqualityComparer<@IfcAudioVisualApplianceType>, IEquatable<@IfcAudioVisualApplianceType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcAudioVisualApplianceTypeEnum @PredefinedType 
 		{ 
 			get 

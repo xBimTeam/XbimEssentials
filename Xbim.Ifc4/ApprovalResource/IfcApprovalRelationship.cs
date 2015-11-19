@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ApprovalResource
 {
 	[IndexedClass]
-	[ExpressType("IFCAPPROVALRELATIONSHIP", 419)]
+	[ExpressType("IfcApprovalRelationship", 419)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcApprovalRelationship, IEqualityComparer<@IfcApprovalRelationship>, IEquatable<@IfcApprovalRelationship>
 	{
@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.ApprovalResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcApproval @RelatingApproval 
 		{ 
 			get 
@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.ApprovalResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
 		public ItemSet<IfcApproval> @RelatedApprovals 
 		{ 
 			get 

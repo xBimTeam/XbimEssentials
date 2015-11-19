@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.MaterialResource
 {
 	[IndexedClass]
-	[ExpressType("IFCMATERIALLAYER", 755)]
+	[ExpressType("IfcMaterialLayer", 755)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialLayer : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialLayer, IEqualityComparer<@IfcMaterialLayer>, IEquatable<@IfcMaterialLayer>
 	{
@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcMaterial @Material 
 		{ 
 			get 
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _material = v, _material, value,  "Material");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcNonNegativeLengthMeasure @LayerThickness 
 		{ 
 			get 
@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _layerThickness = v, _layerThickness, value,  "LayerThickness");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcLogical? @IsVentilated 
 		{ 
 			get 
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _isVentilated = v, _isVentilated, value,  "IsVentilated");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcLabel? @Name 
 		{ 
 			get 
@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -141,7 +141,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
 		public IfcLabel? @Category 
 		{ 
 			get 
@@ -155,7 +155,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _category = v, _category, value,  "Category");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public IfcInteger? @Priority 
 		{ 
 			get 
@@ -174,7 +174,7 @@ namespace Xbim.Ifc4.MaterialResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 11)]
 		public IfcMaterialLayerSet @ToMaterialLayerSet 
 		{ 
 			get 

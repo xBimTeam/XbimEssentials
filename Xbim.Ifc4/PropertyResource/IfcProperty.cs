@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.PropertyResource
 {
 	[IndexedClass]
-	[ExpressType("IFCPROPERTY", 856)]
+	[ExpressType("IfcProperty", 856)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcProperty : IfcPropertyAbstraction, IIfcProperty, IEqualityComparer<@IfcProperty>, IEquatable<@IfcProperty>
 	{
@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.PropertyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcIdentifier @Name 
 		{ 
 			get 
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.PropertyResource
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.PropertyResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
 		public IEnumerable<IfcPropertySet> @PartOfPset 
 		{ 
 			get 
@@ -110,7 +110,7 @@ namespace Xbim.Ifc4.PropertyResource
 				return Model.Instances.Where<IfcPropertySet>(e => e.HasProperties != null &&  e.HasProperties.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
 		public IEnumerable<IfcPropertyDependencyRelationship> @PropertyForDependance 
 		{ 
 			get 
@@ -118,7 +118,7 @@ namespace Xbim.Ifc4.PropertyResource
 				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependingProperty as IfcProperty) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 6)]
 		public IEnumerable<IfcPropertyDependencyRelationship> @PropertyDependsOn 
 		{ 
 			get 
@@ -126,7 +126,7 @@ namespace Xbim.Ifc4.PropertyResource
 				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependantProperty as IfcProperty) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
 		public IEnumerable<IfcComplexProperty> @PartOfComplex 
 		{ 
 			get 
@@ -134,7 +134,7 @@ namespace Xbim.Ifc4.PropertyResource
 				return Model.Instances.Where<IfcComplexProperty>(e => e.HasProperties != null &&  e.HasProperties.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcResourceConstraintRelationship> @HasConstraints 
 		{ 
 			get 
@@ -142,7 +142,7 @@ namespace Xbim.Ifc4.PropertyResource
 				return Model.Instances.Where<IfcResourceConstraintRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
 		public IEnumerable<IfcResourceApprovalRelationship> @HasApprovals 
 		{ 
 			get 

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCREVOLVEDAREASOLIDTAPERED", 968)]
+	[ExpressType("IfcRevolvedAreaSolidTapered", 968)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRevolvedAreaSolidTapered : IfcRevolvedAreaSolid, IInstantiableEntity, IIfcRevolvedAreaSolidTapered, IEqualityComparer<@IfcRevolvedAreaSolidTapered>, IEquatable<@IfcRevolvedAreaSolidTapered>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
 		public IfcProfileDef @EndSweptArea 
 		{ 
 			get 

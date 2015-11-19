@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IFCSURFACEFEATURE", 1063)]
+	[ExpressType("IfcSurfaceFeature", 1063)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceFeature : IfcFeatureElement, IInstantiableEntity, IIfcSurfaceFeature, IEqualityComparer<@IfcSurfaceFeature>, IEquatable<@IfcSurfaceFeature>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 33)]
 		public IfcSurfaceFeatureTypeEnum? @PredefinedType 
 		{ 
 			get 

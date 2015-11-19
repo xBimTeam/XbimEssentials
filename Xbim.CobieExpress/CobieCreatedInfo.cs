@@ -14,14 +14,36 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieCreatedInfo
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieCreatedInfo : IPersistEntity
+	{
+		ICobieContact @CreatedBy { get; }
+		DateTimeValue @CreatedOn { get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("CREATEDINFO", 12)]
+	[ExpressType("CreatedInfo", 12)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieCreatedInfo : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@CobieCreatedInfo>, IEquatable<@CobieCreatedInfo>
+	public  partial class @CobieCreatedInfo : INotifyPropertyChanged, IInstantiableEntity, ICobieCreatedInfo, IEqualityComparer<@CobieCreatedInfo>, IEquatable<@CobieCreatedInfo>
 	{
+		#region ICobieCreatedInfo explicit implementation
+		ICobieContact ICobieCreatedInfo.CreatedBy { get { return @CreatedBy; } }	
+		DateTimeValue ICobieCreatedInfo.CreatedOn { get { return @CreatedOn; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -78,7 +100,6 @@ namespace Xbim.CobieExpress
 		}
 
 		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -92,7 +113,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
 		public CobieContact @CreatedBy 
 		{ 
 			get 
@@ -105,9 +126,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _createdBy = v, _createdBy, value,  "CreatedBy");
 			} 
-		}
-	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public DateTimeValue @CreatedOn 
 		{ 
 			get 
@@ -120,9 +140,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _createdOn = v, _createdOn, value,  "CreatedOn");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
@@ -252,5 +272,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

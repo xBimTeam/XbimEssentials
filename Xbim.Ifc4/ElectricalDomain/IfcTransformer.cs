@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCTRANSFORMER", 1116)]
+	[ExpressType("IfcTransformer", 1116)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTransformer : IfcEnergyConversionDevice, IInstantiableEntity, IIfcTransformer, IEqualityComparer<@IfcTransformer>, IEquatable<@IfcTransformer>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 35)]
 		public IfcTransformerTypeEnum? @PredefinedType 
 		{ 
 			get 

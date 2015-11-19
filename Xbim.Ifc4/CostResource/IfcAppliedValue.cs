@@ -48,7 +48,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.CostResource
 {
 	[IndexedClass]
-	[ExpressType("IFCAPPLIEDVALUE", 417)]
+	[ExpressType("IfcAppliedValue", 417)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAppliedValue : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValue, IEqualityComparer<@IfcAppliedValue>, IEquatable<@IfcAppliedValue>
 	{
@@ -145,7 +145,7 @@ namespace Xbim.Ifc4.CostResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcLabel? @Name 
 		{ 
 			get 
@@ -159,7 +159,7 @@ namespace Xbim.Ifc4.CostResource
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -173,7 +173,7 @@ namespace Xbim.Ifc4.CostResource
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcAppliedValueSelect @AppliedValue 
 		{ 
 			get 
@@ -187,7 +187,7 @@ namespace Xbim.Ifc4.CostResource
 				SetValue( v =>  _appliedValue = v, _appliedValue, value,  "AppliedValue");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcMeasureWithUnit @UnitBasis 
 		{ 
 			get 
@@ -201,7 +201,7 @@ namespace Xbim.Ifc4.CostResource
 				SetValue( v =>  _unitBasis = v, _unitBasis, value,  "UnitBasis");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcDate? @ApplicableDate 
 		{ 
 			get 
@@ -215,7 +215,7 @@ namespace Xbim.Ifc4.CostResource
 				SetValue( v =>  _applicableDate = v, _applicableDate, value,  "ApplicableDate");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcDate? @FixedUntilDate 
 		{ 
 			get 
@@ -229,7 +229,7 @@ namespace Xbim.Ifc4.CostResource
 				SetValue( v =>  _fixedUntilDate = v, _fixedUntilDate, value,  "FixedUntilDate");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcLabel? @Category 
 		{ 
 			get 
@@ -243,7 +243,7 @@ namespace Xbim.Ifc4.CostResource
 				SetValue( v =>  _category = v, _category, value,  "Category");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
 		public IfcLabel? @Condition 
 		{ 
 			get 
@@ -257,7 +257,7 @@ namespace Xbim.Ifc4.CostResource
 				SetValue( v =>  _condition = v, _condition, value,  "Condition");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 9)]
 		public IfcArithmeticOperatorEnum? @ArithmeticOperator 
 		{ 
 			get 
@@ -271,7 +271,7 @@ namespace Xbim.Ifc4.CostResource
 				SetValue( v =>  _arithmeticOperator = v, _arithmeticOperator, value,  "ArithmeticOperator");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 10)]
 		public OptionalItemSet<IfcAppliedValue> @Components 
 		{ 
 			get 
@@ -286,7 +286,7 @@ namespace Xbim.Ifc4.CostResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 11)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReference 
 		{ 
 			get 

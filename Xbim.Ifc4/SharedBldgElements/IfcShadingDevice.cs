@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCSHADINGDEVICE", 984)]
+	[ExpressType("IfcShadingDevice", 984)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcShadingDevice : IfcBuildingElement, IInstantiableEntity, IIfcShadingDevice, IEqualityComparer<@IfcShadingDevice>, IEquatable<@IfcShadingDevice>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 33)]
 		public IfcShadingDeviceTypeEnum? @PredefinedType 
 		{ 
 			get 

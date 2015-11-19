@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
-	[ExpressType("IFCELECTRICDISTRIBUTIONPOINT", 242)]
+	[ExpressType("IfcElectricDistributionPoint", 242)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricDistributionPoint : IfcFlowController, IInstantiableEntity, IIfcElectricDistributionPoint, IEqualityComparer<@IfcElectricDistributionPoint>, IEquatable<@IfcElectricDistributionPoint>
 	{
@@ -54,7 +54,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 28)]
 		public IfcElectricDistributionPointFunctionEnum @DistributionPointFunction 
 		{ 
 			get 
@@ -68,7 +68,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 				SetValue( v =>  _distributionPointFunction = v, _distributionPointFunction, value,  "DistributionPointFunction");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
 		public IfcLabel? @UserDefinedFunction 
 		{ 
 			get 

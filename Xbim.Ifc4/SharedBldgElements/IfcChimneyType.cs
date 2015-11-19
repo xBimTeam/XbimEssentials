@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCCHIMNEYTYPE", 486)]
+	[ExpressType("IfcChimneyType", 486)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcChimneyType : IfcBuildingElementType, IInstantiableEntity, IIfcChimneyType, IEqualityComparer<@IfcChimneyType>, IEquatable<@IfcChimneyType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcChimneyTypeEnum @PredefinedType 
 		{ 
 			get 

@@ -12,14 +12,52 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieIssue
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieIssue : ICobieReferencedObject
+	{
+		string @Name { get; }
+		string @Description { get; }
+		ICobiePickValue @IssueType { get; }
+		ICobiePickValue @Risk { get; }
+		ICobiePickValue @Chance { get; }
+		ICobiePickValue @Impact { get; }
+		ICobieContact @Owner { get; }
+		string @Mitigation { get; }
+		ICobieAsset @Causing { get; }
+		ICobieAsset @Affected { get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("ISSUE", 33)]
+	[ExpressType("Issue", 33)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieIssue : CobieReferencedObject, IInstantiableEntity, IEqualityComparer<@CobieIssue>, IEquatable<@CobieIssue>
+	public  partial class @CobieIssue : CobieReferencedObject, IInstantiableEntity, ICobieIssue, IEqualityComparer<@CobieIssue>, IEquatable<@CobieIssue>
 	{
+		#region ICobieIssue explicit implementation
+		string ICobieIssue.Name { get { return @Name; } }	
+		string ICobieIssue.Description { get { return @Description; } }	
+		ICobiePickValue ICobieIssue.IssueType { get { return @IssueType; } }	
+		ICobiePickValue ICobieIssue.Risk { get { return @Risk; } }	
+		ICobiePickValue ICobieIssue.Chance { get { return @Chance; } }	
+		ICobiePickValue ICobieIssue.Impact { get { return @Impact; } }	
+		ICobieContact ICobieIssue.Owner { get { return @Owner; } }	
+		string ICobieIssue.Mitigation { get { return @Mitigation; } }	
+		ICobieAsset ICobieIssue.Causing { get { return @Causing; } }	
+		ICobieAsset ICobieIssue.Affected { get { return @Affected; } }	
+		 
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieIssue(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,7 +77,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public string @Name 
 		{ 
 			get 
@@ -52,9 +90,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public string @Description 
 		{ 
 			get 
@@ -67,9 +104,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
 		public CobiePickValue @IssueType 
 		{ 
 			get 
@@ -82,9 +118,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _issueType = v, _issueType, value,  "IssueType");
 			} 
-		}
-	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobiePickValue @Risk 
 		{ 
 			get 
@@ -97,9 +132,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _risk = v, _risk, value,  "Risk");
 			} 
-		}
-	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public CobiePickValue @Chance 
 		{ 
 			get 
@@ -112,9 +146,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _chance = v, _chance, value,  "Chance");
 			} 
-		}
-	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
 		public CobiePickValue @Impact 
 		{ 
 			get 
@@ -127,9 +160,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _impact = v, _impact, value,  "Impact");
 			} 
-		}
-	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
 		public CobieContact @Owner 
 		{ 
 			get 
@@ -142,9 +174,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _owner = v, _owner, value,  "Owner");
 			} 
-		}
-	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
 		public string @Mitigation 
 		{ 
 			get 
@@ -157,10 +188,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _mitigation = v, _mitigation, value,  "Mitigation");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
 		public CobieAsset @Causing 
 		{ 
 			get 
@@ -173,10 +203,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _causing = v, _causing, value,  "Causing");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
 		public CobieAsset @Affected 
 		{ 
 			get 
@@ -189,9 +218,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _affected = v, _affected, value,  "Affected");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
@@ -302,5 +331,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

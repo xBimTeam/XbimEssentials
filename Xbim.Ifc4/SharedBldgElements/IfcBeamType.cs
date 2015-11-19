@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCBEAMTYPE", 436)]
+	[ExpressType("IfcBeamType", 436)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBeamType : IfcBuildingElementType, IInstantiableEntity, IIfcBeamType, IEqualityComparer<@IfcBeamType>, IEquatable<@IfcBeamType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcBeamTypeEnum @PredefinedType 
 		{ 
 			get 

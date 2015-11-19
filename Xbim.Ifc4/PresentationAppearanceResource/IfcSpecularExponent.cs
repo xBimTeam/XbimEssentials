@@ -12,7 +12,8 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCSPECULAREXPONENT", 106)]
+	[ExpressType("IfcSpecularExponent", 106)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcSpecularExponent : IfcSpecularHighlightSelect, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -25,7 +26,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcSpecularExponent(double val)
         {

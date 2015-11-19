@@ -12,14 +12,48 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieAsset
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieAsset : ICobieReferencedObject
+	{
+		string @Name { get; }
+		string @Description { get; }
+		IEnumerable<ICobiePickKeyValue> @Category { get; }
+		IEnumerable<ICobieImpact> @Impacts { get; }
+		IEnumerable<ICobieDocument> @Documents { get; }
+		IEnumerable<ICobieAttribute> @Attributes { get; }
+		IEnumerable<ICobieIssue> @CausingIssues {  get; }
+		IEnumerable<ICobieIssue> @AffectedBy {  get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("ASSET", 15)]
+	[ExpressType("Asset", 15)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @CobieAsset : CobieReferencedObject, IEqualityComparer<@CobieAsset>, IEquatable<@CobieAsset>
+	public abstract partial class @CobieAsset : CobieReferencedObject, ICobieAsset, IEqualityComparer<@CobieAsset>, IEquatable<@CobieAsset>
 	{
+		#region ICobieAsset explicit implementation
+		string ICobieAsset.Name { get { return @Name; } }	
+		string ICobieAsset.Description { get { return @Description; } }	
+		IEnumerable<ICobiePickKeyValue> ICobieAsset.Category { get { return @Category; } }	
+		IEnumerable<ICobieImpact> ICobieAsset.Impacts { get { return @Impacts; } }	
+		IEnumerable<ICobieDocument> ICobieAsset.Documents { get { return @Documents; } }	
+		IEnumerable<ICobieAttribute> ICobieAsset.Attributes { get { return @Attributes; } }	
+		 
+		IEnumerable<ICobieIssue> ICobieAsset.CausingIssues {  get { return @CausingIssues; } }
+		IEnumerable<ICobieIssue> ICobieAsset.AffectedBy {  get { return @AffectedBy; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieAsset(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -39,7 +73,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public string @Name 
 		{ 
 			get 
@@ -52,9 +86,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public string @Description 
 		{ 
 			get 
@@ -67,9 +100,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		}	
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 7)]
 		public ItemSet<CobiePickKeyValue> @Category 
 		{ 
 			get 
@@ -78,9 +110,8 @@ namespace Xbim.CobieExpress
 				((IPersistEntity)this).Activate(false);
 				return _category;
 			} 
-		}
-	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1)]
+		}	
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 8)]
 		public ItemSet<CobieImpact> @Impacts 
 		{ 
 			get 
@@ -89,9 +120,8 @@ namespace Xbim.CobieExpress
 				((IPersistEntity)this).Activate(false);
 				return _impacts;
 			} 
-		}
-	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1)]
+		}	
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 9)]
 		public ItemSet<CobieDocument> @Documents 
 		{ 
 			get 
@@ -100,9 +130,8 @@ namespace Xbim.CobieExpress
 				((IPersistEntity)this).Activate(false);
 				return _documents;
 			} 
-		}
-	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1)]
+		}	
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 10)]
 		public ItemSet<CobieAttribute> @Attributes 
 		{ 
 			get 
@@ -111,13 +140,13 @@ namespace Xbim.CobieExpress
 				((IPersistEntity)this).Activate(false);
 				return _attributes;
 			} 
-		}
-	
+		}	
 		#endregion
 
 
+
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 11)]
 		public IEnumerable<CobieIssue> @CausingIssues 
 		{ 
 			get 
@@ -125,7 +154,7 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobieIssue>(e => (e.Causing as CobieAsset) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 12)]
 		public IEnumerable<CobieIssue> @AffectedBy 
 		{ 
 			get 
@@ -234,5 +263,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

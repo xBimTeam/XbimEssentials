@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[IndexedClass]
-	[ExpressType("IFCBOUNDARYCONDITION", 443)]
+	[ExpressType("IfcBoundaryCondition", 443)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcBoundaryCondition : IPersistEntity, INotifyPropertyChanged, IIfcBoundaryCondition, IEqualityComparer<@IfcBoundaryCondition>, IEquatable<@IfcBoundaryCondition>
 	{
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcLabel? @Name 
 		{ 
 			get 

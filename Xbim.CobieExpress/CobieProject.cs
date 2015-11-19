@@ -14,14 +14,44 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieProject
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieProject : IPersistEntity
+	{
+		string @Name { get; }
+		string @Description { get; }
+		string @ExternalObject { get; }
+		string @ExternalId { get; }
+		IEnumerable<ICobiePhase> @Phases {  get; }
+		IEnumerable<ICobieFacility> @Facilities {  get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("PROJECT", 17)]
+	[ExpressType("Project", 17)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieProject : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@CobieProject>, IEquatable<@CobieProject>
+	public  partial class @CobieProject : INotifyPropertyChanged, IInstantiableEntity, ICobieProject, IEqualityComparer<@CobieProject>, IEquatable<@CobieProject>
 	{
+		#region ICobieProject explicit implementation
+		string ICobieProject.Name { get { return @Name; } }	
+		string ICobieProject.Description { get { return @Description; } }	
+		string ICobieProject.ExternalObject { get { return @ExternalObject; } }	
+		string ICobieProject.ExternalId { get { return @ExternalId; } }	
+		 
+		IEnumerable<ICobiePhase> ICobieProject.Phases {  get { return @Phases; } }
+		IEnumerable<ICobieFacility> ICobieProject.Facilities {  get { return @Facilities; } }
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -78,7 +108,6 @@ namespace Xbim.CobieExpress
 		}
 
 		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -94,7 +123,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public string @Name 
 		{ 
 			get 
@@ -107,9 +136,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
-		}
-	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public string @Description 
 		{ 
 			get 
@@ -122,9 +150,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public string @ExternalObject 
 		{ 
 			get 
@@ -137,9 +164,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _externalObject = v, _externalObject, value,  "ExternalObject");
 			} 
-		}
-	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public string @ExternalId 
 		{ 
 			get 
@@ -152,13 +178,13 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _externalId = v, _externalId, value,  "ExternalId");
 			} 
-		}
-	
+		}	
 		#endregion
 
 
+
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
 		public IEnumerable<CobiePhase> @Phases 
 		{ 
 			get 
@@ -166,7 +192,7 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobiePhase>(e => (e.Project as CobieProject) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 6)]
 		public IEnumerable<CobieFacility> @Facilities 
 		{ 
 			get 
@@ -308,5 +334,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
-	[ExpressType("IFCDOCUMENTINFORMATIONRELATIONSHIP", 491)]
+	[ExpressType("IfcDocumentInformationRelationship", 491)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDocumentInformationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcDocumentInformationRelationship, IEqualityComparer<@IfcDocumentInformationRelationship>, IEquatable<@IfcDocumentInformationRelationship>
 	{
@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
 		public IfcDocumentInformation @RelatingDocument 
 		{ 
 			get 
@@ -134,7 +134,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
 		public ItemSet<IfcDocumentInformation> @RelatedDocuments 
 		{ 
 			get 
@@ -144,7 +144,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				return _relatedDocuments;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcLabel? @RelationshipType 
 		{ 
 			get 

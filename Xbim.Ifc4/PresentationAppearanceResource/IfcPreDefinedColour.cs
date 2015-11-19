@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCPREDEFINEDCOLOUR", 832)]
+	[ExpressType("IfcPreDefinedColour", 832)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPreDefinedColour : IfcPreDefinedItem, IIfcPreDefinedColour, IEqualityComparer<@IfcPreDefinedColour>, IEquatable<@IfcPreDefinedColour>
 	{

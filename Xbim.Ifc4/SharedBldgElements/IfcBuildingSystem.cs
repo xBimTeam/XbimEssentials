@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCBUILDINGSYSTEM", 461)]
+	[ExpressType("IfcBuildingSystem", 461)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBuildingSystem : IfcSystem, IInstantiableEntity, IIfcBuildingSystem, IEqualityComparer<@IfcBuildingSystem>, IEquatable<@IfcBuildingSystem>
 	{
@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcBuildingSystemTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
 		public IfcLabel? @LongName 
 		{ 
 			get 

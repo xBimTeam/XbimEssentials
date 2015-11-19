@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[IndexedClass]
-	[ExpressType("IFCSTRUCTURALLOAD", 1030)]
+	[ExpressType("IfcStructuralLoad", 1030)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralLoad : IPersistEntity, INotifyPropertyChanged, IIfcStructuralLoad, IEqualityComparer<@IfcStructuralLoad>, IEquatable<@IfcStructuralLoad>
 	{
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcLabel? @Name 
 		{ 
 			get 

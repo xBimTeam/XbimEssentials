@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
-	[ExpressType("IFCPIPESEGMENTTYPE", 62)]
+	[ExpressType("IfcPipeSegmentType", 62)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPipeSegmentType : IfcFlowSegmentType, IInstantiableEntity, IIfcPipeSegmentType, IEqualityComparer<@IfcPipeSegmentType>, IEquatable<@IfcPipeSegmentType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcPipeSegmentTypeEnum @PredefinedType 
 		{ 
 			get 

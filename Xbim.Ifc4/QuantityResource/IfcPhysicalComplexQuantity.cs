@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.QuantityResource
 {
-	[ExpressType("IFCPHYSICALCOMPLEXQUANTITY", 807)]
+	[ExpressType("IfcPhysicalComplexQuantity", 807)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPhysicalComplexQuantity : IfcPhysicalQuantity, IInstantiableEntity, IIfcPhysicalComplexQuantity, IEqualityComparer<@IfcPhysicalComplexQuantity>, IEquatable<@IfcPhysicalComplexQuantity>
 	{
@@ -61,7 +61,7 @@ namespace Xbim.Ifc4.QuantityResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
 		public ItemSet<IfcPhysicalQuantity> @HasQuantities 
 		{ 
 			get 
@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.QuantityResource
 				return _hasQuantities;
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcLabel @Discrimination 
 		{ 
 			get 
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.QuantityResource
 				SetValue( v =>  _discrimination = v, _discrimination, value,  "Discrimination");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcLabel? @Quality 
 		{ 
 			get 
@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.QuantityResource
 				SetValue( v =>  _quality = v, _quality, value,  "Quality");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
 		public IfcLabel? @Usage 
 		{ 
 			get 

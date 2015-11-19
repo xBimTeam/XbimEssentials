@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALPOINTREACTION", 354)]
+	[ExpressType("IfcStructuralPointReaction", 354)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralPointReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralPointReaction, IEqualityComparer<@IfcStructuralPointReaction>, IEquatable<@IfcStructuralPointReaction>
 	{

@@ -13,7 +13,8 @@ using Xbim.Ifc4.GeometryResource;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCPARAMETERVALUE", 80)]
+	[ExpressType("IfcParameterValue", 80)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcParameterValue : IfcMeasureValue, IfcTrimmingSelect, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -26,7 +27,7 @@ namespace Xbim.Ifc4.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcParameterValue(double val)
         {

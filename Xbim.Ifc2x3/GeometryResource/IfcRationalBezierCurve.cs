@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCRATIONALBEZIERCURVE", 546)]
+	[ExpressType("IfcRationalBezierCurve", 546)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRationalBezierCurve : IfcBezierCurve, IInstantiableEntity, IIfcRationalBezierCurve, IEqualityComparer<@IfcRationalBezierCurve>, IEquatable<@IfcRationalBezierCurve>
 	{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 8)]
 		public ItemSet<double> @WeightsData 
 		{ 
 			get 
@@ -65,7 +65,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Array, EntityAttributeType.None, 0, 255)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Array, EntityAttributeType.None, 0, 255, 0)]
 		public List<double> @Weights 
 		{
 			get 

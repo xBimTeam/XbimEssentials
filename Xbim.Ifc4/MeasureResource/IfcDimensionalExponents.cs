@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCDIMENSIONALEXPONENTS", 570)]
+	[ExpressType("IfcDimensionalExponents", 570)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDimensionalExponents : INotifyPropertyChanged, IInstantiableEntity, IIfcDimensionalExponents, IEqualityComparer<@IfcDimensionalExponents>, IEquatable<@IfcDimensionalExponents>
 	{
@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.MeasureResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public long @LengthExponent 
 		{ 
 			get 
@@ -141,7 +141,7 @@ namespace Xbim.Ifc4.MeasureResource
 				SetValue( v =>  _lengthExponent = v, _lengthExponent, value,  "LengthExponent");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public long @MassExponent 
 		{ 
 			get 
@@ -155,7 +155,7 @@ namespace Xbim.Ifc4.MeasureResource
 				SetValue( v =>  _massExponent = v, _massExponent, value,  "MassExponent");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public long @TimeExponent 
 		{ 
 			get 
@@ -169,7 +169,7 @@ namespace Xbim.Ifc4.MeasureResource
 				SetValue( v =>  _timeExponent = v, _timeExponent, value,  "TimeExponent");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public long @ElectricCurrentExponent 
 		{ 
 			get 
@@ -183,7 +183,7 @@ namespace Xbim.Ifc4.MeasureResource
 				SetValue( v =>  _electricCurrentExponent = v, _electricCurrentExponent, value,  "ElectricCurrentExponent");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public long @ThermodynamicTemperatureExponent 
 		{ 
 			get 
@@ -197,7 +197,7 @@ namespace Xbim.Ifc4.MeasureResource
 				SetValue( v =>  _thermodynamicTemperatureExponent = v, _thermodynamicTemperatureExponent, value,  "ThermodynamicTemperatureExponent");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public long @AmountOfSubstanceExponent 
 		{ 
 			get 
@@ -211,7 +211,7 @@ namespace Xbim.Ifc4.MeasureResource
 				SetValue( v =>  _amountOfSubstanceExponent = v, _amountOfSubstanceExponent, value,  "AmountOfSubstanceExponent");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public long @LuminousIntensityExponent 
 		{ 
 			get 

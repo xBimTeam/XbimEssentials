@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
-	[ExpressType("IFCDRAUGHTINGCALLOUTRELATIONSHIP", 740)]
+	[ExpressType("IfcDraughtingCalloutRelationship", 740)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDraughtingCalloutRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcDraughtingCalloutRelationship, IEqualityComparer<@IfcDraughtingCalloutRelationship>, IEquatable<@IfcDraughtingCalloutRelationship>
 	{
@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcLabel? @Name 
 		{ 
 			get 
@@ -133,7 +133,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcDraughtingCallout @RelatingDraughtingCallout 
 		{ 
 			get 
@@ -163,7 +163,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcDraughtingCallout @RelatedDraughtingCallout 
 		{ 
 			get 

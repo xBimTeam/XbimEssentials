@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedFacilitiesElements
 {
-	[ExpressType("IFCSYSTEMFURNITUREELEMENTTYPE", 1082)]
+	[ExpressType("IfcSystemFurnitureElementType", 1082)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSystemFurnitureElementType : IfcFurnishingElementType, IInstantiableEntity, IIfcSystemFurnitureElementType, IEqualityComparer<@IfcSystemFurnitureElementType>, IEquatable<@IfcSystemFurnitureElementType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcSystemFurnitureElementTypeEnum? @PredefinedType 
 		{ 
 			get 

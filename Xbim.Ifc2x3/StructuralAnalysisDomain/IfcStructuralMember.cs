@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALMEMBER", 225)]
+	[ExpressType("IfcStructuralMember", 225)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralMember : IfcStructuralItem, IIfcStructuralMember, IEqualityComparer<@IfcStructuralMember>, IEquatable<@IfcStructuralMember>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 15)]
 		public IEnumerable<IfcRelConnectsStructuralElement> @ReferencesElement 
 		{ 
 			get 
@@ -58,7 +58,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				return Model.Instances.Where<IfcRelConnectsStructuralElement>(e => (e.RelatedStructuralMember as IfcStructuralMember) == this);
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 16)]
 		public IEnumerable<IfcRelConnectsStructuralMember> @ConnectedBy 
 		{ 
 			get 

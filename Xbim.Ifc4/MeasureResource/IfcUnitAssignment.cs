@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.MeasureResource
 {
 	[IndexedClass]
-	[ExpressType("IFCUNITASSIGNMENT", 1130)]
+	[ExpressType("IfcUnitAssignment", 1130)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcUnitAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcUnitAssignment, IEqualityComparer<@IfcUnitAssignment>, IEquatable<@IfcUnitAssignment>
 	{
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.MeasureResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
 		public ItemSet<IfcUnit> @Units 
 		{ 
 			get 

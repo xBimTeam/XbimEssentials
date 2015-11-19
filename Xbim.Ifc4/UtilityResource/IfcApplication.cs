@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.UtilityResource
 {
 	[IndexedClass]
-	[ExpressType("IFCAPPLICATION", 416)]
+	[ExpressType("IfcApplication", 416)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcApplication : INotifyPropertyChanged, IInstantiableEntity, IIfcApplication, IEqualityComparer<@IfcApplication>, IEquatable<@IfcApplication>
 	{
@@ -121,7 +121,7 @@ namespace Xbim.Ifc4.UtilityResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
 		public IfcOrganization @ApplicationDeveloper 
 		{ 
 			get 
@@ -135,7 +135,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _applicationDeveloper = v, _applicationDeveloper, value,  "ApplicationDeveloper");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcLabel @Version 
 		{ 
 			get 
@@ -149,7 +149,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _version = v, _version, value,  "Version");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcLabel @ApplicationFullName 
 		{ 
 			get 
@@ -163,7 +163,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _applicationFullName = v, _applicationFullName, value,  "ApplicationFullName");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcIdentifier @ApplicationIdentifier 
 		{ 
 			get 

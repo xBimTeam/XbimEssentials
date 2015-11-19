@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ConstraintResource
 {
 	[IndexedClass]
-	[ExpressType("IFCCONSTRAINT", 523)]
+	[ExpressType("IfcConstraint", 523)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcConstraint : IPersistEntity, INotifyPropertyChanged, IIfcConstraint, IEqualityComparer<@IfcConstraint>, IEquatable<@IfcConstraint>
 	{
@@ -136,7 +136,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcLabel @Name 
 		{ 
 			get 
@@ -150,7 +150,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -164,7 +164,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 3)]
 		public IfcConstraintEnum @ConstraintGrade 
 		{ 
 			get 
@@ -178,7 +178,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _constraintGrade = v, _constraintGrade, value,  "ConstraintGrade");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcLabel? @ConstraintSource 
 		{ 
 			get 
@@ -192,7 +192,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _constraintSource = v, _constraintSource, value,  "ConstraintSource");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
 		public IfcActorSelect @CreatingActor 
 		{ 
 			get 
@@ -206,7 +206,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _creatingActor = v, _creatingActor, value,  "CreatingActor");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcDateTime? @CreationTime 
 		{ 
 			get 
@@ -220,7 +220,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _creationTime = v, _creationTime, value,  "CreationTime");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcLabel? @UserDefinedGrade 
 		{ 
 			get 
@@ -239,7 +239,7 @@ namespace Xbim.Ifc4.ConstraintResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReferences 
 		{ 
 			get 
@@ -247,7 +247,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
 		public IEnumerable<IfcResourceConstraintRelationship> @PropertiesForConstraint 
 		{ 
 			get 

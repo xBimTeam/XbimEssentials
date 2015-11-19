@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
-	[ExpressType("IFCDISTRIBUTIONCONTROLELEMENT", 577)]
+	[ExpressType("IfcDistributionControlElement", 577)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDistributionControlElement : IfcDistributionElement, IInstantiableEntity, IIfcDistributionControlElement, IEqualityComparer<@IfcDistributionControlElement>, IEquatable<@IfcDistributionControlElement>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 34)]
 		public IEnumerable<IfcRelFlowControlElements> @AssignedToFlowElement 
 		{ 
 			get 

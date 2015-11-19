@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCMIRROREDPROFILEDEF", 777)]
+	[ExpressType("IfcMirroredProfileDef", 777)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMirroredProfileDef : IfcDerivedProfileDef, IInstantiableEntity, IIfcMirroredProfileDef, IEqualityComparer<@IfcMirroredProfileDef>, IEquatable<@IfcMirroredProfileDef>
 	{
@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.ProfileResource
 
 
 		#region Overriding attributes
-		[EntityAttribute(4, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 0)]
 		public override IfcCartesianTransformationOperator2D @Operator 
 		{
 			get 

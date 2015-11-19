@@ -13,7 +13,8 @@ using Xbim.Ifc2x3.FacilitiesMgmtDomain;
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
-	[ExpressType("IFCLABEL", 128)]
+	[ExpressType("IfcLabel", 128)]
+	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcLabel : IfcConditionCriterionSelect, IfcSimpleValue, IExpressValueType, System.IEquatable<string>
 	{ 

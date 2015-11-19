@@ -8,6 +8,7 @@ using Xbim.Common;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.IO.Step21;
+using Xbim.IO.Xml.BsConf;
 
 namespace Xbim.IO.Xml
 {
@@ -17,13 +18,13 @@ namespace Xbim.IO.Xml
 
         private const string Xsi = "http://www.w3.org/2001/XMLSchema-instance";
         private const string Xlink = "http://www.w3.org/1999/xlink";
-        private readonly string _ns = "http://www.buildingsmart-tech.org/ifcXML/IFC4/final";
-        private readonly string _nsLocation = "http://www.buildingsmart-tech.org/ifcXML/IFC4/final/ifcXML4.xsd";
-        private readonly string _expressUri = "http://www.buildingsmart-tech.org/ifc/IFC4/final/IFC4.exp";
-        private readonly string _configuration = "http://www.buildingsmart-tech.org/ifcXML/IFC4/final/config/ifcXML4_config.xml";
+        private readonly string _ns = "http://www.buildingsmart-tech.org/ifcXML/MVD4/IFC4";
+        private readonly string _nsLocation = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1.xsd";
+        private readonly string _expressUri = "http://www.buildingsmart-tech.org/ifc/IFC4/Add1/IFC4_ADD1.exp";
+        private readonly string _configurationUri = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1_config.xml";
         private readonly string _rootElementName = "ifcXML";
         private HashSet<long> _written;
-
+        private readonly configuration _conf;
         #endregion
 
         #region Properties
@@ -41,22 +42,27 @@ namespace Xbim.IO.Xml
 
         #endregion
 
-        public XbimXmlWriter4(XbimXmlSettings settings = null)
+        /// <summary>
+        /// Constructor of the XML writer. This writer implements conventions for IFC4 XML and needs to
+        /// get configuration with speficic cases like inversed inverses and other special cases.
+        /// Default settings and configuration are for IFC4 Add1. If you pass configuration and settings
+        /// make sure both are for the same schema definition.
+        /// </summary>
+        /// <param name="configuration">XML to Express configuration</param>
+        /// <param name="settings">Settings for writer like namespaces and root element name</param>
+        public XbimXmlWriter4(configuration configuration = null, XbimXmlSettings settings = null)
         {
-            var now = DateTime.Now;
-            TimeStamp = string.Format("{0:0000}-{1:00}-{2:00}T{3:00}:{4:00}:{5:00}", now.Year, now.Month, now.Day,
-                                      now.Hour, now.Minute, now.Second);
-            PreprocessorVersion = string.Format("Xbim File Processor version {0}",
-                                                Assembly.GetAssembly(GetType()).GetName().Version);
+            _conf = configuration ?? configuration.IFC4Add1;
+            TimeStamp = DateTime.Now.ToString("s");
+            PreprocessorVersion = string.Format("Xbim File Processor version {0}", Assembly.GetAssembly(GetType()).GetName().Version);
             OriginatingSystem = string.Format("Xbim version {0}", Assembly.GetExecutingAssembly().GetName().Version);
-
             if (settings == null)
             return;
 
             _ns = settings.Namespace;
             _nsLocation = settings.NamespaceLocation;
             _expressUri = settings.ExpressUri;
-            _configuration = settings.Configuration;
+            _configurationUri = settings.Configuration;
             _rootElementName = settings.RootName;
         }
 
@@ -90,7 +96,7 @@ namespace Xbim.IO.Xml
                 //attributes
                 output.WriteAttributeString("id", "uos_1");
                 output.WriteAttributeString("express", _expressUri);
-                output.WriteAttributeString("configuration", _configuration);
+                output.WriteAttributeString("configuration", _configurationUri);
 
                 _fileHeader = model.Header;
                 WriteHeader(output);
@@ -99,10 +105,10 @@ namespace Xbim.IO.Xml
                 //use specified entities enumeration or just all instances in the model
                 if(entities != null)
                     foreach (var entity in entities)
-                        Write(entity, output);
+                        WriteEntity(entity, output, true);
                 else
                     foreach (var entity in model.Instances)
-                        Write(entity, output);
+                        WriteEntity(entity, output, true);
 
                 output.WriteEndElement(); //uos
                 output.WriteEndDocument();
@@ -135,285 +141,238 @@ namespace Xbim.IO.Xml
             output.WriteEndElement(); //end iso_10303_28_header
         }
 
-        private void Write(IPersistEntity entity, XmlWriter output, int pos = -1)
+        private void WriteEntity(IPersistEntity entity, XmlWriter output, bool onlyOnce, int[] pos = null, string name = null)
         {
-
-            if (_written.Contains(entity.EntityLabel)) //we have already done it
+            var exists = _written.Contains(entity.EntityLabel);
+            if (exists && onlyOnce) //we have already done it and nothing should be written out
                 return;
-            _written.Add(entity.EntityLabel);
+
+            if(!exists)
+                _written.Add(entity.EntityLabel);
 
             var expressType = _metadata.ExpressType(entity);
+            var elementName = name ?? expressType.ExpressName;
 
-            output.WriteStartElement(expressType.Type.Name);
+            output.WriteStartElement(elementName);
+            output.WriteAttributeString(exists ? "ref" : "id", string.Format("i{0}", entity.EntityLabel));
 
-            output.WriteAttributeString("id", string.Format("i{0}", entity.EntityLabel));
-            if (pos > -1) //we are writing out a list element
-                output.WriteAttributeString("pos", pos.ToString());
+            if (pos != null) //we are writing out a list element
+                output.WriteAttributeString("pos", string.Join(" ", pos));
+
+            //specify type if it is different from the name of the element
+            if(name != null && string.CompareOrdinal(name, expressType.ExpressName) != 0)
+                output.WriteAttributeString("type", Xsi, expressType.ExpressName);
+
+            //only write properties if this is the first occurence
+            if(!exists)
+                WriteProperties(entity, output, expressType);
+            //specify this is an empty element refering to another one
+            else
+                output.WriteAttributeString("nil", Xsi, "true");
+
             
-            WriteProperties(entity, output, expressType);
             output.WriteEndElement();
         }
 
+        private readonly Dictionary<Type, List<XmlMetaProperty>> _propertiesCache 
+            = new Dictionary<Type, List<XmlMetaProperty>>(); 
+
         private void WriteProperties(IPersistEntity entity, XmlWriter output, ExpressType expressType)
         {
-            IEnumerable<ExpressMetaProperty> toWrite = expressType.Properties.Values.ToList();
-
-            //sort toWrite properties so that value types go first. They will be written as attributes and that has to
-            //happen before any nested elements are written
-            toWrite = toWrite.OrderByDescending(p => IsAttributeValue(p.PropertyInfo.PropertyType));
-
-            foreach (var ifcProperty in toWrite) //only write out persistent attributes, ignore inverses
+            List<XmlMetaProperty> properties;
+            if (!_propertiesCache.TryGetValue(expressType.Type, out properties))
             {
-                if (ifcProperty.EntityAttribute.IsDerived) continue;
+                properties = XmlMetaProperty.GetProperties(expressType, _conf);
+                //cache
+                _propertiesCache.Add(expressType.Type, properties);
+            }
+            
 
-                var propType = ifcProperty.PropertyInfo.PropertyType;
-                var propVal = ifcProperty.PropertyInfo.GetValue(entity, null);
-
-                WriteProperty(ifcProperty.PropertyInfo.Name, propType, propVal, entity, output, -1,
-                    ifcProperty.EntityAttribute);
+            foreach (var property in properties) //only write out persistent attributes, ignore inverses
+            {
+                WriteProperty(property, entity, output);
             }
         }
 
-        private bool IsAttributeValue(Type type)
+        private void WriteProperty(string propName, Type propType, object propVal, XmlWriter output,
+            int[] pos, EntityAttributeAttribute attr, bool wrap = false)
         {
-            if (type.IsValueType) return true;
-            if (type == typeof (string)) return true;
-
-            var generic = type.GetGenericArguments().FirstOrDefault();
-            if (generic == null) return false;
-            return generic.IsValueType;
-        }
-
-        private void WriteProperty(string propName, Type propType, object propVal, IPersistEntity entity, XmlWriter output,
-                                   int pos, EntityAttributeAttribute attr, bool wrap = false)
-        {
+            //don't write anything if this is uninitialized optional item set
             var optSet = propVal as IOptionalItemSet;
             if (optSet != null && !optSet.Initialized)
-            {
-                //don't write anything if this is uninitialized item set
                 return;
-            }
-            if (propVal == null)
+
             //null or a value type that maybe null, need to write out sets and lists if they are mandatroy but empty
+            if (propVal == null)
             {
-                if (typeof(IExpressEnumerable).IsAssignableFrom(propType) && attr.State == EntityAttributeState.Mandatory)
-                //special case as these two classes are optimised
-                {
-                    output.WriteStartElement(propName);
-                    output.WriteAttributeString("cType", attr.ListType);
-                    output.WriteEndElement();
-                }
+                if (!typeof(IExpressEnumerable).IsAssignableFrom(propType) ||
+                    attr.State != EntityAttributeState.Mandatory) return;
+
+                //write out empty mandatory set with proper enumeration type
+                output.WriteStartElement(propName);
+                //output.WriteAttributeString("cType", attr.ListType);
+                output.WriteEndElement();
                 return;
             }
-            if (propType.IsGenericType && propType.GetGenericTypeDefinition() == typeof(Nullable<>) &&
-                (propVal is IExpressValueType)) //deal with undefined types (nullables)
-            {
-                var cpl = propVal as IExpressComplexType;
-                if (cpl == null)
-                {
-                    output.WriteAttributeString(propName, propVal.ToString());
-                }
-                else
-                {
-                    var complexProps = string.Join(" ", cpl.Properties);
-                    output.WriteAttributeString(propName, complexProps);
-                }
-                return;
-            }
-            if (typeof(IExpressValueType).IsAssignableFrom(propType))
+
+            if (typeof(IExpressSelectType).IsAssignableFrom(propType) && propType.IsInterface)
+            // a select type get the type of the actual value
             {
                 var realType = propVal.GetType();
-
-                if (realType != propType)
-                    //we have a type but it is a select type use the actual value but write out explicitly
-                {
-                    output.WriteStartElement(propName);
-                    output.WriteElementString(realType.Name + "-wrapper", propVal.ToString());
-                    output.WriteEndElement();
-                    return;
-                }
-
-                if (pos > -1)
-                {
-                    output.WriteStartElement(propName + (wrap ? "-wrapper" : ""));
-                    output.WriteAttributeString("pos", pos.ToString());
-                    output.WriteValue(propVal.ToString());
-                    output.WriteEndElement();
-                }
-                else
-                    output.WriteAttributeString(propName, propVal.ToString());
+                var exprType = _metadata.ExpressType(realType);
+                var realName = exprType != null ? exprType.ExpressName : realType.Name;
+                output.WriteStartElement(propName);
+                WriteProperty(realName, realType, propVal, output, null, attr, true);
+                output.WriteEndElement();
                 return;
             }
-            if (typeof(IExpressEnumerable).IsAssignableFrom(propType))
+
+            //make sure we don't mess around with nullables
+            propType = XmlMetaProperty.GetNonNullableType(propType);
+            if (typeof(IExpressValueType).IsAssignableFrom(propType))
             {
-                var generic = propType.GetGenericArguments().FirstOrDefault();
-                if(generic != null && generic.IsValueType)
+                var cpl = propVal as IExpressComplexType;
+                var dta = propVal.GetType().GetCustomAttributes(typeof(DefinedTypeAttribute), false).FirstOrDefault() as DefinedTypeAttribute;
+                var expT = propVal.GetType().GetCustomAttributes(typeof(ExpressTypeAttribute), false).FirstOrDefault() as ExpressTypeAttribute;
+                if (cpl != null && dta != null && expT != null && 
+                    typeof(IEnumerable<IPersistEntity>).IsAssignableFrom(dta.UnderlyingType))
                 {
-                    output.WriteAttributeString(propName, string.Join(" ", ((IEnumerable)propVal).Cast<object>()));
+                    output.WriteStartElement(expT.Name + (wrap ? "-wrapper" : ""));
+                    var idx = new[] {0};
+                    foreach (var ent in cpl.Properties.Cast<IPersistEntity>())
+                    {
+                        WriteEntity(ent, output, false, idx);
+                        idx[0]++;
+                    }
+                    output.WriteEndElement();
                     return;
                 }
 
+                var valString = cpl == null
+                    ? propVal.ToString()
+                    : string.Join(" ", cpl.Properties);
+
+                output.WriteStartElement(propName + (wrap ? "-wrapper" : ""));
+                if (pos != null)
+                    output.WriteAttributeString("pos", string.Join(" ", pos));
+                output.WriteValue(valString);
+                output.WriteEndElement();
+                return;
+            }
+
+            if (typeof(IEnumerable).IsAssignableFrom(propType))
+            {
                 //special case for IfcRelDefinesByProperties
-                if (propName == "RelatedObjects" && entity.ExpressType.Name == "IfcRelDefinesByProperties")
+                //if (propName == "RelatedObjects" && entity.ExpressType.Name == "IfcRelDefinesByProperties")
+                if (attr.MaxCardinality == 1) //list which shouldn't have more than 1 element in is serialized as a single element
                 {
                     propVal = ((IEnumerable)propVal).Cast<object>().FirstOrDefault();
                     var relEntity = propVal as IPersistEntity;
                     if (relEntity == null) return;
-
-                    output.WriteStartElement(propName);
-                    output.WriteAttributeString("ref", string.Format("i{0}", relEntity.EntityLabel));
-                    output.WriteAttributeString("nil", Xsi, "true");
-                    output.WriteAttributeString("type", Xsi, relEntity.GetType().Name);
-                    output.WriteEndElement();
+                    WriteEntity(relEntity, output, false, null, propName);
                     return;
                 }
 
-                output.WriteStartElement(propName);
-                output.WriteAttributeString("stp", "cType", _ns, attr.ListType);
-                var i = 0;
-                var isSelect = typeof(IExpressSelectType).IsAssignableFrom(propType.GetGenericArguments().FirstOrDefault());
-                foreach (var item in ((IExpressEnumerable)propVal))
+                var propValEnum = ((IEnumerable) propVal).Cast<object>().ToList();
+                
+                //inverse attribute with no values
+                if (attr.Order < 0 && !propValEnum.Any())
+                    return;
+
+                var idx = new List<int>(pos ?? new int[] {}) {0};
+                var depth = idx.Count-1;
+
+                if (depth == 0)
                 {
-                    WriteProperty(item.GetType().Name, item.GetType(), item, entity, output, i, attr, isSelect);
-                    i++;
+                    output.WriteStartElement(propName);
+                    //output.WriteAttributeString("stp", "cType", _ns, attr.ListType);    
                 }
-                output.WriteEndElement();
+                
+                foreach (var item in propValEnum)
+                {
+                    var expT = item.GetType().GetCustomAttributes(typeof(ExpressTypeAttribute), false).FirstOrDefault() as ExpressTypeAttribute;
+                    var name = expT != null ? expT.Name : item.GetType().Name;
+
+                    WriteProperty(name, item.GetType(), item, output, idx.ToArray(), attr, true);
+                    idx[depth]++;
+                }
+                if(depth == 0)
+                    output.WriteEndElement();
                 return;
             }
             if (typeof(IPersistEntity).IsAssignableFrom(propType))
-                //all writable entities must support this interface and ExpressType have been handled so only entities left
             {
                 var persistEntity = (IPersistEntity)propVal;
-
-                if (pos > -1) //we are writing out a list element
-                {
-                    output.WriteStartElement(propVal.GetType().Name);
-                    output.WriteAttributeString("ref", string.Format("i{0}", persistEntity.EntityLabel));
-                    output.WriteAttributeString("nil", Xsi, "true");
-                    //output.WriteAttributeString("type", Xsi, propVal.GetType().Name);
-                    output.WriteAttributeString("pos", pos.ToString());
-                    output.WriteEndElement();
-                    return;
-                }
-
-                if (propType.IsInterface)
-                {
-                    output.WriteStartElement(propName);
-                    output.WriteStartElement(propVal.GetType().Name);
-                    output.WriteAttributeString("ref", string.Format("i{0}", persistEntity.EntityLabel));
-                    output.WriteAttributeString("nil", Xsi, "true");
-                    output.WriteEndElement();
-                    output.WriteEndElement();
-                    return;
-                }
-
-                output.WriteStartElement(propName);
-                output.WriteAttributeString("ref", string.Format("i{0}", persistEntity.EntityLabel));
-                output.WriteAttributeString("nil", Xsi, "true");
-                if (propType.IsAbstract)
-                    output.WriteAttributeString("type", Xsi, persistEntity.GetType().Name);
-                output.WriteEndElement();
-                return;
-
-            }
-            if (typeof(IExpressComplexType).IsAssignableFrom(propType)) //it is a complex value tpye
-            {
-                var properties = ((IExpressComplexType)propVal).Properties;
-                output.WriteAttributeString(propName, string.Join(" ", properties));
+                WriteEntity(persistEntity, output, false, pos, propName);
                 return;
             }
-            if (propType.IsValueType || typeof(string) == propType) //it might be an in-built value type double, string etc
+            //this will only be called from within the enumeration
+            //as otherwise it will be serialized as XML attribute before
+            if (propType.IsValueType || typeof(string) == propType)
             {
                 var pInfoType = propVal.GetType();
-
-                if (pos < 0)
-                    output.WriteStartAttribute(propName);
-
+                string pValue;
                 if (pInfoType.IsEnum) //convert enum
                 {
-                    if (pos > -1)
-                    {
-                        output.WriteStartElement(propName);
-                        output.WriteAttributeString("pos", pos.ToString());
-                    }
-                    output.WriteValue(propVal.ToString().ToLower());
+                    output.WriteStartElement(propName);
+                    pValue = propVal.ToString().ToLower();
                 }
                 else if (pInfoType.UnderlyingSystemType == typeof(Boolean))
                 {
-                    if (pos > -1)
-                    {
-                        output.WriteStartElement("boolean-wrapper");
-                        output.WriteAttributeString("pos", pos.ToString());
-                    }
-                    output.WriteValue((bool)propVal ? "true" : "false");
+                    output.WriteStartElement("boolean-wrapper");
+                    pValue = (bool)propVal ? "true" : "false";
                 }
-                else if (pInfoType.UnderlyingSystemType == typeof(Double))
+                else if (pInfoType.UnderlyingSystemType == typeof(Double)
+                    || pInfoType.UnderlyingSystemType == typeof(Single))
                 {
-                    if (pos > -1)
-                    {
-                        output.WriteStartElement("double-wrapper");
-                        output.WriteAttributeString("pos", pos.ToString());
-                    }
-                    output.WriteValue(string.Format(new Part21Formatter(), "{0:R}", propVal));
+                    output.WriteStartElement("double-wrapper");
+                    pValue = string.Format(new Part21Formatter(), "{0:R}", propVal);
                 }
                 else if (pInfoType.UnderlyingSystemType == typeof(Int16))
                 {
-                    if (pos > -1)
-                    {
-                        output.WriteStartElement("integer-wrapper");
-                        output.WriteAttributeString("pos", pos.ToString());
-                    }
-                    output.WriteValue(propVal.ToString());
+                    output.WriteStartElement("integer-wrapper");
+                    pValue = propVal.ToString();
                 }
                 else if (pInfoType.UnderlyingSystemType == typeof(Int32) ||
                          pInfoType.UnderlyingSystemType == typeof(Int64))
                 {
-                    if (pos > -1)
-                    {
-                        output.WriteStartElement("long-wrapper");
-                        output.WriteAttributeString("pos", pos.ToString());
-                    }
-                    output.WriteValue(propVal.ToString());
+                    output.WriteStartElement("long-wrapper");
+                    pValue = propVal.ToString();
                 }
                 else if (pInfoType.UnderlyingSystemType == typeof(String)) //convert  string
                 {
-                    if (pos > -1)
-                    {
-                        output.WriteStartElement("string-wrapper");
-                        output.WriteAttributeString("pos", pos.ToString());
-                    }
-                    output.WriteValue(string.Format(new Part21Formatter(), "{0}", propVal));
+                    output.WriteStartElement("string-wrapper");
+                    pValue = string.Format(new Part21Formatter(), "{0}", propVal);
                 }
-
                 else
                     throw new NotSupportedException(string.Format("Invalid Value Type {0}", pInfoType.Name));
 
-                if (pos > -1)
-                    output.WriteEndElement();
-                else
-                    output.WriteEndAttribute();
-
-                return;
-            }
-            if (typeof(IExpressSelectType).IsAssignableFrom(propType))
-            // a select type get the type of the actual value
-            {
-                var realType = propVal.GetType();
-                output.WriteStartElement(propName);
-                if (typeof(IExpressValueType).IsAssignableFrom(realType))
-                {
-                    output.WriteElementString(realType.Name + "-wrapper", propVal.ToString());
-                }
-                else
-                {
-                    WriteProperty(realType.Name, realType, propVal, entity, output, -2, attr);
-                }
+                output.WriteAttributeString("pos", string.Join(" ", pos));
+                output.WriteValue(pValue);
                 output.WriteEndElement();
                 return;
             }
 #if DEBUG
-            throw new Exception(string.Format("Entity of type {0} has illegal property {1} of type {2}", entity.GetType(), propType.Name, propType.Name));
+            throw new Exception("Unexpected type");
 #endif
+        }
+
+        private void WriteProperty(XmlMetaProperty property, IPersistEntity entity, XmlWriter output)
+        {
+            var propVal = property.MetaProperty.PropertyInfo.GetValue(entity, null);
+
+            //handling of XML attributes is baked before
+            if (property.IsAttributeValue)
+            {
+                property.AttributeSetter(propVal, output);
+                return;
+            }
+
+            var propType = property.MetaProperty.PropertyInfo.PropertyType;
+            var propName = property.MetaProperty.PropertyInfo.Name;
+            var attr = property.MetaProperty.EntityAttribute;
+            
+            WriteProperty(propName, propType, propVal, output, null, attr);
         }
     }
 }

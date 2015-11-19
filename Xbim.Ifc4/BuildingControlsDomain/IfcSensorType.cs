@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.BuildingControlsDomain
 {
-	[ExpressType("IFCSENSORTYPE", 983)]
+	[ExpressType("IfcSensorType", 983)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSensorType : IfcDistributionControlElementType, IInstantiableEntity, IIfcSensorType, IEqualityComparer<@IfcSensorType>, IEquatable<@IfcSensorType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcSensorTypeEnum @PredefinedType 
 		{ 
 			get 

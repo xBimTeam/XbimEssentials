@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
-	[ExpressType("IFCPROJECTIONCURVE", 750)]
+	[ExpressType("IfcProjectionCurve", 750)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProjectionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IIfcProjectionCurve, IEqualityComparer<@IfcProjectionCurve>, IEquatable<@IfcProjectionCurve>
 	{

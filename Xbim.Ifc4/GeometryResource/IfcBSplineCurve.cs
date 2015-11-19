@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCBSPLINECURVE", 430)]
+	[ExpressType("IfcBSplineCurve", 430)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcBSplineCurve : IfcBoundedCurve, IIfcBSplineCurve, IEqualityComparer<@IfcBSplineCurve>, IEquatable<@IfcBSplineCurve>
 	{
@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcInteger @Degree 
 		{ 
 			get 
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _degree = v, _degree, value,  "Degree");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 4)]
 		public ItemSet<IfcCartesianPoint> @ControlPointsList 
 		{ 
 			get 
@@ -89,7 +89,7 @@ namespace Xbim.Ifc4.GeometryResource
 				return _controlPointsList;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 5)]
 		public IfcBSplineCurveForm @CurveForm 
 		{ 
 			get 
@@ -103,7 +103,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _curveForm = v, _curveForm, value,  "CurveForm");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcLogical @ClosedCurve 
 		{ 
 			get 
@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _closedCurve = v, _closedCurve, value,  "ClosedCurve");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcLogical @SelfIntersect 
 		{ 
 			get 
@@ -135,7 +135,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
 		public IfcInteger @UpperIndexOnControlPoints 
 		{
 			get 
@@ -146,7 +146,7 @@ namespace Xbim.Ifc4.GeometryResource
 			}
 		}
 
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Array, EntityAttributeType.Class, 0, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Array, EntityAttributeType.Class, 0, -1, 0)]
 		public List<Common.Geometry.XbimPoint3D> @ControlPoints 
 		{
 			get 

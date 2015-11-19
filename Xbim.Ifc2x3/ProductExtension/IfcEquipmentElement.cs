@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCEQUIPMENTELEMENT", 212)]
+	[ExpressType("IfcEquipmentElement", 212)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEquipmentElement : IfcElement, IInstantiableEntity, IIfcEquipmentElement, IEqualityComparer<@IfcEquipmentElement>, IEquatable<@IfcEquipmentElement>
 	{

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCELECTRICAPPLIANCETYPE", 606)]
+	[ExpressType("IfcElectricApplianceType", 606)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricApplianceType : IfcFlowTerminalType, IInstantiableEntity, IIfcElectricApplianceType, IEqualityComparer<@IfcElectricApplianceType>, IEquatable<@IfcElectricApplianceType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcElectricApplianceTypeEnum @PredefinedType 
 		{ 
 			get 

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.BuildingControlsDomain
 {
-	[ExpressType("IFCUNITARYCONTROLELEMENTTYPE", 1132)]
+	[ExpressType("IfcUnitaryControlElementType", 1132)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcUnitaryControlElementType : IfcDistributionControlElementType, IInstantiableEntity, IIfcUnitaryControlElementType, IEqualityComparer<@IfcUnitaryControlElementType>, IEquatable<@IfcUnitaryControlElementType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcUnitaryControlElementTypeEnum @PredefinedType 
 		{ 
 			get 

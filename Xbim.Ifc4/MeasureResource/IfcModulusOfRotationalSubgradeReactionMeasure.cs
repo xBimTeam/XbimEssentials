@@ -13,7 +13,8 @@ using Xbim.Ifc4.StructuralLoadResource;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IFCMODULUSOFROTATIONALSUBGRADEREACTIONMEASURE", 69)]
+	[ExpressType("IfcModulusOfRotationalSubgradeReactionMeasure", 69)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcModulusOfRotationalSubgradeReactionMeasure : IfcDerivedMeasureValue, IfcModulusOfRotationalSubgradeReactionSelect, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -26,7 +27,7 @@ namespace Xbim.Ifc4.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcModulusOfRotationalSubgradeReactionMeasure(double val)
         {

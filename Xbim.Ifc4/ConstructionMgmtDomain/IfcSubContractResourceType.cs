@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
-	[ExpressType("IFCSUBCONTRACTRESOURCETYPE", 1059)]
+	[ExpressType("IfcSubContractResourceType", 1059)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSubContractResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcSubContractResourceType, IEqualityComparer<@IfcSubContractResourceType>, IEquatable<@IfcSubContractResourceType>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 21)]
 		public IfcSubContractResourceTypeEnum @PredefinedType 
 		{ 
 			get 

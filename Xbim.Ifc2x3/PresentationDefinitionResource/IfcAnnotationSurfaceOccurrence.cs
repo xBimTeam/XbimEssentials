@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
-	[ExpressType("IFCANNOTATIONSURFACEOCCURRENCE", 509)]
+	[ExpressType("IfcAnnotationSurfaceOccurrence", 509)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAnnotationSurfaceOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationSurfaceOccurrence, IEqualityComparer<@IfcAnnotationSurfaceOccurrence>, IEquatable<@IfcAnnotationSurfaceOccurrence>
 	{

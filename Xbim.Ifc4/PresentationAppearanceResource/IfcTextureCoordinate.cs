@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCTEXTURECOORDINATE", 1106)]
+	[ExpressType("IfcTextureCoordinate", 1106)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcTextureCoordinate : IfcPresentationItem, IIfcTextureCoordinate, IEqualityComparer<@IfcTextureCoordinate>, IEquatable<@IfcTextureCoordinate>
 	{
@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 1)]
 		public ItemSet<IfcSurfaceTexture> @Maps 
 		{ 
 			get 

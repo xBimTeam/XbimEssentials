@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.BuildingControlsDomain
 {
-	[ExpressType("IFCFLOWINSTRUMENTTYPE", 677)]
+	[ExpressType("IfcFlowInstrumentType", 677)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFlowInstrumentType : IfcDistributionControlElementType, IInstantiableEntity, IIfcFlowInstrumentType, IEqualityComparer<@IfcFlowInstrumentType>, IEquatable<@IfcFlowInstrumentType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcFlowInstrumentTypeEnum @PredefinedType 
 		{ 
 			get 

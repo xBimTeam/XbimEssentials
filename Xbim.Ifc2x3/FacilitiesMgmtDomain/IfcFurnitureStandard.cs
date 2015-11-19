@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
-	[ExpressType("IFCFURNITURESTANDARD", 75)]
+	[ExpressType("IfcFurnitureStandard", 75)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFurnitureStandard : IfcControl, IInstantiableEntity, IIfcFurnitureStandard, IEqualityComparer<@IfcFurnitureStandard>, IEquatable<@IfcFurnitureStandard>
 	{

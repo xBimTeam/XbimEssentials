@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCELECTRICTIMECONTROLTYPE", 616)]
+	[ExpressType("IfcElectricTimeControlType", 616)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricTimeControlType : IfcFlowControllerType, IInstantiableEntity, IIfcElectricTimeControlType, IEqualityComparer<@IfcElectricTimeControlType>, IEquatable<@IfcElectricTimeControlType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcElectricTimeControlTypeEnum @PredefinedType 
 		{ 
 			get 

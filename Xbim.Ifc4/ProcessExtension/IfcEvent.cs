@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IFCEVENT", 635)]
+	[ExpressType("IfcEvent", 635)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEvent : IfcProcess, IInstantiableEntity, IIfcEvent, IEqualityComparer<@IfcEvent>, IEquatable<@IfcEvent>
 	{
@@ -61,7 +61,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 22)]
 		public IfcEventTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -75,7 +75,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 23)]
 		public IfcEventTriggerTypeEnum? @EventTriggerType 
 		{ 
 			get 
@@ -89,7 +89,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _eventTriggerType = v, _eventTriggerType, value,  "EventTriggerType");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
 		public IfcLabel? @UserDefinedEventTriggerType 
 		{ 
 			get 
@@ -103,7 +103,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _userDefinedEventTriggerType = v, _userDefinedEventTriggerType, value,  "UserDefinedEventTriggerType");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 25)]
 		public IfcEventTime @EventOccurenceTime 
 		{ 
 			get 

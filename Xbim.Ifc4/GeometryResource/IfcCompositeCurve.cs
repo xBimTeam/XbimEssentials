@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.GeometryResource
 {
 	[IndexedClass]
-	[ExpressType("IFCCOMPOSITECURVE", 507)]
+	[ExpressType("IfcCompositeCurve", 507)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCompositeCurve : IfcBoundedCurve, IInstantiableEntity, IIfcCompositeCurve, IEqualityComparer<@IfcCompositeCurve>, IEquatable<@IfcCompositeCurve>
 	{
@@ -58,7 +58,7 @@ namespace Xbim.Ifc4.GeometryResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 3)]
 		public ItemSet<IfcCompositeCurveSegment> @Segments 
 		{ 
 			get 
@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.GeometryResource
 				return _segments;
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcLogical @SelfIntersect 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
 		public IfcInteger @NSegments 
 		{
 			get 
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.GeometryResource
 			}
 		}
 
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
 		public IfcLogical @ClosedCurve 
 		{
 			get 

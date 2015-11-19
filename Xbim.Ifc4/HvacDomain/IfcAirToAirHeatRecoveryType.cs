@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCAIRTOAIRHEATRECOVERYTYPE", 411)]
+	[ExpressType("IfcAirToAirHeatRecoveryType", 411)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAirToAirHeatRecoveryType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcAirToAirHeatRecoveryType, IEqualityComparer<@IfcAirToAirHeatRecoveryType>, IEquatable<@IfcAirToAirHeatRecoveryType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.HvacDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcAirToAirHeatRecoveryTypeEnum @PredefinedType 
 		{ 
 			get 

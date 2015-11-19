@@ -744,6 +744,7 @@
     <Compile Include="PresentationAppearanceResource\IfcIndexedTextureMap.cs" />
     <Compile Include="PresentationAppearanceResource\IfcIndexedTriangleTextureMap.cs" />
     <Compile Include="PresentationAppearanceResource\IfcNullStyle.cs" />
+    <Compile Include="PresentationAppearanceResource\IfcNullStyleEnum.cs" />
     <Compile Include="PresentationAppearanceResource\IfcPixelTexture.cs" />
     <Compile Include="PresentationAppearanceResource\IfcPreDefinedColour.cs" />
     <Compile Include="PresentationAppearanceResource\IfcPreDefinedCurveFont.cs" />
@@ -1228,6 +1229,7 @@
     <Compile Include="UtilityResource\IfcApplication.cs" />
     <Compile Include="UtilityResource\IfcChangeActionEnum.cs" />
     <Compile Include="UtilityResource\IfcGloballyUniqueId.cs" />
+    <Compile Include="UtilityResource\IfcGloballyUniqueIdPartial.cs" />
     <Compile Include="UtilityResource\IfcOwnerHistory.cs" />
     <Compile Include="UtilityResource\IfcStateEnum.cs" />
     <Compile Include="UtilityResource\IfcTable.cs" />

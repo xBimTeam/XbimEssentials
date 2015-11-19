@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedComponentElements
 {
-	[ExpressType("IFCMECHANICALFASTENER", 769)]
+	[ExpressType("IfcMechanicalFastener", 769)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMechanicalFastener : IfcElementComponent, IInstantiableEntity, IIfcMechanicalFastener, IEqualityComparer<@IfcMechanicalFastener>, IEquatable<@IfcMechanicalFastener>
 	{
@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 33)]
 		public IfcPositiveLengthMeasure? @NominalDiameter 
 		{ 
 			get 
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 34)]
 		public IfcPositiveLengthMeasure? @NominalLength 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 				SetValue( v =>  _nominalLength = v, _nominalLength, value,  "NominalLength");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 35)]
 		public IfcMechanicalFastenerTypeEnum? @PredefinedType 
 		{ 
 			get 

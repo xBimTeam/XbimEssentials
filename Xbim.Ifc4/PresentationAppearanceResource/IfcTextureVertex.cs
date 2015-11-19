@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCTEXTUREVERTEX", 1109)]
+	[ExpressType("IfcTextureVertex", 1109)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextureVertex : IfcPresentationItem, IInstantiableEntity, IIfcTextureVertex, IEqualityComparer<@IfcTextureVertex>, IEquatable<@IfcTextureVertex>
 	{
@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, 2)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, 2, 1)]
 		public ItemSet<IfcParameterValue> @Coordinates 
 		{ 
 			get 

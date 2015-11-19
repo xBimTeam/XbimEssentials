@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
-	[ExpressType("IFCLIGHTDISTRIBUTIONDATA", 733)]
+	[ExpressType("IfcLightDistributionData", 733)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLightDistributionData : INotifyPropertyChanged, IInstantiableEntity, IIfcLightDistributionData, IEqualityComparer<@IfcLightDistributionData>, IEquatable<@IfcLightDistributionData>
 	{
@@ -118,7 +118,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcPlaneAngleMeasure @MainPlaneAngle 
 		{ 
 			get 
@@ -132,7 +132,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _mainPlaneAngle = v, _mainPlaneAngle, value,  "MainPlaneAngle");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 2)]
 		public ItemSet<IfcPlaneAngleMeasure> @SecondaryPlaneAngle 
 		{ 
 			get 
@@ -142,7 +142,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				return _secondaryPlaneAngle;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 3)]
 		public ItemSet<IfcLuminousIntensityDistributionMeasure> @LuminousIntensity 
 		{ 
 			get 

@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCBOUNDEDSURFACE", 335)]
+	[ExpressType("IfcBoundedSurface", 335)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBoundedSurface : IfcSurface, IInstantiableEntity, IIfcBoundedSurface, IEqualityComparer<@IfcBoundedSurface>, IEquatable<@IfcBoundedSurface>
 	{

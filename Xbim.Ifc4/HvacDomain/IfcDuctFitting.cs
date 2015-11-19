@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCDUCTFITTING", 596)]
+	[ExpressType("IfcDuctFitting", 596)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDuctFitting : IfcFlowFitting, IInstantiableEntity, IIfcDuctFitting, IEqualityComparer<@IfcDuctFitting>, IEquatable<@IfcDuctFitting>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.HvacDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 35)]
 		public IfcDuctFittingTypeEnum? @PredefinedType 
 		{ 
 			get 

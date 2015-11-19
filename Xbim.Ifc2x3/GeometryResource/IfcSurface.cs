@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCSURFACE", 111)]
+	[ExpressType("IfcSurface", 111)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcSurface : IfcGeometricRepresentationItem, IIfcSurface, IEqualityComparer<@IfcSurface>, IEquatable<@IfcSurface>
 	{
@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
 		public virtual IfcDimensionCount @Dim 
 		{
 			get 

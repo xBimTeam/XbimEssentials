@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
-	[ExpressType("IFCLIBRARYREFERENCE", 598)]
+	[ExpressType("IfcLibraryReference", 598)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLibraryReference : IfcExternalReference, IInstantiableEntity, IIfcLibraryReference, IEqualityComparer<@IfcLibraryReference>, IEquatable<@IfcLibraryReference>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 4)]
 		public IEnumerable<IfcLibraryInformation> @ReferenceIntoLibrary 
 		{ 
 			get 

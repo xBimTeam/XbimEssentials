@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCELECTRICDISTRIBUTIONBOARDTYPE", 608)]
+	[ExpressType("IfcElectricDistributionBoardType", 608)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricDistributionBoardType : IfcFlowControllerType, IInstantiableEntity, IIfcElectricDistributionBoardType, IEqualityComparer<@IfcElectricDistributionBoardType>, IEquatable<@IfcElectricDistributionBoardType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcElectricDistributionBoardTypeEnum @PredefinedType 
 		{ 
 			get 

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCSOLARDEVICETYPE", 999)]
+	[ExpressType("IfcSolarDeviceType", 999)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSolarDeviceType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcSolarDeviceType, IEqualityComparer<@IfcSolarDeviceType>, IEquatable<@IfcSolarDeviceType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcSolarDeviceTypeEnum @PredefinedType 
 		{ 
 			get 

@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
-	[ExpressType("IFCEDGEFEATURE", 764)]
+	[ExpressType("IfcEdgeFeature", 764)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcEdgeFeature : IfcFeatureElementSubtraction, IIfcEdgeFeature, IEqualityComparer<@IfcEdgeFeature>, IEquatable<@IfcEdgeFeature>
 	{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
 		public IfcPositiveLengthMeasure? @FeatureLength 
 		{ 
 			get 

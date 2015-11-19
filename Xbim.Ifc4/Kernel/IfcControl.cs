@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCCONTROL", 534)]
+	[ExpressType("IfcControl", 534)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcControl : IfcObject, IIfcControl, IEqualityComparer<@IfcControl>, IEquatable<@IfcControl>
 	{
@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.Kernel
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
 		public IfcIdentifier? @Identification 
 		{ 
 			get 
@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.Kernel
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 18)]
 		public IEnumerable<IfcRelAssignsToControl> @Controls 
 		{ 
 			get 

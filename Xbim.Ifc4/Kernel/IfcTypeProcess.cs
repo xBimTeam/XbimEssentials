@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCTYPEPROCESS", 1126)]
+	[ExpressType("IfcTypeProcess", 1126)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcTypeProcess : IfcTypeObject, IIfcTypeProcess, IEqualityComparer<@IfcTypeProcess>, IEquatable<@IfcTypeProcess>
 	{
@@ -58,7 +58,7 @@ namespace Xbim.Ifc4.Kernel
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
 		public IfcIdentifier? @Identification 
 		{ 
 			get 
@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _identification = v, _identification, value,  "Identification");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
 		public IfcText? @LongDescription 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
 		public IfcLabel? @ProcessType 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.Kernel
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 18)]
 		public IEnumerable<IfcRelAssignsToProcess> @OperatesOn 
 		{ 
 			get 

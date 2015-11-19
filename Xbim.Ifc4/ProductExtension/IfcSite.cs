@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCSITE", 992)]
+	[ExpressType("IfcSite", 992)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSite : IfcSpatialStructureElement, IInstantiableEntity, IIfcSite, IEqualityComparer<@IfcSite>, IEquatable<@IfcSite>
 	{
@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
 		public IfcCompoundPlaneAngleMeasure? @RefLatitude 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.ProductExtension
 				SetValue( v =>  _refLatitude = v, _refLatitude, value,  "RefLatitude");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 26)]
 		public IfcCompoundPlaneAngleMeasure? @RefLongitude 
 		{ 
 			get 
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.ProductExtension
 				SetValue( v =>  _refLongitude = v, _refLongitude, value,  "RefLongitude");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 27)]
 		public IfcLengthMeasure? @RefElevation 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.ProductExtension
 				SetValue( v =>  _refElevation = v, _refElevation, value,  "RefElevation");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
 		public IfcLabel? @LandTitleNumber 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc4.ProductExtension
 				SetValue( v =>  _landTitleNumber = v, _landTitleNumber, value,  "LandTitleNumber");
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 29)]
 		public IfcPostalAddress @SiteAddress 
 		{ 
 			get 

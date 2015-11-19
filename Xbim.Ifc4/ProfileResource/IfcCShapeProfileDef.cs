@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCCSHAPEPROFILEDEF", 464)]
+	[ExpressType("IfcCShapeProfileDef", 464)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCShapeProfileDef, IEqualityComparer<@IfcCShapeProfileDef>, IEquatable<@IfcCShapeProfileDef>
 	{
@@ -62,7 +62,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcPositiveLengthMeasure @Depth 
 		{ 
 			get 
@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _depth = v, _depth, value,  "Depth");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcPositiveLengthMeasure @Width 
 		{ 
 			get 
@@ -90,7 +90,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _width = v, _width, value,  "Width");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
 		public IfcPositiveLengthMeasure @WallThickness 
 		{ 
 			get 
@@ -104,7 +104,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _wallThickness = v, _wallThickness, value,  "WallThickness");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
 		public IfcPositiveLengthMeasure @Girth 
 		{ 
 			get 
@@ -118,7 +118,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _girth = v, _girth, value,  "Girth");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public IfcNonNegativeLengthMeasure? @InternalFilletRadius 
 		{ 
 			get 

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCPROTECTIVEDEVICETRIPPINGUNITTYPE", 874)]
+	[ExpressType("IfcProtectiveDeviceTrippingUnitType", 874)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProtectiveDeviceTrippingUnitType : IfcDistributionControlElementType, IInstantiableEntity, IIfcProtectiveDeviceTrippingUnitType, IEqualityComparer<@IfcProtectiveDeviceTrippingUnitType>, IEquatable<@IfcProtectiveDeviceTrippingUnitType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcProtectiveDeviceTrippingUnitTypeEnum @PredefinedType 
 		{ 
 			get 

@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IFCMATERIALRELATIONSHIP", 766)]
+	[ExpressType("IfcMaterialRelationship", 766)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcMaterialRelationship, IEqualityComparer<@IfcMaterialRelationship>, IEquatable<@IfcMaterialRelationship>
 	{
@@ -59,7 +59,7 @@ namespace Xbim.Ifc4.MaterialResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcMaterial @RelatingMaterial 
 		{ 
 			get 
@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
 		public ItemSet<IfcMaterial> @RelatedMaterials 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.MaterialResource
 				return _relatedMaterials;
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcLabel? @Expression 
 		{ 
 			get 

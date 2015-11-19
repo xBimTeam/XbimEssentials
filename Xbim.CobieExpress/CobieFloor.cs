@@ -12,14 +12,40 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieFloor
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieFloor : ICobieAsset, SpatialDivision
+	{
+		double? @Elevation { get; }
+		double? @Height { get; }
+		ICobieFacility @Facility { get; }
+		IEnumerable<ICobieSpace> @Spaces {  get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("FLOOR", 19)]
+	[ExpressType("Floor", 19)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieFloor : CobieAsset, SpatialDivision, IInstantiableEntity, IEqualityComparer<@CobieFloor>, IEquatable<@CobieFloor>
+	public  partial class @CobieFloor : CobieAsset, IInstantiableEntity, ICobieFloor, IEqualityComparer<@CobieFloor>, IEquatable<@CobieFloor>
 	{
+		#region ICobieFloor explicit implementation
+		double? ICobieFloor.Elevation { get { return @Elevation; } }	
+		double? ICobieFloor.Height { get { return @Height; } }	
+		ICobieFacility ICobieFloor.Facility { get { return @Facility; } }	
+		 
+		IEnumerable<ICobieSpace> ICobieFloor.Spaces {  get { return @Spaces; } }
+		#endregion
+
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieFloor(IModel model) : base(model) 		{ 
 			Model = model; 
@@ -32,7 +58,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
 		public double? @Elevation 
 		{ 
 			get 
@@ -45,9 +71,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _elevation = v, _elevation, value,  "Elevation");
 			} 
-		}
-	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
 		public double? @Height 
 		{ 
 			get 
@@ -60,10 +85,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _height = v, _height, value,  "Height");
 			} 
-		}
-	
+		}	
 		[IndexedProperty]
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
 		public CobieFacility @Facility 
 		{ 
 			get 
@@ -76,13 +100,13 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _facility = v, _facility, value,  "Facility");
 			} 
-		}
-	
+		}	
 		#endregion
 
 
+
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 16)]
 		public IEnumerable<CobieSpace> @Spaces 
 		{ 
 			get 
@@ -184,5 +208,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

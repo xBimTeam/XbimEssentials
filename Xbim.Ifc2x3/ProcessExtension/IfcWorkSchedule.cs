@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
-	[ExpressType("IFCWORKSCHEDULE", 186)]
+	[ExpressType("IfcWorkSchedule", 186)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWorkSchedule : IfcWorkControl, IInstantiableEntity, IIfcWorkSchedule, IEqualityComparer<@IfcWorkSchedule>, IEquatable<@IfcWorkSchedule>
 	{

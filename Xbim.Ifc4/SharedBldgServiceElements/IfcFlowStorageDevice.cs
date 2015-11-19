@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
-	[ExpressType("IFCFLOWSTORAGEDEVICE", 684)]
+	[ExpressType("IfcFlowStorageDevice", 684)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFlowStorageDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowStorageDevice, IEqualityComparer<@IfcFlowStorageDevice>, IEquatable<@IfcFlowStorageDevice>
 	{

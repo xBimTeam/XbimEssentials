@@ -71,5 +71,21 @@ namespace Xbim.IO.Properties {
                 return ResourceManager.GetString("IFC4_ADD1_config", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;!-- Copyright by: buildingSMART International Ltd, 1996-2013
+        ///
+        ///Any technical documentation made available by buildingSMART International Limited 
+        ///is the copyrighted work of buildingSMART International Limited and is owned by the 
+        ///buildingSMART International Limited. It may be photocopied, used in software development, 
+        ///or translated into another computer language without prior written consent from 
+        ///buildingSMART International Limited provided that full attributi [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string IFC4_config {
+            get {
+                return ResourceManager.GetString("IFC4_config", resourceCulture);
+            }
+        }
     }
 }

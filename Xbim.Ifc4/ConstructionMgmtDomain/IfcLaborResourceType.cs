@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
-	[ExpressType("IFCLABORRESOURCETYPE", 727)]
+	[ExpressType("IfcLaborResourceType", 727)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLaborResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcLaborResourceType, IEqualityComparer<@IfcLaborResourceType>, IEquatable<@IfcLaborResourceType>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 21)]
 		public IfcLaborResourceTypeEnum @PredefinedType 
 		{ 
 			get 

@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
-	[ExpressType("IFCVALVETYPE", 465)]
+	[ExpressType("IfcValveType", 465)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcValveType : IfcFlowControllerType, IInstantiableEntity, IIfcValveType, IEqualityComparer<@IfcValveType>, IEquatable<@IfcValveType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcValveTypeEnum @PredefinedType 
 		{ 
 			get 

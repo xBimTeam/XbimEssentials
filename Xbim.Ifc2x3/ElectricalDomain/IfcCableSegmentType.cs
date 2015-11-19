@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
-	[ExpressType("IFCCABLESEGMENTTYPE", 77)]
+	[ExpressType("IfcCableSegmentType", 77)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCableSegmentType : IfcFlowSegmentType, IInstantiableEntity, IIfcCableSegmentType, IEqualityComparer<@IfcCableSegmentType>, IEquatable<@IfcCableSegmentType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcCableSegmentTypeEnum @PredefinedType 
 		{ 
 			get 

@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCSTYLEMODEL", 1055)]
+	[ExpressType("IfcStyleModel", 1055)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStyleModel : IfcRepresentation, IIfcStyleModel, IEqualityComparer<@IfcStyleModel>, IEquatable<@IfcStyleModel>
 	{

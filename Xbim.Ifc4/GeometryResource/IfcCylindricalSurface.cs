@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCCYLINDRICALSURFACE", 564)]
+	[ExpressType("IfcCylindricalSurface", 564)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCylindricalSurface : IfcElementarySurface, IInstantiableEntity, IIfcCylindricalSurface, IEqualityComparer<@IfcCylindricalSurface>, IEquatable<@IfcCylindricalSurface>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcPositiveLengthMeasure @Radius 
 		{ 
 			get 

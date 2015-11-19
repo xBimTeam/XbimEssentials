@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ActorResource
 {
 	[IndexedClass]
-	[ExpressType("IFCACTORROLE", 399)]
+	[ExpressType("IfcActorRole", 399)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcActorRole : INotifyPropertyChanged, IInstantiableEntity, IIfcActorRole, IEqualityComparer<@IfcActorRole>, IEquatable<@IfcActorRole>
 	{
@@ -120,7 +120,7 @@ namespace Xbim.Ifc4.ActorResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 1)]
 		public IfcRoleEnum @Role 
 		{ 
 			get 
@@ -134,7 +134,7 @@ namespace Xbim.Ifc4.ActorResource
 				SetValue( v =>  _role = v, _role, value,  "Role");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcLabel? @UserDefinedRole 
 		{ 
 			get 
@@ -148,7 +148,7 @@ namespace Xbim.Ifc4.ActorResource
 				SetValue( v =>  _userDefinedRole = v, _userDefinedRole, value,  "UserDefinedRole");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -167,7 +167,7 @@ namespace Xbim.Ifc4.ActorResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReference 
 		{ 
 			get 

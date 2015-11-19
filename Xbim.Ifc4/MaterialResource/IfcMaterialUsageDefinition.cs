@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IFCMATERIALUSAGEDEFINITION", 767)]
+	[ExpressType("IfcMaterialUsageDefinition", 767)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcMaterialUsageDefinition : IPersistEntity, INotifyPropertyChanged, IIfcMaterialUsageDefinition, IEqualityComparer<@IfcMaterialUsageDefinition>, IEquatable<@IfcMaterialUsageDefinition>
 	{
@@ -109,7 +109,7 @@ namespace Xbim.Ifc4.MaterialResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
 		public IEnumerable<IfcRelAssociatesMaterial> @AssociatedTo 
 		{ 
 			get 

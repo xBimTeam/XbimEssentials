@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
-	[ExpressType("IFCELECTRICGENERATORTYPE", 241)]
+	[ExpressType("IfcElectricGeneratorType", 241)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricGeneratorType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcElectricGeneratorType, IEqualityComparer<@IfcElectricGeneratorType>, IEquatable<@IfcElectricGeneratorType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcElectricGeneratorTypeEnum @PredefinedType 
 		{ 
 			get 

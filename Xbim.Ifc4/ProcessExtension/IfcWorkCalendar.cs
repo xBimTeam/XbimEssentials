@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IFCWORKCALENDAR", 1158)]
+	[ExpressType("IfcWorkCalendar", 1158)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWorkCalendar : IfcControl, IInstantiableEntity, IIfcWorkCalendar, IEqualityComparer<@IfcWorkCalendar>, IEquatable<@IfcWorkCalendar>
 	{
@@ -59,7 +59,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 19)]
 		public OptionalItemSet<IfcWorkTime> @WorkingTimes 
 		{ 
 			get 
@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				return _workingTimes;
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 20)]
 		public OptionalItemSet<IfcWorkTime> @ExceptionTimes 
 		{ 
 			get 
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				return _exceptionTimes;
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 21)]
 		public IfcWorkCalendarTypeEnum? @PredefinedType 
 		{ 
 			get 

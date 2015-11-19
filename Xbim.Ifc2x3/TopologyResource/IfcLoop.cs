@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
-	[ExpressType("IFCLOOP", 199)]
+	[ExpressType("IfcLoop", 199)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLoop : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcLoop, IEqualityComparer<@IfcLoop>, IEquatable<@IfcLoop>
 	{

@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
-	[ExpressType("IFCCSGSOLID", 548)]
+	[ExpressType("IfcCsgSolid", 548)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCsgSolid : IfcSolidModel, IInstantiableEntity, IIfcCsgSolid, IEqualityComparer<@IfcCsgSolid>, IEquatable<@IfcCsgSolid>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcCsgSelect @TreeRootExpression 
 		{ 
 			get 

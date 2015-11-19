@@ -1857,13 +1857,13 @@ namespace Xbim.IO.Xml.BsConf
     {
 
         /// <remarks/>
+        unspecified,
+
+        /// <remarks/>
         value,
 
         /// <remarks/>
         @ref,
-
-        /// <remarks/>
-        unspecified,
     }
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34234")]
@@ -1872,6 +1872,9 @@ namespace Xbim.IO.Xml.BsConf
     [System.Xml.Serialization.XmlRootAttribute("exp-attribute", Namespace = "urn:iso:std:iso:10303:-28:ed-2:tech:XMLschema:configuration_language", IsNullable = false)]
     public enum expattribute
     {
+
+        /// <remarks/>
+        unspecified,
 
         /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("double-tag")]
@@ -1896,9 +1899,6 @@ namespace Xbim.IO.Xml.BsConf
         /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("attribute-content")]
         attributecontent,
-
-        /// <remarks/>
-        unspecified,
     }
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34234")]
@@ -2310,13 +2310,13 @@ namespace Xbim.IO.Xml.BsConf
     {
 
         /// <remarks/>
+        unspecified,
+
+        /// <remarks/>
         root,
 
         /// <remarks/>
         value,
-
-        /// <remarks/>
-        unspecified,
     }
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34234")]

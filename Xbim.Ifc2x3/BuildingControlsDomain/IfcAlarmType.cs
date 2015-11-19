@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
-	[ExpressType("IFCALARMTYPE", 275)]
+	[ExpressType("IfcAlarmType", 275)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAlarmType : IfcDistributionControlElementType, IInstantiableEntity, IIfcAlarmType, IEqualityComparer<@IfcAlarmType>, IEquatable<@IfcAlarmType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcAlarmTypeEnum @PredefinedType 
 		{ 
 			get 

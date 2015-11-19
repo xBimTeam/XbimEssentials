@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCCONIC", 515)]
+	[ExpressType("IfcConic", 515)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcConic : IfcCurve, IIfcConic, IEqualityComparer<@IfcConic>, IEquatable<@IfcConic>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcAxis2Placement @Position 
 		{ 
 			get 

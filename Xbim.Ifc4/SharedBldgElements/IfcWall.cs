@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCWALL", 1146)]
+	[ExpressType("IfcWall", 1146)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWall : IfcBuildingElement, IInstantiableEntity, IIfcWall, IEqualityComparer<@IfcWall>, IEquatable<@IfcWall>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 33)]
 		public IfcWallTypeEnum? @PredefinedType 
 		{ 
 			get 

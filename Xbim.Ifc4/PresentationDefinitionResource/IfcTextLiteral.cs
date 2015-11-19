@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationDefinitionResource
 {
-	[ExpressType("IFCTEXTLITERAL", 1100)]
+	[ExpressType("IfcTextLiteral", 1100)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextLiteral : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcTextLiteral, IEqualityComparer<@IfcTextLiteral>, IEquatable<@IfcTextLiteral>
 	{
@@ -57,7 +57,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcPresentableText @Literal 
 		{ 
 			get 
@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 				SetValue( v =>  _literal = v, _literal, value,  "Literal");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcAxis2Placement @Placement 
 		{ 
 			get 
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 				SetValue( v =>  _placement = v, _placement, value,  "Placement");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 5)]
 		public IfcTextPath @Path 
 		{ 
 			get 

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCROOF", 971)]
+	[ExpressType("IfcRoof", 971)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRoof : IfcBuildingElement, IInstantiableEntity, IIfcRoof, IEqualityComparer<@IfcRoof>, IEquatable<@IfcRoof>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 33)]
 		public IfcRoofTypeEnum? @PredefinedType 
 		{ 
 			get 

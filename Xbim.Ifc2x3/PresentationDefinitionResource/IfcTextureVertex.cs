@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
-	[ExpressType("IFCTEXTUREVERTEX", 735)]
+	[ExpressType("IfcTextureVertex", 735)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextureVertex : INotifyPropertyChanged, IInstantiableEntity, IIfcTextureVertex, IEqualityComparer<@IfcTextureVertex>, IEquatable<@IfcTextureVertex>
 	{
@@ -111,7 +111,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, 2)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, 2, 1)]
 		public ItemSet<IfcParameterValue> @Coordinates 
 		{ 
 			get 

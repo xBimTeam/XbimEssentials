@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedMgmtElements
 {
-	[ExpressType("IFCPROJECTORDERRECORD", 697)]
+	[ExpressType("IfcProjectOrderRecord", 697)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProjectOrderRecord : IfcControl, IInstantiableEntity, IIfcProjectOrderRecord, IEqualityComparer<@IfcProjectOrderRecord>, IEquatable<@IfcProjectOrderRecord>
 	{
@@ -54,7 +54,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 12)]
 		public ItemSet<IfcRelAssignsToProjectOrder> @Records 
 		{ 
 			get 
@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				return _records;
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 13)]
 		public IfcProjectOrderRecordTypeEnum @PredefinedType 
 		{ 
 			get 

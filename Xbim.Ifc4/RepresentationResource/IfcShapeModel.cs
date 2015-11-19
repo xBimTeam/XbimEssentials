@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IFCSHAPEMODEL", 987)]
+	[ExpressType("IfcShapeModel", 987)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcShapeModel : IfcRepresentation, IIfcShapeModel, IEqualityComparer<@IfcShapeModel>, IEquatable<@IfcShapeModel>
 	{
@@ -48,7 +48,7 @@ namespace Xbim.Ifc4.RepresentationResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 8)]
 		public IEnumerable<IfcShapeAspect> @OfShapeAspect 
 		{ 
 			get 

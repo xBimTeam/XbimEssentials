@@ -13,7 +13,8 @@ using Xbim.Ifc2x3.CostResource;
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
-	[ExpressType("IFCMONETARYMEASURE", 567)]
+	[ExpressType("IfcMonetaryMeasure", 567)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcMonetaryMeasure : IfcAppliedValueSelect, IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -26,7 +27,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcMonetaryMeasure(double val)
         {

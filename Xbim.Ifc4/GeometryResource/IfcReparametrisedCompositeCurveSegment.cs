@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCREPARAMETRISEDCOMPOSITECURVESEGMENT", 957)]
+	[ExpressType("IfcReparametrisedCompositeCurveSegment", 957)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReparametrisedCompositeCurveSegment : IfcCompositeCurveSegment, IInstantiableEntity, IIfcReparametrisedCompositeCurveSegment, IEqualityComparer<@IfcReparametrisedCompositeCurveSegment>, IEquatable<@IfcReparametrisedCompositeCurveSegment>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcParameterValue @ParamLength 
 		{ 
 			get 

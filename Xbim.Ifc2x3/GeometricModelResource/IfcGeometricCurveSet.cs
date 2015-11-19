@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
-	[ExpressType("IFCGEOMETRICCURVESET", 237)]
+	[ExpressType("IfcGeometricCurveSet", 237)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGeometricCurveSet : IfcGeometricSet, IInstantiableEntity, IIfcGeometricCurveSet, IEqualityComparer<@IfcGeometricCurveSet>, IEquatable<@IfcGeometricCurveSet>
 	{

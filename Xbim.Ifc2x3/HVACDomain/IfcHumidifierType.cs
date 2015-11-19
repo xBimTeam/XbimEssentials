@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
-	[ExpressType("IFCHUMIDIFIERTYPE", 64)]
+	[ExpressType("IfcHumidifierType", 64)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcHumidifierType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcHumidifierType, IEqualityComparer<@IfcHumidifierType>, IEquatable<@IfcHumidifierType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcHumidifierTypeEnum @PredefinedType 
 		{ 
 			get 

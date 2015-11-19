@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
-	[ExpressType("IFCLOCALTIME", 483)]
+	[ExpressType("IfcLocalTime", 483)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLocalTime : INotifyPropertyChanged, IInstantiableEntity, IIfcLocalTime, IEqualityComparer<@IfcLocalTime>, IEquatable<@IfcLocalTime>
 	{
@@ -122,7 +122,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcHourInDay @HourComponent 
 		{ 
 			get 
@@ -136,7 +136,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 				SetValue( v =>  _hourComponent = v, _hourComponent, value,  "HourComponent");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcMinuteInHour? @MinuteComponent 
 		{ 
 			get 
@@ -150,7 +150,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 				SetValue( v =>  _minuteComponent = v, _minuteComponent, value,  "MinuteComponent");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcSecondInMinute? @SecondComponent 
 		{ 
 			get 
@@ -164,7 +164,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 				SetValue( v =>  _secondComponent = v, _secondComponent, value,  "SecondComponent");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcCoordinatedUniversalTimeOffset @Zone 
 		{ 
 			get 
@@ -178,7 +178,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 				SetValue( v =>  _zone = v, _zone, value,  "Zone");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcDaylightSavingHour? @DaylightSavingOffset 
 		{ 
 			get 

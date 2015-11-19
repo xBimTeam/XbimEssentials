@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	[IndexedClass]
-	[ExpressType("IFCMATERIALLAYERSETUSAGE", 165)]
+	[ExpressType("IfcMaterialLayerSetUsage", 165)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialLayerSetUsage : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialLayerSetUsage, IEqualityComparer<@IfcMaterialLayerSetUsage>, IEquatable<@IfcMaterialLayerSetUsage>
 	{
@@ -120,7 +120,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
 		public IfcMaterialLayerSet @ForLayerSet 
 		{ 
 			get 
@@ -134,7 +134,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				SetValue( v =>  _forLayerSet = v, _forLayerSet, value,  "ForLayerSet");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 2)]
 		public IfcLayerSetDirectionEnum @LayerSetDirection 
 		{ 
 			get 
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				SetValue( v =>  _layerSetDirection = v, _layerSetDirection, value,  "LayerSetDirection");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 3)]
 		public IfcDirectionSenseEnum @DirectionSense 
 		{ 
 			get 
@@ -162,7 +162,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				SetValue( v =>  _directionSense = v, _directionSense, value,  "DirectionSense");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcLengthMeasure @OffsetFromReferenceLine 
 		{ 
 			get 

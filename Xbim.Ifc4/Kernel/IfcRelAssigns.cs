@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCRELASSIGNS", 910)]
+	[ExpressType("IfcRelAssigns", 910)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcRelAssigns : IfcRelationship, IIfcRelAssigns, IEqualityComparer<@IfcRelAssigns>, IEquatable<@IfcRelAssigns>
 	{
@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.Kernel
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
 		public ItemSet<IfcObjectDefinition> @RelatedObjects 
 		{ 
 			get 
@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.Kernel
 				return _relatedObjects;
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 6)]
 		public IfcObjectTypeEnum? @RelatedObjectsType 
 		{ 
 			get 

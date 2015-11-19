@@ -13,7 +13,8 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
-	[ExpressType("IFCPOSITIVERATIOMEASURE", 387)]
+	[ExpressType("IfcPositiveRatioMeasure", 387)]
+	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcPositiveRatioMeasure : IfcMeasureValue, IfcSizeSelect, IExpressValueType, System.IEquatable<double>
 	{ 
@@ -26,7 +27,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 
 		public override string ToString()
         {
-            return _value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return _value.ToString("R");
         }
         public IfcPositiveRatioMeasure(double val)
         {

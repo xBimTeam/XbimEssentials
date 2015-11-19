@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCBSPLINESURFACE", 432)]
+	[ExpressType("IfcBSplineSurface", 432)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcBSplineSurface : IfcBoundedSurface, IIfcBSplineSurface, IEqualityComparer<@IfcBSplineSurface>, IEquatable<@IfcBSplineSurface>
 	{
@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcInteger @UDegree 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _uDegree = v, _uDegree, value,  "UDegree");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcInteger @VDegree 
 		{ 
 			get 
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _vDegree = v, _vDegree, value,  "VDegree");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 2, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 2, -1, 5)]
 		public ItemSet<ItemSet<IfcCartesianPoint>> @ControlPointsList 
 		{ 
 			get 
@@ -110,7 +110,7 @@ namespace Xbim.Ifc4.GeometryResource
 				return _controlPointsList;
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 6)]
 		public IfcBSplineSurfaceForm @SurfaceForm 
 		{ 
 			get 
@@ -124,7 +124,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _surfaceForm = v, _surfaceForm, value,  "SurfaceForm");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcLogical @UClosed 
 		{ 
 			get 
@@ -138,7 +138,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _uClosed = v, _uClosed, value,  "UClosed");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
 		public IfcLogical @VClosed 
 		{ 
 			get 
@@ -152,7 +152,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _vClosed = v, _vClosed, value,  "VClosed");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
 		public IfcLogical @SelfIntersect 
 		{ 
 			get 
@@ -170,7 +170,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
 		public IfcInteger @UUpper 
 		{
 			get 
@@ -181,7 +181,7 @@ namespace Xbim.Ifc4.GeometryResource
 			}
 		}
 
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
 		public IfcInteger @VUpper 
 		{
 			get 
@@ -192,7 +192,7 @@ namespace Xbim.Ifc4.GeometryResource
 			}
 		}
 
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Array, EntityAttributeType.Array, 0, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Array, EntityAttributeType.Array, 0, -1, 0)]
 		public List<List<Common.Geometry.XbimPoint3D>> @ControlPoints 
 		{
 			get 

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IFCROUNDEDRECTANGLEPROFILEDEF", 974)]
+	[ExpressType("IfcRoundedRectangleProfileDef", 974)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRoundedRectangleProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRoundedRectangleProfileDef, IEqualityComparer<@IfcRoundedRectangleProfileDef>, IEquatable<@IfcRoundedRectangleProfileDef>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
 		public IfcPositiveLengthMeasure @RoundingRadius 
 		{ 
 			get 

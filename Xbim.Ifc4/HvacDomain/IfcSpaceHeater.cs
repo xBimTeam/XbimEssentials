@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCSPACEHEATER", 1002)]
+	[ExpressType("IfcSpaceHeater", 1002)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSpaceHeater : IfcFlowTerminal, IInstantiableEntity, IIfcSpaceHeater, IEqualityComparer<@IfcSpaceHeater>, IEquatable<@IfcSpaceHeater>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.HvacDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 35)]
 		public IfcSpaceHeaterTypeEnum? @PredefinedType 
 		{ 
 			get 

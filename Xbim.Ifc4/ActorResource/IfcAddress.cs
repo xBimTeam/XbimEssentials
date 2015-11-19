@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ActorResource
 {
 	[IndexedClass]
-	[ExpressType("IFCADDRESS", 402)]
+	[ExpressType("IfcAddress", 402)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcAddress : IPersistEntity, INotifyPropertyChanged, IIfcAddress, IEqualityComparer<@IfcAddress>, IEquatable<@IfcAddress>
 	{
@@ -122,7 +122,7 @@ namespace Xbim.Ifc4.ActorResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 1)]
 		public IfcAddressTypeEnum? @Purpose 
 		{ 
 			get 
@@ -136,7 +136,7 @@ namespace Xbim.Ifc4.ActorResource
 				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -150,7 +150,7 @@ namespace Xbim.Ifc4.ActorResource
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcLabel? @UserDefinedPurpose 
 		{ 
 			get 
@@ -169,7 +169,7 @@ namespace Xbim.Ifc4.ActorResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
 		public IEnumerable<IfcPerson> @OfPerson 
 		{ 
 			get 
@@ -177,7 +177,7 @@ namespace Xbim.Ifc4.ActorResource
 				return Model.Instances.Where<IfcPerson>(e => e.Addresses != null &&  e.Addresses.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
 		public IEnumerable<IfcOrganization> @OfOrganization 
 		{ 
 			get 

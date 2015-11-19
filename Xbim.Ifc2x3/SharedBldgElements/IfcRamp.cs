@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
-	[ExpressType("IFCRAMP", 414)]
+	[ExpressType("IfcRamp", 414)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRamp : IfcBuildingElement, IInstantiableEntity, IIfcRamp, IEqualityComparer<@IfcRamp>, IEquatable<@IfcRamp>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 27)]
 		public IfcRampTypeEnum @ShapeType 
 		{ 
 			get 

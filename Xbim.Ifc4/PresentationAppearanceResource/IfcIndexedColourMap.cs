@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCINDEXEDCOLOURMAP", 714)]
+	[ExpressType("IfcIndexedColourMap", 714)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcIndexedColourMap : IfcPresentationItem, IInstantiableEntity, IIfcIndexedColourMap, IEqualityComparer<@IfcIndexedColourMap>, IEquatable<@IfcIndexedColourMap>
 	{
@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
 		public IfcTessellatedFaceSet @MappedTo 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _mappedTo = v, _mappedTo, value,  "MappedTo");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcNormalisedRatioMeasure? @Opacity 
 		{ 
 			get 
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _opacity = v, _opacity, value,  "Opacity");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcColourRgbList @Colours 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _colours = v, _colours, value,  "Colours");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 4)]
 		public ItemSet<IfcPositiveInteger> @ColourIndex 
 		{ 
 			get 

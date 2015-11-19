@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.RepresentationResource
 {
-	[ExpressType("IFCSHAPEREPRESENTATION", 664)]
+	[ExpressType("IfcShapeRepresentation", 664)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcShapeRepresentation : IfcShapeModel, IInstantiableEntity, IIfcShapeRepresentation, IEqualityComparer<@IfcShapeRepresentation>, IEquatable<@IfcShapeRepresentation>
 	{

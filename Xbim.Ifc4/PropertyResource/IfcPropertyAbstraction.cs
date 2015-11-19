@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PropertyResource
 {
-	[ExpressType("IFCPROPERTYABSTRACTION", 857)]
+	[ExpressType("IfcPropertyAbstraction", 857)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPropertyAbstraction : IPersistEntity, INotifyPropertyChanged, IIfcPropertyAbstraction, IEqualityComparer<@IfcPropertyAbstraction>, IEquatable<@IfcPropertyAbstraction>
 	{
@@ -109,7 +109,7 @@ namespace Xbim.Ifc4.PropertyResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 1)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReferences 
 		{ 
 			get 

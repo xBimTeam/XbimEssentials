@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.CostResource
 {
-	[ExpressType("IFCCOSTVALUE", 547)]
+	[ExpressType("IfcCostValue", 547)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCostValue : IfcAppliedValue, IInstantiableEntity, IIfcCostValue, IEqualityComparer<@IfcCostValue>, IEquatable<@IfcCostValue>
 	{

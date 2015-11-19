@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
-	[ExpressType("IFCEXTERNALLYDEFINEDHATCHSTYLE", 724)]
+	[ExpressType("IfcExternallyDefinedHatchStyle", 724)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcExternallyDefinedHatchStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedHatchStyle, IEqualityComparer<@IfcExternallyDefinedHatchStyle>, IEquatable<@IfcExternallyDefinedHatchStyle>
 	{

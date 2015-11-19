@@ -1340,6 +1340,7 @@ namespace Xbim.Ifc2x3
 				case "IFCWARPINGCONSTANTMEASURE": return new IfcWarpingConstantMeasure ();
 				case "IFCWARPINGMOMENTMEASURE": return new IfcWarpingMomentMeasure ();
 				case "IFCYEARNUMBER": return new IfcYearNumber ();
+				case "IFCNULLSTYLE": return new IfcNullStyle ();
 				default:
 					return null;
 			}

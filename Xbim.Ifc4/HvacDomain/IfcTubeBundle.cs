@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCTUBEBUNDLE", 1123)]
+	[ExpressType("IfcTubeBundle", 1123)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTubeBundle : IfcEnergyConversionDevice, IInstantiableEntity, IIfcTubeBundle, IEqualityComparer<@IfcTubeBundle>, IEquatable<@IfcTubeBundle>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.HvacDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 35)]
 		public IfcTubeBundleTypeEnum? @PredefinedType 
 		{ 
 			get 

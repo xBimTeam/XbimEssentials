@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCPOLYGONALBOUNDEDHALFSPACE", 828)]
+	[ExpressType("IfcPolygonalBoundedHalfSpace", 828)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPolygonalBoundedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcPolygonalBoundedHalfSpace, IEqualityComparer<@IfcPolygonalBoundedHalfSpace>, IEquatable<@IfcPolygonalBoundedHalfSpace>
 	{
@@ -53,7 +53,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
 		public IfcAxis2Placement3D @Position 
 		{ 
 			get 
@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _position = v, _position, value,  "Position");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
 		public IfcBoundedCurve @PolygonalBoundary 
 		{ 
 			get 

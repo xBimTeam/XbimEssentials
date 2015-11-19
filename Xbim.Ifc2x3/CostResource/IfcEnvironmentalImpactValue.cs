@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.CostResource
 {
-	[ExpressType("IFCENVIRONMENTALIMPACTVALUE", 78)]
+	[ExpressType("IfcEnvironmentalImpactValue", 78)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEnvironmentalImpactValue : IfcAppliedValue, IInstantiableEntity, IIfcEnvironmentalImpactValue, IEqualityComparer<@IfcEnvironmentalImpactValue>, IEquatable<@IfcEnvironmentalImpactValue>
 	{
@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.CostResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public IfcLabel @ImpactType 
 		{ 
 			get 
@@ -70,7 +70,7 @@ namespace Xbim.Ifc2x3.CostResource
 				SetValue( v =>  _impactType = v, _impactType, value,  "ImpactType");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
 		public IfcEnvironmentalImpactCategoryEnum @Category 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.CostResource
 				SetValue( v =>  _category = v, _category, value,  "Category");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
 		public IfcLabel? @UserDefinedCategory 
 		{ 
 			get 

@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedComponentElements
 {
-	[ExpressType("IFCDISCRETEACCESSORY", 572)]
+	[ExpressType("IfcDiscreteAccessory", 572)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDiscreteAccessory : IfcElementComponent, IInstantiableEntity, IIfcDiscreteAccessory, IEqualityComparer<@IfcDiscreteAccessory>, IEquatable<@IfcDiscreteAccessory>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 33)]
 		public IfcDiscreteAccessoryTypeEnum? @PredefinedType 
 		{ 
 			get 

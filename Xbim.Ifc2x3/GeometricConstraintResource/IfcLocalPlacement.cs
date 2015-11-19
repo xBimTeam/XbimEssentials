@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[IndexedClass]
-	[ExpressType("IFCLOCALPLACEMENT", 481)]
+	[ExpressType("IfcLocalPlacement", 481)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLocalPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcLocalPlacement, IEqualityComparer<@IfcLocalPlacement>, IEquatable<@IfcLocalPlacement>
 	{
@@ -55,7 +55,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcObjectPlacement @PlacementRelTo 
 		{ 
 			get 
@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				SetValue( v =>  _placementRelTo = v, _placementRelTo, value,  "PlacementRelTo");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcAxis2Placement @RelativePlacement 
 		{ 
 			get 

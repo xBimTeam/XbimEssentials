@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
-	[ExpressType("IFCCOOLINGTOWERTYPE", 478)]
+	[ExpressType("IfcCoolingTowerType", 478)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCoolingTowerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcCoolingTowerType, IEqualityComparer<@IfcCoolingTowerType>, IEquatable<@IfcCoolingTowerType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcCoolingTowerTypeEnum @PredefinedType 
 		{ 
 			get 

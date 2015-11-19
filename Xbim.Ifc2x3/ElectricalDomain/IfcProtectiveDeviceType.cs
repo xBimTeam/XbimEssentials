@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
-	[ExpressType("IFCPROTECTIVEDEVICETYPE", 550)]
+	[ExpressType("IfcProtectiveDeviceType", 550)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProtectiveDeviceType : IfcFlowControllerType, IInstantiableEntity, IIfcProtectiveDeviceType, IEqualityComparer<@IfcProtectiveDeviceType>, IEquatable<@IfcProtectiveDeviceType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcProtectiveDeviceTypeEnum @PredefinedType 
 		{ 
 			get 

@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALCURVEREACTION", 1027)]
+	[ExpressType("IfcStructuralCurveReaction", 1027)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralCurveReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralCurveReaction, IEqualityComparer<@IfcStructuralCurveReaction>, IEquatable<@IfcStructuralCurveReaction>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 23)]
 		public IfcStructuralCurveActivityTypeEnum @PredefinedType 
 		{ 
 			get 

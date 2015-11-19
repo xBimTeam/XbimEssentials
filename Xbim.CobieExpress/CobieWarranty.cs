@@ -14,14 +14,44 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.CobieExpress.Interfaces;
+using Xbim.CobieExpress;
+
+namespace Xbim.CobieExpress.Interfaces
+{
+	/// <summary>
+    /// Readonly interface for CobieWarranty
+    /// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
+	public partial interface @ICobieWarranty : IPersistEntity
+	{
+		string @Description { get; }
+		ICobieContact @GuarantorParts { get; }
+		double @DurationParts { get; }
+		ICobieContact @GuarantorLabor { get; }
+		double @DurationLabor { get; }
+		ICobiePickValue @DurationUnit { get; }
+	
+	}
+}
 
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("WARRANTY", 23)]
+	[ExpressType("Warranty", 23)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieWarranty : INotifyPropertyChanged, IInstantiableEntity, IEqualityComparer<@CobieWarranty>, IEquatable<@CobieWarranty>
+	public  partial class @CobieWarranty : INotifyPropertyChanged, IInstantiableEntity, ICobieWarranty, IEqualityComparer<@CobieWarranty>, IEquatable<@CobieWarranty>
 	{
+		#region ICobieWarranty explicit implementation
+		string ICobieWarranty.Description { get { return @Description; } }	
+		ICobieContact ICobieWarranty.GuarantorParts { get { return @GuarantorParts; } }	
+		double ICobieWarranty.DurationParts { get { return @DurationParts; } }	
+		ICobieContact ICobieWarranty.GuarantorLabor { get { return @GuarantorLabor; } }	
+		double ICobieWarranty.DurationLabor { get { return @DurationLabor; } }	
+		ICobiePickValue ICobieWarranty.DurationUnit { get { return @DurationUnit; } }	
+		 
+		#endregion
+
 		#region Implementation of IPersistEntity
 
 		public int EntityLabel {get; internal set;}
@@ -78,7 +108,6 @@ namespace Xbim.CobieExpress
 		}
 
 		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -96,7 +125,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public string @Description 
 		{ 
 			get 
@@ -109,9 +138,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
-		}
-	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
 		public CobieContact @GuarantorParts 
 		{ 
 			get 
@@ -124,9 +152,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _guarantorParts = v, _guarantorParts, value,  "GuarantorParts");
 			} 
-		}
-	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public double @DurationParts 
 		{ 
 			get 
@@ -139,9 +166,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _durationParts = v, _durationParts, value,  "DurationParts");
 			} 
-		}
-	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public CobieContact @GuarantorLabor 
 		{ 
 			get 
@@ -154,9 +180,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _guarantorLabor = v, _guarantorLabor, value,  "GuarantorLabor");
 			} 
-		}
-	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public double @DurationLabor 
 		{ 
 			get 
@@ -169,9 +194,8 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _durationLabor = v, _durationLabor, value,  "DurationLabor");
 			} 
-		}
-	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		}	
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
 		public CobiePickValue @DurationUnit 
 		{ 
 			get 
@@ -184,9 +208,9 @@ namespace Xbim.CobieExpress
 			{
 				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit");
 			} 
-		}
-	
+		}	
 		#endregion
+
 
 
 
@@ -328,5 +352,10 @@ namespace Xbim.CobieExpress
             return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
 	}
 }

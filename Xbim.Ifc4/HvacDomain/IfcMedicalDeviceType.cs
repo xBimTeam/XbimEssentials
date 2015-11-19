@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IFCMEDICALDEVICETYPE", 772)]
+	[ExpressType("IfcMedicalDeviceType", 772)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMedicalDeviceType : IfcFlowTerminalType, IInstantiableEntity, IIfcMedicalDeviceType, IEqualityComparer<@IfcMedicalDeviceType>, IEquatable<@IfcMedicalDeviceType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.HvacDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcMedicalDeviceTypeEnum @PredefinedType 
 		{ 
 			get 

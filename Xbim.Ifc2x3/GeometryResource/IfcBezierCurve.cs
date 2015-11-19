@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
-	[ExpressType("IFCBEZIERCURVE", 166)]
+	[ExpressType("IfcBezierCurve", 166)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBezierCurve : IfcBSplineCurve, IInstantiableEntity, IIfcBezierCurve, IEqualityComparer<@IfcBezierCurve>, IEquatable<@IfcBezierCurve>
 	{

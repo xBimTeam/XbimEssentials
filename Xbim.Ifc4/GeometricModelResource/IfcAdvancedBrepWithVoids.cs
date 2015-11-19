@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCADVANCEDBREPWITHVOIDS", 404)]
+	[ExpressType("IfcAdvancedBrepWithVoids", 404)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAdvancedBrepWithVoids : IfcAdvancedBrep, IInstantiableEntity, IIfcAdvancedBrepWithVoids, IEqualityComparer<@IfcAdvancedBrepWithVoids>, IEquatable<@IfcAdvancedBrepWithVoids>
 	{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
 		public ItemSet<IfcClosedShell> @Voids 
 		{ 
 			get 

@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IFCRELSEQUENCE", 950)]
+	[ExpressType("IfcRelSequence", 950)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IIfcRelSequence, IEqualityComparer<@IfcRelSequence>, IEquatable<@IfcRelSequence>
 	{
@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.ProcessExtension
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
 		public IfcProcess @RelatingProcess 
 		{ 
 			get 
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
 		public IfcProcess @RelatedProcess 
 		{ 
 			get 
@@ -94,7 +94,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _relatedProcess = v, _relatedProcess, value,  "RelatedProcess");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
 		public IfcLagTime @TimeLag 
 		{ 
 			get 
@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _timeLag = v, _timeLag, value,  "TimeLag");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 8)]
 		public IfcSequenceEnum? @SequenceType 
 		{ 
 			get 
@@ -122,7 +122,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _sequenceType = v, _sequenceType, value,  "SequenceType");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
 		public IfcLabel? @UserDefinedSequenceType 
 		{ 
 			get 

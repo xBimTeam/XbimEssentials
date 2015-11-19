@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IFCPOLYLINE", 829)]
+	[ExpressType("IfcPolyline", 829)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPolyline : IfcBoundedCurve, IInstantiableEntity, IIfcPolyline, IEqualityComparer<@IfcPolyline>, IEquatable<@IfcPolyline>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 3)]
 		public ItemSet<IfcCartesianPoint> @Points 
 		{ 
 			get 

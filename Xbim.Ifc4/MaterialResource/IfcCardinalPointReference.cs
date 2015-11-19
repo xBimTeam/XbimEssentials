@@ -12,7 +12,8 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IFCCARDINALPOINTREFERENCE", 11)]
+	[ExpressType("IfcCardinalPointReference", 11)]
+	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcCardinalPointReference : IExpressValueType, System.IEquatable<long>
 	{ 

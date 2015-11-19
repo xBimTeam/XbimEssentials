@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IFCLAGTIME", 728)]
+	[ExpressType("IfcLagTime", 728)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLagTime : IfcSchedulingTime, IInstantiableEntity, IIfcLagTime, IEqualityComparer<@IfcLagTime>, IEquatable<@IfcLagTime>
 	{
@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcTimeOrRatioSelect @LagValue 
 		{ 
 			get 
@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _lagValue = v, _lagValue, value,  "LagValue");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 5)]
 		public IfcTaskDurationEnum @DurationType 
 		{ 
 			get 

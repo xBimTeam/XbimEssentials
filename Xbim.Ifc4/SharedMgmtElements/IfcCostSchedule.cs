@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedMgmtElements
 {
-	[ExpressType("IFCCOSTSCHEDULE", 546)]
+	[ExpressType("IfcCostSchedule", 546)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IEqualityComparer<@IfcCostSchedule>, IEquatable<@IfcCostSchedule>
 	{
@@ -61,7 +61,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcCostScheduleTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -75,7 +75,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
 		public IfcLabel? @Status 
 		{ 
 			get 
@@ -89,7 +89,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 				SetValue( v =>  _status = v, _status, value,  "Status");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
 		public IfcDateTime? @SubmittedOn 
 		{ 
 			get 
@@ -103,7 +103,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 				SetValue( v =>  _submittedOn = v, _submittedOn, value,  "SubmittedOn");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
 		public IfcDateTime? @UpdateDate 
 		{ 
 			get 

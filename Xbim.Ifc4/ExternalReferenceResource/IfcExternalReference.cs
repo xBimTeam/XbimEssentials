@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[IndexedClass]
-	[ExpressType("IFCEXTERNALREFERENCE", 640)]
+	[ExpressType("IfcExternalReference", 640)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcExternalReference : IPersistEntity, INotifyPropertyChanged, IIfcExternalReference, IEqualityComparer<@IfcExternalReference>, IEquatable<@IfcExternalReference>
 	{
@@ -121,7 +121,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcURIReference? @Location 
 		{ 
 			get 
@@ -135,7 +135,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				SetValue( v =>  _location = v, _location, value,  "Location");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcIdentifier? @Identification 
 		{ 
 			get 
@@ -149,7 +149,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				SetValue( v =>  _identification = v, _identification, value,  "Identification");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcLabel? @Name 
 		{ 
 			get 
@@ -168,7 +168,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
 		public IEnumerable<IfcExternalReferenceRelationship> @ExternalReferenceForResources 
 		{ 
 			get 

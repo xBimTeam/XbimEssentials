@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
-	[ExpressType("IFCFILLAREASTYLETILESYMBOLWITHSTYLE", 726)]
+	[ExpressType("IfcFillAreaStyleTileSymbolWithStyle", 726)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFillAreaStyleTileSymbolWithStyle : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTileSymbolWithStyle, IEqualityComparer<@IfcFillAreaStyleTileSymbolWithStyle>, IEquatable<@IfcFillAreaStyleTileSymbolWithStyle>
 	{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcAnnotationSymbolOccurrence @Symbol 
 		{ 
 			get 

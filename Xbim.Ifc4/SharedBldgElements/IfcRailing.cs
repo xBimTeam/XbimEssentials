@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCRAILING", 886)]
+	[ExpressType("IfcRailing", 886)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRailing : IfcBuildingElement, IInstantiableEntity, IIfcRailing, IEqualityComparer<@IfcRailing>, IEquatable<@IfcRailing>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 33)]
 		public IfcRailingTypeEnum? @PredefinedType 
 		{ 
 			get 

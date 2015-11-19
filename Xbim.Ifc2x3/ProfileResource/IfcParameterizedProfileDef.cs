@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
-	[ExpressType("IFCPARAMETERIZEDPROFILEDEF", 104)]
+	[ExpressType("IfcParameterizedProfileDef", 104)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcParameterizedProfileDef : IfcProfileDef, IIfcParameterizedProfileDef, IEqualityComparer<@IfcParameterizedProfileDef>, IEquatable<@IfcParameterizedProfileDef>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcAxis2Placement2D @Position 
 		{ 
 			get 

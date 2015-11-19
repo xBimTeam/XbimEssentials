@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCCOLOURRGBLIST", 498)]
+	[ExpressType("IfcColourRgbList", 498)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcColourRgbList : IfcPresentationItem, IInstantiableEntity, IIfcColourRgbList, IEqualityComparer<@IfcColourRgbList>, IEquatable<@IfcColourRgbList>
 	{
@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 1, -1, 1)]
 		public ItemSet<ItemSet<IfcNormalisedRatioMeasure>> @ColourList 
 		{ 
 			get 

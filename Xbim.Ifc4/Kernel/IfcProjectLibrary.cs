@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IFCPROJECTLIBRARY", 852)]
+	[ExpressType("IfcProjectLibrary", 852)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProjectLibrary : IfcContext, IInstantiableEntity, IIfcProjectLibrary, IEqualityComparer<@IfcProjectLibrary>, IEquatable<@IfcProjectLibrary>
 	{

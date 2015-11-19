@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
-	[ExpressType("IFCTERMINATORSYMBOL", 743)]
+	[ExpressType("IfcTerminatorSymbol", 743)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTerminatorSymbol : IfcAnnotationSymbolOccurrence, IInstantiableEntity, IIfcTerminatorSymbol, IEqualityComparer<@IfcTerminatorSymbol>, IEquatable<@IfcTerminatorSymbol>
 	{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
 		public IfcAnnotationCurveOccurrence @AnnotatedCurve 
 		{ 
 			get 

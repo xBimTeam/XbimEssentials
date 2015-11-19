@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.CostResource
 {
 	[IndexedClass]
-	[ExpressType("IFCCURRENCYRELATIONSHIP", 554)]
+	[ExpressType("IfcCurrencyRelationship", 554)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCurrencyRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcCurrencyRelationship, IEqualityComparer<@IfcCurrencyRelationship>, IEquatable<@IfcCurrencyRelationship>
 	{
@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.CostResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcMonetaryUnit @RelatingMonetaryUnit 
 		{ 
 			get 
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.CostResource
 				SetValue( v =>  _relatingMonetaryUnit = v, _relatingMonetaryUnit, value,  "RelatingMonetaryUnit");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcMonetaryUnit @RelatedMonetaryUnit 
 		{ 
 			get 
@@ -93,7 +93,7 @@ namespace Xbim.Ifc4.CostResource
 				SetValue( v =>  _relatedMonetaryUnit = v, _relatedMonetaryUnit, value,  "RelatedMonetaryUnit");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcPositiveRatioMeasure @ExchangeRate 
 		{ 
 			get 
@@ -107,7 +107,7 @@ namespace Xbim.Ifc4.CostResource
 				SetValue( v =>  _exchangeRate = v, _exchangeRate, value,  "ExchangeRate");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcDateTime? @RateDateTime 
 		{ 
 			get 
@@ -121,7 +121,7 @@ namespace Xbim.Ifc4.CostResource
 				SetValue( v =>  _rateDateTime = v, _rateDateTime, value,  "RateDateTime");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
 		public IfcLibraryInformation @RateSource 
 		{ 
 			get 

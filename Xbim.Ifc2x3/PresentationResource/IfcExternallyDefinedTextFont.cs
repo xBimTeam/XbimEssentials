@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
-	[ExpressType("IFCEXTERNALLYDEFINEDTEXTFONT", 132)]
+	[ExpressType("IfcExternallyDefinedTextFont", 132)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcExternallyDefinedTextFont : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedTextFont, IEqualityComparer<@IfcExternallyDefinedTextFont>, IEquatable<@IfcExternallyDefinedTextFont>
 	{

@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IFCREINFORCINGELEMENT", 905)]
+	[ExpressType("IfcReinforcingElement", 905)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcReinforcingElement : IfcElementComponent, IIfcReinforcingElement, IEqualityComparer<@IfcReinforcingElement>, IEquatable<@IfcReinforcingElement>
 	{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 33)]
 		public IfcLabel? @SteelGrade 
 		{ 
 			get 

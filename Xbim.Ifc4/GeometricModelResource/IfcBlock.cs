@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCBLOCK", 438)]
+	[ExpressType("IfcBlock", 438)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBlock : IfcCsgPrimitive3D, IInstantiableEntity, IIfcBlock, IEqualityComparer<@IfcBlock>, IEquatable<@IfcBlock>
 	{
@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcPositiveLengthMeasure @XLength 
 		{ 
 			get 
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _xLength = v, _xLength, value,  "XLength");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcPositiveLengthMeasure @YLength 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _yLength = v, _yLength, value,  "YLength");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcPositiveLengthMeasure @ZLength 
 		{ 
 			get 

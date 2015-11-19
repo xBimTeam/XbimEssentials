@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
-	[ExpressType("IFCCONSTRUCTIONRESOURCETYPE", 531)]
+	[ExpressType("IfcConstructionResourceType", 531)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcConstructionResourceType : IfcTypeResource, IIfcConstructionResourceType, IEqualityComparer<@IfcConstructionResourceType>, IEquatable<@IfcConstructionResourceType>
 	{
@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 19)]
 		public OptionalItemSet<IfcAppliedValue> @BaseCosts 
 		{ 
 			get 
@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 				return _baseCosts;
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
 		public IfcPhysicalQuantity @BaseQuantity 
 		{ 
 			get 

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCPLATETYPE", 823)]
+	[ExpressType("IfcPlateType", 823)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPlateType : IfcBuildingElementType, IInstantiableEntity, IIfcPlateType, IEqualityComparer<@IfcPlateType>, IEquatable<@IfcPlateType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcPlateTypeEnum @PredefinedType 
 		{ 
 			get 

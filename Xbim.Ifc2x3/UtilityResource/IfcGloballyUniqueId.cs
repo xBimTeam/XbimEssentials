@@ -12,7 +12,8 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc2x3.UtilityResource
 {
-	[ExpressType("IFCGLOBALLYUNIQUEID", 443)]
+	[ExpressType("IfcGloballyUniqueId", 443)]
+	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcGloballyUniqueId : IExpressValueType, System.IEquatable<string>
 	{ 

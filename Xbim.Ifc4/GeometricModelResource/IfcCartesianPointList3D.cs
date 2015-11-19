@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IFCCARTESIANPOINTLIST3D", 476)]
+	[ExpressType("IfcCartesianPointList3D", 476)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCartesianPointList3D : IfcCartesianPointList, IInstantiableEntity, IIfcCartesianPointList3D, IEqualityComparer<@IfcCartesianPointList3D>, IEquatable<@IfcCartesianPointList3D>
 	{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 1, -1, 3)]
 		public ItemSet<ItemSet<IfcLengthMeasure>> @CoordList 
 		{ 
 			get 

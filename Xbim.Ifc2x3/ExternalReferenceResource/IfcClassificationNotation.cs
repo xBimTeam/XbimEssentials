@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[IndexedClass]
-	[ExpressType("IFCCLASSIFICATIONNOTATION", 13)]
+	[ExpressType("IfcClassificationNotation", 13)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcClassificationNotation : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationNotation, IEqualityComparer<@IfcClassificationNotation>, IEquatable<@IfcClassificationNotation>
 	{
@@ -111,7 +111,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
 		public ItemSet<IfcClassificationNotationFacet> @NotationFacets 
 		{ 
 			get 

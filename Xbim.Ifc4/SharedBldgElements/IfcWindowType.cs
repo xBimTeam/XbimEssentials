@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IFCWINDOWTYPE", 1157)]
+	[ExpressType("IfcWindowType", 1157)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWindowType : IfcBuildingElementType, IInstantiableEntity, IIfcWindowType, IEqualityComparer<@IfcWindowType>, IEquatable<@IfcWindowType>
 	{
@@ -60,7 +60,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
 		public IfcWindowTypeEnum @PredefinedType 
 		{ 
 			get 
@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
 		public IfcWindowTypePartitioningEnum @PartitioningType 
 		{ 
 			get 
@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _partitioningType = v, _partitioningType, value,  "PartitioningType");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
 		public IfcBoolean? @ParameterTakesPrecedence 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
 		public IfcLabel? @UserDefinedPartitioningType 
 		{ 
 			get 

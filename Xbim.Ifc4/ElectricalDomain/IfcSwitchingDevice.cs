@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IFCSWITCHINGDEVICE", 1078)]
+	[ExpressType("IfcSwitchingDevice", 1078)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSwitchingDevice : IfcFlowController, IInstantiableEntity, IIfcSwitchingDevice, IEqualityComparer<@IfcSwitchingDevice>, IEquatable<@IfcSwitchingDevice>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 35)]
 		public IfcSwitchingDeviceTypeEnum? @PredefinedType 
 		{ 
 			get 

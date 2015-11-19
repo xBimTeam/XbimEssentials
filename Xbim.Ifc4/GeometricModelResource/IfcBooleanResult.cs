@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.GeometricModelResource
 {
 	[IndexedClass]
-	[ExpressType("IFCBOOLEANRESULT", 442)]
+	[ExpressType("IfcBooleanResult", 442)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBooleanResult : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBooleanResult, IEqualityComparer<@IfcBooleanResult>, IEquatable<@IfcBooleanResult>
 	{
@@ -57,7 +57,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 3)]
 		public IfcBooleanOperator @Operator 
 		{ 
 			get 
@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _operator = v, _operator, value,  "Operator");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcBooleanOperand @FirstOperand 
 		{ 
 			get 
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _firstOperand = v, _firstOperand, value,  "FirstOperand");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
 		public IfcBooleanOperand @SecondOperand 
 		{ 
 			get 
@@ -103,7 +103,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
 		public IfcDimensionCount @Dim 
 		{
 			get 

@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IFCSTRUCTURALCURVEACTION", 1023)]
+	[ExpressType("IfcStructuralCurveAction", 1023)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralCurveAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralCurveAction, IEqualityComparer<@IfcStructuralCurveAction>, IEquatable<@IfcStructuralCurveAction>
 	{
@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 24)]
 		public IfcProjectedOrTrueLengthEnum? @ProjectedOrTrue 
 		{ 
 			get 
@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				SetValue( v =>  _projectedOrTrue = v, _projectedOrTrue, value,  "ProjectedOrTrue");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 25)]
 		public IfcStructuralCurveActivityTypeEnum @PredefinedType 
 		{ 
 			get 

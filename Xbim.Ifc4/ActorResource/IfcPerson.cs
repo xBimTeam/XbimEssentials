@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.Interfaces
 namespace Xbim.Ifc4.ActorResource
 {
 	[IndexedClass]
-	[ExpressType("IFCPERSON", 805)]
+	[ExpressType("IfcPerson", 805)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPerson : INotifyPropertyChanged, IInstantiableEntity, IIfcPerson, IEqualityComparer<@IfcPerson>, IEquatable<@IfcPerson>
 	{
@@ -141,7 +141,7 @@ namespace Xbim.Ifc4.ActorResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcIdentifier? @Identification 
 		{ 
 			get 
@@ -155,7 +155,7 @@ namespace Xbim.Ifc4.ActorResource
 				SetValue( v =>  _identification = v, _identification, value,  "Identification");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
 		public IfcLabel? @FamilyName 
 		{ 
 			get 
@@ -169,7 +169,7 @@ namespace Xbim.Ifc4.ActorResource
 				SetValue( v =>  _familyName = v, _familyName, value,  "FamilyName");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcLabel? @GivenName 
 		{ 
 			get 
@@ -183,7 +183,7 @@ namespace Xbim.Ifc4.ActorResource
 				SetValue( v =>  _givenName = v, _givenName, value,  "GivenName");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 4)]
 		public OptionalItemSet<IfcLabel> @MiddleNames 
 		{ 
 			get 
@@ -193,7 +193,7 @@ namespace Xbim.Ifc4.ActorResource
 				return _middleNames;
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 5)]
 		public OptionalItemSet<IfcLabel> @PrefixTitles 
 		{ 
 			get 
@@ -203,7 +203,7 @@ namespace Xbim.Ifc4.ActorResource
 				return _prefixTitles;
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 6)]
 		public OptionalItemSet<IfcLabel> @SuffixTitles 
 		{ 
 			get 
@@ -213,7 +213,7 @@ namespace Xbim.Ifc4.ActorResource
 				return _suffixTitles;
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 7)]
 		public OptionalItemSet<IfcActorRole> @Roles 
 		{ 
 			get 
@@ -224,7 +224,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 8)]
 		public OptionalItemSet<IfcAddress> @Addresses 
 		{ 
 			get 
@@ -239,7 +239,7 @@ namespace Xbim.Ifc4.ActorResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
 		public IEnumerable<IfcPersonAndOrganization> @EngagedIn 
 		{ 
 			get 

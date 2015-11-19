@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
-	[ExpressType("IFCSYSTEM", 229)]
+	[ExpressType("IfcSystem", 229)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSystem : IfcGroup, IInstantiableEntity, IIfcSystem, IEqualityComparer<@IfcSystem>, IEquatable<@IfcSystem>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 12)]
 		public IEnumerable<IfcRelServicesBuildings> @ServicesBuildings 
 		{ 
 			get 

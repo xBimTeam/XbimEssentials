@@ -13,38 +13,34 @@ namespace Xbim.Ifc2x3
 {
     public class OptionalItemSet<T>: ItemSet<T>, IOptionalItemSet<T>
     {
+        private bool _initialized;
+
         internal OptionalItemSet(IPersistEntity entity) : base(entity)
         {
-            Initialized = false;
         }
 
         internal OptionalItemSet(IPersistEntity entity, int capacity) : base(entity, capacity)
         {
-            Initialized = false;
         }
 
         internal OptionalItemSet(IPersistEntity entity, IEnumerable<T> collection) : base(entity, collection)
         {
-            Initialized = false;
         }
 
-        public bool Initialized { get; private set; }
+        public bool Initialized 
+		{ 
+            get { return _initialized || Count > 0; }
+		}
 
         public void Initialize()
         {
-            Initialized = true;
+            _initialized = true;
         }
 
         public void Uninitialize()
         {
             Clear();
-            Initialized = false;
-        }
-
-        public override void Add(T item)
-        {
-            if (!Initialized) Initialized = true;
-            base.Add(item);
+            _initialized = false;
         }
     }
 }

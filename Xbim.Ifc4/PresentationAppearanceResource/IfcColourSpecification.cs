@@ -32,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCCOLOURSPECIFICATION", 499)]
+	[ExpressType("IfcColourSpecification", 499)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcColourSpecification : IfcPresentationItem, IIfcColourSpecification, IEqualityComparer<@IfcColourSpecification>, IEquatable<@IfcColourSpecification>
 	{
@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcLabel? @Name 
 		{ 
 			get 

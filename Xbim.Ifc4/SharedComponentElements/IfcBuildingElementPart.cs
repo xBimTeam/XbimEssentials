@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedComponentElements
 {
-	[ExpressType("IFCBUILDINGELEMENTPART", 455)]
+	[ExpressType("IfcBuildingElementPart", 455)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBuildingElementPart : IfcElementComponent, IInstantiableEntity, IIfcBuildingElementPart, IEqualityComparer<@IfcBuildingElementPart>, IEquatable<@IfcBuildingElementPart>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 33)]
 		public IfcBuildingElementPartTypeEnum? @PredefinedType 
 		{ 
 			get 

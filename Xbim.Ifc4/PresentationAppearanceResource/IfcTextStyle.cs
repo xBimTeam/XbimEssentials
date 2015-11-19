@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IFCTEXTSTYLE", 1102)]
+	[ExpressType("IfcTextStyle", 1102)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextStyle : IfcPresentationStyle, IInstantiableEntity, IIfcTextStyle, IEqualityComparer<@IfcTextStyle>, IEquatable<@IfcTextStyle>
 	{
@@ -59,7 +59,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
 		public IfcTextStyleForDefinedFont @TextCharacterAppearance 
 		{ 
 			get 
@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _textCharacterAppearance = v, _textCharacterAppearance, value,  "TextCharacterAppearance");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
 		public IfcTextStyleTextModel @TextStyle 
 		{ 
 			get 
@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _textStyle = v, _textStyle, value,  "TextStyle");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public IfcTextFontSelect @TextFontStyle 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _textFontStyle = v, _textFontStyle, value,  "TextFontStyle");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcBoolean? @ModelOrDraughting 
 		{ 
 			get 

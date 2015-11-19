@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IFCVOIDINGFEATURE", 1145)]
+	[ExpressType("IfcVoidingFeature", 1145)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVoidingFeature : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcVoidingFeature, IEqualityComparer<@IfcVoidingFeature>, IEquatable<@IfcVoidingFeature>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 34)]
 		public IfcVoidingFeatureTypeEnum? @PredefinedType 
 		{ 
 			get 

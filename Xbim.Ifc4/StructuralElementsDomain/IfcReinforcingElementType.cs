@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IFCREINFORCINGELEMENTTYPE", 906)]
+	[ExpressType("IfcReinforcingElementType", 906)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcReinforcingElementType : IfcElementComponentType, IIfcReinforcingElementType, IEqualityComparer<@IfcReinforcingElementType>, IEquatable<@IfcReinforcingElementType>
 	{

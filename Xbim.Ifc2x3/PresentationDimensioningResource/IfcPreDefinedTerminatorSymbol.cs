@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
-	[ExpressType("IFCPREDEFINEDTERMINATORSYMBOL", 749)]
+	[ExpressType("IfcPreDefinedTerminatorSymbol", 749)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPreDefinedTerminatorSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedTerminatorSymbol, IEqualityComparer<@IfcPreDefinedTerminatorSymbol>, IEquatable<@IfcPreDefinedTerminatorSymbol>
 	{

@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
-	[ExpressType("IFCGRIDAXIS", 704)]
+	[ExpressType("IfcGridAxis", 704)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGridAxis : INotifyPropertyChanged, IInstantiableEntity, IIfcGridAxis, IEqualityComparer<@IfcGridAxis>, IEquatable<@IfcGridAxis>
 	{
@@ -126,7 +126,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
 		public IfcLabel? @AxisTag 
 		{ 
 			get 
@@ -140,7 +140,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				SetValue( v =>  _axisTag = v, _axisTag, value,  "AxisTag");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
 		public IfcCurve @AxisCurve 
 		{ 
 			get 
@@ -154,7 +154,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				SetValue( v =>  _axisCurve = v, _axisCurve, value,  "AxisCurve");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcBoolean @SameSense 
 		{ 
 			get 
@@ -173,7 +173,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
 
 		#region Inverse attributes
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 4)]
 		public IEnumerable<IfcGrid> @PartOfW 
 		{ 
 			get 
@@ -181,7 +181,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				return Model.Instances.Where<IfcGrid>(e => e.WAxes != null &&  e.WAxes.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 5)]
 		public IEnumerable<IfcGrid> @PartOfV 
 		{ 
 			get 
@@ -189,7 +189,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				return Model.Instances.Where<IfcGrid>(e => e.VAxes != null &&  e.VAxes.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 6)]
 		public IEnumerable<IfcGrid> @PartOfU 
 		{ 
 			get 
@@ -197,7 +197,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				return Model.Instances.Where<IfcGrid>(e => e.UAxes != null &&  e.UAxes.Contains(this));
 			} 
 		}
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
 		public IEnumerable<IfcVirtualGridIntersection> @HasIntersections 
 		{ 
 			get 

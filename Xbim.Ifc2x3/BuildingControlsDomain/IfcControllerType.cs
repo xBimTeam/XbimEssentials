@@ -31,7 +31,7 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
-	[ExpressType("IFCCONTROLLERTYPE", 484)]
+	[ExpressType("IfcControllerType", 484)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcControllerType : IfcDistributionControlElementType, IInstantiableEntity, IIfcControllerType, IEqualityComparer<@IfcControllerType>, IEquatable<@IfcControllerType>
 	{
@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
 		public IfcControllerTypeEnum @PredefinedType 
 		{ 
 			get 

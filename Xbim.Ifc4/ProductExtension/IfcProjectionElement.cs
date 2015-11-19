@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IFCPROJECTIONELEMENT", 855)]
+	[ExpressType("IfcProjectionElement", 855)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProjectionElement : IfcFeatureElementAddition, IInstantiableEntity, IIfcProjectionElement, IEqualityComparer<@IfcProjectionElement>, IEquatable<@IfcProjectionElement>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 34)]
 		public IfcProjectionElementTypeEnum? @PredefinedType 
 		{ 
 			get 

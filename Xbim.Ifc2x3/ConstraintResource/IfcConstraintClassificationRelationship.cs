@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Interfaces
 namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[IndexedClass]
-	[ExpressType("IFCCONSTRAINTCLASSIFICATIONRELATIONSHIP", 274)]
+	[ExpressType("IfcConstraintClassificationRelationship", 274)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConstraintClassificationRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintClassificationRelationship, IEqualityComparer<@IfcConstraintClassificationRelationship>, IEquatable<@IfcConstraintClassificationRelationship>
 	{
@@ -116,7 +116,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
 		public IfcConstraint @ClassifiedConstraint 
 		{ 
 			get 
@@ -130,7 +130,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				SetValue( v =>  _classifiedConstraint = v, _classifiedConstraint, value,  "ClassifiedConstraint");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
 		public ItemSet<IfcClassificationNotationSelect> @RelatedClassifications 
 		{ 
 			get 
