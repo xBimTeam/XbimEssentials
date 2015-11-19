@@ -42,7 +42,7 @@ namespace Xbim.MemoryModel.Tests
             Assert.AreEqual(9, pl.CoordList.SelectMany(c => c).Count());
 
             //write new file
-            model.Save("..\\..\\SerializedNestedList.ifc");
+            model.SaveAs("..\\..\\SerializedNestedList.ifc");
         }
 
         [TestMethod]

@@ -1216,10 +1216,13 @@ namespace Xbim.IO.Esent
 
         public static IStepFileHeader GetStepFileHeader(string fileName)
         {
-            var stepStore = new PersistedEntityInstanceCache(null, null);
-            stepStore.DatabaseName = fileName;
+            //create a temporary model
+            var esentModel = new EsentModel();
+            esentModel.InstanceCache = new PersistedEntityInstanceCache(esentModel, null);
+
+            esentModel.InstanceCache.DatabaseName = fileName;
             IStepFileHeader header = null;
-            var entTable = stepStore.GetEntityTable();
+            var entTable = esentModel.InstanceCache.GetEntityTable();
             try
             {
                 using (entTable.BeginReadOnlyTransaction())
@@ -1233,7 +1236,8 @@ namespace Xbim.IO.Esent
             }
             finally
             {
-                stepStore.FreeTable(entTable);
+                esentModel.InstanceCache.FreeTable(entTable);
+                esentModel.Dispose();
             }
             return header;
         }

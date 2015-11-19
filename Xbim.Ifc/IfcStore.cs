@@ -130,13 +130,10 @@ namespace Xbim.Ifc
         //}
 
 
-
-
         /// <summary>
         /// Opens an Ifc file, Ifcxml, IfcZip, xbim
         /// </summary>
         /// <param name="path">the file name of the ifc, ifczip, ifcxml or xbim file to be opened</param>
-        /// <param name="accessMode">Read/write access mode for the Store</param>
         /// <param name="editorDetails">This is only required if the store is opened for editing</param>
         /// <param name="ifcDatabaseSizeThreshHold">if not defined the DefaultIfcDatabaseSizeThreshHold is used, Ifc files below this size will be opened in memory, above this size a database will be created. If -1 is specified a database will be created for all Ifc files that are opened. Xbim files are always opened as databases</param>
         /// <param name="progDelegate"></param>
@@ -593,19 +590,31 @@ namespace Xbim.Ifc
         public void SaveAs(string fileName, XbimStorageType? format = null, ReportProgressDelegate progDelegate = null)
         {
             var esentModel = _model as EsentModel;
-            if (esentModel != null) 
+            if (esentModel != null)
+            {
+                var extension = Path.GetExtension(fileName);
+                var xbimTarget = !string.IsNullOrEmpty(extension) &&
+                                  string.Compare(extension, ".xbim", StringComparison.OrdinalIgnoreCase) == 0;
+                if ((format.HasValue && format.Value == XbimStorageType.Xbim) || (!format.HasValue && xbimTarget))
+                {
+                    var fullSourcePath = Path.GetFullPath(esentModel.DatabaseName);
+                    var fullTargetPath = Path.GetFullPath(fileName);
+                    if (string.Compare(fullSourcePath, fullTargetPath, StringComparison.OrdinalIgnoreCase) == 0)
+                        return; //do nothing it is already saved
+                }
                 esentModel.SaveAs(fileName,format, progDelegate);
+            }
             if (_schema == IfcSchemaVersion.Ifc4)
             {
                 var memoryModel = _model as MemoryModel<Ifc4.EntityFactory>;
                 if (memoryModel != null)
-                    memoryModel.Save(fileName);
+                    memoryModel.SaveAs(fileName);
             }
             else if (_schema == IfcSchemaVersion.Ifc2X3)
             {
                 var memoryModel = _model as MemoryModel<Ifc2x3.EntityFactory>;
                 if (memoryModel != null)
-                    memoryModel.Save(fileName);
+                    memoryModel.SaveAs(fileName);
             }
         }
     }

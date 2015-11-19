@@ -186,7 +186,35 @@ namespace Xbim.MemoryModel.Tests
             var diff =
                 File.ReadAllLines("4walls1floorSiteDoorES.ifc").Except(File.ReadAllLines("4walls1floorSiteDoorMM.ifc"));
             var enumerable = diff as string[] ?? diff.ToArray();
-            Assert.IsTrue(!enumerable.Any() ||( enumerable.Count()==1 && enumerable.First().Contains("FILE_NAME"))); //might be a slight time difference in the timestamp of this line
+            Assert.IsTrue(!enumerable.Any() || (enumerable.Count() == 1 && enumerable.First().Contains("FILE_NAME"))); //might be a slight time difference in the timestamp of this line
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
+        public void IfcStoreSaveAsXbimTest()
+        {
+            long originalCount;
+            using (var ifcStore = IfcStore.Open("4walls1floorSite.ifc", null, 0)) //test esent databases first
+            {
+                var  count = originalCount = ifcStore.Instances.Count;
+                Assert.IsTrue(count > 0, "Should have more than zero instances"); //read mode is working               
+                ifcStore.SaveAs("4walls1floorSiteDoorES.xbim");
+                ifcStore.Close();
+            }
+
+            using (var ifcStore = IfcStore.Open("4walls1floorSiteDoorES.xbim")) //test esent databases first
+            {
+                var count = ifcStore.Instances.Count;
+                Assert.IsTrue(count > 0, "Should have more than zero instances"); //read mode is working                
+                ifcStore.SaveAs("4walls1floorSiteDoorES2.Ifc");
+                ifcStore.Close();
+            }
+            using (var ifcStore = IfcStore.Open("4walls1floorSiteDoorES2.ifc")) //test esent databases first
+            {
+                var count = ifcStore.Instances.Count;
+                Assert.IsTrue(count == originalCount, "Should have more than zero instances"); //read mode is working                              
+                ifcStore.Close();
+            }
         }
     }
 }

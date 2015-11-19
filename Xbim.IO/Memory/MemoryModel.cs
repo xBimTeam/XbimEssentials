@@ -380,12 +380,17 @@ namespace Xbim.IO.Memory
                 return result;
             }
         }
-
-        public virtual void Save(string path)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="storageType"></param>
+        /// <param name="progress"></param>
+        public virtual void SaveAs(string path, XbimStorageType? storageType = null, ReportProgressDelegate progress = null)
         {
             using (var file = File.Create(path))
             {
-                Save(file);
+                SaveAs(file, storageType, progress);
                 file.Close();
             }
         }
@@ -394,11 +399,13 @@ namespace Xbim.IO.Memory
         /// Saves the model as PART21 file
         /// </summary>
         /// <param name="stream">Output stream. Steam will be closed at the end.</param>
-        public virtual void Save(Stream stream)
+        /// <param name="storageType"></param>
+        /// <param name="progress"></param>
+        public virtual void SaveAs(Stream stream, XbimStorageType? storageType = null, ReportProgressDelegate progress = null)
         {
             using (var writer = new StreamWriter(stream))
             {
-                Save(writer);
+                SaveAs(writer, storageType, progress);
                 writer.Close();
             }
         }
@@ -407,7 +414,9 @@ namespace Xbim.IO.Memory
         /// Saves the model as PART21 file
         /// </summary>
         /// <param name="writer">Text writer to be used to write the file</param>
-        public virtual void Save(TextWriter writer)
+        /// <param name="storageType"></param>
+        /// <param name="progress"></param>
+        public virtual void SaveAs(TextWriter writer, XbimStorageType? storageType = null, ReportProgressDelegate progress = null)
         {
             var part21Writer = new Part21FileWriter();
             part21Writer.Write(this, writer, Metadata, new Dictionary<int, int>());
