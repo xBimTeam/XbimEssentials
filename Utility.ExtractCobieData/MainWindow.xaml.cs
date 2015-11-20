@@ -110,7 +110,7 @@ namespace Utility.ExtractCobieData
                         txn.Commit();
                     }
 
-                    target.Save(TxtOutputFile.Text);
+                    target.SaveAs(TxtOutputFile.Text);
                     originalCount = source.Instances.Count;
                     resultCount = target.Instances.Count;
                 }

@@ -17,7 +17,7 @@ namespace Xbim.Essentials.Tests
             using (var txn = model.BeginTransaction("Null style"))
             {
                 model.Instances.New<IfcPresentationLayerWithStyle>(ls => ls.LayerStyles.Add(new IfcNullStyle()));
-                model.Save("NullStyle.ifc");
+                model.SaveAs("NullStyle.ifc");
                 txn.Commit();
             }
 

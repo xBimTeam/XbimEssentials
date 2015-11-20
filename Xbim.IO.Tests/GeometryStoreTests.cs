@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common.Geometry;
-
+using Xbim.Ifc;
+using Xbim.Ifc4;
 
 namespace Xbim.EsentModel.Tests
 {
@@ -11,13 +11,12 @@ namespace Xbim.EsentModel.Tests
     {
         [DeploymentItem("TestFiles")]
         [TestMethod]
-        public void EsentGeometryStoreAddTest()
+        public void IfcStoreGeometryStoreAddTest()
         {
-            using (var model = new IO.Esent.EsentModel(new Ifc4.EntityFactory()))
-            {
-                model.CreateFrom("SampleHouse4.ifc",null,null,true);
-                var store = model.GeometryStore;
-                using (var txn = store.BeginInit())
+            using (var model = IfcStore.Open("SampleHouse4.ifc"))
+            {                
+                var geomStore = model.GeometryStore;
+                using (var txn = geomStore.BeginInit())
                 {
                     //ADD A GEOMETRY SHAPE
                     var geomData = new XbimShapeGeometry()
@@ -47,7 +46,7 @@ namespace Xbim.EsentModel.Tests
                     regions.Add(new XbimRegion("region1",XbimRect3D.Empty,100));
                     txn.AddRegions(regions);
 
-                    store.EndInit(txn);
+                    geomStore.EndInit(txn);
                 }              
                 model.Close();
             }
@@ -57,7 +56,7 @@ namespace Xbim.EsentModel.Tests
         [TestMethod]
         public void EsentGeometryStoreBatchTest()
         {
-            using (var model = new IO.Esent.EsentModel(new Ifc4.EntityFactory()))
+            using (var model = new IO.Esent.EsentModel(new EntityFactory()))
             {
                 model.CreateFrom("SampleHouse4.ifc", null, null, true);
                 var store = model.GeometryStore;
@@ -124,9 +123,9 @@ namespace Xbim.EsentModel.Tests
 
         [DeploymentItem("TestFiles")]
         [TestMethod]
-        public void EsentGeometryGeometryClearTest()
+        public void IfcStoreGeometryGeometryClearTest()
         {
-            using (var model = new IO.Esent.EsentModel(new Ifc4.EntityFactory()))
+            using (var model = new IO.Esent.EsentModel(new EntityFactory()))
             {
                 model.CreateFrom("SampleHouse4.ifc", null, null, true);
                 var store = model.GeometryStore;
@@ -202,7 +201,7 @@ namespace Xbim.EsentModel.Tests
         [TestMethod]
         public void EsentGeometryStoreReadTest()
         {
-            using (var model =  IO.Esent.EsentModel.CreateTemporaryModel(new Ifc4.EntityFactory()))
+            using (var model =  IO.Esent.EsentModel.CreateTemporaryModel(new EntityFactory()))
             {              
                 var store = model.GeometryStore;
                 using (var txn = store.BeginInit())

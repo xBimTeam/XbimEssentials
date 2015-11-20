@@ -70,6 +70,8 @@ namespace Xbim.Common.Step21
 
         #endregion
 
+
+        
         #region ISupportIfcParser Members
 
         public string WhereRule()
@@ -364,6 +366,7 @@ namespace Xbim.Common.Step21
     public class StepFileSchema : IStepFileSchema
     {
         public List<string> Schemas = new List<string>();
+        
 
         public StepFileSchema()
         {
@@ -372,6 +375,11 @@ namespace Xbim.Common.Step21
         public StepFileSchema(string version)
         {
             Schemas.Add(version);
+        }
+
+        public StepFileSchema(IfcSchemaVersion schemaVersion)
+        {
+            Schemas.Add(schemaVersion.ToString().ToUpper());           
         }
 
         #region ISupportIfcParser Members
@@ -587,6 +595,22 @@ namespace Xbim.Common.Step21
                 else
                     return "";
             }
+        }
+
+
+        public void StampXbimApplication(IfcSchemaVersion schemaVersion)
+        {
+            FileDescription = new StepFileDescription("2;1");
+            FileName = new StepFileName(DateTime.Now)
+            {
+                PreprocessorVersion =
+                    string.Format("Xbim File Processor version {0}",
+                                  Assembly.GetExecutingAssembly().GetName().Version),
+                OriginatingSystem =
+                    string.Format("Xbim version {0}",
+                                  Assembly.GetExecutingAssembly().GetName().Version),
+            };
+            FileSchema = new StepFileSchema(schemaVersion);
         }
     }
 }

@@ -95,6 +95,9 @@
     <Compile Include="..\SharedFileVersionInfo.cs">
       <Link>Properties\SharedFileVersionInfo.cs</Link>
     </Compile>
+	<Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Esent\EsentGeometryStore.cs" />
     <Compile Include="Esent\EsentGeometryInitialiser.cs" />
     <Compile Include="Esent\EsentGeometryStoreReader.cs" />
@@ -105,6 +108,9 @@
     <Compile Include="FileReferenceResolver.cs" />
     <Compile Include="Memory\EntityCollection.cs" />
     <Compile Include="Memory\FederatedModel.cs" />
+    <Compile Include="Memory\InMemoryGeometryStore.cs" />
+    <Compile Include="Memory\InMemoryGeometryStoreInitialiser.cs" />
+    <Compile Include="Memory\InMemoryGeometryStoreReader.cs" />
     <Compile Include="Memory\MemoryModel.cs" />
     <Compile Include="Memory\Transaction.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

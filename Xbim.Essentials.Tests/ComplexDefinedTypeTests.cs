@@ -25,10 +25,10 @@ namespace Xbim.Essentials.Tests
                 site.RefLongitude = lon;
                 txn.Commit();
             }
-            model.Save("site.ifc");
+            model.SaveAs("site.ifc");
             
             model = new MemoryModel<EntityFactory>();
-            model.Open("site.ifc");
+            model.Open("site.ifc",null);
             var site2 = model.Instances.FirstOrDefault<IfcSite>();
             Assert.IsTrue(lat == site2.RefLatitude);
             Assert.AreEqual((IfcCompoundPlaneAngleMeasure)lon, site2.RefLongitude);

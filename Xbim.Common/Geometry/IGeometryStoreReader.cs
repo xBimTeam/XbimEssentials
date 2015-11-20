@@ -53,17 +53,12 @@ namespace Xbim.Common.Geometry
         /// <param name="geometryLabel"></param>
         /// <returns></returns>
         IEnumerable<XbimShapeInstance> ShapeInstancesOfGeometry(int geometryLabel, int contextId);
-        /// <summary>
-        /// Fast lookup to see if an entity has any shape instances
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        bool EntityHasShapeInstances(IPersistEntity entity);
-
+        
         /// <summary>
         /// Returns a unique set of all the style IDs of the all the shape instances in the store
         /// </summary>
         /// <param name="?"></param>
+        /// <param name="contextId"></param>
         /// <returns></returns>
         ISet<int> StyleIds(int contextId);
         /// <summary>

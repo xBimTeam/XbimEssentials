@@ -8,12 +8,12 @@ namespace Xbim.IO
         /// <summary>
         /// Invalid Xbim storage type
         /// </summary>
-        INVALID = 0,
+        Invalid = 0,
 
         /// <summary>
         ///   IFC in XML format
         /// </summary>
-        IFCXML = 1,
+        IfcXml = 1,
 
         /// <summary>
         ///   Native IFC format
@@ -25,13 +25,9 @@ namespace Xbim.IO
         /// </summary>
         Step21Zip = 4,
 
-        // IFCXMLX = 8,
-        /// <summary>
-        ///   Compressed IfcXml
-        /// </summary>
-        /// <summary>
-        ///   Xbim binary format
-        /// </summary>
-        XBIM = 16
+        Ifc = 8,
+           
+        Xbim = 16,
+        IfcZip = 32    
     }
 }

@@ -20,10 +20,10 @@ namespace Xbim.MemoryModel.Tests
         {
             var model = CreateTestModel();
             
-            model.Save("RandomModel.cobie");
+            model.SaveAs("RandomModel.cobie");
 
             var model2 = new MemoryModel<EntityFactory>();
-            model2.Open("RandomModel.cobie");
+            model2.Open("RandomModel.cobie", null);
 
             Assert.AreEqual(model2.Instances.Count, model2.Instances.Count);
             Assert.AreEqual(model2.Instances.OfType<CobieAttribute>().Count(), model2.Instances.OfType<CobieAttribute>().Count());
@@ -31,10 +31,10 @@ namespace Xbim.MemoryModel.Tests
 
             //because save operation is deterministic both files should match
             var data1 = new StringWriter();
-            model2.Save(data1);
+            model2.SaveAs(data1);
 
             var data2 = new StringWriter();
-            model2.Save(data2);
+            model2.SaveAs(data2);
 
             var str1 = data1.ToString();
             var str2 = data2.ToString();
@@ -74,7 +74,7 @@ namespace Xbim.MemoryModel.Tests
         {
             const string file = "SampleForEsent.stp";
             var model = CreateTestModel();
-            model.Save(file);
+            model.SaveAs(file);
 
             var db = new IO.Esent.EsentModel(new EntityFactory());
             db.CreateFrom(file, null, null, true);

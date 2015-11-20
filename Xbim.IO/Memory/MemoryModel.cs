@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Xbim.Common;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
@@ -11,8 +12,78 @@ using Xbim.IO.Step21;
 
 namespace Xbim.IO.Memory
 {
+    static public class MemoryModel
+    {
+        
+        public static IStepFileHeader GetStepFileHeader(string fileName)
+        {
+            using (var stream = File.OpenRead(fileName))
+            {
+                var parser = new XbimP21Parser(stream, null);
+                var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
+                parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
+                {
+                    //allow all attributes to be parsed
+                    ints = null;
+                    if (header)
+                    {
+                        switch (name)
+                        {
+                            case "FILE_DESCRIPTION":
+                                return stepHeader.FileDescription;
+                            case "FILE_NAME":
+                                return stepHeader.FileName;
+                            case "FILE_SCHEMA":
+                                return stepHeader.FileSchema;
+                            default:
+                                return null;
+                        }
+                    }
+                    parser.Cancel = true; //done enough
+                    return null;
+                };
+                parser.Parse();
+                stream.Close();
+                return stepHeader;
+            }
+        }
+    }
+
     public class MemoryModel<TFactory> : IModel, IDisposable where TFactory: IEntityFactory, new()
     {
+        public static StepFileHeader GetStepFileHeader(string fileName)
+        {
+            using (var stream = File.OpenRead(fileName))
+            {
+                var parser = new XbimP21Parser(stream, null);
+                var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
+                parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
+                {
+                    //allow all attributes to be parsed
+                    ints = null;
+                    if (header)
+                    {
+                        switch (name)
+                        {
+                            case "FILE_DESCRIPTION":
+                                return stepHeader.FileDescription;
+                            case "FILE_NAME":
+                                return stepHeader.FileName;
+                            case "FILE_SCHEMA":
+                                return stepHeader.FileSchema;
+                            default:
+                                return null;
+                        }
+                    }
+                    parser.Cancel = true; //done enough
+                    return null;
+                };
+                parser.Parse();
+                stream.Close();
+                return stepHeader;
+            }
+        }
+
         private readonly EntityCollection<TFactory> _instances;
         public int UserDefinedId { get; set; }
         public MemoryModel()
@@ -166,7 +237,9 @@ namespace Xbim.IO.Memory
         /// even if it is still referenced from model. This is important for the cases where the transaction
         /// is both not commited and not rolled back either.
         /// </summary>
-        private WeakReference _transactionReference; 
+        private WeakReference _transactionReference;
+
+        private InMemoryGeometryStore _geometryStore;
 
         public virtual ITransaction CurrentTransaction
         {
@@ -244,10 +317,12 @@ namespace Xbim.IO.Memory
         /// </summary>
         /// <param name="stream">Path to the file</param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
-        public virtual int Open(Stream stream, bool parseHeaderOnly = false)
+        public virtual int Open(Stream stream, ReportProgressDelegate progDelegate=null)
         {
             var parser = new XbimP21Parser(stream, Metadata);
+            if(progDelegate!=null) parser.ProgressStatus += progDelegate;
             var first = true;
+            Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
             parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
             {
                 //allow all attributes to be parsed
@@ -267,7 +342,7 @@ namespace Xbim.IO.Memory
                             return null;
                     }
                 }
-                if (parseHeaderOnly) parser.Cancel = true;
+                
                 if (label == null)
                     return _instances.Factory.New(name);
                 //if this is a first non-header entity header is read completely by now. 
@@ -289,6 +364,7 @@ namespace Xbim.IO.Memory
                 return ent;
             };
             parser.Parse();
+            if (progDelegate != null) parser.ProgressStatus -= progDelegate;
             return parser.ErrorCount;
         }
 
@@ -297,21 +373,26 @@ namespace Xbim.IO.Memory
         /// </summary>
         /// <param name="file">Path to the file</param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
-        public virtual int Open(string file, bool parseHeaderOnly = false)
+        public virtual int Open(string file, ReportProgressDelegate progDelegate=null)
         {
             using (var stream = File.OpenRead(file))
             {
-                var result = Open(stream, parseHeaderOnly);
+                var result = Open(stream, progDelegate);
                 stream.Close();
                 return result;
             }
         }
-
-        public virtual void Save(string path)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="storageType"></param>
+        /// <param name="progress"></param>
+        public virtual void SaveAs(string path, XbimStorageType? storageType = null, ReportProgressDelegate progress = null)
         {
             using (var file = File.Create(path))
             {
-                Save(file);
+                SaveAs(file, storageType, progress);
                 file.Close();
             }
         }
@@ -320,11 +401,13 @@ namespace Xbim.IO.Memory
         /// Saves the model as PART21 file
         /// </summary>
         /// <param name="stream">Output stream. Steam will be closed at the end.</param>
-        public virtual void Save(Stream stream)
+        /// <param name="storageType"></param>
+        /// <param name="progress"></param>
+        public virtual void SaveAs(Stream stream, XbimStorageType? storageType = null, ReportProgressDelegate progress = null)
         {
             using (var writer = new StreamWriter(stream))
             {
-                Save(writer);
+                SaveAs(writer, storageType, progress);
                 writer.Close();
             }
         }
@@ -333,7 +416,9 @@ namespace Xbim.IO.Memory
         /// Saves the model as PART21 file
         /// </summary>
         /// <param name="writer">Text writer to be used to write the file</param>
-        public virtual void Save(TextWriter writer)
+        /// <param name="storageType"></param>
+        /// <param name="progress"></param>
+        public virtual void SaveAs(TextWriter writer, XbimStorageType? storageType = null, ReportProgressDelegate progress = null)
         {
             var part21Writer = new Part21FileWriter();
             part21Writer.Write(this, writer, Metadata, new Dictionary<int, int>());
@@ -452,7 +537,12 @@ namespace Xbim.IO.Memory
 
         public IGeometryStore GeometryStore
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                if(_geometryStore == null)
+                    _geometryStore=new InMemoryGeometryStore();
+                return _geometryStore;
+            }
         }
     }
 

@@ -259,7 +259,8 @@ namespace Xbim.IO.Esent
                 throw new XbimException("Attempt to begin another transaction whilst one is already running");
             try
             {
-                _editTransactionEntityCursor = InstanceCache.GetEntityTable();
+                //check if write permission upgrade is required               
+                _editTransactionEntityCursor = InstanceCache.GetWriteableEntityTable();
                 InstanceCache.BeginCaching();
                 var txn = new XbimReadWriteTransaction(this, _editTransactionEntityCursor.BeginLazyTransaction(), operationName);
                 CurrentTransaction = txn;
@@ -353,7 +354,7 @@ namespace Xbim.IO.Esent
             var toImportStorageType = StorageType(importFrom);
             switch (toImportStorageType)
             {
-                case XbimStorageType.IFCXML:
+                case XbimStorageType.IfcXml:
                     InstanceCache.ImportIfcXml(xbimDbName, importFrom, progDelegate, keepOpen, cacheEntities);
                     break;
                 case XbimStorageType.Step21:
@@ -362,7 +363,7 @@ namespace Xbim.IO.Esent
                 case XbimStorageType.Step21Zip:
                     InstanceCache.ImportStepZip(xbimDbName, importFrom, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
                     break;
-                case XbimStorageType.XBIM:
+                case XbimStorageType.Xbim:
                     InstanceCache.ImportXbim(importFrom, progDelegate);
                     break;
                 default:
@@ -377,7 +378,7 @@ namespace Xbim.IO.Esent
 
             switch (streamType)
             {
-                case XbimStorageType.IFCXML:
+                case XbimStorageType.IfcXml:
                     Cache.ImportIfcXml(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities);
                     break;
                 case XbimStorageType.Step21:
@@ -719,14 +720,14 @@ namespace Xbim.IO.Esent
             {
                 if (!storageType.HasValue)
                     storageType = StorageType(outputFileName);
-                if (storageType.Value == XbimStorageType.INVALID)
+                if (storageType.Value == XbimStorageType.Invalid)
                 {
                     var ext = Path.GetExtension(outputFileName);
                     if(string.IsNullOrWhiteSpace(ext))
                         throw new XbimException("Invalid file type, no extension specified in file " + outputFileName);
                     throw new XbimException("Invalid file type ." + ext.ToUpper() + " in file " + outputFileName);
                 }
-                if (storageType.Value == XbimStorageType.XBIM && DatabaseName != null) //make a copy
+                if (storageType.Value == XbimStorageType.Xbim && DatabaseName != null) //make a copy
                 {
                     var srcFile = DatabaseName;
                     if(string.Compare(srcFile, outputFileName, true, CultureInfo.InvariantCulture) == 0)
@@ -810,26 +811,26 @@ namespace Xbim.IO.Esent
 
         private XbimStorageType StorageType(string fileName)
         {
-            if (string.IsNullOrWhiteSpace(fileName)) return XbimStorageType.INVALID;
+            if (string.IsNullOrWhiteSpace(fileName)) return XbimStorageType.Invalid;
             var ext = Path.GetExtension(fileName).ToLower();
             switch (ext)
             {
                 case ".xbim":
                 case ".xbimf":
-                    return XbimStorageType.XBIM;
+                    return XbimStorageType.Xbim;
                 case ".ifc":
                 case ".stp":
                 case ".step21":
                     return XbimStorageType.Step21;
                 case ".ifcxml":
-                    return XbimStorageType.IFCXML;
+                    return XbimStorageType.IfcXml;
                 case ".zip":
                 case ".ifczip":
                 case ".stpzip":
                 case ".step21zip":
                     return XbimStorageType.Step21Zip;
             }
-            return XbimStorageType.INVALID;
+            return XbimStorageType.Invalid;
         }
 
         #endregion
@@ -993,9 +994,10 @@ namespace Xbim.IO.Esent
         }
 
         internal void EndTransaction()
-        {
-            FreeTable(_editTransactionEntityCursor); //release the cursor back to the pool
+        {           
+            //FreeTable(_editTransactionEntityCursor); //release the cursor back to the pool
             InstanceCache.EndCaching();
+            _editTransactionEntityCursor.Dispose();
             _editTransactionEntityCursor = null;
         }
        
@@ -1206,6 +1208,38 @@ namespace Xbim.IO.Esent
                 }
                 return _geometryStore;
             }
+        }
+
+        //public static IStepFileHeader GetStepFileHeader(string fileName)
+        //{
+        //}
+
+        public static IStepFileHeader GetStepFileHeader(string fileName)
+        {
+            //create a temporary model
+            var esentModel = new EsentModel();
+            esentModel.InstanceCache = new PersistedEntityInstanceCache(esentModel, null);
+
+            esentModel.InstanceCache.DatabaseName = fileName;
+            IStepFileHeader header = null;
+            var entTable = esentModel.InstanceCache.GetEntityTable();
+            try
+            {
+                using (entTable.BeginReadOnlyTransaction())
+                {
+                    header = entTable.ReadHeader();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new XbimException("Failed to open " + fileName, e);
+            }
+            finally
+            {
+                esentModel.InstanceCache.FreeTable(entTable);
+                esentModel.Dispose();
+            }
+            return header;
         }
     }
 

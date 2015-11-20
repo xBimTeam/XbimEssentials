@@ -58,7 +58,7 @@ namespace Xbim.MemoryModel.Tests
                         Debug.WriteLine("Time to insert {0} walls (Overall {1} entities): {2}ms", iWalls.Count, iModel.Instances.Count, w.ElapsedMilliseconds);
                         
                         Assert.IsTrue(iWalls.Count >= 1);
-                        iModel.Save(inserted);
+                        iModel.SaveAs(inserted);
                     }
 
                     
