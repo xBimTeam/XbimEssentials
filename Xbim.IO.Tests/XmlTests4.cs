@@ -218,14 +218,18 @@ namespace Xbim.MemoryModel.Tests
                 var project = model.Instances.OfType<IfcProject>();
                 var products = model.Instances.OfType<IfcObject>();
                 var relations = model.Instances.OfType<IfcRelationship>();
-                var materials = model.Instances.OfType<IfcMaterial>();
+
                 var all =
                     new IPersistEntity[] {}
-                        .Concat(materials)
+                        //start from root
                         .Concat(project)
+                        //add all products not referenced in the project tree
                         .Concat(products)
+                        //add all relations which are not inversed
                         .Concat(relations)
+                        //make sure all other objects will get written
                         .Concat(model.Instances);
+                
                 writer.Write(model, xml, all);
                 xml.Close();
             }
