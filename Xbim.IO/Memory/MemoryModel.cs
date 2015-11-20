@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using Xbim.Common;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
@@ -12,7 +11,7 @@ using Xbim.IO.Step21;
 
 namespace Xbim.IO.Memory
 {
-    static public class MemoryModel
+    public static class MemoryModel
     {
         
         public static IStepFileHeader GetStepFileHeader(string fileName)
@@ -133,6 +132,7 @@ namespace Xbim.IO.Memory
 
                 //find all potential references and delete from there
                 var types = Metadata.Types().Where(t => typeof(IInstantiableEntity).IsAssignableFrom(t.Type));
+                // ReSharper disable once LoopCanBeConvertedToQuery
                 foreach (var type in types)
                 {
                     var toNullify = type.Properties.Values.Where(p =>
@@ -316,6 +316,7 @@ namespace Xbim.IO.Memory
         /// Opens the model from STEP21 file. 
         /// </summary>
         /// <param name="stream">Path to the file</param>
+        /// <param name="progDelegate"></param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
         public virtual int Open(Stream stream, ReportProgressDelegate progDelegate=null)
         {
@@ -372,6 +373,7 @@ namespace Xbim.IO.Memory
         /// Opens the model from STEP21 file. 
         /// </summary>
         /// <param name="file">Path to the file</param>
+        /// <param name="progDelegate"></param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
         public virtual int Open(string file, ReportProgressDelegate progDelegate=null)
         {
@@ -445,6 +447,7 @@ namespace Xbim.IO.Memory
         /// <param name="includeInverses">Option if to bring in all inverse entities (enumerations in original entity)</param>
         /// <param name="keepLabels">Option if to keep entity labels the same</param>
         /// <param name="propTransform">Optional delegate which you can use to filter the content which will get coppied over.</param>
+        /// <param name="noTransaction"></param>
         /// <returns>Copy from this model</returns>
         public T InsertCopy<T>(T toCopy, Dictionary<int, IPersistEntity> mappings, bool includeInverses, bool keepLabels = true, PropertyTranformDelegate propTransform = null, bool noTransaction = false) where T : IPersistEntity
         {
@@ -537,12 +540,7 @@ namespace Xbim.IO.Memory
 
         public IGeometryStore GeometryStore
         {
-            get
-            {
-                if(_geometryStore == null)
-                    _geometryStore=new InMemoryGeometryStore();
-                return _geometryStore;
-            }
+            get { return _geometryStore ?? (_geometryStore = new InMemoryGeometryStore()); }
         }
     }
 

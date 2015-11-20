@@ -22,6 +22,7 @@ namespace Xbim.IO.Xml
         private readonly string _nsLocation = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1.xsd";
         private readonly string _expressUri = "http://www.buildingsmart-tech.org/ifc/IFC4/Add1/IFC4_ADD1.exp";
         private readonly string _configurationUri = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1_config.xml";
+        private readonly string _nsPrefix = "ifc";
         private readonly string _rootElementName = "ifcXML";
         private HashSet<long> _written;
         private readonly configuration _conf;
@@ -60,6 +61,7 @@ namespace Xbim.IO.Xml
             return;
 
             _ns = settings.Namespace;
+            _nsPrefix = settings.NamespacePrefix;
             _nsLocation = settings.NamespaceLocation;
             _expressUri = settings.ExpressUri;
             _configurationUri = settings.Configuration;
@@ -87,16 +89,20 @@ namespace Xbim.IO.Xml
 
                 output.WriteStartDocument();
                 output.WriteStartElement(_rootElementName, _ns);
+                
                 //xmlns declarations
                 output.WriteAttributeString("xmlns", "xsi", null, Xsi);
                 output.WriteAttributeString("xmlns", "xlink", null, Xlink);
-                output.WriteAttributeString("xmlns", "stp", null, _ns);
-                output.WriteAttributeString("schemaLocation", Xsi, string.Format("{0} {1}", _ns, _nsLocation));
+                output.WriteAttributeString("xmlns", _nsPrefix, null, _ns);
+                if(!string.IsNullOrWhiteSpace(_nsLocation)) 
+                    output.WriteAttributeString("schemaLocation", Xsi, string.Format("{0} {1}", _ns, _nsLocation));
 
-                //attributes
+                //root attributes
                 output.WriteAttributeString("id", "uos_1");
-                output.WriteAttributeString("express", _expressUri);
-                output.WriteAttributeString("configuration", _configurationUri);
+                if(!string.IsNullOrWhiteSpace(_expressUri))
+                    output.WriteAttributeString("express", _expressUri);
+                if (!string.IsNullOrWhiteSpace(_configurationUri))
+                    output.WriteAttributeString("configuration", _configurationUri);
 
                 _fileHeader = model.Header;
                 WriteHeader(output);
@@ -110,13 +116,13 @@ namespace Xbim.IO.Xml
                     foreach (var entity in model.Instances)
                         WriteEntity(entity, output, true);
 
-                output.WriteEndElement(); //uos
+                output.WriteEndElement(); //root element
                 output.WriteEndDocument();
             }
-            //catch (Exception e)
-            //{
-            //    throw new Exception("Failed to write IfcXml file", e);
-            //}
+            catch (Exception e)
+            {
+                throw new Exception("Failed to write XML file", e);
+            }
             finally
             {
                 _written = null;
@@ -285,7 +291,7 @@ namespace Xbim.IO.Xml
                 if (depth == 0)
                 {
                     output.WriteStartElement(propName);
-                    //output.WriteAttributeString("stp", "cType", _ns, attr.ListType);    
+                    //output.WriteAttributeString(_nsPrefix, "cType", _ns, attr.ListType);    
                 }
                 
                 foreach (var item in propValEnum)
