@@ -67,75 +67,7 @@ namespace Xbim.Ifc2x3.Extensions
 
         #endregion
 
-        /// <summary>
-        /// Returns the Gross Floor Area, if the element base quantity GrossFloorArea is defined
-        /// </summary>
-        /// <returns></returns>
-        public static IfcAreaMeasure? GetGrossFloorArea(this IfcSpace space)
-        {
-            var qArea = space.GetQuantity<IfcQuantityArea>("BaseQuantities", "GrossFloorArea");
-            if (qArea == null) qArea = space.GetQuantity<IfcQuantityArea>("GrossFloorArea"); //just look for any area
-            if (qArea != null) return qArea.AreaValue;
-            //try none schema defined properties
-
-            return null;
-        }
-
-
-        /// <summary>
-        /// Returns the Net Floor Area, if the element base quantity GrossFloorArea is defined
-        /// Will use GSA Space Areas if the Ifc common property NetFloorArea is not defined
-        /// </summary>
-        /// <returns></returns>
-        public static IfcAreaMeasure? GetNetFloorArea(this IfcSpace space)
-        {
-            var qArea = space.GetQuantity<IfcQuantityArea>("BaseQuantities", "NetFloorArea");
-            if (qArea == null) qArea = space.GetQuantity<IfcQuantityArea>("NetFloorArea"); //just look for any area
-            if (qArea != null) return qArea.AreaValue;
-            //try none schema defined properties
-            qArea = space.GetQuantity<IfcQuantityArea>("GSA Space Areas", "GSA BIM Area");
-            if (qArea != null) return qArea.AreaValue;
-            return null;
-        }
-        /// <summary>
-        /// Returns the Height, if the element base quantity Height is defined
-        /// </summary>
-        /// <returns></returns>
-        public static IfcLengthMeasure? GetHeight(this IfcSpace space)
-        {
-            var qLength = space.GetQuantity<IfcQuantityLength>("BaseQuantities", "Height");
-            if (qLength == null) qLength = space.GetQuantity<IfcQuantityLength>("Height"); //just look for any area
-            if (qLength != null) return qLength.LengthValue;
-            //try none schema defined properties
-            return null;
-        }
-
-
-        /// <summary>
-        /// Returns the Perimeter, if the element base quantity GrossPerimeter is defined
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static IfcLengthMeasure? GetGrossPerimeter(this IfcSpace space)
-        {
-            var qLength = space.GetQuantity<IfcQuantityLength>("BaseQuantities", "GrossPerimeter") ??
-                          space.GetQuantity<IfcQuantityLength>("GrossPerimeter");
-            if (qLength != null) return qLength.LengthValue;
-            //try none schema defined properties
-            return null;
-        }
-        /// <summary>
-        /// Returns all spaces that are sub-spaces of this space
-        /// </summary>
-        /// <param name="space"></param>
-        /// <returns></returns>
-        public static IEnumerable<IfcSpace> GetSpaces(this IfcSpace space)
-        {
-            var decomp = space.IsDecomposedBy;
-            var objs = decomp.SelectMany(s => s.RelatedObjects);
-            return objs.OfType<IfcSpace>();
-
-        }
+       
 
         public static void AddBoundingElement(this IfcSpace space, IModel model, IfcElement element,
                                               IfcPhysicalOrVirtualEnum physicalOrVirtualBoundary,
@@ -153,16 +85,6 @@ namespace Xbim.Ifc2x3.Extensions
                                                                                   rel.PhysicalOrVirtualBoundary =
                                                                                       physicalOrVirtualBoundary;
                                                                               });
-        }
-        /// <summary>
-        /// Returns the IfcSpaceType of this space, null if one is not defined
-        /// </summary>
-        /// <param name="space"></param>
-        /// <returns></returns>
-        public static IfcSpaceType GetSpaceType(this IfcSpace space)
-        {
-            var sType =  space.GetDefiningType();
-            return sType as IfcSpaceType;
         }
 
         public static bool HasBoundingElement(this IfcSpace space, IModel model, IfcElement element)

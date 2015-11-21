@@ -1,7 +1,10 @@
-﻿using Xbim.Ifc2x3.GeometryResource;
+﻿using System.Collections.Generic;
+using Xbim.Ifc2x3.GeometryResource;
 using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.RepresentationResource;
 using System.Linq;
+using Xbim.Common;
+using Xbim.Ifc2x3.ProductExtension;
 
 namespace Xbim.Ifc2x3.Kernel
 {
@@ -132,11 +135,142 @@ namespace Xbim.Ifc2x3.Kernel
 
             }
         }
-    }
 
-    public enum ProjectUnits
-    {
-        SIUnitsUK
+        /// <summary>
+        /// Returns all buildings at the highest level of spatial structural decomposition (i.e. root buildings)
+        /// </summary>
+        public IEnumerable<IfcBuilding> Buildings
+        {
+            get
+            {
+                IEnumerable<IfcRelAggregates> aggregate = IsDecomposedBy.OfType<IfcRelAggregates>();
+                foreach (IfcRelAggregates rel in aggregate)
+                {
+                    foreach (IfcObjectDefinition definition in rel.RelatedObjects)
+                    {
+                        var site = definition as IfcSite;
+                        if (site != null)
+                            foreach (var building in site.Buildings)
+                                yield return building;
+                        if (definition is IfcBuilding)
+                            yield return (definition as IfcBuilding);
+                    }
+                }
+            }
+        }
+
+        public IEnumerable<IfcSpatialStructureElement> SpatialStructuralElements
+        {
+            get
+            {
+                IEnumerable<IfcRelAggregates> aggregate = IsDecomposedBy.OfType<IfcRelAggregates>();
+                return aggregate.SelectMany(rel => rel.RelatedObjects.OfType<IfcSpatialStructureElement>());
+            }
+        }
+
+        /// <summary>
+        /// Makes a name out of the fields of this project
+        /// </summary>
+        /// <returns></returns>
+        public string BuildName()
+        {
+            List<string> tokens = new List<string>();
+            if (!string.IsNullOrWhiteSpace(Name)) tokens.Add(Name);
+            else if (!string.IsNullOrWhiteSpace(LongName)) tokens.Add(LongName);
+            else if (!string.IsNullOrWhiteSpace(Description)) tokens.Add(Description);
+            if (!string.IsNullOrWhiteSpace(Phase)) tokens.Add(Phase);
+            return string.Join(", ", tokens);
+        }
+
+
+        public IfcNamedUnit AreaUnit
+        {
+            get
+            {
+                return UnitsInContext.AreaUnit;                 
+            }
+            
+        }
+
+        public void SetOrChangeSiUnit(IfcUnitEnum unitType, IfcSIUnitName siUnitName,
+                                             IfcSIPrefix? siUnitPrefix)
+        {
+            if (UnitsInContext == null)
+            {
+                UnitsInContext = Model.Instances.New<IfcUnitAssignment>();
+            }
+            IfcUnitAssignment unitsAssignment = UnitsInContext;
+            unitsAssignment.SetOrChangeSiUnit(unitType, siUnitName, siUnitPrefix);
+        }
+
+        public void SetOrChangeConversionUnit(IfcUnitEnum unitType, ConversionBasedUnit conversionUnit)
+        {
+           
+            if (UnitsInContext == null)
+                UnitsInContext = Model.Instances.New<IfcUnitAssignment>();
+            IfcUnitAssignment unitsAssignment = UnitsInContext;
+            unitsAssignment.SetOrChangeConversionUnit(unitType, conversionUnit);
+        }
+
+
+      
+
+        public IfcGeometricRepresentationContext PlanContext
+        {
+            get
+            {
+                return RepresentationContexts.FirstOrDefault < IfcGeometricRepresentationContext>(r => r.ContextType == "Plan");
+            }
+            
+        }
+
+
+        #region Decomposition methods
+
+        /// <summary>
+        ///   Adds Site to the IsDecomposedBy Collection.
+        /// </summary>
+        public  void AddSite(IfcSite site)
+        {
+            var decomposition = IsDecomposedBy.FirstOrDefault();
+            if (decomposition==null) //none defined create the relationship
+            {
+                var relSub = Model.Instances.New<IfcRelAggregates>();
+                relSub.RelatingObject = this;
+                relSub.RelatedObjects.Add(site);
+            }
+            else
+                decomposition.RelatedObjects.Add(site);
+        }
+
+        public IEnumerable<IfcSite> Sites
+        {
+            get
+            {
+                var aggregate = IsDecomposedBy.OfType<IfcRelAggregates>();
+                return from rel in aggregate from definition in Enumerable.OfType<IfcSite>(rel.RelatedObjects) select definition;
+            }
+        }
+
+        /// <summary>
+        ///   Adds Building to the IsDecomposedBy Collection.
+        /// </summary>
+        public  void AddBuilding( IfcBuilding building)
+        {
+            var decomposition = IsDecomposedBy.FirstOrDefault();
+            if (decomposition==null) //none defined create the relationship
+            {
+                var relSub = Model.Instances.New<IfcRelAggregates>();
+                relSub.RelatingObject = this;
+                relSub.RelatedObjects.Add(building);
+            }
+            else
+                decomposition.RelatedObjects.Add(building);
+        }
+
+        #endregion
+   
+
     }
 
 }

@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Common;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.Ifc2x3.SharedBldgElements;
@@ -46,7 +47,7 @@ namespace Xbim.MemoryModel.Tests
                 EditorsOrganisationName = "XbimTeam"
             };
 
-            using (var store = IfcStore.Create(credentials,XbimStoreType.EsentDatabase, IfcSchemaVersion.Ifc2X3))
+            using (var store = IfcStore.Create(credentials, IfcSchemaVersion.Ifc2X3,XbimStoreType.EsentDatabase))
             {
                 using (var txn = store.BeginTransaction())
                 {
@@ -57,7 +58,7 @@ namespace Xbim.MemoryModel.Tests
                 store.SaveAs("esent2x3.ifc");
                 store.Close();
             }
-            using (var store = IfcStore.Create(credentials, XbimStoreType.EsentDatabase))
+            using (var store = IfcStore.Create(credentials, IfcSchemaVersion.Ifc4, XbimStoreType.EsentDatabase))
             {
                 using (var txn = store.BeginTransaction())
                 {
@@ -69,7 +70,7 @@ namespace Xbim.MemoryModel.Tests
                 store.Close();
             }
 
-            using (var store = IfcStore.Create(credentials, XbimStoreType.InMemoryModel, IfcSchemaVersion.Ifc2X3))
+            using (var store = IfcStore.Create(credentials, IfcSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel))
             {
                 using (var txn = store.BeginTransaction())
                 {
@@ -81,7 +82,7 @@ namespace Xbim.MemoryModel.Tests
                 store.Close();
             }
 
-            using (var store = IfcStore.Create(credentials))
+            using (var store = IfcStore.Create(credentials, IfcSchemaVersion.Ifc4, XbimStoreType.InMemoryModel))
             {
                 using (var txn = store.BeginTransaction())
                 {
@@ -216,5 +217,41 @@ namespace Xbim.MemoryModel.Tests
                 ifcStore.Close();
             }
         }
+
+        [TestMethod] [DeploymentItem("TestFiles")] 
+        public void IfcStoreInitialisationTest()
+        {
+            var credentials = new XbimEditorCredentials
+            {
+                ApplicationIdentifier = "XbimTest1",
+                ApplicationDevelopersName = "Tester",
+                EditorsOrganisationName = "XbimTeam"
+            };
+
+            using (var store = IfcStore.Create(credentials, IfcSchemaVersion.Ifc4, XbimStoreType.EsentDatabase))
+            {
+                using (var txn = store.BeginTransaction())
+                {
+                    var project = store.Instances.New<Ifc4.Kernel.IfcProject>();
+                    project.Initialize(ProjectUnits.SIUnitsUK);
+                    txn.Commit();
+                }
+                store.SaveAs("esent4.ifc");
+                store.Close();
+            }
+
+            using (var store = IfcStore.Create(credentials, IfcSchemaVersion.Ifc2X3, XbimStoreType.EsentDatabase))
+            {
+                using (var txn = store.BeginTransaction())
+                {
+                    var project = store.Instances.New<Ifc2x3.Kernel.IfcProject>();
+                    project.Initialize(ProjectUnits.SIUnitsUK);
+                    txn.Commit();
+                }
+                store.SaveAs("esent2x3.ifc");
+                store.Close();
+            }
+        }
+
     }
 }

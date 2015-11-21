@@ -1,69 +1,70 @@
-﻿#region XbimHeader
-
-// The eXtensible Building Information Modelling (xBIM) Toolkit
-// Solution:    XbimComplete
-// Project:     Xbim.Ifc.Extensions
-// Filename:    UnitAssignmentExtensions.cs
-// Published:   01, 2012
-// Last Edited: 9:04 AM on 20 12 2011
-// (See accompanying copyright.rtf)
-
-#endregion
-
-#region Directives
-
-using System;
+﻿using System;
 using System.Linq;
 using Xbim.Common;
-using Xbim.Ifc2x3.MeasureResource;
-using Xbim.Ifc2x3.QuantityResource;
 using Xbim.Ifc2x3.PropertyResource;
+using Xbim.Ifc2x3.QuantityResource;
 
-#endregion
-
-namespace Xbim.Ifc2x3.Extensions
+namespace Xbim.Ifc2x3.MeasureResource
 {
-    public static class UnitAssignmentExtensions
+    public enum ConversionBasedUnit
+    {
+        Inch,
+        Foot,
+        Yard,
+        Mile,
+        Acre,
+        Litre,
+        PintUk,
+        PintUs,
+        GallonUk,
+        GallonUs,
+        Ounce,
+        Pound,
+        SquareFoot,
+        CubicFoot
+    }
+    public partial class IfcUnitAssignment
     {
         /// <summary>
         ///   Returns the factor to scale units by to convert them to SI millimetres, if they are SI units, returns 1 otherwise
         /// </summary>
-        /// <param name = "ua"></param>
         /// <returns></returns>
-        public static double LengthUnitPower(this IfcUnitAssignment ua)
+        public double LengthUnitPower
         {
-            var si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
-            if (si != null && si.Prefix.HasValue)
-                return si.Power();
-            var cu =
-                ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
-            if (cu == null) return 1.0;
-            var mu = cu.ConversionFactor;
-            var uc = mu.UnitComponent as IfcSIUnit;
-            //some BIM tools such as StruCAD write the conversion value out as a Length Measure
-            if (uc == null) return 1.0;
+             get
+             {
+                 var si = Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
+                 if (si != null && si.Prefix.HasValue)
+                     return si.Power;
+                 var cu =
+                     Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
+                 if (cu == null) return 1.0;
+                 var mu = cu.ConversionFactor;
+                 var uc = mu.UnitComponent as IfcSIUnit;
+                 //some BIM tools such as StruCAD write the conversion value out as a Length Measure
+                 if (uc == null) return 1.0;
 
 
-            var et = ((IExpressValueType)mu.ValueComponent);
-            var cFactor = 1.0;
-            if(et.UnderlyingSystemType==typeof(double))
-                cFactor = (double) et.Value;
-            else if(et.UnderlyingSystemType==typeof(int))
-                cFactor = (double) ((int)et.Value);
-            else if (et.UnderlyingSystemType == typeof(long))
-                cFactor = (double)((long)et.Value);
+                 var et = ((IExpressValueType) mu.ValueComponent);
+                 var cFactor = 1.0;
+                 if (et.UnderlyingSystemType == typeof (double))
+                     cFactor = (double) et.Value;
+                 else if (et.UnderlyingSystemType == typeof (int))
+                     cFactor = (int) et.Value;
+                 else if (et.UnderlyingSystemType == typeof (long))
+                     cFactor = (long) et.Value;
 
-            return uc.Power() * cFactor ;
+                 return uc.Power*cFactor;
+             }
         }
 
-        public static double GetPower(this IfcUnitAssignment ua, IfcUnitEnum unitType)
-        {
-           
-            var si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == unitType);
+        public double Power(IfcUnitEnum unitType)
+        {          
+            var si = Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == unitType);
             if (si != null && si.Prefix.HasValue)
-                return si.Power();
+                return si.Power;
             var cu =
-                ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == unitType);
+                Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == unitType);
             if (cu == null) return 1.0;
             var mu = cu.ConversionFactor;
             var uc = mu.UnitComponent as IfcSIUnit;
@@ -76,38 +77,36 @@ namespace Xbim.Ifc2x3.Extensions
             if (et.UnderlyingSystemType == typeof(double))
                 cFactor = (double)et.Value;
             else if (et.UnderlyingSystemType == typeof(int))
-                cFactor = (double)((int)et.Value);
+                cFactor = (int)et.Value;
             else if (et.UnderlyingSystemType == typeof(long))
-                cFactor = (double)((long)et.Value);
+                cFactor = (long)et.Value;
 
-            return uc.Power() * cFactor;
+            return uc.Power * cFactor;
         }
 
         /// <summary>
         /// Sets the Length Unit to be SIUnit and SIPrefix, returns false if the units are not SI
         /// </summary>
-        /// <param name = "ua"></param>
         /// <param name = "siUnitName"></param>
         /// <param name = "siPrefix"></param>
         /// <returns></returns>
-        public static bool SetSILengthUnits(this IfcUnitAssignment ua, IfcSIUnitName siUnitName, IfcSIPrefix? siPrefix)
+        public bool SetSiLengthUnits(IfcSIUnitName siUnitName, IfcSIPrefix? siPrefix)
         {
-            var si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
+            var si = Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
             if (si != null)
             {
                 si.Prefix = siPrefix;
                 si.Name = siUnitName;
                 return true;
             }
-            else
-                return false;
+            return false;
         }
 
-        public static void SetOrChangeSIUnit(this IfcUnitAssignment ua, IfcUnitEnum unitType, IfcSIUnitName siUnitName,
+        public  void SetOrChangeSiUnit(IfcUnitEnum unitType, IfcSIUnitName siUnitName,
                                              IfcSIPrefix? siUnitPrefix)
         {
-            var model = ua.Model;
-            var si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == unitType);
+            var model = Model;
+            var si = Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == unitType);
             if (si != null)
             {
                 si.Prefix = siUnitPrefix;
@@ -115,7 +114,7 @@ namespace Xbim.Ifc2x3.Extensions
             }
             else
             {
-                ua.Units.Add(model.Instances.New<IfcSIUnit>(s =>
+                Units.Add(model.Instances.New<IfcSIUnit>(s =>
                                                                  {
                                                                      s.UnitType = unitType;
                                                                      s.Name = siUnitName;
@@ -124,180 +123,195 @@ namespace Xbim.Ifc2x3.Extensions
             }
         }
 
-        public static IfcNamedUnit GetUnitFor(this IfcUnitAssignment ua, IfcPropertySingleValue Property)
+        public  IfcNamedUnit GetUnitFor(IfcPropertySingleValue property)
         {
 
-            if (Property.Unit != null)
-                return (IfcNamedUnit)Property.Unit;
+            if (property.Unit != null)
+                return (IfcNamedUnit)property.Unit;
 
-
-            
             // nominal value can be of types with subtypes:
             //	IfcMeasureValue, IfcSimpleValue, IfcDerivedMeasureValue
 
-            IfcUnitEnum? requiredUnit = null;
+            IfcUnitEnum? requiredUnit;
             // types from http://www.buildingsmart-tech.org/ifc/IFC2x3/TC1/html/ifcmeasureresource/lexical/ifcmeasurevalue.htm
-            if (Property.NominalValue is IfcVolumeMeasure)
+            if (property.NominalValue is IfcVolumeMeasure)
                 requiredUnit = IfcUnitEnum.VOLUMEUNIT;
-            else if (Property.NominalValue is IfcAreaMeasure)
+            else if (property.NominalValue is IfcAreaMeasure)
                 requiredUnit = IfcUnitEnum.AREAUNIT;
-            else if (Property.NominalValue is IfcLengthMeasure)
+            else if (property.NominalValue is IfcLengthMeasure)
                 requiredUnit = IfcUnitEnum.LENGTHUNIT;
-            else if (Property.NominalValue is IfcPositiveLengthMeasure)
+            else if (property.NominalValue is IfcPositiveLengthMeasure)
                 requiredUnit = IfcUnitEnum.LENGTHUNIT;
-            else if (Property.NominalValue is IfcAmountOfSubstanceMeasure)
+            else if (property.NominalValue is IfcAmountOfSubstanceMeasure)
                 requiredUnit = IfcUnitEnum.AMOUNTOFSUBSTANCEUNIT;
-            else if (Property.NominalValue is IfcContextDependentMeasure)
+            else if (property.NominalValue is IfcContextDependentMeasure)
                 requiredUnit = null; // todo: not sure what to do here
-            else if (Property.NominalValue is IfcCountMeasure)
+            else if (property.NominalValue is IfcCountMeasure)
                 requiredUnit = null; // todo: not sure what to do here
-            else if (Property.NominalValue is IfcDescriptiveMeasure)
+            else if (property.NominalValue is IfcDescriptiveMeasure)
                 requiredUnit = null; // todo: not sure what to do here
-            else if (Property.NominalValue is IfcElectricCurrentMeasure)
+            else if (property.NominalValue is IfcElectricCurrentMeasure)
                 requiredUnit = IfcUnitEnum.ELECTRICCURRENTUNIT; 
-            else if (Property.NominalValue is IfcLuminousIntensityMeasure)
+            else if (property.NominalValue is IfcLuminousIntensityMeasure)
                 requiredUnit = IfcUnitEnum.LUMINOUSINTENSITYUNIT;
-            else if (Property.NominalValue is IfcMassMeasure)
+            else if (property.NominalValue is IfcMassMeasure)
                 requiredUnit = IfcUnitEnum.MASSUNIT;
-            else if (Property.NominalValue is IfcNormalisedRatioMeasure)
+            else if (property.NominalValue is IfcNormalisedRatioMeasure)
                 requiredUnit = null; // todo: not sure what to do here
-            else if (Property.NominalValue is IfcNumericMeasure)
+            else if (property.NominalValue is IfcNumericMeasure)
                 requiredUnit = null; // todo: not sure what to do here.
-            else if (Property.NominalValue is IfcParameterValue)
+            else if (property.NominalValue is IfcParameterValue)
                 requiredUnit = null; // todo: not sure what to do here.
-            else if (Property.NominalValue is IfcPlaneAngleMeasure)
+            else if (property.NominalValue is IfcPlaneAngleMeasure)
                 requiredUnit = IfcUnitEnum.PLANEANGLEUNIT;
-            else if (Property.NominalValue is IfcPositiveRatioMeasure)
+            else if (property.NominalValue is IfcPositiveRatioMeasure)
                 requiredUnit = null; // todo: not sure what to do here.
-            else if (Property.NominalValue is IfcPositivePlaneAngleMeasure)
+            else if (property.NominalValue is IfcPositivePlaneAngleMeasure)
                 requiredUnit = IfcUnitEnum.PLANEANGLEUNIT;
-            else if (Property.NominalValue is IfcRatioMeasure)
+            else if (property.NominalValue is IfcRatioMeasure)
                 requiredUnit = null; // todo: not sure what to do here.
-            else if (Property.NominalValue is IfcSolidAngleMeasure)
+            else if (property.NominalValue is IfcSolidAngleMeasure)
                 requiredUnit = IfcUnitEnum.SOLIDANGLEUNIT;
-            else if (Property.NominalValue is IfcThermodynamicTemperatureMeasure)
+            else if (property.NominalValue is IfcThermodynamicTemperatureMeasure)
                 requiredUnit = IfcUnitEnum.THERMODYNAMICTEMPERATUREUNIT;
-            else if (Property.NominalValue is IfcTimeMeasure)
+            else if (property.NominalValue is IfcTimeMeasure)
                 requiredUnit = IfcUnitEnum.TIMEUNIT;
-            else if (Property.NominalValue is IfcComplexNumber)
+            else if (property.NominalValue is IfcComplexNumber)
                 requiredUnit = null; // todo: not sure what to do here.
-
             // types from IfcSimpleValue
-            else if (Property.NominalValue is IfcSimpleValue)
+            else if (property.NominalValue is IfcSimpleValue)
                 requiredUnit = null;
-
+            else
+                requiredUnit = null;
             // more measures types to be taken from http://www.buildingsmart-tech.org/ifc/IFC2x3/TC1/html/ifcmeasureresource/lexical/ifcderivedmeasurevalue.htm
             
             if (requiredUnit == null)
                 return null;
 
-            IfcNamedUnit nu = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == (IfcUnitEnum)requiredUnit);
+            IfcNamedUnit nu = Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == (IfcUnitEnum)requiredUnit);
             if (nu == null)
-                nu = ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == (IfcUnitEnum)requiredUnit);
+                nu = Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == (IfcUnitEnum)requiredUnit);
             return nu;
         }
 
-        public static IfcNamedUnit GetUnitFor(this IfcUnitAssignment ua, IfcPhysicalSimpleQuantity Quantity)
+        public IfcNamedUnit GetUnitFor(IfcPhysicalSimpleQuantity quantity)
         {
-            if (Quantity.Unit != null)
-                return Quantity.Unit;
+            if (quantity.Unit != null)
+                return quantity.Unit;
 
             IfcUnitEnum? requiredUnit = null; 
 
             // list of possible types taken from:
             // http://www.buildingsmart-tech.org/ifc/IFC2x3/TC1/html/ifcquantityresource/lexical/ifcphysicalsimplequantity.htm
             //
-            if (Quantity is IfcQuantityLength)
+            if (quantity is IfcQuantityLength)
                 requiredUnit = IfcUnitEnum.LENGTHUNIT;
-            else if (Quantity is IfcQuantityArea)
+            else if (quantity is IfcQuantityArea)
                 requiredUnit = IfcUnitEnum.AREAUNIT;
-            else if (Quantity is IfcQuantityVolume)
+            else if (quantity is IfcQuantityVolume)
                 requiredUnit = IfcUnitEnum.VOLUMEUNIT;
-            else if (Quantity is IfcQuantityCount) // really not sure what to do here.
+            else if (quantity is IfcQuantityCount) // really not sure what to do here.
                 return null;
-            else if (Quantity is IfcQuantityWeight)
+            else if (quantity is IfcQuantityWeight)
                 requiredUnit = IfcUnitEnum.MASSUNIT;
-            else if (Quantity is IfcQuantityTime)
+            else if (quantity is IfcQuantityTime)
                 requiredUnit = IfcUnitEnum.TIMEUNIT;
 
             if (requiredUnit == null)
                 return null;
 
-            IfcNamedUnit nu = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == (IfcUnitEnum)requiredUnit);
+            IfcNamedUnit nu = Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == (IfcUnitEnum)requiredUnit);
             if (nu == null)
-                nu = ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == (IfcUnitEnum)requiredUnit);
+                nu = Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == (IfcUnitEnum)requiredUnit);
             return nu;
         }
 
-        public static IfcNamedUnit GetAreaUnit(this IfcUnitAssignment ua)
+        public IfcNamedUnit AreaUnit
         {
-            IfcNamedUnit nu = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.AREAUNIT);
-            if (nu == null)
-                nu = ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.AREAUNIT);
-            return nu;
-        }
-        public static IfcNamedUnit GetLengthUnit(this IfcUnitAssignment ua)
-        {
-            IfcNamedUnit nu = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
-            if (nu == null)
-                nu = ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
-            return nu;
-        }
-        public static IfcNamedUnit GetVolumeUnit(this IfcUnitAssignment ua)
-        {
-            IfcNamedUnit nu = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.VOLUMEUNIT);
-            if (nu == null)
-                nu = ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.VOLUMEUNIT);
-            return nu;
-        }
-        public static string GetLengthUnitName(this IfcUnitAssignment ua)
-        {
-            var si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
-            if (si != null)
+            get
             {
-                if (si.Prefix.HasValue)
-                    return string.Format("{0}{1}", si.Prefix.Value.ToString(), si.Name.ToString());
-                else
-                    return si.Name.ToString();
+                IfcNamedUnit nu = Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.AREAUNIT);
+                if (nu == null)
+                    nu = Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.AREAUNIT);
+                return nu;
             }
-            else
+        }
+        public IfcNamedUnit LengthUnit
+        {
+            get
             {
-                var cu =
-                    ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
-                if (cu != null)
+                IfcNamedUnit nu = Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
+                if (nu == null)
+                    nu =
+                        Units.OfType<IfcConversionBasedUnit>()
+                            .FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
+                return nu;
+            }
+        }
+        public IfcNamedUnit VolumeUnit
+        {
+            get
+            {
+                IfcNamedUnit nu = Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.VOLUMEUNIT);
+                if (nu == null)
+                    nu =
+                        Units.OfType<IfcConversionBasedUnit>()
+                            .FirstOrDefault(u => u.UnitType == IfcUnitEnum.VOLUMEUNIT);
+                return nu;
+            }
+        }
+        public string LengthUnitName
+        {
+            get
+            {
+                var si = Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
+                if (si != null)
                 {
-                    return cu.Name;
+                    if (si.Prefix.HasValue)
+                        return string.Format("{0}{1}", si.Prefix.Value.ToString(), si.Name.ToString());
+                    else
+                        return si.Name.ToString();
                 }
                 else
                 {
-                    var cbu =
-                        ua.Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(
-                            u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
-                    if (cbu != null)
+                    var cu =
+                        Units.OfType<IfcConversionBasedUnit>()
+                            .FirstOrDefault(u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
+                    if (cu != null)
                     {
-                        return cbu.Name;
+                        return cu.Name;
+                    }
+                    else
+                    {
+                        var cbu =
+                            Units.OfType<IfcConversionBasedUnit>().FirstOrDefault(
+                                u => u.UnitType == IfcUnitEnum.LENGTHUNIT);
+                        if (cbu != null)
+                        {
+                            return cbu.Name;
+                        }
                     }
                 }
+                return "";
             }
-            return "";
         }
-        public static void SetOrChangeConversionUnit(this IfcUnitAssignment ua, IfcUnitEnum unitType, ConversionBasedUnit unit)
+        public  void SetOrChangeConversionUnit(IfcUnitEnum unitType, ConversionBasedUnit unit)
         {
-            var model = ua.Model;
-            var si = ua.Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == unitType);
+            
+            var si = Units.OfType<IfcSIUnit>().FirstOrDefault(u => u.UnitType == unitType);
             if (si != null)
             {
-                ua.Units.Remove(si);
+                Units.Remove(si);
                 try
                 {
-                    model.Delete(si);
+                    Model.Delete(si);
                 }
                 catch (Exception)
                 {
                     // ignored
                 }
             }
-            ua.Units.Add(GetNewConversionUnit(model, unitType, unit));
+            Units.Add(GetNewConversionUnit(Model, unitType, unit));
         }
         private static IfcConversionBasedUnit GetNewConversionUnit(IModel model, IfcUnitEnum unitType, ConversionBasedUnit unitEnum)
         {
@@ -306,59 +320,59 @@ namespace Xbim.Ifc2x3.Extensions
 
             switch (unitEnum)
             {
-                case ConversionBasedUnit.INCH:
+                case ConversionBasedUnit.Inch:
                     SetConversionUnitsParameters(model, unit, "inch", 25.4, IfcUnitEnum.LENGTHUNIT, IfcSIUnitName.METRE,
                                                  IfcSIPrefix.MILLI, GetLengthDimension(model));
                     break;
-                case ConversionBasedUnit.FOOT:
+                case ConversionBasedUnit.Foot:
                     SetConversionUnitsParameters(model, unit, "foot", 304.8, IfcUnitEnum.LENGTHUNIT, IfcSIUnitName.METRE,
                                                  IfcSIPrefix.MILLI, GetLengthDimension(model));
                     break;
-                case ConversionBasedUnit.YARD:
+                case ConversionBasedUnit.Yard:
                     SetConversionUnitsParameters(model, unit, "yard", 914, IfcUnitEnum.LENGTHUNIT, IfcSIUnitName.METRE,
                                                  IfcSIPrefix.MILLI, GetLengthDimension(model));
                     break;
-                case ConversionBasedUnit.MILE:
+                case ConversionBasedUnit.Mile:
                     SetConversionUnitsParameters(model, unit, "mile", 1609, IfcUnitEnum.LENGTHUNIT, IfcSIUnitName.METRE,
                                                  null, GetLengthDimension(model));
                     break;
-                case ConversionBasedUnit.ACRE:
+                case ConversionBasedUnit.Acre:
                     SetConversionUnitsParameters(model, unit, "acre", 4046.86, IfcUnitEnum.AREAUNIT,
                                                  IfcSIUnitName.SQUARE_METRE, null, GetAreaDimension(model));
                     break;
-                case ConversionBasedUnit.LITRE:
+                case ConversionBasedUnit.Litre:
                     SetConversionUnitsParameters(model, unit, "litre", 0.001, IfcUnitEnum.VOLUMEUNIT,
                                                  IfcSIUnitName.CUBIC_METRE, null, GetVolumeDimension(model));
                     break;
-                case ConversionBasedUnit.PINT_UK:
+                case ConversionBasedUnit.PintUk:
                     SetConversionUnitsParameters(model, unit, "pint UK", 0.000568, IfcUnitEnum.VOLUMEUNIT,
                                                  IfcSIUnitName.CUBIC_METRE, null, GetVolumeDimension(model));
                     break;
-                case ConversionBasedUnit.PINT_US:
+                case ConversionBasedUnit.PintUs:
                     SetConversionUnitsParameters(model, unit, "pint US", 0.000473, IfcUnitEnum.VOLUMEUNIT,
                                                  IfcSIUnitName.CUBIC_METRE, null, GetVolumeDimension(model));
                     break;
-                case ConversionBasedUnit.GALLON_UK:
+                case ConversionBasedUnit.GallonUk:
                     SetConversionUnitsParameters(model, unit, "gallon UK", 0.004546, IfcUnitEnum.VOLUMEUNIT,
                                                  IfcSIUnitName.CUBIC_METRE, null, GetVolumeDimension(model));
                     break;
-                case ConversionBasedUnit.GALLON_US:
+                case ConversionBasedUnit.GallonUs:
                     SetConversionUnitsParameters(model, unit, "gallon US", 0.003785, IfcUnitEnum.VOLUMEUNIT,
                                                  IfcSIUnitName.CUBIC_METRE, null, GetVolumeDimension(model));
                     break;
-                case ConversionBasedUnit.OUNCE:
+                case ConversionBasedUnit.Ounce:
                     SetConversionUnitsParameters(model, unit, "ounce", 28.35, IfcUnitEnum.MASSUNIT, IfcSIUnitName.GRAM,
                                                  null, GetMassDimension(model));
                     break;
-                case ConversionBasedUnit.POUND:
+                case ConversionBasedUnit.Pound:
                     SetConversionUnitsParameters(model, unit, "pound", 0.454, IfcUnitEnum.MASSUNIT, IfcSIUnitName.GRAM,
                                                  IfcSIPrefix.KILO, GetMassDimension(model));
                     break;
-                case ConversionBasedUnit.SQUARE_FOOT:
+                case ConversionBasedUnit.SquareFoot:
                     SetConversionUnitsParameters(model, unit, "square foot", 92903.04 , IfcUnitEnum.AREAUNIT, IfcSIUnitName.METRE,
                                                  IfcSIPrefix.MILLI, GetAreaDimension(model));
                     break;
-                case ConversionBasedUnit.CUBIC_FOOT:
+                case ConversionBasedUnit.CubicFoot:
                     SetConversionUnitsParameters(model, unit, "cubic foot", 28316846.6, IfcUnitEnum.VOLUMEUNIT, IfcSIUnitName.METRE,
                                                  IfcSIPrefix.MILLI,  GetVolumeDimension(model));
                     break;
@@ -435,21 +449,5 @@ namespace Xbim.Ifc2x3.Extensions
         }
     }
 
-    public enum ConversionBasedUnit
-    {
-        INCH,
-        FOOT,
-        YARD,
-        MILE,
-        ACRE,
-        LITRE,
-        PINT_UK,
-        PINT_US,
-        GALLON_UK,
-        GALLON_US,
-        OUNCE,
-        POUND,
-        SQUARE_FOOT,
-        CUBIC_FOOT
-    }
+    
 }

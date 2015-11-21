@@ -1,66 +1,69 @@
-﻿using System.Text;
-using Xbim.Ifc2x3.CostResource;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Xbim.Ifc2x3.DateTimeResource;
 using Xbim.Ifc2x3.MeasureResource;
 
-namespace Xbim.Ifc2x3.Extensions
+namespace Xbim.Ifc2x3.CostResource
 {
-    public static class AppliedValueExtensions
+    abstract partial  class IfcAppliedValue
     {
-        public static string GetAsString(this IfcAppliedValue ifcAppliedValue)
+        public string AsString()
         {
             
             StringBuilder value = new StringBuilder();
-            if ((ifcAppliedValue.Description.HasValue) &&
-                (!string.IsNullOrEmpty(ifcAppliedValue.Description))
+            if ((Description.HasValue) &&
+                (!string.IsNullOrEmpty(Description))
                 )
             {
-                value.Append(ifcAppliedValue.Description);
+                value.Append(Description);
                 value.Append(", ");
             }
 
-            if (ifcAppliedValue.AppliedValue != null)//not nullable should be? incorrect name?
+            if (AppliedValue != null)//not nullable should be? incorrect name?
             {
                 value.Append("AppliedValue: ");
-                if (ifcAppliedValue.AppliedValue is IfcRatioMeasure)
+                if (AppliedValue is IfcRatioMeasure)
                 {
-                    IfcRatioMeasure ifcRatioMeasure = (IfcRatioMeasure)ifcAppliedValue.AppliedValue;
+                    var ifcRatioMeasure = (IfcRatioMeasure)AppliedValue;
                     value.Append(string.Format("{0,0:N2}", ifcRatioMeasure.Value));
                 }
-                if (ifcAppliedValue.AppliedValue is IfcMonetaryMeasure)
+                if (AppliedValue is IfcMonetaryMeasure)
                 {
-                    IfcMonetaryMeasure ifcMonetaryMeasure = (IfcMonetaryMeasure)ifcAppliedValue.AppliedValue;
+                    IfcMonetaryMeasure ifcMonetaryMeasure = (IfcMonetaryMeasure)AppliedValue;
                     value.Append(string.Format("{0,0:N2}", ifcMonetaryMeasure.Value));
                 }
-                if (ifcAppliedValue.AppliedValue is IfcMeasureWithUnit)
+                if (AppliedValue is IfcMeasureWithUnit)
                 {
-                    value.Append(GetMeasureWithUnitAsString((IfcMeasureWithUnit)ifcAppliedValue.AppliedValue));
-                    
+                    value.Append(((IfcMeasureWithUnit)AppliedValue).AsString());
+
                 }
                 value.Append(", ");
             }
 
-            if (ifcAppliedValue.UnitBasis != null) //not nullable should be?
+            if (UnitBasis != null) //not nullable should be?
             {
                 value.Append("UnitBase: ");
-                value.Append(GetMeasureWithUnitAsString((IfcMeasureWithUnit)ifcAppliedValue.UnitBasis));
+                value.Append(((IfcMeasureWithUnit)UnitBasis).AsString());
                 value.Append(", ");
             }
-            if (ifcAppliedValue.ApplicableDate != null) //not nullable should be?
+            if (ApplicableDate != null) //not nullable should be?
             {
                 value.Append("ApplicableDate: ");
-                value.Append(ifcAppliedValue.ApplicableDate.GetAsString());
+                value.Append(ApplicableDate.AsString());
                 value.Append(", ");
             }
-            if (ifcAppliedValue.FixedUntilDate != null) //not nullable should be?
+            if (FixedUntilDate != null) //not nullable should be?
             {
                 value.Append("FixedUntilDate: ");
-                value.Append(ifcAppliedValue.FixedUntilDate.GetAsString());
+                value.Append(FixedUntilDate.AsString());
                 value.Append(", ");
             }
 
-            if (ifcAppliedValue is IfcCostValue)
+            if ( this is IfcCostValue)
             {
-                IfcCostValue ifcCostValue = (IfcCostValue)ifcAppliedValue;
+                IfcCostValue ifcCostValue = (IfcCostValue)this;
                 if (ifcCostValue.CostType != null)
                 {
                     value.Append("CostType: ");
@@ -75,21 +78,21 @@ namespace Xbim.Ifc2x3.Extensions
                     value.Append(", ");
                 }
             }
-            if (ifcAppliedValue is IfcEnvironmentalImpactValue)
+            if (this is IfcEnvironmentalImpactValue)
             {
-                IfcEnvironmentalImpactValue ifcEnvironmentalImpactValue = (IfcEnvironmentalImpactValue)ifcAppliedValue;
+                IfcEnvironmentalImpactValue ifcEnvironmentalImpactValue = (IfcEnvironmentalImpactValue)this;
                 if (ifcEnvironmentalImpactValue.ImpactType != null)
                 {
                     value.Append("ImpactType: ");
                     value.Append(ifcEnvironmentalImpactValue.ImpactType);
                     value.Append(", ");
                 }
-                
+
                 //enum so should have a value as not nullable
                 value.Append("Category: ");
                 value.Append(ifcEnvironmentalImpactValue.Category.ToString());
                 value.Append(", ");
-                
+
                 if (ifcEnvironmentalImpactValue.UserDefinedCategory != null)//not nullable should be?
                 {
                     value.Append("UserDefinedCategory: ");
@@ -100,17 +103,6 @@ namespace Xbim.Ifc2x3.Extensions
             return value.ToString();
         }
 
-        private static string GetMeasureWithUnitAsString(IfcMeasureWithUnit ifcMeasureWithUnit)
-        {
-            string value = string.Format("{0,0:N2}", ifcMeasureWithUnit.ValueComponent.Value);
-            IfcUnit ifcUnit = ifcMeasureWithUnit.UnitComponent;
-            string unit = ifcUnit.GetSymbol();
-            if (!string.IsNullOrEmpty(unit))
-            {
-                value += unit;
-            }
-            
-            return value;
-        }
+        
     }
 }

@@ -78,12 +78,8 @@
     </Compile>
     <Compile Include="ActorSelectExtensions.cs" />
     <Compile Include="AddressExtensions.cs" />
-    <Compile Include="AppliedValueExtensions.cs" />
     <Compile Include="Axis2Placement2DExtensions.cs" />
     <Compile Include="Axis2Placement3DExtensions.cs" />
-    <Compile Include="BuildingElementExtension.cs" />
-    <Compile Include="BuildingExtensions.cs" />
-    <Compile Include="BuildingStoreyExtensions.cs" />
     <Compile Include="CalendarDateExtensions.cs" />
     <Compile Include="CartesianPointExtensions.cs" />
     <Compile Include="CartesianTransformationOperatorExtensions.cs" />
@@ -621,13 +617,11 @@
     <Compile Include="DataProviders\IfcWindowStyles.cs" />
     <Compile Include="DataProviders\IfcZones.cs" />
     <Compile Include="DataProviders\IfcZShapeProfileDefs.cs" />
-    <Compile Include="DateTimeSelectExtensions.cs" />
     <Compile Include="DirectionExtensions.cs" />
     <Compile Include="DistributionControlElementExtensions.cs" />
     <Compile Include="DoorExtensions.cs" />
     <Compile Include="DoorLiningPropertiesExtensions.cs" />
     <Compile Include="DoorStyleExtensions.cs" />
-    <Compile Include="ElementExtensions.cs" />
     <Compile Include="ElementTypeExtensions.cs" />
     <Compile Include="FeatureElementSubtractionExtensions.cs" />
     <Compile Include="DistributionFlowElementExtensions.cs" />
@@ -684,18 +678,12 @@
     <Compile Include="PlacementExtensions.cs" />
     <Compile Include="ShapeModelListExtension.cs" />
     <Compile Include="TimeSeriesExtensions.cs" />
-    <Compile Include="UnitExtensions.cs" />
     <Compile Include="LocalTimeExtensions.cs" />
     <Compile Include="MaterialExtension.cs" />
-    <Compile Include="MonetaryUnitExtensions.cs" />
-    <Compile Include="NamedUnitExtensions.cs" />
-    <Compile Include="ObjectDefinitionExtensions.cs" />
-    <Compile Include="ObjectExtensions.cs" />
     <Compile Include="ObjectPlacementExtensions.cs" />
     <Compile Include="PolyLoopExtensions.cs" />
     <Compile Include="PresentationStyleAssignmentExtension.cs" />
     <Compile Include="ProductExtensions.cs" />
-    <Compile Include="ProjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyDefinitionExtensions.cs" />
     <Compile Include="PropertySetDefinitionExtensions.cs" />
@@ -706,15 +694,11 @@
     <Compile Include="RootExtensions.cs" />
     <Compile Include="ShapeAspectExtensions.cs" />
     <Compile Include="ShapeModelExtensions.cs" />
-    <Compile Include="SiteExtensions.cs" />
-    <Compile Include="SIUnitExtensions.cs" />
     <Compile Include="SlabExtensions.cs" />
     <Compile Include="SpaceExtensions.cs" />
     <Compile Include="SpatialStructureElementExtensions.cs" />
     <Compile Include="StyledItemExtensions.cs" />
     <Compile Include="SurfaceExtensions.cs" />
-    <Compile Include="TypeObjectExtensions.cs" />
-    <Compile Include="UnitAssignmentExtensions.cs" />
     <Compile Include="WallExtensions.cs" />
     <Compile Include="WindowExtensions.cs" />
   </ItemGroup>

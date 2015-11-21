@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Xbim.Ifc2x3.MaterialResource;
 using Xbim.Ifc2x3.ActorResource;
 using Xbim.Ifc2x3.DateTimeResource;
@@ -13,54 +14,54 @@ namespace Xbim.Ifc2x3.Extensions
     {
         public static string GetValuesAsString(this IfcObjectReferenceSelect ifcObjectReferenceSelect)
         {
-            if (ifcObjectReferenceSelect is IfcMaterial)
+            var material = ifcObjectReferenceSelect as IfcMaterial;
+            if (material != null)
             {
-                return (ifcObjectReferenceSelect as IfcMaterial).Name.ToString();
+                return material.Name.ToString();
             }
-            if (ifcObjectReferenceSelect is IfcPerson)
+            var person = ifcObjectReferenceSelect as IfcPerson;
+            if (person != null)
             {
-                return (ifcObjectReferenceSelect as IfcPerson).GetFullName();
+                return person.GetFullName();
             }
-            if (ifcObjectReferenceSelect is IfcDateAndTime)
+            var time = ifcObjectReferenceSelect as IfcDateAndTime;
+            if (time != null) return time.AsString();
+
+            var list = ifcObjectReferenceSelect as IfcMaterialList;
+            if (list != null)
             {
-                return (ifcObjectReferenceSelect as IfcDateAndTime).GetAsString();
+                List<string> values = list.Materials.Select(item => item.Name.ToString()).ToList();
+                return values.Count > 0 ? string.Join(", ", values) : string.Empty;
             }
-            if (ifcObjectReferenceSelect is IfcMaterialList)
+            var @select = ifcObjectReferenceSelect as IfcOrganization;
+            if (@select != null)
             {
-                List<string> values = new List<string>();
-                foreach (var item in (ifcObjectReferenceSelect as IfcMaterialList).Materials)
-                {
-                    values.Add(item.Name.ToString());
-                }
-                if (values.Count > 0)
-                    return string.Join(", ", values);
-                else
-                    return string.Empty;
+                return @select.Name.ToString();
             }
-            if (ifcObjectReferenceSelect is IfcOrganization)
+            var date = ifcObjectReferenceSelect as IfcCalendarDate;
+            if (date != null)
             {
-                return (ifcObjectReferenceSelect as IfcOrganization).Name.ToString();
-            }
-            if (ifcObjectReferenceSelect is IfcCalendarDate)
-            {
-                return (ifcObjectReferenceSelect as IfcCalendarDate).GetAsString();
+                return date.AsString();
                 
             }
-            if (ifcObjectReferenceSelect is IfcLocalTime)
+            var localTime = ifcObjectReferenceSelect as IfcLocalTime;
+            if (localTime != null)
             {
-                return (ifcObjectReferenceSelect as IfcLocalTime).GetAsString();
+                return localTime.AsString();
             }
-            if (ifcObjectReferenceSelect is IfcPersonAndOrganization)
+            var organization = ifcObjectReferenceSelect as IfcPersonAndOrganization;
+            if (organization != null)
             {
-                IfcPersonAndOrganization ifcPersonAndOrganization = (ifcObjectReferenceSelect as IfcPersonAndOrganization);
+                IfcPersonAndOrganization ifcPersonAndOrganization = organization;
                 string value = ifcPersonAndOrganization.ThePerson.GetFullName();
                 value = value.Trim();
                 value += ", " + ifcPersonAndOrganization.TheOrganization.Name.ToString();
                 return value;
             }
-            if (ifcObjectReferenceSelect is IfcMaterialLayer)
+            var layer = ifcObjectReferenceSelect as IfcMaterialLayer;
+            if (layer != null)
             {
-                IfcMaterialLayer ifcMaterialLayer = (ifcObjectReferenceSelect as IfcMaterialLayer);
+                IfcMaterialLayer ifcMaterialLayer = layer;
                 string value = string.Empty;
                 if (ifcMaterialLayer.Material != null)
 	            {
@@ -72,30 +73,33 @@ namespace Xbim.Ifc2x3.Extensions
                 }
                 else
                 {
-                    value += "(" +ifcMaterialLayer.LayerThickness.Value.ToString() + ")";
+                    value += "(" +ifcMaterialLayer.LayerThickness.Value + ")";
                 }
                 return value;
             }
-            if (ifcObjectReferenceSelect is IfcExternalReference)
+            var reference = ifcObjectReferenceSelect as IfcExternalReference;
+            if (reference != null)
             {
-                IfcExternalReference ifcExternalReference = (ifcObjectReferenceSelect as IfcExternalReference);
-                if (ifcExternalReference.Location.HasValue)
+                if (reference.Location.HasValue)
                 {
-                    return ifcExternalReference.Location.ToString();
+                    return reference.Location.ToString();
                 }
                 return string.Empty;
             }
-            if (ifcObjectReferenceSelect is IfcTimeSeries)
+            var series = ifcObjectReferenceSelect as IfcTimeSeries;
+            if (series != null)
             {
-                return (ifcObjectReferenceSelect as IfcTimeSeries).GetAsString();
+                return series.GetAsString();
             }
-            if (ifcObjectReferenceSelect is IfcAddress)
+            var address = ifcObjectReferenceSelect as IfcAddress;
+            if (address != null)
             {
-                return (ifcObjectReferenceSelect as IfcAddress).GetAsString();
+                return address.GetAsString();
             }
-            if (ifcObjectReferenceSelect is IfcAppliedValue)
+            var appliedValue = ifcObjectReferenceSelect as IfcAppliedValue;
+            if (appliedValue != null)
             {
-                return (ifcObjectReferenceSelect as IfcAppliedValue).GetAsString(); 
+                return appliedValue.AsString(); 
             }
 
             return string.Empty;

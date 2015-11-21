@@ -508,6 +508,7 @@
     <Compile Include="Kernel\IfcProductSelect.cs" />
     <Compile Include="Kernel\IfcProject.cs" />
     <Compile Include="Kernel\IfcProjectLibrary.cs" />
+    <Compile Include="Kernel\IfcProjectPartial.cs" />
     <Compile Include="Kernel\IfcPropertyDefinition.cs" />
     <Compile Include="Kernel\IfcPropertySet.cs" />
     <Compile Include="Kernel\IfcPropertySetDefinition.cs" />

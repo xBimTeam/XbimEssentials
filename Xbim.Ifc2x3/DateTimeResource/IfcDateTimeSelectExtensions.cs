@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Globalization;
-using Xbim.Ifc2x3.DateTimeResource;
 
-namespace Xbim.Ifc2x3.Extensions
+namespace Xbim.Ifc2x3.DateTimeResource
 {
     public static class DateTimeSelectExtensions
     {
@@ -11,12 +10,11 @@ namespace Xbim.Ifc2x3.Extensions
         /// </summary>
         /// <param name="ifcDateTimeSelect">IfcDateTimeSelect</param>
         /// <returns>string</returns>
-        public static string GetAsString(this IfcDateTimeSelect ifcDateTimeSelect)
+        public static string AsString(this IfcDateTimeSelect ifcDateTimeSelect)
         {
-
-            if (ifcDateTimeSelect is IfcDateAndTime)
-            {
-                var datetime = (ifcDateTimeSelect as IfcDateAndTime);
+            var datetime = ifcDateTimeSelect as IfcDateAndTime;
+            if (datetime != null)
+            {            
                 var minute = 0;
                 if (datetime.TimeComponent.MinuteComponent.HasValue)
                     minute = (int)datetime.TimeComponent.MinuteComponent.Value;
@@ -25,14 +23,16 @@ namespace Xbim.Ifc2x3.Extensions
                     second = (int)datetime.TimeComponent.SecondComponent.Value;
                 return new DateTime((int)datetime.DateComponent.YearComponent, (int)datetime.DateComponent.MonthComponent, (int)datetime.DateComponent.DayComponent, (int)datetime.TimeComponent.HourComponent, minute, second).ToString(CultureInfo.InvariantCulture);
             }
-            if (ifcDateTimeSelect is IfcCalendarDate)
+            var calendarDate = ifcDateTimeSelect as IfcCalendarDate;
+            if (calendarDate != null)
             {
-                var date = (ifcDateTimeSelect as IfcCalendarDate);
+                var date = calendarDate;
                 return new DateTime((int)date.YearComponent, (int)date.MonthComponent, (int)date.DayComponent).ToString("d");
             }
-            if (ifcDateTimeSelect is IfcLocalTime)
+            var localTime = ifcDateTimeSelect as IfcLocalTime;
+            if (localTime != null)
             {
-                var time = (ifcDateTimeSelect as IfcLocalTime);
+                var time = localTime;
                 var minute = 0;
                 if (time.MinuteComponent.HasValue)
                     minute = (int)time.MinuteComponent.Value;

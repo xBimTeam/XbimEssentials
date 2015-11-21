@@ -374,7 +374,7 @@ namespace Xbim.Ifc
 
         }
 
-        static public IfcStore Create(XbimEditorCredentials editorDetails = null, XbimStoreType storageType = XbimStoreType.InMemoryModel, IfcSchemaVersion ifcVersion = IfcSchemaVersion.Ifc4)
+        static public IfcStore Create(XbimEditorCredentials editorDetails, IfcSchemaVersion ifcVersion, XbimStoreType storageType)
         {
             if (storageType == XbimStoreType.EsentDatabase)
             {
@@ -617,6 +617,8 @@ namespace Xbim.Ifc
                     memoryModel.SaveAs(fileName);
             }
         }
+
+        
     }
 
 }

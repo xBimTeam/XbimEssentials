@@ -29,6 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface
+
 		//##
 		#endregion
 	}

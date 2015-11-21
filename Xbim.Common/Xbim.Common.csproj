@@ -156,6 +156,7 @@
     <Compile Include="Geometry\XbimGeometryData.cs" />
     <Compile Include="Enumerations\XbimRepresentationType.cs" />
     <Compile Include="XbimExtensions\StringExtensions.cs" />
+    <Compile Include="ProjectUnits.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
