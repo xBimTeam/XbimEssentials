@@ -10,6 +10,9 @@ namespace Xbim.Common.Metadata
         public PropertyInfo PropertyInfo;
         public EntityAttributeAttribute EntityAttribute;
         public string Name { get { return PropertyInfo.Name; } }
+        public bool IsInverse { get { return EntityAttribute.Order < 0; } }
+        public bool IsDerived { get { return EntityAttribute.State == EntityAttributeState.Derived; } }
+        public bool IsExplicit { get { return EntityAttribute.Order > 0; } }
     }
 
     /// <summary>
