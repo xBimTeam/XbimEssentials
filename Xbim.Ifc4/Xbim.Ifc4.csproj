@@ -139,6 +139,7 @@
     <Compile Include="ControlExtension\IfcRelAssociatesApproval.cs" />
     <Compile Include="ControlExtension\IfcRelAssociatesConstraint.cs" />
     <Compile Include="CostResource\IfcAppliedValue.cs" />
+    <Compile Include="CostResource\IfcAppliedValuePartial.cs" />
     <Compile Include="CostResource\IfcAppliedValueSelect.cs" />
     <Compile Include="CostResource\IfcArithmeticOperatorEnum.cs" />
     <Compile Include="CostResource\IfcCostValue.cs" />
@@ -500,6 +501,8 @@
     <Compile Include="Kernel\IfcGroup.cs" />
     <Compile Include="Kernel\IfcObject.cs" />
     <Compile Include="Kernel\IfcObjectDefinition.cs" />
+    <Compile Include="Kernel\IfcObjectDefinitionPartial.cs" />
+    <Compile Include="Kernel\IfcObjectPartial.cs" />
     <Compile Include="Kernel\IfcObjectTypeEnum.cs" />
     <Compile Include="Kernel\IfcPreDefinedPropertySet.cs" />
     <Compile Include="Kernel\IfcProcess.cs" />
@@ -587,6 +590,7 @@
     <Compile Include="MeasureResource\IfcContextDependentMeasure.cs" />
     <Compile Include="MeasureResource\IfcContextDependentUnit.cs" />
     <Compile Include="MeasureResource\IfcConversionBasedUnit.cs" />
+    <Compile Include="MeasureResource\IfcConversionBasedUnitPartial.cs" />
     <Compile Include="MeasureResource\IfcConversionBasedUnitWithOffset.cs" />
     <Compile Include="MeasureResource\IfcCountMeasure.cs" />
     <Compile Include="MeasureResource\IfcCurvatureMeasure.cs" />
@@ -594,6 +598,7 @@
     <Compile Include="MeasureResource\IfcDerivedUnit.cs" />
     <Compile Include="MeasureResource\IfcDerivedUnitElement.cs" />
     <Compile Include="MeasureResource\IfcDerivedUnitEnum.cs" />
+    <Compile Include="MeasureResource\IfcDerivedUnitPartial.cs" />
     <Compile Include="MeasureResource\IfcDescriptiveMeasure.cs" />
     <Compile Include="MeasureResource\IfcDimensionalExponents.cs" />
     <Compile Include="MeasureResource\IfcDoseEquivalentMeasure.cs" />
@@ -635,6 +640,7 @@
     <Compile Include="MeasureResource\IfcMassPerLengthMeasure.cs" />
     <Compile Include="MeasureResource\IfcMeasureValue.cs" />
     <Compile Include="MeasureResource\IfcMeasureWithUnit.cs" />
+    <Compile Include="MeasureResource\IfcMeasureWithUnitPartial.cs" />
     <Compile Include="MeasureResource\IfcModulusOfElasticityMeasure.cs" />
     <Compile Include="MeasureResource\IfcModulusOfLinearSubgradeReactionMeasure.cs" />
     <Compile Include="MeasureResource\IfcModulusOfRotationalSubgradeReactionMeasure.cs" />
@@ -644,7 +650,9 @@
     <Compile Include="MeasureResource\IfcMomentOfInertiaMeasure.cs" />
     <Compile Include="MeasureResource\IfcMonetaryMeasure.cs" />
     <Compile Include="MeasureResource\IfcMonetaryUnit.cs" />
+    <Compile Include="MeasureResource\IfcMonetaryUnitPartial.cs" />
     <Compile Include="MeasureResource\IfcNamedUnit.cs" />
+    <Compile Include="MeasureResource\IfcNamedUnitPartial.cs" />
     <Compile Include="MeasureResource\IfcNonNegativeLengthMeasure.cs" />
     <Compile Include="MeasureResource\IfcNormalisedRatioMeasure.cs" />
     <Compile Include="MeasureResource\IfcNumericMeasure.cs" />
@@ -691,7 +699,9 @@
     <Compile Include="MeasureResource\IfcTorqueMeasure.cs" />
     <Compile Include="MeasureResource\IfcUnit.cs" />
     <Compile Include="MeasureResource\IfcUnitAssignment.cs" />
+    <Compile Include="MeasureResource\IfcUnitAssignmentPartial.cs" />
     <Compile Include="MeasureResource\IfcUnitEnum.cs" />
+    <Compile Include="MeasureResource\IfcUnitExtensions.cs" />
     <Compile Include="MeasureResource\IfcValue.cs" />
     <Compile Include="MeasureResource\IfcVaporPermeabilityMeasure.cs" />
     <Compile Include="MeasureResource\IfcVolumeMeasure.cs" />
@@ -831,7 +841,9 @@
     <Compile Include="ProductExtension\IfcBuilding.cs" />
     <Compile Include="ProductExtension\IfcBuildingElement.cs" />
     <Compile Include="ProductExtension\IfcBuildingElementType.cs" />
+    <Compile Include="ProductExtension\IfcBuildingPartial.cs" />
     <Compile Include="ProductExtension\IfcBuildingStorey.cs" />
+    <Compile Include="ProductExtension\IfcBuildingStoreyPartial.cs" />
     <Compile Include="ProductExtension\IfcCivilElement.cs" />
     <Compile Include="ProductExtension\IfcCivilElementType.cs" />
     <Compile Include="ProductExtension\IfcDistributionElement.cs" />
@@ -841,6 +853,7 @@
     <Compile Include="ProductExtension\IfcElementAssemblyType.cs" />
     <Compile Include="ProductExtension\IfcElementAssemblyTypeEnum.cs" />
     <Compile Include="ProductExtension\IfcElementCompositionEnum.cs" />
+    <Compile Include="ProductExtension\IfcElementPartial.cs" />
     <Compile Include="ProductExtension\IfcElementQuantity.cs" />
     <Compile Include="ProductExtension\IfcElementType.cs" />
     <Compile Include="ProductExtension\IfcExternalSpatialElement.cs" />
@@ -880,8 +893,10 @@
     <Compile Include="ProductExtension\IfcRelSpaceBoundary2ndLevel.cs" />
     <Compile Include="ProductExtension\IfcRelVoidsElement.cs" />
     <Compile Include="ProductExtension\IfcSite.cs" />
+    <Compile Include="ProductExtension\IfcSitePartial.cs" />
     <Compile Include="ProductExtension\IfcSpace.cs" />
     <Compile Include="ProductExtension\IfcSpaceBoundarySelect.cs" />
+    <Compile Include="ProductExtension\IfcSpacePartial.cs" />
     <Compile Include="ProductExtension\IfcSpaceType.cs" />
     <Compile Include="ProductExtension\IfcSpaceTypeEnum.cs" />
     <Compile Include="ProductExtension\IfcSpatialElement.cs" />
