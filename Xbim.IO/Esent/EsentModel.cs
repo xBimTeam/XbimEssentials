@@ -823,6 +823,7 @@ namespace Xbim.IO.Esent
                 case ".step21":
                     return XbimStorageType.Step21;
                 case ".ifcxml":
+                case ".xml":
                     return XbimStorageType.IfcXml;
                 case ".zip":
                 case ".ifczip":

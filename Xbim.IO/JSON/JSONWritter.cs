@@ -5,6 +5,12 @@ using System.Xml;
 
 namespace Xbim.IO.JSON
 {
+    /// <summary>
+    /// You can use this writer to create JSON form of EXPRESS defined data. It implements abstract XmlWriter 
+    /// so you can pass it as a writer to XbimXmlWriter4. As a result you will get JSON instead of XML.
+    /// Result only contains text fields even for numeric values because of the way XML work. This might be
+    /// extended in the future.
+    /// </summary>
     public class JSONWritter: XmlWriter
     {
         private readonly TextWriter _writer;

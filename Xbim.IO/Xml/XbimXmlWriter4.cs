@@ -132,19 +132,24 @@ namespace Xbim.IO.Xml
         private void WriteHeader(XmlWriter output)
         {
             output.WriteStartElement("header");
-            output.WriteElementString("name", _fileHeader.FileName.Name);
-            output.WriteElementString("time_stamp", _fileHeader.FileName.TimeStamp);
+            if (!string.IsNullOrWhiteSpace(_fileHeader.FileName.Name))
+                output.WriteElementString("name", _fileHeader.FileName.Name);
+            if (!string.IsNullOrWhiteSpace(_fileHeader.FileName.TimeStamp))
+                output.WriteElementString("time_stamp", _fileHeader.FileName.TimeStamp);
 
             if (_fileHeader.FileName.AuthorName.Count > 0)
                 output.WriteElementString("author", string.Join(", ", _fileHeader.FileName.AuthorName));
             if (_fileHeader.FileName.Organization.Any())
                 output.WriteElementString("organization", string.Join(", ", _fileHeader.FileName.Organization));
-            output.WriteElementString("preprocessor_version", _fileHeader.FileName.PreprocessorVersion);
-            output.WriteElementString("originating_system", _fileHeader.FileName.OriginatingSystem);
-            output.WriteElementString("authorization", _fileHeader.FileName.AuthorizationName);
+            if (!string.IsNullOrWhiteSpace(_fileHeader.FileName.PreprocessorVersion))
+                output.WriteElementString("preprocessor_version", _fileHeader.FileName.PreprocessorVersion);
+            if (!string.IsNullOrWhiteSpace(_fileHeader.FileName.OriginatingSystem))
+                output.WriteElementString("originating_system", _fileHeader.FileName.OriginatingSystem);
+            if (!string.IsNullOrWhiteSpace(_fileHeader.FileName.AuthorizationName))
+                output.WriteElementString("authorization", _fileHeader.FileName.AuthorizationName);
             if (_fileHeader.FileDescription.Description.Any())
                 output.WriteElementString("documentation", string.Join(", ", _fileHeader.FileDescription.Description));
-            output.WriteEndElement(); //end iso_10303_28_header
+            output.WriteEndElement(); //end header
         }
 
         private void WriteEntity(IPersistEntity entity, XmlWriter output, bool onlyOnce, int[] pos = null, string name = null)

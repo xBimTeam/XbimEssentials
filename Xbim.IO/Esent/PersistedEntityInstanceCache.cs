@@ -92,7 +92,7 @@ namespace Xbim.IO.Esent
         private string _databaseName;
         private readonly EsentModel _model;
         private bool _disposed;
-        static private readonly ComparePropertyInfo ComparePropInfo = new ComparePropertyInfo();
+        private static readonly ComparePropertyInfo ComparePropInfo = new ComparePropertyInfo();
         private bool _caching;
         private bool _previousCaching;
         private class ComparePropertyInfo : IEqualityComparer<PropertyInfo>
@@ -641,8 +641,8 @@ namespace Xbim.IO.Esent
                             _forwardReferences = new BlockingCollection<StepForwardReference>();
                             var xmlReader = XmlReader.Create(xmlTextReader, settings);
                             settings.CheckCharacters = false;
-                            var reader = new IfcXmlReader();
-                            _model.Header = reader.Read(this, table, xmlReader);
+                            var reader = GetIfcXmlReader(table);
+                            _model.Header = reader.Read(xmlReader);
                             table.WriteHeader(_model.Header);
 
                         }
@@ -659,6 +659,29 @@ namespace Xbim.IO.Esent
                 File.Delete(xbimDbName);
                 throw new Exception("Error importing IfcXml file.", e);
             }
+        }
+
+        private IfcXmlReader GetIfcXmlReader(EsentEntityCursor table)
+        {
+            return new IfcXmlReader(
+                                (label, type) =>
+                                {
+                                    //return existing entity
+                                    if (Contains(label))
+                                        //TODO: MC: Review this with Steve. This is originally Steve's code but it might be dangerous if the model is to be kept open
+                                        return GetInstance(label, false, true);
+
+                                    //create new entity and add it to the list
+                                    var entity = CreateNew(type, label);
+
+                                    return entity;
+                                },
+                                entity => 
+                                {
+                                    //we need to save it once it is finished.
+                                    table.AddEntity(entity);
+                                },
+                                Model.Metadata);
         }
 
         /// <summary>
@@ -753,7 +776,6 @@ namespace Xbim.IO.Esent
                             if (entry.IsFile &&
                                 (
                                     string.Compare(ext, ".ifc", StringComparison.OrdinalIgnoreCase) == 0 ||
-                                    string.Compare(ext, ".ifcxml", StringComparison.OrdinalIgnoreCase) == 0 ||
                                     string.Compare(ext, ".step21", StringComparison.OrdinalIgnoreCase) == 0 ||
                                     string.Compare(ext, ".stp", StringComparison.OrdinalIgnoreCase) == 0
                                 )
@@ -783,7 +805,11 @@ namespace Xbim.IO.Esent
                                     return; // we only want the first file
                                 }
                             }
-                            if (string.CompareOrdinal(ext, ".ifcxml") == 0)
+                            if (
+                                string.CompareOrdinal(ext, ".ifcxml") == 0 ||
+                                string.CompareOrdinal(ext, ".stpxml") == 0 ||
+                                string.CompareOrdinal(ext, ".xml") == 0
+                                )
                             {
                                 using (var zipFile = new ZipFile(fileStream))
                                 {
@@ -794,8 +820,8 @@ namespace Xbim.IO.Esent
                                         {
                                             using (var xmlReader = new XmlTextReader(xmlInStream))
                                             {
-                                                var reader = new IfcXmlReader();
-                                                _model.Header = reader.Read(this, table, xmlReader);
+                                                var reader = GetIfcXmlReader(table);
+                                                _model.Header = reader.Read(xmlReader);
                                                 table.WriteHeader(_model.Header);
                                             }
                                         }
@@ -1786,7 +1812,7 @@ namespace Xbim.IO.Esent
             XbimInstanceHandle copyHandle;
             if (mappings.TryGetValue(toCopyHandle, out copyHandle))
             {
-                var v = this.GetInstance(copyHandle);
+                var v = GetInstance(copyHandle);
                 Debug.Assert(v != null);
                 return (T)v;
             }

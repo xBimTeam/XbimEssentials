@@ -11,6 +11,7 @@ using Xbim.Ifc4;
 using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.Kernel;
 using Xbim.Ifc4.MaterialResource;
+using Xbim.Ifc4.ProductExtension;
 using Xbim.Ifc4.PropertyResource;
 using Xbim.Ifc4.SharedBldgElements;
 using Xbim.Ifc4.StructuralLoadResource;
@@ -31,7 +32,7 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void Ifc4HeaderSerialization()
         {
-            const string outPath = "..\\..\\SampleIfc4.xml";
+            const string outPath = "..\\..\\HeaderSampleIfc4.xml";
             using (var model = new MemoryModel<EntityFactory>())
             {
                 model.Header.FileName.Name = "Sample model";
@@ -55,6 +56,17 @@ namespace Xbim.MemoryModel.Tests
                 var errs = ValidateIfc4(outPath);
                 Assert.AreEqual(0, errs);
             }
+
+            //read it back and validate it is the same
+            using (var model = new MemoryModel<EntityFactory>())
+            {
+                model.OpenXml(outPath);
+
+                Assert.IsTrue(model.Header.FileName.Name == "Sample model");
+                Assert.IsTrue(model.Header.FileName.OriginatingSystem == "xBIM Toolkit");
+                Assert.IsTrue(model.Header.FileName.PreprocessorVersion == "4.0");
+            }
+
         }
 
         [TestMethod]
@@ -71,15 +83,50 @@ namespace Xbim.MemoryModel.Tests
                 
                 WriteJSON(model, "..\\..\\SampleHouse4.json");
             }
-
         }
 
-        //[TestMethod]
-        //public void ValidateOnly()
-        //{
-        //    const string outPath = "..\\..\\SampleHouse4.xml";
-        //    ValidateIfc4(outPath);
-        //}
+        [TestMethod]
+        public void AttributesSerialization()
+        {
+            const string outPath = "..\\..\\StandaloneSite.xml";
+            using (var model = new MemoryModel<EntityFactory>())
+            {
+                IfcSite site;
+                using (var txn = model.BeginTransaction("site"))
+                {
+                    site = model.Instances.New<IfcSite>();
+                    site.Name = "Site name";
+                    site.RefElevation = 100.0;
+                    site.Description = "Site description";
+                    site.RefLatitude = new List<long> { 1, 2, 3, 4 };
+                    site.GlobalId = Guid.NewGuid();    
+                }
+                
+
+                using (var xml = XmlWriter.Create(outPath, new XmlWriterSettings { Indent = true }))
+                {
+                    var writer = new XbimXmlWriter4(configuration.IFC4Add1);
+                    writer.Write(model, xml);
+                    xml.Close();
+                }
+
+                var errs = ValidateIfc4(outPath);
+                Assert.AreEqual(0, errs);
+
+                using (var model2 = new MemoryModel<EntityFactory>())
+                {
+                    model2.OpenXml(outPath);
+                    var site2 = model2.Instances.FirstOrDefault<IfcSite>();
+                    Assert.IsNotNull(site2);
+
+                    Assert.IsTrue(site.Name == site2.Name);
+                    Assert.IsTrue(site.RefElevation == site2.RefElevation);
+                    Assert.IsTrue(site.Description == site2.Description);
+                    Assert.IsTrue(site.RefLatitude == site2.RefLatitude);
+                    Assert.IsTrue(site.GlobalId == site2.GlobalId);
+                }
+            }
+        }
 
         [TestMethod]
         public void PropertySetDefinitionSetSerialization()
