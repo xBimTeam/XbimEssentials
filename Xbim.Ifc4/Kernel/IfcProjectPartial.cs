@@ -1,6 +1,9 @@
-﻿using Xbim.Common;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Xbim.Common;
 using Xbim.Ifc4.GeometryResource;
 using Xbim.Ifc4.MeasureResource;
+using Xbim.Ifc4.ProductExtension;
 using Xbim.Ifc4.RepresentationResource;
 
 namespace Xbim.Ifc4.Kernel
@@ -132,6 +135,79 @@ namespace Xbim.Ifc4.Kernel
 
             }
         }
+
+        #region Decomposition methods
+
+        /// <summary>
+        ///   Adds Site to the IsDecomposedBy Collection.
+        /// </summary>
+        public void AddSite(IfcSite site)
+        {
+            var decomposition = IsDecomposedBy.FirstOrDefault();
+            if (decomposition == null) //none defined create the relationship
+            {
+                var relSub = Model.Instances.New<IfcRelAggregates>();
+                relSub.RelatingObject = this;
+                relSub.RelatedObjects.Add(site);
+            }
+            else
+                decomposition.RelatedObjects.Add(site);
+        }
+
+        public IEnumerable<IfcSite> Sites
+        {
+            get {
+                return IsDecomposedBy.SelectMany(rel => Enumerable.OfType<IfcSite>(rel.RelatedObjects));
+            }
+        }
+
+        /// <summary>
+        ///   Adds Building to the IsDecomposedBy Collection.
+        /// </summary>
+        public void AddBuilding(IfcBuilding building)
+        {
+            var decomposition = IsDecomposedBy.FirstOrDefault();
+            if (decomposition == null) //none defined create the relationship
+            {
+                var relSub = Model.Instances.New<IfcRelAggregates>();
+                relSub.RelatingObject = this;
+                relSub.RelatedObjects.Add(building);
+            }
+            else           
+                decomposition.RelatedObjects.Add(building);
+        }
+
+        /// <summary>
+        /// Returns all buildings at the highest level of spatial structural decomposition (i.e. root buildings)
+        /// </summary>
+        public IEnumerable<IfcBuilding> Buildings
+        {
+            get
+            {               
+                foreach (var rel in IsDecomposedBy)
+                {
+                    foreach (var definition in rel.RelatedObjects)
+                    {
+                        var site = definition as IfcSite;
+                        if (site != null)
+                            foreach (var building in site.Buildings)
+                                yield return building;
+                        if (definition is IfcBuilding)
+                            yield return (definition as IfcBuilding);
+                    }
+                }
+            }
+        }
+
+        public IEnumerable<IfcSpatialStructureElement> SpatialStructuralElements
+        {
+            get
+            {
+                return IsDecomposedBy.SelectMany(rel => rel.RelatedObjects.OfType<IfcSpatialStructureElement>());
+            }
+        }
+        #endregion
+
     }
 
 }
