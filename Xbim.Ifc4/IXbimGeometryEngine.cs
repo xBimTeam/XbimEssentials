@@ -23,7 +23,7 @@ namespace Xbim.Ifc4.Interfaces
         /// <param name="angle">Defaults to 0.5</param>
         /// <param name="storageType">Defaults to Polyhedron in compressed text format</param>
         /// <returns></returns>
-        IXbimShapeGeometryData CreateShapeGeometry(IXbimGeometryObject geometryObject, double precision, double deflection, double angle, XbimGeometryType storageType);
+        XbimShapeGeometry CreateShapeGeometry(IXbimGeometryObject geometryObject, double precision, double deflection, double angle, XbimGeometryType storageType);
         /// <summary>
         /// 
         /// </summary>
@@ -31,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
         /// <param name="precision">the distance at which two points are considered to be the same</param>
         /// <param name="deflection">the max distance between the chord of a curve and the line segment of a faceted edge </param>
         /// <returns></returns>
-        IXbimShapeGeometryData CreateShapeGeometry(IXbimGeometryObject geometryObject, double precision, double deflection /*, double angle=0.5, XbimGeometryType storageType = XbimGeometryType::Polyhedron*/);
+        XbimShapeGeometry CreateShapeGeometry(IXbimGeometryObject geometryObject, double precision, double deflection /*, double angle=0.5, XbimGeometryType storageType = XbimGeometryType::Polyhedron*/);
         IXbimGeometryObjectSet CreateGeometryObjectSet();
         IXbimSolid CreateSolid(IIfcSweptAreaSolid ifcSolid);
         IXbimSolid CreateSolid(IIfcExtrudedAreaSolid ifcSolid);
