@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using Xbim.Common;
 using Xbim.Common.Geometry;
 
 namespace Xbim.IO.Esent
@@ -14,6 +12,7 @@ namespace Xbim.IO.Esent
         private EsentReadOnlyTransaction _shapeGeometryTransaction;
         private EsentReadOnlyTransaction _shapeInstanceTransaction;
         private List<XbimRegionCollection> _regionsList;
+        private readonly HashSet<int> _contextIds;
 
         public EsentGeometryStoreReader(EsentModel esentModel)
         {
@@ -22,6 +21,7 @@ namespace Xbim.IO.Esent
             _shapeInstanceCursor = _esentModel.GetShapeInstanceTable();
             _shapeGeometryTransaction = _shapeGeometryCursor.BeginReadOnlyTransaction();
             _shapeInstanceTransaction = _shapeInstanceCursor.BeginReadOnlyTransaction();
+            _contextIds = new HashSet<int>(ContextIds);
         }
         /// <summary>
         /// Retrieves all shape instances for the given context
@@ -91,14 +91,15 @@ namespace Xbim.IO.Esent
             return ShapeGeometry(shapeInstance.ShapeGeometryLabel);
         }
 
-        public IEnumerable<XbimShapeInstance> ShapeInstancesOfEntity(Common.IPersistEntity entity, int contextId)
+        public IEnumerable<XbimShapeInstance> ShapeInstancesOfEntity(IPersistEntity entity)
         {
+            
             IXbimShapeInstanceData shapeInstance = new XbimShapeInstance();
             if (_shapeInstanceCursor.TrySeekShapeInstanceOfProduct(entity.EntityLabel, ref shapeInstance))
             {
                 do
                 {
-                    if (contextId == shapeInstance.RepresentationContext)
+                    if (_contextIds.Contains(shapeInstance.RepresentationContext))
                     {
                         yield return (XbimShapeInstance)shapeInstance;
                         shapeInstance = new XbimShapeInstance();
@@ -108,30 +109,32 @@ namespace Xbim.IO.Esent
             }
         }
 
-        public IEnumerable<XbimShapeInstance> ShapeInstancesOfStyle(int styleLabel, int contextId)
+        public IEnumerable<XbimShapeInstance> ShapeInstancesOfStyle(int styleLabel)
         {
             IXbimShapeInstanceData shapeInstance = new XbimShapeInstance();
 
-
-            if (_shapeInstanceCursor.TrySeekSurfaceStyle(contextId, styleLabel, ref shapeInstance))
+            foreach (var context in _contextIds)
             {
-                do
+                if (_shapeInstanceCursor.TrySeekSurfaceStyle(context, styleLabel, ref shapeInstance))
                 {
-                    yield return (XbimShapeInstance) shapeInstance;
-                    shapeInstance = new XbimShapeInstance();
-                } while (_shapeInstanceCursor.TryMoveNextShapeInstance(ref shapeInstance) &&
-                         shapeInstance.StyleLabel == styleLabel);
+                    do
+                    {
+                        yield return (XbimShapeInstance) shapeInstance;
+                        shapeInstance = new XbimShapeInstance();
+                    } while (_shapeInstanceCursor.TryMoveNextShapeInstance(ref shapeInstance) &&
+                             shapeInstance.StyleLabel == styleLabel);
+                }
             }
         }
 
-        public IEnumerable<XbimShapeInstance> ShapeInstancesOfGeometry(int geometryLabel, int context)
+        public IEnumerable<XbimShapeInstance> ShapeInstancesOfGeometry(int geometryLabel)
         {
             IXbimShapeInstanceData shapeInstance = new XbimShapeInstance();
             if (_shapeInstanceCursor.TrySeekShapeInstanceOfGeometry(geometryLabel, ref shapeInstance))
             {
                 do
                 {
-                    if (context != shapeInstance.RepresentationContext)
+                    if (!_contextIds.Contains(shapeInstance.RepresentationContext))
                         continue;
                     yield return (XbimShapeInstance)shapeInstance;
                     shapeInstance = new XbimShapeInstance();
@@ -139,43 +142,49 @@ namespace Xbim.IO.Esent
             }
         }
 
-        public bool EntityHasShapeInstances(Common.IPersistEntity entity)
+        public bool EntityHasShapeInstances(IPersistEntity entity)
         {
             return _shapeInstanceCursor.TrySeekShapeInstanceOfProduct(entity.EntityLabel);
         }
 
-        public ISet<int> StyleIds(int context)
+
+        public ISet<int> StyleIds
         {
-            int surfaceStyle;
-            short productType;
-            HashSet<int> styleIds = new HashSet<int>();
-            if (_shapeInstanceCursor.TryMoveFirstSurfaceStyle(context, out surfaceStyle,
-                out productType))
+            get
             {
-                do
+                HashSet<int> styleIds = new HashSet<int>();
+                foreach (var context in _contextIds)
                 {
-                    if (surfaceStyle > 0) //we have a surface style
+                    int surfaceStyle;
+                    short productType;
+                    if (_shapeInstanceCursor.TryMoveFirstSurfaceStyle(context, out surfaceStyle,
+                        out productType))
                     {
-                        styleIds.Add(surfaceStyle);
-                        surfaceStyle = _shapeInstanceCursor.SkipSurfaceStyes(surfaceStyle);
-                    }
-                    else //then we use the product type for the surface style
-                    {
-                        //read all shape instance of style 0 and get their product texture
                         do
                         {
-                            styleIds.Add(productType);
-                        } 
-                        while (
-                            _shapeInstanceCursor.TryMoveNextSurfaceStyle(out surfaceStyle, out productType) &&
-                            surfaceStyle == 0); //skip over all the zero entries and get their style
+                            if (surfaceStyle > 0) //we have a surface style
+                            {
+                                styleIds.Add(surfaceStyle);
+                                surfaceStyle = _shapeInstanceCursor.SkipSurfaceStyes(surfaceStyle);
+                            }
+                            else //then we use the product type for the surface style
+                            {
+                                //read all shape instance of style 0 and get their product texture
+                                do
+                                {
+                                    styleIds.Add(productType);
+                                } while (
+                                    _shapeInstanceCursor.TryMoveNextSurfaceStyle(out surfaceStyle, out productType) &&
+                                    surfaceStyle == 0); //skip over all the zero entries and get their style
+                            }
+                        } while (surfaceStyle != -1);
+                        //now get all the undefined styles and use their product type to create the texture
                     }
-                } while (surfaceStyle != -1);
-                //now get all the undefined styles and use their product type to create the texture
-            }
-            return styleIds;
-        }
+                }
 
+                return styleIds;
+            }
+        }
         public IEnumerable<XbimRegionCollection> Regions
         {
             get
@@ -217,14 +226,14 @@ namespace Xbim.IO.Esent
         }
 
 
-        public IEnumerable<XbimShapeInstance> ShapeInstancesOfEntityType(int entityTypeId, int contextId)
+        public IEnumerable<XbimShapeInstance> ShapeInstancesOfEntityType(int entityTypeId)
         {
             IXbimShapeInstanceData shapeInstance = new XbimShapeInstance();
             if (_shapeInstanceCursor.TrySeekProductType((short)entityTypeId, ref shapeInstance))
             {
                 do
                 {
-                    if (contextId == shapeInstance.RepresentationContext)
+                    if (_contextIds.Contains(shapeInstance.RepresentationContext))
                     {
                         yield return (XbimShapeInstance)shapeInstance;
                         shapeInstance = new XbimShapeInstance();

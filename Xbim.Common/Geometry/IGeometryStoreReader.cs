@@ -37,30 +37,29 @@ namespace Xbim.Common.Geometry
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        IEnumerable<XbimShapeInstance> ShapeInstancesOfEntity(IPersistEntity entity, int contextId);
+        IEnumerable<XbimShapeInstance> ShapeInstancesOfEntity(IPersistEntity entity);
 
-        IEnumerable<XbimShapeInstance> ShapeInstancesOfEntityType(int entityTypeId, int contextId);
+        IEnumerable<XbimShapeInstance> ShapeInstancesOfEntityType(int entityTypeId);
 
         /// <summary>
         /// Returns an enumerable of all the shape instances in the store for the specified style
         /// </summary>
         /// <param name="styleLabel">The identifier of the required style</param>
         /// <returns></returns>
-        IEnumerable<XbimShapeInstance> ShapeInstancesOfStyle(int styleLabel, int contextId);
+        IEnumerable<XbimShapeInstance> ShapeInstancesOfStyle(int styleLabel);
         /// <summary>
         /// Returns an enumerable of all the shape instances in the store with the specified geometry
         /// </summary>
         /// <param name="geometryLabel"></param>
         /// <returns></returns>
-        IEnumerable<XbimShapeInstance> ShapeInstancesOfGeometry(int geometryLabel, int contextId);
+        IEnumerable<XbimShapeInstance> ShapeInstancesOfGeometry(int geometryLabel);
         
         /// <summary>
-        /// Returns a unique set of all the style IDs of the all the shape instances in the store
+        /// Returns a unique set of all the style IDs of the all the shape instances in the store       
         /// </summary>
         /// <param name="?"></param>
-        /// <param name="contextId"></param>
-        /// <returns></returns>
-        ISet<int> StyleIds(int contextId);
+        /// <returns></returns>        
+        ISet<int> StyleIds { get; }
         /// <summary>
         /// Returns the region collection for the store
         /// </summary>

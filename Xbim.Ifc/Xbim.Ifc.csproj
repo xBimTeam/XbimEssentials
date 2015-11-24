@@ -54,8 +54,11 @@
     <Compile Include="..\SharedFileVersionInfo.cs">
       <Link>Properties\SharedFileVersionInfo.cs</Link>
     </Compile>
+    <Compile Include="XbimColour.cs" />
+    <Compile Include="XbimColourMap.cs" />
     <Compile Include="XbimEditorCredentials.cs" />
     <Compile Include="XbimStoreType.cs" />
+    <Compile Include="XbimTexture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">

@@ -44,7 +44,7 @@ namespace Xbim.IO.Memory
             return ShapeGeometry(shapeInstance.ShapeGeometryLabel);
         }
 
-        public IEnumerable<XbimShapeInstance> ShapeInstancesOfEntity(IPersistEntity entity, int contextId)
+        public IEnumerable<XbimShapeInstance> ShapeInstancesOfEntity(IPersistEntity entity)
         {
 
             List<XbimShapeInstance> shapes;
@@ -53,7 +53,7 @@ namespace Xbim.IO.Memory
             return Enumerable.Empty<XbimShapeInstance>();
         }
 
-        public IEnumerable<XbimShapeInstance> ShapeInstancesOfEntityType(int entityTypeId, int contextId)
+        public IEnumerable<XbimShapeInstance> ShapeInstancesOfEntityType(int entityTypeId)
         {
             List<XbimShapeInstance> shapes;
             if (_inMemoryGeometryStore.EntityTypeLookup.TryGetValue(entityTypeId, out shapes))
@@ -61,27 +61,26 @@ namespace Xbim.IO.Memory
             return Enumerable.Empty<XbimShapeInstance>();
         }
 
-        public IEnumerable<XbimShapeInstance> ShapeInstancesOfStyle(int styleLabel, int contextId)
+        public IEnumerable<XbimShapeInstance> ShapeInstancesOfStyle(int styleLabel)
         {
             List<XbimShapeInstance> shapes;
             if (_inMemoryGeometryStore.EntityStyleLookup.TryGetValue(styleLabel, out shapes))
-                return shapes.Where(e => e.RepresentationContext == contextId);
+                return shapes;
             return Enumerable.Empty<XbimShapeInstance>();
         }
 
-        public IEnumerable<XbimShapeInstance> ShapeInstancesOfGeometry(int geometryLabel, int contextId)
+        public IEnumerable<XbimShapeInstance> ShapeInstancesOfGeometry(int geometryLabel)
         {
             List<XbimShapeInstance> shapes;
             if (_inMemoryGeometryStore.GeometryShapeLookup.TryGetValue(geometryLabel, out shapes))
-                return shapes.Where(e => e.RepresentationContext == contextId);
+                return shapes;
             return Enumerable.Empty<XbimShapeInstance>();
         }
 
-        public ISet<int> StyleIds(int contextId)
+        public ISet<int> StyleIds
         {
-            return _inMemoryGeometryStore.Styles;
+            get { return _inMemoryGeometryStore.Styles; }
         }
-
         public IEnumerable<XbimRegionCollection> Regions
         {
             get { return _inMemoryGeometryStore.Regions; }

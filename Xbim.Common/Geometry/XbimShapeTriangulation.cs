@@ -17,28 +17,28 @@ namespace Xbim.Common.Geometry
             _faces = faces;
             _version = version;
         }
-    
 
 
-        ///// <summary>
-        ///// Returns the number of triangles in the XbimShapeTriangulation data
-        ///// </summary>
-        ///// <param name="triangulationData"></param>
-        ///// <returns></returns>
-        //static public int TriangleCount(byte[] triangulationData)
-        //{
-        //    return BitConverter.ToInt32(triangulationData, sizeof (byte) + sizeof (Int32));
-        //}
 
-        ///// <summary>
-        ///// Returns the number of vertices in the XbimShapeTriangulation data
-        ///// </summary>
-        ///// <param name="triangulationData"></param>
-        ///// <returns></returns>
-        //static public int VerticesCount(byte[] triangulationData)
-        //{
-        //    return BitConverter.ToInt32(triangulationData, sizeof(byte) );
-        //}
+        /// <summary>
+        /// Returns the number of triangles in the XbimShapeTriangulation data
+        /// </summary>
+        /// <param name="triangulationData"></param>
+        /// <returns></returns>
+        static public int TriangleCount(byte[] triangulationData)
+        {
+            return BitConverter.ToInt32(triangulationData, sizeof(byte) + sizeof(Int32));
+        }
+
+        /// <summary>
+        /// Returns the number of vertices in the XbimShapeTriangulation data
+        /// </summary>
+        /// <param name="triangulationData"></param>
+        /// <returns></returns>
+        static public int VerticesCount(byte[] triangulationData)
+        {
+            return BitConverter.ToInt32(triangulationData, sizeof(byte));
+        }
 
         public XbimShapeTriangulation Transform(XbimMatrix3D matrix3D)
         {

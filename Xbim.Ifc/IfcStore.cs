@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
+using Xbim.Common.XbimExtensions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.IO;
 using Xbim.IO.Esent;
@@ -618,6 +620,184 @@ namespace Xbim.Ifc
             }
         }
 
+
+        /// <summary>
+        /// This function is used to generate the .wexbim model files.
+        /// </summary>
+        /// <param name="binaryStream">An open writable streamer.</param>
+        public void SaveAsWexBim(BinaryWriter binaryStream)
+        {
+            // ReSharper disable RedundantCast
+            if(GeometryStore==null) throw new XbimException("Geometry store has not been initialised");
+            // ReSharper disable once CollectionNeverUpdated.Local
+            var colourMap = new XbimColourMap();
+            using (var geomRead = GeometryStore.BeginRead())
+            {
+
+                var lookup = geomRead.ShapeGeometries;
+                var styles = geomRead.StyleIds;
+                var regions = geomRead.Regions.SelectMany(r=>r).ToList();
+
+                int numberOfGeometries = 0;
+                int numberOfVertices = 0;
+                int numberOfTriangles = 0;
+                int numberOfMatrices = 0;
+                int numberOfProducts = 0;
+                int numberOfStyles = styles.Count;
+                //start writing out
+
+                binaryStream.Write((Int32) 94132117); //magic number
+
+                binaryStream.Write((byte) 2); //version of stream, arrays now packed as doubles
+                var start = (int) binaryStream.Seek(0, SeekOrigin.Current);
+                binaryStream.Write((Int32) 0); //number of shapes
+                binaryStream.Write((Int32) 0); //number of vertices
+                binaryStream.Write((Int32) 0); //number of triangles
+                binaryStream.Write((Int32) 0); //number of matrices
+                binaryStream.Write((Int32) 0); //number of products
+                binaryStream.Write((Int32) numberOfStyles); //number of styles
+                binaryStream.Write(Convert.ToSingle(_model.ModelFactors.OneMetre));
+                    //write out conversion to meter factor
+
+                binaryStream.Write(Convert.ToInt16(regions.Count)); //write out the population data
+                foreach (var r in regions)
+                {
+                    binaryStream.Write((Int32) (r.Population));
+                    var bounds = r.ToXbimRect3D();
+                    var centre = r.Centre;
+                    //write out the centre of the region
+                    binaryStream.Write((Single) centre.X);
+                    binaryStream.Write((Single) centre.Y);
+                    binaryStream.Write((Single) centre.Z);
+                    //bounding box of largest region
+                    binaryStream.Write(bounds.ToFloatArray());
+                }
+                //textures
+                foreach (var styleId in styles)
+                {
+                    XbimColour colour;
+                    if (styleId > 0)
+                    {
+                        var ss = (IIfcSurfaceStyle)Instances[styleId];
+                        var texture = XbimTexture.Create(ss);
+                        colour = texture.ColourMap.FirstOrDefault();
+                    }
+                    else //use the default in the colour map for th enetity type
+                    {
+                        var theType = _model.Metadata.GetType((short)Math.Abs(styleId));
+                        colour = colourMap[theType.Name];
+                    }
+                    if (colour == null) colour = XbimColour.DefaultColour;
+                    binaryStream.Write((Int32)styleId); //style ID                       
+                    binaryStream.Write((Single)colour.Red);
+                    binaryStream.Write((Single)colour.Green);
+                    binaryStream.Write((Single)colour.Blue);
+                    binaryStream.Write((Single)colour.Alpha);
+
+                }
+
+                //write out all the product bounding boxes
+                foreach (var product in Instances.OfType<IIfcProduct>())
+                {
+                    if (!(product is IIfcFeatureElement))
+                    {
+                        var bb = XbimRect3D.Empty;
+                        foreach (var si in geomRead.ShapeInstancesOfEntity(product))
+                        {
+                            var bbPart = XbimRect3D.TransformBy(si.BoundingBox, si.Transformation);
+                                //make sure we put the box in the right place and then convert to axis aligned
+                            if (bb.IsEmpty) bb = bbPart;
+                            else
+                                bb.Union(bbPart);
+                        }
+                        if (!bb.IsEmpty) //do not write out anything with no geometry
+                        {
+                            binaryStream.Write((Int32) product.EntityLabel);
+                            binaryStream.Write((UInt16) _model.Metadata.ExpressTypeId(product));
+                            binaryStream.Write(bb.ToFloatArray());
+                            numberOfProducts++;
+                        }
+                    }
+                }
+
+                //write out the multiple instances
+                var openingElementId = _model.Metadata.ExpressTypeId(typeof (Ifc4.ProductExtension.IfcOpeningElement));
+                foreach (var geometry in lookup)
+                {
+                    if (geometry.ReferenceCount > 1)
+                    {
+                        var instances = geomRead.ShapeInstancesOfGeometry(geometry.ShapeLabel);
+                        var xbimShapeInstances = instances as IList<XbimShapeInstance> ?? instances.ToList();
+                        if (!xbimShapeInstances.Any()) continue;
+                        numberOfGeometries++;
+                        binaryStream.Write(geometry.ReferenceCount); //the number of repetitions of the geometry
+                        foreach (IXbimShapeInstanceData xbimShapeInstance in xbimShapeInstances)
+                            //write out each of the ids style and transforms
+                        {
+                            binaryStream.Write(xbimShapeInstance.IfcProductLabel);
+                            binaryStream.Write((UInt16) xbimShapeInstance.IfcTypeId);
+                            binaryStream.Write((UInt32) xbimShapeInstance.InstanceLabel);
+                            binaryStream.Write((Int32) xbimShapeInstance.StyleLabel > 0
+                                ? xbimShapeInstance.StyleLabel
+                                : xbimShapeInstance.IfcTypeId*-1);
+                            binaryStream.Write(xbimShapeInstance.Transformation);
+                            numberOfTriangles +=
+                                XbimShapeTriangulation.TriangleCount(((IXbimShapeGeometryData) geometry).ShapeData);
+                            numberOfMatrices++;
+                        }
+                        numberOfVertices +=
+                            XbimShapeTriangulation.VerticesCount(((IXbimShapeGeometryData) geometry).ShapeData);
+                        // binaryStream.Write(geometry.ShapeData);
+                        var ms = new MemoryStream(((IXbimShapeGeometryData) geometry).ShapeData);
+                        var br = new BinaryReader(ms);
+                        var tr = br.ReadShapeTriangulation();
+
+                        tr.Write(binaryStream);
+                    }
+                    else if (geometry.ReferenceCount == 1)//now do the single instances
+                    {
+                        var xbimShapeInstance = geomRead.ShapeInstancesOfGeometry(geometry.ShapeLabel).FirstOrDefault();
+
+                        if (xbimShapeInstance == null || xbimShapeInstance.IfcTypeId == openingElementId ||
+                            xbimShapeInstance.RepresentationType != XbimGeometryRepresentationType.OpeningsAndAdditionsIncluded)                           
+                            continue;
+                        numberOfGeometries++;
+
+                        // IXbimShapeGeometryData geometry = ShapeGeometry(kv.Key);
+                        binaryStream.Write((Int32)1); //the number of repetitions of the geometry (1)
+
+
+                        binaryStream.Write((Int32)xbimShapeInstance.IfcProductLabel);
+                        binaryStream.Write((UInt16)xbimShapeInstance.IfcTypeId);
+                        binaryStream.Write((Int32)xbimShapeInstance.InstanceLabel);
+                        binaryStream.Write((Int32)xbimShapeInstance.StyleLabel > 0
+                            ? xbimShapeInstance.StyleLabel
+                            : xbimShapeInstance.IfcTypeId * -1);
+
+                        //Read all vertices and normals in the geometry stream and transform
+                        if (geometry.ShapeData.Length <= 0)
+                            continue;
+                        var ms = new MemoryStream(((IXbimShapeGeometryData)geometry).ShapeData);
+                        var br = new BinaryReader(ms);
+                        var tr = br.ReadShapeTriangulation();
+                        var trTransformed = tr.Transform(((XbimShapeInstance)xbimShapeInstance).Transformation);
+                        trTransformed.Write(binaryStream);
+                        numberOfTriangles += XbimShapeTriangulation.TriangleCount(((IXbimShapeGeometryData)geometry).ShapeData);
+                        numberOfVertices += XbimShapeTriangulation.VerticesCount(((IXbimShapeGeometryData)geometry).ShapeData);
+                    }
+                }
+                
+                
+                binaryStream.Seek(start, SeekOrigin.Begin);
+                binaryStream.Write((Int32) numberOfGeometries);
+                binaryStream.Write((Int32) numberOfVertices);
+                binaryStream.Write((Int32) numberOfTriangles);
+                binaryStream.Write((Int32) numberOfMatrices);
+                binaryStream.Write((Int32) numberOfProducts);
+                binaryStream.Seek(0, SeekOrigin.End); //go back to end
+                // ReSharper restore RedundantCast
+            }
+        }
         
     }
 
