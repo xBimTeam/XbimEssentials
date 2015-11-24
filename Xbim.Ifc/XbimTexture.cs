@@ -238,7 +238,11 @@ namespace Xbim.Ifc
             AddColour(colour);
             return this;
         }
-
+        public static XbimTexture Create(XbimColour colour)
+        {
+            var texture = new XbimTexture();
+            return texture.CreateTexture(colour);
+        }
         private void AddColour(XbimColour colour)
         {
             if (string.IsNullOrEmpty(colour.Name))
