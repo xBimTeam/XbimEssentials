@@ -89,7 +89,7 @@ namespace Xbim.Ifc2x3.IO
             }
             var gcs =
                 Instances.OfType<IfcGeometricRepresentationContext>();
-            double? defaultPrecision = null;
+            double defaultPrecision = 1e-5;
             //get the Model precision if it is correctly defined
             foreach (var gc in gcs.Where(g => !(g is IfcGeometricRepresentationSubContext)))
             {
@@ -133,7 +133,7 @@ namespace Xbim.Ifc2x3.IO
                 }
             }
             ModelFactors = new XbimModelFactors(angleToRadiansConversionFactor, lengthToMetresConversionFactor,
-                defaultPrecision, wcs);
+                defaultPrecision);
         }
 
         /// <summary>

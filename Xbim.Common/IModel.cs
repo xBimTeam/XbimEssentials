@@ -165,6 +165,8 @@ namespace Xbim.Common
 
         int GetGeometryFloatHash(float number);
         int GetGeometryDoubleHash(double number);
+
+        void Initialise(double angleToRadiansConversionFactor, double lengthToMetresConversionFactor, double defaultPrecision);
     }
 
     public class XbimModelFactors : IModelFactors
@@ -235,8 +237,8 @@ namespace Xbim.Common
         /// </summary>
         public double OneMilliMetre { get; private set; }
 
-        public readonly XbimMatrix3D? WorldCoordinateSystem;
-        private readonly int _significantOrder;
+    //    public readonly XbimMatrix3D? WorldCoordinateSystem;
+        private int _significantOrder;
         public int GetGeometryFloatHash(float number)
         {
             return Math.Round(number, _significantOrder).GetHashCode();
@@ -247,40 +249,9 @@ namespace Xbim.Common
             return Math.Round(number, _significantOrder).GetHashCode();
         }
 
-        public XbimModelFactors(double angToRads, double lenToMeter, double? precision = null, XbimMatrix3D? wcs= null)
+        public XbimModelFactors(double angToRads, double lenToMeter, double precision)
         {
-            ProfileDefLevelOfDetail = 0;
-            SimplifyFaceCountThreshHold = 1000;
-
-            WorldCoordinateSystem = wcs;
-            AngleToRadiansConversionFactor = angToRads;
-            LengthToMetresConversionFactor = lenToMeter;
-           
-            OneMeter = OneMetre = 1/lenToMeter;
-            OneMilliMeter = OneMilliMetre = OneMeter / 1000.0;
-            OneKilometer = OneMeter * 1000.0;
-            OneFoot = OneMeter / 3.2808;
-            OneInch = OneMeter / 39.37;
-            OneMile = OneMeter * 1609.344;
-
-
-            DeflectionTolerance = OneMilliMetre*5; //5mm chord deflection
-            DeflectionAngle = 0.5; 
-            VertexPointDiameter = OneMilliMetre * 10; //1 cm
-            //if (precision.HasValue)
-            //    Precision = Math.Min(precision.Value,OneMilliMetre / 1000);
-            //else
-            //    Precision = Math.Max(1e-5, OneMilliMetre / 1000);
-            Precision = precision ?? 1e-5;
-            PrecisionMax = OneMilliMetre / 10;
-            MaxBRepSewFaceCount = 0;
-            PrecisionBoolean =  Math.Max(Precision,OneMilliMetre/10); //might need to make it courser than point precision if precision is very fine
-            PrecisionBooleanMax = OneMilliMetre *100;
-            Rounding = Math.Abs((int)Math.Log10(Precision*100)); //default round all points to 100 times  precision, this is used in the hash functions
-
-            var exp = Math.Floor(Math.Log10(Math.Abs(OneMilliMetre / 10d))); //get exponent of first significant digit
-            _significantOrder = exp > 0 ? 0 : (int)Math.Abs(exp);
-            ShortestEdgeLength = 10 * OneMilliMetre;
+           Initialise(angToRads,lenToMeter,precision);
         }
 
         /// <summary>
@@ -299,5 +270,38 @@ namespace Xbim.Common
         public double OneMile { get; private set; }
 
         public double OneMilliMeter { get; private set; }
+
+
+        public void Initialise(double angToRads, double lenToMeter, double defaultPrecision)
+        {
+            ProfileDefLevelOfDetail = 0;
+            SimplifyFaceCountThreshHold = 1000;
+
+          //  WorldCoordinateSystem = wcs;
+            AngleToRadiansConversionFactor = angToRads;
+            LengthToMetresConversionFactor = lenToMeter;
+
+            OneMeter = OneMetre = 1 / lenToMeter;
+            OneMilliMeter = OneMilliMetre = OneMeter / 1000.0;
+            OneKilometer = OneMeter * 1000.0;
+            OneFoot = OneMeter / 3.2808;
+            OneInch = OneMeter / 39.37;
+            OneMile = OneMeter * 1609.344;
+
+
+            DeflectionTolerance = OneMilliMetre * 5; //5mm chord deflection
+            DeflectionAngle = 0.5;
+            VertexPointDiameter = OneMilliMetre * 10; //1 cm           
+            Precision = defaultPrecision ;
+            PrecisionMax = OneMilliMetre / 10;
+            MaxBRepSewFaceCount = 0;
+            PrecisionBoolean = Math.Max(Precision, OneMilliMetre / 10); //might need to make it courser than point precision if precision is very fine
+            PrecisionBooleanMax = OneMilliMetre * 100;
+            Rounding = Math.Abs((int)Math.Log10(Precision * 100)); //default round all points to 100 times  precision, this is used in the hash functions
+
+            var exp = Math.Floor(Math.Log10(Math.Abs(OneMilliMetre / 10d))); //get exponent of first significant digit
+            _significantOrder = exp > 0 ? 0 : (int)Math.Abs(exp);
+            ShortestEdgeLength = 10 * OneMilliMetre;
+        }
     }
 }

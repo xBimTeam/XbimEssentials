@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Xbim.Common.Geometry
 {
-    [CLSCompliant(false)]
+    [System.CLSCompliant(false)]
     public struct XbimPackedNormal
     {
         private ushort _packedData;

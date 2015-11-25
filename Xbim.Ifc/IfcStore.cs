@@ -69,7 +69,7 @@ namespace Xbim.Ifc
                 _model.EntityNew += IfcRootInitIfc2X3;
                 _model.EntityModified += IfcRootModifiedIfc2X3;
             }
-
+            CalculateModelFactors();
         }
 
 
@@ -798,7 +798,89 @@ namespace Xbim.Ifc
                 // ReSharper restore RedundantCast
             }
         }
-        
+
+        /// <summary>
+        /// Calculates and sets the model factors, call everytime a unit of measurement is changed
+        /// </summary>
+        public void CalculateModelFactors()
+        {
+            double angleToRadiansConversionFactor = 1; //assume radians
+            double lengthToMetresConversionFactor = 1; //assume metres
+            var instOfType = Instances.OfType<IIfcUnitAssignment>();
+            var ua = instOfType.FirstOrDefault();
+            if (ua != null)
+            {
+                foreach (var unit in ua.Units)
+                {
+                    var value = 1.0;
+                    var cbUnit = unit as IIfcConversionBasedUnit;
+                    var siUnit = unit as IIfcSIUnit;
+                    if (cbUnit != null)
+                    {
+                        var mu = cbUnit.ConversionFactor;
+                        var component = mu.UnitComponent as IIfcSIUnit;
+                        if (component != null)
+                            siUnit = component;
+                        var et = ((IExpressValueType)mu.ValueComponent);
+
+                        if (et.UnderlyingSystemType == typeof(double))
+                            value *= (double)et.Value;
+                        else if (et.UnderlyingSystemType == typeof(int))
+                            value *= (int)et.Value;
+                        else if (et.UnderlyingSystemType == typeof(long))
+                            value *= (long)et.Value;
+                    }
+                    if (siUnit == null) continue;
+                    if (_schema == IfcSchemaVersion.Ifc4)
+                        value *= ((Ifc4.MeasureResource.IfcSIUnit) siUnit).Power;
+                    else
+                        value *= ((Ifc2x3.MeasureResource.IfcSIUnit)siUnit).Power;
+                    switch (siUnit.UnitType)
+                    {
+                        case Ifc4.MeasureResource.IfcUnitEnum.LENGTHUNIT:
+                            lengthToMetresConversionFactor = value;
+                            break;
+                        case Ifc4.MeasureResource.IfcUnitEnum.PLANEANGLEUNIT:
+                            angleToRadiansConversionFactor = value;
+                            //need to guarantee precision to avoid errors in boolean operations
+                            if (Math.Abs(angleToRadiansConversionFactor - (Math.PI / 180)) < 1e-9)
+                                angleToRadiansConversionFactor = Math.PI / 180;
+                            break;
+                    }
+                }
+            }
+
+            var gcs =
+                Instances.OfType<IIfcGeometricRepresentationContext>();
+            double defaultPrecision = 1e-5;
+            //get the Model precision if it is correctly defined
+            foreach (var gc in gcs.Where(g => !(g is IIfcGeometricRepresentationSubContext)))
+            {
+                if (!gc.ContextType.HasValue || string.Compare(gc.ContextType.Value, "model", true) != 0) continue;
+                if (!gc.Precision.HasValue) continue;
+                defaultPrecision = gc.Precision.Value;
+                break;
+            }
+         
+            //check if angle units are incorrectly defined, this happens in some old models
+            if (Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)
+            {
+                foreach (var trimmedCurve in Instances.Where<IIfcTrimmedCurve>(trimmedCurve =>
+                    trimmedCurve.MasterRepresentation == Ifc4.GeometryResource.IfcTrimmingPreference.PARAMETER &&
+                    trimmedCurve.BasisCurve is IIfcConic))
+                {
+                    if (
+                        !trimmedCurve.Trim1.Concat(trimmedCurve.Trim2)
+                            .OfType<Ifc4.MeasureResource.IfcParameterValue>()
+                            .Select(trim => (double)trim.Value)
+                            .Any(val => val > Math.PI * 2)) continue;
+                    angleToRadiansConversionFactor = Math.PI / 180;
+                    break;
+                }
+            }
+            ModelFactors.Initialise(angleToRadiansConversionFactor, lengthToMetresConversionFactor,
+                defaultPrecision);
+        }
     }
 
 }

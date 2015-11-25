@@ -67,7 +67,11 @@ namespace Xbim.IO.Esent
         /// <summary>
         /// Model wide factors, precision etc
         /// </summary>
-        public IModelFactors ModelFactors { get; protected set; }
+        public IModelFactors ModelFactors
+        {
+            get; 
+            protected set;
+        }
 
 
         public EsentModel(IEntityFactory factory)

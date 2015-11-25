@@ -5,7 +5,7 @@ using Xbim.Common.Geometry;
 
 namespace Xbim.Common.XbimExtensions
 {
-    [CLSCompliant(false)]
+    [System.CLSCompliant(false)]
     public static class BinaryReaderExtensions
     {
         public static XbimShapeTriangulation ReadShapeTriangulation(this BinaryReader br)

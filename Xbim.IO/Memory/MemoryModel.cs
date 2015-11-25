@@ -90,7 +90,7 @@ namespace Xbim.IO.Memory
             _instances = new EntityCollection<TFactory>(this);
             Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults);
             Header.FileSchema.Schemas.AddRange(_instances.Factory.SchemasIds);
-            ModelFactors = new XbimModelFactors(180.0/Math.PI, 0.001, 1e-9);
+            ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
             Metadata = ExpressMetaData.GetMetadata(typeof(TFactory).Module);
             IsTransactional = true;
         }
