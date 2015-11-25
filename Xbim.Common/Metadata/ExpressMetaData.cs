@@ -91,9 +91,9 @@ namespace Xbim.Common.Metadata
                 foreach (var typeToProcess in typesToProcess)
                 {
                     // Debug.WriteLine(typeToProcess.ToString());
-                    var expressTypeToProcess = _typeToExpressTypeLookup.Contains(typeToProcess) ?
-                        _typeToExpressTypeLookup[typeToProcess] :
-                        new ExpressType(typeToProcess);
+                    ExpressType expressTypeToProcess;
+                    if( !_typeToExpressTypeLookup.TryGetValue(typeToProcess, out expressTypeToProcess))
+                        expressTypeToProcess = new ExpressType(typeToProcess);
 
                     var typeLookup = typeToProcess.Name.ToUpperInvariant();
                     if (!_typeNameToExpressTypeLookup.ContainsKey(typeLookup))
@@ -105,9 +105,9 @@ namespace Xbim.Common.Metadata
                         _typeIdToExpressTypeLookup.Add(expressTypeToProcess.TypeId, expressTypeToProcess);
                     }
 
-                    if (!_typeToExpressTypeLookup.Contains(expressTypeToProcess))
+                    if (!_typeToExpressTypeLookup.ContainsKey(expressTypeToProcess.Type))
                     {
-                        _typeToExpressTypeLookup.Add(expressTypeToProcess);
+                        _typeToExpressTypeLookup.Add(expressTypeToProcess.Type, expressTypeToProcess);
                         AddParent(expressTypeToProcess);
                     }
 
@@ -137,9 +137,9 @@ namespace Xbim.Common.Metadata
             if (baseParent == null || typeof(object) == baseParent || typeof(ValueType) == baseParent)
                 return;
             ExpressType expressParent;
-            if (!_typeToExpressTypeLookup.Contains(baseParent))
+            if (!_typeToExpressTypeLookup.ContainsKey(baseParent))
             {
-                _typeToExpressTypeLookup.Add(expressParent = new ExpressType(baseParent));
+                _typeToExpressTypeLookup.Add(baseParent, expressParent = new ExpressType(baseParent));
                 var typeLookup = baseParent.Name.ToUpper();
                 if (!_typeNameToExpressTypeLookup.ContainsKey(typeLookup))
                     _typeNameToExpressTypeLookup.Add(typeLookup, expressParent);
@@ -211,9 +211,8 @@ namespace Xbim.Common.Metadata
         /// <returns>The foud type (or Null if not found)</returns>
         public ExpressType ExpressType(Type type)
         {
-            if (_typeToExpressTypeLookup.Contains(type))
-                return _typeToExpressTypeLookup[type];
-            return null;
+            ExpressType result;
+            return _typeToExpressTypeLookup.TryGetValue(type, out result) ? result : null;
         }
 
         /// <summary>

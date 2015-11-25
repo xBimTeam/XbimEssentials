@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelDefinesByType>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
+				return Model.Instances.Where<IfcRelDefinesByType>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByProperties> IIfcObject.IsDefinedBy 
