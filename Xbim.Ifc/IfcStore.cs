@@ -884,7 +884,7 @@ namespace Xbim.Ifc
                 var trimmed = Instances.Where<IIfcTrimmedCurve>(trimmedCurve =>trimmedCurve.BasisCurve is IIfcConic);
                 foreach (var trimmedCurve in trimmed)
                 {
-                    if (trimmedCurve.MasterRepresentation != Ifc4.GeometryResource.IfcTrimmingPreference.PARAMETER)
+                    if (trimmedCurve.MasterRepresentation != IfcTrimmingPreference.PARAMETER)
                         continue;
                     if (
                         !trimmedCurve.Trim1.Concat(trimmedCurve.Trim2)
