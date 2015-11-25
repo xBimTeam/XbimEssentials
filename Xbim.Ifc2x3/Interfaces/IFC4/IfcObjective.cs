@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				//##
 			} 
 		}
-		Ifc4.ConstraintResource.IfcLogicalOperatorEnum? IIfcObjective.LogicalAggregator 
+		Ifc4.Interfaces.IfcLogicalOperatorEnum? IIfcObjective.LogicalAggregator 
 		{ 
 			get
 			{
@@ -34,35 +34,35 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			    //##
 			} 
 		}
-		Ifc4.ConstraintResource.IfcObjectiveEnum IIfcObjective.ObjectiveQualifier 
+		Ifc4.Interfaces.IfcObjectiveEnum IIfcObjective.ObjectiveQualifier 
 		{ 
 			get
 			{
 				switch (ObjectiveQualifier)
 				{
 					case IfcObjectiveEnum.CODECOMPLIANCE:
-						return Ifc4.ConstraintResource.IfcObjectiveEnum.CODECOMPLIANCE;
+						return Ifc4.Interfaces.IfcObjectiveEnum.CODECOMPLIANCE;
 					
 					case IfcObjectiveEnum.DESIGNINTENT:
-						return Ifc4.ConstraintResource.IfcObjectiveEnum.DESIGNINTENT;
+						return Ifc4.Interfaces.IfcObjectiveEnum.DESIGNINTENT;
 					
 					case IfcObjectiveEnum.HEALTHANDSAFETY:
-						return Ifc4.ConstraintResource.IfcObjectiveEnum.HEALTHANDSAFETY;
+						return Ifc4.Interfaces.IfcObjectiveEnum.HEALTHANDSAFETY;
 					
 					case IfcObjectiveEnum.REQUIREMENT:
-						return Ifc4.ConstraintResource.IfcObjectiveEnum.REQUIREMENT;
+						return Ifc4.Interfaces.IfcObjectiveEnum.REQUIREMENT;
 					
 					case IfcObjectiveEnum.SPECIFICATION:
-						return Ifc4.ConstraintResource.IfcObjectiveEnum.SPECIFICATION;
+						return Ifc4.Interfaces.IfcObjectiveEnum.SPECIFICATION;
 					
 					case IfcObjectiveEnum.TRIGGERCONDITION:
-						return Ifc4.ConstraintResource.IfcObjectiveEnum.TRIGGERCONDITION;
+						return Ifc4.Interfaces.IfcObjectiveEnum.TRIGGERCONDITION;
 					
 					case IfcObjectiveEnum.USERDEFINED:
-						return Ifc4.ConstraintResource.IfcObjectiveEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcObjectiveEnum.USERDEFINED;
 					
 					case IfcObjectiveEnum.NOTDEFINED:
-						return Ifc4.ConstraintResource.IfcObjectiveEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcObjectiveEnum.NOTDEFINED;
 					
 					
 					default:

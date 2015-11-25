@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcWorkPlan : IIfcWorkPlan
 	{
-		Ifc4.ProcessExtension.IfcWorkPlanTypeEnum? IIfcWorkPlan.PredefinedType 
+		Ifc4.Interfaces.IfcWorkPlanTypeEnum? IIfcWorkPlan.PredefinedType 
 		{ 
 			get
 			{

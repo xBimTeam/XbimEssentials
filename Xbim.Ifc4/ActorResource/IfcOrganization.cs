@@ -201,6 +201,7 @@ namespace Xbim.Ifc4.ActorResource
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedOrganizations")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 6)]
 		public IEnumerable<IfcOrganizationRelationship> @IsRelatedBy 
 		{ 
@@ -209,6 +210,7 @@ namespace Xbim.Ifc4.ActorResource
 				return Model.Instances.Where<IfcOrganizationRelationship>(e => e.RelatedOrganizations != null &&  e.RelatedOrganizations.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatingOrganization")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
 		public IEnumerable<IfcOrganizationRelationship> @Relates 
 		{ 
@@ -217,6 +219,7 @@ namespace Xbim.Ifc4.ActorResource
 				return Model.Instances.Where<IfcOrganizationRelationship>(e => (e.RelatingOrganization as IfcOrganization) == this);
 			} 
 		}
+		[InverseProperty("TheOrganization")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcPersonAndOrganization> @Engages 
 		{ 

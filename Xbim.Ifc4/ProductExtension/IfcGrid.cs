@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricConstraintResource;
 using System;
 using System.Collections.Generic;
@@ -117,6 +118,7 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedElements")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 24)]
 		public IEnumerable<IfcRelContainedInSpatialStructure> @ContainedInStructure 
 		{ 

@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcLightFixtureType : IIfcLightFixtureType
 	{
-		Ifc4.ElectricalDomain.IfcLightFixtureTypeEnum IIfcLightFixtureType.PredefinedType 
+		Ifc4.Interfaces.IfcLightFixtureTypeEnum IIfcLightFixtureType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcLightFixtureTypeEnum.POINTSOURCE:
-						return Ifc4.ElectricalDomain.IfcLightFixtureTypeEnum.POINTSOURCE;
+						return Ifc4.Interfaces.IfcLightFixtureTypeEnum.POINTSOURCE;
 					
 					case IfcLightFixtureTypeEnum.DIRECTIONSOURCE:
-						return Ifc4.ElectricalDomain.IfcLightFixtureTypeEnum.DIRECTIONSOURCE;
+						return Ifc4.Interfaces.IfcLightFixtureTypeEnum.DIRECTIONSOURCE;
 					
 					case IfcLightFixtureTypeEnum.USERDEFINED:
-						return Ifc4.ElectricalDomain.IfcLightFixtureTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcLightFixtureTypeEnum.USERDEFINED;
 					
 					case IfcLightFixtureTypeEnum.NOTDEFINED:
-						return Ifc4.ElectricalDomain.IfcLightFixtureTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcLightFixtureTypeEnum.NOTDEFINED;
 					
 					
 					default:

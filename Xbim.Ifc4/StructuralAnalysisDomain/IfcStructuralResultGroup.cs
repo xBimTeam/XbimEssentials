@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -107,6 +108,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 
 
 		#region Inverse attributes
+		[InverseProperty("HasResults")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 21)]
 		public IEnumerable<IfcStructuralAnalysisModel> @ResultGroupFor 
 		{ 

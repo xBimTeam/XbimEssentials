@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
 	public partial class @IfcStackTerminalType : IIfcStackTerminalType
 	{
-		Ifc4.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum IIfcStackTerminalType.PredefinedType 
+		Ifc4.Interfaces.IfcStackTerminalTypeEnum IIfcStackTerminalType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcStackTerminalTypeEnum.BIRDCAGE:
-						return Ifc4.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.BIRDCAGE;
+						return Ifc4.Interfaces.IfcStackTerminalTypeEnum.BIRDCAGE;
 					
 					case IfcStackTerminalTypeEnum.COWL:
-						return Ifc4.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.COWL;
+						return Ifc4.Interfaces.IfcStackTerminalTypeEnum.COWL;
 					
 					case IfcStackTerminalTypeEnum.RAINWATERHOPPER:
-						return Ifc4.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.RAINWATERHOPPER;
+						return Ifc4.Interfaces.IfcStackTerminalTypeEnum.RAINWATERHOPPER;
 					
 					case IfcStackTerminalTypeEnum.USERDEFINED:
-						return Ifc4.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcStackTerminalTypeEnum.USERDEFINED;
 					
 					case IfcStackTerminalTypeEnum.NOTDEFINED:
-						return Ifc4.PlumbingFireProtectionDomain.IfcStackTerminalTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcStackTerminalTypeEnum.NOTDEFINED;
 					
 					
 					default:

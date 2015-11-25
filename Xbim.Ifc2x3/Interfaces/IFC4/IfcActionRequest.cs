@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	public partial class @IfcActionRequest : IIfcActionRequest
 	{
-		Ifc4.SharedMgmtElements.IfcActionRequestTypeEnum? IIfcActionRequest.PredefinedType 
+		Ifc4.Interfaces.IfcActionRequestTypeEnum? IIfcActionRequest.PredefinedType 
 		{ 
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-                return Ifc4.SharedMgmtElements.IfcActionRequestTypeEnum.NOTDEFINED;
+                return IfcActionRequestTypeEnum.NOTDEFINED;
 				//##
 			} 
 		}

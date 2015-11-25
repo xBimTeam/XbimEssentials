@@ -31,38 +31,38 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure(TargetScale.Value);
 			} 
 		}
-		Ifc4.RepresentationResource.IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView 
+		Ifc4.Interfaces.IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView 
 		{ 
 			get
 			{
 				switch (TargetView)
 				{
 					case IfcGeometricProjectionEnum.GRAPH_VIEW:
-						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.GRAPH_VIEW;
+						return Ifc4.Interfaces.IfcGeometricProjectionEnum.GRAPH_VIEW;
 					
 					case IfcGeometricProjectionEnum.SKETCH_VIEW:
-						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.SKETCH_VIEW;
+						return Ifc4.Interfaces.IfcGeometricProjectionEnum.SKETCH_VIEW;
 					
 					case IfcGeometricProjectionEnum.MODEL_VIEW:
-						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.MODEL_VIEW;
+						return Ifc4.Interfaces.IfcGeometricProjectionEnum.MODEL_VIEW;
 					
 					case IfcGeometricProjectionEnum.PLAN_VIEW:
-						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.PLAN_VIEW;
+						return Ifc4.Interfaces.IfcGeometricProjectionEnum.PLAN_VIEW;
 					
 					case IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW:
-						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW;
+						return Ifc4.Interfaces.IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW;
 					
 					case IfcGeometricProjectionEnum.SECTION_VIEW:
-						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.SECTION_VIEW;
+						return Ifc4.Interfaces.IfcGeometricProjectionEnum.SECTION_VIEW;
 					
 					case IfcGeometricProjectionEnum.ELEVATION_VIEW:
-						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.ELEVATION_VIEW;
+						return Ifc4.Interfaces.IfcGeometricProjectionEnum.ELEVATION_VIEW;
 					
 					case IfcGeometricProjectionEnum.USERDEFINED:
-						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcGeometricProjectionEnum.USERDEFINED;
 					
 					case IfcGeometricProjectionEnum.NOTDEFINED:
-						return Ifc4.RepresentationResource.IfcGeometricProjectionEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcGeometricProjectionEnum.NOTDEFINED;
 					
 					
 					default:

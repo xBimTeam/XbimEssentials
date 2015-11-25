@@ -96,6 +96,7 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedBuildingElement")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 21)]
 		public IEnumerable<IfcRelFillsElement> @FillsVoids 
 		{ 
@@ -104,6 +105,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return Model.Instances.Where<IfcRelFillsElement>(e => (e.RelatedBuildingElement as IfcElement) == this);
 			} 
 		}
+		[InverseProperty("RelatingElement")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 22)]
 		public IEnumerable<IfcRelConnectsElements> @ConnectedTo 
 		{ 
@@ -112,6 +114,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return Model.Instances.Where<IfcRelConnectsElements>(e => (e.RelatingElement as IfcElement) == this);
 			} 
 		}
+		[InverseProperty("RelatedElement")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 23)]
 		public IEnumerable<IfcRelInterferesElements> @IsInterferedByElements 
 		{ 
@@ -120,6 +123,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return Model.Instances.Where<IfcRelInterferesElements>(e => (e.RelatedElement as IfcElement) == this);
 			} 
 		}
+		[InverseProperty("RelatingElement")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 24)]
 		public IEnumerable<IfcRelInterferesElements> @InterferesElements 
 		{ 
@@ -128,6 +132,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return Model.Instances.Where<IfcRelInterferesElements>(e => (e.RelatingElement as IfcElement) == this);
 			} 
 		}
+		[InverseProperty("RelatingElement")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 25)]
 		public IEnumerable<IfcRelProjectsElement> @HasProjections 
 		{ 
@@ -136,6 +141,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return Model.Instances.Where<IfcRelProjectsElement>(e => (e.RelatingElement as IfcElement) == this);
 			} 
 		}
+		[InverseProperty("RelatedElements")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 26)]
 		public IEnumerable<IfcRelReferencedInSpatialStructure> @ReferencedInStructures 
 		{ 
@@ -144,6 +150,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return Model.Instances.Where<IfcRelReferencedInSpatialStructure>(e => e.RelatedElements != null &&  e.RelatedElements.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatingBuildingElement")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 27)]
 		public IEnumerable<IfcRelVoidsElement> @HasOpenings 
 		{ 
@@ -152,6 +159,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return Model.Instances.Where<IfcRelVoidsElement>(e => (e.RelatingBuildingElement as IfcElement) == this);
 			} 
 		}
+		[InverseProperty("RealizingElements")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 28)]
 		public IEnumerable<IfcRelConnectsWithRealizingElements> @IsConnectionRealization 
 		{ 
@@ -160,6 +168,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return Model.Instances.Where<IfcRelConnectsWithRealizingElements>(e => e.RealizingElements != null &&  e.RealizingElements.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatedBuildingElement")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 29)]
 		public IEnumerable<IfcRelSpaceBoundary> @ProvidesBoundaries 
 		{ 
@@ -168,6 +177,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return Model.Instances.Where<IfcRelSpaceBoundary>(e => (e.RelatedBuildingElement as IfcElement) == this);
 			} 
 		}
+		[InverseProperty("RelatedElement")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 30)]
 		public IEnumerable<IfcRelConnectsElements> @ConnectedFrom 
 		{ 
@@ -176,6 +186,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return Model.Instances.Where<IfcRelConnectsElements>(e => (e.RelatedElement as IfcElement) == this);
 			} 
 		}
+		[InverseProperty("RelatedElements")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 31)]
 		public IEnumerable<IfcRelContainedInSpatialStructure> @ContainedInStructure 
 		{ 
@@ -184,6 +195,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return Model.Instances.Where<IfcRelContainedInSpatialStructure>(e => e.RelatedElements != null &&  e.RelatedElements.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatingBuildingElement")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 32)]
 		public IEnumerable<IfcRelCoversBldgElements> @HasCoverings 
 		{ 

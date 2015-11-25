@@ -16,38 +16,38 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	public partial class @IfcOccupant : IIfcOccupant
 	{
-		Ifc4.SharedFacilitiesElements.IfcOccupantTypeEnum? IIfcOccupant.PredefinedType 
+		Ifc4.Interfaces.IfcOccupantTypeEnum? IIfcOccupant.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcOccupantTypeEnum.ASSIGNEE:
-						return Ifc4.SharedFacilitiesElements.IfcOccupantTypeEnum.ASSIGNEE;
+						return Ifc4.Interfaces.IfcOccupantTypeEnum.ASSIGNEE;
 					
 					case IfcOccupantTypeEnum.ASSIGNOR:
-						return Ifc4.SharedFacilitiesElements.IfcOccupantTypeEnum.ASSIGNOR;
+						return Ifc4.Interfaces.IfcOccupantTypeEnum.ASSIGNOR;
 					
 					case IfcOccupantTypeEnum.LESSEE:
-						return Ifc4.SharedFacilitiesElements.IfcOccupantTypeEnum.LESSEE;
+						return Ifc4.Interfaces.IfcOccupantTypeEnum.LESSEE;
 					
 					case IfcOccupantTypeEnum.LESSOR:
-						return Ifc4.SharedFacilitiesElements.IfcOccupantTypeEnum.LESSOR;
+						return Ifc4.Interfaces.IfcOccupantTypeEnum.LESSOR;
 					
 					case IfcOccupantTypeEnum.LETTINGAGENT:
-						return Ifc4.SharedFacilitiesElements.IfcOccupantTypeEnum.LETTINGAGENT;
+						return Ifc4.Interfaces.IfcOccupantTypeEnum.LETTINGAGENT;
 					
 					case IfcOccupantTypeEnum.OWNER:
-						return Ifc4.SharedFacilitiesElements.IfcOccupantTypeEnum.OWNER;
+						return Ifc4.Interfaces.IfcOccupantTypeEnum.OWNER;
 					
 					case IfcOccupantTypeEnum.TENANT:
-						return Ifc4.SharedFacilitiesElements.IfcOccupantTypeEnum.TENANT;
+						return Ifc4.Interfaces.IfcOccupantTypeEnum.TENANT;
 					
 					case IfcOccupantTypeEnum.USERDEFINED:
-						return Ifc4.SharedFacilitiesElements.IfcOccupantTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcOccupantTypeEnum.USERDEFINED;
 					
 					case IfcOccupantTypeEnum.NOTDEFINED:
-						return Ifc4.SharedFacilitiesElements.IfcOccupantTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcOccupantTypeEnum.NOTDEFINED;
 					
 					
 					default:

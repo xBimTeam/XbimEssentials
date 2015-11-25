@@ -16,35 +16,35 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRamp : IIfcRamp
 	{
-		Ifc4.SharedBldgElements.IfcRampTypeEnum? IIfcRamp.PredefinedType 
+		Ifc4.Interfaces.IfcRampTypeEnum? IIfcRamp.PredefinedType 
 		{ 
 			get
 			{
 				switch (ShapeType)
 				{
 					case IfcRampTypeEnum.STRAIGHT_RUN_RAMP:
-						return Ifc4.SharedBldgElements.IfcRampTypeEnum.STRAIGHT_RUN_RAMP;
+						return Ifc4.Interfaces.IfcRampTypeEnum.STRAIGHT_RUN_RAMP;
 					
 					case IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP:
-						return Ifc4.SharedBldgElements.IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP;
+						return Ifc4.Interfaces.IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP;
 					
 					case IfcRampTypeEnum.QUARTER_TURN_RAMP:
-						return Ifc4.SharedBldgElements.IfcRampTypeEnum.QUARTER_TURN_RAMP;
+						return Ifc4.Interfaces.IfcRampTypeEnum.QUARTER_TURN_RAMP;
 					
 					case IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP:
-						return Ifc4.SharedBldgElements.IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP;
+						return Ifc4.Interfaces.IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP;
 					
 					case IfcRampTypeEnum.HALF_TURN_RAMP:
-						return Ifc4.SharedBldgElements.IfcRampTypeEnum.HALF_TURN_RAMP;
+						return Ifc4.Interfaces.IfcRampTypeEnum.HALF_TURN_RAMP;
 					
 					case IfcRampTypeEnum.SPIRAL_RAMP:
-						return Ifc4.SharedBldgElements.IfcRampTypeEnum.SPIRAL_RAMP;
+						return Ifc4.Interfaces.IfcRampTypeEnum.SPIRAL_RAMP;
 					
 					case IfcRampTypeEnum.USERDEFINED:
-						return Ifc4.SharedBldgElements.IfcRampTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcRampTypeEnum.USERDEFINED;
 					
 					case IfcRampTypeEnum.NOTDEFINED:
-						return Ifc4.SharedBldgElements.IfcRampTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcRampTypeEnum.NOTDEFINED;
 					
 					
 					default:

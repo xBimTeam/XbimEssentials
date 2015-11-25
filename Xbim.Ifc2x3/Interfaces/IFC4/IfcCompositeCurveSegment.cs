@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCompositeCurveSegment : IIfcCompositeCurveSegment
 	{
-		Ifc4.GeometryResource.IfcTransitionCode IIfcCompositeCurveSegment.Transition 
+		Ifc4.Interfaces.IfcTransitionCode IIfcCompositeCurveSegment.Transition 
 		{ 
 			get
 			{
 				switch (Transition)
 				{
 					case IfcTransitionCode.DISCONTINUOUS:
-						return Ifc4.GeometryResource.IfcTransitionCode.DISCONTINUOUS;
+						return Ifc4.Interfaces.IfcTransitionCode.DISCONTINUOUS;
 					
 					case IfcTransitionCode.CONTINUOUS:
-						return Ifc4.GeometryResource.IfcTransitionCode.CONTINUOUS;
+						return Ifc4.Interfaces.IfcTransitionCode.CONTINUOUS;
 					
 					case IfcTransitionCode.CONTSAMEGRADIENT:
-						return Ifc4.GeometryResource.IfcTransitionCode.CONTSAMEGRADIENT;
+						return Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENT;
 					
 					case IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE:
-						return Ifc4.GeometryResource.IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE;
+						return Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE;
 					
 					
 					default:

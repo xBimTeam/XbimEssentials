@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 {
 	public partial class @IfcPermeableCoveringProperties : IIfcPermeableCoveringProperties
 	{
-		Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum IIfcPermeableCoveringProperties.OperationType 
+		Ifc4.Interfaces.IfcPermeableCoveringOperationEnum IIfcPermeableCoveringProperties.OperationType 
 		{ 
 			get
 			{
 				switch (OperationType)
 				{
 					case IfcPermeableCoveringOperationEnum.GRILL:
-						return Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.GRILL;
+						return Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.GRILL;
 					
 					case IfcPermeableCoveringOperationEnum.LOUVER:
-						return Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.LOUVER;
+						return Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.LOUVER;
 					
 					case IfcPermeableCoveringOperationEnum.SCREEN:
-						return Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.SCREEN;
+						return Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.SCREEN;
 					
 					case IfcPermeableCoveringOperationEnum.USERDEFINED:
-						return Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.USERDEFINED;
 					
 					case IfcPermeableCoveringOperationEnum.NOTDEFINED:
-						return Ifc4.ArchitectureDomain.IfcPermeableCoveringOperationEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcPermeableCoveringOperationEnum.NOTDEFINED;
 					
 					
 					default:
@@ -43,29 +43,29 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				}
 			} 
 		}
-		Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum IIfcPermeableCoveringProperties.PanelPosition 
+		Ifc4.Interfaces.IfcWindowPanelPositionEnum IIfcPermeableCoveringProperties.PanelPosition 
 		{ 
 			get
 			{
 				switch (PanelPosition)
 				{
 					case SharedBldgElements.IfcWindowPanelPositionEnum.LEFT:
-						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.LEFT;
+						return Ifc4.Interfaces.IfcWindowPanelPositionEnum.LEFT;
 					
 					case SharedBldgElements.IfcWindowPanelPositionEnum.MIDDLE:
-						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.MIDDLE;
+						return Ifc4.Interfaces.IfcWindowPanelPositionEnum.MIDDLE;
 					
 					case SharedBldgElements.IfcWindowPanelPositionEnum.RIGHT:
-						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.RIGHT;
+						return Ifc4.Interfaces.IfcWindowPanelPositionEnum.RIGHT;
 					
 					case SharedBldgElements.IfcWindowPanelPositionEnum.BOTTOM:
-						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.BOTTOM;
+						return Ifc4.Interfaces.IfcWindowPanelPositionEnum.BOTTOM;
 					
 					case SharedBldgElements.IfcWindowPanelPositionEnum.TOP:
-						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.TOP;
+						return Ifc4.Interfaces.IfcWindowPanelPositionEnum.TOP;
 					
 					case SharedBldgElements.IfcWindowPanelPositionEnum.NOTDEFINED:
-						return Ifc4.ArchitectureDomain.IfcWindowPanelPositionEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcWindowPanelPositionEnum.NOTDEFINED;
 					
 					
 					default:

@@ -1346,7 +1346,7 @@ namespace Xbim.Ifc2x3
 			}
 		}
 
-		private static List<string> _schemasIds = new List<string> { "IFC2X3" };
+		private static readonly List<string> _schemasIds = new List<string> { "IFC2X3" };
 		public IEnumerable<string> SchemasIds { get { return _schemasIds; } }
 
 	}

@@ -16,31 +16,31 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralLoadGroup : IIfcStructuralLoadGroup
 	{
-		Ifc4.StructuralAnalysisDomain.IfcLoadGroupTypeEnum IIfcStructuralLoadGroup.PredefinedType 
+		Ifc4.Interfaces.IfcLoadGroupTypeEnum IIfcStructuralLoadGroup.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcLoadGroupTypeEnum.LOAD_GROUP:
-						return Ifc4.StructuralAnalysisDomain.IfcLoadGroupTypeEnum.LOAD_GROUP;
+						return Ifc4.Interfaces.IfcLoadGroupTypeEnum.LOAD_GROUP;
 					
 					case IfcLoadGroupTypeEnum.LOAD_CASE:
-						return Ifc4.StructuralAnalysisDomain.IfcLoadGroupTypeEnum.LOAD_CASE;
+						return Ifc4.Interfaces.IfcLoadGroupTypeEnum.LOAD_CASE;
 					
 					case IfcLoadGroupTypeEnum.LOAD_COMBINATION_GROUP:
 						//## Handle translation of LOAD_COMBINATION_GROUP member from IfcLoadGroupTypeEnum in property PredefinedType
-                        return Ifc4.StructuralAnalysisDomain.IfcLoadGroupTypeEnum.USERDEFINED;
+                        return Ifc4.Interfaces.IfcLoadGroupTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcLoadGroupTypeEnum.LOAD_COMBINATION:
-						return Ifc4.StructuralAnalysisDomain.IfcLoadGroupTypeEnum.LOAD_COMBINATION;
+						return Ifc4.Interfaces.IfcLoadGroupTypeEnum.LOAD_COMBINATION;
 					
 					case IfcLoadGroupTypeEnum.USERDEFINED:
-						return Ifc4.StructuralAnalysisDomain.IfcLoadGroupTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcLoadGroupTypeEnum.USERDEFINED;
 					
 					case IfcLoadGroupTypeEnum.NOTDEFINED:
-						return Ifc4.StructuralAnalysisDomain.IfcLoadGroupTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcLoadGroupTypeEnum.NOTDEFINED;
 					
 					
 					default:
@@ -48,26 +48,26 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				}
 			} 
 		}
-		Ifc4.StructuralAnalysisDomain.IfcActionTypeEnum IIfcStructuralLoadGroup.ActionType 
+		Ifc4.Interfaces.IfcActionTypeEnum IIfcStructuralLoadGroup.ActionType 
 		{ 
 			get
 			{
 				switch (ActionType)
 				{
 					case IfcActionTypeEnum.PERMANENT_G:
-						return Ifc4.StructuralAnalysisDomain.IfcActionTypeEnum.PERMANENT_G;
+						return Ifc4.Interfaces.IfcActionTypeEnum.PERMANENT_G;
 					
 					case IfcActionTypeEnum.VARIABLE_Q:
-						return Ifc4.StructuralAnalysisDomain.IfcActionTypeEnum.VARIABLE_Q;
+						return Ifc4.Interfaces.IfcActionTypeEnum.VARIABLE_Q;
 					
 					case IfcActionTypeEnum.EXTRAORDINARY_A:
-						return Ifc4.StructuralAnalysisDomain.IfcActionTypeEnum.EXTRAORDINARY_A;
+						return Ifc4.Interfaces.IfcActionTypeEnum.EXTRAORDINARY_A;
 					
 					case IfcActionTypeEnum.USERDEFINED:
-						return Ifc4.StructuralAnalysisDomain.IfcActionTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcActionTypeEnum.USERDEFINED;
 					
 					case IfcActionTypeEnum.NOTDEFINED:
-						return Ifc4.StructuralAnalysisDomain.IfcActionTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcActionTypeEnum.NOTDEFINED;
 					
 					
 					default:
@@ -75,92 +75,92 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				}
 			} 
 		}
-		Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum IIfcStructuralLoadGroup.ActionSource 
+		Ifc4.Interfaces.IfcActionSourceTypeEnum IIfcStructuralLoadGroup.ActionSource 
 		{ 
 			get
 			{
 				switch (ActionSource)
 				{
 					case IfcActionSourceTypeEnum.DEAD_LOAD_G:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.DEAD_LOAD_G;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.DEAD_LOAD_G;
 					
 					case IfcActionSourceTypeEnum.COMPLETION_G1:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.COMPLETION_G1;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.COMPLETION_G1;
 					
 					case IfcActionSourceTypeEnum.LIVE_LOAD_Q:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.LIVE_LOAD_Q;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.LIVE_LOAD_Q;
 					
 					case IfcActionSourceTypeEnum.SNOW_S:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.SNOW_S;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.SNOW_S;
 					
 					case IfcActionSourceTypeEnum.WIND_W:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.WIND_W;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.WIND_W;
 					
 					case IfcActionSourceTypeEnum.PRESTRESSING_P:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.PRESTRESSING_P;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.PRESTRESSING_P;
 					
 					case IfcActionSourceTypeEnum.SETTLEMENT_U:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.SETTLEMENT_U;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.SETTLEMENT_U;
 					
 					case IfcActionSourceTypeEnum.TEMPERATURE_T:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.TEMPERATURE_T;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.TEMPERATURE_T;
 					
 					case IfcActionSourceTypeEnum.EARTHQUAKE_E:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.EARTHQUAKE_E;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.EARTHQUAKE_E;
 					
 					case IfcActionSourceTypeEnum.FIRE:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.FIRE;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.FIRE;
 					
 					case IfcActionSourceTypeEnum.IMPULSE:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.IMPULSE;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.IMPULSE;
 					
 					case IfcActionSourceTypeEnum.IMPACT:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.IMPACT;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.IMPACT;
 					
 					case IfcActionSourceTypeEnum.TRANSPORT:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.TRANSPORT;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.TRANSPORT;
 					
 					case IfcActionSourceTypeEnum.ERECTION:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.ERECTION;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.ERECTION;
 					
 					case IfcActionSourceTypeEnum.PROPPING:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.PROPPING;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.PROPPING;
 					
 					case IfcActionSourceTypeEnum.SYSTEM_IMPERFECTION:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.SYSTEM_IMPERFECTION;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.SYSTEM_IMPERFECTION;
 					
 					case IfcActionSourceTypeEnum.SHRINKAGE:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.SHRINKAGE;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.SHRINKAGE;
 					
 					case IfcActionSourceTypeEnum.CREEP:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.CREEP;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.CREEP;
 					
 					case IfcActionSourceTypeEnum.LACK_OF_FIT:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.LACK_OF_FIT;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.LACK_OF_FIT;
 					
 					case IfcActionSourceTypeEnum.BUOYANCY:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.BUOYANCY;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.BUOYANCY;
 					
 					case IfcActionSourceTypeEnum.ICE:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.ICE;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.ICE;
 					
 					case IfcActionSourceTypeEnum.CURRENT:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.CURRENT;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.CURRENT;
 					
 					case IfcActionSourceTypeEnum.WAVE:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.WAVE;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.WAVE;
 					
 					case IfcActionSourceTypeEnum.RAIN:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.RAIN;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.RAIN;
 					
 					case IfcActionSourceTypeEnum.BRAKES:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.BRAKES;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.BRAKES;
 					
 					case IfcActionSourceTypeEnum.USERDEFINED:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.USERDEFINED;
 					
 					case IfcActionSourceTypeEnum.NOTDEFINED:
-						return Ifc4.StructuralAnalysisDomain.IfcActionSourceTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.NOTDEFINED;
 					
 					
 					default:

@@ -139,6 +139,7 @@ namespace Xbim.Ifc4.MaterialResource
 
 
 		#region Inverse attributes
+		[InverseProperty("MaterialConstituents")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 9)]
 		public IfcMaterialConstituentSet @ToMaterialConstituentSet 
 		{ 

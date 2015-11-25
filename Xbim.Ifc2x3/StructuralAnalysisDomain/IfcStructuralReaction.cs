@@ -48,6 +48,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 
 		#region Inverse attributes
+		[InverseProperty("CausedBy")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 17)]
 		public IEnumerable<IfcStructuralAction> @Causes 
 		{ 

@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth.Value);
 			} 
 		}
-		Ifc4.SharedBldgElements.IfcDoorTypeEnum? IIfcDoor.PredefinedType 
+		Ifc4.Interfaces.IfcDoorTypeEnum? IIfcDoor.PredefinedType 
 		{ 
 			get
 			{
@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			    //##
 			} 
 		}
-		Ifc4.SharedBldgElements.IfcDoorTypeOperationEnum? IIfcDoor.OperationType 
+		Ifc4.Interfaces.IfcDoorTypeOperationEnum? IIfcDoor.OperationType 
 		{ 
 			get
 			{

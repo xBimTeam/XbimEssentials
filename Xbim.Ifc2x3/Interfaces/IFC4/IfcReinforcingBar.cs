@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(BarLength.Value);
 			} 
 		}
-		Ifc4.StructuralElementsDomain.IfcReinforcingBarTypeEnum? IIfcReinforcingBar.PredefinedType 
+		Ifc4.Interfaces.IfcReinforcingBarTypeEnum? IIfcReinforcingBar.PredefinedType 
 		{ 
 			get
 			{
@@ -47,17 +47,17 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				//##
 			} 
 		}
-		Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum? IIfcReinforcingBar.BarSurface 
+		Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum? IIfcReinforcingBar.BarSurface 
 		{ 
 			get
 			{
 				switch (BarSurface)
 				{
 					case ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.PLAIN:
-						return Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum.PLAIN;
+						return Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum.PLAIN;
 					
 					case ProfilePropertyResource.IfcReinforcingBarSurfaceEnum.TEXTURED:
-						return Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum.TEXTURED;
+						return Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum.TEXTURED;
 					
 					
 					default:

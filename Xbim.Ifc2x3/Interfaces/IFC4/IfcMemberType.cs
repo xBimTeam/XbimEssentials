@@ -16,53 +16,53 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcMemberType : IIfcMemberType
 	{
-		Ifc4.SharedBldgElements.IfcMemberTypeEnum IIfcMemberType.PredefinedType 
+		Ifc4.Interfaces.IfcMemberTypeEnum IIfcMemberType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcMemberTypeEnum.BRACE:
-						return Ifc4.SharedBldgElements.IfcMemberTypeEnum.BRACE;
+						return Ifc4.Interfaces.IfcMemberTypeEnum.BRACE;
 					
 					case IfcMemberTypeEnum.CHORD:
-						return Ifc4.SharedBldgElements.IfcMemberTypeEnum.CHORD;
+						return Ifc4.Interfaces.IfcMemberTypeEnum.CHORD;
 					
 					case IfcMemberTypeEnum.COLLAR:
-						return Ifc4.SharedBldgElements.IfcMemberTypeEnum.COLLAR;
+						return Ifc4.Interfaces.IfcMemberTypeEnum.COLLAR;
 					
 					case IfcMemberTypeEnum.MEMBER:
-						return Ifc4.SharedBldgElements.IfcMemberTypeEnum.MEMBER;
+						return Ifc4.Interfaces.IfcMemberTypeEnum.MEMBER;
 					
 					case IfcMemberTypeEnum.MULLION:
-						return Ifc4.SharedBldgElements.IfcMemberTypeEnum.MULLION;
+						return Ifc4.Interfaces.IfcMemberTypeEnum.MULLION;
 					
 					case IfcMemberTypeEnum.PLATE:
-						return Ifc4.SharedBldgElements.IfcMemberTypeEnum.PLATE;
+						return Ifc4.Interfaces.IfcMemberTypeEnum.PLATE;
 					
 					case IfcMemberTypeEnum.POST:
-						return Ifc4.SharedBldgElements.IfcMemberTypeEnum.POST;
+						return Ifc4.Interfaces.IfcMemberTypeEnum.POST;
 					
 					case IfcMemberTypeEnum.PURLIN:
-						return Ifc4.SharedBldgElements.IfcMemberTypeEnum.PURLIN;
+						return Ifc4.Interfaces.IfcMemberTypeEnum.PURLIN;
 					
 					case IfcMemberTypeEnum.RAFTER:
-						return Ifc4.SharedBldgElements.IfcMemberTypeEnum.RAFTER;
+						return Ifc4.Interfaces.IfcMemberTypeEnum.RAFTER;
 					
 					case IfcMemberTypeEnum.STRINGER:
-						return Ifc4.SharedBldgElements.IfcMemberTypeEnum.STRINGER;
+						return Ifc4.Interfaces.IfcMemberTypeEnum.STRINGER;
 					
 					case IfcMemberTypeEnum.STRUT:
-						return Ifc4.SharedBldgElements.IfcMemberTypeEnum.STRUT;
+						return Ifc4.Interfaces.IfcMemberTypeEnum.STRUT;
 					
 					case IfcMemberTypeEnum.STUD:
-						return Ifc4.SharedBldgElements.IfcMemberTypeEnum.STUD;
+						return Ifc4.Interfaces.IfcMemberTypeEnum.STUD;
 					
 					case IfcMemberTypeEnum.USERDEFINED:
-						return Ifc4.SharedBldgElements.IfcMemberTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcMemberTypeEnum.USERDEFINED;
 					
 					case IfcMemberTypeEnum.NOTDEFINED:
-						return Ifc4.SharedBldgElements.IfcMemberTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcMemberTypeEnum.NOTDEFINED;
 					
 					
 					default:

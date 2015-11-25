@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcAirTerminalBoxType : IIfcAirTerminalBoxType
 	{
-		Ifc4.HvacDomain.IfcAirTerminalBoxTypeEnum IIfcAirTerminalBoxType.PredefinedType 
+		Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum IIfcAirTerminalBoxType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcAirTerminalBoxTypeEnum.CONSTANTFLOW:
-						return Ifc4.HvacDomain.IfcAirTerminalBoxTypeEnum.CONSTANTFLOW;
+						return Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.CONSTANTFLOW;
 					
 					case IfcAirTerminalBoxTypeEnum.VARIABLEFLOWPRESSUREDEPENDANT:
-						return Ifc4.HvacDomain.IfcAirTerminalBoxTypeEnum.VARIABLEFLOWPRESSUREDEPENDANT;
+						return Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.VARIABLEFLOWPRESSUREDEPENDANT;
 					
 					case IfcAirTerminalBoxTypeEnum.VARIABLEFLOWPRESSUREINDEPENDANT:
-						return Ifc4.HvacDomain.IfcAirTerminalBoxTypeEnum.VARIABLEFLOWPRESSUREINDEPENDANT;
+						return Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.VARIABLEFLOWPRESSUREINDEPENDANT;
 					
 					case IfcAirTerminalBoxTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcAirTerminalBoxTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.USERDEFINED;
 					
 					case IfcAirTerminalBoxTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcAirTerminalBoxTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcAirTerminalBoxTypeEnum.NOTDEFINED;
 					
 					
 					default:

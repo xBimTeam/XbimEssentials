@@ -91,6 +91,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatingDocument")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
 		public IEnumerable<IfcRelAssociatesDocument> @DocumentRefForObjects 
 		{ 

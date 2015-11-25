@@ -37,33 +37,33 @@ namespace Xbim.Ifc2x3.Kernel
 				//## Handle return of TimeLag for which no match was found
 			    var lag = new Interfaces.Conversions.IfcLagTimeTransient
 			    {
-			        DurationType = Ifc4.DateTimeResource.IfcTaskDurationEnum.NOTDEFINED,
+                    DurationType = IfcTaskDurationEnum.NOTDEFINED,
 			        LagValue = new Ifc4.DateTimeResource.IfcDuration(TimeLag.ToISODateTimeString())
 			    };
 			    return lag;
 				//##
 			} 
 		}
-		Ifc4.ProcessExtension.IfcSequenceEnum? IIfcRelSequence.SequenceType 
+		Ifc4.Interfaces.IfcSequenceEnum? IIfcRelSequence.SequenceType 
 		{ 
 			get
 			{
 				switch (SequenceType)
 				{
 					case IfcSequenceEnum.START_START:
-						return Ifc4.ProcessExtension.IfcSequenceEnum.START_START;
+						return Ifc4.Interfaces.IfcSequenceEnum.START_START;
 					
 					case IfcSequenceEnum.START_FINISH:
-						return Ifc4.ProcessExtension.IfcSequenceEnum.START_FINISH;
+						return Ifc4.Interfaces.IfcSequenceEnum.START_FINISH;
 					
 					case IfcSequenceEnum.FINISH_START:
-						return Ifc4.ProcessExtension.IfcSequenceEnum.FINISH_START;
+						return Ifc4.Interfaces.IfcSequenceEnum.FINISH_START;
 					
 					case IfcSequenceEnum.FINISH_FINISH:
-						return Ifc4.ProcessExtension.IfcSequenceEnum.FINISH_FINISH;
+						return Ifc4.Interfaces.IfcSequenceEnum.FINISH_FINISH;
 					
 					case IfcSequenceEnum.NOTDEFINED:
-						return Ifc4.ProcessExtension.IfcSequenceEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcSequenceEnum.NOTDEFINED;
 					
 					
 					default:

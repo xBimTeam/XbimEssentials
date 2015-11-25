@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcPlateType : IIfcPlateType
 	{
-		Ifc4.SharedBldgElements.IfcPlateTypeEnum IIfcPlateType.PredefinedType 
+		Ifc4.Interfaces.IfcPlateTypeEnum IIfcPlateType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcPlateTypeEnum.CURTAIN_PANEL:
-						return Ifc4.SharedBldgElements.IfcPlateTypeEnum.CURTAIN_PANEL;
+						return Ifc4.Interfaces.IfcPlateTypeEnum.CURTAIN_PANEL;
 					
 					case IfcPlateTypeEnum.SHEET:
-						return Ifc4.SharedBldgElements.IfcPlateTypeEnum.SHEET;
+						return Ifc4.Interfaces.IfcPlateTypeEnum.SHEET;
 					
 					case IfcPlateTypeEnum.USERDEFINED:
-						return Ifc4.SharedBldgElements.IfcPlateTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcPlateTypeEnum.USERDEFINED;
 					
 					case IfcPlateTypeEnum.NOTDEFINED:
-						return Ifc4.SharedBldgElements.IfcPlateTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcPlateTypeEnum.NOTDEFINED;
 					
 					
 					default:

@@ -16,41 +16,41 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcCoveringType : IIfcCoveringType
 	{
-		Ifc4.SharedBldgElements.IfcCoveringTypeEnum IIfcCoveringType.PredefinedType 
+		Ifc4.Interfaces.IfcCoveringTypeEnum IIfcCoveringType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcCoveringTypeEnum.CEILING:
-						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.CEILING;
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.CEILING;
 					
 					case IfcCoveringTypeEnum.FLOORING:
-						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.FLOORING;
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.FLOORING;
 					
 					case IfcCoveringTypeEnum.CLADDING:
-						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.CLADDING;
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.CLADDING;
 					
 					case IfcCoveringTypeEnum.ROOFING:
-						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.ROOFING;
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.ROOFING;
 					
 					case IfcCoveringTypeEnum.INSULATION:
-						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.INSULATION;
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.INSULATION;
 					
 					case IfcCoveringTypeEnum.MEMBRANE:
-						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.MEMBRANE;
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.MEMBRANE;
 					
 					case IfcCoveringTypeEnum.SLEEVING:
-						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.SLEEVING;
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.SLEEVING;
 					
 					case IfcCoveringTypeEnum.WRAPPING:
-						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.WRAPPING;
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.WRAPPING;
 					
 					case IfcCoveringTypeEnum.USERDEFINED:
-						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.USERDEFINED;
 					
 					case IfcCoveringTypeEnum.NOTDEFINED:
-						return Ifc4.SharedBldgElements.IfcCoveringTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.NOTDEFINED;
 					
 					
 					default:

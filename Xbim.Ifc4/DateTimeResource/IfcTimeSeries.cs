@@ -11,6 +11,7 @@ using Xbim.Ifc4.ConstraintResource;
 using Xbim.Ifc4.PropertyResource;
 using Xbim.Ifc4.ExternalReferenceResource;
 using Xbim.Ifc4.MeasureResource;
+using Xbim.Ifc4.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -254,6 +255,7 @@ namespace Xbim.Ifc4.DateTimeResource
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedResourceObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 9)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReference 
 		{ 

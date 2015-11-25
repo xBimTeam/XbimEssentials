@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralAnalysisModel : IIfcStructuralAnalysisModel
 	{
-		Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum IIfcStructuralAnalysisModel.PredefinedType 
+		Ifc4.Interfaces.IfcAnalysisModelTypeEnum IIfcStructuralAnalysisModel.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D:
-						return Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D;
+						return Ifc4.Interfaces.IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D;
 					
 					case IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D:
-						return Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D;
+						return Ifc4.Interfaces.IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D;
 					
 					case IfcAnalysisModelTypeEnum.LOADING_3D:
-						return Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.LOADING_3D;
+						return Ifc4.Interfaces.IfcAnalysisModelTypeEnum.LOADING_3D;
 					
 					case IfcAnalysisModelTypeEnum.USERDEFINED:
-						return Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcAnalysisModelTypeEnum.USERDEFINED;
 					
 					case IfcAnalysisModelTypeEnum.NOTDEFINED:
-						return Ifc4.StructuralAnalysisDomain.IfcAnalysisModelTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcAnalysisModelTypeEnum.NOTDEFINED;
 					
 					
 					default:

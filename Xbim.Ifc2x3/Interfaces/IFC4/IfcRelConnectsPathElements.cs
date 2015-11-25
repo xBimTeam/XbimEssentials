@@ -34,23 +34,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			    //##
 			} 
 		}
-		Ifc4.SharedBldgElements.IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType 
+		Ifc4.Interfaces.IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType 
 		{ 
 			get
 			{
 				switch (RelatedConnectionType)
 				{
 					case IfcConnectionTypeEnum.ATPATH:
-						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATPATH;
+						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATPATH;
 					
 					case IfcConnectionTypeEnum.ATSTART:
-						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATSTART;
+						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATSTART;
 					
 					case IfcConnectionTypeEnum.ATEND:
-						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATEND;
+						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATEND;
 					
 					case IfcConnectionTypeEnum.NOTDEFINED:
-						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcConnectionTypeEnum.NOTDEFINED;
 					
 					
 					default:
@@ -58,23 +58,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				}
 			} 
 		}
-		Ifc4.SharedBldgElements.IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType 
+		Ifc4.Interfaces.IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType 
 		{ 
 			get
 			{
 				switch (RelatingConnectionType)
 				{
 					case IfcConnectionTypeEnum.ATPATH:
-						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATPATH;
+						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATPATH;
 					
 					case IfcConnectionTypeEnum.ATSTART:
-						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATSTART;
+						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATSTART;
 					
 					case IfcConnectionTypeEnum.ATEND:
-						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.ATEND;
+						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATEND;
 					
 					case IfcConnectionTypeEnum.NOTDEFINED:
-						return Ifc4.SharedBldgElements.IfcConnectionTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcConnectionTypeEnum.NOTDEFINED;
 					
 					
 					default:

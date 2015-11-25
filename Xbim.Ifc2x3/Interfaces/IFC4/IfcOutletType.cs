@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcOutletType : IIfcOutletType
 	{
-		Ifc4.ElectricalDomain.IfcOutletTypeEnum IIfcOutletType.PredefinedType 
+		Ifc4.Interfaces.IfcOutletTypeEnum IIfcOutletType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcOutletTypeEnum.AUDIOVISUALOUTLET:
-						return Ifc4.ElectricalDomain.IfcOutletTypeEnum.AUDIOVISUALOUTLET;
+						return Ifc4.Interfaces.IfcOutletTypeEnum.AUDIOVISUALOUTLET;
 					
 					case IfcOutletTypeEnum.COMMUNICATIONSOUTLET:
-						return Ifc4.ElectricalDomain.IfcOutletTypeEnum.COMMUNICATIONSOUTLET;
+						return Ifc4.Interfaces.IfcOutletTypeEnum.COMMUNICATIONSOUTLET;
 					
 					case IfcOutletTypeEnum.POWEROUTLET:
-						return Ifc4.ElectricalDomain.IfcOutletTypeEnum.POWEROUTLET;
+						return Ifc4.Interfaces.IfcOutletTypeEnum.POWEROUTLET;
 					
 					case IfcOutletTypeEnum.USERDEFINED:
-						return Ifc4.ElectricalDomain.IfcOutletTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcOutletTypeEnum.USERDEFINED;
 					
 					case IfcOutletTypeEnum.NOTDEFINED:
-						return Ifc4.ElectricalDomain.IfcOutletTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcOutletTypeEnum.NOTDEFINED;
 					
 					
 					default:

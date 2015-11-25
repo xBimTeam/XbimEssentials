@@ -152,7 +152,7 @@ namespace Xbim.CobieExpress
 			}
 		}
 
-		private static List<string> _schemasIds = new List<string> { "COBIE_EXPRESS" };
+		private static readonly List<string> _schemasIds = new List<string> { "COBIE_EXPRESS" };
 		public IEnumerable<string> SchemasIds { get { return _schemasIds; } }
 
 	}

@@ -52,6 +52,7 @@ namespace Xbim.Ifc2x3.Kernel
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatingProcess")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 11)]
 		public IEnumerable<IfcRelAssignsToProcess> @OperatesOn 
 		{ 
@@ -60,6 +61,7 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IfcRelAssignsToProcess>(e => (e.RelatingProcess as IfcProcess) == this);
 			} 
 		}
+		[InverseProperty("RelatedProcess")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 12)]
 		public IEnumerable<IfcRelSequence> @IsSuccessorFrom 
 		{ 
@@ -68,6 +70,7 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IfcRelSequence>(e => (e.RelatedProcess as IfcProcess) == this);
 			} 
 		}
+		[InverseProperty("RelatingProcess")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 13)]
 		public IEnumerable<IfcRelSequence> @IsPredecessorTo 
 		{ 

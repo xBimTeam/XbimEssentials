@@ -7,9 +7,9 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.PropertyResource;
-using Xbim.Ifc4.UtilityResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;

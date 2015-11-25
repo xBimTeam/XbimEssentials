@@ -9,7 +9,7 @@
 
 using Xbim.Ifc4.Kernel;
 using Xbim.Ifc4.StructuralLoadResource;
-using Xbim.Ifc4.RepresentationResource;
+using Xbim.Ifc4.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,6 +90,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedStructuralActivity")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 22)]
 		public IEnumerable<IfcRelConnectsStructuralActivity> @AssignedToStructuralItem 
 		{ 

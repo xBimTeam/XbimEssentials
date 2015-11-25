@@ -38,38 +38,38 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				return new Ifc4.MeasureResource.IfcLengthMeasure(TransversePosition.Value);
 			} 
 		}
-		Ifc4.ProfileResource.IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole 
+		Ifc4.Interfaces.IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole 
 		{ 
 			get
 			{
 				switch (ReinforcementRole)
 				{
 					case IfcReinforcingBarRoleEnum.MAIN:
-						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.MAIN;
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.MAIN;
 					
 					case IfcReinforcingBarRoleEnum.SHEAR:
-						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.SHEAR;
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.SHEAR;
 					
 					case IfcReinforcingBarRoleEnum.LIGATURE:
-						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.LIGATURE;
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.LIGATURE;
 					
 					case IfcReinforcingBarRoleEnum.STUD:
-						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.STUD;
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.STUD;
 					
 					case IfcReinforcingBarRoleEnum.PUNCHING:
-						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.PUNCHING;
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.PUNCHING;
 					
 					case IfcReinforcingBarRoleEnum.EDGE:
-						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.EDGE;
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.EDGE;
 					
 					case IfcReinforcingBarRoleEnum.RING:
-						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.RING;
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.RING;
 					
 					case IfcReinforcingBarRoleEnum.USERDEFINED:
-						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.USERDEFINED;
 					
 					case IfcReinforcingBarRoleEnum.NOTDEFINED:
-						return Ifc4.ProfileResource.IfcReinforcingBarRoleEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.NOTDEFINED;
 					
 					
 					default:

@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcElectricFlowStorageDeviceType : IIfcElectricFlowStorageDeviceType
 	{
-		Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum IIfcElectricFlowStorageDeviceType.PredefinedType 
+		Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum IIfcElectricFlowStorageDeviceType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcElectricFlowStorageDeviceTypeEnum.BATTERY:
-						return Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.BATTERY;
+						return Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.BATTERY;
 					
 					case IfcElectricFlowStorageDeviceTypeEnum.CAPACITORBANK:
-						return Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.CAPACITORBANK;
+						return Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.CAPACITORBANK;
 					
 					case IfcElectricFlowStorageDeviceTypeEnum.HARMONICFILTER:
-						return Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.HARMONICFILTER;
+						return Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.HARMONICFILTER;
 					
 					case IfcElectricFlowStorageDeviceTypeEnum.INDUCTORBANK:
-						return Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.INDUCTORBANK;
+						return Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.INDUCTORBANK;
 					
 					case IfcElectricFlowStorageDeviceTypeEnum.UPS:
-						return Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.UPS;
+						return Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.UPS;
 					
 					case IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED:
-						return Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.USERDEFINED;
 					
 					case IfcElectricFlowStorageDeviceTypeEnum.NOTDEFINED:
-						return Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.NOTDEFINED;
 					
 					
 					default:

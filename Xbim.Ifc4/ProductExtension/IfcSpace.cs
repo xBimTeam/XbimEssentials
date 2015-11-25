@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.SharedBldgElements;
 using System;
@@ -91,6 +92,7 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatingSpace")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 27)]
 		public IEnumerable<IfcRelCoversSpaces> @HasCoverings 
 		{ 
@@ -99,6 +101,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return Model.Instances.Where<IfcRelCoversSpaces>(e => (e.RelatingSpace as IfcSpace) == this);
 			} 
 		}
+		[InverseProperty("RelatingSpace")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 28)]
 		public IEnumerable<IfcRelSpaceBoundary> @BoundedBy 
 		{ 

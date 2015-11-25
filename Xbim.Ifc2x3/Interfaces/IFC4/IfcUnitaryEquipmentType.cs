@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcUnitaryEquipmentType : IIfcUnitaryEquipmentType
 	{
-		Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum IIfcUnitaryEquipmentType.PredefinedType 
+		Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum IIfcUnitaryEquipmentType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcUnitaryEquipmentTypeEnum.AIRHANDLER:
-						return Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.AIRHANDLER;
+						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.AIRHANDLER;
 					
 					case IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT:
-						return Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT;
+						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT;
 					
 					case IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM:
-						return Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM;
+						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM;
 					
 					case IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT:
-						return Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT;
+						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT;
 					
 					case IfcUnitaryEquipmentTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.USERDEFINED;
 					
 					case IfcUnitaryEquipmentTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcUnitaryEquipmentTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.NOTDEFINED;
 					
 					
 					default:

@@ -122,6 +122,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 
 
 		#region Inverse attributes
+		[InverseProperty("ParentContext")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcGeometricRepresentationSubContext> @HasSubContexts 
 		{ 

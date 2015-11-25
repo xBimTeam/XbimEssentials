@@ -72,6 +72,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedControlElements")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 28)]
 		public IEnumerable<IfcRelFlowControlElements> @AssignedToFlowElement 
 		{ 

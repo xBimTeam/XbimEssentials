@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.ConstraintResource
 {
 	public partial class @IfcMetric : IIfcMetric
 	{
-		Ifc4.ConstraintResource.IfcBenchmarkEnum IIfcMetric.Benchmark 
+		Ifc4.Interfaces.IfcBenchmarkEnum IIfcMetric.Benchmark 
 		{ 
 			get
 			{
 				switch (Benchmark)
 				{
 					case IfcBenchmarkEnum.GREATERTHAN:
-						return Ifc4.ConstraintResource.IfcBenchmarkEnum.GREATERTHAN;
+						return Ifc4.Interfaces.IfcBenchmarkEnum.GREATERTHAN;
 					
 					case IfcBenchmarkEnum.GREATERTHANOREQUALTO:
-						return Ifc4.ConstraintResource.IfcBenchmarkEnum.GREATERTHANOREQUALTO;
+						return Ifc4.Interfaces.IfcBenchmarkEnum.GREATERTHANOREQUALTO;
 					
 					case IfcBenchmarkEnum.LESSTHAN:
-						return Ifc4.ConstraintResource.IfcBenchmarkEnum.LESSTHAN;
+						return Ifc4.Interfaces.IfcBenchmarkEnum.LESSTHAN;
 					
 					case IfcBenchmarkEnum.LESSTHANOREQUALTO:
-						return Ifc4.ConstraintResource.IfcBenchmarkEnum.LESSTHANOREQUALTO;
+						return Ifc4.Interfaces.IfcBenchmarkEnum.LESSTHANOREQUALTO;
 					
 					case IfcBenchmarkEnum.EQUALTO:
-						return Ifc4.ConstraintResource.IfcBenchmarkEnum.EQUALTO;
+						return Ifc4.Interfaces.IfcBenchmarkEnum.EQUALTO;
 					
 					case IfcBenchmarkEnum.NOTEQUALTO:
-						return Ifc4.ConstraintResource.IfcBenchmarkEnum.NOTEQUALTO;
+						return Ifc4.Interfaces.IfcBenchmarkEnum.NOTEQUALTO;
 					
 					
 					default:

@@ -16,35 +16,35 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcLampType : IIfcLampType
 	{
-		Ifc4.ElectricalDomain.IfcLampTypeEnum IIfcLampType.PredefinedType 
+		Ifc4.Interfaces.IfcLampTypeEnum IIfcLampType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcLampTypeEnum.COMPACTFLUORESCENT:
-						return Ifc4.ElectricalDomain.IfcLampTypeEnum.COMPACTFLUORESCENT;
+						return Ifc4.Interfaces.IfcLampTypeEnum.COMPACTFLUORESCENT;
 					
 					case IfcLampTypeEnum.FLUORESCENT:
-						return Ifc4.ElectricalDomain.IfcLampTypeEnum.FLUORESCENT;
+						return Ifc4.Interfaces.IfcLampTypeEnum.FLUORESCENT;
 					
 					case IfcLampTypeEnum.HIGHPRESSUREMERCURY:
-						return Ifc4.ElectricalDomain.IfcLampTypeEnum.HIGHPRESSUREMERCURY;
+						return Ifc4.Interfaces.IfcLampTypeEnum.HIGHPRESSUREMERCURY;
 					
 					case IfcLampTypeEnum.HIGHPRESSURESODIUM:
-						return Ifc4.ElectricalDomain.IfcLampTypeEnum.HIGHPRESSURESODIUM;
+						return Ifc4.Interfaces.IfcLampTypeEnum.HIGHPRESSURESODIUM;
 					
 					case IfcLampTypeEnum.METALHALIDE:
-						return Ifc4.ElectricalDomain.IfcLampTypeEnum.METALHALIDE;
+						return Ifc4.Interfaces.IfcLampTypeEnum.METALHALIDE;
 					
 					case IfcLampTypeEnum.TUNGSTENFILAMENT:
-						return Ifc4.ElectricalDomain.IfcLampTypeEnum.TUNGSTENFILAMENT;
+						return Ifc4.Interfaces.IfcLampTypeEnum.TUNGSTENFILAMENT;
 					
 					case IfcLampTypeEnum.USERDEFINED:
-						return Ifc4.ElectricalDomain.IfcLampTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcLampTypeEnum.USERDEFINED;
 					
 					case IfcLampTypeEnum.NOTDEFINED:
-						return Ifc4.ElectricalDomain.IfcLampTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcLampTypeEnum.NOTDEFINED;
 					
 					
 					default:

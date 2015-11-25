@@ -403,6 +403,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedDocuments")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 18)]
 		public IEnumerable<IfcDocumentInformationRelationship> @IsPointedTo 
 		{ 
@@ -411,6 +412,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => e.RelatedDocuments != null &&  e.RelatedDocuments.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatingDocument")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 19)]
 		public IEnumerable<IfcDocumentInformationRelationship> @IsPointer 
 		{ 

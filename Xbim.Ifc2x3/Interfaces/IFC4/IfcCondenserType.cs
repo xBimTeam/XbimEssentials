@@ -16,35 +16,35 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcCondenserType : IIfcCondenserType
 	{
-		Ifc4.HvacDomain.IfcCondenserTypeEnum IIfcCondenserType.PredefinedType 
+		Ifc4.Interfaces.IfcCondenserTypeEnum IIfcCondenserType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE:
-						return Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE;
+						return Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDSHELLTUBE;
 					
 					case IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL:
-						return Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL;
+						return Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDSHELLCOIL;
 					
 					case IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE:
-						return Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE;
+						return Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDTUBEINTUBE;
 					
 					case IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE:
-						return Ifc4.HvacDomain.IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE;
+						return Ifc4.Interfaces.IfcCondenserTypeEnum.WATERCOOLEDBRAZEDPLATE;
 					
 					case IfcCondenserTypeEnum.AIRCOOLED:
-						return Ifc4.HvacDomain.IfcCondenserTypeEnum.AIRCOOLED;
+						return Ifc4.Interfaces.IfcCondenserTypeEnum.AIRCOOLED;
 					
 					case IfcCondenserTypeEnum.EVAPORATIVECOOLED:
-						return Ifc4.HvacDomain.IfcCondenserTypeEnum.EVAPORATIVECOOLED;
+						return Ifc4.Interfaces.IfcCondenserTypeEnum.EVAPORATIVECOOLED;
 					
 					case IfcCondenserTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcCondenserTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcCondenserTypeEnum.USERDEFINED;
 					
 					case IfcCondenserTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcCondenserTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcCondenserTypeEnum.NOTDEFINED;
 					
 					
 					default:

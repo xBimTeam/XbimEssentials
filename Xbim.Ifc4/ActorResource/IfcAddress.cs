@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.PropertyResource;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -169,6 +170,7 @@ namespace Xbim.Ifc4.ActorResource
 
 
 		#region Inverse attributes
+		[InverseProperty("Addresses")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
 		public IEnumerable<IfcPerson> @OfPerson 
 		{ 
@@ -177,6 +179,7 @@ namespace Xbim.Ifc4.ActorResource
 				return Model.Instances.Where<IfcPerson>(e => e.Addresses != null &&  e.Addresses.Contains(this));
 			} 
 		}
+		[InverseProperty("Addresses")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
 		public IEnumerable<IfcOrganization> @OfOrganization 
 		{ 

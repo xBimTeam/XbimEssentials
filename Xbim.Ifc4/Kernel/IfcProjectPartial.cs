@@ -2,6 +2,7 @@
 using System.Linq;
 using Xbim.Common;
 using Xbim.Ifc4.GeometryResource;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.ProductExtension;
 using Xbim.Ifc4.RepresentationResource;

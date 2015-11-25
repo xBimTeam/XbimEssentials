@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	public partial class @IfcConstructionMaterialResource : IIfcConstructionMaterialResource
 	{
-		Ifc4.ConstructionMgmtDomain.IfcConstructionMaterialResourceTypeEnum? IIfcConstructionMaterialResource.PredefinedType 
+		Ifc4.Interfaces.IfcConstructionMaterialResourceTypeEnum? IIfcConstructionMaterialResource.PredefinedType 
 		{ 
 			get
 			{

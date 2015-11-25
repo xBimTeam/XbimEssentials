@@ -61,20 +61,20 @@ namespace Xbim.Ifc2x3.GeometryResource
 				//##
 			} 
 		}
-		Ifc4.GeometryResource.IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation 
+		Ifc4.Interfaces.IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation 
 		{ 
 			get
 			{
 				switch (MasterRepresentation)
 				{
 					case IfcTrimmingPreference.CARTESIAN:
-						return Ifc4.GeometryResource.IfcTrimmingPreference.CARTESIAN;
+						return Ifc4.Interfaces.IfcTrimmingPreference.CARTESIAN;
 					
 					case IfcTrimmingPreference.PARAMETER:
-						return Ifc4.GeometryResource.IfcTrimmingPreference.PARAMETER;
+						return Ifc4.Interfaces.IfcTrimmingPreference.PARAMETER;
 					
 					case IfcTrimmingPreference.UNSPECIFIED:
-						return Ifc4.GeometryResource.IfcTrimmingPreference.UNSPECIFIED;
+						return Ifc4.Interfaces.IfcTrimmingPreference.UNSPECIFIED;
 					
 					
 					default:

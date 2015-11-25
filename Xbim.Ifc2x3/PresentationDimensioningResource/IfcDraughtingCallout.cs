@@ -70,6 +70,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedDraughtingCallout")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
 		public IEnumerable<IfcDraughtingCalloutRelationship> @IsRelatedFromCallout 
 		{ 
@@ -78,6 +79,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => (e.RelatedDraughtingCallout as IfcDraughtingCallout) == this);
 			} 
 		}
+		[InverseProperty("RelatingDraughtingCallout")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
 		public IEnumerable<IfcDraughtingCalloutRelationship> @IsRelatedToCallout 
 		{ 

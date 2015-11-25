@@ -16,20 +16,20 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcBooleanResult : IIfcBooleanResult
 	{
-		Ifc4.GeometricModelResource.IfcBooleanOperator IIfcBooleanResult.Operator 
+		Ifc4.Interfaces.IfcBooleanOperator IIfcBooleanResult.Operator 
 		{ 
 			get
 			{
 				switch (Operator)
 				{
 					case IfcBooleanOperator.UNION:
-						return Ifc4.GeometricModelResource.IfcBooleanOperator.UNION;
+						return Ifc4.Interfaces.IfcBooleanOperator.UNION;
 					
 					case IfcBooleanOperator.INTERSECTION:
-						return Ifc4.GeometricModelResource.IfcBooleanOperator.INTERSECTION;
+						return Ifc4.Interfaces.IfcBooleanOperator.INTERSECTION;
 					
 					case IfcBooleanOperator.DIFFERENCE:
-						return Ifc4.GeometricModelResource.IfcBooleanOperator.DIFFERENCE;
+						return Ifc4.Interfaces.IfcBooleanOperator.DIFFERENCE;
 					
 					
 					default:

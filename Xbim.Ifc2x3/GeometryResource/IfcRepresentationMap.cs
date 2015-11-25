@@ -150,6 +150,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 
 		#region Inverse attributes
+		[InverseProperty("MappingSource")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 3)]
 		public IEnumerable<IfcMappedItem> @MapUsage 
 		{ 

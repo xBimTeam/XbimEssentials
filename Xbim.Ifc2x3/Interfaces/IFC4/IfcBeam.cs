@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcBeam : IIfcBeam
 	{
-		Ifc4.SharedBldgElements.IfcBeamTypeEnum? IIfcBeam.PredefinedType 
+		Ifc4.Interfaces.IfcBeamTypeEnum? IIfcBeam.PredefinedType 
 		{ 
 			get
 			{

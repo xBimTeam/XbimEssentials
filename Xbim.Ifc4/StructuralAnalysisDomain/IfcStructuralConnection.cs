@@ -71,6 +71,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedStructuralConnection")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 22)]
 		public IEnumerable<IfcRelConnectsStructuralMember> @ConnectsStructuralMembers 
 		{ 

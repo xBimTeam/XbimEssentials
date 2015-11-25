@@ -16,56 +16,56 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcHumidifierType : IIfcHumidifierType
 	{
-		Ifc4.HvacDomain.IfcHumidifierTypeEnum IIfcHumidifierType.PredefinedType 
+		Ifc4.Interfaces.IfcHumidifierTypeEnum IIfcHumidifierType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcHumidifierTypeEnum.STEAMINJECTION:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.STEAMINJECTION;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.STEAMINJECTION;
 					
 					case IfcHumidifierTypeEnum.ADIABATICAIRWASHER:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.ADIABATICAIRWASHER;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICAIRWASHER;
 					
 					case IfcHumidifierTypeEnum.ADIABATICPAN:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.ADIABATICPAN;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICPAN;
 					
 					case IfcHumidifierTypeEnum.ADIABATICWETTEDELEMENT:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.ADIABATICWETTEDELEMENT;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICWETTEDELEMENT;
 					
 					case IfcHumidifierTypeEnum.ADIABATICATOMIZING:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.ADIABATICATOMIZING;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICATOMIZING;
 					
 					case IfcHumidifierTypeEnum.ADIABATICULTRASONIC:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.ADIABATICULTRASONIC;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICULTRASONIC;
 					
 					case IfcHumidifierTypeEnum.ADIABATICRIGIDMEDIA:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.ADIABATICRIGIDMEDIA;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICRIGIDMEDIA;
 					
 					case IfcHumidifierTypeEnum.ADIABATICCOMPRESSEDAIRNOZZLE:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.ADIABATICCOMPRESSEDAIRNOZZLE;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICCOMPRESSEDAIRNOZZLE;
 					
 					case IfcHumidifierTypeEnum.ASSISTEDELECTRIC:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.ASSISTEDELECTRIC;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDELECTRIC;
 					
 					case IfcHumidifierTypeEnum.ASSISTEDNATURALGAS:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.ASSISTEDNATURALGAS;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDNATURALGAS;
 					
 					case IfcHumidifierTypeEnum.ASSISTEDPROPANE:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.ASSISTEDPROPANE;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDPROPANE;
 					
 					case IfcHumidifierTypeEnum.ASSISTEDBUTANE:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.ASSISTEDBUTANE;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDBUTANE;
 					
 					case IfcHumidifierTypeEnum.ASSISTEDSTEAM:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.ASSISTEDSTEAM;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDSTEAM;
 					
 					case IfcHumidifierTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.USERDEFINED;
 					
 					case IfcHumidifierTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcHumidifierTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.NOTDEFINED;
 					
 					
 					default:

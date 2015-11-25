@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRampFlightType : IIfcRampFlightType
 	{
-		Ifc4.SharedBldgElements.IfcRampFlightTypeEnum IIfcRampFlightType.PredefinedType 
+		Ifc4.Interfaces.IfcRampFlightTypeEnum IIfcRampFlightType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcRampFlightTypeEnum.STRAIGHT:
-						return Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.STRAIGHT;
+						return Ifc4.Interfaces.IfcRampFlightTypeEnum.STRAIGHT;
 					
 					case IfcRampFlightTypeEnum.SPIRAL:
-						return Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.SPIRAL;
+						return Ifc4.Interfaces.IfcRampFlightTypeEnum.SPIRAL;
 					
 					case IfcRampFlightTypeEnum.USERDEFINED:
-						return Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcRampFlightTypeEnum.USERDEFINED;
 					
 					case IfcRampFlightTypeEnum.NOTDEFINED:
-						return Ifc4.SharedBldgElements.IfcRampFlightTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcRampFlightTypeEnum.NOTDEFINED;
 					
 					
 					default:

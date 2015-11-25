@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcSwitchingDeviceType : IIfcSwitchingDeviceType
 	{
-		Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum IIfcSwitchingDeviceType.PredefinedType 
+		Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum IIfcSwitchingDeviceType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcSwitchingDeviceTypeEnum.CONTACTOR:
-						return Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.CONTACTOR;
+						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.CONTACTOR;
 					
 					case IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP:
-						return Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP;
+						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.EMERGENCYSTOP;
 					
 					case IfcSwitchingDeviceTypeEnum.STARTER:
-						return Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.STARTER;
+						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.STARTER;
 					
 					case IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR:
-						return Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR;
+						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR;
 					
 					case IfcSwitchingDeviceTypeEnum.TOGGLESWITCH:
-						return Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.TOGGLESWITCH;
+						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.TOGGLESWITCH;
 					
 					case IfcSwitchingDeviceTypeEnum.USERDEFINED:
-						return Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.USERDEFINED;
 					
 					case IfcSwitchingDeviceTypeEnum.NOTDEFINED:
-						return Ifc4.ElectricalDomain.IfcSwitchingDeviceTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.NOTDEFINED;
 					
 					
 					default:

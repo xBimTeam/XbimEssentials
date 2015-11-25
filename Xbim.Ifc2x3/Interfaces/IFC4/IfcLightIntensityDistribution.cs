@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcLightIntensityDistribution : IIfcLightIntensityDistribution
 	{
-		Ifc4.PresentationOrganizationResource.IfcLightDistributionCurveEnum IIfcLightIntensityDistribution.LightDistributionCurve 
+		Ifc4.Interfaces.IfcLightDistributionCurveEnum IIfcLightIntensityDistribution.LightDistributionCurve 
 		{ 
 			get
 			{
 				switch (LightDistributionCurve)
 				{
 					case IfcLightDistributionCurveEnum.TYPE_A:
-						return Ifc4.PresentationOrganizationResource.IfcLightDistributionCurveEnum.TYPE_A;
+						return Ifc4.Interfaces.IfcLightDistributionCurveEnum.TYPE_A;
 					
 					case IfcLightDistributionCurveEnum.TYPE_B:
-						return Ifc4.PresentationOrganizationResource.IfcLightDistributionCurveEnum.TYPE_B;
+						return Ifc4.Interfaces.IfcLightDistributionCurveEnum.TYPE_B;
 					
 					case IfcLightDistributionCurveEnum.TYPE_C:
-						return Ifc4.PresentationOrganizationResource.IfcLightDistributionCurveEnum.TYPE_C;
+						return Ifc4.Interfaces.IfcLightDistributionCurveEnum.TYPE_C;
 					
 					case IfcLightDistributionCurveEnum.NOTDEFINED:
-						return Ifc4.PresentationOrganizationResource.IfcLightDistributionCurveEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcLightDistributionCurveEnum.NOTDEFINED;
 					
 					
 					default:

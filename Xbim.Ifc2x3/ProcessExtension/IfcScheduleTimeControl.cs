@@ -362,6 +362,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 
 
 		#region Inverse attributes
+		[InverseProperty("TimeForTask")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 30)]
 		public IfcRelAssignsTasks @ScheduleTimeControlAssigned 
 		{ 

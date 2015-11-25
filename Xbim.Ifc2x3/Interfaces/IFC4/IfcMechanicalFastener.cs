@@ -32,7 +32,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalLength.Value);
 			} 
 		}
-		Ifc4.SharedComponentElements.IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType 
+		Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType 
 		{ 
 			get
 			{

@@ -16,46 +16,46 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcAirTerminalType : IIfcAirTerminalType
 	{
-		Ifc4.HvacDomain.IfcAirTerminalTypeEnum IIfcAirTerminalType.PredefinedType 
+		Ifc4.Interfaces.IfcAirTerminalTypeEnum IIfcAirTerminalType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcAirTerminalTypeEnum.GRILLE:
-						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.GRILLE;
+						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.GRILLE;
 					
 					case IfcAirTerminalTypeEnum.REGISTER:
-						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.REGISTER;
+						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.REGISTER;
 					
 					case IfcAirTerminalTypeEnum.DIFFUSER:
-						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.DIFFUSER;
+						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.DIFFUSER;
 					
 					case IfcAirTerminalTypeEnum.EYEBALL:
 						//## Handle translation of EYEBALL member from IfcAirTerminalTypeEnum in property PredefinedType
-						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcAirTerminalTypeEnum.IRIS:
 						//## Handle translation of IRIS member from IfcAirTerminalTypeEnum in property PredefinedType
-						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcAirTerminalTypeEnum.LINEARGRILLE:
 						//## Handle translation of LINEARGRILLE member from IfcAirTerminalTypeEnum in property PredefinedType
-						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcAirTerminalTypeEnum.LINEARDIFFUSER:
 						//## Handle translation of LINEARDIFFUSER member from IfcAirTerminalTypeEnum in property PredefinedType
-						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcAirTerminalTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.USERDEFINED;
 					
 					case IfcAirTerminalTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcAirTerminalTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcAirTerminalTypeEnum.NOTDEFINED;
 					
 					
 					default:

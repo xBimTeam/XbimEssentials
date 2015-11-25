@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +71,7 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatingSpace")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 25)]
 		public IEnumerable<IfcRelSpaceBoundary> @BoundedBy 
 		{ 

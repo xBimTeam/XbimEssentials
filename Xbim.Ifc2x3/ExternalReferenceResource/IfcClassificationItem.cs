@@ -169,6 +169,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedItems")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 4)]
 		public IEnumerable<IfcClassificationItemRelationship> @IsClassifiedItemIn 
 		{ 
@@ -177,6 +178,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				return Model.Instances.Where<IfcClassificationItemRelationship>(e => e.RelatedItems != null &&  e.RelatedItems.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatingItem")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 5)]
 		public IEnumerable<IfcClassificationItemRelationship> @IsClassifyingItemIn 
 		{ 

@@ -23,20 +23,20 @@ namespace Xbim.Ifc2x3.MaterialResource
 				return ForLayerSet;
 			} 
 		}
-		Ifc4.MaterialResource.IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection 
+		Ifc4.Interfaces.IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection 
 		{ 
 			get
 			{
 				switch (LayerSetDirection)
 				{
 					case IfcLayerSetDirectionEnum.AXIS1:
-						return Ifc4.MaterialResource.IfcLayerSetDirectionEnum.AXIS1;
+						return Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS1;
 					
 					case IfcLayerSetDirectionEnum.AXIS2:
-						return Ifc4.MaterialResource.IfcLayerSetDirectionEnum.AXIS2;
+						return Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS2;
 					
 					case IfcLayerSetDirectionEnum.AXIS3:
-						return Ifc4.MaterialResource.IfcLayerSetDirectionEnum.AXIS3;
+						return Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS3;
 					
 					
 					default:
@@ -44,17 +44,17 @@ namespace Xbim.Ifc2x3.MaterialResource
 				}
 			} 
 		}
-		Ifc4.MaterialResource.IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense 
+		Ifc4.Interfaces.IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense 
 		{ 
 			get
 			{
 				switch (DirectionSense)
 				{
 					case IfcDirectionSenseEnum.POSITIVE:
-						return Ifc4.MaterialResource.IfcDirectionSenseEnum.POSITIVE;
+						return Ifc4.Interfaces.IfcDirectionSenseEnum.POSITIVE;
 					
 					case IfcDirectionSenseEnum.NEGATIVE:
-						return Ifc4.MaterialResource.IfcDirectionSenseEnum.NEGATIVE;
+						return Ifc4.Interfaces.IfcDirectionSenseEnum.NEGATIVE;
 					
 					
 					default:

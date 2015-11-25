@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	public partial class @IfcProjectOrder : IIfcProjectOrder
 	{
-		Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum? IIfcProjectOrder.PredefinedType 
+		Ifc4.Interfaces.IfcProjectOrderTypeEnum? IIfcProjectOrder.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcProjectOrderTypeEnum.CHANGEORDER:
-						return Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.CHANGEORDER;
+						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.CHANGEORDER;
 					
 					case IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER:
-						return Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER;
+						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.MAINTENANCEWORKORDER;
 					
 					case IfcProjectOrderTypeEnum.MOVEORDER:
-						return Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.MOVEORDER;
+						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.MOVEORDER;
 					
 					case IfcProjectOrderTypeEnum.PURCHASEORDER:
-						return Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.PURCHASEORDER;
+						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.PURCHASEORDER;
 					
 					case IfcProjectOrderTypeEnum.WORKORDER:
-						return Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.WORKORDER;
+						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.WORKORDER;
 					
 					case IfcProjectOrderTypeEnum.USERDEFINED:
-						return Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.USERDEFINED;
 					
 					case IfcProjectOrderTypeEnum.NOTDEFINED:
-						return Ifc4.SharedMgmtElements.IfcProjectOrderTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcProjectOrderTypeEnum.NOTDEFINED;
 					
 					
 					default:

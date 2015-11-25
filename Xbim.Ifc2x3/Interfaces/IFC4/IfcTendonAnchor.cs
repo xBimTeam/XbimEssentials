@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcTendonAnchor : IIfcTendonAnchor
 	{
-		Ifc4.StructuralElementsDomain.IfcTendonAnchorTypeEnum? IIfcTendonAnchor.PredefinedType 
+		Ifc4.Interfaces.IfcTendonAnchorTypeEnum? IIfcTendonAnchor.PredefinedType 
 		{ 
 			get
 			{

@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcRailingType : IIfcRailingType
 	{
-		Ifc4.SharedBldgElements.IfcRailingTypeEnum IIfcRailingType.PredefinedType 
+		Ifc4.Interfaces.IfcRailingTypeEnum IIfcRailingType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcRailingTypeEnum.HANDRAIL:
-						return Ifc4.SharedBldgElements.IfcRailingTypeEnum.HANDRAIL;
+						return Ifc4.Interfaces.IfcRailingTypeEnum.HANDRAIL;
 					
 					case IfcRailingTypeEnum.GUARDRAIL:
-						return Ifc4.SharedBldgElements.IfcRailingTypeEnum.GUARDRAIL;
+						return Ifc4.Interfaces.IfcRailingTypeEnum.GUARDRAIL;
 					
 					case IfcRailingTypeEnum.BALUSTRADE:
-						return Ifc4.SharedBldgElements.IfcRailingTypeEnum.BALUSTRADE;
+						return Ifc4.Interfaces.IfcRailingTypeEnum.BALUSTRADE;
 					
 					case IfcRailingTypeEnum.USERDEFINED:
-						return Ifc4.SharedBldgElements.IfcRailingTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcRailingTypeEnum.USERDEFINED;
 					
 					case IfcRailingTypeEnum.NOTDEFINED:
-						return Ifc4.SharedBldgElements.IfcRailingTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcRailingTypeEnum.NOTDEFINED;
 					
 					
 					default:

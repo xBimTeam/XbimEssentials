@@ -10,6 +10,7 @@
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.ActorResource;
 using Xbim.Ifc4.DateTimeResource;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
 using System;
 using System.Collections.Generic;
@@ -350,6 +351,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatingDocument")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 18)]
 		public IEnumerable<IfcRelAssociatesDocument> @DocumentInfoForObjects 
 		{ 
@@ -358,6 +360,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				return Model.Instances.Where<IfcRelAssociatesDocument>(e => (e.RelatingDocument as IfcDocumentInformation) == this);
 			} 
 		}
+		[InverseProperty("ReferencedDocument")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 19)]
 		public IEnumerable<IfcDocumentReference> @HasDocumentReferences 
 		{ 
@@ -366,6 +369,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				return Model.Instances.Where<IfcDocumentReference>(e => (e.ReferencedDocument as IfcDocumentInformation) == this);
 			} 
 		}
+		[InverseProperty("RelatedDocuments")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 20)]
 		public IEnumerable<IfcDocumentInformationRelationship> @IsPointedTo 
 		{ 
@@ -374,6 +378,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => e.RelatedDocuments != null &&  e.RelatedDocuments.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatingDocument")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 21)]
 		public IEnumerable<IfcDocumentInformationRelationship> @IsPointer 
 		{ 

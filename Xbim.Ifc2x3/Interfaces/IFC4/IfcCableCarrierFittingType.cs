@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcCableCarrierFittingType : IIfcCableCarrierFittingType
 	{
-		Ifc4.ElectricalDomain.IfcCableCarrierFittingTypeEnum IIfcCableCarrierFittingType.PredefinedType 
+		Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum IIfcCableCarrierFittingType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcCableCarrierFittingTypeEnum.BEND:
-						return Ifc4.ElectricalDomain.IfcCableCarrierFittingTypeEnum.BEND;
+						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.BEND;
 					
 					case IfcCableCarrierFittingTypeEnum.CROSS:
-						return Ifc4.ElectricalDomain.IfcCableCarrierFittingTypeEnum.CROSS;
+						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.CROSS;
 					
 					case IfcCableCarrierFittingTypeEnum.REDUCER:
-						return Ifc4.ElectricalDomain.IfcCableCarrierFittingTypeEnum.REDUCER;
+						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.REDUCER;
 					
 					case IfcCableCarrierFittingTypeEnum.TEE:
-						return Ifc4.ElectricalDomain.IfcCableCarrierFittingTypeEnum.TEE;
+						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.TEE;
 					
 					case IfcCableCarrierFittingTypeEnum.USERDEFINED:
-						return Ifc4.ElectricalDomain.IfcCableCarrierFittingTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.USERDEFINED;
 					
 					case IfcCableCarrierFittingTypeEnum.NOTDEFINED:
-						return Ifc4.ElectricalDomain.IfcCableCarrierFittingTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.NOTDEFINED;
 					
 					
 					default:

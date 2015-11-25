@@ -272,6 +272,7 @@ namespace Xbim.CobieExpress
 
 
 		#region Inverse attributes
+		[InverseProperty("Jobs")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 18)]
 		public IEnumerable<CobieType> @ForTypes 
 		{ 

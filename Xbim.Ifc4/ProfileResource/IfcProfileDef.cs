@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ExternalReferenceResource;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -151,6 +152,7 @@ namespace Xbim.Ifc4.ProfileResource
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedResourceObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 3)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReference 
 		{ 
@@ -159,6 +161,7 @@ namespace Xbim.Ifc4.ProfileResource
 				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
+		[InverseProperty("ProfileDefinition")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
 		public IEnumerable<IfcProfileProperties> @HasProperties 
 		{ 

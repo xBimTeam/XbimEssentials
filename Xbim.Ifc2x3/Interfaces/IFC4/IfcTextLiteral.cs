@@ -37,23 +37,23 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				return null;
 			} 
 		}
-		Ifc4.PresentationDefinitionResource.IfcTextPath IIfcTextLiteral.Path 
+		Ifc4.Interfaces.IfcTextPath IIfcTextLiteral.Path 
 		{ 
 			get
 			{
 				switch (Path)
 				{
 					case IfcTextPath.LEFT:
-						return Ifc4.PresentationDefinitionResource.IfcTextPath.LEFT;
+						return Ifc4.Interfaces.IfcTextPath.LEFT;
 					
 					case IfcTextPath.RIGHT:
-						return Ifc4.PresentationDefinitionResource.IfcTextPath.RIGHT;
+						return Ifc4.Interfaces.IfcTextPath.RIGHT;
 					
 					case IfcTextPath.UP:
-						return Ifc4.PresentationDefinitionResource.IfcTextPath.UP;
+						return Ifc4.Interfaces.IfcTextPath.UP;
 					
 					case IfcTextPath.DOWN:
-						return Ifc4.PresentationDefinitionResource.IfcTextPath.DOWN;
+						return Ifc4.Interfaces.IfcTextPath.DOWN;
 					
 					
 					default:

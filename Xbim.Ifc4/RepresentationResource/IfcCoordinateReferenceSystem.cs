@@ -182,6 +182,7 @@ namespace Xbim.Ifc4.RepresentationResource
 
 
 		#region Inverse attributes
+		[InverseProperty("SourceCRS")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 5)]
 		public IEnumerable<IfcCoordinateOperation> @HasCoordinateOperation 
 		{ 

@@ -49,6 +49,7 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatingSystem")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 18)]
 		public IEnumerable<IfcRelServicesBuildings> @ServicesBuildings 
 		{ 

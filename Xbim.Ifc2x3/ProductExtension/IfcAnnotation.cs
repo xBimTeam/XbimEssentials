@@ -49,6 +49,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedElements")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 14)]
 		public IEnumerable<IfcRelContainedInSpatialStructure> @ContainedInStructure 
 		{ 

@@ -53,6 +53,7 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatingPort")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 20)]
 		public IEnumerable<IfcRelConnectsPortToElement> @ContainedIn 
 		{ 
@@ -61,6 +62,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return Model.Instances.Where<IfcRelConnectsPortToElement>(e => (e.RelatingPort as IfcPort) == this);
 			} 
 		}
+		[InverseProperty("RelatedPort")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 21)]
 		public IEnumerable<IfcRelConnectsPorts> @ConnectedFrom 
 		{ 
@@ -69,6 +71,7 @@ namespace Xbim.Ifc4.ProductExtension
 				return Model.Instances.Where<IfcRelConnectsPorts>(e => (e.RelatedPort as IfcPort) == this);
 			} 
 		}
+		[InverseProperty("RelatingPort")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 22)]
 		public IEnumerable<IfcRelConnectsPorts> @ConnectedTo 
 		{ 

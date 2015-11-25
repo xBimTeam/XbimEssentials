@@ -16,20 +16,20 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcTubeBundleType : IIfcTubeBundleType
 	{
-		Ifc4.HvacDomain.IfcTubeBundleTypeEnum IIfcTubeBundleType.PredefinedType 
+		Ifc4.Interfaces.IfcTubeBundleTypeEnum IIfcTubeBundleType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcTubeBundleTypeEnum.FINNED:
-						return Ifc4.HvacDomain.IfcTubeBundleTypeEnum.FINNED;
+						return Ifc4.Interfaces.IfcTubeBundleTypeEnum.FINNED;
 					
 					case IfcTubeBundleTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcTubeBundleTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcTubeBundleTypeEnum.USERDEFINED;
 					
 					case IfcTubeBundleTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcTubeBundleTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcTubeBundleTypeEnum.NOTDEFINED;
 					
 					
 					default:

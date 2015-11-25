@@ -148,6 +148,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 
 
 		#region Inverse attributes
+		[InverseProperty("HasQuantities")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 3)]
 		public IEnumerable<IfcPhysicalComplexQuantity> @PartOfComplex 
 		{ 

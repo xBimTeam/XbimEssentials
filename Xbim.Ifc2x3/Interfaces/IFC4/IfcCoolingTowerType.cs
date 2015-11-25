@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcCoolingTowerType : IIfcCoolingTowerType
 	{
-		Ifc4.HvacDomain.IfcCoolingTowerTypeEnum IIfcCoolingTowerType.PredefinedType 
+		Ifc4.Interfaces.IfcCoolingTowerTypeEnum IIfcCoolingTowerType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcCoolingTowerTypeEnum.NATURALDRAFT:
-						return Ifc4.HvacDomain.IfcCoolingTowerTypeEnum.NATURALDRAFT;
+						return Ifc4.Interfaces.IfcCoolingTowerTypeEnum.NATURALDRAFT;
 					
 					case IfcCoolingTowerTypeEnum.MECHANICALINDUCEDDRAFT:
-						return Ifc4.HvacDomain.IfcCoolingTowerTypeEnum.MECHANICALINDUCEDDRAFT;
+						return Ifc4.Interfaces.IfcCoolingTowerTypeEnum.MECHANICALINDUCEDDRAFT;
 					
 					case IfcCoolingTowerTypeEnum.MECHANICALFORCEDDRAFT:
-						return Ifc4.HvacDomain.IfcCoolingTowerTypeEnum.MECHANICALFORCEDDRAFT;
+						return Ifc4.Interfaces.IfcCoolingTowerTypeEnum.MECHANICALFORCEDDRAFT;
 					
 					case IfcCoolingTowerTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcCoolingTowerTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcCoolingTowerTypeEnum.USERDEFINED;
 					
 					case IfcCoolingTowerTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcCoolingTowerTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcCoolingTowerTypeEnum.NOTDEFINED;
 					
 					
 					default:

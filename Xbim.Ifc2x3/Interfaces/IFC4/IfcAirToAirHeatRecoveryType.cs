@@ -16,44 +16,44 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcAirToAirHeatRecoveryType : IIfcAirToAirHeatRecoveryType
 	{
-		Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum IIfcAirToAirHeatRecoveryType.PredefinedType 
+		Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum IIfcAirToAirHeatRecoveryType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECOUNTERFLOWEXCHANGER:
-						return Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECOUNTERFLOWEXCHANGER;
+						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECOUNTERFLOWEXCHANGER;
 					
 					case IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECROSSFLOWEXCHANGER:
-						return Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECROSSFLOWEXCHANGER;
+						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATECROSSFLOWEXCHANGER;
 					
 					case IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATEPARALLELFLOWEXCHANGER:
-						return Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATEPARALLELFLOWEXCHANGER;
+						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.FIXEDPLATEPARALLELFLOWEXCHANGER;
 					
 					case IfcAirToAirHeatRecoveryTypeEnum.ROTARYWHEEL:
-						return Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.ROTARYWHEEL;
+						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.ROTARYWHEEL;
 					
 					case IfcAirToAirHeatRecoveryTypeEnum.RUNAROUNDCOILLOOP:
-						return Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.RUNAROUNDCOILLOOP;
+						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.RUNAROUNDCOILLOOP;
 					
 					case IfcAirToAirHeatRecoveryTypeEnum.HEATPIPE:
-						return Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.HEATPIPE;
+						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.HEATPIPE;
 					
 					case IfcAirToAirHeatRecoveryTypeEnum.TWINTOWERENTHALPYRECOVERYLOOPS:
-						return Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.TWINTOWERENTHALPYRECOVERYLOOPS;
+						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.TWINTOWERENTHALPYRECOVERYLOOPS;
 					
 					case IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONSEALEDTUBEHEATEXCHANGERS:
-						return Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONSEALEDTUBEHEATEXCHANGERS;
+						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONSEALEDTUBEHEATEXCHANGERS;
 					
 					case IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONCOILTYPEHEATEXCHANGERS:
-						return Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONCOILTYPEHEATEXCHANGERS;
+						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.THERMOSIPHONCOILTYPEHEATEXCHANGERS;
 					
 					case IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.USERDEFINED;
 					
 					case IfcAirToAirHeatRecoveryTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcAirToAirHeatRecoveryTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcAirToAirHeatRecoveryTypeEnum.NOTDEFINED;
 					
 					
 					default:

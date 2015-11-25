@@ -23,7 +23,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 				return new Ifc4.MeasureResource.IfcLabel(LifeCyclePhase);
 			} 
 		}
-		Ifc4.ControlExtension.IfcPerformanceHistoryTypeEnum? IIfcPerformanceHistory.PredefinedType 
+		Ifc4.Interfaces.IfcPerformanceHistoryTypeEnum? IIfcPerformanceHistory.PredefinedType 
 		{ 
 			get
 			{

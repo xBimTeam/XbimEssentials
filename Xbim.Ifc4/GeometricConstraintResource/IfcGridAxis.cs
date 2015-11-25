@@ -173,6 +173,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
 
 		#region Inverse attributes
+		[InverseProperty("WAxes")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 4)]
 		public IEnumerable<IfcGrid> @PartOfW 
 		{ 
@@ -181,6 +182,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				return Model.Instances.Where<IfcGrid>(e => e.WAxes != null &&  e.WAxes.Contains(this));
 			} 
 		}
+		[InverseProperty("VAxes")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 5)]
 		public IEnumerable<IfcGrid> @PartOfV 
 		{ 
@@ -189,6 +191,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				return Model.Instances.Where<IfcGrid>(e => e.VAxes != null &&  e.VAxes.Contains(this));
 			} 
 		}
+		[InverseProperty("UAxes")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 6)]
 		public IEnumerable<IfcGrid> @PartOfU 
 		{ 
@@ -197,6 +200,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				return Model.Instances.Where<IfcGrid>(e => e.UAxes != null &&  e.UAxes.Contains(this));
 			} 
 		}
+		[InverseProperty("IntersectingAxes")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
 		public IEnumerable<IfcVirtualGridIntersection> @HasIntersections 
 		{ 

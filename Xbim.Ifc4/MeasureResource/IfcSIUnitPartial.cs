@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc4.Interfaces
 {

@@ -162,6 +162,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatingLibrary")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
 		public IEnumerable<IfcRelAssociatesLibrary> @LibraryInfoForObjects 
 		{ 
@@ -170,6 +171,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				return Model.Instances.Where<IfcRelAssociatesLibrary>(e => (e.RelatingLibrary as IfcLibraryInformation) == this);
 			} 
 		}
+		[InverseProperty("ReferencedLibrary")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcLibraryReference> @HasLibraryReferences 
 		{ 

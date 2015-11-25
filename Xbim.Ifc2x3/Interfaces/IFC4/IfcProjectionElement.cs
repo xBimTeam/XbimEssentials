@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcProjectionElement : IIfcProjectionElement
 	{
-		Ifc4.ProductExtension.IfcProjectionElementTypeEnum? IIfcProjectionElement.PredefinedType 
+		Ifc4.Interfaces.IfcProjectionElementTypeEnum? IIfcProjectionElement.PredefinedType 
 		{ 
 			get
 			{

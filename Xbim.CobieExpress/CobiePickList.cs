@@ -148,6 +148,7 @@ namespace Xbim.CobieExpress
 
 
 		#region Inverse attributes
+		[InverseProperty("PickList")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 3)]
 		public IEnumerable<CobiePickValue> @Values 
 		{ 

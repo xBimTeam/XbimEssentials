@@ -16,17 +16,17 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcProfileDef : IIfcProfileDef
 	{
-		Ifc4.ProfileResource.IfcProfileTypeEnum IIfcProfileDef.ProfileType 
+		Ifc4.Interfaces.IfcProfileTypeEnum IIfcProfileDef.ProfileType 
 		{ 
 			get
 			{
 				switch (ProfileType)
 				{
 					case IfcProfileTypeEnum.CURVE:
-						return Ifc4.ProfileResource.IfcProfileTypeEnum.CURVE;
+						return Ifc4.Interfaces.IfcProfileTypeEnum.CURVE;
 					
 					case IfcProfileTypeEnum.AREA:
-						return Ifc4.ProfileResource.IfcProfileTypeEnum.AREA;
+						return Ifc4.Interfaces.IfcProfileTypeEnum.AREA;
 					
 					
 					default:

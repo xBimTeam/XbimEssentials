@@ -71,6 +71,7 @@ namespace Xbim.Ifc4.Kernel
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatingActor")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 18)]
 		public IEnumerable<IfcRelAssignsToActor> @IsActingUpon 
 		{ 

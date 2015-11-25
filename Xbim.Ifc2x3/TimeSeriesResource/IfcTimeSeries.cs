@@ -254,6 +254,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 
 
 		#region Inverse attributes
+		[InverseProperty("ReferencedTimeSeries")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 9)]
 		public IEnumerable<IfcTimeSeriesReferenceRelationship> @DocumentedBy 
 		{ 

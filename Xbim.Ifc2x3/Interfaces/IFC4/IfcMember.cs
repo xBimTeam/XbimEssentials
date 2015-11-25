@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcMember : IIfcMember
 	{
-		Ifc4.SharedBldgElements.IfcMemberTypeEnum? IIfcMember.PredefinedType 
+		Ifc4.Interfaces.IfcMemberTypeEnum? IIfcMember.PredefinedType 
 		{ 
 			get
 			{

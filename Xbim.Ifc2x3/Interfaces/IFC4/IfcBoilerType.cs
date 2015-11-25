@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcBoilerType : IIfcBoilerType
 	{
-		Ifc4.HvacDomain.IfcBoilerTypeEnum IIfcBoilerType.PredefinedType 
+		Ifc4.Interfaces.IfcBoilerTypeEnum IIfcBoilerType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcBoilerTypeEnum.WATER:
-						return Ifc4.HvacDomain.IfcBoilerTypeEnum.WATER;
+						return Ifc4.Interfaces.IfcBoilerTypeEnum.WATER;
 					
 					case IfcBoilerTypeEnum.STEAM:
-						return Ifc4.HvacDomain.IfcBoilerTypeEnum.STEAM;
+						return Ifc4.Interfaces.IfcBoilerTypeEnum.STEAM;
 					
 					case IfcBoilerTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcBoilerTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcBoilerTypeEnum.USERDEFINED;
 					
 					case IfcBoilerTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcBoilerTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcBoilerTypeEnum.NOTDEFINED;
 					
 					
 					default:

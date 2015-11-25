@@ -118,6 +118,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 
 		#region Inverse attributes
+		[InverseProperty("Segments")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 6)]
 		public IEnumerable<IfcCompositeCurve> @UsingCurves 
 		{ 

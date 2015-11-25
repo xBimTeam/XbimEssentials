@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Kernel;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.CostResource;
 using Xbim.Ifc4.QuantityResource;
 using System;

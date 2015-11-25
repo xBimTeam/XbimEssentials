@@ -48,6 +48,7 @@ namespace Xbim.Ifc2x3.Kernel
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
 		public IEnumerable<IfcRelAssociates> @HasAssociations 
 		{ 

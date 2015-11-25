@@ -9,6 +9,7 @@
 
 using Xbim.Ifc4.ExternalReferenceResource;
 using Xbim.Ifc4.MeasureResource;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ActorResource;
 using Xbim.Ifc4.DateTimeResource;
 using System;
@@ -239,6 +240,7 @@ namespace Xbim.Ifc4.ConstraintResource
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedResourceObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReferences 
 		{ 
@@ -247,6 +249,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatingConstraint")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
 		public IEnumerable<IfcResourceConstraintRelationship> @PropertiesForConstraint 
 		{ 

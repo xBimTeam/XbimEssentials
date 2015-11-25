@@ -16,80 +16,80 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcValveType : IIfcValveType
 	{
-		Ifc4.HvacDomain.IfcValveTypeEnum IIfcValveType.PredefinedType 
+		Ifc4.Interfaces.IfcValveTypeEnum IIfcValveType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcValveTypeEnum.AIRRELEASE:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.AIRRELEASE;
+						return Ifc4.Interfaces.IfcValveTypeEnum.AIRRELEASE;
 					
 					case IfcValveTypeEnum.ANTIVACUUM:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.ANTIVACUUM;
+						return Ifc4.Interfaces.IfcValveTypeEnum.ANTIVACUUM;
 					
 					case IfcValveTypeEnum.CHANGEOVER:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.CHANGEOVER;
+						return Ifc4.Interfaces.IfcValveTypeEnum.CHANGEOVER;
 					
 					case IfcValveTypeEnum.CHECK:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.CHECK;
+						return Ifc4.Interfaces.IfcValveTypeEnum.CHECK;
 					
 					case IfcValveTypeEnum.COMMISSIONING:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.COMMISSIONING;
+						return Ifc4.Interfaces.IfcValveTypeEnum.COMMISSIONING;
 					
 					case IfcValveTypeEnum.DIVERTING:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.DIVERTING;
+						return Ifc4.Interfaces.IfcValveTypeEnum.DIVERTING;
 					
 					case IfcValveTypeEnum.DRAWOFFCOCK:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.DRAWOFFCOCK;
+						return Ifc4.Interfaces.IfcValveTypeEnum.DRAWOFFCOCK;
 					
 					case IfcValveTypeEnum.DOUBLECHECK:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.DOUBLECHECK;
+						return Ifc4.Interfaces.IfcValveTypeEnum.DOUBLECHECK;
 					
 					case IfcValveTypeEnum.DOUBLEREGULATING:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.DOUBLEREGULATING;
+						return Ifc4.Interfaces.IfcValveTypeEnum.DOUBLEREGULATING;
 					
 					case IfcValveTypeEnum.FAUCET:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.FAUCET;
+						return Ifc4.Interfaces.IfcValveTypeEnum.FAUCET;
 					
 					case IfcValveTypeEnum.FLUSHING:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.FLUSHING;
+						return Ifc4.Interfaces.IfcValveTypeEnum.FLUSHING;
 					
 					case IfcValveTypeEnum.GASCOCK:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.GASCOCK;
+						return Ifc4.Interfaces.IfcValveTypeEnum.GASCOCK;
 					
 					case IfcValveTypeEnum.GASTAP:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.GASTAP;
+						return Ifc4.Interfaces.IfcValveTypeEnum.GASTAP;
 					
 					case IfcValveTypeEnum.ISOLATING:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.ISOLATING;
+						return Ifc4.Interfaces.IfcValveTypeEnum.ISOLATING;
 					
 					case IfcValveTypeEnum.MIXING:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.MIXING;
+						return Ifc4.Interfaces.IfcValveTypeEnum.MIXING;
 					
 					case IfcValveTypeEnum.PRESSUREREDUCING:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.PRESSUREREDUCING;
+						return Ifc4.Interfaces.IfcValveTypeEnum.PRESSUREREDUCING;
 					
 					case IfcValveTypeEnum.PRESSURERELIEF:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.PRESSURERELIEF;
+						return Ifc4.Interfaces.IfcValveTypeEnum.PRESSURERELIEF;
 					
 					case IfcValveTypeEnum.REGULATING:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.REGULATING;
+						return Ifc4.Interfaces.IfcValveTypeEnum.REGULATING;
 					
 					case IfcValveTypeEnum.SAFETYCUTOFF:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.SAFETYCUTOFF;
+						return Ifc4.Interfaces.IfcValveTypeEnum.SAFETYCUTOFF;
 					
 					case IfcValveTypeEnum.STEAMTRAP:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.STEAMTRAP;
+						return Ifc4.Interfaces.IfcValveTypeEnum.STEAMTRAP;
 					
 					case IfcValveTypeEnum.STOPCOCK:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.STOPCOCK;
+						return Ifc4.Interfaces.IfcValveTypeEnum.STOPCOCK;
 					
 					case IfcValveTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcValveTypeEnum.USERDEFINED;
 					
 					case IfcValveTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcValveTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcValveTypeEnum.NOTDEFINED;
 					
 					
 					default:

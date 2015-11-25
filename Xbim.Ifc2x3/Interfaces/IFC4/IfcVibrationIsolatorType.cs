@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcVibrationIsolatorType : IIfcVibrationIsolatorType
 	{
-		Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum IIfcVibrationIsolatorType.PredefinedType 
+		Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum IIfcVibrationIsolatorType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcVibrationIsolatorTypeEnum.COMPRESSION:
-						return Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.COMPRESSION;
+						return Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.COMPRESSION;
 					
 					case IfcVibrationIsolatorTypeEnum.SPRING:
-						return Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.SPRING;
+						return Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.SPRING;
 					
 					case IfcVibrationIsolatorTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.USERDEFINED;
 					
 					case IfcVibrationIsolatorTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcVibrationIsolatorTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.NOTDEFINED;
 					
 					
 					default:

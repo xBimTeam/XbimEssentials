@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	public partial class @IfcSubContractResource : IIfcSubContractResource
 	{
-		Ifc4.ConstructionMgmtDomain.IfcSubContractResourceTypeEnum? IIfcSubContractResource.PredefinedType 
+		Ifc4.Interfaces.IfcSubContractResourceTypeEnum? IIfcSubContractResource.PredefinedType 
 		{ 
 			get
 			{

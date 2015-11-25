@@ -16,17 +16,17 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcElectricGeneratorType : IIfcElectricGeneratorType
 	{
-		Ifc4.ElectricalDomain.IfcElectricGeneratorTypeEnum IIfcElectricGeneratorType.PredefinedType 
+		Ifc4.Interfaces.IfcElectricGeneratorTypeEnum IIfcElectricGeneratorType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcElectricGeneratorTypeEnum.USERDEFINED:
-						return Ifc4.ElectricalDomain.IfcElectricGeneratorTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.USERDEFINED;
 					
 					case IfcElectricGeneratorTypeEnum.NOTDEFINED:
-						return Ifc4.ElectricalDomain.IfcElectricGeneratorTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcElectricGeneratorTypeEnum.NOTDEFINED;
 					
 					
 					default:

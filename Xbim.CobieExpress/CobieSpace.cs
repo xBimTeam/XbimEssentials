@@ -142,6 +142,7 @@ namespace Xbim.CobieExpress
 
 
 		#region Inverse attributes
+		[InverseProperty("Space")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 18)]
 		public IEnumerable<CobieComponent> @Components 
 		{ 
@@ -150,6 +151,7 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobieComponent>(e => (e.Space as CobieSpace) == this);
 			} 
 		}
+		[InverseProperty("Spaces")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 19)]
 		public IEnumerable<CobieZone> @Zones 
 		{ 

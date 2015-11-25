@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcSlab : IIfcSlab
 	{
-		Ifc4.SharedBldgElements.IfcSlabTypeEnum? IIfcSlab.PredefinedType 
+		Ifc4.Interfaces.IfcSlabTypeEnum? IIfcSlab.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcSlabTypeEnum.FLOOR:
-						return Ifc4.SharedBldgElements.IfcSlabTypeEnum.FLOOR;
+						return Ifc4.Interfaces.IfcSlabTypeEnum.FLOOR;
 					
 					case IfcSlabTypeEnum.ROOF:
-						return Ifc4.SharedBldgElements.IfcSlabTypeEnum.ROOF;
+						return Ifc4.Interfaces.IfcSlabTypeEnum.ROOF;
 					
 					case IfcSlabTypeEnum.LANDING:
-						return Ifc4.SharedBldgElements.IfcSlabTypeEnum.LANDING;
+						return Ifc4.Interfaces.IfcSlabTypeEnum.LANDING;
 					
 					case IfcSlabTypeEnum.BASESLAB:
-						return Ifc4.SharedBldgElements.IfcSlabTypeEnum.BASESLAB;
+						return Ifc4.Interfaces.IfcSlabTypeEnum.BASESLAB;
 					
 					case IfcSlabTypeEnum.USERDEFINED:
-						return Ifc4.SharedBldgElements.IfcSlabTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcSlabTypeEnum.USERDEFINED;
 					
 					case IfcSlabTypeEnum.NOTDEFINED:
-						return Ifc4.SharedBldgElements.IfcSlabTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcSlabTypeEnum.NOTDEFINED;
 					
 					
 					default:

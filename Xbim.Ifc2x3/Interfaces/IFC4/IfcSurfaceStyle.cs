@@ -16,20 +16,20 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceStyle : IIfcSurfaceStyle
 	{
-		Ifc4.PresentationAppearanceResource.IfcSurfaceSide IIfcSurfaceStyle.Side 
+		Ifc4.Interfaces.IfcSurfaceSide IIfcSurfaceStyle.Side 
 		{ 
 			get
 			{
 				switch (Side)
 				{
 					case IfcSurfaceSide.POSITIVE:
-						return Ifc4.PresentationAppearanceResource.IfcSurfaceSide.POSITIVE;
+						return Ifc4.Interfaces.IfcSurfaceSide.POSITIVE;
 					
 					case IfcSurfaceSide.NEGATIVE:
-						return Ifc4.PresentationAppearanceResource.IfcSurfaceSide.NEGATIVE;
+						return Ifc4.Interfaces.IfcSurfaceSide.NEGATIVE;
 					
 					case IfcSurfaceSide.BOTH:
-						return Ifc4.PresentationAppearanceResource.IfcSurfaceSide.BOTH;
+						return Ifc4.Interfaces.IfcSurfaceSide.BOTH;
 					
 					
 					default:

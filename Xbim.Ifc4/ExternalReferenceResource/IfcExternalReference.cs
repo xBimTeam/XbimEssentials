@@ -168,6 +168,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatingReference")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
 		public IEnumerable<IfcExternalReferenceRelationship> @ExternalReferenceForResources 
 		{ 

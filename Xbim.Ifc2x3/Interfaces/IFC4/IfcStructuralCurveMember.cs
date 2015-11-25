@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralCurveMember : IIfcStructuralCurveMember
 	{
-		Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum IIfcStructuralCurveMember.PredefinedType 
+		Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum IIfcStructuralCurveMember.PredefinedType 
 		{ 
 			get
 			{
@@ -24,21 +24,21 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
               switch(PredefinedType)
               {
                   case IfcStructuralCurveTypeEnum.CABLE:
-                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.CABLE;
+                      return IfcStructuralCurveMemberTypeEnum.CABLE;
                   case IfcStructuralCurveTypeEnum.COMPRESSION_MEMBER:
-                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.COMPRESSION_MEMBER;
+                      return IfcStructuralCurveMemberTypeEnum.COMPRESSION_MEMBER;
                   case IfcStructuralCurveTypeEnum.NOTDEFINED:
-                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.NOTDEFINED;
+                      return IfcStructuralCurveMemberTypeEnum.NOTDEFINED;
                   case IfcStructuralCurveTypeEnum.PIN_JOINED_MEMBER:
-                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.PIN_JOINED_MEMBER;
+                      return IfcStructuralCurveMemberTypeEnum.PIN_JOINED_MEMBER;
                   case IfcStructuralCurveTypeEnum.RIGID_JOINED_MEMBER:
-                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.RIGID_JOINED_MEMBER;
+                      return IfcStructuralCurveMemberTypeEnum.RIGID_JOINED_MEMBER;
                   case IfcStructuralCurveTypeEnum.TENSION_MEMBER:
-                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.TENSION_MEMBER;
+                      return IfcStructuralCurveMemberTypeEnum.TENSION_MEMBER;
                   case IfcStructuralCurveTypeEnum.USERDEFINED:
-                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.USERDEFINED;
+                      return IfcStructuralCurveMemberTypeEnum.USERDEFINED;
                   default:
-                      return Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberTypeEnum.NOTDEFINED;
+                      return IfcStructuralCurveMemberTypeEnum.NOTDEFINED;
               }
                 
 				//##

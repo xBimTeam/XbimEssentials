@@ -92,7 +92,7 @@ namespace Xbim.IO.Esent
         private string _databaseName;
         private readonly EsentModel _model;
         private bool _disposed;
-        static private readonly ComparePropertyInfo ComparePropInfo = new ComparePropertyInfo();
+        private static readonly ComparePropertyInfo ComparePropInfo = new ComparePropertyInfo();
         private bool _caching;
         private bool _previousCaching;
         private class ComparePropertyInfo : IEqualityComparer<PropertyInfo>
@@ -641,8 +641,8 @@ namespace Xbim.IO.Esent
                             _forwardReferences = new BlockingCollection<StepForwardReference>();
                             var xmlReader = XmlReader.Create(xmlTextReader, settings);
                             settings.CheckCharacters = false;
-                            var reader = new IfcXmlReader();
-                            _model.Header = reader.Read(this, table, xmlReader);
+                            var reader = GetIfcXmlReader(table);
+                            _model.Header = reader.Read(xmlReader);
                             table.WriteHeader(_model.Header);
 
                         }
@@ -659,6 +659,29 @@ namespace Xbim.IO.Esent
                 File.Delete(xbimDbName);
                 throw new Exception("Error importing IfcXml file.", e);
             }
+        }
+
+        private IfcXmlReader GetIfcXmlReader(EsentEntityCursor table)
+        {
+            return new IfcXmlReader(
+                                (label, type) =>
+                                {
+                                    //return existing entity
+                                    if (Contains(label))
+                                        //TODO: MC: Review this with Steve. This is originally Steve's code but it might be dangerous if the model is to be kept open
+                                        return GetInstance(label, false, true);
+
+                                    //create new entity and add it to the list
+                                    var entity = CreateNew(type, label);
+
+                                    return entity;
+                                },
+                                entity => 
+                                {
+                                    //we need to save it once it is finished.
+                                    table.AddEntity(entity);
+                                },
+                                Model.Metadata);
         }
 
         /// <summary>
@@ -753,7 +776,6 @@ namespace Xbim.IO.Esent
                             if (entry.IsFile &&
                                 (
                                     string.Compare(ext, ".ifc", StringComparison.OrdinalIgnoreCase) == 0 ||
-                                    string.Compare(ext, ".ifcxml", StringComparison.OrdinalIgnoreCase) == 0 ||
                                     string.Compare(ext, ".step21", StringComparison.OrdinalIgnoreCase) == 0 ||
                                     string.Compare(ext, ".stp", StringComparison.OrdinalIgnoreCase) == 0
                                 )
@@ -783,7 +805,11 @@ namespace Xbim.IO.Esent
                                     return; // we only want the first file
                                 }
                             }
-                            if (string.CompareOrdinal(ext, ".ifcxml") == 0)
+                            if (
+                                string.CompareOrdinal(ext, ".ifcxml") == 0 ||
+                                string.CompareOrdinal(ext, ".stpxml") == 0 ||
+                                string.CompareOrdinal(ext, ".xml") == 0
+                                )
                             {
                                 using (var zipFile = new ZipFile(fileStream))
                                 {
@@ -794,8 +820,8 @@ namespace Xbim.IO.Esent
                                         {
                                             using (var xmlReader = new XmlTextReader(xmlInStream))
                                             {
-                                                var reader = new IfcXmlReader();
-                                                _model.Header = reader.Read(this, table, xmlReader);
+                                                var reader = GetIfcXmlReader(table);
+                                                _model.Header = reader.Read(xmlReader);
                                                 table.WriteHeader(_model.Header);
                                             }
                                         }
@@ -1268,27 +1294,27 @@ namespace Xbim.IO.Esent
         /// <summary>
         /// Enumerates of all instances of the specified type. The values are cached, if activate is true all the properties of the entity are loaded
         /// </summary>
-        /// <typeparam name="TIfcType"></typeparam>
+        /// <typeparam name="OTType"></typeparam>
         /// <param name="activate">if true loads the properties of the entity</param>
         /// <param name="indexKey">if the entity has a key object, optimises to search for this handle</param>
         /// <param name="overrideType">if specified this parameter overrides the expressType used internally (but not TIfcType) for filtering purposes</param>
         /// <returns></returns>
-        public IEnumerable<TIfcType> OfType<TIfcType>(bool activate = false, int? indexKey = null, ExpressType overrideType = null) where TIfcType:IPersistEntity 
+        public IEnumerable<OTType> OfType<OTType>(bool activate = false, int? indexKey = null, ExpressType overrideType = null) where OTType:IPersistEntity 
         {
             //srl this needs to be removed, but preserves compatibility with old databases, the -1 should not be used in future
             int indexKeyAsInt;
             if (indexKey.HasValue) indexKeyAsInt = indexKey.Value; //this is lossy and needs to be fixed if we get large databases
             else indexKeyAsInt = -1;
-            var searchingIfcType = overrideType ?? Model.Metadata.ExpressType(typeof(TIfcType));
+            var expressType = overrideType ?? Model.Metadata.ExpressType(typeof(OTType));
             
             // when searching for Interface types SearchingIfcType is null
             //
             var typesToSearch = 
-                searchingIfcType == null ?
-                Model.Metadata.TypesImplementing(typeof(TIfcType)) : 
-                searchingIfcType.NonAbstractSubTypes;
+                expressType == null ?
+                Model.Metadata.TypesImplementing(typeof(OTType)) : 
+                expressType.NonAbstractSubTypes;
 
-            if (searchingIfcType == null || searchingIfcType.IndexedClass)
+            if (expressType == null || expressType.IndexedClass)
             {
                 //Set the IndexedClass Attribute of this class to ensure that seeking by index will work, this is a optimisation
                 // Trying to look a class up by index that is not declared as indexeable
@@ -1316,7 +1342,7 @@ namespace Xbim.IO.Esent
                                             entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)));
                                         }
                                         entityLabels.Add(entity.EntityLabel);
-                                        yield return (TIfcType)entity;
+                                        yield return (OTType)entity;
                                     }
                                     else
                                     {
@@ -1332,7 +1358,7 @@ namespace Xbim.IO.Esent
 
                                         if (_caching) entity = _read.GetOrAdd(ih.EntityLabel, entity);
                                         entityLabels.Add(entity.EntityLabel);
-                                        yield return (TIfcType)entity;
+                                        yield return (OTType)entity;
                                     }
                                 } while (entityTable.TryMoveNextEntityType(out ih) && entityTable.TrySeekEntityLabel(ih.EntityLabel));
                             }
@@ -1342,21 +1368,21 @@ namespace Xbim.IO.Esent
                     // 
                     if (_caching) //look in the createnew cache and find the new ones only
                     {
-                        foreach (var item in CreatedNew.Where(e => e.Value is TIfcType))//.ToList())
+                        foreach (var item in CreatedNew.Where(e => e.Value is OTType))//.ToList())
                         {
                             if (!indexKey.HasValue) //get all of the type
                             {
                                 if (entityLabels.Add(item.Key))
-                                    yield return (TIfcType)item.Value;
+                                    yield return (OTType)item.Value;
                             }
                             else
                             {
                                 // todo: bonghi: note the following ( SearchingIfcType != null ) has been added for cases when querying interfaces, but is probably not correct
                                 //
-                                if (searchingIfcType != null && searchingIfcType.GetIndexedValues(item.Value).Contains(indexKey.Value)) // get all types that match the index key
+                                if (expressType != null && expressType.GetIndexedValues(item.Value).Contains(indexKey.Value)) // get all types that match the index key
                                 {
                                     if (entityLabels.Add(item.Key))
-                                        yield return (TIfcType)item.Value;
+                                        yield return (OTType)item.Value;
                                 }
                             }
                         }
@@ -1370,7 +1396,7 @@ namespace Xbim.IO.Esent
             else
             {
                 Debug.Assert(indexKeyAsInt == -1, "Trying to look a class up by index key, but the class is not indexed");
-                foreach (var item in OfTypeUnindexed<TIfcType>(searchingIfcType, activate))
+                foreach (var item in OfTypeUnindexed<OTType>(expressType, activate))
                     yield return item;
             }
         }
@@ -1639,88 +1665,101 @@ namespace Xbim.IO.Esent
         {
             var indexFound = false;
             var type = typeof(T);
-            var expressType = Model.Metadata.ExpressType(type);
-           
-            var predicate = expr.Compile();
-            if (expressType.HasIndexedAttribute) //we can use a secondary index to look up
+            var et = Model.Metadata.ExpressType(type);
+            IEnumerable<ExpressType> expressTypes;
+            if (et != null)
+                expressTypes = new[] {et};
+            else
             {
-                //our indexes work from the hash values of that which is indexed, regardless of type
-
-                //indexes only work on equality expressions here
-                //this  matches "Property" = "Value"
-                switch (expr.Body.NodeType)
+                //get interface implementations and make sure it doesn't overlap
+                var implementations = Model.Metadata.ExpressTypesImplementing(type).ToList();
+                expressTypes = implementations.Where(implementation => !implementations.Any(i => i != implementation && i.NonAbstractSubTypes.Contains(implementation.Type)));
+            }
+            var predicate = expr.Compile();
+            
+            foreach (var expressType in expressTypes)
+            {
+                if (expressType.HasIndexedAttribute) //we can use a secondary index to look up
                 {
-                    case ExpressionType.Equal:
-                        //Equality is a binary expression
-                        var binExp = (BinaryExpression)expr.Body;
-                        //Get some aliases for either side
-                        var leftSide = binExp.Left;
-                        var rightSide = binExp.Right;
+                    //our indexes work from the hash values of that which is indexed, regardless of type
 
-                        var hashRight = GetRight(leftSide, rightSide);
+                    //indexes only work on equality expressions here
+                    //this  matches "Property" = "Value"
+                    switch (expr.Body.NodeType)
+                    {
+                        case ExpressionType.Equal:
+                            //Equality is a binary expression
+                            var binExp = (BinaryExpression)expr.Body;
+                            //Get some aliases for either side
+                            var leftSide = binExp.Left;
+                            var rightSide = binExp.Right;
 
-                        //if we were able to create a hash from the right side (likely)
-                        var returnedEx = GetIndexablePropertyOnLeft(leftSide);
-                        if (returnedEx != null)
-                        {
-                            //cast to MemberExpression - it allows us to get the property
-                            var propExp = returnedEx;
-                        
-                            if (expressType.IndexedProperties.Contains(propExp.Member)) //we have a primary key match
+                            var hashRight = GetRight(leftSide, rightSide);
+
+                            //if we were able to create a hash from the right side (likely)
+                            var returnedEx = GetIndexablePropertyOnLeft(leftSide);
+                            if (returnedEx != null)
                             {
-                                var entity = hashRight as IPersistEntity;
-                                if (entity != null)
+                                //cast to MemberExpression - it allows us to get the property
+                                var propExp = returnedEx;
+
+                                if (expressType.IndexedProperties.Contains(propExp.Member)) //we have a primary key match
                                 {
-                                    indexFound = true;
-                                    foreach (var item in OfType<T>(true, entity.EntityLabel).Where(item => predicate(item)))
+                                    var entity = hashRight as IPersistEntity;
+                                    if (entity != null)
                                     {
-                                        yield return item;
+                                        indexFound = true;
+                                        foreach (var item in OfType<T>(true, entity.EntityLabel, expressType).Where(item => predicate(item)))
+                                        {
+                                            yield return item;
+                                        }
                                     }
                                 }
                             }
-                        }
-                        break;
-                    case ExpressionType.Call:
-                        var callExp = (MethodCallExpression)expr.Body;
-                        if (callExp.Method.Name == "Contains")
-                        {
-                            var keyExpr = callExp.Arguments[0];
-                            if (keyExpr.NodeType == ExpressionType.Constant)
+                            break;
+                        case ExpressionType.Call:
+                            var callExp = (MethodCallExpression)expr.Body;
+                            if (callExp.Method.Name == "Contains")
                             {
-                                var constExp = (ConstantExpression)keyExpr;
-                                var key = constExp.Value;
-                                if (callExp.Object != null && callExp.Object.NodeType == ExpressionType.MemberAccess)
+                                var keyExpr = callExp.Arguments[0];
+                                if (keyExpr.NodeType == ExpressionType.Constant)
                                 {
-                                    var memExp = (MemberExpression)callExp.Object;
-                                    var pInfo = (PropertyInfo)(memExp.Member);
-                                    if (expressType.IndexedProperties.Contains(pInfo, ComparePropInfo)) //we have a primary key match
+                                    var constExp = (ConstantExpression)keyExpr;
+                                    var key = constExp.Value;
+                                    if (callExp.Object != null && callExp.Object.NodeType == ExpressionType.MemberAccess)
                                     {
-                                        var entity = key as IPersistEntity;
-                                        if (entity != null)
+                                        var memExp = (MemberExpression)callExp.Object;
+                                        var pInfo = (PropertyInfo)(memExp.Member);
+                                        if (expressType.IndexedProperties.Contains(pInfo, ComparePropInfo)) //we have a primary key match
                                         {
-                                            indexFound = true;
-                                            foreach (var item in OfType<T>(true, entity.EntityLabel).Where(item => predicate(item)))
+                                            var entity = key as IPersistEntity;
+                                            if (entity != null)
                                             {
-                                                yield return item;
+                                                indexFound = true;
+                                                foreach (var item in OfType<T>(true, entity.EntityLabel, expressType).Where(item => predicate(item)))
+                                                {
+                                                    yield return item;
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
-                        }
-                        break;
+                            break;
+                    }
                 }
-            }
 
-            //we cannot optimise so just do it
-            if (!indexFound)
-            {
-                foreach (var item in OfType<T>(true))
+                //we cannot optimise so just do it
+                if (!indexFound)
                 {
-                    if (predicate(item)) 
-                        yield return item;
+                    foreach (var item in OfType<T>(true, null, expressType))
+                    {
+                        if (predicate(item))
+                            yield return item;
+                    }
                 }
             }
+            
         }
 
         #endregion
@@ -1786,7 +1825,7 @@ namespace Xbim.IO.Esent
             XbimInstanceHandle copyHandle;
             if (mappings.TryGetValue(toCopyHandle, out copyHandle))
             {
-                var v = this.GetInstance(copyHandle);
+                var v = GetInstance(copyHandle);
                 Debug.Assert(v != null);
                 return (T)v;
             }

@@ -1,7 +1,10 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Common;
 using Xbim.Ifc2x3;
+using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc4.Interfaces;
+using Xbim.IO.Esent;
 using Xbim.IO.Memory;
 
 namespace Xbim.Essentials.Tests
@@ -10,6 +13,32 @@ namespace Xbim.Essentials.Tests
     [DeploymentItem("TestSourceFiles")]
     public class InterfacesDataRetrieval
     {
+
+        [TestMethod]
+        public void EsentDataRetrieval()
+        {
+            using (var model = new EsentModel(new EntityFactory()))
+            {
+                model.CreateFrom("4walls1floorSite.ifc", null, null, true);
+
+                var walls = model.Instances.Where<IIfcWall>(w => w.Name != null);
+                Assert.AreEqual(4, walls.Count());
+
+                //this is correct now (fixed to search for interface implementations)
+                var entities = model.Instances.Where<IPersistEntity>(i => true).ToList();
+                
+                //this doesn't bring in non-indexed classes
+                var entities2 = model.Instances.OfType<IPersistEntity>().ToList();
+                
+                var totalCount = model.Instances.Count;
+                Assert.AreEqual(totalCount, entities.Count);
+                Assert.AreEqual(totalCount, entities2.Count);
+
+               
+
+            }
+        }
+
         [TestMethod]
         public void Ifc4InterfacesToIfc2X3()
         {

@@ -280,6 +280,7 @@ namespace Xbim.Ifc4.ApprovalResource
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedResourceObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 10)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReferences 
 		{ 
@@ -288,6 +289,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatingApproval")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 11)]
 		public IEnumerable<IfcRelAssociatesApproval> @ApprovedObjects 
 		{ 
@@ -296,6 +298,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				return Model.Instances.Where<IfcRelAssociatesApproval>(e => (e.RelatingApproval as IfcApproval) == this);
 			} 
 		}
+		[InverseProperty("RelatingApproval")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 12)]
 		public IEnumerable<IfcResourceApprovalRelationship> @ApprovedResources 
 		{ 
@@ -304,6 +307,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				return Model.Instances.Where<IfcResourceApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this);
 			} 
 		}
+		[InverseProperty("RelatedApprovals")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 13)]
 		public IEnumerable<IfcApprovalRelationship> @IsRelatedWith 
 		{ 
@@ -312,6 +316,7 @@ namespace Xbim.Ifc4.ApprovalResource
 				return Model.Instances.Where<IfcApprovalRelationship>(e => e.RelatedApprovals != null &&  e.RelatedApprovals.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatingApproval")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 14)]
 		public IEnumerable<IfcApprovalRelationship> @Relates 
 		{ 

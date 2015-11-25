@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralPlanarAction : IIfcStructuralPlanarAction
 	{
-		Ifc4.StructuralAnalysisDomain.IfcProjectedOrTrueLengthEnum? IIfcStructuralSurfaceAction.ProjectedOrTrue 
+		Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum? IIfcStructuralSurfaceAction.ProjectedOrTrue 
 		{ 
 			get
 			{
 				//## Handle return of ProjectedOrTrue for which no match was found
                 if (ProjectedOrTrue == IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH)
-                    return Ifc4.StructuralAnalysisDomain.IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH;
+                    return Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum.PROJECTED_LENGTH;
                 else if (ProjectedOrTrue == IfcProjectedOrTrueLengthEnum.TRUE_LENGTH)
-                    return Ifc4.StructuralAnalysisDomain.IfcProjectedOrTrueLengthEnum.TRUE_LENGTH;
+                    return Ifc4.Interfaces.IfcProjectedOrTrueLengthEnum.TRUE_LENGTH;
                 else
                     return null;
 				//##
 			} 
 		}
-		Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceActivityTypeEnum IIfcStructuralSurfaceAction.PredefinedType 
+		Ifc4.Interfaces.IfcStructuralSurfaceActivityTypeEnum IIfcStructuralSurfaceAction.PredefinedType 
 		{ 
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-                return Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceActivityTypeEnum.NOTDEFINED;
+                return IfcStructuralSurfaceActivityTypeEnum.NOTDEFINED;
 				//##
 			} 
 		}

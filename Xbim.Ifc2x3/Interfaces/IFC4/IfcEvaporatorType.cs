@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcEvaporatorType : IIfcEvaporatorType
 	{
-		Ifc4.HvacDomain.IfcEvaporatorTypeEnum IIfcEvaporatorType.PredefinedType 
+		Ifc4.Interfaces.IfcEvaporatorTypeEnum IIfcEvaporatorType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcEvaporatorTypeEnum.DIRECTEXPANSIONSHELLANDTUBE:
-						return Ifc4.HvacDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONSHELLANDTUBE;
+						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.DIRECTEXPANSIONSHELLANDTUBE;
 					
 					case IfcEvaporatorTypeEnum.DIRECTEXPANSIONTUBEINTUBE:
-						return Ifc4.HvacDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONTUBEINTUBE;
+						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.DIRECTEXPANSIONTUBEINTUBE;
 					
 					case IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE:
-						return Ifc4.HvacDomain.IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE;
+						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE;
 					
 					case IfcEvaporatorTypeEnum.FLOODEDSHELLANDTUBE:
-						return Ifc4.HvacDomain.IfcEvaporatorTypeEnum.FLOODEDSHELLANDTUBE;
+						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.FLOODEDSHELLANDTUBE;
 					
 					case IfcEvaporatorTypeEnum.SHELLANDCOIL:
-						return Ifc4.HvacDomain.IfcEvaporatorTypeEnum.SHELLANDCOIL;
+						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.SHELLANDCOIL;
 					
 					case IfcEvaporatorTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcEvaporatorTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.USERDEFINED;
 					
 					case IfcEvaporatorTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcEvaporatorTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.NOTDEFINED;
 					
 					
 					default:

@@ -16,35 +16,35 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcProxy : IIfcProxy
 	{
-		Ifc4.Kernel.IfcObjectTypeEnum IIfcProxy.ProxyType 
+		Ifc4.Interfaces.IfcObjectTypeEnum IIfcProxy.ProxyType 
 		{ 
 			get
 			{
 				switch (ProxyType)
 				{
 					case IfcObjectTypeEnum.PRODUCT:
-						return Ifc4.Kernel.IfcObjectTypeEnum.PRODUCT;
+						return Ifc4.Interfaces.IfcObjectTypeEnum.PRODUCT;
 					
 					case IfcObjectTypeEnum.PROCESS:
-						return Ifc4.Kernel.IfcObjectTypeEnum.PROCESS;
+						return Ifc4.Interfaces.IfcObjectTypeEnum.PROCESS;
 					
 					case IfcObjectTypeEnum.CONTROL:
-						return Ifc4.Kernel.IfcObjectTypeEnum.CONTROL;
+						return Ifc4.Interfaces.IfcObjectTypeEnum.CONTROL;
 					
 					case IfcObjectTypeEnum.RESOURCE:
-						return Ifc4.Kernel.IfcObjectTypeEnum.RESOURCE;
+						return Ifc4.Interfaces.IfcObjectTypeEnum.RESOURCE;
 					
 					case IfcObjectTypeEnum.ACTOR:
-						return Ifc4.Kernel.IfcObjectTypeEnum.ACTOR;
+						return Ifc4.Interfaces.IfcObjectTypeEnum.ACTOR;
 					
 					case IfcObjectTypeEnum.GROUP:
-						return Ifc4.Kernel.IfcObjectTypeEnum.GROUP;
+						return Ifc4.Interfaces.IfcObjectTypeEnum.GROUP;
 					
 					case IfcObjectTypeEnum.PROJECT:
-						return Ifc4.Kernel.IfcObjectTypeEnum.PROJECT;
+						return Ifc4.Interfaces.IfcObjectTypeEnum.PROJECT;
 					
 					case IfcObjectTypeEnum.NOTDEFINED:
-						return Ifc4.Kernel.IfcObjectTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcObjectTypeEnum.NOTDEFINED;
 					
 					
 					default:
