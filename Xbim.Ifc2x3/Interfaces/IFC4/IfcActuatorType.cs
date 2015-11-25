@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	public partial class @IfcActuatorType : IIfcActuatorType
 	{
-		Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum IIfcActuatorType.PredefinedType 
+		Ifc4.Interfaces.IfcActuatorTypeEnum IIfcActuatorType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcActuatorTypeEnum.ELECTRICACTUATOR:
-						return Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum.ELECTRICACTUATOR;
+						return Ifc4.Interfaces.IfcActuatorTypeEnum.ELECTRICACTUATOR;
 					
 					case IfcActuatorTypeEnum.HANDOPERATEDACTUATOR:
-						return Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum.HANDOPERATEDACTUATOR;
+						return Ifc4.Interfaces.IfcActuatorTypeEnum.HANDOPERATEDACTUATOR;
 					
 					case IfcActuatorTypeEnum.HYDRAULICACTUATOR:
-						return Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum.HYDRAULICACTUATOR;
+						return Ifc4.Interfaces.IfcActuatorTypeEnum.HYDRAULICACTUATOR;
 					
 					case IfcActuatorTypeEnum.PNEUMATICACTUATOR:
-						return Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum.PNEUMATICACTUATOR;
+						return Ifc4.Interfaces.IfcActuatorTypeEnum.PNEUMATICACTUATOR;
 					
 					case IfcActuatorTypeEnum.THERMOSTATICACTUATOR:
-						return Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum.THERMOSTATICACTUATOR;
+						return Ifc4.Interfaces.IfcActuatorTypeEnum.THERMOSTATICACTUATOR;
 					
 					case IfcActuatorTypeEnum.USERDEFINED:
-						return Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcActuatorTypeEnum.USERDEFINED;
 					
 					case IfcActuatorTypeEnum.NOTDEFINED:
-						return Ifc4.BuildingControlsDomain.IfcActuatorTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcActuatorTypeEnum.NOTDEFINED;
 					
 					
 					default:

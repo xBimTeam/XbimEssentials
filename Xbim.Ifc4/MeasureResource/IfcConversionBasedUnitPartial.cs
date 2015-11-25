@@ -1,4 +1,6 @@
-﻿namespace Xbim.Ifc4.MeasureResource
+﻿using Xbim.Ifc4.Interfaces;
+
+namespace Xbim.Ifc4.MeasureResource
 {
     public partial class IfcConversionBasedUnit
     {

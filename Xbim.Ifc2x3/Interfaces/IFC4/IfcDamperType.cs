@@ -16,50 +16,50 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcDamperType : IIfcDamperType
 	{
-		Ifc4.HvacDomain.IfcDamperTypeEnum IIfcDamperType.PredefinedType 
+		Ifc4.Interfaces.IfcDamperTypeEnum IIfcDamperType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcDamperTypeEnum.CONTROLDAMPER:
-						return Ifc4.HvacDomain.IfcDamperTypeEnum.CONTROLDAMPER;
+						return Ifc4.Interfaces.IfcDamperTypeEnum.CONTROLDAMPER;
 					
 					case IfcDamperTypeEnum.FIREDAMPER:
-						return Ifc4.HvacDomain.IfcDamperTypeEnum.FIREDAMPER;
+						return Ifc4.Interfaces.IfcDamperTypeEnum.FIREDAMPER;
 					
 					case IfcDamperTypeEnum.SMOKEDAMPER:
-						return Ifc4.HvacDomain.IfcDamperTypeEnum.SMOKEDAMPER;
+						return Ifc4.Interfaces.IfcDamperTypeEnum.SMOKEDAMPER;
 					
 					case IfcDamperTypeEnum.FIRESMOKEDAMPER:
-						return Ifc4.HvacDomain.IfcDamperTypeEnum.FIRESMOKEDAMPER;
+						return Ifc4.Interfaces.IfcDamperTypeEnum.FIRESMOKEDAMPER;
 					
 					case IfcDamperTypeEnum.BACKDRAFTDAMPER:
-						return Ifc4.HvacDomain.IfcDamperTypeEnum.BACKDRAFTDAMPER;
+						return Ifc4.Interfaces.IfcDamperTypeEnum.BACKDRAFTDAMPER;
 					
 					case IfcDamperTypeEnum.RELIEFDAMPER:
-						return Ifc4.HvacDomain.IfcDamperTypeEnum.RELIEFDAMPER;
+						return Ifc4.Interfaces.IfcDamperTypeEnum.RELIEFDAMPER;
 					
 					case IfcDamperTypeEnum.BLASTDAMPER:
-						return Ifc4.HvacDomain.IfcDamperTypeEnum.BLASTDAMPER;
+						return Ifc4.Interfaces.IfcDamperTypeEnum.BLASTDAMPER;
 					
 					case IfcDamperTypeEnum.GRAVITYDAMPER:
-						return Ifc4.HvacDomain.IfcDamperTypeEnum.GRAVITYDAMPER;
+						return Ifc4.Interfaces.IfcDamperTypeEnum.GRAVITYDAMPER;
 					
 					case IfcDamperTypeEnum.GRAVITYRELIEFDAMPER:
-						return Ifc4.HvacDomain.IfcDamperTypeEnum.GRAVITYRELIEFDAMPER;
+						return Ifc4.Interfaces.IfcDamperTypeEnum.GRAVITYRELIEFDAMPER;
 					
 					case IfcDamperTypeEnum.BALANCINGDAMPER:
-						return Ifc4.HvacDomain.IfcDamperTypeEnum.BALANCINGDAMPER;
+						return Ifc4.Interfaces.IfcDamperTypeEnum.BALANCINGDAMPER;
 					
 					case IfcDamperTypeEnum.FUMEHOODEXHAUST:
-						return Ifc4.HvacDomain.IfcDamperTypeEnum.FUMEHOODEXHAUST;
+						return Ifc4.Interfaces.IfcDamperTypeEnum.FUMEHOODEXHAUST;
 					
 					case IfcDamperTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcDamperTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcDamperTypeEnum.USERDEFINED;
 					
 					case IfcDamperTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcDamperTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcDamperTypeEnum.NOTDEFINED;
 					
 					
 					default:

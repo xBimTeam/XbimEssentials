@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcStairFlightType : IIfcStairFlightType
 	{
-		Ifc4.SharedBldgElements.IfcStairFlightTypeEnum IIfcStairFlightType.PredefinedType 
+		Ifc4.Interfaces.IfcStairFlightTypeEnum IIfcStairFlightType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcStairFlightTypeEnum.STRAIGHT:
-						return Ifc4.SharedBldgElements.IfcStairFlightTypeEnum.STRAIGHT;
+						return Ifc4.Interfaces.IfcStairFlightTypeEnum.STRAIGHT;
 					
 					case IfcStairFlightTypeEnum.WINDER:
-						return Ifc4.SharedBldgElements.IfcStairFlightTypeEnum.WINDER;
+						return Ifc4.Interfaces.IfcStairFlightTypeEnum.WINDER;
 					
 					case IfcStairFlightTypeEnum.SPIRAL:
-						return Ifc4.SharedBldgElements.IfcStairFlightTypeEnum.SPIRAL;
+						return Ifc4.Interfaces.IfcStairFlightTypeEnum.SPIRAL;
 					
 					case IfcStairFlightTypeEnum.CURVED:
-						return Ifc4.SharedBldgElements.IfcStairFlightTypeEnum.CURVED;
+						return Ifc4.Interfaces.IfcStairFlightTypeEnum.CURVED;
 					
 					case IfcStairFlightTypeEnum.FREEFORM:
-						return Ifc4.SharedBldgElements.IfcStairFlightTypeEnum.FREEFORM;
+						return Ifc4.Interfaces.IfcStairFlightTypeEnum.FREEFORM;
 					
 					case IfcStairFlightTypeEnum.USERDEFINED:
-						return Ifc4.SharedBldgElements.IfcStairFlightTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcStairFlightTypeEnum.USERDEFINED;
 					
 					case IfcStairFlightTypeEnum.NOTDEFINED:
-						return Ifc4.SharedBldgElements.IfcStairFlightTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcStairFlightTypeEnum.NOTDEFINED;
 					
 					
 					default:

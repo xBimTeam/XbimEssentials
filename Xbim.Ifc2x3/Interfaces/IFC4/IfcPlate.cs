@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcPlate : IIfcPlate
 	{
-		Ifc4.SharedBldgElements.IfcPlateTypeEnum? IIfcPlate.PredefinedType 
+		Ifc4.Interfaces.IfcPlateTypeEnum? IIfcPlate.PredefinedType 
 		{ 
 			get
 			{

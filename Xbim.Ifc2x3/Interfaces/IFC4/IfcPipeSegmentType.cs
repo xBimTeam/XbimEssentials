@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcPipeSegmentType : IIfcPipeSegmentType
 	{
-		Ifc4.HvacDomain.IfcPipeSegmentTypeEnum IIfcPipeSegmentType.PredefinedType 
+		Ifc4.Interfaces.IfcPipeSegmentTypeEnum IIfcPipeSegmentType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT:
-						return Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT;
+						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT;
 					
 					case IfcPipeSegmentTypeEnum.RIGIDSEGMENT:
-						return Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.RIGIDSEGMENT;
+						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.RIGIDSEGMENT;
 					
 					case IfcPipeSegmentTypeEnum.GUTTER:
-						return Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.GUTTER;
+						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.GUTTER;
 					
 					case IfcPipeSegmentTypeEnum.SPOOL:
-						return Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.SPOOL;
+						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.SPOOL;
 					
 					case IfcPipeSegmentTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.USERDEFINED;
 					
 					case IfcPipeSegmentTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcPipeSegmentTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.NOTDEFINED;
 					
 					
 					default:

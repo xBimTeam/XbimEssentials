@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	public partial class @IfcDistributionPort : IIfcDistributionPort
 	{
-		Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum? IIfcDistributionPort.FlowDirection 
+		Ifc4.Interfaces.IfcFlowDirectionEnum? IIfcDistributionPort.FlowDirection 
 		{ 
 			get
 			{
 				switch (FlowDirection)
 				{
 					case IfcFlowDirectionEnum.SOURCE:
-						return Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.SOURCE;
+						return Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCE;
 					
 					case IfcFlowDirectionEnum.SINK:
-						return Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.SINK;
+						return Ifc4.Interfaces.IfcFlowDirectionEnum.SINK;
 					
 					case IfcFlowDirectionEnum.SOURCEANDSINK:
-						return Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.SOURCEANDSINK;
+						return Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCEANDSINK;
 					
 					case IfcFlowDirectionEnum.NOTDEFINED:
-						return Ifc4.SharedBldgServiceElements.IfcFlowDirectionEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcFlowDirectionEnum.NOTDEFINED;
 					
 					
 					default:
@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				}
 			} 
 		}
-		Ifc4.SharedBldgServiceElements.IfcDistributionPortTypeEnum? IIfcDistributionPort.PredefinedType 
+		Ifc4.Interfaces.IfcDistributionPortTypeEnum? IIfcDistributionPort.PredefinedType 
 		{ 
 			get
 			{
@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			    //##
 			} 
 		}
-		Ifc4.SharedBldgServiceElements.IfcDistributionSystemEnum? IIfcDistributionPort.SystemType 
+		Ifc4.Interfaces.IfcDistributionSystemEnum? IIfcDistributionPort.SystemType 
 		{ 
 			get
 			{

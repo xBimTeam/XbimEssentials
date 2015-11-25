@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcTendon : IIfcTendon
 	{
-		Ifc4.StructuralElementsDomain.IfcTendonTypeEnum? IIfcTendon.PredefinedType 
+		Ifc4.Interfaces.IfcTendonTypeEnum? IIfcTendon.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcTendonTypeEnum.STRAND:
-						return Ifc4.StructuralElementsDomain.IfcTendonTypeEnum.STRAND;
+						return Ifc4.Interfaces.IfcTendonTypeEnum.STRAND;
 					
 					case IfcTendonTypeEnum.WIRE:
-						return Ifc4.StructuralElementsDomain.IfcTendonTypeEnum.WIRE;
+						return Ifc4.Interfaces.IfcTendonTypeEnum.WIRE;
 					
 					case IfcTendonTypeEnum.BAR:
-						return Ifc4.StructuralElementsDomain.IfcTendonTypeEnum.BAR;
+						return Ifc4.Interfaces.IfcTendonTypeEnum.BAR;
 					
 					case IfcTendonTypeEnum.COATED:
-						return Ifc4.StructuralElementsDomain.IfcTendonTypeEnum.COATED;
+						return Ifc4.Interfaces.IfcTendonTypeEnum.COATED;
 					
 					case IfcTendonTypeEnum.USERDEFINED:
-						return Ifc4.StructuralElementsDomain.IfcTendonTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcTendonTypeEnum.USERDEFINED;
 					
 					case IfcTendonTypeEnum.NOTDEFINED:
-						return Ifc4.StructuralElementsDomain.IfcTendonTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcTendonTypeEnum.NOTDEFINED;
 					
 					
 					default:

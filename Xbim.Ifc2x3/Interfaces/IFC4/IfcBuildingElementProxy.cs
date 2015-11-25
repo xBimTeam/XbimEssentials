@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcBuildingElementProxy : IIfcBuildingElementProxy
 	{
-		Ifc4.SharedBldgElements.IfcBuildingElementProxyTypeEnum? IIfcBuildingElementProxy.PredefinedType 
+		Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum? IIfcBuildingElementProxy.PredefinedType 
 		{ 
 			get
 			{

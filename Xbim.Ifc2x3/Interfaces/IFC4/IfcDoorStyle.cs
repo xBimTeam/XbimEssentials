@@ -16,65 +16,65 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcDoorStyle : IIfcDoorStyle
 	{
-		Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum IIfcDoorStyle.OperationType 
+		Ifc4.Interfaces.IfcDoorStyleOperationEnum IIfcDoorStyle.OperationType 
 		{ 
 			get
 			{
 				switch (OperationType)
 				{
 					case IfcDoorStyleOperationEnum.SINGLE_SWING_LEFT:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.SINGLE_SWING_LEFT;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.SINGLE_SWING_LEFT;
 					
 					case IfcDoorStyleOperationEnum.SINGLE_SWING_RIGHT:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.SINGLE_SWING_RIGHT;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.SINGLE_SWING_RIGHT;
 					
 					case IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING;
 					
 					case IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT;
 					
 					case IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT;
 					
 					case IfcDoorStyleOperationEnum.DOUBLE_SWING_LEFT:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_SWING_LEFT;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.DOUBLE_SWING_LEFT;
 					
 					case IfcDoorStyleOperationEnum.DOUBLE_SWING_RIGHT:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_SWING_RIGHT;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.DOUBLE_SWING_RIGHT;
 					
 					case IfcDoorStyleOperationEnum.DOUBLE_DOOR_DOUBLE_SWING:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_DOOR_DOUBLE_SWING;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.DOUBLE_DOOR_DOUBLE_SWING;
 					
 					case IfcDoorStyleOperationEnum.SLIDING_TO_LEFT:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.SLIDING_TO_LEFT;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.SLIDING_TO_LEFT;
 					
 					case IfcDoorStyleOperationEnum.SLIDING_TO_RIGHT:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.SLIDING_TO_RIGHT;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.SLIDING_TO_RIGHT;
 					
 					case IfcDoorStyleOperationEnum.DOUBLE_DOOR_SLIDING:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SLIDING;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.DOUBLE_DOOR_SLIDING;
 					
 					case IfcDoorStyleOperationEnum.FOLDING_TO_LEFT:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.FOLDING_TO_LEFT;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.FOLDING_TO_LEFT;
 					
 					case IfcDoorStyleOperationEnum.FOLDING_TO_RIGHT:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.FOLDING_TO_RIGHT;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.FOLDING_TO_RIGHT;
 					
 					case IfcDoorStyleOperationEnum.DOUBLE_DOOR_FOLDING:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.DOUBLE_DOOR_FOLDING;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.DOUBLE_DOOR_FOLDING;
 					
 					case IfcDoorStyleOperationEnum.REVOLVING:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.REVOLVING;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.REVOLVING;
 					
 					case IfcDoorStyleOperationEnum.ROLLINGUP:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.ROLLINGUP;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.ROLLINGUP;
 					
 					case IfcDoorStyleOperationEnum.USERDEFINED:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.USERDEFINED;
 					
 					case IfcDoorStyleOperationEnum.NOTDEFINED:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleOperationEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcDoorStyleOperationEnum.NOTDEFINED;
 					
 					
 					default:
@@ -82,38 +82,38 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				}
 			} 
 		}
-		Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum IIfcDoorStyle.ConstructionType 
+		Ifc4.Interfaces.IfcDoorStyleConstructionEnum IIfcDoorStyle.ConstructionType 
 		{ 
 			get
 			{
 				switch (ConstructionType)
 				{
 					case IfcDoorStyleConstructionEnum.ALUMINIUM:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.ALUMINIUM;
+						return Ifc4.Interfaces.IfcDoorStyleConstructionEnum.ALUMINIUM;
 					
 					case IfcDoorStyleConstructionEnum.HIGH_GRADE_STEEL:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.HIGH_GRADE_STEEL;
+						return Ifc4.Interfaces.IfcDoorStyleConstructionEnum.HIGH_GRADE_STEEL;
 					
 					case IfcDoorStyleConstructionEnum.STEEL:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.STEEL;
+						return Ifc4.Interfaces.IfcDoorStyleConstructionEnum.STEEL;
 					
 					case IfcDoorStyleConstructionEnum.WOOD:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.WOOD;
+						return Ifc4.Interfaces.IfcDoorStyleConstructionEnum.WOOD;
 					
 					case IfcDoorStyleConstructionEnum.ALUMINIUM_WOOD:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.ALUMINIUM_WOOD;
+						return Ifc4.Interfaces.IfcDoorStyleConstructionEnum.ALUMINIUM_WOOD;
 					
 					case IfcDoorStyleConstructionEnum.ALUMINIUM_PLASTIC:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.ALUMINIUM_PLASTIC;
+						return Ifc4.Interfaces.IfcDoorStyleConstructionEnum.ALUMINIUM_PLASTIC;
 					
 					case IfcDoorStyleConstructionEnum.PLASTIC:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.PLASTIC;
+						return Ifc4.Interfaces.IfcDoorStyleConstructionEnum.PLASTIC;
 					
 					case IfcDoorStyleConstructionEnum.USERDEFINED:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcDoorStyleConstructionEnum.USERDEFINED;
 					
 					case IfcDoorStyleConstructionEnum.NOTDEFINED:
-						return Ifc4.ArchitectureDomain.IfcDoorStyleConstructionEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcDoorStyleConstructionEnum.NOTDEFINED;
 					
 					
 					default:

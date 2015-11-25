@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcWorkSchedule : IIfcWorkSchedule
 	{
-		Ifc4.ProcessExtension.IfcWorkScheduleTypeEnum? IIfcWorkSchedule.PredefinedType 
+		Ifc4.Interfaces.IfcWorkScheduleTypeEnum? IIfcWorkSchedule.PredefinedType 
 		{ 
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-                return Ifc4.ProcessExtension.IfcWorkScheduleTypeEnum.NOTDEFINED;
+                return IfcWorkScheduleTypeEnum.NOTDEFINED;
 				//##
 			} 
 		}

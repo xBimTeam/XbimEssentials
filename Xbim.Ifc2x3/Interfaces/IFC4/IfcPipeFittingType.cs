@@ -16,38 +16,38 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcPipeFittingType : IIfcPipeFittingType
 	{
-		Ifc4.HvacDomain.IfcPipeFittingTypeEnum IIfcPipeFittingType.PredefinedType 
+		Ifc4.Interfaces.IfcPipeFittingTypeEnum IIfcPipeFittingType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcPipeFittingTypeEnum.BEND:
-						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.BEND;
+						return Ifc4.Interfaces.IfcPipeFittingTypeEnum.BEND;
 					
 					case IfcPipeFittingTypeEnum.CONNECTOR:
-						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.CONNECTOR;
+						return Ifc4.Interfaces.IfcPipeFittingTypeEnum.CONNECTOR;
 					
 					case IfcPipeFittingTypeEnum.ENTRY:
-						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.ENTRY;
+						return Ifc4.Interfaces.IfcPipeFittingTypeEnum.ENTRY;
 					
 					case IfcPipeFittingTypeEnum.EXIT:
-						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.EXIT;
+						return Ifc4.Interfaces.IfcPipeFittingTypeEnum.EXIT;
 					
 					case IfcPipeFittingTypeEnum.JUNCTION:
-						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.JUNCTION;
+						return Ifc4.Interfaces.IfcPipeFittingTypeEnum.JUNCTION;
 					
 					case IfcPipeFittingTypeEnum.OBSTRUCTION:
-						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.OBSTRUCTION;
+						return Ifc4.Interfaces.IfcPipeFittingTypeEnum.OBSTRUCTION;
 					
 					case IfcPipeFittingTypeEnum.TRANSITION:
-						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.TRANSITION;
+						return Ifc4.Interfaces.IfcPipeFittingTypeEnum.TRANSITION;
 					
 					case IfcPipeFittingTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcPipeFittingTypeEnum.USERDEFINED;
 					
 					case IfcPipeFittingTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcPipeFittingTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcPipeFittingTypeEnum.NOTDEFINED;
 					
 					
 					default:

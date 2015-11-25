@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcCableSegmentType : IIfcCableSegmentType
 	{
-		Ifc4.ElectricalDomain.IfcCableSegmentTypeEnum IIfcCableSegmentType.PredefinedType 
+		Ifc4.Interfaces.IfcCableSegmentTypeEnum IIfcCableSegmentType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcCableSegmentTypeEnum.CABLESEGMENT:
-						return Ifc4.ElectricalDomain.IfcCableSegmentTypeEnum.CABLESEGMENT;
+						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.CABLESEGMENT;
 					
 					case IfcCableSegmentTypeEnum.CONDUCTORSEGMENT:
-						return Ifc4.ElectricalDomain.IfcCableSegmentTypeEnum.CONDUCTORSEGMENT;
+						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.CONDUCTORSEGMENT;
 					
 					case IfcCableSegmentTypeEnum.USERDEFINED:
-						return Ifc4.ElectricalDomain.IfcCableSegmentTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.USERDEFINED;
 					
 					case IfcCableSegmentTypeEnum.NOTDEFINED:
-						return Ifc4.ElectricalDomain.IfcCableSegmentTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.NOTDEFINED;
 					
 					
 					default:

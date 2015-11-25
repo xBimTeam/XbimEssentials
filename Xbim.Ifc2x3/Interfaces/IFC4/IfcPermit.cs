@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	public partial class @IfcPermit : IIfcPermit
 	{
-		Ifc4.SharedMgmtElements.IfcPermitTypeEnum? IIfcPermit.PredefinedType 
+		Ifc4.Interfaces.IfcPermitTypeEnum? IIfcPermit.PredefinedType 
 		{ 
 			get
 			{

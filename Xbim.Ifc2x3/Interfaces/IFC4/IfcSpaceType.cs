@@ -16,17 +16,17 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSpaceType : IIfcSpaceType
 	{
-		Ifc4.ProductExtension.IfcSpaceTypeEnum IIfcSpaceType.PredefinedType 
+		Ifc4.Interfaces.IfcSpaceTypeEnum IIfcSpaceType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcSpaceTypeEnum.USERDEFINED:
-						return Ifc4.ProductExtension.IfcSpaceTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcSpaceTypeEnum.USERDEFINED;
 					
 					case IfcSpaceTypeEnum.NOTDEFINED:
-						return Ifc4.ProductExtension.IfcSpaceTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcSpaceTypeEnum.NOTDEFINED;
 					
 					
 					default:

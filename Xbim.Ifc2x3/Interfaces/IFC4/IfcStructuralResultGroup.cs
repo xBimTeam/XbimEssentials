@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralResultGroup : IIfcStructuralResultGroup
 	{
-		Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType 
+		Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType 
 		{ 
 			get
 			{
 				switch (TheoryType)
 				{
 					case IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY:
-						return Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY;
+						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY;
 					
 					case IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY:
-						return Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY;
+						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY;
 					
 					case IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY:
-						return Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY;
+						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY;
 					
 					case IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY:
-						return Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY;
+						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY;
 					
 					case IfcAnalysisTheoryTypeEnum.USERDEFINED:
-						return Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.USERDEFINED;
 					
 					case IfcAnalysisTheoryTypeEnum.NOTDEFINED:
-						return Ifc4.StructuralAnalysisDomain.IfcAnalysisTheoryTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.NOTDEFINED;
 					
 					
 					default:

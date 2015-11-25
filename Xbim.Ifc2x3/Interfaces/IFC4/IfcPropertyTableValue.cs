@@ -464,7 +464,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 				return null;
 			} 
 		}
-		Ifc4.PropertyResource.IfcCurveInterpolationEnum? IIfcPropertyTableValue.CurveInterpolation 
+		Ifc4.Interfaces.IfcCurveInterpolationEnum? IIfcPropertyTableValue.CurveInterpolation 
 		{ 
 			get
 			{

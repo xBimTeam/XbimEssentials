@@ -32,21 +32,21 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth.Value);
 			} 
 		}
-		Ifc4.SharedBldgElements.IfcWindowTypeEnum? IIfcWindow.PredefinedType 
+		Ifc4.Interfaces.IfcWindowTypeEnum? IIfcWindow.PredefinedType 
 		{ 
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-                return Ifc4.SharedBldgElements.IfcWindowTypeEnum.NOTDEFINED;
+                return Ifc4.Interfaces.IfcWindowTypeEnum.NOTDEFINED;
 				//##
 			} 
 		}
-		Ifc4.SharedBldgElements.IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType 
+		Ifc4.Interfaces.IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType 
 		{ 
 			get
 			{
 				//## Handle return of PartitioningType for which no match was found
-                return Ifc4.SharedBldgElements.IfcWindowTypePartitioningEnum.NOTDEFINED;
+                return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.NOTDEFINED;
 				//##
 			} 
 		}

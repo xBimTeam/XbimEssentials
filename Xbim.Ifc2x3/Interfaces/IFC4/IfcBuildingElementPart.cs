@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcBuildingElementPart : IIfcBuildingElementPart
 	{
-		Ifc4.SharedComponentElements.IfcBuildingElementPartTypeEnum? IIfcBuildingElementPart.PredefinedType 
+		Ifc4.Interfaces.IfcBuildingElementPartTypeEnum? IIfcBuildingElementPart.PredefinedType 
 		{ 
 			get
 			{

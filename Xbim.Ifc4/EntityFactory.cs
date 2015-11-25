@@ -1532,7 +1532,7 @@ namespace Xbim.Ifc4
 			}
 		}
 
-		private static List<string> _schemasIds = new List<string> { "IFC4" };
+		private static readonly List<string> _schemasIds = new List<string> { "IFC4" };
 		public IEnumerable<string> SchemasIds { get { return _schemasIds; } }
 
 	}

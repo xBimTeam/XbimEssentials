@@ -37,20 +37,20 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return ConnectionGeometry;
 			} 
 		}
-		Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary 
+		Ifc4.Interfaces.IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary 
 		{ 
 			get
 			{
 				switch (PhysicalOrVirtualBoundary)
 				{
 					case IfcPhysicalOrVirtualEnum.PHYSICAL:
-						return Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum.PHYSICAL;
+						return Ifc4.Interfaces.IfcPhysicalOrVirtualEnum.PHYSICAL;
 					
 					case IfcPhysicalOrVirtualEnum.VIRTUAL:
-						return Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum.VIRTUAL;
+						return Ifc4.Interfaces.IfcPhysicalOrVirtualEnum.VIRTUAL;
 					
 					case IfcPhysicalOrVirtualEnum.NOTDEFINED:
-						return Ifc4.ProductExtension.IfcPhysicalOrVirtualEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcPhysicalOrVirtualEnum.NOTDEFINED;
 					
 					
 					default:
@@ -58,20 +58,20 @@ namespace Xbim.Ifc2x3.ProductExtension
 				}
 			} 
 		}
-		Ifc4.ProductExtension.IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary 
+		Ifc4.Interfaces.IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary 
 		{ 
 			get
 			{
 				switch (InternalOrExternalBoundary)
 				{
 					case IfcInternalOrExternalEnum.INTERNAL:
-						return Ifc4.ProductExtension.IfcInternalOrExternalEnum.INTERNAL;
+						return Ifc4.Interfaces.IfcInternalOrExternalEnum.INTERNAL;
 					
 					case IfcInternalOrExternalEnum.EXTERNAL:
-						return Ifc4.ProductExtension.IfcInternalOrExternalEnum.EXTERNAL;
+						return Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL;
 					
 					case IfcInternalOrExternalEnum.NOTDEFINED:
-						return Ifc4.ProductExtension.IfcInternalOrExternalEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcInternalOrExternalEnum.NOTDEFINED;
 					
 					
 					default:

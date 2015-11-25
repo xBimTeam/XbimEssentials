@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	public partial class @IfcInventory : IIfcInventory
 	{
-		Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum? IIfcInventory.PredefinedType 
+		Ifc4.Interfaces.IfcInventoryTypeEnum? IIfcInventory.PredefinedType 
 		{ 
 			get
 			{
 				switch (InventoryType)
 				{
 					case IfcInventoryTypeEnum.ASSETINVENTORY:
-						return Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.ASSETINVENTORY;
+						return Ifc4.Interfaces.IfcInventoryTypeEnum.ASSETINVENTORY;
 					
 					case IfcInventoryTypeEnum.SPACEINVENTORY:
-						return Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.SPACEINVENTORY;
+						return Ifc4.Interfaces.IfcInventoryTypeEnum.SPACEINVENTORY;
 					
 					case IfcInventoryTypeEnum.FURNITUREINVENTORY:
-						return Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.FURNITUREINVENTORY;
+						return Ifc4.Interfaces.IfcInventoryTypeEnum.FURNITUREINVENTORY;
 					
 					case IfcInventoryTypeEnum.USERDEFINED:
-						return Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcInventoryTypeEnum.USERDEFINED;
 					
 					case IfcInventoryTypeEnum.NOTDEFINED:
-						return Ifc4.SharedFacilitiesElements.IfcInventoryTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcInventoryTypeEnum.NOTDEFINED;
 					
 					
 					default:

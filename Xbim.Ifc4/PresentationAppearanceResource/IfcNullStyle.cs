@@ -9,6 +9,7 @@
 
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {

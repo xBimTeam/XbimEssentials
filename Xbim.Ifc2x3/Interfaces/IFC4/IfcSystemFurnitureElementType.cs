@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	public partial class @IfcSystemFurnitureElementType : IIfcSystemFurnitureElementType
 	{
-		Ifc4.SharedFacilitiesElements.IfcSystemFurnitureElementTypeEnum? IIfcSystemFurnitureElementType.PredefinedType 
+		Ifc4.Interfaces.IfcSystemFurnitureElementTypeEnum? IIfcSystemFurnitureElementType.PredefinedType 
 		{ 
 			get
 			{

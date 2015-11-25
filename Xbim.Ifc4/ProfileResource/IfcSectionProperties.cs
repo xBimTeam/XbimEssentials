@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.PropertyResource;
+using Xbim.Ifc4.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -49,32 +49,32 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				//##
 			} 
 		}
-		Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType 
+		Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType 
 		{ 
 			get
 			{
 				switch (TimeSeriesDataType)
 				{
 					case IfcTimeSeriesDataTypeEnum.CONTINUOUS:
-						return Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.CONTINUOUS;
+						return Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.CONTINUOUS;
 					
 					case IfcTimeSeriesDataTypeEnum.DISCRETE:
-						return Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.DISCRETE;
+						return Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.DISCRETE;
 					
 					case IfcTimeSeriesDataTypeEnum.DISCRETEBINARY:
-						return Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.DISCRETEBINARY;
+						return Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.DISCRETEBINARY;
 					
 					case IfcTimeSeriesDataTypeEnum.PIECEWISEBINARY:
-						return Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.PIECEWISEBINARY;
+						return Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.PIECEWISEBINARY;
 					
 					case IfcTimeSeriesDataTypeEnum.PIECEWISECONSTANT:
-						return Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.PIECEWISECONSTANT;
+						return Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.PIECEWISECONSTANT;
 					
 					case IfcTimeSeriesDataTypeEnum.PIECEWISECONTINUOUS:
-						return Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.PIECEWISECONTINUOUS;
+						return Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.PIECEWISECONTINUOUS;
 					
 					case IfcTimeSeriesDataTypeEnum.NOTDEFINED:
-						return Ifc4.DateTimeResource.IfcTimeSeriesDataTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcTimeSeriesDataTypeEnum.NOTDEFINED;
 					
 					
 					default:
@@ -82,26 +82,26 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				}
 			} 
 		}
-		Ifc4.DateTimeResource.IfcDataOriginEnum IIfcTimeSeries.DataOrigin 
+		Ifc4.Interfaces.IfcDataOriginEnum IIfcTimeSeries.DataOrigin 
 		{ 
 			get
 			{
 				switch (DataOrigin)
 				{
 					case IfcDataOriginEnum.MEASURED:
-						return Ifc4.DateTimeResource.IfcDataOriginEnum.MEASURED;
+						return Ifc4.Interfaces.IfcDataOriginEnum.MEASURED;
 					
 					case IfcDataOriginEnum.PREDICTED:
-						return Ifc4.DateTimeResource.IfcDataOriginEnum.PREDICTED;
+						return Ifc4.Interfaces.IfcDataOriginEnum.PREDICTED;
 					
 					case IfcDataOriginEnum.SIMULATED:
-						return Ifc4.DateTimeResource.IfcDataOriginEnum.SIMULATED;
+						return Ifc4.Interfaces.IfcDataOriginEnum.SIMULATED;
 					
 					case IfcDataOriginEnum.USERDEFINED:
-						return Ifc4.DateTimeResource.IfcDataOriginEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcDataOriginEnum.USERDEFINED;
 					
 					case IfcDataOriginEnum.NOTDEFINED:
-						return Ifc4.DateTimeResource.IfcDataOriginEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcDataOriginEnum.NOTDEFINED;
 					
 					
 					default:

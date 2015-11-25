@@ -16,47 +16,47 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
 	public partial class @IfcSanitaryTerminalType : IIfcSanitaryTerminalType
 	{
-		Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalTypeEnum IIfcSanitaryTerminalType.PredefinedType 
+		Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum IIfcSanitaryTerminalType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcSanitaryTerminalTypeEnum.BATH:
-						return Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalTypeEnum.BATH;
+						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.BATH;
 					
 					case IfcSanitaryTerminalTypeEnum.BIDET:
-						return Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalTypeEnum.BIDET;
+						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.BIDET;
 					
 					case IfcSanitaryTerminalTypeEnum.CISTERN:
-						return Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalTypeEnum.CISTERN;
+						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.CISTERN;
 					
 					case IfcSanitaryTerminalTypeEnum.SHOWER:
-						return Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalTypeEnum.SHOWER;
+						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.SHOWER;
 					
 					case IfcSanitaryTerminalTypeEnum.SINK:
-						return Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalTypeEnum.SINK;
+						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.SINK;
 					
 					case IfcSanitaryTerminalTypeEnum.SANITARYFOUNTAIN:
-						return Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalTypeEnum.SANITARYFOUNTAIN;
+						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.SANITARYFOUNTAIN;
 					
 					case IfcSanitaryTerminalTypeEnum.TOILETPAN:
-						return Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalTypeEnum.TOILETPAN;
+						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.TOILETPAN;
 					
 					case IfcSanitaryTerminalTypeEnum.URINAL:
-						return Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalTypeEnum.URINAL;
+						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.URINAL;
 					
 					case IfcSanitaryTerminalTypeEnum.WASHHANDBASIN:
-						return Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalTypeEnum.WASHHANDBASIN;
+						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.WASHHANDBASIN;
 					
 					case IfcSanitaryTerminalTypeEnum.WCSEAT:
-						return Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalTypeEnum.WCSEAT;
+						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.WCSEAT;
 					
 					case IfcSanitaryTerminalTypeEnum.USERDEFINED:
-						return Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.USERDEFINED;
 					
 					case IfcSanitaryTerminalTypeEnum.NOTDEFINED:
-						return Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.NOTDEFINED;
 					
 					
 					default:

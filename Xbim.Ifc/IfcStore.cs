@@ -527,7 +527,7 @@ namespace Xbim.Ifc
                         var histAdd = Instances.New<Ifc4.UtilityResource.IfcOwnerHistory>();
                         histAdd.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
                         histAdd.OwningApplication = (Ifc4.UtilityResource.IfcApplication)DefaultOwningApplication;
-                        histAdd.ChangeAction = Ifc4.UtilityResource.IfcChangeActionEnum.ADDED;
+                        histAdd.ChangeAction = IfcChangeActionEnum.ADDED;
                         _ownerHistoryAddObject = histAdd;
                     }
                     else
@@ -555,7 +555,7 @@ namespace Xbim.Ifc
                         var histmod = Instances.New<Ifc4.UtilityResource.IfcOwnerHistory>();
                         histmod.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
                         histmod.OwningApplication = (Ifc4.UtilityResource.IfcApplication)DefaultOwningApplication;
-                        histmod.ChangeAction = Ifc4.UtilityResource.IfcChangeActionEnum.MODIFIED;
+                        histmod.ChangeAction = IfcChangeActionEnum.MODIFIED;
                         _ownerHistoryModifyObject = histmod;
                     }
                     else
@@ -837,10 +837,10 @@ namespace Xbim.Ifc
                         value *= ((Ifc2x3.MeasureResource.IfcSIUnit)siUnit).Power;
                     switch (siUnit.UnitType)
                     {
-                        case Ifc4.MeasureResource.IfcUnitEnum.LENGTHUNIT:
+                        case IfcUnitEnum.LENGTHUNIT:
                             lengthToMetresConversionFactor = value;
                             break;
-                        case Ifc4.MeasureResource.IfcUnitEnum.PLANEANGLEUNIT:
+                        case IfcUnitEnum.PLANEANGLEUNIT:
                             angleToRadiansConversionFactor = value;
                             //need to guarantee precision to avoid errors in boolean operations
                             if (Math.Abs(angleToRadiansConversionFactor - (Math.PI / 180)) < 1e-9)

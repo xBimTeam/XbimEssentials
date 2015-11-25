@@ -16,35 +16,35 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	public partial class @IfcAlarmType : IIfcAlarmType
 	{
-		Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum IIfcAlarmType.PredefinedType 
+		Ifc4.Interfaces.IfcAlarmTypeEnum IIfcAlarmType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcAlarmTypeEnum.BELL:
-						return Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.BELL;
+						return Ifc4.Interfaces.IfcAlarmTypeEnum.BELL;
 					
 					case IfcAlarmTypeEnum.BREAKGLASSBUTTON:
-						return Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.BREAKGLASSBUTTON;
+						return Ifc4.Interfaces.IfcAlarmTypeEnum.BREAKGLASSBUTTON;
 					
 					case IfcAlarmTypeEnum.LIGHT:
-						return Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.LIGHT;
+						return Ifc4.Interfaces.IfcAlarmTypeEnum.LIGHT;
 					
 					case IfcAlarmTypeEnum.MANUALPULLBOX:
-						return Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.MANUALPULLBOX;
+						return Ifc4.Interfaces.IfcAlarmTypeEnum.MANUALPULLBOX;
 					
 					case IfcAlarmTypeEnum.SIREN:
-						return Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.SIREN;
+						return Ifc4.Interfaces.IfcAlarmTypeEnum.SIREN;
 					
 					case IfcAlarmTypeEnum.WHISTLE:
-						return Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.WHISTLE;
+						return Ifc4.Interfaces.IfcAlarmTypeEnum.WHISTLE;
 					
 					case IfcAlarmTypeEnum.USERDEFINED:
-						return Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcAlarmTypeEnum.USERDEFINED;
 					
 					case IfcAlarmTypeEnum.NOTDEFINED:
-						return Ifc4.BuildingControlsDomain.IfcAlarmTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcAlarmTypeEnum.NOTDEFINED;
 					
 					
 					default:

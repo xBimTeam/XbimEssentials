@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	public partial class @IfcFastenerType : IIfcFastenerType
 	{
-		Ifc4.SharedComponentElements.IfcFastenerTypeEnum IIfcFastenerType.PredefinedType 
+		Ifc4.Interfaces.IfcFastenerTypeEnum IIfcFastenerType.PredefinedType 
 		{ 
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-                return Ifc4.SharedComponentElements.IfcFastenerTypeEnum.NOTDEFINED;
+                return Ifc4.Interfaces.IfcFastenerTypeEnum.NOTDEFINED;
 				//##
 			} 
 		}

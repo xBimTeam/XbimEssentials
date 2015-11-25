@@ -16,41 +16,41 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	public partial class @IfcFlowInstrumentType : IIfcFlowInstrumentType
 	{
-		Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum IIfcFlowInstrumentType.PredefinedType 
+		Ifc4.Interfaces.IfcFlowInstrumentTypeEnum IIfcFlowInstrumentType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcFlowInstrumentTypeEnum.PRESSUREGAUGE:
-						return Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.PRESSUREGAUGE;
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.PRESSUREGAUGE;
 					
 					case IfcFlowInstrumentTypeEnum.THERMOMETER:
-						return Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.THERMOMETER;
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.THERMOMETER;
 					
 					case IfcFlowInstrumentTypeEnum.AMMETER:
-						return Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.AMMETER;
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.AMMETER;
 					
 					case IfcFlowInstrumentTypeEnum.FREQUENCYMETER:
-						return Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.FREQUENCYMETER;
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.FREQUENCYMETER;
 					
 					case IfcFlowInstrumentTypeEnum.POWERFACTORMETER:
-						return Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.POWERFACTORMETER;
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.POWERFACTORMETER;
 					
 					case IfcFlowInstrumentTypeEnum.PHASEANGLEMETER:
-						return Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.PHASEANGLEMETER;
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.PHASEANGLEMETER;
 					
 					case IfcFlowInstrumentTypeEnum.VOLTMETER_PEAK:
-						return Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.VOLTMETER_PEAK;
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.VOLTMETER_PEAK;
 					
 					case IfcFlowInstrumentTypeEnum.VOLTMETER_RMS:
-						return Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.VOLTMETER_RMS;
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.VOLTMETER_RMS;
 					
 					case IfcFlowInstrumentTypeEnum.USERDEFINED:
-						return Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.USERDEFINED;
 					
 					case IfcFlowInstrumentTypeEnum.NOTDEFINED:
-						return Ifc4.BuildingControlsDomain.IfcFlowInstrumentTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.NOTDEFINED;
 					
 					
 					default:

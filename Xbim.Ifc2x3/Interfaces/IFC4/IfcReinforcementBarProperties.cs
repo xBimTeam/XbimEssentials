@@ -30,17 +30,17 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				return new Ifc4.MeasureResource.IfcLabel(SteelGrade);
 			} 
 		}
-		Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface 
+		Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface 
 		{ 
 			get
 			{
 				switch (BarSurface)
 				{
 					case IfcReinforcingBarSurfaceEnum.PLAIN:
-						return Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum.PLAIN;
+						return Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum.PLAIN;
 					
 					case IfcReinforcingBarSurfaceEnum.TEXTURED:
-						return Ifc4.ProfileResource.IfcReinforcingBarSurfaceEnum.TEXTURED;
+						return Ifc4.Interfaces.IfcReinforcingBarSurfaceEnum.TEXTURED;
 					
 					
 					default:

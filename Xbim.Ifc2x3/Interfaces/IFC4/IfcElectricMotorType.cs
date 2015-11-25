@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcElectricMotorType : IIfcElectricMotorType
 	{
-		Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum IIfcElectricMotorType.PredefinedType 
+		Ifc4.Interfaces.IfcElectricMotorTypeEnum IIfcElectricMotorType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcElectricMotorTypeEnum.DC:
-						return Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum.DC;
+						return Ifc4.Interfaces.IfcElectricMotorTypeEnum.DC;
 					
 					case IfcElectricMotorTypeEnum.INDUCTION:
-						return Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum.INDUCTION;
+						return Ifc4.Interfaces.IfcElectricMotorTypeEnum.INDUCTION;
 					
 					case IfcElectricMotorTypeEnum.POLYPHASE:
-						return Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum.POLYPHASE;
+						return Ifc4.Interfaces.IfcElectricMotorTypeEnum.POLYPHASE;
 					
 					case IfcElectricMotorTypeEnum.RELUCTANCESYNCHRONOUS:
-						return Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum.RELUCTANCESYNCHRONOUS;
+						return Ifc4.Interfaces.IfcElectricMotorTypeEnum.RELUCTANCESYNCHRONOUS;
 					
 					case IfcElectricMotorTypeEnum.SYNCHRONOUS:
-						return Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum.SYNCHRONOUS;
+						return Ifc4.Interfaces.IfcElectricMotorTypeEnum.SYNCHRONOUS;
 					
 					case IfcElectricMotorTypeEnum.USERDEFINED:
-						return Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcElectricMotorTypeEnum.USERDEFINED;
 					
 					case IfcElectricMotorTypeEnum.NOTDEFINED:
-						return Ifc4.ElectricalDomain.IfcElectricMotorTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcElectricMotorTypeEnum.NOTDEFINED;
 					
 					
 					default:

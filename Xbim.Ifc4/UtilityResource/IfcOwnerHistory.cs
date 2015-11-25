@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ActorResource;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.DateTimeResource;
 using System;
 using System.Collections.Generic;

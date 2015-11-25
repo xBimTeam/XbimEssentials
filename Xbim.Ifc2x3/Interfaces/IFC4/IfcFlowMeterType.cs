@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcFlowMeterType : IIfcFlowMeterType
 	{
-		Ifc4.HvacDomain.IfcFlowMeterTypeEnum IIfcFlowMeterType.PredefinedType 
+		Ifc4.Interfaces.IfcFlowMeterTypeEnum IIfcFlowMeterType.PredefinedType 
 		{ 
 			get
 			{
@@ -24,31 +24,31 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcFlowMeterTypeEnum.ELECTRICMETER:
 						//## Handle translation of ELECTRICMETER member from IfcFlowMeterTypeEnum in property PredefinedType
-						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.USERDEFINED;
+                        return Ifc4.Interfaces.IfcFlowMeterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcFlowMeterTypeEnum.ENERGYMETER:
-						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.ENERGYMETER;
+						return Ifc4.Interfaces.IfcFlowMeterTypeEnum.ENERGYMETER;
 					
 					case IfcFlowMeterTypeEnum.FLOWMETER:
 						//## Handle translation of FLOWMETER member from IfcFlowMeterTypeEnum in property PredefinedType
-						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.USERDEFINED;
+                        return Ifc4.Interfaces.IfcFlowMeterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcFlowMeterTypeEnum.GASMETER:
-						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.GASMETER;
+						return Ifc4.Interfaces.IfcFlowMeterTypeEnum.GASMETER;
 					
 					case IfcFlowMeterTypeEnum.OILMETER:
-						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.OILMETER;
+						return Ifc4.Interfaces.IfcFlowMeterTypeEnum.OILMETER;
 					
 					case IfcFlowMeterTypeEnum.WATERMETER:
-						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.WATERMETER;
+						return Ifc4.Interfaces.IfcFlowMeterTypeEnum.WATERMETER;
 					
 					case IfcFlowMeterTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcFlowMeterTypeEnum.USERDEFINED;
 					
 					case IfcFlowMeterTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcFlowMeterTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcFlowMeterTypeEnum.NOTDEFINED;
 					
 					
 					default:

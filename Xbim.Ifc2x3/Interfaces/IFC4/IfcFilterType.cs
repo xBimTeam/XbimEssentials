@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcFilterType : IIfcFilterType
 	{
-		Ifc4.HvacDomain.IfcFilterTypeEnum IIfcFilterType.PredefinedType 
+		Ifc4.Interfaces.IfcFilterTypeEnum IIfcFilterType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcFilterTypeEnum.AIRPARTICLEFILTER:
-						return Ifc4.HvacDomain.IfcFilterTypeEnum.AIRPARTICLEFILTER;
+						return Ifc4.Interfaces.IfcFilterTypeEnum.AIRPARTICLEFILTER;
 					
 					case IfcFilterTypeEnum.ODORFILTER:
-						return Ifc4.HvacDomain.IfcFilterTypeEnum.ODORFILTER;
+						return Ifc4.Interfaces.IfcFilterTypeEnum.ODORFILTER;
 					
 					case IfcFilterTypeEnum.OILFILTER:
-						return Ifc4.HvacDomain.IfcFilterTypeEnum.OILFILTER;
+						return Ifc4.Interfaces.IfcFilterTypeEnum.OILFILTER;
 					
 					case IfcFilterTypeEnum.STRAINER:
-						return Ifc4.HvacDomain.IfcFilterTypeEnum.STRAINER;
+						return Ifc4.Interfaces.IfcFilterTypeEnum.STRAINER;
 					
 					case IfcFilterTypeEnum.WATERFILTER:
-						return Ifc4.HvacDomain.IfcFilterTypeEnum.WATERFILTER;
+						return Ifc4.Interfaces.IfcFilterTypeEnum.WATERFILTER;
 					
 					case IfcFilterTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcFilterTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcFilterTypeEnum.USERDEFINED;
 					
 					case IfcFilterTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcFilterTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcFilterTypeEnum.NOTDEFINED;
 					
 					
 					default:

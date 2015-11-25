@@ -24,35 +24,35 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(PanelDepth.Value);
 			} 
 		}
-		Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum IIfcDoorPanelProperties.PanelOperation 
+		Ifc4.Interfaces.IfcDoorPanelOperationEnum IIfcDoorPanelProperties.PanelOperation 
 		{ 
 			get
 			{
 				switch (PanelOperation)
 				{
 					case IfcDoorPanelOperationEnum.SWINGING:
-						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.SWINGING;
+						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.SWINGING;
 					
 					case IfcDoorPanelOperationEnum.DOUBLE_ACTING:
-						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.DOUBLE_ACTING;
+						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.DOUBLE_ACTING;
 					
 					case IfcDoorPanelOperationEnum.SLIDING:
-						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.SLIDING;
+						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.SLIDING;
 					
 					case IfcDoorPanelOperationEnum.FOLDING:
-						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.FOLDING;
+						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.FOLDING;
 					
 					case IfcDoorPanelOperationEnum.REVOLVING:
-						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.REVOLVING;
+						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.REVOLVING;
 					
 					case IfcDoorPanelOperationEnum.ROLLINGUP:
-						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.ROLLINGUP;
+						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.ROLLINGUP;
 					
 					case IfcDoorPanelOperationEnum.USERDEFINED:
-						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.USERDEFINED;
 					
 					case IfcDoorPanelOperationEnum.NOTDEFINED:
-						return Ifc4.ArchitectureDomain.IfcDoorPanelOperationEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.NOTDEFINED;
 					
 					
 					default:
@@ -68,23 +68,23 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(PanelWidth.Value);
 			} 
 		}
-		Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum IIfcDoorPanelProperties.PanelPosition 
+		Ifc4.Interfaces.IfcDoorPanelPositionEnum IIfcDoorPanelProperties.PanelPosition 
 		{ 
 			get
 			{
 				switch (PanelPosition)
 				{
 					case IfcDoorPanelPositionEnum.LEFT:
-						return Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.LEFT;
+						return Ifc4.Interfaces.IfcDoorPanelPositionEnum.LEFT;
 					
 					case IfcDoorPanelPositionEnum.MIDDLE:
-						return Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.MIDDLE;
+						return Ifc4.Interfaces.IfcDoorPanelPositionEnum.MIDDLE;
 					
 					case IfcDoorPanelPositionEnum.RIGHT:
-						return Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.RIGHT;
+						return Ifc4.Interfaces.IfcDoorPanelPositionEnum.RIGHT;
 					
 					case IfcDoorPanelPositionEnum.NOTDEFINED:
-						return Ifc4.ArchitectureDomain.IfcDoorPanelPositionEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcDoorPanelPositionEnum.NOTDEFINED;
 					
 					
 					default:

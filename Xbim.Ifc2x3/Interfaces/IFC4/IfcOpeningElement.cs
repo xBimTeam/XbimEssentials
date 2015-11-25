@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcOpeningElement : IIfcOpeningElement
 	{
-		Ifc4.ProductExtension.IfcOpeningElementTypeEnum? IIfcOpeningElement.PredefinedType 
+		Ifc4.Interfaces.IfcOpeningElementTypeEnum? IIfcOpeningElement.PredefinedType 
 		{ 
 			get
 			{

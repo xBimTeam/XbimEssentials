@@ -16,82 +16,82 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcActorRole : IIfcActorRole
 	{
-		Ifc4.ActorResource.IfcRoleEnum IIfcActorRole.Role 
+		Ifc4.Interfaces.IfcRoleEnum IIfcActorRole.Role 
 		{ 
 			get
 			{
 				switch (Role)
 				{
 					case IfcRoleEnum.SUPPLIER:
-						return Ifc4.ActorResource.IfcRoleEnum.SUPPLIER;
+						return Ifc4.Interfaces.IfcRoleEnum.SUPPLIER;
 					
 					case IfcRoleEnum.MANUFACTURER:
-						return Ifc4.ActorResource.IfcRoleEnum.MANUFACTURER;
+						return Ifc4.Interfaces.IfcRoleEnum.MANUFACTURER;
 					
 					case IfcRoleEnum.CONTRACTOR:
-						return Ifc4.ActorResource.IfcRoleEnum.CONTRACTOR;
+						return Ifc4.Interfaces.IfcRoleEnum.CONTRACTOR;
 					
 					case IfcRoleEnum.SUBCONTRACTOR:
-						return Ifc4.ActorResource.IfcRoleEnum.SUBCONTRACTOR;
+						return Ifc4.Interfaces.IfcRoleEnum.SUBCONTRACTOR;
 					
 					case IfcRoleEnum.ARCHITECT:
-						return Ifc4.ActorResource.IfcRoleEnum.ARCHITECT;
+						return Ifc4.Interfaces.IfcRoleEnum.ARCHITECT;
 					
 					case IfcRoleEnum.STRUCTURALENGINEER:
-						return Ifc4.ActorResource.IfcRoleEnum.STRUCTURALENGINEER;
+						return Ifc4.Interfaces.IfcRoleEnum.STRUCTURALENGINEER;
 					
 					case IfcRoleEnum.COSTENGINEER:
-						return Ifc4.ActorResource.IfcRoleEnum.COSTENGINEER;
+						return Ifc4.Interfaces.IfcRoleEnum.COSTENGINEER;
 					
 					case IfcRoleEnum.CLIENT:
-						return Ifc4.ActorResource.IfcRoleEnum.CLIENT;
+						return Ifc4.Interfaces.IfcRoleEnum.CLIENT;
 					
 					case IfcRoleEnum.BUILDINGOWNER:
-						return Ifc4.ActorResource.IfcRoleEnum.BUILDINGOWNER;
+						return Ifc4.Interfaces.IfcRoleEnum.BUILDINGOWNER;
 					
 					case IfcRoleEnum.BUILDINGOPERATOR:
-						return Ifc4.ActorResource.IfcRoleEnum.BUILDINGOPERATOR;
+						return Ifc4.Interfaces.IfcRoleEnum.BUILDINGOPERATOR;
 					
 					case IfcRoleEnum.MECHANICALENGINEER:
-						return Ifc4.ActorResource.IfcRoleEnum.MECHANICALENGINEER;
+						return Ifc4.Interfaces.IfcRoleEnum.MECHANICALENGINEER;
 					
 					case IfcRoleEnum.ELECTRICALENGINEER:
-						return Ifc4.ActorResource.IfcRoleEnum.ELECTRICALENGINEER;
+						return Ifc4.Interfaces.IfcRoleEnum.ELECTRICALENGINEER;
 					
 					case IfcRoleEnum.PROJECTMANAGER:
-						return Ifc4.ActorResource.IfcRoleEnum.PROJECTMANAGER;
+						return Ifc4.Interfaces.IfcRoleEnum.PROJECTMANAGER;
 					
 					case IfcRoleEnum.FACILITIESMANAGER:
-						return Ifc4.ActorResource.IfcRoleEnum.FACILITIESMANAGER;
+						return Ifc4.Interfaces.IfcRoleEnum.FACILITIESMANAGER;
 					
 					case IfcRoleEnum.CIVILENGINEER:
-						return Ifc4.ActorResource.IfcRoleEnum.CIVILENGINEER;
+						return Ifc4.Interfaces.IfcRoleEnum.CIVILENGINEER;
 					
 					case IfcRoleEnum.COMISSIONINGENGINEER:
 						//## Handle translation of COMISSIONINGENGINEER member from IfcRoleEnum in property Role
-						return Ifc4.ActorResource.IfcRoleEnum.COMMISSIONINGENGINEER;
+						return Ifc4.Interfaces.IfcRoleEnum.COMMISSIONINGENGINEER;
 						//##
 										
 					case IfcRoleEnum.ENGINEER:
-						return Ifc4.ActorResource.IfcRoleEnum.ENGINEER;
+						return Ifc4.Interfaces.IfcRoleEnum.ENGINEER;
 					
 					case IfcRoleEnum.OWNER:
-						return Ifc4.ActorResource.IfcRoleEnum.OWNER;
+						return Ifc4.Interfaces.IfcRoleEnum.OWNER;
 					
 					case IfcRoleEnum.CONSULTANT:
-						return Ifc4.ActorResource.IfcRoleEnum.CONSULTANT;
+						return Ifc4.Interfaces.IfcRoleEnum.CONSULTANT;
 					
 					case IfcRoleEnum.CONSTRUCTIONMANAGER:
-						return Ifc4.ActorResource.IfcRoleEnum.CONSTRUCTIONMANAGER;
+						return Ifc4.Interfaces.IfcRoleEnum.CONSTRUCTIONMANAGER;
 					
 					case IfcRoleEnum.FIELDCONSTRUCTIONMANAGER:
-						return Ifc4.ActorResource.IfcRoleEnum.FIELDCONSTRUCTIONMANAGER;
+						return Ifc4.Interfaces.IfcRoleEnum.FIELDCONSTRUCTIONMANAGER;
 					
 					case IfcRoleEnum.RESELLER:
-						return Ifc4.ActorResource.IfcRoleEnum.RESELLER;
+						return Ifc4.Interfaces.IfcRoleEnum.RESELLER;
 					
 					case IfcRoleEnum.USERDEFINED:
-						return Ifc4.ActorResource.IfcRoleEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcRoleEnum.USERDEFINED;
 					
 					
 					default:

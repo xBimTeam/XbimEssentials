@@ -7,8 +7,8 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.ProfileResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;

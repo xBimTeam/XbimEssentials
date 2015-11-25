@@ -16,29 +16,29 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcCableCarrierSegmentType : IIfcCableCarrierSegmentType
 	{
-		Ifc4.ElectricalDomain.IfcCableCarrierSegmentTypeEnum IIfcCableCarrierSegmentType.PredefinedType 
+		Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum IIfcCableCarrierSegmentType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT:
-						return Ifc4.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT;
+						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT;
 					
 					case IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT:
-						return Ifc4.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT;
+						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT;
 					
 					case IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT:
-						return Ifc4.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT;
+						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT;
 					
 					case IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT:
-						return Ifc4.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT;
+						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT;
 					
 					case IfcCableCarrierSegmentTypeEnum.USERDEFINED:
-						return Ifc4.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.USERDEFINED;
 					
 					case IfcCableCarrierSegmentTypeEnum.NOTDEFINED:
-						return Ifc4.ElectricalDomain.IfcCableCarrierSegmentTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.NOTDEFINED;
 					
 					
 					default:

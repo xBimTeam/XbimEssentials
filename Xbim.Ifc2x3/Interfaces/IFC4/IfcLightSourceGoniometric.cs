@@ -44,44 +44,44 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				return new Ifc4.MeasureResource.IfcLuminousFluxMeasure(LuminousFlux);
 			} 
 		}
-		Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource 
+		Ifc4.Interfaces.IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource 
 		{ 
 			get
 			{
 				switch (LightEmissionSource)
 				{
 					case IfcLightEmissionSourceEnum.COMPACTFLUORESCENT:
-						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.COMPACTFLUORESCENT;
+						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.COMPACTFLUORESCENT;
 					
 					case IfcLightEmissionSourceEnum.FLUORESCENT:
-						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.FLUORESCENT;
+						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.FLUORESCENT;
 					
 					case IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY:
-						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY;
+						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.HIGHPRESSUREMERCURY;
 					
 					case IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM:
-						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM;
+						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.HIGHPRESSURESODIUM;
 					
 					case IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE:
-						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE;
+						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.LIGHTEMITTINGDIODE;
 					
 					case IfcLightEmissionSourceEnum.LOWPRESSURESODIUM:
-						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LOWPRESSURESODIUM;
+						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.LOWPRESSURESODIUM;
 					
 					case IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN:
-						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN;
+						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.LOWVOLTAGEHALOGEN;
 					
 					case IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN:
-						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN;
+						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.MAINVOLTAGEHALOGEN;
 					
 					case IfcLightEmissionSourceEnum.METALHALIDE:
-						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.METALHALIDE;
+						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.METALHALIDE;
 					
 					case IfcLightEmissionSourceEnum.TUNGSTENFILAMENT:
-						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.TUNGSTENFILAMENT;
+						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.TUNGSTENFILAMENT;
 					
 					case IfcLightEmissionSourceEnum.NOTDEFINED:
-						return Ifc4.PresentationOrganizationResource.IfcLightEmissionSourceEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcLightEmissionSourceEnum.NOTDEFINED;
 					
 					
 					default:

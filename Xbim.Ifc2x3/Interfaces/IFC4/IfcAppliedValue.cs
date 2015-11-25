@@ -90,7 +90,7 @@ namespace Xbim.Ifc2x3.CostResource
 				//##
 			} 
 		}
-		Ifc4.CostResource.IfcArithmeticOperatorEnum? IIfcAppliedValue.ArithmeticOperator 
+		Ifc4.Interfaces.IfcArithmeticOperatorEnum? IIfcAppliedValue.ArithmeticOperator 
 		{ 
 			get
 			{
@@ -101,13 +101,13 @@ namespace Xbim.Ifc2x3.CostResource
 			    switch (relation.ArithmeticOperator)
 			    {
 			        case IfcArithmeticOperatorEnum.ADD:
-			            return Ifc4.CostResource.IfcArithmeticOperatorEnum.ADD;
+			            return Ifc4.Interfaces.IfcArithmeticOperatorEnum.ADD;
 			        case IfcArithmeticOperatorEnum.DIVIDE:
-			            return Ifc4.CostResource.IfcArithmeticOperatorEnum.DIVIDE;
+                        return Ifc4.Interfaces.IfcArithmeticOperatorEnum.DIVIDE;
 			        case IfcArithmeticOperatorEnum.MULTIPLY:
-			            return Ifc4.CostResource.IfcArithmeticOperatorEnum.MULTIPLY;
+                        return Ifc4.Interfaces.IfcArithmeticOperatorEnum.MULTIPLY;
 			        case IfcArithmeticOperatorEnum.SUBTRACT:
-			            return Ifc4.CostResource.IfcArithmeticOperatorEnum.SUBTRACT;
+                        return Ifc4.Interfaces.IfcArithmeticOperatorEnum.SUBTRACT;
 			        default:
 			            throw new System.ArgumentOutOfRangeException();
 			    }

@@ -16,17 +16,17 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	public partial class @IfcSectionProperties : IIfcSectionProperties
 	{
-		Ifc4.ProfileResource.IfcSectionTypeEnum IIfcSectionProperties.SectionType 
+		Ifc4.Interfaces.IfcSectionTypeEnum IIfcSectionProperties.SectionType 
 		{ 
 			get
 			{
 				switch (SectionType)
 				{
 					case IfcSectionTypeEnum.UNIFORM:
-						return Ifc4.ProfileResource.IfcSectionTypeEnum.UNIFORM;
+						return Ifc4.Interfaces.IfcSectionTypeEnum.UNIFORM;
 					
 					case IfcSectionTypeEnum.TAPERED:
-						return Ifc4.ProfileResource.IfcSectionTypeEnum.TAPERED;
+						return Ifc4.Interfaces.IfcSectionTypeEnum.TAPERED;
 					
 					
 					default:

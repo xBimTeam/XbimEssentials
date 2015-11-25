@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcSpaceHeaterType : IIfcSpaceHeaterType
 	{
-		Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum IIfcSpaceHeaterType.PredefinedType 
+		Ifc4.Interfaces.IfcSpaceHeaterTypeEnum IIfcSpaceHeaterType.PredefinedType 
 		{ 
 			get
 			{
@@ -24,42 +24,42 @@ namespace Xbim.Ifc2x3.HVACDomain
 				{
 					case IfcSpaceHeaterTypeEnum.SECTIONALRADIATOR:
 						//## Handle translation of SECTIONALRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
-                        return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
+                        return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcSpaceHeaterTypeEnum.PANELRADIATOR:
 						//## Handle translation of PANELRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
-                        return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
+                        return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcSpaceHeaterTypeEnum.TUBULARRADIATOR:
 						//## Handle translation of TUBULARRADIATOR member from IfcSpaceHeaterTypeEnum in property PredefinedType
-                        return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
+                        return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcSpaceHeaterTypeEnum.CONVECTOR:
-						return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.CONVECTOR;
+						return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.CONVECTOR;
 					
 					case IfcSpaceHeaterTypeEnum.BASEBOARDHEATER:
 						//## Handle translation of BASEBOARDHEATER member from IfcSpaceHeaterTypeEnum in property PredefinedType
-                        return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
+                        return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcSpaceHeaterTypeEnum.FINNEDTUBEUNIT:
 						//## Handle translation of FINNEDTUBEUNIT member from IfcSpaceHeaterTypeEnum in property PredefinedType
-                        return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
+                        return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcSpaceHeaterTypeEnum.UNITHEATER:
 						//## Handle translation of UNITHEATER member from IfcSpaceHeaterTypeEnum in property PredefinedType
-                        return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
+                        return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcSpaceHeaterTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.USERDEFINED;
 					
 					case IfcSpaceHeaterTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcSpaceHeaterTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcSpaceHeaterTypeEnum.NOTDEFINED;
 					
 					
 					default:

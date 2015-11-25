@@ -16,41 +16,41 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	public partial class @IfcControllerType : IIfcControllerType
 	{
-		Ifc4.BuildingControlsDomain.IfcControllerTypeEnum IIfcControllerType.PredefinedType 
+		Ifc4.Interfaces.IfcControllerTypeEnum IIfcControllerType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcControllerTypeEnum.FLOATING:
-						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.FLOATING;
+						return Ifc4.Interfaces.IfcControllerTypeEnum.FLOATING;
 					
 					case IfcControllerTypeEnum.PROPORTIONAL:
-						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.PROPORTIONAL;
+						return Ifc4.Interfaces.IfcControllerTypeEnum.PROPORTIONAL;
 					
 					case IfcControllerTypeEnum.PROPORTIONALINTEGRAL:
 						//## Handle translation of PROPORTIONALINTEGRAL member from IfcControllerTypeEnum in property PredefinedType
-						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.USERDEFINED;
+                        return Ifc4.Interfaces.IfcControllerTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcControllerTypeEnum.PROPORTIONALINTEGRALDERIVATIVE:
 						//## Handle translation of PROPORTIONALINTEGRALDERIVATIVE member from IfcControllerTypeEnum in property PredefinedType
-						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.USERDEFINED;
+                        return Ifc4.Interfaces.IfcControllerTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcControllerTypeEnum.TIMEDTWOPOSITION:
 						//## Handle translation of TIMEDTWOPOSITION member from IfcControllerTypeEnum in property PredefinedType
-						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.USERDEFINED;
+                        return Ifc4.Interfaces.IfcControllerTypeEnum.USERDEFINED;
 						//##
 										
 					case IfcControllerTypeEnum.TWOPOSITION:
-						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.TWOPOSITION;
+						return Ifc4.Interfaces.IfcControllerTypeEnum.TWOPOSITION;
 					
 					case IfcControllerTypeEnum.USERDEFINED:
-						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcControllerTypeEnum.USERDEFINED;
 					
 					case IfcControllerTypeEnum.NOTDEFINED:
-						return Ifc4.BuildingControlsDomain.IfcControllerTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcControllerTypeEnum.NOTDEFINED;
 					
 					
 					default:

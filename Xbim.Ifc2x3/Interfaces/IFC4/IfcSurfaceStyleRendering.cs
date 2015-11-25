@@ -93,41 +93,41 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return null;
 			} 
 		}
-		Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum IIfcSurfaceStyleRendering.ReflectanceMethod 
+		Ifc4.Interfaces.IfcReflectanceMethodEnum IIfcSurfaceStyleRendering.ReflectanceMethod 
 		{ 
 			get
 			{
 				switch (ReflectanceMethod)
 				{
 					case IfcReflectanceMethodEnum.BLINN:
-						return Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.BLINN;
+						return Ifc4.Interfaces.IfcReflectanceMethodEnum.BLINN;
 					
 					case IfcReflectanceMethodEnum.FLAT:
-						return Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.FLAT;
+						return Ifc4.Interfaces.IfcReflectanceMethodEnum.FLAT;
 					
 					case IfcReflectanceMethodEnum.GLASS:
-						return Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.GLASS;
+						return Ifc4.Interfaces.IfcReflectanceMethodEnum.GLASS;
 					
 					case IfcReflectanceMethodEnum.MATT:
-						return Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.MATT;
+						return Ifc4.Interfaces.IfcReflectanceMethodEnum.MATT;
 					
 					case IfcReflectanceMethodEnum.METAL:
-						return Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.METAL;
+						return Ifc4.Interfaces.IfcReflectanceMethodEnum.METAL;
 					
 					case IfcReflectanceMethodEnum.MIRROR:
-						return Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.MIRROR;
+						return Ifc4.Interfaces.IfcReflectanceMethodEnum.MIRROR;
 					
 					case IfcReflectanceMethodEnum.PHONG:
-						return Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.PHONG;
+						return Ifc4.Interfaces.IfcReflectanceMethodEnum.PHONG;
 					
 					case IfcReflectanceMethodEnum.PLASTIC:
-						return Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.PLASTIC;
+						return Ifc4.Interfaces.IfcReflectanceMethodEnum.PLASTIC;
 					
 					case IfcReflectanceMethodEnum.STRAUSS:
-						return Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.STRAUSS;
+						return Ifc4.Interfaces.IfcReflectanceMethodEnum.STRAUSS;
 					
 					case IfcReflectanceMethodEnum.NOTDEFINED:
-						return Ifc4.PresentationAppearanceResource.IfcReflectanceMethodEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcReflectanceMethodEnum.NOTDEFINED;
 					
 					
 					default:

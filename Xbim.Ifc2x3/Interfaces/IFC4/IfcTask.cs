@@ -61,7 +61,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				//##
 			} 
 		}
-		Ifc4.ProcessExtension.IfcTaskTypeEnum? IIfcTask.PredefinedType 
+		Ifc4.Interfaces.IfcTaskTypeEnum? IIfcTask.PredefinedType 
 		{ 
 			get
 			{

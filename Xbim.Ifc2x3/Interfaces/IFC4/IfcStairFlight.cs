@@ -52,7 +52,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(TreadLength.Value);
 			} 
 		}
-		Ifc4.SharedBldgElements.IfcStairFlightTypeEnum? IIfcStairFlight.PredefinedType 
+		Ifc4.Interfaces.IfcStairFlightTypeEnum? IIfcStairFlight.PredefinedType 
 		{ 
 			get
 			{

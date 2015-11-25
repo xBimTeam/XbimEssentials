@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	public partial class @IfcCrewResource : IIfcCrewResource
 	{
-		Ifc4.ConstructionMgmtDomain.IfcCrewResourceTypeEnum? IIfcCrewResource.PredefinedType 
+		Ifc4.Interfaces.IfcCrewResourceTypeEnum? IIfcCrewResource.PredefinedType 
 		{ 
 			get
 			{

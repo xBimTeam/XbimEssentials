@@ -16,35 +16,35 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcCoilType : IIfcCoilType
 	{
-		Ifc4.HvacDomain.IfcCoilTypeEnum IIfcCoilType.PredefinedType 
+		Ifc4.Interfaces.IfcCoilTypeEnum IIfcCoilType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcCoilTypeEnum.DXCOOLINGCOIL:
-						return Ifc4.HvacDomain.IfcCoilTypeEnum.DXCOOLINGCOIL;
+						return Ifc4.Interfaces.IfcCoilTypeEnum.DXCOOLINGCOIL;
 					
 					case IfcCoilTypeEnum.WATERCOOLINGCOIL:
-						return Ifc4.HvacDomain.IfcCoilTypeEnum.WATERCOOLINGCOIL;
+						return Ifc4.Interfaces.IfcCoilTypeEnum.WATERCOOLINGCOIL;
 					
 					case IfcCoilTypeEnum.STEAMHEATINGCOIL:
-						return Ifc4.HvacDomain.IfcCoilTypeEnum.STEAMHEATINGCOIL;
+						return Ifc4.Interfaces.IfcCoilTypeEnum.STEAMHEATINGCOIL;
 					
 					case IfcCoilTypeEnum.WATERHEATINGCOIL:
-						return Ifc4.HvacDomain.IfcCoilTypeEnum.WATERHEATINGCOIL;
+						return Ifc4.Interfaces.IfcCoilTypeEnum.WATERHEATINGCOIL;
 					
 					case IfcCoilTypeEnum.ELECTRICHEATINGCOIL:
-						return Ifc4.HvacDomain.IfcCoilTypeEnum.ELECTRICHEATINGCOIL;
+						return Ifc4.Interfaces.IfcCoilTypeEnum.ELECTRICHEATINGCOIL;
 					
 					case IfcCoilTypeEnum.GASHEATINGCOIL:
-						return Ifc4.HvacDomain.IfcCoilTypeEnum.GASHEATINGCOIL;
+						return Ifc4.Interfaces.IfcCoilTypeEnum.GASHEATINGCOIL;
 					
 					case IfcCoilTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcCoilTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcCoilTypeEnum.USERDEFINED;
 					
 					case IfcCoilTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcCoilTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcCoilTypeEnum.NOTDEFINED;
 					
 					
 					default:

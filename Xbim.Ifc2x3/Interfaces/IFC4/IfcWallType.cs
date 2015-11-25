@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcWallType : IIfcWallType
 	{
-		Ifc4.SharedBldgElements.IfcWallTypeEnum IIfcWallType.PredefinedType 
+		Ifc4.Interfaces.IfcWallTypeEnum IIfcWallType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcWallTypeEnum.STANDARD:
-						return Ifc4.SharedBldgElements.IfcWallTypeEnum.STANDARD;
+						return Ifc4.Interfaces.IfcWallTypeEnum.STANDARD;
 					
 					case IfcWallTypeEnum.POLYGONAL:
-						return Ifc4.SharedBldgElements.IfcWallTypeEnum.POLYGONAL;
+						return Ifc4.Interfaces.IfcWallTypeEnum.POLYGONAL;
 					
 					case IfcWallTypeEnum.SHEAR:
-						return Ifc4.SharedBldgElements.IfcWallTypeEnum.SHEAR;
+						return Ifc4.Interfaces.IfcWallTypeEnum.SHEAR;
 					
 					case IfcWallTypeEnum.ELEMENTEDWALL:
-						return Ifc4.SharedBldgElements.IfcWallTypeEnum.ELEMENTEDWALL;
+						return Ifc4.Interfaces.IfcWallTypeEnum.ELEMENTEDWALL;
 					
 					case IfcWallTypeEnum.PLUMBINGWALL:
-						return Ifc4.SharedBldgElements.IfcWallTypeEnum.PLUMBINGWALL;
+						return Ifc4.Interfaces.IfcWallTypeEnum.PLUMBINGWALL;
 					
 					case IfcWallTypeEnum.USERDEFINED:
-						return Ifc4.SharedBldgElements.IfcWallTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcWallTypeEnum.USERDEFINED;
 					
 					case IfcWallTypeEnum.NOTDEFINED:
-						return Ifc4.SharedBldgElements.IfcWallTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcWallTypeEnum.NOTDEFINED;
 					
 					
 					default:

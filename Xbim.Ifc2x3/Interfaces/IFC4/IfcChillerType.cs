@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcChillerType : IIfcChillerType
 	{
-		Ifc4.HvacDomain.IfcChillerTypeEnum IIfcChillerType.PredefinedType 
+		Ifc4.Interfaces.IfcChillerTypeEnum IIfcChillerType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcChillerTypeEnum.AIRCOOLED:
-						return Ifc4.HvacDomain.IfcChillerTypeEnum.AIRCOOLED;
+						return Ifc4.Interfaces.IfcChillerTypeEnum.AIRCOOLED;
 					
 					case IfcChillerTypeEnum.WATERCOOLED:
-						return Ifc4.HvacDomain.IfcChillerTypeEnum.WATERCOOLED;
+						return Ifc4.Interfaces.IfcChillerTypeEnum.WATERCOOLED;
 					
 					case IfcChillerTypeEnum.HEATRECOVERY:
-						return Ifc4.HvacDomain.IfcChillerTypeEnum.HEATRECOVERY;
+						return Ifc4.Interfaces.IfcChillerTypeEnum.HEATRECOVERY;
 					
 					case IfcChillerTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcChillerTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcChillerTypeEnum.USERDEFINED;
 					
 					case IfcChillerTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcChillerTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcChillerTypeEnum.NOTDEFINED;
 					
 					
 					default:

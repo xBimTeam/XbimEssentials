@@ -16,23 +16,23 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcHeatExchangerType : IIfcHeatExchangerType
 	{
-		Ifc4.HvacDomain.IfcHeatExchangerTypeEnum IIfcHeatExchangerType.PredefinedType 
+		Ifc4.Interfaces.IfcHeatExchangerTypeEnum IIfcHeatExchangerType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcHeatExchangerTypeEnum.PLATE:
-						return Ifc4.HvacDomain.IfcHeatExchangerTypeEnum.PLATE;
+						return Ifc4.Interfaces.IfcHeatExchangerTypeEnum.PLATE;
 					
 					case IfcHeatExchangerTypeEnum.SHELLANDTUBE:
-						return Ifc4.HvacDomain.IfcHeatExchangerTypeEnum.SHELLANDTUBE;
+						return Ifc4.Interfaces.IfcHeatExchangerTypeEnum.SHELLANDTUBE;
 					
 					case IfcHeatExchangerTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcHeatExchangerTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcHeatExchangerTypeEnum.USERDEFINED;
 					
 					case IfcHeatExchangerTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcHeatExchangerTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcHeatExchangerTypeEnum.NOTDEFINED;
 					
 					
 					default:

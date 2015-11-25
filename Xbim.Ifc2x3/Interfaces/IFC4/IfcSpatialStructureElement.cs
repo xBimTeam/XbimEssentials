@@ -16,20 +16,20 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSpatialStructureElement : IIfcSpatialStructureElement
 	{
-		Ifc4.ProductExtension.IfcElementCompositionEnum? IIfcSpatialStructureElement.CompositionType 
+		Ifc4.Interfaces.IfcElementCompositionEnum? IIfcSpatialStructureElement.CompositionType 
 		{ 
 			get
 			{
 				switch (CompositionType)
 				{
 					case IfcElementCompositionEnum.COMPLEX:
-						return Ifc4.ProductExtension.IfcElementCompositionEnum.COMPLEX;
+						return Ifc4.Interfaces.IfcElementCompositionEnum.COMPLEX;
 					
 					case IfcElementCompositionEnum.ELEMENT:
-						return Ifc4.ProductExtension.IfcElementCompositionEnum.ELEMENT;
+						return Ifc4.Interfaces.IfcElementCompositionEnum.ELEMENT;
 					
 					case IfcElementCompositionEnum.PARTIAL:
-						return Ifc4.ProductExtension.IfcElementCompositionEnum.PARTIAL;
+						return Ifc4.Interfaces.IfcElementCompositionEnum.PARTIAL;
 					
 					
 					default:

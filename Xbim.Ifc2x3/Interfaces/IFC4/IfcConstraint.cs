@@ -31,26 +31,26 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
 		}
-		Ifc4.ConstraintResource.IfcConstraintEnum IIfcConstraint.ConstraintGrade 
+		Ifc4.Interfaces.IfcConstraintEnum IIfcConstraint.ConstraintGrade 
 		{ 
 			get
 			{
 				switch (ConstraintGrade)
 				{
 					case IfcConstraintEnum.HARD:
-						return Ifc4.ConstraintResource.IfcConstraintEnum.HARD;
+						return Ifc4.Interfaces.IfcConstraintEnum.HARD;
 					
 					case IfcConstraintEnum.SOFT:
-						return Ifc4.ConstraintResource.IfcConstraintEnum.SOFT;
+						return Ifc4.Interfaces.IfcConstraintEnum.SOFT;
 					
 					case IfcConstraintEnum.ADVISORY:
-						return Ifc4.ConstraintResource.IfcConstraintEnum.ADVISORY;
+						return Ifc4.Interfaces.IfcConstraintEnum.ADVISORY;
 					
 					case IfcConstraintEnum.USERDEFINED:
-						return Ifc4.ConstraintResource.IfcConstraintEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcConstraintEnum.USERDEFINED;
 					
 					case IfcConstraintEnum.NOTDEFINED:
-						return Ifc4.ConstraintResource.IfcConstraintEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcConstraintEnum.NOTDEFINED;
 					
 					
 					default:

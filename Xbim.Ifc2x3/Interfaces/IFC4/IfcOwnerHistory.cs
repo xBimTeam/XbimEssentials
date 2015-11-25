@@ -30,26 +30,26 @@ namespace Xbim.Ifc2x3.UtilityResource
 				return OwningApplication;
 			} 
 		}
-		Ifc4.UtilityResource.IfcStateEnum? IIfcOwnerHistory.State 
+		Ifc4.Interfaces.IfcStateEnum? IIfcOwnerHistory.State 
 		{ 
 			get
 			{
 				switch (State)
 				{
 					case IfcStateEnum.READWRITE:
-						return Ifc4.UtilityResource.IfcStateEnum.READWRITE;
+						return Ifc4.Interfaces.IfcStateEnum.READWRITE;
 					
 					case IfcStateEnum.READONLY:
-						return Ifc4.UtilityResource.IfcStateEnum.READONLY;
+						return Ifc4.Interfaces.IfcStateEnum.READONLY;
 					
 					case IfcStateEnum.LOCKED:
-						return Ifc4.UtilityResource.IfcStateEnum.LOCKED;
+						return Ifc4.Interfaces.IfcStateEnum.LOCKED;
 					
 					case IfcStateEnum.READWRITELOCKED:
-						return Ifc4.UtilityResource.IfcStateEnum.READWRITELOCKED;
+						return Ifc4.Interfaces.IfcStateEnum.READWRITELOCKED;
 					
 					case IfcStateEnum.READONLYLOCKED:
-						return Ifc4.UtilityResource.IfcStateEnum.READONLYLOCKED;
+						return Ifc4.Interfaces.IfcStateEnum.READONLYLOCKED;
 					
 					
 					default:
@@ -57,32 +57,32 @@ namespace Xbim.Ifc2x3.UtilityResource
 				}
 			} 
 		}
-		Ifc4.UtilityResource.IfcChangeActionEnum? IIfcOwnerHistory.ChangeAction 
+		Ifc4.Interfaces.IfcChangeActionEnum? IIfcOwnerHistory.ChangeAction 
 		{ 
 			get
 			{
 				switch (ChangeAction)
 				{
 					case IfcChangeActionEnum.NOCHANGE:
-						return Ifc4.UtilityResource.IfcChangeActionEnum.NOCHANGE;
+						return Ifc4.Interfaces.IfcChangeActionEnum.NOCHANGE;
 					
 					case IfcChangeActionEnum.MODIFIED:
-						return Ifc4.UtilityResource.IfcChangeActionEnum.MODIFIED;
+						return Ifc4.Interfaces.IfcChangeActionEnum.MODIFIED;
 					
 					case IfcChangeActionEnum.ADDED:
-						return Ifc4.UtilityResource.IfcChangeActionEnum.ADDED;
+						return Ifc4.Interfaces.IfcChangeActionEnum.ADDED;
 					
 					case IfcChangeActionEnum.DELETED:
-						return Ifc4.UtilityResource.IfcChangeActionEnum.DELETED;
+						return Ifc4.Interfaces.IfcChangeActionEnum.DELETED;
 					
 					case IfcChangeActionEnum.MODIFIEDADDED:
 						//## Handle translation of MODIFIEDADDED member from IfcChangeActionEnum in property ChangeAction
-                        return Ifc4.UtilityResource.IfcChangeActionEnum.ADDED;
+                        return Ifc4.Interfaces.IfcChangeActionEnum.ADDED;
 						//##
 										
 					case IfcChangeActionEnum.MODIFIEDDELETED:
 						//## Handle translation of MODIFIEDDELETED member from IfcChangeActionEnum in property ChangeAction
-                        return Ifc4.UtilityResource.IfcChangeActionEnum.DELETED;
+                        return Ifc4.Interfaces.IfcChangeActionEnum.DELETED;
 						//##
 										
 					

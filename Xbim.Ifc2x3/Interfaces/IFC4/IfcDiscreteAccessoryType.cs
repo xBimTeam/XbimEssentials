@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	public partial class @IfcDiscreteAccessoryType : IIfcDiscreteAccessoryType
 	{
-		Ifc4.SharedComponentElements.IfcDiscreteAccessoryTypeEnum IIfcDiscreteAccessoryType.PredefinedType 
+		Ifc4.Interfaces.IfcDiscreteAccessoryTypeEnum IIfcDiscreteAccessoryType.PredefinedType 
 		{ 
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-			    return Ifc4.SharedComponentElements.IfcDiscreteAccessoryTypeEnum.NOTDEFINED;
+                return IfcDiscreteAccessoryTypeEnum.NOTDEFINED;
 			    //##
 			} 
 		}

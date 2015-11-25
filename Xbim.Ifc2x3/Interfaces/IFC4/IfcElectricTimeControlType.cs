@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcElectricTimeControlType : IIfcElectricTimeControlType
 	{
-		Ifc4.ElectricalDomain.IfcElectricTimeControlTypeEnum IIfcElectricTimeControlType.PredefinedType 
+		Ifc4.Interfaces.IfcElectricTimeControlTypeEnum IIfcElectricTimeControlType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcElectricTimeControlTypeEnum.TIMECLOCK:
-						return Ifc4.ElectricalDomain.IfcElectricTimeControlTypeEnum.TIMECLOCK;
+						return Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.TIMECLOCK;
 					
 					case IfcElectricTimeControlTypeEnum.TIMEDELAY:
-						return Ifc4.ElectricalDomain.IfcElectricTimeControlTypeEnum.TIMEDELAY;
+						return Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.TIMEDELAY;
 					
 					case IfcElectricTimeControlTypeEnum.RELAY:
-						return Ifc4.ElectricalDomain.IfcElectricTimeControlTypeEnum.RELAY;
+						return Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.RELAY;
 					
 					case IfcElectricTimeControlTypeEnum.USERDEFINED:
-						return Ifc4.ElectricalDomain.IfcElectricTimeControlTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.USERDEFINED;
 					
 					case IfcElectricTimeControlTypeEnum.NOTDEFINED:
-						return Ifc4.ElectricalDomain.IfcElectricTimeControlTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.NOTDEFINED;
 					
 					
 					default:

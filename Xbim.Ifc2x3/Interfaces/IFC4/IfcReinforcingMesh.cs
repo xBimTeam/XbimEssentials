@@ -74,7 +74,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(TransverseBarSpacing);
 			} 
 		}
-		Ifc4.StructuralElementsDomain.IfcReinforcingMeshTypeEnum? IIfcReinforcingMesh.PredefinedType 
+		Ifc4.Interfaces.IfcReinforcingMeshTypeEnum? IIfcReinforcingMesh.PredefinedType 
 		{ 
 			get
 			{

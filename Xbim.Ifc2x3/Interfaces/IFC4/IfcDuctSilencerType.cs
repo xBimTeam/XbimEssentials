@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcDuctSilencerType : IIfcDuctSilencerType
 	{
-		Ifc4.HvacDomain.IfcDuctSilencerTypeEnum IIfcDuctSilencerType.PredefinedType 
+		Ifc4.Interfaces.IfcDuctSilencerTypeEnum IIfcDuctSilencerType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcDuctSilencerTypeEnum.FLATOVAL:
-						return Ifc4.HvacDomain.IfcDuctSilencerTypeEnum.FLATOVAL;
+						return Ifc4.Interfaces.IfcDuctSilencerTypeEnum.FLATOVAL;
 					
 					case IfcDuctSilencerTypeEnum.RECTANGULAR:
-						return Ifc4.HvacDomain.IfcDuctSilencerTypeEnum.RECTANGULAR;
+						return Ifc4.Interfaces.IfcDuctSilencerTypeEnum.RECTANGULAR;
 					
 					case IfcDuctSilencerTypeEnum.ROUND:
-						return Ifc4.HvacDomain.IfcDuctSilencerTypeEnum.ROUND;
+						return Ifc4.Interfaces.IfcDuctSilencerTypeEnum.ROUND;
 					
 					case IfcDuctSilencerTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcDuctSilencerTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcDuctSilencerTypeEnum.USERDEFINED;
 					
 					case IfcDuctSilencerTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcDuctSilencerTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcDuctSilencerTypeEnum.NOTDEFINED;
 					
 					
 					default:

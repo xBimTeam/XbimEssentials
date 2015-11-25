@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.ProductExtension;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
 using Xbim.Ifc4.GeometricConstraintResource;
 using System;

@@ -16,20 +16,20 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcColumnType : IIfcColumnType
 	{
-		Ifc4.SharedBldgElements.IfcColumnTypeEnum IIfcColumnType.PredefinedType 
+		Ifc4.Interfaces.IfcColumnTypeEnum IIfcColumnType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcColumnTypeEnum.COLUMN:
-						return Ifc4.SharedBldgElements.IfcColumnTypeEnum.COLUMN;
+						return Ifc4.Interfaces.IfcColumnTypeEnum.COLUMN;
 					
 					case IfcColumnTypeEnum.USERDEFINED:
-						return Ifc4.SharedBldgElements.IfcColumnTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcColumnTypeEnum.USERDEFINED;
 					
 					case IfcColumnTypeEnum.NOTDEFINED:
-						return Ifc4.SharedBldgElements.IfcColumnTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcColumnTypeEnum.NOTDEFINED;
 					
 					
 					default:

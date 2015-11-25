@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xbim.Ifc4.Interfaces;
+﻿using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
@@ -14,7 +10,7 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
             internal set;
         }
 
-        public Ifc4.DateTimeResource.IfcTaskDurationEnum DurationType
+        public IfcTaskDurationEnum DurationType
         {
             get;
             internal set;
@@ -26,7 +22,7 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
             internal set;
         }
 
-        public Ifc4.DateTimeResource.IfcDataOriginEnum? DataOrigin
+        public IfcDataOriginEnum? DataOrigin
         {
             get;
             internal set;

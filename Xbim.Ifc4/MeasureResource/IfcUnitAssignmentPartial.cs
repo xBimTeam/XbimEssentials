@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Xbim.Common;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PropertyResource;
 using Xbim.Ifc4.QuantityResource;
 

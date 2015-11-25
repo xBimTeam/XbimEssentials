@@ -16,26 +16,26 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcAddress : IIfcAddress
 	{
-		Ifc4.ActorResource.IfcAddressTypeEnum? IIfcAddress.Purpose 
+		Ifc4.Interfaces.IfcAddressTypeEnum? IIfcAddress.Purpose 
 		{ 
 			get
 			{
 				switch (Purpose)
 				{
 					case IfcAddressTypeEnum.OFFICE:
-						return Ifc4.ActorResource.IfcAddressTypeEnum.OFFICE;
+						return Ifc4.Interfaces.IfcAddressTypeEnum.OFFICE;
 					
 					case IfcAddressTypeEnum.SITE:
-						return Ifc4.ActorResource.IfcAddressTypeEnum.SITE;
+						return Ifc4.Interfaces.IfcAddressTypeEnum.SITE;
 					
 					case IfcAddressTypeEnum.HOME:
-						return Ifc4.ActorResource.IfcAddressTypeEnum.HOME;
+						return Ifc4.Interfaces.IfcAddressTypeEnum.HOME;
 					
 					case IfcAddressTypeEnum.DISTRIBUTIONPOINT:
-						return Ifc4.ActorResource.IfcAddressTypeEnum.DISTRIBUTIONPOINT;
+						return Ifc4.Interfaces.IfcAddressTypeEnum.DISTRIBUTIONPOINT;
 					
 					case IfcAddressTypeEnum.USERDEFINED:
-						return Ifc4.ActorResource.IfcAddressTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcAddressTypeEnum.USERDEFINED;
 					
 					
 					default:

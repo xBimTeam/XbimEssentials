@@ -16,32 +16,32 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
 	public partial class @IfcFireSuppressionTerminalType : IIfcFireSuppressionTerminalType
 	{
-		Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum IIfcFireSuppressionTerminalType.PredefinedType 
+		Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum IIfcFireSuppressionTerminalType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcFireSuppressionTerminalTypeEnum.BREECHINGINLET:
-						return Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.BREECHINGINLET;
+						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.BREECHINGINLET;
 					
 					case IfcFireSuppressionTerminalTypeEnum.FIREHYDRANT:
-						return Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.FIREHYDRANT;
+						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.FIREHYDRANT;
 					
 					case IfcFireSuppressionTerminalTypeEnum.HOSEREEL:
-						return Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.HOSEREEL;
+						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.HOSEREEL;
 					
 					case IfcFireSuppressionTerminalTypeEnum.SPRINKLER:
-						return Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.SPRINKLER;
+						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.SPRINKLER;
 					
 					case IfcFireSuppressionTerminalTypeEnum.SPRINKLERDEFLECTOR:
-						return Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.SPRINKLERDEFLECTOR;
+						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.SPRINKLERDEFLECTOR;
 					
 					case IfcFireSuppressionTerminalTypeEnum.USERDEFINED:
-						return Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.USERDEFINED;
 					
 					case IfcFireSuppressionTerminalTypeEnum.NOTDEFINED:
-						return Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.NOTDEFINED;
 					
 					
 					default:

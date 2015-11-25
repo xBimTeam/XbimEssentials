@@ -39,9 +39,9 @@ namespace Xbim.Ifc
         {
             DefinedObjectId = surfaceStyle.EntityLabel;
             //set render one or both faces
-            _renderBothFaces = (surfaceStyle.Side == Ifc4.PresentationAppearanceResource.IfcSurfaceSide.BOTH);
+            _renderBothFaces = (surfaceStyle.Side == IfcSurfaceSide.BOTH);
             //switch if required
-            _switchFrontAndRearFaces = (surfaceStyle.Side == Ifc4.PresentationAppearanceResource.IfcSurfaceSide.NEGATIVE);
+            _switchFrontAndRearFaces = (surfaceStyle.Side == IfcSurfaceSide.NEGATIVE);
             ColourMap.Clear();
             foreach (var style in surfaceStyle.Styles)
             {

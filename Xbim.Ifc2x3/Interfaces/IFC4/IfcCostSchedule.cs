@@ -16,38 +16,38 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	public partial class @IfcCostSchedule : IIfcCostSchedule
 	{
-		Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum? IIfcCostSchedule.PredefinedType 
+		Ifc4.Interfaces.IfcCostScheduleTypeEnum? IIfcCostSchedule.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcCostScheduleTypeEnum.BUDGET:
-						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.BUDGET;
+						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.BUDGET;
 					
 					case IfcCostScheduleTypeEnum.COSTPLAN:
-						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.COSTPLAN;
+						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.COSTPLAN;
 					
 					case IfcCostScheduleTypeEnum.ESTIMATE:
-						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.ESTIMATE;
+						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.ESTIMATE;
 					
 					case IfcCostScheduleTypeEnum.TENDER:
-						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.TENDER;
+						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.TENDER;
 					
 					case IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES:
-						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES;
+						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES;
 					
 					case IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES:
-						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES;
+						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES;
 					
 					case IfcCostScheduleTypeEnum.SCHEDULEOFRATES:
-						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.SCHEDULEOFRATES;
+						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.SCHEDULEOFRATES;
 					
 					case IfcCostScheduleTypeEnum.USERDEFINED:
-						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.USERDEFINED;
 					
 					case IfcCostScheduleTypeEnum.NOTDEFINED:
-						return Ifc4.SharedMgmtElements.IfcCostScheduleTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.NOTDEFINED;
 					
 					
 					default:

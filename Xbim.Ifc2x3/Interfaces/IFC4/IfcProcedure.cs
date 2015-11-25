@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcProcedure : IIfcProcedure
 	{
-		Ifc4.ProcessExtension.IfcProcedureTypeEnum? IIfcProcedure.PredefinedType 
+		Ifc4.Interfaces.IfcProcedureTypeEnum? IIfcProcedure.PredefinedType 
 		{ 
 			get
 			{
@@ -24,23 +24,23 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			    switch (ProcedureType)
 			    {
 			        case IfcProcedureTypeEnum.ADVICE_CAUTION:
-			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.ADVICE_CAUTION;
+                        return Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_CAUTION;
 			        case IfcProcedureTypeEnum.ADVICE_NOTE:
-			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.ADVICE_NOTE;
+                        return Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_NOTE;
 			        case IfcProcedureTypeEnum.ADVICE_WARNING:
-			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.ADVICE_WARNING;
+                        return Ifc4.Interfaces.IfcProcedureTypeEnum.ADVICE_WARNING;
 			        case IfcProcedureTypeEnum.CALIBRATION:
-			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.CALIBRATION;
+                        return Ifc4.Interfaces.IfcProcedureTypeEnum.CALIBRATION;
 			        case IfcProcedureTypeEnum.DIAGNOSTIC:
-			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.DIAGNOSTIC;
+                        return Ifc4.Interfaces.IfcProcedureTypeEnum.DIAGNOSTIC;
 			        case IfcProcedureTypeEnum.SHUTDOWN:
-			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.SHUTDOWN;
+                        return Ifc4.Interfaces.IfcProcedureTypeEnum.SHUTDOWN;
 			        case IfcProcedureTypeEnum.STARTUP:
-			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.STARTUP;
+                        return Ifc4.Interfaces.IfcProcedureTypeEnum.STARTUP;
 			        case IfcProcedureTypeEnum.USERDEFINED:
-			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.USERDEFINED;
+                        return Ifc4.Interfaces.IfcProcedureTypeEnum.USERDEFINED;
 			        case IfcProcedureTypeEnum.NOTDEFINED:
-			            return Ifc4.ProcessExtension.IfcProcedureTypeEnum.NOTDEFINED;
+                        return Ifc4.Interfaces.IfcProcedureTypeEnum.NOTDEFINED;
 			        default:
 			            throw new System.ArgumentOutOfRangeException();
 			    }

@@ -81,32 +81,32 @@ namespace Xbim.Ifc
             Add(new XbimColour("Default", 0.98, 0.92, 0.74, 1)); //grey
 
             // previously assigned colors
-            Add(new XbimColour(Ifc4.ActorResource.IfcRoleEnum.ARCHITECT.ToString(), 1.0 , 1.0 , 1.0 , .5)); //white
-            Add(new XbimColour(Ifc4.ActorResource.IfcRoleEnum.MECHANICALENGINEER.ToString(), 1.0, 0.5, 0.25, 1));
-            Add(new XbimColour(Ifc4.ActorResource.IfcRoleEnum.ELECTRICALENGINEER.ToString(), 0.0, 0, 1.0, 1)); //blue
-            Add(new XbimColour(Ifc4.ActorResource.IfcRoleEnum.STRUCTURALENGINEER.ToString(), 0.2, 0.2, 0.2, 1.0)); //dark
+            Add(new XbimColour(IfcRoleEnum.ARCHITECT.ToString(), 1.0 , 1.0 , 1.0 , .5)); //white
+            Add(new XbimColour(IfcRoleEnum.MECHANICALENGINEER.ToString(), 1.0, 0.5, 0.25, 1));
+            Add(new XbimColour(IfcRoleEnum.ELECTRICALENGINEER.ToString(), 0.0, 0, 1.0, 1)); //blue
+            Add(new XbimColour(IfcRoleEnum.STRUCTURALENGINEER.ToString(), 0.2, 0.2, 0.2, 1.0)); //dark
 
             // new colours assigned from wheel
             double wheelAngle = 0;
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.BUILDINGOPERATOR.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.BUILDINGOWNER.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.CIVILENGINEER.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.CLIENT.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.COMMISSIONINGENGINEER.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.CONSTRUCTIONMANAGER.ToString(), wheelAngle += 15, 1, 1)); 
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.CONSULTANT.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.CONTRACTOR.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.COSTENGINEER.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.ENGINEER.ToString(), wheelAngle += 15, 1, 1)); 
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.FACILITIESMANAGER.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.FIELDCONSTRUCTIONMANAGER.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.MANUFACTURER.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.OWNER.ToString(), wheelAngle += 15, 1, 1)); 
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.PROJECTMANAGER.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.RESELLER.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.SUBCONTRACTOR.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.SUPPLIER.ToString(), wheelAngle += 15, 1, 1));
-            Add(XbimColour.FromHSV(Ifc4.ActorResource.IfcRoleEnum.USERDEFINED.ToString(), wheelAngle + 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.BUILDINGOPERATOR.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.BUILDINGOWNER.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.CIVILENGINEER.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.CLIENT.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.COMMISSIONINGENGINEER.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.CONSTRUCTIONMANAGER.ToString(), wheelAngle += 15, 1, 1)); 
+            Add(XbimColour.FromHSV(IfcRoleEnum.CONSULTANT.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.CONTRACTOR.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.COSTENGINEER.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.ENGINEER.ToString(), wheelAngle += 15, 1, 1)); 
+            Add(XbimColour.FromHSV(IfcRoleEnum.FACILITIESMANAGER.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.FIELDCONSTRUCTIONMANAGER.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.MANUFACTURER.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.OWNER.ToString(), wheelAngle += 15, 1, 1)); 
+            Add(XbimColour.FromHSV(IfcRoleEnum.PROJECTMANAGER.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.RESELLER.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.SUBCONTRACTOR.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.SUPPLIER.ToString(), wheelAngle += 15, 1, 1));
+            Add(XbimColour.FromHSV(IfcRoleEnum.USERDEFINED.ToString(), wheelAngle + 15, 1, 1));
         }
        
         new public XbimColour this[string key]

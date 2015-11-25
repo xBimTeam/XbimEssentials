@@ -16,12 +16,12 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralSurfaceMember : IIfcStructuralSurfaceMember
 	{
-		Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceMemberTypeEnum IIfcStructuralSurfaceMember.PredefinedType 
+		Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum IIfcStructuralSurfaceMember.PredefinedType 
 		{ 
 			get
 			{
 				//## Handle return of PredefinedType for which no match was found
-                return Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceMemberTypeEnum.NOTDEFINED;
+                return Ifc4.Interfaces.IfcStructuralSurfaceMemberTypeEnum.NOTDEFINED;
 				//##
 			} 
 		}

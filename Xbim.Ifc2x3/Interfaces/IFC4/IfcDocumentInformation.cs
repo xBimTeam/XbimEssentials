@@ -180,29 +180,29 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				//##
 			} 
 		}
-		Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality 
+		Ifc4.Interfaces.IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality 
 		{ 
 			get
 			{
 				switch (Confidentiality)
 				{
 					case IfcDocumentConfidentialityEnum.PUBLIC:
-						return Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.PUBLIC;
+						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PUBLIC;
 					
 					case IfcDocumentConfidentialityEnum.RESTRICTED:
-						return Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.RESTRICTED;
+						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.RESTRICTED;
 					
 					case IfcDocumentConfidentialityEnum.CONFIDENTIAL:
-						return Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.CONFIDENTIAL;
+						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.CONFIDENTIAL;
 					
 					case IfcDocumentConfidentialityEnum.PERSONAL:
-						return Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.PERSONAL;
+						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PERSONAL;
 					
 					case IfcDocumentConfidentialityEnum.USERDEFINED:
-						return Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.USERDEFINED;
 					
 					case IfcDocumentConfidentialityEnum.NOTDEFINED:
-						return Ifc4.ExternalReferenceResource.IfcDocumentConfidentialityEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.NOTDEFINED;
 					
 					
 					default:
@@ -210,26 +210,26 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				}
 			} 
 		}
-		Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum? IIfcDocumentInformation.Status 
+		Ifc4.Interfaces.IfcDocumentStatusEnum? IIfcDocumentInformation.Status 
 		{ 
 			get
 			{
 				switch (Status)
 				{
 					case IfcDocumentStatusEnum.DRAFT:
-						return Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.DRAFT;
+						return Ifc4.Interfaces.IfcDocumentStatusEnum.DRAFT;
 					
 					case IfcDocumentStatusEnum.FINALDRAFT:
-						return Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.FINALDRAFT;
+						return Ifc4.Interfaces.IfcDocumentStatusEnum.FINALDRAFT;
 					
 					case IfcDocumentStatusEnum.FINAL:
-						return Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.FINAL;
+						return Ifc4.Interfaces.IfcDocumentStatusEnum.FINAL;
 					
 					case IfcDocumentStatusEnum.REVISION:
-						return Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.REVISION;
+						return Ifc4.Interfaces.IfcDocumentStatusEnum.REVISION;
 					
 					case IfcDocumentStatusEnum.NOTDEFINED:
-						return Ifc4.ExternalReferenceResource.IfcDocumentStatusEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcDocumentStatusEnum.NOTDEFINED;
 					
 					
 					default:

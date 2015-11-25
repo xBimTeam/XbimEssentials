@@ -23,101 +23,101 @@ namespace Xbim.Ifc2x3.MeasureResource
 				return Dimensions;
 			} 
 		}
-		Ifc4.MeasureResource.IfcUnitEnum IIfcNamedUnit.UnitType 
+		Ifc4.Interfaces.IfcUnitEnum IIfcNamedUnit.UnitType 
 		{ 
 			get
 			{
 				switch (UnitType)
 				{
 					case IfcUnitEnum.ABSORBEDDOSEUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.ABSORBEDDOSEUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.ABSORBEDDOSEUNIT;
 					
 					case IfcUnitEnum.AMOUNTOFSUBSTANCEUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.AMOUNTOFSUBSTANCEUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.AMOUNTOFSUBSTANCEUNIT;
 					
 					case IfcUnitEnum.AREAUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.AREAUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.AREAUNIT;
 					
 					case IfcUnitEnum.DOSEEQUIVALENTUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.DOSEEQUIVALENTUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.DOSEEQUIVALENTUNIT;
 					
 					case IfcUnitEnum.ELECTRICCAPACITANCEUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.ELECTRICCAPACITANCEUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.ELECTRICCAPACITANCEUNIT;
 					
 					case IfcUnitEnum.ELECTRICCHARGEUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.ELECTRICCHARGEUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.ELECTRICCHARGEUNIT;
 					
 					case IfcUnitEnum.ELECTRICCONDUCTANCEUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.ELECTRICCONDUCTANCEUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.ELECTRICCONDUCTANCEUNIT;
 					
 					case IfcUnitEnum.ELECTRICCURRENTUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.ELECTRICCURRENTUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.ELECTRICCURRENTUNIT;
 					
 					case IfcUnitEnum.ELECTRICRESISTANCEUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.ELECTRICRESISTANCEUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.ELECTRICRESISTANCEUNIT;
 					
 					case IfcUnitEnum.ELECTRICVOLTAGEUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.ELECTRICVOLTAGEUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.ELECTRICVOLTAGEUNIT;
 					
 					case IfcUnitEnum.ENERGYUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.ENERGYUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.ENERGYUNIT;
 					
 					case IfcUnitEnum.FORCEUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.FORCEUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.FORCEUNIT;
 					
 					case IfcUnitEnum.FREQUENCYUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.FREQUENCYUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.FREQUENCYUNIT;
 					
 					case IfcUnitEnum.ILLUMINANCEUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.ILLUMINANCEUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.ILLUMINANCEUNIT;
 					
 					case IfcUnitEnum.INDUCTANCEUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.INDUCTANCEUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.INDUCTANCEUNIT;
 					
 					case IfcUnitEnum.LENGTHUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.LENGTHUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.LENGTHUNIT;
 					
 					case IfcUnitEnum.LUMINOUSFLUXUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.LUMINOUSFLUXUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.LUMINOUSFLUXUNIT;
 					
 					case IfcUnitEnum.LUMINOUSINTENSITYUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.LUMINOUSINTENSITYUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.LUMINOUSINTENSITYUNIT;
 					
 					case IfcUnitEnum.MAGNETICFLUXDENSITYUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.MAGNETICFLUXDENSITYUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.MAGNETICFLUXDENSITYUNIT;
 					
 					case IfcUnitEnum.MAGNETICFLUXUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.MAGNETICFLUXUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.MAGNETICFLUXUNIT;
 					
 					case IfcUnitEnum.MASSUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.MASSUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.MASSUNIT;
 					
 					case IfcUnitEnum.PLANEANGLEUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.PLANEANGLEUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.PLANEANGLEUNIT;
 					
 					case IfcUnitEnum.POWERUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.POWERUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.POWERUNIT;
 					
 					case IfcUnitEnum.PRESSUREUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.PRESSUREUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.PRESSUREUNIT;
 					
 					case IfcUnitEnum.RADIOACTIVITYUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.RADIOACTIVITYUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.RADIOACTIVITYUNIT;
 					
 					case IfcUnitEnum.SOLIDANGLEUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.SOLIDANGLEUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.SOLIDANGLEUNIT;
 					
 					case IfcUnitEnum.THERMODYNAMICTEMPERATUREUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.THERMODYNAMICTEMPERATUREUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.THERMODYNAMICTEMPERATUREUNIT;
 					
 					case IfcUnitEnum.TIMEUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.TIMEUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.TIMEUNIT;
 					
 					case IfcUnitEnum.VOLUMEUNIT:
-						return Ifc4.MeasureResource.IfcUnitEnum.VOLUMEUNIT;
+						return Ifc4.Interfaces.IfcUnitEnum.VOLUMEUNIT;
 					
 					case IfcUnitEnum.USERDEFINED:
-						return Ifc4.MeasureResource.IfcUnitEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcUnitEnum.USERDEFINED;
 					
 					
 					default:

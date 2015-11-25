@@ -16,17 +16,17 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcBuildingElementProxyType : IIfcBuildingElementProxyType
 	{
-		Ifc4.SharedBldgElements.IfcBuildingElementProxyTypeEnum IIfcBuildingElementProxyType.PredefinedType 
+		Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum IIfcBuildingElementProxyType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcBuildingElementProxyTypeEnum.USERDEFINED:
-						return Ifc4.SharedBldgElements.IfcBuildingElementProxyTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.USERDEFINED;
 					
 					case IfcBuildingElementProxyTypeEnum.NOTDEFINED:
-						return Ifc4.SharedBldgElements.IfcBuildingElementProxyTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.NOTDEFINED;
 					
 					
 					default:

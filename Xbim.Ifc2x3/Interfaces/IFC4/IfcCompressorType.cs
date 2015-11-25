@@ -16,62 +16,62 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcCompressorType : IIfcCompressorType
 	{
-		Ifc4.HvacDomain.IfcCompressorTypeEnum IIfcCompressorType.PredefinedType 
+		Ifc4.Interfaces.IfcCompressorTypeEnum IIfcCompressorType.PredefinedType 
 		{ 
 			get
 			{
 				switch (PredefinedType)
 				{
 					case IfcCompressorTypeEnum.DYNAMIC:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.DYNAMIC;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.DYNAMIC;
 					
 					case IfcCompressorTypeEnum.RECIPROCATING:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.RECIPROCATING;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.RECIPROCATING;
 					
 					case IfcCompressorTypeEnum.ROTARY:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.ROTARY;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.ROTARY;
 					
 					case IfcCompressorTypeEnum.SCROLL:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.SCROLL;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.SCROLL;
 					
 					case IfcCompressorTypeEnum.TROCHOIDAL:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.TROCHOIDAL;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.TROCHOIDAL;
 					
 					case IfcCompressorTypeEnum.SINGLESTAGE:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.SINGLESTAGE;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.SINGLESTAGE;
 					
 					case IfcCompressorTypeEnum.BOOSTER:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.BOOSTER;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.BOOSTER;
 					
 					case IfcCompressorTypeEnum.OPENTYPE:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.OPENTYPE;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.OPENTYPE;
 					
 					case IfcCompressorTypeEnum.HERMETIC:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.HERMETIC;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.HERMETIC;
 					
 					case IfcCompressorTypeEnum.SEMIHERMETIC:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.SEMIHERMETIC;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.SEMIHERMETIC;
 					
 					case IfcCompressorTypeEnum.WELDEDSHELLHERMETIC:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.WELDEDSHELLHERMETIC;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.WELDEDSHELLHERMETIC;
 					
 					case IfcCompressorTypeEnum.ROLLINGPISTON:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.ROLLINGPISTON;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.ROLLINGPISTON;
 					
 					case IfcCompressorTypeEnum.ROTARYVANE:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.ROTARYVANE;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.ROTARYVANE;
 					
 					case IfcCompressorTypeEnum.SINGLESCREW:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.SINGLESCREW;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.SINGLESCREW;
 					
 					case IfcCompressorTypeEnum.TWINSCREW:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.TWINSCREW;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.TWINSCREW;
 					
 					case IfcCompressorTypeEnum.USERDEFINED:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.USERDEFINED;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.USERDEFINED;
 					
 					case IfcCompressorTypeEnum.NOTDEFINED:
-						return Ifc4.HvacDomain.IfcCompressorTypeEnum.NOTDEFINED;
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.NOTDEFINED;
 					
 					
 					default:

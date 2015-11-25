@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	public partial class @IfcCostItem : IIfcCostItem
 	{
-		Ifc4.SharedMgmtElements.IfcCostItemTypeEnum? IIfcCostItem.PredefinedType 
+		Ifc4.Interfaces.IfcCostItemTypeEnum? IIfcCostItem.PredefinedType 
 		{ 
 			get
 			{
