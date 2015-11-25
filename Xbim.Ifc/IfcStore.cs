@@ -862,22 +862,22 @@ namespace Xbim.Ifc
                 break;
             }
          
-            //check if angle units are incorrectly defined, this happens in some old models
-            if (Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)
-            {
-                foreach (var trimmedCurve in Instances.Where<IIfcTrimmedCurve>(trimmedCurve =>
-                    trimmedCurve.MasterRepresentation == Ifc4.GeometryResource.IfcTrimmingPreference.PARAMETER &&
-                    trimmedCurve.BasisCurve is IIfcConic))
-                {
-                    if (
-                        !trimmedCurve.Trim1.Concat(trimmedCurve.Trim2)
-                            .OfType<Ifc4.MeasureResource.IfcParameterValue>()
-                            .Select(trim => (double)trim.Value)
-                            .Any(val => val > Math.PI * 2)) continue;
-                    angleToRadiansConversionFactor = Math.PI / 180;
-                    break;
-                }
-            }
+            ////check if angle units are incorrectly defined, this happens in some old models
+            //if (Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)
+            //{
+            //    foreach (var trimmedCurve in Instances.Where<IIfcTrimmedCurve>(trimmedCurve =>
+            //        trimmedCurve.MasterRepresentation == Ifc4.GeometryResource.IfcTrimmingPreference.PARAMETER &&
+            //        trimmedCurve.BasisCurve is IIfcConic))
+            //    {
+            //        if (
+            //            !trimmedCurve.Trim1.Concat(trimmedCurve.Trim2)
+            //                .OfType<Ifc4.MeasureResource.IfcParameterValue>()
+            //                .Select(trim => (double)trim.Value)
+            //                .Any(val => val > Math.PI * 2)) continue;
+            //        angleToRadiansConversionFactor = Math.PI / 180;
+            //        break;
+            //    }
+            //}
             ModelFactors.Initialise(angleToRadiansConversionFactor, lengthToMetresConversionFactor,
                 defaultPrecision);
         }
