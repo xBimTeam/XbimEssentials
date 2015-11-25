@@ -136,6 +136,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 
 
 		#region Inverse attributes
+		[InverseProperty("RepresentedMaterial")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 2)]
 		public IEnumerable<IfcMaterialDefinitionRepresentation> @HasRepresentation 
 		{ 
@@ -144,6 +145,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				return Model.Instances.Where<IfcMaterialDefinitionRepresentation>(e => (e.RepresentedMaterial as IfcMaterial) == this);
 			} 
 		}
+		[InverseProperty("ClassifiedMaterial")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 3)]
 		public IEnumerable<IfcMaterialClassificationRelationship> @ClassifiedAs 
 		{ 

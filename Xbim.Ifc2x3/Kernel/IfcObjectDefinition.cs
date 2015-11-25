@@ -54,6 +54,7 @@ namespace Xbim.Ifc2x3.Kernel
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
 		public IEnumerable<IfcRelAssigns> @HasAssignments 
 		{ 
@@ -62,6 +63,7 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IfcRelAssigns>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatingObject")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 6)]
 		public IEnumerable<IfcRelDecomposes> @IsDecomposedBy 
 		{ 
@@ -70,6 +72,7 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IfcRelDecomposes>(e => (e.RelatingObject as IfcObjectDefinition) == this);
 			} 
 		}
+		[InverseProperty("RelatedObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 7)]
 		public IEnumerable<IfcRelDecomposes> @Decomposes 
 		{ 
@@ -78,6 +81,7 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IfcRelDecomposes>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatedObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcRelAssociates> @HasAssociations 
 		{ 

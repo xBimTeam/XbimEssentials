@@ -459,6 +459,7 @@ namespace Xbim.CobieExpress
 
 
 		#region Inverse attributes
+		[InverseProperty("Type")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 37)]
 		public IEnumerable<CobieComponent> @Components 
 		{ 
@@ -467,6 +468,7 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobieComponent>(e => (e.Type as CobieType) == this);
 			} 
 		}
+		[InverseProperty("Type")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 38)]
 		public IEnumerable<CobieSpare> @Spares 
 		{ 

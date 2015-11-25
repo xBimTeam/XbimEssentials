@@ -90,6 +90,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedStructuralActivity")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 22)]
 		public IEnumerable<IfcRelConnectsStructuralActivity> @AssignedToStructuralItem 
 		{ 

@@ -104,7 +104,7 @@ namespace Xbim.IO.Xml
 
         private ExpressType GetExpresType(XmlReader input)
         {
-            var typeName = input.LocalName.ToUpperInvariant();
+            var typeName = input.LocalName.ToUpperInvariant().Replace("-WRAPPER", "");
             ExpressType expType;
             if (!_metadata.TryGetExpressType(typeName, out expType))
             {
@@ -136,8 +136,9 @@ namespace Xbim.IO.Xml
             {
                 var pInfo = GetMetaProperty(expType, input.LocalName);
                 if(pInfo == null) continue;
-                SetPropertyFromAttribute(pInfo, entity, input.Value);
+                SetPropertyFromAttribute(pInfo, entity, input.Value, null);
             }
+            input.MoveToElement();
 
             if (input.IsEmptyElement)
             {
@@ -150,7 +151,7 @@ namespace Xbim.IO.Xml
             {
                 var pInfo = GetMetaProperty(expType, input.LocalName);
                 if (pInfo == null) continue;
-                SetPropertyFromElement(pInfo, entity, input.IsEmptyElement ? input : input.ReadSubtree());
+                SetPropertyFromElement(pInfo, entity, input.IsEmptyElement ? input : input.ReadSubtree(), null);
             }
 
             //finalize
@@ -200,11 +201,122 @@ namespace Xbim.IO.Xml
             throw new XbimParserException("Unexpected type: " + type.Name);
         }
 
-        private void SetPropertyFromElement(ExpressMetaProperty property, IPersistEntity entity, XmlReader input)
+        private void SetPropertyFromElement(ExpressMetaProperty property, IPersistEntity entity, XmlReader input, int[] pos, Type valueType = null)
         {
+            var name = input.LocalName;
+            var type = valueType ?? GetNonNullableType(property.PropertyInfo.PropertyType);
+            var pIndex = property.EntityAttribute.Order - 1;
+            //select type
+            if (typeof (IExpressSelectType).IsAssignableFrom(type))
+            {
+                //move to inner element which represents the data
+                while (input.Read())
+                {
+                    if(input.NodeType != XmlNodeType.Element) continue;
+                    var expType = GetExpresType(input);
+                    if(expType == null)
+                        throw new XbimParserException("Unexpected select data type " + name);
+
+                    if (typeof(IExpressValueType).IsAssignableFrom(expType.Type))
+                    {
+                        var value = input.ReadElementContentAsString();
+                        SetPropertyFromAttribute(property, entity, value, pos, expType.Type);
+                        return;
+                    }
+
+                    if (typeof (IPersistEntity).IsAssignableFrom(expType.Type))
+                    {
+                        SetPropertyFromElement(property, entity, input, pos, expType.Type);
+                        return;
+                    }
+
+                    //this should either be a defined type or entity
+                    throw new XbimParserException("Unexpected select data type " + expType.Name);
+                }
+                return;
+            }
+
+            //defined type
+            if (typeof(IExpressValueType).IsAssignableFrom(type))
+            {
+                var value = input.ReadElementContentAsString();
+                SetPropertyFromAttribute(property, entity, value, pos, type);
+                return;
+            }
+
+            if (typeof(IPersistEntity).IsAssignableFrom(type))
+            {
+                var value = ReadEntity(input);
+                var pVal = new PropertyValue();
+
+                if (property.IsInverse)
+                {
+                    pVal.Init(entity);
+                    var remotePropName = property.InverseAttributeProperty.RemoteProperty;
+                    var remoteProperty = value.ExpressType.Properties.FirstOrDefault(p => p.Value.Name == remotePropName).Value;
+                    if(remoteProperty == null)
+                        throw new XbimParserException("Non existing counterpart to " + property.Name);
+                    value.Parse(remoteProperty.EntityAttribute.Order - 1, pVal, null);
+                }
+                else
+                {
+                    pVal.Init(value);
+                    entity.Parse(pIndex, pVal, null);    
+                }
+                return;
+            }
+
+            //enumeration or inverse enumeration
+            if (typeof (IEnumerable).IsAssignableFrom(type))
+            {
+                //do nothing with empty list. If it is mandatory it is initialized anyway
+                if (input.IsEmptyElement)
+                    return;
+
+                //isolate to finish at the end of this element
+                input = input.ReadSubtree();
+                while (input.Read())
+                {
+                    if (input.NodeType != XmlNodeType.Element) continue;
+                    
+                    //position is optional
+                    var posAttr = input.GetAttribute("pos");
+                    pos = null;
+                    if (!string.IsNullOrWhiteSpace(posAttr))
+                    {
+                        var idx = posAttr.Split(_separator, StringSplitOptions.RemoveEmptyEntries)
+                            .Select(i => Convert.ToInt32(i)).ToList();
+                        //remove the last one as it is not used in Parse function
+                        if(idx.Count > 0)
+                            idx.RemoveAt(idx.Count-1);
+                        //only set if it has any values in
+                        if(idx.Count > 0)
+                            pos = idx.ToArray();
+                    }
+
+                    //it might be a primitive
+                    name = input.LocalName;
+                    if (Primitives.ContainsKey(input.LocalName))
+                    {
+                        var iVal = input.ReadElementContentAsString();
+                        var pVal = new PropertyValue();
+                        pVal.Init(iVal, Primitives[name]);
+                        entity.Parse(pIndex, pVal, pos);
+                    }
+
+                    var eType = GetExpresType(input);
+                    if(eType == null)
+                        throw new XbimParserException("Unexpected type " + name);
+                    SetPropertyFromElement(property, entity, input, pos, eType.Type);
+                }
+                return;
+            }
+            throw new XbimParserException("Unexpected type: " + type.Name);
         }
 
-        private void SetPropertyFromAttribute(ExpressMetaProperty property, IPersistEntity entity, string value, Type valueType = null)
+        private readonly char[] _separator = {' '};
+
+        private void SetPropertyFromAttribute(ExpressMetaProperty property, IPersistEntity entity, string value, int[] pos, Type valueType = null)
         {
             var pIndex = property.EntityAttribute.Order - 1;
             var type = valueType ?? property.PropertyInfo.PropertyType;
@@ -216,7 +328,7 @@ namespace Xbim.IO.Xml
                 if (typeof(IExpressComplexType).IsAssignableFrom(type))
                 {
                     var meta = _metadata.ExpressType(type);
-                    var values = value.Split(new []{' '}, StringSplitOptions.RemoveEmptyEntries);
+                    var values = value.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
                     var underType = meta.UnderlyingComplexType;
                     foreach (var v in values)
                     {
@@ -253,10 +365,10 @@ namespace Xbim.IO.Xml
             if (genType.IsValueType || genType == typeof(string))
             {
                 //handle enumerable of value type and string
-                var values = value.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+                var values = value.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var v in values)
                 {
-                    SetPropertyFromAttribute(property, entity, v, genType);
+                    SetPropertyFromAttribute(property, entity, v, pos, genType);
                 }
                 return;
             }

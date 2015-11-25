@@ -157,6 +157,7 @@ namespace Xbim.Ifc4.MaterialResource
 
 
 		#region Inverse attributes
+		[InverseProperty("MaterialProfiles")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 10)]
 		public IfcMaterialProfileSet @ToMaterialProfileSet 
 		{ 

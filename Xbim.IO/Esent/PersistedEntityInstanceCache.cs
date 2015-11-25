@@ -1673,13 +1673,7 @@ namespace Xbim.IO.Esent
             {
                 //get interface implementations and make sure it doesn't overlap
                 var implementations = Model.Metadata.ExpressTypesImplementing(type).ToList();
-                var implToSearch = new List<ExpressType>();
-                foreach (var implementation in implementations)
-                {
-                    if (implementations.Any(i => i != implementation && i.NonAbstractSubTypes.Contains(implementation.Type))) continue;
-                    implToSearch.Add(implementation);
-                }
-                expressTypes = implToSearch;
+                expressTypes = implementations.Where(implementation => !implementations.Any(i => i != implementation && i.NonAbstractSubTypes.Contains(implementation.Type)));
             }
             var predicate = expr.Compile();
             

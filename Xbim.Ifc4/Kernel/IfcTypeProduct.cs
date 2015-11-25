@@ -86,6 +86,7 @@ namespace Xbim.Ifc4.Kernel
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatingProduct")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 17)]
 		public IEnumerable<IfcRelAssignsToProduct> @ReferencedBy 
 		{ 

@@ -140,6 +140,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 
 		#region Inverse attributes
+		[InverseProperty("Maps")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 6)]
 		public IEnumerable<IfcTextureCoordinate> @IsMappedBy 
 		{ 
@@ -148,6 +149,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				return Model.Instances.Where<IfcTextureCoordinate>(e => e.Maps != null &&  e.Maps.Contains(this));
 			} 
 		}
+		[InverseProperty("Textures")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
 		public IEnumerable<IfcSurfaceStyleWithTextures> @UsedInStyles 
 		{ 

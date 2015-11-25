@@ -184,6 +184,7 @@ namespace Xbim.CobieExpress
 
 
 		#region Inverse attributes
+		[InverseProperty("Project")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
 		public IEnumerable<CobiePhase> @Phases 
 		{ 
@@ -192,6 +193,7 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobiePhase>(e => (e.Project as CobieProject) == this);
 			} 
 		}
+		[InverseProperty("Project")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 6)]
 		public IEnumerable<CobieFacility> @Facilities 
 		{ 

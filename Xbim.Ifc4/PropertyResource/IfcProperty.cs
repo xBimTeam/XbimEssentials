@@ -102,6 +102,7 @@ namespace Xbim.Ifc4.PropertyResource
 
 
 		#region Inverse attributes
+		[InverseProperty("HasProperties")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
 		public IEnumerable<IfcPropertySet> @PartOfPset 
 		{ 
@@ -110,6 +111,7 @@ namespace Xbim.Ifc4.PropertyResource
 				return Model.Instances.Where<IfcPropertySet>(e => e.HasProperties != null &&  e.HasProperties.Contains(this));
 			} 
 		}
+		[InverseProperty("DependingProperty")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
 		public IEnumerable<IfcPropertyDependencyRelationship> @PropertyForDependance 
 		{ 
@@ -118,6 +120,7 @@ namespace Xbim.Ifc4.PropertyResource
 				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependingProperty as IfcProperty) == this);
 			} 
 		}
+		[InverseProperty("DependantProperty")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 6)]
 		public IEnumerable<IfcPropertyDependencyRelationship> @PropertyDependsOn 
 		{ 
@@ -126,6 +129,7 @@ namespace Xbim.Ifc4.PropertyResource
 				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependantProperty as IfcProperty) == this);
 			} 
 		}
+		[InverseProperty("HasProperties")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
 		public IEnumerable<IfcComplexProperty> @PartOfComplex 
 		{ 
@@ -134,6 +138,7 @@ namespace Xbim.Ifc4.PropertyResource
 				return Model.Instances.Where<IfcComplexProperty>(e => e.HasProperties != null &&  e.HasProperties.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatedResourceObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcResourceConstraintRelationship> @HasConstraints 
 		{ 
@@ -142,6 +147,7 @@ namespace Xbim.Ifc4.PropertyResource
 				return Model.Instances.Where<IfcResourceConstraintRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatedResourceObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
 		public IEnumerable<IfcResourceApprovalRelationship> @HasApprovals 
 		{ 

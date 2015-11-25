@@ -149,6 +149,7 @@ namespace Xbim.Ifc4.RepresentationResource
 
 
 		#region Inverse attributes
+		[InverseProperty("ContextOfItems")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 3)]
 		public IEnumerable<IfcRepresentation> @RepresentationsInContext 
 		{ 

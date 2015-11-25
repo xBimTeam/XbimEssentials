@@ -50,6 +50,7 @@ namespace Xbim.Ifc4.Kernel
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedDefinitions")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 5)]
 		public IEnumerable<IfcRelDeclares> @HasContext 
 		{ 
@@ -58,6 +59,7 @@ namespace Xbim.Ifc4.Kernel
 				return Model.Instances.Where<IfcRelDeclares>(e => e.RelatedDefinitions != null &&  e.RelatedDefinitions.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatedObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 6)]
 		public IEnumerable<IfcRelAssociates> @HasAssociations 
 		{ 

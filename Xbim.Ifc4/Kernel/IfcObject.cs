@@ -77,6 +77,7 @@ namespace Xbim.Ifc4.Kernel
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 13)]
 		public IEnumerable<IfcRelDefinesByObject> @IsDeclaredBy 
 		{ 
@@ -85,6 +86,7 @@ namespace Xbim.Ifc4.Kernel
 				return Model.Instances.Where<IfcRelDefinesByObject>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatingObject")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 14)]
 		public IEnumerable<IfcRelDefinesByObject> @Declares 
 		{ 
@@ -93,6 +95,7 @@ namespace Xbim.Ifc4.Kernel
 				return Model.Instances.Where<IfcRelDefinesByObject>(e => (e.RelatingObject as IfcObject) == this);
 			} 
 		}
+		[InverseProperty("RelatedObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 15)]
 		public IEnumerable<IfcRelDefinesByType> @IsTypedBy 
 		{ 
@@ -101,6 +104,7 @@ namespace Xbim.Ifc4.Kernel
 				return Model.Instances.Where<IfcRelDefinesByType>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatedObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 16)]
 		public IEnumerable<IfcRelDefinesByProperties> @IsDefinedBy 
 		{ 

@@ -48,6 +48,7 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedFeatureElement")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 33)]
 		public IfcRelProjectsElement @ProjectsElements 
 		{ 

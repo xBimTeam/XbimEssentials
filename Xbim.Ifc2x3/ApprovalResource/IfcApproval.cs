@@ -239,6 +239,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 
 
 		#region Inverse attributes
+		[InverseProperty("Approval")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcApprovalActorRelationship> @Actors 
 		{ 
@@ -247,6 +248,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				return Model.Instances.Where<IfcApprovalActorRelationship>(e => (e.Approval as IfcApproval) == this);
 			} 
 		}
+		[InverseProperty("RelatedApproval")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
 		public IEnumerable<IfcApprovalRelationship> @IsRelatedWith 
 		{ 
@@ -255,6 +257,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				return Model.Instances.Where<IfcApprovalRelationship>(e => (e.RelatedApproval as IfcApproval) == this);
 			} 
 		}
+		[InverseProperty("RelatingApproval")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 10)]
 		public IEnumerable<IfcApprovalRelationship> @Relates 
 		{ 

@@ -239,6 +239,7 @@ namespace Xbim.Ifc4.ActorResource
 
 
 		#region Inverse attributes
+		[InverseProperty("ThePerson")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
 		public IEnumerable<IfcPersonAndOrganization> @EngagedIn 
 		{ 

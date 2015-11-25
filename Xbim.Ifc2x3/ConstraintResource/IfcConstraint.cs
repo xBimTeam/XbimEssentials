@@ -246,6 +246,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 
 
 		#region Inverse attributes
+		[InverseProperty("ClassifiedConstraint")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcConstraintClassificationRelationship> @ClassifiedAs 
 		{ 
@@ -254,6 +255,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				return Model.Instances.Where<IfcConstraintClassificationRelationship>(e => (e.ClassifiedConstraint as IfcConstraint) == this);
 			} 
 		}
+		[InverseProperty("RelatingConstraint")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
 		public IEnumerable<IfcConstraintRelationship> @RelatesConstraints 
 		{ 
@@ -262,6 +264,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				return Model.Instances.Where<IfcConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this);
 			} 
 		}
+		[InverseProperty("RelatedConstraints")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 10)]
 		public IEnumerable<IfcConstraintRelationship> @IsRelatedWith 
 		{ 
@@ -270,6 +273,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				return Model.Instances.Where<IfcConstraintRelationship>(e => e.RelatedConstraints != null &&  e.RelatedConstraints.Contains(this));
 			} 
 		}
+		[InverseProperty("RelatingConstraint")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 11)]
 		public IEnumerable<IfcPropertyConstraintRelationship> @PropertiesForConstraint 
 		{ 
@@ -278,6 +282,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				return Model.Instances.Where<IfcPropertyConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this);
 			} 
 		}
+		[InverseProperty("RelatingConstraint")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 12)]
 		public IEnumerable<IfcConstraintAggregationRelationship> @Aggregates 
 		{ 
@@ -286,6 +291,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				return Model.Instances.Where<IfcConstraintAggregationRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this);
 			} 
 		}
+		[InverseProperty("RelatedConstraints")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 13)]
 		public IEnumerable<IfcConstraintAggregationRelationship> @IsAggregatedIn 
 		{ 

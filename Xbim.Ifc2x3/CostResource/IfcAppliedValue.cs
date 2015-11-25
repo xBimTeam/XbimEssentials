@@ -223,6 +223,7 @@ namespace Xbim.Ifc2x3.CostResource
 
 
 		#region Inverse attributes
+		[InverseProperty("ReferencingValues")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
 		public IEnumerable<IfcReferencesValueDocument> @ValuesReferenced 
 		{ 
@@ -231,6 +232,7 @@ namespace Xbim.Ifc2x3.CostResource
 				return Model.Instances.Where<IfcReferencesValueDocument>(e => e.ReferencingValues != null &&  e.ReferencingValues.Contains(this));
 			} 
 		}
+		[InverseProperty("ComponentOfTotal")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
 		public IEnumerable<IfcAppliedValueRelationship> @ValueOfComponents 
 		{ 
@@ -239,6 +241,7 @@ namespace Xbim.Ifc2x3.CostResource
 				return Model.Instances.Where<IfcAppliedValueRelationship>(e => (e.ComponentOfTotal as IfcAppliedValue) == this);
 			} 
 		}
+		[InverseProperty("Components")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
 		public IEnumerable<IfcAppliedValueRelationship> @IsComponentIn 
 		{ 

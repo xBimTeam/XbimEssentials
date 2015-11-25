@@ -143,6 +143,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedSpaceProgram")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 17)]
 		public IEnumerable<IfcRelInteractionRequirements> @HasInteractionReqsFrom 
 		{ 
@@ -151,6 +152,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				return Model.Instances.Where<IfcRelInteractionRequirements>(e => (e.RelatedSpaceProgram as IfcSpaceProgram) == this);
 			} 
 		}
+		[InverseProperty("RelatingSpaceProgram")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 18)]
 		public IEnumerable<IfcRelInteractionRequirements> @HasInteractionReqsTo 
 		{ 

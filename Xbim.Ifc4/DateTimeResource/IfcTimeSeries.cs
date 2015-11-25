@@ -255,6 +255,7 @@ namespace Xbim.Ifc4.DateTimeResource
 
 
 		#region Inverse attributes
+		[InverseProperty("RelatedResourceObjects")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 9)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReference 
 		{ 

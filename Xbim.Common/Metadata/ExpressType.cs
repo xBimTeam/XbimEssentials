@@ -137,7 +137,11 @@ namespace Xbim.Common.Metadata
                     _derives.Add(metaProperty);
                 }
                 else
+                {
+                    var invAttr = propInfo.GetCustomAttributes(typeof (InverseProperty), false)[0] as InverseProperty;
+                    metaProperty.InverseAttributeProperty = invAttr;
                     _inverses.Add(metaProperty);
+                }
                
                 var isIndexed =
                     propInfo.GetCustomAttributes(typeof(IndexedProperty), false).Any();

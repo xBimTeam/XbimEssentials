@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
 using Xbim.Ifc4;
 using Xbim.Ifc4.GeometricModelResource;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
 using Xbim.Ifc4.MaterialResource;
 using Xbim.Ifc4.ProductExtension;
@@ -99,7 +100,14 @@ namespace Xbim.MemoryModel.Tests
                     site.RefElevation = 100.0;
                     site.Description = "Site description";
                     site.RefLatitude = new List<long> { 1, 2, 3, 4 };
-                    site.GlobalId = Guid.NewGuid();    
+                    site.GlobalId = Guid.NewGuid();
+
+                    var wall = model.Instances.New<IfcWall>();
+                    wall.Name = "Sample wall";
+                    wall.GlobalId = Guid.NewGuid();
+                    wall.PredefinedType = IfcWallTypeEnum.PARTITIONING;
+                    
+                    txn.Commit();
                 }
                 
 
@@ -118,6 +126,9 @@ namespace Xbim.MemoryModel.Tests
                     model2.OpenXml(outPath);
                     var site2 = model2.Instances.FirstOrDefault<IfcSite>();
                     Assert.IsNotNull(site2);
+
+                    var wall2 = model2.Instances.FirstOrDefault<IfcWall>();
+                    Assert.IsNotNull(wall2);
 
                     Assert.IsTrue(site.Name == site2.Name);
                     Assert.IsTrue(site.RefElevation == site2.RefElevation);

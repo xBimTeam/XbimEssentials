@@ -212,6 +212,7 @@ namespace Xbim.CobieExpress
 
 
 		#region Inverse attributes
+		[InverseProperty("Components")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 22)]
 		public IEnumerable<CobieSystem> @Systems 
 		{ 
@@ -220,6 +221,7 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobieSystem>(e => e.Components != null &&  e.Components.Contains(this));
 			} 
 		}
+		[InverseProperty("ComponentA")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 23)]
 		public IEnumerable<CobieConnection> @ConnectedBefore 
 		{ 
@@ -228,6 +230,7 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobieConnection>(e => (e.ComponentA as CobieComponent) == this);
 			} 
 		}
+		[InverseProperty("ComponentB")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 24)]
 		public IEnumerable<CobieConnection> @ConnectedAfter 
 		{ 
@@ -236,6 +239,7 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobieConnection>(e => (e.ComponentB as CobieComponent) == this);
 			} 
 		}
+		[InverseProperty("RealizingComponent")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 25)]
 		public IEnumerable<CobieConnection> @Connecting 
 		{ 

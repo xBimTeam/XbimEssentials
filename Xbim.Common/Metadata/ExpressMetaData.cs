@@ -7,8 +7,9 @@ namespace Xbim.Common.Metadata
 {
     public class ExpressMetaProperty
     {
-        public PropertyInfo PropertyInfo;
-        public EntityAttributeAttribute EntityAttribute;
+        public PropertyInfo PropertyInfo { get; internal set; }
+        public EntityAttributeAttribute EntityAttribute { get; internal set; }
+        public InverseProperty InverseAttributeProperty { get; internal set; }
         public string Name { get { return PropertyInfo.Name; } }
         public bool IsInverse { get { return EntityAttribute.Order < 0; } }
         public bool IsDerived { get { return EntityAttribute.State == EntityAttributeState.Derived; } }

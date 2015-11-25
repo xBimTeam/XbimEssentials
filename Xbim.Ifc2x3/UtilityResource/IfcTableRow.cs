@@ -146,6 +146,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 
 
 		#region Inverse attributes
+		[InverseProperty("Rows")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 3)]
 		public IfcTable @OfTable 
 		{ 
