@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -20,6 +21,8 @@ namespace Xbim.Common.Metadata
         private readonly List<PropertyInfo> _indexedProperties;
         private readonly List<int> _indexedValues;
         private readonly string _expressNameUpper;
+        private readonly Type _underlyingType;
+        private readonly Type _underlyingComplexType;
 
         #endregion
 
@@ -103,7 +106,17 @@ namespace Xbim.Common.Metadata
 
             IndexedClass = type.GetCustomAttributes(typeof(IndexedClass), true).Any();
 
-            
+            var dta = type.GetCustomAttributes(typeof(DefinedTypeAttribute), false).FirstOrDefault() as DefinedTypeAttribute;
+            if (dta != null)
+            {
+                _underlyingType = dta.UnderlyingType;
+                if (UnderlyingType.IsGenericType && typeof (IEnumerable).IsAssignableFrom(UnderlyingType))
+                {
+                    var cplType = UnderlyingType.GetGenericArguments()[0];
+                    if (cplType != null)
+                        _underlyingComplexType = cplType;
+                }
+            }
 
             var properties =
                 type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
@@ -250,6 +263,16 @@ namespace Xbim.Common.Metadata
         public List<ExpressType> SubTypes
         {
             get { return _subTypes; }
+        }
+
+        public Type UnderlyingType
+        {
+            get { return _underlyingType; }
+        }
+
+        public Type UnderlyingComplexType
+        {
+            get { return _underlyingComplexType; }
         }
     }
 

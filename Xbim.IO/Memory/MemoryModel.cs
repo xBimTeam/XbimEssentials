@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using Xbim.Common;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.IO.Step21;
+using Xbim.IO.Xml;
 
 namespace Xbim.IO.Memory
 {
@@ -309,6 +311,32 @@ namespace Xbim.IO.Memory
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("changeType", changeType, null);
+            }
+        }
+
+        public virtual void OpenXml(string path, ReportProgressDelegate progDelegate = null)
+        {
+            using (var file = File.OpenRead(path))
+            {
+                OpenXml(file, progDelegate);
+            }
+        }
+
+        public virtual void OpenXml(Stream stream, ReportProgressDelegate progDelegate = null)
+        {
+            using (var reader = XmlReader.Create(stream))
+            {
+                var xmlReader = new XbimXmlReader4(
+                    (label, type) =>
+                    {
+                        var ent = _instances.Factory.New(this, type, label, true);
+                        _instances.InternalAdd(ent);
+                        return ent;
+                    },
+                    entity => { },
+                    Metadata);
+                var header = xmlReader.Read(reader);
+                Header = header;
             }
         }
 

@@ -139,7 +139,7 @@ namespace Xbim.Ifc
         /// <param name="editorDetails">This is only required if the store is opened for editing</param>
         /// <param name="ifcDatabaseSizeThreshHold">if not defined the DefaultIfcDatabaseSizeThreshHold is used, Ifc files below this size will be opened in memory, above this size a database will be created. If -1 is specified a database will be created for all Ifc files that are opened. Xbim files are always opened as databases</param>
         /// <param name="progDelegate"></param>
-        static public IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
+        public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
         {
             var filePath = Path.GetFullPath(path);
             if (!Directory.Exists(Path.GetDirectoryName(filePath) ?? ""))
@@ -376,7 +376,7 @@ namespace Xbim.Ifc
 
         }
 
-        static public IfcStore Create(XbimEditorCredentials editorDetails, IfcSchemaVersion ifcVersion, XbimStoreType storageType)
+        public static IfcStore Create(XbimEditorCredentials editorDetails, IfcSchemaVersion ifcVersion, XbimStoreType storageType)
         {
             if (storageType == XbimStoreType.EsentDatabase)
             {

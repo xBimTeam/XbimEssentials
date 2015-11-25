@@ -24,6 +24,12 @@ namespace Xbim.MemoryModel.Tests
                 var errs = ValidateIfc2X3("..\\..\\4walls1floorSite.xml");
                 Assert.AreEqual(0, errs);
             }
+
+            using (var esent = new IO.Esent.EsentModel(new EntityFactory()))
+            {
+                var success = esent.CreateFrom("..\\..\\4walls1floorSite.xml", null, null, true, true);
+                Assert.IsTrue(success);
+            }
         }
 
 

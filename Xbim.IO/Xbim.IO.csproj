@@ -95,7 +95,7 @@
     <Compile Include="..\SharedFileVersionInfo.cs">
       <Link>Properties\SharedFileVersionInfo.cs</Link>
     </Compile>
-	<Compile Include="..\SharedAssemblyInfo.cs">
+    <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Esent\EsentGeometryStore.cs" />
@@ -106,6 +106,7 @@
     <Compile Include="Esent\XbimSurfaceStyle.cs" />
     <Compile Include="Esent\XbimSurfaceStyleMap.cs" />
     <Compile Include="FileReferenceResolver.cs" />
+    <Compile Include="JSON\JSONWritter.cs" />
     <Compile Include="Memory\EntityCollection.cs" />
     <Compile Include="Memory\FederatedModel.cs" />
     <Compile Include="Memory\InMemoryGeometryStore.cs" />

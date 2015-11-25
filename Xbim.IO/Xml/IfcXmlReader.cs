@@ -1,6 +1,4 @@
-﻿#region Directives
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,10 +6,7 @@ using System.Xml;
 using Xbim.Common;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
-using Xbim.IO.Esent;
 using Xbim.IO.Step21.Parser;
-
-#endregion
 
 namespace Xbim.IO.Xml
 {
@@ -21,10 +16,31 @@ namespace Xbim.IO.Xml
 
     public class IfcXmlReader
     {
+        private readonly ExpressMetaData _metadata;
+        private readonly GetOrCreateEntity _create;
+        private readonly FinishEntity _finish;
         private static readonly Dictionary<string, StepParserType> Primitives;
-        private readonly int _transactionBatchSize = 100;
         private Dictionary<string, int> _idMap;
         private int _lastId;
+
+        /// <summary>
+        /// Constructor of the reader for IFC2x3 XML. XSD is different for different versions of IFC and there is a major difference
+        /// between IFC2x3 and IFC4 to there are two different classes to deal with this.
+        /// </summary>x
+        /// <param name="create">Delegate which will be used to create new entities</param>
+        /// <param name="finish">Delegate which will be called once the entity is finished (no changes will be made to it)
+        /// This is useful for a DB when this is the point when it can be serialized to DB</param>
+        /// <param name="metadata">Metadata model used to inspect Express types and their properties</param>
+        public IfcXmlReader(GetOrCreateEntity create, FinishEntity finish, ExpressMetaData metadata)
+        {
+            if (create == null) throw new ArgumentNullException("create");
+            if (finish == null) throw new ArgumentNullException("finish");
+            if (metadata == null) throw new ArgumentNullException("metadata");
+            _create = create;
+            _finish = finish;
+            _metadata = metadata;
+        }
+
         static IfcXmlReader()
         {
             Primitives = new Dictionary<string, StepParserType>
@@ -200,7 +216,7 @@ namespace Xbim.IO.Xml
         private string _cTypeAttribute;
         private string _posAttribute;
 
-        private void StartElement(PersistedEntityInstanceCache cache, XmlReader input, EsentEntityCursor entityTable, EsentLazyDBTransaction transaction)
+        private void StartElement(XmlReader input)
         {
             var elementName = input.LocalName;
             bool isRefType;
@@ -215,9 +231,7 @@ namespace Xbim.IO.Xml
 
             if (id.HasValue && IsIfcEntity(elementName, out expressType)) //we have an element which is an Ifc Entity
             {
-                var ent = !cache.Contains(id.Value) ? 
-                    cache.CreateNew(expressType.Type, id.Value) : 
-                    cache.GetInstance(id.Value, false, true);
+                var ent = _create(id.Value, expressType.Type);
 
                 var xmlEnt = new XmlEntity(_currentNode, ent);
                
@@ -225,15 +239,7 @@ namespace Xbim.IO.Xml
                 if (input.IsEmptyElement && !isRefType)
                 {
                     _entitiesParsed++;
-                    //now write the entity to the database
-                    entityTable.AddEntity(xmlEnt.Entity);
-                    if (_entitiesParsed % _transactionBatchSize == (_transactionBatchSize - 1))
-                    {
-                        transaction.Commit();
-                        transaction.Begin();
-                    }
-                    
-
+                    _finish(ent);
                 }
 
 
@@ -763,13 +769,9 @@ namespace Xbim.IO.Xml
             }
         }
 
-        private ExpressMetaData _metadata;
 
-        internal StepFileHeader Read(PersistedEntityInstanceCache entityInstanceCache, EsentEntityCursor entityTable,  XmlReader input)
+        public StepFileHeader Read(XmlReader input)
         {
-
-            _metadata = entityInstanceCache.Model.Metadata;
-
             // Read until end of file
             _idMap = new Dictionary<string, int>();
             _lastId = 0;
@@ -862,45 +864,35 @@ namespace Xbim.IO.Xml
             // set counter for start of every element that is not empty, and reduce it on every end of that element
 
 
-           
+
             try
             {
-                using (var transaction = entityTable.BeginLazyTransaction())
+                while (input.Read())
                 {
-                    while (input.Read())
+                    switch (input.NodeType)
                     {
-                        switch (input.NodeType)
-                        {
-                            case XmlNodeType.Element:
-                                StartElement(entityInstanceCache, input, entityTable, transaction);
-                                break;
-                            case XmlNodeType.EndElement:
-                                IPersistEntity toWrite;
-                                //if toWrite has a value we have completed an Ifc Entity
-                                EndElement(input, prevInputType, prevInputName, out toWrite);
-                                if (toWrite != null)
-                                {
-                                    _entitiesParsed++;
-                                    //now write the entity to the database
-                                    entityTable.AddEntity(toWrite);
-                                    if (_entitiesParsed % _transactionBatchSize == (_transactionBatchSize - 1))
-                                    {
-                                        transaction.Commit();
-                                        transaction.Begin();
-                                    }
-                                }
-                                break;
-                            case XmlNodeType.Whitespace:
-                                SetValue(input, prevInputType);
-                                break;
-                            case XmlNodeType.Text:
-                                SetValue(input, prevInputType);
-                                break;
-                        }
-                        prevInputType = input.NodeType;
-                        prevInputName = input.LocalName;
+                        case XmlNodeType.Element:
+                            StartElement(input);
+                            break;
+                        case XmlNodeType.EndElement:
+                            IPersistEntity toWrite;
+                            //if toWrite has a value we have completed an Ifc Entity
+                            EndElement(input, prevInputType, prevInputName, out toWrite);
+                            if (toWrite != null)
+                            {
+                                _entitiesParsed++;
+                                _finish(toWrite);
+                            }
+                            break;
+                        case XmlNodeType.Whitespace:
+                            SetValue(input, prevInputType);
+                            break;
+                        case XmlNodeType.Text:
+                            SetValue(input, prevInputType);
+                            break;
                     }
-                    transaction.Commit();
+                    prevInputType = input.NodeType;
+                    prevInputName = input.LocalName;
                 }
             }
             catch(Exception e)
@@ -910,4 +902,7 @@ namespace Xbim.IO.Xml
             return header;
         }
     }
+
+    public delegate IPersistEntity GetOrCreateEntity(int label, Type type);
+    public delegate void FinishEntity(IPersistEntity entity);
 }
