@@ -56,9 +56,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 			get
 			{
 				//## Handle return of SenseAgreement for which no match was found
-				//TODO: Handle return of SenseAgreement for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return new Ifc4.MeasureResource.IfcBoolean(SenseAgreement);
+			    //##
 			} 
 		}
 		Ifc4.Interfaces.IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation 

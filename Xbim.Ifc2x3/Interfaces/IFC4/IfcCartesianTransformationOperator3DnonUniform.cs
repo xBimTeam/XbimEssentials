@@ -21,8 +21,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			get
 			{
 				//## Handle return of Scale2 for which no match was found
-				//TODO: Handle return of Scale2 for which no match was found
-				throw new System.NotImplementedException();
+                return Scale2.HasValue ? new Ifc4.MeasureResource.IfcReal(Scale2.Value) : (Ifc4.MeasureResource.IfcReal?)null;
 				//##
 			} 
 		}
@@ -31,8 +30,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			get
 			{
 				//## Handle return of Scale3 for which no match was found
-				//TODO: Handle return of Scale3 for which no match was found
-				throw new System.NotImplementedException();
+                return Scale3.HasValue ? new Ifc4.MeasureResource.IfcReal(Scale3.Value) : (Ifc4.MeasureResource.IfcReal?)null;
 				//##
 			} 
 		}

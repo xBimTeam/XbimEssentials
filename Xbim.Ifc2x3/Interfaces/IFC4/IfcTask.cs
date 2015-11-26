@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Ifc4.MeasureResource;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProcessExtension
@@ -37,8 +38,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			get
 			{
 				//## Handle return of IsMilestone for which no match was found
-				//TODO: Handle return of IsMilestone for which no match was found
-				throw new System.NotImplementedException();
+                return new Ifc4.MeasureResource.IfcBoolean(IsMilestone);
 				//##
 			} 
 		}
@@ -47,8 +47,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			get
 			{
 				//## Handle return of Priority for which no match was found
-				//TODO: Handle return of Priority for which no match was found
-				throw new System.NotImplementedException();
+                return Priority.HasValue ? new Ifc4.MeasureResource.IfcInteger(Priority.Value) : (IfcInteger?) null;
 				//##
 			} 
 		}

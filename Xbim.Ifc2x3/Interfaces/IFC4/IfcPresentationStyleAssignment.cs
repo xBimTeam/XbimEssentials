@@ -26,10 +26,14 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					if (ifccurvestyle != null) 
 						yield return ifccurvestyle;
 					var ifcsymbolstyle = member as IfcSymbolStyle;
-					if (ifcsymbolstyle != null) 
-						//## Handle entity IfcSymbolStyle which is not a part of the target select interface IIfcPresentationStyleSelect in property Styles
-						//TODO: Handle entity IfcSymbolStyle which is not a part of the target select interface IIfcPresentationStyleSelect in property Styles
-						throw new System.NotImplementedException();
+				    if (ifcsymbolstyle != null)
+				        //## Handle entity IfcSymbolStyle which is not a part of the target select interface IIfcPresentationStyleSelect in property Styles
+				    {
+				      /*  var colour = ifcsymbolstyle.StyleOfSymbol as IIfcColourRgb;
+                        if(colour!=null)
+                            return colour;*/
+				        yield return new Ifc4.PresentationAppearanceResource.IfcNullStyle();
+				    }
 						//##
 					var ifcfillareastyle = member as IfcFillAreaStyle;
 					if (ifcfillareastyle != null) 

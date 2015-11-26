@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Ifc4.MeasureResource;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
@@ -42,9 +43,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 			get
 			{
 				//## Handle return of Scale for which no match was found
-				//TODO: Handle return of Scale for which no match was found
-				throw new System.NotImplementedException();
-				//##
+                return Scale.HasValue ? new Ifc4.MeasureResource.IfcReal(Scale.Value) : (Ifc4.MeasureResource.IfcReal?)null;
+                //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcReal IIfcCartesianTransformationOperator.Scl 

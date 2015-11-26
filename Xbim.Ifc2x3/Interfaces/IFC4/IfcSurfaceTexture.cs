@@ -21,9 +21,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get
 			{
 				//## Handle return of RepeatS for which no match was found
-				//TODO: Handle return of RepeatS for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return new Ifc4.MeasureResource.IfcBoolean(RepeatS);
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcSurfaceTexture.RepeatT 
@@ -31,8 +30,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get
 			{
 				//## Handle return of RepeatT for which no match was found
-				//TODO: Handle return of RepeatT for which no match was found
-				throw new System.NotImplementedException();
+                return new Ifc4.MeasureResource.IfcBoolean(RepeatT);
 				//##
 			} 
 		}

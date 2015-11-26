@@ -62,20 +62,17 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				var ifccalendardate = DataValue as DateTimeResource.IfcCalendarDate;
 				if (ifccalendardate != null) 
 					//## Handle entity IfcCalendarDate which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
-					//TODO: Handle entity IfcCalendarDate which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
-					throw new System.NotImplementedException();
+                    return new Ifc4.DateTimeResource.IfcDate(ifccalendardate.ToISODateTimeString());
 					//##
 				var ifclocaltime = DataValue as DateTimeResource.IfcLocalTime;
 				if (ifclocaltime != null) 
 					//## Handle entity IfcLocalTime which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
-					//TODO: Handle entity IfcLocalTime which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
-					throw new System.NotImplementedException();
+                    return new Ifc4.DateTimeResource.IfcTime(ifclocaltime.ToISODateTimeString());
 					//##
 				var ifcdateandtime = DataValue as DateTimeResource.IfcDateAndTime;
 				if (ifcdateandtime != null) 
 					//## Handle entity IfcDateAndTime which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
-					//TODO: Handle entity IfcDateAndTime which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
-					throw new System.NotImplementedException();
+                    return new Ifc4.DateTimeResource.IfcDateTime(ifcdateandtime.ToISODateTimeString());
 					//##
 				var ifcmeasurewithunit = DataValue as MeasureResource.IfcMeasureWithUnit;
 				if (ifcmeasurewithunit != null) 
@@ -84,14 +81,12 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (ifctable != null) 
 					return ifctable;
 				if (DataValue is MeasureResource.IfcText) 
-					return new Ifc4.MeasureResource.IfcText((string)(MeasureResource.IfcText)DataValue);
+					return new Ifc4.MeasureResource.IfcText((MeasureResource.IfcText)DataValue);
 				var ifctimeseries = DataValue as TimeSeriesResource.IfcTimeSeries;
 				if (ifctimeseries != null) 
 					return ifctimeseries;
 				var ifccostvalue = DataValue as CostResource.IfcCostValue;
-				if (ifccostvalue != null) 
-					return ifccostvalue;
-				return null;
+			    return ifccostvalue;
 			} 
 		}
 		IIfcReference IIfcMetric.ReferencePath 
