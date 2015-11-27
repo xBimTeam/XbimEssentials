@@ -5,7 +5,6 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.CobieExpress;
 using Xbim.Common;
-using Xbim.IO.Esent;
 using Xbim.IO.Memory;
 
 namespace Xbim.MemoryModel.Tests

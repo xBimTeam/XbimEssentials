@@ -665,7 +665,7 @@ namespace Xbim.Ifc
                 int numberOfStyles = styles.Count;
                 //start writing out
 
-                binaryStream.Write((Int32) 94132117); //magic number
+                binaryStream.Write((Int32) WexBimId); //magic number
 
                 binaryStream.Write((byte) 2); //version of stream, arrays now packed as doubles
                 var start = (int) binaryStream.Seek(0, SeekOrigin.Current);
@@ -740,7 +740,7 @@ namespace Xbim.Ifc
                 }
 
                 //write out the multiple instances
-                var openingElementId = _model.Metadata.ExpressTypeId(typeof (Ifc4.ProductExtension.IfcOpeningElement));
+                var openingElementId = _model.Metadata.ExpressTypeId("IFCOPENINGELEMENT");
                 foreach (var geometry in lookup)
                 {
                     if (geometry.ReferenceCount > 1)
@@ -817,6 +817,8 @@ namespace Xbim.Ifc
                 // ReSharper restore RedundantCast
             }
         }
+
+        public const int WexBimId = 94132117;
 
         /// <summary>
         /// Calculates and sets the model factors, call everytime a unit of measurement is changed

@@ -111,5 +111,11 @@ namespace Xbim.IO.Esent
                 }
             }
         }
+
+       
+        void IGeometryStoreInitialiser.Commit()
+        {
+            _esentGeometryStore.EndInit(this);
+        }
     }
 }

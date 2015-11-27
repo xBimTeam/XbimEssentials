@@ -35,7 +35,7 @@ namespace Xbim.IO.Esent
         private readonly IEntityFactory _factory;
         private Session _session;
         private JET_DBID _databaseId;
-        private JET_DBID _writeableDatabaseId;
+       
         static int cacheSizeInBytes = 128 * 1024 * 1024 ;
         private const int MaxCachedEntityTables = 32;
         private const int MaxCachedGeometryTables = 32;

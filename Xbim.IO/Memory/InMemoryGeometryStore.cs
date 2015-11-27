@@ -73,7 +73,7 @@ namespace Xbim.IO.Memory
             return new InMemoryGeometryStoreInitialiser(this);
         }
 
-        public void EndInit(IGeometryStoreInitialiser transaction)
+        internal void EndInit(IGeometryStoreInitialiser transaction)
         {
             _entityInstanceLookup = ShapeInstances.GroupBy(s => s.Value.IfcProductLabel).ToDictionary(s=>s.Key,v=>
             {

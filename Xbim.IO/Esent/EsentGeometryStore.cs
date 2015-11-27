@@ -58,7 +58,7 @@ namespace Xbim.IO.Esent
             }        
         }
 
-        public void EndInit(IGeometryStoreInitialiser transaction)
+        internal void EndInit(IGeometryStoreInitialiser transaction)
         {
             //update the reference counts
             if (transaction == _currentTransaction)
