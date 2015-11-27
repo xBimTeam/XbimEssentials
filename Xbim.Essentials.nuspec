@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>Xbim.Essentials</id>
-        <version>4.0.0-V039</version>
+        <version>4.0.0-V041</version>
         <title>xBIM Essentials 4</title>
         <authors>xBIM team</authors>
         <owners>Steve Lockley</owners>
@@ -20,11 +20,11 @@
           The xBIM project provides packages to convert IFC models to COBie spreadsheets in both UK and US cultures as well as a range of 3D viewing controls for use with Windows forms, WPF, WEBGL and OpenGL platforms.
           IOS and Android versions are under development.</description>
         <summary>The .Net toolkit for developing BIM applications based on the IFC standards. Essential support for the IFC2x3 and IFC4 data models</summary>
-        <releaseNotes>Support for IFC2x3 and IFC4</releaseNotes>
+        <releaseNotes>Support for IFC2x3 and IFC4 and Tesselation added</releaseNotes>
         <language>en-GB</language>
         <tags>BIM, IFC, IfcXml, IfcZip, COBie, .Net, C#, BuildingSmart</tags>
 	<dependencies>
-		<dependency id="log4net" version="2.0.3" />
+		<dependency id="log4net" version="2.0.4" />
 		<dependency id="ManagedEsent" version="1.9.2.0" />
 		<dependency id="SharpZipLib" version="0.86.0" />
 	</dependencies> 
@@ -36,24 +36,27 @@
 		<file src="Output\Release\Xbim.Ifc2x3.dll"         target="lib\net40\Xbim.Ifc2x3.dll" />
 		<file src="Output\Release\Xbim.Ifc2x3.IO.dll"      target="lib\net40\Xbim.Ifc2x3.IO.dll" />
 		<file src="Output\Release\Xbim.Ifc4.dll"           target="lib\net40\Xbim.Ifc4.dll" />
-    <file src="Output\Release\Xbim.Ifc.dll"           target="lib\net40\Xbim.Ifc.dll" />
+    <file src="Output\Release\Xbim.Ifc.dll"            target="lib\net40\Xbim.Ifc.dll" />
 		<file src="Output\Release\Xbim.IO.dll"             target="lib\net40\Xbim.IO.dll" />
+    <file src="Output\Release\Xbim.Tessellator.dll"    target="lib\net40\Xbim.Tessellator.dll" />
 		<file src="Output\Release\Xbim.CobieExpress.pdb"   target="lib\net40\Xbim.CobieExpress.pdb" />
 		<file src="Output\Release\Xbim.Common.pdb"         target="lib\net40\Xbim.Common.pdb" />
 		<file src="Output\Release\Xbim.Ifc.Extensions.pdb" target="lib\net40\Xbim.Ifc.Extensions.pdb" />
 		<file src="Output\Release\Xbim.Ifc2x3.IO.pdb"      target="lib\net40\Xbim.Ifc2x3.IO.pdb" />
 		<file src="Output\Release\Xbim.Ifc2x3.pdb"         target="lib\net40\Xbim.Ifc2x3.pdb" />
 		<file src="Output\Release\Xbim.Ifc4.pdb"           target="lib\net40\Xbim.Ifc4.pdb" />
-    <file src="Output\Release\Xbim.Ifc.pdb"           target="lib\net40\Xbim.Ifc.pdb" />
+    <file src="Output\Release\Xbim.Ifc.pdb"            target="lib\net40\Xbim.Ifc.pdb" />
 		<file src="Output\Release\Xbim.IO.pdb"             target="lib\net40\Xbim.IO.pdb" />
+    <file src="Output\Release\Xbim.Tessellator.pdb"    target="lib\net40\Xbim.Tessellator.pdb" />
 		<file src="Output\Release\Xbim.CobieExpress.XML"   target="lib\net40\Xbim.CobieExpress.XML" />
 		<file src="Output\Release\Xbim.Common.XML"         target="lib\net40\Xbim.Common.XML" />
 		<file src="Output\Release\Xbim.Ifc.Extensions.XML" target="lib\net40\Xbim.Ifc.Extensions.XML" />
 		<file src="Output\Release\Xbim.Ifc2x3.IO.XML"      target="lib\net40\Xbim.Ifc2x3.IO.XML" />
 		<file src="Output\Release\Xbim.Ifc2x3.XML"         target="lib\net40\Xbim.Ifc2x3.XML" />
 		<file src="Output\Release\Xbim.Ifc4.XML"           target="lib\net40\Xbim.Ifc4.XML" />
-     <file src="Output\Release\Xbim.Ifc.XML"           target="lib\net40\Xbim.Ifc.XML" />
+    <file src="Output\Release\Xbim.Ifc.XML"            target="lib\net40\Xbim.Ifc.XML" />
 		<file src="Output\Release\Xbim.IO.XML"             target="lib\net40\Xbim.IO.XML" />
+    <file src="Output\Release\Xbim.Tessellator.XML"    target="lib\net40\Xbim.Tessellator.XML" />
     </files>
 	
 </package>

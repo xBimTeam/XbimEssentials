@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using log4net.Util;
 using Xbim.Common;
 using Xbim.Common.Geometry;
 
@@ -83,7 +84,7 @@ namespace Xbim.IO.Memory
         }
         public IEnumerable<XbimRegionCollection> Regions
         {
-            get { return _inMemoryGeometryStore.Regions; }
+            get { return _inMemoryGeometryStore.Regions ?? Enumerable.Empty<XbimRegionCollection>(); }
         }
 
         public IEnumerable<int> ContextIds

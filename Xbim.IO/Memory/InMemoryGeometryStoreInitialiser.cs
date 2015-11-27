@@ -5,7 +5,7 @@ namespace Xbim.IO.Memory
     internal class InMemoryGeometryStoreInitialiser : IGeometryStoreInitialiser
     {
         private readonly InMemoryGeometryStore _inMemoryGeometryStore;
-
+        
         public InMemoryGeometryStoreInitialiser(InMemoryGeometryStore inMemoryGeometryStore)
         {          
             _inMemoryGeometryStore = inMemoryGeometryStore;
@@ -13,6 +13,7 @@ namespace Xbim.IO.Memory
         public int AddShapeGeometry(XbimShapeGeometry shapeGeometry)
         {
             int id = _inMemoryGeometryStore.ShapeGeometries.Count + 1;//need 1 based to match database
+            shapeGeometry.ShapeLabel = id;
             _inMemoryGeometryStore.ShapeGeometries.Add(id, shapeGeometry);
             return id;
         }
@@ -33,6 +34,11 @@ namespace Xbim.IO.Memory
         public void Dispose()
         {
             
+        }
+
+        void IGeometryStoreInitialiser.Commit()
+        {      
+            _inMemoryGeometryStore.EndInit(this);     
         }
     }
 }

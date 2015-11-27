@@ -50,6 +50,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiling.WritingXml", "Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiling.ReadingXML", "Profiling.ReadingXML\Profiling.ReadingXML.csproj", "{6EB77477-67E1-4514-9E2A-C3592DE9B1C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.Tessellator", "Xbim.Tessellator\Xbim.Tessellator.csproj", "{5EE39029-873A-45A0-9259-2198BF8729F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +118,10 @@ Global
 		{6EB77477-67E1-4514-9E2A-C3592DE9B1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EB77477-67E1-4514-9E2A-C3592DE9B1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EB77477-67E1-4514-9E2A-C3592DE9B1C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EE39029-873A-45A0-9259-2198BF8729F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EE39029-873A-45A0-9259-2198BF8729F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EE39029-873A-45A0-9259-2198BF8729F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EE39029-873A-45A0-9259-2198BF8729F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -133,8 +139,5 @@ Global
 		{BF96E8B7-0F9B-4808-B611-BDAAEFD84452} = {A54B7B62-7457-48AB-A9C2-16B087A82C36}
 		{603F1338-048B-4EDC-B982-2344914A47DB} = {2CD5B49F-FB73-4B6D-B570-E51B32905A25}
 		{6EB77477-67E1-4514-9E2A-C3592DE9B1C3} = {2CD5B49F-FB73-4B6D-B570-E51B32905A25}
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

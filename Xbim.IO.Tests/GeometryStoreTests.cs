@@ -46,7 +46,7 @@ namespace Xbim.EsentModel.Tests
                     regions.Add(new XbimRegion("region1",XbimRect3D.Empty,100));
                     txn.AddRegions(regions);
 
-                    geomStore.EndInit(txn);
+                    txn.Commit();
                 }              
                 model.Close();
             }
@@ -115,7 +115,7 @@ namespace Xbim.EsentModel.Tests
                     regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
                     txn.AddRegions(regions);
 
-                    store.EndInit(txn);
+                    txn.Commit();
                 }
                 model.Close();
             }
@@ -158,7 +158,7 @@ namespace Xbim.EsentModel.Tests
                     regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
                     txn.AddRegions(regions);
 
-                    store.EndInit(txn);
+                    txn.Commit();
                 }
                 //now redo which should clear the geoemtry
                 using (var txn = store.BeginInit())
@@ -191,7 +191,7 @@ namespace Xbim.EsentModel.Tests
                     regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
                     txn.AddRegions(regions);
 
-                    store.EndInit(txn);
+                    txn.Commit();
                 }
                 model.Close();
             }
@@ -235,7 +235,7 @@ namespace Xbim.EsentModel.Tests
                     regions = new XbimRegionCollection {ContextLabel = 51};
                     regions.Add(new XbimRegion("region2", XbimRect3D.Empty, 100));
                     txn.AddRegions(regions);
-                    store.EndInit(txn);
+                    txn.Commit();
                 }
 
                 //start to read

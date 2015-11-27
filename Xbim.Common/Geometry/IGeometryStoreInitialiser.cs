@@ -4,6 +4,7 @@ namespace Xbim.Common.Geometry
 {
     public interface IGeometryStoreInitialiser : IDisposable
     {
+
         /// <summary>
         /// Adds a shape geometry to the store under transaction
         /// </summary>
@@ -25,5 +26,10 @@ namespace Xbim.Common.Geometry
         /// <param name="regions"></param>
         /// <returns>the unique Id of the region collection</returns>
         int AddRegions(XbimRegionCollection regions);
+
+        /// <summary>
+        /// Finalises an initialisation and flushes all operations to the store, the transaction must have been obtained from BeginInit
+        /// </summary>
+        void Commit();
     }
 }
