@@ -58,8 +58,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			get
 			{
 				//## Handle return of IsLinear for which no match was found
-				//TODO: Handle return of IsLinear for which no match was found
-				throw new System.NotImplementedException();
+                return new Ifc4.MeasureResource.IfcBoolean(IsLinear);
 				//##
 			} 
 		}

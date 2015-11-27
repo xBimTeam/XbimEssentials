@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Ifc4.MeasureResource;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
@@ -21,8 +22,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			get
 			{
 				//## Handle return of Degree for which no match was found
-				//TODO: Handle return of Degree for which no match was found
-				throw new System.NotImplementedException();
+                return new Ifc4.MeasureResource.IfcInteger(Degree);
 				//##
 			} 
 		}
@@ -71,9 +71,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 			get
 			{
 				//## Handle return of ClosedCurve for which no match was found
-				//TODO: Handle return of ClosedCurve for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return new Ifc4.MeasureResource.IfcLogical(ClosedCurve);
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcLogical IIfcBSplineCurve.SelfIntersect 
@@ -81,8 +80,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			get
 			{
 				//## Handle return of SelfIntersect for which no match was found
-				//TODO: Handle return of SelfIntersect for which no match was found
-				throw new System.NotImplementedException();
+                return new Ifc4.MeasureResource.IfcLogical(SelfIntersect);
 				//##
 			} 
 		}

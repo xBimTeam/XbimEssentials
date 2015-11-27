@@ -56,9 +56,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 			get
 			{
 				//## Handle return of Usense for which no match was found
-				//TODO: Handle return of Usense for which no match was found
-				throw new System.NotImplementedException();
-				//##
+                return new Ifc4.MeasureResource.IfcBoolean(Usense);
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcBoolean IIfcRectangularTrimmedSurface.Vsense 
@@ -66,8 +65,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			get
 			{
 				//## Handle return of Vsense for which no match was found
-				//TODO: Handle return of Vsense for which no match was found
-				throw new System.NotImplementedException();
+                return new Ifc4.MeasureResource.IfcBoolean(Vsense);
 				//##
 			} 
 		}

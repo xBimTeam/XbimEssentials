@@ -47,9 +47,8 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			get
 			{
 				//## Handle return of ProductDefinitional for which no match was found
-				//TODO: Handle return of ProductDefinitional for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return new Ifc4.MeasureResource.IfcLogical(ProductDefinitional);
+			    //##
 			} 
 		}
 		IIfcProductRepresentationSelect IIfcShapeAspect.PartOfProductDefinitionShape 

@@ -102,8 +102,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Handle return of ParameterTakesPrecedence for which no match was found
-				//TODO: Handle return of ParameterTakesPrecedence for which no match was found
-				throw new System.NotImplementedException();
+                return new Ifc4.MeasureResource.IfcBoolean(ParameterTakesPrecedence);
 				//##
 			} 
 		}
@@ -112,8 +111,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Handle return of Sizeable for which no match was found
-				//TODO: Handle return of Sizeable for which no match was found
-				throw new System.NotImplementedException();
+                return new Ifc4.MeasureResource.IfcBoolean(Sizeable);
 				//##
 			} 
 		}

@@ -42,6 +42,9 @@ namespace Xbim.Ifc
             bool deleteOnClose = false)
         {
             _model = iModel;
+            _model.EntityNew += _model_EntityNew;
+            _model.EntityDeleted += _model_EntityDeleted;
+            _model.EntityModified += _model_EntityModified;
             _deleteModelOnClose = deleteOnClose;
             FileName = fileName;
             _xbimFileName = xbimFileName;
@@ -72,7 +75,23 @@ namespace Xbim.Ifc
             CalculateModelFactors();
         }
 
+        void _model_EntityDeleted(IPersistEntity entity)
+        {
+            if (EntityDeleted == null) return;
+            EntityDeleted(entity);
+        }
 
+        void _model_EntityNew(IPersistEntity entity)
+        {
+            if (EntityNew == null) return;
+            EntityNew(entity);
+        }
+
+        void _model_EntityModified(IPersistEntity entity)
+        {
+            if (EntityModified == null) return;
+            EntityModified(entity);
+        }
         //public static IfcStore Open( Stream inputStream, XbimStorageType storageType, string xbimDbName, XbimDBAccess accessMode = XbimDBAccess.Read, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
         //{
         //    var ifcVersion = GetIfcSchemaVersion(inputStream);
@@ -831,10 +850,7 @@ namespace Xbim.Ifc
                             value *= (long)et.Value;
                     }
                     if (siUnit == null) continue;
-                    if (_schema == IfcSchemaVersion.Ifc4)
-                        value *= ((Ifc4.MeasureResource.IfcSIUnit) siUnit).Power;
-                    else
-                        value *= ((Ifc2x3.MeasureResource.IfcSIUnit)siUnit).Power;
+                    value *= siUnit.Power;
                     switch (siUnit.UnitType)
                     {
                         case IfcUnitEnum.LENGTHUNIT:
@@ -862,22 +878,23 @@ namespace Xbim.Ifc
                 break;
             }
          
-            ////check if angle units are incorrectly defined, this happens in some old models
-            //if (Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)
-            //{
-            //    foreach (var trimmedCurve in Instances.Where<IIfcTrimmedCurve>(trimmedCurve =>
-            //        trimmedCurve.MasterRepresentation == Ifc4.GeometryResource.IfcTrimmingPreference.PARAMETER &&
-            //        trimmedCurve.BasisCurve is IIfcConic))
-            //    {
-            //        if (
-            //            !trimmedCurve.Trim1.Concat(trimmedCurve.Trim2)
-            //                .OfType<Ifc4.MeasureResource.IfcParameterValue>()
-            //                .Select(trim => (double)trim.Value)
-            //                .Any(val => val > Math.PI * 2)) continue;
-            //        angleToRadiansConversionFactor = Math.PI / 180;
-            //        break;
-            //    }
-            //}
+            //check if angle units are incorrectly defined, this happens in some old models
+            if (Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)
+            {
+                var trimmed = Instances.Where<IIfcTrimmedCurve>(trimmedCurve =>trimmedCurve.BasisCurve is IIfcConic);
+                foreach (var trimmedCurve in trimmed)
+                {
+                    if (trimmedCurve.MasterRepresentation != IfcTrimmingPreference.PARAMETER)
+                        continue;
+                    if (
+                        !trimmedCurve.Trim1.Concat(trimmedCurve.Trim2)
+                            .OfType<Ifc4.MeasureResource.IfcParameterValue>()
+                            .Select(trim => (double)trim.Value)
+                            .Any(val => val > Math.PI * 2)) continue;
+                    angleToRadiansConversionFactor = Math.PI / 180;
+                    break;
+                }
+            }
             ModelFactors.Initialise(angleToRadiansConversionFactor, lengthToMetresConversionFactor,
                 defaultPrecision);
         }

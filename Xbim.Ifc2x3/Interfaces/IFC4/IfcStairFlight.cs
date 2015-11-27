@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Ifc4.MeasureResource;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgElements
@@ -21,9 +22,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Handle return of NumberOfRisers for which no match was found
-				//TODO: Handle return of NumberOfRisers for which no match was found
-				throw new System.NotImplementedException();
-				//##
+			    return NumberOfRiser.HasValue ? new Ifc4.MeasureResource.IfcInteger(NumberOfRiser.Value) : (IfcInteger?) null;
+			    //##
 			} 
 		}
 		Ifc4.MeasureResource.IfcInteger? IIfcStairFlight.NumberOfTreads 
@@ -31,8 +31,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			get
 			{
 				//## Handle return of NumberOfTreads for which no match was found
-				//TODO: Handle return of NumberOfTreads for which no match was found
-				throw new System.NotImplementedException();
+                return NumberOfTreads.HasValue ? new Ifc4.MeasureResource.IfcInteger(NumberOfTreads.Value) : (IfcInteger?)null;
 				//##
 			} 
 		}

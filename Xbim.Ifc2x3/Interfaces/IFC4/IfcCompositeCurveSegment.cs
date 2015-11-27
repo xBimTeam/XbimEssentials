@@ -10,6 +10,7 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Ifc4.MeasureResource;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
@@ -45,8 +46,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			get
 			{
 				//## Handle return of SameSense for which no match was found
-				//TODO: Handle return of SameSense for which no match was found
-				throw new System.NotImplementedException();
+                return new Ifc4.MeasureResource.IfcBoolean(SameSense);
 				//##
 			} 
 		}

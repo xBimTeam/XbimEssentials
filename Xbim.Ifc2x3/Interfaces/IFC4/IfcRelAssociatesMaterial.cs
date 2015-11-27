@@ -22,31 +22,27 @@ namespace Xbim.Ifc2x3.ProductExtension
 			{
 				if (RelatingMaterial == null) return null;
 				var ifcmaterial = RelatingMaterial as MaterialResource.IfcMaterial;
-				if (ifcmaterial != null) 
-					//## Handle entity IfcMaterial which is not a part of the target select interface IIfcMaterialSelect in property RelatingMaterial
-					//TODO: Handle entity IfcMaterial which is not a part of the target select interface IIfcMaterialSelect in property RelatingMaterial
-					throw new System.NotImplementedException();
+			    if (ifcmaterial != null)
+			        //## Handle entity IfcMaterial which is not a part of the target select interface IIfcMaterialSelect in property RelatingMaterial
+			        return ifcmaterial;
 					//##
 				var ifcmateriallist = RelatingMaterial as MaterialResource.IfcMaterialList;
 				if (ifcmateriallist != null) 
 					return ifcmateriallist;
 				var ifcmateriallayersetusage = RelatingMaterial as MaterialResource.IfcMaterialLayerSetUsage;
-				if (ifcmateriallayersetusage != null) 
-					//## Handle entity IfcMaterialLayerSetUsage which is not a part of the target select interface IIfcMaterialSelect in property RelatingMaterial
-					//TODO: Handle entity IfcMaterialLayerSetUsage which is not a part of the target select interface IIfcMaterialSelect in property RelatingMaterial
-					throw new System.NotImplementedException();
+			    if (ifcmateriallayersetusage != null)
+			        //## Handle entity IfcMaterialLayerSetUsage which is not a part of the target select interface IIfcMaterialSelect in property RelatingMaterial
+			        return ifcmateriallayersetusage;
 					//##
 				var ifcmateriallayerset = RelatingMaterial as MaterialResource.IfcMaterialLayerSet;
 				if (ifcmateriallayerset != null) 
 					//## Handle entity IfcMaterialLayerSet which is not a part of the target select interface IIfcMaterialSelect in property RelatingMaterial
-					//TODO: Handle entity IfcMaterialLayerSet which is not a part of the target select interface IIfcMaterialSelect in property RelatingMaterial
-					throw new System.NotImplementedException();
+                    return ifcmateriallayerset;
 					//##
 				var ifcmateriallayer = RelatingMaterial as MaterialResource.IfcMaterialLayer;
-				if (ifcmateriallayer != null) 
-					//## Handle entity IfcMaterialLayer which is not a part of the target select interface IIfcMaterialSelect in property RelatingMaterial
-					//TODO: Handle entity IfcMaterialLayer which is not a part of the target select interface IIfcMaterialSelect in property RelatingMaterial
-					throw new System.NotImplementedException();
+			    if (ifcmateriallayer != null)
+			        //## Handle entity IfcMaterialLayer which is not a part of the target select interface IIfcMaterialSelect in property RelatingMaterial
+			        return ifcmateriallayer;
 					//##
 				return null;
 			} 

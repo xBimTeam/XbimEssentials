@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using Xbim.Ifc4.Interfaces;
 
+namespace Xbim.Ifc4.Interfaces
+{
+    // ReSharper disable once InconsistentNaming
+    public partial interface IIfcSIUnit
+    {
+        double Power { get; }
+    }
+}
 namespace Xbim.Ifc4.MeasureResource
 {
     // ReSharper disable once InconsistentNaming

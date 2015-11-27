@@ -31,8 +31,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			get
 			{
 				//## Handle return of SelfIntersect for which no match was found
-				//TODO: Handle return of SelfIntersect for which no match was found
-				throw new System.NotImplementedException();
+                return new Ifc4.MeasureResource.IfcLogical(SelfIntersect);
 				//##
 			} 
 		}

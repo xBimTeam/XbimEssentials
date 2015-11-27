@@ -28,8 +28,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 			get
 			{
 				//## Handle return of Orientation for which no match was found
-				//TODO: Handle return of Orientation for which no match was found
-				throw new System.NotImplementedException();
+                return new Ifc4.MeasureResource.IfcBoolean(Orientation);
 				//##
 			} 
 		}
