@@ -136,7 +136,11 @@ namespace Xbim.Common.Metadata
                         var eType = propInfo.PropertyType;
                         while (typeof(IEnumerable).IsAssignableFrom(eType))
                         {
-                            eType = eType.GetGenericArguments()[0];
+                            var genArgs = eType.GetGenericArguments();
+                            if(genArgs.Any())
+                                eType = genArgs[0];
+                            else
+                                break;
                         }
                         metaProperty.EnumerableType = eType;
                     }

@@ -11,15 +11,25 @@ namespace Xbim.IO.Memory
         private readonly IModel _model;
         private readonly Dictionary<Type, List<IPersistEntity>> _internal = new Dictionary<Type, List<IPersistEntity>>();
         private readonly List<IPersistEntity> _list = new List<IPersistEntity>(); 
-        private readonly Type[] _types;
         internal readonly TFactory Factory;
         internal int NextLabel = 1;
         public EntityCollection(IModel model)
         {
             _model = model;
             var mainType = typeof (IPersistEntity);
-            _types = mainType.Assembly.GetTypes().Where(t => mainType.IsAssignableFrom(t)).ToArray();
             Factory = new TFactory();
+        }
+
+        private List<Type> GetQueryTypes(Type type)
+        {
+            var expType = _model.Metadata.ExpressType(type);
+            if (expType != null)
+                return expType.NonAbstractSubTypes.ToList();
+            
+            if(!type.IsInterface) return new List<Type>();
+
+            var implementations = _model.Metadata.ExpressTypesImplementing(type).Where(i => !i.Type.IsAbstract);
+            return implementations.Select(e => e.Type).ToList();
         }
 
         public IEnumerable<T> Where<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument)
@@ -33,10 +43,7 @@ namespace Xbim.IO.Memory
         {
             var queryType = typeof(T);
             //get interface implementations and make sure it doesn't overlap
-            var implementations = _model.Metadata.ExpressTypesImplementing(queryType).ToList();
-            var resultTypes = implementations
-                .Where(implementation => !implementations.Any(i => i != implementation && i.NonAbstractSubTypes.Contains(implementation.Type)))
-                .Select(e => e.Type);
+            var resultTypes = GetQueryTypes(queryType);
 
             foreach (var type in resultTypes)
             {
@@ -63,9 +70,9 @@ namespace Xbim.IO.Memory
             return OfType<T>().FirstOrDefault();
         }
 
-        public T FirstOrDefault<T>(Func<T, bool> expr) where T : IPersistEntity
+        public T FirstOrDefault<T>(Func<T, bool> condition) where T : IPersistEntity
         {
-            return Where(expr).FirstOrDefault();
+            return Where(condition).FirstOrDefault();
         }
 
         public T FirstOrDefault<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument) where T : IPersistEntity
@@ -76,18 +83,30 @@ namespace Xbim.IO.Memory
         public IEnumerable<T> OfType<T>() where T : IPersistEntity
         {
             var queryType = typeof(T);
-            var resultTypes = _internal.Keys.Where(t => queryType.IsAssignableFrom(t));
-            return
-                resultTypes.SelectMany(type => _internal[type], (type, entity) => (T) entity);
+            var resultTypes = GetQueryTypes(queryType);
+            foreach (var resultType in resultTypes)
+            {
+                List<IPersistEntity> subresult;
+                if (!_internal.TryGetValue(resultType, out subresult)) continue;
+                foreach (var entity in subresult)
+                {
+                    yield return (T)entity;
+                }
+            }
         }
 
         public IEnumerable<IPersistEntity> OfType(Type queryType) 
         {
-            if (!(typeof(IPersistEntity).IsAssignableFrom(queryType)))
-                throw new Exception("Type must be assignable from IPersistEntity");
-            var resultTypes = _internal.Keys.Where(queryType.IsAssignableFrom);
-            return
-                resultTypes.SelectMany(type => _internal[type], (type, entity) => entity);
+            var resultTypes = GetQueryTypes(queryType);
+            foreach (var resultType in resultTypes)
+            {
+                List<IPersistEntity> subresult;
+                if (!_internal.TryGetValue(resultType, out subresult)) continue;
+                foreach (var entity in subresult)
+                {
+                    yield return entity;
+                }
+            }
         }
 
         public IEnumerable<T> OfType<T>(bool activate) where T : IPersistEntity
@@ -101,13 +120,10 @@ namespace Xbim.IO.Memory
 
         public IEnumerable<IPersistEntity> OfType(string stringType, bool activate)
         {
-            var queryType = _types.FirstOrDefault(t => t.Name.ToLower() == stringType.ToLower());
+            var queryType = _model.Metadata.ExpressType(stringType.ToUpperInvariant());
             if(queryType == null) 
-                throw new ArgumentException("StringType must be a name of the existing model type");
-            
-            var resultTypes = _internal.Keys.Where(t => queryType.IsAssignableFrom(t));
-            return
-                resultTypes.SelectMany(type => _internal[type], (type, entity) => entity);
+                throw new ArgumentException("StringType must be a name of the existing persist entity type");
+            return OfType(queryType.Type);
         }
 
         public IPersistEntity New(Type t)
@@ -159,9 +175,7 @@ namespace Xbim.IO.Memory
         public long CountOf<T>() where T : IPersistEntity
         {
             var queryType = typeof(T);
-            var resultTypes = _internal.Keys.Where(t => queryType.IsAssignableFrom(t));
-            return
-                resultTypes.SelectMany(type => _internal[type], (type, entity) => (T)entity).Count();
+            return OfType(queryType).Count();
         }
 
         internal void InternalAdd(IPersistEntity entity)
