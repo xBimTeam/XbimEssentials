@@ -252,7 +252,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcConstraintClassificationRelationship>(e => (e.ClassifiedConstraint as IfcConstraint) == this);
+				return Model.Instances.Where<IfcConstraintClassificationRelationship>(e => (e.ClassifiedConstraint as IfcConstraint) == this, "ClassifiedConstraint", this);
 			} 
 		}
 		[InverseProperty("RelatingConstraint")]
@@ -261,7 +261,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this);
+				return Model.Instances.Where<IfcConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this, "RelatingConstraint", this);
 			} 
 		}
 		[InverseProperty("RelatedConstraints")]
@@ -270,7 +270,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcConstraintRelationship>(e => e.RelatedConstraints != null &&  e.RelatedConstraints.Contains(this));
+				return Model.Instances.Where<IfcConstraintRelationship>(e => e.RelatedConstraints != null &&  e.RelatedConstraints.Contains(this), "RelatedConstraints", this);
 			} 
 		}
 		[InverseProperty("RelatingConstraint")]
@@ -279,7 +279,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertyConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this);
+				return Model.Instances.Where<IfcPropertyConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this, "RelatingConstraint", this);
 			} 
 		}
 		[InverseProperty("RelatingConstraint")]
@@ -288,7 +288,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcConstraintAggregationRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this);
+				return Model.Instances.Where<IfcConstraintAggregationRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this, "RelatingConstraint", this);
 			} 
 		}
 		[InverseProperty("RelatedConstraints")]
@@ -297,7 +297,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcConstraintAggregationRelationship>(e => e.RelatedConstraints != null &&  e.RelatedConstraints.Contains(this));
+				return Model.Instances.Where<IfcConstraintAggregationRelationship>(e => e.RelatedConstraints != null &&  e.RelatedConstraints.Contains(this), "RelatedConstraints", this);
 			} 
 		}
 		#endregion

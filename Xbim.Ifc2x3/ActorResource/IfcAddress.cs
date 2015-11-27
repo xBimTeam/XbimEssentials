@@ -175,7 +175,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPerson>(e => e.Addresses != null &&  e.Addresses.Contains(this));
+				return Model.Instances.Where<IfcPerson>(e => e.Addresses != null &&  e.Addresses.Contains(this), "Addresses", this);
 			} 
 		}
 		[InverseProperty("Addresses")]
@@ -184,7 +184,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcOrganization>(e => e.Addresses != null &&  e.Addresses.Contains(this));
+				return Model.Instances.Where<IfcOrganization>(e => e.Addresses != null &&  e.Addresses.Contains(this), "Addresses", this);
 			} 
 		}
 		#endregion

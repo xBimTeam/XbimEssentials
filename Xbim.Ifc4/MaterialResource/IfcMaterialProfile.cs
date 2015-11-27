@@ -163,7 +163,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.FirstOrDefault<IfcMaterialProfileSet>(e => e.MaterialProfiles != null &&  e.MaterialProfiles.Contains(this));
+				return Model.Instances.FirstOrDefault<IfcMaterialProfileSet>(e => e.MaterialProfiles != null &&  e.MaterialProfiles.Contains(this), "MaterialProfiles", this);
 			} 
 		}
 		#endregion

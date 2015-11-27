@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsPortToElement>(e => (e.RelatedElement as IfcDistributionElement) == this);
+				return Model.Instances.Where<IfcRelConnectsPortToElement>(e => (e.RelatedElement as IfcDistributionElement) == this, "RelatedElement", this);
 			} 
 		}
 		#endregion

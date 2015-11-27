@@ -10,7 +10,6 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using Xbim.Ifc4.MeasureResource;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.RepresentationResource
@@ -29,7 +28,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			get
 			{
 				//## Handle return of Precision for which no match was found
-				return Precision.HasValue ?  new IfcReal(Precision.Value) : (IfcReal?) null;
+                return Precision.HasValue ? new Ifc4.MeasureResource.IfcReal(Precision.Value) : (Ifc4.MeasureResource.IfcReal?)null;
 			    //##
 			} 
 		}

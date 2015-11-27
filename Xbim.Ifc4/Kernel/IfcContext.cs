@@ -145,7 +145,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDefinesByProperties>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
+				return Model.Instances.Where<IfcRelDefinesByProperties>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this), "RelatedObjects", this);
 			} 
 		}
 		[InverseProperty("RelatingContext")]
@@ -154,7 +154,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDeclares>(e => (e.RelatingContext as IfcContext) == this);
+				return Model.Instances.Where<IfcRelDeclares>(e => (e.RelatingContext as IfcContext) == this, "RelatingContext", this);
 			} 
 		}
 		#endregion

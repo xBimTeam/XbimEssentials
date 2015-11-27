@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMaterialDefinitionRepresentation>(e => (e.RepresentedMaterial as IfcMaterial) == this);
+				return Model.Instances.Where<IfcMaterialDefinitionRepresentation>(e => (e.RepresentedMaterial as IfcMaterial) == this, "RepresentedMaterial", this);
 			} 
 		}
 		[InverseProperty("RelatedMaterials")]
@@ -126,7 +126,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMaterialRelationship>(e => e.RelatedMaterials != null &&  e.RelatedMaterials.Contains(this));
+				return Model.Instances.Where<IfcMaterialRelationship>(e => e.RelatedMaterials != null &&  e.RelatedMaterials.Contains(this), "RelatedMaterials", this);
 			} 
 		}
 		[InverseProperty("RelatingMaterial")]
@@ -135,7 +135,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMaterialRelationship>(e => (e.RelatingMaterial as IfcMaterial) == this);
+				return Model.Instances.Where<IfcMaterialRelationship>(e => (e.RelatingMaterial as IfcMaterial) == this, "RelatingMaterial", this);
 			} 
 		}
 		#endregion

@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelFillsElement>(e => (e.RelatedBuildingElement as IfcElement) == this);
+				return Model.Instances.Where<IfcRelFillsElement>(e => (e.RelatedBuildingElement as IfcElement) == this, "RelatedBuildingElement", this);
 			} 
 		}
 		[InverseProperty("RelatingElement")]
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsElements>(e => (e.RelatingElement as IfcElement) == this);
+				return Model.Instances.Where<IfcRelConnectsElements>(e => (e.RelatingElement as IfcElement) == this, "RelatingElement", this);
 			} 
 		}
 		[InverseProperty("RelatedElement")]
@@ -120,7 +120,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelInterferesElements>(e => (e.RelatedElement as IfcElement) == this);
+				return Model.Instances.Where<IfcRelInterferesElements>(e => (e.RelatedElement as IfcElement) == this, "RelatedElement", this);
 			} 
 		}
 		[InverseProperty("RelatingElement")]
@@ -129,7 +129,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelInterferesElements>(e => (e.RelatingElement as IfcElement) == this);
+				return Model.Instances.Where<IfcRelInterferesElements>(e => (e.RelatingElement as IfcElement) == this, "RelatingElement", this);
 			} 
 		}
 		[InverseProperty("RelatingElement")]
@@ -138,7 +138,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelProjectsElement>(e => (e.RelatingElement as IfcElement) == this);
+				return Model.Instances.Where<IfcRelProjectsElement>(e => (e.RelatingElement as IfcElement) == this, "RelatingElement", this);
 			} 
 		}
 		[InverseProperty("RelatedElements")]
@@ -147,7 +147,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelReferencedInSpatialStructure>(e => e.RelatedElements != null &&  e.RelatedElements.Contains(this));
+				return Model.Instances.Where<IfcRelReferencedInSpatialStructure>(e => e.RelatedElements != null &&  e.RelatedElements.Contains(this), "RelatedElements", this);
 			} 
 		}
 		[InverseProperty("RelatingBuildingElement")]
@@ -156,7 +156,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelVoidsElement>(e => (e.RelatingBuildingElement as IfcElement) == this);
+				return Model.Instances.Where<IfcRelVoidsElement>(e => (e.RelatingBuildingElement as IfcElement) == this, "RelatingBuildingElement", this);
 			} 
 		}
 		[InverseProperty("RealizingElements")]
@@ -165,7 +165,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsWithRealizingElements>(e => e.RealizingElements != null &&  e.RealizingElements.Contains(this));
+				return Model.Instances.Where<IfcRelConnectsWithRealizingElements>(e => e.RealizingElements != null &&  e.RealizingElements.Contains(this), "RealizingElements", this);
 			} 
 		}
 		[InverseProperty("RelatedBuildingElement")]
@@ -174,7 +174,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSpaceBoundary>(e => (e.RelatedBuildingElement as IfcElement) == this);
+				return Model.Instances.Where<IfcRelSpaceBoundary>(e => (e.RelatedBuildingElement as IfcElement) == this, "RelatedBuildingElement", this);
 			} 
 		}
 		[InverseProperty("RelatedElement")]
@@ -183,7 +183,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsElements>(e => (e.RelatedElement as IfcElement) == this);
+				return Model.Instances.Where<IfcRelConnectsElements>(e => (e.RelatedElement as IfcElement) == this, "RelatedElement", this);
 			} 
 		}
 		[InverseProperty("RelatedElements")]
@@ -192,7 +192,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelContainedInSpatialStructure>(e => e.RelatedElements != null &&  e.RelatedElements.Contains(this));
+				return Model.Instances.Where<IfcRelContainedInSpatialStructure>(e => e.RelatedElements != null &&  e.RelatedElements.Contains(this), "RelatedElements", this);
 			} 
 		}
 		[InverseProperty("RelatingBuildingElement")]
@@ -201,7 +201,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelCoversBldgElements>(e => (e.RelatingBuildingElement as IfcElement) == this);
+				return Model.Instances.Where<IfcRelCoversBldgElements>(e => (e.RelatingBuildingElement as IfcElement) == this, "RelatingBuildingElement", this);
 			} 
 		}
 		#endregion

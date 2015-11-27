@@ -207,7 +207,7 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcOrganizationRelationship>(e => e.RelatedOrganizations != null &&  e.RelatedOrganizations.Contains(this));
+				return Model.Instances.Where<IfcOrganizationRelationship>(e => e.RelatedOrganizations != null &&  e.RelatedOrganizations.Contains(this), "RelatedOrganizations", this);
 			} 
 		}
 		[InverseProperty("RelatingOrganization")]
@@ -216,7 +216,7 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcOrganizationRelationship>(e => (e.RelatingOrganization as IfcOrganization) == this);
+				return Model.Instances.Where<IfcOrganizationRelationship>(e => (e.RelatingOrganization as IfcOrganization) == this, "RelatingOrganization", this);
 			} 
 		}
 		[InverseProperty("TheOrganization")]
@@ -225,7 +225,7 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPersonAndOrganization>(e => (e.TheOrganization as IfcOrganization) == this);
+				return Model.Instances.Where<IfcPersonAndOrganization>(e => (e.TheOrganization as IfcOrganization) == this, "TheOrganization", this);
 			} 
 		}
 		#endregion

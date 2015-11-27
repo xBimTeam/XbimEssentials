@@ -51,14 +51,24 @@ namespace Xbim.IO.Esent
         }
 
 
+        public IEnumerable<T> Where<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument) where T : IPersistEntity
+        {
+            return Cache.Where(condition, inverseProperty, inverseArgument);
+        }
+
         public T FirstOrDefault<T>() where T : IPersistEntity
         {
             return OfType<T>().FirstOrDefault();
         }
 
-        public T FirstOrDefault<T>(Expression<Func<T, bool>> expr) where T : IPersistEntity
+        public T FirstOrDefault<T>(Func<T, bool> expr) where T : IPersistEntity
         {
             return Where(expr).FirstOrDefault();
+        }
+
+        public T FirstOrDefault<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument) where T : IPersistEntity
+        {
+            return Where(condition, inverseProperty, inverseArgument).FirstOrDefault();
         }
 
         public IEnumerable<TIfc> OfType<TIfc>() where TIfc : IPersistEntity
@@ -77,9 +87,8 @@ namespace Xbim.IO.Esent
         /// <typeparam name = "TIfcType">Ifc Type to filter</typeparam>
         /// <param name = "expression">function to execute</param>
         /// <returns></returns>
-        public IEnumerable<TIfcType> Where<TIfcType>(Expression<Func<TIfcType, bool>> expression) where TIfcType : IPersistEntity
+        public IEnumerable<TIfcType> Where<TIfcType>(Func<TIfcType, bool> expression) where TIfcType : IPersistEntity
         {
-            
             return Cache.Where(expression);
         }
 

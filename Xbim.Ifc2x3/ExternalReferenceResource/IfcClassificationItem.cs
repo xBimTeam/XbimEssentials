@@ -175,7 +175,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcClassificationItemRelationship>(e => e.RelatedItems != null &&  e.RelatedItems.Contains(this));
+				return Model.Instances.Where<IfcClassificationItemRelationship>(e => e.RelatedItems != null &&  e.RelatedItems.Contains(this), "RelatedItems", this);
 			} 
 		}
 		[InverseProperty("RelatingItem")]
@@ -184,7 +184,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcClassificationItemRelationship>(e => (e.RelatingItem as IfcClassificationItem) == this);
+				return Model.Instances.Where<IfcClassificationItemRelationship>(e => (e.RelatingItem as IfcClassificationItem) == this, "RelatingItem", this);
 			} 
 		}
 		#endregion

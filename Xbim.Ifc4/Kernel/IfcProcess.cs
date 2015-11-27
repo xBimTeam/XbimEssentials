@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSequence>(e => (e.RelatingProcess as IfcProcess) == this);
+				return Model.Instances.Where<IfcRelSequence>(e => (e.RelatingProcess as IfcProcess) == this, "RelatingProcess", this);
 			} 
 		}
 		[InverseProperty("RelatedProcess")]
@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSequence>(e => (e.RelatedProcess as IfcProcess) == this);
+				return Model.Instances.Where<IfcRelSequence>(e => (e.RelatedProcess as IfcProcess) == this, "RelatedProcess", this);
 			} 
 		}
 		[InverseProperty("RelatingProcess")]
@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToProcess>(e => (e.RelatingProcess as IfcProcess) == this);
+				return Model.Instances.Where<IfcRelAssignsToProcess>(e => (e.RelatingProcess as IfcProcess) == this, "RelatingProcess", this);
 			} 
 		}
 		#endregion

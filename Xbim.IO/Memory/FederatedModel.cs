@@ -85,9 +85,14 @@ namespace Xbim.IO.Memory
             return GetEnumerator();
         }
 
-        public IEnumerable<T> Where<T>(Expression<Func<T, bool>> expr) where T : IPersistEntity
+        public IEnumerable<T> Where<T>(Func<T, bool> expr) where T : IPersistEntity
         {
             return _model.ReferencedModels.Select(rm => rm.Model).SelectMany(model => model.Instances.Where(expr));
+        }
+
+        public IEnumerable<T> Where<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument) where T : IPersistEntity
+        {
+            return _model.ReferencedModels.Select(rm => rm.Model).SelectMany(model => model.Instances.Where(condition, inverseProperty, inverseArgument));
         }
 
         public T FirstOrDefault<T>() where T : IPersistEntity
@@ -95,9 +100,14 @@ namespace Xbim.IO.Memory
             return OfType<T>().FirstOrDefault();
         }
 
-        public T FirstOrDefault<T>(Expression<Func<T, bool>> expr) where T : IPersistEntity
+        public T FirstOrDefault<T>(Func<T, bool> expr) where T : IPersistEntity
         {
             return Where(expr).FirstOrDefault();
+        }
+
+        public T FirstOrDefault<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument) where T : IPersistEntity
+        {
+            return Where(condition, inverseProperty, inverseArgument).FirstOrDefault();
         }
 
         public IEnumerable<T> OfType<T>() where T : IPersistEntity

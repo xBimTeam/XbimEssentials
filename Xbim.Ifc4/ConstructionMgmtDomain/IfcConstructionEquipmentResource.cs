@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ConstructionMgmtDomain;
 
 namespace Xbim.Ifc4.Interfaces

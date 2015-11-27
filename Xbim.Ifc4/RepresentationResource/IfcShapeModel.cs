@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcShapeAspect>(e => e.ShapeRepresentations != null &&  e.ShapeRepresentations.Contains(this));
+				return Model.Instances.Where<IfcShapeAspect>(e => e.ShapeRepresentations != null &&  e.ShapeRepresentations.Contains(this), "ShapeRepresentations", this);
 			} 
 		}
 		#endregion

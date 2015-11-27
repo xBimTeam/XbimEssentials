@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ExternalReferenceResource;
 
 namespace Xbim.Ifc4.Interfaces
@@ -357,7 +356,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesDocument>(e => (e.RelatingDocument as IfcDocumentInformation) == this);
+				return Model.Instances.Where<IfcRelAssociatesDocument>(e => (e.RelatingDocument as IfcDocumentInformation) == this, "RelatingDocument", this);
 			} 
 		}
 		[InverseProperty("ReferencedDocument")]
@@ -366,7 +365,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDocumentReference>(e => (e.ReferencedDocument as IfcDocumentInformation) == this);
+				return Model.Instances.Where<IfcDocumentReference>(e => (e.ReferencedDocument as IfcDocumentInformation) == this, "ReferencedDocument", this);
 			} 
 		}
 		[InverseProperty("RelatedDocuments")]
@@ -375,7 +374,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => e.RelatedDocuments != null &&  e.RelatedDocuments.Contains(this));
+				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => e.RelatedDocuments != null &&  e.RelatedDocuments.Contains(this), "RelatedDocuments", this);
 			} 
 		}
 		[InverseProperty("RelatingDocument")]
@@ -384,7 +383,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => (e.RelatingDocument as IfcDocumentInformation) == this);
+				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => (e.RelatingDocument as IfcDocumentInformation) == this, "RelatingDocument", this);
 			} 
 		}
 		#endregion

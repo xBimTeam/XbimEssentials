@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssigns>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
+				return Model.Instances.Where<IfcRelAssigns>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this), "RelatedObjects", this);
 			} 
 		}
 		[InverseProperty("RelatedObjects")]
@@ -75,7 +75,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelNests>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
+				return Model.Instances.Where<IfcRelNests>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this), "RelatedObjects", this);
 			} 
 		}
 		[InverseProperty("RelatingObject")]
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelNests>(e => (e.RelatingObject as IfcObjectDefinition) == this);
+				return Model.Instances.Where<IfcRelNests>(e => (e.RelatingObject as IfcObjectDefinition) == this, "RelatingObject", this);
 			} 
 		}
 		[InverseProperty("RelatedDefinitions")]
@@ -93,7 +93,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDeclares>(e => e.RelatedDefinitions != null &&  e.RelatedDefinitions.Contains(this));
+				return Model.Instances.Where<IfcRelDeclares>(e => e.RelatedDefinitions != null &&  e.RelatedDefinitions.Contains(this), "RelatedDefinitions", this);
 			} 
 		}
 		[InverseProperty("RelatingObject")]
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAggregates>(e => (e.RelatingObject as IfcObjectDefinition) == this);
+				return Model.Instances.Where<IfcRelAggregates>(e => (e.RelatingObject as IfcObjectDefinition) == this, "RelatingObject", this);
 			} 
 		}
 		[InverseProperty("RelatedObjects")]
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAggregates>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
+				return Model.Instances.Where<IfcRelAggregates>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this), "RelatedObjects", this);
 			} 
 		}
 		[InverseProperty("RelatedObjects")]
@@ -120,7 +120,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociates>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
+				return Model.Instances.Where<IfcRelAssociates>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this), "RelatedObjects", this);
 			} 
 		}
 		#endregion

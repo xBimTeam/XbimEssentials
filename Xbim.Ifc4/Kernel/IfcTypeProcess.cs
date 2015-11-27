@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToProcess>(e => (e.RelatingProcess as IfcTypeProcess) == this);
+				return Model.Instances.Where<IfcRelAssignsToProcess>(e => (e.RelatingProcess as IfcTypeProcess) == this, "RelatingProcess", this);
 			} 
 		}
 		#endregion

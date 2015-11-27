@@ -17,7 +17,6 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProfileResource;
 
 namespace Xbim.Ifc4.Interfaces
@@ -158,7 +157,7 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		[InverseProperty("ProfileDefinition")]
@@ -167,7 +166,7 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcProfileProperties>(e => (e.ProfileDefinition as IfcProfileDef) == this);
+				return Model.Instances.Where<IfcProfileProperties>(e => (e.ProfileDefinition as IfcProfileDef) == this, "ProfileDefinition", this);
 			} 
 		}
 		#endregion

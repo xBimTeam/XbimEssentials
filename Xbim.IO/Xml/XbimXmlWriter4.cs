@@ -243,20 +243,22 @@ namespace Xbim.IO.Xml
             if (typeof(IExpressValueType).IsAssignableFrom(propType))
             {
                 var cpl = propVal as IExpressComplexType;
-                var dta = propVal.GetType().GetCustomAttributes(typeof(DefinedTypeAttribute), false).FirstOrDefault() as DefinedTypeAttribute;
-                var expT = propVal.GetType().GetCustomAttributes(typeof(ExpressTypeAttribute), false).FirstOrDefault() as ExpressTypeAttribute;
-                if (cpl != null && dta != null && expT != null && 
-                    typeof(IEnumerable<IPersistEntity>).IsAssignableFrom(dta.UnderlyingType))
+                if (cpl != null)
                 {
-                    output.WriteStartElement(expT.Name + (wrap ? "-wrapper" : ""));
-                    var idx = new[] {0};
-                    foreach (var ent in cpl.Properties.Cast<IPersistEntity>())
+                    var expT = _metadata.ExpressType(propVal.GetType());
+                    if (expT != null && expT.UnderlyingType != null &&
+                        typeof(IEnumerable<IPersistEntity>).IsAssignableFrom(expT.UnderlyingType))
                     {
-                        WriteEntity(ent, output, false, idx);
-                        idx[0]++;
+                        output.WriteStartElement(expT.ExpressName + (wrap ? "-wrapper" : ""));
+                        var idx = new[] { 0 };
+                        foreach (var ent in cpl.Properties.Cast<IPersistEntity>())
+                        {
+                            WriteEntity(ent, output, false, idx);
+                            idx[0]++;
+                        }
+                        output.WriteEndElement();
+                        return;    
                     }
-                    output.WriteEndElement();
-                    return;
                 }
 
                 var valString = cpl == null
@@ -301,8 +303,8 @@ namespace Xbim.IO.Xml
                 
                 foreach (var item in propValEnum)
                 {
-                    var expT = item.GetType().GetCustomAttributes(typeof(ExpressTypeAttribute), false).FirstOrDefault() as ExpressTypeAttribute;
-                    var name = expT != null ? expT.Name : item.GetType().Name;
+                    var expT = _metadata.ExpressType(item.GetType());
+                    var name = expT != null ? expT.ExpressName : item.GetType().Name;
 
                     WriteProperty(name, item.GetType(), item, output, idx.ToArray(), attr, true);
                     idx[depth]++;

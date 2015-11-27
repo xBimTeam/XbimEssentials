@@ -81,12 +81,14 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				if (ifctable != null) 
 					return ifctable;
 				if (DataValue is MeasureResource.IfcText) 
-					return new Ifc4.MeasureResource.IfcText((MeasureResource.IfcText)DataValue);
+					return new Ifc4.MeasureResource.IfcText((string)(MeasureResource.IfcText)DataValue);
 				var ifctimeseries = DataValue as TimeSeriesResource.IfcTimeSeries;
 				if (ifctimeseries != null) 
 					return ifctimeseries;
 				var ifccostvalue = DataValue as CostResource.IfcCostValue;
-			    return ifccostvalue;
+				if (ifccostvalue != null) 
+					return ifccostvalue;
+				return null;
 			} 
 		}
 		IIfcReference IIfcMetric.ReferencePath 

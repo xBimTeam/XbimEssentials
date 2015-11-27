@@ -152,7 +152,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieIssue>(e => (e.Causing as CobieAsset) == this);
+				return Model.Instances.Where<CobieIssue>(e => (e.Causing as CobieAsset) == this, "Causing", this);
 			} 
 		}
 		[InverseProperty("Affected")]
@@ -161,7 +161,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieIssue>(e => (e.Affected as CobieAsset) == this);
+				return Model.Instances.Where<CobieIssue>(e => (e.Affected as CobieAsset) == this, "Affected", this);
 			} 
 		}
 		#endregion

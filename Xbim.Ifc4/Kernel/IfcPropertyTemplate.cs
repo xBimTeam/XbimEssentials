@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcComplexPropertyTemplate>(e => e.HasPropertyTemplates != null &&  e.HasPropertyTemplates.Contains(this));
+				return Model.Instances.Where<IfcComplexPropertyTemplate>(e => e.HasPropertyTemplates != null &&  e.HasPropertyTemplates.Contains(this), "HasPropertyTemplates", this);
 			} 
 		}
 		[InverseProperty("HasPropertyTemplates")]
@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertySetTemplate>(e => e.HasPropertyTemplates != null &&  e.HasPropertyTemplates.Contains(this));
+				return Model.Instances.Where<IfcPropertySetTemplate>(e => e.HasPropertyTemplates != null &&  e.HasPropertyTemplates.Contains(this), "HasPropertyTemplates", this);
 			} 
 		}
 		#endregion

@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelFlowControlElements>(e => e.RelatedControlElements != null &&  e.RelatedControlElements.Contains(this));
+				return Model.Instances.Where<IfcRelFlowControlElements>(e => e.RelatedControlElements != null &&  e.RelatedControlElements.Contains(this), "RelatedControlElements", this);
 			} 
 		}
 		#endregion

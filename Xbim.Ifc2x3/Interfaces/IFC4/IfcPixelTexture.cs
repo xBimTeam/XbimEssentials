@@ -10,7 +10,6 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using Xbim.Ifc4.MeasureResource;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
@@ -42,10 +41,10 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-			    //## Handle return of Pixel for which no match was found
+				//## Handle return of Pixel for which no match was found
                 return Pixel.Select(p => (new Ifc4.MeasureResource.IfcBinary(p)));
 			    //##
-			}
+			} 
 		}
 	//## Custom code
 	//##

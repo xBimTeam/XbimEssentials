@@ -19,7 +19,6 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.DateTimeResource;
 
 namespace Xbim.Ifc4.Interfaces
@@ -261,7 +260,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		#endregion

@@ -131,7 +131,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcGeometricRepresentationSubContext>(e => (e.ParentContext as IfcGeometricRepresentationContext) == this);
+				return Model.Instances.Where<IfcGeometricRepresentationSubContext>(e => (e.ParentContext as IfcGeometricRepresentationContext) == this, "ParentContext", this);
 			} 
 		}
 		[InverseProperty("SourceCRS")]
@@ -140,7 +140,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcCoordinateOperation>(e => (e.SourceCRS as IfcGeometricRepresentationContext) == this);
+				return Model.Instances.Where<IfcCoordinateOperation>(e => (e.SourceCRS as IfcGeometricRepresentationContext) == this, "SourceCRS", this);
 			} 
 		}
 		#endregion

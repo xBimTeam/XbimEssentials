@@ -92,7 +92,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDefinesByType>(e => (e.RelatingType as IfcTypeObject) == this);
+				return Model.Instances.Where<IfcRelDefinesByType>(e => (e.RelatingType as IfcTypeObject) == this, "RelatingType", this);
 			} 
 		}
 		#endregion

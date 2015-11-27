@@ -154,7 +154,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobiePickValue>(e => (e.PickList as CobiePickList) == this);
+				return Model.Instances.Where<CobiePickValue>(e => (e.PickList as CobiePickList) == this, "PickList", this);
 			} 
 		}
 		#endregion

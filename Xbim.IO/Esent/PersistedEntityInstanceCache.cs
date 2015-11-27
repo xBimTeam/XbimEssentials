@@ -668,7 +668,6 @@ namespace Xbim.IO.Esent
                                 {
                                     //return existing entity
                                     if (Contains(label))
-                                        //TODO: MC: Review this with Steve. This is originally Steve's code but it might be dangerous if the model is to be kept open
                                         return GetInstance(label, false, true);
 
                                     //create new entity and add it to the list
@@ -676,11 +675,7 @@ namespace Xbim.IO.Esent
 
                                     return entity;
                                 },
-                                entity => 
-                                {
-                                    //we need to save it once it is finished.
-                                    table.AddEntity(entity);
-                                },
+                                table.AddEntity,
                                 Model.Metadata);
         }
 
@@ -1294,24 +1289,24 @@ namespace Xbim.IO.Esent
         /// <summary>
         /// Enumerates of all instances of the specified type. The values are cached, if activate is true all the properties of the entity are loaded
         /// </summary>
-        /// <typeparam name="OTType"></typeparam>
+        /// <typeparam name="TOType"></typeparam>
         /// <param name="activate">if true loads the properties of the entity</param>
         /// <param name="indexKey">if the entity has a key object, optimises to search for this handle</param>
         /// <param name="overrideType">if specified this parameter overrides the expressType used internally (but not TIfcType) for filtering purposes</param>
         /// <returns></returns>
-        public IEnumerable<OTType> OfType<OTType>(bool activate = false, int? indexKey = null, ExpressType overrideType = null) where OTType:IPersistEntity 
+        public IEnumerable<TOType> OfType<TOType>(bool activate = false, int? indexKey = null, ExpressType overrideType = null) where TOType:IPersistEntity 
         {
             //srl this needs to be removed, but preserves compatibility with old databases, the -1 should not be used in future
             int indexKeyAsInt;
             if (indexKey.HasValue) indexKeyAsInt = indexKey.Value; //this is lossy and needs to be fixed if we get large databases
             else indexKeyAsInt = -1;
-            var expressType = overrideType ?? Model.Metadata.ExpressType(typeof(OTType));
+            var expressType = overrideType ?? Model.Metadata.ExpressType(typeof(TOType));
             
             // when searching for Interface types SearchingIfcType is null
             //
             var typesToSearch = 
                 expressType == null ?
-                Model.Metadata.TypesImplementing(typeof(OTType)) : 
+                Model.Metadata.TypesImplementing(typeof(TOType)) : 
                 expressType.NonAbstractSubTypes;
 
             if (expressType == null || expressType.IndexedClass)
@@ -1342,7 +1337,7 @@ namespace Xbim.IO.Esent
                                             entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)));
                                         }
                                         entityLabels.Add(entity.EntityLabel);
-                                        yield return (OTType)entity;
+                                        yield return (TOType)entity;
                                     }
                                     else
                                     {
@@ -1358,7 +1353,7 @@ namespace Xbim.IO.Esent
 
                                         if (_caching) entity = _read.GetOrAdd(ih.EntityLabel, entity);
                                         entityLabels.Add(entity.EntityLabel);
-                                        yield return (OTType)entity;
+                                        yield return (TOType)entity;
                                     }
                                 } while (entityTable.TryMoveNextEntityType(out ih) && entityTable.TrySeekEntityLabel(ih.EntityLabel));
                             }
@@ -1368,12 +1363,12 @@ namespace Xbim.IO.Esent
                     // 
                     if (_caching) //look in the createnew cache and find the new ones only
                     {
-                        foreach (var item in CreatedNew.Where(e => e.Value is OTType))//.ToList())
+                        foreach (var item in CreatedNew.Where(e => e.Value is TOType))//.ToList())
                         {
                             if (!indexKey.HasValue) //get all of the type
                             {
                                 if (entityLabels.Add(item.Key))
-                                    yield return (OTType)item.Value;
+                                    yield return (TOType)item.Value;
                             }
                             else
                             {
@@ -1382,7 +1377,7 @@ namespace Xbim.IO.Esent
                                 if (expressType != null && expressType.GetIndexedValues(item.Value).Contains(indexKey.Value)) // get all types that match the index key
                                 {
                                     if (entityLabels.Add(item.Key))
-                                        yield return (OTType)item.Value;
+                                        yield return (TOType)item.Value;
                                 }
                             }
                         }
@@ -1396,7 +1391,7 @@ namespace Xbim.IO.Esent
             else
             {
                 Debug.Assert(indexKeyAsInt == -1, "Trying to look a class up by index key, but the class is not indexed");
-                foreach (var item in OfTypeUnindexed<OTType>(expressType, activate))
+                foreach (var item in OfTypeUnindexed<TOType>(expressType, activate))
                     yield return item;
             }
         }
@@ -1616,151 +1611,194 @@ namespace Xbim.IO.Esent
         #region Support for Linq based indexed searching
 
 
-        private static MemberExpression GetIndexablePropertyOnLeft(Expression leftSide)
+        //private static MemberExpression GetIndexablePropertyOnLeft(Expression leftSide)
+        //{
+        //    var mex = leftSide as MemberExpression;
+        //    if (leftSide.NodeType == ExpressionType.Call)
+        //    {
+        //        var call = leftSide as MethodCallExpression;
+        //        if (call != null && call.Method.Name == "CompareString")
+        //        {
+        //            mex = call.Arguments[0] as MemberExpression;
+        //        }
+        //    }
+        //    return mex;
+        //}
+
+
+        //private static object GetRight(Expression leftSide, Expression rightSide)
+        //{
+        //    if (leftSide.NodeType == ExpressionType.Call)
+        //    {
+        //        var call = leftSide as MethodCallExpression;
+        //        if (call != null && call.Method.Name == "CompareString")
+        //        {
+        //            var evalRight = Expression.Lambda(call.Arguments[1], null);
+        //            //Compile it, invoke it, and get the resulting hash
+        //            return (evalRight.Compile().DynamicInvoke(null));
+        //        }
+        //    }
+        //    //rightside is where we get our hash...
+        //    switch (rightSide.NodeType)
+        //    {
+        //        //shortcut constants, dont eval, will be faster
+        //        case ExpressionType.Constant:
+        //            var constExp
+        //                = (ConstantExpression)rightSide;
+        //            return (constExp.Value);
+
+        //        //if not constant (which is provably terminal in a tree), convert back to Lambda and eval to get the hash.
+        //        default:
+        //            //Lambdas can be created from expressions... yay
+        //            var evalRight = Expression.Lambda(rightSide, null);
+        //            //Compile and invoke it, and get the resulting hash
+        //            return (evalRight.Compile().DynamicInvoke(null));
+        //    }
+        //}
+
+        public IEnumerable<T> Where<T>(Func<T, bool> condition) where T : IPersistEntity
         {
-            var mex = leftSide as MemberExpression;
-            if (leftSide.NodeType == ExpressionType.Call)
-            {
-                var call = leftSide as MethodCallExpression;
-                if (call != null && call.Method.Name == "CompareString")
-                {
-                    mex = call.Arguments[0] as MemberExpression;
-                }
-            }
-            return mex;
+            return Where(condition, null, null);
         }
 
-
-        private static object GetRight(Expression leftSide, Expression rightSide)
+        public IEnumerable<T> Where<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument) where T : IPersistEntity
         {
-            if (leftSide.NodeType == ExpressionType.Call)
-            {
-                var call = leftSide as MethodCallExpression;
-                if (call != null && call.Method.Name == "CompareString")
-                {
-                    var evalRight = Expression.Lambda(call.Arguments[1], null);
-                    //Compile it, invoke it, and get the resulting hash
-                    return (evalRight.Compile().DynamicInvoke(null));
-                }
-            }
-            //rightside is where we get our hash...
-            switch (rightSide.NodeType)
-            {
-                //shortcut constants, dont eval, will be faster
-                case ExpressionType.Constant:
-                    var constExp
-                        = (ConstantExpression)rightSide;
-                    return (constExp.Value);
-
-                //if not constant (which is provably terminal in a tree), convert back to Lambda and eval to get the hash.
-                default:
-                    //Lambdas can be created from expressions... yay
-                    var evalRight = Expression.Lambda(rightSide, null);
-                    //Compile and invoke it, and get the resulting hash
-                    return (evalRight.Compile().DynamicInvoke(null));
-            }
-        }
-
-        public IEnumerable<T> Where<T>(Expression<Func<T, bool>> expr) where T : IPersistEntity
-        {
-            var indexFound = false;
             var type = typeof(T);
             var et = Model.Metadata.ExpressType(type);
             IEnumerable<ExpressType> expressTypes;
             if (et != null)
-                expressTypes = new[] {et};
+                expressTypes = new[] { et };
             else
             {
                 //get interface implementations and make sure it doesn't overlap
                 var implementations = Model.Metadata.ExpressTypesImplementing(type).ToList();
                 expressTypes = implementations.Where(implementation => !implementations.Any(i => i != implementation && i.NonAbstractSubTypes.Contains(implementation.Type)));
             }
-            var predicate = expr.Compile();
-            
+
             foreach (var expressType in expressTypes)
             {
-                if (expressType.HasIndexedAttribute) //we can use a secondary index to look up
+                if (inverseProperty != null && inverseArgument!= null &&
+                    expressType.HasIndexedAttribute &&
+                    expressType.IndexedProperties.Any(p => p.Name == inverseProperty))
                 {
-                    //our indexes work from the hash values of that which is indexed, regardless of type
-
-                    //indexes only work on equality expressions here
-                    //this  matches "Property" = "Value"
-                    switch (expr.Body.NodeType)
+                    //we can use a secondary index to look up
+                    foreach (
+                        var item in
+                            OfType<T>(true, inverseArgument.EntityLabel, expressType).Where(condition))
                     {
-                        case ExpressionType.Equal:
-                            //Equality is a binary expression
-                            var binExp = (BinaryExpression)expr.Body;
-                            //Get some aliases for either side
-                            var leftSide = binExp.Left;
-                            var rightSide = binExp.Right;
-
-                            var hashRight = GetRight(leftSide, rightSide);
-
-                            //if we were able to create a hash from the right side (likely)
-                            var returnedEx = GetIndexablePropertyOnLeft(leftSide);
-                            if (returnedEx != null)
-                            {
-                                //cast to MemberExpression - it allows us to get the property
-                                var propExp = returnedEx;
-
-                                if (expressType.IndexedProperties.Contains(propExp.Member)) //we have a primary key match
-                                {
-                                    var entity = hashRight as IPersistEntity;
-                                    if (entity != null)
-                                    {
-                                        indexFound = true;
-                                        foreach (var item in OfType<T>(true, entity.EntityLabel, expressType).Where(item => predicate(item)))
-                                        {
-                                            yield return item;
-                                        }
-                                    }
-                                }
-                            }
-                            break;
-                        case ExpressionType.Call:
-                            var callExp = (MethodCallExpression)expr.Body;
-                            if (callExp.Method.Name == "Contains")
-                            {
-                                var keyExpr = callExp.Arguments[0];
-                                if (keyExpr.NodeType == ExpressionType.Constant)
-                                {
-                                    var constExp = (ConstantExpression)keyExpr;
-                                    var key = constExp.Value;
-                                    if (callExp.Object != null && callExp.Object.NodeType == ExpressionType.MemberAccess)
-                                    {
-                                        var memExp = (MemberExpression)callExp.Object;
-                                        var pInfo = (PropertyInfo)(memExp.Member);
-                                        if (expressType.IndexedProperties.Contains(pInfo, ComparePropInfo)) //we have a primary key match
-                                        {
-                                            var entity = key as IPersistEntity;
-                                            if (entity != null)
-                                            {
-                                                indexFound = true;
-                                                foreach (var item in OfType<T>(true, entity.EntityLabel, expressType).Where(item => predicate(item)))
-                                                {
-                                                    yield return item;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            break;
+                        yield return item;
                     }
+                    continue;
                 }
 
                 //we cannot optimise so just do it
-                if (!indexFound)
+                foreach (var item in OfType<T>(true, null, expressType).Where(condition))
                 {
-                    foreach (var item in OfType<T>(true, null, expressType))
-                    {
-                        if (predicate(item))
-                            yield return item;
-                    }
+                    yield return item;
                 }
             }
-            
         }
+
+        //public IEnumerable<T> Where<T>(Expression<Func<T, bool>> expr) where T : IPersistEntity
+        //{
+        //    var indexFound = false;
+        //    var type = typeof(T);
+        //    var et = Model.Metadata.ExpressType(type);
+        //    IEnumerable<ExpressType> expressTypes;
+        //    if (et != null)
+        //        expressTypes = new[] {et};
+        //    else
+        //    {
+        //        //get interface implementations and make sure it doesn't overlap
+        //        var implementations = Model.Metadata.ExpressTypesImplementing(type).ToList();
+        //        expressTypes = implementations.Where(implementation => !implementations.Any(i => i != implementation && i.NonAbstractSubTypes.Contains(implementation.Type)));
+        //    }
+        //    var predicate = expr.Compile();
+            
+        //    foreach (var expressType in expressTypes)
+        //    {
+        //        if (expressType.HasIndexedAttribute) //we can use a secondary index to look up
+        //        {
+        //            //our indexes work from the hash values of that which is indexed, regardless of type
+
+        //            //indexes only work on equality expressions here
+        //            //this  matches "Property" = "Value"
+        //            switch (expr.Body.NodeType)
+        //            {
+        //                case ExpressionType.Equal:
+        //                    //Equality is a binary expression
+        //                    var binExp = (BinaryExpression)expr.Body;
+        //                    //Get some aliases for either side
+        //                    var leftSide = binExp.Left;
+        //                    var rightSide = binExp.Right;
+
+        //                    var hashRight = GetRight(leftSide, rightSide);
+
+        //                    //if we were able to create a hash from the right side (likely)
+        //                    var returnedEx = GetIndexablePropertyOnLeft(leftSide);
+        //                    if (returnedEx != null)
+        //                    {
+        //                        //cast to MemberExpression - it allows us to get the property
+        //                        var propExp = returnedEx;
+
+        //                        if (expressType.IndexedProperties.Contains(propExp.Member)) //we have a primary key match
+        //                        {
+        //                            var entity = hashRight as IPersistEntity;
+        //                            if (entity != null)
+        //                            {
+        //                                indexFound = true;
+        //                                foreach (var item in OfType<T>(true, entity.EntityLabel, expressType).Where(item => predicate(item)))
+        //                                {
+        //                                    yield return item;
+        //                                }
+        //                            }
+        //                        }
+        //                    }
+        //                    break;
+        //                case ExpressionType.Call:
+        //                    var callExp = (MethodCallExpression)expr.Body;
+        //                    if (callExp.Method.Name == "Contains")
+        //                    {
+        //                        var keyExpr = callExp.Arguments[0];
+        //                        if (keyExpr.NodeType == ExpressionType.Constant)
+        //                        {
+        //                            var constExp = (ConstantExpression)keyExpr;
+        //                            var key = constExp.Value;
+        //                            if (callExp.Object != null && callExp.Object.NodeType == ExpressionType.MemberAccess)
+        //                            {
+        //                                var memExp = (MemberExpression)callExp.Object;
+        //                                var pInfo = (PropertyInfo)(memExp.Member);
+        //                                if (expressType.IndexedProperties.Contains(pInfo, ComparePropInfo)) //we have a primary key match
+        //                                {
+        //                                    var entity = key as IPersistEntity;
+        //                                    if (entity != null)
+        //                                    {
+        //                                        indexFound = true;
+        //                                        foreach (var item in OfType<T>(true, entity.EntityLabel, expressType).Where(item => predicate(item)))
+        //                                        {
+        //                                            yield return item;
+        //                                        }
+        //                                    }
+        //                                }
+        //                            }
+        //                        }
+        //                    }
+        //                    break;
+        //            }
+        //        }
+
+        //        //we cannot optimise so just do it
+        //        if (!indexFound)
+        //        {
+        //            foreach (var item in OfType<T>(true, null, expressType))
+        //            {
+        //                if (predicate(item))
+        //                    yield return item;
+        //            }
+        //        }
+        //    }
+            
+        //}
 
         #endregion
 

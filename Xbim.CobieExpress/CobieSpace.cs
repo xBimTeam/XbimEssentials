@@ -148,7 +148,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieComponent>(e => (e.Space as CobieSpace) == this);
+				return Model.Instances.Where<CobieComponent>(e => (e.Space as CobieSpace) == this, "Space", this);
 			} 
 		}
 		[InverseProperty("Spaces")]
@@ -157,7 +157,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieZone>(e => e.Spaces != null &&  e.Spaces.Contains(this));
+				return Model.Instances.Where<CobieZone>(e => e.Spaces != null &&  e.Spaces.Contains(this), "Spaces", this);
 			} 
 		}
 		#endregion

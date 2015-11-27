@@ -124,7 +124,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcCompositeCurve>(e => e.Segments != null &&  e.Segments.Contains(this));
+				return Model.Instances.Where<IfcCompositeCurve>(e => e.Segments != null &&  e.Segments.Contains(this), "Segments", this);
 			} 
 		}
 		#endregion

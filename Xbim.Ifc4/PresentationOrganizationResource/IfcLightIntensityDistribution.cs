@@ -15,7 +15,6 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationOrganizationResource;
 
 namespace Xbim.Ifc4.Interfaces

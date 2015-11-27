@@ -22,14 +22,40 @@ namespace Xbim.IO.Memory
             Factory = new TFactory();
         }
 
-        public IEnumerable<T> Where<T>(Expression<Func<T, bool>> expr) where T : IPersistEntity
+        public IEnumerable<T> Where<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument)
+            where T : IPersistEntity
+
+        {
+            return Where(condition);
+        }
+
+        public IEnumerable<T> Where<T>(Func<T, bool> condition) where T : IPersistEntity
         {
             var queryType = typeof(T);
-            var condition = expr != null ? expr.Compile() : null;
-            var resultTypes = _internal.Keys.Where(t => queryType.IsAssignableFrom(t));
-            return
-                resultTypes.SelectMany(type => _internal[type], (type, entity) => (T)entity)
-                    .Where(result => condition == null || condition(result));
+            //get interface implementations and make sure it doesn't overlap
+            var implementations = _model.Metadata.ExpressTypesImplementing(queryType).ToList();
+            var resultTypes = implementations
+                .Where(implementation => !implementations.Any(i => i != implementation && i.NonAbstractSubTypes.Contains(implementation.Type)))
+                .Select(e => e.Type);
+
+            foreach (var type in resultTypes)
+            {
+                List<IPersistEntity> candidtes;
+                if (!_internal.TryGetValue(type, out candidtes)) continue;
+
+                if(condition == null)
+                    foreach (var candidte in candidtes)
+                    {
+                        yield return (T)candidte;
+                    }
+                else
+                {
+                    foreach (var candidte in candidtes.Where(c => condition((T)c)))
+                    {
+                        yield return (T)candidte;
+                    }
+                }
+            }
         }
 
         public T FirstOrDefault<T>() where T : IPersistEntity
@@ -37,9 +63,14 @@ namespace Xbim.IO.Memory
             return OfType<T>().FirstOrDefault();
         }
 
-        public T FirstOrDefault<T>(Expression<Func<T, bool>> expr) where T : IPersistEntity
+        public T FirstOrDefault<T>(Func<T, bool> expr) where T : IPersistEntity
         {
             return Where(expr).FirstOrDefault();
+        }
+
+        public T FirstOrDefault<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument) where T : IPersistEntity
+        {
+            return FirstOrDefault(condition);
         }
 
         public IEnumerable<T> OfType<T>() where T : IPersistEntity

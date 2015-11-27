@@ -146,7 +146,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcTextureCoordinate>(e => e.Maps != null &&  e.Maps.Contains(this));
+				return Model.Instances.Where<IfcTextureCoordinate>(e => e.Maps != null &&  e.Maps.Contains(this), "Maps", this);
 			} 
 		}
 		[InverseProperty("Textures")]
@@ -155,7 +155,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcSurfaceStyleWithTextures>(e => e.Textures != null &&  e.Textures.Contains(this));
+				return Model.Instances.Where<IfcSurfaceStyleWithTextures>(e => e.Textures != null &&  e.Textures.Contains(this), "Textures", this);
 			} 
 		}
 		#endregion

@@ -190,7 +190,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobiePhase>(e => (e.Project as CobieProject) == this);
+				return Model.Instances.Where<CobiePhase>(e => (e.Project as CobieProject) == this, "Project", this);
 			} 
 		}
 		[InverseProperty("Project")]
@@ -199,7 +199,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieFacility>(e => (e.Project as CobieProject) == this);
+				return Model.Instances.Where<CobieFacility>(e => (e.Project as CobieProject) == this, "Project", this);
 			} 
 		}
 		#endregion

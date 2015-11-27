@@ -15,7 +15,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.StructuralAnalysisDomain;
 
 namespace Xbim.Ifc4.Interfaces
@@ -96,7 +95,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsStructuralActivity>(e => (e.RelatedStructuralActivity as IfcStructuralActivity) == this);
+				return Model.Instances.Where<IfcRelConnectsStructuralActivity>(e => (e.RelatedStructuralActivity as IfcStructuralActivity) == this, "RelatedStructuralActivity", this);
 			} 
 		}
 		#endregion

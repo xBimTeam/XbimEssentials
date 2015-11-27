@@ -218,7 +218,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieSystem>(e => e.Components != null &&  e.Components.Contains(this));
+				return Model.Instances.Where<CobieSystem>(e => e.Components != null &&  e.Components.Contains(this), "Components", this);
 			} 
 		}
 		[InverseProperty("ComponentA")]
@@ -227,7 +227,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieConnection>(e => (e.ComponentA as CobieComponent) == this);
+				return Model.Instances.Where<CobieConnection>(e => (e.ComponentA as CobieComponent) == this, "ComponentA", this);
 			} 
 		}
 		[InverseProperty("ComponentB")]
@@ -236,7 +236,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieConnection>(e => (e.ComponentB as CobieComponent) == this);
+				return Model.Instances.Where<CobieConnection>(e => (e.ComponentB as CobieComponent) == this, "ComponentB", this);
 			} 
 		}
 		[InverseProperty("RealizingComponent")]
@@ -245,7 +245,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieConnection>(e => (e.RealizingComponent as CobieComponent) == this);
+				return Model.Instances.Where<CobieConnection>(e => (e.RealizingComponent as CobieComponent) == this, "RealizingComponent", this);
 			} 
 		}
 		#endregion
