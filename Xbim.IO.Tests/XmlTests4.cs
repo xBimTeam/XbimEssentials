@@ -12,6 +12,7 @@ using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
 using Xbim.Ifc4.MaterialResource;
+using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.ProductExtension;
 using Xbim.Ifc4.PropertyResource;
 using Xbim.Ifc4.SharedBldgElements;
@@ -71,19 +72,128 @@ namespace Xbim.MemoryModel.Tests
         }
 
         [TestMethod]
-        public void SampleHouseXmlSerialization()
+        public void ListSerializationTests()
         {
-            const string outPath = "..\\..\\SampleHouse4.xml";
+            const string outPath = "..\\..\\ListSerializationTest.xml";
             using (var model = new MemoryModel<EntityFactory>())
             {
-                model.Open("SampleHouse4.ifc");
+                using (var txn = model.BeginTransaction("site"))
+                {
+                    var building = model.Instances.New<IfcBuilding>(b =>
+                    {
+                        b.GlobalId = Guid.NewGuid();
+                    });
+
+                    var storey1 = model.Instances.New<IfcBuildingStorey>(s =>
+                    {
+                        s.GlobalId = Guid.NewGuid();
+                    });
+                    var storey2 = model.Instances.New<IfcBuildingStorey>(s =>
+                    {
+                        s.GlobalId = Guid.NewGuid();
+                    });
+                    var storey3 = model.Instances.New<IfcBuildingStorey>(s =>
+                    {
+                        s.GlobalId = Guid.NewGuid();
+                    });
+
+                    var rel = model.Instances.New<IfcRelAggregates>(r =>
+                    {
+                        r.GlobalId = Guid.NewGuid();
+                        r.RelatingObject = building;
+                        r.RelatedObjects.Add(storey1);
+                        r.RelatedObjects.Add(storey2);
+                        r.RelatedObjects.Add(storey3);
+                    });
+
+                    txn.Commit();
+                }
+                
                 WriteXml(model, outPath);
 
                 var errs = ValidateIfc4(outPath);
                 Assert.AreEqual(0, errs);
-                
-                WriteJSON(model, "..\\..\\SampleHouse4.json");
+
+                using (var model2 = new MemoryModel<EntityFactory>())
+                {
+                    model2.OpenXml(outPath);
+                    var b = model2.Instances.FirstOrDefault<IfcBuilding>();
+                    Assert.IsNotNull(b);
+
+                    var r = b.IsDecomposedBy.FirstOrDefault();
+                    Assert.IsNotNull(r);
+
+                    var storeys = r.RelatedObjects;
+                    Assert.AreEqual(3, storeys.Count);
+                }
             }
+        }
+
+        [TestMethod]
+        public void SampleHouseXmlSerialization()
+        {
+            var w = new Stopwatch();
+            const string outPath = "..\\..\\SampleHouse4.xml";
+
+            using (var model = new MemoryModel<EntityFactory>())
+            {
+                w.Start();
+                model.Open("SampleHouse4.ifc");
+                w.Stop();
+                Debug.WriteLine("{0}ms to read STEP.", w.ElapsedMilliseconds);
+                var instCount = model.Instances.Count;
+
+                //w.Restart();
+                //WriteXml(model, outPath);
+                //w.Stop();
+                //Debug.WriteLine("{0}ms to write XML.", w.ElapsedMilliseconds);
+
+                //w.Restart();
+                //var errs = ValidateIfc4(outPath);
+                //Assert.AreEqual(0, errs);
+                //w.Stop();
+                //Debug.WriteLine("{0}ms to validate XML.", w.ElapsedMilliseconds);
+                //
+                //w.Restart();
+                //WriteJSON(model, "..\\..\\SampleHouse4.json");
+                //w.Stop();
+                //Debug.WriteLine("{0}ms to write JSON.", w.ElapsedMilliseconds);
+
+                using (var model2 = new MemoryModel<EntityFactory>())
+                {
+                    w.Restart();
+                    model2.OpenXml(outPath);
+                    w.Stop();
+                    Debug.WriteLine("{0}ms to read XML.", w.ElapsedMilliseconds);
+
+                    var instances = model.Instances as EntityCollection<EntityFactory>;
+                    var instances2 = model2.Instances as EntityCollection<EntityFactory>;
+                    if(instances == null || instances2 == null)
+                        throw new Exception();
+
+                    var roots1 = model.Instances.OfType<IfcRoot>();
+                    var roots2 = model2.Instances.OfType<IfcRoot>().ToList();
+                    foreach (var root in roots1.Where(root => roots2.All(r => r.GlobalId != root.GlobalId)))
+                    {
+                        Debug.WriteLine("Missing root element: {0} ({1})", root.GlobalId, root.GetType().Name);
+                    }
+
+                    foreach (var expressType in model2.Metadata.Types().Where(et => typeof(IPersistEntity).IsAssignableFrom(et.Type)))
+                    {
+                        var count1 = instances.OfType(expressType.Type).Count();
+                        var count2 = instances2.OfType(expressType.Type).Count();
+
+                        if (count1 != count2)
+                        {
+                            Debug.WriteLine("Different count of {0} {1}/{2}", expressType.Name, count1, count2);
+                        }
+                    }
+
+                    Assert.IsTrue(instCount == model2.Instances.Count);
+                }
+            }
+
+            
         }
 
         [TestMethod]
@@ -111,12 +221,7 @@ namespace Xbim.MemoryModel.Tests
                 }
                 
 
-                using (var xml = XmlWriter.Create(outPath, new XmlWriterSettings { Indent = true }))
-                {
-                    var writer = new XbimXmlWriter4(configuration.IFC4Add1);
-                    writer.Write(model, xml);
-                    xml.Close();
-                }
+                WriteXml(model, outPath);
 
                 var errs = ValidateIfc4(outPath);
                 Assert.AreEqual(0, errs);
@@ -137,6 +242,59 @@ namespace Xbim.MemoryModel.Tests
                     Assert.IsTrue(site.GlobalId == site2.GlobalId);
                 }
             }
+        }
+
+        [TestMethod]
+        public void SelectTypeSerialization()
+        {
+            const string outPath = "..\\..\\SelectTypeSerialization.xml";
+            using (var model = new MemoryModel<EntityFactory>())
+            {
+                using (var txn = model.BeginTransaction("Test"))
+                {
+                    //property has a select type Value
+                    var pLabel = model.Instances.New<IfcPropertySingleValue>();
+                    pLabel.Name = "Label";
+                    pLabel.NominalValue = new IfcLabel("Label value");
+
+                    var pInteger = model.Instances.New<IfcPropertySingleValue>();
+                    pInteger.Name = "Integer";
+                    pInteger.NominalValue = new IfcInteger(5);
+
+                    var pDouble = model.Instances.New<IfcPropertySingleValue>();
+                    pDouble.Name = "Double";
+                    pDouble.NominalValue = new IfcReal(5);
+
+                    var pBoolean = model.Instances.New<IfcPropertySingleValue>();
+                    pBoolean.Name = "Boolean";
+                    pBoolean.NominalValue = new IfcBoolean(true);
+
+                    var pLogical = model.Instances.New<IfcPropertySingleValue>();
+                    pLogical.Name = "Logical";
+                    pLogical.NominalValue = new IfcLogical((bool?)null);
+
+                    WriteXml(model, outPath);
+                    txn.Commit();
+
+                    using (var model2 = new MemoryModel<EntityFactory>())
+                    {
+                        model2.OpenXml(outPath);
+                        var props = model2.Instances.OfType<IfcPropertySingleValue>().ToList();
+                        var pLabel2 = props.FirstOrDefault(p => p.Name == "Label");
+                        var pInteger2 = props.FirstOrDefault(p => p.Name == "Integer");
+                        var pDouble2 = props.FirstOrDefault(p => p.Name == "Double");
+                        var pBoolean2 = props.FirstOrDefault(p => p.Name == "Boolean");
+                        var pLogical2 = props.FirstOrDefault(p => p.Name == "Logical");
+
+                        Assert.IsTrue(pLabel.NominalValue.Equals(pLabel2.NominalValue));
+                        Assert.IsTrue(pInteger.NominalValue.Equals(pInteger2.NominalValue));
+                        Assert.IsTrue(pDouble.NominalValue.Equals(pDouble2.NominalValue));
+                        Assert.IsTrue(pBoolean.NominalValue.Equals(pBoolean2.NominalValue));
+                        Assert.IsTrue(pLogical.NominalValue.Equals(pLogical2.NominalValue));
+                    }
+                }
+            }
+
         }
 
         [TestMethod]
@@ -189,6 +347,20 @@ namespace Xbim.MemoryModel.Tests
                 Assert.AreEqual(0, errs);
 
                 WriteJSON(model, "..\\..\\properties.json");
+
+
+                using (var model2 = new MemoryModel<EntityFactory>())
+                {
+                    model2.OpenXml(outPath);
+                    var wall = model2.Instances.FirstOrDefault<IfcWall>();
+
+                    Assert.IsNotNull(wall.IsDefinedBy.FirstOrDefault());
+                    var pSetSet =
+                        (IfcPropertySetDefinitionSet) wall.IsDefinedBy.FirstOrDefault().RelatingPropertyDefinition;
+                    var vals = pSetSet.Value as List<IfcPropertySetDefinition>;
+                    Assert.IsNotNull(vals);
+                    Assert.IsTrue(vals.Count == 3);
+                }
             }
         }
         [TestMethod]

@@ -1661,6 +1661,13 @@ namespace Xbim.IO.Esent
             }
         }
 
+        public IEnumerable<T> Where<T>(Func<T, bool> condition) where T : IPersistEntity
+        {
+            var param = Expression.Parameter(typeof (T));
+            Expression<Func<T, bool>> expression = x => condition(x);
+            return Where(expression);
+        }
+
         public IEnumerable<T> Where<T>(Expression<Func<T, bool>> expr) where T : IPersistEntity
         {
             var indexFound = false;

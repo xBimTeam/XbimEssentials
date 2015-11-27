@@ -26,10 +26,31 @@ namespace Xbim.IO.Memory
         {
             var queryType = typeof(T);
             var condition = expr != null ? expr.Compile() : null;
-            var resultTypes = _internal.Keys.Where(t => queryType.IsAssignableFrom(t));
-            return
-                resultTypes.SelectMany(type => _internal[type], (type, entity) => (T)entity)
-                    .Where(result => condition == null || condition(result));
+
+            //get interface implementations and make sure it doesn't overlap
+            var implementations = _model.Metadata.ExpressTypesImplementing(queryType).ToList();
+            var resultTypes = implementations
+                .Where(implementation => !implementations.Any(i => i != implementation && i.NonAbstractSubTypes.Contains(implementation.Type)))
+                .Select(e => e.Type);
+
+            foreach (var type in resultTypes)
+            {
+                List<IPersistEntity> candidtes;
+                if (!_internal.TryGetValue(type, out candidtes)) continue;
+
+                if(condition == null)
+                    foreach (var candidte in candidtes)
+                    {
+                        yield return (T)candidte;
+                    }
+                else
+                {
+                    foreach (var candidte in candidtes.Where(c => condition((T)c)))
+                    {
+                        yield return (T)candidte;
+                    }
+                }
+            }
         }
 
         public T FirstOrDefault<T>() where T : IPersistEntity

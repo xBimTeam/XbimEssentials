@@ -329,6 +329,10 @@ namespace Xbim.IO.Memory
                 var xmlReader = new XbimXmlReader4(
                     (label, type) =>
                     {
+                        var exist = _instances.OfType(type).FirstOrDefault(i => i.EntityLabel == label);
+                        if (exist != null)
+                            return exist;
+
                         var ent = _instances.Factory.New(this, type, label, true);
                         _instances.InternalAdd(ent);
                         return ent;

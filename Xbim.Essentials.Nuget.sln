@@ -46,6 +46,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility.ExtractCobieData", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.Ifc", "Xbim.Ifc\Xbim.Ifc.csproj", "{53999970-957B-4E8D-9CC0-EBE2C7A24969}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiling.WritingXml", "Profiling.WritingXml\Profiling.WritingXml.csproj", "{603F1338-048B-4EDC-B982-2344914A47DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{53999970-957B-4E8D-9CC0-EBE2C7A24969}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53999970-957B-4E8D-9CC0-EBE2C7A24969}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53999970-957B-4E8D-9CC0-EBE2C7A24969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{603F1338-048B-4EDC-B982-2344914A47DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{603F1338-048B-4EDC-B982-2344914A47DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{603F1338-048B-4EDC-B982-2344914A47DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{603F1338-048B-4EDC-B982-2344914A47DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,5 +125,9 @@ Global
 		{AC6D600C-548E-4FA7-B89E-3183E3BC2522} = {2CD5B49F-FB73-4B6D-B570-E51B32905A25}
 		{93CD15E7-BD41-4B4C-BBC2-41D0EBF79F9D} = {A54B7B62-7457-48AB-A9C2-16B087A82C36}
 		{BF96E8B7-0F9B-4808-B611-BDAAEFD84452} = {A54B7B62-7457-48AB-A9C2-16B087A82C36}
+		{603F1338-048B-4EDC-B982-2344914A47DB} = {2CD5B49F-FB73-4B6D-B570-E51B32905A25}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal
