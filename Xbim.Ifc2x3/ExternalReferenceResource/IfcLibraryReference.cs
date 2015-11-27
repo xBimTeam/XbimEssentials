@@ -55,7 +55,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcLibraryInformation>(e => e.LibraryReference != null &&  e.LibraryReference.Contains(this));
+				return Model.Instances.Where<IfcLibraryInformation>(e => e.LibraryReference != null &&  e.LibraryReference.Contains(this), "LibraryReference", this);
 			} 
 		}
 		#endregion

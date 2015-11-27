@@ -116,7 +116,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesClassification>(e => (e.RelatingClassification as IfcClassificationReference) == this);
+				return Model.Instances.Where<IfcRelAssociatesClassification>(e => (e.RelatingClassification as IfcClassificationReference) == this, "RelatingClassification", this);
 			} 
 		}
 		[InverseProperty("ReferencedSource")]
@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcClassificationReference>(e => (e.ReferencedSource as IfcClassificationReference) == this);
+				return Model.Instances.Where<IfcClassificationReference>(e => (e.ReferencedSource as IfcClassificationReference) == this, "ReferencedSource", this);
 			} 
 		}
 		#endregion

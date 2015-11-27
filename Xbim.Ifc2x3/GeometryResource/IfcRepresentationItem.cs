@@ -118,7 +118,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPresentationLayerAssignment>(e => e.AssignedItems != null &&  e.AssignedItems.Contains(this));
+				return Model.Instances.Where<IfcPresentationLayerAssignment>(e => e.AssignedItems != null &&  e.AssignedItems.Contains(this), "AssignedItems", this);
 			} 
 		}
 		[InverseProperty("Item")]
@@ -127,7 +127,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcStyledItem>(e => (e.Item as IfcRepresentationItem) == this);
+				return Model.Instances.Where<IfcStyledItem>(e => (e.Item as IfcRepresentationItem) == this, "Item", this);
 			} 
 		}
 		#endregion

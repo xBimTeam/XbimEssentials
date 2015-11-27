@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcStructuralResultGroup>(e => (e.ResultForLoadGroup as IfcStructuralLoadGroup) == this);
+				return Model.Instances.Where<IfcStructuralResultGroup>(e => (e.ResultForLoadGroup as IfcStructuralLoadGroup) == this, "ResultForLoadGroup", this);
 			} 
 		}
 		[InverseProperty("LoadedBy")]
@@ -157,7 +157,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcStructuralAnalysisModel>(e => e.LoadedBy != null &&  e.LoadedBy.Contains(this));
+				return Model.Instances.Where<IfcStructuralAnalysisModel>(e => e.LoadedBy != null &&  e.LoadedBy.Contains(this), "LoadedBy", this);
 			} 
 		}
 		#endregion

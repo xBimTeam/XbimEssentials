@@ -158,7 +158,7 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcShapeAspect>(e => (e.PartOfProductDefinitionShape as IfcRepresentationMap) == this);
+				return Model.Instances.Where<IfcShapeAspect>(e => (e.PartOfProductDefinitionShape as IfcRepresentationMap) == this, "PartOfProductDefinitionShape", this);
 			} 
 		}
 		[InverseProperty("MappingSource")]
@@ -167,7 +167,7 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMappedItem>(e => (e.MappingSource as IfcRepresentationMap) == this);
+				return Model.Instances.Where<IfcMappedItem>(e => (e.MappingSource as IfcRepresentationMap) == this, "MappingSource", this);
 			} 
 		}
 		#endregion

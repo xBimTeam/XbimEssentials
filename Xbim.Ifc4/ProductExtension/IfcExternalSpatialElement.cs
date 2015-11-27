@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProductExtension;
 
 namespace Xbim.Ifc4.Interfaces
@@ -77,7 +76,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSpaceBoundary>(e => (e.RelatingSpace as IfcExternalSpatialElement) == this);
+				return Model.Instances.Where<IfcRelSpaceBoundary>(e => (e.RelatingSpace as IfcExternalSpatialElement) == this, "RelatingSpace", this);
 			} 
 		}
 		#endregion

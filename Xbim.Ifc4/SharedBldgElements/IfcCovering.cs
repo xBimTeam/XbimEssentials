@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.SharedBldgElements;
 
 namespace Xbim.Ifc4.Interfaces
@@ -80,7 +79,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelCoversSpaces>(e => e.RelatedCoverings != null &&  e.RelatedCoverings.Contains(this));
+				return Model.Instances.Where<IfcRelCoversSpaces>(e => e.RelatedCoverings != null &&  e.RelatedCoverings.Contains(this), "RelatedCoverings", this);
 			} 
 		}
 		[InverseProperty("RelatedCoverings")]
@@ -89,7 +88,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelCoversBldgElements>(e => e.RelatedCoverings != null &&  e.RelatedCoverings.Contains(this));
+				return Model.Instances.Where<IfcRelCoversBldgElements>(e => e.RelatedCoverings != null &&  e.RelatedCoverings.Contains(this), "RelatedCoverings", this);
 			} 
 		}
 		#endregion

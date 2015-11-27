@@ -152,7 +152,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 		{ 
 			get 
 			{
-				return Model.Instances.FirstOrDefault<IfcTable>(e => e.Rows != null &&  e.Rows.Contains(this));
+				return Model.Instances.FirstOrDefault<IfcTable>(e => e.Rows != null &&  e.Rows.Contains(this), "Rows", this);
 			} 
 		}
 		#endregion

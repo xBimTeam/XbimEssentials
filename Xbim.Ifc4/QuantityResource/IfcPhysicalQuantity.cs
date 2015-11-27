@@ -157,7 +157,7 @@ namespace Xbim.Ifc4.QuantityResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		[InverseProperty("HasQuantities")]
@@ -166,7 +166,7 @@ namespace Xbim.Ifc4.QuantityResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPhysicalComplexQuantity>(e => e.HasQuantities != null &&  e.HasQuantities.Contains(this));
+				return Model.Instances.Where<IfcPhysicalComplexQuantity>(e => e.HasQuantities != null &&  e.HasQuantities.Contains(this), "HasQuantities", this);
 			} 
 		}
 		#endregion

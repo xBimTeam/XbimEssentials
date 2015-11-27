@@ -145,7 +145,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.FirstOrDefault<IfcMaterialConstituentSet>(e => e.MaterialConstituents != null &&  e.MaterialConstituents.Contains(this));
+				return Model.Instances.FirstOrDefault<IfcMaterialConstituentSet>(e => e.MaterialConstituents != null &&  e.MaterialConstituents.Contains(this), "MaterialConstituents", this);
 			} 
 		}
 		#endregion

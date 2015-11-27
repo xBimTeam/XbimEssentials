@@ -142,7 +142,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMaterialDefinitionRepresentation>(e => (e.RepresentedMaterial as IfcMaterial) == this);
+				return Model.Instances.Where<IfcMaterialDefinitionRepresentation>(e => (e.RepresentedMaterial as IfcMaterial) == this, "RepresentedMaterial", this);
 			} 
 		}
 		[InverseProperty("ClassifiedMaterial")]
@@ -151,7 +151,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMaterialClassificationRelationship>(e => (e.ClassifiedMaterial as IfcMaterial) == this);
+				return Model.Instances.Where<IfcMaterialClassificationRelationship>(e => (e.ClassifiedMaterial as IfcMaterial) == this, "ClassifiedMaterial", this);
 			} 
 		}
 		#endregion

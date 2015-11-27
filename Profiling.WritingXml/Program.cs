@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,17 +18,25 @@ namespace Profiling.WritingXml
     {
         static void Main(string[] args)
         {
+            var w = new Stopwatch();
             const string path = "..\\..\\..\\Xbim.IO.Tests\\TestFiles\\SampleHouse4.ifc";
             using (var model = new MemoryModel<EntityFactory>())
             {
+                w.Start();
                 model.Open(path);
+                w.Stop();
+                Console.WriteLine(@"{0}ms to open model from STEP file.", w.ElapsedMilliseconds);
+
+                w.Restart();
                 WriteXml(model, "profiling.xml");
+                w.Stop();
+                Console.WriteLine(@"{0}ms to write model as XML.", w.ElapsedMilliseconds);
             }
         }
 
         private static void WriteXml(IModel model, string path)
         {
-            using (var xml = XmlWriter.Create(path, new XmlWriterSettings { Indent = true }))
+            using (var xml = XmlWriter.Create(path, new XmlWriterSettings { Indent = false }))
             {
                 var writer = new XbimXmlWriter4(configuration.IFC4Add1);
                 var project = model.Instances.OfType<IfcProject>();

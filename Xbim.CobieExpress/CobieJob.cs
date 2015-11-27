@@ -278,7 +278,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieType>(e => e.Jobs != null &&  e.Jobs.Contains(this));
+				return Model.Instances.Where<CobieType>(e => e.Jobs != null &&  e.Jobs.Contains(this), "Jobs", this);
 			} 
 		}
 		#endregion

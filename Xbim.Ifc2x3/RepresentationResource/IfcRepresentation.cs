@@ -193,7 +193,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRepresentationMap>(e => (e.MappedRepresentation as IfcRepresentation) == this);
+				return Model.Instances.Where<IfcRepresentationMap>(e => (e.MappedRepresentation as IfcRepresentation) == this, "MappedRepresentation", this);
 			} 
 		}
 		[InverseProperty("AssignedItems")]
@@ -202,7 +202,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPresentationLayerAssignment>(e => e.AssignedItems != null &&  e.AssignedItems.Contains(this));
+				return Model.Instances.Where<IfcPresentationLayerAssignment>(e => e.AssignedItems != null &&  e.AssignedItems.Contains(this), "AssignedItems", this);
 			} 
 		}
 		[InverseProperty("Representations")]
@@ -211,7 +211,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcProductRepresentation>(e => e.Representations != null &&  e.Representations.Contains(this));
+				return Model.Instances.Where<IfcProductRepresentation>(e => e.Representations != null &&  e.Representations.Contains(this), "Representations", this);
 			} 
 		}
 		#endregion

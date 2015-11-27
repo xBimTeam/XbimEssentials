@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertySet>(e => e.HasProperties != null &&  e.HasProperties.Contains(this));
+				return Model.Instances.Where<IfcPropertySet>(e => e.HasProperties != null &&  e.HasProperties.Contains(this), "HasProperties", this);
 			} 
 		}
 		[InverseProperty("DependingProperty")]
@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependingProperty as IfcProperty) == this);
+				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependingProperty as IfcProperty) == this, "DependingProperty", this);
 			} 
 		}
 		[InverseProperty("DependantProperty")]
@@ -126,7 +126,7 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependantProperty as IfcProperty) == this);
+				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependantProperty as IfcProperty) == this, "DependantProperty", this);
 			} 
 		}
 		[InverseProperty("HasProperties")]
@@ -135,7 +135,7 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcComplexProperty>(e => e.HasProperties != null &&  e.HasProperties.Contains(this));
+				return Model.Instances.Where<IfcComplexProperty>(e => e.HasProperties != null &&  e.HasProperties.Contains(this), "HasProperties", this);
 			} 
 		}
 		[InverseProperty("RelatedResourceObjects")]
@@ -144,7 +144,7 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcResourceConstraintRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IfcResourceConstraintRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		[InverseProperty("RelatedResourceObjects")]
@@ -153,7 +153,7 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcResourceApprovalRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IfcResourceApprovalRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		#endregion

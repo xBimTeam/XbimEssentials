@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToControl>(e => (e.RelatingControl as IfcControl) == this);
+				return Model.Instances.Where<IfcRelAssignsToControl>(e => (e.RelatingControl as IfcControl) == this, "RelatingControl", this);
 			} 
 		}
 		#endregion

@@ -198,7 +198,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieFloor>(e => (e.Facility as CobieFacility) == this);
+				return Model.Instances.Where<CobieFloor>(e => (e.Facility as CobieFacility) == this, "Facility", this);
 			} 
 		}
 		#endregion

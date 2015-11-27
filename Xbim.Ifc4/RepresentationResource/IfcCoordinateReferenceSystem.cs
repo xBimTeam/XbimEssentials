@@ -188,7 +188,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcCoordinateOperation>(e => (e.SourceCRS as IfcCoordinateReferenceSystem) == this);
+				return Model.Instances.Where<IfcCoordinateOperation>(e => (e.SourceCRS as IfcCoordinateReferenceSystem) == this, "SourceCRS", this);
 			} 
 		}
 		#endregion

@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
 
 namespace Xbim.Ifc4.Interfaces
@@ -110,7 +109,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDefinesByTemplate>(e => (e.RelatingTemplate as IfcPropertySetTemplate) == this);
+				return Model.Instances.Where<IfcRelDefinesByTemplate>(e => (e.RelatingTemplate as IfcPropertySetTemplate) == this, "RelatingTemplate", this);
 			} 
 		}
 		#endregion

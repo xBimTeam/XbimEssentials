@@ -15,7 +15,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.StructuralAnalysisDomain;
 
 namespace Xbim.Ifc4.Interfaces
@@ -149,7 +148,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcStructuralResultGroup>(e => (e.ResultForLoadGroup as IfcStructuralLoadGroup) == this);
+				return Model.Instances.Where<IfcStructuralResultGroup>(e => (e.ResultForLoadGroup as IfcStructuralLoadGroup) == this, "ResultForLoadGroup", this);
 			} 
 		}
 		[InverseProperty("LoadedBy")]
@@ -158,7 +157,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcStructuralAnalysisModel>(e => e.LoadedBy != null &&  e.LoadedBy.Contains(this));
+				return Model.Instances.Where<IfcStructuralAnalysisModel>(e => e.LoadedBy != null &&  e.LoadedBy.Contains(this), "LoadedBy", this);
 			} 
 		}
 		#endregion

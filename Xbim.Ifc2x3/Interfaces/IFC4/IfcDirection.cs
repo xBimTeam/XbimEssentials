@@ -20,10 +20,10 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-			    //## Handle return of DirectionRatios for which no match was found
+				//## Handle return of DirectionRatios for which no match was found
 			    return DirectionRatios.Select(ratio => new Ifc4.MeasureResource.IfcReal(ratio));
 			    //##
-			}
+			} 
 		}
 		Ifc4.GeometryResource.IfcDimensionCount IIfcDirection.Dim 
 		{

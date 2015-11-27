@@ -143,17 +143,17 @@ namespace Xbim.MemoryModel.Tests
                 Debug.WriteLine("{0}ms to read STEP.", w.ElapsedMilliseconds);
                 var instCount = model.Instances.Count;
 
-                //w.Restart();
-                //WriteXml(model, outPath);
-                //w.Stop();
-                //Debug.WriteLine("{0}ms to write XML.", w.ElapsedMilliseconds);
+                w.Restart();
+                WriteXml(model, outPath);
+                w.Stop();
+                Debug.WriteLine("{0}ms to write XML.", w.ElapsedMilliseconds);
 
-                //w.Restart();
-                //var errs = ValidateIfc4(outPath);
-                //Assert.AreEqual(0, errs);
-                //w.Stop();
-                //Debug.WriteLine("{0}ms to validate XML.", w.ElapsedMilliseconds);
-                //
+                w.Restart();
+                var errs = ValidateIfc4(outPath);
+                Assert.AreEqual(0, errs);
+                w.Stop();
+                Debug.WriteLine("{0}ms to validate XML.", w.ElapsedMilliseconds);
+                
                 //w.Restart();
                 //WriteJSON(model, "..\\..\\SampleHouse4.json");
                 //w.Stop();

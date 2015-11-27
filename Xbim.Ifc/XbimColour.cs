@@ -89,7 +89,6 @@ namespace Xbim.Ifc
         /// <param name="red">Red Value in range 0.0 to 1.0</param>
         /// <param name="green">Green Value in range 0.0 to 1.0</param>
         /// <param name="blue">Blue Value in range 0.0 to 1.0</param>
-
         /// <param name="alpha">Alpha Value in range 0.0 to 1.0</param>
         public XbimColour(string name, double red, double green, double blue, double alpha = 1.0)
             : this(name, (float)red, (float)green, (float)blue, (float)alpha)

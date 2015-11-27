@@ -159,7 +159,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependingProperty as IfcProperty) == this);
+				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependingProperty as IfcProperty) == this, "DependingProperty", this);
 			} 
 		}
 		[InverseProperty("DependantProperty")]
@@ -168,7 +168,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependantProperty as IfcProperty) == this);
+				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependantProperty as IfcProperty) == this, "DependantProperty", this);
 			} 
 		}
 		[InverseProperty("HasProperties")]
@@ -177,7 +177,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcComplexProperty>(e => e.HasProperties != null &&  e.HasProperties.Contains(this));
+				return Model.Instances.Where<IfcComplexProperty>(e => e.HasProperties != null &&  e.HasProperties.Contains(this), "HasProperties", this);
 			} 
 		}
 		#endregion

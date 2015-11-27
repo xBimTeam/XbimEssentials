@@ -114,7 +114,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcAnnotationSurface>(e => (e.TextureCoordinates as IfcTextureCoordinate) == this);
+				return Model.Instances.Where<IfcAnnotationSurface>(e => (e.TextureCoordinates as IfcTextureCoordinate) == this, "TextureCoordinates", this);
 			} 
 		}
 		#endregion

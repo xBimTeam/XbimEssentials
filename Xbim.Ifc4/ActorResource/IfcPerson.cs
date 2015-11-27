@@ -245,7 +245,7 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPersonAndOrganization>(e => (e.ThePerson as IfcPerson) == this);
+				return Model.Instances.Where<IfcPersonAndOrganization>(e => (e.ThePerson as IfcPerson) == this, "ThePerson", this);
 			} 
 		}
 		#endregion

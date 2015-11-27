@@ -286,7 +286,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		[InverseProperty("RelatingApproval")]
@@ -295,7 +295,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesApproval>(e => (e.RelatingApproval as IfcApproval) == this);
+				return Model.Instances.Where<IfcRelAssociatesApproval>(e => (e.RelatingApproval as IfcApproval) == this, "RelatingApproval", this);
 			} 
 		}
 		[InverseProperty("RelatingApproval")]
@@ -304,7 +304,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcResourceApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this);
+				return Model.Instances.Where<IfcResourceApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this, "RelatingApproval", this);
 			} 
 		}
 		[InverseProperty("RelatedApprovals")]
@@ -313,7 +313,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcApprovalRelationship>(e => e.RelatedApprovals != null &&  e.RelatedApprovals.Contains(this));
+				return Model.Instances.Where<IfcApprovalRelationship>(e => e.RelatedApprovals != null &&  e.RelatedApprovals.Contains(this), "RelatedApprovals", this);
 			} 
 		}
 		[InverseProperty("RelatingApproval")]
@@ -322,7 +322,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this);
+				return Model.Instances.Where<IfcApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this, "RelatingApproval", this);
 			} 
 		}
 		#endregion

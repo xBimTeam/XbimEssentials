@@ -19,7 +19,6 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ConstraintResource;
 
 namespace Xbim.Ifc4.Interfaces
@@ -246,7 +245,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		[InverseProperty("RelatingConstraint")]
@@ -255,7 +254,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcResourceConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this);
+				return Model.Instances.Where<IfcResourceConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this, "RelatingConstraint", this);
 			} 
 		}
 		#endregion

@@ -154,7 +154,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPhysicalComplexQuantity>(e => e.HasQuantities != null &&  e.HasQuantities.Contains(this));
+				return Model.Instances.Where<IfcPhysicalComplexQuantity>(e => e.HasQuantities != null &&  e.HasQuantities.Contains(this), "HasQuantities", this);
 			} 
 		}
 		#endregion

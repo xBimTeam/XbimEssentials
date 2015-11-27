@@ -190,7 +190,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcClassificationItem>(e => (e.ItemOf as IfcClassification) == this);
+				return Model.Instances.Where<IfcClassificationItem>(e => (e.ItemOf as IfcClassification) == this, "ItemOf", this);
 			} 
 		}
 		#endregion

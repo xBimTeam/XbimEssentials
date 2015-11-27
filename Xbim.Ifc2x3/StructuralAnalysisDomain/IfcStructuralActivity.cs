@@ -96,7 +96,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.FirstOrDefault<IfcRelConnectsStructuralActivity>(e => (e.RelatedStructuralActivity as IfcStructuralActivity) == this);
+				return Model.Instances.FirstOrDefault<IfcRelConnectsStructuralActivity>(e => (e.RelatedStructuralActivity as IfcStructuralActivity) == this, "RelatedStructuralActivity", this);
 			} 
 		}
 		#endregion

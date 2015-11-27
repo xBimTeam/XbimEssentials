@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.TopologyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcTextureMap>(e => (e.MappedTo as IfcFace) == this);
+				return Model.Instances.Where<IfcTextureMap>(e => (e.MappedTo as IfcFace) == this, "MappedTo", this);
 			} 
 		}
 		#endregion

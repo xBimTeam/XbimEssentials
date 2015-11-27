@@ -26,8 +26,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					if (ifccurvestyle != null) 
 						yield return ifccurvestyle;
 					var ifcsymbolstyle = member as IfcSymbolStyle;
-				    if (ifcsymbolstyle != null)
-				        //## Handle entity IfcSymbolStyle which is not a part of the target select interface IIfcPresentationStyleSelect in property Styles
+					if (ifcsymbolstyle != null) 
+						//## Handle entity IfcSymbolStyle which is not a part of the target select interface IIfcPresentationStyleSelect in property Styles
 				    {
 				      /*  var colour = ifcsymbolstyle.StyleOfSymbol as IIfcColourRgb;
                         if(colour!=null)

@@ -149,7 +149,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelInteractionRequirements>(e => (e.RelatedSpaceProgram as IfcSpaceProgram) == this);
+				return Model.Instances.Where<IfcRelInteractionRequirements>(e => (e.RelatedSpaceProgram as IfcSpaceProgram) == this, "RelatedSpaceProgram", this);
 			} 
 		}
 		[InverseProperty("RelatingSpaceProgram")]
@@ -158,7 +158,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelInteractionRequirements>(e => (e.RelatingSpaceProgram as IfcSpaceProgram) == this);
+				return Model.Instances.Where<IfcRelInteractionRequirements>(e => (e.RelatingSpaceProgram as IfcSpaceProgram) == this, "RelatingSpaceProgram", this);
 			} 
 		}
 		#endregion

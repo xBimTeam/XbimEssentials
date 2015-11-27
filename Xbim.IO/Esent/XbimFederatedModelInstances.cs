@@ -25,7 +25,7 @@ namespace Xbim.IO.Esent
         {
             _model = model;
         }
-        public IEnumerable<T> Where<T>(Expression<Func<T, bool>> expr) where T : IPersistEntity
+        public IEnumerable<T> Where<T>(Func<T, bool> expr) where T : IPersistEntity
         {
             foreach (var instance in _model.InstancesLocal.Where(expr))
                 yield return instance;
@@ -34,14 +34,28 @@ namespace Xbim.IO.Esent
                     yield return instance;
         }
 
+        public IEnumerable<T> Where<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument) where T : IPersistEntity
+        {
+            foreach (var instance in _model.InstancesLocal.Where(condition, inverseProperty, inverseArgument))
+                yield return instance;
+            foreach (var refModel in _model.ReferencedModels)
+                foreach (var instance in refModel.Model.Instances.Where(condition, inverseProperty, inverseArgument))
+                    yield return instance;
+        }
+
         public T FirstOrDefault<T>() where T : IPersistEntity
         {
             return OfType<T>().FirstOrDefault();
         }
 
-        public T FirstOrDefault<T>(Expression<Func<T, bool>> expr) where T : IPersistEntity
+        public T FirstOrDefault<T>(Func<T, bool> expr) where T : IPersistEntity
         {
             return Where(expr).FirstOrDefault();
+        }
+
+        public T FirstOrDefault<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument) where T : IPersistEntity
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<T> OfType<T>() where T : IPersistEntity

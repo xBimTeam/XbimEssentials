@@ -229,7 +229,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcReferencesValueDocument>(e => e.ReferencingValues != null &&  e.ReferencingValues.Contains(this));
+				return Model.Instances.Where<IfcReferencesValueDocument>(e => e.ReferencingValues != null &&  e.ReferencingValues.Contains(this), "ReferencingValues", this);
 			} 
 		}
 		[InverseProperty("ComponentOfTotal")]
@@ -238,7 +238,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcAppliedValueRelationship>(e => (e.ComponentOfTotal as IfcAppliedValue) == this);
+				return Model.Instances.Where<IfcAppliedValueRelationship>(e => (e.ComponentOfTotal as IfcAppliedValue) == this, "ComponentOfTotal", this);
 			} 
 		}
 		[InverseProperty("Components")]
@@ -247,7 +247,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcAppliedValueRelationship>(e => e.Components != null &&  e.Components.Contains(this));
+				return Model.Instances.Where<IfcAppliedValueRelationship>(e => e.Components != null &&  e.Components.Contains(this), "Components", this);
 			} 
 		}
 		#endregion

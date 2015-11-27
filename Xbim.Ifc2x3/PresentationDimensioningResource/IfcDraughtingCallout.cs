@@ -76,7 +76,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => (e.RelatedDraughtingCallout as IfcDraughtingCallout) == this);
+				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => (e.RelatedDraughtingCallout as IfcDraughtingCallout) == this, "RelatedDraughtingCallout", this);
 			} 
 		}
 		[InverseProperty("RelatingDraughtingCallout")]
@@ -85,7 +85,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => (e.RelatingDraughtingCallout as IfcDraughtingCallout) == this);
+				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => (e.RelatingDraughtingCallout as IfcDraughtingCallout) == this, "RelatingDraughtingCallout", this);
 			} 
 		}
 		#endregion

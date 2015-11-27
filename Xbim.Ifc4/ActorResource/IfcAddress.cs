@@ -17,7 +17,6 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ActorResource;
 
 namespace Xbim.Ifc4.Interfaces
@@ -176,7 +175,7 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPerson>(e => e.Addresses != null &&  e.Addresses.Contains(this));
+				return Model.Instances.Where<IfcPerson>(e => e.Addresses != null &&  e.Addresses.Contains(this), "Addresses", this);
 			} 
 		}
 		[InverseProperty("Addresses")]
@@ -185,7 +184,7 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcOrganization>(e => e.Addresses != null &&  e.Addresses.Contains(this));
+				return Model.Instances.Where<IfcOrganization>(e => e.Addresses != null &&  e.Addresses.Contains(this), "Addresses", this);
 			} 
 		}
 		#endregion

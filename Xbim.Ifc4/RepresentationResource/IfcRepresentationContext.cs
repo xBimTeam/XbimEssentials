@@ -155,7 +155,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRepresentation>(e => (e.ContextOfItems as IfcRepresentationContext) == this);
+				return Model.Instances.Where<IfcRepresentation>(e => (e.ContextOfItems as IfcRepresentationContext) == this, "ContextOfItems", this);
 			} 
 		}
 		#endregion
