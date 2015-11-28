@@ -156,7 +156,7 @@ namespace Xbim.Ifc
         /// </summary>
         /// <param name="path">the file name of the ifc, ifczip, ifcxml or xbim file to be opened</param>
         /// <param name="editorDetails">This is only required if the store is opened for editing</param>
-        /// <param name="ifcDatabaseSizeThreshHold">if not defined the DefaultIfcDatabaseSizeThreshHold is used, Ifc files below this size will be opened in memory, above this size a database will be created. If -1 is specified a database will be created for all Ifc files that are opened. Xbim files are always opened as databases</param>
+        /// <param name="ifcDatabaseSizeThreshHold">if not defined the DefaultIfcDatabaseSizeThreshHold is used, Ifc files below this size will be opened in memory, above this size a database will be created. If -1 is specified an in memory model will be created for all Ifc files that are opened. Xbim files are always opened as databases</param>
         /// <param name="progDelegate"></param>
         public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
         {
@@ -190,7 +190,7 @@ namespace Xbim.Ifc
             {
                 var fInfo = new FileInfo(path);
                 double ifcMaxLength = (ifcDatabaseSizeThreshHold ?? DefaultIfcDatabaseSizeThreshHold) * 1024 * 1024;
-                if (fInfo.Length > ifcMaxLength) //we need to make an esent database
+                if (ifcMaxLength >= 0 && fInfo.Length > ifcMaxLength) //we need to make an esent database, if ifcMaxLength<0 we use in memory
                 {
                     var tmpFileName = Path.GetTempFileName();
                     if (ifcVersion == IfcSchemaVersion.Ifc4)
