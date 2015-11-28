@@ -326,15 +326,17 @@ namespace Xbim.IO.Memory
         {
             using (var reader = XmlReader.Create(stream))
             {
+                var read = new Dictionary<int, IPersistEntity>();
                 var xmlReader = new XbimXmlReader4(
-                    (label, type) =>
+                    (label, type) => 
                     {
-                        var exist = _instances.OfType(type).FirstOrDefault(i => i.EntityLabel == label);
-                        if (exist != null)
+                        IPersistEntity exist;
+                        if (read.TryGetValue(label, out exist))
                             return exist;
 
                         var ent = _instances.Factory.New(this, type, label, true);
                         _instances.InternalAdd(ent);
+                        read.Add(label, ent);
                         return ent;
                     },
                     entity => { },
