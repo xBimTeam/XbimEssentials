@@ -31,5 +31,7 @@ namespace Xbim.Common.Geometry
         /// Finalises an initialisation and flushes all operations to the store, the transaction must have been obtained from BeginInit
         /// </summary>
         void Commit();
+
+       
     }
 }

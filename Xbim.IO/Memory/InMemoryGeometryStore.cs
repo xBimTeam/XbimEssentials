@@ -1,15 +1,15 @@
-﻿using System;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading;
 using Xbim.Common.Geometry;
 
 namespace Xbim.IO.Memory
 {
     internal class InMemoryGeometryStore : IGeometryStore
     {
-        private Dictionary<int, XbimShapeGeometry> _shapeGeometries;
-        private Dictionary<int, XbimShapeInstance> _shapeInstances;
+        private ConcurrentDictionary<int, XbimShapeGeometry> _shapeGeometries;
+        private ConcurrentDictionary<int, XbimShapeInstance> _shapeInstances;
         private Dictionary<int, List<XbimShapeInstance>> _entityInstanceLookup;
         private Dictionary<int, List<XbimShapeInstance>> _entityTypeLookup;
         private Dictionary<int, List<XbimShapeInstance>> _entityStyleLookup;
@@ -17,10 +17,19 @@ namespace Xbim.IO.Memory
         private HashSet<int> _styles;
         private List<XbimRegionCollection> _regions;
         private IEnumerable<int> _contextIds;
-
+        private int _geometryCount;
+        private int _instanceCount;
         public IDictionary<int, XbimShapeGeometry> ShapeGeometries
         {
             get { return _shapeGeometries; }
+        }
+
+        internal int AddShapeGeometry(XbimShapeGeometry shapeGeometry)
+        {
+            int id = Interlocked.Increment(ref _geometryCount);
+            shapeGeometry.ShapeLabel = id;
+            _shapeGeometries.TryAdd(id, shapeGeometry);
+            return id;
         }
 
         public IDictionary<int, XbimShapeInstance> ShapeInstances
@@ -29,6 +38,14 @@ namespace Xbim.IO.Memory
             { 
                 return _shapeInstances; 
             }
+        }
+
+        internal int AddShapeInstance(XbimShapeInstance shapeInstance, int geometryId)
+        {
+            int id = Interlocked.Increment(ref _instanceCount);
+            shapeInstance.ShapeGeometryLabel = geometryId;
+            _shapeInstances.TryAdd(id, shapeInstance);
+            return id;
         }
 
         public IDictionary<int, List<XbimShapeInstance>> EntityInstanceLookup
@@ -68,8 +85,10 @@ namespace Xbim.IO.Memory
 
         public IGeometryStoreInitialiser BeginInit()
         {
-            _shapeGeometries = new Dictionary<int, XbimShapeGeometry>();
-            _shapeInstances = new Dictionary<int, XbimShapeInstance>(); 
+            _shapeGeometries = new ConcurrentDictionary<int, XbimShapeGeometry>();
+            _shapeInstances = new ConcurrentDictionary<int, XbimShapeInstance>();
+            _geometryCount = 0;
+            _instanceCount = 0;
             return new InMemoryGeometryStoreInitialiser(this);
         }
 

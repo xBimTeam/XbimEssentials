@@ -11,19 +11,13 @@ namespace Xbim.IO.Memory
             _inMemoryGeometryStore = inMemoryGeometryStore;
         }
         public int AddShapeGeometry(XbimShapeGeometry shapeGeometry)
-        {
-            int id = _inMemoryGeometryStore.ShapeGeometries.Count + 1;//need 1 based to match database
-            shapeGeometry.ShapeLabel = id;
-            _inMemoryGeometryStore.ShapeGeometries.Add(id, shapeGeometry);
-            return id;
+        {           
+          return  _inMemoryGeometryStore.AddShapeGeometry(shapeGeometry);           
         }
 
         public int AddShapeInstance(XbimShapeInstance shapeInstance, int geometryId)
-        {
-            int id = _inMemoryGeometryStore.ShapeInstances.Count+1; //need 1 based to match database
-            shapeInstance.ShapeGeometryLabel = geometryId;
-            _inMemoryGeometryStore.ShapeInstances.Add(id, shapeInstance);
-            return id;
+        {           
+           return _inMemoryGeometryStore.AddShapeInstance(shapeInstance, geometryId);
         }
 
         public int AddRegions(XbimRegionCollection regions)
@@ -40,5 +34,7 @@ namespace Xbim.IO.Memory
         {      
             _inMemoryGeometryStore.EndInit(this);     
         }
+
+
     }
 }

@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common.Geometry;
+using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.Ifc4;
 
@@ -120,6 +123,107 @@ namespace Xbim.EsentModel.Tests
                 model.Close();
             }
         }
+
+        [DeploymentItem("TestFiles")]
+        [TestMethod]
+        public void EsentGeometryStoreMultiThreadTest()
+        {
+            using (var model = IfcStore.Create(null,IfcSchemaVersion.Ifc4, XbimStoreType.EsentDatabase))
+            {
+               
+                var store = model.GeometryStore;
+                using (var txn = store.BeginInit())
+                {
+                    
+                    Parallel.For(0, 100, i =>
+                    {
+                        //ADD A GEOMETRY SHAPE
+                        var geomData = new XbimShapeGeometry()
+                        {
+                            IfcShapeLabel = 1,
+                            Format = XbimGeometryType.BoundingBox,
+                            GeometryHash = 0,
+                            LOD = XbimLOD.LOD100,
+                            ReferenceCount = 1,
+                            ShapeData = "2123",
+                            BoundingBox = XbimRect3D.Empty
+                        };
+                        var shapeGeomLabel = txn.AddShapeGeometry(geomData);
+                    });
+
+                    Parallel.For(0, 100, i =>
+                    {
+                        //ADD A SHAPE INSTANCE
+                        var shapeInstance = new XbimShapeInstance()
+                        {
+                            ShapeGeometryLabel = i + 1
+                        };
+
+                        var instanceId = txn.AddShapeInstance(shapeInstance, i + 1);
+                       
+                    });
+                   
+                    //ADD A REGIONCOLLECTION
+                    var regions = new XbimRegionCollection { ContextLabel = 50 };
+                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
+                    txn.AddRegions(regions);
+
+                    txn.Commit();
+                }
+                model.Close();
+            }
+        }
+
+        [DeploymentItem("TestFiles")]
+        [TestMethod]
+        public void InMemoryGeometryStoreMultiThreadTest()
+        {
+            using (var model = new IO.Memory.MemoryModel<EntityFactory>())
+            {
+               
+                var store = model.GeometryStore;
+                using (var txn = store.BeginInit())
+                {
+
+                    Parallel.For(0, 100, i =>
+                    {
+                        //ADD A GEOMETRY SHAPE
+                        var geomData = new XbimShapeGeometry()
+                        {
+                            IfcShapeLabel = 1,
+                            Format = XbimGeometryType.BoundingBox,
+                            GeometryHash = 0,
+                            LOD = XbimLOD.LOD100,
+                            ReferenceCount = 1,
+                            ShapeData = "2123",
+                            BoundingBox = XbimRect3D.Empty
+                        };
+                        var shapeGeomLabel = txn.AddShapeGeometry(geomData);
+                    });
+
+                    Parallel.For(0, 100, i =>
+                    {
+                        //ADD A SHAPE INSTANCE
+                        var shapeInstance = new XbimShapeInstance()
+                        {
+                            ShapeGeometryLabel = i + 1
+                        };
+
+                        var instanceId = txn.AddShapeInstance(shapeInstance, i + 1);
+
+                    });
+
+                    //ADD A REGIONCOLLECTION
+                    var regions = new XbimRegionCollection { ContextLabel = 50 };
+                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
+                    txn.AddRegions(regions);
+
+                    txn.Commit();
+                }
+                
+            }
+        }
+
 
         [DeploymentItem("TestFiles")]
         [TestMethod]

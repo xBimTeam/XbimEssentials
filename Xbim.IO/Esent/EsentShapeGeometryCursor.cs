@@ -470,5 +470,7 @@ namespace Xbim.IO.Esent
             }
             return false;
         }
+
+        
     }
 }

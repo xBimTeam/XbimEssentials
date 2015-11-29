@@ -42,7 +42,7 @@ namespace Xbim.IO.Esent
         protected static string Version = "2.4.1";
 
 
-
+        public Session Session { get { return Sesid; } }
         protected readonly object LockObject;
 
        
