@@ -148,7 +148,12 @@ namespace Xbim.EsentModel.Tests
                             ShapeData = "2123",
                             BoundingBox = XbimRect3D.Empty
                         };
+                        var shapeInstance = new XbimShapeInstance()
+                        {
+                            ShapeGeometryLabel = i + 1
+                        };
                         var shapeGeomLabel = txn.AddShapeGeometry(geomData);
+                        var instanceId = txn.AddShapeInstance(shapeInstance, shapeGeomLabel);                        
                     });
 
                     Parallel.For(0, 100, i =>
