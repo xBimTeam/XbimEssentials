@@ -26,5 +26,6 @@ namespace Xbim.Common.Geometry
         IXbimGeometryObjectSet Intersection(IXbimSolidSet toCut, double tolerance);
         IXbimGeometryObjectSet Intersection(IXbimSolid toCut, double tolerance);
         IXbimFaceSet Section(IXbimFace toSection, double tolerance);
+        void SaveAsBrep(string fileName);
     }
 }

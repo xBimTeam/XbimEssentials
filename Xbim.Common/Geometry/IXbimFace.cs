@@ -13,5 +13,6 @@ namespace Xbim.Common.Geometry
         /// </summary>
         XbimVector3D Normal { get; }
         bool IsPlanar { get; }
+        void SaveAsBrep(string fileName);
     }
 }

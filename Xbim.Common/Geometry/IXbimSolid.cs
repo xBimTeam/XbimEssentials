@@ -22,7 +22,7 @@ namespace Xbim.Common.Geometry
         IXbimSolidSet Intersection(IXbimSolidSet toIntersect, double tolerance);
         IXbimSolidSet Intersection(IXbimSolid toIntersect, double tolerance);
         IXbimFaceSet Section(IXbimFace toSection, double tolerance);
-       
+        void SaveAsBrep(string fileName);
     }
 
 }
