@@ -284,22 +284,18 @@ namespace Xbim.IO.Xml
                                 cInnerList.Add(innerEntity);
                                 if (input.NodeType == XmlNodeType.EndElement && input.Depth == cDepth) break;
                             }
+
+                            var cValueVal = Activator.CreateInstance(expType.Type, cInnerList);
+                            var cpValue = new PropertyValue();
+                            cpValue.Init(cValueVal);
+                            entity.Parse(pIndex, cpValue, null);
                         }
                     }
                     else
                     {
                         var cValuesString = input.ReadElementContentAsString();
-                        var cValues = cValuesString.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
-                        foreach (var cValue in cValues)
-                        {
-                        }
-                        throw new NotImplementedException();
+                        SetPropertyFromString(property, entity, cValuesString, pos);
                     }
-
-                    var cValueVal = Activator.CreateInstance(expType.Type, cInnerList);
-                    var cpValue = new PropertyValue();
-                    cpValue.Init(cValueVal);
-                    entity.Parse(pIndex, cpValue, null);
                     return;
                 }
 
@@ -459,8 +455,40 @@ namespace Xbim.IO.Xml
             if (typeof(IEnumerable).IsAssignableFrom(genType))
             {
                 //handle rectangular nested lists (like IfcPointList3D)
-                throw new NotImplementedException();
+                var cardinality = property.EntityAttribute.MaxCardinality;
+                if(cardinality != property.EntityAttribute.MinCardinality)
+                    throw new XbimParserException(property.Name + " is not rectangular so it can't be serialized as a simple text string");
+
+                var values = value.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
+                var valType = GetNonGenericType(genType);
+                if (typeof (IExpressValueType).IsAssignableFrom(valType))
+                {
+                    var expValType = _metadata.ExpressType(valType);
+                    if(expValType == null)
+                        throw new XbimParserException("Unexpected data type " + valType.Name);
+                    valType = expValType.UnderlyingType;
+                }
+
+                for (var i = 0; i < values.Length; i++)
+                {
+                    IPropertyValue pValue;
+                    InitPropertyValue(valType, values[i], out pValue);
+                    var idx = i / cardinality;
+                    entity.Parse(pIndex, pValue, new [] {idx});
+                }
             }
+        }
+
+        private static Type GetNonGenericType(Type type)
+        {
+            if (!type.IsGenericType) return type;
+            while (type.IsGenericType && typeof(IEnumerable).IsAssignableFrom(type))
+            {
+                var genArgs = type.GetGenericArguments();
+                if(!genArgs.Any()) break;
+                type = genArgs[0];
+            }
+            return type;
         }
 
         private static Type GetNonNullableType(Type type)

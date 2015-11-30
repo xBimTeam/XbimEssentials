@@ -398,6 +398,16 @@ namespace Xbim.MemoryModel.Tests
                 var xmlString = File.ReadAllText(outPath);
                 Assert.IsTrue(xmlString.Contains("CoordList=\"1 2 3 4 5 6 7 8 9\""));
             }
+
+            using (var model = new MemoryModel<EntityFactory>())
+            {
+                model.OpenXml(outPath);
+                var list = model.Instances.FirstOrDefault<IfcCartesianPointList3D>();
+                Assert.IsNotNull(list);
+
+                Assert.AreEqual(3, list.CoordList.Count);
+
+            }
         }
 
         [TestMethod]
