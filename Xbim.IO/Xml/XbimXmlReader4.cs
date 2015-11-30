@@ -88,14 +88,14 @@ namespace Xbim.IO.Xml
                     var name = input.LocalName.ToLowerInvariant();
                     if (name == "header" && !input.IsEmptyElement)
                     {
-                        header = ReadHeader(input.ReadSubtree());
+                        header = ReadHeader(input);
                         continue;
                     }
                     headerElement = false;
                 }
 
                 //process all root entities in the file (that has to be IPersistEntity)
-                ReadEntity(input.IsEmptyElement ? input : input.ReadSubtree());
+                ReadEntity(input);
             }
 
             return header;
@@ -104,35 +104,28 @@ namespace Xbim.IO.Xml
 
         private ExpressType GetExpresType(XmlReader input)
         {
-            var typeName = input.LocalName.ToUpperInvariant().Replace("-WRAPPER", "");
+            var typeName = input.LocalName.ToUpper();
             ExpressType expType;
             if (!_metadata.TryGetExpressType(typeName, out expType))
             {
                 //try to get type name from the attribute
                 typeName = input.GetAttribute("type", _xsi);
-                if (typeName == null || !_metadata.TryGetExpressType(typeName.ToUpperInvariant(), out expType))
-                    return null;
+                if (typeName != null && !_metadata.TryGetExpressType(typeName.ToUpper(), out expType))
+                    return expType;
             }
-            return expType;
-        }
+            if (expType != null) return expType;
 
-        private void MoveToElement(XmlReader input)
-        {
-            if (input.NodeType != XmlNodeType.Element)
-            {
-                while (input.Read())
-                {
-                    if (input.NodeType == XmlNodeType.Element) break;
-                }
-            }
-            if (input.NodeType != XmlNodeType.Element)
-                throw new XbimParserException("No data to read.");
+            //try to replace WRAPPER keyword
+            typeName = input.LocalName.ToUpper();
+            if (!typeName.Contains("-")) return null;
+
+            typeName = typeName.Replace("-WRAPPER", "");
+            _metadata.TryGetExpressType(typeName, out expType);
+            return expType;    
         }
 
         private IPersistEntity ReadEntity(XmlReader input)
         {
-            MoveToElement(input);
-
             var typeName = input.LocalName.ToUpperInvariant();
             var expType = GetExpresType(input);
             if (expType == null)
@@ -151,7 +144,7 @@ namespace Xbim.IO.Xml
             {
                 var pInfo = GetMetaProperty(expType, input.LocalName);
                 if(pInfo == null) continue;
-                SetPropertyFromAttribute(pInfo, entity, input.Value, null);
+                SetPropertyFromString(pInfo, entity, input.Value, null);
             }
             input.MoveToElement();
 
@@ -161,13 +154,16 @@ namespace Xbim.IO.Xml
                 return entity;
             }
 
-            //read all elements
+            //read all element properties
+            var pDepth = input.Depth;
             while (input.Read())
             {
+                if (input.NodeType == XmlNodeType.EndElement && input.Depth == pDepth) break;
                 if (input.NodeType != XmlNodeType.Element) continue;
                 var pInfo = GetMetaProperty(expType, input.LocalName);
                 if (pInfo == null) continue;
-                SetPropertyFromElement(pInfo, entity, input.IsEmptyElement ? input : input.ReadSubtree(), null);
+                SetPropertyFromElement(pInfo, entity, input, null);
+                if (input.NodeType == XmlNodeType.EndElement && input.Depth == pDepth) break;
             }
 
             //finalize
@@ -219,8 +215,6 @@ namespace Xbim.IO.Xml
 
         private void SetPropertyFromElement(ExpressMetaProperty property, IPersistEntity entity, XmlReader input, int[] pos, ExpressType valueType = null)
         {
-            MoveToElement(input);
-
             var name = input.LocalName;
             var type = valueType != null ? valueType.Type : GetNonNullableType(property.PropertyInfo.PropertyType);
             var pIndex = property.EntityAttribute.Order - 1;
@@ -229,8 +223,10 @@ namespace Xbim.IO.Xml
             if (typeof (IExpressSelectType).IsAssignableFrom(type) && type.IsInterface)
             {
                 //move to inner element which represents the data
+                var sDepth = input.Depth;
                 while (input.Read())
                 {
+                    if (input.NodeType == XmlNodeType.EndElement && input.Depth == sDepth) return;
                     if(input.NodeType != XmlNodeType.Element) continue;
                     expType = GetExpresType(input);
                     if(expType == null)
@@ -238,13 +234,13 @@ namespace Xbim.IO.Xml
 
                     if (typeof(IExpressValueType).IsAssignableFrom(expType.Type))
                     {
-                        SetPropertyFromElement(property, entity, input.IsEmptyElement ? input : input.ReadSubtree(), pos, expType);
+                        SetPropertyFromElement(property, entity, input, pos, expType);
                         return;
                     }
 
                     if (typeof (IPersistEntity).IsAssignableFrom(expType.Type))
                     {
-                        SetPropertyFromElement(property, entity, input.IsEmptyElement ? input : input.ReadSubtree(), pos, expType);
+                        SetPropertyFromElement(property, entity, input, pos, expType);
                         return;
                     }
 
@@ -263,7 +259,7 @@ namespace Xbim.IO.Xml
                 if (type == property.PropertyInfo.PropertyType && !(cType != null && typeof(IPersistEntity).IsAssignableFrom(cType)))
                 {
                     var strValue = input.ReadElementContentAsString();
-                    SetPropertyFromAttribute(property, entity, strValue, pos);
+                    SetPropertyFromString(property, entity, strValue, pos);
                     return;
                 }
 
@@ -279,13 +275,14 @@ namespace Xbim.IO.Xml
                     {
                         if (!input.IsEmptyElement)
                         {
-                            input = input.ReadSubtree();
-                            MoveToElement(input);
+                            var cDepth = input.Depth;
                             while (input.Read())
                             {
+                                if (input.NodeType == XmlNodeType.EndElement && input.Depth == cDepth) break;
                                 if (input.NodeType != XmlNodeType.Element) continue;
-                                var innerEntity = ReadEntity(input.IsEmptyElement ? input : input.ReadSubtree());
+                                var innerEntity = ReadEntity(input);
                                 cInnerList.Add(innerEntity);
+                                if (input.NodeType == XmlNodeType.EndElement && input.Depth == cDepth) break;
                             }
                         }
                     }
@@ -355,11 +352,10 @@ namespace Xbim.IO.Xml
                 if (input.IsEmptyElement)
                     return;
 
-                //isolate to finish at the end of this element
-                input = input.ReadSubtree();
-                MoveToElement(input);
+                var enumDepth = input.Depth;
                 while (input.Read())
                 {
+                    if (input.NodeType == XmlNodeType.EndElement && input.Depth == enumDepth) break;
                     if (input.NodeType != XmlNodeType.Element) continue;
                     
                     //position is optional
@@ -385,13 +381,15 @@ namespace Xbim.IO.Xml
                         var pVal = new PropertyValue();
                         pVal.Init(iVal, Primitives[name]);
                         entity.Parse(pIndex, pVal, pos);
+                        if (input.NodeType == XmlNodeType.EndElement && input.Depth == enumDepth) break;
                         continue;
                     }
 
                     var eType = GetExpresType(input);
                     if(eType == null)
                         throw new XbimParserException("Unexpected type " + name);
-                    SetPropertyFromElement(property, entity, input.IsEmptyElement ? input : input.ReadSubtree(), pos, eType);
+                    SetPropertyFromElement(property, entity, input, pos, eType);
+                    if (input.NodeType == XmlNodeType.EndElement && input.Depth == enumDepth) break;
                 }
                 return;
             }
@@ -400,7 +398,7 @@ namespace Xbim.IO.Xml
 
         private readonly char[] _separator = {' '};
 
-        private void SetPropertyFromAttribute(ExpressMetaProperty property, IPersistEntity entity, string value, int[] pos, Type valueType = null)
+        private void SetPropertyFromString(ExpressMetaProperty property, IPersistEntity entity, string value, int[] pos, Type valueType = null)
         {
             var pIndex = property.EntityAttribute.Order - 1;
             var type = valueType ?? property.PropertyInfo.PropertyType;
@@ -418,14 +416,14 @@ namespace Xbim.IO.Xml
                     {
                         IPropertyValue pv;
                         if(InitPropertyValue(underType, v, out pv))
-                            entity.Parse(pIndex, pv, null);
+                            entity.Parse(pIndex, pv, pos);
                     }
                     return;
                 }
                 if (type.IsEnum)
                 {
                     propVal.Init(value, StepParserType.Enum);
-                    entity.Parse(pIndex, propVal, null);
+                    entity.Parse(pIndex, propVal, pos);
                     return;
                 }
 
@@ -437,7 +435,7 @@ namespace Xbim.IO.Xml
                 }
                 IPropertyValue pVal;
                 if (InitPropertyValue(type, value, out pVal))
-                    entity.Parse(pIndex, pVal, null);
+                    entity.Parse(pIndex, pVal, pos);
                 return;
             }
 
@@ -452,7 +450,7 @@ namespace Xbim.IO.Xml
                 var values = value.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var v in values)
                 {
-                    SetPropertyFromAttribute(property, entity, v, pos, genType);
+                    SetPropertyFromString(property, entity, v, pos, genType);
                 }
                 return;
             }
@@ -525,10 +523,12 @@ namespace Xbim.IO.Xml
         private StepFileHeader ReadHeader(XmlReader input)
         {
             var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
+            var depth = input.Depth;
             while (input.Read())
             {
-                if (input.NodeType != XmlNodeType.Element)
-                    continue;
+                if (input.NodeType == XmlNodeType.EndElement && input.Depth == depth) break;
+                if (input.NodeType != XmlNodeType.Element) continue;
+
                 switch (input.LocalName.ToLowerInvariant())
                 {
                     case "name":
@@ -565,7 +565,10 @@ namespace Xbim.IO.Xml
             //read the root element
             while (input.Read())
             {
-                //read namespace
+                //skip any whitespaces or anything
+                if (input.NodeType != XmlNodeType.Element) continue;
+
+                //read namespace info
                 while (input.MoveToNextAttribute())
                 {
                     if (input.Value == "http://www.iai-tech.org/ifcXML/IFC2x3/FINAL")

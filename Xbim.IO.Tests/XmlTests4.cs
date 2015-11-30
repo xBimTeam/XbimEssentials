@@ -140,19 +140,19 @@ namespace Xbim.MemoryModel.Tests
                 w.Start();
                 model.Open("SampleHouse4.ifc");
                 w.Stop();
-                Debug.WriteLine("{0}ms to read STEP.", w.ElapsedMilliseconds);
+                Console.WriteLine("{0}ms to read STEP.", w.ElapsedMilliseconds);
                 var instCount = model.Instances.Count;
 
                 w.Restart();
                 WriteXml(model, outPath);
                 w.Stop();
-                Debug.WriteLine("{0}ms to write XML.", w.ElapsedMilliseconds);
+                Console.WriteLine("{0}ms to write XML.", w.ElapsedMilliseconds);
 
                 w.Restart();
                 var errs = ValidateIfc4(outPath);
                 Assert.AreEqual(0, errs);
                 w.Stop();
-                Debug.WriteLine("{0}ms to validate XML.", w.ElapsedMilliseconds);
+                Console.WriteLine("{0}ms to validate XML.", w.ElapsedMilliseconds);
                 
                 //w.Restart();
                 //WriteJSON(model, "..\\..\\SampleHouse4.json");
@@ -164,7 +164,7 @@ namespace Xbim.MemoryModel.Tests
                     w.Restart();
                     model2.OpenXml(outPath);
                     w.Stop();
-                    Debug.WriteLine("{0}ms to read XML.", w.ElapsedMilliseconds);
+                    Console.WriteLine("{0}ms to read XML.", w.ElapsedMilliseconds);
 
                     var instances = model.Instances as EntityCollection<EntityFactory>;
                     var instances2 = model2.Instances as EntityCollection<EntityFactory>;
@@ -175,7 +175,7 @@ namespace Xbim.MemoryModel.Tests
                     var roots2 = model2.Instances.OfType<IfcRoot>().ToList();
                     foreach (var root in roots1.Where(root => roots2.All(r => r.GlobalId != root.GlobalId)))
                     {
-                        Debug.WriteLine("Missing root element: {0} ({1})", root.GlobalId, root.GetType().Name);
+                        Console.WriteLine("Missing root element: {0} ({1})", root.GlobalId, root.GetType().Name);
                     }
 
                     foreach (var expressType in model2.Metadata.Types().Where(et => typeof(IPersistEntity).IsAssignableFrom(et.Type)))
@@ -185,7 +185,7 @@ namespace Xbim.MemoryModel.Tests
 
                         if (count1 != count2)
                         {
-                            Debug.WriteLine("Different count of {0} {1}/{2}", expressType.Name, count1, count2);
+                            Console.WriteLine("Different count of {0} {1}/{2}", expressType.Name, count1, count2);
                         }
                     }
 

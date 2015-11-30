@@ -14,7 +14,7 @@ namespace Profiling.ReadingXML
         static void Main(string[] args)
         {
             var w = new Stopwatch();
-            const string path = "profiling.xml";
+            const string path = @"c:\CODE\XbimGit\XbimEssentials\TestResults\SampleHouse4.xml"; //"profiling.xml";
             using (var model = new MemoryModel<EntityFactory>())
             {
                 w.Start();
