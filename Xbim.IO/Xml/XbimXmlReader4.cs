@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
@@ -39,6 +41,11 @@ namespace Xbim.IO.Xml
             _metadata = metadata;
         }
 
+        private XbimXmlReader4()
+        {
+            
+        }
+
         static XbimXmlReader4()
         {
             Primitives = new Dictionary<string, StepParserType>
@@ -62,7 +69,7 @@ namespace Xbim.IO.Xml
 
         }
 
-        public StepFileHeader Read(XmlReader input)
+        public StepFileHeader Read(XmlReader input, bool onlyHeader = false)
         {
             _idMap = new Dictionary<string, int>();
             
@@ -77,7 +84,7 @@ namespace Xbim.IO.Xml
 
                 if (rootElement)
                 {
-                    //do any root element processing here (check namespace, but it might be defined further down)
+                    ReadSchemaInHeader(input, header);
                     rootElement = false;
                     continue;
                 }
@@ -86,13 +93,21 @@ namespace Xbim.IO.Xml
                 {
                     //header is the first inner node if defined (it is optional)
                     var name = input.LocalName.ToLowerInvariant();
-                    if (name == "header" && !input.IsEmptyElement)
+                    if ((name == "header" || name == "iso_10303_28_header") && !input.IsEmptyElement)
                     {
-                        header = ReadHeader(input);
-                        continue;
+                        header = ReadHeader(input, header);
                     }
                     headerElement = false;
+                    continue;
                 }
+
+                //if this is IFC2x3 file and we only need the header we need to make sure we read schema information from "uos" element
+                if (input.LocalName == "uos")
+                {
+                    ReadSchemaInHeader(input, header);
+                }
+
+                if (onlyHeader) return header;
 
                 //process all root entities in the file (that has to be IPersistEntity)
                 ReadEntity(input);
@@ -100,6 +115,33 @@ namespace Xbim.IO.Xml
 
             return header;
 
+        }
+
+        private void ReadSchemaInHeader(XmlReader input, StepFileHeader header)
+        {
+            if (!input.IsEmptyElement && input.HasAttributes)
+            {
+                while (input.MoveToNextAttribute())
+                {
+                    if (input.Value == "http://www.iai-tech.org/ifcXML/IFC2x3/FINAL")
+                    {
+                        header.FileSchema.Schemas.Add("IFC2X3");
+                        break;
+                    }
+                    if (input.Value == "http://www.buildingsmart-tech.org/ifcXML/MVD4/IFC4")
+                    {
+                        header.FileSchema.Schemas.Add("IFC4");
+                        header.FileSchema.Schemas.Add("IFC4Add1");
+                        break;
+                    }
+                    if (input.Value == "http://www.buildingsmart-tech.org/ifcXML/IFC4/final")
+                    {
+                        header.FileSchema.Schemas.Add("IFC4");
+                        break;
+                    }
+                }
+                input.MoveToElement();
+            }            
         }
 
         private ExpressType GetExpresType(XmlReader input)
@@ -548,9 +590,8 @@ namespace Xbim.IO.Xml
             return _metadata.TryGetExpressType(elementName.ToUpperInvariant(), out expressType);
         }
 
-        private StepFileHeader ReadHeader(XmlReader input)
+        private StepFileHeader ReadHeader(XmlReader input, StepFileHeader header)
         {
-            var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
             var depth = input.Depth;
             while (input.Read())
             {
@@ -588,13 +629,32 @@ namespace Xbim.IO.Xml
             return header;
         }
 
+        public static IStepFileHeader ReadHeader(Stream input)
+        {
+            using (var inStream = new StreamReader(input, Encoding.GetEncoding("ISO-8859-9")))
+            //this is a work around to ensure latin character sets are read
+            {
+                using (var reader = XmlReader.Create(inStream))
+                {
+                    var xReader = new XbimXmlReader4();
+                    return xReader.Read(reader, true);
+                }
+            }
+
+        }
+
         public static XmlSchemaVersion ReadSchemaVersion(XmlReader input)
         {
+            var dist = 0;
             //read the root element
             while (input.Read())
             {
+                //don't dig deeper than 100 elements
+                if(dist > 100) return XmlSchemaVersion.Unknown;
+
                 //skip any whitespaces or anything
                 if (input.NodeType != XmlNodeType.Element) continue;
+                dist++;
 
                 //read namespace info
                 while (input.MoveToNextAttribute())
@@ -608,6 +668,7 @@ namespace Xbim.IO.Xml
                     if (input.Value == "http://www.buildingsmart-tech.org/ifcXML/IFC4/final")
                         return XmlSchemaVersion.Ifc4;
                 }
+                input.MoveToElement();
             }
             return XmlSchemaVersion.Unknown;
         }

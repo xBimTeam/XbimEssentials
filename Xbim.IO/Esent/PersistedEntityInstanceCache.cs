@@ -625,13 +625,11 @@ namespace Xbim.IO.Esent
         {
             CreateDatabase(xbimDbName);
             Open(xbimDbName, XbimDBAccess.Exclusive);
-            var table = GetEntityTable();
             if (cacheEntities) CacheStart();
             try
             {
-                using (var transaction = table.BeginLazyTransaction())
+                using (var transaction = _model.BeginTransaction())
                 {
-
                     using (var xmlInStream = new StreamReader(inputStream, Encoding.GetEncoding("ISO-8859-9"))) //this is a work around to ensure latin character sets are read
                     {
                         using (var xmlTextReader = new XmlTextReader(xmlInStream))
@@ -641,27 +639,26 @@ namespace Xbim.IO.Esent
                             _forwardReferences = new BlockingCollection<StepForwardReference>();
                             var xmlReader = XmlReader.Create(xmlTextReader, settings);
                             settings.CheckCharacters = false;
-                            var reader = GetIfcXmlReader(table);
+                            var reader = GetIfcXmlReader(transaction);
                             _model.Header = reader.Read(xmlReader);
-                            table.WriteHeader(_model.Header);
+                            var cursor = _model.GetTransactingCursor();
+                            cursor.WriteHeader(_model.Header);
 
                         }
                     }
                     transaction.Commit();
                 }
-                FreeTable(table);
                 if(!keepOpen) Close();
             }
             catch (Exception e)
             {
-                FreeTable(table);
                 Close();
                 File.Delete(xbimDbName);
                 throw new Exception("Error importing IfcXml file.", e);
             }
         }
 
-        private IfcXmlReader GetIfcXmlReader(EsentEntityCursor table)
+        private IfcXmlReader GetIfcXmlReader(XbimReadWriteTransaction txn)
         {
             return new IfcXmlReader(
                                 (label, type) =>
@@ -671,11 +668,21 @@ namespace Xbim.IO.Esent
                                         return GetInstance(label, false, true);
 
                                     //create new entity and add it to the list
-                                    var entity = CreateNew(type, label);
+                                    var cursor = _model.GetTransactingCursor();
+                                    var h = cursor.AddEntity(type, label);
+                                    var entity = _factory.New(_model, type, h.EntityLabel, true) as IPersistEntity;
+                                    entity = _read.GetOrAdd(h.EntityLabel, entity);
+                                    CreatedNew.TryAdd(h.EntityLabel, entity);
 
                                     return entity;
                                 },
-                                table.AddEntity,
+                                e =>
+                                {
+                                    //add entity to modified list
+                                    ModifiedEntities.TryAdd(e.EntityLabel, e);
+                                    //pulse will flush the model if necessary (based on the number of entities being processed)
+                                    txn.Pulse();
+                                },
                                 Model.Metadata);
         }
 
@@ -808,16 +815,17 @@ namespace Xbim.IO.Esent
                             {
                                 using (var zipFile = new ZipFile(fileStream))
                                 {
-                                    using (var transaction = table.BeginLazyTransaction())
+                                    using (var transaction = _model.BeginTransaction())
                                     {
                                         // XmlReaderSettings settings = new XmlReaderSettings() { IgnoreComments = true, IgnoreWhitespace = false };
                                         using (var xmlInStream = zipFile.GetInputStream(entry))
                                         {
                                             using (var xmlReader = new XmlTextReader(xmlInStream))
                                             {
-                                                var reader = GetIfcXmlReader(table);
+                                                var reader = GetIfcXmlReader(transaction);
                                                 _model.Header = reader.Read(xmlReader);
-                                                table.WriteHeader(_model.Header);
+                                                var cursor = _model.GetTransactingCursor();
+                                                cursor.WriteHeader(_model.Header);
                                             }
                                         }
                                         transaction.Commit();

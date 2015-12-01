@@ -69,6 +69,12 @@ namespace Xbim.MemoryModel.Tests
                 Assert.IsTrue(model.Header.FileName.PreprocessorVersion == "4.0");
             }
 
+            //check version info
+            using (var file = File.OpenRead(outPath))
+            {
+                var header = XbimXmlReader4.ReadHeader(file);
+                Assert.AreEqual("IFC4, IFC4Add1", header.SchemaVersion);
+            }
         }
 
         [TestMethod]
