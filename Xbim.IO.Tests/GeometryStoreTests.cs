@@ -183,7 +183,7 @@ namespace Xbim.EsentModel.Tests
         [TestMethod]
         public void InMemoryGeometryStoreMultiThreadTest()
         {
-            using (var model = new IO.Memory.MemoryModel<EntityFactory>())
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
                
                 var store = model.GeometryStore;

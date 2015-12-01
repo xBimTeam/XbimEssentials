@@ -687,7 +687,7 @@ namespace Xbim.IO.Esent
         }
 
         /// <summary>
-        /// Imports the contents of the ifc file into the named database, the resulting database is closed after success, use Open to access
+        /// Imports the contents of the ifc file into the named database, the resulting database is closed after success, use LoadStep21 to access
         /// </summary>
         /// <param name="toImportIfcFilename"></param>
         /// <param name="progressHandler"></param>

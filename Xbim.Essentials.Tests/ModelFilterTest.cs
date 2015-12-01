@@ -71,7 +71,7 @@ namespace Xbim.Essentials.Tests
                     return prop.PropertyInfo.GetValue(toCopy, null);//just pass through the value               
                 };
 
-                //source.Open("BIM Logo-LetterM.xBIM");
+                //source.LoadStep21("BIM Logo-LetterM.xBIM");
                 //source.SaveAs("WithGeometry.ifc");
                 string modelName = @"4walls1floorSite";
                 string xbimModelName = Path.ChangeExtension(modelName, "xbim");
@@ -132,7 +132,7 @@ namespace Xbim.Essentials.Tests
             //    // Return false to indicate files are different
             //    Assert.Fail("File Lengths are different, Source == {0}, Copy == {1}",l1,l2);
             //}
-            // Open the two files.
+            // LoadStep21 the two files.
             using (var fs1 = new StreamReader(file1))
             {
                 using (var fs2 = new StreamReader(file2))

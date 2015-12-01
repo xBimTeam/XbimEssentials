@@ -13,7 +13,7 @@ namespace Xbim.IO.Memory
     /// This is a generic implementation of federated model. It doesn't assume anything about the underlying models
     /// and their implementation. It only operates on interfaces from xBIM Common. Exception will be thrown if you try to
     /// add multiple models with the same identifier. But it is your responsibility to keep identifiers unique.
-    /// This model doesn't provide any Open() or Close() methods. It is your choice how you open the models and how you
+    /// This model doesn't provide any LoadStep21() or Close() methods. It is your choice how you open the models and how you
     /// close and dispose them. 
     /// </summary>
     class FederatedModel: IFederatedModel
@@ -22,7 +22,7 @@ namespace Xbim.IO.Memory
         /// This is a generic implementation of federated model. It doesn't assume anything about the underlying models
         /// and their implementation. It only operates on interfaces from xBIM Common. Exception will be thrown if you try to
         /// add multiple models with the same identifier. But it is your responsibility to keep identifiers unique.
-        /// This model doesn't provide any Open() or Close() methods. It is your choice how you open the models and how you
+        /// This model doesn't provide any LoadStep21() or Close() methods. It is your choice how you open the models and how you
         /// close and dispose them. 
         /// </summary>
         public FederatedModel()

@@ -92,7 +92,7 @@ namespace Xbim.Ifc
             if (EntityModified == null) return;
             EntityModified(entity);
         }
-        //public static IfcStore Open( Stream inputStream, XbimStorageType storageType, string xbimDbName, XbimDBAccess accessMode = XbimDBAccess.Read, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
+        //public static IfcStore LoadStep21( Stream inputStream, XbimStorageType storageType, string xbimDbName, XbimDBAccess accessMode = XbimDBAccess.Read, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
         //{
         //    var ifcVersion = GetIfcSchemaVersion(inputStream);
         //    if (ifcVersion == IfcSchemaVersion.Unsupported)
@@ -102,13 +102,13 @@ namespace Xbim.Ifc
         //        if (ifcVersion == IfcSchemaVersion.Ifc4)
         //        {
         //            var model = new EsentModel(new Ifc4.EntityFactory());
-        //            model.Open(inputStream, accessMode, progDelegate);
+        //            model.LoadStep21(inputStream, accessMode, progDelegate);
         //            return new IfcStore(model);
         //        }
         //        else //it will be Ifc2x3
         //        {
         //            var model = new EsentModel(new Ifc2x3.EntityFactory());
-        //            model.Open(inputStream, accessMode, progDelegate);
+        //            model.LoadStep21(inputStream, accessMode, progDelegate);
         //            return new IfcStore(model);
         //        }
         //    }
@@ -137,13 +137,13 @@ namespace Xbim.Ifc
         //            if (ifcVersion == IfcSchemaVersion.Ifc4)
         //            {
         //                var model = new MemoryModel<Ifc4.EntityFactory>();
-        //                model.Open(path, progDelegate);
+        //                model.LoadStep21(path, progDelegate);
         //                return new IfcStore(model);
         //            }
         //            else //it will be Ifc2x3
         //            {
         //                var model = new MemoryModel<Ifc2x3.EntityFactory>();
-        //                model.Open(path, progDelegate);
+        //                model.LoadStep21(path, progDelegate);
         //                return new IfcStore(model);
         //            }
         //        }
@@ -210,14 +210,14 @@ namespace Xbim.Ifc
                 {
                     if (ifcVersion == IfcSchemaVersion.Ifc4)
                     {
-                        var model = new MemoryModel<Ifc4.EntityFactory>();
-                        model.Open(path, progDelegate);
+                        var model = new MemoryModel(new Ifc4.EntityFactory());
+                        model.LoadStep21(path, progDelegate);
                         return new IfcStore(model, ifcVersion, editorDetails, path);
                     }
                     else //it will be Ifc2x3
                     {
-                        var model = new MemoryModel<Ifc2x3.EntityFactory>();
-                        model.Open(path, progDelegate);
+                        var model = new MemoryModel(new Ifc2x3.EntityFactory());
+                        model.LoadStep21(path, progDelegate);
                         return new IfcStore(model, ifcVersion, editorDetails, path);
                     }
                 }
@@ -299,24 +299,14 @@ namespace Xbim.Ifc
                 esentModel.Header.StampXbimApplication(_schema);
                 return esentModel.BeginTransaction(name);
             }
-            if (_schema == IfcSchemaVersion.Ifc4)
+
+            var memoryModel = _model as MemoryModel;
+            if (memoryModel != null)
             {
-                var memoryModel = _model as MemoryModel<Ifc4.EntityFactory>;
-                if (memoryModel != null)
-                {
-                    memoryModel.Header.StampXbimApplication(_schema);
-                    return memoryModel.BeginTransaction(name);                   
-                }
+                memoryModel.Header.StampXbimApplication(_schema);
+                return memoryModel.BeginTransaction(name);
             }
-            else if (_schema == IfcSchemaVersion.Ifc2X3)
-            {
-                var memoryModel = _model as MemoryModel<Ifc2x3.EntityFactory>;
-                if (memoryModel != null)
-                {
-                    memoryModel.Header.StampXbimApplication(_schema);
-                    return memoryModel.BeginTransaction(name);
-                }
-            }
+            
             throw new XbimException("Native store does not support transactions");
         }
 
@@ -415,12 +405,12 @@ namespace Xbim.Ifc
 
                 if (ifcVersion == IfcSchemaVersion.Ifc4)
                 {
-                    var memoryModel = new MemoryModel<Ifc4.EntityFactory>();
+                    var memoryModel = new MemoryModel(new Ifc4.EntityFactory());
                     return new IfcStore(memoryModel, ifcVersion, editorDetails);
                 }
                 else //it will be Ifc2x3
                 {
-                    var memoryModel = new MemoryModel<Ifc2x3.EntityFactory>();
+                    var memoryModel = new MemoryModel(new Ifc2x3.EntityFactory());
                     return new IfcStore(memoryModel, ifcVersion, editorDetails);
                 }
             }
@@ -625,18 +615,11 @@ namespace Xbim.Ifc
                 }
                 esentModel.SaveAs(fileName,format, progDelegate);
             }
-            if (_schema == IfcSchemaVersion.Ifc4)
-            {
-                var memoryModel = _model as MemoryModel<Ifc4.EntityFactory>;
-                if (memoryModel != null)
-                    memoryModel.SaveAs(fileName);
-            }
-            else if (_schema == IfcSchemaVersion.Ifc2X3)
-            {
-                var memoryModel = _model as MemoryModel<Ifc2x3.EntityFactory>;
-                if (memoryModel != null)
-                    memoryModel.SaveAs(fileName);
-            }
+
+            var memoryModel = _model as MemoryModel;
+            if (memoryModel != null)
+                memoryModel.SaveAs(fileName, format, progDelegate);
+            
         }
 
 

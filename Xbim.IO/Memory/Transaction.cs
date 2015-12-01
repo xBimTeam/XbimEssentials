@@ -5,9 +5,9 @@ using Xbim.Common;
 
 namespace Xbim.IO.Memory
 {
-    public class Transaction<TFactory> : ITransaction where TFactory : IEntityFactory, new()
+    public class Transaction : ITransaction
     {
-        private readonly MemoryModel<TFactory> _model;
+        private readonly MemoryModel _model;
         private bool _closed;
         private bool _undone;
         private readonly List<Change> _log = new List<Change>();
@@ -28,13 +28,13 @@ namespace Xbim.IO.Memory
             }
         }
 
-        public Transaction(MemoryModel<TFactory> model, string name)
+        public Transaction(MemoryModel model, string name)
         {
             Name = name;
             _model = model;
         }
 
-        public Transaction(MemoryModel<TFactory> model)
+        public Transaction(MemoryModel model)
         {
             _model = model;
         }
@@ -76,7 +76,7 @@ namespace Xbim.IO.Memory
         /// </summary>
         public IEnumerable<IPersistEntity> Modified
         {
-            get { return _log.Where(c => c.ChangeType == ChangeType.Modified && !_log.Any(a => a.Entity == c.Entity && (a.ChangeType == ChangeType.New || a.ChangeType == ChangeType.Deleted))).Select(c => c.Entity).Distinct(); }
+            get { return _log.Where(c => c.ChangeType == ChangeType.Modified && !_log.Any(a => Equals(a.Entity, c.Entity) && (a.ChangeType == ChangeType.New || a.ChangeType == ChangeType.Deleted))).Select(c => c.Entity).Distinct(); }
         }
 
         /// <summary>

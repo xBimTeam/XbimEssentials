@@ -42,8 +42,8 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void Ifc4InterfacesToIfc2X3()
         {
-            var model = new MemoryModel<EntityFactory>();
-            model.Open("4walls1floorSite.ifc",null);
+            var model = new MemoryModel(new EntityFactory());
+            model.LoadStep21("4walls1floorSite.ifc",null);
 
             var walls = model.Instances.OfType<IIfcWall>().ToList();
             Assert.AreEqual(4, walls.Count);

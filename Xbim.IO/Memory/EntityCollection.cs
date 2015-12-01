@@ -6,18 +6,16 @@ using Xbim.Common;
 
 namespace Xbim.IO.Memory
 {
-    public class EntityCollection<TFactory> : IEntityCollection, IDisposable where TFactory : IEntityFactory, new()
+    public class EntityCollection : IEntityCollection, IDisposable
     {
-        private readonly IModel _model;
+        private readonly MemoryModel _model;
         private readonly Dictionary<Type, List<IPersistEntity>> _internal = new Dictionary<Type, List<IPersistEntity>>();
         private readonly List<IPersistEntity> _list = new List<IPersistEntity>(); 
-        internal readonly TFactory Factory;
+        internal IEntityFactory Factory{get { return _model.EntityFactory; }}
         internal int NextLabel = 1;
-        public EntityCollection(IModel model)
+        public EntityCollection(MemoryModel model)
         {
             _model = model;
-            var mainType = typeof (IPersistEntity);
-            Factory = new TFactory();
         }
 
         private List<Type> GetQueryTypes(Type type)

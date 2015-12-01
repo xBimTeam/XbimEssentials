@@ -35,7 +35,7 @@ namespace Xbim.MemoryModel.Tests
         public void Ifc4HeaderSerialization()
         {
             const string outPath = "..\\..\\HeaderSampleIfc4.xml";
-            using (var model = new MemoryModel<EntityFactory>())
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
                 model.Header.FileName.Name = "Sample model";
                 model.Header.FileName.AuthorName.Add("Martin");
@@ -60,9 +60,9 @@ namespace Xbim.MemoryModel.Tests
             }
 
             //read it back and validate it is the same
-            using (var model = new MemoryModel<EntityFactory>())
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
-                model.OpenXml(outPath);
+                model.LoadXml(outPath);
 
                 Assert.IsTrue(model.Header.FileName.Name == "Sample model");
                 Assert.IsTrue(model.Header.FileName.OriginatingSystem == "xBIM Toolkit");
@@ -81,7 +81,7 @@ namespace Xbim.MemoryModel.Tests
         public void ListSerializationTests()
         {
             const string outPath = "..\\..\\ListSerializationTest.xml";
-            using (var model = new MemoryModel<EntityFactory>())
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
                 using (var txn = model.BeginTransaction("site"))
                 {
@@ -120,9 +120,9 @@ namespace Xbim.MemoryModel.Tests
                 var errs = ValidateIfc4(outPath);
                 Assert.AreEqual(0, errs);
 
-                using (var model2 = new MemoryModel<EntityFactory>())
+                using (var model2 = new IO.Memory.MemoryModel(new EntityFactory()))
                 {
-                    model2.OpenXml(outPath);
+                    model2.LoadXml(outPath);
                     var b = model2.Instances.FirstOrDefault<IfcBuilding>();
                     Assert.IsNotNull(b);
 
@@ -141,10 +141,10 @@ namespace Xbim.MemoryModel.Tests
             var w = new Stopwatch();
             const string outPath = "..\\..\\SampleHouse4.xml";
 
-            using (var model = new MemoryModel<EntityFactory>())
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
                 w.Start();
-                model.Open("SampleHouse4.ifc");
+                model.LoadStep21("SampleHouse4.ifc");
                 w.Stop();
                 Console.WriteLine("{0}ms to read STEP.", w.ElapsedMilliseconds);
                 var instCount = model.Instances.Count;
@@ -165,15 +165,15 @@ namespace Xbim.MemoryModel.Tests
                 //w.Stop();
                 //Debug.WriteLine("{0}ms to write JSON.", w.ElapsedMilliseconds);
 
-                using (var model2 = new MemoryModel<EntityFactory>())
+                using (var model2 = new IO.Memory.MemoryModel(new EntityFactory()))
                 {
                     w.Restart();
-                    model2.OpenXml(outPath);
+                    model2.LoadXml(outPath);
                     w.Stop();
                     Console.WriteLine("{0}ms to read XML.", w.ElapsedMilliseconds);
 
-                    var instances = model.Instances as EntityCollection<EntityFactory>;
-                    var instances2 = model2.Instances as EntityCollection<EntityFactory>;
+                    var instances = model.Instances as EntityCollection;
+                    var instances2 = model2.Instances as EntityCollection;
                     if(instances == null || instances2 == null)
                         throw new Exception();
 
@@ -206,7 +206,7 @@ namespace Xbim.MemoryModel.Tests
         public void AttributesSerialization()
         {
             const string outPath = "..\\..\\StandaloneSite.xml";
-            using (var model = new MemoryModel<EntityFactory>())
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
                 IfcSite site;
                 using (var txn = model.BeginTransaction("site"))
@@ -232,9 +232,9 @@ namespace Xbim.MemoryModel.Tests
                 var errs = ValidateIfc4(outPath);
                 Assert.AreEqual(0, errs);
 
-                using (var model2 = new MemoryModel<EntityFactory>())
+                using (var model2 = new IO.Memory.MemoryModel(new EntityFactory()))
                 {
-                    model2.OpenXml(outPath);
+                    model2.LoadXml(outPath);
                     var site2 = model2.Instances.FirstOrDefault<IfcSite>();
                     Assert.IsNotNull(site2);
 
@@ -254,7 +254,7 @@ namespace Xbim.MemoryModel.Tests
         public void SelectTypeSerialization()
         {
             const string outPath = "..\\..\\SelectTypeSerialization.xml";
-            using (var model = new MemoryModel<EntityFactory>())
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
                 using (var txn = model.BeginTransaction("Test"))
                 {
@@ -282,9 +282,9 @@ namespace Xbim.MemoryModel.Tests
                     WriteXml(model, outPath);
                     txn.Commit();
 
-                    using (var model2 = new MemoryModel<EntityFactory>())
+                    using (var model2 = new IO.Memory.MemoryModel(new EntityFactory()))
                     {
-                        model2.OpenXml(outPath);
+                        model2.LoadXml(outPath);
                         var props = model2.Instances.OfType<IfcPropertySingleValue>().ToList();
                         var pLabel2 = props.FirstOrDefault(p => p.Name == "Label");
                         var pInteger2 = props.FirstOrDefault(p => p.Name == "Integer");
@@ -307,7 +307,7 @@ namespace Xbim.MemoryModel.Tests
         public void PropertySetDefinitionSetSerialization()
         {
             const string outPath = "..\\..\\IfcPropertySetDefinitionSet.xml";
-            using (var model = new MemoryModel<EntityFactory>())
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
                 using (var txn = model.BeginTransaction("IfcPropertySetDefinitionSet"))
                 {
@@ -355,9 +355,9 @@ namespace Xbim.MemoryModel.Tests
                 WriteJSON(model, "..\\..\\properties.json");
 
 
-                using (var model2 = new MemoryModel<EntityFactory>())
+                using (var model2 = new IO.Memory.MemoryModel(new EntityFactory()))
                 {
-                    model2.OpenXml(outPath);
+                    model2.LoadXml(outPath);
                     var wall = model2.Instances.FirstOrDefault<IfcWall>();
 
                     Assert.IsNotNull(wall.IsDefinedBy.FirstOrDefault());
@@ -373,7 +373,7 @@ namespace Xbim.MemoryModel.Tests
         public void RectangularListSerialization()
         {
             const string outPath = "..\\..\\IfcCartesianPointList3D.xml";
-            using (var model = new MemoryModel<EntityFactory>())
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
                 using (var txn = model.BeginTransaction("Rect"))
                 {
@@ -405,9 +405,9 @@ namespace Xbim.MemoryModel.Tests
                 Assert.IsTrue(xmlString.Contains("CoordList=\"1 2 3 4 5 6 7 8 9\""));
             }
 
-            using (var model = new MemoryModel<EntityFactory>())
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
-                model.OpenXml(outPath);
+                model.LoadXml(outPath);
                 var list = model.Instances.FirstOrDefault<IfcCartesianPointList3D>();
                 Assert.IsNotNull(list);
 
@@ -420,7 +420,7 @@ namespace Xbim.MemoryModel.Tests
         public void NonRectangularListSerialization()
         {
             const string outPath = "..\\..\\IfcStructuralLoadConfiguration.xml";
-            using (var model = new MemoryModel<EntityFactory>())
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
                 using (var txn = model.BeginTransaction("Rect"))
                 {

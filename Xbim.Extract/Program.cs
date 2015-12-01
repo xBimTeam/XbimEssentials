@@ -26,7 +26,7 @@ namespace Xbim.Extract
                 source.CreateFrom(@"C:\Users\Steve\Downloads\Test Models\crash\NBS_LakesideRestaurant_EcoBuild2015_Revit2014_.ifc","source.xbim",null,true);
 
                // source.CreateFrom(@"C:\Users\Steve\Downloads\Test Models\Wall with complex openings.ifc", "source.xbim", null, true);
-                // source.Open("BIM Logo-LetterM.xBIM");
+                // source.LoadStep21("BIM Logo-LetterM.xBIM");
                 source.SaveAs(sourceFile);
                 using (var target = Xbim.Ifc2x3.IO.XbimModel.CreateTemporaryModel())
                 {

@@ -20,10 +20,10 @@ namespace Profiling.WritingXml
         {
             var w = new Stopwatch();
             const string path = "..\\..\\..\\Xbim.IO.Tests\\TestFiles\\SampleHouse4.ifc";
-            using (var model = new MemoryModel<EntityFactory>())
+            using (var model = new MemoryModel(new EntityFactory()))
             {
                 w.Start();
-                model.Open(path);
+                model.LoadStep21(path);
                 w.Stop();
                 Console.WriteLine(@"{0}ms to open model from STEP file.", w.ElapsedMilliseconds);
 

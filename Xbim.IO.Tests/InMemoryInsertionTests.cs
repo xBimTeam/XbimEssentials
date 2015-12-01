@@ -42,11 +42,11 @@ namespace Xbim.MemoryModel.Tests
                 return property.PropertyInfo.GetValue(parentObject, null);
             };
 
-            using (var model = new MemoryModel<EntityFactory>())
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
-                model.Open(original);
+                model.LoadStep21(original);
                 var wall = model.Instances.FirstOrDefault<IfcWall>();
-                using (var iModel = new MemoryModel<EntityFactory>())
+                using (var iModel = new IO.Memory.MemoryModel(new EntityFactory()))
                 {
                     using (var txn = iModel.BeginTransaction("Insert copy"))
                     {
@@ -122,11 +122,11 @@ namespace Xbim.MemoryModel.Tests
         public void ExtractSemanticModel()
         {
             const string original = "SampleHouse4.ifc";
-         using (var model = new MemoryModel<Ifc4.EntityFactory>())
+         using (var model = new IO.Memory.MemoryModel(new Ifc4.EntityFactory()))
             {
-                model.Open(original);
+                model.LoadStep21(original);
                 var roots = model.Instances.OfType<Ifc4.Kernel.IfcRoot>();
-                using (var iModel = new MemoryModel<Ifc4.EntityFactory>())
+                using (var iModel = new IO.Memory.MemoryModel(new Ifc4.EntityFactory()))
                 {
                     using (var txn = iModel.BeginTransaction("Insert copy"))
                     {

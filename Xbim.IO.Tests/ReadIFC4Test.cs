@@ -18,8 +18,8 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void LoadIfc4Test()
         {
-            var model = new MemoryModel<EntityFactory>();
-            model.Open("SampleHouse4.ifc");
+            var model = new IO.Memory.MemoryModel(new EntityFactory());
+            model.LoadStep21("SampleHouse4.ifc");
 
             var project = model.Instances.FirstOrDefault<IfcProject>();
             Assert.IsNotNull(project);
@@ -34,8 +34,8 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void ReadingOfNestedLists()
         {
-            var model = new MemoryModel<EntityFactory>();
-            model.Open("IfcCartesianPointList3D.ifc");
+            var model = new IO.Memory.MemoryModel(new EntityFactory());
+            model.LoadStep21("IfcCartesianPointList3D.ifc");
             var pl = model.Instances.FirstOrDefault<IfcCartesianPointList3D>();
             Assert.IsNotNull(pl);
             Assert.AreEqual(3, pl.CoordList.Count);
@@ -48,7 +48,7 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void CreationOfNestedListsFromAPI()
         {
-            var model = new MemoryModel<EntityFactory>();
+            var model = new IO.Memory.MemoryModel(new EntityFactory());
             using (var txn = model.BeginTransaction("Test"))
             {
                 var pl = model.Instances.New<IfcCartesianPointList3D>();
