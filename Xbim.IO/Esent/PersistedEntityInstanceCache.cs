@@ -1491,9 +1491,11 @@ namespace Xbim.IO.Esent
                     SaveAsIfcXml(storageFileName);
                     break;
                 case XbimStorageType.Step21:
+                case XbimStorageType.Ifc:
                     SaveAsIfc(storageFileName,map);
                     break;
                 case XbimStorageType.Step21Zip:
+                case XbimStorageType.IfcZip:
                     SaveAsIfcZip(storageFileName);
                     break;
                 case XbimStorageType.Xbim:

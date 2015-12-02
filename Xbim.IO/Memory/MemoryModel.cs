@@ -1,56 +1,111 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using ICSharpCode.SharpZipLib.Zip;
 using Xbim.Common;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
+using Xbim.IO.Esent;
 using Xbim.IO.Step21;
 using Xbim.IO.Xml;
+using PropertyTranformDelegate = Xbim.Common.PropertyTranformDelegate;
 
 namespace Xbim.IO.Memory
 {
     public static class MemoryModel
     {
-        
+        private static ZipEntry GetZipEntry(Stream fileStream)
+        {
+            // used because - The ZipInputStream has one major advantage over using ZipFile to read a zip: 
+            // it can read from an unseekable input stream - such as a WebClient download
+            using (var zipStream = new ZipInputStream(fileStream))
+            {
+                var entry = zipStream.GetNextEntry();
+                while (entry != null)
+                {
+                    if (entry.IsFile && entry.Name.IfcStorageType() != XbimStorageType.Invalid)
+                    {
+                        return entry;
+                    }
+                    entry = zipStream.GetNextEntry(); //get next entry
+                }
+            }
+            return null;
+        }
+
         public static IStepFileHeader GetStepFileHeader(string fileName)
         {
+            // need to get the header for each step file storage type
+            //if it is a zip file
+            var storageType = fileName.IfcStorageType();
             using (var stream = File.OpenRead(fileName))
             {
-                var parser = new XbimP21Parser(stream, null);
-                var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
-                parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
+                
+                if(storageType==XbimStorageType.IfcZip|| storageType==XbimStorageType.Step21Zip)
                 {
-                    //allow all attributes to be parsed
-                    ints = null;
-                    if (header)
+
+                    var zipEntry = GetZipEntry(stream);
+                    if (zipEntry != null)
                     {
-                        switch (name)
+                        var zipStorageType = zipEntry.Name.IfcStorageType();
+                        if (zipStorageType == XbimStorageType.Ifc || zipStorageType == XbimStorageType.Step21)
                         {
-                            case "FILE_DESCRIPTION":
-                                return stepHeader.FileDescription;
-                            case "FILE_NAME":
-                                return stepHeader.FileName;
-                            case "FILE_SCHEMA":
-                                return stepHeader.FileSchema;
-                            default:
-                                return null;
+                            using (var zipFile = new ZipFile(fileName))
+                            {
+                                using (var reader = zipFile.GetInputStream(zipEntry))
+                                {
+                                    return GetStepFileHeader(reader);
+                                }
+                            }
+                        }
+                        else if (zipStorageType == XbimStorageType.IfcXml)
+                        {
+                            throw new NotImplementedException("XML header reading not implemented");
                         }
                     }
-                    parser.Cancel = true; //done enough
                     return null;
-                };
-                parser.Parse();
-                stream.Close();
-                return stepHeader;
+                }
+                return GetStepFileHeader(stream);
             }
+        }
+
+        private static IStepFileHeader GetStepFileHeader(Stream stream)
+        {
+            var parser = new XbimP21Parser(stream, null);
+            var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
+            parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
+            {
+                //allow all attributes to be parsed
+                ints = null;
+                if (header)
+                {
+                    switch (name)
+                    {
+                        case "FILE_DESCRIPTION":
+                            return stepHeader.FileDescription;
+                        case "FILE_NAME":
+                            return stepHeader.FileName;
+                        case "FILE_SCHEMA":
+                            return stepHeader.FileSchema;
+                        default:
+                            return null;
+                    }
+                }
+                parser.Cancel = true; //done enough
+                return null;
+            };
+            parser.Parse();
+            stream.Close();
+            return stepHeader;
         }
     }
 
-    public class MemoryModel<TFactory> : IModel, IDisposable where TFactory: IEntityFactory, new()
+    public class MemoryModel<TFactory> : IModel, IDisposable where TFactory : IEntityFactory, new()
     {
         public static StepFileHeader GetStepFileHeader(string fileName)
         {
@@ -147,7 +202,7 @@ namespace Xbim.IO.Memory
                             p.PropertyInfo.PropertyType.GenericTypeArgumentIsAssignableFrom(entityType)).ToList();
                     if (!toNullify.Any() && !toRemove.Any()) continue;
 
-                    candidateTypes.Add(new DeleteCandidateType{Type = type, ToNullify = toNullify, ToRemove = toRemove});
+                    candidateTypes.Add(new DeleteCandidateType { Type = type, ToNullify = toNullify, ToRemove = toRemove });
                 }
             }
 
@@ -218,7 +273,7 @@ namespace Xbim.IO.Memory
             public List<ExpressMetaProperty> ToRemove;
         }
 
-        private readonly Dictionary<Type, List<DeleteCandidateType>> _deteteCandidatesCache = new Dictionary<Type, List<DeleteCandidateType>>(); 
+        private readonly Dictionary<Type, List<DeleteCandidateType>> _deteteCandidatesCache = new Dictionary<Type, List<DeleteCandidateType>>();
 
         public virtual ITransaction BeginTransaction(string name)
         {
@@ -262,7 +317,7 @@ namespace Xbim.IO.Memory
                     _transactionReference = new WeakReference(value);
                 else
                     _transactionReference.Target = value;
-            } 
+            }
         }
 
         public virtual IModelFactors ModelFactors { get; private set; }
@@ -328,7 +383,7 @@ namespace Xbim.IO.Memory
             {
                 var read = new Dictionary<int, IPersistEntity>();
                 var xmlReader = new XbimXmlReader4(
-                    (label, type) => 
+                    (label, type) =>
                     {
                         IPersistEntity exist;
                         if (read.TryGetValue(label, out exist))
@@ -352,10 +407,10 @@ namespace Xbim.IO.Memory
         /// <param name="stream">Path to the file</param>
         /// <param name="progDelegate"></param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
-        public virtual int Open(Stream stream, ReportProgressDelegate progDelegate=null)
+        public virtual int Open(Stream stream, ReportProgressDelegate progDelegate = null)
         {
             var parser = new XbimP21Parser(stream, Metadata);
-            if(progDelegate!=null) parser.ProgressStatus += progDelegate;
+            if (progDelegate != null) parser.ProgressStatus += progDelegate;
             var first = true;
             Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
             parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
@@ -377,12 +432,12 @@ namespace Xbim.IO.Memory
                             return null;
                     }
                 }
-                
+
                 if (label == null)
                     return _instances.Factory.New(name);
                 //if this is a first non-header entity header is read completely by now. 
                 //So we should check if the schema declared in the file is the one declared in EntityFactory
-                if (first) 
+                if (first)
                 {
                     first = false;
                     if (!Header.FileSchema.Schemas.All(s => _instances.Factory.SchemasIds.Contains(s)))
@@ -390,12 +445,12 @@ namespace Xbim.IO.Memory
                 }
 
                 var typeId = Metadata.ExpressTypeId(name);
-                var ent = _instances.Factory.New(this, typeId, (int) label, true);
+                var ent = _instances.Factory.New(this, typeId, (int)label, true);
                 _instances.InternalAdd(ent);
 
                 //make sure that new added entities will have higher labels to avoid any clashes
                 if (label >= _instances.NextLabel)
-                    _instances.NextLabel = (int) label + 1;
+                    _instances.NextLabel = (int)label + 1;
                 return ent;
             };
             parser.Parse();
@@ -409,7 +464,7 @@ namespace Xbim.IO.Memory
         /// <param name="file">Path to the file</param>
         /// <param name="progDelegate"></param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
-        public virtual int Open(string file, ReportProgressDelegate progDelegate=null)
+        public virtual int Open(string file, ReportProgressDelegate progDelegate = null)
         {
             using (var stream = File.OpenRead(file))
             {

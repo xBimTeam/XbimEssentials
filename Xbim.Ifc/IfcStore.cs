@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml;
+using ICSharpCode.SharpZipLib.Zip;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Geometry;
@@ -12,6 +15,7 @@ using Xbim.Ifc4.Interfaces;
 using Xbim.IO;
 using Xbim.IO.Esent;
 using Xbim.IO.Memory;
+using Xbim.IO.Step21.Parser;
 
 namespace Xbim.Ifc
 {
@@ -169,7 +173,7 @@ namespace Xbim.Ifc
             var ifcVersion = GetIfcSchemaVersion(path);
             if (ifcVersion == IfcSchemaVersion.Unsupported)
                 throw new FileLoadException(filePath + " is not a valid Ifc file format, ifc, ifcxml, ifczip and xBIM are supported");
-            var storageType = IfcStorageType(path);
+            var storageType = path.IfcStorageType();
             if (storageType == XbimStorageType.Xbim) //open the XbimFile
             {
 
@@ -226,7 +230,7 @@ namespace Xbim.Ifc
 
         public static IfcSchemaVersion GetIfcSchemaVersion(string path)
         {
-            var storageType = IfcStorageType(path);
+            var storageType = path.IfcStorageType();
             if (storageType == XbimStorageType.Invalid) return IfcSchemaVersion.Unsupported;
             var stepHeader = storageType == XbimStorageType.Xbim ? EsentModel.GetStepFileHeader(path) : MemoryModel.GetStepFileHeader(path);
             var stepSchema = stepHeader.FileSchema;
@@ -241,17 +245,7 @@ namespace Xbim.Ifc
             return IfcSchemaVersion.Unsupported;
         }
 
-        public static XbimStorageType IfcStorageType(string path)
-        {
-            var ext = Path.GetExtension(path);
-            if (string.IsNullOrEmpty(ext)) return XbimStorageType.Invalid;
-            ext = ext.ToLowerInvariant();
-            if (ext == ".ifc") return XbimStorageType.Ifc;
-            if (ext == ".ifcxml") return XbimStorageType.IfcXml;
-            if (ext == ".ifczip") return XbimStorageType.IfcZip;
-            if (ext == ".xbim") return XbimStorageType.Xbim;
-            return XbimStorageType.Invalid;
-        }
+        
 
 
         public int UserDefinedId
@@ -624,18 +618,19 @@ namespace Xbim.Ifc
                         return; //do nothing it is already saved
                 }
                 esentModel.SaveAs(fileName,format, progDelegate);
+                return;
             }
             if (_schema == IfcSchemaVersion.Ifc4)
             {
                 var memoryModel = _model as MemoryModel<Ifc4.EntityFactory>;
                 if (memoryModel != null)
-                    memoryModel.SaveAs(fileName);
+                    memoryModel.SaveAs(fileName, format, progDelegate);
             }
             else if (_schema == IfcSchemaVersion.Ifc2X3)
             {
                 var memoryModel = _model as MemoryModel<Ifc2x3.EntityFactory>;
                 if (memoryModel != null)
-                    memoryModel.SaveAs(fileName);
+                    memoryModel.SaveAs(fileName, format, progDelegate);
             }
         }
 
@@ -900,6 +895,9 @@ namespace Xbim.Ifc
             ModelFactors.Initialise(angleToRadiansConversionFactor, lengthToMetresConversionFactor,
                 defaultPrecision);
         }
+
+       
+        
     }
 
 }

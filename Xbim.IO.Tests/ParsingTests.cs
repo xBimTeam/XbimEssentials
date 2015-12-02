@@ -5,6 +5,7 @@ using Xbim.Common;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.Ifc2x3.SharedBldgElements;
+using Xbim.IO;
 
 namespace Xbim.MemoryModel.Tests
 {
@@ -35,6 +36,38 @@ namespace Xbim.MemoryModel.Tests
                 store.Close();
             }
         }
+
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
+        public void IfcStoreSaveAndOpenIfcZipTest()
+        {
+            long count;
+            //create a zip file using esent
+            using (var store = IfcStore.Open("4walls1floorSite.ifc", null, 0))
+            {
+                count = store.Instances.Count;
+                store.SaveAs("4walls1floorSite",XbimStorageType.IfcZip);
+                store.Close();
+            }
+            using (var store = IfcStore.Open("4walls1floorSite.ifczip", null, 0))
+            {               
+                Assert.IsTrue(count == store.Instances.Count, "Should have same number of instances");
+                store.Close();
+            }
+            using (var store = IfcStore.Open("4walls1floorSite.ifc")) //now with memory model
+            {
+                count = store.Instances.Count;
+                store.SaveAs("4walls1floorSite", XbimStorageType.IfcZip);
+                store.Close();
+            }
+            using (var store = IfcStore.Open("4walls1floorSite.ifczip"))
+            {
+                Assert.IsTrue(count == store.Instances.Count, "Should have same number of instances");
+                store.Close();
+            }
+        }
+
+
 
         [TestMethod]
         [DeploymentItem("TestFiles")]

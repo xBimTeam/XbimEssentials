@@ -30,4 +30,6 @@ namespace Xbim.IO
         Xbim = 16,
         IfcZip = 32    
     }
+
+
 }
