@@ -14,8 +14,8 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void EqualityTest()
         {
-            var model = new MemoryModel<EntityFactory>();
-            var model2 = new MemoryModel<EntityFactory>();
+            var model = new MemoryModel(new EntityFactory());
+            var model2 = new MemoryModel(new EntityFactory());
 
             //use entity factory to create objects outside of transaction or anything
             var f = new EntityFactory();

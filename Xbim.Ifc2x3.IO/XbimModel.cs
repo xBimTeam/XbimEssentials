@@ -151,7 +151,7 @@ namespace Xbim.Ifc2x3.IO
         }
         #endregion
 
-        #region Open and create model
+        #region LoadStep21 and create model
 
         public static XbimModel CreateTemporaryModel()
         {

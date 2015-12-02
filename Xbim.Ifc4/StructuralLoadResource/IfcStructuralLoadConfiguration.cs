@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				return _values;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 1, 2, 3)]
 		public OptionalItemSet<ItemSet<IfcLengthMeasure>> @Locations 
 		{ 
 			get 

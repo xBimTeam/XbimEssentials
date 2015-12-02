@@ -5,7 +5,6 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.CobieExpress;
 using Xbim.Common;
-using Xbim.IO.Memory;
 
 namespace Xbim.MemoryModel.Tests
 {
@@ -21,8 +20,8 @@ namespace Xbim.MemoryModel.Tests
             
             model.SaveAs("RandomModel.cobie");
 
-            var model2 = new MemoryModel<EntityFactory>();
-            model2.Open("RandomModel.cobie", null);
+            var model2 = new IO.Memory.MemoryModel(new EntityFactory());
+            model2.LoadStep21("RandomModel.cobie");
 
             Assert.AreEqual(model2.Instances.Count, model2.Instances.Count);
             Assert.AreEqual(model2.Instances.OfType<CobieAttribute>().Count(), model2.Instances.OfType<CobieAttribute>().Count());
@@ -30,10 +29,10 @@ namespace Xbim.MemoryModel.Tests
 
             //because save operation is deterministic both files should match
             var data1 = new StringWriter();
-            model2.SaveAs(data1);
+            model2.SaveAsStep21(data1);
 
             var data2 = new StringWriter();
-            model2.SaveAs(data2);
+            model2.SaveAsStep21(data2);
 
             var str1 = data1.ToString();
             var str2 = data2.ToString();
@@ -82,9 +81,9 @@ namespace Xbim.MemoryModel.Tests
             Assert.IsTrue(spaces.Any());
         }
 
-        private MemoryModel<EntityFactory> CreateTestModel()
+        private IO.Memory.MemoryModel CreateTestModel()
         {
-            var model = new MemoryModel<EntityFactory>();
+            var model = new IO.Memory.MemoryModel(new EntityFactory());
             using (var txn = model.BeginTransaction("Model creation"))
             {
                 var facility = model.Instances.New<CobieFacility>(f =>
@@ -173,10 +172,11 @@ namespace Xbim.MemoryModel.Tests
             foreach (var name in _rHeroNames)
             {
                 var sName = name + "'s Hall";
+                var name1 = name;
                 model.Instances.New<CobieSpace>(s =>
                 {
                     s.Name = sName;
-                    s.Floor = _rHeroNames.IndexOf(name) < 5 ? floorA : floorB;
+                    s.Floor = _rHeroNames.IndexOf(name1) < 5 ? floorA : floorB;
                     GenerateAttributes(s, 10);
                     GenerateComponents(s, 15);
                 });

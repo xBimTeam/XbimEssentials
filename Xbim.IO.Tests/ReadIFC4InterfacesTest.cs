@@ -14,8 +14,8 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void LoadIfc4IntoMemoryTest()
         {
-            var model = new MemoryModel<EntityFactory>();
-            model.Open("SampleHouse4.ifc");
+            var model = new IO.Memory.MemoryModel(new EntityFactory());
+            model.LoadStep21("SampleHouse4.ifc");
 
             var project = model.Instances.FirstOrDefault<IIfcProject>();
             Assert.IsNotNull(project);

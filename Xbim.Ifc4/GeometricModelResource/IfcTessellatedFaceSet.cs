@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _coordinates = v, _coordinates, value,  "Coordinates");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 3, 3, 4)]
 		public OptionalItemSet<ItemSet<IfcParameterValue>> @Normals 
 		{ 
 			get 

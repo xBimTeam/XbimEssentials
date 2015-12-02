@@ -13,7 +13,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void SerializationTest()
         {
-            var model = new MemoryModel<EntityFactory>();
+            var model = new MemoryModel(new EntityFactory());
             using (var txn = model.BeginTransaction("Null style"))
             {
                 model.Instances.New<IfcPresentationLayerWithStyle>(ls => ls.LayerStyles.Add(new IfcNullStyle()));
@@ -21,8 +21,8 @@ namespace Xbim.Essentials.Tests
                 txn.Commit();
             }
 
-            model = new MemoryModel<EntityFactory>();
-            model.Open("NullStyle.ifc");
+            model = new MemoryModel(new EntityFactory());
+            model.LoadStep21("NullStyle.ifc");
             var style = model.Instances.FirstOrDefault<IfcPresentationLayerWithStyle>();
             var nStyle = style.LayerStyles.FirstOrDefault();
 

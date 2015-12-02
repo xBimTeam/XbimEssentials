@@ -1,34 +1,43 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Xml;
 using System.Xml.Schema;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Ifc2x3;
+using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.IO;
-using Xbim.IO.Esent;
-using Xbim.IO.Memory;
+using Xbim.IO.Xml;
 
 namespace Xbim.MemoryModel.Tests
 {
     [TestClass]
     [DeploymentItem("TestFiles")]
-    public class XmlTests2x3
+    public class XmlTests2X3
     {
         [TestMethod]
         public void Ifc2X3XMLSerialization()
         {
+            const string output = "..\\..\\4walls1floorSite.xml";
             using (var esent = new IO.Esent.EsentModel(new EntityFactory()))
             {
                 esent.CreateFrom("4walls1floorSite.ifc", null, null, true, true);
-                esent.SaveAs("..\\..\\4walls1floorSite.xml", XbimStorageType.IfcXml);
+                esent.SaveAs(output, XbimStorageType.IfcXml);
                 var errs = ValidateIfc2X3("..\\..\\4walls1floorSite.xml");
                 Assert.AreEqual(0, errs);
             }
 
             using (var esent = new IO.Esent.EsentModel(new EntityFactory()))
             {
-                var success = esent.CreateFrom("..\\..\\4walls1floorSite.xml", null, null, true, true);
+                var success = esent.CreateFrom(output, null, null, true, true);
                 Assert.IsTrue(success);
+                Assert.AreEqual(4, esent.Instances.CountOf<IfcWall>());
+            }
+
+            //check version info
+            using (var file = File.OpenRead(output))
+            {
+                var header = XbimXmlReader4.ReadHeader(file);
+                Assert.AreEqual("IFC2X3", header.SchemaVersion);
             }
         }
 

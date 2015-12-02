@@ -6,12 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml;
 using Microsoft.Win32;
 using Xbim.Common;
 using Xbim.Common.Metadata;
-using Xbim.Ifc2x3;
-using Xbim.Ifc2x3.Kernel;
-using Xbim.Ifc2x3.ProductExtension;
+using Xbim.Ifc4.Interfaces;
 using Xbim.IO.Memory;
 
 namespace Utility.ExtractCobieData
@@ -53,10 +52,10 @@ namespace Utility.ExtractCobieData
         {
             var dlg = new SaveFileDialog
             {
-                Title = "Select output IFC2x3 file",
+                Title = "Select output IFC file",
                 AddExtension = true,
-                DefaultExt = ".ifc", 
-                Filter = "IFC2x3 files (*.ifc)|*.ifc"
+                DefaultExt = ".ifc",
+                Filter = "IFC file (*.ifc)|*.ifc|IFC file (*.ifcxml)|*.ifcxml"
             };
             if (dlg.ShowDialog(this) == true)
                 TxtOutputFile.Text = dlg.FileName;
@@ -66,11 +65,11 @@ namespace Utility.ExtractCobieData
         {
             var dlg = new OpenFileDialog
             {
-                Filter = "IFC2x3 files (*.ifc)|*.ifc",
+                Filter = "IFC file (*.ifc)|*.ifc",
                 CheckFileExists = true,
                 CheckPathExists = true,
                 Multiselect = false,
-                Title = "Select input IFC2x3 file"
+                Title = "Select input IFC file"
             };
             if (dlg.ShowDialog(this) == true)
                 TxtInputFile.Text = dlg.FileName;
@@ -92,10 +91,21 @@ namespace Utility.ExtractCobieData
             var w = Stopwatch.StartNew();
             long originalCount;
             long resultCount;
-            using (var source = new MemoryModel<EntityFactory>())
+
+            IEntityFactory factory = null;
+            var header = MemoryModel.GetStepFileHeader(TxtInputFile.Text);
+            var schema = header.FileSchema.Schemas.First().ToUpper();
+            if (schema == "IFC2X3")
+                factory = new Xbim.Ifc2x3.EntityFactory();
+            if(schema == "IFC4")
+                factory = new Xbim.Ifc4.EntityFactory();
+            if(factory == null)
+                throw new Exception("Unidentified schema");
+
+            using (var source = new MemoryModel(factory))
             {
-                source.Open(TxtInputFile.Text);
-                using (var target = new MemoryModel<EntityFactory>())
+                source.LoadStep21(TxtInputFile.Text);
+                using (var target = new MemoryModel(factory))
                 {
                     //insertion itself will be configured to happen out of transaction but other operations might need to be transactional
                     using (var txn = target.BeginTransaction("COBie data extraction"))
@@ -110,7 +120,14 @@ namespace Utility.ExtractCobieData
                         txn.Commit();
                     }
 
-                    target.SaveAs(TxtOutputFile.Text);
+                    var ext = Path.GetExtension(TxtOutputFile.Text);
+                    using (var file = File.OpenWrite(TxtOutputFile.Text))
+                    {
+                        if (ext.ToLower() == ".ifcxml")
+                            target.SaveAsXml(file, new XmlWriterSettings{Indent = true});
+                        else
+                            target.SaveAsStep21(file);
+                    }
                     originalCount = source.Instances.Count;
                     resultCount = target.Instances.Count;
                 }
@@ -143,7 +160,7 @@ namespace Utility.ExtractCobieData
         {
             var guids = TxtGuidFilter.Text;
             if (string.IsNullOrWhiteSpace(guids))
-                return model.Instances.OfType<IfcRoot>();
+                return model.Instances.OfType<IIfcRoot>();
 
             var ids =
                 guids
@@ -153,29 +170,28 @@ namespace Utility.ExtractCobieData
             List<IPersistEntity> roots;
             if (GetLabel(ids.First()) < 0)
                 //root elements specified by GUID
-                roots = model.Instances.Where<IfcRoot>(r => ids.Contains(r.GlobalId.ToString())).Cast<IPersistEntity>().ToList();
+                roots = model.Instances.Where<IIfcRoot>(r => ids.Contains(r.GlobalId.ToString())).Cast<IPersistEntity>().ToList();
             else
             {
                 var labels = ids.Select(GetLabel).ToList();
                 //root elements specified by GUID
-                roots = model.Instances.Where<IfcRoot>(r => labels.Contains(r.EntityLabel)).Cast<IPersistEntity>().ToList();
+                roots = model.Instances.Where<IIfcRoot>(r => labels.Contains(r.EntityLabel)).Cast<IPersistEntity>().ToList();
             }
             
-            _primaryElements = roots.OfType<IfcProduct>().ToList();
+            _primaryElements = roots.OfType<IIfcProduct>().ToList();
 
             //add any aggregated elements. For example IfcRoof is typically aggregation of one or more slabs so we need to bring
             //them along to have all the information both for geometry and for properties and materials.
             //This has to happen before we add spatial hierarchy or it would bring in full hierarchy which is not an intention
             var decompositionRels = GetAggregations(_primaryElements.ToList(), model).ToList();
-            var decomposition = decompositionRels.SelectMany(r => r.RelatedObjects).OfType<IfcProduct>();
-            _primaryElements.AddRange(decomposition);
+            _primaryElements.AddRange(_decomposition);
             roots.AddRange(decompositionRels);
             
             //we should add spatial hierarchy right here so it brings its attributes as well
-            var spatialRels = model.Instances.Where<IfcRelContainedInSpatialStructure>(
+            var spatialRels = model.Instances.Where<IIfcRelContainedInSpatialStructure>(
                 r => _primaryElements.Any(e => r.RelatedElements.Contains(e))).ToList();
             var spatialRefs =
-                model.Instances.Where<IfcRelReferencedInSpatialStructure>(
+                model.Instances.Where<IIfcRelReferencedInSpatialStructure>(
                     r => _primaryElements.Any(e => r.RelatedElements.Contains(e))).ToList();
             var bottomSpatialHierarchy =
                 spatialRels.Select(r => r.RelatingStructure).Union(spatialRefs.Select(r => r.RelatingStructure)).ToList();
@@ -183,7 +199,7 @@ namespace Utility.ExtractCobieData
 
             //add all spatial elements from bottom and from upstream hierarchy
             _primaryElements.AddRange(bottomSpatialHierarchy);
-            _primaryElements.AddRange(spatialAggregations.Select(r => r.RelatingObject).OfType<IfcProduct>());
+            _primaryElements.AddRange(spatialAggregations.Select(r => r.RelatingObject).OfType<IIfcProduct>());
             roots.AddRange(spatialAggregations);
             roots.AddRange(spatialRels);
             roots.AddRange(spatialRefs);
@@ -195,15 +211,16 @@ namespace Utility.ExtractCobieData
             roots.AddRange(featureRels);
 
             //object types and properties for all primary products (elements and spatial elements)
-            roots.AddRange(model.Instances.Where<IfcRelDefines>( r => _primaryElements.Any(e => r.RelatedObjects.Contains(e))));
+            roots.AddRange(model.Instances.Where<IIfcRelDefinesByProperties>(r => _primaryElements.Any(e => r.RelatedObjects.Contains(e))));
+            roots.AddRange(model.Instances.Where<IIfcRelDefinesByType>(r => _primaryElements.Any(e => r.RelatedObjects.Contains(e))));
             
 
             
             //assignmnet to groups will bring in all system aggregarions if defined in the file
-            roots.AddRange(model.Instances.Where<IfcRelAssigns>(r => _primaryElements.Any(e => r.RelatedObjects.Contains(e))));
+            roots.AddRange(model.Instances.Where<IIfcRelAssigns>(r => _primaryElements.Any(e => r.RelatedObjects.Contains(e))));
             
             //associations with classification, material and documents
-            roots.AddRange(model.Instances.Where<IfcRelAssociates>(r => _primaryElements.Any(e => r.RelatedObjects.Contains(e))));
+            roots.AddRange(model.Instances.Where<IIfcRelAssociates>(r => _primaryElements.Any(e => r.RelatedObjects.Contains(e))));
 
             return roots;
         }
@@ -225,34 +242,70 @@ namespace Utility.ExtractCobieData
             return -1;
         }
 
-        private IEnumerable<IfcRelVoidsElement> GetFeatureRelations(IEnumerable<IfcProduct> products)
+        private IEnumerable<IIfcRelVoidsElement> GetFeatureRelations(IEnumerable<IIfcProduct> products)
         {
-            var elements = products.OfType<IfcElement>().ToList();
+            var elements = products.OfType<IIfcElement>().ToList();
             if(!elements.Any()) yield break;
             var model = elements.First().Model;
-            var rels = model.Instances.Where<IfcRelVoidsElement>(r => elements.Any(e => e == r.RelatingBuildingElement));
+            var rels = model.Instances.Where<IIfcRelVoidsElement>(r => elements.Any(e => e == r.RelatingBuildingElement));
             foreach (var rel in rels)
                 yield return rel;
         }
 
-        private IEnumerable<IfcRelDecomposes> GetAggregations(List<IfcProduct> products, IModel model)
+        private List<IIfcProduct> _decomposition = new List<IIfcProduct>(); 
+
+        private IEnumerable<IIfcRelDecomposes> GetAggregations(List<IIfcProduct> products, IModel model)
         {
+            _decomposition = new List<IIfcProduct>();
             while (true)
             {
                 if (!products.Any())
                     yield break;
 
                 var products1 = products;
-                var rels = model.Instances.Where<IfcRelDecomposes>(r => products1.Any(p => r.RelatingObject == p)).ToList();
-                var relatedProducts = rels.SelectMany(r => r.RelatedObjects).OfType<IfcProduct>().ToList();
+                var rels = model.Instances.Where<IIfcRelDecomposes>(r =>
+                {
+                    var aggr = r as IIfcRelAggregates;
+                    if (aggr != null)
+                        return products1.Any(p => Equals(aggr.RelatingObject, p));
+                    var nest = r as IIfcRelNests;
+                    if (nest != null)
+                        return products1.Any(p => Equals(nest.RelatingObject, p));
+                    var prj = r as IIfcRelProjectsElement;
+                    if (prj != null)
+                        return products1.Any(p => Equals(prj.RelatingElement, p));
+                    var voids = r as IIfcRelVoidsElement;
+                    if(voids != null)
+                        return products1.Any(p => Equals(voids.RelatingBuildingElement, p));
+                    return false;
+
+                }).ToList();
+                var relatedProducts = rels.SelectMany(r =>
+                {
+                    var aggr = r as IIfcRelAggregates;
+                    if (aggr != null)
+                        return aggr.RelatedObjects.OfType<IIfcProduct>();
+                    var nest = r as IIfcRelNests;
+                    if (nest != null)
+                        return nest.RelatedObjects.OfType<IIfcProduct>();
+                    var prj = r as IIfcRelProjectsElement;
+                    if (prj != null)
+                        return new IIfcProduct[] { prj.RelatedFeatureElement } ;
+                    var voids = r as IIfcRelVoidsElement;
+                    if(voids != null)
+                        return new IIfcProduct[] { voids.RelatedOpeningElement};
+                    return null;
+                }).Where(p => p != null).ToList();
+
                 foreach (var rel in rels)
                     yield return rel;
 
                 products = relatedProducts;
+                _decomposition.AddRange(products);
             }
         }
 
-        private IEnumerable<IfcRelAggregates> GetUpstreamHierarchy(IEnumerable<IfcSpatialStructureElement> spatialStructureElements, IModel model)
+        private IEnumerable<IIfcRelAggregates> GetUpstreamHierarchy(IEnumerable<IIfcSpatialElement> spatialStructureElements, IModel model)
         {
             while (true)
             {
@@ -260,8 +313,8 @@ namespace Utility.ExtractCobieData
                 if (!elements.Any())
                     yield break;
 
-                var rels = model.Instances.Where<IfcRelAggregates>(r => elements.Any(s => r.RelatedObjects.Contains(s))).ToList();
-                var decomposing = rels.Select(r => r.RelatingObject).OfType<IfcSpatialStructureElement>();
+                var rels = model.Instances.Where<IIfcRelAggregates>(r => elements.Any(s => r.RelatedObjects.Contains(s))).ToList();
+                var decomposing = rels.Select(r => r.RelatingObject).OfType<IIfcSpatialStructureElement>();
 
                 foreach (var rel in rels)
                     yield return rel;
@@ -270,15 +323,15 @@ namespace Utility.ExtractCobieData
             }
         }
 
-        private List<IfcProduct> _primaryElements; 
+        private List<IIfcProduct> _primaryElements; 
 
         private object Filter(ExpressMetaProperty property, object parentObject)
         {
             if (_primaryElements != null && _primaryElements.Any())
             {
-                if (typeof(IfcProduct).IsAssignableFrom(property.PropertyInfo.PropertyType))
+                if (typeof(IIfcProduct).IsAssignableFrom(property.PropertyInfo.PropertyType))
                 {
-                    var element = property.PropertyInfo.GetValue(parentObject, null) as IfcProduct;
+                    var element = property.PropertyInfo.GetValue(parentObject, null) as IIfcProduct;
                     if (element != null && _primaryElements.Contains(element))
                         return element;
                     return null;
@@ -288,7 +341,7 @@ namespace Utility.ExtractCobieData
                     var entities = property.PropertyInfo.GetValue(parentObject, null) as IEnumerable<IPersistEntity>;
                     if (entities == null)
                         return null;
-                    var elementsToRemove = entities.OfType<IfcProduct>().Where(e => !_primaryElements.Contains(e)).ToList();
+                    var elementsToRemove = entities.OfType<IIfcProduct>().Where(e => !_primaryElements.Contains(e)).ToList();
                     //if there are no IfcElements return what is in there with no care
                     if (elementsToRemove.Any())
                         //return original values excluding elements not included in the primary set
@@ -303,17 +356,17 @@ namespace Utility.ExtractCobieData
                 return property.PropertyInfo.GetValue(parentObject, null);
 
             //leave out geometry and placement of products
-            if (parentObject is IfcProduct && 
+            if (parentObject is IIfcProduct && 
                 (property.PropertyInfo.Name == "Representation" || property.PropertyInfo.Name == "ObjectPlacement")
                 )
                 return null;
 
             //leave out representation maps
-            if (parentObject is IfcTypeProduct && property.PropertyInfo.Name == "RepresentationMaps")
+            if (parentObject is IIfcTypeProduct && property.PropertyInfo.Name == "RepresentationMaps")
                 return null;
 
             //leave out eventual connection geometry
-            if (parentObject is IfcRelSpaceBoundary && property.PropertyInfo.Name == "ConnectionGeometry")
+            if (parentObject is IIfcRelSpaceBoundary && property.PropertyInfo.Name == "ConnectionGeometry")
                 return null;
 
             //return the value for anything else

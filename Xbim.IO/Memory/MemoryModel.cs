@@ -13,11 +13,12 @@ using Xbim.Common.Step21;
 using Xbim.IO.Esent;
 using Xbim.IO.Step21;
 using Xbim.IO.Xml;
+using Xbim.IO.Xml.BsConf;
 using PropertyTranformDelegate = Xbim.Common.PropertyTranformDelegate;
 
 namespace Xbim.IO.Memory
 {
-    public static class MemoryModel
+    public class MemoryModel : IModel, IDisposable
     {
         private static ZipEntry GetZipEntry(Stream fileStream)
         {
@@ -76,34 +77,34 @@ namespace Xbim.IO.Memory
 
         private static IStepFileHeader GetStepFileHeader(Stream stream)
         {
-            var parser = new XbimP21Parser(stream, null);
-            var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
-            parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
-            {
-                //allow all attributes to be parsed
-                ints = null;
-                if (header)
+                var parser = new XbimP21Parser(stream, null);
+                var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
+                parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
                 {
-                    switch (name)
+                    //allow all attributes to be parsed
+                    ints = null;
+                    if (header)
                     {
-                        case "FILE_DESCRIPTION":
-                            return stepHeader.FileDescription;
-                        case "FILE_NAME":
-                            return stepHeader.FileName;
-                        case "FILE_SCHEMA":
-                            return stepHeader.FileSchema;
-                        default:
-                            return null;
+                        switch (name)
+                        {
+                            case "FILE_DESCRIPTION":
+                                return stepHeader.FileDescription;
+                            case "FILE_NAME":
+                                return stepHeader.FileName;
+                            case "FILE_SCHEMA":
+                                return stepHeader.FileSchema;
+                            default:
+                                return null;
+                        }
                     }
-                }
-                parser.Cancel = true; //done enough
-                return null;
-            };
-            parser.Parse();
-            stream.Close();
-            return stepHeader;
+                    parser.Cancel = true; //done enough
+                    return null;
+                };
+                parser.Parse();
+                stream.Close();
+                return stepHeader;
+            }
         }
-    }
 
     public class MemoryModel<TFactory> : IModel, IDisposable where TFactory : IEntityFactory, new()
     {
@@ -139,16 +140,22 @@ namespace Xbim.IO.Memory
                 return stepHeader;
             }
         }
+        private readonly EntityCollection _instances;
+        private readonly IEntityFactory _entityFactory;
 
-        private readonly EntityCollection<TFactory> _instances;
+        internal IEntityFactory EntityFactory { get { return _entityFactory; } }
+
         public int UserDefinedId { get; set; }
-        public MemoryModel()
+        public MemoryModel(IEntityFactory entityFactory)
         {
-            _instances = new EntityCollection<TFactory>(this);
+            if (entityFactory == null) throw new ArgumentNullException("entityFactory");
+
+            _entityFactory = entityFactory;
+            _instances = new EntityCollection(this);
             Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults);
             Header.FileSchema.Schemas.AddRange(_instances.Factory.SchemasIds);
             ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
-            Metadata = ExpressMetaData.GetMetadata(typeof(TFactory).Module);
+            Metadata = ExpressMetaData.GetMetadata(entityFactory.GetType().Module);
             IsTransactional = true;
         }
 
@@ -273,14 +280,14 @@ namespace Xbim.IO.Memory
             public List<ExpressMetaProperty> ToRemove;
         }
 
-        private readonly Dictionary<Type, List<DeleteCandidateType>> _deteteCandidatesCache = new Dictionary<Type, List<DeleteCandidateType>>();
+        private readonly Dictionary<Type, List<DeleteCandidateType>> _deteteCandidatesCache = new Dictionary<Type, List<DeleteCandidateType>>(); 
 
         public virtual ITransaction BeginTransaction(string name)
         {
             if (CurrentTransaction != null)
                 throw new Exception("Transaction is opened already.");
 
-            var txn = new Transaction<TFactory>(this);
+            var txn = new Transaction(this);
             CurrentTransaction = txn;
             return txn;
         }
@@ -317,7 +324,7 @@ namespace Xbim.IO.Memory
                     _transactionReference = new WeakReference(value);
                 else
                     _transactionReference.Target = value;
-            }
+            } 
         }
 
         public virtual IModelFactors ModelFactors { get; private set; }
@@ -369,36 +376,47 @@ namespace Xbim.IO.Memory
             }
         }
 
-        public virtual void OpenXml(string path, ReportProgressDelegate progDelegate = null)
+        public virtual void LoadXml(string path, ReportProgressDelegate progDelegate = null)
         {
             using (var file = File.OpenRead(path))
             {
-                OpenXml(file, progDelegate);
+                LoadXml(file, progDelegate);
             }
         }
 
-        public virtual void OpenXml(Stream stream, ReportProgressDelegate progDelegate = null)
+        public virtual void LoadXml(Stream stream, ReportProgressDelegate progDelegate = null)
         {
+            _read.Clear();
             using (var reader = XmlReader.Create(stream))
             {
-                var read = new Dictionary<int, IPersistEntity>();
-                var xmlReader = new XbimXmlReader4(
-                    (label, type) =>
+                var schema = _entityFactory.SchemasIds.First();
+                if (schema == "IFC2X3")
+                {
+                    var reader3 = new IfcXmlReader(GetOrCreateXMLEntity, entity => { }, Metadata);
+                    Header = reader3.Read(reader);
+                }
+                else
+                {
+                    var xmlReader = new XbimXmlReader4(GetOrCreateXMLEntity, entity => { }, Metadata);
+                    Header = xmlReader.Read(reader);       
+                }
+            }
+
+            //purge
+            _read.Clear();
+        }
+
+        private readonly Dictionary<int, IPersistEntity>  _read = new Dictionary<int, IPersistEntity>();
+        private IPersistEntity GetOrCreateXMLEntity(int label, Type type)
                     {
                         IPersistEntity exist;
-                        if (read.TryGetValue(label, out exist))
+            if (_read.TryGetValue(label, out exist))
                             return exist;
 
                         var ent = _instances.Factory.New(this, type, label, true);
                         _instances.InternalAdd(ent);
-                        read.Add(label, ent);
+            _read.Add(label, ent);
                         return ent;
-                    },
-                    entity => { },
-                    Metadata);
-                var header = xmlReader.Read(reader);
-                Header = header;
-            }
         }
 
         /// <summary>
@@ -407,7 +425,7 @@ namespace Xbim.IO.Memory
         /// <param name="stream">Path to the file</param>
         /// <param name="progDelegate"></param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
-        public virtual int Open(Stream stream, ReportProgressDelegate progDelegate = null)
+        public virtual int LoadStep21(Stream stream, ReportProgressDelegate progDelegate=null)
         {
             var parser = new XbimP21Parser(stream, Metadata);
             if (progDelegate != null) parser.ProgressStatus += progDelegate;
@@ -432,12 +450,12 @@ namespace Xbim.IO.Memory
                             return null;
                     }
                 }
-
+                
                 if (label == null)
                     return _instances.Factory.New(name);
                 //if this is a first non-header entity header is read completely by now. 
                 //So we should check if the schema declared in the file is the one declared in EntityFactory
-                if (first)
+                if (first) 
                 {
                     first = false;
                     if (!Header.FileSchema.Schemas.All(s => _instances.Factory.SchemasIds.Contains(s)))
@@ -464,15 +482,42 @@ namespace Xbim.IO.Memory
         /// <param name="file">Path to the file</param>
         /// <param name="progDelegate"></param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
-        public virtual int Open(string file, ReportProgressDelegate progDelegate = null)
+        public virtual int LoadStep21(string file, ReportProgressDelegate progDelegate=null)
         {
             using (var stream = File.OpenRead(file))
             {
-                var result = Open(stream, progDelegate);
+                var result = LoadStep21(stream, progDelegate);
                 stream.Close();
                 return result;
             }
         }
+
+        private XbimStorageType GetStorageType(string fileName)
+        {
+            var ext = Path.GetExtension(fileName);
+            if (string.IsNullOrWhiteSpace(ext))
+                return XbimStorageType.Invalid;
+
+                ext = ext.ToLower().TrimStart('.');
+                switch (ext)
+                {
+                    case "ifc":
+                        return XbimStorageType.Ifc;
+                    case "stp":
+                        return XbimStorageType.Step21;
+                    case "ifczip":
+                        return XbimStorageType.IfcZip;
+                    case "stpzip":
+                        return XbimStorageType.Step21Zip;
+                    case "xml":
+                    case "ifcxml":
+                        return XbimStorageType.IfcXml;
+                    case "xbim":
+                        return XbimStorageType.Xbim;
+                }
+            return XbimStorageType.Step21;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -483,7 +528,7 @@ namespace Xbim.IO.Memory
         {
             using (var file = File.Create(path))
             {
-                SaveAs(file, storageType, progress);
+                SaveAs(file, storageType ?? GetStorageType(path), progress);
                 file.Close();
             }
         }
@@ -494,12 +539,119 @@ namespace Xbim.IO.Memory
         /// <param name="stream">Output stream. Steam will be closed at the end.</param>
         /// <param name="storageType"></param>
         /// <param name="progress"></param>
-        public virtual void SaveAs(Stream stream, XbimStorageType? storageType = null, ReportProgressDelegate progress = null)
+        public virtual void SaveAs(Stream stream, XbimStorageType storageType, ReportProgressDelegate progress = null)
+        {
+            switch (storageType)
+            {
+                case XbimStorageType.Invalid:
+                    return;
+                case XbimStorageType.IfcXml:
+                    SaveAsXml(stream, new XmlWriterSettings(), progress);
+                    break;
+                case XbimStorageType.Step21:
+                case XbimStorageType.Ifc:
+                    SaveAsStep21(stream, progress);
+                    break;
+                case XbimStorageType.Xbim:
+                    var esent = new EsentModel(_entityFactory);
+                    //TODO: Add all entities to instance cache and save as xBIM DB file
+                    break;
+                case XbimStorageType.Step21Zip:
+                case XbimStorageType.IfcZip:
+                    SaveAsStep21Zip(stream, progress);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("storageType", storageType, null);
+            }
+
+           
+        }
+
+        public virtual void SaveAsXml(Stream stream, XmlWriterSettings xmlSettings, ReportProgressDelegate progress = null)
+        {
+            using (var xmlWriter = XmlWriter.Create(stream, xmlSettings))
+            {
+                var schema = _entityFactory.SchemasIds.FirstOrDefault();
+                switch (schema)
+                {
+                    case "IFC2X3":
+                        var writer3 = new IfcXmlWriter3();
+                        writer3.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
+                        break;
+                    case "IFC4":
+                        var writer4 = new XbimXmlWriter4(configuration.IFC4Add1);
+                        writer4.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
+                        break;
+                    default:
+                        var writer = new XbimXmlWriter4(new configuration());
+                        writer.Write(this, xmlWriter);
+                        break;
+                }
+                xmlWriter.Close();
+            }
+        }
+
+        private IEnumerable<IPersistEntity> GetXmlOrderedEntities(string schema)
+        {
+            if (schema == null || !schema.StartsWith("IFC"))
+                return Instances;
+
+            var project = Instances.OfType("IfcProject", true);
+            var products = Instances.OfType("IfcObject", true);
+            var relations = Instances.OfType("IfcRelationship", true);
+
+            //create nice deep XML structure if possible
+            var all =
+                new IPersistEntity[] { }
+                //start from root
+                    .Concat(project)
+                //add all products not referenced in the project tree
+                    .Concat(products)
+                //add all relations which are not inversed
+                    .Concat(relations)
+                //make sure all other objects will get written
+                    .Concat(Instances);
+            return all;
+        }
+
+        public virtual void SaveAsXMLZip(Stream stream, XmlWriterSettings xmlSettings, ReportProgressDelegate progress = null)
+        {
+            using (var zipFile = new ZipFile(stream))
+            {
+                var schema = _entityFactory.SchemasIds.FirstOrDefault();
+                var ext = schema != null && schema.StartsWith("IFC") ? ".ifcxml" : ".xml";
+                var entry = new ZipEntry("data" + ext);
+                using (var zipStream = zipFile.GetInputStream(entry))
+                {
+                    SaveAsXml(zipStream, xmlSettings, progress);
+                }
+            }
+        }
+
+        public virtual void SaveAsStep21Zip(Stream stream, ReportProgressDelegate progress = null)
+        {
+            using (var zipFile = new ZipFile(stream))
+            {
+                var schema = _entityFactory.SchemasIds.FirstOrDefault();
+                var ext = schema != null && schema.StartsWith("IFC") ? ".ifc" : ".stp";
+                var entry = new ZipEntry("data" + ext);
+                using (var zipStream = zipFile.GetInputStream(entry))
+                {
+                    SaveAsStep21(zipStream, progress);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Saves the model as PART21 file
+        /// </summary>
+        /// <param name="stream">Stream to be used to write the file</param>
+        /// <param name="progress"></param>
+        public virtual void SaveAsStep21(Stream stream, ReportProgressDelegate progress = null)
         {
             using (var writer = new StreamWriter(stream))
             {
-                SaveAs(writer, storageType, progress);
-                writer.Close();
+                SaveAsStep21(writer);       
             }
         }
 
@@ -507,9 +659,8 @@ namespace Xbim.IO.Memory
         /// Saves the model as PART21 file
         /// </summary>
         /// <param name="writer">Text writer to be used to write the file</param>
-        /// <param name="storageType"></param>
         /// <param name="progress"></param>
-        public virtual void SaveAs(TextWriter writer, XbimStorageType? storageType = null, ReportProgressDelegate progress = null)
+        public virtual void SaveAsStep21(TextWriter writer, ReportProgressDelegate progress = null)
         {
             var part21Writer = new Part21FileWriter();
             part21Writer.Write(this, writer, Metadata, new Dictionary<int, int>());
@@ -549,13 +700,11 @@ namespace Xbim.IO.Memory
                 //try to get the value if it was created before
                 if (mappings.TryGetValue(toCopyLabel, out copy))
                 {
-                    return (T)copy;
+                    return (T) copy;
                 }
 
                 var expressType = Metadata.ExpressType(toCopy);
-                copy = keepLabels ?
-                    _instances.New(toCopy.GetType(), toCopyLabel) :
-                    _instances.New(toCopy.GetType());
+                copy = keepLabels ? _instances.New(toCopy.GetType(), toCopyLabel) : _instances.New(toCopy.GetType());
                 //key is the label in original model
                 mappings.Add(toCopyLabel, copy);
 
@@ -565,23 +714,21 @@ namespace Xbim.IO.Memory
 
                 foreach (var prop in props)
                 {
-                    var value = propTransform != null ?
-                        propTransform(prop, toCopy) :
-                        prop.PropertyInfo.GetValue(toCopy, null);
+                    var value = propTransform != null ? propTransform(prop, toCopy) : prop.PropertyInfo.GetValue(toCopy, null);
                     if (value == null) continue;
 
                     var isInverse = (prop.EntityAttribute.Order == -1); //don't try and set the values for inverses
                     var theType = value.GetType();
                     //if it is an express type or a value type, set the value
-                    if (theType.IsValueType || typeof(ExpressType).IsAssignableFrom(theType))
+                    if (theType.IsValueType || typeof (ExpressType).IsAssignableFrom(theType))
                     {
                         prop.PropertyInfo.SetValue(copy, value, null);
                     }
-                    else if (!isInverse && typeof(IPersistEntity).IsAssignableFrom(theType))
+                    else if (!isInverse && typeof (IPersistEntity).IsAssignableFrom(theType))
                     {
-                        prop.PropertyInfo.SetValue(copy, InsertCopy((IPersistEntity)value, mappings, includeInverses, keepLabels, propTransform, noTransaction), null);
+                        prop.PropertyInfo.SetValue(copy, InsertCopy((IPersistEntity) value, mappings, includeInverses, keepLabels, propTransform, noTransaction), null);
                     }
-                    else if (!isInverse && typeof(IList).IsAssignableFrom(theType))
+                    else if (!isInverse && typeof (IList).IsAssignableFrom(theType))
                     {
                         var itemType = theType.GetItemTypeFromGenericType();
 
@@ -589,14 +736,14 @@ namespace Xbim.IO.Memory
                         if (copyColl == null)
                             throw new Exception(string.Format("Unexpected collection type ({0}) found", itemType.Name));
 
-                        foreach (var item in (IList)value)
+                        foreach (var item in (IList) value)
                         {
                             var actualItemType = item.GetType();
-                            if (actualItemType.IsValueType || typeof(ExpressType).IsAssignableFrom(actualItemType))
+                            if (actualItemType.IsValueType || typeof (ExpressType).IsAssignableFrom(actualItemType))
                                 copyColl.Add(item);
-                            else if (typeof(IPersistEntity).IsAssignableFrom(actualItemType))
+                            else if (typeof (IPersistEntity).IsAssignableFrom(actualItemType))
                             {
-                                var cpy = InsertCopy((IPersistEntity)item, mappings, includeInverses, keepLabels, propTransform, noTransaction);
+                                var cpy = InsertCopy((IPersistEntity) item, mappings, includeInverses, keepLabels, propTransform, noTransaction);
                                 copyColl.Add(cpy);
                             }
                             else
@@ -605,19 +752,19 @@ namespace Xbim.IO.Memory
                     }
                     else if (isInverse && value is IEnumerable<IPersistEntity>) //just an enumeration of IPersistEntity
                     {
-                        foreach (var ent in (IEnumerable<IPersistEntity>)value)
+                        foreach (var ent in (IEnumerable<IPersistEntity>) value)
                         {
                             InsertCopy(ent, mappings, includeInverses, keepLabels, propTransform, noTransaction);
                         }
                     }
                     else if (isInverse && value is IPersistEntity) //it is an inverse and has a single value
                     {
-                        InsertCopy((IPersistEntity)value, mappings, includeInverses, keepLabels, propTransform, noTransaction);
+                        InsertCopy((IPersistEntity) value, mappings, includeInverses, keepLabels, propTransform, noTransaction);
                     }
                     else
                         throw new Exception(string.Format("Unexpected item type ({0})  found", theType.Name));
                 }
-                return (T)copy;
+                return (T) copy;
             }
             finally
             {
@@ -639,5 +786,4 @@ namespace Xbim.IO.Memory
     /// <param name="entity">Original entity</param>
     /// <returns>Express type which maps to the type of the original entity</returns>
     public delegate ExpressType TypeResolverDelegate(IPersistEntity entity);
-
 }

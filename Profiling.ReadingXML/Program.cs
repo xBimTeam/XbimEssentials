@@ -14,11 +14,11 @@ namespace Profiling.ReadingXML
         static void Main(string[] args)
         {
             var w = new Stopwatch();
-            const string path = "profiling.xml";
-            using (var model = new MemoryModel<EntityFactory>())
+            const string path = @"c:\CODE\XbimGit\XbimEssentials\TestResults\SampleHouse4.xml"; //"profiling.xml";
+            using (var model = new MemoryModel(new EntityFactory()))
             {
                 w.Start();
-                model.OpenXml(path);
+                model.LoadXml(path);
                 w.Stop();
                 Console.WriteLine(@"{0}ms to open model from XML file.", w.ElapsedMilliseconds);
             }
