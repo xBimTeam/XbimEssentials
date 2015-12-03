@@ -605,9 +605,32 @@ namespace Xbim.IO.Esent
         }
 
         #region Import functions
-        public void ImportXbim(string importFrom, ReportProgressDelegate progressHandler = null)
+        public void ImportXbim(IModel model, string xbimDbName, ReportProgressDelegate progressHandler = null)
         {
-            throw new NotImplementedException();
+            CreateDatabase(xbimDbName);
+            Open(xbimDbName, XbimDBAccess.Exclusive);
+            
+            try
+            {
+                using (var transaction = Model.BeginTransaction())
+                {
+                    var table = Model.GetTransactingCursor();
+                    foreach (var instance in model.Instances)
+                    {
+                        table.AddEntity(instance);
+                        transaction.Pulse();
+                    }
+                    table.WriteHeader(model.Header);
+                    transaction.Commit();
+                }
+                Close();
+            }
+            catch (Exception)
+            {              
+                Close();
+                File.Delete(xbimDbName);
+                throw;
+            }
         }
 
         /// <summary>

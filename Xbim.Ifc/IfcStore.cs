@@ -1,8 +1,11 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Xml;
 using ICSharpCode.SharpZipLib.Zip;
 using Xbim.Common;
@@ -15,7 +18,10 @@ using Xbim.Ifc4.Interfaces;
 using Xbim.IO;
 using Xbim.IO.Esent;
 using Xbim.IO.Memory;
+using Xbim.IO.Step21;
 using Xbim.IO.Step21.Parser;
+using Xbim.IO.Xml;
+using Xbim.IO.Xml.BsConf;
 
 namespace Xbim.Ifc
 {
@@ -169,11 +175,10 @@ namespace Xbim.Ifc
                 throw new DirectoryNotFoundException(Path.GetDirectoryName(filePath) + " directory was not found");
             if (!File.Exists(filePath))
                 throw new FileNotFoundException(filePath + " file was not found");
-
+            var storageType = path.IfcStorageType();
             var ifcVersion = GetIfcSchemaVersion(path);
             if (ifcVersion == IfcSchemaVersion.Unsupported)
                 throw new FileLoadException(filePath + " is not a valid Ifc file format, ifc, ifcxml, ifczip and xBIM are supported");
-            var storageType = path.IfcStorageType();
             if (storageType == XbimStorageType.Xbim) //open the XbimFile
             {
 
@@ -212,18 +217,36 @@ namespace Xbim.Ifc
                 }
                 else //we can use a memory model
                 {
-                    if (ifcVersion == IfcSchemaVersion.Ifc4)
+                    var model = ifcVersion == IfcSchemaVersion.Ifc4 ? new MemoryModel(new Ifc4.EntityFactory()) : new MemoryModel(new Ifc2x3.EntityFactory());
+                    if (storageType == XbimStorageType.IfcZip || storageType == XbimStorageType.Step21Zip)
                     {
-                        var model = new MemoryModel(new Ifc4.EntityFactory());
-                        model.LoadStep21(path, progDelegate);
-                        return new IfcStore(model, ifcVersion, editorDetails, path);
+                        using (var zipFile = new ZipFile(path))
+                        {
+                            foreach (ZipEntry zipEntry in zipFile)
+                            {
+                                if (!zipEntry.IsFile) continue; // 
+                                using (var reader = zipFile.GetInputStream(zipEntry))
+                                {
+                                    var zipStorageType = zipEntry.Name.IfcStorageType();
+                                    if (zipStorageType == XbimStorageType.Ifc ||
+                                        zipStorageType == XbimStorageType.Step21)
+                                    {
+                                        model.LoadStep21(reader, progDelegate);
+                                    }
+                                    else if (zipStorageType == XbimStorageType.IfcXml)
+                                    {
+                                        model.LoadXml(reader, progDelegate);
+                                    }
+                                }
+                                break; //now we have one
+                            }
+                        }
                     }
-                    else //it will be Ifc2x3
-                    {
-                        var model = new MemoryModel(new Ifc2x3.EntityFactory());
+                    else if (storageType == XbimStorageType.Ifc || storageType == XbimStorageType.Step21)
                         model.LoadStep21(path, progDelegate);
-                        return new IfcStore(model, ifcVersion, editorDetails, path);
-                    }
+                    else if (storageType == XbimStorageType.IfcXml)
+                        model.LoadXml(path, progDelegate);
+                    return new IfcStore(model, ifcVersion, editorDetails, path);
                 }
             }
         }
@@ -592,14 +615,61 @@ namespace Xbim.Ifc
         /// <param name="fileName">Name of the file to save to, if no format is specified the extension is used to determine the format</param>
         /// <param name="format">if specified saves in the required format and changes the extension to the correct one</param>
         /// <param name="progDelegate">reports on progress</param>
-        public void SaveAs(string fileName, XbimStorageType? format = null, ReportProgressDelegate progDelegate = null)
+        public void SaveAs(string fileName, XbimStorageType? format=null, ReportProgressDelegate progDelegate = null)
         {
+            if (string.IsNullOrWhiteSpace(fileName)) return;
+            var extension = Path.GetExtension(fileName).ToLowerInvariant();
+            XbimStorageType actualFormat = XbimStorageType.Invalid;
+            if (format.HasValue)
+            {
+                if (format.Value.HasFlag(XbimStorageType.IfcZip))
+                {
+                    extension = ".ifczip";
+                    actualFormat = XbimStorageType.IfcZip;
+                    if (format.Value.HasFlag(XbimStorageType.IfcXml)) //set it to default to Ifc
+                        actualFormat |= XbimStorageType.IfcXml;
+                    else
+                        actualFormat |= XbimStorageType.Ifc;
+                }
+                else if (format.Value.HasFlag(XbimStorageType.Ifc))
+                {
+                    extension = ".ifc";
+                    actualFormat = XbimStorageType.Ifc;
+                }
+                else if (format.Value.HasFlag(XbimStorageType.IfcXml))
+                {
+                    extension = ".ifcxml";
+                    actualFormat = XbimStorageType.IfcXml;
+                }
+                else if (format.Value.HasFlag(XbimStorageType.Xbim))
+                {
+                    extension = ".xbim";
+                    actualFormat = XbimStorageType.Xbim;
+                }  
+            }
+            else
+            {
+                if (extension == ".ifczip")
+                {
+                    actualFormat = XbimStorageType.IfcZip;
+                    actualFormat |= XbimStorageType.Ifc; //the default
+                }
+                else if (extension == ".ifcxml")
+                    actualFormat = XbimStorageType.IfcXml;
+                else if (extension == ".xbim")
+                    actualFormat = XbimStorageType.Xbim;
+                else
+                {
+                    extension = ".ifc";
+                    actualFormat = XbimStorageType.Ifc; //the default
+                }
+            }
+            var actualFileName = Path.ChangeExtension(fileName,extension);
             var esentModel = _model as EsentModel;
             if (esentModel != null)
             {
-                var extension = Path.GetExtension(fileName);
                 var xbimTarget = !string.IsNullOrEmpty(extension) &&
-                                  string.Compare(extension, ".xbim", StringComparison.OrdinalIgnoreCase) == 0;
+                                 string.Compare(extension, ".xbim", StringComparison.OrdinalIgnoreCase) == 0;
                 if ((format.HasValue && format.Value == XbimStorageType.Xbim) || (!format.HasValue && xbimTarget))
                 {
                     var fullSourcePath = Path.GetFullPath(esentModel.DatabaseName);
@@ -607,23 +677,121 @@ namespace Xbim.Ifc
                     if (string.Compare(fullSourcePath, fullTargetPath, StringComparison.OrdinalIgnoreCase) == 0)
                         return; //do nothing it is already saved
                 }
-                esentModel.SaveAs(fileName,format, progDelegate);
-                return;
             }
-            if (_schema == IfcSchemaVersion.Ifc4)
+            SaveAs(actualFileName, actualFormat, progDelegate);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="actualFileName"></param>
+        /// <param name="actualFormat">this will be correctly set</param>
+        /// <param name="schema"></param>
+        /// <param name="progDelegate"></param>
+        private void SaveAs(string actualFileName, XbimStorageType actualFormat, ReportProgressDelegate progDelegate)
+        {
+            if (actualFormat.HasFlag(XbimStorageType.Xbim)) //special case for xbim
             {
-                var memoryModel = _model as MemoryModel<Ifc4.EntityFactory>;
-                if (memoryModel != null)
-                    memoryModel.SaveAs(fileName, format, progDelegate);
+                var esentDb = _schema==IfcSchemaVersion.Ifc4 ? new EsentModel(new Ifc4.EntityFactory()) : new EsentModel(new Ifc2x3.EntityFactory());
+                esentDb.CreateFrom(_model, actualFileName, progDelegate);
             }
-            else if (_schema == IfcSchemaVersion.Ifc2X3)
+            else
             {
-                var memoryModel = _model as MemoryModel<Ifc2x3.EntityFactory>;
-                if (memoryModel != null)
-                    memoryModel.SaveAs(fileName, format, progDelegate);
+                using (var fileStream = new FileStream(actualFileName, FileMode.Create, FileAccess.Write))
+                {
+                    if (actualFormat.HasFlag(XbimStorageType.IfcZip))
+                        //do zip first so that xml and ifc are not confused by the combination of flags
+                        SaveAsIfcZip(fileStream, Path.GetFileName(actualFileName), actualFormat, progDelegate);
+                    else if (actualFormat.HasFlag(XbimStorageType.Ifc))
+                        SaveAsIfc(fileStream, progDelegate);
+                    else if (actualFormat.HasFlag(XbimStorageType.IfcXml))
+                        SaveAsIfcXml(fileStream, progDelegate);
+
+                }
             }
         }
 
+        public void SaveAsIfcXml(Stream stream, ReportProgressDelegate progDelegate=null)
+        {
+            var settings = new XmlWriterSettings { Indent = true };
+            using (var xmlWriter = XmlWriter.Create(stream, settings))
+            {
+                if (_schema == IfcSchemaVersion.Ifc2X3)
+                {
+                    var writer = new IfcXmlWriter3();
+                    writer.Write(_model, xmlWriter, _model.Instances);
+
+                }
+                else if (_schema == IfcSchemaVersion.Ifc4)
+                {
+                    var writer = new XbimXmlWriter4(configuration.IFC4Add1);
+                    var project = _model.Instances.OfType<Xbim.Ifc4.Kernel.IfcProject>();
+                    var products = _model.Instances.OfType<Xbim.Ifc4.Kernel.IfcObject>();
+                    var relations = _model.Instances.OfType<Xbim.Ifc4.Kernel.IfcRelationship>();
+
+                    var all =
+                        new IPersistEntity[] { }
+                        //start from root
+                            .Concat(project)
+                        //add all products not referenced in the project tree
+                            .Concat(products)
+                        //add all relations which are not inversed
+                            .Concat(relations)
+                        //make sure all other objects will get written
+                            .Concat(_model.Instances);
+
+                    writer.Write(_model, xmlWriter, all);
+                }
+                xmlWriter.Close();
+            }
+        }
+
+        public void SaveAsIfc(Stream stream, ReportProgressDelegate progDelegate = null)
+        {
+                
+            using (TextWriter tw = new StreamWriter(stream))
+            {
+                var p21 = new Part21FileWriter();
+                p21.Write(_model, tw, _model.Metadata);
+                tw.Flush();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream">The stream will be closed and flushed on return</param>
+        /// <param name="zipEntryName">The name of the file zipped inside the file</param>
+        /// <param name="storageType">Specify IfcZip and then either IfcXml or Ifc</param>
+        /// <param name="progDelegate"></param>
+        public void SaveAsIfcZip(Stream stream, string zipEntryName, XbimStorageType storageType, ReportProgressDelegate progDelegate = null)
+        {
+            Debug.Assert(storageType.HasFlag(XbimStorageType.IfcZip));
+            string fileBody;
+            if (storageType.HasFlag(XbimStorageType.IfcXml)) //set the correct internal format
+                fileBody = Path.ChangeExtension(zipEntryName, "ifcXml");
+            else //it will be ifc
+                fileBody = Path.ChangeExtension(zipEntryName, "ifc");
+            var zipStream = new ZipOutputStream(stream);
+            try
+            {
+                zipStream.SetLevel(3); //0-9, 9 being the highest level of compression
+                var newEntry = new ZipEntry(fileBody) { DateTime = DateTime.Now };
+                zipStream.PutNextEntry(newEntry);
+
+                if (storageType.HasFlag(XbimStorageType.IfcXml))
+                    SaveAsIfcXml(zipStream, progDelegate);
+                else //assume it is Ifc
+                    SaveAsIfc(zipStream, progDelegate);
+            }
+            finally
+            {
+                zipStream.IsStreamOwner = false;
+                zipStream.Finish();
+                zipStream.Close();               
+            }
+        }
 
         /// <summary>
         /// This function is used to generate the .wexbim model files.

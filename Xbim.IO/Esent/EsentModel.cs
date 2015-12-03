@@ -356,21 +356,23 @@ namespace Xbim.IO.Esent
             if (string.IsNullOrWhiteSpace(xbimDbName))
                 xbimDbName = Path.ChangeExtension(importFrom, "xBIM");
             
-            var toImportStorageType = StorageType(importFrom);
+            var toImportStorageType = importFrom.IfcStorageType();
             switch (toImportStorageType)
             {
                 case XbimStorageType.IfcXml:
                     InstanceCache.ImportIfcXml(xbimDbName, importFrom, progDelegate, keepOpen, cacheEntities);
                     break;
                 case XbimStorageType.Step21:
+                case XbimStorageType.Ifc:
                     InstanceCache.ImportStep(xbimDbName, importFrom, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
                     break;
                 case XbimStorageType.Step21Zip:
+                case XbimStorageType.IfcZip:
                     InstanceCache.ImportStepZip(xbimDbName, importFrom, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
                     break;
                 case XbimStorageType.Xbim:
-                    InstanceCache.ImportXbim(importFrom, progDelegate);
-                    break;
+                    throw new NotImplementedException("Use save as");
+                  
                 default:
                     return false;
             }
@@ -725,7 +727,7 @@ namespace Xbim.IO.Esent
             try
             {
                 if (!storageType.HasValue)
-                    storageType = StorageType(outputFileName);
+                    storageType = outputFileName.IfcStorageType();
                 if (storageType.Value == XbimStorageType.Invalid)
                 {
                     var ext = Path.GetExtension(outputFileName);
@@ -812,35 +814,6 @@ namespace Xbim.IO.Esent
         }
 
 
-
-        #region Helpers
-
-        private XbimStorageType StorageType(string fileName)
-        {
-            if (string.IsNullOrWhiteSpace(fileName)) return XbimStorageType.Invalid;
-            var ext = Path.GetExtension(fileName).ToLower();
-            switch (ext)
-            {
-                case ".xbim":
-                case ".xbimf":
-                    return XbimStorageType.Xbim;
-                case ".ifc":
-                case ".stp":
-                case ".step21":
-                    return XbimStorageType.Step21;
-                case ".ifcxml":
-                case ".xml":
-                    return XbimStorageType.IfcXml;
-                case ".zip":
-                case ".ifczip":
-                case ".stpzip":
-                case ".step21zip":
-                    return XbimStorageType.Step21Zip;
-            }
-            return XbimStorageType.Invalid;
-        }
-
-        #endregion
 
 
         public void Print()
@@ -1228,7 +1201,7 @@ namespace Xbim.IO.Esent
             esentModel.InstanceCache = new PersistedEntityInstanceCache(esentModel, null);
 
             esentModel.InstanceCache.DatabaseName = fileName;
-            IStepFileHeader header = null;
+            IStepFileHeader header;
             var entTable = esentModel.InstanceCache.GetEntityTable();
             try
             {
@@ -1247,6 +1220,13 @@ namespace Xbim.IO.Esent
                 esentModel.Dispose();
             }
             return header;
+        }
+
+        public void CreateFrom(IModel model, string fileName,  ReportProgressDelegate progDelegate = null)
+        {
+            Close();
+            var dbName = Path.ChangeExtension(fileName, "xBIM");
+            InstanceCache.ImportXbim(model, dbName, progDelegate);
         }
     }
 

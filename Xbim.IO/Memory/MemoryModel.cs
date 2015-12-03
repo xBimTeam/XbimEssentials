@@ -54,28 +54,29 @@ namespace Xbim.IO.Memory
                     if (zipEntry != null)
                     {
                         var zipStorageType = zipEntry.Name.IfcStorageType();
-                        if (zipStorageType == XbimStorageType.Ifc || zipStorageType == XbimStorageType.Step21)
+                        using (var zipFile = new ZipFile(fileName))
                         {
-                            using (var zipFile = new ZipFile(fileName))
+                            using (var reader = zipFile.GetInputStream(zipEntry))
                             {
-                                using (var reader = zipFile.GetInputStream(zipEntry))
+                                if (zipStorageType == XbimStorageType.Ifc ||
+                                    zipStorageType == XbimStorageType.Step21)
                                 {
-                                    return GetStepFileHeader(reader);
+                                    return GetFileHeader(reader);
+                                }
+                                else if (zipStorageType == XbimStorageType.IfcXml)
+                                {
+                                    return XbimXmlReader4.ReadHeader(reader);
                                 }
                             }
-                        }
-                        else if (zipStorageType == XbimStorageType.IfcXml)
-                        {
-                            throw new NotImplementedException("XML header reading not implemented");
                         }
                     }
                     return null;
                 }
-                return GetStepFileHeader(stream);
+                return GetFileHeader(stream);
             }
         }
 
-        private static IStepFileHeader GetStepFileHeader(Stream stream)
+        private static IStepFileHeader GetFileHeader(Stream stream)
         {
                 var parser = new XbimP21Parser(stream, null);
                 var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
@@ -104,42 +105,9 @@ namespace Xbim.IO.Memory
                 stream.Close();
                 return stepHeader;
             }
-        }
+        
 
-    public class MemoryModel<TFactory> : IModel, IDisposable where TFactory : IEntityFactory, new()
-    {
-        public static StepFileHeader GetStepFileHeader(string fileName)
-        {
-            using (var stream = File.OpenRead(fileName))
-            {
-                var parser = new XbimP21Parser(stream, null);
-                var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
-                parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
-                {
-                    //allow all attributes to be parsed
-                    ints = null;
-                    if (header)
-                    {
-                        switch (name)
-                        {
-                            case "FILE_DESCRIPTION":
-                                return stepHeader.FileDescription;
-                            case "FILE_NAME":
-                                return stepHeader.FileName;
-                            case "FILE_SCHEMA":
-                                return stepHeader.FileSchema;
-                            default:
-                                return null;
-                        }
-                    }
-                    parser.Cancel = true; //done enough
-                    return null;
-                };
-                parser.Parse();
-                stream.Close();
-                return stepHeader;
-            }
-        }
+   
         private readonly EntityCollection _instances;
         private readonly IEntityFactory _entityFactory;
 
@@ -492,32 +460,6 @@ namespace Xbim.IO.Memory
             }
         }
 
-        private XbimStorageType GetStorageType(string fileName)
-        {
-            var ext = Path.GetExtension(fileName);
-            if (string.IsNullOrWhiteSpace(ext))
-                return XbimStorageType.Invalid;
-
-                ext = ext.ToLower().TrimStart('.');
-                switch (ext)
-                {
-                    case "ifc":
-                        return XbimStorageType.Ifc;
-                    case "stp":
-                        return XbimStorageType.Step21;
-                    case "ifczip":
-                        return XbimStorageType.IfcZip;
-                    case "stpzip":
-                        return XbimStorageType.Step21Zip;
-                    case "xml":
-                    case "ifcxml":
-                        return XbimStorageType.IfcXml;
-                    case "xbim":
-                        return XbimStorageType.Xbim;
-                }
-            return XbimStorageType.Step21;
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -528,7 +470,7 @@ namespace Xbim.IO.Memory
         {
             using (var file = File.Create(path))
             {
-                SaveAs(file, storageType ?? GetStorageType(path), progress);
+                SaveAs(file, storageType ?? path.IfcStorageType(), progress);
                 file.Close();
             }
         }
@@ -778,6 +720,7 @@ namespace Xbim.IO.Memory
         {
             get { return _geometryStore ?? (_geometryStore = new InMemoryGeometryStore()); }
         }
+
     }
 
     /// <summary>

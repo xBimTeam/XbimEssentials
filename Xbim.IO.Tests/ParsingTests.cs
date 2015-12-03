@@ -46,7 +46,7 @@ namespace Xbim.MemoryModel.Tests
             using (var store = IfcStore.Open("4walls1floorSite.ifc", null, 0))
             {
                 count = store.Instances.Count;
-                store.SaveAs("4walls1floorSite",XbimStorageType.IfcZip);
+                store.SaveAs("4walls1floorSite", XbimStorageType.IfcZip | XbimStorageType.Ifc);
                 store.Close();
             }
             using (var store = IfcStore.Open("4walls1floorSite.ifczip", null, 0))
@@ -57,7 +57,7 @@ namespace Xbim.MemoryModel.Tests
             using (var store = IfcStore.Open("4walls1floorSite.ifc")) //now with memory model
             {
                 count = store.Instances.Count;
-                store.SaveAs("4walls1floorSite", XbimStorageType.IfcZip);
+                store.SaveAs("4walls1floorSite", XbimStorageType.IfcZip | XbimStorageType.Ifc);
                 store.Close();
             }
             using (var store = IfcStore.Open("4walls1floorSite.ifczip"))
@@ -67,6 +67,35 @@ namespace Xbim.MemoryModel.Tests
             }
         }
 
+         [TestMethod]
+        [DeploymentItem("TestFiles")]
+        public void IfcStoreSaveAndOpenIfcXmlZipTest()
+        {
+            long count;
+            //create a zip file using esent
+            using (var store = IfcStore.Open("4walls1floorSite.ifc", null, 0))
+            {
+                count = store.Instances.Count;
+                store.SaveAs("4walls1floorSite", XbimStorageType.IfcZip | XbimStorageType.IfcXml);
+                store.Close();
+            }
+            using (var store = IfcStore.Open("4walls1floorSite.ifczip", null, 0))
+            {
+                Assert.IsTrue(count == store.Instances.Count, "Should have same number of instances");
+                store.Close();
+            }
+            using (var store = IfcStore.Open("4walls1floorSite.ifc")) //now with memory model
+            {
+                count = store.Instances.Count;
+                store.SaveAs("4walls1floorSite", XbimStorageType.IfcZip | XbimStorageType.IfcXml);
+                store.Close();
+            }
+            using (var store = IfcStore.Open("4walls1floorSite.ifczip"))
+            {
+                Assert.IsTrue(count == store.Instances.Count, "Should have same number of instances");
+                store.Close();
+            }
+        }
 
 
         [TestMethod]
