@@ -225,7 +225,7 @@ namespace Xbim.Ifc2x3.IO
 
         }
 
-        public override bool CreateFrom(Stream inputStream, XbimStorageType streamType, string xbimDbName,
+        public override bool CreateFrom(Stream inputStream, IfcStorageType streamType, string xbimDbName,
             ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false)
         {
             var result = base.CreateFrom(inputStream, streamType, xbimDbName, progDelegate, keepOpen, cacheEntities);

@@ -17,8 +17,10 @@ namespace Xbim.MemoryModel.Tests
         public void SerializeDeserialize()
         {
             var model = CreateTestModel();
-            
-            model.SaveAs("RandomModel.cobie");
+            using (var fileStream = new StreamWriter("RandomModel.cobie"))
+            {
+                model.SaveAsStep21(fileStream);
+            }
 
             var model2 = new IO.Memory.MemoryModel(new EntityFactory());
             model2.LoadStep21("RandomModel.cobie");
@@ -72,7 +74,10 @@ namespace Xbim.MemoryModel.Tests
         {
             const string file = "SampleForEsent.stp";
             var model = CreateTestModel();
-            model.SaveAs(file);
+            using (var fileStream = new StreamWriter(file))
+            {
+                model.SaveAsStep21(fileStream);
+            }
 
             var db = new IO.Esent.EsentModel(new EntityFactory());
             db.CreateFrom(file, null, null, true);

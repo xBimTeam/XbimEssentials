@@ -61,7 +61,10 @@ namespace Xbim.MemoryModel.Tests
                         Debug.WriteLine("Time to insert {0} walls (Overall {1} entities): {2}ms", iWalls.Count, iModel.Instances.Count, w.ElapsedMilliseconds);
                         
                         Assert.IsTrue(iWalls.Count >= 1);
-                        iModel.SaveAs(inserted);
+                        using (var fileStream = new StreamWriter(inserted))
+                        {
+                            iModel.SaveAsStep21(fileStream);
+                        }
                     }
 
                     
@@ -136,8 +139,10 @@ namespace Xbim.MemoryModel.Tests
                             iModel.InsertCopy(root, mappings, false, true, Filter);
                         }
                         txn.Commit();
-
-                        iModel.SaveAs("..\\..\\SampleHouseSemantic4.ifc");
+                        using (var fileStream = new StreamWriter("..\\..\\SampleHouseSemantic4.ifc"))
+                        {
+                            iModel.SaveAsStep21(fileStream);
+                        }
                     }
 
                     

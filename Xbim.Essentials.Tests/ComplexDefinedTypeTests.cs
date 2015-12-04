@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Ifc2x3;
 using Xbim.Ifc2x3.MeasureResource;
@@ -25,7 +26,11 @@ namespace Xbim.Essentials.Tests
                 site.RefLongitude = lon;
                 txn.Commit();
             }
-            model.SaveAs("site.ifc");
+            using (var fileStream = new StreamWriter("site.ifc"))
+            {
+                 model.SaveAsStep21(fileStream);
+            }
+           
             
             model = new MemoryModel(new EntityFactory());
             model.LoadStep21("site.ifc");

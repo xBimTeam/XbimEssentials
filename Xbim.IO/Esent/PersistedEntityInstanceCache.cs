@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Xml;
 using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.Isam.Esent.Interop;
@@ -20,23 +20,25 @@ using Xbim.IO.Step21;
 using Xbim.IO.Step21.Parser;
 using Xbim.IO.Xml;
 
+// ReSharper disable AccessToDisposedClosure
+
 namespace Xbim.IO.Esent
 {
     public class PersistedEntityInstanceCache : IDisposable
     {
-         /// <summary>
+        /// <summary>
         /// Holds a collection of all currently opened instances in this process
         /// </summary>
         static readonly HashSet<PersistedEntityInstanceCache> OpenInstances;
-       
-        #region ESE Database 
 
-        private  Instance _jetInstance;
+        #region ESE Database
+
+        private Instance _jetInstance;
         private readonly IEntityFactory _factory;
         private Session _session;
         private JET_DBID _databaseId;
-       
-        static int cacheSizeInBytes = 128 * 1024 * 1024 ;
+
+        static int cacheSizeInBytes = 128 * 1024 * 1024;
         private const int MaxCachedEntityTables = 32;
         private const int MaxCachedGeometryTables = 32;
 
@@ -66,10 +68,10 @@ namespace Xbim.IO.Esent
         private XbimDBAccess _accessMode;
         private string _systemPath;
 
-       
 
 
-       
+
+
         #endregion
         #region Cached data
         private readonly ConcurrentDictionary<int, IPersistEntity> _read = new ConcurrentDictionary<int, IPersistEntity>();
@@ -77,7 +79,7 @@ namespace Xbim.IO.Esent
         internal ConcurrentDictionary<int, IPersistEntity> Read
         {
             get { return _read; }
-           
+
         }
         protected ConcurrentDictionary<int, IPersistEntity> ModifiedEntities = new ConcurrentDictionary<int, IPersistEntity>();
         protected ConcurrentDictionary<int, IPersistEntity> CreatedNew = new ConcurrentDictionary<int, IPersistEntity>();
@@ -92,21 +94,8 @@ namespace Xbim.IO.Esent
         private string _databaseName;
         private readonly EsentModel _model;
         private bool _disposed;
-        private static readonly ComparePropertyInfo ComparePropInfo = new ComparePropertyInfo();
         private bool _caching;
         private bool _previousCaching;
-        private class ComparePropertyInfo : IEqualityComparer<PropertyInfo>
-        {
-            public bool Equals(PropertyInfo x, PropertyInfo y)
-            {
-                return x.Name == y.Name;
-            }
-
-            public int GetHashCode(PropertyInfo obj)
-            {
-                return obj.Name.GetHashCode();
-            }
-        }
 
         public PersistedEntityInstanceCache(EsentModel model, IEntityFactory factory)
         {
@@ -167,22 +156,22 @@ namespace Xbim.IO.Esent
                 {
                     if (null == _geometryTables[i])
                         continue;
-                     _geometryTables[i].Dispose();
+                    _geometryTables[i].Dispose();
                     _geometryTables[i] = null;
                 }
-                Api.JetDeleteTable(_session,_databaseId,EsentShapeGeometryCursor.GeometryTableName);
-                Api.JetDeleteTable(_session,_databaseId,EsentShapeInstanceCursor.InstanceTableName);
-                EnsureGeometryTables(_session,_databaseId);
+                Api.JetDeleteTable(_session, _databaseId, EsentShapeGeometryCursor.GeometryTableName);
+                Api.JetDeleteTable(_session, _databaseId, EsentShapeInstanceCursor.InstanceTableName);
+                EnsureGeometryTables(_session, _databaseId);
             }
             catch (Exception e)
             {
-                
-                throw new Exception("Could not clear existing geometry tables",e);
+
+                throw new Exception("Could not clear existing geometry tables", e);
             }
         }
         private static bool EnsureGeometryTables(Session session, JET_DBID dbid)
         {
-            
+
             if (!HasTable(XbimGeometryCursor.GeometryTableName, session, dbid))
                 XbimGeometryCursor.CreateTable(session, dbid);
             if (!HasTable(EsentShapeGeometryCursor.GeometryTableName, session, dbid))
@@ -205,7 +194,7 @@ namespace Xbim.IO.Esent
             {
                 for (var i = 0; i < _entityTables.Length; ++i)
                 {
-                    if (null != _entityTables[i] )
+                    if (null != _entityTables[i])
                     {
                         var table = _entityTables[i];
                         _entityTables[i] = null;
@@ -261,7 +250,7 @@ namespace Xbim.IO.Esent
                                 {
                                     proc.Kill();
                                     // Give the process time to die, as we'll likely be reading files it has open next.
-                                    System.Threading.Thread.Sleep(500);
+                                    Thread.Sleep(500);
                                 }
                                 EsentModel.Logger.WarnFormat("Repair failed {0} after dirty shutdown, time out", _databaseName);
                             }
@@ -417,7 +406,7 @@ namespace Xbim.IO.Esent
             Close();
             _databaseName = Path.GetFullPath(filename); //success store the name of the DB file
             _accessMode = accessMode;
-            _caching = false;  
+            _caching = false;
             var entTable = GetEntityTable();
             try
             {
@@ -447,7 +436,7 @@ namespace Xbim.IO.Esent
             CleanTableArrays(disposeTable);
             EndCaching();
 
-            if (_session == null) 
+            if (_session == null)
                 return;
             Api.JetCloseDatabase(_session, _databaseId, CloseDatabaseGrbit.None);
             lock (OpenInstances)
@@ -466,17 +455,17 @@ namespace Xbim.IO.Esent
         {
             for (var i = 0; i < _entityTables.Length; ++i)
             {
-                if (null == _entityTables[i]) 
+                if (null == _entityTables[i])
                     continue;
-                if (disposeTables) 
+                if (disposeTables)
                     _entityTables[i].Dispose();
                 _entityTables[i] = null;
             }
             for (var i = 0; i < _geometryTables.Length; ++i)
             {
-                if (null == _geometryTables[i]) 
+                if (null == _geometryTables[i])
                     continue;
-                if (disposeTables) 
+                if (disposeTables)
                     _geometryTables[i].Dispose();
                 _geometryTables[i] = null;
             }
@@ -498,7 +487,7 @@ namespace Xbim.IO.Esent
                 {
                     foreach (var item in source)
                         body(item);
-                } 
+                }
             }
             finally
             {
@@ -507,22 +496,22 @@ namespace Xbim.IO.Esent
 
         }
 
-       
+
         /// <summary>
         /// Sets up the Esent directories, can only be call before the Init method of the instance
         /// </summary>
-        
+
         internal static string GetXbimTempDirectory()
         {
             //Directories are setup using the following strategy
             //First look in the config file, then try and use windows temporary directory, then the current working directory
-            var tempDirectory = System.Configuration.ConfigurationManager.AppSettings["XbimTempDirectory"];
+            var tempDirectory = ConfigurationManager.AppSettings["XbimTempDirectory"];
             if (!IsValidDirectory(ref tempDirectory))
             {
                 tempDirectory = Path.Combine(Path.GetTempPath(), "Xbim." + Guid.NewGuid().ToString());
                 if (!IsValidDirectory(ref tempDirectory))
                 {
-                    tempDirectory = Path.Combine(Directory.GetCurrentDirectory(),"Xbim."+ Guid.NewGuid().ToString());
+                    tempDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Xbim." + Guid.NewGuid().ToString());
                     if (!IsValidDirectory(ref tempDirectory))
                         throw new XbimException("Unable to initialise the Xbim database engine, no write access. Please set a location for the XbimTempDirectory in the config file");
                 }
@@ -576,7 +565,7 @@ namespace Xbim.IO.Esent
 
             if (string.IsNullOrWhiteSpace(_systemPath)) //we haven't specified a path so make one               
                 _systemPath = GetXbimTempDirectory();
-            
+
             jetInstance.Parameters.BaseName = "XBM";
             jetInstance.Parameters.SystemDirectory = _systemPath;
             jetInstance.Parameters.LogFileDirectory = _systemPath;
@@ -594,33 +583,56 @@ namespace Xbim.IO.Esent
             jetInstance.Parameters.WaypointLatency = 1;
             jetInstance.Parameters.MaxSessions = 512;
             jetInstance.Parameters.MaxOpenTables = 256;
-           
+
             var grbit = EsentVersion.SupportsWindows7Features
                                   ? Windows7Grbits.ReplayIgnoreLostLogs
                                   : InitGrbit.None;
-            jetInstance.Parameters.Recovery = recovery; 
+            jetInstance.Parameters.Recovery = recovery;
             jetInstance.Init(grbit);
 
             return jetInstance;
         }
 
         #region Import functions
-        public void ImportXbim(string importFrom, ReportProgressDelegate progressHandler = null)
+        public void ImportModel(IModel model, string xbimDbName, ReportProgressDelegate progressHandler = null)
         {
-            throw new NotImplementedException();
+            CreateDatabase(xbimDbName);
+            Open(xbimDbName, XbimDBAccess.Exclusive);
+
+            try
+            {
+                using (var transaction = Model.BeginTransaction())
+                {
+                    var table = Model.GetTransactingCursor();
+                    foreach (var instance in model.Instances)
+                    {
+                        table.AddEntity(instance);
+                        transaction.Pulse();
+                    }
+                    table.WriteHeader(model.Header);
+                    transaction.Commit();
+                }
+                Close();
+            }
+            catch (Exception)
+            {
+                Close();
+                File.Delete(xbimDbName);
+                throw;
+            }
         }
 
         /// <summary>
         ///   Imports an Xml file memory model into the model server, only call when the database instances table is empty
         /// </summary>
-        public void ImportIfcXml(string xbimDbName, string xmlFilename, ReportProgressDelegate progressHandler = null,bool keepOpen = false, bool cacheEntities = false)
+        public void ImportIfcXml(string xbimDbName, string xmlFilename, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false)
         {
             using (var stream = File.OpenRead(xmlFilename))
             {
                 ImportIfcXml(xbimDbName, stream, progressHandler, keepOpen, cacheEntities);
             }
         }
-        
+
         internal void ImportIfcXml(string xbimDbName, Stream inputStream, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false)
         {
             CreateDatabase(xbimDbName);
@@ -632,23 +644,36 @@ namespace Xbim.IO.Esent
                 {
                     using (var xmlInStream = new StreamReader(inputStream, Encoding.GetEncoding("ISO-8859-9"))) //this is a work around to ensure latin character sets are read
                     {
-                        using (var xmlTextReader = new XmlTextReader(xmlInStream))
+                        using (var reader = XmlReader.Create(xmlInStream))
                         {
-                            var settings = new XmlReaderSettings {CheckCharacters = false};
-                            //has no impact
-                            _forwardReferences = new BlockingCollection<StepForwardReference>();
-                            var xmlReader = XmlReader.Create(xmlTextReader, settings);
-                            settings.CheckCharacters = false;
-                            var reader = GetIfcXmlReader(transaction);
-                            _model.Header = reader.Read(xmlReader);
+                            var schema = Model.Factory.SchemasIds.First();
+                            if (schema == "IFC2X3")
+                            {
+                                var reader3 = new IfcXmlReader(GetOrCreateEntity, e =>
+                                { //add entity to modified list
+                                    ModifiedEntities.TryAdd(e.EntityLabel, e);
+                                    //pulse will flush the model if necessary (based on the number of entities being processed)
+                                    transaction.Pulse();
+                                }, Model.Metadata);
+                                _model.Header = reader3.Read(reader);
+                            }
+                            else
+                            {
+                                var xmlReader = new XbimXmlReader4(GetOrCreateEntity, e =>
+                                { //add entity to modified list
+                                    ModifiedEntities.TryAdd(e.EntityLabel, e);
+                                    //pulse will flush the model if necessary (based on the number of entities being processed)
+                                    transaction.Pulse();
+                                }, Model.Metadata);
+                                _model.Header = xmlReader.Read(reader);
+                            }
                             var cursor = _model.GetTransactingCursor();
                             cursor.WriteHeader(_model.Header);
-
                         }
                     }
                     transaction.Commit();
                 }
-                if(!keepOpen) Close();
+                if (!keepOpen) Close();
             }
             catch (Exception e)
             {
@@ -656,34 +681,6 @@ namespace Xbim.IO.Esent
                 File.Delete(xbimDbName);
                 throw new Exception("Error importing IfcXml file.", e);
             }
-        }
-
-        private IfcXmlReader GetIfcXmlReader(XbimReadWriteTransaction txn)
-        {
-            return new IfcXmlReader(
-                                (label, type) =>
-                                {
-                                    //return existing entity
-                                    if (Contains(label))
-                                        return GetInstance(label, false, true);
-
-                                    //create new entity and add it to the list
-                                    var cursor = _model.GetTransactingCursor();
-                                    var h = cursor.AddEntity(type, label);
-                                    var entity = _factory.New(_model, type, h.EntityLabel, true) as IPersistEntity;
-                                    entity = _read.GetOrAdd(h.EntityLabel, entity);
-                                    CreatedNew.TryAdd(h.EntityLabel, entity);
-
-                                    return entity;
-                                },
-                                e =>
-                                {
-                                    //add entity to modified list
-                                    ModifiedEntities.TryAdd(e.EntityLabel, e);
-                                    //pulse will flush the model if necessary (based on the number of entities being processed)
-                                    txn.Pulse();
-                                },
-                                Model.Metadata);
         }
 
         /// <summary>
@@ -696,7 +693,7 @@ namespace Xbim.IO.Esent
         /// <param name="cacheEntities"></param>
         /// <param name="codePageOverride"></param>
         /// <returns></returns>
-        public void ImportStep(string xbimDbName, string toImportIfcFilename,ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false,int codePageOverride = -1)
+        public void ImportStep(string xbimDbName, string toImportIfcFilename, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false, int codePageOverride = -1)
         {
             using (var reader = new FileStream(toImportIfcFilename, FileMode.Open, FileAccess.Read))
             {
@@ -742,8 +739,8 @@ namespace Xbim.IO.Esent
 
         public void ImportStepZip(string xbimDbName, string toImportFilename, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false, int codePageOverride = -1)
         {
-                using (var fileStream = File.OpenRead(toImportFilename))
-                    ImportStepZip(xbimDbName, fileStream, progressHandler, keepOpen, cacheEntities, codePageOverride);
+            using (var fileStream = File.OpenRead(toImportFilename))
+                ImportStepZip(xbimDbName, fileStream, progressHandler, keepOpen, cacheEntities, codePageOverride);
         }
 
         /// <summary>
@@ -820,10 +817,29 @@ namespace Xbim.IO.Esent
                                         // XmlReaderSettings settings = new XmlReaderSettings() { IgnoreComments = true, IgnoreWhitespace = false };
                                         using (var xmlInStream = zipFile.GetInputStream(entry))
                                         {
-                                            using (var xmlReader = new XmlTextReader(xmlInStream))
+                                            using (var reader = XmlReader.Create(xmlInStream))
                                             {
-                                                var reader = GetIfcXmlReader(transaction);
-                                                _model.Header = reader.Read(xmlReader);
+                                                var schema = Model.Factory.SchemasIds.First();
+                                                if (schema == "IFC2X3")
+                                                {
+                                                    var reader3 = new IfcXmlReader(GetOrCreateEntity, e =>
+                                                    { //add entity to modified list
+                                                        ModifiedEntities.TryAdd(e.EntityLabel, e);
+                                                        //pulse will flush the model if necessary (based on the number of entities being processed)
+                                                        transaction.Pulse();
+                                                    }, Model.Metadata);
+                                                    _model.Header = reader3.Read(reader);
+                                                }
+                                                else
+                                                {
+                                                    var xmlReader = new XbimXmlReader4(GetOrCreateEntity, e =>
+                                                    { //add entity to modified list
+                                                        ModifiedEntities.TryAdd(e.EntityLabel, e);
+                                                        //pulse will flush the model if necessary (based on the number of entities being processed)
+                                                        transaction.Pulse();
+                                                    }, Model.Metadata);
+                                                    _model.Header = xmlReader.Read(reader);
+                                                }
                                                 var cursor = _model.GetTransactingCursor();
                                                 cursor.WriteHeader(_model.Header);
                                             }
@@ -853,6 +869,22 @@ namespace Xbim.IO.Esent
             }
         }
 
+
+        private IPersistEntity GetOrCreateEntity(int label, Type type)
+        {
+            //return existing entity
+            if (Contains(label))
+                return GetInstance(label, false, true);
+
+            //create new entity and add it to the list
+            var cursor = _model.GetTransactingCursor();
+            var h = cursor.AddEntity(type, label);
+            var entity = _factory.New(_model, type, h.EntityLabel, true) as IPersistEntity;
+            entity = _read.GetOrAdd(h.EntityLabel, entity);
+            CreatedNew.TryAdd(h.EntityLabel, entity);
+            return entity;
+        }
+
         #endregion
 
         public bool Contains(IPersistEntity instance)
@@ -877,16 +909,16 @@ namespace Xbim.IO.Esent
                 }
             }
         }
-       
-       /// <summary>
+
+        /// <summary>
         /// returns the number of instances of the specified type and its sub types
-       /// </summary>
-       /// <typeparam name="TIfcType"></typeparam>
-       /// <returns></returns>
+        /// </summary>
+        /// <typeparam name="TIfcType"></typeparam>
+        /// <returns></returns>
         public long CountOf<TIfcType>() where TIfcType : IPersistEntity
         {
             return CountOf(typeof(TIfcType));
-           
+
         }
         /// <summary>
         /// returns the number of instances of the specified type and its sub types
@@ -938,7 +970,7 @@ namespace Xbim.IO.Esent
             {
                 foreach (var entity in CreatedNew.Where(m => m.Value.GetType() == theType))
                     entityLabels.Add(entity.Key);
-                  
+
             }
             return entityLabels.Count;
         }
@@ -953,7 +985,7 @@ namespace Xbim.IO.Esent
                 {
                     var typeId = Model.Metadata.ExpressTypeId(t);
                     XbimInstanceHandle ih;
-                    if (!entityTable.TrySeekEntityType(typeId,out ih))
+                    if (!entityTable.TrySeekEntityType(typeId, out ih))
                         return true;
                 }
             }
@@ -967,14 +999,14 @@ namespace Xbim.IO.Esent
         /// returns the number of instances in the model
         /// </summary>
         /// <returns></returns>
-        public long Count 
+        public long Count
         {
             get
             {
                 var entityTable = GetEntityTable();
                 try
                 {
-                    long dbCount =  entityTable.RetrieveCount();
+                    long dbCount = entityTable.RetrieveCount();
                     if (_caching) dbCount += CreatedNew.Count;
                     return dbCount;
                 }
@@ -1004,7 +1036,7 @@ namespace Xbim.IO.Esent
             }
         }
 
-       
+
 
         /// <summary>
         /// Creates a new instance
@@ -1018,10 +1050,10 @@ namespace Xbim.IO.Esent
             var cursor = _model.GetTransactingCursor();
             var h = cursor.AddEntity(t);
             var entity = _factory.New(_model, t, h.EntityLabel, true) as IPersistEntity;
-            entity= _read.GetOrAdd(h.EntityLabel, entity);
+            entity = _read.GetOrAdd(h.EntityLabel, entity);
             ModifiedEntities.TryAdd(h.EntityLabel, entity);
             CreatedNew.TryAdd(h.EntityLabel, entity);
-           
+
             return entity;
         }
 
@@ -1034,9 +1066,9 @@ namespace Xbim.IO.Esent
         /// <returns></returns>
         internal IPersistEntity CreateNew(Type type, int label)
         {
-            return _factory.New(_model, type, label, true) ;
+            return _factory.New(_model, type, label, true);
         }
-     
+
 
         internal void AddForwardReference(StepForwardReference forwardReference)
         {
@@ -1173,7 +1205,7 @@ namespace Xbim.IO.Esent
             {
                 using (entityTable.BeginReadOnlyTransaction())
                 {
-                    
+
                     if (entityTable.TrySeekEntityLabel(entityLabel))
                     {
                         var currentIfcTypeId = entityTable.GetIfcType();
@@ -1199,17 +1231,17 @@ namespace Xbim.IO.Esent
                 FreeTable(entityTable);
             }
             return null;
-            
+
         }
 
         public void Print()
         {
             Debug.WriteLine(InstanceHandles.Count());
-                
+
             Debug.WriteLine(HighestLabel);
             Debug.WriteLine(Count);
             Debug.WriteLine(GeometriesCount());
-           // Debug.WriteLine(Any<Xbim.Ifc2x3.SharedBldgElements.IfcWall>());
+            // Debug.WriteLine(Any<Xbim.Ifc2x3.SharedBldgElements.IfcWall>());
             //Debug.WriteLine(Count<Xbim.Ifc2x3.SharedBldgElements.IfcWall>());
             //IEnumerable<IfcElement> elems = OfType<IfcElement>();
             //foreach (var elem in elems)
@@ -1224,72 +1256,79 @@ namespace Xbim.IO.Esent
             //    if (written) Debug.WriteLine(";");
             //}
         }
-        private IEnumerable<TIfcType> OfTypeUnindexed<TIfcType>(ExpressType expressType, bool activate = false) where TIfcType : IPersistEntity
+        private IEnumerable<TIfcType> InstancesOf<TIfcType>(IEnumerable<ExpressType> expressTypes, bool activate = false, HashSet<int> read = null) where TIfcType : IPersistEntity
         {
-            var entityLabels = new HashSet<int>();
-            var entityTable = GetEntityTable();
-            try
+            if (expressTypes.Any())
             {
-                //get all the type ids we are going to check for
-                var typeIds = new HashSet<short>();
-                foreach (var t in expressType.NonAbstractSubTypes)
-                    typeIds.Add(Model.Metadata.ExpressTypeId(t));
-                using (entityTable.BeginReadOnlyTransaction())
+                var entityLabels = read ?? new HashSet<int>();
+                var entityTable = GetEntityTable();
+
+                try
                 {
-                    entityTable.MoveBeforeFirst();
-                    while (entityTable.TryMoveNext())
+                    //get all the type ids we are going to check for
+                    var typeIds = new HashSet<short>();
+                    foreach (var t in expressTypes)
+                        typeIds.Add(t.TypeId);
+                    using (entityTable.BeginReadOnlyTransaction())
                     {
-                        var ih = entityTable.GetInstanceHandle();
-                        if (typeIds.Contains(ih.EntityTypeId))
+                        entityTable.MoveBeforeFirst();
+                        while (entityTable.TryMoveNext())
                         {
-                            IPersistEntity entity;
-                            if (_caching && _read.TryGetValue(ih.EntityLabel, out entity))
+                            var ih = entityTable.GetInstanceHandle();
+                            if (typeIds.Contains(ih.EntityTypeId))
                             {
-                                if (activate && entity.ActivationStatus == ActivationStatus.NotActivated) //activate if required and not already done
+                                IPersistEntity entity;
+                                if (_caching && _read.TryGetValue(ih.EntityLabel, out entity))
                                 {
-                                    entity.Activate(() =>
+                                    if (activate && entity.ActivationStatus == ActivationStatus.NotActivated)
+                                        //activate if required and not already done
                                     {
-                                        var properties = entityTable.GetProperties();
-                                        entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)));
-                                    });
-                                }
-                                entityLabels.Add(entity.EntityLabel);
-                                yield return (TIfcType)entity;
-                            }
-                            else
-                            {
-                                if (activate)
-                                {
-                                    var properties = entityTable.GetProperties();
-                                    entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, true);
-                                    entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)));
+                                        entity.Activate(() =>
+                                        {
+                                            var properties = entityTable.GetProperties();
+                                            entity.ReadEntityProperties(this,
+                                                new BinaryReader(new MemoryStream(properties)));
+                                        });
+                                    }
+                                    entityLabels.Add(entity.EntityLabel);
+                                    yield return (TIfcType) entity;
                                 }
                                 else
-                                //the attributes of this entity have not been loaded yet
-                                    entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, false);
+                                {
+                                    if (activate)
+                                    {
+                                        var properties = entityTable.GetProperties();
+                                        entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, true);
+                                        entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)));
+                                    }
+                                    else
+                                    //the attributes of this entity have not been loaded yet
+                                        entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, false);
 
-                                if (_caching) entity = _read.GetOrAdd(ih.EntityLabel, entity);
-                                entityLabels.Add(entity.EntityLabel);
-                                yield return (TIfcType)entity;
+                                    if (_caching) entity = _read.GetOrAdd(ih.EntityLabel, entity);
+                                    entityLabels.Add(entity.EntityLabel);
+                                    yield return (TIfcType) entity;
+                                }
+
                             }
-
                         }
                     }
-                }
-                if (_caching) //look in the modified cache and find the new ones only
-                {
-                    foreach (var item in CreatedNew.Where(e => e.Value is TIfcType))//.ToList()) //force the iteration to avoid concurrency clashes
+                    if (_caching) //look in the modified cache and find the new ones only
                     {
-                        if (entityLabels.Add(item.Key))
-                        { 
-                            yield return (TIfcType)item.Value;
+                        foreach (var item in CreatedNew.Where(e => e.Value is TIfcType))
+                            //.ToList()) //force the iteration to avoid concurrency clashes
+                        {
+                            if (entityLabels.Add(item.Key))
+                            {
+                                yield return (TIfcType) item.Value;
+                            }
                         }
                     }
                 }
-            }
-            finally
-            {
-                FreeTable(entityTable);
+                finally
+                {
+                    FreeTable(entityTable);
+                }
             }
         }
 
@@ -1302,107 +1341,110 @@ namespace Xbim.IO.Esent
         /// <param name="indexKey">if the entity has a key object, optimises to search for this handle</param>
         /// <param name="overrideType">if specified this parameter overrides the expressType used internally (but not TIfcType) for filtering purposes</param>
         /// <returns></returns>
-        public IEnumerable<TOType> OfType<TOType>(bool activate = false, int? indexKey = null, ExpressType overrideType = null) where TOType:IPersistEntity 
+        public IEnumerable<TOType> OfType<TOType>(bool activate = false, int? indexKey = null, ExpressType overrideType = null) where TOType : IPersistEntity
         {
             //srl this needs to be removed, but preserves compatibility with old databases, the -1 should not be used in future
             int indexKeyAsInt;
             if (indexKey.HasValue) indexKeyAsInt = indexKey.Value; //this is lossy and needs to be fixed if we get large databases
             else indexKeyAsInt = -1;
-            var expressType = overrideType ?? Model.Metadata.ExpressType(typeof(TOType));
-            
-            // when searching for Interface types SearchingIfcType is null
-            //
-            var typesToSearch = 
-                expressType == null ?
-                Model.Metadata.TypesImplementing(typeof(TOType)) : 
-                expressType.NonAbstractSubTypes;
+            var eType = overrideType ?? Model.Metadata.ExpressType(typeof(TOType));
 
-            if (expressType == null || expressType.IndexedClass)
+            // when searching for Interface types expressType is null
+            //
+            IEnumerable<Type> typesToSearch;
+            if (eType != null)
+                typesToSearch = eType.NonAbstractSubTypes;
+            else
+                typesToSearch = Model.Metadata.TypesImplementing(typeof(TOType));
+
+            var unindexedTypes = new HashSet<ExpressType>();
+
+            //Set the IndexedClass Attribute of this class to ensure that seeking by index will work, this is a optimisation
+            // Trying to look a class up by index that is not declared as indexeable
+            var entityLabels = new HashSet<int>();
+            var entityTable = GetEntityTable();
+            try
             {
-                //Set the IndexedClass Attribute of this class to ensure that seeking by index will work, this is a optimisation
-                // Trying to look a class up by index that is not declared as indexeable
-                var entityLabels = new HashSet<int>();
-                var entityTable = GetEntityTable();
-                try
+                using (entityTable.BeginReadOnlyTransaction())
                 {
-                    using (entityTable.BeginReadOnlyTransaction())
+                    foreach (var t in typesToSearch)
                     {
-                        foreach (var t in typesToSearch)
+                        var expressType = Model.Metadata.ExpressType(t);
+                        if (!expressType.IndexedClass) //if the class is indexed we can seek, otherwise go slow
                         {
-                            var typeId = Model.Metadata.ExpressTypeId(t);
-                            XbimInstanceHandle ih;
-                            if (entityTable.TrySeekEntityType(typeId, out ih, indexKeyAsInt) && entityTable.TrySeekEntityLabel(ih.EntityLabel)) //we have the first instance
+                            unindexedTypes.Add(expressType);
+                            continue;
+                        }
+
+                        var typeId = Model.Metadata.ExpressTypeId(t);
+                        XbimInstanceHandle ih;
+                        if (entityTable.TrySeekEntityType(typeId, out ih, indexKeyAsInt) &&
+                            entityTable.TrySeekEntityLabel(ih.EntityLabel)) //we have the first instance
+                        {
+                            do
                             {
-                                do
+                                IPersistEntity entity;
+                                if (_caching && _read.TryGetValue(ih.EntityLabel, out entity))
                                 {
-                                    IPersistEntity entity;
-                                    if (_caching && _read.TryGetValue(ih.EntityLabel, out entity))
+                                    if (activate && entity.ActivationStatus == ActivationStatus.NotActivated)
+                                    //activate if required and not already done
                                     {
-                                        if (activate && entity.ActivationStatus == ActivationStatus.NotActivated) //activate if required and not already done
-                                        {
-                                            var properties = entityTable.GetProperties();
-                                            entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, true);
-                                            entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)));
-                                        }
-                                        entityLabels.Add(entity.EntityLabel);
-                                        yield return (TOType)entity;
+                                        var properties = entityTable.GetProperties();
+                                        entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, true);
+                                        entity.ReadEntityProperties(this,
+                                            new BinaryReader(new MemoryStream(properties)));
+                                    }
+                                    entityLabels.Add(entity.EntityLabel);
+                                    yield return (TOType)entity;
+                                }
+                                else
+                                {
+                                    if (activate)
+                                    {
+                                        var properties = entityTable.GetProperties();
+                                        entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, true);
+                                        entity.ReadEntityProperties(this,
+                                            new BinaryReader(new MemoryStream(properties)));
                                     }
                                     else
-                                    {
-                                        if (activate)
-                                        {
-                                            var properties = entityTable.GetProperties();
-                                            entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, true);
-                                            entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)));
-                                        }
-                                        else
-                                            // the attributes of this entity have not been loaded yet
-                                            entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, false);
+                                        // the attributes of this entity have not been loaded yet
+                                        entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, false);
 
-                                        if (_caching) entity = _read.GetOrAdd(ih.EntityLabel, entity);
-                                        entityLabels.Add(entity.EntityLabel);
-                                        yield return (TOType)entity;
-                                    }
-                                } while (entityTable.TryMoveNextEntityType(out ih) && entityTable.TrySeekEntityLabel(ih.EntityLabel));
-                            }
-                        }
-                    }
-                    // todo: bonghi: check with SRL, I'm failing to understand the following behaviour when using indexkey.
-                    // 
-                    if (_caching) //look in the createnew cache and find the new ones only
-                    {
-                        foreach (var item in CreatedNew.Where(e => e.Value is TOType))//.ToList())
-                        {
-                            if (!indexKey.HasValue) //get all of the type
-                            {
-                                if (entityLabels.Add(item.Key))
-                                    yield return (TOType)item.Value;
-                            }
-                            else
-                            {
-                                // todo: bonghi: note the following ( SearchingIfcType != null ) has been added for cases when querying interfaces, but is probably not correct
-                                //
-                                if (expressType != null && expressType.GetIndexedValues(item.Value).Contains(indexKey.Value)) // get all types that match the index key
-                                {
-                                    if (entityLabels.Add(item.Key))
-                                        yield return (TOType)item.Value;
+                                    if (_caching) entity = _read.GetOrAdd(ih.EntityLabel, entity);
+                                    entityLabels.Add(entity.EntityLabel);
+                                    yield return (TOType)entity;
                                 }
-                            }
+                            } while (entityTable.TryMoveNextEntityType(out ih) &&
+                                     entityTable.TrySeekEntityLabel(ih.EntityLabel));
                         }
                     }
+
                 }
-                finally
+
+                // we need to see if there are any objects in the cache that have not been written to the database yet.
+                // 
+                if (_caching) //look in the createnew cache and find the new ones only
                 {
-                    FreeTable(entityTable);
+                    foreach (var item in CreatedNew.Where(e => e.Value is TOType))
+                    {
+                        if (entityLabels.Add(item.Key))
+                            yield return (TOType)item.Value;
+                    }
                 }
             }
-            else
+            finally
             {
-                Debug.Assert(indexKeyAsInt == -1, "Trying to look a class up by index key, but the class is not indexed");
-                foreach (var item in OfTypeUnindexed<TOType>(expressType, activate))
-                    yield return item;
+                FreeTable(entityTable);
             }
+            //we need to deal with types that are not indexed in the database in a single pass to save time
+            Debug.Assert(indexKeyAsInt == -1, "Trying to look a class up by index key, but the class is not indexed");
+            foreach (var item in InstancesOf<TOType>(unindexedTypes, activate, entityLabels))
+                yield return item;
+
+
         }
+
+
 
         public void Activate(IPersistEntity entity)
         {
@@ -1436,7 +1478,7 @@ namespace Xbim.IO.Esent
                 if (disposing)
                 {
                     Close();
- 
+
                 }
                 try
                 {
@@ -1453,7 +1495,7 @@ namespace Xbim.IO.Esent
                                 Directory.Delete(systemPath, true);
                         }
                     }
-                    
+
                 }
                 catch (Exception) //just in case we cannot delete
                 {
@@ -1491,20 +1533,20 @@ namespace Xbim.IO.Esent
             return null;
         }
 
-        public void SaveAs(XbimStorageType storageType, string storageFileName, ReportProgressDelegate progress = null, IDictionary<int, int> map = null)
+        public void SaveAs(IfcStorageType storageType, string storageFileName, ReportProgressDelegate progress = null, IDictionary<int, int> map = null)
         {
             switch (storageType)
             {
-                case XbimStorageType.IfcXml:
+                case IfcStorageType.IfcXml:
                     SaveAsIfcXml(storageFileName);
                     break;
-                case XbimStorageType.Step21:
-                    SaveAsIfc(storageFileName,map);
+                case IfcStorageType.Ifc:
+                    SaveAsIfc(storageFileName, map);
                     break;
-                case XbimStorageType.Step21Zip:
+                case IfcStorageType.IfcZip:
                     SaveAsIfcZip(storageFileName);
                     break;
-                case XbimStorageType.Xbim:
+                case IfcStorageType.Xbim:
                     Debug.Assert(false, "Incorrect call, see XbimModel.SaveAs");
                     break;
             }
@@ -1515,7 +1557,7 @@ namespace Xbim.IO.Esent
         {
             if (string.IsNullOrWhiteSpace(Path.GetExtension(storageFileName))) //make sure we have an extension
                 storageFileName = Path.ChangeExtension(storageFileName, "IfcZip");
-            var fileBody = Path.ChangeExtension(Path.GetFileName(storageFileName),"ifc");
+            var fileBody = Path.ChangeExtension(Path.GetFileName(storageFileName), "ifc");
             var entityTable = GetEntityTable();
             FileStream fs = null;
             ZipOutputStream zipStream = null;
@@ -1524,7 +1566,7 @@ namespace Xbim.IO.Esent
                 fs = new FileStream(storageFileName, FileMode.Create, FileAccess.Write);
                 zipStream = new ZipOutputStream(fs);
                 zipStream.SetLevel(3); //0-9, 9 being the highest level of compression
-                var newEntry = new ZipEntry(fileBody) {DateTime = DateTime.Now};
+                var newEntry = new ZipEntry(fileBody) { DateTime = DateTime.Now };
                 zipStream.PutNextEntry(newEntry);
                 using (entityTable.BeginReadOnlyTransaction())
                 {
@@ -1564,7 +1606,7 @@ namespace Xbim.IO.Esent
                         var p21 = new Part21FileWriter();
                         p21.Write(_model, tw, Model.Metadata, map);
                         tw.Flush();
-                    }  
+                    }
                 }
             }
             catch (Exception e)
@@ -1685,7 +1727,7 @@ namespace Xbim.IO.Esent
 
             foreach (var expressType in expressTypes)
             {
-                if (inverseProperty != null && inverseArgument!= null &&
+                if (inverseProperty != null && inverseArgument != null &&
                     expressType.HasIndexedAttribute &&
                     expressType.IndexedProperties.Any(p => p.Name == inverseProperty))
                 {
@@ -1722,7 +1764,7 @@ namespace Xbim.IO.Esent
         //        expressTypes = implementations.Where(implementation => !implementations.Any(i => i != implementation && i.NonAbstractSubTypes.Contains(implementation.Type)));
         //    }
         //    var predicate = expr.Compile();
-            
+
         //    foreach (var expressType in expressTypes)
         //    {
         //        if (expressType.HasIndexedAttribute) //we can use a secondary index to look up
@@ -1805,7 +1847,7 @@ namespace Xbim.IO.Esent
         //            }
         //        }
         //    }
-            
+
         //}
 
         #endregion
@@ -1886,15 +1928,15 @@ namespace Xbim.IO.Esent
             CreatedNew.TryAdd(copyHandle.EntityLabel, theCopy);
             ModifiedEntities.TryAdd(copyHandle.EntityLabel, theCopy);
 
-            
-            var props = expressType.Properties.Values.Where(p => !p.EntityAttribute.IsDerived );
+
+            var props = expressType.Properties.Values.Where(p => !p.EntityAttribute.IsDerived);
             if (includeInverses)
                 props = props.Union(expressType.Inverses);
-            
+
             foreach (var prop in props)
             {
-                var value = propTransform != null ? 
-                    propTransform(prop, toCopy) : 
+                var value = propTransform != null ?
+                    propTransform(prop, toCopy) :
                     prop.PropertyInfo.GetValue(toCopy, null);
                 if (value == null) continue;
 
@@ -1915,7 +1957,7 @@ namespace Xbim.IO.Esent
                     var itemType = theType.GetItemTypeFromGenericType();
 
                     var copyColl = prop.PropertyInfo.GetValue(theCopy, null) as IList;
-                    if(copyColl == null)
+                    if (copyColl == null)
                         throw new XbimException(string.Format("Unexpected collection type ({0}) found", itemType.Name));
 
                     foreach (var item in (IExpressEnumerable)value)
@@ -1972,7 +2014,7 @@ namespace Xbim.IO.Esent
             return _model.GetTransactingCursor().AddEntity(type, entityLabel);
         }
 
-        
+
 
         /// <summary>
         /// Adds an entity to the modified cache, if the entity is not already being edited
@@ -1991,14 +2033,14 @@ namespace Xbim.IO.Esent
             ModifiedEntities.TryAdd(entity.EntityLabel, entity as IInstantiableEntity);
         }
 
-        internal string DatabaseName 
+        internal string DatabaseName
         {
             get
             {
                 return _databaseName;
             }
             set
-            { 
+            {
                 _databaseName = value;
             }
 
@@ -2007,14 +2049,14 @@ namespace Xbim.IO.Esent
         /// <summary>
         /// Returns an enumeration of all the instance labels in the model
         /// </summary>
-        public IEnumerable<int> InstanceLabels 
+        public IEnumerable<int> InstanceLabels
         {
             get
             {
                 var entityTable = GetEntityTable();
                 try
                 {
-                    
+
                     int label;
                     if (entityTable.TryMoveFirstLabel(out label)) // we have something
                     {
@@ -2036,9 +2078,9 @@ namespace Xbim.IO.Esent
         /// <summary>
         /// Clears any cached objects and starts a new caching session
         /// </summary>
-        internal void  BeginCaching()
+        internal void BeginCaching()
         {
-            if(!_caching) _read.Clear();
+            if (!_caching) _read.Clear();
             ModifiedEntities.Clear();
             CreatedNew.Clear();
             _previousCaching = _caching;
@@ -2047,9 +2089,9 @@ namespace Xbim.IO.Esent
         /// <summary>
         /// Clears any cached objects and terminates further caching
         /// </summary>
-        internal void  EndCaching()
+        internal void EndCaching()
         {
-            if(!_previousCaching) _read.Clear();
+            if (!_previousCaching) _read.Clear();
             ModifiedEntities.Clear();
             CreatedNew.Clear();
             _caching = _previousCaching;
@@ -2080,14 +2122,14 @@ namespace Xbim.IO.Esent
         {
             return ModifiedEntities.Values;
         }
-     
-        internal XbimGeometryHandleCollection GetGeometryHandles(XbimGeometryType geomType=XbimGeometryType.TriangulatedMesh, XbimGeometrySort sortOrder=XbimGeometrySort.OrderByIfcSurfaceStyleThenIfcType)
+
+        internal XbimGeometryHandleCollection GetGeometryHandles(XbimGeometryType geomType = XbimGeometryType.TriangulatedMesh, XbimGeometrySort sortOrder = XbimGeometrySort.OrderByIfcSurfaceStyleThenIfcType)
         {
             //Get a cached or open a new Table
             var geometryTable = GetGeometryTable();
             try
             {
-                return geometryTable.GetGeometryHandles(geomType, sortOrder);               
+                return geometryTable.GetGeometryHandles(geomType, sortOrder);
             }
             finally
             {
@@ -2118,7 +2160,7 @@ namespace Xbim.IO.Esent
                 foreach (var item in geometryTable.GetGeometryData(handles))
                 {
                     yield return item;
-                } 
+                }
             }
             finally
             {
@@ -2175,7 +2217,7 @@ namespace Xbim.IO.Esent
         /// </summary>
         internal void CacheClear()
         {
-            Debug.Assert(ModifiedEntities.Count == 0 && CreatedNew.Count==0);
+            Debug.Assert(ModifiedEntities.Count == 0 && CreatedNew.Count == 0);
             _read.Clear();
         }
         /// <summary>
@@ -2193,10 +2235,10 @@ namespace Xbim.IO.Esent
             get
             {
                 return _caching;
-            }        
+            }
         }
 
-        public EsentModel Model 
+        public EsentModel Model
         {
             get
             {
@@ -2239,7 +2281,7 @@ namespace Xbim.IO.Esent
 
         internal bool DeleteJetTable(string name)
         {
-            if (!HasTable(name)) 
+            if (!HasTable(name))
                 return true;
             try
             {
@@ -2260,10 +2302,10 @@ namespace Xbim.IO.Esent
         internal bool DeleteGeometry()
         {
             CleanTableArrays(true);
-            var  returnVal  = true;
+            var returnVal = true;
             returnVal &= DeleteJetTable(EsentShapeInstanceCursor.InstanceTableName);
             returnVal &= DeleteJetTable(XbimGeometryCursor.GeometryTableName);
-            returnVal &= DeleteJetTable(EsentShapeGeometryCursor.GeometryTableName);                
+            returnVal &= DeleteJetTable(EsentShapeGeometryCursor.GeometryTableName);
             return returnVal;
         }
 
@@ -2277,7 +2319,7 @@ namespace Xbim.IO.Esent
         {
             return HasTable(XbimGeometryCursor.GeometryTableName);
         }
-        
+
         private bool HasTable(string name)
         {
             return HasTable(name, _session, _databaseId);
@@ -2322,7 +2364,7 @@ namespace Xbim.IO.Esent
         }
 
         internal EsentEntityCursor GetWriteableEntityTable()
-        {           
+        {
             AttachedDatabase(); //make sure the database is attached           
             return new EsentEntityCursor(_model, _databaseName, OpenDatabaseGrbit.None);
         }

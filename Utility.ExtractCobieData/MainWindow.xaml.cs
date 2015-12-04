@@ -93,14 +93,18 @@ namespace Utility.ExtractCobieData
             long resultCount;
 
             IEntityFactory factory = null;
-            var header = MemoryModel.GetStepFileHeader(TxtInputFile.Text);
-            var schema = header.FileSchema.Schemas.First().ToUpper();
-            if (schema == "IFC2X3")
-                factory = new Xbim.Ifc2x3.EntityFactory();
-            if(schema == "IFC4")
-                factory = new Xbim.Ifc4.EntityFactory();
-            if(factory == null)
-                throw new Exception("Unidentified schema");
+            using (var input = File.OpenRead(TxtInputFile.Text))
+            {
+                var header = MemoryModel.GetStepFileHeader(input);
+                var schema = header.FileSchema.Schemas.First().ToUpper();
+                if (schema == "IFC2X3")
+                    factory = new Xbim.Ifc2x3.EntityFactory();
+                if (schema == "IFC4")
+                    factory = new Xbim.Ifc4.EntityFactory();
+                if (factory == null)
+                    throw new Exception("Unidentified schema"); 
+                input.Close();
+            }
 
             using (var source = new MemoryModel(factory))
             {

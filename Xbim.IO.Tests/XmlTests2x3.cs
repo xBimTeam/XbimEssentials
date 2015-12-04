@@ -17,12 +17,12 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void Ifc2X3XMLSerialization()
         {
-            const string output = "..\\..\\4walls1floorSite.xml";
+            const string output = "..\\..\\4walls1floorSite.ifcxml";
             using (var esent = new IO.Esent.EsentModel(new EntityFactory()))
             {
                 esent.CreateFrom("4walls1floorSite.ifc", null, null, true, true);
-                esent.SaveAs(output, XbimStorageType.IfcXml);
-                var errs = ValidateIfc2X3("..\\..\\4walls1floorSite.xml");
+                esent.SaveAs(output, IfcStorageType.IfcXml);
+                var errs = ValidateIfc2X3("..\\..\\4walls1floorSite.ifcxml");
                 Assert.AreEqual(0, errs);
             }
 

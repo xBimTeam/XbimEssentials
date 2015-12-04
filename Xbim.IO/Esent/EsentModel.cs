@@ -356,48 +356,42 @@ namespace Xbim.IO.Esent
             if (string.IsNullOrWhiteSpace(xbimDbName))
                 xbimDbName = Path.ChangeExtension(importFrom, "xBIM");
             
-            var toImportStorageType = StorageType(importFrom);
+            var toImportStorageType = importFrom.StorageType();
+            
             switch (toImportStorageType)
             {
-                case XbimStorageType.IfcXml:
+                case IfcStorageType.IfcXml:
                     InstanceCache.ImportIfcXml(xbimDbName, importFrom, progDelegate, keepOpen, cacheEntities);
                     break;
-                case XbimStorageType.Step21:
+                case IfcStorageType.Ifc:
+                case IfcStorageType.Stp:
                     InstanceCache.ImportStep(xbimDbName, importFrom, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
                     break;
-                case XbimStorageType.Step21Zip:
+                case IfcStorageType.IfcZip:
+                case IfcStorageType.StpZip:
                     InstanceCache.ImportStepZip(xbimDbName, importFrom, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
                     break;
-                case XbimStorageType.Xbim:
-                    InstanceCache.ImportXbim(importFrom, progDelegate);
-                    break;
+                case IfcStorageType.Xbim:
+                    throw new NotImplementedException("Use save as");
+                  
                 default:
                     return false;
             }
             return true;
         }
 
-        public virtual bool CreateFrom(Stream inputStream, XbimStorageType streamType, string xbimDbName, ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false)
+        public virtual bool CreateFrom(Stream inputStream, IfcStorageType streamType, string xbimDbName, ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false)
         {
             Close();
-
-            switch (streamType)
-            {
-                case XbimStorageType.IfcXml:
-                    Cache.ImportIfcXml(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities);
-                    break;
-                case XbimStorageType.Step21:
+            if(streamType.HasFlag(IfcStorageType.IfcZip))
+                    Cache.ImportStepZip(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);   
+            else if(streamType.HasFlag(IfcStorageType.Ifc))
                     Cache.ImportStep(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
-                    break;
-                case XbimStorageType.Step21Zip:
-                    Cache.ImportStepZip(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
-                    break;
-                default:
-                    return false;
-            }
-            
+            else if(streamType.HasFlag(IfcStorageType.IfcXml))
+                    Cache.ImportIfcXml(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities); 
             return true;
         }
+
         /// <summary>
         /// Creates an empty model using a temporary filename, the model will be deleted on close, unless SaveAs is called
         /// It will be returned open for read write operations
@@ -719,21 +713,21 @@ namespace Xbim.IO.Esent
             }
         }
 
-        public bool SaveAs(string outputFileName, XbimStorageType? storageType = null, ReportProgressDelegate progress = null, IDictionary<int, int> map = null)
+        public bool SaveAs(string outputFileName, IfcStorageType? storageType = null, ReportProgressDelegate progress = null, IDictionary<int, int> map = null)
         {
 
             try
             {
                 if (!storageType.HasValue)
-                    storageType = StorageType(outputFileName);
-                if (storageType.Value == XbimStorageType.Invalid)
+                    storageType = outputFileName.StorageType();
+                if (storageType.Value == IfcStorageType.Invalid)
                 {
                     var ext = Path.GetExtension(outputFileName);
                     if(string.IsNullOrWhiteSpace(ext))
                         throw new XbimException("Invalid file type, no extension specified in file " + outputFileName);
                     throw new XbimException("Invalid file type ." + ext.ToUpper() + " in file " + outputFileName);
                 }
-                if (storageType.Value == XbimStorageType.Xbim && DatabaseName != null) //make a copy
+                if (storageType.Value == IfcStorageType.Xbim && DatabaseName != null) //make a copy
                 {
                     var srcFile = DatabaseName;
                     if(string.Compare(srcFile, outputFileName, true, CultureInfo.InvariantCulture) == 0)
@@ -812,35 +806,6 @@ namespace Xbim.IO.Esent
         }
 
 
-
-        #region Helpers
-
-        private XbimStorageType StorageType(string fileName)
-        {
-            if (string.IsNullOrWhiteSpace(fileName)) return XbimStorageType.Invalid;
-            var ext = Path.GetExtension(fileName).ToLower();
-            switch (ext)
-            {
-                case ".xbim":
-                case ".xbimf":
-                    return XbimStorageType.Xbim;
-                case ".ifc":
-                case ".stp":
-                case ".step21":
-                    return XbimStorageType.Step21;
-                case ".ifcxml":
-                case ".xml":
-                    return XbimStorageType.IfcXml;
-                case ".zip":
-                case ".ifczip":
-                case ".stpzip":
-                case ".step21zip":
-                    return XbimStorageType.Step21Zip;
-            }
-            return XbimStorageType.Invalid;
-        }
-
-        #endregion
 
 
         public void Print()
@@ -1217,7 +1182,7 @@ namespace Xbim.IO.Esent
             }
         }
 
-        //public static IStepFileHeader GetStepFileHeader(string fileName)
+        //public static IStepFileHeader GetFileHeader(string fileName)
         //{
         //}
 
@@ -1228,7 +1193,7 @@ namespace Xbim.IO.Esent
             esentModel.InstanceCache = new PersistedEntityInstanceCache(esentModel, null);
 
             esentModel.InstanceCache.DatabaseName = fileName;
-            IStepFileHeader header = null;
+            IStepFileHeader header;
             var entTable = esentModel.InstanceCache.GetEntityTable();
             try
             {
@@ -1247,6 +1212,13 @@ namespace Xbim.IO.Esent
                 esentModel.Dispose();
             }
             return header;
+        }
+
+        public void CreateFrom(IModel model, string fileName,  ReportProgressDelegate progDelegate = null)
+        {
+            Close();
+            var dbName = Path.ChangeExtension(fileName, "xBIM");
+            InstanceCache.ImportModel(model, dbName, progDelegate);
         }
     }
 
