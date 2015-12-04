@@ -122,7 +122,8 @@ namespace Xbim.IO.Memory
             _entityFactory = entityFactory;
             _instances = new EntityCollection(this);
             Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults);
-            Header.FileSchema.Schemas.AddRange(_instances.Factory.SchemasIds);
+            foreach (var schemasId in _instances.Factory.SchemasIds)
+                Header.FileSchema.Schemas.Add(schemasId);
             ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
             Metadata = ExpressMetaData.GetMetadata(entityFactory.GetType().Module);
             IsTransactional = true;

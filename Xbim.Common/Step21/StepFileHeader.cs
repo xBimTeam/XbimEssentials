@@ -14,7 +14,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 #endregion
@@ -26,30 +29,38 @@ namespace Xbim.Common.Step21
     {
         private void MakeValid()
         {
-            if (Description.Count == 0)
+            if (_description.Count == 0)
             {
-                Description.Add("ViewDefinition [CoordinationView]");
+                _description.Add("ViewDefinition [CoordinationView]");
                 
             }
-            if (string.IsNullOrWhiteSpace(ImplementationLevel))
+            if (string.IsNullOrWhiteSpace(_implementationLevel))
             {
-                ImplementationLevel = "2;1";
+                _implementationLevel = "2;1";
             }
             
         }
 
         public StepFileDescription()
         {
+            Init();
         }
 
         public StepFileDescription(string implementationLevel)
         {
             ImplementationLevel = implementationLevel;
             Description.Add("ViewDefinition [CoordinationView]");
+            Init();
         }
 
-        public List<string> Description = new List<string>(2);
-        private string ImplementationLevel;
+        private readonly ObservableCollection<string> _description = new ObservableCollection<string>();
+        private string _implementationLevel;
+        private int _entityCount;
+
+        private void Init()
+        {
+            _description.CollectionChanged += (sender, args) => OnPropertyChanged("Description");
+        }
 
         #region ISupportIfcParser Members
 
@@ -58,10 +69,10 @@ namespace Xbim.Common.Step21
             switch (propIndex)
             {
                 case 0:
-                    Description.Add(value.StringVal);
+                    _description.Add(value.StringVal);
                     break;
                 case 1:
-                    ImplementationLevel = value.StringVal;
+                    _implementationLevel = value.StringVal;
                     break;
                 default:
                     this.HandleUnexpectedAttribute(propIndex, value); break;
@@ -84,10 +95,10 @@ namespace Xbim.Common.Step21
         internal void Write(BinaryWriter binaryWriter)
         {
             MakeValid();
-            binaryWriter.Write(Description.Count);
-            foreach (var desc in Description)
+            binaryWriter.Write(_description.Count);
+            foreach (var desc in _description)
                 binaryWriter.Write(desc);
-            binaryWriter.Write(ImplementationLevel);
+            binaryWriter.Write(_implementationLevel);
         }
 
         internal void Read(BinaryReader binaryReader)
@@ -95,36 +106,48 @@ namespace Xbim.Common.Step21
             var count = binaryReader.ReadInt32();
             for (var i = 0; i < count; i++)
             {
-                Description.Add(binaryReader.ReadString());
+                _description.Add(binaryReader.ReadString());
             }
-            ImplementationLevel = binaryReader.ReadString();
+            _implementationLevel = binaryReader.ReadString();
         }
 
-        List<string> IStepFileDescription.Description
+        public IList<string> Description
         {
             get
             {
-                return Description;
+                return _description;
             }
             set
             {
-                Description = value;
+                _description.Clear();
+                if(value == null || !value.Any()) return;
+                foreach (var v in value)
+                    _description.Add(v);
             }
         }
 
-        string IStepFileDescription.ImplementationLevel
+        public string ImplementationLevel
         {
             get
             {
-                return ImplementationLevel;
+                return _implementationLevel;
             }
             set
             {
-                ImplementationLevel = value;
+                _implementationLevel = value;
+                OnPropertyChanged("ImplementationLevel");
             }
         }
 
-        int IStepFileDescription.EntityCount { get; set; }
+        public int EntityCount
+        {
+            get { return _entityCount; }
+            set
+            {
+                _entityCount = value;
+                OnPropertyChanged("EntityCount");
+            }
+        }
 
 
         void IStepFileDescription.Write(BinaryWriter binaryWriter)
@@ -136,6 +159,14 @@ namespace Xbim.Common.Step21
         {
             Read(binaryReader);
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
     [Serializable]
@@ -143,32 +174,39 @@ namespace Xbim.Common.Step21
     {
         public StepFileName(DateTime time)
         {
-            TimeStamp = string.Format("{0:0000}-{1:00}-{2:00}T{3:00}:{4:00}:{5:00}", time.Year, time.Month, time.Day,
-                                      time.Hour, time.Minute, time.Second);
+            TimeStamp = string.Format(time.ToString("s"));
+            Init();
         }
 
         public StepFileName()
         {
             SetTimeStampNow();
+            Init();
         }
 
-        public string Name;
-        public string TimeStamp;
+        private void Init()
+        {
+            _authorName.CollectionChanged += (sender, args) => OnPropertyChanged("AuthorName");
+            _organization.CollectionChanged += (sender, args) => OnPropertyChanged("Organization");
+            _authorizationMailingAddress.CollectionChanged +=
+                (sender, args) => OnPropertyChanged("AuthorizationMailingAddress");
+        }
+
+        private string _name;
+        private string _timeStamp;
 
         public void SetTimeStampNow()
         {
             var now = DateTime.Now;
-            TimeStamp = string.Format("{0:0000}-{1:00}-{2:00}T{3:00}:{4:00}:{5:00}", now.Year, now.Month, now.Day,
-                                      now.Hour, now.Minute, now.Second);
+            _timeStamp = string.Format(now.ToString("s"));
         }
 
-        public List<string> AuthorName = new List<string>(2);
-        public List<string> Organization = new List<string>(6);
-
-        public string PreprocessorVersion;
-        public string OriginatingSystem;
-        public string AuthorizationName = "";
-        public List<string> AuthorizationMailingAddress = new List<string>(6);
+        private readonly ObservableCollection<string> _authorName = new ObservableCollection<string>();
+        private readonly ObservableCollection<string> _organization = new ObservableCollection<string>();
+        private readonly ObservableCollection<string> _authorizationMailingAddress = new ObservableCollection<string>();
+        private string _preprocessorVersion;
+        private string _originatingSystem;
+        private string _authorizationName = "";
 
         #region ISupportIfcParser Members
 
@@ -177,28 +215,28 @@ namespace Xbim.Common.Step21
             switch (propIndex)
             {
                 case 0:
-                    Name = value.StringVal;
+                    _name = value.StringVal;
                     break;
                 case 1:
-                    TimeStamp = value.StringVal;
+                    _timeStamp = value.StringVal;
                     break;
                 case 2:
-                    AuthorName.Add(value.StringVal);
+                    _authorName.Add(value.StringVal);
                     break;
                 case 3:
-                    Organization.Add(value.StringVal);
+                    _organization.Add(value.StringVal);
                     break;
                 case 4:
-                    PreprocessorVersion = value.StringVal;
+                    _preprocessorVersion = value.StringVal;
                     break;
                 case 5:
-                    OriginatingSystem = value.StringVal;
+                    _originatingSystem = value.StringVal;
                     break;
                 case 6:
-                    AuthorizationName = value.StringVal;
+                    _authorizationName = value.StringVal;
                     break;
                 case 7:
-                    AuthorizationMailingAddress.Add(value.StringVal);
+                    _authorizationMailingAddress.Add(value.StringVal);
                     break;
                 default:
                     this.HandleUnexpectedAttribute(propIndex, value); break;
@@ -214,139 +252,153 @@ namespace Xbim.Common.Step21
 
         internal void Write(BinaryWriter binaryWriter)
         {
-            binaryWriter.Write(Name ?? "");
-            binaryWriter.Write(TimeStamp ?? "");
-            binaryWriter.Write(AuthorName.Count);
-            foreach (var item in AuthorName)
+            binaryWriter.Write(_name ?? "");
+            binaryWriter.Write(_timeStamp ?? "");
+            binaryWriter.Write(_authorName.Count);
+            foreach (var item in _authorName)
                 binaryWriter.Write(item);
-            binaryWriter.Write(Organization.Count);
-            foreach (var item in Organization)
+            binaryWriter.Write(_organization.Count);
+            foreach (var item in _organization)
                 binaryWriter.Write(item);
-            binaryWriter.Write(PreprocessorVersion ?? "");
-            binaryWriter.Write(OriginatingSystem ?? "");
-            binaryWriter.Write(AuthorizationName ?? "");
-            binaryWriter.Write(AuthorizationMailingAddress.Count);
-            foreach (var item in AuthorizationMailingAddress)
+            binaryWriter.Write(_preprocessorVersion ?? "");
+            binaryWriter.Write(_originatingSystem ?? "");
+            binaryWriter.Write(_authorizationName ?? "");
+            binaryWriter.Write(_authorizationMailingAddress.Count);
+            foreach (var item in _authorizationMailingAddress)
                 binaryWriter.Write(item);
         }
 
         internal void Read(BinaryReader binaryReader)
         {
-            Name = binaryReader.ReadString();
-            TimeStamp = binaryReader.ReadString();
+            _name = binaryReader.ReadString();
+            _timeStamp = binaryReader.ReadString();
             var count = binaryReader.ReadInt32();
             for (var i = 0; i < count; i++)
             {
-                AuthorName.Add(binaryReader.ReadString());
+                _authorName.Add(binaryReader.ReadString());
             }
             count = binaryReader.ReadInt32();
             for (var i = 0; i < count; i++)
             {
-                Organization.Add(binaryReader.ReadString());
+                _organization.Add(binaryReader.ReadString());
             }
-            PreprocessorVersion = binaryReader.ReadString();
-            OriginatingSystem = binaryReader.ReadString();
-            AuthorizationName = binaryReader.ReadString();
+            _preprocessorVersion = binaryReader.ReadString();
+            _originatingSystem = binaryReader.ReadString();
+            _authorizationName = binaryReader.ReadString();
             count = binaryReader.ReadInt32();
             for (var i = 0; i < count; i++)
             {
-                AuthorizationMailingAddress.Add(binaryReader.ReadString());
+                _authorizationMailingAddress.Add(binaryReader.ReadString());
             }
         }
 
-        string IStepFileName.Name
+        public string Name
         {
             get
             {
-                return Name;
+                return _name;
             }
             set
             {
-                Name = value;
+                _name = value;
+                OnPropertyChanged("Name");
             }
         }
 
-        string IStepFileName.TimeStamp
+        public string TimeStamp
         {
             get
             {
-                return TimeStamp;
+                return _timeStamp;
             }
             set
             {
-                TimeStamp = value;
+                _timeStamp = value;
+                OnPropertyChanged("TimeStamp");
             }
         }
 
-        List<string> IStepFileName.AuthorName
+        public IList<string> AuthorName
         {
             get
             {
-                return AuthorName;
+                return _authorName;
             }
             set
             {
-                AuthorName = value;
+                _authorName.Clear();
+                if (value == null || !value.Any()) return;
+                foreach (var v in value)
+                    _authorName.Add(v);
             }
         }
 
-        List<string> IStepFileName.Organization
+        public IList<string> Organization
         {
             get
             {
-                return Organization;
+                return _organization;
             }
             set
             {
-                Organization = value;
+                _organization.Clear();
+                if (value == null || !value.Any()) return;
+                foreach (var v in value)
+                    _organization.Add(v);
             }
         }
 
-        string IStepFileName.PreprocessorVersion
+        public string PreprocessorVersion
         {
             get
             {
-                return PreprocessorVersion;
+                return _preprocessorVersion;
             }
             set
             {
-                PreprocessorVersion = value;
+                _preprocessorVersion = value;
+                OnPropertyChanged("PreprocessorVersion");
             }
         }
 
-        string IStepFileName.OriginatingSystem
+        public string OriginatingSystem
         {
             get
             {
-                return OriginatingSystem;
+                return _originatingSystem;
             }
             set
             {
-                OriginatingSystem = value;
+                _originatingSystem = value;
+                OnPropertyChanged("OriginatingSystem");
             }
         }
 
-        string IStepFileName.AuthorizationName
+        public string AuthorizationName
         {
             get
             {
-                return AuthorizationName;
+                return _authorizationName;
             }
             set
             {
-                AuthorizationName = value;
+                _authorizationName = value;
+                OnPropertyChanged("AuthorizationName");
             }
         }
 
-        List<string> IStepFileName.AuthorizationMailingAddress
+        public IList<string> AuthorizationMailingAddress
         {
             get
             {
-                return AuthorizationMailingAddress;
+                return _authorizationMailingAddress;
             }
             set
             {
-                AuthorizationMailingAddress = value;
+                _authorizationMailingAddress.Clear();
+                if (value == null || !value.Any()) return;
+                foreach (var v in value)
+                    _authorizationMailingAddress.Add(v);
             }
         }
 
@@ -360,26 +412,42 @@ namespace Xbim.Common.Step21
         {
             Read(binaryReader);
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
     [Serializable]
     public class StepFileSchema : IStepFileSchema
     {
-        public List<string> Schemas = new List<string>();
+        private readonly ObservableCollection<string> _schemas = new ObservableCollection<string>();
         
 
         public StepFileSchema()
         {
+            Init();
         }
 
         public StepFileSchema(string version)
         {
-            Schemas.Add(version);
+            _schemas.Add(version);
+            Init();
         }
 
         public StepFileSchema(IfcSchemaVersion schemaVersion)
         {
-            Schemas.Add(schemaVersion.ToString().ToUpper());           
+            _schemas.Add(schemaVersion.ToString().ToUpper());
+            Init();
+        }
+
+        private void Init()
+        {
+            _schemas.CollectionChanged += (sender, args) => OnPropertyChanged("Schemas");
         }
 
         #region ISupportIfcParser Members
@@ -389,7 +457,7 @@ namespace Xbim.Common.Step21
             switch (propIndex)
             {
                 case 0:
-                    if (!Schemas.Contains(value.StringVal)) Schemas.Add(value.StringVal);
+                    if (!_schemas.Contains(value.StringVal)) _schemas.Add(value.StringVal);
                     break;
                 default:
                     this.HandleUnexpectedAttribute(propIndex, value); break;
@@ -405,10 +473,10 @@ namespace Xbim.Common.Step21
 
         internal void Write(BinaryWriter binaryWriter)
         {
-            if (Schemas.Count == 0) //if no schema is defined the use IFC2x3 for now
-                Schemas.Add("IFC2X3");
-            binaryWriter.Write(Schemas.Count);
-            foreach (var item in Schemas)
+            //if (_schemas.Count == 0) //if no schema is defined the use IFC2x3 for now
+            //    _schemas.Add("IFC2X3");
+            binaryWriter.Write(_schemas.Count);
+            foreach (var item in _schemas)
                 binaryWriter.Write(item);
         }
 
@@ -417,19 +485,22 @@ namespace Xbim.Common.Step21
             var count = binaryReader.ReadInt32();
             for (var i = 0; i < count; i++)
             {
-                Schemas.Add(binaryReader.ReadString());
+                _schemas.Add(binaryReader.ReadString());
             }
         }
 
-        List<string> IStepFileSchema.Schemas
+        IList<string> IStepFileSchema.Schemas
         {
             get
             {
-                return Schemas;
+                return _schemas;
             }
             set
             {
-                Schemas = value;
+                _schemas.Clear();
+                if (value == null || !value.Any()) return;
+                foreach (var v in value)
+                    _schemas.Add(v);
             }
         }
 
@@ -442,6 +513,14 @@ namespace Xbim.Common.Step21
         void IStepFileSchema.Read(BinaryReader binaryReader)
         {
             Read(binaryReader);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 
@@ -476,7 +555,7 @@ namespace Xbim.Common.Step21
                 // Any value initialised here is added to ALL models read from IFC
                 // 
                 // Any information required before writing a file for schema constraint needs to be checked upon writing
-                // e.g. cfr. FileDescription.MakeValid();
+                // e.g. cfr. _fileDescription.MakeValid();
                 //
                 FileDescription = new StepFileDescription();
                 FileName = new StepFileName();
@@ -484,58 +563,68 @@ namespace Xbim.Common.Step21
             }
         }
 
-        public IStepFileDescription FileDescription;
-        public IStepFileName FileName;
-        public IStepFileSchema FileSchema;
+        private IStepFileDescription _fileDescription;
+        private IStepFileName _fileName;
+        private IStepFileSchema _fileSchema;
 
         public void Write(BinaryWriter binaryWriter)
         {
-            FileDescription.Write(binaryWriter);
-            FileName.Write(binaryWriter);
-            FileSchema.Write(binaryWriter);
+            _fileDescription.Write(binaryWriter);
+            _fileName.Write(binaryWriter);
+            _fileSchema.Write(binaryWriter);
         }
 
         public void Read(BinaryReader binaryReader)
         {
-            FileDescription.Read(binaryReader);
-            FileName.Read(binaryReader);
-            FileSchema.Read(binaryReader);
+            _fileDescription.Read(binaryReader);
+            _fileName.Read(binaryReader);
+            _fileSchema.Read(binaryReader);
         }
 
-        IStepFileDescription IStepFileHeader.FileDescription
+        public IStepFileDescription FileDescription
         {
             get
             {
-                return FileDescription;
+                return _fileDescription;
             }
             set
             {
-                FileDescription = value;
+                _fileDescription = value;
+                OnPropertyChanged("FileDescription");
+                if (_fileDescription != null)
+                    _fileDescription.PropertyChanged += 
+                        (sender, args) => OnPropertyChanged("FileDescription");
             }
         }
 
-        IStepFileName IStepFileHeader.FileName
+        public IStepFileName FileName
         {
             get
             {
-                return FileName;
+                return _fileName;
             }
             set
             {
-                FileName = value;
+                _fileName = value;
+                OnPropertyChanged("FileName");
+                if (_fileName != null)
+                    _fileName.PropertyChanged += (sender, args) => OnPropertyChanged("FileName");
             }
 
         }
 
-        IStepFileSchema IStepFileHeader.FileSchema
+        public IStepFileSchema FileSchema
         {
             get
             {
-                return FileSchema;
+                return _fileSchema;
             }
             set
             {
-                FileSchema = value;
+                _fileSchema = value;
+                OnPropertyChanged("FileSchema");
+                if (_fileSchema != null)
+                    _fileSchema.PropertyChanged += (sender, args) => OnPropertyChanged("FileSchema");
             }
 
         }
@@ -545,10 +634,9 @@ namespace Xbim.Common.Step21
         {
             get
             {
-                if (FileSchema != null && FileSchema.Schemas!=null && FileSchema.Schemas.Count > 0)
-                    return string.Join(", ", FileSchema.Schemas);
-                else
-                    return "";
+                if (_fileSchema != null && _fileSchema.Schemas!=null && _fileSchema.Schemas.Count > 0)
+                    return string.Join(", ", _fileSchema.Schemas);
+                return "";
             }
         }
 
@@ -556,10 +644,9 @@ namespace Xbim.Common.Step21
         {
             get
             {
-                if (FileName != null && FileName.OriginatingSystem != null)
-                    return FileName.OriginatingSystem;
-                else
-                    return "";
+                if (_fileName != null && _fileName.OriginatingSystem != null)
+                    return _fileName.OriginatingSystem;
+                return "";
             }
         }
 
@@ -567,31 +654,28 @@ namespace Xbim.Common.Step21
         {
             get
             {
-                if (FileDescription != null && FileDescription.Description != null)
-                    return string.Join(", ", FileDescription.Description);
-                else
-                    return "";
-
+                if (_fileDescription != null && _fileDescription.Description != null)
+                    return string.Join(", ", _fileDescription.Description);
+                return "";
             }
         }
 
         public string Name
         {
-            get 
+            get
             {
-                if (FileName != null && FileName.Name != null)
-                    return FileName.Name;
-                else
-                    return "";
+                if (_fileName != null && _fileName.Name != null)
+                    return _fileName.Name;
+                return "";
             }
         }
 
-        public String TimeStamp
+        public string TimeStamp
         {
             get
             {
-                if (FileName != null && FileName.TimeStamp != null)
-                    return FileName.TimeStamp;
+                if (_fileName != null && _fileName.TimeStamp != null)
+                    return _fileName.TimeStamp;
                 else
                     return "";
             }
@@ -611,6 +695,14 @@ namespace Xbim.Common.Step21
                                   Assembly.GetExecutingAssembly().GetName().Version),
             };
             FileSchema = new StepFileSchema(schemaVersion);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
