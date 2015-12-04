@@ -19,6 +19,36 @@ namespace Xbim.IO.Memory
 {
     public class MemoryModel : IModel, IDisposable
     {
+        public static StepFileHeader GetStepFileHeader(Stream stream)
+        {
+            var parser = new XbimP21Parser(stream, null);
+            var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
+            parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
+            {
+                //allow all attributes to be parsed
+                ints = null;
+                if (header)
+                {
+                    switch (name)
+                    {
+                        case "FILE_DESCRIPTION":
+                            return stepHeader.FileDescription;
+                        case "FILE_NAME":
+                            return stepHeader.FileName;
+                        case "FILE_SCHEMA":
+                            return stepHeader.FileSchema;
+                        default:
+                            return null;
+                    }
+                }
+                parser.Cancel = true; //done enough
+                return null;
+            };
+            parser.Parse();
+            stream.Close();
+            return stepHeader;
+        }
+
         public static StepFileHeader GetStepFileHeader(string fileName)
         {
             using (var stream = File.OpenRead(fileName))
