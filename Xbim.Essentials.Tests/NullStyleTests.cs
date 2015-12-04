@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Ifc2x3;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
@@ -17,8 +18,11 @@ namespace Xbim.Essentials.Tests
             using (var txn = model.BeginTransaction("Null style"))
             {
                 model.Instances.New<IfcPresentationLayerWithStyle>(ls => ls.LayerStyles.Add(new IfcNullStyle()));
-                model.SaveAs("NullStyle.ifc");
                 txn.Commit();
+                using (var fileStream = new StreamWriter("NullStyle.ifc"))
+                {
+                    model.SaveAsStep21(fileStream);
+                }
             }
 
             model = new MemoryModel(new EntityFactory());

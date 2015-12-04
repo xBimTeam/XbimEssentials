@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using log4net.Util;
 using Xbim.Common;
 using Xbim.Common.Geometry;
 

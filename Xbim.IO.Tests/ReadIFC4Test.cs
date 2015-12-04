@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common.XbimExtensions;
@@ -42,7 +43,10 @@ namespace Xbim.MemoryModel.Tests
             Assert.AreEqual(9, pl.CoordList.SelectMany(c => c).Count());
 
             //write new file
-            model.SaveAs("..\\..\\SerializedNestedList.ifc");
+            using (var fileStream = new StreamWriter("..\\..\\SerializedNestedList.ifc"))
+            {
+                model.SaveAsStep21(fileStream);
+            }
         }
 
         [TestMethod]

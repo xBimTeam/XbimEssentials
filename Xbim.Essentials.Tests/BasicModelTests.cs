@@ -47,7 +47,7 @@ namespace Xbim.Essentials.Tests
             {
                 using (var model = new Xbim.Ifc2x3.IO.XbimModel())
                 {
-                    model.CreateFrom(fileStream, XbimStorageType.Step21, "4walls1floorSite.xbim",null,true);                  
+                    model.CreateFrom(fileStream, IfcStorageType.Ifc, "4walls1floorSite.xbim",null,true);                  
                     model.Close();
                 }
                 fileStream.Close();
@@ -62,7 +62,7 @@ namespace Xbim.Essentials.Tests
             {
                 using (var model = new Xbim.Ifc2x3.IO.XbimModel())
                 {
-                    model.CreateFrom(fileStream, XbimStorageType.Step21, "4walls1floorSite.xbim");
+                    model.CreateFrom(fileStream, IfcStorageType.Ifc, "4walls1floorSite.xbim");
                     model.Close();
                 }
                 fileStream.Close();
@@ -76,7 +76,7 @@ namespace Xbim.Essentials.Tests
             {
                 using (var model = new Xbim.Ifc2x3.IO.XbimModel())
                 {
-                    model.CreateFrom(fileStream, XbimStorageType.Step21, "4walls1floorSite.xbim");
+                    model.CreateFrom(fileStream, IfcStorageType.Ifc, "4walls1floorSite.xbim");
                     model.Close();
                 }
                 fileStream.Close();

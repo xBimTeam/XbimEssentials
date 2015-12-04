@@ -79,10 +79,6 @@
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="log4net, Version=1.2.14.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.4\lib\net40-full\log4net.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -172,7 +168,7 @@
     <Compile Include="Esent\XbimReadWriteTransaction.cs" />
     <Compile Include="Esent\EsentShapeGeometryCursor.cs" />
     <Compile Include="Esent\EsentShapeInstanceCursor.cs" />
-    <Compile Include="XbimStorageType.cs" />
+    <Compile Include="IfcStorageType.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

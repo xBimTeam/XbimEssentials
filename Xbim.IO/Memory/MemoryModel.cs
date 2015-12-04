@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Xml;
@@ -29,7 +30,7 @@ namespace Xbim.IO.Memory
                 var entry = zipStream.GetNextEntry();
                 while (entry != null)
                 {
-                    if (entry.IsFile && entry.Name.IfcStorageType() != XbimStorageType.Invalid)
+                    if (entry.IsFile && entry.Name.StorageType() != IfcStorageType.Invalid)
                     {
                         return entry;
                     }
@@ -43,27 +44,26 @@ namespace Xbim.IO.Memory
         {
             // need to get the header for each step file storage type
             //if it is a zip file
-            var storageType = fileName.IfcStorageType();
+            var storageType = fileName.StorageType();
             using (var stream = File.OpenRead(fileName))
             {
-                
-                if(storageType==XbimStorageType.IfcZip|| storageType==XbimStorageType.Step21Zip)
+
+                if (storageType.HasFlag(IfcStorageType.IfcZip))
                 {
 
                     var zipEntry = GetZipEntry(stream);
                     if (zipEntry != null)
                     {
-                        var zipStorageType = zipEntry.Name.IfcStorageType();
+                        var zipStorageType = zipEntry.Name.StorageType();
                         using (var zipFile = new ZipFile(fileName))
                         {
                             using (var reader = zipFile.GetInputStream(zipEntry))
                             {
-                                if (zipStorageType == XbimStorageType.Ifc ||
-                                    zipStorageType == XbimStorageType.Step21)
+                                if (zipStorageType == IfcStorageType.Ifc) 
                                 {
                                     return GetFileHeader(reader);
                                 }
-                                else if (zipStorageType == XbimStorageType.IfcXml)
+                                else if (zipStorageType == IfcStorageType.IfcXml)
                                 {
                                     return XbimXmlReader4.ReadHeader(reader);
                                 }
@@ -72,6 +72,9 @@ namespace Xbim.IO.Memory
                     }
                     return null;
                 }
+                if (storageType.HasFlag(IfcStorageType.IfcXml) )
+                    return XbimXmlReader4.ReadHeader(stream);
+                //go for default of Ifc
                 return GetFileHeader(stream);
             }
         }
@@ -460,54 +463,7 @@ namespace Xbim.IO.Memory
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="path"></param>
-        /// <param name="storageType"></param>
-        /// <param name="progress"></param>
-        public virtual void SaveAs(string path, XbimStorageType? storageType = null, ReportProgressDelegate progress = null)
-        {
-            using (var file = File.Create(path))
-            {
-                SaveAs(file, storageType ?? path.IfcStorageType(), progress);
-                file.Close();
-            }
-        }
-
-        /// <summary>
-        /// Saves the model as PART21 file
-        /// </summary>
-        /// <param name="stream">Output stream. Steam will be closed at the end.</param>
-        /// <param name="storageType"></param>
-        /// <param name="progress"></param>
-        public virtual void SaveAs(Stream stream, XbimStorageType storageType, ReportProgressDelegate progress = null)
-        {
-            switch (storageType)
-            {
-                case XbimStorageType.Invalid:
-                    return;
-                case XbimStorageType.IfcXml:
-                    SaveAsXml(stream, new XmlWriterSettings(), progress);
-                    break;
-                case XbimStorageType.Step21:
-                case XbimStorageType.Ifc:
-                    SaveAsStep21(stream, progress);
-                    break;
-                case XbimStorageType.Xbim:
-                    var esent = new EsentModel(_entityFactory);
-                    //TODO: Add all entities to instance cache and save as xBIM DB file
-                    break;
-                case XbimStorageType.Step21Zip:
-                case XbimStorageType.IfcZip:
-                    SaveAsStep21Zip(stream, progress);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException("storageType", storageType, null);
-            }
-
-           
-        }
+       
 
         public virtual void SaveAsXml(Stream stream, XmlWriterSettings xmlSettings, ReportProgressDelegate progress = null)
         {

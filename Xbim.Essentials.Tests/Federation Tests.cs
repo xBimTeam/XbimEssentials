@@ -40,7 +40,7 @@ namespace Xbim.Essentials.Tests
                 //now add federated models
                 fedModel.AddModelReference(ModelFedP1, "The Architects Name", IfcRoleEnum.ARCHITECT);
                 fedModel.AddModelReference(ModelFedP2, "The Owners Name", IfcRoleEnum.BUILDINGOWNER);
-                fedModel.SaveAs("P1P2Federation", XbimStorageType.Step21);
+                fedModel.SaveAs("P1P2Federation", IfcStorageType.Ifc);
             } //close and automatically delete the temporary database
             //Now open the Ifc file and see what we have
             using (var fed = new Xbim.Ifc2x3.IO.XbimModel())
@@ -85,7 +85,7 @@ namespace Xbim.Essentials.Tests
                 fedModel.AddModelReference(ModelA, "The Architects Name", IfcRoleEnum.ARCHITECT);
                 fedModel.AddModelReference(ModelB, "The Owners Name", IfcRoleEnum.BUILDINGOWNER);
                 // fedModel.AddModelReference(ModelC, "The Cost Consultants Name", IfcRole.UserDefined, "Cost Consultant");
-                fedModel.SaveAs("Federated Model", XbimStorageType.Step21);
+                fedModel.SaveAs("Federated Model", IfcStorageType.Ifc);
             } //close and automatically delete the temporary database
             //Now open the Ifc file and see what we have
             using (var fed = new Xbim.Ifc2x3.IO.XbimModel())
