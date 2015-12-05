@@ -58,7 +58,7 @@ namespace Xbim.Ifc4.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineSurface(IModel model) : base(model) 		{ 
 			Model = model; 
-			_controlPointsList = new ItemSet<ItemSet<IfcCartesianPoint>>( this, 0 );
+			_controlPointsList = new ItemSet<ItemSet<IfcCartesianPoint>>( this );
 		}
 
 		#region Explicit attribute fields

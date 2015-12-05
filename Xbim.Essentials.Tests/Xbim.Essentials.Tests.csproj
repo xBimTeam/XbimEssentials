@@ -68,6 +68,7 @@
     <Compile Include="DateTimeTests.cs" />
     <Compile Include="InterfacesDataRetrieval.cs" />
     <Compile Include="NullStyleTests.cs" />
+    <Compile Include="ListOfListTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">
@@ -90,6 +91,10 @@
       <Project>{63a3efcf-5d43-4c27-8637-86ccd6033a1e}</Project>
       <Name>Xbim.Ifc4</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Xbim.Ifc\Xbim.Ifc.csproj">
+      <Project>{53999970-957B-4E8D-9CC0-EBE2C7A24969}</Project>
+      <Name>Xbim.Ifc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xbim.IO\Xbim.IO.csproj">
       <Project>{85856df2-c8ab-4120-8a8d-ae05d2696b51}</Project>
       <Name>Xbim.IO</Name>
@@ -109,6 +114,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\4walls1floorSite.ifczip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\IfcBSplineSurfaceWithKnots.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\BIM Logo-ExclaimationBody.xBIM">

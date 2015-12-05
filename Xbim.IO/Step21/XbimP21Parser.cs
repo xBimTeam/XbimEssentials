@@ -29,7 +29,7 @@ namespace Xbim.IO.Step21
 {
     public class XbimP21Parser : P21Parser
     {
-        private readonly ILogger Logger = LoggerFactory.GetLogger();
+        private readonly ILogger _logger = LoggerFactory.GetLogger();
         public event ReportProgressDelegate ProgressStatus;
         private readonly Stack<Part21Entity> _processStack = new Stack<Part21Entity>();
         private int _listNestLevel = -1;
@@ -87,9 +87,9 @@ namespace Xbim.IO.Step21
         {
             foreach (var defRef in _deferredReferences)
             {
-                if (!TrySetObjectValue(defRef.HostEntity, defRef.ParameterIndex, defRef.ReferenceID))
-                    Logger.WarnFormat("Entity #{0,-5} is referenced but could not be instantiated",
-                                                      defRef.ReferenceID);
+                if (!TrySetObjectValue(defRef.HostEntity, defRef.ParameterIndex, defRef.ReferenceId, defRef.NestedIndex))
+                    _logger.WarnFormat("Entity #{0,-5} is referenced but could not be instantiated",
+                                                      defRef.ReferenceId);
             }
         }
 
@@ -264,11 +264,11 @@ namespace Xbim.IO.Step21
 
         internal override void SetObjectValue(string value)
         {
-            var refID = Convert.ToInt32(value.TrimStart('#'));
-            if (!TrySetObjectValue(_currentInstance.Entity, _currentInstance.CurrentParamIndex, refID))
+            var refId = Convert.ToInt32(value.TrimStart('#'));
+            if (!TrySetObjectValue(_currentInstance.Entity, _currentInstance.CurrentParamIndex, refId, NestedIndex))
             {
                 _deferredReferences.Add(new DeferredReference(_currentInstance.CurrentParamIndex,
-                                                              _currentInstance.Entity, refID));
+                                                              _currentInstance.Entity, refId, NestedIndex));
                 if (_listNestLevel != 0) _deferListItems = true;
             }
             if (_listNestLevel == 0)
@@ -296,7 +296,7 @@ namespace Xbim.IO.Step21
                 if (mainEntity != null)
                 {
                     var expressType = _metadata.ExpressType(mainEntity.Entity);
-                    Logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
+                    _logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
                                                mainEntity.EntityLabel, mainEntity.Entity.GetType().Name.ToUpper(),
                                                mainEntity.CurrentParamIndex + 1,
                                                expressType.Properties[mainEntity.CurrentParamIndex + 1].PropertyInfo.Name,
@@ -304,7 +304,7 @@ namespace Xbim.IO.Step21
                 }
                 else
                 {
-                    Logger.Error("Unhandled Parser error, in Parser.cs EndNestedType");
+                    _logger.Error("Unhandled Parser error, in Parser.cs EndNestedType");
                 }
             }
             if (_listNestLevel == 0)
@@ -346,7 +346,7 @@ namespace Xbim.IO.Step21
                     var propertyName = mainEntity.CurrentParamIndex + 1 > expressType.Properties.Count ? "[UnknownProperty]" :
                         expressType.Properties[mainEntity.CurrentParamIndex + 1].PropertyInfo.Name;
 
-                    Logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
+                    _logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
                                                mainEntity.EntityLabel, 
                                                mainEntity.Entity.GetType().Name.ToUpper(),
                                                mainEntity.CurrentParamIndex + 1,
@@ -356,7 +356,7 @@ namespace Xbim.IO.Step21
                 }
                 else
                 {
-                    Logger.Error("Unhandled Parser error, in Parser.cs SetEntityParameter");
+                    _logger.Error("Unhandled Parser error, in Parser.cs SetEntityParameter");
                 }
             }
             if (_listNestLevel == 0)
@@ -371,16 +371,16 @@ namespace Xbim.IO.Step21
             get { return _entities; }
         }
 
-        internal bool TrySetObjectValue(IPersist host, int paramIndex, int refID)
+        internal bool TrySetObjectValue(IPersist host, int paramIndex, int refId, int[] listNextLevel)
         {
             if (_deferListItems) return false;
             try
             {
                 IPersist refEntity;
-                if (_entities.TryGetValue(refID, out refEntity) && host != null)
+                if (_entities.TryGetValue(refId, out refEntity) && host != null)
                 {
                     _propertyValue.Init(refEntity);
-                    (host).Parse(paramIndex, _propertyValue, NestedIndex);
+                    (host).Parse(paramIndex, _propertyValue, listNextLevel);
                     return true;
                 }
             }
@@ -392,8 +392,8 @@ namespace Xbim.IO.Step21
                 var expressType = _metadata.ExpressType(host);
                 var propertyName = paramIndex+1 > expressType.Properties.Count ? "[UnknownProperty]" :
                         expressType.Properties[paramIndex+1].PropertyInfo.Name;
-                Logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3}",
-                                           refID, expressType.Type.Name.ToUpper(), paramIndex + 1,
+                _logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3}",
+                                           refId, expressType.Type.Name.ToUpper(), paramIndex + 1,
                                            propertyName);
                 
             }
@@ -403,17 +403,18 @@ namespace Xbim.IO.Step21
 
     public struct DeferredReference
     {
-        public DeferredReference(int paramIndex, IPersist hostEntity, int refID)
+        public DeferredReference(int paramIndex, IPersist hostEntity, int refId, int[] nestedIndex)
         {
             ParameterIndex = paramIndex;
             HostEntity = hostEntity;
-            ReferenceID = refID;
+            ReferenceId = refId;
+            NestedIndex = nestedIndex;
         }
 
         public int ParameterIndex;
         public IPersist HostEntity;
-        public int ReferenceID; //the ID of the object to set at ParameterIndex of HostEntity
-
+        public int ReferenceId; //the ID of the object to set at ParameterIndex of HostEntity
+        public int[] NestedIndex;
         public ParameterSetter ParameterSetter
         {
             get { return (HostEntity).Parse; }
