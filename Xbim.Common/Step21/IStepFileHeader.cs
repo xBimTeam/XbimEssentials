@@ -1,8 +1,9 @@
-﻿using System.IO;
+﻿using System.ComponentModel;
+using System.IO;
 
 namespace Xbim.Common.Step21
 {
-    public interface IStepFileHeader
+    public interface IStepFileHeader: INotifyPropertyChanged
     {
         IStepFileDescription FileDescription { get; set; }
         IStepFileName FileName { get; set; }

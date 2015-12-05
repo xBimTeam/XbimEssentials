@@ -162,7 +162,8 @@ namespace Xbim.Ifc2x3.IO
                 model.CreateDatabase(tmpFileName);
                 model.Open(tmpFileName, XbimDBAccess.ReadWrite, true);
                 model.Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults);
-                model.Header.FileSchema.Schemas.AddRange(model.Factory.SchemasIds);
+                foreach (var schemasId in model.Factory.SchemasIds)
+                    model.Header.FileSchema.Schemas.Add(schemasId);
                 return model;
             }
             catch (Exception e)
@@ -188,7 +189,8 @@ namespace Xbim.Ifc2x3.IO
                 model.CreateDatabase(dbFileName);
                 model.Open(dbFileName, access);
                 model.Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults) { FileName = { Name = dbFileName } };
-                model.Header.FileSchema.Schemas.AddRange(model.Factory.SchemasIds);
+                foreach (var schemasId in model.Factory.SchemasIds)
+                    model.Header.FileSchema.Schemas.Add(schemasId);
                 return model;
             }
             catch (Exception e)

@@ -40,7 +40,7 @@ namespace Xbim.IO.Memory
             return null;
         }
 
-        public static IStepFileHeader GetStepFileHeader(string fileName)
+        public static IStepFileHeader GetFileHeader(string fileName)
         {
             // need to get the header for each step file storage type
             //if it is a zip file
@@ -52,21 +52,19 @@ namespace Xbim.IO.Memory
                 {
 
                     var zipEntry = GetZipEntry(stream);
-                    if (zipEntry != null)
+                    if (zipEntry == null) return null;
+
+                    var zipStorageType = zipEntry.Name.StorageType();
+                    using (var zipFile = new ZipFile(fileName))
                     {
-                        var zipStorageType = zipEntry.Name.StorageType();
-                        using (var zipFile = new ZipFile(fileName))
+                        using (var reader = zipFile.GetInputStream(zipEntry))
                         {
-                            using (var reader = zipFile.GetInputStream(zipEntry))
+                            switch (zipStorageType)
                             {
-                                if (zipStorageType == IfcStorageType.Ifc) 
-                                {
-                                    return GetFileHeader(reader);
-                                }
-                                else if (zipStorageType == IfcStorageType.IfcXml)
-                                {
+                                case IfcStorageType.Ifc:
+                                    return GetStepFileHeader(reader);
+                                case IfcStorageType.IfcXml:
                                     return XbimXmlReader4.ReadHeader(reader);
-                                }
                             }
                         }
                     }
@@ -75,11 +73,11 @@ namespace Xbim.IO.Memory
                 if (storageType.HasFlag(IfcStorageType.IfcXml) )
                     return XbimXmlReader4.ReadHeader(stream);
                 //go for default of Ifc
-                return GetFileHeader(stream);
+                return GetStepFileHeader(stream);
             }
         }
 
-        private static IStepFileHeader GetFileHeader(Stream stream)
+        public static IStepFileHeader GetStepFileHeader(Stream stream)
         {
                 var parser = new XbimP21Parser(stream, null);
                 var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
@@ -124,7 +122,8 @@ namespace Xbim.IO.Memory
             _entityFactory = entityFactory;
             _instances = new EntityCollection(this);
             Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults);
-            Header.FileSchema.Schemas.AddRange(_instances.Factory.SchemasIds);
+            foreach (var schemasId in _instances.Factory.SchemasIds)
+                Header.FileSchema.Schemas.Add(schemasId);
             ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
             Metadata = ExpressMetaData.GetMetadata(entityFactory.GetType().Module);
             IsTransactional = true;

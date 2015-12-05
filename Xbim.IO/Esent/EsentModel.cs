@@ -407,7 +407,8 @@ namespace Xbim.IO.Esent
                 model.CreateDatabase(tmpFileName);  
                 model.Open(tmpFileName, XbimDBAccess.ReadWrite, true);
                 model.Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults);
-                model.Header.FileSchema.Schemas.AddRange(factory.SchemasIds);
+                foreach (var schemasId in factory.SchemasIds)
+                    model.Header.FileSchema.Schemas.Add(schemasId);
                 return model;
             }
             catch (Exception e)
@@ -446,7 +447,8 @@ namespace Xbim.IO.Esent
                 model.CreateDatabase(dbFileName); 
                 model.Open(dbFileName, access);
                 model.Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults) { FileName = {Name = dbFileName} };
-                model.Header.FileSchema.Schemas.AddRange(factory.SchemasIds);
+                foreach (var schemasId in factory.SchemasIds)
+                    model.Header.FileSchema.Schemas.Add(schemasId);
                 return model;
             }
             catch (Exception e)
@@ -469,7 +471,47 @@ namespace Xbim.IO.Esent
             return InstanceCache.GetEntityBinaryData(entity);
         }
 
-        public IStepFileHeader Header {  get; set; }
+        public IStepFileHeader Header
+        {
+            get { return _header; }
+            set
+            {
+                _header = value;
+                if (value == null) return;
+
+                if (CurrentTransaction != null)
+                {
+                    var cursor = GetTransactingCursor();
+                    cursor.WriteHeader(_header);
+                }
+                else
+                {
+                    using (var txn = BeginTransaction("New header"))
+                    {
+                        var cursor = GetTransactingCursor();
+                        cursor.WriteHeader(_header);
+                        txn.Commit();
+                    }
+                }
+                _header.PropertyChanged += (sender, args) =>
+                {
+                    if (CurrentTransaction != null)
+                    {
+                        var cursor = GetTransactingCursor();
+                        cursor.WriteHeader(_header);
+                    }
+                    else
+                    {
+                        using (var txn = BeginTransaction("Header changed"))
+                        {
+                            var cursor = GetTransactingCursor();
+                            cursor.WriteHeader(_header);
+                            txn.Commit();
+                        }
+                    }
+                };
+            }
+        }
 
         #region Validation
 
@@ -1104,6 +1146,7 @@ namespace Xbim.IO.Esent
         #region Federation 
         private readonly XbimReferencedModelCollection _referencedModels = new XbimReferencedModelCollection();
         private EsentGeometryStore _geometryStore;
+        private IStepFileHeader _header;
 
         public IEnumerable<IReferencedModel> ReferencedModels
         {
@@ -1182,7 +1225,7 @@ namespace Xbim.IO.Esent
             }
         }
 
-        //public static IStepFileHeader GetStepFileHeader(string fileName)
+        //public static IStepFileHeader GetFileHeader(string fileName)
         //{
         //}
 

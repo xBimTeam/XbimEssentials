@@ -254,7 +254,7 @@ namespace Xbim.Ifc
         {
             var storageType = path.StorageType();
             if (storageType == IfcStorageType.Invalid) return IfcSchemaVersion.Unsupported;
-            var stepHeader = storageType == IfcStorageType.Xbim ? EsentModel.GetStepFileHeader(path) : MemoryModel.GetStepFileHeader(path);
+            var stepHeader = storageType == IfcStorageType.Xbim ? EsentModel.GetStepFileHeader(path) : MemoryModel.GetFileHeader(path);
             var stepSchema = stepHeader.FileSchema;
             foreach (var schema in stepSchema.Schemas)
             {
