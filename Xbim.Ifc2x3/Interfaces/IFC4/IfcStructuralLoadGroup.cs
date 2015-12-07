@@ -188,14 +188,14 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcStructuralResultGroup>(e => (e.ResultForLoadGroup as IfcStructuralLoadGroup) == this);
+				return Model.Instances.Where<IIfcStructuralResultGroup>(e => (e.ResultForLoadGroup as IfcStructuralLoadGroup) == this, "ResultForLoadGroup", this);
 			} 
 		}
 		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralLoadGroup.LoadGroupFor 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcStructuralAnalysisModel>(e => e.LoadedBy != null &&  e.LoadedBy.Contains(this));
+				return Model.Instances.Where<IIfcStructuralAnalysisModel>(e => e.LoadedBy != null &&  e.LoadedBy.Contains(this), "LoadedBy", this);
 			} 
 		}
 	//## Custom code

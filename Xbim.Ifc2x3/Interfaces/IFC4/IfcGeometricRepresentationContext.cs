@@ -57,14 +57,14 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcGeometricRepresentationSubContext>(e => (e.ParentContext as IfcGeometricRepresentationContext) == this);
+				return Model.Instances.Where<IIfcGeometricRepresentationSubContext>(e => (e.ParentContext as IfcGeometricRepresentationContext) == this, "ParentContext", this);
 			} 
 		}
 		IEnumerable<IIfcCoordinateOperation> IIfcGeometricRepresentationContext.HasCoordinateOperation 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcCoordinateOperation>(e => (e.SourceCRS as IfcGeometricRepresentationContext) == this);
+				return Model.Instances.Where<IIfcCoordinateOperation>(e => (e.SourceCRS as IfcGeometricRepresentationContext) == this, "SourceCRS", this);
 			} 
 		}
 	//## Custom code

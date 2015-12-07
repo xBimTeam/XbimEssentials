@@ -27,7 +27,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelConnectsStructuralMember>(e => (e.RelatedStructuralConnection as IfcStructuralConnection) == this);
+				return Model.Instances.Where<IIfcRelConnectsStructuralMember>(e => (e.RelatedStructuralConnection as IfcStructuralConnection) == this, "RelatedStructuralConnection", this);
 			} 
 		}
 	//## Custom code

@@ -47,21 +47,21 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelAssociatesMaterial>(e => (e.RelatingMaterial as IfcMaterialLayerSet) == this);
+				return Model.Instances.Where<IIfcRelAssociatesMaterial>(e => (e.RelatingMaterial as IfcMaterialLayerSet) == this, "RelatingMaterial", this);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcMaterialDefinition.HasExternalReferences 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		IEnumerable<IIfcMaterialProperties> IIfcMaterialDefinition.HasProperties 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcMaterialProperties>(e => (e.Material as IfcMaterialLayerSet) == this);
+				return Model.Instances.Where<IIfcMaterialProperties>(e => (e.Material as IfcMaterialLayerSet) == this, "Material", this);
 			} 
 		}
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcMaterialLayerSet.TotalThickness 

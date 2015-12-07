@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRepresentation>(e => (e.ContextOfItems as IfcRepresentationContext) == this);
+				return Model.Instances.Where<IIfcRepresentation>(e => (e.ContextOfItems as IfcRepresentationContext) == this, "ContextOfItems", this);
 			} 
 		}
 	//## Custom code

@@ -133,35 +133,35 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesApproval> IIfcApproval.ApprovedObjects 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelAssociatesApproval>(e => (e.RelatingApproval as IfcApproval) == this);
+				return Model.Instances.Where<IIfcRelAssociatesApproval>(e => (e.RelatingApproval as IfcApproval) == this, "RelatingApproval", this);
 			} 
 		}
 		IEnumerable<IIfcResourceApprovalRelationship> IIfcApproval.ApprovedResources 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcResourceApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this);
+				return Model.Instances.Where<IIfcResourceApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this, "RelatingApproval", this);
 			} 
 		}
 		IEnumerable<IIfcApprovalRelationship> IIfcApproval.IsRelatedWith 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcApprovalRelationship>(e => e.RelatedApprovals != null &&  e.RelatedApprovals.Contains(this));
+				return Model.Instances.Where<IIfcApprovalRelationship>(e => e.RelatedApprovals != null &&  e.RelatedApprovals.Contains(this), "RelatedApprovals", this);
 			} 
 		}
 		IEnumerable<IIfcApprovalRelationship> IIfcApproval.Relates 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this);
+				return Model.Instances.Where<IIfcApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this, "RelatingApproval", this);
 			} 
 		}
 	//## Custom code

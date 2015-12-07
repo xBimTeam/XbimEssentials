@@ -77,14 +77,14 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelAssociatesClassification>(e => (e.RelatingClassification as IfcClassification) == this);
+				return Model.Instances.Where<IIfcRelAssociatesClassification>(e => (e.RelatingClassification as IfcClassification) == this, "RelatingClassification", this);
 			} 
 		}
 		IEnumerable<IIfcClassificationReference> IIfcClassification.HasReferences 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcClassificationReference>(e => (e.ReferencedSource as IfcClassification) == this);
+				return Model.Instances.Where<IIfcClassificationReference>(e => (e.ReferencedSource as IfcClassification) == this, "ReferencedSource", this);
 			} 
 		}
 	//## Custom code

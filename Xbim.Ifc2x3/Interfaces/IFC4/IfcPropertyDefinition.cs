@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelDeclares>(e => e.RelatedDefinitions != null &&  e.RelatedDefinitions.Contains(this));
+				return Model.Instances.Where<IIfcRelDeclares>(e => e.RelatedDefinitions != null &&  e.RelatedDefinitions.Contains(this), "RelatedDefinitions", this);
 			} 
 		}
 		IEnumerable<IIfcRelAssociates> IIfcPropertyDefinition.HasAssociations 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelAssociates>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
+				return Model.Instances.Where<IIfcRelAssociates>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this), "RelatedObjects", this);
 			} 
 		}
 	//## Custom code

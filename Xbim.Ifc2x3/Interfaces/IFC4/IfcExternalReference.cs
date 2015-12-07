@@ -44,7 +44,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => (e.RelatingReference as IfcExternalReference) == this);
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => (e.RelatingReference as IfcExternalReference) == this, "RelatingReference", this);
 			} 
 		}
 	//## Custom code

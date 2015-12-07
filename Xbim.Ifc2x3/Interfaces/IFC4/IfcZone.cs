@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelServicesBuildings>(e => (e.RelatingSystem as IfcZone) == this);
+				return Model.Instances.Where<IIfcRelServicesBuildings>(e => (e.RelatingSystem as IfcZone) == this, "RelatingSystem", this);
 			} 
 		}
 	//## Custom code

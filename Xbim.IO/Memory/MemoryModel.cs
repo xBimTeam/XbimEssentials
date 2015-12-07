@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Xml;
@@ -11,7 +9,6 @@ using Xbim.Common;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
-using Xbim.IO.Esent;
 using Xbim.IO.Step21;
 using Xbim.IO.Xml;
 using Xbim.IO.Xml.BsConf;

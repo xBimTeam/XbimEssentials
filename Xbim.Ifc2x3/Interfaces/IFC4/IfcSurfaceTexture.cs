@@ -63,14 +63,14 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcTextureCoordinate>(e => e.Maps != null &&  e.Maps.Contains(this));
+				return Model.Instances.Where<IIfcTextureCoordinate>(e => e.Maps != null &&  e.Maps.Contains(this), "Maps", this);
 			} 
 		}
 		IEnumerable<IIfcSurfaceStyleWithTextures> IIfcSurfaceTexture.UsedInStyles 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcSurfaceStyleWithTextures>(e => e.Textures != null &&  e.Textures.Contains(this));
+				return Model.Instances.Where<IIfcSurfaceStyleWithTextures>(e => e.Textures != null &&  e.Textures.Contains(this), "Textures", this);
 			} 
 		}
 	//## Custom code

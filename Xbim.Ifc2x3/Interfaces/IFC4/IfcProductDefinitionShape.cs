@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcProduct>(e => (e.Representation as IfcProductDefinitionShape) == this);
+				return Model.Instances.Where<IIfcProduct>(e => (e.Representation as IfcProductDefinitionShape) == this, "Representation", this);
 			} 
 		}
 		IEnumerable<IIfcShapeAspect> IIfcProductDefinitionShape.HasShapeAspects 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcShapeAspect>(e => (e.PartOfProductDefinitionShape as IfcProductDefinitionShape) == this);
+				return Model.Instances.Where<IIfcShapeAspect>(e => (e.PartOfProductDefinitionShape as IfcProductDefinitionShape) == this, "PartOfProductDefinitionShape", this);
 			} 
 		}
 	//## Custom code

@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcShapeAspect>(e => e.ShapeRepresentations != null &&  e.ShapeRepresentations.Contains(this));
+				return Model.Instances.Where<IIfcShapeAspect>(e => e.ShapeRepresentations != null &&  e.ShapeRepresentations.Contains(this), "ShapeRepresentations", this);
 			} 
 		}
 	//## Custom code

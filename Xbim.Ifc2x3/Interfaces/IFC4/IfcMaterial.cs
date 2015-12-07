@@ -45,42 +45,42 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcMaterialDefinitionRepresentation>(e => (e.RepresentedMaterial as IfcMaterial) == this);
+				return Model.Instances.Where<IIfcMaterialDefinitionRepresentation>(e => (e.RepresentedMaterial as IfcMaterial) == this, "RepresentedMaterial", this);
 			} 
 		}
 		IEnumerable<IIfcMaterialRelationship> IIfcMaterial.IsRelatedWith 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcMaterialRelationship>(e => e.RelatedMaterials != null &&  e.RelatedMaterials.Contains(this));
+				return Model.Instances.Where<IIfcMaterialRelationship>(e => e.RelatedMaterials != null &&  e.RelatedMaterials.Contains(this), "RelatedMaterials", this);
 			} 
 		}
 		IEnumerable<IIfcMaterialRelationship> IIfcMaterial.RelatesTo 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcMaterialRelationship>(e => (e.RelatingMaterial as IfcMaterial) == this);
+				return Model.Instances.Where<IIfcMaterialRelationship>(e => (e.RelatingMaterial as IfcMaterial) == this, "RelatingMaterial", this);
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialDefinition.AssociatedTo 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelAssociatesMaterial>(e => (e.RelatingMaterial as IfcMaterial) == this);
+				return Model.Instances.Where<IIfcRelAssociatesMaterial>(e => (e.RelatingMaterial as IfcMaterial) == this, "RelatingMaterial", this);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcMaterialDefinition.HasExternalReferences 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		IEnumerable<IIfcMaterialProperties> IIfcMaterialDefinition.HasProperties 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcMaterialProperties>(e => (e.Material as IfcMaterial) == this);
+				return Model.Instances.Where<IIfcMaterialProperties>(e => (e.Material as IfcMaterial) == this, "Material", this);
 			} 
 		}
 	//## Custom code

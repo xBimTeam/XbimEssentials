@@ -241,28 +241,28 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelAssociatesDocument>(e => (e.RelatingDocument as IfcDocumentInformation) == this);
+				return Model.Instances.Where<IIfcRelAssociatesDocument>(e => (e.RelatingDocument as IfcDocumentInformation) == this, "RelatingDocument", this);
 			} 
 		}
 		IEnumerable<IIfcDocumentReference> IIfcDocumentInformation.HasDocumentReferences 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcDocumentReference>(e => (e.ReferencedDocument as IfcDocumentInformation) == this);
+				return Model.Instances.Where<IIfcDocumentReference>(e => (e.ReferencedDocument as IfcDocumentInformation) == this, "ReferencedDocument", this);
 			} 
 		}
 		IEnumerable<IIfcDocumentInformationRelationship> IIfcDocumentInformation.IsPointedTo 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcDocumentInformationRelationship>(e => e.RelatedDocuments != null &&  e.RelatedDocuments.Contains(this));
+				return Model.Instances.Where<IIfcDocumentInformationRelationship>(e => e.RelatedDocuments != null &&  e.RelatedDocuments.Contains(this), "RelatedDocuments", this);
 			} 
 		}
 		IEnumerable<IIfcDocumentInformationRelationship> IIfcDocumentInformation.IsPointer 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcDocumentInformationRelationship>(e => (e.RelatingDocument as IfcDocumentInformation) == this);
+				return Model.Instances.Where<IIfcDocumentInformationRelationship>(e => (e.RelatingDocument as IfcDocumentInformation) == this, "RelatingDocument", this);
 			} 
 		}
 	//## Custom code

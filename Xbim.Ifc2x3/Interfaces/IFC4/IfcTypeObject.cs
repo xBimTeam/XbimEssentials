@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelDefinesByType>(e => (e.RelatingType as IfcTypeObject) == this);
+				return Model.Instances.Where<IIfcRelDefinesByType>(e => (e.RelatingType as IfcTypeObject) == this, "RelatingType", this);
 			} 
 		}
 	//## Custom code

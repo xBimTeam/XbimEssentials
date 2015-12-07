@@ -94,7 +94,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcPersonAndOrganization>(e => (e.ThePerson as IfcPerson) == this);
+				return Model.Instances.Where<IIfcPersonAndOrganization>(e => (e.ThePerson as IfcPerson) == this, "ThePerson", this);
 			} 
 		}
 	//## Custom code

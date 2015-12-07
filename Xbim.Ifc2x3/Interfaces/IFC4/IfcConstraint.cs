@@ -106,14 +106,14 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		IEnumerable<IIfcResourceConstraintRelationship> IIfcConstraint.PropertiesForConstraint 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcResourceConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this);
+				return Model.Instances.Where<IIfcResourceConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this, "RelatingConstraint", this);
 			} 
 		}
 	//## Custom code

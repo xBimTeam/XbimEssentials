@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelAssignsToGroup>(e => (e.RelatingGroup as IfcGroup) == this);
+				return Model.Instances.Where<IIfcRelAssignsToGroup>(e => (e.RelatingGroup as IfcGroup) == this, "RelatingGroup", this);
 			} 
 		}
 	//## Custom code

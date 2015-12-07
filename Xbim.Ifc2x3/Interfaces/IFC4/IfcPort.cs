@@ -20,21 +20,21 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelConnectsPortToElement>(e => (e.RelatingPort as IfcPort) == this);
+				return Model.Instances.Where<IIfcRelConnectsPortToElement>(e => (e.RelatingPort as IfcPort) == this, "RelatingPort", this);
 			} 
 		}
 		IEnumerable<IIfcRelConnectsPorts> IIfcPort.ConnectedFrom 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelConnectsPorts>(e => (e.RelatedPort as IfcPort) == this);
+				return Model.Instances.Where<IIfcRelConnectsPorts>(e => (e.RelatedPort as IfcPort) == this, "RelatedPort", this);
 			} 
 		}
 		IEnumerable<IIfcRelConnectsPorts> IIfcPort.ConnectedTo 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelConnectsPorts>(e => (e.RelatingPort as IfcPort) == this);
+				return Model.Instances.Where<IIfcRelConnectsPorts>(e => (e.RelatingPort as IfcPort) == this, "RelatingPort", this);
 			} 
 		}
 	//## Custom code

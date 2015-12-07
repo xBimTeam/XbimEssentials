@@ -41,14 +41,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcShapeAspect>(e => (e.PartOfProductDefinitionShape as IfcRepresentationMap) == this);
+				return Model.Instances.Where<IIfcShapeAspect>(e => (e.PartOfProductDefinitionShape as IfcRepresentationMap) == this, "PartOfProductDefinitionShape", this);
 			} 
 		}
 		IEnumerable<IIfcMappedItem> IIfcRepresentationMap.MapUsage 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcMappedItem>(e => (e.MappingSource as IfcRepresentationMap) == this);
+				return Model.Instances.Where<IIfcMappedItem>(e => (e.MappingSource as IfcRepresentationMap) == this, "MappingSource", this);
 			} 
 		}
 	//## Custom code

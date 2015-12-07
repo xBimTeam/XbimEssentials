@@ -35,49 +35,49 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcPropertySet>(e => e.HasProperties != null &&  e.HasProperties.Contains(this));
+				return Model.Instances.Where<IIfcPropertySet>(e => e.HasProperties != null &&  e.HasProperties.Contains(this), "HasProperties", this);
 			} 
 		}
 		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyForDependance 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcPropertyDependencyRelationship>(e => (e.DependingProperty as IfcProperty) == this);
+				return Model.Instances.Where<IIfcPropertyDependencyRelationship>(e => (e.DependingProperty as IfcProperty) == this, "DependingProperty", this);
 			} 
 		}
 		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyDependsOn 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcPropertyDependencyRelationship>(e => (e.DependantProperty as IfcProperty) == this);
+				return Model.Instances.Where<IIfcPropertyDependencyRelationship>(e => (e.DependantProperty as IfcProperty) == this, "DependantProperty", this);
 			} 
 		}
 		IEnumerable<IIfcComplexProperty> IIfcProperty.PartOfComplex 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcComplexProperty>(e => e.HasProperties != null &&  e.HasProperties.Contains(this));
+				return Model.Instances.Where<IIfcComplexProperty>(e => e.HasProperties != null &&  e.HasProperties.Contains(this), "HasProperties", this);
 			} 
 		}
 		IEnumerable<IIfcResourceConstraintRelationship> IIfcProperty.HasConstraints 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcResourceConstraintRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IIfcResourceConstraintRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		IEnumerable<IIfcResourceApprovalRelationship> IIfcProperty.HasApprovals 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcResourceApprovalRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IIfcResourceApprovalRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 	//## Custom code

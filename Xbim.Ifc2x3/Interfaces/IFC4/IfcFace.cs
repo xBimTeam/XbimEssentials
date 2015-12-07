@@ -30,7 +30,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcTextureMap>(e => (e.MappedTo as IfcFace) == this);
+				return Model.Instances.Where<IIfcTextureMap>(e => (e.MappedTo as IfcFace) == this, "MappedTo", this);
 			} 
 		}
 	//## Custom code

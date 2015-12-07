@@ -78,28 +78,28 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				return Model.Instances.FirstOrDefault<IIfcMaterialLayerSet>(e => e.MaterialLayers != null &&  e.MaterialLayers.Contains(this));
+				return Model.Instances.FirstOrDefault<IIfcMaterialLayerSet>(e => e.MaterialLayers != null &&  e.MaterialLayers.Contains(this), "MaterialLayers", this);
 			} 
 		}
 		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialDefinition.AssociatedTo 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelAssociatesMaterial>(e => (e.RelatingMaterial as IfcMaterialLayer) == this);
+				return Model.Instances.Where<IIfcRelAssociatesMaterial>(e => (e.RelatingMaterial as IfcMaterialLayer) == this, "RelatingMaterial", this);
 			} 
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcMaterialDefinition.HasExternalReferences 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		IEnumerable<IIfcMaterialProperties> IIfcMaterialDefinition.HasProperties 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcMaterialProperties>(e => (e.Material as IfcMaterialLayer) == this);
+				return Model.Instances.Where<IIfcMaterialProperties>(e => (e.Material as IfcMaterialLayer) == this, "Material", this);
 			} 
 		}
 	//## Custom code

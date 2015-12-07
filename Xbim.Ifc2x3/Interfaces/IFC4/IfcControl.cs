@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelAssignsToControl>(e => (e.RelatingControl as IfcControl) == this);
+				return Model.Instances.Where<IIfcRelAssignsToControl>(e => (e.RelatingControl as IfcControl) == this, "RelatingControl", this);
 			} 
 		}
 	//## Custom code

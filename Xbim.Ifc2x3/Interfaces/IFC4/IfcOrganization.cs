@@ -63,21 +63,21 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcOrganizationRelationship>(e => e.RelatedOrganizations != null &&  e.RelatedOrganizations.Contains(this));
+				return Model.Instances.Where<IIfcOrganizationRelationship>(e => e.RelatedOrganizations != null &&  e.RelatedOrganizations.Contains(this), "RelatedOrganizations", this);
 			} 
 		}
 		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.Relates 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcOrganizationRelationship>(e => (e.RelatingOrganization as IfcOrganization) == this);
+				return Model.Instances.Where<IIfcOrganizationRelationship>(e => (e.RelatingOrganization as IfcOrganization) == this, "RelatingOrganization", this);
 			} 
 		}
 		IEnumerable<IIfcPersonAndOrganization> IIfcOrganization.Engages 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcPersonAndOrganization>(e => (e.TheOrganization as IfcOrganization) == this);
+				return Model.Instances.Where<IIfcPersonAndOrganization>(e => (e.TheOrganization as IfcOrganization) == this, "TheOrganization", this);
 			} 
 		}
 	//## Custom code

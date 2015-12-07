@@ -20,7 +20,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelConnectsPortToElement>(e => (e.RelatedElement as IfcDistributionElement) == this);
+				return Model.Instances.Where<IIfcRelConnectsPortToElement>(e => (e.RelatedElement as IfcDistributionElement) == this, "RelatedElement", this);
 			} 
 		}
 	//## Custom code

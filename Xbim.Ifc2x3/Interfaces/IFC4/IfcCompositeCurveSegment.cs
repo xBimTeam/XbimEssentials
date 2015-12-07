@@ -60,7 +60,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcCompositeCurve>(e => e.Segments != null &&  e.Segments.Contains(this));
+				return Model.Instances.Where<IIfcCompositeCurve>(e => e.Segments != null &&  e.Segments.Contains(this), "Segments", this);
 			} 
 		}
 		Ifc4.GeometryResource.IfcDimensionCount IIfcCompositeCurveSegment.Dim 

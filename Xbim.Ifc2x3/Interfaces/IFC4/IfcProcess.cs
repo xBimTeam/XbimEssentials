@@ -38,21 +38,21 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelSequence>(e => (e.RelatingProcess as IfcProcess) == this);
+				return Model.Instances.Where<IIfcRelSequence>(e => (e.RelatingProcess as IfcProcess) == this, "RelatingProcess", this);
 			} 
 		}
 		IEnumerable<IIfcRelSequence> IIfcProcess.IsSuccessorFrom 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelSequence>(e => (e.RelatedProcess as IfcProcess) == this);
+				return Model.Instances.Where<IIfcRelSequence>(e => (e.RelatedProcess as IfcProcess) == this, "RelatedProcess", this);
 			} 
 		}
 		IEnumerable<IIfcRelAssignsToProcess> IIfcProcess.OperatesOn 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelAssignsToProcess>(e => (e.RelatingProcess as IfcProcess) == this);
+				return Model.Instances.Where<IIfcRelAssignsToProcess>(e => (e.RelatingProcess as IfcProcess) == this, "RelatingProcess", this);
 			} 
 		}
 	//## Custom code

@@ -28,28 +28,28 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelDefinesByObject>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
+				return Model.Instances.Where<IIfcRelDefinesByObject>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this), "RelatedObjects", this);
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByObject> IIfcObject.Declares 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelDefinesByObject>(e => (e.RelatingObject as IfcObject) == this);
+				return Model.Instances.Where<IIfcRelDefinesByObject>(e => (e.RelatingObject as IfcObject) == this, "RelatingObject", this);
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByType> IIfcObject.IsTypedBy 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelDefinesByType>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
+				return Model.Instances.Where<IIfcRelDefinesByType>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this), "RelatedObjects", this);
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByProperties> IIfcObject.IsDefinedBy 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelDefinesByProperties>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this));
+				return Model.Instances.Where<IIfcRelDefinesByProperties>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this), "RelatedObjects", this);
 			} 
 		}
 	//## Custom code

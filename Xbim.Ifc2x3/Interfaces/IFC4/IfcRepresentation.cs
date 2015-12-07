@@ -53,21 +53,21 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRepresentationMap>(e => (e.MappedRepresentation as IfcRepresentation) == this);
+				return Model.Instances.Where<IIfcRepresentationMap>(e => (e.MappedRepresentation as IfcRepresentation) == this, "MappedRepresentation", this);
 			} 
 		}
 		IEnumerable<IIfcPresentationLayerAssignment> IIfcRepresentation.LayerAssignments 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcPresentationLayerAssignment>(e => e.AssignedItems != null &&  e.AssignedItems.Contains(this));
+				return Model.Instances.Where<IIfcPresentationLayerAssignment>(e => e.AssignedItems != null &&  e.AssignedItems.Contains(this), "AssignedItems", this);
 			} 
 		}
 		IEnumerable<IIfcProductRepresentation> IIfcRepresentation.OfProductRepresentation 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcProductRepresentation>(e => e.Representations != null &&  e.Representations.Contains(this));
+				return Model.Instances.Where<IIfcProductRepresentation>(e => e.Representations != null &&  e.Representations.Contains(this), "Representations", this);
 			} 
 		}
 	//## Custom code

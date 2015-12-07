@@ -62,14 +62,14 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelCoversSpaces>(e => e.RelatedCoverings != null &&  e.RelatedCoverings.Contains(this));
+				return Model.Instances.Where<IIfcRelCoversSpaces>(e => e.RelatedCoverings != null &&  e.RelatedCoverings.Contains(this), "RelatedCoverings", this);
 			} 
 		}
 		IEnumerable<IIfcRelCoversBldgElements> IIfcCovering.CoversElements 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelCoversBldgElements>(e => e.RelatedCoverings != null &&  e.RelatedCoverings.Contains(this));
+				return Model.Instances.Where<IIfcRelCoversBldgElements>(e => e.RelatedCoverings != null &&  e.RelatedCoverings.Contains(this), "RelatedCoverings", this);
 			} 
 		}
 	//## Custom code

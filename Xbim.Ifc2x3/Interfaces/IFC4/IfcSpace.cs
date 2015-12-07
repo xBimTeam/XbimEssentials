@@ -46,35 +46,35 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelCoversSpaces>(e => (e.RelatingSpace as IfcSpace) == this);
+				return Model.Instances.Where<IIfcRelCoversSpaces>(e => (e.RelatingSpace as IfcSpace) == this, "RelatingSpace", this);
 			} 
 		}
 		IEnumerable<IIfcRelSpaceBoundary> IIfcSpace.BoundedBy 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelSpaceBoundary>(e => (e.RelatingSpace as IfcSpace) == this);
+				return Model.Instances.Where<IIfcRelSpaceBoundary>(e => (e.RelatingSpace as IfcSpace) == this, "RelatingSpace", this);
 			} 
 		}
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelContainedInSpatialStructure>(e => (e.RelatingStructure as IfcSpace) == this);
+				return Model.Instances.Where<IIfcRelContainedInSpatialStructure>(e => (e.RelatingStructure as IfcSpace) == this, "RelatingStructure", this);
 			} 
 		}
 		IEnumerable<IIfcRelServicesBuildings> IIfcSpatialElement.ServicedBySystems 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelServicesBuildings>(e => e.RelatedBuildings != null &&  e.RelatedBuildings.Contains(this));
+				return Model.Instances.Where<IIfcRelServicesBuildings>(e => e.RelatedBuildings != null &&  e.RelatedBuildings.Contains(this), "RelatedBuildings", this);
 			} 
 		}
 		IEnumerable<IIfcRelReferencedInSpatialStructure> IIfcSpatialElement.ReferencesElements 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelReferencedInSpatialStructure>(e => (e.RelatingStructure as IfcSpace) == this);
+				return Model.Instances.Where<IIfcRelReferencedInSpatialStructure>(e => (e.RelatingStructure as IfcSpace) == this, "RelatingStructure", this);
 			} 
 		}
 	//## Custom code

@@ -20,21 +20,21 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcTypeObject>(e => e.HasPropertySets != null &&  e.HasPropertySets.Contains(this));
+				return Model.Instances.Where<IIfcTypeObject>(e => e.HasPropertySets != null &&  e.HasPropertySets.Contains(this), "HasPropertySets", this);
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByTemplate> IIfcPropertySetDefinition.IsDefinedBy 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelDefinesByTemplate>(e => e.RelatedPropertySets != null &&  e.RelatedPropertySets.Contains(this));
+				return Model.Instances.Where<IIfcRelDefinesByTemplate>(e => e.RelatedPropertySets != null &&  e.RelatedPropertySets.Contains(this), "RelatedPropertySets", this);
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByProperties> IIfcPropertySetDefinition.DefinesOccurrence 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelDefinesByProperties>(e => (e.RelatingPropertyDefinition as IfcPropertySetDefinition) == this);
+				return Model.Instances.Where<IIfcRelDefinesByProperties>(e => (e.RelatingPropertyDefinition as IfcPropertySetDefinition) == this, "RelatingPropertyDefinition", this);
 			} 
 		}
 	//## Custom code

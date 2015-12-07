@@ -42,28 +42,28 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcGrid>(e => e.WAxes != null &&  e.WAxes.Contains(this));
+				return Model.Instances.Where<IIfcGrid>(e => e.WAxes != null &&  e.WAxes.Contains(this), "WAxes", this);
 			} 
 		}
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfV 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcGrid>(e => e.VAxes != null &&  e.VAxes.Contains(this));
+				return Model.Instances.Where<IIfcGrid>(e => e.VAxes != null &&  e.VAxes.Contains(this), "VAxes", this);
 			} 
 		}
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfU 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcGrid>(e => e.UAxes != null &&  e.UAxes.Contains(this));
+				return Model.Instances.Where<IIfcGrid>(e => e.UAxes != null &&  e.UAxes.Contains(this), "UAxes", this);
 			} 
 		}
 		IEnumerable<IIfcVirtualGridIntersection> IIfcGridAxis.HasIntersections 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcVirtualGridIntersection>(e => e.IntersectingAxes != null &&  e.IntersectingAxes.Contains(this));
+				return Model.Instances.Where<IIfcVirtualGridIntersection>(e => e.IntersectingAxes != null &&  e.IntersectingAxes.Contains(this), "IntersectingAxes", this);
 			} 
 		}
 	//## Custom code

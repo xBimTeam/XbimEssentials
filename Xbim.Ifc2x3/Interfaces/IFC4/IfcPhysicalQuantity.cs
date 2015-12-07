@@ -35,14 +35,14 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		IEnumerable<IIfcPhysicalComplexQuantity> IIfcPhysicalQuantity.PartOfComplex 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcPhysicalComplexQuantity>(e => e.HasQuantities != null &&  e.HasQuantities.Contains(this));
+				return Model.Instances.Where<IIfcPhysicalComplexQuantity>(e => e.HasQuantities != null &&  e.HasQuantities.Contains(this), "HasQuantities", this);
 			} 
 		}
 	//## Custom code

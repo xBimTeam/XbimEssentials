@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcPresentationLayerAssignment>(e => e.AssignedItems != null &&  e.AssignedItems.Contains(this));
+				return Model.Instances.Where<IIfcPresentationLayerAssignment>(e => e.AssignedItems != null &&  e.AssignedItems.Contains(this), "AssignedItems", this);
 			} 
 		}
 		IEnumerable<IIfcStyledItem> IIfcRepresentationItem.StyledByItem 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcStyledItem>(e => (e.Item as IfcRepresentationItem) == this);
+				return Model.Instances.Where<IIfcStyledItem>(e => (e.Item as IfcRepresentationItem) == this, "Item", this);
 			} 
 		}
 	//## Custom code

@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelAssociatesMaterial>(e => (e.RelatingMaterial as IfcMaterialLayerSetUsage) == this);
+				return Model.Instances.Where<IIfcRelAssociatesMaterial>(e => (e.RelatingMaterial as IfcMaterialLayerSetUsage) == this, "RelatingMaterial", this);
 			} 
 		}
 	//## Custom code

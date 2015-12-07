@@ -37,21 +37,21 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelContainedInSpatialStructure>(e => (e.RelatingStructure as IfcBuildingStorey) == this);
+				return Model.Instances.Where<IIfcRelContainedInSpatialStructure>(e => (e.RelatingStructure as IfcBuildingStorey) == this, "RelatingStructure", this);
 			} 
 		}
 		IEnumerable<IIfcRelServicesBuildings> IIfcSpatialElement.ServicedBySystems 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelServicesBuildings>(e => e.RelatedBuildings != null &&  e.RelatedBuildings.Contains(this));
+				return Model.Instances.Where<IIfcRelServicesBuildings>(e => e.RelatedBuildings != null &&  e.RelatedBuildings.Contains(this), "RelatedBuildings", this);
 			} 
 		}
 		IEnumerable<IIfcRelReferencedInSpatialStructure> IIfcSpatialElement.ReferencesElements 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcRelReferencedInSpatialStructure>(e => (e.RelatingStructure as IfcBuildingStorey) == this);
+				return Model.Instances.Where<IIfcRelReferencedInSpatialStructure>(e => (e.RelatingStructure as IfcBuildingStorey) == this, "RelatingStructure", this);
 			} 
 		}
 	//## Custom code

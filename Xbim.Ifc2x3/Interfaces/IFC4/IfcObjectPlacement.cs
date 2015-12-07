@@ -20,14 +20,14 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcProduct>(e => (e.ObjectPlacement as IfcObjectPlacement) == this);
+				return Model.Instances.Where<IIfcProduct>(e => (e.ObjectPlacement as IfcObjectPlacement) == this, "ObjectPlacement", this);
 			} 
 		}
 		IEnumerable<IIfcLocalPlacement> IIfcObjectPlacement.ReferencedByPlacements 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcLocalPlacement>(e => (e.PlacementRelTo as IfcObjectPlacement) == this);
+				return Model.Instances.Where<IIfcLocalPlacement>(e => (e.PlacementRelTo as IfcObjectPlacement) == this, "PlacementRelTo", this);
 			} 
 		}
 	//## Custom code

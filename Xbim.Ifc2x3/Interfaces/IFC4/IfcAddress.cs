@@ -63,14 +63,14 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcPerson>(e => e.Addresses != null &&  e.Addresses.Contains(this));
+				return Model.Instances.Where<IIfcPerson>(e => e.Addresses != null &&  e.Addresses.Contains(this), "Addresses", this);
 			} 
 		}
 		IEnumerable<IIfcOrganization> IIfcAddress.OfOrganization 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcOrganization>(e => e.Addresses != null &&  e.Addresses.Contains(this));
+				return Model.Instances.Where<IIfcOrganization>(e => e.Addresses != null &&  e.Addresses.Contains(this), "Addresses", this);
 			} 
 		}
 	//## Custom code

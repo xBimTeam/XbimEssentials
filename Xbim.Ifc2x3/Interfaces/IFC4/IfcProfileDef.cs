@@ -46,14 +46,14 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this));
+				return Model.Instances.Where<IIfcExternalReferenceRelationship>(e => e.RelatedResourceObjects != null &&  e.RelatedResourceObjects.Contains(this), "RelatedResourceObjects", this);
 			} 
 		}
 		IEnumerable<IIfcProfileProperties> IIfcProfileDef.HasProperties 
 		{ 
 			get
 			{
-				return Model.Instances.Where<IIfcProfileProperties>(e => (e.ProfileDefinition as IfcProfileDef) == this);
+				return Model.Instances.Where<IIfcProfileProperties>(e => (e.ProfileDefinition as IfcProfileDef) == this, "ProfileDefinition", this);
 			} 
 		}
 	//## Custom code
