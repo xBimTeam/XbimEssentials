@@ -172,7 +172,7 @@ namespace Xbim.IO.Esent
                                 //read all shape instance of style 0 and get their product texture
                                 do
                                 {
-                                    styleIds.Add(productType);
+                                    styleIds.Add(-productType);
                                 } while (
                                     _shapeInstanceCursor.TryMoveNextSurfaceStyle(out surfaceStyle, out productType) &&
                                     surfaceStyle == 0); //skip over all the zero entries and get their style
