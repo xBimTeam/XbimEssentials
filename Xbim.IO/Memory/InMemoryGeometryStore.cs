@@ -114,6 +114,18 @@ namespace Xbim.IO.Memory
             });
             _styles = new HashSet<int>(EntityStyleLookup.Select(s => s.Key));
             _contextIds = new HashSet<int>(ShapeInstances.Select(s => s.Value.RepresentationContext)).Distinct();
+
+            var counts = ShapeInstances.Values.GroupBy(
+                        i => i.ShapeGeometryLabel,
+                        (label, instances) => new
+                        {
+                            Label = label,
+                            Count = instances.Count()
+                        });
+            foreach (var item in counts)
+            {
+                ShapeGeometries[item.Label].ReferenceCount = item.Count;
+            }
         }
 
         public IGeometryStoreReader BeginRead()

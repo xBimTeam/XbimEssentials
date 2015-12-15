@@ -40,7 +40,7 @@ namespace Xbim.MemoryModel.Tests
                    
                     var tessellator = new XbimTessellator(m,XbimGeometryType.PolyhedronBinary);
                     var geom = tessellator.Mesh(brep);
-                    geom.ReferenceCount = 1; //only one reference
+                    
                  
                     var geomId =txn.AddShapeGeometry(geom);
                     //ADD A SHAPE INSTANCE
