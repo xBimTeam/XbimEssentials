@@ -104,7 +104,7 @@ namespace Xbim.IO.Memory
                 return v.Select(instance => instance.Value).ToList();
             });
 
-            _entityStyleLookup = ShapeInstances.GroupBy(s => s.Value.StyleLabel).ToDictionary(s => s.Key, v =>
+            _entityStyleLookup = ShapeInstances.GroupBy(s => s.Value.StyleLabel>0?s.Value.StyleLabel:-s.Value.IfcTypeId).ToDictionary(s => s.Key, v =>
             {
                 return v.Select(instance => instance.Value).ToList();
             });
@@ -112,7 +112,7 @@ namespace Xbim.IO.Memory
             {
                 return v.Select(instance => instance.Value).ToList();
             });
-            _styles = new HashSet<int>(EntityStyleLookup.Select(s => s.Key).Where(k => k > 0));
+            _styles = new HashSet<int>(EntityStyleLookup.Select(s => s.Key));
             _contextIds = new HashSet<int>(ShapeInstances.Select(s => s.Value.RepresentationContext)).Distinct();
         }
 

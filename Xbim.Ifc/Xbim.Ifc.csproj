@@ -32,6 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\output\Release\Xbim.Ifc.XML</DocumentationFile>
+    <NoWarn>1591;1572;1573;1574</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
