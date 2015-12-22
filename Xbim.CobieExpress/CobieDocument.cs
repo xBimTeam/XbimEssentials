@@ -25,9 +25,9 @@ namespace Xbim.CobieExpress.Interfaces
 	{
 		string @Name { get; }
 		string @Description { get; }
-		ICobiePickValue @DocumentType { get; }
-		ICobiePickValue @ApprovalBy { get; }
-		ICobiePickValue @Stage { get; }
+		ICobieDocumentType @DocumentType { get; }
+		ICobieApprovalType @ApprovalType { get; }
+		ICobieStageType @Stage { get; }
 		string @URL { get; }
 		string @Reference { get; }
 	
@@ -37,16 +37,16 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Document", 31)]
+	[ExpressType("Document", 28)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieDocument : CobieReferencedObject, IInstantiableEntity, ICobieDocument, IEqualityComparer<@CobieDocument>, IEquatable<@CobieDocument>
 	{
 		#region ICobieDocument explicit implementation
 		string ICobieDocument.Name { get { return @Name; } }	
 		string ICobieDocument.Description { get { return @Description; } }	
-		ICobiePickValue ICobieDocument.DocumentType { get { return @DocumentType; } }	
-		ICobiePickValue ICobieDocument.ApprovalBy { get { return @ApprovalBy; } }	
-		ICobiePickValue ICobieDocument.Stage { get { return @Stage; } }	
+		ICobieDocumentType ICobieDocument.DocumentType { get { return @DocumentType; } }	
+		ICobieApprovalType ICobieDocument.ApprovalType { get { return @ApprovalType; } }	
+		ICobieStageType ICobieDocument.Stage { get { return @Stage; } }	
 		string ICobieDocument.URL { get { return @URL; } }	
 		string ICobieDocument.Reference { get { return @Reference; } }	
 		 
@@ -60,9 +60,9 @@ namespace Xbim.CobieExpress
 		#region Explicit attribute fields
 		private string _name;
 		private string _description;
-		private CobiePickValue _documentType;
-		private CobiePickValue _approvalBy;
-		private CobiePickValue _stage;
+		private CobieDocumentType _documentType;
+		private CobieApprovalType _approvalType;
+		private CobieStageType _stage;
 		private string _uRL;
 		private string _reference;
 		#endregion
@@ -97,7 +97,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
-		public CobiePickValue @DocumentType 
+		public CobieDocumentType @DocumentType 
 		{ 
 			get 
 			{
@@ -111,21 +111,21 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
-		public CobiePickValue @ApprovalBy 
+		public CobieApprovalType @ApprovalType 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _approvalBy;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _approvalType;
 				((IPersistEntity)this).Activate(false);
-				return _approvalBy;
+				return _approvalType;
 			} 
 			set
 			{
-				SetValue( v =>  _approvalBy = v, _approvalBy, value,  "ApprovalBy");
+				SetValue( v =>  _approvalType = v, _approvalType, value,  "ApprovalType");
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
-		public CobiePickValue @Stage 
+		public CobieStageType @Stage 
 		{ 
 			get 
 			{
@@ -190,13 +190,13 @@ namespace Xbim.CobieExpress
 					_description = value.StringVal;
 					return;
 				case 6: 
-					_documentType = (CobiePickValue)(value.EntityVal);
+					_documentType = (CobieDocumentType)(value.EntityVal);
 					return;
 				case 7: 
-					_approvalBy = (CobiePickValue)(value.EntityVal);
+					_approvalType = (CobieApprovalType)(value.EntityVal);
 					return;
 				case 8: 
-					_stage = (CobiePickValue)(value.EntityVal);
+					_stage = (CobieStageType)(value.EntityVal);
 					return;
 				case 9: 
 					_uRL = value.StringVal;

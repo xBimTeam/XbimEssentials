@@ -18,12 +18,12 @@ using Xbim.CobieExpress;
 namespace Xbim.CobieExpress.Interfaces
 {
 	/// <summary>
-    /// Readonly interface for CobieZone
+    /// Readonly interface for CobieCategory
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @ICobieZone : ICobieAsset
+	public partial interface @ICobieCategory : ICobiePickValue
 	{
-		IEnumerable<ICobieSpace> @Spaces { get; }
+		string @Key { get; }
 	
 	}
 }
@@ -31,35 +31,37 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Zone", 18)]
+	[ExpressType("Category", 32)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieZone : CobieAsset, IInstantiableEntity, ICobieZone, IEqualityComparer<@CobieZone>, IEquatable<@CobieZone>
+	public  partial class @CobieCategory : CobiePickValue, IInstantiableEntity, ICobieCategory, IEqualityComparer<@CobieCategory>, IEquatable<@CobieCategory>
 	{
-		#region ICobieZone explicit implementation
-		IEnumerable<ICobieSpace> ICobieZone.Spaces { get { return @Spaces; } }	
+		#region ICobieCategory explicit implementation
+		string ICobieCategory.Key { get { return @Key; } }	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieZone(IModel model) : base(model) 		{ 
+		internal CobieCategory(IModel model) : base(model) 		{ 
 			Model = model; 
-			_spaces = new ItemSet<CobieSpace>( this, 0 );
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<CobieSpace> _spaces;
+		private string _key;
 		#endregion
 	
 		#region Explicit attribute properties
-		[IndexedProperty]
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 13)]
-		public ItemSet<CobieSpace> @Spaces 
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		public string @Key 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _spaces;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _key;
 				((IPersistEntity)this).Activate(false);
-				return _spaces;
+				return _key;
+			} 
+			set
+			{
+				SetValue( v =>  _key = v, _key, value,  "Key");
 			} 
 		}	
 		#endregion
@@ -74,20 +76,10 @@ namespace Xbim.CobieExpress
 			switch (propIndex)
 			{
 				case 0: 
-				case 1: 
-				case 2: 
-				case 3: 
-				case 4: 
-				case 5: 
-				case 6: 
-				case 7: 
-				case 8: 
-				case 9: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 10: 
-					if (_spaces == null) _spaces = new ItemSet<CobieSpace>( this );
-					_spaces.InternalAdd((CobieSpace)value.EntityVal);
+				case 1: 
+					_key = value.StringVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -101,7 +93,7 @@ namespace Xbim.CobieExpress
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@CobieZone other)
+        public bool Equals(@CobieCategory other)
 	    {
 	        return this == other;
 	    }
@@ -114,8 +106,8 @@ namespace Xbim.CobieExpress
             // Check for type
             if (GetType() != obj.GetType()) return false;
 
-            // Cast as @CobieZone
-            var root = (@CobieZone)obj;
+            // Cast as @CobieCategory
+            var root = (@CobieCategory)obj;
             return this == root;
         }
         public override int GetHashCode()
@@ -124,7 +116,7 @@ namespace Xbim.CobieExpress
             return EntityLabel.GetHashCode(); 
         }
 
-        public static bool operator ==(@CobieZone left, @CobieZone right)
+        public static bool operator ==(@CobieCategory left, @CobieCategory right)
         {
             // If both are null, or both are same instance, return true.
             if (ReferenceEquals(left, right))
@@ -138,18 +130,18 @@ namespace Xbim.CobieExpress
 
         }
 
-        public static bool operator !=(@CobieZone left, @CobieZone right)
+        public static bool operator !=(@CobieCategory left, @CobieCategory right)
         {
             return !(left == right);
         }
 
 
-        public bool Equals(@CobieZone x, @CobieZone y)
+        public bool Equals(@CobieCategory x, @CobieCategory y)
         {
             return x == y;
         }
 
-        public int GetHashCode(@CobieZone obj)
+        public int GetHashCode(@CobieCategory obj)
         {
             return obj == null ? -1 : obj.GetHashCode();
         }

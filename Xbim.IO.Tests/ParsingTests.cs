@@ -184,13 +184,14 @@ namespace Xbim.MemoryModel.Tests
                 store.Close();
             }
 
-            var schemaVersion = IfcStore.GetIfcSchemaVersion("Esent2X3.ifc");
+            string schemaIdentifier;
+            var schemaVersion = IfcStore.GetIfcSchemaVersion("Esent2X3.ifc", out schemaIdentifier);
             Assert.IsTrue(schemaVersion == IfcSchemaVersion.Ifc2X3);
-            schemaVersion = IfcStore.GetIfcSchemaVersion("Esent4.ifc");
+            schemaVersion = IfcStore.GetIfcSchemaVersion("Esent4.ifc", out schemaIdentifier);
             Assert.IsTrue(schemaVersion == IfcSchemaVersion.Ifc4);
-            schemaVersion = IfcStore.GetIfcSchemaVersion("Memory2X3.ifc");
+            schemaVersion = IfcStore.GetIfcSchemaVersion("Memory2X3.ifc", out schemaIdentifier);
             Assert.IsTrue(schemaVersion == IfcSchemaVersion.Ifc2X3);
-            schemaVersion = IfcStore.GetIfcSchemaVersion("Memory4.ifc");
+            schemaVersion = IfcStore.GetIfcSchemaVersion("Memory4.ifc", out schemaIdentifier);
             Assert.IsTrue(schemaVersion == IfcSchemaVersion.Ifc4);
         }
 
@@ -198,9 +199,10 @@ namespace Xbim.MemoryModel.Tests
         [DeploymentItem("TestFiles")]
         public void ReadIfcHeaderTest()
         {
-            var schemaVersion = IfcStore.GetIfcSchemaVersion("SampleHouse4.ifc");
+            string schemaIdentifier;
+            var schemaVersion = IfcStore.GetIfcSchemaVersion("SampleHouse4.ifc", out schemaIdentifier);
             Assert.IsTrue(schemaVersion==IfcSchemaVersion.Ifc4);
-            schemaVersion = IfcStore.GetIfcSchemaVersion("4walls1floorSite.ifc");
+            schemaVersion = IfcStore.GetIfcSchemaVersion("4walls1floorSite.ifc", out schemaIdentifier);
             Assert.IsTrue(schemaVersion==IfcSchemaVersion.Ifc2X3);
 
             //first run with a memory model opeing Ifc4 file

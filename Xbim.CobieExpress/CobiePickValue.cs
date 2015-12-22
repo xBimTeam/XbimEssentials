@@ -26,7 +26,6 @@ namespace Xbim.CobieExpress.Interfaces
 	public partial interface @ICobiePickValue : IPersistEntity
 	{
 		string @Value { get; }
-		ICobiePickList @PickList { get; }
 	
 	}
 }
@@ -34,13 +33,12 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("PickValue", 8)]
+	[ExpressType("PickValue", 31)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobiePickValue : INotifyPropertyChanged, IInstantiableEntity, ICobiePickValue, IEqualityComparer<@CobiePickValue>, IEquatable<@CobiePickValue>
+	public abstract partial class @CobiePickValue : IPersistEntity, INotifyPropertyChanged, ICobiePickValue, IEqualityComparer<@CobiePickValue>, IEquatable<@CobiePickValue>
 	{
 		#region ICobiePickValue explicit implementation
 		string ICobiePickValue.Value { get { return @Value; } }	
-		ICobiePickList ICobiePickValue.PickList { get { return @PickList; } }	
 		 
 		#endregion
 
@@ -109,7 +107,6 @@ namespace Xbim.CobieExpress
 
 		#region Explicit attribute fields
 		private string _value;
-		private CobiePickList _pickList;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -125,21 +122,6 @@ namespace Xbim.CobieExpress
 			set
 			{
 				SetValue( v =>  _value = v, _value, value,  "Value");
-			} 
-		}	
-		[IndexedProperty]
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
-		public CobiePickList @PickList 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pickList;
-				((IPersistEntity)this).Activate(false);
-				return _pickList;
-			} 
-			set
-			{
-				SetValue( v =>  _pickList = v, _pickList, value,  "PickList");
 			} 
 		}	
 		#endregion
@@ -204,9 +186,6 @@ namespace Xbim.CobieExpress
 			{
 				case 0: 
 					_value = value.StringVal;
-					return;
-				case 1: 
-					_pickList = (CobiePickList)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

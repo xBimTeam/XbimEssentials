@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("ExternalSystem", 11)]
+	[ExpressType("ExternalSystem", 8)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieExternalSystem : INotifyPropertyChanged, IInstantiableEntity, ICobieExternalSystem, IEqualityComparer<@CobieExternalSystem>, IEquatable<@CobieExternalSystem>
 	{

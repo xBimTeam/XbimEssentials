@@ -25,7 +25,7 @@ namespace Xbim.CobieExpress.Interfaces
 	{
 		string @Name { get; }
 		string @Description { get; }
-		IEnumerable<ICobiePickKeyValue> @Category { get; }
+		IEnumerable<ICobieCategory> @Category { get; }
 		IEnumerable<ICobieImpact> @Impacts { get; }
 		IEnumerable<ICobieDocument> @Documents { get; }
 		IEnumerable<ICobieAttribute> @Attributes { get; }
@@ -38,14 +38,14 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Asset", 15)]
+	[ExpressType("Asset", 12)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @CobieAsset : CobieReferencedObject, ICobieAsset, IEqualityComparer<@CobieAsset>, IEquatable<@CobieAsset>
 	{
 		#region ICobieAsset explicit implementation
 		string ICobieAsset.Name { get { return @Name; } }	
 		string ICobieAsset.Description { get { return @Description; } }	
-		IEnumerable<ICobiePickKeyValue> ICobieAsset.Category { get { return @Category; } }	
+		IEnumerable<ICobieCategory> ICobieAsset.Category { get { return @Category; } }	
 		IEnumerable<ICobieImpact> ICobieAsset.Impacts { get { return @Impacts; } }	
 		IEnumerable<ICobieDocument> ICobieAsset.Documents { get { return @Documents; } }	
 		IEnumerable<ICobieAttribute> ICobieAsset.Attributes { get { return @Attributes; } }	
@@ -57,19 +57,19 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieAsset(IModel model) : base(model) 		{ 
 			Model = model; 
-			_category = new ItemSet<CobiePickKeyValue>( this, 0 );
-			_impacts = new ItemSet<CobieImpact>( this, 0 );
-			_documents = new ItemSet<CobieDocument>( this, 0 );
-			_attributes = new ItemSet<CobieAttribute>( this, 0 );
+			_category = new ItemSet<CobieCategory>( this, 0 );
+			_impacts = new OptionalItemSet<CobieImpact>( this, 0 );
+			_documents = new OptionalItemSet<CobieDocument>( this, 0 );
+			_attributes = new OptionalItemSet<CobieAttribute>( this, 0 );
 		}
 
 		#region Explicit attribute fields
 		private string _name;
 		private string _description;
-		private ItemSet<CobiePickKeyValue> _category;
-		private ItemSet<CobieImpact> _impacts;
-		private ItemSet<CobieDocument> _documents;
-		private ItemSet<CobieAttribute> _attributes;
+		private ItemSet<CobieCategory> _category;
+		private OptionalItemSet<CobieImpact> _impacts;
+		private OptionalItemSet<CobieDocument> _documents;
+		private OptionalItemSet<CobieAttribute> _attributes;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -102,7 +102,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 7)]
-		public ItemSet<CobiePickKeyValue> @Category 
+		public ItemSet<CobieCategory> @Category 
 		{ 
 			get 
 			{
@@ -111,8 +111,8 @@ namespace Xbim.CobieExpress
 				return _category;
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 8)]
-		public ItemSet<CobieImpact> @Impacts 
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 8)]
+		public OptionalItemSet<CobieImpact> @Impacts 
 		{ 
 			get 
 			{
@@ -121,8 +121,8 @@ namespace Xbim.CobieExpress
 				return _impacts;
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 9)]
-		public ItemSet<CobieDocument> @Documents 
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 9)]
+		public OptionalItemSet<CobieDocument> @Documents 
 		{ 
 			get 
 			{
@@ -131,8 +131,8 @@ namespace Xbim.CobieExpress
 				return _documents;
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 10)]
-		public ItemSet<CobieAttribute> @Attributes 
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 10)]
+		public OptionalItemSet<CobieAttribute> @Attributes 
 		{ 
 			get 
 			{
@@ -185,19 +185,19 @@ namespace Xbim.CobieExpress
 					_description = value.StringVal;
 					return;
 				case 6: 
-					if (_category == null) _category = new ItemSet<CobiePickKeyValue>( this );
-					_category.InternalAdd((CobiePickKeyValue)value.EntityVal);
+					if (_category == null) _category = new ItemSet<CobieCategory>( this );
+					_category.InternalAdd((CobieCategory)value.EntityVal);
 					return;
 				case 7: 
-					if (_impacts == null) _impacts = new ItemSet<CobieImpact>( this );
+					if (_impacts == null) _impacts = new OptionalItemSet<CobieImpact>( this );
 					_impacts.InternalAdd((CobieImpact)value.EntityVal);
 					return;
 				case 8: 
-					if (_documents == null) _documents = new ItemSet<CobieDocument>( this );
+					if (_documents == null) _documents = new OptionalItemSet<CobieDocument>( this );
 					_documents.InternalAdd((CobieDocument)value.EntityVal);
 					return;
 				case 9: 
-					if (_attributes == null) _attributes = new ItemSet<CobieAttribute>( this );
+					if (_attributes == null) _attributes = new OptionalItemSet<CobieAttribute>( this );
 					_attributes.InternalAdd((CobieAttribute)value.EntityVal);
 					return;
 				default:

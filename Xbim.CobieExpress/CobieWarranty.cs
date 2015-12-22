@@ -30,7 +30,7 @@ namespace Xbim.CobieExpress.Interfaces
 		double @DurationParts { get; }
 		ICobieContact @GuarantorLabor { get; }
 		double @DurationLabor { get; }
-		ICobiePickValue @DurationUnit { get; }
+		ICobieDurationUnit @DurationUnit { get; }
 	
 	}
 }
@@ -38,7 +38,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Warranty", 23)]
+	[ExpressType("Warranty", 20)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieWarranty : INotifyPropertyChanged, IInstantiableEntity, ICobieWarranty, IEqualityComparer<@CobieWarranty>, IEquatable<@CobieWarranty>
 	{
@@ -48,7 +48,7 @@ namespace Xbim.CobieExpress
 		double ICobieWarranty.DurationParts { get { return @DurationParts; } }	
 		ICobieContact ICobieWarranty.GuarantorLabor { get { return @GuarantorLabor; } }	
 		double ICobieWarranty.DurationLabor { get { return @DurationLabor; } }	
-		ICobiePickValue ICobieWarranty.DurationUnit { get { return @DurationUnit; } }	
+		ICobieDurationUnit ICobieWarranty.DurationUnit { get { return @DurationUnit; } }	
 		 
 		#endregion
 
@@ -121,7 +121,7 @@ namespace Xbim.CobieExpress
 		private double _durationParts;
 		private CobieContact _guarantorLabor;
 		private double _durationLabor;
-		private CobiePickValue _durationUnit;
+		private CobieDurationUnit _durationUnit;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -196,7 +196,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
-		public CobiePickValue @DurationUnit 
+		public CobieDurationUnit @DurationUnit 
 		{ 
 			get 
 			{
@@ -285,7 +285,7 @@ namespace Xbim.CobieExpress
 					_durationLabor = value.RealVal;
 					return;
 				case 5: 
-					_durationUnit = (CobiePickValue)(value.EntityVal);
+					_durationUnit = (CobieDurationUnit)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

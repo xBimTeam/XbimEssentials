@@ -23,10 +23,10 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieFacility : ICobieAsset, SpatialDivision
 	{
-		ICobiePickValue @LinearUnits { get; }
-		ICobiePickValue @AreaUnits { get; }
-		ICobiePickValue @VolumeUnits { get; }
-		ICobiePickValue @CurrencyUnit { get; }
+		ICobieLinearUnit @LinearUnits { get; }
+		ICobieAreaUnit @AreaUnits { get; }
+		ICobieVolumeUnit @VolumeUnits { get; }
+		ICobieCurrencyUnit @CurrencyUnit { get; }
 		string @AreaMeasurement { get; }
 		ICobieProject @Project { get; }
 		ICobieSite @Site { get; }
@@ -39,15 +39,15 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Facility", 16)]
+	[ExpressType("Facility", 13)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieFacility : CobieAsset, IInstantiableEntity, ICobieFacility, IEqualityComparer<@CobieFacility>, IEquatable<@CobieFacility>
 	{
 		#region ICobieFacility explicit implementation
-		ICobiePickValue ICobieFacility.LinearUnits { get { return @LinearUnits; } }	
-		ICobiePickValue ICobieFacility.AreaUnits { get { return @AreaUnits; } }	
-		ICobiePickValue ICobieFacility.VolumeUnits { get { return @VolumeUnits; } }	
-		ICobiePickValue ICobieFacility.CurrencyUnit { get { return @CurrencyUnit; } }	
+		ICobieLinearUnit ICobieFacility.LinearUnits { get { return @LinearUnits; } }	
+		ICobieAreaUnit ICobieFacility.AreaUnits { get { return @AreaUnits; } }	
+		ICobieVolumeUnit ICobieFacility.VolumeUnits { get { return @VolumeUnits; } }	
+		ICobieCurrencyUnit ICobieFacility.CurrencyUnit { get { return @CurrencyUnit; } }	
 		string ICobieFacility.AreaMeasurement { get { return @AreaMeasurement; } }	
 		ICobieProject ICobieFacility.Project { get { return @Project; } }	
 		ICobieSite ICobieFacility.Site { get { return @Site; } }	
@@ -62,10 +62,10 @@ namespace Xbim.CobieExpress
 		}
 
 		#region Explicit attribute fields
-		private CobiePickValue _linearUnits;
-		private CobiePickValue _areaUnits;
-		private CobiePickValue _volumeUnits;
-		private CobiePickValue _currencyUnit;
+		private CobieLinearUnit _linearUnits;
+		private CobieAreaUnit _areaUnits;
+		private CobieVolumeUnit _volumeUnits;
+		private CobieCurrencyUnit _currencyUnit;
 		private string _areaMeasurement;
 		private CobieProject _project;
 		private CobieSite _site;
@@ -74,7 +74,7 @@ namespace Xbim.CobieExpress
 	
 		#region Explicit attribute properties
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
-		public CobiePickValue @LinearUnits 
+		public CobieLinearUnit @LinearUnits 
 		{ 
 			get 
 			{
@@ -88,7 +88,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
-		public CobiePickValue @AreaUnits 
+		public CobieAreaUnit @AreaUnits 
 		{ 
 			get 
 			{
@@ -102,7 +102,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
-		public CobiePickValue @VolumeUnits 
+		public CobieVolumeUnit @VolumeUnits 
 		{ 
 			get 
 			{
@@ -116,7 +116,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
-		public CobiePickValue @CurrencyUnit 
+		public CobieCurrencyUnit @CurrencyUnit 
 		{ 
 			get 
 			{
@@ -222,16 +222,16 @@ namespace Xbim.CobieExpress
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 10: 
-					_linearUnits = (CobiePickValue)(value.EntityVal);
+					_linearUnits = (CobieLinearUnit)(value.EntityVal);
 					return;
 				case 11: 
-					_areaUnits = (CobiePickValue)(value.EntityVal);
+					_areaUnits = (CobieAreaUnit)(value.EntityVal);
 					return;
 				case 12: 
-					_volumeUnits = (CobiePickValue)(value.EntityVal);
+					_volumeUnits = (CobieVolumeUnit)(value.EntityVal);
 					return;
 				case 13: 
-					_currencyUnit = (CobiePickValue)(value.EntityVal);
+					_currencyUnit = (CobieCurrencyUnit)(value.EntityVal);
 					return;
 				case 14: 
 					_areaMeasurement = value.StringVal;

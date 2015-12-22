@@ -23,13 +23,13 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieType : ICobieAsset
 	{
-		ICobiePickValue @AssetType { get; }
+		ICobieAssetType @AssetType { get; }
 		ICobieContact @Manufacturer { get; }
 		string @ModelNumber { get; }
 		ICobieWarranty @Warranty { get; }
 		double? @ReplacementCost { get; }
 		double? @ExpectedLife { get; }
-		ICobiePickValue @DurationUnit { get; }
+		ICobieDurationUnit @DurationUnit { get; }
 		double @NominalLength { get; }
 		double @NominalWidth { get; }
 		double @NominalHeight { get; }
@@ -56,18 +56,18 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Type", 22)]
+	[ExpressType("Type", 19)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieType : CobieAsset, IInstantiableEntity, ICobieType, IEqualityComparer<@CobieType>, IEquatable<@CobieType>
 	{
 		#region ICobieType explicit implementation
-		ICobiePickValue ICobieType.AssetType { get { return @AssetType; } }	
+		ICobieAssetType ICobieType.AssetType { get { return @AssetType; } }	
 		ICobieContact ICobieType.Manufacturer { get { return @Manufacturer; } }	
 		string ICobieType.ModelNumber { get { return @ModelNumber; } }	
 		ICobieWarranty ICobieType.Warranty { get { return @Warranty; } }	
 		double? ICobieType.ReplacementCost { get { return @ReplacementCost; } }	
 		double? ICobieType.ExpectedLife { get { return @ExpectedLife; } }	
-		ICobiePickValue ICobieType.DurationUnit { get { return @DurationUnit; } }	
+		ICobieDurationUnit ICobieType.DurationUnit { get { return @DurationUnit; } }	
 		double ICobieType.NominalLength { get { return @NominalLength; } }	
 		double ICobieType.NominalWidth { get { return @NominalWidth; } }	
 		double ICobieType.NominalHeight { get { return @NominalHeight; } }	
@@ -93,18 +93,18 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieType(IModel model) : base(model) 		{ 
 			Model = model; 
-			_assemblyOf = new ItemSet<CobieType>( this, 0 );
-			_jobs = new ItemSet<CobieJob>( this, 0 );
+			_assemblyOf = new OptionalItemSet<CobieType>( this, 0 );
+			_jobs = new OptionalItemSet<CobieJob>( this, 0 );
 		}
 
 		#region Explicit attribute fields
-		private CobiePickValue _assetType;
+		private CobieAssetType _assetType;
 		private CobieContact _manufacturer;
 		private string _modelNumber;
 		private CobieWarranty _warranty;
 		private double? _replacementCost;
 		private double? _expectedLife;
-		private CobiePickValue _durationUnit;
+		private CobieDurationUnit _durationUnit;
 		private double _nominalLength;
 		private double _nominalWidth;
 		private double _nominalHeight;
@@ -120,13 +120,13 @@ namespace Xbim.CobieExpress
 		private string _accessibilityPerformance;
 		private string _codePerformance;
 		private string _sustainabilityPerformance;
-		private ItemSet<CobieType> _assemblyOf;
-		private ItemSet<CobieJob> _jobs;
+		private OptionalItemSet<CobieType> _assemblyOf;
+		private OptionalItemSet<CobieJob> _jobs;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
-		public CobiePickValue @AssetType 
+		public CobieAssetType @AssetType 
 		{ 
 			get 
 			{
@@ -210,7 +210,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
-		public CobiePickValue @DurationUnit 
+		public CobieDurationUnit @DurationUnit 
 		{ 
 			get 
 			{
@@ -433,8 +433,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _sustainabilityPerformance = v, _sustainabilityPerformance, value,  "SustainabilityPerformance");
 			} 
 		}	
-		[EntityAttribute(33, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 35)]
-		public ItemSet<CobieType> @AssemblyOf 
+		[EntityAttribute(33, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 35)]
+		public OptionalItemSet<CobieType> @AssemblyOf 
 		{ 
 			get 
 			{
@@ -444,8 +444,8 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(34, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 36)]
-		public ItemSet<CobieJob> @Jobs 
+		[EntityAttribute(34, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 36)]
+		public OptionalItemSet<CobieJob> @Jobs 
 		{ 
 			get 
 			{
@@ -498,7 +498,7 @@ namespace Xbim.CobieExpress
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 10: 
-					_assetType = (CobiePickValue)(value.EntityVal);
+					_assetType = (CobieAssetType)(value.EntityVal);
 					return;
 				case 11: 
 					_manufacturer = (CobieContact)(value.EntityVal);
@@ -516,7 +516,7 @@ namespace Xbim.CobieExpress
 					_expectedLife = value.RealVal;
 					return;
 				case 16: 
-					_durationUnit = (CobiePickValue)(value.EntityVal);
+					_durationUnit = (CobieDurationUnit)(value.EntityVal);
 					return;
 				case 17: 
 					_nominalLength = value.RealVal;
@@ -564,11 +564,11 @@ namespace Xbim.CobieExpress
 					_sustainabilityPerformance = value.StringVal;
 					return;
 				case 32: 
-					if (_assemblyOf == null) _assemblyOf = new ItemSet<CobieType>( this );
+					if (_assemblyOf == null) _assemblyOf = new OptionalItemSet<CobieType>( this );
 					_assemblyOf.InternalAdd((CobieType)value.EntityVal);
 					return;
 				case 33: 
-					if (_jobs == null) _jobs = new ItemSet<CobieJob>( this );
+					if (_jobs == null) _jobs = new OptionalItemSet<CobieJob>( this );
 					_jobs.InternalAdd((CobieJob)value.EntityVal);
 					return;
 				default:

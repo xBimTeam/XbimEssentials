@@ -18,12 +18,11 @@ using Xbim.CobieExpress;
 namespace Xbim.CobieExpress.Interfaces
 {
 	/// <summary>
-    /// Readonly interface for CobieZone
+    /// Readonly interface for CobieApprovalType
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @ICobieZone : ICobieAsset
+	public partial interface @ICobieApprovalType : ICobiePickValue
 	{
-		IEnumerable<ICobieSpace> @Spaces { get; }
 	
 	}
 }
@@ -31,38 +30,19 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Zone", 18)]
+	[ExpressType("ApprovalType", 50)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieZone : CobieAsset, IInstantiableEntity, ICobieZone, IEqualityComparer<@CobieZone>, IEquatable<@CobieZone>
+	public  partial class @CobieApprovalType : CobiePickValue, IInstantiableEntity, ICobieApprovalType, IEqualityComparer<@CobieApprovalType>, IEquatable<@CobieApprovalType>
 	{
-		#region ICobieZone explicit implementation
-		IEnumerable<ICobieSpace> ICobieZone.Spaces { get { return @Spaces; } }	
+		#region ICobieApprovalType explicit implementation
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieZone(IModel model) : base(model) 		{ 
+		internal CobieApprovalType(IModel model) : base(model) 		{ 
 			Model = model; 
-			_spaces = new ItemSet<CobieSpace>( this, 0 );
 		}
 
-		#region Explicit attribute fields
-		private ItemSet<CobieSpace> _spaces;
-		#endregion
-	
-		#region Explicit attribute properties
-		[IndexedProperty]
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 13)]
-		public ItemSet<CobieSpace> @Spaces 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _spaces;
-				((IPersistEntity)this).Activate(false);
-				return _spaces;
-			} 
-		}	
-		#endregion
 
 
 
@@ -74,20 +54,7 @@ namespace Xbim.CobieExpress
 			switch (propIndex)
 			{
 				case 0: 
-				case 1: 
-				case 2: 
-				case 3: 
-				case 4: 
-				case 5: 
-				case 6: 
-				case 7: 
-				case 8: 
-				case 9: 
 					base.Parse(propIndex, value, nestedIndex); 
-					return;
-				case 10: 
-					if (_spaces == null) _spaces = new ItemSet<CobieSpace>( this );
-					_spaces.InternalAdd((CobieSpace)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -101,7 +68,7 @@ namespace Xbim.CobieExpress
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@CobieZone other)
+        public bool Equals(@CobieApprovalType other)
 	    {
 	        return this == other;
 	    }
@@ -114,8 +81,8 @@ namespace Xbim.CobieExpress
             // Check for type
             if (GetType() != obj.GetType()) return false;
 
-            // Cast as @CobieZone
-            var root = (@CobieZone)obj;
+            // Cast as @CobieApprovalType
+            var root = (@CobieApprovalType)obj;
             return this == root;
         }
         public override int GetHashCode()
@@ -124,7 +91,7 @@ namespace Xbim.CobieExpress
             return EntityLabel.GetHashCode(); 
         }
 
-        public static bool operator ==(@CobieZone left, @CobieZone right)
+        public static bool operator ==(@CobieApprovalType left, @CobieApprovalType right)
         {
             // If both are null, or both are same instance, return true.
             if (ReferenceEquals(left, right))
@@ -138,18 +105,18 @@ namespace Xbim.CobieExpress
 
         }
 
-        public static bool operator !=(@CobieZone left, @CobieZone right)
+        public static bool operator !=(@CobieApprovalType left, @CobieApprovalType right)
         {
             return !(left == right);
         }
 
 
-        public bool Equals(@CobieZone x, @CobieZone y)
+        public bool Equals(@CobieApprovalType x, @CobieApprovalType y)
         {
             return x == y;
         }
 
-        public int GetHashCode(@CobieZone obj)
+        public int GetHashCode(@CobieApprovalType obj)
         {
             return obj == null ? -1 : obj.GetHashCode();
         }

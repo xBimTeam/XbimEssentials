@@ -25,7 +25,7 @@ namespace Xbim.CobieExpress.Interfaces
 	{
 		string @Name { get; }
 		string @Description { get; }
-		ICobiePickValue @SpareType { get; }
+		ICobieSpareType @SpareType { get; }
 		ICobieType @Type { get; }
 		IEnumerable<ICobieContact> @Suppliers { get; }
 		string @SetNumber { get; }
@@ -37,14 +37,14 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Spare", 27)]
+	[ExpressType("Spare", 24)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieSpare : CobieReferencedObject, IInstantiableEntity, ICobieSpare, IEqualityComparer<@CobieSpare>, IEquatable<@CobieSpare>
 	{
 		#region ICobieSpare explicit implementation
 		string ICobieSpare.Name { get { return @Name; } }	
 		string ICobieSpare.Description { get { return @Description; } }	
-		ICobiePickValue ICobieSpare.SpareType { get { return @SpareType; } }	
+		ICobieSpareType ICobieSpare.SpareType { get { return @SpareType; } }	
 		ICobieType ICobieSpare.Type { get { return @Type; } }	
 		IEnumerable<ICobieContact> ICobieSpare.Suppliers { get { return @Suppliers; } }	
 		string ICobieSpare.SetNumber { get { return @SetNumber; } }	
@@ -55,15 +55,15 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieSpare(IModel model) : base(model) 		{ 
 			Model = model; 
-			_suppliers = new ItemSet<CobieContact>( this, 0 );
+			_suppliers = new OptionalItemSet<CobieContact>( this, 0 );
 		}
 
 		#region Explicit attribute fields
 		private string _name;
 		private string _description;
-		private CobiePickValue _spareType;
+		private CobieSpareType _spareType;
 		private CobieType _type;
-		private ItemSet<CobieContact> _suppliers;
+		private OptionalItemSet<CobieContact> _suppliers;
 		private string _setNumber;
 		private string _partNumber;
 		#endregion
@@ -98,7 +98,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
-		public CobiePickValue @SpareType 
+		public CobieSpareType @SpareType 
 		{ 
 			get 
 			{
@@ -126,8 +126,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _type = v, _type, value,  "Type");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 9)]
-		public ItemSet<CobieContact> @Suppliers 
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 9)]
+		public OptionalItemSet<CobieContact> @Suppliers 
 		{ 
 			get 
 			{
@@ -188,13 +188,13 @@ namespace Xbim.CobieExpress
 					_description = value.StringVal;
 					return;
 				case 6: 
-					_spareType = (CobiePickValue)(value.EntityVal);
+					_spareType = (CobieSpareType)(value.EntityVal);
 					return;
 				case 7: 
 					_type = (CobieType)(value.EntityVal);
 					return;
 				case 8: 
-					if (_suppliers == null) _suppliers = new ItemSet<CobieContact>( this );
+					if (_suppliers == null) _suppliers = new OptionalItemSet<CobieContact>( this );
 					_suppliers.InternalAdd((CobieContact)value.EntityVal);
 					return;
 				case 9: 

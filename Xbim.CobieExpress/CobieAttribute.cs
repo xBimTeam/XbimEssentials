@@ -28,7 +28,7 @@ namespace Xbim.CobieExpress.Interfaces
 		string @Name { get; }
 		string @SetName { get; }
 		string @Description { get; }
-		ICobiePickValue @Stage { get; }
+		ICobieStageType @Stage { get; }
 		IAttributeValue @Value { get; }
 		string @Unit { get; }
 		IEnumerable<string> @AllowedValues { get; }
@@ -39,7 +39,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Attribute", 32)]
+	[ExpressType("Attribute", 29)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieAttribute : INotifyPropertyChanged, IInstantiableEntity, ICobieAttribute, IEqualityComparer<@CobieAttribute>, IEquatable<@CobieAttribute>
 	{
@@ -47,7 +47,7 @@ namespace Xbim.CobieExpress
 		string ICobieAttribute.Name { get { return @Name; } }	
 		string ICobieAttribute.SetName { get { return @SetName; } }	
 		string ICobieAttribute.Description { get { return @Description; } }	
-		ICobiePickValue ICobieAttribute.Stage { get { return @Stage; } }	
+		ICobieStageType ICobieAttribute.Stage { get { return @Stage; } }	
 		IAttributeValue ICobieAttribute.Value { get { return @Value; } }	
 		string ICobieAttribute.Unit { get { return @Unit; } }	
 		IEnumerable<string> ICobieAttribute.AllowedValues { get { return @AllowedValues; } }	
@@ -122,7 +122,7 @@ namespace Xbim.CobieExpress
 		private string _name;
 		private string _setName;
 		private string _description;
-		private CobiePickValue _stage;
+		private CobieStageType _stage;
 		private AttributeValue _value;
 		private string _unit;
 		private OptionalItemSet<string> _allowedValues;
@@ -172,7 +172,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
-		public CobiePickValue @Stage 
+		public CobieStageType @Stage 
 		{ 
 			get 
 			{
@@ -293,7 +293,7 @@ namespace Xbim.CobieExpress
 					_description = value.StringVal;
 					return;
 				case 3: 
-					_stage = (CobiePickValue)(value.EntityVal);
+					_stage = (CobieStageType)(value.EntityVal);
 					return;
 				case 4: 
 					_value = (AttributeValue)(value.EntityVal);

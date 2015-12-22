@@ -26,14 +26,14 @@ namespace Xbim.CobieExpress.Interfaces
 		string @TaskNumber { get; }
 		string @Name { get; }
 		string @Description { get; }
-		ICobiePickValue @JobType { get; }
-		ICobiePickValue @JobStatusType { get; }
+		ICobieJobType @JobType { get; }
+		ICobieJobStatusType @JobStatusType { get; }
 		double @Duration { get; }
-		ICobiePickValue @DurationUnit { get; }
+		ICobieDurationUnit @DurationUnit { get; }
 		double @Start { get; }
-		ICobiePickValue @StartUnit { get; }
+		ICobieDurationUnit @StartUnit { get; }
 		double @Frequency { get; }
-		ICobiePickValue @FrequencyUnit { get; }
+		ICobieDurationUnit @FrequencyUnit { get; }
 		ICobieJob @Priors { get; }
 		IEnumerable<ICobieResource> @Resources { get; }
 		IEnumerable<ICobieType> @ForTypes {  get; }
@@ -44,7 +44,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Job", 29)]
+	[ExpressType("Job", 26)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieJob : CobieReferencedObject, IInstantiableEntity, ICobieJob, IEqualityComparer<@CobieJob>, IEquatable<@CobieJob>
 	{
@@ -52,14 +52,14 @@ namespace Xbim.CobieExpress
 		string ICobieJob.TaskNumber { get { return @TaskNumber; } }	
 		string ICobieJob.Name { get { return @Name; } }	
 		string ICobieJob.Description { get { return @Description; } }	
-		ICobiePickValue ICobieJob.JobType { get { return @JobType; } }	
-		ICobiePickValue ICobieJob.JobStatusType { get { return @JobStatusType; } }	
+		ICobieJobType ICobieJob.JobType { get { return @JobType; } }	
+		ICobieJobStatusType ICobieJob.JobStatusType { get { return @JobStatusType; } }	
 		double ICobieJob.Duration { get { return @Duration; } }	
-		ICobiePickValue ICobieJob.DurationUnit { get { return @DurationUnit; } }	
+		ICobieDurationUnit ICobieJob.DurationUnit { get { return @DurationUnit; } }	
 		double ICobieJob.Start { get { return @Start; } }	
-		ICobiePickValue ICobieJob.StartUnit { get { return @StartUnit; } }	
+		ICobieDurationUnit ICobieJob.StartUnit { get { return @StartUnit; } }	
 		double ICobieJob.Frequency { get { return @Frequency; } }	
-		ICobiePickValue ICobieJob.FrequencyUnit { get { return @FrequencyUnit; } }	
+		ICobieDurationUnit ICobieJob.FrequencyUnit { get { return @FrequencyUnit; } }	
 		ICobieJob ICobieJob.Priors { get { return @Priors; } }	
 		IEnumerable<ICobieResource> ICobieJob.Resources { get { return @Resources; } }	
 		 
@@ -69,23 +69,23 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieJob(IModel model) : base(model) 		{ 
 			Model = model; 
-			_resources = new ItemSet<CobieResource>( this, 0 );
+			_resources = new OptionalItemSet<CobieResource>( this, 0 );
 		}
 
 		#region Explicit attribute fields
 		private string _taskNumber;
 		private string _name;
 		private string _description;
-		private CobiePickValue _jobType;
-		private CobiePickValue _jobStatusType;
+		private CobieJobType _jobType;
+		private CobieJobStatusType _jobStatusType;
 		private double _duration;
-		private CobiePickValue _durationUnit;
+		private CobieDurationUnit _durationUnit;
 		private double _start;
-		private CobiePickValue _startUnit;
+		private CobieDurationUnit _startUnit;
 		private double _frequency;
-		private CobiePickValue _frequencyUnit;
+		private CobieDurationUnit _frequencyUnit;
 		private CobieJob _priors;
-		private ItemSet<CobieResource> _resources;
+		private OptionalItemSet<CobieResource> _resources;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -132,7 +132,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
-		public CobiePickValue @JobType 
+		public CobieJobType @JobType 
 		{ 
 			get 
 			{
@@ -146,7 +146,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
-		public CobiePickValue @JobStatusType 
+		public CobieJobStatusType @JobStatusType 
 		{ 
 			get 
 			{
@@ -174,7 +174,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
-		public CobiePickValue @DurationUnit 
+		public CobieDurationUnit @DurationUnit 
 		{ 
 			get 
 			{
@@ -202,7 +202,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
-		public CobiePickValue @StartUnit 
+		public CobieDurationUnit @StartUnit 
 		{ 
 			get 
 			{
@@ -230,7 +230,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
-		public CobiePickValue @FrequencyUnit 
+		public CobieDurationUnit @FrequencyUnit 
 		{ 
 			get 
 			{
@@ -257,8 +257,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _priors = v, _priors, value,  "Priors");
 			} 
 		}	
-		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 17)]
-		public ItemSet<CobieResource> @Resources 
+		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 17)]
+		public OptionalItemSet<CobieResource> @Resources 
 		{ 
 			get 
 			{
@@ -305,34 +305,34 @@ namespace Xbim.CobieExpress
 					_description = value.StringVal;
 					return;
 				case 7: 
-					_jobType = (CobiePickValue)(value.EntityVal);
+					_jobType = (CobieJobType)(value.EntityVal);
 					return;
 				case 8: 
-					_jobStatusType = (CobiePickValue)(value.EntityVal);
+					_jobStatusType = (CobieJobStatusType)(value.EntityVal);
 					return;
 				case 9: 
 					_duration = value.RealVal;
 					return;
 				case 10: 
-					_durationUnit = (CobiePickValue)(value.EntityVal);
+					_durationUnit = (CobieDurationUnit)(value.EntityVal);
 					return;
 				case 11: 
 					_start = value.RealVal;
 					return;
 				case 12: 
-					_startUnit = (CobiePickValue)(value.EntityVal);
+					_startUnit = (CobieDurationUnit)(value.EntityVal);
 					return;
 				case 13: 
 					_frequency = value.RealVal;
 					return;
 				case 14: 
-					_frequencyUnit = (CobiePickValue)(value.EntityVal);
+					_frequencyUnit = (CobieDurationUnit)(value.EntityVal);
 					return;
 				case 15: 
 					_priors = (CobieJob)(value.EntityVal);
 					return;
 				case 16: 
-					if (_resources == null) _resources = new ItemSet<CobieResource>( this );
+					if (_resources == null) _resources = new OptionalItemSet<CobieResource>( this );
 					_resources.InternalAdd((CobieResource)value.EntityVal);
 					return;
 				default:
