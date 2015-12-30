@@ -73,10 +73,7 @@ namespace Xbim.Ifc4.Interfaces
         //Ifc4 specific classes
         //IXbimShell CreateShell(IfcTessellatedItem shell);
         //IXbimShell CreateShell(IIfcTessellatedFaceSet shell);
-        IXbimShell CreateShell(IIfcTriangulatedFaceSet shell);
-
-
-
+        IXbimGeometryObjectSet CreateSurfaceModel(IIfcTriangulatedFaceSet shell);
 
         //Surface Models containing one or more faces, shells or solids
         IXbimGeometryObjectSet CreateSurfaceModel(IIfcShellBasedSurfaceModel ifcSurface);
