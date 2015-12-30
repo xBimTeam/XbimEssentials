@@ -478,6 +478,29 @@ namespace Xbim.Tessellator
                 edges[1] = null;
         }
 
+        /// <summary>
+        /// Insets a vertex and returns the position in the list, removes duplicates
+        /// </summary>
+        /// <param name="v"></param>
+        /// <returns></returns>
+        public int AddVertex(Vec3 v)
+        {
+            if (!_vertices.Contains(v))
+            {
+                var pos = _vertices.Count;
+                _vertices.Add(v);
+                _minX = Math.Min(_minX, v.X);
+                _minY = Math.Min(_minY, v.Y);
+                _minZ = Math.Min(_minZ, v.Z);
+                _maxX = Math.Max(_maxX, v.X);
+                _maxY = Math.Max(_maxY, v.Y);
+                _maxZ = Math.Max(_maxZ, v.Z);
+                return pos;
+            }
+            else
+                return _vertices[v].Data;
+        }
+
         public void AddVertex(Vec3 v, ref ContourVertex contourVertex)
         {
             if (_vertices.Contains(v)) 

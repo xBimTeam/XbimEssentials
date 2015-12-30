@@ -5,7 +5,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Geometry;
 using Xbim.Ifc4.Interfaces;
-
+using Xbim.Common.XbimExtensions;
+using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Tessellator
 {
@@ -37,6 +38,7 @@ namespace Xbim.Tessellator
                 shape is IIfcFaceBasedSurfaceModel ||
                 shape is IIfcShellBasedSurfaceModel ||
                 shape is IIfcConnectedFaceSet ||
+                shape is IIfcTriangulatedFaceSet ||
                 shape is IIfcFacetedBrep;
         }
 
@@ -56,9 +58,9 @@ namespace Xbim.Tessellator
 
         public XbimShapeGeometry Mesh(IIfcFaceBasedSurfaceModel faceBasedModel)
         {
-            var faceSets = new List<IEnumerable<IIfcFace>>();
+            var faceSets = new List<IList<IIfcFace>>();
             foreach (var faceSet in faceBasedModel.FbsmFaces)
-                faceSets.Add(faceSet.CfsFaces);
+                faceSets.Add(faceSet.CfsFaces.ToList());
             return Mesh(faceSets, faceBasedModel.EntityLabel, (float)faceBasedModel.Model.ModelFactors.Precision);  
         }
 
@@ -71,13 +73,13 @@ namespace Xbim.Tessellator
 
         public XbimShapeGeometry Mesh(IEnumerable<IIfcShell> shellSet, int entityLabel, float precision)
         {
-            var shells = new List<IEnumerable<IIfcFace>>();
+            var shells = new List<IList<IIfcFace>>();
             foreach (var shell in shellSet)
             {
                 var closedShell = shell as IIfcClosedShell;
                 var openShell = shell as IIfcOpenShell;
-                if(closedShell!=null) shells.Add(closedShell.CfsFaces);
-                else if(openShell!=null) shells.Add(openShell.CfsFaces);
+                if(closedShell!=null) shells.Add(closedShell.CfsFaces.ToList());
+                else if(openShell!=null) shells.Add(openShell.CfsFaces.ToList());
             }
             return Mesh(shells, entityLabel, precision);
         }
@@ -86,8 +88,8 @@ namespace Xbim.Tessellator
 
         public XbimShapeGeometry Mesh(IIfcConnectedFaceSet connectedFaceSet)
         {
-            var faces = new List<IEnumerable<IIfcFace>>();
-            faces.Add(connectedFaceSet.CfsFaces);
+            var faces = new List<IList<IIfcFace>>();
+            faces.Add(connectedFaceSet.CfsFaces.ToList());
             return Mesh(faces, connectedFaceSet.EntityLabel, (float)connectedFaceSet.Model.ModelFactors.Precision);
         }
 
@@ -96,7 +98,7 @@ namespace Xbim.Tessellator
             return Mesh(fBRepModel.Outer);
         }
 
-        public XbimShapeGeometry Mesh(IEnumerable<IEnumerable<IIfcFace>> facesList, int entityLabel, float precision)
+        public XbimShapeGeometry Mesh(IEnumerable<IList<IIfcFace>> facesList, int entityLabel, float precision)
         {
             if (_geometryType == XbimGeometryType.PolyhedronBinary)
                 return MeshPolyhedronBinary(facesList, entityLabel, precision);
@@ -105,7 +107,133 @@ namespace Xbim.Tessellator
             throw new Exception("Illegal Geometry type, " + _geometryType);
         }
 
-        private XbimShapeGeometry MeshPolyhedronText(IEnumerable<IEnumerable<IIfcFace>> facesList, int entityLabel, float precision)
+        public XbimShapeGeometry Mesh(IIfcTriangulatedFaceSet triangulation)
+        {
+            if (_geometryType == XbimGeometryType.PolyhedronBinary)
+                return MeshPolyhedronBinary(triangulation);
+            if (_geometryType == XbimGeometryType.Polyhedron)
+                return MeshPolyhedronText(triangulation);
+            throw new Exception("Illegal Geometry type, " + _geometryType);  
+        }
+        
+        
+        private XbimShapeGeometry MeshPolyhedronText(IIfcTriangulatedFaceSet triangulation)
+        {
+            throw new NotImplementedException();
+        }
+
+        private XbimShapeGeometry MeshPolyhedronBinary(IIfcTriangulatedFaceSet triangulation)
+        {
+
+            XbimShapeGeometry shapeGeometry = new XbimShapeGeometry();
+            shapeGeometry.Format = XbimGeometryType.PolyhedronBinary;
+
+            using (var ms = new MemoryStream(0x4000))
+            using (var binaryWriter = new BinaryWriter(ms))
+            {
+
+                // Prepare the header
+                uint verticesCount = (uint)triangulation.Coordinates.CoordList.Count();
+                uint triangleCount = (uint)triangulation.CoordIndex.Count();
+                uint facesCount = 1;//at the moment just write one face for all triangles, may change to support styed faces in future
+                shapeGeometry.BoundingBox = XbimRect3D.Empty;
+
+                //Write out the header
+                binaryWriter.Write((byte)1); //stream format version			
+                // ReSharper disable once RedundantCast
+                binaryWriter.Write((UInt32)verticesCount); //number of vertices
+                binaryWriter.Write(triangleCount); //number of triangles
+
+                foreach (var coordList in triangulation.Coordinates.CoordList)
+                {
+                    float x, y, z;
+                    var enumerator = coordList.GetEnumerator();enumerator.MoveNext();
+                    x = (float)enumerator.Current; enumerator.MoveNext();
+                    y = (float)enumerator.Current; enumerator.MoveNext();
+                    z = (float)enumerator.Current;
+                    binaryWriter.Write(x);
+                    binaryWriter.Write(y);
+                    binaryWriter.Write(z);
+                    var rect = new XbimRect3D(x, y, z, 0, 0, 0);
+                    shapeGeometry.BoundingBox.Union(rect);
+                }
+
+
+                //now write out the faces
+
+                binaryWriter.Write(facesCount);
+
+
+
+                if (triangulation.NormalIndex.Any() && triangulation.Normals.Any()) //we have normals so obey them
+                {
+                    Int32 numTrianglesInFace = triangulation.CoordIndex.Count();              
+                    binaryWriter.Write(-numTrianglesInFace); //not a planar face so make negative 
+                    var packedNormals = new List<XbimPackedNormal>(triangulation.Normals.Count());
+                    foreach (var normal in triangulation.Normals)
+                    {
+                        var tpl = normal.AsTriplet<IfcParameterValue>();
+                        packedNormals.Add(new XbimPackedNormal(tpl.A,tpl.B,tpl.C));
+                    }
+                    
+                    var normalIndex = triangulation.NormalIndex.ToList();
+                    int triangleIndex = 0;
+                    
+                    foreach (var triangle in triangulation.CoordIndex)
+                    {
+                        var triangleTpl = triangle.AsTriplet<IfcPositiveInteger>();
+                        var normalsIndexTpl = normalIndex[triangleIndex].AsTriplet<IfcPositiveInteger>();
+                        WriteIndex(binaryWriter, (uint)triangleTpl.A - 1, verticesCount);
+                        packedNormals[(int)normalsIndexTpl.A - 1].Write(binaryWriter);
+                        WriteIndex(binaryWriter, (uint)triangleTpl.B - 1, verticesCount);
+                        packedNormals[(int)normalsIndexTpl.B - 1].Write(binaryWriter);
+                        WriteIndex(binaryWriter, (uint)triangleTpl.C - 1, verticesCount);
+                        packedNormals[(int)normalsIndexTpl.C - 1].Write(binaryWriter);
+                        triangleIndex++;
+                    }
+                }
+                else //we need to calculate normals to get a better surface fit
+                {
+                    var triangulatedMesh = Triangulate(triangulation);
+                    shapeGeometry.BoundingBox = triangulatedMesh.BoundingBox;
+                    foreach (var faceGroup in triangulatedMesh.Faces)
+                    {
+                        var numTrianglesInFace = faceGroup.Value.Count;
+                        //we need to fix this
+                        var planar = (ushort.MaxValue != faceGroup.Key); //we have a mesh of faces that all have the same normals at their vertices
+                        if (!planar) numTrianglesInFace *= -1; //set flag to say multiple normals
+
+                        // ReSharper disable once RedundantCast
+                        binaryWriter.Write((Int32)numTrianglesInFace);
+                        
+                        bool first = true;
+                        foreach (var triangle in faceGroup.Value)
+                        {
+                            if (planar && first)
+                            { 
+                                triangle[0].PackedNormal.Write(binaryWriter);
+                                first = false;
+                            }
+                            WriteIndex(binaryWriter, (uint)triangle[0].StartVertexIndex , verticesCount);
+                            if (!planar) 
+                                triangle[0].PackedNormal.Write(binaryWriter);
+                            WriteIndex(binaryWriter, (uint)triangle[0].NextEdge.StartVertexIndex, verticesCount);
+                            if (!planar) triangle[0].NextEdge.PackedNormal.Write(binaryWriter);
+                            WriteIndex(binaryWriter, (uint)triangle[0].NextEdge.NextEdge.StartVertexIndex,
+                                verticesCount);
+                            if (!planar) triangle[0].NextEdge.NextEdge.PackedNormal.Write(binaryWriter);
+                        }
+                    }
+                }
+                binaryWriter.Flush();
+                ((IXbimShapeGeometryData)shapeGeometry).ShapeData = ms.ToArray();
+            }
+            return shapeGeometry;
+
+        }
+
+
+        private XbimShapeGeometry MeshPolyhedronText(IEnumerable<IList<IIfcFace>> facesList, int entityLabel, float precision)
         {
             var shapeGeometry = new XbimShapeGeometry();
             shapeGeometry.Format = XbimGeometryType.Polyhedron;
@@ -187,7 +315,7 @@ namespace Xbim.Tessellator
             return shapeGeometry;
         }
 
-        private XbimShapeGeometry MeshPolyhedronBinary(IEnumerable<IEnumerable<IIfcFace>> facesList, int entityLabel, float precision)
+        private XbimShapeGeometry MeshPolyhedronBinary(IEnumerable<IList<IIfcFace>> facesList, int entityLabel, float precision)
         {
             XbimShapeGeometry shapeGeometry = new XbimShapeGeometry();
             shapeGeometry.Format = XbimGeometryType.PolyhedronBinary;
@@ -270,14 +398,13 @@ namespace Xbim.Tessellator
             return shapeGeometry;
         }
 
-        private XbimTriangulatedMesh TriangulateFaces(IEnumerable<IIfcFace> ifcFaces, int entityLabel, float precision)
+        private XbimTriangulatedMesh TriangulateFaces(IList<IIfcFace> ifcFaces, int entityLabel, float precision)
         {
             var faceId = 0;
-            var enumerable =  ifcFaces.ToList();
             
-            var faceCount = enumerable.Count;
+            var faceCount = ifcFaces.Count;
             var triangulatedMesh = new XbimTriangulatedMesh(faceCount, precision);
-            foreach (var ifcFace in enumerable)
+            foreach (var ifcFace in ifcFaces)
             {
                 var fc = (IIfcFace)_model.Instances[ifcFace.EntityLabel];
                 //improves performance and reduces memory load
@@ -375,6 +502,32 @@ namespace Xbim.Tessellator
         }
 
 
+        private XbimTriangulatedMesh Triangulate(IIfcTriangulatedFaceSet triangulation)
+        {
+            var faceId = 0;
+            var entityLabel = triangulation.EntityLabel;
+            var precision =(float)triangulation.Model.ModelFactors.Precision;
+            var faceCount = triangulation.CoordIndex.Count();
+            var triangulatedMesh = new XbimTriangulatedMesh(faceCount, precision);        
+            //add all the vertices in to the mesh
+            var vertices = new List<int>(triangulation.Coordinates.CoordList.Count());
+            foreach (var coord in triangulation.Coordinates.CoordList)
+            {
+                var tpl = coord.AsTriplet<IfcLengthMeasure>();
+                var v = new Vec3(tpl.A,tpl.B,tpl.C);              
+                var idx = triangulatedMesh.AddVertex(v);
+                vertices.Add(idx);
+            }
+            foreach (var triangleFace in triangulation.CoordIndex)
+            {
+                var tpl = triangleFace.AsTriplet<IfcPositiveInteger>();
+                triangulatedMesh.AddTriangle(vertices[(int)tpl.A-1], vertices[(int)tpl.B-1], vertices[(int)tpl.C-1], faceId);  
+            }
+            triangulatedMesh.UnifyFaceOrientation(entityLabel);
+            return triangulatedMesh;
+        }
+
+       
         private void WriteIndex(BinaryWriter bw, UInt32 index, UInt32 maxInt)
         {
             if (maxInt <= 0xFF)

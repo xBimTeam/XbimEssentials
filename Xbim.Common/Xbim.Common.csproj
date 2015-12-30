@@ -156,6 +156,8 @@
     <Compile Include="Enumerations\ValidationFlags.cs" />
     <Compile Include="Geometry\XbimGeometryData.cs" />
     <Compile Include="Enumerations\XbimRepresentationType.cs" />
+    <Compile Include="XbimExtensions\XbimTriplet.cs" />
+    <Compile Include="XbimExtensions\IEnumerableExtensions.cs" />
     <Compile Include="XbimExtensions\StringExtensions.cs" />
     <Compile Include="ProjectUnits.cs" />
   </ItemGroup>

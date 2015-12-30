@@ -27,5 +27,13 @@ namespace Xbim.Tessellator
             cv.Data = Count;
             base.Add(cv);
         }
+
+        public void Add(Vec3 v)
+        {
+            var cv = new ContourVertex();
+            cv.Position = v;
+            cv.Data = Count;
+            base.Add(cv);
+        }
     }
 }
