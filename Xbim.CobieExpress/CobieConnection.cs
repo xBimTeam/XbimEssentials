@@ -25,7 +25,7 @@ namespace Xbim.CobieExpress.Interfaces
 	{
 		string @Name { get; }
 		string @Description { get; }
-		ICobiePickValue @ConnectionType { get; }
+		ICobieConnectionType @ConnectionType { get; }
 		ICobieComponent @ComponentA { get; }
 		ICobieComponent @ComponentB { get; }
 		ICobieComponent @RealizingComponent { get; }
@@ -38,14 +38,14 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Connection", 26)]
+	[ExpressType("Connection", 23)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieConnection : CobieReferencedObject, IInstantiableEntity, ICobieConnection, IEqualityComparer<@CobieConnection>, IEquatable<@CobieConnection>
 	{
 		#region ICobieConnection explicit implementation
 		string ICobieConnection.Name { get { return @Name; } }	
 		string ICobieConnection.Description { get { return @Description; } }	
-		ICobiePickValue ICobieConnection.ConnectionType { get { return @ConnectionType; } }	
+		ICobieConnectionType ICobieConnection.ConnectionType { get { return @ConnectionType; } }	
 		ICobieComponent ICobieConnection.ComponentA { get { return @ComponentA; } }	
 		ICobieComponent ICobieConnection.ComponentB { get { return @ComponentB; } }	
 		ICobieComponent ICobieConnection.RealizingComponent { get { return @RealizingComponent; } }	
@@ -62,7 +62,7 @@ namespace Xbim.CobieExpress
 		#region Explicit attribute fields
 		private string _name;
 		private string _description;
-		private CobiePickValue _connectionType;
+		private CobieConnectionType _connectionType;
 		private CobieComponent _componentA;
 		private CobieComponent _componentB;
 		private CobieComponent _realizingComponent;
@@ -100,7 +100,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
-		public CobiePickValue @ConnectionType 
+		public CobieConnectionType @ConnectionType 
 		{ 
 			get 
 			{
@@ -210,7 +210,7 @@ namespace Xbim.CobieExpress
 					_description = value.StringVal;
 					return;
 				case 6: 
-					_connectionType = (CobiePickValue)(value.EntityVal);
+					_connectionType = (CobieConnectionType)(value.EntityVal);
 					return;
 				case 7: 
 					_componentA = (CobieComponent)(value.EntityVal);

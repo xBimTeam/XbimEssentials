@@ -34,7 +34,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Phase", 10)]
+	[ExpressType("Phase", 7)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobiePhase : INotifyPropertyChanged, IInstantiableEntity, ICobiePhase, IEqualityComparer<@CobiePhase>, IEquatable<@CobiePhase>
 	{

@@ -3,7 +3,6 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Federation;
 using Xbim.Ifc2x3.ExternalReferenceResource;
-using Xbim.IO;
 
 namespace Xbim.Ifc2x3.IO
 {
@@ -75,6 +74,9 @@ namespace Xbim.Ifc2x3.IO
                 return null;
             }
         }
+
+        public string Role { get { return OwnerName; } }
+
 
         // todo: this looks like nonsense to me (CB), if anything this returns owner role
         public string OwnerName

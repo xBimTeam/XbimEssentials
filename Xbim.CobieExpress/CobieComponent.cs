@@ -32,7 +32,7 @@ namespace Xbim.CobieExpress.Interfaces
 		ICobieType @Type { get; }
 		ICobieSpace @Space { get; }
 		IEnumerable<ICobieComponent> @AssemblyOf { get; }
-		IEnumerable<ICobieSystem> @Systems {  get; }
+		IEnumerable<ICobieSystem> @InSystems {  get; }
 		IEnumerable<ICobieConnection> @ConnectedBefore {  get; }
 		IEnumerable<ICobieConnection> @ConnectedAfter {  get; }
 		IEnumerable<ICobieConnection> @Connecting {  get; }
@@ -43,7 +43,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Component", 24)]
+	[ExpressType("Component", 21)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieComponent : CobieAsset, IInstantiableEntity, ICobieComponent, IEqualityComparer<@CobieComponent>, IEquatable<@CobieComponent>
 	{
@@ -58,7 +58,7 @@ namespace Xbim.CobieExpress
 		ICobieSpace ICobieComponent.Space { get { return @Space; } }	
 		IEnumerable<ICobieComponent> ICobieComponent.AssemblyOf { get { return @AssemblyOf; } }	
 		 
-		IEnumerable<ICobieSystem> ICobieComponent.Systems {  get { return @Systems; } }
+		IEnumerable<ICobieSystem> ICobieComponent.InSystems {  get { return @InSystems; } }
 		IEnumerable<ICobieConnection> ICobieComponent.ConnectedBefore {  get { return @ConnectedBefore; } }
 		IEnumerable<ICobieConnection> ICobieComponent.ConnectedAfter {  get { return @ConnectedAfter; } }
 		IEnumerable<ICobieConnection> ICobieComponent.Connecting {  get { return @Connecting; } }
@@ -67,7 +67,7 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieComponent(IModel model) : base(model) 		{ 
 			Model = model; 
-			_assemblyOf = new ItemSet<CobieComponent>( this, 0 );
+			_assemblyOf = new OptionalItemSet<CobieComponent>( this, 0 );
 		}
 
 		#region Explicit attribute fields
@@ -79,7 +79,7 @@ namespace Xbim.CobieExpress
 		private string _assetIdentifier;
 		private CobieType _type;
 		private CobieSpace _space;
-		private ItemSet<CobieComponent> _assemblyOf;
+		private OptionalItemSet<CobieComponent> _assemblyOf;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -197,8 +197,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _space = v, _space, value,  "Space");
 			} 
 		}	
-		[EntityAttribute(19, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 21)]
-		public ItemSet<CobieComponent> @AssemblyOf 
+		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 21)]
+		public OptionalItemSet<CobieComponent> @AssemblyOf 
 		{ 
 			get 
 			{
@@ -214,7 +214,7 @@ namespace Xbim.CobieExpress
 		#region Inverse attributes
 		[InverseProperty("Components")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 22)]
-		public IEnumerable<CobieSystem> @Systems 
+		public IEnumerable<CobieSystem> @InSystems 
 		{ 
 			get 
 			{
@@ -293,7 +293,7 @@ namespace Xbim.CobieExpress
 					_space = (CobieSpace)(value.EntityVal);
 					return;
 				case 18: 
-					if (_assemblyOf == null) _assemblyOf = new ItemSet<CobieComponent>( this );
+					if (_assemblyOf == null) _assemblyOf = new OptionalItemSet<CobieComponent>( this );
 					_assemblyOf.InternalAdd((CobieComponent)value.EntityVal);
 					return;
 				default:

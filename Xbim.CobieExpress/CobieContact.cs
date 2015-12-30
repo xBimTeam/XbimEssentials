@@ -24,7 +24,7 @@ namespace Xbim.CobieExpress.Interfaces
 	public partial interface @ICobieContact : ICobieReferencedObject
 	{
 		string @Email { get; }
-		ICobiePickValue @Category { get; }
+		ICobieRole @Category { get; }
 		string @Company { get; }
 		string @Phone { get; }
 		string @Department { get; }
@@ -44,13 +44,13 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Contact", 14)]
+	[ExpressType("Contact", 11)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieContact : CobieReferencedObject, IInstantiableEntity, ICobieContact, IEqualityComparer<@CobieContact>, IEquatable<@CobieContact>
 	{
 		#region ICobieContact explicit implementation
 		string ICobieContact.Email { get { return @Email; } }	
-		ICobiePickValue ICobieContact.Category { get { return @Category; } }	
+		ICobieRole ICobieContact.Category { get { return @Category; } }	
 		string ICobieContact.Company { get { return @Company; } }	
 		string ICobieContact.Phone { get { return @Phone; } }	
 		string ICobieContact.Department { get { return @Department; } }	
@@ -73,7 +73,7 @@ namespace Xbim.CobieExpress
 
 		#region Explicit attribute fields
 		private string _email;
-		private CobiePickValue _category;
+		private CobieRole _category;
 		private string _company;
 		private string _phone;
 		private string _department;
@@ -104,7 +104,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
-		public CobiePickValue @Category 
+		public CobieRole @Category 
 		{ 
 			get 
 			{
@@ -306,7 +306,7 @@ namespace Xbim.CobieExpress
 					_email = value.StringVal;
 					return;
 				case 5: 
-					_category = (CobiePickValue)(value.EntityVal);
+					_category = (CobieRole)(value.EntityVal);
 					return;
 				case 6: 
 					_company = value.StringVal;

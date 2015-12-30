@@ -25,14 +25,14 @@ namespace Xbim.CobieExpress.Interfaces
 	{
 		string @Name { get; }
 		string @Description { get; }
-		ICobiePickValue @ImpactType { get; }
-		ICobiePickValue @ImpactStage { get; }
+		ICobieImpactType @ImpactType { get; }
+		ICobieImpactStage @ImpactStage { get; }
 		double @Value { get; }
-		ICobiePickValue @ImpactUnit { get; }
+		ICobieImpactUnit @ImpactUnit { get; }
 		double @LeadInTime { get; }
 		double @Duration { get; }
 		double @LeadOutTime { get; }
-		ICobiePickValue @TimeUnit { get; }
+		ICobieDurationUnit @DurationUnit { get; }
 	
 	}
 }
@@ -40,21 +40,21 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Impact", 30)]
+	[ExpressType("Impact", 27)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieImpact : CobieReferencedObject, IInstantiableEntity, ICobieImpact, IEqualityComparer<@CobieImpact>, IEquatable<@CobieImpact>
 	{
 		#region ICobieImpact explicit implementation
 		string ICobieImpact.Name { get { return @Name; } }	
 		string ICobieImpact.Description { get { return @Description; } }	
-		ICobiePickValue ICobieImpact.ImpactType { get { return @ImpactType; } }	
-		ICobiePickValue ICobieImpact.ImpactStage { get { return @ImpactStage; } }	
+		ICobieImpactType ICobieImpact.ImpactType { get { return @ImpactType; } }	
+		ICobieImpactStage ICobieImpact.ImpactStage { get { return @ImpactStage; } }	
 		double ICobieImpact.Value { get { return @Value; } }	
-		ICobiePickValue ICobieImpact.ImpactUnit { get { return @ImpactUnit; } }	
+		ICobieImpactUnit ICobieImpact.ImpactUnit { get { return @ImpactUnit; } }	
 		double ICobieImpact.LeadInTime { get { return @LeadInTime; } }	
 		double ICobieImpact.Duration { get { return @Duration; } }	
 		double ICobieImpact.LeadOutTime { get { return @LeadOutTime; } }	
-		ICobiePickValue ICobieImpact.TimeUnit { get { return @TimeUnit; } }	
+		ICobieDurationUnit ICobieImpact.DurationUnit { get { return @DurationUnit; } }	
 		 
 		#endregion
 
@@ -66,14 +66,14 @@ namespace Xbim.CobieExpress
 		#region Explicit attribute fields
 		private string _name;
 		private string _description;
-		private CobiePickValue _impactType;
-		private CobiePickValue _impactStage;
+		private CobieImpactType _impactType;
+		private CobieImpactStage _impactStage;
 		private double _value;
-		private CobiePickValue _impactUnit;
+		private CobieImpactUnit _impactUnit;
 		private double _leadInTime;
 		private double _duration;
 		private double _leadOutTime;
-		private CobiePickValue _timeUnit;
+		private CobieDurationUnit _durationUnit;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -106,7 +106,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
-		public CobiePickValue @ImpactType 
+		public CobieImpactType @ImpactType 
 		{ 
 			get 
 			{
@@ -120,7 +120,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
-		public CobiePickValue @ImpactStage 
+		public CobieImpactStage @ImpactStage 
 		{ 
 			get 
 			{
@@ -148,7 +148,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
-		public CobiePickValue @ImpactUnit 
+		public CobieImpactUnit @ImpactUnit 
 		{ 
 			get 
 			{
@@ -204,17 +204,17 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
-		public CobiePickValue @TimeUnit 
+		public CobieDurationUnit @DurationUnit 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeUnit;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _durationUnit;
 				((IPersistEntity)this).Activate(false);
-				return _timeUnit;
+				return _durationUnit;
 			} 
 			set
 			{
-				SetValue( v =>  _timeUnit = v, _timeUnit, value,  "TimeUnit");
+				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit");
 			} 
 		}	
 		#endregion
@@ -241,16 +241,16 @@ namespace Xbim.CobieExpress
 					_description = value.StringVal;
 					return;
 				case 6: 
-					_impactType = (CobiePickValue)(value.EntityVal);
+					_impactType = (CobieImpactType)(value.EntityVal);
 					return;
 				case 7: 
-					_impactStage = (CobiePickValue)(value.EntityVal);
+					_impactStage = (CobieImpactStage)(value.EntityVal);
 					return;
 				case 8: 
 					_value = value.RealVal;
 					return;
 				case 9: 
-					_impactUnit = (CobiePickValue)(value.EntityVal);
+					_impactUnit = (CobieImpactUnit)(value.EntityVal);
 					return;
 				case 10: 
 					_leadInTime = value.RealVal;
@@ -262,7 +262,7 @@ namespace Xbim.CobieExpress
 					_leadOutTime = value.RealVal;
 					return;
 				case 13: 
-					_timeUnit = (CobiePickValue)(value.EntityVal);
+					_durationUnit = (CobieDurationUnit)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

@@ -25,10 +25,10 @@ namespace Xbim.CobieExpress.Interfaces
 	{
 		string @Name { get; }
 		string @Description { get; }
-		ICobiePickValue @IssueType { get; }
-		ICobiePickValue @Risk { get; }
-		ICobiePickValue @Chance { get; }
-		ICobiePickValue @Impact { get; }
+		ICobieIssueType @IssueType { get; }
+		ICobieIssueRisk @Risk { get; }
+		ICobieIssueChance @Chance { get; }
+		ICobieIssueImpact @Impact { get; }
 		ICobieContact @Owner { get; }
 		string @Mitigation { get; }
 		ICobieAsset @Causing { get; }
@@ -40,17 +40,17 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Issue", 33)]
+	[ExpressType("Issue", 30)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieIssue : CobieReferencedObject, IInstantiableEntity, ICobieIssue, IEqualityComparer<@CobieIssue>, IEquatable<@CobieIssue>
 	{
 		#region ICobieIssue explicit implementation
 		string ICobieIssue.Name { get { return @Name; } }	
 		string ICobieIssue.Description { get { return @Description; } }	
-		ICobiePickValue ICobieIssue.IssueType { get { return @IssueType; } }	
-		ICobiePickValue ICobieIssue.Risk { get { return @Risk; } }	
-		ICobiePickValue ICobieIssue.Chance { get { return @Chance; } }	
-		ICobiePickValue ICobieIssue.Impact { get { return @Impact; } }	
+		ICobieIssueType ICobieIssue.IssueType { get { return @IssueType; } }	
+		ICobieIssueRisk ICobieIssue.Risk { get { return @Risk; } }	
+		ICobieIssueChance ICobieIssue.Chance { get { return @Chance; } }	
+		ICobieIssueImpact ICobieIssue.Impact { get { return @Impact; } }	
 		ICobieContact ICobieIssue.Owner { get { return @Owner; } }	
 		string ICobieIssue.Mitigation { get { return @Mitigation; } }	
 		ICobieAsset ICobieIssue.Causing { get { return @Causing; } }	
@@ -66,10 +66,10 @@ namespace Xbim.CobieExpress
 		#region Explicit attribute fields
 		private string _name;
 		private string _description;
-		private CobiePickValue _issueType;
-		private CobiePickValue _risk;
-		private CobiePickValue _chance;
-		private CobiePickValue _impact;
+		private CobieIssueType _issueType;
+		private CobieIssueRisk _risk;
+		private CobieIssueChance _chance;
+		private CobieIssueImpact _impact;
 		private CobieContact _owner;
 		private string _mitigation;
 		private CobieAsset _causing;
@@ -106,7 +106,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
-		public CobiePickValue @IssueType 
+		public CobieIssueType @IssueType 
 		{ 
 			get 
 			{
@@ -120,7 +120,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
-		public CobiePickValue @Risk 
+		public CobieIssueRisk @Risk 
 		{ 
 			get 
 			{
@@ -134,7 +134,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
-		public CobiePickValue @Chance 
+		public CobieIssueChance @Chance 
 		{ 
 			get 
 			{
@@ -148,7 +148,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
-		public CobiePickValue @Impact 
+		public CobieIssueImpact @Impact 
 		{ 
 			get 
 			{
@@ -243,16 +243,16 @@ namespace Xbim.CobieExpress
 					_description = value.StringVal;
 					return;
 				case 6: 
-					_issueType = (CobiePickValue)(value.EntityVal);
+					_issueType = (CobieIssueType)(value.EntityVal);
 					return;
 				case 7: 
-					_risk = (CobiePickValue)(value.EntityVal);
+					_risk = (CobieIssueRisk)(value.EntityVal);
 					return;
 				case 8: 
-					_chance = (CobiePickValue)(value.EntityVal);
+					_chance = (CobieIssueChance)(value.EntityVal);
 					return;
 				case 9: 
-					_impact = (CobiePickValue)(value.EntityVal);
+					_impact = (CobieIssueImpact)(value.EntityVal);
 					return;
 				case 10: 
 					_owner = (CobieContact)(value.EntityVal);

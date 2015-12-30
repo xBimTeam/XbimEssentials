@@ -25,8 +25,8 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieReferencedObject : IPersistEntity
 	{
-		string @ExternalId { get; }
 		ICobieCreatedInfo @Created { get; }
+		string @ExternalId { get; }
 		ICobieExternalSystem @ExternalSystem { get; }
 		string @ExternalObject { get; }
 	
@@ -36,13 +36,13 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("ReferencedObject", 13)]
+	[ExpressType("ReferencedObject", 10)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @CobieReferencedObject : IPersistEntity, INotifyPropertyChanged, ICobieReferencedObject, IEqualityComparer<@CobieReferencedObject>, IEquatable<@CobieReferencedObject>
 	{
 		#region ICobieReferencedObject explicit implementation
-		string ICobieReferencedObject.ExternalId { get { return @ExternalId; } }	
 		ICobieCreatedInfo ICobieReferencedObject.Created { get { return @Created; } }	
+		string ICobieReferencedObject.ExternalId { get { return @ExternalId; } }	
 		ICobieExternalSystem ICobieReferencedObject.ExternalSystem { get { return @ExternalSystem; } }	
 		string ICobieReferencedObject.ExternalObject { get { return @ExternalObject; } }	
 		 
@@ -112,28 +112,14 @@ namespace Xbim.CobieExpress
 		}
 
 		#region Explicit attribute fields
-		private string _externalId;
 		private CobieCreatedInfo _created;
+		private string _externalId;
 		private CobieExternalSystem _externalSystem;
 		private string _externalObject;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
-		public string @ExternalId 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _externalId;
-				((IPersistEntity)this).Activate(false);
-				return _externalId;
-			} 
-			set
-			{
-				SetValue( v =>  _externalId = v, _externalId, value,  "ExternalId");
-			} 
-		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
 		public CobieCreatedInfo @Created 
 		{ 
 			get 
@@ -145,6 +131,20 @@ namespace Xbim.CobieExpress
 			set
 			{
 				SetValue( v =>  _created = v, _created, value,  "Created");
+			} 
+		}	
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		public string @ExternalId 
+		{ 
+			get 
+			{
+				if(ActivationStatus != ActivationStatus.NotActivated) return _externalId;
+				((IPersistEntity)this).Activate(false);
+				return _externalId;
+			} 
+			set
+			{
+				SetValue( v =>  _externalId = v, _externalId, value,  "ExternalId");
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -236,10 +236,10 @@ namespace Xbim.CobieExpress
 			switch (propIndex)
 			{
 				case 0: 
-					_externalId = value.StringVal;
+					_created = (CobieCreatedInfo)(value.EntityVal);
 					return;
 				case 1: 
-					_created = (CobieCreatedInfo)(value.EntityVal);
+					_externalId = value.StringVal;
 					return;
 				case 2: 
 					_externalSystem = (CobieExternalSystem)(value.EntityVal);

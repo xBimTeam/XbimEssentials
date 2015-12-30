@@ -29,7 +29,7 @@ namespace Xbim.CobieExpress.Interfaces
 		double? @NetArea { get; }
 		ICobieFloor @Floor { get; }
 		IEnumerable<ICobieComponent> @Components {  get; }
-		IEnumerable<ICobieZone> @Zones {  get; }
+		IEnumerable<ICobieZone> @InZones {  get; }
 	
 	}
 }
@@ -37,7 +37,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Space", 20)]
+	[ExpressType("Space", 17)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieSpace : CobieAsset, IInstantiableEntity, ICobieSpace, IEqualityComparer<@CobieSpace>, IEquatable<@CobieSpace>
 	{
@@ -49,7 +49,7 @@ namespace Xbim.CobieExpress
 		ICobieFloor ICobieSpace.Floor { get { return @Floor; } }	
 		 
 		IEnumerable<ICobieComponent> ICobieSpace.Components {  get { return @Components; } }
-		IEnumerable<ICobieZone> ICobieSpace.Zones {  get { return @Zones; } }
+		IEnumerable<ICobieZone> ICobieSpace.InZones {  get { return @InZones; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -153,7 +153,7 @@ namespace Xbim.CobieExpress
 		}
 		[InverseProperty("Spaces")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 19)]
-		public IEnumerable<CobieZone> @Zones 
+		public IEnumerable<CobieZone> @InZones 
 		{ 
 			get 
 			{

@@ -9,7 +9,12 @@
         /// </summary>
         string Identifier { get; }
 
+        /// <summary>
+        /// Mostly URI of the federated model so that when this is serialized it can be used to reopen the federation
+        /// </summary>
         string Name { get; }
+
+        string Role { get; }
         
     }
 }

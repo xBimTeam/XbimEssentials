@@ -85,19 +85,19 @@ namespace Xbim.Ifc
             CalculateModelFactors();
         }
 
-        void _model_EntityDeleted(IPersistEntity entity)
+        private void _model_EntityDeleted(IPersistEntity entity)
         {
             if (EntityDeleted == null) return;
             EntityDeleted(entity);
         }
 
-        void _model_EntityNew(IPersistEntity entity)
+        private void _model_EntityNew(IPersistEntity entity)
         {
             if (EntityNew == null) return;
             EntityNew(entity);
         }
 
-        void _model_EntityModified(IPersistEntity entity)
+        private void _model_EntityModified(IPersistEntity entity)
         {
             if (EntityModified == null) return;
             EntityModified(entity);
@@ -176,9 +176,15 @@ namespace Xbim.Ifc
             if (!File.Exists(filePath))
                 throw new FileNotFoundException(filePath + " file was not found");
             var storageType = path.StorageType();
-            var ifcVersion = GetIfcSchemaVersion(path);
+            string schemaIdentifier;
+            var ifcVersion = GetIfcSchemaVersion(path, out schemaIdentifier);
             if (ifcVersion == IfcSchemaVersion.Unsupported)
-                throw new FileLoadException(filePath + " is not a valid Ifc file format, ifc, ifcxml, ifczip and xBIM are supported");
+            {
+                if(string.IsNullOrWhiteSpace(schemaIdentifier))
+                    throw new FileLoadException(filePath + " is not a valid IFC file format, ifc, ifcxml, ifczip and xBIM are supported.");
+                throw new FileLoadException(filePath + ", is IFC file version " + schemaIdentifier + ". IFC2x3 and IFC4 are supported. Check your exporter settings please.");
+            }
+
             if (storageType == IfcStorageType.Xbim) //open the XbimFile
             {
 
@@ -250,17 +256,22 @@ namespace Xbim.Ifc
             }
         }
 
-        public static IfcSchemaVersion GetIfcSchemaVersion(string path)
+        public static IfcSchemaVersion GetIfcSchemaVersion(string path, out string schemaIdentifier)
         {
             var storageType = path.StorageType();
-            if (storageType == IfcStorageType.Invalid) return IfcSchemaVersion.Unsupported;
+            if (storageType == IfcStorageType.Invalid)
+            {
+                schemaIdentifier = "";
+                return IfcSchemaVersion.Unsupported;
+            }
             var stepHeader = storageType == IfcStorageType.Xbim ? EsentModel.GetStepFileHeader(path) : MemoryModel.GetFileHeader(path);
             var stepSchema = stepHeader.FileSchema;
+            schemaIdentifier = string.Join(", ", stepSchema.Schemas);
             foreach (var schema in stepSchema.Schemas)
             {
-                if (String.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0)
+                if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0)
                     return IfcSchemaVersion.Ifc4;
-                if (String.Compare(schema, "Ifc2x3", StringComparison.OrdinalIgnoreCase) == 0)
+                if (string.Compare(schema, "Ifc2x3", StringComparison.OrdinalIgnoreCase) == 0)
                     return IfcSchemaVersion.Ifc2X3;
             }
 

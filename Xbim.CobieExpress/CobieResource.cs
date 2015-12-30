@@ -25,7 +25,7 @@ namespace Xbim.CobieExpress.Interfaces
 	{
 		string @Name { get; }
 		string @Description { get; }
-		ICobiePickValue @ResourceType { get; }
+		ICobieResourceType @ResourceType { get; }
 	
 	}
 }
@@ -33,14 +33,14 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Resource", 28)]
+	[ExpressType("Resource", 25)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieResource : CobieReferencedObject, IInstantiableEntity, ICobieResource, IEqualityComparer<@CobieResource>, IEquatable<@CobieResource>
 	{
 		#region ICobieResource explicit implementation
 		string ICobieResource.Name { get { return @Name; } }	
 		string ICobieResource.Description { get { return @Description; } }	
-		ICobiePickValue ICobieResource.ResourceType { get { return @ResourceType; } }	
+		ICobieResourceType ICobieResource.ResourceType { get { return @ResourceType; } }	
 		 
 		#endregion
 
@@ -52,7 +52,7 @@ namespace Xbim.CobieExpress
 		#region Explicit attribute fields
 		private string _name;
 		private string _description;
-		private CobiePickValue _resourceType;
+		private CobieResourceType _resourceType;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -85,7 +85,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
-		public CobiePickValue @ResourceType 
+		public CobieResourceType @ResourceType 
 		{ 
 			get 
 			{
@@ -122,7 +122,7 @@ namespace Xbim.CobieExpress
 					_description = value.StringVal;
 					return;
 				case 6: 
-					_resourceType = (CobiePickValue)(value.EntityVal);
+					_resourceType = (CobieResourceType)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

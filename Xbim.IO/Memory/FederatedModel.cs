@@ -16,7 +16,7 @@ namespace Xbim.IO.Memory
     /// This model doesn't provide any LoadStep21() or Close() methods. It is your choice how you open the models and how you
     /// close and dispose them. 
     /// </summary>
-    class FederatedModel: IFederatedModel
+    public class FederatedModel: IFederatedModel
     {
         /// <summary>
         /// This is a generic implementation of federated model. It doesn't assume anything about the underlying models

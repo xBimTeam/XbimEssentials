@@ -193,7 +193,6 @@ namespace Xbim.MemoryModel.Tests
         private void GenerateComponents(CobieSpace space, int count)
         {
             var model = space.Model;
-            var facility = space.Floor.Facility;
             var rnd = new Random(79);
             var type = model.Instances.New<CobieType>(t =>
             {

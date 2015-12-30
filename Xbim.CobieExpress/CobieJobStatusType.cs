@@ -18,12 +18,11 @@ using Xbim.CobieExpress;
 namespace Xbim.CobieExpress.Interfaces
 {
 	/// <summary>
-    /// Readonly interface for CobiePickKeyValue
+    /// Readonly interface for CobieJobStatusType
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @ICobiePickKeyValue : ICobiePickValue
+	public partial interface @ICobieJobStatusType : ICobiePickValue
 	{
-		string @Key { get; }
 	
 	}
 }
@@ -31,40 +30,19 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("PickKeyValue", 9)]
+	[ExpressType("JobStatusType", 44)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobiePickKeyValue : CobiePickValue, IInstantiableEntity, ICobiePickKeyValue, IEqualityComparer<@CobiePickKeyValue>, IEquatable<@CobiePickKeyValue>
+	public  partial class @CobieJobStatusType : CobiePickValue, IInstantiableEntity, ICobieJobStatusType, IEqualityComparer<@CobieJobStatusType>, IEquatable<@CobieJobStatusType>
 	{
-		#region ICobiePickKeyValue explicit implementation
-		string ICobiePickKeyValue.Key { get { return @Key; } }	
+		#region ICobieJobStatusType explicit implementation
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobiePickKeyValue(IModel model) : base(model) 		{ 
+		internal CobieJobStatusType(IModel model) : base(model) 		{ 
 			Model = model; 
 		}
 
-		#region Explicit attribute fields
-		private string _key;
-		#endregion
-	
-		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
-		public string @Key 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _key;
-				((IPersistEntity)this).Activate(false);
-				return _key;
-			} 
-			set
-			{
-				SetValue( v =>  _key = v, _key, value,  "Key");
-			} 
-		}	
-		#endregion
 
 
 
@@ -76,11 +54,7 @@ namespace Xbim.CobieExpress
 			switch (propIndex)
 			{
 				case 0: 
-				case 1: 
 					base.Parse(propIndex, value, nestedIndex); 
-					return;
-				case 2: 
-					_key = value.StringVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -94,7 +68,7 @@ namespace Xbim.CobieExpress
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@CobiePickKeyValue other)
+        public bool Equals(@CobieJobStatusType other)
 	    {
 	        return this == other;
 	    }
@@ -107,8 +81,8 @@ namespace Xbim.CobieExpress
             // Check for type
             if (GetType() != obj.GetType()) return false;
 
-            // Cast as @CobiePickKeyValue
-            var root = (@CobiePickKeyValue)obj;
+            // Cast as @CobieJobStatusType
+            var root = (@CobieJobStatusType)obj;
             return this == root;
         }
         public override int GetHashCode()
@@ -117,7 +91,7 @@ namespace Xbim.CobieExpress
             return EntityLabel.GetHashCode(); 
         }
 
-        public static bool operator ==(@CobiePickKeyValue left, @CobiePickKeyValue right)
+        public static bool operator ==(@CobieJobStatusType left, @CobieJobStatusType right)
         {
             // If both are null, or both are same instance, return true.
             if (ReferenceEquals(left, right))
@@ -131,18 +105,18 @@ namespace Xbim.CobieExpress
 
         }
 
-        public static bool operator !=(@CobiePickKeyValue left, @CobiePickKeyValue right)
+        public static bool operator !=(@CobieJobStatusType left, @CobieJobStatusType right)
         {
             return !(left == right);
         }
 
 
-        public bool Equals(@CobiePickKeyValue x, @CobiePickKeyValue y)
+        public bool Equals(@CobieJobStatusType x, @CobieJobStatusType y)
         {
             return x == y;
         }
 
-        public int GetHashCode(@CobiePickKeyValue obj)
+        public int GetHashCode(@CobieJobStatusType obj)
         {
             return obj == null ? -1 : obj.GetHashCode();
         }
