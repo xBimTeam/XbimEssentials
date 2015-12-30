@@ -52,6 +52,8 @@ namespace Xbim.Tessellator
             if (cfs != null) return Mesh(cfs);
             var fbr = shape as IIfcFacetedBrep;
             if (fbr != null) return Mesh(fbr);
+            var tfs = shape as IIfcTriangulatedFaceSet;
+            if (tfs != null) return Mesh(tfs);
             throw new ArgumentException("Unsupported representation type for tessellation, " + shape.GetType().Name);
         }
 
