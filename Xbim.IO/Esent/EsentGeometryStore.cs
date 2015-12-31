@@ -3,7 +3,7 @@ using Xbim.Common.Geometry;
 
 namespace Xbim.IO.Esent
 {
-    internal class EsentGeometryStore : IGeometryStore, IDisposable
+    internal class EsentGeometryStore : IGeometryStore
     {
         private readonly EsentModel _esentModel;
 

@@ -139,5 +139,10 @@ namespace Xbim.IO.Memory
             _regions.Add(regions);
             return _regions.Count - 1;
         }
+
+        public void Dispose()
+        {
+           
+        }
     }
 }

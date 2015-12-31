@@ -613,27 +613,30 @@ namespace Xbim.IO.Esent
                     transaction.Commit();
                 }
                 //copy geometry over
-                var writeGeomStore = Model.GeometryStore;
+                
                 var readGeomStore = fromModel.GeometryStore;
-                using (var writer = writeGeomStore.BeginInit())
+                using (var writeGeomStore = Model.GeometryStore)
                 {
-                    using (var reader = readGeomStore.BeginRead())
+                    using (var writer = writeGeomStore.BeginInit())
                     {
-                        foreach (var shapeGeom in reader.ShapeGeometries)
+                        using (var reader = readGeomStore.BeginRead())
                         {
-                            writer.AddShapeGeometry(shapeGeom);
+                            foreach (var shapeGeom in reader.ShapeGeometries)
+                            {
+                                writer.AddShapeGeometry(shapeGeom);
+                            }
+                            foreach (var shapeInstance in reader.ShapeInstances)
+                            {
+                                writer.AddShapeInstance(shapeInstance, shapeInstance.ShapeGeometryLabel);
+                            }
+                            foreach (var regions in reader.Regions)
+                            {
+                                writer.AddRegions(regions);
+                            }
                         }
-                        foreach (var shapeInstance in reader.ShapeInstances)
-                        {
-                            writer.AddShapeInstance(shapeInstance, shapeInstance.ShapeGeometryLabel);
-                        }
-                        foreach (var regions in reader.Regions)
-                        {
-                            writer.AddRegions(regions);
-                        }                        
+                        writer.Commit();
                     }
-                    writer.Commit();
-                }
+                };
                 Close();
             }
             catch (Exception)

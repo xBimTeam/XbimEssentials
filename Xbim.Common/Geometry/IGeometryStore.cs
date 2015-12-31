@@ -1,6 +1,7 @@
-﻿namespace Xbim.Common.Geometry
+﻿using System;
+namespace Xbim.Common.Geometry
 {
-    public interface IGeometryStore
+    public interface IGeometryStore: IDisposable
     {
        /// <summary>
         /// Clears the store of any existing geometries and prepares for an update
