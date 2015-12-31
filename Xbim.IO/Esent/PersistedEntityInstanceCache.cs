@@ -594,7 +594,7 @@ namespace Xbim.IO.Esent
         }
 
         #region Import functions
-        public void ImportModel(IModel model, string xbimDbName, ReportProgressDelegate progressHandler = null)
+        public void ImportModel(IModel fromModel, string xbimDbName, ReportProgressDelegate progressHandler = null)
         {
             CreateDatabase(xbimDbName);
             Open(xbimDbName, XbimDBAccess.Exclusive);
@@ -604,13 +604,35 @@ namespace Xbim.IO.Esent
                 using (var transaction = Model.BeginTransaction())
                 {
                     var table = Model.GetTransactingCursor();
-                    foreach (var instance in model.Instances)
+                    foreach (var instance in fromModel.Instances)
                     {
                         table.AddEntity(instance);
                         transaction.Pulse();
                     }
-                    table.WriteHeader(model.Header);
+                    table.WriteHeader(fromModel.Header);
                     transaction.Commit();
+                }
+                //copy geometry over
+                var writeGeomStore = Model.GeometryStore;
+                var readGeomStore = fromModel.GeometryStore;
+                using (var writer = writeGeomStore.BeginInit())
+                {
+                    using (var reader = readGeomStore.BeginRead())
+                    {
+                        foreach (var shapeGeom in reader.ShapeGeometries)
+                        {
+                            writer.AddShapeGeometry(shapeGeom);
+                        }
+                        foreach (var shapeInstance in reader.ShapeInstances)
+                        {
+                            writer.AddShapeInstance(shapeInstance, shapeInstance.ShapeGeometryLabel);
+                        }
+                        foreach (var regions in reader.Regions)
+                        {
+                            writer.AddRegions(regions);
+                        }                        
+                    }
+                    writer.Commit();
                 }
                 Close();
             }
