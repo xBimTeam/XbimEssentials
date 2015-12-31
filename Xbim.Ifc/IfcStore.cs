@@ -399,6 +399,8 @@ namespace Xbim.Ifc
         /// </summary>
         public void Close()
         {
+            var esent = _model as EsentModel;
+            if (esent != null) esent.Close();
             Dispose();
             try //try and tidy up if required
             {
