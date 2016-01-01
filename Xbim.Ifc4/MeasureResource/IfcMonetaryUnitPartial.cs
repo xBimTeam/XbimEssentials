@@ -53,5 +53,13 @@ namespace Xbim.Ifc4.MeasureResource
             }
         }
 
+        public string FullName
+        {
+            get
+            {
+                return FullNativeName;
+            }
+        }
+
     }
 }

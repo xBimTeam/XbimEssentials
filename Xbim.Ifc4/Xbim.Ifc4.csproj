@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActorResource\IfcActorRole.cs" />
+    <Compile Include="ActorResource\IfcActorRolePartial.cs" />
     <Compile Include="ActorResource\IfcActorSelect.cs" />
     <Compile Include="ActorResource\IfcAddress.cs" />
     <Compile Include="ActorResource\IfcOrganization.cs" />

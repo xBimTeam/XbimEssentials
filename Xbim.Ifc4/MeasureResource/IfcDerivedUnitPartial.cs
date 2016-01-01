@@ -9,7 +9,7 @@ namespace Xbim.Ifc4.MeasureResource
         /// Get the full name of the IfcDerivedUnit
         /// </summary>
         /// <returns>string holding full name</returns>
-        public string Name
+        public string FullName
         {
             get
             {

@@ -10,7 +10,7 @@
         public static string Name(this IfcUnit ifcUnit)
         {
             var unit = ifcUnit as IfcDerivedUnit;
-            if (unit != null) return unit.Name;
+            if (unit != null) return unit.FullName;
             var namedUnit = ifcUnit as IfcNamedUnit;
             if (namedUnit != null) return namedUnit.FullName;
             var monetaryUnit = ifcUnit as IfcMonetaryUnit;
@@ -23,7 +23,7 @@
         public static string Symbol(this IfcUnit ifcUnit)
         {
             var unit = ifcUnit as IfcDerivedUnit;
-            if (unit != null) return unit.Name;
+            if (unit != null) return unit.FullName;
             var namedUnit = ifcUnit as IfcNamedUnit;
             if (namedUnit != null) return namedUnit.Symbol;
             var monetaryUnit = ifcUnit as IfcMonetaryUnit;

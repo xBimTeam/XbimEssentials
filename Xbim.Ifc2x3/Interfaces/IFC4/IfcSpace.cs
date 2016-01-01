@@ -77,6 +77,18 @@ namespace Xbim.Ifc2x3.ProductExtension
 				return Model.Instances.Where<IIfcRelReferencedInSpatialStructure>(e => (e.RelatingStructure as IfcSpace) == this, "RelatingStructure", this);
 			} 
 		}
+
+        /// <summary>
+        /// Returns all spaces that are sub-spaces of this space
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<IIfcSpace> Spaces
+        {
+            get
+            {
+                return IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IfcSpace>();
+            }
+        }
 	//## Custom code
 	//##
 	}

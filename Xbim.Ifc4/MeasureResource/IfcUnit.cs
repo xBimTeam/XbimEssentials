@@ -9,6 +9,7 @@
 
 using Xbim.Common;
 using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc4.MeasureResource
 {
@@ -29,6 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface
+        string FullName { get; }
 		//##
 		#endregion
 	}

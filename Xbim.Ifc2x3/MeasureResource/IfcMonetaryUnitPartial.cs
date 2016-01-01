@@ -52,6 +52,13 @@ namespace Xbim.Ifc2x3.MeasureResource
                 return string.IsNullOrEmpty(value) ? Currency.ToString() : value;
             }
         }
+        public string FullName
+        {
+            get
+            {
+                return FullNativeName;
+            }
+        }
 
     }
 }

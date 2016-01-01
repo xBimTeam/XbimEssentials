@@ -4,7 +4,8 @@ namespace Xbim.Ifc4.MeasureResource
 {
     public partial class IfcConversionBasedUnit
     {
-
+        public string FullName { get { return Name; } }
+        
         /// <summary>
         /// Get Symbol string for IfcConversionBasedUnit conversion unit
         /// </summary>
