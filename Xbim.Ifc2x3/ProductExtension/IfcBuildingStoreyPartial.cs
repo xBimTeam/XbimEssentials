@@ -17,23 +17,28 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// Returns the Gross Floor Area, if the element base quantity GrossFloorArea is defined
         /// </summary>
         /// <returns></returns>
-        public  IfcAreaMeasure? GrossFloorArea
+        public  Ifc4.MeasureResource.IfcAreaMeasure? GrossFloorArea
         {
             get
             {
                 var qArea = GetQuantity<IfcQuantityArea>("BaseQuantities", "GrossFloorArea") ??
                             GetQuantity<IfcQuantityArea>("GrossFloorArea");
-                return qArea != null ? (IfcAreaMeasure?) qArea.AreaValue : null;
+                if (qArea != null) 
+                    return new Ifc4.MeasureResource.IfcAreaMeasure(qArea.AreaValue); 
+                else return null;
             }
         }
 
-        public IfcLengthMeasure? TotalHeight
+        public Ifc4.MeasureResource.IfcLengthMeasure? TotalHeight
         {
             get
             {
                 var qLen = GetQuantity<IfcQuantityLength>("BaseQuantities", "TotalHeight") ??
                            GetQuantity<IfcQuantityLength>("TotalHeight");
-                return qLen != null ? (IfcLengthMeasure?) qLen.LengthValue : null;
+                if (qLen != null)
+                    return new Ifc4.MeasureResource.IfcLengthMeasure(qLen.LengthValue);
+                else
+                    return null;
             }
         }
 
@@ -41,7 +46,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// Returns all spaces that are sub-spaces of this storey
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IfcSpace> Spaces
+        public IEnumerable<Xbim.Ifc4.Interfaces.IIfcSpace> Spaces
         {
             get
             {              
@@ -50,7 +55,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         }
 
 
-        public IEnumerable<IfcBuildingStorey> BuildingStoreys
+        public IEnumerable<Xbim.Ifc4.Interfaces.IIfcBuildingStorey> BuildingStoreys
         {
             get
             {

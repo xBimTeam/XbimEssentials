@@ -37,6 +37,13 @@ namespace Xbim.Ifc2x3.Kernel
 				return Model.Instances.Where<IIfcRelDefinesByProperties>(e => (e.RelatingPropertyDefinition as IfcPropertySetDefinition) == this, "RelatingPropertyDefinition", this);
 			} 
 		}
+        public IEnumerable<IIfcPropertySetDefinition> PropertySetDefinitions
+        {
+            get
+            {
+                return new IIfcPropertySetDefinition[] { this };
+            }
+        }
 	//## Custom code
 	//##
 	}

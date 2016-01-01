@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Ifc4.GeometryResource;
@@ -7,9 +8,21 @@ using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.ProductExtension;
 using Xbim.Ifc4.RepresentationResource;
 
+namespace Xbim.Ifc4.Interfaces
+{
+    public partial interface @IIfcProject : IIfcContext
+    {
+        
+        void Initialize(ProjectUnits units);
+        IEnumerable<IIfcSite> Sites { get; }
+        IEnumerable<IIfcBuilding> Buildings { get; }
+        IEnumerable<IIfcSpatialStructureElement> SpatialStructuralElements { get; }
+    }
+}
+
 namespace Xbim.Ifc4.Kernel
 {
-    public partial class IfcProject
+    public partial class IfcProject : IfcContext, IInstantiableEntity, IIfcProject, IEqualityComparer<@IfcProject>, IEquatable<@IfcProject>
     {
         public IfcGeometricRepresentationContext ModelContext
         {
@@ -155,7 +168,7 @@ namespace Xbim.Ifc4.Kernel
                 decomposition.RelatedObjects.Add(site);
         }
 
-        public IEnumerable<IfcSite> Sites
+        public IEnumerable<IIfcSite> Sites
         {
             get {
                 return IsDecomposedBy.SelectMany(rel => Enumerable.OfType<IfcSite>(rel.RelatedObjects));
@@ -181,7 +194,7 @@ namespace Xbim.Ifc4.Kernel
         /// <summary>
         /// Returns all buildings at the highest level of spatial structural decomposition (i.e. root buildings)
         /// </summary>
-        public IEnumerable<IfcBuilding> Buildings
+        public IEnumerable<IIfcBuilding> Buildings
         {
             get
             {               
@@ -200,7 +213,7 @@ namespace Xbim.Ifc4.Kernel
             }
         }
 
-        public IEnumerable<IfcSpatialStructureElement> SpatialStructuralElements
+        public IEnumerable<IIfcSpatialStructureElement> SpatialStructuralElements
         {
             get
             {

@@ -4,6 +4,7 @@ using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.QuantityResource;
 using Xbim.Ifc2x3.RepresentationResource;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
@@ -17,15 +18,15 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// Returns the projected footprint are of the site, this value is derived and makes use of property sets not in the ifc schema
         /// </summary>
         /// <returns></returns>
-        public IfcAreaMeasure? FootprintArea
+        public Ifc4.MeasureResource.IfcAreaMeasure? FootprintArea
         {
             get
             {
                 var qArea = GetQuantity<IfcQuantityArea>("BaseQuantities", "GrossArea");
                 if (qArea == null) qArea = GetQuantity<IfcQuantityArea>("GrossArea"); //just look for any area
-                if (qArea != null) return qArea.AreaValue;
+                if (qArea != null) return new Ifc4.MeasureResource.IfcAreaMeasure(qArea.AreaValue);
                 //if revit try their value
-                IfcAreaMeasure val = GetPropertySingleValue<IfcAreaMeasure>("PSet_Revit_Dimensions",
+                var val = GetPropertySingleValue<Ifc4.MeasureResource.IfcAreaMeasure>("PSet_Revit_Dimensions",
                     "Projected Area");
                 if (val != null) return val;
 
@@ -36,7 +37,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// <summary>
         /// Returns all buildings at the highest level of spatial structural decomposition (i.e. root buildings for this site)
         /// </summary>
-        public IEnumerable<IfcBuilding> Buildings
+        public IEnumerable<IIfcBuilding> Buildings
         {
             get
             {
@@ -47,7 +48,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 
         #endregion
 
-        public IEnumerable<IfcSpace> Spaces
+        public IEnumerable<IIfcSpace> Spaces
         {
             get
             {

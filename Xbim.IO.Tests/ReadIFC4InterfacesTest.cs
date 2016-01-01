@@ -30,17 +30,19 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void LoadIfc4IntoDbTest()
         {
-            var model = new IO.Esent.EsentModel(new EntityFactory());
-            model.CreateFrom("SampleHouse4.ifc", null, null, true, true);
+            using (var model = new IO.Esent.EsentModel(new EntityFactory()))
+            {
+                model.CreateFrom("SampleHouse4.ifc", null, null, true, true);
+                var project = model.Instances.FirstOrDefault<IIfcProject>();
+                Assert.IsNotNull(project);
+                Assert.IsNotNull(project.Name);
 
-            var project = model.Instances.FirstOrDefault<IIfcProject>();
-            Assert.IsNotNull(project);
-            Assert.IsNotNull(project.Name);
-
-            var walls = model.Instances.OfType<IIfcWall>();
-            var doors = model.Instances.OfType<IIfcDoor>();
-            Assert.IsTrue(walls.Any());
-            Assert.IsTrue(doors.Any());
+                var walls = model.Instances.OfType<IIfcWall>();
+                var doors = model.Instances.OfType<IIfcDoor>();
+                Assert.IsTrue(walls.Any());
+                Assert.IsTrue(doors.Any());
+            }
+            
         }
     }
 }

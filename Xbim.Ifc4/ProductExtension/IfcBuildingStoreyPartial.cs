@@ -1,7 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.QuantityResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+    /// <summary>
+    /// Readonly interface for IfcBuildingStorey
+    /// </summary>
+    // ReSharper disable once PartialTypeWithSinglePart
+    public partial interface @IIfcBuildingStorey : IIfcSpatialStructureElement
+    {
+        IEnumerable<IIfcSpace> Spaces { get; }
+        IEnumerable<IIfcBuildingStorey> BuildingStoreys { get; }
+        IfcAreaMeasure? GrossFloorArea { get; }
+        IfcLengthMeasure? TotalHeight { get; }
+    }
+}
 
 
 namespace Xbim.Ifc4.ProductExtension
@@ -19,7 +35,7 @@ namespace Xbim.Ifc4.ProductExtension
         /// Returns all spaces that are sub-spaces of this storey
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IfcSpace> Spaces
+        public IEnumerable<IIfcSpace> Spaces
         {
             get
             {              
@@ -28,7 +44,7 @@ namespace Xbim.Ifc4.ProductExtension
         }
 
 
-        public IEnumerable<IfcBuildingStorey> BuildingStoreys
+        public IEnumerable<IIfcBuildingStorey> BuildingStoreys
         {
             get
             {
@@ -40,29 +56,29 @@ namespace Xbim.Ifc4.ProductExtension
 
 #region Properties
 
-        ///// <summary>
-        ///// Returns the Gross Floor Area, if the element base quantity GrossFloorArea is defined
-        ///// </summary>
-        ///// <returns></returns>
-        //public IfcAreaMeasure? GrossFloorArea
-        //{
-        //    get
-        //    {
-        //        var qArea = GetQuantity<IfcQuantityArea>("BaseQuantities", "GrossFloorArea") ??
-        //                    GetQuantity<IfcQuantityArea>("GrossFloorArea");
-        //        return qArea != null ? (IfcAreaMeasure?)qArea.AreaValue : null;
-        //    }
-        //}
+        /// <summary>
+        /// Returns the Gross Floor Area, if the element base quantity GrossFloorArea is defined
+        /// </summary>
+        /// <returns></returns>
+        public IfcAreaMeasure? GrossFloorArea
+        {
+            get
+            {
+                var qArea = GetQuantity<IfcQuantityArea>("BaseQuantities", "GrossFloorArea") ??
+                            GetQuantity<IfcQuantityArea>("GrossFloorArea");
+                return qArea != null ? (IfcAreaMeasure?)qArea.AreaValue : null;
+            }
+        }
 
-        //public IfcLengthMeasure? TotalHeight
-        //{
-        //    get
-        //    {
-        //        var qLen = GetQuantity<IfcQuantityLength>("BaseQuantities", "TotalHeight") ??
-        //                   GetQuantity<IfcQuantityLength>("TotalHeight");
-        //        return qLen != null ? (IfcLengthMeasure?)qLen.LengthValue : null;
-        //    }
-        //}
+        public IfcLengthMeasure? TotalHeight
+        {
+            get
+            {
+                var qLen = GetQuantity<IfcQuantityLength>("BaseQuantities", "TotalHeight") ??
+                           GetQuantity<IfcQuantityLength>("TotalHeight");
+                return qLen != null ? (IfcLengthMeasure?)qLen.LengthValue : null;
+            }
+        }
 
 #endregion
     }

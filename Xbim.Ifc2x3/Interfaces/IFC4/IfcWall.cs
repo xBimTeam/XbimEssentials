@@ -25,6 +25,40 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				//##
 			} 
 		}
+
+        /// <summary>
+        /// Gets the area of the wall in elevation
+        /// </summary>
+        /// <param name="wall"></param>
+        /// <returns></returns>
+        public Ifc4.MeasureResource.IfcAreaMeasure? GetWallSideArea
+        {
+            get
+            {
+                var qArea = GetQuantity<Ifc4.QuantityResource.IfcQuantityArea>("BaseQuantities", "GrossSideArea");
+                if (qArea == null) qArea = GetQuantity<Ifc4.QuantityResource.IfcQuantityArea>("GrossSideArea"); //just look for any area
+                if (qArea != null) return new Ifc4.MeasureResource.IfcAreaMeasure(qArea.AreaValue);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// True if the wall is external
+        /// </summary>
+        /// <param name="wall"></param>
+        /// <returns></returns>
+        public Ifc4.MeasureResource.IfcBoolean? IsExternal
+        {
+            get
+            {
+                var val = GetPropertySingleNominalValue("Pset_WallCommon", "IsExternal");
+                if (val != null && val is Ifc4.MeasureResource.IfcBoolean)
+                    return (Ifc4.MeasureResource.IfcBoolean)val;
+                else
+                    return null;
+            }
+
+        }
 	//## Custom code
 	//##
 	}

@@ -76,20 +76,17 @@ namespace Xbim.Ifc2x3.Kernel
         /// <param name="pSetName"></param>
         /// <param name="caseSensitive"></param>
         /// <returns></returns>
-        public IfcPropertySet GetPropertySet(string pSetName, bool caseSensitive = true)
+        public Ifc4.Interfaces.IIfcPropertySet GetPropertySet(string pSetName, bool caseSensitive = true)
         {
-            IfcRelDefinesByProperties rel = caseSensitive ?
-                IsDefinedByProperties.FirstOrDefault(r => r.RelatingPropertyDefinition.Name == pSetName)
-                : IsDefinedByProperties.FirstOrDefault(r => string.Equals(r.RelatingPropertyDefinition.Name.ToString(), pSetName, StringComparison.CurrentCultureIgnoreCase));
-            if (rel != null) return rel.RelatingPropertyDefinition as IfcPropertySet;
-            return null;
+            return PropertySets.FirstOrDefault(ps=>string.Compare(ps.Name,pSetName,!caseSensitive)==0);
         }
-        public IfcPropertySingleValue GetPropertySingleValue(string pSetName, string propertyName)
+
+        public Ifc4.Interfaces.IIfcPropertySingleValue GetPropertySingleValue(string pSetName, string propertyName)
         {
             var pset = GetPropertySet(pSetName);
-            return pset != null ? pset.HasProperties.OfType<IfcPropertySingleValue>().FirstOrDefault(p => p.Name == propertyName) : null;
+            return pset != null ? pset.HasProperties.OfType<Ifc4.Interfaces.IIfcPropertySingleValue>().FirstOrDefault(p => p.Name == propertyName) : null;
         }
-        public TValueType GetPropertySingleValue<TValueType>(string pSetName, string propertyName) where TValueType : IfcValue
+        public TValueType GetPropertySingleValue<TValueType>(string pSetName, string propertyName) where TValueType : Ifc4.Interfaces.IIfcValue
         {
             var pset = GetPropertySet(pSetName);
             if (pset == null) return default(TValueType);
@@ -105,51 +102,21 @@ namespace Xbim.Ifc2x3.Kernel
         /// <param name="pSetName"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public IfcValue GetPropertySingleNominalValue(string pSetName, string propertyName)
+        public Ifc4.Interfaces.IIfcValue GetPropertySingleNominalValue(string pSetName, string propertyName)
         {
             var psv = GetPropertySingleValue(pSetName, propertyName);
             return psv == null ? null : psv.NominalValue;
         }
 
-        public IEnumerable<IfcPropertySet> PropertySets
+        public IEnumerable<Ifc4.Interfaces.IIfcPropertySet> PropertySets
         {
             get
             {
-                IEnumerable<IfcRelDefinesByProperties> rels = IsDefinedByProperties;
-                return rels.Select(rel => rel.RelatingPropertyDefinition).OfType<IfcPropertySet>();
+                IEnumerable<Ifc4.Interfaces.IIfcRelDefinesByProperties> rels = IsDefinedByProperties;
+                return rels.Select(rel => rel.RelatingPropertyDefinition).OfType<Ifc4.Interfaces.IIfcPropertySet>();
             }
         }
-
-        public IDictionary<IfcLabel, Dictionary<IfcIdentifier, IfcValue>> PropertySingleValues
-        {
-            get
-            {
-                var result = new Dictionary<IfcLabel, Dictionary<IfcIdentifier, IfcValue>>();
-                foreach (var rel in IsDefinedByProperties)
-                {
-
-                    var psetName = rel.RelatingPropertyDefinition.Name;
-                    var pSet = rel.RelatingPropertyDefinition as IfcPropertySet;
-                    if (pSet == null || psetName == null) continue;
-                    Dictionary<IfcIdentifier, IfcValue> values;
-                    if (!result.TryGetValue(psetName.Value, out values))
-                    {
-                        values = new Dictionary<IfcIdentifier, IfcValue>();
-                        result.Add(psetName.Value, values);
-                    }
-                    foreach (var prop in pSet.HasProperties)
-                    {
-                        var singleVal = prop as IfcPropertySingleValue;
-                        if (singleVal == null) continue;
-                        if (!values.ContainsKey(prop.Name))
-                            values.Add(prop.Name, singleVal.NominalValue);
-                    }
-
-                }
-                return result;
-            }
-        }
-
+   
 
         /// <summary>
         /// Creates property single value with specified type and default value of this type (0 for numeric types, empty string tor string types and false for bool types)
@@ -177,7 +144,7 @@ namespace Xbim.Ifc2x3.Kernel
 
         public IfcPropertySingleValue SetPropertySingleValue(string pSetName, string propertyName, IfcValue value)
         {
-            var pset = GetPropertySet(pSetName);
+            var pset = GetPropertySet(pSetName) as IfcPropertySet;
             if (pset == null)
             {
                 pset = Model.Instances.New<IfcPropertySet>();
@@ -188,7 +155,7 @@ namespace Xbim.Ifc2x3.Kernel
             }
 
             //change existing property of the same name from the property set
-            var singleVal = GetPropertySingleValue(pSetName, propertyName);
+            var singleVal = GetPropertySingleValue(pSetName, propertyName) as IfcPropertySingleValue;
             if (singleVal != null)
             {
                 singleVal.NominalValue = value;
@@ -209,19 +176,19 @@ namespace Xbim.Ifc2x3.Kernel
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        static public IEnumerable<IfcElement> GetExternalElements(IModel model)
+        static public IEnumerable<Ifc4.Interfaces.IIfcElement> GetExternalElements(IModel model)
         {
-            return model.Instances.OfType<IfcRelSpaceBoundary>().Where(r => r.InternalOrExternalBoundary == IfcInternalOrExternalEnum.EXTERNAL
-                && r.PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.PHYSICAL
+            return model.Instances.OfType<Ifc4.Interfaces.IIfcRelSpaceBoundary>().Where(r => r.InternalOrExternalBoundary == Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL
+                && r.PhysicalOrVirtualBoundary == Ifc4.Interfaces.IfcPhysicalOrVirtualEnum.PHYSICAL
                 && r.RelatedBuildingElement != null).Select(rsb => rsb.RelatedBuildingElement).Distinct();
         }
 
-        public IfcElementQuantity GetElementQuantity(string pSetName, bool caseSensitive = true)
+        public Ifc4.Interfaces.IIfcElementQuantity GetElementQuantity(string pSetName, bool caseSensitive = true)
         {
             IfcRelDefinesByProperties rel = caseSensitive ?
-                IsDefinedByProperties.FirstOrDefault(r => r.RelatingPropertyDefinition.Name == pSetName && r.RelatingPropertyDefinition is IfcElementQuantity)
-                : IsDefinedByProperties.FirstOrDefault(r => r.RelatingPropertyDefinition.Name.ToString().ToLower() == pSetName.ToLower() && r.RelatingPropertyDefinition is IfcElementQuantity);
-            if (rel != null) return rel.RelatingPropertyDefinition as IfcElementQuantity;
+                IsDefinedByProperties.FirstOrDefault(r => r.RelatingPropertyDefinition.Name == pSetName && r.RelatingPropertyDefinition is Ifc4.Interfaces.IIfcElementQuantity)
+                : IsDefinedByProperties.FirstOrDefault(r => r.RelatingPropertyDefinition.Name.ToString().ToLower() == pSetName.ToLower() && r.RelatingPropertyDefinition is Ifc4.Interfaces.IIfcElementQuantity);
+            if (rel != null) return rel.RelatingPropertyDefinition as Ifc4.Interfaces.IIfcElementQuantity;
             return null;
         }
 
@@ -229,12 +196,12 @@ namespace Xbim.Ifc2x3.Kernel
         /// Use this method to get all element quantities related to this object
         /// </summary>
         /// <returns>All related element quantities</returns>
-        public IEnumerable<IfcElementQuantity> ElementQuantities
+        public IEnumerable<Ifc4.Interfaces.IIfcElementQuantity> ElementQuantities
         {
             get
             {
-                var rels = IsDefinedByProperties.Where(r => r.RelatingPropertyDefinition is IfcElementQuantity);
-                return rels.Select(rel => rel.RelatingPropertyDefinition as IfcElementQuantity);
+                var rels = IsDefinedByProperties.Where(r => r.RelatingPropertyDefinition is Ifc4.Interfaces.IIfcElementQuantity);
+                return rels.Select(rel => rel.RelatingPropertyDefinition as Ifc4.Interfaces.IIfcElementQuantity);
             }
         }
 
@@ -242,11 +209,11 @@ namespace Xbim.Ifc2x3.Kernel
         /// Use this to get all physical simple quantities (like length, area, volume, count, etc.)
         /// </summary>
         /// <returns>All physical simple quantities (like length, area, volume, count, etc.)</returns>
-        public IEnumerable<IfcPhysicalSimpleQuantity> PhysicalSimpleQuantities
+        public IEnumerable<Ifc4.Interfaces.IIfcPhysicalSimpleQuantity> PhysicalSimpleQuantities
         {
             get
             {
-                return ElementQuantities.SelectMany(eq => eq.Quantities).OfType<IfcPhysicalSimpleQuantity>();
+                return ElementQuantities.SelectMany(eq => eq.Quantities).OfType<Ifc4.Interfaces.IIfcPhysicalSimpleQuantity>();
             }
         }
 
@@ -257,11 +224,11 @@ namespace Xbim.Ifc2x3.Kernel
         /// <param name="pSetName"></param>
         /// <param name="qName"></param>
         /// <returns></returns>
-        public TQType GetQuantity<TQType>(string pSetName, string qName) where TQType : IfcPhysicalQuantity
+        public TQType GetQuantity<TQType>(string pSetName, string qName) where TQType : Ifc4.Interfaces.IIfcPhysicalQuantity
         {
             var rel = IsDefinedByProperties.FirstOrDefault(r => r.RelatingPropertyDefinition.Name == pSetName && r.RelatingPropertyDefinition is IfcElementQuantity);
             if (rel == null) return default(TQType);
-            var eQ = rel.RelatingPropertyDefinition as IfcElementQuantity;
+            var eQ = rel.RelatingPropertyDefinition as Ifc4.Interfaces.IIfcElementQuantity;
             return eQ == null ? default(TQType) : eQ.Quantities.OfType<TQType>().FirstOrDefault(q => q.Name == qName);
         }
 
@@ -271,11 +238,11 @@ namespace Xbim.Ifc2x3.Kernel
         /// <typeparam name="TQType"></typeparam>
         /// <param name="qName"></param>
         /// <returns></returns>
-        public TQType GetQuantity<TQType>(string qName) where TQType : IfcPhysicalQuantity
+        public TQType GetQuantity<TQType>(string qName) where TQType : Ifc4.Interfaces.IIfcPhysicalQuantity
         {
-            var rel = IsDefinedByProperties.FirstOrDefault(r => r.RelatingPropertyDefinition is IfcElementQuantity);
+            var rel = IsDefinedByProperties.FirstOrDefault(r => r.RelatingPropertyDefinition is Ifc4.Interfaces.IIfcElementQuantity);
             if (rel == null) return default(TQType);
-            var eQ = rel.RelatingPropertyDefinition as IfcElementQuantity;
+            var eQ = rel.RelatingPropertyDefinition as Ifc4.Interfaces.IIfcElementQuantity;
             return eQ != null ? eQ.Quantities.OfType<TQType>().FirstOrDefault(q => q.Name == qName) : default(TQType);
         }
 
@@ -287,7 +254,7 @@ namespace Xbim.Ifc2x3.Kernel
         /// <param name="methodOfMeasurement">Sets the method of measurement, if not null overrides previous value</param>
         public IfcElementQuantity AddQuantity(string propertySetName, IfcPhysicalQuantity quantity, string methodOfMeasurement)
         {
-            var pset = GetElementQuantity(propertySetName);
+            var pset = GetElementQuantity(propertySetName) as IfcElementQuantity;
 
             if (pset == null)
             {
@@ -318,9 +285,9 @@ namespace Xbim.Ifc2x3.Kernel
         /// <param name="pSetName"></param>
         /// <param name="qualityName"></param>
         /// <returns></returns>
-        public IfcPhysicalSimpleQuantity GetElementPhysicalSimpleQuantity(string pSetName, string qualityName)
+        public Xbim.Ifc4.Interfaces.IIfcPhysicalSimpleQuantity GetElementPhysicalSimpleQuantity(string pSetName, string qualityName)
         {
-            var elementQuality = GetElementQuantity(pSetName);
+            var elementQuality = GetElementQuantity(pSetName) as IfcElementQuantity;
             if (elementQuality != null)
             {
                 return elementQuality.Quantities.FirstOrDefault<IfcPhysicalSimpleQuantity>(sq => sq.Name == qualityName);
@@ -332,7 +299,7 @@ namespace Xbim.Ifc2x3.Kernel
         {
 
 
-            var qset = GetElementQuantity(qSetName);
+            var qset = GetElementQuantity(qSetName)as IfcElementQuantity;
             if (qset == null)
             {
                 qset = Model.Instances.New<IfcElementQuantity>();
@@ -343,70 +310,64 @@ namespace Xbim.Ifc2x3.Kernel
             }
 
             //remove existing simple quality
-            var simpleQuality = GetElementPhysicalSimpleQuantity(qSetName, qualityName);
-            if (simpleQuality != null)
+            var simpleQuantity = GetElementPhysicalSimpleQuantity(qSetName, qualityName) as IfcPhysicalSimpleQuantity;
+            if (simpleQuantity == null)
             {
-                var elementQuality = GetElementQuantity(qSetName);
-                elementQuality.Quantities.Remove(simpleQuality);
-                Model.Delete(simpleQuality);
-            }
-
-            switch (quantityType)
-            {
-                case XbimQuantityTypeEnum.Area:
-                    simpleQuality = Model.Instances.New<IfcQuantityArea>(sq => sq.AreaValue = (IfcAreaMeasure)value);
-                    break;
-                case XbimQuantityTypeEnum.Count:
-                    simpleQuality = Model.Instances.New<IfcQuantityCount>(sq => sq.CountValue = (IfcCountMeasure)value);
-                    break;
-                case XbimQuantityTypeEnum.Length:
-                    simpleQuality = Model.Instances.New<IfcQuantityLength>(sq => sq.LengthValue = (IfcLengthMeasure)value);
-                    break;
-                case XbimQuantityTypeEnum.Time:
-                    simpleQuality = Model.Instances.New<IfcQuantityTime>(sq => sq.TimeValue = (IfcTimeMeasure)value);
-                    break;
-                case XbimQuantityTypeEnum.Volume:
-                    simpleQuality = Model.Instances.New<IfcQuantityVolume>(sq => sq.VolumeValue = (IfcVolumeMeasure)value);
-                    break;
-                case XbimQuantityTypeEnum.Weight:
-                    simpleQuality = Model.Instances.New<IfcQuantityWeight>(sq => sq.WeightValue = (IfcMassMeasure)value);
-                    break;
-                default:
-                    return;
-            }
-
-            simpleQuality.Unit = unit;
-            simpleQuality.Name = qualityName;
-
-            qset.Quantities.Add(simpleQuality);
-        }
-
-        public void RemovePropertySingleValue(string pSetName, string propertyName)
-        {
-            var pset = GetPropertySet(pSetName);
-            if (pset != null)
-            {
-                var singleValue = pset.HasProperties.FirstOrDefault<IfcPropertySingleValue>(p => p.Name == propertyName);
-                if (singleValue != null)
+                switch (quantityType)
                 {
-                    pset.HasProperties.Remove(singleValue);
+                    case XbimQuantityTypeEnum.Area:
+                        simpleQuantity = Model.Instances.New<IfcQuantityArea>(sq => sq.AreaValue = (IfcAreaMeasure)value);
+                        break;
+                    case XbimQuantityTypeEnum.Count:
+                        simpleQuantity = Model.Instances.New<IfcQuantityCount>(sq => sq.CountValue = (IfcCountMeasure)value);
+                        break;
+                    case XbimQuantityTypeEnum.Length:
+                        simpleQuantity = Model.Instances.New<IfcQuantityLength>(sq => sq.LengthValue = (IfcLengthMeasure)value);
+                        break;
+                    case XbimQuantityTypeEnum.Time:
+                        simpleQuantity = Model.Instances.New<IfcQuantityTime>(sq => sq.TimeValue = (IfcTimeMeasure)value);
+                        break;
+                    case XbimQuantityTypeEnum.Volume:
+                        simpleQuantity = Model.Instances.New<IfcQuantityVolume>(sq => sq.VolumeValue = (IfcVolumeMeasure)value);
+                        break;
+                    case XbimQuantityTypeEnum.Weight:
+                        simpleQuantity = Model.Instances.New<IfcQuantityWeight>(sq => sq.WeightValue = (IfcMassMeasure)value);
+                        break;
+                    default:
+                        return;
                 }
             }
-
-        }
-
-        public void RemoveElementPhysicalSimpleQuantity(string pSetName, string qualityName)
-        {
-            var elementQuality = GetElementQuantity(pSetName);
-            if (elementQuality != null)
+            else
             {
-                var simpleQuality = elementQuality.Quantities.FirstOrDefault<IfcPhysicalSimpleQuantity>(sq => sq.Name == qualityName);
-                if (simpleQuality != null)
+                switch (quantityType)
                 {
-                    elementQuality.Quantities.Remove(simpleQuality);
+                    case XbimQuantityTypeEnum.Area:
+                        ((IfcQuantityArea)simpleQuantity).AreaValue = new IfcAreaMeasure(value);
+                        break;
+                    case XbimQuantityTypeEnum.Count:
+                        ((IfcQuantityCount)simpleQuantity).CountValue = new IfcCountMeasure(value);
+                        break;
+                    case XbimQuantityTypeEnum.Length:
+                        ((IfcQuantityLength)simpleQuantity).LengthValue = new IfcLengthMeasure(value);                       
+                        break;
+                    case XbimQuantityTypeEnum.Time:
+                        ((IfcQuantityTime)simpleQuantity).TimeValue = new IfcTimeMeasure(value);                            
+                        break;
+                    case XbimQuantityTypeEnum.Volume:
+                        ((IfcQuantityVolume)simpleQuantity).VolumeValue = new IfcVolumeMeasure(value);     
+                        break;
+                    case XbimQuantityTypeEnum.Weight:
+                        ((IfcQuantityWeight)simpleQuantity).WeightValue = new IfcMassMeasure(value); 
+                        break;
+                    default:
+                        return;
                 }
             }
+            simpleQuantity.Unit = unit;
+            simpleQuantity.Name = qualityName;
+            qset.Quantities.Add(simpleQuantity);
         }
+      
     }
 
     public enum XbimQuantityTypeEnum

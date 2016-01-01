@@ -1,6 +1,24 @@
-﻿namespace Xbim.Ifc4.MeasureResource
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using Xbim.Common;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MeasureResource;
+
+namespace Xbim.Ifc4.Interfaces
 {
-    public abstract partial class IfcNamedUnit
+    public partial interface @IIfcNamedUnit : IPersistEntity, IfcUnit
+    {
+        string FullName { get; }
+        string Symbol { get; }
+    }
+}
+
+namespace Xbim.Ifc4.MeasureResource
+{
+   
+
+    public abstract partial class IfcNamedUnit : IPersistEntity, INotifyPropertyChanged, IIfcNamedUnit, IEqualityComparer<@IfcNamedUnit>, IEquatable<@IfcNamedUnit>
     {
         /// <summary>
         /// Get the full name of the IfcNamedUnit

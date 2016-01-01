@@ -619,7 +619,6 @@
     <Compile Include="DataProviders\IfcZShapeProfileDefs.cs" />
     <Compile Include="DirectionExtensions.cs" />
     <Compile Include="DistributionControlElementExtensions.cs" />
-    <Compile Include="DoorExtensions.cs" />
     <Compile Include="DoorLiningPropertiesExtensions.cs" />
     <Compile Include="DoorStyleExtensions.cs" />
     <Compile Include="ElementTypeExtensions.cs" />
@@ -699,8 +698,6 @@
     <Compile Include="SpatialStructureElementExtensions.cs" />
     <Compile Include="StyledItemExtensions.cs" />
     <Compile Include="SurfaceExtensions.cs" />
-    <Compile Include="WallExtensions.cs" />
-    <Compile Include="WindowExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="XbimIfcKey.pfx" />

@@ -59,6 +59,55 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				//##
 			} 
 		}
+        /// <summary>
+        /// Returns if the door is external
+        /// </summary>
+        /// <param name="window"></param>
+        /// <returns></returns>
+        public Xbim.Ifc4.MeasureResource.IfcBoolean? IsExternal
+        {
+            get
+            {
+                var val = GetPropertySingleNominalValue("Pset_WindowCommon", "IsExternal");
+                if (val != null && val is Xbim.Ifc4.MeasureResource.IfcBoolean)
+                    return (Xbim.Ifc4.MeasureResource.IfcBoolean)val;
+                else
+                    return new Xbim.Ifc4.MeasureResource.IfcBoolean(false); //default is to return false
+            }
+        }
+        /// <summary>
+        /// Returns the Reference ID for this specified type in this project (e.g. type 'A-1'), if known
+        /// </summary>
+        /// <param name="window"></param>
+        /// <returns></returns>
+        public Xbim.Ifc4.MeasureResource.IfcIdentifier? Reference
+        {
+            get
+            {
+                var val = GetPropertySingleNominalValue("Pset_WindowCommon", "Reference ");
+                if (val != null && val is Xbim.Ifc4.MeasureResource.IfcIdentifier)
+                    return (Xbim.Ifc4.MeasureResource.IfcIdentifier)val;
+                else
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Returns the fire rating if defined
+        /// </summary>
+        /// <param name="window"></param>
+        /// <returns></returns>
+        public Xbim.Ifc4.MeasureResource.IfcLabel? FireRating
+        {
+            get
+            {
+                var val = GetPropertySingleNominalValue("Pset_WindowCommon", "FireRating ");
+                if (val != null && val is Xbim.Ifc4.MeasureResource.IfcLabel)
+                    return (Xbim.Ifc4.MeasureResource.IfcLabel)val;
+                else
+                    return null;
+            }
+        }
 	//## Custom code
 	//##
 	}

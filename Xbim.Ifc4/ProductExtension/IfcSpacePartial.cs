@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.ProductExtension
         /// Returns all spaces that are sub-spaces of this space
         /// </summary>
         /// <returns></returns>
-        public  IEnumerable<IfcSpace> GetSpaces
+        public  IEnumerable<IfcSpace> Spaces
         {
             get
             {

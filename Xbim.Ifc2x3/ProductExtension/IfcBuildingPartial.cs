@@ -3,6 +3,7 @@ using System.Linq;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.QuantityResource;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
@@ -14,7 +15,7 @@ namespace Xbim.Ifc2x3.ProductExtension
          /// Returns the site (if any) that contains this building, null if the building is not decomposing a site
          /// </summary>
          /// <returns></returns>
-         public IfcSite Site
+         public IIfcSite Site
          {
              get
              {
@@ -26,7 +27,7 @@ namespace Xbim.Ifc2x3.ProductExtension
          /// Returns the buidlings that decompose this building
          /// </summary>
          /// <returns></returns>
-         public IEnumerable<IfcBuilding> Buildings
+         public IEnumerable<IIfcBuilding> Buildings
          {
              get
              {
@@ -38,7 +39,7 @@ namespace Xbim.Ifc2x3.ProductExtension
          /// Returns all spaces that are sub-spaces of this building
          /// </summary>
          /// <returns></returns>
-         public IEnumerable<IfcSpace> Spaces
+         public IEnumerable<IIfcSpace> Spaces
          {
              get
              {
@@ -51,15 +52,15 @@ namespace Xbim.Ifc2x3.ProductExtension
          /// If no property is defined the GFA is returned as the sume of the building storeys GFA
          /// </summary>
          /// <returns></returns>
-         public IfcAreaMeasure? GrossFloorArea
+         public Xbim.Ifc4.MeasureResource.IfcAreaMeasure? GrossFloorArea
          {
              get
              {
                  var qArea = GetQuantity<IfcQuantityArea>("BaseQuantities", "GrossFloorArea") ??
                                          GetQuantity<IfcQuantityArea>("GrossFloorArea");
                  if (qArea != null)
-                     return qArea.AreaValue;
-                 IfcAreaMeasure area = 0;
+                     return new Ifc4.MeasureResource.IfcAreaMeasure(qArea.AreaValue);
+                 Ifc4.MeasureResource.IfcAreaMeasure area = 0;
                  foreach (var buildingStorey in BuildingStoreys)
                  {
                      var bsArea = buildingStorey.GrossFloorArea ?? 0;
@@ -75,7 +76,7 @@ namespace Xbim.Ifc2x3.ProductExtension
          /// Returns the building storeys for this floor  
          /// </summary>
          /// <returns></returns>
-         public  IEnumerable<IfcBuildingStorey> BuildingStoreys
+         public  IEnumerable<IIfcBuildingStorey> BuildingStoreys
          {
              get
              {

@@ -139,7 +139,7 @@ namespace Xbim.Ifc2x3.Kernel
         /// <summary>
         /// Returns all buildings at the highest level of spatial structural decomposition (i.e. root buildings)
         /// </summary>
-        public IEnumerable<IfcBuilding> Buildings
+        public IEnumerable<Xbim.Ifc4.Interfaces.IIfcBuilding> Buildings
         {
             get
             {
@@ -159,7 +159,7 @@ namespace Xbim.Ifc2x3.Kernel
             }
         }
 
-        public IEnumerable<IfcSpatialStructureElement> SpatialStructuralElements
+        public IEnumerable<Xbim.Ifc4.Interfaces.IIfcSpatialStructureElement> SpatialStructuralElements
         {
             get
             {
@@ -243,7 +243,7 @@ namespace Xbim.Ifc2x3.Kernel
                 decomposition.RelatedObjects.Add(site);
         }
 
-        public IEnumerable<IfcSite> Sites
+        public IEnumerable<Xbim.Ifc4.Interfaces.IIfcSite> Sites
         {
             get
             {

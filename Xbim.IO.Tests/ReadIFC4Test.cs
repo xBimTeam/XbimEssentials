@@ -19,17 +19,18 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void LoadIfc4Test()
         {
-            var model = new IO.Memory.MemoryModel(new EntityFactory());
-            model.LoadStep21("SampleHouse4.ifc");
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
+            {
+                model.LoadStep21("SampleHouse4.ifc");
+                var project = model.Instances.FirstOrDefault<IfcProject>();
+                Assert.IsNotNull(project);
+                Assert.IsNotNull(project.Name);
 
-            var project = model.Instances.FirstOrDefault<IfcProject>();
-            Assert.IsNotNull(project);
-            Assert.IsNotNull(project.Name);
-
-            var walls = model.Instances.OfType<IfcWall>();
-            var doors = model.Instances.OfType<IfcDoor>();
-            Assert.IsTrue(walls.Any());
-            Assert.IsTrue(doors.Any());
+                var walls = model.Instances.OfType<IfcWall>();
+                var doors = model.Instances.OfType<IfcDoor>();
+                Assert.IsTrue(walls.Any());
+                Assert.IsTrue(doors.Any());
+            }
         }
 
         [TestMethod]
@@ -62,5 +63,7 @@ namespace Xbim.MemoryModel.Tests
             }
             
         }
+
+
     }
 }

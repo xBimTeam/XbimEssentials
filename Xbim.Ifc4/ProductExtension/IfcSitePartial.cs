@@ -1,19 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
 using Xbim.Ifc4.RepresentationResource;
+
+namespace Xbim.Ifc4.Interfaces
+{
+    /// <summary>
+    /// Readonly interface for IfcSite
+    /// </summary>
+    // ReSharper disable once PartialTypeWithSinglePart
+    public partial interface @IIfcSite : IIfcSpatialStructureElement
+    {
+        IEnumerable<IIfcBuilding> Buildings { get; }
+    }
+}
+
 
 namespace Xbim.Ifc4.ProductExtension
 {
     public partial class IfcSite
     {
 
-
-       
         /// <summary>
         /// Returns all buildings at the highest level of spatial structural decomposition (i.e. root buildings for this site)
         /// </summary>
-        public IEnumerable<IfcBuilding> Buildings
+        public IEnumerable<IIfcBuilding> Buildings
         {
             get
             {               
@@ -21,7 +33,6 @@ namespace Xbim.Ifc4.ProductExtension
             }
         }
 
-       
 
         public IEnumerable<IfcSpace> Spaces
         {

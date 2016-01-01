@@ -138,6 +138,7 @@
     <Compile Include="DateTimeResource\IfcTimeSeries.cs" />
     <Compile Include="DateTimeResource\IfcTimeSeriesValue.cs" />
     <Compile Include="DateTimeResource\IfcTimeStamp.cs" />
+    <Compile Include="DateTimeResource\IfcTimeStampPartial.cs" />
     <Compile Include="DateTimeResource\IfcWorkTime.cs" />
     <Compile Include="ElectricalDomain\IfcAudioVisualAppliance.cs" />
     <Compile Include="ElectricalDomain\IfcAudioVisualApplianceType.cs" />
@@ -624,8 +625,10 @@
     <Compile Include="Kernel\IfcPropertyDefinition.cs" />
     <Compile Include="Kernel\IfcPropertySet.cs" />
     <Compile Include="Kernel\IfcPropertySetDefinition.cs" />
+    <Compile Include="Kernel\IfcPropertySetDefinitionPartial.cs" />
     <Compile Include="Kernel\IfcPropertySetDefinitionSelect.cs" />
     <Compile Include="Kernel\IfcPropertySetDefinitionSet.cs" />
+    <Compile Include="Kernel\IfcPropertySetDefinitionSetPartial.cs" />
     <Compile Include="Kernel\IfcPropertySetTemplate.cs" />
     <Compile Include="Kernel\IfcPropertyTemplate.cs" />
     <Compile Include="Kernel\IfcPropertyTemplateDefinition.cs" />

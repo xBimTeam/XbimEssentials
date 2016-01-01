@@ -59,6 +59,73 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			    //##
 			} 
 		}
+        /// <summary>
+        /// Returns the Reference ID for this specified type in this project (e.g. type 'A-1'), if known
+        /// </summary>
+        /// <param name="door"></param>
+        /// <returns></returns>
+        public Ifc4.MeasureResource.IfcIdentifier? Reference
+        {
+            get
+            {
+                var val = GetPropertySingleNominalValue("Pset_DoorCommon", "Reference ");
+                if (val != null && val is Ifc4.MeasureResource.IfcIdentifier)
+                    return (Ifc4.MeasureResource.IfcIdentifier)val;
+                else
+                    return null;
+            }
+        }
+
+
+        /// <summary>
+        /// Returns if the door is external
+        /// </summary>
+        /// <param name="door"></param>
+        /// <returns></returns>
+        public Ifc4.MeasureResource.IfcBoolean? IsExternal
+        {
+            get
+            {
+                var val = GetPropertySingleNominalValue("Pset_DoorCommon", "IsExternal");
+                if (val != null && val is Ifc4.MeasureResource.IfcBoolean)
+                    return (Ifc4.MeasureResource.IfcBoolean)val;
+                else
+                    return null; //default is to return false
+            }
+        }
+        /// <summary>
+        /// Returns whether the door is a Fire Exit or not, null if not known
+        /// </summary>
+        /// <param name="door"></param>
+        /// <returns></returns>
+        public Ifc4.MeasureResource.IfcBoolean? FireExit
+        {
+            get
+            {
+                var val = GetPropertySingleNominalValue("Pset_DoorCommon", "FireExit ");
+                if (val != null && val is Ifc4.MeasureResource.IfcBoolean)
+                    return (Ifc4.MeasureResource.IfcBoolean)val;
+                else
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Returns the fire rating if defined
+        /// </summary>
+        /// <param name="door"></param>
+        /// <returns></returns>
+        public  Ifc4.MeasureResource.IfcLabel? FireRating
+        {
+            get
+            {
+                var val = GetPropertySingleNominalValue("Pset_DoorCommon", "FireRating ");
+                if (val != null && val is Ifc4.MeasureResource.IfcLabel)
+                    return (Ifc4.MeasureResource.IfcLabel)val;
+                else
+                    return null;
+            }
+        }
 	//## Custom code
 	//##
 	}

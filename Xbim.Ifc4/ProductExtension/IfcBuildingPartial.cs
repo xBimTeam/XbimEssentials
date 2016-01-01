@@ -1,5 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Xbim.Ifc4.Interfaces;
+
+namespace Xbim.Ifc4.Interfaces
+{
+    /// <summary>
+    /// Readonly interface for IfcBuilding
+    /// </summary>
+    // ReSharper disable once PartialTypeWithSinglePart
+    public partial interface @IIfcBuilding : IIfcSpatialStructureElement
+    {
+        IIfcSite Site { get; }
+        IEnumerable<IIfcBuilding> Buildings { get; }
+        IEnumerable<IIfcSpace> Spaces { get; }
+        IEnumerable<IIfcBuildingStorey> BuildingStoreys { get; }
+    }
+}
 
 namespace Xbim.Ifc4.ProductExtension
 {
@@ -11,7 +27,7 @@ namespace Xbim.Ifc4.ProductExtension
          /// Returns the site (if any) that contains this building, null if the building is not decomposing a site
          /// </summary>
          /// <returns></returns>
-         public IfcSite Site
+         public IIfcSite Site
          {
              get
              {
@@ -23,7 +39,7 @@ namespace Xbim.Ifc4.ProductExtension
          /// Returns the buidlings that decompose this building
          /// </summary>
          /// <returns></returns>
-         public IEnumerable<IfcBuilding> Buildings
+         public IEnumerable<IIfcBuilding> Buildings
          {
              get
              {
@@ -35,7 +51,7 @@ namespace Xbim.Ifc4.ProductExtension
          /// Returns all spaces that are sub-spaces of this building
          /// </summary>
          /// <returns></returns>
-         public IEnumerable<IfcSpace> Spaces
+         public IEnumerable<IIfcSpace> Spaces
          {
              get
              {
@@ -49,7 +65,7 @@ namespace Xbim.Ifc4.ProductExtension
          /// Returns the building storeys for this floor  
          /// </summary>
          /// <returns></returns>
-         public  IEnumerable<IfcBuildingStorey> BuildingStoreys
+         public  IEnumerable<IIfcBuildingStorey> BuildingStoreys
          {
              get
              {
