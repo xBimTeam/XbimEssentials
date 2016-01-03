@@ -132,6 +132,7 @@
     <Compile Include="GeometryResource\IfcDirectionPartial.cs" />
     <Compile Include="GeometryResource\IfcPlacementPartial.cs" />
     <Compile Include="Kernel\IfcObjectDefinitionPartial.cs" />
+    <Compile Include="MeasureResource\IfcCompoundPlaneAngleMeasurePartial.cs" />
     <Compile Include="MeasureResource\IfcConversionBasedUnitPartial.cs" />
     <Compile Include="MeasureResource\IfcDerivedUnitPartial.cs" />
     <Compile Include="MeasureResource\IfcMeasureWithUnitPartial.cs" />

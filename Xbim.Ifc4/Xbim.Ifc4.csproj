@@ -696,6 +696,7 @@
     <Compile Include="MeasureResource\IfcBoolean.cs" />
     <Compile Include="MeasureResource\IfcComplexNumber.cs" />
     <Compile Include="MeasureResource\IfcCompoundPlaneAngleMeasure.cs" />
+    <Compile Include="MeasureResource\IfcCompoundPlaneAngleMeasurePartial.cs" />
     <Compile Include="MeasureResource\IfcContextDependentMeasure.cs" />
     <Compile Include="MeasureResource\IfcContextDependentUnit.cs" />
     <Compile Include="MeasureResource\IfcConversionBasedUnit.cs" />

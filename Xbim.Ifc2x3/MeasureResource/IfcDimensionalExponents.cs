@@ -374,6 +374,17 @@ namespace Xbim.Ifc2x3.MeasureResource
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
+        public void Initialise(XbimDimensionalExponents exponent)
+        {
+            AmountOfSubstanceExponent = exponent.AmountOfSubstanceExponent;
+            ElectricCurrentExponent = exponent.ElectricCurrentExponent;
+            LengthExponent = exponent.LengthExponent;
+            LuminousIntensityExponent = exponent.LuminousIntensityExponent;
+            MassExponent = exponent.MassExponent;
+            ThermodynamicTemperatureExponent = exponent.ThermodynamicTemperatureExponent;
+            TimeExponent = exponent.TimeExponent;
+
+        }
 		//##
 		#endregion
 	}
