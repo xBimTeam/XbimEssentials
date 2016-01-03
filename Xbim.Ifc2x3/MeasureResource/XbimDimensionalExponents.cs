@@ -204,7 +204,7 @@ namespace Xbim.Ifc2x3.MeasureResource
             }
         }
 
-        public static XbimDimensionalExponents DimensionsForUnit(IfcUnitEnum unit, XbimDimensionalExponents dim)
+        public static XbimDimensionalExponents DimensionsForUnit(IfcUnitEnum unit)
         {
             switch (unit)
             {

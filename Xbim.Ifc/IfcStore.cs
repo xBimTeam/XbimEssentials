@@ -581,6 +581,13 @@ namespace Xbim.Ifc
             }
         }
 
+        public IfcSchemaVersion IfcSchemaVesion
+        {
+            get
+            {
+                return _schema;
+            }
+        }
 
         internal IIfcOwnerHistory OwnerHistoryModifyObject
         {
