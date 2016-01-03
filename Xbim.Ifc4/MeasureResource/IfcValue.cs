@@ -27,7 +27,7 @@ namespace Xbim.Ifc4.MeasureResource
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcValue : IIfcAppliedValueSelect, IIfcMetricValueSelect
+    public partial interface IIfcValue : IIfcAppliedValueSelect, IIfcMetricValueSelect, IExpressValueType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface
