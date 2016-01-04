@@ -23,7 +23,8 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieCategory : ICobiePickValue
 	{
-		string @Key { get; }
+		string @Description { get; }
+		ICobieClassification @Classification { get; }
 	
 	}
 }
@@ -36,7 +37,8 @@ namespace Xbim.CobieExpress
 	public  partial class @CobieCategory : CobiePickValue, IInstantiableEntity, ICobieCategory, IEqualityComparer<@CobieCategory>, IEquatable<@CobieCategory>
 	{
 		#region ICobieCategory explicit implementation
-		string ICobieCategory.Key { get { return @Key; } }	
+		string ICobieCategory.Description { get { return @Description; } }	
+		ICobieClassification ICobieCategory.Classification { get { return @Classification; } }	
 		 
 		#endregion
 
@@ -46,22 +48,38 @@ namespace Xbim.CobieExpress
 		}
 
 		#region Explicit attribute fields
-		private string _key;
+		private string _description;
+		private CobieClassification _classification;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
-		public string @Key 
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		public string @Description 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _key;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
 				((IPersistEntity)this).Activate(false);
-				return _key;
+				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _key = v, _key, value,  "Key");
+				SetValue( v =>  _description = v, _description, value,  "Description");
+			} 
+		}	
+		[IndexedProperty]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		public CobieClassification @Classification 
+		{ 
+			get 
+			{
+				if(ActivationStatus != ActivationStatus.NotActivated) return _classification;
+				((IPersistEntity)this).Activate(false);
+				return _classification;
+			} 
+			set
+			{
+				SetValue( v =>  _classification = v, _classification, value,  "Classification");
 			} 
 		}	
 		#endregion
@@ -79,7 +97,10 @@ namespace Xbim.CobieExpress
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 1: 
-					_key = value.StringVal;
+					_description = value.StringVal;
+					return;
+				case 2: 
+					_classification = (CobieClassification)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

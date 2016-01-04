@@ -30,7 +30,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("ConnectionType", 40)]
+	[ExpressType("ConnectionType", 41)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieConnectionType : CobiePickValue, IInstantiableEntity, ICobieConnectionType, IEqualityComparer<@CobieConnectionType>, IEquatable<@CobieConnectionType>
 	{

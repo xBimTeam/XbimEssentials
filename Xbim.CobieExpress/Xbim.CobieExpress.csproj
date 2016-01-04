@@ -64,6 +64,7 @@
     <Compile Include="CobieAssetType.cs" />
     <Compile Include="CobieAttribute.cs" />
     <Compile Include="CobieCategory.cs" />
+    <Compile Include="CobieClassification.cs" />
     <Compile Include="CobieComponent.cs" />
     <Compile Include="CobieConnection.cs" />
     <Compile Include="CobieConnectionType.cs" />
