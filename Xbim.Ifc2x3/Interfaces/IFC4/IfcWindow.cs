@@ -59,53 +59,50 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				//##
 			} 
 		}
-        /// <summary>
-        /// Returns if the door is external
-        /// </summary>
-        /// <param name="window"></param>
-        /// <returns></returns>
-        public Xbim.Ifc4.MeasureResource.IfcBoolean? IsExternal
+
+	    /// <summary>
+	    /// Returns if the door is external
+	    /// </summary>
+	    /// <returns></returns>
+	    public Xbim.Ifc4.MeasureResource.IfcBoolean? IsExternal
         {
             get
             {
                 var val = GetPropertySingleNominalValue("Pset_WindowCommon", "IsExternal");
-                if (val != null && val is Xbim.Ifc4.MeasureResource.IfcBoolean)
-                    return (Xbim.Ifc4.MeasureResource.IfcBoolean)val;
+                if (val != null && val is Xbim.Ifc2x3.MeasureResource.IfcBoolean)
+                    return new Xbim.Ifc4.MeasureResource.IfcBoolean((Xbim.Ifc2x3.MeasureResource.IfcBoolean)val);
                 else
                     return new Xbim.Ifc4.MeasureResource.IfcBoolean(false); //default is to return false
             }
         }
-        /// <summary>
-        /// Returns the Reference ID for this specified type in this project (e.g. type 'A-1'), if known
-        /// </summary>
-        /// <param name="window"></param>
-        /// <returns></returns>
-        public Xbim.Ifc4.MeasureResource.IfcIdentifier? Reference
+
+	    /// <summary>
+	    /// Returns the Reference ID for this specified type in this project (e.g. type 'A-1'), if known
+	    /// </summary>
+	    /// <returns></returns>
+	    public Xbim.Ifc4.MeasureResource.IfcIdentifier? Reference
         {
             get
             {
                 var val = GetPropertySingleNominalValue("Pset_WindowCommon", "Reference ");
-                if (val != null && val is Xbim.Ifc4.MeasureResource.IfcIdentifier)
-                    return (Xbim.Ifc4.MeasureResource.IfcIdentifier)val;
-                else
-                    return null;
+                if (val != null && val is Xbim.Ifc2x3.MeasureResource.IfcIdentifier)
+                    return new Xbim.Ifc4.MeasureResource.IfcIdentifier((Xbim.Ifc2x3.MeasureResource.IfcIdentifier)val);
+                return null;
             }
         }
 
-        /// <summary>
-        /// Returns the fire rating if defined
-        /// </summary>
-        /// <param name="window"></param>
-        /// <returns></returns>
-        public Xbim.Ifc4.MeasureResource.IfcLabel? FireRating
+	    /// <summary>
+	    /// Returns the fire rating if defined
+	    /// </summary>
+	    /// <returns></returns>
+	    public Xbim.Ifc4.MeasureResource.IfcLabel? FireRating
         {
             get
             {
                 var val = GetPropertySingleNominalValue("Pset_WindowCommon", "FireRating ");
-                if (val != null && val is Xbim.Ifc4.MeasureResource.IfcLabel)
-                    return (Xbim.Ifc4.MeasureResource.IfcLabel)val;
-                else
-                    return null;
+                if (val != null && val is Xbim.Ifc2x3.MeasureResource.IfcLabel)
+                    return new Xbim.Ifc4.MeasureResource.IfcLabel((Ifc2x3.MeasureResource.IfcLabel)val);
+                return null;
             }
         }
 	//## Custom code

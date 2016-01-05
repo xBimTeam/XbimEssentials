@@ -97,15 +97,15 @@ namespace Xbim.Ifc2x3.Kernel
         /// <param name="pSetName"></param>
         /// <param name="caseSensitive"></param>
         /// <returns></returns>
-        public Ifc4.Interfaces.IIfcPropertySet GetPropertySet(string pSetName, bool caseSensitive = true)
+        public IfcPropertySet GetPropertySet(string pSetName, bool caseSensitive = true)
         {
             return PropertySets.FirstOrDefault(ps=>string.Compare(ps.Name,pSetName,!caseSensitive)==0);
         }
 
-        public Ifc4.Interfaces.IIfcPropertySingleValue GetPropertySingleValue(string pSetName, string propertyName)
+        public IfcPropertySingleValue GetPropertySingleValue(string pSetName, string propertyName)
         {
             var pset = GetPropertySet(pSetName);
-            return pset != null ? pset.HasProperties.OfType<Ifc4.Interfaces.IIfcPropertySingleValue>().FirstOrDefault(p => p.Name == propertyName) : null;
+            return pset != null ? pset.HasProperties.OfType<IfcPropertySingleValue>().FirstOrDefault(p => p.Name == propertyName) : null;
         }
         public TValueType GetPropertySingleValue<TValueType>(string pSetName, string propertyName) where TValueType : Ifc4.Interfaces.IIfcValue
         {
@@ -123,18 +123,17 @@ namespace Xbim.Ifc2x3.Kernel
         /// <param name="pSetName"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public Ifc4.Interfaces.IIfcValue GetPropertySingleNominalValue(string pSetName, string propertyName)
+        public IfcValue GetPropertySingleNominalValue(string pSetName, string propertyName)
         {
             var psv = GetPropertySingleValue(pSetName, propertyName);
             return psv == null ? null : psv.NominalValue;
         }
 
-        public IEnumerable<Ifc4.Interfaces.IIfcPropertySet> PropertySets
+        public IEnumerable<IfcPropertySet> PropertySets
         {
             get
-            {
-                IEnumerable<Ifc4.Interfaces.IIfcRelDefinesByProperties> rels = IsDefinedByProperties;
-                return rels.Select(rel => rel.RelatingPropertyDefinition).OfType<Ifc4.Interfaces.IIfcPropertySet>();
+            {              
+                return IsDefinedByProperties.Select(rel => rel.RelatingPropertyDefinition).OfType<IfcPropertySet>();
             }
         }
    
