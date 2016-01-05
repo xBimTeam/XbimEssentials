@@ -10,6 +10,9 @@ namespace Xbim.Ifc
         /// Creates a colour map based on the IFC product types
         /// </summary>
         IfcProductTypeMap,
+        /// <summary>
+        /// Creates colour map sutiable to diversify models by role
+        /// </summary>
         Federation,
         /// <summary>
         /// Creates an empty colour map
@@ -26,7 +29,7 @@ namespace Xbim.Ifc
 
         public override int GetHashCode()
         {
-            int hash = 0;
+            var hash = 0;
             foreach (var colour in this)
             {
                 hash ^= colour.GetHashCode();
@@ -36,7 +39,7 @@ namespace Xbim.Ifc
 
         public override bool Equals(object obj)
         {
-            XbimColourMap map = obj as XbimColourMap;
+            var map = obj as XbimColourMap;
             if (map == null) return false;
             if(map.Count!=Count) return false;
             foreach (var colour in map)
@@ -78,13 +81,13 @@ namespace Xbim.Ifc
         public void SetFederationRoleColourMap()
         {
             Clear();
-            Add(new XbimColour("Default", 0.98, 0.92, 0.74, 1)); //grey
+            Add(new XbimColour("Default", 0.98, 0.92, 0.74)); //grey
 
             // previously assigned colors
             Add(new XbimColour(IfcRoleEnum.ARCHITECT.ToString(), 1.0 , 1.0 , 1.0 , .5)); //white
-            Add(new XbimColour(IfcRoleEnum.MECHANICALENGINEER.ToString(), 1.0, 0.5, 0.25, 1));
-            Add(new XbimColour(IfcRoleEnum.ELECTRICALENGINEER.ToString(), 0.0, 0, 1.0, 1)); //blue
-            Add(new XbimColour(IfcRoleEnum.STRUCTURALENGINEER.ToString(), 0.2, 0.2, 0.2, 1.0)); //dark
+            Add(new XbimColour(IfcRoleEnum.MECHANICALENGINEER.ToString(), 1.0, 0.5, 0.25));
+            Add(new XbimColour(IfcRoleEnum.ELECTRICALENGINEER.ToString(), 0.0, 0, 1.0)); //blue
+            Add(new XbimColour(IfcRoleEnum.STRUCTURALENGINEER.ToString(), 0.2, 0.2, 0.2)); //dark
 
             // new colours assigned from wheel
             double wheelAngle = 0;
@@ -109,7 +112,7 @@ namespace Xbim.Ifc
             Add(XbimColour.FromHSV(IfcRoleEnum.USERDEFINED.ToString(), wheelAngle + 15, 1, 1));
         }
        
-        new public XbimColour this[string key]
+        public new XbimColour this[string key]
         {
             get
             {
@@ -121,32 +124,35 @@ namespace Xbim.Ifc
             }
         }
 
+        /// <summary>
+        /// Initialises the colour map on default Xbim Type Colours
+        /// </summary>
         public void SetProductTypeColourMap()
         {
             Clear();
-            Add(new XbimColour("Default", 0.98, 0.92, 0.74, 1));
-            Add(new XbimColour(typeof(IIfcWall).Name, 0.98, 0.92, 0.74, 1));
-            Add(new XbimColour(typeof(IIfcWallStandardCase).Name, 0.98, 0.92, 0.74, 1));
-            Add(new XbimColour(typeof(IIfcRoof).Name, 0.28, 0.24, 0.55, 1));
-            Add(new XbimColour(typeof(IIfcBeam).Name, 0.0, 0.0, 0.55, 1));
-            Add(new XbimColour(typeof(IIfcBuildingElementProxy).Name, 0.95, 0.94, 0.74, 1));
-            Add(new XbimColour(typeof(IIfcColumn).Name, 0.0, 0.0, 0.55, 1));
-            Add(new XbimColour(typeof(IIfcSlab).Name, 0.47, 0.53, 0.60, 1));
-            Add(new XbimColour(typeof(IIfcWindow).Name, 0.68, 0.85, 0.90, 0.5));
-            Add(new XbimColour(typeof(IIfcCurtainWall).Name, 0.68, 0.85, 0.90, 0.4));
-            Add(new XbimColour(typeof(IIfcPlate).Name, 0.68, 0.85, 0.90, 0.4));
-            Add(new XbimColour(typeof(IIfcDoor).Name, 0.97, 0.19, 0, 1));
-            Add(new XbimColour(typeof(IIfcSpace).Name, 0.68, 0.85, 0.90, 0.4));
-            Add(new XbimColour(typeof(IIfcMember).Name, 0.34, 0.34, 0.34, 1));
-            Add(new XbimColour(typeof(IIfcDistributionElement).Name, 0.0, 0.0, 0.55, 1));
-            Add(new XbimColour(typeof(IIfcFurnishingElement).Name, 1, 0, 0, 1));
-            Add(new XbimColour(typeof(IIfcOpeningElement).Name, 0.200000003, 0.200000003, 0.800000012, 0.2));
-            Add(new XbimColour(typeof(IIfcFeatureElementSubtraction).Name, 1.0, 1.0, 1.0));
-            Add(new XbimColour(typeof(IIfcFlowTerminal).Name, 0.95, 0.94, 0.74, 1));
-            Add(new XbimColour(typeof(IIfcFlowSegment).Name, 0.95, 0.94, 0.74, 1));
-            Add(new XbimColour(typeof(IIfcDistributionFlowElement).Name, 0.95, 0.94, 0.74, 1));
-            Add(new XbimColour(typeof(IIfcFlowFitting).Name, 0.95, 0.94, 0.74, 1));
-            Add(new XbimColour(typeof(IIfcRailing).Name, 0.95, 0.94, 0.74, 1));
+            Add(new XbimColour("Default", 0.98, 0.92, 0.74));
+            Add(new XbimColour("IfcWall", 0.98, 0.92, 0.74));
+            Add(new XbimColour("IfcWallStandardCase", 0.98, 0.92, 0.74));
+            Add(new XbimColour("IfcRoof", 0.28, 0.24, 0.55));
+            Add(new XbimColour("IfcBeam", 0.0, 0.0, 0.55));
+            Add(new XbimColour("IfcBuildingElementProxy", 0.95, 0.94, 0.74));
+            Add(new XbimColour("IfcColumn", 0.0, 0.0, 0.55));
+            Add(new XbimColour("IfcSlab", 0.47, 0.53, 0.60));
+            Add(new XbimColour("IfcWindow", 0.68, 0.85, 0.90, 0.5));
+            Add(new XbimColour("IfcCurtainWall", 0.68, 0.85, 0.90, 0.4));
+            Add(new XbimColour("IfcPlate", 0.68, 0.85, 0.90, 0.4));
+            Add(new XbimColour("IfcDoor", 0.97, 0.19, 0));
+            Add(new XbimColour("IfcSpace", 0.68, 0.85, 0.90, 0.4));
+            Add(new XbimColour("IfcMember", 0.34, 0.34, 0.34));
+            Add(new XbimColour("IfcDistributionElement", 0.0, 0.0, 0.55));
+            Add(new XbimColour("IfcFurnishingElement", 1, 0, 0));
+            Add(new XbimColour("IfcOpeningElement", 0.200000003, 0.200000003, 0.800000012, 0.2));
+            Add(new XbimColour("IfcFeatureElementSubtraction", 1.0, 1.0, 1.0));
+            Add(new XbimColour("IfcFlowTerminal", 0.95, 0.94, 0.74));
+            Add(new XbimColour("IfcFlowSegment", 0.95, 0.94, 0.74));
+            Add(new XbimColour("IfcDistributionFlowElement", 0.95, 0.94, 0.74));
+            Add(new XbimColour("IfcFlowFitting", 0.95, 0.94, 0.74));
+            Add(new XbimColour("IfcRailing", 0.95, 0.94, 0.74));
         }
     }
 }
