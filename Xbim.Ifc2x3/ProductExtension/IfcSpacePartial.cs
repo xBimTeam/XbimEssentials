@@ -2,6 +2,7 @@
 using System.Linq;
 using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc2x3.QuantityResource;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
@@ -11,7 +12,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         /// Returns the Gross Floor Area, if the element base quantity GrossFloorArea is defined
         /// </summary>
         /// <returns></returns>
-        public IfcAreaMeasure? GetGrossFloorArea
+        public IfcAreaMeasure? GrossFloorArea
         {
             get
             {
@@ -74,16 +75,5 @@ namespace Xbim.Ifc2x3.ProductExtension
             }
         }
 
-        /// <summary>
-        /// Returns all spaces that are sub-spaces of this space
-        /// </summary>
-        /// <returns></returns>
-        public  IEnumerable<IfcSpace> GetSpaces
-        {
-            get
-            {
-                return IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IfcSpace>();
-            }
-        }
     }
 }
