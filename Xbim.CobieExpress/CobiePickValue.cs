@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("PickValue", 31)]
+	[ExpressType("PickValue", 32)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @CobiePickValue : IPersistEntity, INotifyPropertyChanged, ICobiePickValue, IEqualityComparer<@CobiePickValue>, IEquatable<@CobiePickValue>
 	{

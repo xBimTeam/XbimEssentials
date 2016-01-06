@@ -74,6 +74,7 @@
     <Compile Include="CobieDocument.cs" />
     <Compile Include="CobieDocumentType.cs" />
     <Compile Include="CobieDurationUnit.cs" />
+    <Compile Include="CobieExternalObject.cs" />
     <Compile Include="CobieExternalSystem.cs" />
     <Compile Include="CobieFacility.cs" />
     <Compile Include="CobieFloor.cs" />

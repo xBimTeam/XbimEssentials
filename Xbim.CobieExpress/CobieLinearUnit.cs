@@ -30,7 +30,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("LinearUnit", 35)]
+	[ExpressType("LinearUnit", 36)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieLinearUnit : CobiePickValue, IInstantiableEntity, ICobieLinearUnit, IEqualityComparer<@CobieLinearUnit>, IEquatable<@CobieLinearUnit>
 	{

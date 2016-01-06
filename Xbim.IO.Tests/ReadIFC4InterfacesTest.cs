@@ -39,10 +39,17 @@ namespace Xbim.MemoryModel.Tests
 
                 var walls = model.Instances.OfType<IIfcWall>();
                 var doors = model.Instances.OfType<IIfcDoor>();
+
+                var pset = model.Instances.FirstOrDefault<IIfcPropertySet>();
+                var singleProperties = pset.HasProperties.OfType<IIfcPropertySingleValue>();
+
+                Assert.IsNotNull(singleProperties);
                 Assert.IsTrue(walls.Any());
                 Assert.IsTrue(doors.Any());
             }
             
         }
+
+
     }
 }

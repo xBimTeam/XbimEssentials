@@ -56,7 +56,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Type", 19)]
+	[ExpressType("Type", 20)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieType : CobieAsset, IInstantiableEntity, ICobieType, IEqualityComparer<@CobieType>, IEquatable<@CobieType>
 	{

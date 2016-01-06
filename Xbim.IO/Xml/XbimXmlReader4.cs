@@ -128,7 +128,7 @@ namespace Xbim.IO.Xml
                         header.FileSchema.Schemas.Add("IFC2X3");
                         break;
                     }
-                    if (input.Value == "http://www.buildingsmart-tech.org/ifcXML/MVD4/IFC4")
+                    if (input.Value == "http://www.buildingsmart-tech.org/ifcXML/MVD4/IFC4" || input.Value == "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1")
                     {
                         header.FileSchema.Schemas.Add("IFC4");
                         header.FileSchema.Schemas.Add("IFC4Add1");

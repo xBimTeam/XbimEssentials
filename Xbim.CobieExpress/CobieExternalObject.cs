@@ -20,16 +20,12 @@ using Xbim.CobieExpress;
 namespace Xbim.CobieExpress.Interfaces
 {
 	/// <summary>
-    /// Readonly interface for CobieSite
+    /// Readonly interface for CobieExternalObject
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @ICobieSite : IPersistEntity, SpatialDivision
+	public partial interface @ICobieExternalObject : IPersistEntity
 	{
 		string @Name { get; }
-		string @Description { get; }
-		string @ExternalObject { get; }
-		string @ExternalId { get; }
-		IEnumerable<ICobieFacility> @Facilities {  get; }
 	
 	}
 }
@@ -37,17 +33,13 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Site", 16)]
+	[ExpressType("ExternalObject", 9)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSite : INotifyPropertyChanged, IInstantiableEntity, ICobieSite, IEqualityComparer<@CobieSite>, IEquatable<@CobieSite>
+	public  partial class @CobieExternalObject : INotifyPropertyChanged, IInstantiableEntity, ICobieExternalObject, IEqualityComparer<@CobieExternalObject>, IEquatable<@CobieExternalObject>
 	{
-		#region ICobieSite explicit implementation
-		string ICobieSite.Name { get { return @Name; } }	
-		string ICobieSite.Description { get { return @Description; } }	
-		string ICobieSite.ExternalObject { get { return @ExternalObject; } }	
-		string ICobieSite.ExternalId { get { return @ExternalId; } }	
+		#region ICobieExternalObject explicit implementation
+		string ICobieExternalObject.Name { get { return @Name; } }	
 		 
-		IEnumerable<ICobieFacility> ICobieSite.Facilities {  get { return @Facilities; } }
 		#endregion
 
 		#region Implementation of IPersistEntity
@@ -109,15 +101,12 @@ namespace Xbim.CobieExpress
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieSite(IModel model) 		{ 
+		internal CobieExternalObject(IModel model) 		{ 
 			Model = model; 
 		}
 
 		#region Explicit attribute fields
 		private string _name;
-		private string _description;
-		private string _externalObject;
-		private string _externalId;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -135,63 +124,10 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
-		public string @Description 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
-				return _description;
-			} 
-			set
-			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
-			} 
-		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
-		public string @ExternalObject 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _externalObject;
-				((IPersistEntity)this).Activate(false);
-				return _externalObject;
-			} 
-			set
-			{
-				SetValue( v =>  _externalObject = v, _externalObject, value,  "ExternalObject");
-			} 
-		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
-		public string @ExternalId 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _externalId;
-				((IPersistEntity)this).Activate(false);
-				return _externalId;
-			} 
-			set
-			{
-				SetValue( v =>  _externalId = v, _externalId, value,  "ExternalId");
-			} 
-		}	
 		#endregion
 
 
 
-		#region Inverse attributes
-		[InverseProperty("Site")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
-		public IEnumerable<CobieFacility> @Facilities 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<CobieFacility>(e => (e.Site as CobieSite) == this, "Site", this);
-			} 
-		}
-		#endregion
 
 		#region INotifyPropertyChanged implementation
 		 
@@ -251,15 +187,6 @@ namespace Xbim.CobieExpress
 				case 0: 
 					_name = value.StringVal;
 					return;
-				case 1: 
-					_description = value.StringVal;
-					return;
-				case 2: 
-					_externalObject = value.StringVal;
-					return;
-				case 3: 
-					_externalId = value.StringVal;
-					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
@@ -272,7 +199,7 @@ namespace Xbim.CobieExpress
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@CobieSite other)
+        public bool Equals(@CobieExternalObject other)
 	    {
 	        return this == other;
 	    }
@@ -285,8 +212,8 @@ namespace Xbim.CobieExpress
             // Check for type
             if (GetType() != obj.GetType()) return false;
 
-            // Cast as @CobieSite
-            var root = (@CobieSite)obj;
+            // Cast as @CobieExternalObject
+            var root = (@CobieExternalObject)obj;
             return this == root;
         }
         public override int GetHashCode()
@@ -295,7 +222,7 @@ namespace Xbim.CobieExpress
             return EntityLabel.GetHashCode(); 
         }
 
-        public static bool operator ==(@CobieSite left, @CobieSite right)
+        public static bool operator ==(@CobieExternalObject left, @CobieExternalObject right)
         {
             // If both are null, or both are same instance, return true.
             if (ReferenceEquals(left, right))
@@ -309,18 +236,18 @@ namespace Xbim.CobieExpress
 
         }
 
-        public static bool operator !=(@CobieSite left, @CobieSite right)
+        public static bool operator !=(@CobieExternalObject left, @CobieExternalObject right)
         {
             return !(left == right);
         }
 
 
-        public bool Equals(@CobieSite x, @CobieSite y)
+        public bool Equals(@CobieExternalObject x, @CobieExternalObject y)
         {
             return x == y;
         }
 
-        public int GetHashCode(@CobieSite obj)
+        public int GetHashCode(@CobieExternalObject obj)
         {
             return obj == null ? -1 : obj.GetHashCode();
         }

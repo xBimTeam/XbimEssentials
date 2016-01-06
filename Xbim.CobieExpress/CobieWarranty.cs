@@ -38,7 +38,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Warranty", 20)]
+	[ExpressType("Warranty", 21)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieWarranty : INotifyPropertyChanged, IInstantiableEntity, ICobieWarranty, IEqualityComparer<@CobieWarranty>, IEquatable<@CobieWarranty>
 	{

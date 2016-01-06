@@ -19,7 +19,7 @@ namespace Xbim.Ifc4.Kernel
         public void AddPropertySet(IfcPropertySet pSet)
         {
 
-            var relDef = Model.Instances.OfType<IfcRelDefinesByProperties>().FirstOrDefault(r => r.RelatingPropertyDefinition == pSet);
+            var relDef = Model.Instances.OfType<IfcRelDefinesByProperties>().FirstOrDefault(r => pSet.Equals(r.RelatingPropertyDefinition));
             if (relDef == null)
             {
 

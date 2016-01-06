@@ -28,7 +28,7 @@ namespace Xbim.CobieExpress.Interfaces
 		ICobieCreatedInfo @Created { get; }
 		string @ExternalId { get; }
 		ICobieExternalSystem @ExternalSystem { get; }
-		string @ExternalObject { get; }
+		ICobieExternalObject @ExternalObject { get; }
 	
 	}
 }
@@ -36,7 +36,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("ReferencedObject", 10)]
+	[ExpressType("ReferencedObject", 11)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @CobieReferencedObject : IPersistEntity, INotifyPropertyChanged, ICobieReferencedObject, IEqualityComparer<@CobieReferencedObject>, IEquatable<@CobieReferencedObject>
 	{
@@ -44,7 +44,7 @@ namespace Xbim.CobieExpress
 		ICobieCreatedInfo ICobieReferencedObject.Created { get { return @Created; } }	
 		string ICobieReferencedObject.ExternalId { get { return @ExternalId; } }	
 		ICobieExternalSystem ICobieReferencedObject.ExternalSystem { get { return @ExternalSystem; } }	
-		string ICobieReferencedObject.ExternalObject { get { return @ExternalObject; } }	
+		ICobieExternalObject ICobieReferencedObject.ExternalObject { get { return @ExternalObject; } }	
 		 
 		#endregion
 
@@ -115,7 +115,7 @@ namespace Xbim.CobieExpress
 		private CobieCreatedInfo _created;
 		private string _externalId;
 		private CobieExternalSystem _externalSystem;
-		private string _externalObject;
+		private CobieExternalObject _externalObject;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -161,8 +161,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _externalSystem = v, _externalSystem, value,  "ExternalSystem");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
-		public string @ExternalObject 
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		public CobieExternalObject @ExternalObject 
 		{ 
 			get 
 			{
@@ -245,7 +245,7 @@ namespace Xbim.CobieExpress
 					_externalSystem = (CobieExternalSystem)(value.EntityVal);
 					return;
 				case 3: 
-					_externalObject = value.StringVal;
+					_externalObject = (CobieExternalObject)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

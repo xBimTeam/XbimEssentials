@@ -10,8 +10,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ComponentModel;
-using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
@@ -23,7 +21,7 @@ namespace Xbim.CobieExpress.Interfaces
     /// Readonly interface for CobieAttribute
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @ICobieAttribute : IPersistEntity
+	public partial interface @ICobieAttribute : ICobieReferencedObject
 	{
 		string @Name { get; }
 		string @SetName { get; }
@@ -39,9 +37,9 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Attribute", 29)]
+	[ExpressType("Attribute", 30)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieAttribute : INotifyPropertyChanged, IInstantiableEntity, ICobieAttribute, IEqualityComparer<@CobieAttribute>, IEquatable<@CobieAttribute>
+	public  partial class @CobieAttribute : CobieReferencedObject, IInstantiableEntity, ICobieAttribute, IEqualityComparer<@CobieAttribute>, IEquatable<@CobieAttribute>
 	{
 		#region ICobieAttribute explicit implementation
 		string ICobieAttribute.Name { get { return @Name; } }	
@@ -54,66 +52,8 @@ namespace Xbim.CobieExpress
 		 
 		#endregion
 
-		#region Implementation of IPersistEntity
-
-		public int EntityLabel {get; internal set;}
-		
-		public IModel Model { get; internal set; }
-
-		/// <summary>
-        /// This property is deprecated and likely to be removed. Use just 'Model' instead.
-        /// </summary>
-		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
-        public IModel ModelOf { get { return Model; } }
-		
-	    internal ActivationStatus ActivationStatus = ActivationStatus.NotActivated;
-
-	    ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
-		
-		void IPersistEntity.Activate(bool write)
-		{
-			switch (ActivationStatus)
-		    {
-		        case ActivationStatus.ActivatedReadWrite:
-		            return;
-		        case ActivationStatus.NotActivated:
-		            lock (this)
-		            {
-                        //check again in the lock
-		                if (ActivationStatus == ActivationStatus.NotActivated)
-		                {
-		                    if (Model.Activate(this, write))
-		                    {
-		                        ActivationStatus = write
-		                            ? ActivationStatus.ActivatedReadWrite
-		                            : ActivationStatus.ActivatedRead;
-		                    }
-		                }
-		            }
-		            break;
-		        case ActivationStatus.ActivatedRead:
-		            if (!write) return;
-		            if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-		            break;
-		        default:
-		            throw new ArgumentOutOfRangeException();
-		    }
-		}
-
-		void IPersistEntity.Activate (Action activation)
-		{
-			if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-			
-			activation();
-			ActivationStatus = ActivationStatus.ActivatedRead;
-		}
-
-		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-		#endregion
-
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieAttribute(IModel model) 		{ 
+		internal CobieAttribute(IModel model) : base(model) 		{ 
 			Model = model; 
 			_allowedValues = new OptionalItemSet<string>( this, 0 );
 		}
@@ -129,7 +69,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public string @Name 
 		{ 
 			get 
@@ -143,7 +83,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public string @SetName 
 		{ 
 			get 
@@ -157,7 +97,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _setName = v, _setName, value,  "SetName");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public string @Description 
 		{ 
 			get 
@@ -171,7 +111,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobieStageType @Stage 
 		{ 
 			get 
@@ -185,7 +125,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _stage = v, _stage, value,  "Stage");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public AttributeValue @Value 
 		{ 
 			get 
@@ -199,7 +139,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _value = v, _value, value,  "Value");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public string @Unit 
 		{ 
 			get 
@@ -213,7 +153,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _unit = v, _unit, value,  "Unit");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 7)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 11)]
 		public OptionalItemSet<string> @AllowedValues 
 		{ 
 			get 
@@ -228,80 +168,37 @@ namespace Xbim.CobieExpress
 
 
 
-		#region INotifyPropertyChanged implementation
-		 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void NotifyPropertyChanged( string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-		#endregion
-
-		#region Transactional property setting
-
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
-		{
-			//activate for write if it is not activated yet
-			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-				((IPersistEntity)this).Activate(true);
-
-			//just set the value if the model is marked as non-transactional
-			if (!Model.IsTransactional)
-			{
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-				return;
-			}
-
-			//check there is a transaction
-			var txn = Model.CurrentTransaction;
-			if (txn == null) throw new Exception("Operation out of transaction.");
-
-			Action doAction = () => {
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			Action undoAction = () => {
-				setter(oldValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			doAction();
-
-			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
-		}
-
-		#endregion
 
 		#region IPersist implementation
-		public virtual void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
 				case 0: 
-					_name = value.StringVal;
-					return;
 				case 1: 
-					_setName = value.StringVal;
-					return;
 				case 2: 
-					_description = value.StringVal;
-					return;
 				case 3: 
-					_stage = (CobieStageType)(value.EntityVal);
+					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 4: 
-					_value = (AttributeValue)(value.EntityVal);
+					_name = value.StringVal;
 					return;
 				case 5: 
-					_unit = value.StringVal;
+					_setName = value.StringVal;
 					return;
 				case 6: 
+					_description = value.StringVal;
+					return;
+				case 7: 
+					_stage = (CobieStageType)(value.EntityVal);
+					return;
+				case 8: 
+					_value = (AttributeValue)(value.EntityVal);
+					return;
+				case 9: 
+					_unit = value.StringVal;
+					return;
+				case 10: 
 					if (_allowedValues == null) _allowedValues = new OptionalItemSet<string>( this );
 					_allowedValues.InternalAdd(value.StringVal);
 					return;
@@ -310,7 +207,7 @@ namespace Xbim.CobieExpress
 			}
 		}
 		
-		public virtual string WhereRule() 
+		public  override string WhereRule() 
 		{
 			return "";
 		}

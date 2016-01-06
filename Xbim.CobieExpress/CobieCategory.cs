@@ -32,7 +32,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Category", 32)]
+	[ExpressType("Category", 33)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieCategory : CobiePickValue, IInstantiableEntity, ICobieCategory, IEqualityComparer<@CobieCategory>, IEquatable<@CobieCategory>
 	{

@@ -35,7 +35,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Classification", 33)]
+	[ExpressType("Classification", 34)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieClassification : INotifyPropertyChanged, IInstantiableEntity, ICobieClassification, IEqualityComparer<@CobieClassification>, IEquatable<@CobieClassification>
 	{

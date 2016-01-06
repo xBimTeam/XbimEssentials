@@ -33,7 +33,7 @@
             {
                 return new XbimXmlSettings
                 {
-                    Namespace = "http://www.buildingsmart-tech.org/ifcXML/MVD4/IFC4",
+                    Namespace = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1", //"http://www.buildingsmart-tech.org/ifcXML/MVD4/IFC4",
                     NamespacePrefix = "ifc",
                     NamespaceLocation = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1.xsd",
                     ExpressUri = "http://www.buildingsmart-tech.org/ifc/IFC4/Add1/IFC4_ADD1.exp",

@@ -34,7 +34,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Floor", 16)]
+	[ExpressType("Floor", 17)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieFloor : CobieAsset, IInstantiableEntity, ICobieFloor, IEqualityComparer<@CobieFloor>, IEquatable<@CobieFloor>
 	{

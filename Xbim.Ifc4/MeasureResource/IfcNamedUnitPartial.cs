@@ -7,9 +7,8 @@ using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc4.Interfaces
 {
-    public partial interface @IIfcNamedUnit : IPersistEntity, IfcUnit
+    public partial interface @IIfcNamedUnit
     {
-        string FullName { get; }
         string Symbol { get; }
     }
 }
@@ -18,13 +17,13 @@ namespace Xbim.Ifc4.MeasureResource
 {
    
 
-    public abstract partial class IfcNamedUnit : IPersistEntity, INotifyPropertyChanged, IIfcNamedUnit, IEqualityComparer<@IfcNamedUnit>, IEquatable<@IfcNamedUnit>
+    public abstract partial class IfcNamedUnit
     {
         /// <summary>
         /// Get the full name of the IfcNamedUnit
         /// </summary>
         /// <returns>string holding full name</returns>
-        public string FullName 
+        public virtual string FullName 
         {
             get
             {

@@ -18,7 +18,7 @@ namespace Xbim.IO.Xml
 
         private const string Xsi = "http://www.w3.org/2001/XMLSchema-instance";
         private const string Xlink = "http://www.w3.org/1999/xlink";
-        private readonly string _ns = "http://www.buildingsmart-tech.org/ifcXML/MVD4/IFC4";
+        private readonly string _ns = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1"; //"http://www.buildingsmart-tech.org/ifcXML/MVD4/IFC4";
         private readonly string _nsLocation = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1.xsd";
         private readonly string _expressUri = "http://www.buildingsmart-tech.org/ifc/IFC4/Add1/IFC4_ADD1.exp";
         private readonly string _configurationUri = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1_config.xml";
