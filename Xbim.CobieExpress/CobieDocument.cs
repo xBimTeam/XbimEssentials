@@ -30,6 +30,8 @@ namespace Xbim.CobieExpress.Interfaces
 		ICobieStageType @Stage { get; }
 		string @URL { get; }
 		string @Reference { get; }
+		string @Directory { get; }
+		string @File { get; }
 	
 	}
 }
@@ -49,6 +51,8 @@ namespace Xbim.CobieExpress
 		ICobieStageType ICobieDocument.Stage { get { return @Stage; } }	
 		string ICobieDocument.URL { get { return @URL; } }	
 		string ICobieDocument.Reference { get { return @Reference; } }	
+		string ICobieDocument.Directory { get { return @Directory; } }	
+		string ICobieDocument.File { get { return @File; } }	
 		 
 		#endregion
 
@@ -65,6 +69,8 @@ namespace Xbim.CobieExpress
 		private CobieStageType _stage;
 		private string _uRL;
 		private string _reference;
+		private string _directory;
+		private string _file;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -166,6 +172,34 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _reference = v, _reference, value,  "Reference");
 			} 
 		}	
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		public string @Directory 
+		{ 
+			get 
+			{
+				if(ActivationStatus != ActivationStatus.NotActivated) return _directory;
+				((IPersistEntity)this).Activate(false);
+				return _directory;
+			} 
+			set
+			{
+				SetValue( v =>  _directory = v, _directory, value,  "Directory");
+			} 
+		}	
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		public string @File 
+		{ 
+			get 
+			{
+				if(ActivationStatus != ActivationStatus.NotActivated) return _file;
+				((IPersistEntity)this).Activate(false);
+				return _file;
+			} 
+			set
+			{
+				SetValue( v =>  _file = v, _file, value,  "File");
+			} 
+		}	
 		#endregion
 
 
@@ -203,6 +237,12 @@ namespace Xbim.CobieExpress
 					return;
 				case 10: 
 					_reference = value.StringVal;
+					return;
+				case 11: 
+					_directory = value.StringVal;
+					return;
+				case 12: 
+					_file = value.StringVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
