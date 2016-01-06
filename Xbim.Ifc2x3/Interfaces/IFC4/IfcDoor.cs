@@ -59,7 +59,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 		}
 
-	    /// <summary>
+        //## Custom code
+        /// <summary>
 	    /// Returns the Reference ID for this specified type in this project (e.g. type 'A-1'), if known
 	    /// </summary>
 	    /// <returns></returns>
@@ -119,7 +120,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return null;
             }
         }
-	//## Custom code
 	//##
 	}
 }

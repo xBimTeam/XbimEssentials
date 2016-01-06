@@ -60,7 +60,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 		}
 
-	    /// <summary>
+        //## Custom code
+
+        /// <summary>
 	    /// Returns if the door is external
 	    /// </summary>
 	    /// <returns></returns>
@@ -69,10 +71,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
             get
             {
                 var val = GetPropertySingleNominalValue("Pset_WindowCommon", "IsExternal");
-                if (val != null && val is Xbim.Ifc2x3.MeasureResource.IfcBoolean)
+                if (val is Xbim.Ifc2x3.MeasureResource.IfcBoolean)
                     return new Xbim.Ifc4.MeasureResource.IfcBoolean((Xbim.Ifc2x3.MeasureResource.IfcBoolean)val);
-                else
-                    return new Xbim.Ifc4.MeasureResource.IfcBoolean(false); //default is to return false
+                return new Xbim.Ifc4.MeasureResource.IfcBoolean(false); //default is to return false
             }
         }
 
@@ -85,7 +86,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
             get
             {
                 var val = GetPropertySingleNominalValue("Pset_WindowCommon", "Reference ");
-                if (val != null && val is Xbim.Ifc2x3.MeasureResource.IfcIdentifier)
+                if (val is Xbim.Ifc2x3.MeasureResource.IfcIdentifier)
                     return new Xbim.Ifc4.MeasureResource.IfcIdentifier((Xbim.Ifc2x3.MeasureResource.IfcIdentifier)val);
                 return null;
             }
@@ -100,12 +101,11 @@ namespace Xbim.Ifc2x3.SharedBldgElements
             get
             {
                 var val = GetPropertySingleNominalValue("Pset_WindowCommon", "FireRating ");
-                if (val != null && val is Xbim.Ifc2x3.MeasureResource.IfcLabel)
+                if (val is Xbim.Ifc2x3.MeasureResource.IfcLabel)
                     return new Xbim.Ifc4.MeasureResource.IfcLabel((Ifc2x3.MeasureResource.IfcLabel)val);
                 return null;
             }
         }
-	//## Custom code
 	//##
 	}
 }
