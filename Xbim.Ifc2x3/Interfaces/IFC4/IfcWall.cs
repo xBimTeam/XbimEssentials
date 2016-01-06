@@ -42,20 +42,18 @@ namespace Xbim.Ifc2x3.SharedBldgElements
             }
         }
 
-        /// <summary>
-        /// True if the wall is external
-        /// </summary>
-        /// <param name="wall"></param>
-        /// <returns></returns>
-        public Ifc4.MeasureResource.IfcBoolean? IsExternal
+	    /// <summary>
+	    /// True if the wall is external
+	    /// </summary>
+	    /// <returns></returns>
+	    public Ifc4.MeasureResource.IfcBoolean? IsExternal
         {
             get
             {
                 var val = GetPropertySingleNominalValue("Pset_WallCommon", "IsExternal");
-                if (val != null && val is Ifc4.MeasureResource.IfcBoolean)
-                    return (Ifc4.MeasureResource.IfcBoolean)val;
-                else
-                    return null;
+                if (val != null && val is Ifc2x3.MeasureResource.IfcBoolean)
+                    return new Ifc4.MeasureResource.IfcBoolean((Ifc2x3.MeasureResource.IfcBoolean)val);
+                return null;
             }
 
         }

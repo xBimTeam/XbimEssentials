@@ -52,6 +52,27 @@ namespace Xbim.Ifc2x3.Kernel
             }
         }
 
+        /// <summary>
+        /// Adds an element type to the object if it doesn't already have one, return the new or existing relationship that holds the type and this element. If there is a relationship for this type but this element is not related it adds it to the exosting relationship
+        /// </summary>
+        /// <param name="theType"></param>
+        /// <returns></returns>
+        public IfcRelDefinesByType AddDefiningType(IfcTypeObject theType)
+        {
+            var typedefs = Model.Instances.Where<IfcRelDefinesByType>(r => r.RelatingType == theType).ToList();
+            var thisTypeDef = typedefs.FirstOrDefault(r => r.RelatedObjects.Contains((this)));
+            if (thisTypeDef != null) return thisTypeDef; // it is already type related
+            var anyTypeDef = typedefs.FirstOrDefault(); //take any one of the rels of the type
+            if (anyTypeDef != null)
+            {
+                anyTypeDef.RelatedObjects.Add(this);
+                return anyTypeDef;
+            }
+            var newdef = Model.Instances.New<IfcRelDefinesByType>(); //create one
+            newdef.RelatedObjects.Add(this);
+            newdef.RelatingType = theType;
+            return newdef;
+        }
 
         /// <summary>
         /// Adds an existing property set to the objecty, NB no check is done for duplicate psets
@@ -76,15 +97,15 @@ namespace Xbim.Ifc2x3.Kernel
         /// <param name="pSetName"></param>
         /// <param name="caseSensitive"></param>
         /// <returns></returns>
-        public Ifc4.Interfaces.IIfcPropertySet GetPropertySet(string pSetName, bool caseSensitive = true)
+        public IfcPropertySet GetPropertySet(string pSetName, bool caseSensitive = true)
         {
             return PropertySets.FirstOrDefault(ps=>string.Compare(ps.Name,pSetName,!caseSensitive)==0);
         }
 
-        public Ifc4.Interfaces.IIfcPropertySingleValue GetPropertySingleValue(string pSetName, string propertyName)
+        public IfcPropertySingleValue GetPropertySingleValue(string pSetName, string propertyName)
         {
             var pset = GetPropertySet(pSetName);
-            return pset != null ? pset.HasProperties.OfType<Ifc4.Interfaces.IIfcPropertySingleValue>().FirstOrDefault(p => p.Name == propertyName) : null;
+            return pset != null ? pset.HasProperties.OfType<IfcPropertySingleValue>().FirstOrDefault(p => p.Name == propertyName) : null;
         }
         public TValueType GetPropertySingleValue<TValueType>(string pSetName, string propertyName) where TValueType : Ifc4.Interfaces.IIfcValue
         {
@@ -102,18 +123,17 @@ namespace Xbim.Ifc2x3.Kernel
         /// <param name="pSetName"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public Ifc4.Interfaces.IIfcValue GetPropertySingleNominalValue(string pSetName, string propertyName)
+        public IfcValue GetPropertySingleNominalValue(string pSetName, string propertyName)
         {
             var psv = GetPropertySingleValue(pSetName, propertyName);
             return psv == null ? null : psv.NominalValue;
         }
 
-        public IEnumerable<Ifc4.Interfaces.IIfcPropertySet> PropertySets
+        public IEnumerable<IfcPropertySet> PropertySets
         {
             get
-            {
-                IEnumerable<Ifc4.Interfaces.IIfcRelDefinesByProperties> rels = IsDefinedByProperties;
-                return rels.Select(rel => rel.RelatingPropertyDefinition).OfType<Ifc4.Interfaces.IIfcPropertySet>();
+            {              
+                return IsDefinedByProperties.Select(rel => rel.RelatingPropertyDefinition).OfType<IfcPropertySet>();
             }
         }
    

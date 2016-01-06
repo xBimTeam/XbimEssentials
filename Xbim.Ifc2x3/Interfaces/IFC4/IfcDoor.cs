@@ -8,31 +8,30 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
+using Xbim.Ifc4.MeasureResource;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcDoor : IIfcDoor
 	{
-		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoor.OverallHeight 
+		IfcPositiveLengthMeasure? IIfcDoor.OverallHeight 
 		{ 
 			get
 			{
 				if (!OverallHeight.HasValue) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallHeight.Value);
+				return new IfcPositiveLengthMeasure(OverallHeight.Value);
 			} 
 		}
-		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoor.OverallWidth 
+		IfcPositiveLengthMeasure? IIfcDoor.OverallWidth 
 		{ 
 			get
 			{
 				if (!OverallWidth.HasValue) return null;
-				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth.Value);
+				return new IfcPositiveLengthMeasure(OverallWidth.Value);
 			} 
 		}
-		Ifc4.Interfaces.IfcDoorTypeEnum? IIfcDoor.PredefinedType 
+		IfcDoorTypeEnum? IIfcDoor.PredefinedType 
 		{ 
 			get
 			{
@@ -41,7 +40,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			    //##
 			} 
 		}
-		Ifc4.Interfaces.IfcDoorTypeOperationEnum? IIfcDoor.OperationType 
+		IfcDoorTypeOperationEnum? IIfcDoor.OperationType 
 		{ 
 			get
 			{
@@ -50,7 +49,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			    //##
 			} 
 		}
-		Ifc4.MeasureResource.IfcLabel? IIfcDoor.UserDefinedOperationType 
+		IfcLabel? IIfcDoor.UserDefinedOperationType 
 		{ 
 			get
 			{
@@ -59,71 +58,65 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			    //##
 			} 
 		}
-        /// <summary>
-        /// Returns the Reference ID for this specified type in this project (e.g. type 'A-1'), if known
-        /// </summary>
-        /// <param name="door"></param>
-        /// <returns></returns>
-        public Ifc4.MeasureResource.IfcIdentifier? Reference
+
+	    /// <summary>
+	    /// Returns the Reference ID for this specified type in this project (e.g. type 'A-1'), if known
+	    /// </summary>
+	    /// <returns></returns>
+	    public IfcIdentifier? Reference
         {
             get
             {
                 var val = GetPropertySingleNominalValue("Pset_DoorCommon", "Reference ");
-                if (val != null && val is Ifc4.MeasureResource.IfcIdentifier)
-                    return (Ifc4.MeasureResource.IfcIdentifier)val;
-                else
-                    return null;
+                if (val is MeasureResource.IfcIdentifier)
+                    return new IfcIdentifier((MeasureResource.IfcIdentifier)val);
+                return null;
             }
         }
 
 
-        /// <summary>
-        /// Returns if the door is external
-        /// </summary>
-        /// <param name="door"></param>
-        /// <returns></returns>
-        public Ifc4.MeasureResource.IfcBoolean? IsExternal
+	    /// <summary>
+	    /// Returns if the door is external
+	    /// </summary>
+	    /// <returns></returns>
+	    public IfcBoolean? IsExternal
         {
             get
             {
                 var val = GetPropertySingleNominalValue("Pset_DoorCommon", "IsExternal");
-                if (val != null && val is Ifc4.MeasureResource.IfcBoolean)
-                    return (Ifc4.MeasureResource.IfcBoolean)val;
-                else
-                    return null; //default is to return false
+                if (val is MeasureResource.IfcBoolean)
+                    return new IfcBoolean((MeasureResource.IfcBoolean)val);
+                return null; //default is to return false
             }
         }
-        /// <summary>
-        /// Returns whether the door is a Fire Exit or not, null if not known
-        /// </summary>
-        /// <param name="door"></param>
-        /// <returns></returns>
-        public Ifc4.MeasureResource.IfcBoolean? FireExit
+
+	    /// <summary>
+	    /// Returns whether the door is a Fire Exit or not, null if not known
+	    /// </summary>
+	    /// <returns></returns>
+	    public IfcBoolean? FireExit
         {
             get
             {
                 var val = GetPropertySingleNominalValue("Pset_DoorCommon", "FireExit ");
-                if (val != null && val is Ifc4.MeasureResource.IfcBoolean)
-                    return (Ifc4.MeasureResource.IfcBoolean)val;
-                else
-                    return null;
+                if (val is MeasureResource.IfcBoolean)
+                    return new IfcBoolean((MeasureResource.IfcBoolean)val);
+                return null;
             }
         }
 
-        /// <summary>
-        /// Returns the fire rating if defined
-        /// </summary>
-        /// <param name="door"></param>
-        /// <returns></returns>
-        public  Ifc4.MeasureResource.IfcLabel? FireRating
+	    /// <summary>
+	    /// Returns the fire rating if defined
+	    /// </summary>
+	    /// <returns></returns>
+	    public  IfcLabel? FireRating
         {
             get
             {
                 var val = GetPropertySingleNominalValue("Pset_DoorCommon", "FireRating ");
-                if (val != null && val is Ifc4.MeasureResource.IfcLabel)
-                    return (Ifc4.MeasureResource.IfcLabel)val;
-                else
-                    return null;
+                if (val is MeasureResource.IfcLabel)
+                    return new IfcLabel((MeasureResource.IfcLabel)val);
+                return null;
             }
         }
 	//## Custom code

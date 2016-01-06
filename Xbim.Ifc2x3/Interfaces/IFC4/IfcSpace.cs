@@ -78,6 +78,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}
 
+   
+	//## Custom code
         /// <summary>
         /// Returns all spaces that are sub-spaces of this space
         /// </summary>
@@ -89,7 +91,6 @@ namespace Xbim.Ifc2x3.ProductExtension
                 return IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IfcSpace>();
             }
         }
-	//## Custom code
 	//##
 	}
 }

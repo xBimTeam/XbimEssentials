@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.ProductExtension
         /// Returns the Gross Floor Area, if the element base quantity GrossFloorArea is defined
         /// </summary>
         /// <returns></returns>
-        public IfcAreaMeasure? GetGrossFloorArea
+        public IfcAreaMeasure? GrossFloorArea
         {
             get
             {
