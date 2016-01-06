@@ -1217,7 +1217,7 @@ namespace Xbim.IO.Esent
         {
             get
             {
-                if (_geometryStore == null && (InstanceCache.AccessMode==XbimDBAccess.ReadWrite ||InstanceCache.AccessMode==XbimDBAccess.Exclusive))
+                if (_geometryStore == null)
                 {
                     _geometryStore = new EsentGeometryStore(this);
                 }
