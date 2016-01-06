@@ -24,12 +24,12 @@ namespace Xbim.CobieExpress.Interfaces
 	public partial interface @ICobieAttribute : ICobieReferencedObject
 	{
 		string @Name { get; }
-		string @SetName { get; }
 		string @Description { get; }
 		ICobieStageType @Stage { get; }
 		IAttributeValue @Value { get; }
 		string @Unit { get; }
 		IEnumerable<string> @AllowedValues { get; }
+		CobieExternalObject @PropertySet  { get ; }
 	
 	}
 }
@@ -43,7 +43,6 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieAttribute explicit implementation
 		string ICobieAttribute.Name { get { return @Name; } }	
-		string ICobieAttribute.SetName { get { return @SetName; } }	
 		string ICobieAttribute.Description { get { return @Description; } }	
 		ICobieStageType ICobieAttribute.Stage { get { return @Stage; } }	
 		IAttributeValue ICobieAttribute.Value { get { return @Value; } }	
@@ -60,7 +59,6 @@ namespace Xbim.CobieExpress
 
 		#region Explicit attribute fields
 		private string _name;
-		private string _setName;
 		private string _description;
 		private CobieStageType _stage;
 		private AttributeValue _value;
@@ -84,20 +82,6 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
-		public string @SetName 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _setName;
-				((IPersistEntity)this).Activate(false);
-				return _setName;
-			} 
-			set
-			{
-				SetValue( v =>  _setName = v, _setName, value,  "SetName");
-			} 
-		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public string @Description 
 		{ 
 			get 
@@ -111,7 +95,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
 		public CobieStageType @Stage 
 		{ 
 			get 
@@ -125,7 +109,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _stage = v, _stage, value,  "Stage");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public AttributeValue @Value 
 		{ 
 			get 
@@ -139,7 +123,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _value = v, _value, value,  "Value");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
 		public string @Unit 
 		{ 
 			get 
@@ -153,7 +137,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _unit = v, _unit, value,  "Unit");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 11)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 10)]
 		public OptionalItemSet<string> @AllowedValues 
 		{ 
 			get 
@@ -166,6 +150,19 @@ namespace Xbim.CobieExpress
 		#endregion
 
 
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 0)]
+		public CobieExternalObject @PropertySet 
+		{
+			get 
+			{
+				//## Getter for PropertySet
+			    return ExternalObject;
+			    //##
+			}
+		}
+
+		#endregion
 
 
 
@@ -184,21 +181,18 @@ namespace Xbim.CobieExpress
 					_name = value.StringVal;
 					return;
 				case 5: 
-					_setName = value.StringVal;
-					return;
-				case 6: 
 					_description = value.StringVal;
 					return;
-				case 7: 
+				case 6: 
 					_stage = (CobieStageType)(value.EntityVal);
 					return;
-				case 8: 
+				case 7: 
 					_value = (AttributeValue)(value.EntityVal);
 					return;
-				case 9: 
+				case 8: 
 					_unit = value.StringVal;
 					return;
-				case 10: 
+				case 9: 
 					if (_allowedValues == null) _allowedValues = new OptionalItemSet<string>( this );
 					_allowedValues.InternalAdd(value.StringVal);
 					return;
