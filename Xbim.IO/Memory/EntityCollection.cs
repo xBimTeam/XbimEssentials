@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using Xbim.Common;
@@ -10,7 +11,7 @@ namespace Xbim.IO.Memory
     {
         private readonly MemoryModel _model;
         private readonly Dictionary<Type, List<IPersistEntity>> _internal = new Dictionary<Type, List<IPersistEntity>>();
-        private readonly List<IPersistEntity> _list = new List<IPersistEntity>(); 
+        private readonly KeyedEntityCollection _collection = new KeyedEntityCollection(); 
         internal IEntityFactory Factory{get { return _model.EntityFactory; }}
         internal int NextLabel = 1;
         public EntityCollection(MemoryModel model)
@@ -159,9 +160,7 @@ namespace Xbim.IO.Memory
         {
             get
             {
-                return _internal.Values
-                    .Select(list => list.FirstOrDefault(e => e.EntityLabel == label))
-                    .FirstOrDefault(entity => entity != null);
+                return _collection[label];
             }
         }
 
@@ -188,7 +187,7 @@ namespace Xbim.IO.Memory
             {
                 _internal.Add(key, new List<IPersistEntity> { entity });
             }
-            _list.Add(entity);
+            _collection.Add(entity);
         }
 
         private void AddReversible(IPersistEntity entity)
@@ -202,12 +201,12 @@ namespace Xbim.IO.Memory
                 Action undo = () =>
                 {
                     list.Remove(entity);
-                    _list.Remove(entity);
+                    _collection.Remove(entity);
                 };
                 Action doAction = () =>
                 {
                     list.Add(entity);
-                    _list.Add(entity);
+                    _collection.Add(entity);
                 };
                 doAction();
 
@@ -219,12 +218,12 @@ namespace Xbim.IO.Memory
                 Action doAction = () =>
                 {
                     _internal.Add(key, new List<IPersistEntity> {entity});
-                    _list.Add(entity);
+                    _collection.Add(entity);
                 };
                 Action undo = () =>
                 {
                     _internal.Remove(key);
-                    _list.Remove(entity);
+                    _collection.Remove(entity);
                 };
                 doAction();
 
@@ -245,12 +244,12 @@ namespace Xbim.IO.Memory
             Action doAction = () =>
             {
                 _internal[key].Remove(entity);
-                _list.Remove(entity);
+                _collection.Remove(entity);
             };
             Action undo = () =>
             {
                 _internal[key].Add(entity);
-                _list.Add(entity);
+                _collection.Add(entity);
             };
             doAction();
 
@@ -262,19 +261,27 @@ namespace Xbim.IO.Memory
         public IEnumerator<IPersistEntity> GetEnumerator()
         {
             //return _internal.SelectMany(kv => kv.Value, (pair, entity) => entity).GetEnumerator();
-            return _list.GetEnumerator();
+            return _collection.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             //return _internal.SelectMany(kv => kv.Value, (pair, entity) => entity).GetEnumerator();
-            return _list.GetEnumerator();
+            return _collection.GetEnumerator();
         }
 
         public void Dispose()
         {
             _internal.Clear();
-            _list.Clear();
+            _collection.Clear();
+        }
+
+        private class KeyedEntityCollection : KeyedCollection<int, IPersistEntity>
+        {
+            protected override int GetKeyForItem(IPersistEntity item)
+            {
+                return item.EntityLabel;
+            }
         }
     }
 }
