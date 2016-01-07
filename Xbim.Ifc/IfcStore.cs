@@ -160,6 +160,11 @@ namespace Xbim.Ifc
         //    }
         //}
 
+        public static IfcStore Open(string path, XbimEditorCredentials editorDetails,bool writeAccess = true,
+            double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
+        {
+            return Open(path, editorDetails, ifcDatabaseSizeThreshHold, progDelegate, writeAccess?XbimDBAccess.ReadWrite : XbimDBAccess.Read);
+        }
 
         /// <summary>
         /// Opens an Ifc file, Ifcxml, IfcZip, xbim
@@ -168,7 +173,8 @@ namespace Xbim.Ifc
         /// <param name="editorDetails">This is only required if the store is opened for editing</param>
         /// <param name="ifcDatabaseSizeThreshHold">if not defined the DefaultIfcDatabaseSizeThreshHold is used, Ifc files below this size will be opened in memory, above this size a database will be created. If -1 is specified an in memory model will be created for all Ifc files that are opened. Xbim files are always opened as databases</param>
         /// <param name="progDelegate"></param>
-        public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
+        /// <param name="accessMode"></param>
+        public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null, XbimDBAccess accessMode = XbimDBAccess.Read)
         {
             var filePath = Path.GetFullPath(path);
             if (!Directory.Exists(Path.GetDirectoryName(filePath) ?? ""))
@@ -191,13 +197,13 @@ namespace Xbim.Ifc
                 if (ifcVersion == IfcSchemaVersion.Ifc4)
                 {
                     var model = new EsentModel(new Ifc4.EntityFactory());
-                    model.Open(path, XbimDBAccess.Read, progDelegate);
+                    model.Open(path, accessMode, progDelegate);
                     return new IfcStore(model, ifcVersion, editorDetails, path);
                 }
                 else //it will be Ifc2x3
                 {
                     var model = new EsentModel(new Ifc2x3.EntityFactory());
-                    model.Open(path, XbimDBAccess.Read, progDelegate);
+                    model.Open(path, accessMode, progDelegate);
                     return new IfcStore(model, ifcVersion, editorDetails, path);
                 }
             }
