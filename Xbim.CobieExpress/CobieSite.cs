@@ -27,8 +27,9 @@ namespace Xbim.CobieExpress.Interfaces
 	{
 		string @Name { get; }
 		string @Description { get; }
-		string @ExternalObject { get; }
+		ICobieExternalObject @ExternalObject { get; }
 		string @ExternalId { get; }
+		string @AltExternalId { get; }
 		IEnumerable<ICobieFacility> @Facilities {  get; }
 	
 	}
@@ -44,8 +45,9 @@ namespace Xbim.CobieExpress
 		#region ICobieSite explicit implementation
 		string ICobieSite.Name { get { return @Name; } }	
 		string ICobieSite.Description { get { return @Description; } }	
-		string ICobieSite.ExternalObject { get { return @ExternalObject; } }	
+		ICobieExternalObject ICobieSite.ExternalObject { get { return @ExternalObject; } }	
 		string ICobieSite.ExternalId { get { return @ExternalId; } }	
+		string ICobieSite.AltExternalId { get { return @AltExternalId; } }	
 		 
 		IEnumerable<ICobieFacility> ICobieSite.Facilities {  get { return @Facilities; } }
 		#endregion
@@ -116,8 +118,9 @@ namespace Xbim.CobieExpress
 		#region Explicit attribute fields
 		private string _name;
 		private string _description;
-		private string _externalObject;
+		private CobieExternalObject _externalObject;
 		private string _externalId;
+		private string _altExternalId;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -149,8 +152,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
-		public string @ExternalObject 
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		public CobieExternalObject @ExternalObject 
 		{ 
 			get 
 			{
@@ -177,13 +180,27 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _externalId = v, _externalId, value,  "ExternalId");
 			} 
 		}	
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		public string @AltExternalId 
+		{ 
+			get 
+			{
+				if(ActivationStatus != ActivationStatus.NotActivated) return _altExternalId;
+				((IPersistEntity)this).Activate(false);
+				return _altExternalId;
+			} 
+			set
+			{
+				SetValue( v =>  _altExternalId = v, _altExternalId, value,  "AltExternalId");
+			} 
+		}	
 		#endregion
 
 
 
 		#region Inverse attributes
 		[InverseProperty("Site")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 6)]
 		public IEnumerable<CobieFacility> @Facilities 
 		{ 
 			get 
@@ -255,10 +272,13 @@ namespace Xbim.CobieExpress
 					_description = value.StringVal;
 					return;
 				case 2: 
-					_externalObject = value.StringVal;
+					_externalObject = (CobieExternalObject)(value.EntityVal);
 					return;
 				case 3: 
 					_externalId = value.StringVal;
+					return;
+				case 4: 
+					_altExternalId = value.StringVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

@@ -215,16 +215,16 @@ namespace Utility.ExtractCobieData
             roots.AddRange(featureRels);
 
             //object types and properties for all primary products (elements and spatial elements)
-            roots.AddRange(model.Instances.Where<IIfcRelDefinesByProperties>(r => _primaryElements.Any(e => r.RelatedObjects.Contains(e))));
-            roots.AddRange(model.Instances.Where<IIfcRelDefinesByType>(r => _primaryElements.Any(e => r.RelatedObjects.Contains(e))));
+            roots.AddRange(_primaryElements.SelectMany(p => p.IsDefinedBy));
+            roots.AddRange(_primaryElements.SelectMany(p => p.IsTypedBy));
             
 
             
             //assignmnet to groups will bring in all system aggregarions if defined in the file
-            roots.AddRange(model.Instances.Where<IIfcRelAssigns>(r => _primaryElements.Any(e => r.RelatedObjects.Contains(e))));
+            roots.AddRange(_primaryElements.SelectMany(p => p.HasAssignments));
             
             //associations with classification, material and documents
-            roots.AddRange(model.Instances.Where<IIfcRelAssociates>(r => _primaryElements.Any(e => r.RelatedObjects.Contains(e))));
+            roots.AddRange(_primaryElements.SelectMany(p => p.HasAssociations));
 
             return roots;
         }

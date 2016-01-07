@@ -121,11 +121,11 @@ namespace Xbim.MemoryModel.Tests
         }
 
         [TestMethod]
-    [DeploymentItem("TestFiles")]
+        [DeploymentItem("TestFiles")]
         public void ExtractSemanticModel()
         {
             const string original = "SampleHouse4.ifc";
-         using (var model = new IO.Memory.MemoryModel(new Ifc4.EntityFactory()))
+            using (var model = new IO.Memory.MemoryModel(new Ifc4.EntityFactory()))
             {
                 model.LoadStep21(original);
                 var roots = model.Instances.OfType<Ifc4.Kernel.IfcRoot>();
@@ -144,26 +144,26 @@ namespace Xbim.MemoryModel.Tests
                             iModel.SaveAsStep21(fileStream);
                         }
                     }
-
-                    
                 }
-            }   
+            }
         }
 
-        private object Filter(ExpressMetaProperty property, object parentObject)
+        private static object Filter(ExpressMetaProperty property, object parentObject)
         {
             //leave out geometry and placement of products
             if (parentObject is Ifc4.Kernel.IfcProduct &&
-                (property.PropertyInfo.Name == "Representation" || property.PropertyInfo.Name == "ObjectPlacement")
-                )
+                (property.PropertyInfo.Name == "Representation" || 
+                property.PropertyInfo.Name == "ObjectPlacement"))
                 return null;
 
             //leave out representation maps
-            if (parentObject is IfcTypeProduct && property.PropertyInfo.Name == "RepresentationMaps")
+            if (parentObject is IfcTypeProduct && 
+                property.PropertyInfo.Name == "RepresentationMaps")
                 return null;
 
             //leave out eventual connection geometry
-            if (parentObject is IfcRelSpaceBoundary && property.PropertyInfo.Name == "ConnectionGeometry")
+            if (parentObject is IfcRelSpaceBoundary && 
+                property.PropertyInfo.Name == "ConnectionGeometry")
                 return null;
 
             //return the value for anything else

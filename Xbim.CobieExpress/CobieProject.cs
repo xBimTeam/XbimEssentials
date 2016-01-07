@@ -27,7 +27,7 @@ namespace Xbim.CobieExpress.Interfaces
 	{
 		string @Name { get; }
 		string @Description { get; }
-		string @ExternalObject { get; }
+		ICobieExternalObject @ExternalObject { get; }
 		string @ExternalId { get; }
 		IEnumerable<ICobiePhase> @Phases {  get; }
 		IEnumerable<ICobieFacility> @Facilities {  get; }
@@ -45,7 +45,7 @@ namespace Xbim.CobieExpress
 		#region ICobieProject explicit implementation
 		string ICobieProject.Name { get { return @Name; } }	
 		string ICobieProject.Description { get { return @Description; } }	
-		string ICobieProject.ExternalObject { get { return @ExternalObject; } }	
+		ICobieExternalObject ICobieProject.ExternalObject { get { return @ExternalObject; } }	
 		string ICobieProject.ExternalId { get { return @ExternalId; } }	
 		 
 		IEnumerable<ICobiePhase> ICobieProject.Phases {  get { return @Phases; } }
@@ -118,7 +118,7 @@ namespace Xbim.CobieExpress
 		#region Explicit attribute fields
 		private string _name;
 		private string _description;
-		private string _externalObject;
+		private CobieExternalObject _externalObject;
 		private string _externalId;
 		#endregion
 	
@@ -151,8 +151,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
-		public string @ExternalObject 
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		public CobieExternalObject @ExternalObject 
 		{ 
 			get 
 			{
@@ -266,7 +266,7 @@ namespace Xbim.CobieExpress
 					_description = value.StringVal;
 					return;
 				case 2: 
-					_externalObject = value.StringVal;
+					_externalObject = (CobieExternalObject)(value.EntityVal);
 					return;
 				case 3: 
 					_externalId = value.StringVal;
