@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common.Geometry;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.Ifc4;
+using Xbim.IO;
 
 namespace Xbim.EsentModel.Tests
 {
@@ -46,14 +46,30 @@ namespace Xbim.EsentModel.Tests
                     //ADD A REGIONCOLLECTION
                     var regions = new XbimRegionCollection();
                     regions.ContextLabel = 50;
-                    regions.Add(new XbimRegion("region1",XbimRect3D.Empty,100));
+                    var bb = new XbimRect3D(new XbimPoint3D(1,1,1),new XbimVector3D(10,20,30));
+                    regions.Add(new XbimRegion("region1",bb,100));
                     txn.AddRegions(regions);
 
                     txn.Commit();
-                }              
+                }
+                model.SaveAs("SampleHouse4.xbim",IfcStorageType.Xbim);
+                model.Close();
+            }
+            using (var model = IfcStore.Open(@"SampleHouse4.xbim"))
+            {
+                var geomStore = model.GeometryStore;
+                using (var reader = geomStore.BeginRead())
+                {
+                    Assert.IsTrue(reader.ContextIds.Any());
+                    Assert.IsTrue(reader.ContextRegions.First().ContextLabel==50);
+                    Assert.IsTrue(reader.ShapeGeometries.Count() == 1);
+                    Assert.IsTrue(reader.ShapeInstances.Count() == 1);
+                }
                 model.Close();
             }
         }
+
+        
 
         [DeploymentItem("TestFiles")]
         [TestMethod]
@@ -350,10 +366,10 @@ namespace Xbim.EsentModel.Tests
                 //start to read
                 using (var reader = store.BeginRead())
                 {
-                    Assert.IsTrue(reader.Regions.Count() == 2, "Incorrect number of regions retrieved");
-                    var regionsList = reader.Regions.ToList();
+                    Assert.IsTrue(reader.ContextRegions.Count() == 2, "Incorrect number of regions retrieved");
+                    var regionsList = reader.ContextRegions.ToList();
                     var contextIds = reader.ContextIds.ToList();
-                    for (int i = 0; i < reader.Regions.Count(); i++)
+                    for (int i = 0; i < reader.ContextRegions.Count(); i++)
                     {
                         Assert.IsTrue(regionsList[i].ContextLabel == 50 + i);
                         Assert.IsTrue(contextIds[i] == 50 + i);

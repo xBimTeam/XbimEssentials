@@ -833,7 +833,7 @@ namespace Xbim.Ifc
 
                 var lookup = geomRead.ShapeGeometries;
                 var styles = geomRead.StyleIds;
-                var regions = geomRead.Regions.SelectMany(r=>r).ToList();
+                var regions = geomRead.ContextRegions.SelectMany(r=>r).ToList();
 
                 int numberOfGeometries = 0;
                 int numberOfVertices = 0;

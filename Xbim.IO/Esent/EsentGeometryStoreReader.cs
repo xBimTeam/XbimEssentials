@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Geometry;
 
@@ -11,7 +12,7 @@ namespace Xbim.IO.Esent
         private readonly EsentShapeInstanceCursor _shapeInstanceCursor;
         private EsentReadOnlyTransaction _shapeGeometryTransaction;
         private EsentReadOnlyTransaction _shapeInstanceTransaction;
-        private List<XbimRegionCollection> _regionsList;
+        private readonly XbimContextRegionCollection _regionsList;
         private readonly HashSet<int> _contextIds;
 
         public EsentGeometryStoreReader(EsentModel esentModel)
@@ -20,7 +21,30 @@ namespace Xbim.IO.Esent
             _shapeGeometryCursor = _esentModel.GetShapeGeometryTable();
             _shapeInstanceCursor = _esentModel.GetShapeInstanceTable();
             _shapeGeometryTransaction = _shapeGeometryCursor.BeginReadOnlyTransaction();
-            _shapeInstanceTransaction = _shapeInstanceCursor.BeginReadOnlyTransaction();
+            _shapeInstanceTransaction = _shapeInstanceCursor.BeginReadOnlyTransaction();       
+            _regionsList = new XbimContextRegionCollection();
+            IXbimShapeGeometryData regions = new XbimRegionCollection();
+            if (_shapeGeometryCursor.TryMoveFirstRegion(ref regions))
+            {
+                do
+                {
+                    _regionsList.Add((XbimRegionCollection)regions);
+                    regions = new XbimRegionCollection();
+                } while (_shapeGeometryCursor.TryMoveNextRegion(ref regions));
+            }
+            if (!_regionsList.Any()) //we might have an old xbim database regions were stored in the geometry table                
+            {
+                var legacyCursor = _esentModel.GetGeometryTable();
+                using (var txn = legacyCursor.BeginReadOnlyTransaction())
+                {
+                    foreach (var regionData in legacyCursor.GetGeometryData(XbimGeometryType.Region))
+                    {
+                        _regionsList.Add(XbimRegionCollection.FromArray(regionData.ShapeData));
+                    }
+
+                }
+                _esentModel.FreeTable(legacyCursor);
+            }
             _contextIds = new HashSet<int>(ContextIds);
         }
         /// <summary>
@@ -185,23 +209,10 @@ namespace Xbim.IO.Esent
                 return styleIds;
             }
         }
-        public IEnumerable<XbimRegionCollection> Regions
+        public XbimContextRegionCollection ContextRegions
         {
             get
             {
-                if (_regionsList == null)
-                {
-                    _regionsList = new List<XbimRegionCollection>();
-                    IXbimShapeGeometryData regions = new XbimRegionCollection();
-                    if (_shapeGeometryCursor.TryMoveFirstRegion(ref regions))
-                    {
-                        do
-                        {
-                            _regionsList.Add((XbimRegionCollection) regions);
-                            regions = new XbimRegionCollection();
-                        } while (_shapeGeometryCursor.TryMoveNextRegion(ref regions));
-                    }
-                }
                 return _regionsList;
             }
         }
@@ -210,7 +221,7 @@ namespace Xbim.IO.Esent
         {
             get
             {
-                foreach (var region in Regions)
+                foreach (var region in ContextRegions)
                 {
                     yield return region.ContextLabel;
                 }
