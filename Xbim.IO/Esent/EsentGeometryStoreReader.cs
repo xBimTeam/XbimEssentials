@@ -188,19 +188,9 @@ namespace Xbim.IO.Esent
                         {
                             if (surfaceStyle > 0) //we have a surface style
                             {
-                                styleIds.Add(surfaceStyle);
-                                surfaceStyle = _shapeInstanceCursor.SkipSurfaceStyes(surfaceStyle);
+                                styleIds.Add(surfaceStyle);                              
                             }
-                            else //then we use the product type for the surface style
-                            {
-                                //read all shape instance of style 0 and get their product texture
-                                do
-                                {
-                                    styleIds.Add(-productType);
-                                } while (
-                                    _shapeInstanceCursor.TryMoveNextSurfaceStyle(out surfaceStyle, out productType) &&
-                                    surfaceStyle == 0); //skip over all the zero entries and get their style
-                            }
+                            surfaceStyle = _shapeInstanceCursor.SkipSurfaceStyes(surfaceStyle);
                         } while (surfaceStyle != -1);
                         //now get all the undefined styles and use their product type to create the texture
                     }
