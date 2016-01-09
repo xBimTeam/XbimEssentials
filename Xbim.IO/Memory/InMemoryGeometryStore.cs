@@ -112,7 +112,7 @@ namespace Xbim.IO.Memory
             {
                 return v.Select(instance => instance.Value).ToList();
             });
-            _styles = new HashSet<int>(EntityStyleLookup.Select(s => s.Key));
+            _styles = new HashSet<int>(EntityStyleLookup.Where(s=>s.Key>0).Select(s => s.Key));
             _contextIds = new HashSet<int>(ShapeInstances.Select(s => s.Value.RepresentationContext)).Distinct();
 
             var counts = ShapeInstances.Values.GroupBy(

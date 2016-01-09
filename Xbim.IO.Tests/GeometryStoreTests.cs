@@ -37,7 +37,8 @@ namespace Xbim.EsentModel.Tests
                     //ADD A SHAPE INSTANCE
                     var shapeInstance = new XbimShapeInstance()
                     {
-                        ShapeGeometryLabel = shapeGeomLabel
+                        ShapeGeometryLabel = shapeGeomLabel, StyleLabel = 5, RepresentationContext = 50
+                        
                     };
 
                     var instanceId = txn.AddShapeInstance(shapeInstance, shapeGeomLabel);
@@ -64,6 +65,7 @@ namespace Xbim.EsentModel.Tests
                     Assert.IsTrue(reader.ContextRegions.First().ContextLabel==50);
                     Assert.IsTrue(reader.ShapeGeometries.Count() == 1);
                     Assert.IsTrue(reader.ShapeInstances.Count() == 1);
+                    Assert.IsTrue(reader.StyleIds.Count == 1);
                 }
                 model.Close();
             }
