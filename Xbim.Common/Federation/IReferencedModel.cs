@@ -14,7 +14,14 @@
         /// </summary>
         string Name { get; }
 
+        /// <summary>
+        /// The role of the organisation that created this model, i.e. Architect, Engineer etc
+        /// </summary>
         string Role { get; }
+        /// <summary>
+        /// The name of the organisation that created and owns this model
+        /// </summary>
+        string OwningOrganisation { get; }
         
     }
 }
