@@ -139,7 +139,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _assetType = v, _assetType, value,  "AssetType");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
 		public CobieContact @Manufacturer 
 		{ 
 			get 
@@ -167,7 +167,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _modelNumber = v, _modelNumber, value,  "ModelNumber");
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
 		public CobieWarranty @Warranty 
 		{ 
 			get 

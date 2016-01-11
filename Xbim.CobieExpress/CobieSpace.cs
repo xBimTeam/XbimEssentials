@@ -142,13 +142,13 @@ namespace Xbim.CobieExpress
 
 
 		#region Inverse attributes
-		[InverseProperty("Space")]
+		[InverseProperty("Spaces")]
 		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 19)]
 		public IEnumerable<CobieComponent> @Components 
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieComponent>(e => (e.Space as CobieSpace) == this, "Space", this);
+				return Model.Instances.Where<CobieComponent>(e => e.Spaces != null &&  e.Spaces.Contains(this), "Spaces", this);
 			} 
 		}
 		[InverseProperty("Spaces")]

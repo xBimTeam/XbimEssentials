@@ -24,13 +24,13 @@ namespace Xbim.CobieExpress.Interfaces
 	public partial interface @ICobieComponent : ICobieAsset
 	{
 		string @SerialNumber { get; }
-		DateTimeValue @InstallationDate { get; }
-		DateTimeValue @WarrantyStartDate { get; }
+		DateTimeValue? @InstallationDate { get; }
+		DateTimeValue? @WarrantyStartDate { get; }
 		string @TagNumber { get; }
 		string @BarCode { get; }
 		string @AssetIdentifier { get; }
 		ICobieType @Type { get; }
-		ICobieSpace @Space { get; }
+		IEnumerable<ICobieSpace> @Spaces { get; }
 		IEnumerable<ICobieComponent> @AssemblyOf { get; }
 		IEnumerable<ICobieSystem> @InSystems {  get; }
 		IEnumerable<ICobieConnection> @ConnectedBefore {  get; }
@@ -49,13 +49,13 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieComponent explicit implementation
 		string ICobieComponent.SerialNumber { get { return @SerialNumber; } }	
-		DateTimeValue ICobieComponent.InstallationDate { get { return @InstallationDate; } }	
-		DateTimeValue ICobieComponent.WarrantyStartDate { get { return @WarrantyStartDate; } }	
+		DateTimeValue? ICobieComponent.InstallationDate { get { return @InstallationDate; } }	
+		DateTimeValue? ICobieComponent.WarrantyStartDate { get { return @WarrantyStartDate; } }	
 		string ICobieComponent.TagNumber { get { return @TagNumber; } }	
 		string ICobieComponent.BarCode { get { return @BarCode; } }	
 		string ICobieComponent.AssetIdentifier { get { return @AssetIdentifier; } }	
 		ICobieType ICobieComponent.Type { get { return @Type; } }	
-		ICobieSpace ICobieComponent.Space { get { return @Space; } }	
+		IEnumerable<ICobieSpace> ICobieComponent.Spaces { get { return @Spaces; } }	
 		IEnumerable<ICobieComponent> ICobieComponent.AssemblyOf { get { return @AssemblyOf; } }	
 		 
 		IEnumerable<ICobieSystem> ICobieComponent.InSystems {  get { return @InSystems; } }
@@ -67,23 +67,24 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieComponent(IModel model) : base(model) 		{ 
 			Model = model; 
+			_spaces = new ItemSet<CobieSpace>( this, 2 );
 			_assemblyOf = new OptionalItemSet<CobieComponent>( this, 0 );
 		}
 
 		#region Explicit attribute fields
 		private string _serialNumber;
-		private DateTimeValue _installationDate;
-		private DateTimeValue _warrantyStartDate;
+		private DateTimeValue? _installationDate;
+		private DateTimeValue? _warrantyStartDate;
 		private string _tagNumber;
 		private string _barCode;
 		private string _assetIdentifier;
 		private CobieType _type;
-		private CobieSpace _space;
+		private ItemSet<CobieSpace> _spaces;
 		private OptionalItemSet<CobieComponent> _assemblyOf;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
 		public string @SerialNumber 
 		{ 
 			get 
@@ -97,8 +98,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _serialNumber = v, _serialNumber, value,  "SerialNumber");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
-		public DateTimeValue @InstallationDate 
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
+		public DateTimeValue? @InstallationDate 
 		{ 
 			get 
 			{
@@ -111,8 +112,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _installationDate = v, _installationDate, value,  "InstallationDate");
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
-		public DateTimeValue @WarrantyStartDate 
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
+		public DateTimeValue? @WarrantyStartDate 
 		{ 
 			get 
 			{
@@ -183,18 +184,14 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(19, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 21)]
-		public CobieSpace @Space 
+		[EntityAttribute(19, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, 2, 21)]
+		public ItemSet<CobieSpace> @Spaces 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _space;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _spaces;
 				((IPersistEntity)this).Activate(false);
-				return _space;
-			} 
-			set
-			{
-				SetValue( v =>  _space = v, _space, value,  "Space");
+				return _spaces;
 			} 
 		}	
 		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 22)]
@@ -291,7 +288,8 @@ namespace Xbim.CobieExpress
 					_type = (CobieType)(value.EntityVal);
 					return;
 				case 18: 
-					_space = (CobieSpace)(value.EntityVal);
+					if (_spaces == null) _spaces = new ItemSet<CobieSpace>( this );
+					_spaces.InternalAdd((CobieSpace)value.EntityVal);
 					return;
 				case 19: 
 					if (_assemblyOf == null) _assemblyOf = new OptionalItemSet<CobieComponent>( this );

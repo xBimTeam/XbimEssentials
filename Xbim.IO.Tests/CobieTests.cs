@@ -209,7 +209,7 @@ namespace Xbim.MemoryModel.Tests
                 model.Instances.New<CobieComponent>(c =>
                 {
                     c.Type = type;
-                    c.Space = space;
+                    c.Spaces.Add(space);
                     c.Name = _rThings[i];
                     GenerateAttributes(c, 8);
                 });

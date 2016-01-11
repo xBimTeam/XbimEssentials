@@ -32,6 +32,7 @@ namespace Xbim.CobieExpress.Interfaces
 		ICobieSite @Site { get; }
 		ICobiePhase @Phase { get; }
 		IEnumerable<ICobieFloor> @Floors {  get; }
+		IEnumerable<ICobieSystem> @Systems {  get; }
 	
 	}
 }
@@ -54,6 +55,7 @@ namespace Xbim.CobieExpress
 		ICobiePhase ICobieFacility.Phase { get { return @Phase; } }	
 		 
 		IEnumerable<ICobieFloor> ICobieFacility.Floors {  get { return @Floors; } }
+		IEnumerable<ICobieSystem> ICobieFacility.Systems {  get { return @Systems; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -199,6 +201,15 @@ namespace Xbim.CobieExpress
 			get 
 			{
 				return Model.Instances.Where<CobieFloor>(e => (e.Facility as CobieFacility) == this, "Facility", this);
+			} 
+		}
+		[InverseProperty("Facility")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 23)]
+		public IEnumerable<CobieSystem> @Systems 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<CobieSystem>(e => (e.Facility as CobieFacility) == this, "Facility", this);
 			} 
 		}
 		#endregion
