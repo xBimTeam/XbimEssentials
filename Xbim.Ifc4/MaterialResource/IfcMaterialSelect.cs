@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcMaterialSelect : IExpressSelectType, IPersistEntity, IIfcMaterialSelect
+	public partial interface IfcMaterialSelect : IIfcMaterialSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.MaterialResource
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcMaterialSelect 
+	public partial interface IIfcMaterialSelect : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

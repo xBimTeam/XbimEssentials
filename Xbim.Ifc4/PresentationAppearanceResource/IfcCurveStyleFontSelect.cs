@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcCurveStyleFontSelect : IfcCurveFontOrScaledCurveFontSelect, IPersistEntity, IIfcCurveStyleFontSelect
+	public partial interface IfcCurveStyleFontSelect : IfcCurveFontOrScaledCurveFontSelect, IIfcCurveStyleFontSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcCurveStyleFontSelect : IIfcCurveFontOrScaledCurveFontSelect
+	public partial interface IIfcCurveStyleFontSelect : IIfcCurveFontOrScaledCurveFontSelect, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

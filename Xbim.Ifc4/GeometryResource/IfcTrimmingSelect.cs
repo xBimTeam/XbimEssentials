@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcTrimmingSelect : IExpressSelectType, IIfcTrimmingSelect
+	public partial interface IfcTrimmingSelect : IIfcTrimmingSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcTrimmingSelect 
+	public partial interface IIfcTrimmingSelect : IExpressSelectType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

@@ -14,7 +14,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcStructuralActivityAssignmentSelect : IExpressSelectType, IPersistEntity, IIfcStructuralActivityAssignmentSelect
+	public partial interface IfcStructuralActivityAssignmentSelect : IIfcStructuralActivityAssignmentSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcStructuralActivityAssignmentSelect 
+	public partial interface IIfcStructuralActivityAssignmentSelect : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

@@ -226,7 +226,7 @@ namespace Xbim.IO.Xml
                 return;
             }
 
-            if (typeof(IExpressSelectType).IsAssignableFrom(propType) && propType.IsInterface)
+            if (propType.IsInterface && typeof(IExpressSelectType).IsAssignableFrom(propType))
             // a select type get the type of the actual value
             {
                 var realType = propVal.GetType();

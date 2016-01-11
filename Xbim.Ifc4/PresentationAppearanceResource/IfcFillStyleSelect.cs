@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcFillStyleSelect : IExpressSelectType, IPersistEntity, IIfcFillStyleSelect
+	public partial interface IfcFillStyleSelect : IIfcFillStyleSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcFillStyleSelect 
+	public partial interface IIfcFillStyleSelect : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

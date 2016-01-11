@@ -14,7 +14,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcTextFontSelect : IExpressSelectType, IPersistEntity, IIfcTextFontSelect
+	public partial interface IfcTextFontSelect : IIfcTextFontSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcTextFontSelect 
+	public partial interface IIfcTextFontSelect : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

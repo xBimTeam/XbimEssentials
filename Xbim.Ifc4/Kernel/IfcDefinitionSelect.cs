@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.Kernel
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcDefinitionSelect : IExpressSelectType, IPersistEntity, IIfcDefinitionSelect
+	public partial interface IfcDefinitionSelect : IIfcDefinitionSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Kernel
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcDefinitionSelect 
+	public partial interface IIfcDefinitionSelect : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

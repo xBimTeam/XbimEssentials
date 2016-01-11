@@ -14,7 +14,7 @@ namespace Xbim.CobieExpress
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface AttributeValue : IExpressSelectType, IExpressValueType, IAttributeValue
+	public partial interface AttributeValue : IAttributeValue
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.CobieExpress
 
 namespace Xbim.CobieExpress.Interfaces
 {
-	public partial interface IAttributeValue 
+	public partial interface IAttributeValue : IExpressSelectType, IExpressValueType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

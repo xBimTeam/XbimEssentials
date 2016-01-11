@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcBooleanOperand : IExpressSelectType, IPersistEntity, IIfcBooleanOperand
+	public partial interface IfcBooleanOperand : IIfcBooleanOperand
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcBooleanOperand 
+	public partial interface IIfcBooleanOperand : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

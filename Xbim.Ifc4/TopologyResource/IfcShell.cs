@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcShell : IExpressSelectType, IPersistEntity, IIfcShell
+	public partial interface IfcShell : IIfcShell
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.TopologyResource
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcShell 
+	public partial interface IIfcShell : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

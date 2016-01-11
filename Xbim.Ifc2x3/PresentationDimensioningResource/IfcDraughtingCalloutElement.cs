@@ -14,7 +14,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcDraughtingCalloutElement : IExpressSelectType, IPersistEntity, IIfcDraughtingCalloutElement
+	public partial interface IfcDraughtingCalloutElement : IIfcDraughtingCalloutElement
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcDraughtingCalloutElement 
+	public partial interface IIfcDraughtingCalloutElement : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

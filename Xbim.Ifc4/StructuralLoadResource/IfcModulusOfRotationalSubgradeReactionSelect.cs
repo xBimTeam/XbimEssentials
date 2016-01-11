@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcModulusOfRotationalSubgradeReactionSelect : IExpressSelectType, IExpressValueType, IIfcModulusOfRotationalSubgradeReactionSelect
+	public partial interface IfcModulusOfRotationalSubgradeReactionSelect : IIfcModulusOfRotationalSubgradeReactionSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcModulusOfRotationalSubgradeReactionSelect 
+	public partial interface IIfcModulusOfRotationalSubgradeReactionSelect : IExpressSelectType, IExpressValueType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface
