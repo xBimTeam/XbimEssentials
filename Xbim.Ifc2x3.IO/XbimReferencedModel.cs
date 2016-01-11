@@ -1,8 +1,10 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Federation;
-using Xbim.Ifc2x3.ExternalReferenceResource;
+using Xbim.Ifc;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc2x3.IO
 {
@@ -11,9 +13,9 @@ namespace Xbim.Ifc2x3.IO
     /// </summary>
     public class XbimReferencedModel : IReferencedModel
     {
-        public IfcDocumentInformation DocumentInformation;
+        public IIfcDocumentInformation DocumentInformation;
 
-        private readonly XbimModel _model;
+        private readonly IfcStore _model;
         public IModel Model { get { return _model; } }
 
         public ITransaction DocumentInfoTransaction
@@ -23,18 +25,22 @@ namespace Xbim.Ifc2x3.IO
              }
         }
 
-        public XbimReferencedModel(IfcDocumentInformation documentInformation)
+        public XbimReferencedModel(IIfcDocumentInformation documentInformation)
         {
             DocumentInformation = documentInformation;
             if (!File.Exists(documentInformation.Name))
             {
                 throw new XbimException("Reference model not found:" + documentInformation.Name);
             }
-            _model = new XbimModel();
-            if (!_model.Open(documentInformation.Name))
+            try
             {
-                throw new XbimException("Unable to open reference model: " + documentInformation.Name);
+                _model = IfcStore.Open(documentInformation.Name);
             }
+            catch (Exception)
+            {                
+                 throw new XbimException("Unable to open reference model: " + documentInformation.Name);
+            }
+                        
         }
 
         /// <summary>
@@ -44,17 +50,9 @@ namespace Xbim.Ifc2x3.IO
         {
             get
             {
-                return DocumentInformation.DocumentId;
+                return DocumentInformation.Identification;
             }
         }
-
-        //public string Owner
-        //{
-        //    get
-        //    {
-        //        return DocumentInformation.DocumentOwner.ToString();
-        //    }
-        //}
 
         public string Name
         {
@@ -62,24 +60,9 @@ namespace Xbim.Ifc2x3.IO
             {
                 return DocumentInformation.Name;
             }
-        }
+        }      
 
-        public string OrganisationName
-        {
-            get
-            {
-                var organization = DocumentInformation.DocumentOwner as ActorResource.IfcOrganization;
-                if (organization != null)
-                    return organization.Name;
-                return null;
-            }
-        }
-
-        public string Role { get { return OwnerName; } }
-
-
-        // todo: this looks like nonsense to me (CB), if anything this returns owner role
-        public string OwnerName
+        public string Role
         {
             get
             {
@@ -97,6 +80,18 @@ namespace Xbim.Ifc2x3.IO
         internal void Dispose()
         {
             _model.Dispose();
+        }
+
+
+        public string OwningOrganisation
+        {
+            get
+            {
+                var organization = DocumentInformation.DocumentOwner as ActorResource.IfcOrganization;
+                if (organization != null)
+                    return organization.Name;
+                return null;
+            }
         }
     }
 }

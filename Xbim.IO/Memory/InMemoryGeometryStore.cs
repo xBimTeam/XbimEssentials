@@ -15,7 +15,7 @@ namespace Xbim.IO.Memory
         private Dictionary<int, List<XbimShapeInstance>> _entityStyleLookup;
         private Dictionary<int, List<XbimShapeInstance>> _geometryShapeLookup;
         private HashSet<int> _styles;
-        private List<XbimRegionCollection> _regions;
+        private readonly XbimContextRegionCollection _regions = new XbimContextRegionCollection();
         private IEnumerable<int> _contextIds;
         private int _geometryCount;
         private int _instanceCount;
@@ -73,7 +73,7 @@ namespace Xbim.IO.Memory
             get { return _styles; }
         }
 
-        public List<XbimRegionCollection> Regions
+        public XbimContextRegionCollection ContextRegions
         {
             get { return _regions; }
         }
@@ -112,7 +112,7 @@ namespace Xbim.IO.Memory
             {
                 return v.Select(instance => instance.Value).ToList();
             });
-            _styles = new HashSet<int>(EntityStyleLookup.Select(s => s.Key));
+            _styles = new HashSet<int>(EntityStyleLookup.Where(s=>s.Key>0).Select(s => s.Key));
             _contextIds = new HashSet<int>(ShapeInstances.Select(s => s.Value.RepresentationContext)).Distinct();
 
             var counts = ShapeInstances.Values.GroupBy(
@@ -134,8 +134,7 @@ namespace Xbim.IO.Memory
         }
 
         internal int AddRegions(XbimRegionCollection regions)
-        {
-            if(_regions==null) _regions=new List<XbimRegionCollection>();
+        {            
             _regions.Add(regions);
             return _regions.Count - 1;
         }

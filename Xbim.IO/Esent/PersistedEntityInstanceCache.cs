@@ -629,7 +629,7 @@ namespace Xbim.IO.Esent
                             {
                                 writer.AddShapeInstance(shapeInstance, shapeInstance.ShapeGeometryLabel);
                             }
-                            foreach (var regions in reader.Regions)
+                            foreach (var regions in reader.ContextRegions)
                             {
                                 writer.AddRegions(regions);
                             }
@@ -639,7 +639,7 @@ namespace Xbim.IO.Esent
                 };
                 Close();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 Close();
                 File.Delete(xbimDbName);

@@ -81,9 +81,9 @@ namespace Xbim.IO.Memory
         {
             get { return _inMemoryGeometryStore.Styles; }
         }
-        public IEnumerable<XbimRegionCollection> Regions
+        public XbimContextRegionCollection ContextRegions
         {
-            get { return _inMemoryGeometryStore.Regions ?? Enumerable.Empty<XbimRegionCollection>(); }
+            get { return _inMemoryGeometryStore.ContextRegions; }
         }
 
         public IEnumerable<int> ContextIds

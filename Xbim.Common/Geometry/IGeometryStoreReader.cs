@@ -63,7 +63,7 @@ namespace Xbim.Common.Geometry
         /// <summary>
         /// Returns the region collection for the store
         /// </summary>
-        IEnumerable<XbimRegionCollection> Regions { get; }
+        XbimContextRegionCollection ContextRegions { get; }
         /// <summary>
         /// Returns an eumerable of all the unique context ids in the store
         /// </summary>
