@@ -52,7 +52,7 @@ namespace Xbim.CobieExpress
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 13)]
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 14)]
 		public ItemSet<CobieComponent> @Components 
 		{ 
 			get 
@@ -83,9 +83,10 @@ namespace Xbim.CobieExpress
 				case 7: 
 				case 8: 
 				case 9: 
+				case 10: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 10: 
+				case 11: 
 					if (_components == null) _components = new ItemSet<CobieComponent>( this );
 					_components.InternalAdd((CobieComponent)value.EntityVal);
 					return;

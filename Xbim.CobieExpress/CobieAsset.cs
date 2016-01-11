@@ -73,7 +73,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public string @Name 
 		{ 
 			get 
@@ -87,7 +87,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public string @Description 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 7)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 8)]
 		public ItemSet<CobieCategory> @Category 
 		{ 
 			get 
@@ -111,7 +111,7 @@ namespace Xbim.CobieExpress
 				return _category;
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 8)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 9)]
 		public OptionalItemSet<CobieImpact> @Impacts 
 		{ 
 			get 
@@ -121,7 +121,7 @@ namespace Xbim.CobieExpress
 				return _impacts;
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 9)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 10)]
 		public OptionalItemSet<CobieDocument> @Documents 
 		{ 
 			get 
@@ -131,7 +131,7 @@ namespace Xbim.CobieExpress
 				return _documents;
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 10)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 11)]
 		public OptionalItemSet<CobieAttribute> @Attributes 
 		{ 
 			get 
@@ -147,7 +147,7 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Causing")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 11)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 12)]
 		public IEnumerable<CobieIssue> @CausingIssues 
 		{ 
 			get 
@@ -156,7 +156,7 @@ namespace Xbim.CobieExpress
 			} 
 		}
 		[InverseProperty("Affected")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 12)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 13)]
 		public IEnumerable<CobieIssue> @AffectedBy 
 		{ 
 			get 
@@ -176,27 +176,28 @@ namespace Xbim.CobieExpress
 				case 1: 
 				case 2: 
 				case 3: 
+				case 4: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 4: 
+				case 5: 
 					_name = value.StringVal;
 					return;
-				case 5: 
+				case 6: 
 					_description = value.StringVal;
 					return;
-				case 6: 
+				case 7: 
 					if (_category == null) _category = new ItemSet<CobieCategory>( this );
 					_category.InternalAdd((CobieCategory)value.EntityVal);
 					return;
-				case 7: 
+				case 8: 
 					if (_impacts == null) _impacts = new OptionalItemSet<CobieImpact>( this );
 					_impacts.InternalAdd((CobieImpact)value.EntityVal);
 					return;
-				case 8: 
+				case 9: 
 					if (_documents == null) _documents = new OptionalItemSet<CobieDocument>( this );
 					_documents.InternalAdd((CobieDocument)value.EntityVal);
 					return;
-				case 9: 
+				case 10: 
 					if (_attributes == null) _attributes = new OptionalItemSet<CobieAttribute>( this );
 					_attributes.InternalAdd((CobieAttribute)value.EntityVal);
 					return;

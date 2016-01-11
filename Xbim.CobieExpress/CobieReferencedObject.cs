@@ -27,6 +27,7 @@ namespace Xbim.CobieExpress.Interfaces
 	{
 		ICobieCreatedInfo @Created { get; }
 		string @ExternalId { get; }
+		string @AltExternalId { get; }
 		ICobieExternalSystem @ExternalSystem { get; }
 		ICobieExternalObject @ExternalObject { get; }
 	
@@ -43,6 +44,7 @@ namespace Xbim.CobieExpress
 		#region ICobieReferencedObject explicit implementation
 		ICobieCreatedInfo ICobieReferencedObject.Created { get { return @Created; } }	
 		string ICobieReferencedObject.ExternalId { get { return @ExternalId; } }	
+		string ICobieReferencedObject.AltExternalId { get { return @AltExternalId; } }	
 		ICobieExternalSystem ICobieReferencedObject.ExternalSystem { get { return @ExternalSystem; } }	
 		ICobieExternalObject ICobieReferencedObject.ExternalObject { get { return @ExternalObject; } }	
 		 
@@ -114,6 +116,7 @@ namespace Xbim.CobieExpress
 		#region Explicit attribute fields
 		private CobieCreatedInfo _created;
 		private string _externalId;
+		private string _altExternalId;
 		private CobieExternalSystem _externalSystem;
 		private CobieExternalObject _externalObject;
 		#endregion
@@ -147,7 +150,21 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _externalId = v, _externalId, value,  "ExternalId");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		public string @AltExternalId 
+		{ 
+			get 
+			{
+				if(ActivationStatus != ActivationStatus.NotActivated) return _altExternalId;
+				((IPersistEntity)this).Activate(false);
+				return _altExternalId;
+			} 
+			set
+			{
+				SetValue( v =>  _altExternalId = v, _altExternalId, value,  "AltExternalId");
+			} 
+		}	
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public CobieExternalSystem @ExternalSystem 
 		{ 
 			get 
@@ -161,7 +178,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _externalSystem = v, _externalSystem, value,  "ExternalSystem");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
 		public CobieExternalObject @ExternalObject 
 		{ 
 			get 
@@ -242,9 +259,12 @@ namespace Xbim.CobieExpress
 					_externalId = value.StringVal;
 					return;
 				case 2: 
-					_externalSystem = (CobieExternalSystem)(value.EntityVal);
+					_altExternalId = value.StringVal;
 					return;
 				case 3: 
+					_externalSystem = (CobieExternalSystem)(value.EntityVal);
+					return;
+				case 4: 
 					_externalObject = (CobieExternalObject)(value.EntityVal);
 					return;
 				default:

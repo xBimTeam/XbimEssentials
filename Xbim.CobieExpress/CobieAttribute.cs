@@ -67,7 +67,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public string @Name 
 		{ 
 			get 
@@ -81,7 +81,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public string @Description 
 		{ 
 			get 
@@ -95,7 +95,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobieStageType @Stage 
 		{ 
 			get 
@@ -109,7 +109,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _stage = v, _stage, value,  "Stage");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public AttributeValue @Value 
 		{ 
 			get 
@@ -123,7 +123,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _value = v, _value, value,  "Value");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
 		public string @Unit 
 		{ 
 			get 
@@ -137,7 +137,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _unit = v, _unit, value,  "Unit");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 10)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 11)]
 		public OptionalItemSet<string> @AllowedValues 
 		{ 
 			get 
@@ -175,24 +175,25 @@ namespace Xbim.CobieExpress
 				case 1: 
 				case 2: 
 				case 3: 
+				case 4: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 4: 
+				case 5: 
 					_name = value.StringVal;
 					return;
-				case 5: 
+				case 6: 
 					_description = value.StringVal;
 					return;
-				case 6: 
+				case 7: 
 					_stage = (CobieStageType)(value.EntityVal);
 					return;
-				case 7: 
+				case 8: 
 					_value = (AttributeValue)(value.EntityVal);
 					return;
-				case 8: 
+				case 9: 
 					_unit = value.StringVal;
 					return;
-				case 9: 
+				case 10: 
 					if (_allowedValues == null) _allowedValues = new OptionalItemSet<string>( this );
 					_allowedValues.InternalAdd(value.StringVal);
 					return;
