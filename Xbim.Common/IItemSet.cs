@@ -9,6 +9,7 @@ namespace Xbim.Common
     public interface IItemSet<T> : IList<T>, IList, INotifyCollectionChanged, INotifyPropertyChanged, IExpressEnumerable
     {
 		IPersistEntity OwningEntity { get; }
+        void AddRange(IEnumerable<T> values);
         T First { get; }
         T FirstOrDefault();
         T FirstOrDefault(Func<T, bool> predicate);
