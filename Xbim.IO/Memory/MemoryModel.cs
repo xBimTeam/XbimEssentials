@@ -510,29 +510,25 @@ namespace Xbim.IO.Memory
 
         public virtual void SaveAsXMLZip(Stream stream, XmlWriterSettings xmlSettings, ReportProgressDelegate progress = null)
         {
-            using (var zipFile = new ZipFile(stream))
+            using (var zipStream = new ZipOutputStream(stream))
             {
                 var schema = _entityFactory.SchemasIds.FirstOrDefault();
                 var ext = schema != null && schema.StartsWith("IFC") ? ".ifcxml" : ".xml";
-                var entry = new ZipEntry("data" + ext);
-                using (var zipStream = zipFile.GetInputStream(entry))
-                {
-                    SaveAsXml(zipStream, xmlSettings, progress);
-                }
+                var newEntry = new ZipEntry("data" + ext) { DateTime = DateTime.Now };
+                zipStream.PutNextEntry(newEntry);
+                SaveAsXml(zipStream, xmlSettings, progress);
             }
         }
 
         public virtual void SaveAsStep21Zip(Stream stream, ReportProgressDelegate progress = null)
         {
-            using (var zipFile = new ZipFile(stream))
+            using (var zipStream = new ZipOutputStream(stream))
             {
                 var schema = _entityFactory.SchemasIds.FirstOrDefault();
                 var ext = schema != null && schema.StartsWith("IFC") ? ".ifc" : ".stp";
-                var entry = new ZipEntry("data" + ext);
-                using (var zipStream = zipFile.GetInputStream(entry))
-                {
-                    SaveAsStep21(zipStream, progress);
-                }
+                var newEntry = new ZipEntry("data" + ext) { DateTime = DateTime.Now };
+                zipStream.PutNextEntry(newEntry);
+                SaveAsStep21(zipStream, progress);
             }
         }
 

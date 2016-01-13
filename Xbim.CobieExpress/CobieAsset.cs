@@ -269,6 +269,74 @@ namespace Xbim.CobieExpress
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
+
+        /// <summary>
+        /// Gets or sets attribute value from Attributes.
+        /// </summary>
+        /// <param name="attributeName">If the name contains '.' separtot first part is interpreted as the name of property set and the second part as the name of attribute.</param>
+        /// <returns>Attribute value if it exists for specified attribute name (and optionally property set)</returns>
+	    public AttributeValue this[string attributeName]
+	    {
+	        get
+	        {
+	            if (string.IsNullOrWhiteSpace(attributeName)) 
+                    return null;
+
+	            if (!Attributes.Initialized)
+	                return null;
+
+	            var parts = attributeName.Split(new []{'.'}, StringSplitOptions.RemoveEmptyEntries);
+	            if (parts.Length != 2)
+	            {
+	                var attribute = Attributes.FirstOrDefault(a => a.Name == attributeName);
+	                return attribute != null ? attribute.Value : null;
+	            }
+
+                var result = Attributes.FirstOrDefault(a => a.Name == parts[1] && a.PropertySet != null && a.PropertySet.Name == parts[0]);
+                return result != null ? result.Value : null;
+	        }
+
+	        set
+	        {
+                if (string.IsNullOrWhiteSpace(attributeName))
+                    return;
+
+                var parts = attributeName.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+	            CobieAttribute attribute;
+                if (parts.Length != 2)
+                {
+                    attribute = Attributes.FirstOrDefault(a => a.Name == attributeName);
+                    if (attribute != null)
+                        attribute.Value = value;
+                    else
+                        Attributes.Add(Model.Instances.New<CobieAttribute>(a =>
+                        {
+                            a.Name = attributeName;
+                            a.Value = value;
+                        }));
+                    return;
+                }
+
+                attribute = Attributes.FirstOrDefault(a => a.Name == parts[1] && a.PropertySet != null && a.PropertySet.Name == parts[0]);
+                if (attribute != null)
+                    attribute.Value = value;
+	            else
+                {
+                    var pSet =
+                        Attributes.Select(a => a.PropertySet).FirstOrDefault(ps => ps != null && ps.Name == parts[0]) ??
+                        Model.Instances.New<CobieExternalObject>(a => a.Name = parts[0]);
+
+                    attribute = Model.Instances.New<CobieAttribute>(a =>
+                    {
+                        a.Name = parts[1];
+                        a.Value = value;
+                        a.ExternalObject = pSet;
+                    });
+
+	                Attributes.Add(attribute);
+	            }
+	        }
+	    }
 		//##
 		#endregion
 	}
