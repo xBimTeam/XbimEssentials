@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcWarpingStiffnessSelect : IExpressSelectType, IExpressValueType, IIfcWarpingStiffnessSelect
+	public partial interface IfcWarpingStiffnessSelect : IIfcWarpingStiffnessSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcWarpingStiffnessSelect 
+	public partial interface IIfcWarpingStiffnessSelect : IExpressSelectType, IExpressValueType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

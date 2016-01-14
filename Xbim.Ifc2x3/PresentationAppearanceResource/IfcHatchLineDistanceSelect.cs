@@ -14,7 +14,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcHatchLineDistanceSelect : IExpressSelectType, IIfcHatchLineDistanceSelect
+	public partial interface IfcHatchLineDistanceSelect : IIfcHatchLineDistanceSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcHatchLineDistanceSelect 
+	public partial interface IIfcHatchLineDistanceSelect : IExpressSelectType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

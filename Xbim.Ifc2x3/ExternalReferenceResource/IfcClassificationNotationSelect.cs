@@ -14,7 +14,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcClassificationNotationSelect : IExpressSelectType, IPersistEntity, IIfcClassificationNotationSelect
+	public partial interface IfcClassificationNotationSelect : IIfcClassificationNotationSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcClassificationNotationSelect 
+	public partial interface IIfcClassificationNotationSelect : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

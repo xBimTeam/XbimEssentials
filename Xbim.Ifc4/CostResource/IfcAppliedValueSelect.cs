@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.CostResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcAppliedValueSelect : IExpressSelectType, IIfcAppliedValueSelect
+	public partial interface IfcAppliedValueSelect : IIfcAppliedValueSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.CostResource
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcAppliedValueSelect 
+	public partial interface IIfcAppliedValueSelect : IExpressSelectType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

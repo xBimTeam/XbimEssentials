@@ -14,7 +14,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcValue : IExpressSelectType, IExpressValueType, IIfcValue
+	public partial interface IfcValue : IIfcValue
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcValue 
+	public partial interface IIfcValue : IExpressSelectType, IExpressValueType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

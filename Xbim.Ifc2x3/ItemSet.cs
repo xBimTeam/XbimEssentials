@@ -102,6 +102,35 @@ namespace Xbim.Ifc2x3
         }
 
         #region IItemSet<T> Members
+        public void AddRange(IEnumerable<T> values)
+		{
+			if(Model.IsTransactional && Model.CurrentTransaction == null)
+                throw new Exception("Operation out of transaction");
+			
+			//activate owning entity for write in case it is not active yet
+			OwningEntity.Activate(true);
+
+            var items = values as T[] ?? values.ToArray();
+			Action doAction = () => {
+				Internal.AddRange(items);
+				NotifyCollectionChanged(NotifyCollectionChangedAction.Add, items);
+				NotifyCountChanged();
+			};
+
+			doAction();
+
+            if (!Model.IsTransactional) return;
+            
+            Action undoAction = () => {
+				foreach(var value in items)
+					Internal.Remove(value);
+				NotifyCollectionChanged(NotifyCollectionChangedAction.Remove, items);
+				NotifyCountChanged();
+			};
+
+            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified);
+		}
+
         public T First
         {
             get { return Internal.First(); }

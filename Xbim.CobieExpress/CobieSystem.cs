@@ -24,6 +24,7 @@ namespace Xbim.CobieExpress.Interfaces
 	public partial interface @ICobieSystem : ICobieAsset
 	{
 		IEnumerable<ICobieComponent> @Components { get; }
+		ICobieFacility @Facility { get; }
 	
 	}
 }
@@ -37,6 +38,7 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieSystem explicit implementation
 		IEnumerable<ICobieComponent> ICobieSystem.Components { get { return @Components; } }	
+		ICobieFacility ICobieSystem.Facility { get { return @Facility; } }	
 		 
 		#endregion
 
@@ -48,11 +50,12 @@ namespace Xbim.CobieExpress
 
 		#region Explicit attribute fields
 		private ItemSet<CobieComponent> _components;
+		private CobieFacility _facility;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 13)]
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 14)]
 		public ItemSet<CobieComponent> @Components 
 		{ 
 			get 
@@ -60,6 +63,21 @@ namespace Xbim.CobieExpress
 				if(ActivationStatus != ActivationStatus.NotActivated) return _components;
 				((IPersistEntity)this).Activate(false);
 				return _components;
+			} 
+		}	
+		[IndexedProperty]
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
+		public CobieFacility @Facility 
+		{ 
+			get 
+			{
+				if(ActivationStatus != ActivationStatus.NotActivated) return _facility;
+				((IPersistEntity)this).Activate(false);
+				return _facility;
+			} 
+			set
+			{
+				SetValue( v =>  _facility = v, _facility, value,  "Facility");
 			} 
 		}	
 		#endregion
@@ -83,11 +101,15 @@ namespace Xbim.CobieExpress
 				case 7: 
 				case 8: 
 				case 9: 
+				case 10: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 10: 
+				case 11: 
 					if (_components == null) _components = new ItemSet<CobieComponent>( this );
 					_components.InternalAdd((CobieComponent)value.EntityVal);
+					return;
+				case 12: 
+					_facility = (CobieFacility)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcBendingParameterSelect : IExpressSelectType, IExpressValueType, IIfcBendingParameterSelect
+	public partial interface IfcBendingParameterSelect : IIfcBendingParameterSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcBendingParameterSelect 
+	public partial interface IIfcBendingParameterSelect : IExpressSelectType, IExpressValueType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

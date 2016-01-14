@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.ConstraintResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcMetricValueSelect : IExpressSelectType, IIfcMetricValueSelect
+	public partial interface IfcMetricValueSelect : IIfcMetricValueSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.ConstraintResource
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcMetricValueSelect 
+	public partial interface IIfcMetricValueSelect : IExpressSelectType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

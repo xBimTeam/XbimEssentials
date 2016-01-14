@@ -639,7 +639,7 @@ namespace Xbim.IO.Esent
                 };
                 Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Close();
                 File.Delete(xbimDbName);

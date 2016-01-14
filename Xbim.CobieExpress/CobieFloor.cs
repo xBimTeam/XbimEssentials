@@ -58,7 +58,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
 		public double? @Elevation 
 		{ 
 			get 
@@ -72,7 +72,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _elevation = v, _elevation, value,  "Elevation");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
 		public double? @Height 
 		{ 
 			get 
@@ -87,7 +87,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
 		public CobieFacility @Facility 
 		{ 
 			get 
@@ -107,7 +107,7 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Floor")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 16)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 17)]
 		public IEnumerable<CobieSpace> @Spaces 
 		{ 
 			get 
@@ -133,15 +133,16 @@ namespace Xbim.CobieExpress
 				case 7: 
 				case 8: 
 				case 9: 
+				case 10: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 10: 
+				case 11: 
 					_elevation = value.RealVal;
 					return;
-				case 11: 
+				case 12: 
 					_height = value.RealVal;
 					return;
-				case 12: 
+				case 13: 
 					_facility = (CobieFacility)(value.EntityVal);
 					return;
 				default:

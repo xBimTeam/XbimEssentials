@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.MeasureResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcDerivedMeasureValue : IfcValue, IExpressValueType, IIfcDerivedMeasureValue
+	public partial interface IfcDerivedMeasureValue : IfcValue, IIfcDerivedMeasureValue
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.MeasureResource
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcDerivedMeasureValue : IIfcValue
+	public partial interface IIfcDerivedMeasureValue : IIfcValue, IExpressValueType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

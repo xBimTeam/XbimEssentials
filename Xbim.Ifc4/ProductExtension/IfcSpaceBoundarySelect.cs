@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcSpaceBoundarySelect : IExpressSelectType, IPersistEntity, IIfcSpaceBoundarySelect
+	public partial interface IfcSpaceBoundarySelect : IIfcSpaceBoundarySelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.ProductExtension
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcSpaceBoundarySelect 
+	public partial interface IIfcSpaceBoundarySelect : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

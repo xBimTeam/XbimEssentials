@@ -22,6 +22,11 @@ namespace Xbim.MemoryModel.Tests
                 model.SaveAsStep21(fileStream);
             }
 
+            using (var fileStream = File.Create("RandomModel.cobieZip"))
+            {
+                model.SaveAsStep21Zip(fileStream);
+            }
+
             var model2 = new IO.Memory.MemoryModel(new EntityFactory());
             model2.LoadStep21("RandomModel.cobie");
 
@@ -53,7 +58,6 @@ namespace Xbim.MemoryModel.Tests
                 Assert.IsNotNull(attribute);
                 var entity = model.Instances.FirstOrDefault<CobieAsset>(a => a.Attributes.Contains(attribute));
                 Assert.IsNotNull(entity);
-
                 var space = model.Instances.FirstOrDefault<CobieSpace>();
                 var floor = space.Floor;
                 Assert.IsNotNull(floor);
@@ -67,6 +71,48 @@ namespace Xbim.MemoryModel.Tests
                 model.Delete(floor);
                 Assert.IsNull(space.Floor);
             }
+        }
+
+        [TestMethod]
+        public void AttributeIndexGetSet()
+        {
+            const string file = "attrModel.cobie";
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
+            {
+                using (var txn = model.BeginTransaction("Creation"))
+                {
+                    var component = model.Instances.New<CobieComponent>(c => c.Name = "Boiler");
+                    var bCode = component["BarCode"];
+                    Assert.IsNull(bCode);
+
+                    const int bc = 15789123;
+                    component["BarCode"] = (IntegerValue)bc;
+                    Assert.IsNotNull(component.Attributes.FirstOrDefault(a => a.Name == "BarCode"));
+
+                    bCode = component["BarCode"];
+                    Assert.IsNotNull(bCode);
+                    Assert.IsTrue(bCode.Equals((IntegerValue)bc));
+
+                    component["BarCode"] = (IntegerValue)5;
+                    Assert.IsTrue(component["BarCode"].Equals((IntegerValue)5));
+
+                    const string myPropName = "My property set.My property";
+                    var myProp = component[myPropName];
+                    Assert.IsNull(myProp);
+                    component[myPropName] = (StringValue) "Testing value";
+                    var myAttr =
+                        component.Attributes.FirstOrDefault(
+                            a => a.Name == "My property" && a.PropertySet.Name == "My property set");
+                    Assert.IsNotNull(myAttr);
+
+                    myProp = component[myPropName];
+                    Assert.IsNotNull(myProp);
+                    Assert.IsTrue(myProp.Equals((StringValue)"Testing value"));
+
+                    txn.Commit();
+                }
+            }
+
         }
 
         [TestMethod]
@@ -209,7 +255,7 @@ namespace Xbim.MemoryModel.Tests
                 model.Instances.New<CobieComponent>(c =>
                 {
                     c.Type = type;
-                    c.Space = space;
+                    c.Spaces.Add(space);
                     c.Name = _rThings[i];
                     GenerateAttributes(c, 8);
                 });

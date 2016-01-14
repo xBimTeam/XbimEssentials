@@ -14,7 +14,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcPointOrVertexPoint : IExpressSelectType, IPersistEntity, IIfcPointOrVertexPoint
+	public partial interface IfcPointOrVertexPoint : IIfcPointOrVertexPoint
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcPointOrVertexPoint 
+	public partial interface IIfcPointOrVertexPoint : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

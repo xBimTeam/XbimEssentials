@@ -14,7 +14,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcDefinedSymbolSelect : IExpressSelectType, IPersistEntity, IIfcDefinedSymbolSelect
+	public partial interface IfcDefinedSymbolSelect : IIfcDefinedSymbolSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 
 namespace Xbim.Ifc2x3.Interfaces
 {
-	public partial interface IIfcDefinedSymbolSelect 
+	public partial interface IIfcDefinedSymbolSelect : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

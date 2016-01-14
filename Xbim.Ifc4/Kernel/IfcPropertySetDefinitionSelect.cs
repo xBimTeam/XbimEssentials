@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Ifc4.Interfaces;
 
@@ -15,7 +14,7 @@ namespace Xbim.Ifc4.Kernel
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcPropertySetDefinitionSelect : IExpressSelectType, IIfcPropertySetDefinitionSelect
+	public partial interface IfcPropertySetDefinitionSelect : IIfcPropertySetDefinitionSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -26,11 +25,11 @@ namespace Xbim.Ifc4.Kernel
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcPropertySetDefinitionSelect 
+	public partial interface IIfcPropertySetDefinitionSelect : IExpressSelectType
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface
-        IEnumerable<IIfcPropertySetDefinition> PropertySetDefinitions { get; }
+        System.Collections.Generic.IEnumerable<IIfcPropertySetDefinition> PropertySetDefinitions { get; }
         
 		//##
 		#endregion

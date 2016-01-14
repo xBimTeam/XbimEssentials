@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcProductRepresentationSelect : IExpressSelectType, IPersistEntity, IIfcProductRepresentationSelect
+	public partial interface IfcProductRepresentationSelect : IIfcProductRepresentationSelect
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.RepresentationResource
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcProductRepresentationSelect 
+	public partial interface IIfcProductRepresentationSelect : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface

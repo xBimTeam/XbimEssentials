@@ -25,7 +25,7 @@ namespace Xbim.CobieExpress.Interfaces
 	{
 		string @Name { get; }
 		string @Description { get; }
-		IEnumerable<ICobieCategory> @Category { get; }
+		IEnumerable<ICobieCategory> @Categories { get; }
 		IEnumerable<ICobieImpact> @Impacts { get; }
 		IEnumerable<ICobieDocument> @Documents { get; }
 		IEnumerable<ICobieAttribute> @Attributes { get; }
@@ -45,7 +45,7 @@ namespace Xbim.CobieExpress
 		#region ICobieAsset explicit implementation
 		string ICobieAsset.Name { get { return @Name; } }	
 		string ICobieAsset.Description { get { return @Description; } }	
-		IEnumerable<ICobieCategory> ICobieAsset.Category { get { return @Category; } }	
+		IEnumerable<ICobieCategory> ICobieAsset.Categories { get { return @Categories; } }	
 		IEnumerable<ICobieImpact> ICobieAsset.Impacts { get { return @Impacts; } }	
 		IEnumerable<ICobieDocument> ICobieAsset.Documents { get { return @Documents; } }	
 		IEnumerable<ICobieAttribute> ICobieAsset.Attributes { get { return @Attributes; } }	
@@ -57,7 +57,7 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieAsset(IModel model) : base(model) 		{ 
 			Model = model; 
-			_category = new ItemSet<CobieCategory>( this, 0 );
+			_categories = new ItemSet<CobieCategory>( this, 0 );
 			_impacts = new OptionalItemSet<CobieImpact>( this, 0 );
 			_documents = new OptionalItemSet<CobieDocument>( this, 0 );
 			_attributes = new OptionalItemSet<CobieAttribute>( this, 0 );
@@ -66,14 +66,14 @@ namespace Xbim.CobieExpress
 		#region Explicit attribute fields
 		private string _name;
 		private string _description;
-		private ItemSet<CobieCategory> _category;
+		private ItemSet<CobieCategory> _categories;
 		private OptionalItemSet<CobieImpact> _impacts;
 		private OptionalItemSet<CobieDocument> _documents;
 		private OptionalItemSet<CobieAttribute> _attributes;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public string @Name 
 		{ 
 			get 
@@ -87,7 +87,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public string @Description 
 		{ 
 			get 
@@ -101,17 +101,17 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 7)]
-		public ItemSet<CobieCategory> @Category 
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 8)]
+		public ItemSet<CobieCategory> @Categories 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _category;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _categories;
 				((IPersistEntity)this).Activate(false);
-				return _category;
+				return _categories;
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 8)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 9)]
 		public OptionalItemSet<CobieImpact> @Impacts 
 		{ 
 			get 
@@ -121,7 +121,7 @@ namespace Xbim.CobieExpress
 				return _impacts;
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 9)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 10)]
 		public OptionalItemSet<CobieDocument> @Documents 
 		{ 
 			get 
@@ -131,7 +131,7 @@ namespace Xbim.CobieExpress
 				return _documents;
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 10)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 11)]
 		public OptionalItemSet<CobieAttribute> @Attributes 
 		{ 
 			get 
@@ -147,7 +147,7 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Causing")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 11)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 12)]
 		public IEnumerable<CobieIssue> @CausingIssues 
 		{ 
 			get 
@@ -156,7 +156,7 @@ namespace Xbim.CobieExpress
 			} 
 		}
 		[InverseProperty("Affected")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 12)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 13)]
 		public IEnumerable<CobieIssue> @AffectedBy 
 		{ 
 			get 
@@ -176,27 +176,28 @@ namespace Xbim.CobieExpress
 				case 1: 
 				case 2: 
 				case 3: 
+				case 4: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 4: 
+				case 5: 
 					_name = value.StringVal;
 					return;
-				case 5: 
+				case 6: 
 					_description = value.StringVal;
 					return;
-				case 6: 
-					if (_category == null) _category = new ItemSet<CobieCategory>( this );
-					_category.InternalAdd((CobieCategory)value.EntityVal);
-					return;
 				case 7: 
+					if (_categories == null) _categories = new ItemSet<CobieCategory>( this );
+					_categories.InternalAdd((CobieCategory)value.EntityVal);
+					return;
+				case 8: 
 					if (_impacts == null) _impacts = new OptionalItemSet<CobieImpact>( this );
 					_impacts.InternalAdd((CobieImpact)value.EntityVal);
 					return;
-				case 8: 
+				case 9: 
 					if (_documents == null) _documents = new OptionalItemSet<CobieDocument>( this );
 					_documents.InternalAdd((CobieDocument)value.EntityVal);
 					return;
-				case 9: 
+				case 10: 
 					if (_attributes == null) _attributes = new OptionalItemSet<CobieAttribute>( this );
 					_attributes.InternalAdd((CobieAttribute)value.EntityVal);
 					return;
@@ -268,6 +269,74 @@ namespace Xbim.CobieExpress
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
+
+        /// <summary>
+        /// Gets or sets attribute value from Attributes.
+        /// </summary>
+        /// <param name="attributeName">If the name contains '.' separtot first part is interpreted as the name of property set and the second part as the name of attribute.</param>
+        /// <returns>Attribute value if it exists for specified attribute name (and optionally property set)</returns>
+	    public AttributeValue this[string attributeName]
+	    {
+	        get
+	        {
+	            if (string.IsNullOrWhiteSpace(attributeName)) 
+                    return null;
+
+	            if (!Attributes.Initialized)
+	                return null;
+
+	            var parts = attributeName.Split(new []{'.'}, StringSplitOptions.RemoveEmptyEntries);
+	            if (parts.Length != 2)
+	            {
+	                var attribute = Attributes.FirstOrDefault(a => a.Name == attributeName);
+	                return attribute != null ? attribute.Value : null;
+	            }
+
+                var result = Attributes.FirstOrDefault(a => a.Name == parts[1] && a.PropertySet != null && a.PropertySet.Name == parts[0]);
+                return result != null ? result.Value : null;
+	        }
+
+	        set
+	        {
+                if (string.IsNullOrWhiteSpace(attributeName))
+                    return;
+
+                var parts = attributeName.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+	            CobieAttribute attribute;
+                if (parts.Length != 2)
+                {
+                    attribute = Attributes.FirstOrDefault(a => a.Name == attributeName);
+                    if (attribute != null)
+                        attribute.Value = value;
+                    else
+                        Attributes.Add(Model.Instances.New<CobieAttribute>(a =>
+                        {
+                            a.Name = attributeName;
+                            a.Value = value;
+                        }));
+                    return;
+                }
+
+                attribute = Attributes.FirstOrDefault(a => a.Name == parts[1] && a.PropertySet != null && a.PropertySet.Name == parts[0]);
+                if (attribute != null)
+                    attribute.Value = value;
+	            else
+                {
+                    var pSet =
+                        Attributes.Select(a => a.PropertySet).FirstOrDefault(ps => ps != null && ps.Name == parts[0]) ??
+                        Model.Instances.New<CobieExternalObject>(a => a.Name = parts[0]);
+
+                    attribute = Model.Instances.New<CobieAttribute>(a =>
+                    {
+                        a.Name = parts[1];
+                        a.Value = value;
+                        a.ExternalObject = pSet;
+                    });
+
+	                Attributes.Add(attribute);
+	            }
+	        }
+	    }
 		//##
 		#endregion
 	}

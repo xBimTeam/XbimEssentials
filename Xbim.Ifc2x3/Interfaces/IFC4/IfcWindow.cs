@@ -59,8 +59,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				//##
 			} 
 		}
-
-        //## Custom code
+	//## Custom code
 
         /// <summary>
 	    /// Returns if the door is external

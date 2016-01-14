@@ -74,7 +74,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public string @Name 
 		{ 
 			get 
@@ -88,7 +88,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public string @Description 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobieDocumentType @DocumentType 
 		{ 
 			get 
@@ -116,7 +116,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _documentType = v, _documentType, value,  "DocumentType");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public CobieApprovalType @ApprovalType 
 		{ 
 			get 
@@ -130,7 +130,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _approvalType = v, _approvalType, value,  "ApprovalType");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
 		public CobieStageType @Stage 
 		{ 
 			get 
@@ -144,7 +144,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _stage = v, _stage, value,  "Stage");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
 		public string @URL 
 		{ 
 			get 
@@ -158,7 +158,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _uRL = v, _uRL, value,  "URL");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
 		public string @Reference 
 		{ 
 			get 
@@ -172,7 +172,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _reference = v, _reference, value,  "Reference");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
 		public string @Directory 
 		{ 
 			get 
@@ -186,7 +186,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _directory = v, _directory, value,  "Directory");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
 		public string @File 
 		{ 
 			get 
@@ -215,33 +215,34 @@ namespace Xbim.CobieExpress
 				case 1: 
 				case 2: 
 				case 3: 
+				case 4: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 4: 
+				case 5: 
 					_name = value.StringVal;
 					return;
-				case 5: 
+				case 6: 
 					_description = value.StringVal;
 					return;
-				case 6: 
+				case 7: 
 					_documentType = (CobieDocumentType)(value.EntityVal);
 					return;
-				case 7: 
+				case 8: 
 					_approvalType = (CobieApprovalType)(value.EntityVal);
 					return;
-				case 8: 
+				case 9: 
 					_stage = (CobieStageType)(value.EntityVal);
 					return;
-				case 9: 
+				case 10: 
 					_uRL = value.StringVal;
 					return;
-				case 10: 
+				case 11: 
 					_reference = value.StringVal;
 					return;
-				case 11: 
+				case 12: 
 					_directory = value.StringVal;
 					return;
-				case 12: 
+				case 13: 
 					_file = value.StringVal;
 					return;
 				default:

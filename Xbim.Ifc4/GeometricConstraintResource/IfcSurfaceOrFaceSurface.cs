@@ -14,7 +14,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcSurfaceOrFaceSurface : IExpressSelectType, IPersistEntity, IIfcSurfaceOrFaceSurface
+	public partial interface IfcSurfaceOrFaceSurface : IIfcSurfaceOrFaceSurface
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
 namespace Xbim.Ifc4.Interfaces
 {
-	public partial interface IIfcSurfaceOrFaceSurface 
+	public partial interface IIfcSurfaceOrFaceSurface : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface
