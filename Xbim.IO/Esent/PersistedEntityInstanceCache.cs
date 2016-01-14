@@ -1656,7 +1656,7 @@ namespace Xbim.IO.Esent
                 using (var xmlWriter = XmlWriter.Create(xmlOutStream, settings))
                 {
                     var writer = new IfcXmlWriter3();
-                    writer.Write(_model, xmlWriter, InstanceHandles.Select(i => _model.GetInstanceVolatile(i)));
+                    writer.Write(_model, xmlWriter, InstanceHandles.Select(i => _model.GetInstanceVolatile(i.EntityLabel)));
                 }
             }
             catch (Exception e)

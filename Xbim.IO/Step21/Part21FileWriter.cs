@@ -47,7 +47,7 @@ namespace Xbim.IO.Step21
                 }));
             foreach (var item in model.InstanceHandles)
             {
-                var entity = model.GetInstanceVolatile(item);
+                var entity = model.GetInstanceVolatile(item.EntityLabel);
                 entity.WriteEntity(output, metadata, map);
             }
 

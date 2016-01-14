@@ -1,8 +1,7 @@
 ﻿using System;
-using Xbim.Common;
 using Xbim.Common.Metadata;
 
-namespace Xbim.IO.Esent
+namespace Xbim.Common
 {
     /// <summary>
     /// A lightweight structure for obtaining a handle to an Ifc Instance, the instance is not loaded into memory unless the GetInstance function is called
@@ -12,7 +11,7 @@ namespace Xbim.IO.Esent
     {
         public readonly int EntityLabel;
         public short EntityTypeId;
-        public readonly EsentModel Model;
+        public readonly IModel Model;
        
         public static bool operator ==(XbimInstanceHandle a, XbimInstanceHandle b)
         {
@@ -61,21 +60,21 @@ namespace Xbim.IO.Esent
         }
 
         
-        public XbimInstanceHandle(EsentModel model, int entityLabel, short type = 0)
+        public XbimInstanceHandle(IModel model, int entityLabel, short type = 0)
         {
             Model = model;
             EntityLabel = entityLabel;
             EntityTypeId= type;
         }
 
-        public XbimInstanceHandle(EsentModel model, int entityLabel, Type type)
+        public XbimInstanceHandle(IModel model, int entityLabel, Type type)
         {
             Model = model;
             EntityLabel = entityLabel;
             EntityTypeId = Model.Metadata.ExpressTypeId(type);
         }
 
-        public XbimInstanceHandle(EsentModel model, int? label, short? type)
+        public XbimInstanceHandle(IModel model, int? label, short? type)
         {
             Model = model;
             EntityLabel = label ?? 0;
@@ -84,8 +83,7 @@ namespace Xbim.IO.Esent
 
         public XbimInstanceHandle(IPersistEntity entity)
         {
-            Model = entity.Model as EsentModel;
-            if(Model == null) throw new NullReferenceException("Entity must be in an Esent model");
+            Model = entity.Model;           
             EntityLabel = entity.EntityLabel;
             EntityTypeId = Model.Metadata.ExpressTypeId(entity);
         }

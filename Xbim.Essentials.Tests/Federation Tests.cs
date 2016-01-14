@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Common.Federation;
 using Xbim.Ifc2x3.ActorResource;
 using Xbim.Ifc2x3.RepresentationResource;
 using Xbim.Ifc2x3.IO;
@@ -50,7 +51,7 @@ namespace Xbim.Essentials.Tests
                 fed.EnsureUniqueUserDefinedId();
 
                 var mustDiffer =
-                    fed.Instances.OfType<IfcGeometricRepresentationSubContext>()
+                    fed.FederatedInstances.OfType<IfcGeometricRepresentationSubContext>()
                         .Where(x => x.ContextIdentifier == @"Body").ToArray();
                 
                 // we are expecting two items (one body from each model loaded)
@@ -64,6 +65,7 @@ namespace Xbim.Essentials.Tests
                 var tst = new HashSet<IfcGeometricRepresentationContext>();
                 tst.Add(first);
                 tst.Add(second);
+                Assert.IsTrue(tst.Count==2);
             }
         }
 
@@ -94,8 +96,8 @@ namespace Xbim.Essentials.Tests
                 fed.Open("Federated Model.xBIMF");
 
                 //check the various ways of access objects give consistent results.
-                var localInstances = fed.InstancesLocal.Count;
-                var totalInstances = fed.Instances.Count;
+                var localInstances = fed.Instances.Count;
+                var totalInstances = fed.FederatedInstances.Count;
                 long refInstancesCount = 0;
                 foreach (var refModel in fed.ReferencedModels)
                 {
@@ -105,14 +107,14 @@ namespace Xbim.Essentials.Tests
                 Assert.IsTrue(totalInstances == refInstancesCount + localInstances);
 
                 long enumeratingInstancesCount = 0;
-                foreach (var item in fed.Instances)
+                foreach (var item in fed.FederatedInstances)
                 {
                     enumeratingInstancesCount++;
                 }
                 Assert.IsTrue(totalInstances == enumeratingInstancesCount);
 
-                long fedProjectCount = fed.Instances.OfType<IfcProject>().Count();
-                long localProjectCount = fed.InstancesLocal.OfType<IfcProject>().Count();
+                long fedProjectCount = fed.FederatedInstances.OfType<IfcProject>().Count();
+                long localProjectCount = fed.Instances.OfType<IfcProject>().Count();
                 Assert.IsTrue(fedProjectCount == 3);
                 Assert.IsTrue(localProjectCount == 1);
             }

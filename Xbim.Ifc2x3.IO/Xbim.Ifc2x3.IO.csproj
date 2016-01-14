@@ -61,7 +61,6 @@
     <Compile Include="XbimModel.cs" />
     <Compile Include="XbimModelIO.cs" />
     <Compile Include="XbimModelSummary.cs" />
-    <Compile Include="XbimReferencedModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">

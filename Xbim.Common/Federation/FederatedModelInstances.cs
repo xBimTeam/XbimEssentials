@@ -2,32 +2,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using Xbim.Common;
 
-namespace Xbim.IO.Esent
+namespace Xbim.Common.Federation
 {
-    public class XbimFederatedModelInstances : IEntityCollection
+    public class FederatedModelInstances : IReadOnlyEntityCollection
     {
-        readonly EsentModel _model;
+        readonly IFederatedModel _model;
 
         public IEnumerable<IPersistEntity> OfType(string stringType, bool activate)
         {
             
-            foreach (var instance in _model.InstancesLocal.OfType(stringType, activate))
+            foreach (var instance in _model.ReferencingModel.Instances.OfType(stringType, activate))
                 yield return instance;
             foreach (var refModel in _model.ReferencedModels)
                 foreach (var instance in refModel.Model.Instances.OfType(stringType, activate))
                     yield return instance;
         }
 
-        public XbimFederatedModelInstances(EsentModel model)
+        public FederatedModelInstances(IFederatedModel model)
         {
             _model = model;
+           
         }
         public IEnumerable<T> Where<T>(Func<T, bool> expr) where T : IPersistEntity
         {
-            foreach (var instance in _model.InstancesLocal.Where(expr))
+            foreach (var instance in _model.ReferencingModel.Instances.Where(expr))
                 yield return instance;
             foreach (var refModel in _model.ReferencedModels)
                 foreach (var instance in refModel.Model.Instances.Where(expr))
@@ -36,7 +35,7 @@ namespace Xbim.IO.Esent
 
         public IEnumerable<T> Where<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument) where T : IPersistEntity
         {
-            foreach (var instance in _model.InstancesLocal.Where(condition, inverseProperty, inverseArgument))
+            foreach (var instance in _model.ReferencingModel.Instances.Where(condition, inverseProperty, inverseArgument))
                 yield return instance;
             foreach (var refModel in _model.ReferencedModels)
                 foreach (var instance in refModel.Model.Instances.Where(condition, inverseProperty, inverseArgument))
@@ -60,7 +59,7 @@ namespace Xbim.IO.Esent
 
         public IEnumerable<T> OfType<T>() where T : IPersistEntity
         {
-            foreach (var instance in _model.InstancesLocal.OfType<T>())
+            foreach (var instance in _model.ReferencingModel.Instances.OfType<T>())
                 yield return instance;
             foreach (var refModel in _model.ReferencedModels)
                 foreach (var instance in refModel.Model.Instances.OfType<T>())
@@ -69,39 +68,14 @@ namespace Xbim.IO.Esent
 
         public IEnumerable<T> OfType<T>(bool activate) where T : IPersistEntity
         {
-            foreach (var instance in _model.InstancesLocal.OfType<T>(activate))
+            foreach (var instance in _model.ReferencingModel.Instances.OfType<T>(activate))
                 yield return instance;
             foreach (var refModel in _model.ReferencedModels)
                 foreach (var instance in refModel.Model.Instances.OfType<T>(activate))
                     yield return instance;
         }
 
-        public IPersistEntity New(Type t)
-        {
-            return _model.InstancesLocal.New(t);
-        }
 
-        public T New<T>(Action<T> initPropertiesFunc) where T : IInstantiableEntity
-        {
-            return _model.InstancesLocal.New(initPropertiesFunc);
-        }
-
-        public T New<T>() where T : IInstantiableEntity
-        {
-            return _model.InstancesLocal.New<T>();
-        }
-
-       
-
-        /// <summary>
-        /// returns the local instance with the given label
-        /// </summary>
-        /// <param name="label"></param>
-        /// <returns></returns>
-        public IPersistEntity this[int label]
-        {
-            get { return _model.InstancesLocal[label]; }
-        }
         /// <summary>
         /// Returns the instance that corresponds to this handle
         /// </summary>
@@ -116,28 +90,15 @@ namespace Xbim.IO.Esent
         {
             get
             {
-                return _model.InstancesLocal.Count + _model.ReferencedModels.Sum(refModel => refModel.Model.Instances.Count);
+                return _model.ReferencingModel.Instances.Count + _model.ReferencedModels.Sum(refModel => refModel.Model.Instances.Count);
             }
         }
 
         public long CountOf<T>() where T : IPersistEntity
         {
-            return _model.InstancesLocal.CountOf<T>() + _model.ReferencedModels.Sum(refModel => refModel.Model.Instances.CountOf<T>());
+            return _model.ReferencingModel.Instances.CountOf<T>() + _model.ReferencedModels.Sum(refModel => refModel.Model.Instances.CountOf<T>());
         }
 
-        /// <summary>
-        /// returns the geometry from the local instances
-        /// Does not access federated model geometry
-        /// </summary>
-        /// <param name="geometryLabel"></param>
-        /// <returns></returns>
-        public IPersistEntity GetFromGeometryLabel(int geometryLabel)
-        {
-            var filledGeomData = _model.Cache.GetGeometryHandle(geometryLabel);
-            return _model.Cache.GetInstance(filledGeomData.ProductLabel, true, true);
-        }
-
-       
 
         IEnumerator IEnumerable.GetEnumerator()
         {
@@ -146,7 +107,7 @@ namespace Xbim.IO.Esent
 
         public IEnumerator<IPersistEntity> GetEnumerator()
         {
-            return _model.InstancesLocal.Concat(_model.ReferencedModels.SelectMany(rm => rm.Model.Instances)).GetEnumerator();
+            return _model.ReferencingModel.Instances.Concat(_model.ReferencedModels.SelectMany(rm => rm.Model.Instances)).GetEnumerator();
         }
     }
 }

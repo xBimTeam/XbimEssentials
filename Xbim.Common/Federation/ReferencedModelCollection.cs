@@ -2,11 +2,10 @@
 using System.Collections.Specialized;
 using System.ComponentModel;
 using Xbim.Common.Exceptions;
-using Xbim.Common.Federation;
 
-namespace Xbim.IO.Esent
+namespace Xbim.Common.Federation
 {
-    public class XbimReferencedModelCollection : KeyedCollection<string, IReferencedModel>, INotifyCollectionChanged, INotifyPropertyChanged
+    public class ReferencedModelCollection : KeyedCollection<string, IReferencedModel>, INotifyCollectionChanged, INotifyPropertyChanged
     {
         protected override string GetKeyForItem(IReferencedModel item)
         {
@@ -85,13 +84,13 @@ namespace Xbim.IO.Esent
                 collChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, removed, index));
         }
 
-        private static PropertyChangedEventArgs countPropChangedEventArgs = new PropertyChangedEventArgs("Count");
+        private static readonly PropertyChangedEventArgs CountPropChangedEventArgs = new PropertyChangedEventArgs("Count");
 
         private void NotifyCountChanged(int oldValue)
         {
 
             if (PropertyChanged != null && oldValue != Count)
-                PropertyChanged(this, countPropChangedEventArgs);
+                PropertyChanged(this, CountPropChangedEventArgs);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

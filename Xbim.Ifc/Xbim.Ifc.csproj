@@ -80,6 +80,7 @@
     <Compile Include="XbimColour.cs" />
     <Compile Include="XbimColourMap.cs" />
     <Compile Include="XbimEditorCredentials.cs" />
+    <Compile Include="XbimReferencedModel.cs" />
     <Compile Include="XbimStoreType.cs" />
     <Compile Include="XbimTexture.cs" />
   </ItemGroup>
