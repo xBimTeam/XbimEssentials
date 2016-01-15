@@ -4,8 +4,10 @@ namespace Xbim.Common.Federation
 {
     public interface IFederatedModel
     {
+        IModel ReferencingModel { get; }
         IEnumerable<IReferencedModel> ReferencedModels { get; }
         void AddModelReference(IReferencedModel model);
-        IReadOnlyEntityCollection Instances { get; }
+        IReadOnlyEntityCollection FederatedInstances { get; }
+        IList<XbimInstanceHandle> FederatedInstanceHandles { get; }
     }
 }

@@ -14,5 +14,7 @@ namespace Xbim.Common.Geometry
         /// Returns a reader for accessing geometry in the store, nb this is a disposable and should be used in using{} context
         /// </summary>
         IGeometryStoreReader BeginRead();
+
+        bool IsEmpty { get; }
     }
 }

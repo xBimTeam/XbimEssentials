@@ -669,6 +669,21 @@ namespace Xbim.IO.Memory
             get { return _geometryStore ?? (_geometryStore = new InMemoryGeometryStore()); }
         }
 
+
+       
+
+
+        /// <summary>
+        /// Returns a list of the handles to only the entities in this model
+        /// Note this do NOT include entities that are in any federated models
+        /// </summary>
+
+        public IList<XbimInstanceHandle> InstanceHandles
+        {
+            get { return _instances.Select(e => new XbimInstanceHandle(this, e.EntityLabel)).ToList(); }
+        }
+
+       
     }
 
     /// <summary>

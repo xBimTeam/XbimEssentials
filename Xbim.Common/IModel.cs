@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Xbim.Common.Geometry;
 using Xbim.Common.Step21;
 using Xbim.Common.Metadata;
@@ -19,6 +20,8 @@ namespace Xbim.Common
 		IStepFileHeader Header { get; }
 
 		bool IsTransactional { get; }
+
+        IList<XbimInstanceHandle> InstanceHandles { get; }
 
 	    IEntityCollection Instances { get; }
 
@@ -46,7 +49,7 @@ namespace Xbim.Common
         /// <typeparam name="TSource"></typeparam>
         /// <param name="source"></param>
         /// <param name="body"></param>
-        void ForEach<TSource>(System.Collections.Generic.IEnumerable<TSource> source, Action<TSource> body) where TSource : IPersistEntity;
+        void ForEach<TSource>(IEnumerable<TSource> source, Action<TSource> body) where TSource : IPersistEntity;
 
 		/// <summary>
         /// This event is fired every time new entity is created.

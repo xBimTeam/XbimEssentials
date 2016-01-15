@@ -8,15 +8,15 @@ namespace Xbim.IO.Memory
 {
     internal class InMemoryGeometryStore : IGeometryStore
     {
-        private ConcurrentDictionary<int, XbimShapeGeometry> _shapeGeometries;
-        private ConcurrentDictionary<int, XbimShapeInstance> _shapeInstances;
-        private Dictionary<int, List<XbimShapeInstance>> _entityInstanceLookup;
-        private Dictionary<int, List<XbimShapeInstance>> _entityTypeLookup;
-        private Dictionary<int, List<XbimShapeInstance>> _entityStyleLookup;
-        private Dictionary<int, List<XbimShapeInstance>> _geometryShapeLookup;
-        private HashSet<int> _styles;
+        private ConcurrentDictionary<int, XbimShapeGeometry> _shapeGeometries=new ConcurrentDictionary<int, XbimShapeGeometry>();
+        private ConcurrentDictionary<int, XbimShapeInstance> _shapeInstances=new ConcurrentDictionary<int, XbimShapeInstance>();
+        private Dictionary<int, List<XbimShapeInstance>> _entityInstanceLookup=new Dictionary<int, List<XbimShapeInstance>>();
+        private Dictionary<int, List<XbimShapeInstance>> _entityTypeLookup=new Dictionary<int, List<XbimShapeInstance>>();
+        private Dictionary<int, List<XbimShapeInstance>> _entityStyleLookup=new Dictionary<int, List<XbimShapeInstance>>();
+        private Dictionary<int, List<XbimShapeInstance>> _geometryShapeLookup=new Dictionary<int, List<XbimShapeInstance>>();
+        private HashSet<int> _styles=new HashSet<int>();
         private readonly XbimContextRegionCollection _regions = new XbimContextRegionCollection();
-        private IEnumerable<int> _contextIds;
+        private HashSet<int> _contextIds = new HashSet<int>();
         private int _geometryCount;
         private int _instanceCount;
         public IDictionary<int, XbimShapeGeometry> ShapeGeometries
@@ -113,7 +113,7 @@ namespace Xbim.IO.Memory
                 return v.Select(instance => instance.Value).ToList();
             });
             _styles = new HashSet<int>(EntityStyleLookup.Where(s=>s.Key>0).Select(s => s.Key));
-            _contextIds = new HashSet<int>(ShapeInstances.Select(s => s.Value.RepresentationContext)).Distinct();
+            _contextIds = new HashSet<int>((ShapeInstances.Select(s => s.Value.RepresentationContext)).Distinct());
 
             var counts = ShapeInstances.Values.GroupBy(
                         i => i.ShapeGeometryLabel,
@@ -142,6 +142,12 @@ namespace Xbim.IO.Memory
         public void Dispose()
         {
            
+        }
+
+
+        public bool IsEmpty
+        {
+            get { return ShapeGeometries.Any(); }
         }
     }
 }

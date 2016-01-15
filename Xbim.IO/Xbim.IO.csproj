@@ -97,15 +97,12 @@
     <Compile Include="Esent\EsentGeometryStore.cs" />
     <Compile Include="Esent\EsentGeometryInitialiser.cs" />
     <Compile Include="Esent\EsentGeometryStoreReader.cs" />
-    <Compile Include="Esent\XbimFederatedModelInstances.cs" />
-    <Compile Include="Esent\XbimReferencedModelCollection.cs" />
     <Compile Include="Esent\XbimSurfaceStyle.cs" />
     <Compile Include="Esent\XbimSurfaceStyleMap.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="FileReferenceResolver.cs" />
     <Compile Include="JSON\JSONWritter.cs" />
     <Compile Include="Memory\EntityCollection.cs" />
-    <Compile Include="Memory\FederatedModel.cs" />
     <Compile Include="Memory\InMemoryGeometryStore.cs" />
     <Compile Include="Memory\InMemoryGeometryStoreInitialiser.cs" />
     <Compile Include="Memory\InMemoryGeometryStoreReader.cs" />
@@ -128,7 +125,6 @@
     <Compile Include="Esent\XbimGeometryHandleCollection.cs" />
     <Compile Include="XbimGeometrySort.cs" />
     <Compile Include="Esent\XbimInstanceCollection.cs" />
-    <Compile Include="Esent\XbimInstanceHandle.cs" />
     <Compile Include="Esent\PersistedEntityInstanceCache.cs" />
     <Compile Include="Xml\BsConf\cnf.custom.cs" />
     <Compile Include="Xml\BsConf\cnf.designer.cs" />
@@ -156,7 +152,6 @@
     <Compile Include="Esent\EsentCursor.cs" />
     <Compile Include="Esent\EsentEntityCursor.cs" />
     <Compile Include="Esent\XbimGeometryCursor.cs" />
-    <Compile Include="Esent\XbimInstanceHandleMap.cs" />
     <Compile Include="Esent\EsentLazyDBTransaction.cs" />
     <Compile Include="Esent\EsentModel.cs" />
     <Compile Include="Binary\XbimInputStream.cs" />

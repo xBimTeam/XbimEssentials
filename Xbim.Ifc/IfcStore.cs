@@ -1,35 +1,33 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Xml;
 using ICSharpCode.SharpZipLib.Zip;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Common.Federation;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.Common.XbimExtensions;
 using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MeasureResource;
 using Xbim.IO;
 using Xbim.IO.Esent;
 using Xbim.IO.Memory;
 using Xbim.IO.Step21;
-using Xbim.IO.Step21.Parser;
 using Xbim.IO.Xml;
 using Xbim.IO.Xml.BsConf;
 
 namespace Xbim.Ifc
 {
-    public class IfcStore : IModel, IDisposable
+    public class IfcStore : IModel, IDisposable, IFederatedModel
     {
         private readonly IModel _model;
         private readonly IfcSchemaVersion _schema;
-         
+        private const string RefDocument = "XbimReferencedModel";
         private readonly bool _deleteModelOnClose;
         private readonly string _xbimFileName;
         public event NewEntityHandler EntityNew;
@@ -46,7 +44,7 @@ namespace Xbim.Ifc
         private IIfcPersonAndOrganization _defaultOwningUser;
         private IIfcApplication _defaultOwningApplication;
         private readonly XbimEditorCredentials _editorDetails;
-
+        private readonly ReferencedModelCollection _referencedModels = new ReferencedModelCollection();
 
         protected IfcStore(IModel iModel, IfcSchemaVersion schema, XbimEditorCredentials editorDetails, string fileName = null, string xbimFileName = null,
             bool deleteOnClose = false)
@@ -82,6 +80,7 @@ namespace Xbim.Ifc
                 _model.EntityNew += IfcRootInitIfc2X3;
                 _model.EntityModified += IfcRootModifiedIfc2X3;
             }
+            LoadReferenceModels();
             CalculateModelFactors();
         }
 
@@ -419,6 +418,26 @@ namespace Xbim.Ifc
             }
 
         }
+        /// <summary>
+        /// Creates an Database store at the specified location
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="editorDetails"></param>
+        /// <param name="ifcVersion"></param>
+        /// <returns></returns>
+        public static IfcStore Create(string filePath, XbimEditorCredentials editorDetails, IfcSchemaVersion ifcVersion)
+        {
+            if (ifcVersion == IfcSchemaVersion.Ifc4)
+            {
+                var temporaryModel = EsentModel.CreateModel(new Ifc4.EntityFactory(), filePath);
+                return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName); 
+            }
+            else //it will be Ifc2x3
+            {
+                var temporaryModel = EsentModel.CreateModel(new Ifc2x3.EntityFactory(), filePath);
+                return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName); 
+            }
+        }
 
         public static IfcStore Create(XbimEditorCredentials editorDetails, IfcSchemaVersion ifcVersion, XbimStoreType storageType)
         {
@@ -709,10 +728,8 @@ namespace Xbim.Ifc
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="fileName"></param>
         /// <param name="actualFileName"></param>
         /// <param name="actualFormat">this will be correctly set</param>
-        /// <param name="schema"></param>
         /// <param name="progDelegate"></param>
         private void SaveAs(string actualFileName, IfcStorageType actualFormat, ReportProgressDelegate progDelegate)
         {
@@ -751,9 +768,9 @@ namespace Xbim.Ifc
                 else if (_schema == IfcSchemaVersion.Ifc4)
                 {
                     var writer = new XbimXmlWriter4(configuration.IFC4Add1);
-                    var project = _model.Instances.OfType<Xbim.Ifc4.Kernel.IfcProject>();
-                    var products = _model.Instances.OfType<Xbim.Ifc4.Kernel.IfcObject>();
-                    var relations = _model.Instances.OfType<Xbim.Ifc4.Kernel.IfcRelationship>();
+                    var project = _model.Instances.OfType<Ifc4.Kernel.IfcProject>();
+                    var products = _model.Instances.OfType<Ifc4.Kernel.IfcObject>();
+                    var relations = _model.Instances.OfType<Ifc4.Kernel.IfcRelationship>();
 
                     var all =
                         new IPersistEntity[] { }
@@ -1068,7 +1085,7 @@ namespace Xbim.Ifc
                         continue;
                     if (
                         !trimmedCurve.Trim1.Concat(trimmedCurve.Trim2)
-                            .OfType<Ifc4.MeasureResource.IfcParameterValue>()
+                            .OfType<IfcParameterValue>()
                             .Select(trim => (double)trim.Value)
                             .Any(val => val > Math.PI * 2)) continue;
                     angleToRadiansConversionFactor = Math.PI / 180;
@@ -1079,8 +1096,248 @@ namespace Xbim.Ifc
                 defaultPrecision);
         }
 
+        #region Reference Model functions
+
+        /// <summary>
+        /// Adds a model as a reference or federated model, do not call inside a transaction
+        /// </summary>
+        /// <param name="refModelPath"></param>
+        /// <param name="organisationName"></param>
+        /// <param name="organisationRole"></param>
+        /// <returns></returns>
+        public XbimReferencedModel AddModelReference(string refModelPath, string organisationName, string organisationRole)
+        {
+            XbimReferencedModel retVal;
+            using (var txn = BeginTransaction())
+            {
+                if (_schema == IfcSchemaVersion.Ifc4)
+                {
+                    var role = Instances.New<Ifc4.ActorResource.IfcActorRole>();
+                    role.RoleString = organisationRole;
+                        // the string is converted appropriately by the IfcActorRoleClass
+                    var org = Instances.New<Ifc4.ActorResource.IfcOrganization>();
+                    org.Name = organisationName;
+                    org.Roles.Add(role);
+                    retVal = AddModelReference(refModelPath, org);
+                }
+                else
+                {
+                    var role = Instances.New<Ifc2x3.ActorResource.IfcActorRole>();
+                    role.RoleString = organisationRole;
+                    // the string is converted appropriately by the IfcActorRoleClass
+                    var org = Instances.New<Ifc2x3.ActorResource.IfcOrganization>();
+                    org.Name = organisationName;
+                    org.Roles.Add(role);
+                     retVal = AddModelReference(refModelPath, org);
+                    
+                }
+                txn.Commit();               
+            } 
+            return retVal;
+        }
+
+
+        /// <summary>
+        /// adds a model as a reference model can be called inside a transaction
+        /// </summary>
+        /// <param name="refModelPath">the file path of the xbim model to reference, this must be an xbim file</param>
+        /// <param name="owner">the actor who supplied the model</param>
+        /// <returns></returns>
+        private XbimReferencedModel AddModelReference(string refModelPath, Ifc2x3.ActorResource.IfcOrganization owner)
+        {
+            XbimReferencedModel retVal;
+            if (CurrentTransaction == null)
+            {
+                using (var txn = BeginTransaction())
+                {
+                    var docInfo = Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentInformation>();
+                    docInfo.DocumentId = new Ifc2x3.MeasureResource.IfcIdentifier(_referencedModels.NextIdentifer());
+                    docInfo.Name = refModelPath;
+                    docInfo.DocumentOwner = owner;
+                    docInfo.IntendedUse = RefDocument;
+                    retVal = new XbimReferencedModel(docInfo);
+                    AddModelReference(retVal);
+                    txn.Commit();
+                }
+            }
+            else
+            {
+                var docInfo = Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentInformation>();
+                docInfo.DocumentId = new Ifc2x3.MeasureResource.IfcIdentifier(_referencedModels.NextIdentifer());
+                docInfo.Name = refModelPath;
+                docInfo.DocumentOwner = owner;
+                docInfo.IntendedUse = RefDocument;
+                retVal = new XbimReferencedModel(docInfo);
+                AddModelReference(retVal);
+            }
+            return retVal;
+        }
+
+        /// <summary>
+        /// adds a model as a reference model can be called inside a transaction
+        /// </summary>
+        /// <param name="refModelPath">the file path of the xbim model to reference, this must be an xbim file</param>
+        /// <param name="owner">the actor who supplied the model</param>
+        /// <returns></returns>
+        private XbimReferencedModel AddModelReference(string refModelPath, Ifc4.ActorResource.IfcOrganization owner)
+        {
+            XbimReferencedModel retVal;
+            if (CurrentTransaction == null)
+            {
+                using (var txn = BeginTransaction())
+                {
+                    var docInfo = Instances.New<Ifc4.ExternalReferenceResource.IfcDocumentInformation>();
+                    docInfo.Identification = new IfcIdentifier(_referencedModels.NextIdentifer());
+                    docInfo.Name = refModelPath;
+                    docInfo.DocumentOwner = owner;
+                    docInfo.IntendedUse = RefDocument;
+                    retVal = new XbimReferencedModel(docInfo);
+                    AddModelReference(retVal);
+                    txn.Commit();
+                }
+            }
+            else
+            {
+                var docInfo = Instances.New<Ifc4.ExternalReferenceResource.IfcDocumentInformation>();
+                docInfo.Identification = new IfcIdentifier(_referencedModels.NextIdentifer());
+                docInfo.Name = refModelPath;
+                docInfo.DocumentOwner = owner;
+                docInfo.IntendedUse = RefDocument;
+                retVal = new XbimReferencedModel(docInfo);
+                AddModelReference(retVal);
+            }
+            return retVal;
+        }
+
+
        
-        
+
+        /// <summary>
+        /// All reference models are opened in a readonly mode.
+        /// Their children reference models is invoked iteratively.
+        /// 
+        /// Loading referenced models defaults to avoiding Exception on file not found; in this way the federated model can still be opened and the error rectified.
+        /// </summary>
+        /// <param name="throwReferenceModelExceptions"></param>
+        private void LoadReferenceModels(bool throwReferenceModelExceptions = false)
+        {
+            var docInfos = Instances.OfType<IIfcDocumentInformation>().Where(d => d.IntendedUse == RefDocument);
+            foreach (var docInfo in docInfos)
+            {
+                if (throwReferenceModelExceptions)
+                {
+                    // throw exception on referenceModel Creation
+                    AddModelReference(new XbimReferencedModel(docInfo));
+                }
+                else
+                {
+                    // do not throw exception on referenceModel Creation
+                    try
+                    {
+                        AddModelReference(new XbimReferencedModel(docInfo));
+                    }
+                    catch (Exception)
+                    {
+                        // drop exception in this case
+                    }
+                }
+            }
+        }
+
+
+        #endregion
+        #region Federation
+  
+
+
+        public IEnumerable<IReferencedModel> ReferencedModels
+        {
+            get
+            {
+                return _referencedModels.AsEnumerable();
+            }
+        }
+
+        public void AddModelReference(IReferencedModel model)
+        {
+            _referencedModels.Add(model);
+        }
+
+       
+
+        /// <summary>
+        /// Returns true if the model contains reference models or the model has extension xBIMf
+        /// </summary>
+        public virtual bool IsFederation
+        {
+            get
+            {
+                return _referencedModels.Any();
+            }
+        }
+
+
+
+        ///// <summary>
+        ///// Returns an enumerable of the handles to all entities in the model
+        ///// Note this includes entities that are in any federated models
+        ///// </summary>
+        //public IEnumerable<XbimInstanceHandle> AllInstancesHandles
+        //{
+        //    get
+        //    {
+        //        foreach (var h in InstanceHandles)
+        //            yield return h;
+        //        foreach (var refModel in ReferencedModels.Where(r => r.Model is EsentModel).Select(r => r.Model as EsentModel))
+        //            foreach (var h in refModel.AllInstancesHandles)
+        //                yield return h;
+        //    }
+        //}
+
+        public void EnsureUniqueUserDefinedId()
+        {
+            short iId = 0;
+            var allModels =
+                (new[] { this }).Concat(ReferencedModels.Select(rm => rm.Model));
+            foreach (var model in allModels)
+            {
+                model.UserDefinedId = iId++;
+            }
+        }
+        #endregion
+
+ 
+
+        public IModel ReferencingModel
+        {
+            get { return _model; }
+        }
+
+        public IReadOnlyEntityCollection FederatedInstances
+        {
+            get { return new FederatedModelInstances(this); }
+        }
+
+
+
+        public IList<XbimInstanceHandle> FederatedInstanceHandles
+        {
+            get
+            {
+                var allModels = ReferencedModels.Select(r => r.Model).Concat(new[] { this });
+                return allModels.SelectMany(m => m.InstanceHandles).ToList();
+            }
+        }
+
+        /// <summary>
+        /// Returns a list of the handles to only the entities in this model
+        /// Note this do NOT include entities that are in any federated models
+        /// </summary>
+
+        public IList<XbimInstanceHandle> InstanceHandles
+        {
+            get { return _model.InstanceHandles.ToList(); }
+        }
     }
 
 }

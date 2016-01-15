@@ -7,6 +7,7 @@ using Xbim.Common.Exceptions;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
+using Xbim.Ifc;
 using Xbim.Ifc2x3.ActorResource;
 using Xbim.Ifc2x3.ExternalReferenceResource;
 using Xbim.Ifc2x3.GeometryResource;
@@ -41,6 +42,7 @@ namespace Xbim.Ifc2x3.IO
 
         #region Geometry related functions
         public IfcAxis2Placement WorldCoordinateSystem { get; private set; }
+
 
         private void GetModelFactors()
         {
@@ -245,7 +247,7 @@ namespace Xbim.Ifc2x3.IO
         {
             get
             {
-                return InstancesLocal == null ? null : InstancesLocal.OfType<IfcProject>().FirstOrDefault();
+                return Instances== null ? null : Instances.OfType<IfcProject>().FirstOrDefault();
             }
         }
         /// <summary>
@@ -253,7 +255,7 @@ namespace Xbim.Ifc2x3.IO
         /// </summary>
         public IEnumerable<IPersistEntity> IfcProducts
         {
-            get { return InstancesLocal == null ? null : Instances.OfType<IfcProduct>(); }
+            get { return Instances == null ? null : Instances.OfType<IfcProduct>(); }
         }
 
         #endregion

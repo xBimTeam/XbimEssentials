@@ -130,19 +130,28 @@ namespace Xbim.IO.Esent
            set { _codePageOverrideForStepFiles = value; }
         }
 
-        public XbimInstanceCollection InstancesLocal { get; private set; }
+        private XbimInstanceCollection InstancesLocal { get;  set; }
 
         /// <summary>
-        /// Returns a collection of all instances in the model and all federated instances 
+        /// Returns a collection of all instances only in the model 
         /// </summary>
         public IEntityCollection Instances
         {
             get
             {
-                return new XbimFederatedModelInstances(this);
+                return InstancesLocal;
             }
         }
-
+        /// <summary>
+        /// Returns a collection of all instances in the model and all federated instances 
+        /// </summary>
+        public IReadOnlyEntityCollection FederatedInstances
+        {
+            get
+            {
+                return new FederatedModelInstances(this);
+            }
+        }
         /// <summary>
         /// This event is fired every time new entity is created.
         /// </summary>
@@ -1048,24 +1057,8 @@ namespace Xbim.IO.Esent
 
 
 
-       
-        /// <summary>
-        /// Returns an enumerable of the handles to only the entities in this model
-        /// Note this do NOT include entities that are in any federated models
-        /// </summary>
-        public IEnumerable<XbimInstanceHandle> InstanceHandles 
-        {
-            get {
-                return InstanceCache.InstanceHandles;
-            }
-        }
-
-        internal IPersistEntity GetInstanceVolatile(XbimInstanceHandle item)
-        {
-          return item.Model.GetInstanceVolatile(item.EntityLabel);
-        }
-
-
+ 
+    
 
         public object Tag { get; set; }
         
@@ -1144,7 +1137,7 @@ namespace Xbim.IO.Esent
         }
 
         #region Federation 
-        private readonly XbimReferencedModelCollection _referencedModels = new XbimReferencedModelCollection();
+        private readonly ReferencedModelCollection _referencedModels = new ReferencedModelCollection();
         private EsentGeometryStore _geometryStore;
         private IStepFileHeader _header;
 
@@ -1161,10 +1154,6 @@ namespace Xbim.IO.Esent
             _referencedModels.Add(model);
         }
 
-        IReadOnlyEntityCollection IFederatedModel.Instances
-        {
-            get { return Instances; }
-        }
 
         /// <summary>
         /// Returns true if the model contains reference models or the model has extension xBIMf
@@ -1262,6 +1251,32 @@ namespace Xbim.IO.Esent
             Close();
             var dbName = Path.ChangeExtension(fileName, "xBIM");
             InstanceCache.ImportModel(model, dbName, progDelegate);
+        }
+
+        public IModel ReferencingModel
+        {
+            get { return this; }
+        }
+
+
+        public IList<XbimInstanceHandle> FederatedInstanceHandles
+        {
+            get
+            {
+                var allModels = ReferencedModels.Select(r=>r.Model).Concat(new[] {this});
+                return allModels.SelectMany(m => m.InstanceHandles).ToList();
+            }
+        }
+
+
+        /// <summary>
+        /// Returns a list of the handles to only the entities in this model
+        /// Note this do NOT include entities that are in any federated models
+        /// </summary>
+
+        public IList<XbimInstanceHandle> InstanceHandles
+        {
+            get { return InstanceCache.InstanceHandles.ToList(); }
         }
     }
 
