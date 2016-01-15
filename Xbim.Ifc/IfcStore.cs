@@ -418,6 +418,26 @@ namespace Xbim.Ifc
             }
 
         }
+        /// <summary>
+        /// Creates an Database store at the specified location
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="editorDetails"></param>
+        /// <param name="ifcVersion"></param>
+        /// <returns></returns>
+        public static IfcStore Create(string filePath, XbimEditorCredentials editorDetails, IfcSchemaVersion ifcVersion)
+        {
+            if (ifcVersion == IfcSchemaVersion.Ifc4)
+            {
+                var temporaryModel = EsentModel.CreateModel(new Ifc4.EntityFactory(), filePath);
+                return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName); 
+            }
+            else //it will be Ifc2x3
+            {
+                var temporaryModel = EsentModel.CreateModel(new Ifc2x3.EntityFactory(), filePath);
+                return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName); 
+            }
+        }
 
         public static IfcStore Create(XbimEditorCredentials editorDetails, IfcSchemaVersion ifcVersion, XbimStoreType storageType)
         {
