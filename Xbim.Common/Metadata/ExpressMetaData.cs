@@ -80,7 +80,7 @@ namespace Xbim.Common.Metadata
             var typesToProcess =
                 module.GetTypes().Where(
                     t =>
-                    typeof(IPersist).IsAssignableFrom(t) && t != typeof(IPersist) && !t.IsEnum && !t.IsAbstract &&
+                    typeof(IPersist).IsAssignableFrom(t) && t != typeof(IPersist) && !t.IsEnum && !t.IsInterface &&//!t.IsAbstract &&
                     t.IsPublic && !typeof(IExpressHeaderType).IsAssignableFrom(t)).ToList();
 
             _typeIdToExpressTypeLookup = new Dictionary<short, ExpressType>(typesToProcess.Count);

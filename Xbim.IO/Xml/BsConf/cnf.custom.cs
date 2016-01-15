@@ -27,6 +27,26 @@ namespace Xbim.IO.Xml.BsConf
             }
         }
 
+        public static configuration COBieExpress
+        {
+            get
+            {
+                var data = Properties.Resources.COBieExpress_config;
+                return Deserialize(data);
+            }
+        }
+
+        public option Option { get { return Items.OfType<option>().FirstOrDefault(); } }
+
+        public schema Schema { get { return Items.OfType<schema>().FirstOrDefault(); } }
+
+        public uosElement RootElement { get { return Items.OfType<uosElement>().FirstOrDefault(); } }
+
+        public IEnumerable<entity> Entities { get { return Items.OfType<entity>(); } }
+        public IEnumerable<type> Types { get { return Items.OfType<type>(); } }
+
+        public @namespace Namespace { get { return Schema.Items.OfType<@namespace>().FirstOrDefault(); } }
+
         public IEnumerable<entity> ChangedInverses { get
         {
             return
@@ -63,6 +83,18 @@ namespace Xbim.IO.Xml.BsConf
 
             return types.Select(expressType => GetEntity(expressType.ExpressName)).Where(entity => entity != null);
 
+        }
+
+        public entity GetOrCreatEntity(string name)
+        {
+            var entity = Items.OfType<entity>()
+                .FirstOrDefault(e => e.select != null && e.select.FirstOrDefault() == name);
+            if (entity != null)
+                return entity;
+
+            entity = new entity {@select = new List<string> {name}};
+            Items.Add(entity);
+            return entity;
         }
     }
 
@@ -104,5 +136,29 @@ namespace Xbim.IO.Xml.BsConf
         }
 
         public string EntityName { get { return select.FirstOrDefault(); } }
+
+        public attribute GetOrCreateAttribute(string attributeName)
+        {
+            if (Items == null) Items = new List<object>();
+
+            var attr = Items.OfType<attribute>().FirstOrDefault(a => a.select == attributeName);
+            if (attr != null) return attr;
+
+            attr = new attribute {select = attributeName};
+            Items.Add(attr);
+            return attr;
+        }
+
+        public inverse GetOrCreateInverse(string attributeName)
+        {
+            if (Items == null) Items = new List<object>();
+
+            var attr = Items.OfType<inverse>().FirstOrDefault(a => a.select == attributeName);
+            if (attr != null) return attr;
+
+            attr = new inverse { select = attributeName };
+            Items.Add(attr);
+            return attr;
+        }
     }
 }
