@@ -89,6 +89,22 @@ namespace Xbim.IO.Esent
              return new EsentGeometryStoreReader(_esentModel); 
         }
 
-        
+        public bool IsEmpty
+        {
+            get
+            {
+                EsentShapeGeometryCursor shapeGeometryCursor = null;
+                try
+                {
+                    shapeGeometryCursor = _esentModel.GetShapeGeometryTable();
+                    return shapeGeometryCursor.TryMoveFirst();
+                }
+                finally
+                {
+                    if(shapeGeometryCursor!=null) _esentModel.FreeTable(shapeGeometryCursor);
+
+                }
+            }
+        }
     }
 }

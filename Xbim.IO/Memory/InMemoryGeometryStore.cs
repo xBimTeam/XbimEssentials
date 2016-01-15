@@ -143,5 +143,11 @@ namespace Xbim.IO.Memory
         {
            
         }
+
+
+        public bool IsEmpty
+        {
+            get { return ShapeGeometries.Any(); }
+        }
     }
 }
