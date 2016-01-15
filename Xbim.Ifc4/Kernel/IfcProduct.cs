@@ -16,6 +16,7 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
+using Xbim.Ifc4.ProductExtension;
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -190,6 +191,7 @@ namespace Xbim.Ifc4.Kernel
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
+
 		//##
 		#endregion
 	}

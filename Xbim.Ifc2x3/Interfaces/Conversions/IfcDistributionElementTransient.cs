@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Ifc2x3.ProductExtension;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
@@ -98,6 +99,14 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         public IEnumerable<Ifc4.Interfaces.IIfcRelAssignsToProduct> ReferencedBy
         {
             get { return _element.ReferencedBy; }
+        }
+
+        public IIfcSpatialElement IsContainedIn
+        {
+            get
+            {
+                return Model.Instances.Where<IfcRelContainedInSpatialStructure>(r => r.RelatedElements.Contains((IfcElement)_element)).Select(s => s.RelatingStructure).FirstOrDefault();
+            }
         }
 
         public Ifc4.MeasureResource.IfcLabel? ObjectType

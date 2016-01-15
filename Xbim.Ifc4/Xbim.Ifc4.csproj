@@ -619,6 +619,7 @@
     <Compile Include="Kernel\IfcProcess.cs" />
     <Compile Include="Kernel\IfcProcessSelect.cs" />
     <Compile Include="Kernel\IfcProduct.cs" />
+    <Compile Include="Kernel\IfcProductPartial.cs" />
     <Compile Include="Kernel\IfcProductSelect.cs" />
     <Compile Include="Kernel\IfcProject.cs" />
     <Compile Include="Kernel\IfcProjectLibrary.cs" />

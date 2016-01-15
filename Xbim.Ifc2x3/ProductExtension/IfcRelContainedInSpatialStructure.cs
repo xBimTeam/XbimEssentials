@@ -173,6 +173,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
+
 		//##
 		#endregion
 	}

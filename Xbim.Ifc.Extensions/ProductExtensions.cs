@@ -37,15 +37,7 @@ namespace Xbim.Ifc2x3.Extensions
                         r => string.Compare(r.RepresentationIdentifier.GetValueOrDefault(), "Axis", true) == 0);
             return null;
         }
-        /// <summary>
-        /// Returns the spatial structural elements that this product is in
-        /// </summary>
-        /// <param name="prod"></param>
-        /// <returns></returns>
-        public static IEnumerable<IfcSpatialStructureElement> IsContainedIn(this IfcProduct prod)
-        {
-            return prod.Model.Instances.Where<IfcRelContainedInSpatialStructure>(r => r.RelatedElements.Contains(prod)).Select(s=>s.RelatingStructure);
-        }
+        
         /// <summary>
         ///   Returns the first Body(Solid) Representation, null if none exists
         /// </summary>
