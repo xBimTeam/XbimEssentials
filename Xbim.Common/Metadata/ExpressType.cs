@@ -131,7 +131,7 @@ namespace Xbim.Common.Metadata
                 if (attribute.Order > 0)
                 {
                     _properties.Add(attribute.Order, metaProperty);
-                    if (typeof (IEnumerable).IsAssignableFrom(propInfo.PropertyType))
+                    if (propInfo.PropertyType.IsGenericType && typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType))
                     {
                         var eType = propInfo.PropertyType;
                         while (typeof(IEnumerable).IsAssignableFrom(eType))

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="COBieExpress" configuration-location="" xmlns="urn:iso:std:iso:10303:-28:ed-2:tech:XMLschema:configuration_language">
+  <option inheritance="true" concrete-attribute="attribute-content" naming-convention="preserve-case" generate-keys="false" />
+  <schema targetNamespace="http://www.openbim.org/COBieExpress/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" embed-schema-items="true">
+    <namespace alias="http://www.openbim.org/COBieExpress/1.0" prefix="cb" />
+  </schema>
+  <uosElement name="COBie" />
+  <type select="NUMBER" map="xs:double" />
+  <entity select="Asset">
+    <attribute select="Categories" exp-attribute="attribute-tag" />
+    <attribute select="Impacts" exp-attribute="attribute-tag" />
+    <attribute select="Documents" exp-attribute="attribute-tag" />
+    <attribute select="Attributes" exp-attribute="attribute-tag" />
+    <inverse select="AffectedBy" />
+  </entity>
+  <entity select="Attribute">
+    <attribute select="AllowedValues" exp-attribute="attribute-tag" />
+  </entity>
+  <entity select="Component">
+    <attribute select="Spaces" exp-attribute="attribute-tag" keep="false" />
+    <attribute select="AssemblyOf" exp-attribute="attribute-tag" />
+  </entity>
+  <entity select="Job">
+    <attribute select="Resources" exp-attribute="attribute-tag" />
+  </entity>
+  <entity select="Spare">
+    <attribute select="Suppliers" exp-attribute="attribute-tag" />
+  </entity>
+  <entity select="System">
+    <attribute select="Components" exp-attribute="attribute-tag" />
+    <attribute select="Facility" keep="false" />
+  </entity>
+  <entity select="Type">
+    <attribute select="AssemblyOf" exp-attribute="attribute-tag" />
+    <attribute select="Jobs" exp-attribute="attribute-tag" />
+  </entity>
+  <entity select="Zone">
+    <attribute select="Spaces" exp-attribute="attribute-tag" />
+  </entity>
+  <entity select="Issue">
+    <attribute select="Affected" keep="false" />
+  </entity>
+  <entity select="Facility">
+    <inverse select="Floors" />
+    <inverse select="Systems" />
+  </entity>
+  <entity select="Floor">
+    <attribute select="Facility" keep="false" />
+    <inverse select="Spaces" />
+  </entity>
+  <entity select="Space">
+    <attribute select="Floor" keep="false" />
+    <inverse select="Components" />
+  </entity>
+</configuration>

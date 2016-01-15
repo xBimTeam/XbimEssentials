@@ -210,6 +210,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Xml\BsConf\IFC4_ADD1_config.xml" />
+    <Content Include="Xml\BsConf\COBieExpress_config.xml" />
     <Content Include="Xml\BsConf\IFC4_config.xml" />
   </ItemGroup>
   <ItemGroup>

@@ -27,6 +27,23 @@
             }
         }
 
+        public static XbimXmlSettings COBieExpress
+        {
+            get
+            {
+                return new XbimXmlSettings
+                {
+                    Namespace = "http://www.openbim.org/COBieExpress/1.0",
+                    NamespacePrefix = "cb",
+                    NamespaceLocation = "http://www.openbim.org/COBieExpress/1.0/schema.xsd",
+                    ExpressUri = "http://www.openbim.org/COBieExpress/1.0/schema.exp",
+                    Configuration = "http://www.openbim.org/COBieExpress/1.0/schema_config.xml",
+                    RootName = "COBie",
+                    Indent = true
+                };
+            }
+        }
+
         public static XbimXmlSettings IFC4Add1
         {
             get

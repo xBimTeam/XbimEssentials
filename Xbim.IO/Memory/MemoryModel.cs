@@ -459,9 +459,9 @@ namespace Xbim.IO.Memory
             }
         }
 
-       
 
-        public virtual void SaveAsXml(Stream stream, XmlWriterSettings xmlSettings, ReportProgressDelegate progress = null)
+
+        public virtual void SaveAsXml(Stream stream, XmlWriterSettings xmlSettings, XbimXmlSettings xbimSettings = null, configuration configuration = null, ReportProgressDelegate progress = null)
         {
             using (var xmlWriter = XmlWriter.Create(stream, xmlSettings))
             {
@@ -473,11 +473,15 @@ namespace Xbim.IO.Memory
                         writer3.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
                         break;
                     case "IFC4":
-                        var writer4 = new XbimXmlWriter4(configuration.IFC4Add1);
+                        var writer4 = new XbimXmlWriter4(configuration.IFC4Add1, XbimXmlSettings.IFC4Add1);
                         writer4.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
                         break;
+                    case "COBIE_EXPRESS":
+                        var writerCobie = new XbimXmlWriter4(configuration.COBieExpress, XbimXmlSettings.COBieExpress);
+                        writerCobie.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
+                        break;
                     default:
-                        var writer = new XbimXmlWriter4(new configuration());
+                        var writer = new XbimXmlWriter4(configuration, xbimSettings);
                         writer.Write(this, xmlWriter);
                         break;
                 }
@@ -508,7 +512,7 @@ namespace Xbim.IO.Memory
             return all;
         }
 
-        public virtual void SaveAsXMLZip(Stream stream, XmlWriterSettings xmlSettings, ReportProgressDelegate progress = null)
+        public virtual void SaveAsXMLZip(Stream stream, XmlWriterSettings xmlSettings, XbimXmlSettings xbimSettings = null, configuration configuration = null, ReportProgressDelegate progress = null)
         {
             using (var zipStream = new ZipOutputStream(stream))
             {
@@ -516,7 +520,7 @@ namespace Xbim.IO.Memory
                 var ext = schema != null && schema.StartsWith("IFC") ? ".ifcxml" : ".xml";
                 var newEntry = new ZipEntry("data" + ext) { DateTime = DateTime.Now };
                 zipStream.PutNextEntry(newEntry);
-                SaveAsXml(zipStream, xmlSettings, progress);
+                SaveAsXml(zipStream, xmlSettings, xbimSettings, configuration, progress);
             }
         }
 

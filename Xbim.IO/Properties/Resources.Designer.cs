@@ -61,10 +61,30 @@ namespace Xbim.IO.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;!-- Copyright by: buildingSMART International Ltd, 1996-2013
+        ///
+        ///Any technical documentation made available by buildingSMART International Limited 
+        ///is the copyrighted work of buildingSMART International Limited and is owned by the 
+        ///buildingSMART International Limited. It may be photocopied, used in software development, 
+        ///or translated into another computer language without prior written consent from 
+        ///buildingSMART International Limited provided that full attributi [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string COBieExpress_config {
+            get {
+                return ResourceManager.GetString("COBieExpress_config", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
         ///&lt;cnf:configuration xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; id=&quot;IFC4&quot; xsi:schemaLocation=&quot;urn:iso:std:iso:10303:-28:ed-2:tech:XMLschema:configuration_language http://www.buildingsmart-tech.org/ifcXML/IFC4/P28/cnf.xsd&quot; xmlns:cnf=&quot;urn:iso:std:iso:10303:-28:ed-2:tech:XMLschema:configuration_language&quot;&gt;
-        ///  &lt;cnf:option inheritance=&quot;true&quot; concrete-attribute=&quot;attribute-content&quot; naming-convention=&quot;preserve-case&quot; generate-keys=&quot;false&quot; /&gt;
-        ///  &lt;cnf:schema targetNamespace=&quot;http://www.b [rest of string was truncated]&quot;;.
+        ///  &lt;cnf:option 
+        ///    inheritance=&quot;true&quot; 
+        ///    concrete-attribute=&quot;attribute-content&quot; 
+        ///    naming-convention=&quot;preserve-case&quot; 
+        ///    generate-keys=&quot;false&quot; /&gt;
+        ///  &lt;cnf:schema targe [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string IFC4_ADD1_config {
             get {
