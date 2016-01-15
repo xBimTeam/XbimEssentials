@@ -36,20 +36,23 @@ namespace Xbim.IO.Xml.BsConf
             }
         }
 
-        public option Option { get { return Items.OfType<option>().FirstOrDefault(); } }
+        public option Option { get { return Items == null ? null : Items.OfType<option>().FirstOrDefault(); } }
 
-        public schema Schema { get { return Items.OfType<schema>().FirstOrDefault(); } }
+        public schema Schema { get { return Items == null ? null : Items.OfType<schema>().FirstOrDefault(); } }
 
-        public uosElement RootElement { get { return Items.OfType<uosElement>().FirstOrDefault(); } }
+        public uosElement RootElement { get { return Items == null ? null : Items.OfType<uosElement>().FirstOrDefault(); } }
 
-        public IEnumerable<entity> Entities { get { return Items.OfType<entity>(); } }
-        public IEnumerable<type> Types { get { return Items.OfType<type>(); } }
+        public IEnumerable<entity> Entities { get { return Items == null ? null : Items.OfType<entity>(); } }
 
-        public @namespace Namespace { get { return Schema.Items.OfType<@namespace>().FirstOrDefault(); } }
+        public IEnumerable<type> Types { get { return Items == null ? null : Items.OfType<type>(); } }
+
+        public @namespace Namespace { get { return Schema == null ? null : Schema.Items.OfType<@namespace>().FirstOrDefault(); } }
 
         public IEnumerable<entity> ChangedInverses { get
         {
             return
+                Items == null ? 
+                Enumerable.Empty<entity>() :
                 Items.OfType<entity>()
                     .Where(e => e.ChangedInverses.Any());
         } }
@@ -59,14 +62,18 @@ namespace Xbim.IO.Xml.BsConf
             get
             {
                 return
-                    Items.OfType<entity>()
+                    Items == null ?
+                Enumerable.Empty<entity>() :
+                Items.OfType<entity>()
                         .Where(e => e.IgnoredAttributes.Any());
             }
         }
 
         private entity GetEntity(string name)
         {
-            return
+            return Items == null ?
+                null :
+                
                     Items
                         .OfType<entity>().FirstOrDefault(e => string.Compare(e.EntityName, name, StringComparison.InvariantCultureIgnoreCase) == 0);
         }
@@ -87,6 +94,8 @@ namespace Xbim.IO.Xml.BsConf
 
         public entity GetOrCreatEntity(string name)
         {
+            if(Items == null) Items = new List<object>();
+
             var entity = Items.OfType<entity>()
                 .FirstOrDefault(e => e.select != null && e.select.FirstOrDefault() == name);
             if (entity != null)
@@ -104,7 +113,8 @@ namespace Xbim.IO.Xml.BsConf
         {
             get
             {
-                return
+                return Items == null ?
+                Enumerable.Empty<inverse>() :
                     Items.OfType<inverse>().Where(i => 
                         i.expattribute == expattribute.doubletag || 
                         i.expattribute == expattribute.attributetag);
@@ -115,7 +125,9 @@ namespace Xbim.IO.Xml.BsConf
         {
             get
             {
-                return Items.OfType<attribute>().Where(i => i.keep == false);
+                return Items == null ?
+                Enumerable.Empty<attribute>() :
+                Items.OfType<attribute>().Where(i => i.keep == false);
             }
         }
 
@@ -123,7 +135,9 @@ namespace Xbim.IO.Xml.BsConf
         {
             get
             {
-                return Items.OfType<attribute>();
+                return Items == null ?
+                Enumerable.Empty<attribute>() :
+                Items.OfType<attribute>();
             }
         }
 
@@ -131,11 +145,15 @@ namespace Xbim.IO.Xml.BsConf
         {
             get
             {
-                return Items.OfType<attribute>().Where(a => a.tagless == "true");
+                return Items == null ?
+                Enumerable.Empty<attribute>() :
+                Items.OfType<attribute>().Where(a => a.tagless == "true");
             }
         }
 
-        public string EntityName { get { return select.FirstOrDefault(); } }
+        public string EntityName { get { return select != null
+            ? select.FirstOrDefault():
+            null; } }
 
         public attribute GetOrCreateAttribute(string attributeName)
         {
