@@ -147,7 +147,7 @@ namespace Xbim.IO.Memory
 
         public bool IsEmpty
         {
-            get { return ShapeGeometries.Any(); }
+            get { return !ShapeGeometries.Any(); }
         }
     }
 }

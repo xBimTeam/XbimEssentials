@@ -116,10 +116,16 @@ namespace Xbim.IO.Esent
         }
 
         public IEnumerable<XbimShapeInstance> ShapeInstancesOfEntity(IPersistEntity entity)
+        {           
+           return ShapeInstancesOfEntity(entity.EntityLabel);
+        }
+
+
+        public IEnumerable<XbimShapeInstance> ShapeInstancesOfEntity(int entityLabel)
         {
-            
+
             IXbimShapeInstanceData shapeInstance = new XbimShapeInstance();
-            if (_shapeInstanceCursor.TrySeekShapeInstanceOfProduct(entity.EntityLabel, ref shapeInstance))
+            if (_shapeInstanceCursor.TrySeekShapeInstanceOfProduct(entityLabel, ref shapeInstance))
             {
                 do
                 {
@@ -242,6 +248,17 @@ namespace Xbim.IO.Esent
                 } while (_shapeInstanceCursor.TryMoveNextShapeInstance(ref shapeInstance) &&
                          shapeInstance.IfcTypeId == entityTypeId);
             }
+        }
+
+
+        public XbimRect3D BoundingBox(int entityLabel)
+        {
+            var bBox = XbimRect3D.Empty;
+            foreach (var shape in ShapeInstancesOfEntity(entityLabel))
+            {
+                bBox.Union(shape.BoundingBox);
+            }
+            return bBox;
         }
     }
 }

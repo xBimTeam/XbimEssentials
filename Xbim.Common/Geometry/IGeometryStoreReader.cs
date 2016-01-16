@@ -38,8 +38,9 @@ namespace Xbim.Common.Geometry
         /// <param name="entity"></param>
         /// <returns></returns>
         IEnumerable<XbimShapeInstance> ShapeInstancesOfEntity(IPersistEntity entity);
-
+        IEnumerable<XbimShapeInstance> ShapeInstancesOfEntity(int entityLabel);
         IEnumerable<XbimShapeInstance> ShapeInstancesOfEntityType(int entityTypeId);
+        XbimRect3D BoundingBox(int entityLabel);
 
         /// <summary>
         /// Returns an enumerable of all the shape instances in the store for the specified style

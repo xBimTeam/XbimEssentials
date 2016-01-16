@@ -46,9 +46,16 @@ namespace Xbim.IO.Memory
 
         public IEnumerable<XbimShapeInstance> ShapeInstancesOfEntity(IPersistEntity entity)
         {
-
             List<XbimShapeInstance> shapes;
             if (_inMemoryGeometryStore.EntityInstanceLookup.TryGetValue(entity.EntityLabel, out shapes))
+                return shapes;
+            return Enumerable.Empty<XbimShapeInstance>();
+        }
+        public IEnumerable<XbimShapeInstance> ShapeInstancesOfEntity(int entityLabel)
+        {
+
+            List<XbimShapeInstance> shapes;
+            if (_inMemoryGeometryStore.EntityInstanceLookup.TryGetValue(entityLabel, out shapes))
                 return shapes;
             return Enumerable.Empty<XbimShapeInstance>();
         }
@@ -94,6 +101,15 @@ namespace Xbim.IO.Memory
         public void Dispose()
         {
             
+        }
+        public XbimRect3D BoundingBox(int entityLabel)
+        {
+            var bBox = XbimRect3D.Empty;
+            foreach (var shape in ShapeInstancesOfEntity(entityLabel))
+            {
+                bBox.Union(shape.BoundingBox);
+            }
+            return bBox;
         }
     }
 }
