@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Ifc4.Interfaces;
 
@@ -29,6 +30,7 @@ namespace Xbim.Ifc4.Interfaces
 	{
 		#region Custom code for a select interface
 		//## Custom code for a select interface
+        IEnumerable<IIfcSurfaceStyle> SurfaceStyles { get; }
 		//##
 		#endregion
 	}

@@ -62,6 +62,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 		}
 	//## Custom code
+        public new IEnumerable<IIfcSurfaceStyle> SurfaceStyles { get { return new[] {this}; } }
 	//##
 	}
 }

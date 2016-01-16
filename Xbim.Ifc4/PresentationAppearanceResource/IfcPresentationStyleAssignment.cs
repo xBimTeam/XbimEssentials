@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		}	
 		#endregion
 
-
+        
 
 
 		#region INotifyPropertyChanged implementation
@@ -253,6 +253,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
+        public IEnumerable<IIfcSurfaceStyle> SurfaceStyles { get { return Styles.OfType<IfcSurfaceStyle>(); } }
 		//##
 		#endregion
 	}
