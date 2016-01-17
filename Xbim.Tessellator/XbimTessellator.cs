@@ -143,24 +143,25 @@ namespace Xbim.Tessellator
                 //Write out the header
                 binaryWriter.Write((byte)1); //stream format version			
                 // ReSharper disable once RedundantCast
-                binaryWriter.Write((UInt32)verticesCount); //number of vertices
-                binaryWriter.Write(triangleCount); //number of triangles
-
-                foreach (var coordList in triangulation.Coordinates.CoordList)
-                {
-                    var pt = coordList.AsTriplet();
-                    binaryWriter.Write((float)pt.A);
-                    binaryWriter.Write((float)pt.B);
-                    binaryWriter.Write((float)pt.C);
-                    var rect = new XbimRect3D(pt.A, pt.B, pt.C, 0, 0, 0);
-                    shapeGeometry.BoundingBox.Union(rect);
-                }
+                
 
 
                 //now write out the faces
                 if (triangulation.NormalIndex.Any() && triangulation.Normals.Any()) //we have normals so obey them
                 {
-                    binaryWriter.Write(facesCount);
+                    binaryWriter.Write(facesCount); 
+                    binaryWriter.Write((UInt32)verticesCount); //number of vertices
+                    binaryWriter.Write(triangleCount); //number of triangles
+
+                    foreach (var coordList in triangulation.Coordinates.CoordList)
+                    {
+                        var pt = coordList.AsTriplet();
+                        binaryWriter.Write((float)pt.A);
+                        binaryWriter.Write((float)pt.B);
+                        binaryWriter.Write((float)pt.C);
+                        var rect = new XbimRect3D(pt.A, pt.B, pt.C, 0, 0, 0);
+                        shapeGeometry.BoundingBox.Union(rect);
+                    }
                     Int32 numTrianglesInFace = triangulation.CoordIndex.Count();              
                     binaryWriter.Write(-numTrianglesInFace); //not a planar face so make negative 
                     var packedNormals = new List<XbimPackedNormal>(triangulation.Normals.Count());
@@ -190,6 +191,15 @@ namespace Xbim.Tessellator
                 {
                     var triangulatedMesh = Triangulate(triangulation);
                     shapeGeometry.BoundingBox = triangulatedMesh.BoundingBox;
+                    binaryWriter.Write(triangulatedMesh.VertexCount); //number of vertices
+                    binaryWriter.Write(triangulatedMesh.TriangleCount); //number of triangles
+
+                    foreach (var vert in triangulatedMesh.Vertices)                 
+                    {                      
+                        binaryWriter.Write(vert.X);
+                        binaryWriter.Write(vert.Y);
+                        binaryWriter.Write(vert.Z);   
+                    }
                     facesCount = (uint) triangulatedMesh.Faces.Count;
                     binaryWriter.Write(facesCount);
                     foreach (var faceGroup in triangulatedMesh.Faces)
@@ -211,12 +221,12 @@ namespace Xbim.Tessellator
                                 first = false;
                             }
                             WriteIndex(binaryWriter, (uint)triangle[0].StartVertexIndex , verticesCount);
-                            if (!planar) 
-                                triangle[0].PackedNormal.Write(binaryWriter);
+                            if (!planar) triangle[0].PackedNormal.Write(binaryWriter);
+
                             WriteIndex(binaryWriter, (uint)triangle[0].NextEdge.StartVertexIndex, verticesCount);
                             if (!planar) triangle[0].NextEdge.PackedNormal.Write(binaryWriter);
-                            WriteIndex(binaryWriter, (uint)triangle[0].NextEdge.NextEdge.StartVertexIndex,
-                                verticesCount);
+
+                            WriteIndex(binaryWriter, (uint)triangle[0].NextEdge.NextEdge.StartVertexIndex, verticesCount);
                             if (!planar) triangle[0].NextEdge.NextEdge.PackedNormal.Write(binaryWriter);
                         }
                     }
