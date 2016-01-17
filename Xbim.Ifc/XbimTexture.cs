@@ -81,11 +81,13 @@ namespace Xbim.Ifc
 
         private void AddColour(IIfcSurfaceStyleRendering rendering)
         {
+            var alpha = 1.0;
+            if (rendering.Transparency.HasValue) alpha =  1.0 - (double)(rendering.Transparency);
             if (rendering.DiffuseColour is Ifc4.MeasureResource.IfcNormalisedRatioMeasure)
             {
                 ColourMap.Add(new XbimColour(
                     rendering.SurfaceColour,
-                    rendering.Transparency.HasValue ? 1.0 - rendering.Transparency.Value : 1.0,
+                    alpha,
                     (Ifc4.MeasureResource.IfcNormalisedRatioMeasure)rendering.DiffuseColour
                     ));
 
@@ -94,7 +96,7 @@ namespace Xbim.Ifc
             {
                 ColourMap.Add(new XbimColour(
                     (IIfcColourRgb)rendering.DiffuseColour,
-                    rendering.Transparency.HasValue ? 1.0 - rendering.Transparency.Value : 1.0
+                    alpha
                     ));
 
             }
@@ -102,15 +104,14 @@ namespace Xbim.Ifc
             {
                 ColourMap.Add(new XbimColour(
                     rendering.SurfaceColour,
-                    rendering.Transparency.HasValue ? 1.0 - rendering.Transparency.Value : 1.0
+                    alpha
                     ));
             }
             else if (rendering.SpecularColour is Ifc4.MeasureResource.IfcNormalisedRatioMeasure) //getting key duplication on some ifc models so add else if
             {
                 ColourMap.Add(new XbimColour(
                     rendering.SurfaceColour,
-                    rendering.Transparency.HasValue ? 1.0 - rendering.Transparency.Value : 1.0,
-                    1.0,
+                   alpha,
                     (Ifc4.MeasureResource.IfcNormalisedRatioMeasure)(rendering.SpecularColour)
                     ));
             }
@@ -118,7 +119,7 @@ namespace Xbim.Ifc
             {
                 ColourMap.Add(new XbimColour(
                     (IIfcColourRgb)rendering.SpecularColour,
-                    rendering.Transparency.HasValue ? 1.0 - rendering.Transparency.Value : 1.0
+                    alpha
                     ));
 
             }
