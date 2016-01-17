@@ -8,6 +8,8 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 using Xbim.Ifc4.MeasureResource;
 
 // ReSharper disable once CheckNamespace
@@ -26,13 +28,11 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				//## Handle return of Transparency for which no match was found
 			    var rendering = this as IfcSurfaceStyleRendering;
-			    if(rendering!=null && rendering.Transparency!=null )
-                    return new IfcNormalisedRatioMeasure((double)rendering.Transparency);
-			    return null;
-			    
-			    //##
+                if (rendering != null && rendering.Transparency.HasValue) 
+                    return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure((double) rendering.Transparency);
+			    return null;               
+			   
 			} 
 		}
 	//## Custom code
