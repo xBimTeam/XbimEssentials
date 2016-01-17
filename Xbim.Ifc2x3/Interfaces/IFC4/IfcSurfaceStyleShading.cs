@@ -24,6 +24,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				return SurfaceColour;
 			} 
 		}
+     //## Custom code
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcSurfaceStyleShading.Transparency 
 		{ 
 			get
@@ -35,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			   
 			} 
 		}
-	//## Custom code
+	
 	//##
 	}
 }

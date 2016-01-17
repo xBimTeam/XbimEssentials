@@ -76,7 +76,9 @@ namespace Xbim.Ifc
 
         private void AddColour(IIfcSurfaceStyleShading shading)
         {
-            ColourMap.Add(new XbimColour(shading.SurfaceColour));
+            var alpha = 1.0;
+            if (shading.Transparency.HasValue) alpha = 1.0 - (double)(shading.Transparency);
+            ColourMap.Add(new XbimColour(shading.SurfaceColour,alpha));
         }
 
         private void AddColour(IIfcSurfaceStyleRendering rendering)
