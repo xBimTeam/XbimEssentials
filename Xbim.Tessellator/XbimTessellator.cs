@@ -148,27 +148,19 @@ namespace Xbim.Tessellator
 
                 foreach (var coordList in triangulation.Coordinates.CoordList)
                 {
-                    float x, y, z;
-                    var enumerator = coordList.GetEnumerator();enumerator.MoveNext();
-                    x = (float)enumerator.Current; enumerator.MoveNext();
-                    y = (float)enumerator.Current; enumerator.MoveNext();
-                    z = (float)enumerator.Current;
-                    binaryWriter.Write(x);
-                    binaryWriter.Write(y);
-                    binaryWriter.Write(z);
-                    var rect = new XbimRect3D(x, y, z, 0, 0, 0);
+                    var pt = coordList.AsTriplet();
+                    binaryWriter.Write(pt.A);
+                    binaryWriter.Write(pt.B);
+                    binaryWriter.Write(pt.C);
+                    var rect = new XbimRect3D(pt.A, pt.B, pt.C, 0, 0, 0);
                     shapeGeometry.BoundingBox.Union(rect);
                 }
 
 
                 //now write out the faces
-
-                binaryWriter.Write(facesCount);
-
-
-
                 if (triangulation.NormalIndex.Any() && triangulation.Normals.Any()) //we have normals so obey them
                 {
+                    binaryWriter.Write(facesCount);
                     Int32 numTrianglesInFace = triangulation.CoordIndex.Count();              
                     binaryWriter.Write(-numTrianglesInFace); //not a planar face so make negative 
                     var packedNormals = new List<XbimPackedNormal>(triangulation.Normals.Count());
@@ -183,8 +175,8 @@ namespace Xbim.Tessellator
                     
                     foreach (var triangle in triangulation.CoordIndex)
                     {
-                        var triangleTpl = triangle.AsTriplet<IfcPositiveInteger>();
-                        var normalsIndexTpl = normalIndex[triangleIndex].AsTriplet<IfcPositiveInteger>();
+                        var triangleTpl = triangle.AsTriplet();
+                        var normalsIndexTpl = normalIndex[triangleIndex].AsTriplet();
                         WriteIndex(binaryWriter, (uint)triangleTpl.A - 1, verticesCount);
                         packedNormals[(int)normalsIndexTpl.A - 1].Write(binaryWriter);
                         WriteIndex(binaryWriter, (uint)triangleTpl.B - 1, verticesCount);
@@ -198,6 +190,8 @@ namespace Xbim.Tessellator
                 {
                     var triangulatedMesh = Triangulate(triangulation);
                     shapeGeometry.BoundingBox = triangulatedMesh.BoundingBox;
+                    facesCount = (uint) triangulatedMesh.Faces.Count;
+                    binaryWriter.Write(facesCount);
                     foreach (var faceGroup in triangulatedMesh.Faces)
                     {
                         var numTrianglesInFace = faceGroup.Value.Count;

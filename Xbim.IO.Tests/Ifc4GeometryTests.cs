@@ -27,5 +27,7 @@ namespace  Xbim.MemoryModel.Tests
                 Assert.IsTrue(geom.BoundingBox.Volume < 23913893);
             }
         }
+
+
     }
 }
