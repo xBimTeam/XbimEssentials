@@ -149,9 +149,9 @@ namespace Xbim.Tessellator
                 foreach (var coordList in triangulation.Coordinates.CoordList)
                 {
                     var pt = coordList.AsTriplet();
-                    binaryWriter.Write(pt.A);
-                    binaryWriter.Write(pt.B);
-                    binaryWriter.Write(pt.C);
+                    binaryWriter.Write((float)pt.A);
+                    binaryWriter.Write((float)pt.B);
+                    binaryWriter.Write((float)pt.C);
                     var rect = new XbimRect3D(pt.A, pt.B, pt.C, 0, 0, 0);
                     shapeGeometry.BoundingBox.Union(rect);
                 }
