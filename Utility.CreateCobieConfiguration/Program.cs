@@ -77,6 +77,7 @@ namespace Utility.CreateCobieConfiguration
                 var invertedEntity = conf.GetOrCreatEntity(expType.ExpressName);
                 var invertedEntityAttr = invertedEntity.GetOrCreateInverse(expProp.Name);
                 invertedEntityAttr.expattribute = expattribute.doubletag;
+                invertedEntityAttr.expattributeSpecified = true;
 
                 var origEntity = conf.GetOrCreatEntity(invExpType.ExpressName);
                 var origAttribute = origEntity.GetOrCreateAttribute(invExpProp.Name);

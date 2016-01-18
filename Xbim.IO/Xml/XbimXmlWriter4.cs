@@ -109,12 +109,9 @@ namespace Xbim.IO.Xml
                 
 
                 //use specified entities enumeration or just all instances in the model
-                if(entities != null)
-                    foreach (var entity in entities)
-                        WriteEntity(entity, output, true);
-                else
-                    foreach (var entity in model.Instances)
-                        WriteEntity(entity, output, true);
+                entities = entities ?? model.Instances;
+                foreach (var entity in entities)
+                    WriteEntity(entity, output, true);
 
                 output.WriteEndElement(); //root element
                 output.WriteEndDocument();

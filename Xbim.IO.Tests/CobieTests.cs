@@ -2,16 +2,39 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.CobieExpress;
 using Xbim.Common;
+using Xbim.IO.Xml;
+using Xbim.IO.Xml.BsConf;
 
 namespace Xbim.MemoryModel.Tests
 {
     [TestClass]
     public class CobieTests
     {
-        
+        [TestMethod]
+        [DeploymentItem("TestFiles/LakesideRestaurantCobie.zip")]
+        public void CobieXmlSerialization()
+        {
+            const string xmlFile = "..\\..\\LakesideRestaurantCobie.xml";
+            var model = new IO.Memory.MemoryModel(new EntityFactory());
+            model.LoadZip("LakesideRestaurantCobie.zip");
+
+            var writer = new XbimXmlWriter4(configuration.COBieExpress, XbimXmlSettings.COBieExpress);
+            using (var xmlWriter = XmlWriter.Create(xmlFile, new XmlWriterSettings { IndentChars = "\t", Indent = true }))
+            {
+                writer.Write(model, xmlWriter, model.Instances.OfType<CobieFacility>().Concat(model.Instances));
+                xmlWriter.Close();
+            }
+
+            var xmlModel = new IO.Memory.MemoryModel(new EntityFactory());
+            xmlModel.LoadXml(xmlFile);
+
+            Assert.AreEqual(model.Instances.Count, xmlModel.Instances.Count);
+
+        }
 
         [TestMethod]
         public void SerializeDeserialize()
@@ -27,19 +50,26 @@ namespace Xbim.MemoryModel.Tests
                 model.SaveAsStep21Zip(fileStream);
             }
 
-            var model2 = new IO.Memory.MemoryModel(new EntityFactory());
-            model2.LoadStep21("RandomModel.cobie");
+            var stepModel = new IO.Memory.MemoryModel(new EntityFactory());
+            stepModel.LoadStep21("RandomModel.cobie");
 
-            Assert.AreEqual(model2.Instances.Count, model2.Instances.Count);
-            Assert.AreEqual(model2.Instances.OfType<CobieAttribute>().Count(), model2.Instances.OfType<CobieAttribute>().Count());
-            Assert.AreEqual(model2.Instances.OfType<CobieComponent>().Count(), model2.Instances.OfType<CobieComponent>().Count());
+            var zipModel = new IO.Memory.MemoryModel(new EntityFactory());
+            zipModel.LoadZip(File.OpenRead("RandomModel.cobieZip"));
+
+            Assert.AreEqual(model.Instances.Count, stepModel.Instances.Count);
+            Assert.AreEqual(model.Instances.OfType<CobieAttribute>().Count(), stepModel.Instances.OfType<CobieAttribute>().Count());
+            Assert.AreEqual(model.Instances.OfType<CobieComponent>().Count(), stepModel.Instances.OfType<CobieComponent>().Count());
+
+            Assert.AreEqual(model.Instances.Count, zipModel.Instances.Count);
+            Assert.AreEqual(model.Instances.OfType<CobieAttribute>().Count(), zipModel.Instances.OfType<CobieAttribute>().Count());
+            Assert.AreEqual(model.Instances.OfType<CobieComponent>().Count(), zipModel.Instances.OfType<CobieComponent>().Count());
 
             //because save operation is deterministic both files should match
             var data1 = new StringWriter();
-            model2.SaveAsStep21(data1);
+            model.SaveAsStep21(data1);
 
             var data2 = new StringWriter();
-            model2.SaveAsStep21(data2);
+            stepModel.SaveAsStep21(data2);
 
             var str1 = data1.ToString();
             var str2 = data2.ToString();
@@ -76,7 +106,6 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void AttributeIndexGetSet()
         {
-            const string file = "attrModel.cobie";
             using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
                 using (var txn = model.BeginTransaction("Creation"))
@@ -252,11 +281,12 @@ namespace Xbim.MemoryModel.Tests
             });
             for (var i = 0; i < count; i++)
             {
+                var i1 = i;
                 model.Instances.New<CobieComponent>(c =>
                 {
                     c.Type = type;
                     c.Spaces.Add(space);
-                    c.Name = _rThings[i];
+                    c.Name = _rThings[i1];
                     GenerateAttributes(c, 8);
                 });
             }

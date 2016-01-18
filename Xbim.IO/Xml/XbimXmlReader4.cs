@@ -146,16 +146,11 @@ namespace Xbim.IO.Xml
 
         private ExpressType GetExpresType(XmlReader input)
         {
-            var typeName = input.LocalName.ToUpper();
+            //type defined by xml attribute has always a priority over the name of the element
+            var typeName = (input.GetAttribute("type", _xsi) ?? input.LocalName).ToUpper();
             ExpressType expType;
-            if (!_metadata.TryGetExpressType(typeName, out expType))
-            {
-                //try to get type name from the attribute
-                typeName = input.GetAttribute("type", _xsi);
-                if (typeName != null && !_metadata.TryGetExpressType(typeName.ToUpper(), out expType))
-                    return expType;
-            }
-            if (expType != null) return expType;
+            if (_metadata.TryGetExpressType(typeName, out expType))
+                return expType;
 
             //try to replace WRAPPER keyword
             typeName = input.LocalName.ToUpper();
@@ -168,7 +163,7 @@ namespace Xbim.IO.Xml
 
         private IPersistEntity ReadEntity(XmlReader input)
         {
-            var typeName = input.LocalName.ToUpperInvariant();
+            var typeName = input.GetAttribute("type") ?? input.LocalName;
             var expType = GetExpresType(input);
             if (expType == null)
                 throw new XbimParserException(typeName + "is not an IPersistEntity type");

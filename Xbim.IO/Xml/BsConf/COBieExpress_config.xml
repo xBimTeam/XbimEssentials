@@ -11,7 +11,7 @@
     <attribute select="Impacts" exp-attribute="attribute-tag" />
     <attribute select="Documents" exp-attribute="attribute-tag" />
     <attribute select="Attributes" exp-attribute="attribute-tag" />
-    <inverse select="AffectedBy" />
+    <inverse select="AffectedBy" exp-attribute="double-tag" />
   </entity>
   <entity select="Attribute">
     <attribute select="AllowedValues" exp-attribute="attribute-tag" />
@@ -41,15 +41,15 @@
     <attribute select="Affected" keep="false" />
   </entity>
   <entity select="Facility">
-    <inverse select="Floors" />
-    <inverse select="Systems" />
+    <inverse select="Floors" exp-attribute="double-tag" />
+    <inverse select="Systems" exp-attribute="double-tag" />
   </entity>
   <entity select="Floor">
     <attribute select="Facility" keep="false" />
-    <inverse select="Spaces" />
+    <inverse select="Spaces" exp-attribute="double-tag" />
   </entity>
   <entity select="Space">
     <attribute select="Floor" keep="false" />
-    <inverse select="Components" />
+    <inverse select="Components" exp-attribute="double-tag" />
   </entity>
 </configuration>

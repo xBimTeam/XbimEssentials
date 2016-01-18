@@ -386,6 +386,57 @@ namespace Xbim.IO.Memory
                         return ent;
         }
 
+        public virtual void LoadZip(string file, ReportProgressDelegate progDelegate = null)
+        {
+            using (var stream = File.OpenRead(file))
+            {
+                LoadZip(stream, progDelegate);
+                stream.Close();
+            }
+        }
+
+        /// <summary>
+        /// Loads the content of the model from ZIP archive. If the actual model file inside the archive is XML
+        /// it is supposed to have an extension containing 'XML' like '.ifcxml', '.stpxml' or similar.
+        /// </summary>
+        /// <param name="stream">Input stream of the ZIP archive</param>
+        /// <param name="progDelegate"></param>
+        public virtual void LoadZip(Stream stream, ReportProgressDelegate progDelegate = null)
+        {
+            using (var zipStream = new ZipInputStream(stream))
+            {
+                var entry = zipStream.GetNextEntry();
+                while (entry != null)
+                {
+                    try
+                    {
+                        var extension = Path.GetExtension(entry.Name) ?? "";
+                        var xml = extension.ToLower().Contains("xml");
+                        using (var zipFile = new ZipFile(stream))
+                        {
+                            using (var reader = zipFile.GetInputStream(entry))
+                            {
+                                if (xml)
+                                    LoadXml(reader, progDelegate);
+                                else
+                                    LoadStep21(reader, progDelegate);
+
+                                reader.Close();
+                                zipFile.Close();
+                                zipStream.Close();
+                                return;
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        //if it crashed try next entry if available
+                        entry = zipStream.GetNextEntry();
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Opens the model from STEP21 file. 
         /// </summary>
