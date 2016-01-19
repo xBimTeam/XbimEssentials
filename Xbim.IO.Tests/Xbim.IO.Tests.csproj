@@ -105,7 +105,7 @@
     <None Include="TestFiles\IfcCartesianPointList3D.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestFiles\LakesideRestaurantCobie.zip">
+    <None Include="TestFiles\LakesideRestaurant.cobieZip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\SampleHouse4.ifc">

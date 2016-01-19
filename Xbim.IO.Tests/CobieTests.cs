@@ -15,12 +15,12 @@ namespace Xbim.MemoryModel.Tests
     public class CobieTests
     {
         [TestMethod]
-        [DeploymentItem("TestFiles/LakesideRestaurantCobie.zip")]
+        [DeploymentItem("TestFiles/LakesideRestaurant.cobieZip")]
         public void CobieXmlSerialization()
         {
             const string xmlFile = "..\\..\\LakesideRestaurantCobie.xml";
             var model = new IO.Memory.MemoryModel(new EntityFactory());
-            model.LoadZip("LakesideRestaurantCobie.zip");
+            model.LoadZip("LakesideRestaurant.cobieZip");
 
             var writer = new XbimXmlWriter4(configuration.COBieExpress, XbimXmlSettings.COBieExpress);
             using (var xmlWriter = XmlWriter.Create(xmlFile, new XmlWriterSettings { IndentChars = "\t", Indent = true }))

@@ -542,6 +542,12 @@ namespace Xbim.IO.Memory
 
         private IEnumerable<IPersistEntity> GetXmlOrderedEntities(string schema)
         {
+            if (schema != null && schema.ToLower().Contains("cobie"))
+            {
+                return Instances.OfType("Facility", true)
+                    .Concat(Instances);
+            }
+
             if (schema == null || !schema.StartsWith("IFC"))
                 return Instances;
 
