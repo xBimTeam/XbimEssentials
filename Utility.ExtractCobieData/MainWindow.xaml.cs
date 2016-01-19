@@ -115,11 +115,11 @@ namespace Utility.ExtractCobieData
                     using (var txn = target.BeginTransaction("COBie data extraction"))
                     {
                         var toInsert = GetEntitiesToInsert(source);
-                        var cache = new Dictionary<int, IPersistEntity>();
+                        var cache = new XbimInstanceHandleMap(source, target);
 
                         //set to happen out of transaction. This should save some memory used by transaction log
                         foreach (var entity in toInsert)
-                            target.InsertCopy(entity, cache, false, true, Filter, true);
+                            target.InsertCopy(entity, cache, Filter, false, true, true);
 
                         txn.Commit();
                     }

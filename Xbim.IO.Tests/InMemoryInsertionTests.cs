@@ -52,8 +52,7 @@ namespace Xbim.MemoryModel.Tests
                     {
                         var w = new Stopwatch();
                         w.Start();
-                        var mappings = new Dictionary<int, IPersistEntity>();
-                        iModel.InsertCopy(wall, mappings, true);
+                        iModel.InsertCopy(wall, new XbimInstanceHandleMap(model, iModel), null, true, true);
                         txn.Commit();
                         w.Stop();
 
@@ -133,10 +132,10 @@ namespace Xbim.MemoryModel.Tests
                 {
                     using (var txn = iModel.BeginTransaction("Insert copy"))
                     {
-                        var mappings = new Dictionary<int, IPersistEntity>();
+                        var mappings = new XbimInstanceHandleMap(model, iModel);
                         foreach (var root in roots)
                         {
-                            iModel.InsertCopy(root, mappings, false, true, Filter);
+                            iModel.InsertCopy(root, mappings, Filter, false, true);
                         }
                         txn.Commit();
                         using (var fileStream = new StreamWriter("..\\..\\SampleHouseSemantic4.ifc"))
