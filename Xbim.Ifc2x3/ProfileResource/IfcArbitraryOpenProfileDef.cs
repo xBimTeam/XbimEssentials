@@ -70,7 +70,7 @@ namespace Xbim.Ifc2x3.ProfileResource
             if (Curve.Dim != 2)
                 err +=
                     "WR12: ArbitraryOpenProfileDef:  The curve used for the curve definition shall have the dimensionality of 2\n";
-            if (!(this is IfcCenterLineProfileDef) || ProfileType != IfcProfileTypeEnum.CURVE)
+            if (!(this is IfcCenterLineProfileDef) && ProfileType != IfcProfileTypeEnum.CURVE)
                 err +=
                     "WR11 ArbitraryOpenProfileDef  :  The profile type is not of type .CURVE., an open profile can only be used to define a swept surface.\n";
             return err;
