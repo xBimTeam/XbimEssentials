@@ -147,12 +147,15 @@ namespace Xbim.Tessellator
 
 
                 //now write out the faces
-                if (triangulation.NormalIndex.Any() && triangulation.Normals.Any()) //we have normals so obey them
+                if (triangulation.Normals.Any() ) //we have normals so obey them
                 {
+                    List<IEnumerable<IfcPositiveInteger>> normalIndex;
+                    if (triangulation.NormalIndex.Any()) normalIndex = triangulation.NormalIndex.ToList();
+                    else normalIndex = triangulation.CoordIndex.ToList(); //the normals are the same as the points
                     binaryWriter.Write(facesCount); 
                     binaryWriter.Write((UInt32)verticesCount); //number of vertices
                     binaryWriter.Write(triangleCount); //number of triangles
-
+                    XbimRect3D bb = XbimRect3D.Empty;
                     foreach (var coordList in triangulation.Coordinates.CoordList)
                     {
                         var pt = coordList.AsTriplet();
@@ -160,8 +163,9 @@ namespace Xbim.Tessellator
                         binaryWriter.Write((float)pt.B);
                         binaryWriter.Write((float)pt.C);
                         var rect = new XbimRect3D(pt.A, pt.B, pt.C, 0, 0, 0);
-                        shapeGeometry.BoundingBox.Union(rect);
+                        bb.Union(rect);
                     }
+                    shapeGeometry.BoundingBox = bb;
                     Int32 numTrianglesInFace = triangulation.CoordIndex.Count();              
                     binaryWriter.Write(-numTrianglesInFace); //not a planar face so make negative 
                     var packedNormals = new List<XbimPackedNormal>(triangulation.Normals.Count());
@@ -171,7 +175,7 @@ namespace Xbim.Tessellator
                         packedNormals.Add(new XbimPackedNormal(tpl.A,tpl.B,tpl.C));
                     }
                     
-                    var normalIndex = triangulation.NormalIndex.ToList();
+                    
                     int triangleIndex = 0;
                     
                     foreach (var triangle in triangulation.CoordIndex)

@@ -102,10 +102,10 @@
     <None Include="TestFiles\BasinTessellation.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestFiles\IfcCartesianPointList3D.ifc">
+    <None Include="TestFiles\column-straight-rectangle-tessellation.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestFiles\LakesideRestaurant.cobieZip">
+    <None Include="TestFiles\IfcCartesianPointList3D.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\SampleHouse4.ifc">

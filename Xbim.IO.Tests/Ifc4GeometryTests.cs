@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Ifc;
 using Xbim.Tessellator;
 using Xbim.Common.Geometry;
@@ -18,16 +17,31 @@ namespace  Xbim.MemoryModel.Tests
             using (var store = IfcStore.Open("BasinTessellation.ifc"))
             {
                 var basinTess = store.Instances[501] as IIfcTriangulatedFaceSet;
-                var geomStore = store.GeometryStore;
+                
                 var tessellator = new XbimTessellator(store, XbimGeometryType.PolyhedronBinary);
                 Assert.IsNotNull(basinTess);
                 Assert.IsTrue(tessellator.CanMesh(basinTess));
                 var geom = tessellator.Mesh(basinTess);
-                Assert.IsTrue(geom.BoundingBox.Volume > 23913892);
-                Assert.IsTrue(geom.BoundingBox.Volume < 23913893);
+                Assert.IsTrue((int)(geom.BoundingBox.Volume) == 23913892);
+                
             }
         }
 
-
+ [DeploymentItem("TestFiles")]
+        [TestMethod]
+        public void IfcTriangulatedFaceSetWithNormalsTest()
+        {
+            using (var store = IfcStore.Open("column-straight-rectangle-tessellation.ifc"))
+            {
+                var columnTess = store.Instances[288] as IIfcTriangulatedFaceSet;
+               
+                var tessellator = new XbimTessellator(store, XbimGeometryType.PolyhedronBinary);
+                Assert.IsNotNull(columnTess);
+                Assert.IsTrue(tessellator.CanMesh(columnTess));
+                var geom = tessellator.Mesh(columnTess);
+                Assert.IsTrue((int)(geom.BoundingBox.Volume) == 7680);
+                
+            }
+        }
     }
 }
