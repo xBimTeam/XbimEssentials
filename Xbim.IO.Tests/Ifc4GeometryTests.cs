@@ -1,7 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Ifc;
 using Xbim.Tessellator;
 using Xbim.Common.Geometry;
+using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.Interfaces;
 
 namespace  Xbim.MemoryModel.Tests
@@ -27,7 +29,8 @@ namespace  Xbim.MemoryModel.Tests
             }
         }
 
- [DeploymentItem("TestFiles")]
+
+        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void IfcTriangulatedFaceSetWithNormalsTest()
         {
@@ -40,6 +43,23 @@ namespace  Xbim.MemoryModel.Tests
                 Assert.IsTrue(tessellator.CanMesh(columnTess));
                 var geom = tessellator.Mesh(columnTess);
                 Assert.IsTrue((int)(geom.BoundingBox.Volume) == 7680);
+                
+            }
+        }
+        
+        [DeploymentItem("TestFiles")]
+        [TestMethod]
+        public void IfcTriangulatedFaceSetWithColoursTest()
+        {
+            using (var store = IfcStore.Open("tessellation-with-individual-colors.ifc"))
+            {
+                var triangulatedFaceSet = store.Instances.OfType<IfcTriangulatedFaceSet>().FirstOrDefault();
+               
+                var tessellator = new XbimTessellator(store, XbimGeometryType.PolyhedronBinary);
+                Assert.IsNotNull(triangulatedFaceSet);
+                Assert.IsTrue(tessellator.CanMesh(triangulatedFaceSet));
+                var geom = tessellator.Mesh(triangulatedFaceSet);
+                Assert.IsTrue((int)(geom.BoundingBox.Volume) == 2000000000);
                 
             }
         }

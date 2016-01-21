@@ -93,6 +93,14 @@ namespace Xbim.Ifc4.Interfaces
         IXbimWire CreateWire(IIfcCurve curve);
         IXbimWire CreateWire(IIfcCompositeCurveSegment compCurveSeg);
 
+        IXbimCurve CreateCurve(IIfcPolyline curve);
+        IXbimCurve CreateCurve(IIfcCircle curve);
+        IXbimCurve CreateCurve(IIfcEllipse curve);
+        IXbimCurve CreateCurve(IIfcLine curve);
+        IXbimCurve CreateCurve(IIfcTrimmedCurve curve);
+        IXbimCurve CreateCurve(IIfcBSplineCurve curve);
+        IXbimCurve CreateCurve(IIfcBSplineCurveWithKnots curve);
+
         IXbimPoint CreatePoint(double x, double y, double z, double tolerance);
         IXbimPoint CreatePoint(IIfcCartesianPoint p);
         IXbimPoint CreatePoint(XbimPoint3D p, double tolerance);
