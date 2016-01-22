@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace Xbim.CobieExpress.IO.TableStore.TableMapping
@@ -15,25 +16,19 @@ namespace Xbim.CobieExpress.IO.TableStore.TableMapping
         /// Column index [A-AZ]
         /// </summary>
         [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
-        public string ColumnIndex { get; set; }
+        public string Column { get; set; }
         
         /// <summary>
-        /// Colour of the column as hex value
+        /// Status of the column
         /// </summary>
         [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
-        public string Colour { get; set; }
+        public DataStatus Status { get; set; }
 
         /// <summary>
         /// If true but no value is found on any path, default value is used
         /// </summary>
         [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
-        public bool Required { get; set; }
-
-        /// <summary>
-        /// If true but no value is found on any path, default value is used
-        /// </summary>
-        [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
-        public MultiRowRepresentation MultiRow { get; set; }
+        public MultiRow MultiRow { get; set; }
 
         /// <summary>
         /// Default value to be used if this property is required but no value is available on any path
@@ -42,16 +37,27 @@ namespace Xbim.CobieExpress.IO.TableStore.TableMapping
         public string DefaultValue { get; set; }
 
         /// <summary>
-        /// Paths to the data to fill in the rows. Is the result contains IEnumerable of objects and the resulting
-        /// string is londer than 255 characters the row will be multiplied. First path containing data will be used.
+        /// List of paths to search for a value. First path containing data will be used.
         /// Special variable 'parent' might be used to refere to the parent of this object
         /// </summary>
-        [XmlArray("Paths", Namespace = "http://www.openbim.org/mapping/table/1.0"),
-        XmlArrayItem("Path", Namespace = "http://www.openbim.org/mapping/table/1.0")]
-        public List<string> Paths { get; set; }
+        [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public string Paths { get; set; }
+
+        /// <summary>
+        /// Preprocessed list of paths where value might be found.
+        /// </summary>
+        [XmlIgnore]
+        public IEnumerable<string> PathsEnumeration {
+            get
+            {
+                return string.IsNullOrWhiteSpace(Paths) ? 
+                    Enumerable.Empty<string>() : 
+                    Paths.Split(',').Select(p => p.Trim(' '));
+            }
+        }
     }
 
-    public enum MultiRowRepresentation
+    public enum MultiRow
     {
         None,
         IfNecessary,

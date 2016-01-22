@@ -18,18 +18,19 @@ using Xbim.CobieExpress;
 namespace Xbim.CobieExpress.Interfaces
 {
 	/// <summary>
-    /// Readonly interface for CobieSpare
+    /// Readonly interface for CobieCoordinate
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @ICobieSpare : ICobieReferencedObject
+	public partial interface @ICobieCoordinate : ICobieReferencedObject
 	{
 		string @Name { get; }
-		string @Description { get; }
-		ICobieSpareType @SpareType { get; }
-		ICobieType @Type { get; }
-		IEnumerable<ICobieContact> @Suppliers { get; }
-		string @SetNumber { get; }
-		string @PartNumber { get; }
+		CoordinateTypeEnum? @CoordinateType { get; }
+		double @X { get; }
+		double @Y { get; }
+		double @Z { get; }
+		double? @RotationX { get; }
+		double? @RotationY { get; }
+		double? @RotationZ { get; }
 	
 	}
 }
@@ -37,35 +38,36 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Spare", 26)]
+	[ExpressType("Coordinate", 33)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSpare : CobieReferencedObject, IInstantiableEntity, ICobieSpare, IEqualityComparer<@CobieSpare>, IEquatable<@CobieSpare>
+	public  partial class @CobieCoordinate : CobieReferencedObject, IInstantiableEntity, ICobieCoordinate, IEqualityComparer<@CobieCoordinate>, IEquatable<@CobieCoordinate>
 	{
-		#region ICobieSpare explicit implementation
-		string ICobieSpare.Name { get { return @Name; } }	
-		string ICobieSpare.Description { get { return @Description; } }	
-		ICobieSpareType ICobieSpare.SpareType { get { return @SpareType; } }	
-		ICobieType ICobieSpare.Type { get { return @Type; } }	
-		IEnumerable<ICobieContact> ICobieSpare.Suppliers { get { return @Suppliers; } }	
-		string ICobieSpare.SetNumber { get { return @SetNumber; } }	
-		string ICobieSpare.PartNumber { get { return @PartNumber; } }	
+		#region ICobieCoordinate explicit implementation
+		string ICobieCoordinate.Name { get { return @Name; } }	
+		CoordinateTypeEnum? ICobieCoordinate.CoordinateType { get { return @CoordinateType; } }	
+		double ICobieCoordinate.X { get { return @X; } }	
+		double ICobieCoordinate.Y { get { return @Y; } }	
+		double ICobieCoordinate.Z { get { return @Z; } }	
+		double? ICobieCoordinate.RotationX { get { return @RotationX; } }	
+		double? ICobieCoordinate.RotationY { get { return @RotationY; } }	
+		double? ICobieCoordinate.RotationZ { get { return @RotationZ; } }	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieSpare(IModel model) : base(model) 		{ 
+		internal CobieCoordinate(IModel model) : base(model) 		{ 
 			Model = model; 
-			_suppliers = new OptionalItemSet<CobieContact>( this, 0 );
 		}
 
 		#region Explicit attribute fields
 		private string _name;
-		private string _description;
-		private CobieSpareType _spareType;
-		private CobieType _type;
-		private OptionalItemSet<CobieContact> _suppliers;
-		private string _setNumber;
-		private string _partNumber;
+		private CoordinateTypeEnum? _coordinateType;
+		private double _x;
+		private double _y;
+		private double _z;
+		private double? _rotationX;
+		private double? _rotationY;
+		private double? _rotationZ;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -83,85 +85,102 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _name = v, _name, value,  "Name");
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
-		public string @Description 
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 7)]
+		public CoordinateTypeEnum? @CoordinateType 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _coordinateType;
 				((IPersistEntity)this).Activate(false);
-				return _description;
+				return _coordinateType;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _coordinateType = v, _coordinateType, value,  "CoordinateType");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
-		public CobieSpareType @SpareType 
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		public double @X 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _spareType;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _x;
 				((IPersistEntity)this).Activate(false);
-				return _spareType;
+				return _x;
 			} 
 			set
 			{
-				SetValue( v =>  _spareType = v, _spareType, value,  "SpareType");
+				SetValue( v =>  _x = v, _x, value,  "X");
 			} 
 		}	
-		[IndexedProperty]
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
-		public CobieType @Type 
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		public double @Y 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _type;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _y;
 				((IPersistEntity)this).Activate(false);
-				return _type;
+				return _y;
 			} 
 			set
 			{
-				SetValue( v =>  _type = v, _type, value,  "Type");
+				SetValue( v =>  _y = v, _y, value,  "Y");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 10)]
-		public OptionalItemSet<CobieContact> @Suppliers 
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		public double @Z 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _suppliers;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _z;
 				((IPersistEntity)this).Activate(false);
-				return _suppliers;
+				return _z;
+			} 
+			set
+			{
+				SetValue( v =>  _z = v, _z, value,  "Z");
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
-		public string @SetNumber 
+		public double? @RotationX 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _setNumber;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationX;
 				((IPersistEntity)this).Activate(false);
-				return _setNumber;
+				return _rotationX;
 			} 
 			set
 			{
-				SetValue( v =>  _setNumber = v, _setNumber, value,  "SetNumber");
+				SetValue( v =>  _rotationX = v, _rotationX, value,  "RotationX");
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
-		public string @PartNumber 
+		public double? @RotationY 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _partNumber;
+				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationY;
 				((IPersistEntity)this).Activate(false);
-				return _partNumber;
+				return _rotationY;
 			} 
 			set
 			{
-				SetValue( v =>  _partNumber = v, _partNumber, value,  "PartNumber");
+				SetValue( v =>  _rotationY = v, _rotationY, value,  "RotationY");
+			} 
+		}	
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		public double? @RotationZ 
+		{ 
+			get 
+			{
+				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationZ;
+				((IPersistEntity)this).Activate(false);
+				return _rotationZ;
+			} 
+			set
+			{
+				SetValue( v =>  _rotationZ = v, _rotationZ, value,  "RotationZ");
 			} 
 		}	
 		#endregion
@@ -186,23 +205,25 @@ namespace Xbim.CobieExpress
 					_name = value.StringVal;
 					return;
 				case 6: 
-					_description = value.StringVal;
+                    _coordinateType = (CoordinateTypeEnum) System.Enum.Parse(typeof (CoordinateTypeEnum), value.EnumVal, true);
 					return;
 				case 7: 
-					_spareType = (CobieSpareType)(value.EntityVal);
+					_x = value.RealVal;
 					return;
 				case 8: 
-					_type = (CobieType)(value.EntityVal);
+					_y = value.RealVal;
 					return;
 				case 9: 
-					if (_suppliers == null) _suppliers = new OptionalItemSet<CobieContact>( this );
-					_suppliers.InternalAdd((CobieContact)value.EntityVal);
+					_z = value.RealVal;
 					return;
 				case 10: 
-					_setNumber = value.StringVal;
+					_rotationX = value.RealVal;
 					return;
 				case 11: 
-					_partNumber = value.StringVal;
+					_rotationY = value.RealVal;
+					return;
+				case 12: 
+					_rotationZ = value.RealVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -216,7 +237,7 @@ namespace Xbim.CobieExpress
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@CobieSpare other)
+        public bool Equals(@CobieCoordinate other)
 	    {
 	        return this == other;
 	    }
@@ -229,8 +250,8 @@ namespace Xbim.CobieExpress
             // Check for type
             if (GetType() != obj.GetType()) return false;
 
-            // Cast as @CobieSpare
-            var root = (@CobieSpare)obj;
+            // Cast as @CobieCoordinate
+            var root = (@CobieCoordinate)obj;
             return this == root;
         }
         public override int GetHashCode()
@@ -239,7 +260,7 @@ namespace Xbim.CobieExpress
             return EntityLabel.GetHashCode(); 
         }
 
-        public static bool operator ==(@CobieSpare left, @CobieSpare right)
+        public static bool operator ==(@CobieCoordinate left, @CobieCoordinate right)
         {
             // If both are null, or both are same instance, return true.
             if (ReferenceEquals(left, right))
@@ -253,18 +274,18 @@ namespace Xbim.CobieExpress
 
         }
 
-        public static bool operator !=(@CobieSpare left, @CobieSpare right)
+        public static bool operator !=(@CobieCoordinate left, @CobieCoordinate right)
         {
             return !(left == right);
         }
 
 
-        public bool Equals(@CobieSpare x, @CobieSpare y)
+        public bool Equals(@CobieCoordinate x, @CobieCoordinate y)
         {
             return x == y;
         }
 
-        public int GetHashCode(@CobieSpare obj)
+        public int GetHashCode(@CobieCoordinate obj)
         {
             return obj == null ? -1 : obj.GetHashCode();
         }

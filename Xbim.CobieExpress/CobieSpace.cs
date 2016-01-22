@@ -143,7 +143,7 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Spaces")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 19)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 19)]
 		public IEnumerable<CobieComponent> @Components 
 		{ 
 			get 
@@ -152,7 +152,7 @@ namespace Xbim.CobieExpress
 			} 
 		}
 		[InverseProperty("Spaces")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 20)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 20)]
 		public IEnumerable<CobieZone> @InZones 
 		{ 
 			get 

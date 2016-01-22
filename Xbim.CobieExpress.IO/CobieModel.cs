@@ -90,6 +90,36 @@ namespace Xbim.CobieExpress.IO
             }
         }
 
+        public void SaveAsStep21Zip(string file)
+        {
+            if (_esentDB)
+            {
+                EsentModel.SaveAs(file, IfcStorageType.StpZip);
+                return;
+            }
+
+            using (var stream = File.Create(file))
+            {
+                MemoryModel.SaveAsStep21Zip(stream);
+                stream.Close();
+            }
+        }
+
+        public static CobieModel OpenStep21Zip(string input, bool esentDB = false)
+        {
+            if (esentDB)
+            {
+                var db = Path.ChangeExtension(input, ".xcobie");
+                var esent = new EsentModel(new EntityFactory());
+                esent.CreateFrom(input, db, null, true);
+                return new CobieModel(esent);
+            }
+
+            var model = new MemoryModel(new EntityFactory());
+            model.LoadZip(input);
+            return new CobieModel(model);
+        }
+
         #region IModel implementation using inner model
         public int UserDefinedId 
         { 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using Xbim.Common.Metadata;
 
 namespace Xbim.CobieExpress.IO.TableStore.TableMapping
 {
@@ -10,12 +11,34 @@ namespace Xbim.CobieExpress.IO.TableStore.TableMapping
     [XmlRoot("ModelMapping", Namespace = "http://www.openbim.org/mapping/table/1.0")]
     public class ModelMapping
     {
+        [XmlIgnore]
+        public ExpressMetaData MetaData { get; private set; }
+
         /// <summary>
         /// Name of this mapping
         /// </summary>
         [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
         public string Name { get; set; }
-        
+
+        /// <summary>
+        /// String to be used to separate lists of values if enumeration of values is to be stored in a single cell
+        /// </summary>
+        [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public string ListSeparator { get; set; }
+
+        /// <summary>
+        /// Name of the table where pick values should be stored
+        /// </summary>
+        [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public string PickTableName { get; set; }
+
+        /// <summary>
+        /// Mappings for classes in the model
+        /// </summary>
+        [XmlArray("StatusRepresentations", Namespace = "http://www.openbim.org/mapping/table/1.0"),
+        XmlArrayItem("StatusRepresentation", Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public List<StatusRepresentation> StatusRepresentations { get; set; }
+
         /// <summary>
         /// Mappings for classes in the model
         /// </summary>
@@ -23,10 +46,21 @@ namespace Xbim.CobieExpress.IO.TableStore.TableMapping
         XmlArrayItem("ClassMapping", Namespace = "http://www.openbim.org/mapping/table/1.0")]
         public List<ClassMapping> ClassMappings { get; set; }
 
+        /// <summary>
+        /// Mappings for pick classes in the model (used as the enumerations)
+        /// </summary>
+        [XmlArray("PickClassMappings", Namespace = "http://www.openbim.org/mapping/table/1.0"),
+        XmlArrayItem("PickClassMapping", Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public List<PickClassMapping> PickClassMappings { get; set; }
+
         #region Serialization
         public ModelMapping()
         {
-            Namespaces.Add("map", "http://www.openbim.org/mapping/table/1.0");
+            //init all lists as all are supposed to contain some data
+            StatusRepresentations = new List<StatusRepresentation>();
+            ClassMappings = new List<ClassMapping>();
+            PickClassMappings = new List<PickClassMapping>();
+            ListSeparator = ",";
         }
 
         [XmlNamespaceDeclarations]
@@ -60,5 +94,15 @@ namespace Xbim.CobieExpress.IO.TableStore.TableMapping
             return writer.ToString();
         }
         #endregion
+
+        public void Init(ExpressMetaData metadata)
+        {
+            MetaData = metadata;
+            if (ClassMappings == null) return;
+            foreach (var classMapping in ClassMappings)
+            {
+                classMapping.Init(this);
+            }
+        }
     }
 }

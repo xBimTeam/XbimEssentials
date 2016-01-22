@@ -27,9 +27,9 @@ namespace Xbim.CobieExpress.Interfaces
 	{
 		string @Description { get; }
 		ICobieContact @GuarantorParts { get; }
-		double @DurationParts { get; }
+		double? @DurationParts { get; }
 		ICobieContact @GuarantorLabor { get; }
-		double @DurationLabor { get; }
+		double? @DurationLabor { get; }
 		ICobieDurationUnit @DurationUnit { get; }
 	
 	}
@@ -38,16 +38,16 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Warranty", 21)]
+	[ExpressType("Warranty", 22)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieWarranty : INotifyPropertyChanged, IInstantiableEntity, ICobieWarranty, IEqualityComparer<@CobieWarranty>, IEquatable<@CobieWarranty>
 	{
 		#region ICobieWarranty explicit implementation
 		string ICobieWarranty.Description { get { return @Description; } }	
 		ICobieContact ICobieWarranty.GuarantorParts { get { return @GuarantorParts; } }	
-		double ICobieWarranty.DurationParts { get { return @DurationParts; } }	
+		double? ICobieWarranty.DurationParts { get { return @DurationParts; } }	
 		ICobieContact ICobieWarranty.GuarantorLabor { get { return @GuarantorLabor; } }	
-		double ICobieWarranty.DurationLabor { get { return @DurationLabor; } }	
+		double? ICobieWarranty.DurationLabor { get { return @DurationLabor; } }	
 		ICobieDurationUnit ICobieWarranty.DurationUnit { get { return @DurationUnit; } }	
 		 
 		#endregion
@@ -118,9 +118,9 @@ namespace Xbim.CobieExpress
 		#region Explicit attribute fields
 		private string _description;
 		private CobieContact _guarantorParts;
-		private double _durationParts;
+		private double? _durationParts;
 		private CobieContact _guarantorLabor;
-		private double _durationLabor;
+		private double? _durationLabor;
 		private CobieDurationUnit _durationUnit;
 		#endregion
 	
@@ -139,7 +139,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
 		public CobieContact @GuarantorParts 
 		{ 
 			get 
@@ -153,8 +153,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _guarantorParts = v, _guarantorParts, value,  "GuarantorParts");
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
-		public double @DurationParts 
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		public double? @DurationParts 
 		{ 
 			get 
 			{
@@ -167,7 +167,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _durationParts = v, _durationParts, value,  "DurationParts");
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
 		public CobieContact @GuarantorLabor 
 		{ 
 			get 
@@ -181,8 +181,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _guarantorLabor = v, _guarantorLabor, value,  "GuarantorLabor");
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
-		public double @DurationLabor 
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		public double? @DurationLabor 
 		{ 
 			get 
 			{
@@ -195,7 +195,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _durationLabor = v, _durationLabor, value,  "DurationLabor");
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
 		public CobieDurationUnit @DurationUnit 
 		{ 
 			get 
