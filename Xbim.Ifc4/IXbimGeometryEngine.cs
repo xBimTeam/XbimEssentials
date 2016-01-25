@@ -117,7 +117,8 @@ namespace Xbim.Ifc4.Interfaces
         //Creates collections of objects
         IXbimSolidSet CreateSolidSet();
         IXbimSolidSet CreateSolidSet(IIfcBooleanResult boolOp);
-
+        //converts an object placement to a matrix transform in the WCS
+        XbimMatrix3D ToMatrix3D(IIfcObjectPlacement objPlacement);
         //Read and write functions
         void WriteTriangulation(TextWriter tw, IXbimGeometryObject shape, double tolerance, double deflection, double angle);
         void WriteTriangulation(BinaryWriter bw, IXbimGeometryObject shape, double tolerance, double deflection, double angle);
