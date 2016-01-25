@@ -3,7 +3,7 @@ using System.IO;
 using System.Xml.Serialization;
 using Xbim.Common.Metadata;
 
-namespace Xbim.CobieExpress.IO.TableStore.TableMapping
+namespace Xbim.IO.TableStore
 {
     /// <summary>
     /// This class describes how to map selected data from the model to table representation

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Xbim.CobieExpress.IO.Properties {
+namespace Xbim.MemoryModel.Tests.Properties {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace Xbim.CobieExpress.IO.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace Xbim.CobieExpress.IO.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Xbim.CobieExpress.IO.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Xbim.MemoryModel.Tests.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace Xbim.CobieExpress.IO.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -71,9 +71,9 @@ namespace Xbim.CobieExpress.IO.Properties {
         ///    &lt;StatusRepresentation Colour=&quot;#CCC&quot; FontWeight=&quot;Bold&quot; Border=&quot;true&quot; Status=&quot;Header&quot; /&gt;
         ///    &lt;StatusRepresentation Colour=&quot;#FFFF99&quot; FontWeight=&quot;Normal&quot; Border=&quot;true [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string COBieUK2012 {
+        internal static string IFC4SampleMapping {
             get {
-                return ResourceManager.GetString("COBieUK2012", resourceCulture);
+                return ResourceManager.GetString("IFC4SampleMapping", resourceCulture);
             }
         }
     }

@@ -72,12 +72,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CobieTests.cs" />
     <Compile Include="InMemoryInsertionTests.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ReadIFC4InterfacesTest.cs" />
     <Compile Include="ReadIFC4Test.cs" />
     <Compile Include="ParsingTests.cs" />
     <Compile Include="GeometryStoreTests.cs" />
     <Compile Include="Ifc4GeometryTests.cs" />
     <Compile Include="CobieTableStorageTests.cs" />
+    <Compile Include="IFC4TableStorageTests.cs" />
     <Compile Include="WexBIMTests.cs" />
     <Compile Include="XmlTests4.cs" />
     <Compile Include="XmlTests2x3.cs" />
@@ -107,6 +113,10 @@
       <Project>{53999970-957b-4e8d-9cc0-ebe2c7a24969}</Project>
       <Name>Xbim.Ifc</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Xbim.IO.TableStore\Xbim.IO.TableStore.csproj">
+      <Project>{7f02eea3-b338-456e-aee7-c9ee0c10b1f2}</Project>
+      <Name>Xbim.IO.TableStore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xbim.IO\Xbim.IO.csproj">
       <Project>{85856df2-c8ab-4120-8a8d-ae05d2696b51}</Project>
       <Name>Xbim.IO</Name>
@@ -133,6 +143,15 @@
     <None Include="TestFiles\SampleHouse4.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestFiles\IFC4SampleMapping.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

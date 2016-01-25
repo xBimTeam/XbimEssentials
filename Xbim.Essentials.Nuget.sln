@@ -54,6 +54,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility.CreateCobieConfigur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.CobieExpress.IO", "Xbim.CobieExpress.IO\Xbim.CobieExpress.IO.csproj", "{1D7DD9A0-1828-41ED-ACF6-3973E6575E6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.IO.TableStore", "Xbim.IO.TableStore\Xbim.IO.TableStore.csproj", "{7F02EEA3-B338-456E-AEE7-C9EE0C10B1F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiling.TableStore", "Profiling.TableStore\Profiling.TableStore.csproj", "{6AF1A6D7-F7EB-494F-9493-F94A2505D81E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +132,14 @@ Global
 		{1D7DD9A0-1828-41ED-ACF6-3973E6575E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D7DD9A0-1828-41ED-ACF6-3973E6575E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D7DD9A0-1828-41ED-ACF6-3973E6575E6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F02EEA3-B338-456E-AEE7-C9EE0C10B1F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F02EEA3-B338-456E-AEE7-C9EE0C10B1F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F02EEA3-B338-456E-AEE7-C9EE0C10B1F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F02EEA3-B338-456E-AEE7-C9EE0C10B1F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AF1A6D7-F7EB-494F-9493-F94A2505D81E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AF1A6D7-F7EB-494F-9493-F94A2505D81E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AF1A6D7-F7EB-494F-9493-F94A2505D81E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AF1A6D7-F7EB-494F-9493-F94A2505D81E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,5 +158,9 @@ Global
 		{6EB77477-67E1-4514-9E2A-C3592DE9B1C3} = {2CD5B49F-FB73-4B6D-B570-E51B32905A25}
 		{3173C3AB-D54E-4F1A-910D-EBADAECDC582} = {A54B7B62-7457-48AB-A9C2-16B087A82C36}
 		{1D7DD9A0-1828-41ED-ACF6-3973E6575E6D} = {E9D35CB0-7004-4527-ACA0-8482C7B8AF52}
+		{6AF1A6D7-F7EB-494F-9493-F94A2505D81E} = {2CD5B49F-FB73-4B6D-B570-E51B32905A25}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

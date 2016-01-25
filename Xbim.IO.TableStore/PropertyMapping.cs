@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace Xbim.CobieExpress.IO.TableStore.TableMapping
+namespace Xbim.IO.TableStore
 {
     public class PropertyMapping
     {

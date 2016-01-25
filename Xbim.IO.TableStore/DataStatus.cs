@@ -1,4 +1,4 @@
-﻿namespace Xbim.CobieExpress.IO.TableStore.TableMapping
+﻿namespace Xbim.IO.TableStore
 {
     public enum DataStatus
     {

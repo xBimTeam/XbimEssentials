@@ -3,8 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.CobieExpress.IO;
-using Xbim.CobieExpress.IO.TableStore;
-using Xbim.CobieExpress.IO.TableStore.TableMapping;
+using Xbim.IO.TableStore;
 
 namespace Xbim.MemoryModel.Tests
 {

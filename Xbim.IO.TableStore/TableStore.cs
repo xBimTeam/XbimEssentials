@@ -10,12 +10,11 @@ using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.SS.Util;
 using NPOI.XSSF.UserModel;
-using Xbim.CobieExpress.IO.TableStore.TableMapping;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Metadata;
 
-namespace Xbim.CobieExpress.IO.TableStore
+namespace Xbim.IO.TableStore
 {
     public class TableStore
     {
@@ -31,7 +30,10 @@ namespace Xbim.CobieExpress.IO.TableStore
         //cache of latest row number in different sheets
         private Dictionary<string, int> _rowNumCache = new Dictionary<string, int>();
 
+        private readonly Dictionary<ExpressType, ClassMapping> _typeClassMappingsCache = new Dictionary<ExpressType, ClassMapping>(); 
 
+        private readonly  Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>> _typePropertyCache = new Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>>(); 
+       
         public TableStore(IModel model, ModelMapping mapping)
         {
             Model = model;
@@ -76,10 +78,13 @@ namespace Xbim.CobieExpress.IO.TableStore
                     throw new ArgumentOutOfRangeException("type");
             }
 
+            //create spreadsheet representaion 
             Store(workbook);
-            workbook.Write(stream);
-
-            if (!recalculate || template == null) return;
+            if (!recalculate || template == null)
+            {
+                workbook.Write(stream);
+                return;
+            }
 
             //refresh formulas
             switch (type)
@@ -93,6 +98,9 @@ namespace Xbim.CobieExpress.IO.TableStore
                 default:
                     throw new ArgumentOutOfRangeException("type");
             }
+
+            //write to output stream
+            workbook.Write(stream);
         }
 
         public void Store(IWorkbook workbook)
@@ -123,8 +131,6 @@ namespace Xbim.CobieExpress.IO.TableStore
                 //root definitions will always have parent == null
                 Store(workbook, classMapping, eType, null);
             }
-
-            //AdjustAllColumns(workbook, Mapping);
         }
 
         private void Store(IWorkbook workbook, ClassMapping mapping, ExpressType expType, IPersistEntity parent)
@@ -293,56 +299,89 @@ namespace Xbim.CobieExpress.IO.TableStore
             throw new NotSupportedException("Only base types are supported");
         }
 
+        private ClassMapping GetTable(ExpressType type)
+        {
+            ClassMapping mapping;
+            if (_typeClassMappingsCache.TryGetValue(type, out mapping))
+                return mapping;
+
+            var mappings = Mapping.ClassMappings.Where(m => m.Type == type || m.Type.AllSubTypes.Contains(type)).ToList();
+            if (!mappings.Any())
+                throw new XbimException("No sheet mapping defined for " + type.Name);
+
+            var root = mappings.FirstOrDefault(m => m.IsRoot);
+            if (root != null)
+            {
+                _typeClassMappingsCache.Add(type, root);
+                return root;
+            }
+
+            mapping = mappings.FirstOrDefault();
+            _typeClassMappingsCache.Add(type, mapping);
+            return mapping;
+        }
+
         private object GetValue(IPersistEntity entity, ExpressType type, string path, IPersistEntity parent)
         {
-            if(string.IsNullOrWhiteSpace(path))
-                throw new XbimException("Path not defined");
-
-            if (path.ToLower().StartsWith("parent."))
+            while (true)
             {
-                path = path.Substring(7); //trim "parent." from the beginning
-                return GetValue(parent, parent.ExpressType, path, null);
-            }
+                if (string.IsNullOrWhiteSpace(path))
+                    throw new XbimException("Path not defined");
 
-            if (string.Equals(path, "[sheet]", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(path, "[table]", StringComparison.OrdinalIgnoreCase))
-            {
-                var parentMapping = Mapping.ClassMappings.FirstOrDefault(m => m.Type == type || m.Type.SubTypes.Contains(type));
-                if(parentMapping == null)
-                    throw  new XbimException("No sheet mapping defined for " + type.Name);
-                return parentMapping.TableName;
-            }
-
-            var parts = path.Split(new [] {'.'}, StringSplitOptions.RemoveEmptyEntries).ToList();
-            var multiResult = new List<string>();
-            for (var i = 0; i < parts.Count; i++)
-            {
-                var value = GetPropertyValue(parts[i], entity, type);
-
-                if (value == null)
-                    return null;
-
-                var ent = value as IPersistEntity;
-                if (ent != null)
+                //optimization: check first letter before StartsWith() function. 
+                if (path[0] == 'p' && path.StartsWith("parent."))
                 {
-                    entity = ent;
-                    type = ent.ExpressType;
+                    if (parent == null)
+                        return null;
+
+                    path = path.Substring(7); //trim "parent." from the beginning
+                    entity = parent;
+                    type = parent.ExpressType;
+                    parent = null;
                     continue;
                 }
 
-                var expVal = value as IExpressValueType;
-                if (expVal != null)
-                    return expVal.Value;
-
-                var expValEnum = value as IEnumerable<IExpressValueType>;
-                if (expValEnum != null)
-                    return expValEnum.Select(v => v.Value);
-
-                //it is a multivalue result
-                var entEnum = value as IEnumerable<IPersistEntity>;
-                if (entEnum != null)
+                if (string.Equals(path, "[table]", StringComparison.Ordinal))
                 {
-                    var subParts = parts.GetRange(i + 1, parts.Count - i - 1);
+                    var mapping = GetTable(type);
+                    return mapping.TableName;
+                }
+
+                if (string.Equals(path, "[type]", StringComparison.Ordinal))
+                {
+                    return entity.ExpressType.ExpressName;
+                }
+
+                var parts = path.Split('.');
+                var multiResult = new List<string>();
+                for (var i = 0; i < parts.Length; i++)
+                {
+                    var value = GetPropertyValue(parts[i], entity, type);
+
+                    if (value == null)
+                        return null;
+
+                    var ent = value as IPersistEntity;
+                    if (ent != null)
+                    {
+                        entity = ent;
+                        type = ent.ExpressType;
+                        continue;
+                    }
+
+                    var expVal = value as IExpressValueType;
+                    if (expVal != null)
+                        return expVal.Value;
+
+                    var expValEnum = value as IEnumerable<IExpressValueType>;
+                    if (expValEnum != null)
+                        return expValEnum.Select(v => v.Value);
+
+                    var entEnum = value as IEnumerable<IPersistEntity>;
+                    if (entEnum == null) return value;
+
+                    //it is a multivalue result
+                    var subParts = parts.ToList().GetRange(i + 1, parts.Length - i - 1);
                     var subPath = string.Join(".", subParts);
                     foreach (var persistEntity in entEnum)
                     {
@@ -357,14 +396,35 @@ namespace Xbim.CobieExpress.IO.TableStore
                         multiResult.Add(subValue.ToString());
                     }
                     return multiResult;
+
+                    //deal with simple values
                 }
 
-                //deal with simple values
-                return value;
+                //if there is only entity itself to return, try to get 'Name' or 'Value' property as a fallback
+                return GetFallbackValue(entity, type);
             }
+        }
 
-            //if there is only entity itself to return, try to get 'Name' or 'Value' property as a fallback
-            return GetFallbackValue(entity, type);
+        private ExpressMetaProperty GetProperty(ExpressType type, string name)
+        {
+            ExpressMetaProperty property;
+            Dictionary<string, ExpressMetaProperty> properties;
+            if (!_typePropertyCache.TryGetValue(type, out properties))
+            {
+                properties = new Dictionary<string, ExpressMetaProperty>();
+                _typePropertyCache.Add(type, properties);
+            }
+            if (properties.TryGetValue(name, out property))
+                return property;
+
+            property = type.Properties.Values.FirstOrDefault(p => p.Name == name) ??
+                    type.Inverses.FirstOrDefault(p => p.Name == name) ??
+                    type.Derives.FirstOrDefault(p => p.Name == name);
+            if (property == null)
+                return null;
+
+            properties.Add(name, property);
+            return property;
         }
 
         private object GetPropertyValue(string pathPart, IPersistEntity entity, ExpressType type)
@@ -406,10 +466,7 @@ namespace Xbim.CobieExpress.IO.TableStore
             }
             else
             {
-                var expProp =
-                    type.Properties.Values.FirstOrDefault(p => p.Name == propName) ??
-                    type.Inverses.FirstOrDefault(p => p.Name == propName) ??
-                    type.Derives.FirstOrDefault(p => p.Name == propName);
+                var expProp = GetProperty(type, propName);
                 if (expProp == null)
                     throw new XbimException(string.Format("It wasn't possible to find property {0} in the object of type {1}", propName, type.Name));
                 pInfo = expProp.PropertyInfo;
@@ -425,7 +482,7 @@ namespace Xbim.CobieExpress.IO.TableStore
             return value;
         }
 
-        private object GetFallbackValue(IPersistEntity entity, ExpressType type)
+        private static object GetFallbackValue(IPersistEntity entity, ExpressType type)
         {
             var nameProp = type.Properties.Values.FirstOrDefault(p => p.Name == "Name");
             var valProp = type.Properties.Values.FirstOrDefault(p => p.Name == "Value");
@@ -489,7 +546,7 @@ namespace Xbim.CobieExpress.IO.TableStore
             return lastIndex;
         }
 
-        private IRow GetNextEmptyRow(ISheet sheet)
+        private static IRow GetNextEmptyRow(ISheet sheet)
         {
             foreach (IRow row in sheet)
             {
@@ -512,6 +569,7 @@ namespace Xbim.CobieExpress.IO.TableStore
         {
             var workbook = sheet.Workbook;
             var row = sheet.GetRow(0) ?? sheet.CreateRow(0);
+            InitMappingColumns(classMapping);
 
             //create header and column style for every mapped column
             foreach (var mapping in classMapping.PropertyMappings)
@@ -538,6 +596,22 @@ namespace Xbim.CobieExpress.IO.TableStore
                 sheet.SetColumnHidden(cellIndex, false);
                 sheet.SetColumnWidth(cellIndex, 256*20);
             }
+        }
+
+        private static void InitMappingColumns(ClassMapping mapping)
+        {
+            if (mapping.PropertyMappings == null || 
+                !mapping.PropertyMappings.Any() ||
+                mapping.PropertyMappings.All(m => !string.IsNullOrWhiteSpace(m.Column)))
+                return;
+
+            var letter = 'A';
+            var number = (int) letter;
+            foreach (var pMapping in mapping.PropertyMappings)
+            {
+                pMapping.Column = ((char)number++).ToString();
+            }
+
         }
 
         private ICellStyle GetStyle(DataStatus status, IWorkbook workbook)
@@ -590,7 +664,7 @@ namespace Xbim.CobieExpress.IO.TableStore
         }
 
         //This operation takes very long time
-        private void AdjustAllColumns(ISheet sheet, ClassMapping mapping)
+        private static void AdjustAllColumns(ISheet sheet, ClassMapping mapping)
         {
             foreach (var propertyMapping in mapping.PropertyMappings)
             {
@@ -627,7 +701,7 @@ namespace Xbim.CobieExpress.IO.TableStore
         private static readonly Dictionary<string, short> ColourCodeCache = new Dictionary<string, short>();
         private static readonly List<IndexedColors> IndexedColoursList = new List<IndexedColors>();
 
-        private short GetClosestColour(string rgb)
+        private static short GetClosestColour(string rgb)
         {
             if (!IndexedColoursList.Any())
             {

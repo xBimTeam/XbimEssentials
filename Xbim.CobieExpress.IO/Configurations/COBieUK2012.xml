@@ -300,7 +300,7 @@
         <PropertyMapping Header="Reference" Column="O" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Reference" />
       </PropertyMappings>
     </ClassMapping>
-    <ClassMapping Class="Attribute" TableName="Attribute" TableOrder="15" ParentClass="Asset" ParentPath="Attributes">
+    <ClassMapping Class="Attribute" TableName="Attribute" TableOrder="15" ParentClass="Asset" ParentPath="Attributes\Attribute">
       <PropertyMappings>
         <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
         <PropertyMapping Header="Category" Column="B" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Stage.Value" />
