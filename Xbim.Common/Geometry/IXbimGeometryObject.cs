@@ -26,6 +26,10 @@ namespace Xbim.Common.Geometry
         /// <param name="matrix3D"></param>
         /// <returns></returns>
         IXbimGeometryObject TransformShallow(XbimMatrix3D matrix3D);
+        /// <summary>
+        /// Converts the object to a string in BRep format
+        /// </summary>
+        String ToBRep { get; }
 
     }
 }
