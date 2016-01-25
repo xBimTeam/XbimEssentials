@@ -101,7 +101,8 @@ namespace Xbim.Ifc4.Interfaces
         IXbimCurve CreateCurve(IIfcTrimmedCurve curve);
         IXbimCurve CreateCurve(IIfcRationalBSplineCurveWithKnots curve);
         IXbimCurve CreateCurve(IIfcBSplineCurveWithKnots curve);
-
+        IXbimCurve CreateCurve(IIfcOffsetCurve3D curve);
+        IXbimCurve CreateCurve(IIfcOffsetCurve2D curve);
         IXbimPoint CreatePoint(double x, double y, double z, double tolerance);
         IXbimPoint CreatePoint(IIfcCartesianPoint p);
         IXbimPoint CreatePoint(XbimPoint3D p, double tolerance);
