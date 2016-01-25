@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Xbim.Common.Geometry
 {
@@ -15,5 +16,9 @@ namespace Xbim.Common.Geometry
         XbimPoint3D GetPoint(double parameter);
         bool IsClosed { get; }
         bool Is3D { get; }
+        /// <summary>
+        /// Converts the object to a string in BRep format
+        /// </summary>
+        String ToBRep { get; }
     }
 }

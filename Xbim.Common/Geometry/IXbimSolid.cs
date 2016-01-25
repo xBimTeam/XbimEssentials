@@ -23,6 +23,10 @@ namespace Xbim.Common.Geometry
         IXbimSolidSet Intersection(IXbimSolid toIntersect, double tolerance);
         IXbimFaceSet Section(IXbimFace toSection, double tolerance);
         void SaveAsBrep(string fileName);
+        /// <summary>
+        /// Converts the object to a string in BRep format
+        /// </summary>
+        String ToBRep { get; }
     }
 
 }

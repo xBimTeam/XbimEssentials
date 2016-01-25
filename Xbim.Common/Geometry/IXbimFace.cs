@@ -14,5 +14,9 @@ namespace Xbim.Common.Geometry
         XbimVector3D Normal { get; }
         bool IsPlanar { get; }
         void SaveAsBrep(string fileName);
+        /// <summary>
+        /// Converts the object to a string in BRep format
+        /// </summary>
+        String ToBRep { get; }
     }
 }
