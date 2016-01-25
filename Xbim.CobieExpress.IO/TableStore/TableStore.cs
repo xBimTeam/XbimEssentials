@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.SS.Util;
@@ -316,14 +317,7 @@ namespace Xbim.CobieExpress.IO.TableStore
             var multiResult = new List<string>();
             for (var i = 0; i < parts.Count; i++)
             {
-                var propName = parts[i];
-                var expProp = 
-                    type.Properties.Values.FirstOrDefault(p => p.Name == propName) ??
-                    type.Inverses.FirstOrDefault(p => p.Name == propName) ??
-                    type.Derives.FirstOrDefault(p => p.Name == propName);
-                if(expProp == null)
-                    throw new XbimException("It wasn't possible to find desired property in the object");
-                var value = expProp.PropertyInfo.GetValue(entity, null);
+                var value = GetPropertyValue(parts[i], entity, type);
 
                 if (value == null)
                     return null;
@@ -369,10 +363,73 @@ namespace Xbim.CobieExpress.IO.TableStore
                 return value;
             }
 
-            //if there is only entity itself to return, try to get 'Name' property
+            //if there is only entity itself to return, try to get 'Name' or 'Value' property as a fallback
+            return GetFallbackValue(entity, type);
+        }
+
+        private object GetPropertyValue(string pathPart, IPersistEntity entity, ExpressType type)
+        {
+            var propName = pathPart;
+            var isIndexed = propName.Contains("[") && propName.Contains("]");
+            object propIndex = null;
+            if (isIndexed)
+            {
+                var match = new Regex("((?<name>).+)?\\[(?<index>.+)\\]")
+                    .Match(propName);
+                var indexString = match.Groups["index"].Value;
+                propName = match.Groups["name"].Value;
+
+                if (indexString.Contains("'") || indexString.Contains("\""))
+                {
+                    propIndex = indexString.Trim('\'', '"');
+                }
+                else
+                {
+                    //try to convert it to integer access
+                    int indexInt;
+                    if (int.TryParse(indexString, out indexInt))
+                        propIndex = indexInt;
+                    else
+                        propIndex = indexString;
+                }
+            }
+            PropertyInfo pInfo;
+            if (isIndexed && string.IsNullOrWhiteSpace(propName))
+            {
+                pInfo = type.Type.GetProperty("Item");
+                if (pInfo == null)
+                    throw new XbimException(string.Format("{0} doesn't have an index access", type.Name));
+
+                var iParams = pInfo.GetIndexParameters();
+                if (iParams.All(p => p.ParameterType != propIndex.GetType()))
+                    throw new XbimException(string.Format("{0} doesn't have an index access for type {1}", type.Name, propIndex.GetType().Name));
+            }
+            else
+            {
+                var expProp =
+                    type.Properties.Values.FirstOrDefault(p => p.Name == propName) ??
+                    type.Inverses.FirstOrDefault(p => p.Name == propName) ??
+                    type.Derives.FirstOrDefault(p => p.Name == propName);
+                if (expProp == null)
+                    throw new XbimException(string.Format("It wasn't possible to find property {0} in the object of type {1}", propName, type.Name));
+                pInfo = expProp.PropertyInfo;
+                if (isIndexed)
+                {
+                    var iParams = pInfo.GetIndexParameters();
+                    if (iParams.All(p => p.ParameterType != propIndex.GetType()))
+                        throw new XbimException(string.Format("Property {0} in the object of type {1} doesn't have an index access for type {2}", propName, type.Name, propIndex.GetType().Name));
+                }
+            }
+
+            var value = pInfo.GetValue(entity, propIndex == null ? null : new[] { propIndex });
+            return value;
+        }
+
+        private object GetFallbackValue(IPersistEntity entity, ExpressType type)
+        {
             var nameProp = type.Properties.Values.FirstOrDefault(p => p.Name == "Name");
             var valProp = type.Properties.Values.FirstOrDefault(p => p.Name == "Value");
-            if(nameProp == null && valProp == null)
+            if (nameProp == null && valProp == null)
                 return entity.ToString();
 
             if (nameProp != null && valProp != null)
@@ -386,8 +443,8 @@ namespace Xbim.CobieExpress.IO.TableStore
             if (nameProp != null)
             {
                 var nameValue = nameProp.PropertyInfo.GetValue(entity, null);
-                if(nameValue != null)
-                    return nameValue.ToString();    
+                if (nameValue != null)
+                    return nameValue.ToString();
             }
 
             if (valProp != null)

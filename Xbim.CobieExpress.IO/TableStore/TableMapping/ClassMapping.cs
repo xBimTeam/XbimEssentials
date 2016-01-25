@@ -75,7 +75,7 @@ namespace Xbim.CobieExpress.IO.TableStore.TableMapping
         /// Path in parent class used get children instances
         /// </summary>
         [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
-        public string ParentProperty { get; set; }
+        public string ParentPath { get; set; }
 
         /// <summary>
         /// Property mappings
@@ -117,7 +117,7 @@ namespace Xbim.CobieExpress.IO.TableStore.TableMapping
 
         public IEnumerable<IPersistEntity> GetInstances(IPersistEntity parent)
         {
-            var propName = ParentProperty;
+            var propName = ParentPath;
             var expType = parent.ExpressType;
             var metaProperty =
                 expType.Properties.Values.FirstOrDefault(p => p.Name == propName) ??

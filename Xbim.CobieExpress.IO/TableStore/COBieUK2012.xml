@@ -59,7 +59,7 @@
         <PropertyMapping Header="Description" Column="S" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Description" />
         <PropertyMapping Header="ProjectDescription" Column="T" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Project.Description" />
         <PropertyMapping Header="SiteDescription" Column="U" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Site.Description" />
-        <PropertyMapping Header="Phase" Column="V" Colour="#FFCC99" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Phase.Name" />
+        <PropertyMapping Header="Phase" Column="V" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Phase.Name" />
       </PropertyMappings>
     </ClassMapping>
     <ClassMapping Class="Floor" TableName="Floor" TableOrder="2">
@@ -177,7 +177,7 @@
         <PropertyMapping Header="Description" Column="I" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Description" />
       </PropertyMappings>
     </ClassMapping>
-    <ClassMapping Class="TypeOrComponent" TableName="Assembly" TableOrder="8" ParentClass="TypeOrComponent" ParentProperty="AssemblyOf">
+    <ClassMapping Class="TypeOrComponent" TableName="Assembly" TableOrder="8" ParentClass="TypeOrComponent" ParentPath="AssemblyOf">
       <PropertyMappings>
         <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="parent.Name" />
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Created.CreatedBy.Email" />
@@ -192,7 +192,7 @@
         <PropertyMapping Header="Description" Column="K" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Name" />
       </PropertyMappings>
     </ClassMapping>
-    <ClassMapping Class="Connection" TableName="Connection" TableOrder="9" ParentClass="TypeOrComponent" ParentProperty="ConnectedBefore">
+    <ClassMapping Class="Connection" TableName="Connection" TableOrder="9" ParentClass="TypeOrComponent" ParentPath="ConnectedBefore">
       <PropertyMappings>
         <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
@@ -261,7 +261,7 @@
         <PropertyMapping Header="ResourceNames" Column="S" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Resources.Name" />
       </PropertyMappings>
     </ClassMapping>
-    <ClassMapping Class="Impact" TableName="Impact" TableOrder="13" ParentClass="Asset" ParentProperty="Impacts">
+    <ClassMapping Class="Impact" TableName="Impact" TableOrder="13" ParentClass="Asset" ParentPath="Impacts">
       <PropertyMappings>
         <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
@@ -281,7 +281,7 @@
         <PropertyMapping Header="Description" Column="P" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Name" />
       </PropertyMappings>
     </ClassMapping>
-    <ClassMapping Class="Document" TableName="Document" TableOrder="14" ParentClass="Asset" ParentProperty="Documents">
+    <ClassMapping Class="Document" TableName="Document" TableOrder="14" ParentClass="Asset" ParentPath="Documents">
       <PropertyMappings>
         <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
@@ -300,7 +300,7 @@
         <PropertyMapping Header="Reference" Column="O" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Reference" />
       </PropertyMappings>
     </ClassMapping>
-    <ClassMapping Class="Attribute" TableName="Attribute" TableOrder="15" ParentClass="Asset" ParentProperty="Attributes">
+    <ClassMapping Class="Attribute" TableName="Attribute" TableOrder="15" ParentClass="Asset" ParentPath="Attributes">
       <PropertyMappings>
         <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
         <PropertyMapping Header="Category" Column="B" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Stage.Value" />
@@ -317,7 +317,7 @@
         <PropertyMapping Header="AllowedValues" Column="M" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="AllowedValues" />
       </PropertyMappings>
     </ClassMapping>
-    <ClassMapping Class="Coordinate" TableName="Coordinate" TableOrder="16"  ParentClass="TypeOrComponent" ParentProperty="Representations">
+    <ClassMapping Class="Coordinate" TableName="Coordinate" TableOrder="16"  ParentClass="TypeOrComponent" ParentPath="Representations">
       <PropertyMappings>
         <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />

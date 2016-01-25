@@ -116,7 +116,7 @@ namespace Xbim.MemoryModel.Tests
                         TableOrder = 1,
                         TableStatus = DataStatus.Optional,
                         ParentClass = "Asset",
-                        ParentProperty = "Attributes",
+                        ParentPath = "Attributes",
                         PropertyMappings = new List<PropertyMapping>
                         {
                             new PropertyMapping
