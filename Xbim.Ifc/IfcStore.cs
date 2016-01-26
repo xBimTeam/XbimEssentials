@@ -360,6 +360,12 @@ namespace Xbim.Ifc
         public string FileName { get; set; }
 
 
+        public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, PropertyTranformDelegate propTransform, bool includeInverses,
+            bool keepLabels) where T : IPersistEntity
+        {
+            return _model.InsertCopy(toCopy, mappings, propTransform, includeInverses, keepLabels);
+        }
+
         public void ForEach<TSource>(IEnumerable<TSource> source, Action<TSource> body) where TSource : IPersistEntity
         {
             _model.ForEach(source, body);

@@ -39,7 +39,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Document", 29)]
+	[ExpressType("Document", 30)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieDocument : CobieReferencedObject, IInstantiableEntity, ICobieDocument, IEqualityComparer<@CobieDocument>, IEquatable<@CobieDocument>
 	{
@@ -102,7 +102,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobieDocumentType @DocumentType 
 		{ 
 			get 
@@ -116,7 +116,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _documentType = v, _documentType, value,  "DocumentType");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public CobieApprovalType @ApprovalType 
 		{ 
 			get 
@@ -130,7 +130,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _approvalType = v, _approvalType, value,  "ApprovalType");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
 		public CobieStageType @Stage 
 		{ 
 			get 
@@ -172,7 +172,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _reference = v, _reference, value,  "Reference");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
 		public string @Directory 
 		{ 
 			get 
@@ -186,7 +186,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _directory = v, _directory, value,  "Directory");
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
 		public string @File 
 		{ 
 			get 

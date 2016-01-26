@@ -1930,7 +1930,7 @@ namespace Xbim.IO.Esent
             }
         }
 
-        internal T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, bool includeInverses, PropertyTranformDelegate propTransform = null) where T : IPersistEntity
+        internal T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, bool includeInverses, PropertyTranformDelegate propTransform = null, bool keepLabels = true) where T : IPersistEntity
         {
             //check if the transaction needs pulsing
             var toCopyHandle = toCopy.GetHandle();
@@ -1945,7 +1945,7 @@ namespace Xbim.IO.Esent
             txn.Pulse();
             var expressType = Model.Metadata.ExpressType(toCopy);
             var copyLabel = toCopy.EntityLabel;
-            copyHandle = InsertNew(expressType.Type, copyLabel);
+            copyHandle = keepLabels ? InsertNew(expressType.Type, copyLabel) : InsertNew(expressType.Type);
             mappings.Add(toCopyHandle, copyHandle);
 
             var theCopy = _factory.New(_model, copyHandle.EntityType, copyHandle.EntityLabel, true);
@@ -2037,6 +2037,16 @@ namespace Xbim.IO.Esent
         private XbimInstanceHandle InsertNew(Type type, int entityLabel)
         {
             return _model.GetTransactingCursor().AddEntity(type, entityLabel);
+        }
+
+        /// <summary>
+        /// This function can only be called once the model is in a transaction
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private XbimInstanceHandle InsertNew(Type type)
+        {
+            return _model.GetTransactingCursor().AddEntity(type);
         }
 
 

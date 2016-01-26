@@ -57,7 +57,7 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieAsset(IModel model) : base(model) 		{ 
 			Model = model; 
-			_categories = new ItemSet<CobieCategory>( this, 0 );
+			_categories = new OptionalItemSet<CobieCategory>( this, 0 );
 			_impacts = new OptionalItemSet<CobieImpact>( this, 0 );
 			_documents = new OptionalItemSet<CobieDocument>( this, 0 );
 			_attributes = new OptionalItemSet<CobieAttribute>( this, 0 );
@@ -66,7 +66,7 @@ namespace Xbim.CobieExpress
 		#region Explicit attribute fields
 		private string _name;
 		private string _description;
-		private ItemSet<CobieCategory> _categories;
+		private OptionalItemSet<CobieCategory> _categories;
 		private OptionalItemSet<CobieImpact> _impacts;
 		private OptionalItemSet<CobieDocument> _documents;
 		private OptionalItemSet<CobieAttribute> _attributes;
@@ -101,8 +101,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 8)]
-		public ItemSet<CobieCategory> @Categories 
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 8)]
+		public OptionalItemSet<CobieCategory> @Categories 
 		{ 
 			get 
 			{
@@ -147,7 +147,7 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Causing")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 12)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 12)]
 		public IEnumerable<CobieIssue> @CausingIssues 
 		{ 
 			get 
@@ -156,7 +156,7 @@ namespace Xbim.CobieExpress
 			} 
 		}
 		[InverseProperty("Affected")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 13)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 13)]
 		public IEnumerable<CobieIssue> @AffectedBy 
 		{ 
 			get 
@@ -186,7 +186,7 @@ namespace Xbim.CobieExpress
 					_description = value.StringVal;
 					return;
 				case 7: 
-					if (_categories == null) _categories = new ItemSet<CobieCategory>( this );
+					if (_categories == null) _categories = new OptionalItemSet<CobieCategory>( this );
 					_categories.InternalAdd((CobieCategory)value.EntityVal);
 					return;
 				case 8: 

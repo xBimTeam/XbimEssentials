@@ -32,7 +32,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("System", 23)]
+	[ExpressType("System", 24)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieSystem : CobieAsset, IInstantiableEntity, ICobieSystem, IEqualityComparer<@CobieSystem>, IEquatable<@CobieSystem>
 	{
@@ -45,18 +45,18 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieSystem(IModel model) : base(model) 		{ 
 			Model = model; 
-			_components = new ItemSet<CobieComponent>( this, 0 );
+			_components = new OptionalItemSet<CobieComponent>( this, 0 );
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<CobieComponent> _components;
+		private OptionalItemSet<CobieComponent> _components;
 		private CobieFacility _facility;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 14)]
-		public ItemSet<CobieComponent> @Components 
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 14)]
+		public OptionalItemSet<CobieComponent> @Components 
 		{ 
 			get 
 			{
@@ -105,7 +105,7 @@ namespace Xbim.CobieExpress
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 11: 
-					if (_components == null) _components = new ItemSet<CobieComponent>( this );
+					if (_components == null) _components = new OptionalItemSet<CobieComponent>( this );
 					_components.InternalAdd((CobieComponent)value.EntityVal);
 					return;
 				case 12: 

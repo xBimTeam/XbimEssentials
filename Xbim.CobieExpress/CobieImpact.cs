@@ -27,11 +27,11 @@ namespace Xbim.CobieExpress.Interfaces
 		string @Description { get; }
 		ICobieImpactType @ImpactType { get; }
 		ICobieImpactStage @ImpactStage { get; }
-		double @Value { get; }
+		double? @Value { get; }
 		ICobieImpactUnit @ImpactUnit { get; }
-		double @LeadInTime { get; }
-		double @Duration { get; }
-		double @LeadOutTime { get; }
+		double? @LeadInTime { get; }
+		double? @Duration { get; }
+		double? @LeadOutTime { get; }
 		ICobieDurationUnit @DurationUnit { get; }
 	
 	}
@@ -40,7 +40,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Impact", 28)]
+	[ExpressType("Impact", 29)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieImpact : CobieReferencedObject, IInstantiableEntity, ICobieImpact, IEqualityComparer<@CobieImpact>, IEquatable<@CobieImpact>
 	{
@@ -49,11 +49,11 @@ namespace Xbim.CobieExpress
 		string ICobieImpact.Description { get { return @Description; } }	
 		ICobieImpactType ICobieImpact.ImpactType { get { return @ImpactType; } }	
 		ICobieImpactStage ICobieImpact.ImpactStage { get { return @ImpactStage; } }	
-		double ICobieImpact.Value { get { return @Value; } }	
+		double? ICobieImpact.Value { get { return @Value; } }	
 		ICobieImpactUnit ICobieImpact.ImpactUnit { get { return @ImpactUnit; } }	
-		double ICobieImpact.LeadInTime { get { return @LeadInTime; } }	
-		double ICobieImpact.Duration { get { return @Duration; } }	
-		double ICobieImpact.LeadOutTime { get { return @LeadOutTime; } }	
+		double? ICobieImpact.LeadInTime { get { return @LeadInTime; } }	
+		double? ICobieImpact.Duration { get { return @Duration; } }	
+		double? ICobieImpact.LeadOutTime { get { return @LeadOutTime; } }	
 		ICobieDurationUnit ICobieImpact.DurationUnit { get { return @DurationUnit; } }	
 		 
 		#endregion
@@ -68,11 +68,11 @@ namespace Xbim.CobieExpress
 		private string _description;
 		private CobieImpactType _impactType;
 		private CobieImpactStage _impactStage;
-		private double _value;
+		private double? _value;
 		private CobieImpactUnit _impactUnit;
-		private double _leadInTime;
-		private double _duration;
-		private double _leadOutTime;
+		private double? _leadInTime;
+		private double? _duration;
+		private double? _leadOutTime;
 		private CobieDurationUnit _durationUnit;
 		#endregion
 	
@@ -105,7 +105,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobieImpactType @ImpactType 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _impactType = v, _impactType, value,  "ImpactType");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public CobieImpactStage @ImpactStage 
 		{ 
 			get 
@@ -133,8 +133,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _impactStage = v, _impactStage, value,  "ImpactStage");
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
-		public double @Value 
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		public double? @Value 
 		{ 
 			get 
 			{
@@ -147,7 +147,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _value = v, _value, value,  "Value");
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
 		public CobieImpactUnit @ImpactUnit 
 		{ 
 			get 
@@ -161,8 +161,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _impactUnit = v, _impactUnit, value,  "ImpactUnit");
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
-		public double @LeadInTime 
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		public double? @LeadInTime 
 		{ 
 			get 
 			{
@@ -175,8 +175,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _leadInTime = v, _leadInTime, value,  "LeadInTime");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
-		public double @Duration 
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		public double? @Duration 
 		{ 
 			get 
 			{
@@ -189,8 +189,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _duration = v, _duration, value,  "Duration");
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
-		public double @LeadOutTime 
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		public double? @LeadOutTime 
 		{ 
 			get 
 			{
@@ -203,7 +203,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _leadOutTime = v, _leadOutTime, value,  "LeadOutTime");
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
 		public CobieDurationUnit @DurationUnit 
 		{ 
 			get 
