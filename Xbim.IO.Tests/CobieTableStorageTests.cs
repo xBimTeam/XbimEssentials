@@ -35,6 +35,7 @@ namespace Xbim.MemoryModel.Tests
             return ModelMapping.Load(CobieExpress.IO.Properties.Resources.COBieUK2012);
         }
 
+        // ReSharper disable once UnusedMember.Local
         private ModelMapping GetSimpleMapping()
         {
             return new ModelMapping
