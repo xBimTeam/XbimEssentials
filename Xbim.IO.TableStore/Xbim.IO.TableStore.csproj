@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="ClassMapping.cs" />
     <Compile Include="DataStatus.cs" />
+    <Compile Include="EntityContext.cs" />
     <Compile Include="ModelMapping.cs" />
     <Compile Include="PickClassMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

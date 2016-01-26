@@ -138,27 +138,27 @@ namespace Xbim.IO.TableStore
             if (mapping.PropertyMappings == null)
                 return;
 
-            var entities = parent == null ?
-                Model.Instances.OfType(expType.Name.ToUpper(), false).ToList() :
-                mapping.GetInstances(parent).ToList();
+            var context = parent == null ?
+                new EntityContext(Model.Instances.OfType(expType.Name.ToUpper(), false).ToList()){ LeavesDepth = 1 } :
+                mapping.GetContext(parent);
 
-            if(!entities.Any()) return;
+            if(!context.Leaves.Any()) return;
 
             var tableName = mapping.TableName ?? "Default";
             var sheet = workbook.GetSheet(tableName) ?? workbook.CreateSheet(tableName);
 
-            foreach (var entity in entities)
+            foreach (var leaveContext in context.Leaves)
             {
-                Store(sheet, entity, mapping, expType, parent);
+                Store(sheet, leaveContext.Entity, mapping, expType, leaveContext);
 
                 foreach (var childrenMapping in mapping.ChildrenMappings)
                 {
-                    Store(workbook, childrenMapping, childrenMapping.Type, entity);
+                    Store(workbook, childrenMapping, childrenMapping.Type, leaveContext.Entity);
                 }
             }
         }
 
-        private void Store(ISheet sheet, IPersistEntity entity, ClassMapping mapping, ExpressType expType, IPersistEntity parent)
+        private void Store(ISheet sheet, IPersistEntity entity, ClassMapping mapping, ExpressType expType, EntityContext context)
         {
             var multiRow = -1;
             List<string> multiValues = null;
@@ -170,7 +170,7 @@ namespace Xbim.IO.TableStore
                 object value = null;
                 foreach (var path in propertyMapping.PathsEnumeration)
                 {
-                    value = GetValue(entity, expType, path, parent);
+                    value = GetValue(entity, expType, path, context);
                     if (value != null) break;
                 }
                 if (value == null && propertyMapping.Status == DataStatus.Required)
@@ -201,9 +201,9 @@ namespace Xbim.IO.TableStore
 
             }
 
-            if (row.RowNum == 1)
+            if (row.RowNum == 1 || row.RowNum == 8)
             {
-                //adjust width of the columns after first row
+                //adjust width of the columns after the first and the eight row 
                 //adjusting fully populated workbook takes ages. This should be almost all right
                 AdjustAllColumns(sheet, mapping);
             }
@@ -321,23 +321,38 @@ namespace Xbim.IO.TableStore
             return mapping;
         }
 
-        private object GetValue(IPersistEntity entity, ExpressType type, string path, IPersistEntity parent)
+        private object GetValue(IPersistEntity entity, ExpressType type, string path, EntityContext context)
         {
             while (true)
             {
                 if (string.IsNullOrWhiteSpace(path))
                     throw new XbimException("Path not defined");
 
+                //if it is parent, skip to the root of the context
                 //optimization: check first letter before StartsWith() function. 
                 if (path[0] == 'p' && path.StartsWith("parent."))
                 {
-                    if (parent == null)
+                    if (context == null)
                         return null;
 
                     path = path.Substring(7); //trim "parent." from the beginning
-                    entity = parent;
-                    type = parent.ExpressType;
-                    parent = null;
+                    entity = context.RootEntity;
+                    type = entity.ExpressType;
+                    context = null;
+                    continue;
+                }
+
+                //one level up in the context hierarchy
+                //optimization: check first letter before StartsWith() function. 
+                if (path[0] == '(' && path.StartsWith("()."))
+                {
+                    if (context == null)
+                        return null;
+
+                    path = path.Substring(3); //trim "()." from the beginning
+                    entity = context.Parent.Entity;
+                    type = entity.ExpressType;
+                    context = context.Parent;
                     continue;
                 }
 
@@ -371,13 +386,20 @@ namespace Xbim.IO.TableStore
 
                     var expVal = value as IExpressValueType;
                     if (expVal != null)
+                    {
+                        //if the type of the value is what we want
+                        if (i < parts.Length - 1 && parts[parts.Length - 1] == "[type]")
+                            return expVal.GetType().Name;
+                        //return actual value as an underlying system type
                         return expVal.Value;
+                    }
 
                     var expValEnum = value as IEnumerable<IExpressValueType>;
                     if (expValEnum != null)
                         return expValEnum.Select(v => v.Value);
 
                     var entEnum = value as IEnumerable<IPersistEntity>;
+                    //it must be a simple value
                     if (entEnum == null) return value;
 
                     //it is a multivalue result
@@ -397,7 +419,6 @@ namespace Xbim.IO.TableStore
                     }
                     return multiResult;
 
-                    //deal with simple values
                 }
 
                 //if there is only entity itself to return, try to get 'Name' or 'Value' property as a fallback
@@ -594,7 +615,11 @@ namespace Xbim.IO.TableStore
                 //create new style
                 sheet.SetDefaultColumnStyle(cellIndex, style);
                 sheet.SetColumnHidden(cellIndex, false);
-                sheet.SetColumnWidth(cellIndex, 256*20);
+                //set default width
+                sheet.SetColumnWidth(cellIndex, 256*15);
+                //hide if defined
+                if (mapping.Hidden)
+                    sheet.SetColumnHidden(cellIndex, true);
             }
         }
 
@@ -663,7 +688,7 @@ namespace Xbim.IO.TableStore
             return style;
         }
 
-        //This operation takes very long time
+        //This operation takes very long time if applied at the end when spreadsheet is fully populated
         private static void AdjustAllColumns(ISheet sheet, ClassMapping mapping)
         {
             foreach (var propertyMapping in mapping.PropertyMappings)

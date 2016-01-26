@@ -119,16 +119,16 @@ namespace Xbim.IO.TableStore
         /// <summary>
         /// This will return all instances which are usable for this class mapping from parent
         /// defined in this class mapping. It will use the path to get all instances. This might
-        /// be hierarchical search which will be aggregated to a single enumeration. Every segment of the
+        /// be hierarchical search which will be represented in a context. Every segment of the
         /// path might also be explicitly typed which will be used to filter instances on every level
-        /// of search. Types can be defined using backslash operator in the path
+        /// of search. Types can be defined using backslash '\' operator in the path.
         /// </summary>
         /// <param name="parent"></param>
         /// <returns></returns>
-        public IEnumerable<IPersistEntity> GetInstances(IPersistEntity parent)
+        public EntityContext GetContext(IPersistEntity parent)
         {
             var parts = ParentPath.Split('.');
-            var toProcess = new List<IPersistEntity>{parent};
+            var root = new EntityContext(parent);
             var type = parent.ExpressType;
             foreach (var name in parts)
             {
@@ -143,8 +143,6 @@ namespace Xbim.IO.TableStore
                     ofTypeName = match.Groups["type"].Value;    
                 }
                 
-                var nextProcess = new List<IPersistEntity>();
-
                 var metaProperty =
                     type.Properties.Values.FirstOrDefault(p => p.Name == propName) ??
                     type.Inverses.FirstOrDefault(p => p.Name == propName) ??
@@ -153,13 +151,21 @@ namespace Xbim.IO.TableStore
                     throw new XbimException(string.Format("Property {0} is not defined in type {1}", propName, typeName));
 
                 var info = metaProperty.PropertyInfo;
-                foreach (var persistEntity in toProcess)
+                var leaves = root.Leaves.ToList();
+                root.LeavesDepth++;
+                foreach (var context in leaves)
                 {
-                    var value = info.GetValue(persistEntity, null);
+                    var value = info.GetValue(context.Entity, null);
                     if (value == null) continue;
 
                     //it might be a single object
                     var entity = value as IPersistEntity;
+                    if (entity == null)
+                    {
+                        var entVal = value as IExpressValueType;
+                        if (entVal != null && entVal.Value is IPersistEntity)
+                            entity = (IPersistEntity)entVal.Value;
+                    }
                     if (entity != null)
                     {
                         if (ofType)
@@ -168,17 +174,23 @@ namespace Xbim.IO.TableStore
                             var instType = entity.ExpressType;
                             //only add the instance for further processing if it is of desired type
                             if(type == instType || type.AllSubTypes.Contains(instType))
-                                nextProcess.Add(entity);
+                                context.Add(entity);
                         }
                         else
                         {
-                            nextProcess.Add(entity);
+                            context.Add(entity);
                             type = entity.ExpressType;    
                         }
                         continue;
                     }
 
                     var entityEnum = value as IEnumerable<IPersistEntity>;
+                    if (entityEnum == null)
+                    {
+                        var entVal = value as IExpressValueType;
+                        if (entVal != null && entVal.Value is IEnumerable<IPersistEntity>)
+                            entityEnum = (IEnumerable<IPersistEntity>)entVal.Value;
+                    }
                     if (entityEnum != null)
                     {
                         if (ofType)
@@ -203,12 +215,11 @@ namespace Xbim.IO.TableStore
                             var enumType = entityEnum.GetType().GetGenericArguments()[0];
                             type = _modelMapping.MetaData.ExpressType(enumType);
                         }
-                        nextProcess.AddRange(entityEnum);
+                        context.Add(entityEnum);
                     }
                 }
-                toProcess = nextProcess;
             }
-            return toProcess;
+            return root;
         }
 
         //cache for the type once retrieved

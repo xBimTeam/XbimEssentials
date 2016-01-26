@@ -37,8 +37,17 @@ namespace Xbim.IO.TableStore
         public string DefaultValue { get; set; }
 
         /// <summary>
+        /// If TRUE the column of this property will be hidden in the initial state
+        /// </summary>
+        [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public bool Hidden { get; set; }
+
+        /// <summary>
         /// List of paths to search for a value. First path containing data will be used.
-        /// Special variable 'parent' might be used to refere to the parent of this object
+        /// Special variable 'parent' might be used to refer to the parent of this object.
+        /// Special attribute .[table] might be used to refer to the table where parent object is stored.
+        /// Special attribute .[type] might be used to refer to the Express type of the object.
+        /// Special variable '()' might be used to refer to object higher in the context of search path within the parent object.
         /// </summary>
         [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
         public string Paths { get; set; }
