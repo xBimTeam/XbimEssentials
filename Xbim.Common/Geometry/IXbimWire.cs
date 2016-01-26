@@ -68,5 +68,9 @@ namespace Xbim.Common.Geometry
         /// <param name="tolerance">The distance at which two points are considered to be the same</param>
         /// <returns></returns>
         IXbimWire Trim(double start, double end, double tolerance);
+        /// <summary>
+        /// Converts the object to a string in BRep format
+        /// </summary>
+        String ToBRep { get; }
     }
 }

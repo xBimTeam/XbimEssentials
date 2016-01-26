@@ -377,7 +377,12 @@ namespace Xbim.Common.Geometry
         {
             if (IsEmpty)
             {
-                this = bb;
+                X = bb.X;
+                Y = bb.Y;
+                Z = bb.Z;
+                SizeX = bb.SizeX;
+                SizeY = bb.SizeY;
+                SizeZ = bb.SizeZ;
             }
             else if (!bb.IsEmpty)
             {
@@ -548,5 +553,7 @@ namespace Xbim.Common.Geometry
                 Math.Abs(_sizeZ - rect.SizeZ) <= t2;
 
         }
+
+       
     }
 }

@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Federation\ReferencedModelCollection.cs" />
     <Compile Include="Federation\FederatedModelInstances.cs" />
+    <Compile Include="Geometry\IXbimSurface.cs" />
     <Compile Include="Geometry\XbimContextRegionCollection.cs" />
     <Compile Include="PlaceboTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -93,6 +93,16 @@ namespace Xbim.Ifc4.Interfaces
         IXbimWire CreateWire(IIfcCurve curve);
         IXbimWire CreateWire(IIfcCompositeCurveSegment compCurveSeg);
 
+        IXbimCurve CreateCurve(IIfcCurve curve);
+        IXbimCurve CreateCurve(IIfcPolyline curve);
+        IXbimCurve CreateCurve(IIfcCircle curve);
+        IXbimCurve CreateCurve(IIfcEllipse curve);
+        IXbimCurve CreateCurve(IIfcLine curve);
+        IXbimCurve CreateCurve(IIfcTrimmedCurve curve);
+        IXbimCurve CreateCurve(IIfcRationalBSplineCurveWithKnots curve);
+        IXbimCurve CreateCurve(IIfcBSplineCurveWithKnots curve);
+        IXbimCurve CreateCurve(IIfcOffsetCurve3D curve);
+        IXbimCurve CreateCurve(IIfcOffsetCurve2D curve);
         IXbimPoint CreatePoint(double x, double y, double z, double tolerance);
         IXbimPoint CreatePoint(IIfcCartesianPoint p);
         IXbimPoint CreatePoint(XbimPoint3D p, double tolerance);
@@ -107,7 +117,9 @@ namespace Xbim.Ifc4.Interfaces
         //Creates collections of objects
         IXbimSolidSet CreateSolidSet();
         IXbimSolidSet CreateSolidSet(IIfcBooleanResult boolOp);
-
+        IXbimSolidSet CreateGrid(IIfcGrid grid);
+        //converts an object placement to a matrix transform in the WCS
+        XbimMatrix3D ToMatrix3D(IIfcObjectPlacement objPlacement);
         //Read and write functions
         void WriteTriangulation(TextWriter tw, IXbimGeometryObject shape, double tolerance, double deflection, double angle);
         void WriteTriangulation(BinaryWriter bw, IXbimGeometryObject shape, double tolerance, double deflection, double angle);

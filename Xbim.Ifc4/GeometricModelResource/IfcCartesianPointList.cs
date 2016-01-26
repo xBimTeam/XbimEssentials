@@ -53,9 +53,10 @@ namespace Xbim.Ifc4.GeometricModelResource
 			get 
 			{
 				//## Getter for Dim
-				//TODO: Implement getter for derived attribute Dim
-				throw new NotImplementedException();
-				//##
+			    if (this is IfcCartesianPointList2D) return new IfcDimensionCount(2);
+                if (this is IfcCartesianPointList3D) return new IfcDimensionCount(3);
+			    return 0;
+			    //##
 			}
 		}
 
