@@ -37,7 +37,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Attribute", 30)]
+	[ExpressType("Attribute", 31)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieAttribute : CobieReferencedObject, IInstantiableEntity, ICobieAttribute, IEqualityComparer<@CobieAttribute>, IEquatable<@CobieAttribute>
 	{
@@ -95,7 +95,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _description = v, _description, value,  "Description");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobieStageType @Stage 
 		{ 
 			get 

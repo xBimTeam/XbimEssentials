@@ -117,7 +117,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _category = v, _category, value,  "Category");
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
 		public string @Company 
 		{ 
 			get 
@@ -131,7 +131,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _company = v, _company, value,  "Company");
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
 		public string @Phone 
 		{ 
 			get 

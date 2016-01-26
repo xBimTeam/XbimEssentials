@@ -30,7 +30,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("CurrencyUnit", 39)]
+	[ExpressType("CurrencyUnit", 42)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieCurrencyUnit : CobiePickValue, IInstantiableEntity, ICobieCurrencyUnit, IEqualityComparer<@CobieCurrencyUnit>, IEquatable<@CobieCurrencyUnit>
 	{

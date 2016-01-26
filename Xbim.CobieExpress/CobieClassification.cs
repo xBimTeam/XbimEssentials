@@ -35,7 +35,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Classification", 34)]
+	[ExpressType("Classification", 37)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieClassification : INotifyPropertyChanged, IInstantiableEntity, ICobieClassification, IEqualityComparer<@CobieClassification>, IEquatable<@CobieClassification>
 	{
@@ -149,7 +149,7 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Classification")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 3)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 3)]
 		public IEnumerable<CobieCategory> @Categories 
 		{ 
 			get 

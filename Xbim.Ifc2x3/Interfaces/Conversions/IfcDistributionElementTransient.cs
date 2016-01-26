@@ -134,6 +134,11 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
             get { return _element.IsDefinedBy; }
         }
 
+        public Ifc4.Interfaces.IIfcValue this[string property]
+        {
+            get { return _element[property]; }
+        }
+
         public IEnumerable<Ifc4.Interfaces.IIfcRelAssigns> HasAssignments
         {
             get { return _element.HasAssignments; }
