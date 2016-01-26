@@ -117,6 +117,7 @@ namespace Xbim.Ifc4.Interfaces
         //Creates collections of objects
         IXbimSolidSet CreateSolidSet();
         IXbimSolidSet CreateSolidSet(IIfcBooleanResult boolOp);
+        IXbimSolidSet CreateGrid(IIfcGrid grid);
         //converts an object placement to a matrix transform in the WCS
         XbimMatrix3D ToMatrix3D(IIfcObjectPlacement objPlacement);
         //Read and write functions
