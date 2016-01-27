@@ -96,8 +96,13 @@ namespace Xbim.IO.Esent
                 EsentShapeGeometryCursor shapeGeometryCursor = null;
                 try
                 {
+                    IXbimShapeGeometryData shapeGeometry = new XbimShapeGeometry();
                     shapeGeometryCursor = _esentModel.GetShapeGeometryTable();
-                    return shapeGeometryCursor.TryMoveFirst();
+                    using (var shapeGeometryTransaction = shapeGeometryCursor.BeginReadOnlyTransaction())
+                    {
+                        var isEmpty = !shapeGeometryCursor.TryMoveFirstShapeGeometry(ref shapeGeometry);
+                        return isEmpty;
+                    }                                     
                 }
                 finally
                 {
