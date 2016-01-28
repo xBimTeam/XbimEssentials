@@ -146,13 +146,14 @@ namespace Xbim.Ifc
             Add(new XbimColour("IfcMember", 0.34, 0.34, 0.34));
             Add(new XbimColour("IfcDistributionElement", 0.0, 0.0, 0.55));
             Add(new XbimColour("IfcFurnishingElement", 1, 0, 0));
-            Add(new XbimColour("IfcOpeningElement", 0.200000003, 0.200000003, 0.800000012, 0.2));
+            Add(new XbimColour("IfcOpeningElement", 0.2, 0.2, 0.8, 0.2));
             Add(new XbimColour("IfcFeatureElementSubtraction", 1.0, 1.0, 1.0));
             Add(new XbimColour("IfcFlowTerminal", 0.95, 0.94, 0.74));
             Add(new XbimColour("IfcFlowSegment", 0.95, 0.94, 0.74));
             Add(new XbimColour("IfcDistributionFlowElement", 0.95, 0.94, 0.74));
             Add(new XbimColour("IfcFlowFitting", 0.95, 0.94, 0.74));
             Add(new XbimColour("IfcRailing", 0.95, 0.94, 0.74));
+            Add(new XbimColour("IfcGrid", 1.0, 0.9, 0));
         }
     }
 }
