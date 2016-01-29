@@ -15,7 +15,7 @@
   <ClassMappings>
     <ClassMapping Class="Contact" TableName="Contact" TableOrder="0">
       <PropertyMappings>
-        <PropertyMapping Header="Email" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Email" />
+        <PropertyMapping Header="Email" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Email" IsKey="true"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="Category" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Category.Value" />
@@ -38,7 +38,7 @@
     </ClassMapping>
     <ClassMapping Class="Facility" TableName="Facility" TableOrder="1">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name"  IsKey="true"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="Category" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Categories.Value" />
@@ -64,7 +64,7 @@
     </ClassMapping>
     <ClassMapping Class="Floor" TableName="Floor" TableOrder="2">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" IsKey="true" />
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="Category" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Categories.Value" />
@@ -78,7 +78,7 @@
     </ClassMapping>
     <ClassMapping Class="Space" TableName="Space" TableOrder="3">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" IsKey="true" />
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="Category" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Categories.Value" />
@@ -95,11 +95,11 @@
     </ClassMapping>
     <ClassMapping Class="Zone" TableName="Zone" TableOrder="4">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" IsKey="true" IsMultiRowIdentity="true"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="Category" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Categories.Value" />
-        <PropertyMapping Header="SpaceNames" Column="E" Status="Required" MultiRow="Always" DefaultValue="n/a" Paths="Spaces.Name" />
+        <PropertyMapping Header="SpaceNames" Column="E" Status="Required" MultiRow="Always" DefaultValue="n/a" Paths="Spaces.Name"  IsKey="true"/>
         <PropertyMapping Header="ExtSystem" Column="F" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtObject" Column="G" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalObject.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtIdentifier" Column="H" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalId"  Hidden="true"/>
@@ -108,7 +108,7 @@
     </ClassMapping>
     <ClassMapping Class="Type" TableName="Type" TableOrder="5">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name"  IsKey="true"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="Category" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Categories.Value" />
@@ -147,7 +147,7 @@
     </ClassMapping>
     <ClassMapping Class="Component" TableName="Component" TableOrder="6">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name"  IsKey="true"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="TypeName" Column="D" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Type.Name" />
@@ -166,25 +166,25 @@
     </ClassMapping>
     <ClassMapping Class="System" TableName="System" TableOrder="7">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name"  IsKey="true" IsMultiRowIdentity="true"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="Category" Column="D" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Categories.Value" />
-        <PropertyMapping Header="ComponentNames" Column="E" Status="Reference" MultiRow="Always" DefaultValue="n/a" Paths="Components.Name" />
+        <PropertyMapping Header="ComponentNames" Column="E" Status="Reference" MultiRow="Always" DefaultValue="n/a" Paths="Components.Name"  IsKey="true"/>
         <PropertyMapping Header="ExtSystem" Column="F" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtObject" Column="G" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalObject.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtIdentifier" Column="H" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalId"  Hidden="true"/>
         <PropertyMapping Header="Description" Column="I" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Description" />
       </PropertyMappings>
     </ClassMapping>
-    <ClassMapping Class="TypeOrComponent" TableName="Assembly" TableOrder="8" ParentClass="TypeOrComponent" ParentPath="AssemblyOf">
+    <ClassMapping Class="TypeOrComponent" TableName="Assembly" TableOrder="8" ParentClass="TypeOrComponent" ParentPath="AssemblyOf" IsPartial="true">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="parent.Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="parent.Name"  IsKey="true"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="parent.Created.CreatedOn" />
-        <PropertyMapping Header="SheetName" Column="D" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]" />
-        <PropertyMapping Header="ParentName" Column="E" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Name" />
-        <PropertyMapping Header="ChildNames" Column="F" Status="Reference" MultiRow="Always" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="SheetName" Column="D" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]"  IsKey="true"/>
+        <PropertyMapping Header="ParentName" Column="E" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Name"  IsKey="true"/>
+        <PropertyMapping Header="ChildNames" Column="F" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Name" />
         <PropertyMapping Header="AssemblyType" Column="G" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="parent.Type.AssetType.Value" />
         <PropertyMapping Header="ExtSystem" Column="H" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="parent.ExternalSystem.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtObject" Column="I" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="parent.ExternalObject.Name"  Hidden="true"/>
@@ -194,13 +194,13 @@
     </ClassMapping>
     <ClassMapping Class="Connection" TableName="Connection" TableOrder="9" ParentClass="TypeOrComponent" ParentPath="ConnectedBefore">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name"  IsKey="true"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="ConnectionType" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="ConnectionType.Value" />
         <PropertyMapping Header="SheetName" Column="E" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]" />
-        <PropertyMapping Header="RowName1" Column="F" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="ComponentA.Name" />
-        <PropertyMapping Header="RowName2" Column="G" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="ComponentB.Name" />
+        <PropertyMapping Header="RowName1" Column="F" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="ComponentA.Name"  IsKey="true"/>
+        <PropertyMapping Header="RowName2" Column="G" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="ComponentB.Name"  IsKey="true"/>
         <PropertyMapping Header="RealizingElement" Column="H" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="RealizingComponent.Name" />
         <PropertyMapping Header="PortName1" Column="I" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="PortNameA" />
         <PropertyMapping Header="PortName2" Column="J" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="PortNameB" />
@@ -212,7 +212,7 @@
     </ClassMapping>
     <ClassMapping Class="Spare" TableName="Spare" TableOrder="10">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name"  IsKey="true"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="Category" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="SpareType.Value" />
@@ -228,7 +228,7 @@
     </ClassMapping>
     <ClassMapping Class="Resource" TableName="Resource" TableOrder="11">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name"  IsKey="true"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="Category" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="ResourceType.Value" />
@@ -240,7 +240,7 @@
     </ClassMapping>
     <ClassMapping Class="Job" TableName="Job" TableOrder="12">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name"  IsKey="true"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="Category" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="JobType.Value" />
@@ -256,20 +256,20 @@
         <PropertyMapping Header="ExtSystem" Column="N" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtObject" Column="O" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalObject.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtIdentifier" Column="P" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalId"  Hidden="true"/>
-        <PropertyMapping Header="TaskNumber" Column="Q" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="TaskNumber" />
+        <PropertyMapping Header="TaskNumber" Column="Q" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="TaskNumber"  IsKey="true"/>
         <PropertyMapping Header="Priors" Column="R" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Priors.TaskNumber" />
         <PropertyMapping Header="ResourceNames" Column="S" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Resources.Name" />
       </PropertyMappings>
     </ClassMapping>
     <ClassMapping Class="Impact" TableName="Impact" TableOrder="13" ParentClass="Asset" ParentPath="Impacts">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name"  IsKey="true"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="ImpactType" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="ImpactType" />
         <PropertyMapping Header="ImpactStage" Column="E" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="ImpactStage" />
-        <PropertyMapping Header="SheetName" Column="F" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]" />
-        <PropertyMapping Header="RowName" Column="G" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="parent.Name" />
+        <PropertyMapping Header="SheetName" Column="F" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]"  IsKey="true"/>
+        <PropertyMapping Header="RowName" Column="G" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="parent.Name"  IsKey="true"/>
         <PropertyMapping Header="Value" Column="H" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Value" />
         <PropertyMapping Header="ImpactUnit" Column="I" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="ImpactUnit" />
         <PropertyMapping Header="LeadInTime" Column="J" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="LeadInTime" />
@@ -300,14 +300,14 @@
         <PropertyMapping Header="Reference" Column="O" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Reference" />
       </PropertyMappings>
     </ClassMapping>
-    <ClassMapping Class="Attribute" TableName="Attribute" TableOrder="15" ParentClass="Asset" ParentPath="Attributes\Attribute">
+    <ClassMapping Class="Attribute" TableName="Attribute" TableOrder="15" ParentClass="Asset" ParentPath="Attributes">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name"  IsKey="true"/>
         <PropertyMapping Header="Category" Column="B" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Stage.Value" />
         <PropertyMapping Header="CreatedBy" Column="C" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="D" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
-        <PropertyMapping Header="SheetName" Column="E" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]" />
-        <PropertyMapping Header="RowName" Column="F" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Name" />
+        <PropertyMapping Header="SheetName" Column="E" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]"  IsKey="true"/>
+        <PropertyMapping Header="RowName" Column="F" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Name"  IsKey="true"/>
         <PropertyMapping Header="Value" Column="G" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Value" />
         <PropertyMapping Header="Unit" Column="H" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Unit" />
         <PropertyMapping Header="ExtSystem" Column="I" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name"  Hidden="true"/>
@@ -317,14 +317,14 @@
         <PropertyMapping Header="AllowedValues" Column="M" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="AllowedValues" />
       </PropertyMappings>
     </ClassMapping>
-    <ClassMapping Class="Coordinate" TableName="Coordinate" TableOrder="16"  ParentClass="TypeOrComponent" ParentPath="Representations">
+    <ClassMapping Class="Coordinate" TableName="Coordinate" TableOrder="16"  ParentClass="Asset" ParentPath="Representations">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name"  IsKey="true"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="Category" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="CoordinateType" />
-        <PropertyMapping Header="SheetName" Column="E" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]" />
-        <PropertyMapping Header="RowName" Column="F" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="parent.Name" />
+        <PropertyMapping Header="SheetName" Column="E" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]"  IsKey="true"/>
+        <PropertyMapping Header="RowName" Column="F" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Name"  IsKey="true"/>
         <PropertyMapping Header="CoordinateXAxis" Column="G" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="X" />
         <PropertyMapping Header="CoordinateYAxis" Column="H" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Y" />
         <PropertyMapping Header="CoordinateZAxis" Column="I" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Z" />
@@ -338,17 +338,17 @@
     </ClassMapping>
     <ClassMapping Class="Issue" TableName="Issue" TableOrder="17">
       <PropertyMappings>
-        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Name" Column="A" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name"  IsKey="true"/>
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="Type" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="IssueType.Value" />
         <PropertyMapping Header="Risk" Column="E" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Risk.Value" />
         <PropertyMapping Header="Chance" Column="F" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Chance.Value" />
         <PropertyMapping Header="Impact" Column="G" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Impact.Value" />
-        <PropertyMapping Header="SheetName1" Column="H" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Causing.[table]" />
-        <PropertyMapping Header="RowName1" Column="I" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Causing.Name" />
-        <PropertyMapping Header="SheetName2" Column="J" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Affected.[table]" />
-        <PropertyMapping Header="RowName2" Column="K" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Affected.Name" />
+        <PropertyMapping Header="SheetName1" Column="H" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Causing.[table]"  IsKey="true"/>
+        <PropertyMapping Header="RowName1" Column="I" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Causing.Name"  IsKey="true"/>
+        <PropertyMapping Header="SheetName2" Column="J" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Affected.[table]"  IsKey="true"/>
+        <PropertyMapping Header="RowName2" Column="K" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Affected.Name"  IsKey="true"/>
         <PropertyMapping Header="Description" Column="L" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Description" />
         <PropertyMapping Header="Owner" Column="M" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Owner.Email" />
         <PropertyMapping Header="Mitigation" Column="N" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Mitigation" />
@@ -361,4 +361,21 @@
   <PickClassMappings>
     <PickClassMapping Header="Categories" />
   </PickClassMappings>
+  <EnumerationMappings>
+    <EnumerationMapping Enumeration="CoordinateTypeEnum">
+      <Aliases>
+        <Alias EnumMember="point" Alias="point"/>
+        <Alias EnumMember="line_end_one" Alias="line-end-one"/>
+        <Alias EnumMember="line_end_two" Alias="line-end-two"/>
+        <Alias EnumMember="box_lowerleft" Alias="box-lowerleft"/>
+        <Alias EnumMember="box_upperright" Alias="box-upperright"/>
+      </Aliases>
+    </EnumerationMapping>
+  </EnumerationMappings>
+  <Scopes>
+    <Scope Class="PickCalue" Scope="Global"/>
+    <Scope Class="ExternalObject" Scope="Global"/>
+    <Scope Class="ExternalSystem" Scope="Global"/>
+    <Scope Class="CreatedInfo" Scope="Global"/>
+  </Scopes>
 </ModelMapping>

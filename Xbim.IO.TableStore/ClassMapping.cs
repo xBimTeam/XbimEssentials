@@ -79,6 +79,20 @@ namespace Xbim.IO.TableStore
         public string ParentPath { get; set; }
 
         /// <summary>
+        /// Type to be used for deserialization in case that the 'Class' is an abstract type and there is no [type] hint
+        /// in a property mappings
+        /// </summary>
+        [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public string FallBackConcreteType { get; set; }
+
+        /// <summary>
+        /// If class mapping is partial it won't be used to create new objects when the table is loaded
+        /// into object model. It will only be used to add additional information or references instead
+        /// </summary>
+        [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public bool IsPartial { get; set; }
+
+        /// <summary>
         /// Property mappings
         /// </summary>
         [XmlArray("PropertyMappings", Namespace = "http://www.openbim.org/mapping/table/1.0"),

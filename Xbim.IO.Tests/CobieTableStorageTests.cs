@@ -26,8 +26,22 @@ namespace Xbim.MemoryModel.Tests
             w.Stop();
             //Debug.WriteLine(@"{0}ms to store the data as a table.", w.ElapsedMilliseconds);
             Trace.WriteLine(string.Format( @"{0}ms to store the data as a table.", w.ElapsedMilliseconds));
+        }
 
-            mapping.Save(File.Create("..\\..\\SimpleMapping.xml"));
+        [TestMethod]
+        [DeploymentItem("TestFiles/LakesideRestaurant.cobieZip")]
+        public void LoadFromXLSX()
+        {
+            //load back
+            var loaded = new CobieModel();
+            var mapping = GetCobieMapping();
+            var storage = new TableStore(loaded, mapping);
+
+            using (var txn = loaded.BeginTransaction("Loading XLSX"))
+            {
+                storage.LoadFrom("..\\..\\Lakeside.xlsx");
+                txn.Commit();
+            }
         }
 
         private ModelMapping GetCobieMapping()

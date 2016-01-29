@@ -38,8 +38,11 @@ namespace Xbim.IO.TableStore
         private readonly Dictionary<ExpressType, ClassMapping> _typeClassMappingsCache = new Dictionary<ExpressType, ClassMapping>(); 
 
         //cache of meta properties so it doesn't have to look them up in metadata all the time
-        private readonly  Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>> _typePropertyCache = new Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>>(); 
-       
+        private readonly  Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>> _typePropertyCache = new Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>>();
+
+        // cache of index column indices for every table in use
+        private Dictionary<string, int[]> _multiRowIndicesCache;
+
         //preprocessed enum aliases to speed things up
         private readonly Dictionary<string, string> _enumAliasesCache;
         private readonly Dictionary<string, string> _aliasesEnumCache;
@@ -492,56 +495,68 @@ namespace Xbim.IO.TableStore
         private object GetPropertyValue(string pathPart, IPersistEntity entity, ExpressType type)
         {
             var propName = pathPart;
-            var isIndexed = propName.Contains("[") && propName.Contains("]");
-            object propIndex = null;
-            if (isIndexed)
-            {
-                var match = new Regex("((?<name>).+)?\\[(?<index>.+)\\]")
-                    .Match(propName);
-                var indexString = match.Groups["index"].Value;
-                propName = match.Groups["name"].Value;
+            var propIndex = GetPropertyIndex(ref propName);
+            var pInfo = GetPropertyInfo(propName, type, propIndex);
+            var value = pInfo.GetValue(entity, propIndex == null ? null : new[] { propIndex });
+            return value;
+        }
 
-                if (indexString.Contains("'") || indexString.Contains("\""))
-                {
-                    propIndex = indexString.Trim('\'', '"');
-                }
-                else
-                {
-                    //try to convert it to integer access
-                    int indexInt;
-                    if (int.TryParse(indexString, out indexInt))
-                        propIndex = indexInt;
-                    else
-                        propIndex = indexString;
-                }
-            }
+        private PropertyInfo GetPropertyInfo(string name, ExpressType type, object index)
+        {
+            var isIndexed = index != null;
             PropertyInfo pInfo;
-            if (isIndexed && string.IsNullOrWhiteSpace(propName))
+            if (isIndexed && string.IsNullOrWhiteSpace(name))
             {
-                pInfo = type.Type.GetProperty("Item");
+                pInfo = type.Type.GetProperty("Item"); //anonymous index accessors are automatically named 'Item' by compiler
                 if (pInfo == null)
                     throw new XbimException(string.Format("{0} doesn't have an index access", type.Name));
 
                 var iParams = pInfo.GetIndexParameters();
-                if (iParams.All(p => p.ParameterType != propIndex.GetType()))
-                    throw new XbimException(string.Format("{0} doesn't have an index access for type {1}", type.Name, propIndex.GetType().Name));
+                if (iParams.All(p => p.ParameterType != index.GetType()))
+                    throw new XbimException(string.Format("{0} doesn't have an index access for type {1}", type.Name, index.GetType().Name));
             }
             else
             {
-                var expProp = GetProperty(type, propName);
+                var expProp = GetProperty(type, name);
                 if (expProp == null)
-                    throw new XbimException(string.Format("It wasn't possible to find property {0} in the object of type {1}", propName, type.Name));
+                    throw new XbimException(string.Format("It wasn't possible to find property {0} in the object of type {1}", name, type.Name));
                 pInfo = expProp.PropertyInfo;
                 if (isIndexed)
                 {
                     var iParams = pInfo.GetIndexParameters();
-                    if (iParams.All(p => p.ParameterType != propIndex.GetType()))
-                        throw new XbimException(string.Format("Property {0} in the object of type {1} doesn't have an index access for type {2}", propName, type.Name, propIndex.GetType().Name));
+                    if (iParams.All(p => p.ParameterType != index.GetType()))
+                        throw new XbimException(string.Format("Property {0} in the object of type {1} doesn't have an index access for type {2}", name, type.Name, index.GetType().Name));
                 }
             }
+            return pInfo;
+        }
 
-            var value = pInfo.GetValue(entity, propIndex == null ? null : new[] { propIndex });
-            return value;
+        private static object GetPropertyIndex(ref string pathPart)
+        {
+            var isIndexed = pathPart.Contains("[") && pathPart.Contains("]");
+            if (!isIndexed) return null;
+
+            object propIndex;
+            var match = new Regex("((?<name>).+)?\\[(?<index>.+)\\]")
+                .Match(pathPart);
+            var indexString = match.Groups["index"].Value;
+            pathPart = match.Groups["name"].Value;
+
+            if (indexString.Contains("'") || indexString.Contains("\""))
+            {
+                propIndex = indexString.Trim('\'', '"');
+            }
+            else
+            {
+                //try to convert it to integer access
+                int indexInt;
+                if (int.TryParse(indexString, out indexInt))
+                    propIndex = indexInt;
+                else
+                    propIndex = indexString;
+            }
+
+            return propIndex;
         }
 
         private static object GetFallbackValue(IPersistEntity entity, ExpressType type)

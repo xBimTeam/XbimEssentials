@@ -53,6 +53,18 @@ namespace Xbim.IO.TableStore
         public string Paths { get; set; }
 
         /// <summary>
+        /// If TRUE the column of this property will be considered to be a key for deserialization
+        /// </summary>
+        [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public bool IsKey { get; set; }
+
+        /// <summary>
+        /// If TRUE the column will be used to recognize multi-row records
+        /// </summary>
+        [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public bool IsMultiRowIdentity { get; set; }
+
+        /// <summary>
         /// Preprocessed list of paths where value might be found.
         /// </summary>
         [XmlIgnore]

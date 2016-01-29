@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassMapping.cs" />
+    <Compile Include="ClassScope.cs" />
     <Compile Include="DataStatus.cs" />
     <Compile Include="EntityContext.cs" />
     <Compile Include="EnumMapping.cs" />
