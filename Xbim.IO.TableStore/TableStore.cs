@@ -16,12 +16,16 @@ using Xbim.Common.Metadata;
 
 namespace Xbim.IO.TableStore
 {
-    public class TableStore
+    public partial class TableStore
     {
         public IModel Model { get; private set; }
         public ModelMapping Mapping { get; private set; }
         public ExpressMetaData MetaData { get { return Model.Metadata; } }
 
+        #region Writing data out to a spreadsheet
+        /// <summary>
+        /// Limit of the length of the text in a cell before the row gets repeated if MultiRow == MultiRow.IfNecessary
+        /// </summary>
         private const int CellTextLimit = 1024;
 
         //dictionary of all styles for different data statuses
@@ -30,14 +34,41 @@ namespace Xbim.IO.TableStore
         //cache of latest row number in different sheets
         private Dictionary<string, int> _rowNumCache = new Dictionary<string, int>();
 
+        //cache of class mappings and respective express types
         private readonly Dictionary<ExpressType, ClassMapping> _typeClassMappingsCache = new Dictionary<ExpressType, ClassMapping>(); 
 
+        //cache of meta properties so it doesn't have to look them up in metadata all the time
         private readonly  Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>> _typePropertyCache = new Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>>(); 
        
+        //preprocessed enum aliases to speed things up
+        private readonly Dictionary<string, string> _enumAliasesCache;
+        private readonly Dictionary<string, string> _aliasesEnumCache;
+ 
         public TableStore(IModel model, ModelMapping mapping)
         {
             Model = model;
             Mapping = mapping;
+
+            if (mapping.EnumerationMappings != null && mapping.EnumerationMappings.Any())
+            {
+                _enumAliasesCache = new Dictionary<string, string>();
+                _aliasesEnumCache = new Dictionary<string, string>();
+                foreach (var enumMapping in mapping.EnumerationMappings)
+                {
+                    if (enumMapping.Aliases == null || !enumMapping.Aliases.Any())
+                        continue;
+                    foreach (var alias in enumMapping.Aliases)
+                    {
+                        _enumAliasesCache.Add(enumMapping.Enumeration + "." + alias.EnumMember, alias.Alias);
+                        _aliasesEnumCache.Add(enumMapping.Enumeration + "." + alias.Alias, alias.EnumMember);
+                    }
+                }
+            }
+            else
+            {
+                _enumAliasesCache = null;
+                _aliasesEnumCache = null;
+            }
 
             Mapping.Init(MetaData);
         }
@@ -291,12 +322,22 @@ namespace Xbim.IO.TableStore
             //enumeration
             if (value is Enum)
             {
-                cell.SetCellType(CellType.String);
-                cell.SetCellValue(Enum.GetName(value.GetType(), value));
+                var eType = value.GetType();
+                var eValue = Enum.GetName(eType, value);
+                    cell.SetCellType(CellType.String);
+                //try to get alias from configuration
+                var alias = GetEnumAlias(eType, eValue);
+                cell.SetCellValue(alias ?? eValue);
                 return;
             }
 
             throw new NotSupportedException("Only base types are supported");
+        }
+
+        private string GetEnumAlias(Type type, string value)
+        {
+            string result;
+            return _enumAliasesCache.TryGetValue(type.Name + "." + value, out result) ? result : null;
         }
 
         private ClassMapping GetTable(ExpressType type)
@@ -773,165 +814,6 @@ namespace Xbim.IO.TableStore
         {
             return Math.Sqrt(Math.Pow(a[0] - b[0], 2) + Math.Pow(a[1] - b[1], 2) + Math.Pow(a[2] - b[2], 2));
         }
-
-        #region Reading from Spreadsheet
-
-        //private static void SetSimpleValue(PropertyInfo info, object obj, ICell cell, TextWriter log)
-        //{
-        //    var type = info.PropertyType;
-        //    type = type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>)
-        //        ? Nullable.GetUnderlyingType(type)
-        //        : type;
-
-        //    if (typeof(string).IsAssignableFrom(type))
-        //    {
-        //        string value = null;
-        //        switch (cell.CellType)
-        //        {
-        //            case CellType.Numeric:
-        //                value = cell.NumericCellValue.ToString(CultureInfo.InvariantCulture);
-        //                break;
-        //            case CellType.String:
-        //                value = cell.StringCellValue;
-        //                break;
-        //            case CellType.Boolean:
-        //                value = cell.BooleanCellValue.ToString();
-        //                break;
-        //            default:
-        //                log.WriteLine("There is no suitable value for {0} in cell {1}{2}, sheet {3}",
-        //                    info.Name, CellReference.ConvertNumToColString(cell.ColumnIndex), cell.RowIndex + 1,
-        //                    cell.Sheet.SheetName);
-        //                break;
-        //        }
-        //        info.SetValue(obj, value);
-        //        return;
-        //    }
-
-        //    if (type == typeof(DateTime))
-        //    {
-        //        var date = default(DateTime);
-        //        switch (cell.CellType)
-        //        {
-        //            case CellType.Numeric:
-        //                date = cell.DateCellValue;
-        //                break;
-        //            case CellType.String:
-        //                if (!DateTime.TryParse(cell.StringCellValue, null, DateTimeStyles.RoundtripKind, out date))
-        //                    //set to default value according to specification
-        //                    date = DateTime.Parse("1900-12-31T23:59:59", null, DateTimeStyles.RoundtripKind);
-        //                break;
-        //            default:
-        //                log.WriteLine("There is no suitable value for {0} in cell {1}{2}, sheet {3}",
-        //                    info.Name, CellReference.ConvertNumToColString(cell.ColumnIndex), cell.RowIndex + 1,
-        //                    cell.Sheet.SheetName);
-        //                break;
-        //        }
-        //        info.SetValue(obj, date);
-        //        return;
-        //    }
-
-        //    if (type == typeof(double))
-        //    {
-        //        switch (cell.CellType)
-        //        {
-        //            case CellType.Numeric:
-        //                info.SetValue(obj, cell.NumericCellValue);
-        //                break;
-        //            case CellType.String:
-        //                double d;
-        //                if (double.TryParse(cell.StringCellValue, out d))
-        //                    info.SetValue(obj, d);
-        //                break;
-        //            default:
-        //                log.WriteLine("There is no suitable value for {0} in cell {1}{2}, sheet {3}",
-        //                    info.Name, CellReference.ConvertNumToColString(cell.ColumnIndex), cell.RowIndex + 1,
-        //                    cell.Sheet.SheetName);
-        //                break;
-        //        }
-        //        return;
-        //    }
-
-        //    if (type == typeof(int))
-        //    {
-        //        switch (cell.CellType)
-        //        {
-        //            case CellType.Numeric:
-        //                info.SetValue(obj, (int)cell.NumericCellValue);
-        //                break;
-        //            case CellType.String:
-        //                int i;
-        //                if (int.TryParse(cell.StringCellValue, out i))
-        //                    info.SetValue(obj, i);
-        //                break;
-        //            default:
-        //                log.WriteLine("There is no suitable value for {0} in cell {1}{2}, sheet {3}",
-        //                    info.Name, CellReference.ConvertNumToColString(cell.ColumnIndex), cell.RowIndex + 1,
-        //                    cell.Sheet.SheetName);
-        //                break;
-        //        }
-        //        return;
-        //    }
-
-        //    if (type == typeof(bool))
-        //    {
-        //        switch (cell.CellType)
-        //        {
-        //            case CellType.Numeric:
-        //                info.SetValue(obj, ((int)cell.NumericCellValue) != 0);
-        //                break;
-        //            case CellType.String:
-        //                bool i;
-        //                if (bool.TryParse(cell.StringCellValue, out i))
-        //                    info.SetValue(obj, i);
-        //                else
-        //                {
-        //                    log.WriteLine("Wrong boolean format of {0} in cell {1}{2}, sheet {3}",
-        //                        cell.StringCellValue, CellReference.ConvertNumToColString(cell.ColumnIndex),
-        //                        cell.RowIndex + 1,
-        //                        cell.Sheet.SheetName);
-        //                }
-        //                break;
-        //            case CellType.Boolean:
-        //                info.SetValue(obj, cell.BooleanCellValue);
-        //                break;
-        //            default:
-        //                log.WriteLine("There is no suitable value for {0} in cell {1}{2}, sheet {3}",
-        //                    info.Name, CellReference.ConvertNumToColString(cell.ColumnIndex), cell.RowIndex + 1,
-        //                    cell.Sheet.SheetName);
-        //                break;
-        //        }
-        //        return;
-        //    }
-
-        //    //enumeration
-        //    if (type.IsEnum)
-        //    {
-        //        if (cell.CellType != CellType.String)
-        //        {
-        //            log.WriteLine("There is no suitable value for {0} in cell {1}{2}, sheet {3}",
-        //                info.Name, CellReference.ConvertNumToColString(cell.ColumnIndex), cell.RowIndex + 1,
-        //                cell.Sheet.SheetName);
-        //            return;
-        //        }
-        //        try
-        //        {
-        //            //if there was no alias try to parse the value
-        //            var val = Enum.Parse(type, cell.StringCellValue, true);
-        //            info.SetValue(obj, val);
-        //            return;
-        //        }
-        //        catch (Exception)
-        //        {
-        //            log.WriteLine("There is no suitable value for {0} in cell {1}{2}, sheet {3}",
-        //                info.Name, CellReference.ConvertNumToColString(cell.ColumnIndex), cell.RowIndex + 1,
-        //                cell.Sheet.SheetName);
-        //        }
-        //    }
-
-        //    //if not suitable type was found, report it 
-        //    throw new Exception("Unsupported type " + type.Name + " for value '" + cell + "'");
-        //}
-
         #endregion
     }
 

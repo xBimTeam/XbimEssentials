@@ -16,6 +16,7 @@
     <ClassMapping Class="IfcElement" TableName="Component" TableOrder="1">
       <PropertyMappings>
         <PropertyMapping Header="Name" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Is External" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="['IsExternal']" />
         <PropertyMapping Header="Type Name" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="IsTypedBy.RelatingType.Name" />
         <PropertyMapping Header="External Identifier" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="GlobalId" />
         <PropertyMapping Header="IFC Type" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="[type]" />
@@ -27,8 +28,8 @@
         <PropertyMapping Header="Description" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Description" />
         <PropertyMapping Header="Property Set" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="().Name" />
         <PropertyMapping Header="Relation ID" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="().().GlobalId" />
-        <PropertyMapping Header="Element Name" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Name" />
-        <PropertyMapping Header="Element Sheet" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]" />
+        <PropertyMapping Header="Parent Name" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Name" />
+        <PropertyMapping Header="Parent Sheet" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]" />
         <PropertyMapping Header="Value" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="NominalValue" />
         <PropertyMapping Header="Value Type" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="NominalValue.[type]" />
       </PropertyMappings>

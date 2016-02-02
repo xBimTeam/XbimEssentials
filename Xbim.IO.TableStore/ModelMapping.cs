@@ -53,6 +53,13 @@ namespace Xbim.IO.TableStore
         XmlArrayItem("PickClassMapping", Namespace = "http://www.openbim.org/mapping/table/1.0")]
         public List<PickClassMapping> PickClassMappings { get; set; }
 
+        /// <summary>
+        /// Mappings for enumeration members. This allows localization of enumerations.
+        /// </summary>
+        [XmlArray("EnumerationMappings", Namespace = "http://www.openbim.org/mapping/table/1.0"),
+        XmlArrayItem("EnumerationMapping", Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public List<EnumMapping> EnumerationMappings { get; set; }
+
         #region Serialization
         public ModelMapping()
         {
@@ -60,6 +67,7 @@ namespace Xbim.IO.TableStore
             StatusRepresentations = new List<StatusRepresentation>();
             ClassMappings = new List<ClassMapping>();
             PickClassMappings = new List<PickClassMapping>();
+            EnumerationMappings = new List<EnumMapping>();
             ListSeparator = ",";
         }
 
