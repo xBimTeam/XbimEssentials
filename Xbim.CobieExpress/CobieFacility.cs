@@ -204,7 +204,7 @@ namespace Xbim.CobieExpress
 			} 
 		}
 		[InverseProperty("Facility")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 23)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 23)]
 		public IEnumerable<CobieSystem> @Systems 
 		{ 
 			get 

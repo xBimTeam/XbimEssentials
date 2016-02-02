@@ -282,6 +282,26 @@ namespace Xbim.Common.Metadata
             get { return _subTypes; }
         }
 
+        /// <summary>
+        /// deep enumeration of all subtypes down in the inheritance hierarchy
+        /// </summary>
+        public IEnumerable<ExpressType> AllSubTypes
+        {
+            get
+            {
+                if(_subTypes == null)
+                    yield break;
+                foreach (var type in _subTypes)
+                {
+                    yield return type;
+                    foreach (var subType in type.AllSubTypes)
+                    {
+                        yield return subType;
+                    }
+                }
+            }
+        }
+
         public Type UnderlyingType
         {
             get { return _underlyingType; }

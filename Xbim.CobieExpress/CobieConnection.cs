@@ -26,9 +26,9 @@ namespace Xbim.CobieExpress.Interfaces
 		string @Name { get; }
 		string @Description { get; }
 		ICobieConnectionType @ConnectionType { get; }
-		ICobieComponent @ComponentA { get; }
-		ICobieComponent @ComponentB { get; }
-		ICobieComponent @RealizingComponent { get; }
+		ICobieTypeOrComponent @ComponentA { get; }
+		ICobieTypeOrComponent @ComponentB { get; }
+		ICobieTypeOrComponent @RealizingComponent { get; }
 		string @PortNameA { get; }
 		string @PortNameB { get; }
 	
@@ -38,7 +38,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Connection", 24)]
+	[ExpressType("Connection", 25)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieConnection : CobieReferencedObject, IInstantiableEntity, ICobieConnection, IEqualityComparer<@CobieConnection>, IEquatable<@CobieConnection>
 	{
@@ -46,9 +46,9 @@ namespace Xbim.CobieExpress
 		string ICobieConnection.Name { get { return @Name; } }	
 		string ICobieConnection.Description { get { return @Description; } }	
 		ICobieConnectionType ICobieConnection.ConnectionType { get { return @ConnectionType; } }	
-		ICobieComponent ICobieConnection.ComponentA { get { return @ComponentA; } }	
-		ICobieComponent ICobieConnection.ComponentB { get { return @ComponentB; } }	
-		ICobieComponent ICobieConnection.RealizingComponent { get { return @RealizingComponent; } }	
+		ICobieTypeOrComponent ICobieConnection.ComponentA { get { return @ComponentA; } }	
+		ICobieTypeOrComponent ICobieConnection.ComponentB { get { return @ComponentB; } }	
+		ICobieTypeOrComponent ICobieConnection.RealizingComponent { get { return @RealizingComponent; } }	
 		string ICobieConnection.PortNameA { get { return @PortNameA; } }	
 		string ICobieConnection.PortNameB { get { return @PortNameB; } }	
 		 
@@ -63,9 +63,9 @@ namespace Xbim.CobieExpress
 		private string _name;
 		private string _description;
 		private CobieConnectionType _connectionType;
-		private CobieComponent _componentA;
-		private CobieComponent _componentB;
-		private CobieComponent _realizingComponent;
+		private CobieTypeOrComponent _componentA;
+		private CobieTypeOrComponent _componentB;
+		private CobieTypeOrComponent _realizingComponent;
 		private string _portNameA;
 		private string _portNameB;
 		#endregion
@@ -115,7 +115,7 @@ namespace Xbim.CobieExpress
 		}	
 		[IndexedProperty]
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
-		public CobieComponent @ComponentA 
+		public CobieTypeOrComponent @ComponentA 
 		{ 
 			get 
 			{
@@ -130,7 +130,7 @@ namespace Xbim.CobieExpress
 		}	
 		[IndexedProperty]
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
-		public CobieComponent @ComponentB 
+		public CobieTypeOrComponent @ComponentB 
 		{ 
 			get 
 			{
@@ -145,7 +145,7 @@ namespace Xbim.CobieExpress
 		}	
 		[IndexedProperty]
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
-		public CobieComponent @RealizingComponent 
+		public CobieTypeOrComponent @RealizingComponent 
 		{ 
 			get 
 			{
@@ -214,13 +214,13 @@ namespace Xbim.CobieExpress
 					_connectionType = (CobieConnectionType)(value.EntityVal);
 					return;
 				case 8: 
-					_componentA = (CobieComponent)(value.EntityVal);
+					_componentA = (CobieTypeOrComponent)(value.EntityVal);
 					return;
 				case 9: 
-					_componentB = (CobieComponent)(value.EntityVal);
+					_componentB = (CobieTypeOrComponent)(value.EntityVal);
 					return;
 				case 10: 
-					_realizingComponent = (CobieComponent)(value.EntityVal);
+					_realizingComponent = (CobieTypeOrComponent)(value.EntityVal);
 					return;
 				case 11: 
 					_portNameA = value.StringVal;

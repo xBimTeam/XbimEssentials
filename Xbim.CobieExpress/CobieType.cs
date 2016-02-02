@@ -30,9 +30,9 @@ namespace Xbim.CobieExpress.Interfaces
 		double? @ReplacementCost { get; }
 		double? @ExpectedLife { get; }
 		ICobieDurationUnit @DurationUnit { get; }
-		double @NominalLength { get; }
-		double @NominalWidth { get; }
-		double @NominalHeight { get; }
+		double? @NominalLength { get; }
+		double? @NominalWidth { get; }
+		double? @NominalHeight { get; }
 		string @ModelReference { get; }
 		string @Shape { get; }
 		string @Size { get; }
@@ -45,10 +45,9 @@ namespace Xbim.CobieExpress.Interfaces
 		string @AccessibilityPerformance { get; }
 		string @CodePerformance { get; }
 		string @SustainabilityPerformance { get; }
-		IEnumerable<ICobieType> @AssemblyOf { get; }
-		IEnumerable<ICobieJob> @Jobs { get; }
 		IEnumerable<ICobieComponent> @Components {  get; }
 		IEnumerable<ICobieSpare> @Spares {  get; }
+		IEnumerable<ICobieJob> @Jobs {  get; }
 	
 	}
 }
@@ -56,7 +55,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Type", 20)]
+	[ExpressType("Type", 21)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieType : CobieAsset, IInstantiableEntity, ICobieType, IEqualityComparer<@CobieType>, IEquatable<@CobieType>
 	{
@@ -68,9 +67,9 @@ namespace Xbim.CobieExpress
 		double? ICobieType.ReplacementCost { get { return @ReplacementCost; } }	
 		double? ICobieType.ExpectedLife { get { return @ExpectedLife; } }	
 		ICobieDurationUnit ICobieType.DurationUnit { get { return @DurationUnit; } }	
-		double ICobieType.NominalLength { get { return @NominalLength; } }	
-		double ICobieType.NominalWidth { get { return @NominalWidth; } }	
-		double ICobieType.NominalHeight { get { return @NominalHeight; } }	
+		double? ICobieType.NominalLength { get { return @NominalLength; } }	
+		double? ICobieType.NominalWidth { get { return @NominalWidth; } }	
+		double? ICobieType.NominalHeight { get { return @NominalHeight; } }	
 		string ICobieType.ModelReference { get { return @ModelReference; } }	
 		string ICobieType.Shape { get { return @Shape; } }	
 		string ICobieType.Size { get { return @Size; } }	
@@ -83,18 +82,15 @@ namespace Xbim.CobieExpress
 		string ICobieType.AccessibilityPerformance { get { return @AccessibilityPerformance; } }	
 		string ICobieType.CodePerformance { get { return @CodePerformance; } }	
 		string ICobieType.SustainabilityPerformance { get { return @SustainabilityPerformance; } }	
-		IEnumerable<ICobieType> ICobieType.AssemblyOf { get { return @AssemblyOf; } }	
-		IEnumerable<ICobieJob> ICobieType.Jobs { get { return @Jobs; } }	
 		 
 		IEnumerable<ICobieComponent> ICobieType.Components {  get { return @Components; } }
 		IEnumerable<ICobieSpare> ICobieType.Spares {  get { return @Spares; } }
+		IEnumerable<ICobieJob> ICobieType.Jobs {  get { return @Jobs; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieType(IModel model) : base(model) 		{ 
 			Model = model; 
-			_assemblyOf = new OptionalItemSet<CobieType>( this, 0 );
-			_jobs = new OptionalItemSet<CobieJob>( this, 0 );
 		}
 
 		#region Explicit attribute fields
@@ -105,9 +101,9 @@ namespace Xbim.CobieExpress
 		private double? _replacementCost;
 		private double? _expectedLife;
 		private CobieDurationUnit _durationUnit;
-		private double _nominalLength;
-		private double _nominalWidth;
-		private double _nominalHeight;
+		private double? _nominalLength;
+		private double? _nominalWidth;
+		private double? _nominalHeight;
 		private string _modelReference;
 		private string _shape;
 		private string _size;
@@ -120,12 +116,10 @@ namespace Xbim.CobieExpress
 		private string _accessibilityPerformance;
 		private string _codePerformance;
 		private string _sustainabilityPerformance;
-		private OptionalItemSet<CobieType> _assemblyOf;
-		private OptionalItemSet<CobieJob> _jobs;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
 		public CobieAssetType @AssetType 
 		{ 
 			get 
@@ -153,7 +147,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _manufacturer = v, _manufacturer, value,  "Manufacturer");
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
 		public string @ModelNumber 
 		{ 
 			get 
@@ -223,8 +217,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit");
 			} 
 		}	
-		[EntityAttribute(19, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
-		public double @NominalLength 
+		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
+		public double? @NominalLength 
 		{ 
 			get 
 			{
@@ -237,8 +231,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _nominalLength = v, _nominalLength, value,  "NominalLength");
 			} 
 		}	
-		[EntityAttribute(20, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
-		public double @NominalWidth 
+		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
+		public double? @NominalWidth 
 		{ 
 			get 
 			{
@@ -251,8 +245,8 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _nominalWidth = v, _nominalWidth, value,  "NominalWidth");
 			} 
 		}	
-		[EntityAttribute(21, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
-		public double @NominalHeight 
+		[EntityAttribute(21, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
+		public double? @NominalHeight 
 		{ 
 			get 
 			{
@@ -433,34 +427,13 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _sustainabilityPerformance = v, _sustainabilityPerformance, value,  "SustainabilityPerformance");
 			} 
 		}	
-		[EntityAttribute(34, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 36)]
-		public OptionalItemSet<CobieType> @AssemblyOf 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _assemblyOf;
-				((IPersistEntity)this).Activate(false);
-				return _assemblyOf;
-			} 
-		}	
-		[IndexedProperty]
-		[EntityAttribute(35, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 37)]
-		public OptionalItemSet<CobieJob> @Jobs 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _jobs;
-				((IPersistEntity)this).Activate(false);
-				return _jobs;
-			} 
-		}	
 		#endregion
 
 
 
 		#region Inverse attributes
 		[InverseProperty("Type")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 38)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 36)]
 		public IEnumerable<CobieComponent> @Components 
 		{ 
 			get 
@@ -469,12 +442,21 @@ namespace Xbim.CobieExpress
 			} 
 		}
 		[InverseProperty("Type")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 39)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 37)]
 		public IEnumerable<CobieSpare> @Spares 
 		{ 
 			get 
 			{
 				return Model.Instances.Where<CobieSpare>(e => (e.Type as CobieType) == this, "Type", this);
+			} 
+		}
+		[InverseProperty("Type")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 38)]
+		public IEnumerable<CobieJob> @Jobs 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<CobieJob>(e => (e.Type as CobieType) == this, "Type", this);
 			} 
 		}
 		#endregion
@@ -563,14 +545,6 @@ namespace Xbim.CobieExpress
 					return;
 				case 32: 
 					_sustainabilityPerformance = value.StringVal;
-					return;
-				case 33: 
-					if (_assemblyOf == null) _assemblyOf = new OptionalItemSet<CobieType>( this );
-					_assemblyOf.InternalAdd((CobieType)value.EntityVal);
-					return;
-				case 34: 
-					if (_jobs == null) _jobs = new OptionalItemSet<CobieJob>( this );
-					_jobs.InternalAdd((CobieJob)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

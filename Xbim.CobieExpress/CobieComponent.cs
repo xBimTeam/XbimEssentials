@@ -33,9 +33,6 @@ namespace Xbim.CobieExpress.Interfaces
 		IEnumerable<ICobieSpace> @Spaces { get; }
 		IEnumerable<ICobieComponent> @AssemblyOf { get; }
 		IEnumerable<ICobieSystem> @InSystems {  get; }
-		IEnumerable<ICobieConnection> @ConnectedBefore {  get; }
-		IEnumerable<ICobieConnection> @ConnectedAfter {  get; }
-		IEnumerable<ICobieConnection> @Connecting {  get; }
 	
 	}
 }
@@ -43,7 +40,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("Component", 22)]
+	[ExpressType("Component", 23)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieComponent : CobieAsset, IInstantiableEntity, ICobieComponent, IEqualityComparer<@CobieComponent>, IEquatable<@CobieComponent>
 	{
@@ -59,9 +56,6 @@ namespace Xbim.CobieExpress
 		IEnumerable<ICobieComponent> ICobieComponent.AssemblyOf { get { return @AssemblyOf; } }	
 		 
 		IEnumerable<ICobieSystem> ICobieComponent.InSystems {  get { return @InSystems; } }
-		IEnumerable<ICobieConnection> ICobieComponent.ConnectedBefore {  get { return @ConnectedBefore; } }
-		IEnumerable<ICobieConnection> ICobieComponent.ConnectedAfter {  get { return @ConnectedAfter; } }
-		IEnumerable<ICobieConnection> ICobieComponent.Connecting {  get { return @Connecting; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -210,39 +204,12 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Components")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 23)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 23)]
 		public IEnumerable<CobieSystem> @InSystems 
 		{ 
 			get 
 			{
 				return Model.Instances.Where<CobieSystem>(e => e.Components != null &&  e.Components.Contains(this), "Components", this);
-			} 
-		}
-		[InverseProperty("ComponentA")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 24)]
-		public IEnumerable<CobieConnection> @ConnectedBefore 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<CobieConnection>(e => (e.ComponentA as CobieComponent) == this, "ComponentA", this);
-			} 
-		}
-		[InverseProperty("ComponentB")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 25)]
-		public IEnumerable<CobieConnection> @ConnectedAfter 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<CobieConnection>(e => (e.ComponentB as CobieComponent) == this, "ComponentB", this);
-			} 
-		}
-		[InverseProperty("RealizingComponent")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 26)]
-		public IEnumerable<CobieConnection> @Connecting 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<CobieConnection>(e => (e.RealizingComponent as CobieComponent) == this, "RealizingComponent", this);
 			} 
 		}
 		#endregion

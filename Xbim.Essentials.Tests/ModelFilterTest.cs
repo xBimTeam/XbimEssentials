@@ -1,10 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xbim.IO;
 using Xbim.Ifc2x3.Kernel;
 using System.IO;
 using Xbim.Common;
 using Xbim.Common.Metadata;
-using PropertyTranformDelegate = Xbim.IO.Esent.PropertyTranformDelegate;
 
 namespace Xbim.Essentials.Tests
 {

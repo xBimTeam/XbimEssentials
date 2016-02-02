@@ -30,7 +30,7 @@ namespace Xbim.CobieExpress.Interfaces
 namespace Xbim.CobieExpress
 {
 	[IndexedClass]
-	[ExpressType("IssueImpact", 56)]
+	[ExpressType("IssueImpact", 59)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieIssueImpact : CobiePickValue, IInstantiableEntity, ICobieIssueImpact, IEqualityComparer<@CobieIssueImpact>, IEquatable<@CobieIssueImpact>
 	{

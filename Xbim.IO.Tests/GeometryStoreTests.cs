@@ -59,6 +59,7 @@ namespace Xbim.EsentModel.Tests
             using (var model = IfcStore.Open(@"SampleHouse4.xbim"))
             {
                 var geomStore = model.GeometryStore;
+                Assert.IsFalse(geomStore.IsEmpty);
                 using (var reader = geomStore.BeginRead())
                 {
                     Assert.IsTrue(reader.ContextIds.Any());
