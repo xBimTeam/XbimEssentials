@@ -5,11 +5,36 @@ using System.Linq;
 
 namespace Xbim.Common.Geometry
 {
+
     public class XbimShapeTriangulation : IXbimTriangulatedFaceSet
     {
-        public readonly List<XbimPoint3D> _vertices;
-        public readonly List<XbimFaceTriangulation> _faces;
-        public readonly byte _version;
+        private readonly List<XbimPoint3D> _vertices;
+        private readonly List<XbimFaceTriangulation> _faces;
+        private readonly byte _version;
+
+        public IList<XbimPoint3D> Vertices
+        {
+            get
+            {
+                return _vertices;
+            }
+        }
+
+        public IList<XbimFaceTriangulation> Faces
+        {
+            get
+            {
+                return _faces;
+            }
+        }
+
+        public byte Version
+        {
+            get
+            {
+                return _version;
+            }
+        }
 
         public XbimShapeTriangulation(List<XbimPoint3D> vertices, List<XbimFaceTriangulation> faces, byte version)
         {
@@ -42,14 +67,14 @@ namespace Xbim.Common.Geometry
 
         public XbimShapeTriangulation Transform(XbimMatrix3D matrix3D)
         {
-            var vertices = _vertices.Select(matrix3D.Transform).ToList();
+            var vertices =_vertices.Select(matrix3D.Transform).ToList();
             var faces = new List<XbimFaceTriangulation>(_faces.Count);
             var q = matrix3D.GetRotationQuaternion();
             faces.AddRange(_faces.Select(face => face.Transform(q)));
             return new XbimShapeTriangulation(vertices, faces, _version);
         }
 
-
+       
         public void Write(BinaryWriter bw)
         {
             bw.Write((byte)_version); //stream format version
@@ -68,7 +93,7 @@ namespace Xbim.Common.Geometry
 
                 if (xbimFaceTriangulation.IsPlanar)
                 {
-                    bw.Write((Int32)xbimFaceTriangulation.TriangleCount);
+                    bw.Write((Int32) xbimFaceTriangulation.TriangleCount);
                     xbimFaceTriangulation.Normals[0].Write(bw);
                     xbimFaceTriangulation.WriteIndices(bw, _vertices.Count);
                 }

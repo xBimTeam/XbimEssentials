@@ -3,19 +3,14 @@ using System.IO;
 
 namespace Xbim.Common.Geometry
 {
-
+    
     public struct XbimPackedNormal
     {
-        public ushort _packedData;
-        const double Index = 2; //2 to the power of 6
-        const int Bits = 6;
-        private static double PackSize = ((Math.Pow(Index, Bits)) - 4);
-        private static int _minSize = 0;
-        private static int _maxSize = (int)Math.Pow(Index, (Bits * 2));
-
+        private ushort _packedData;
+        const double PackSize = 252;
         public UInt16 ToUnit16()
         {
-            return _packedData;
+            return _packedData;  
         }
 
         public XbimPackedNormal(UInt16 packedData)
@@ -30,15 +25,15 @@ namespace Xbim.Common.Geometry
 
         public void Read(BinaryReader br)
         {
-            _packedData = br.ReadUInt16();
+           _packedData = br.ReadUInt16();
         }
 
-
+  
 
         public XbimPackedNormal(byte u, byte v)
         {
-            _packedData = (ushort)(u << Bits | v);
-
+            _packedData = (ushort)(u << 8 | v);
+           
         }
 
         /// <summary>
@@ -54,23 +49,23 @@ namespace Xbim.Common.Geometry
             //the most basic case when normal points in Y direction (singular point)
             if (Math.Abs(1 - y) < tolerance)
             {
-                _packedData = 0;
-                return;
+                _packedData = 0; 
+               return;
             }
             //the most basic case when normal points in -Y direction (second singular point)
             if (Math.Abs(y - 1) < tolerance)
             {
-                _packedData = (ushort)(0 << Bits | (byte)PackSize / 2);
+                _packedData = 0 << 8 | (byte)PackSize / 2;
                 return;
             }
-
+            
             double lat;
             double lon;
             //special cases when vector is aligned to one of the axis
             if (Math.Abs(z - 1) < tolerance)
             {
                 lon = 0;
-                lat = Math.PI / 2;
+                lat = Math.PI/2;
             }
             else if (Math.Abs(z + 1) < tolerance)
             {
@@ -79,7 +74,7 @@ namespace Xbim.Common.Geometry
             }
             else if (Math.Abs(x - 1) < tolerance)
             {
-                lon = Math.PI / 2;
+                lon = Math.PI/2;
                 lat = Math.PI / 2;
             }
             else if (Math.Abs(x + 1) < tolerance)
@@ -90,7 +85,7 @@ namespace Xbim.Common.Geometry
             else
             {
                 //Atan2 takes care for quadrants (goes from positive Z to positive X and around)
-                lon = Math.Atan2(x, z);
+                lon = Math.Atan2(x,z);
                 //latitude from 0 to PI starting at positive Y ending at negative Y
                 lat = Math.Acos(y);
             }
@@ -102,42 +97,27 @@ namespace Xbim.Common.Geometry
             //stretch to pack size so that round directions are aligned to axes.
             var u = (int)(lon * PackSize);
             var v = (byte)(lat * PackSize);
-
-            var uVShifted = (u << Bits | v);
-
-            if (uVShifted > _maxSize)
-            {
-                uVShifted = uVShifted % _maxSize;
-            }
-            else if (uVShifted < _minSize)
-            {
-                do
-                {
-                    uVShifted = _maxSize + uVShifted;
-                } while (uVShifted < _minSize);
-            }
-
-            _packedData = (ushort)uVShifted;
+            _packedData = (ushort)(u << 8 | v); 
         }
 
         public XbimPackedNormal(XbimVector3D vec)
             : this(vec.X, vec.Y, vec.Z)
-        {
+        {    
         }
 
         public byte U
         {
             get
-            {
+            { 
                 return (byte)(_packedData >> 8);
-
+                
             }
         }
         public byte V
         {
             get
             {
-                return (byte)(_packedData & 0xff);
+               return (byte)(_packedData & 0xff);
             }
         }
 
@@ -145,8 +125,8 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                var lon = U / PackSize * Math.PI * 2;
-                var lat = V / PackSize * Math.PI;
+                var lon = U / PackSize * Math.PI * 2; 
+                var lat = V / PackSize * Math.PI; 
 
                 var y = Math.Cos(lat);
                 var x = Math.Sin(lon) * Math.Sin(lat);
@@ -165,6 +145,6 @@ namespace Xbim.Common.Geometry
             XbimQuaternion.Transform(ref v1, ref q, out v2);
             return new XbimPackedNormal(v2);
         }
-
+    
     }
 }

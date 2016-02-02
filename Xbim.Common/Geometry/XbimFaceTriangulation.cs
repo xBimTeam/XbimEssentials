@@ -6,19 +6,19 @@ namespace Xbim.Common.Geometry
 {
     public class XbimFaceTriangulation
     {
-        public List<int> _indices;
-        public List<XbimPackedNormal> _normals;
+        private readonly List<int> _indices;
+        private readonly List<XbimPackedNormal> _normals;
         public XbimFaceTriangulation(int numTriangles, int numNormals)
         {
             _normals = new List<XbimPackedNormal>(numNormals);
             _indices = new List<int>(numTriangles * 3);
         }
 
-
+       
 
         internal void AddNormal(XbimPackedNormal xbimPackedNormal)
         {
-            _normals.Add(xbimPackedNormal);
+           _normals.Add(xbimPackedNormal);
         }
 
         internal void AddIndex(int p)
@@ -33,7 +33,7 @@ namespace Xbim.Common.Geometry
 
         public int TriangleCount
         {
-            get { return _indices.Count / 3; }
+            get { return _indices.Count/3; }
         }
         public int NormalCount
         {
@@ -45,8 +45,16 @@ namespace Xbim.Common.Geometry
             get { return _normals; }
         }
 
-        public void WriteIndices(BinaryWriter bw, int vertexCount)
+        public IList<int> Indices
         {
+            get
+            {
+                return _indices;
+            }
+        }
+
+        public void WriteIndices(BinaryWriter bw, int vertexCount)
+        {          
 
             if (vertexCount <= 0xFF)
                 foreach (var triangle in _indices) bw.Write((byte)triangle);
@@ -58,7 +66,7 @@ namespace Xbim.Common.Geometry
 
         public void WriteIndicesAndNormals(BinaryWriter bw, int vertexCount)
         {
-
+            
             if (vertexCount <= 0xFF)
                 for (int i = 0; i < _indices.Count; i++)
                 {
@@ -84,7 +92,7 @@ namespace Xbim.Common.Geometry
         {
             var result = new XbimFaceTriangulation(_indices.Count, _normals.Count);
             foreach (var normal in _normals)
-                result.AddNormal(normal.Transform(q));
+                 result.AddNormal(normal.Transform(q));
             foreach (var index in _indices)
                 result.AddIndex(index);
             return result;
