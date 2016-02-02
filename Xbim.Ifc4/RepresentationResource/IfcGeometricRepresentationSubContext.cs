@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Common.Geometry;
 using Xbim.Ifc4.RepresentationResource;
 
 namespace Xbim.Ifc4.Interfaces
@@ -153,8 +154,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			    if (ParentContext.TrueNorth != null)
 			        return ParentContext.TrueNorth;
                 //IfcConvertDirectionInto2D(SELF\IfcGeometricRepresentationContext.WorldCoordinateSystem.P[2]));
-			    var dir = WorldCoordinateSystem.P[2];
-			    dir.Z = double.NaN;
+			    var dir = new XbimVector3D(WorldCoordinateSystem.P[2].X, WorldCoordinateSystem.P[2].Y, double.NaN);			   
 			    return dir;
 			    //##
 			}

@@ -31,11 +31,11 @@ namespace Xbim.Ifc2x3.GeometryResource
                     Location.Z, 1);
 
             var za = Axis.XbimVector3D();
-            za.Normalize();
+            za.Normalized();
             var xa = RefDirection.XbimVector3D();
-            xa.Normalize();
+            xa.Normalized();
             var ya = XbimVector3D.CrossProduct(za, xa);
-            ya.Normalize();
+            ya.Normalized();
             return new XbimMatrix3D(xa.X, xa.Y, xa.Z, 0, ya.X, ya.Y, ya.Z, 0, za.X, za.Y, za.Z, 0, Location.X,
                 Location.Y, Location.Z, 1);
         }
@@ -49,27 +49,9 @@ namespace Xbim.Ifc2x3.GeometryResource
         {
             get
             {
-                var a = new XbimVector3D
-                {
-                    X = P[0].X,
-                    Y = P[0].Y,
-                    Z = P[0].Z
-                };
-
-                var b = new XbimVector3D
-                {
-                    X = P[1].X,
-                    Y = P[1].Y,
-                    Z = P[1].Z
-                };
-
-                var c = new XbimVector3D
-                {
-                    X = P[2].X,
-                    Y = P[2].Y,
-                    Z = P[2].Z
-                };
-
+                var a = new XbimVector3D(P[0].X,P[0].Y,P[0].Z);
+                var b = new XbimVector3D(P[1].X,P[1].Y,P[1].Z);              
+                var c = new XbimVector3D(P[2].X,P[2].Y,P[2].Z);
                 return new List<XbimVector3D> { a, b, c };
             }
         }

@@ -100,11 +100,11 @@ namespace Xbim.Ifc2x3.GeometryResource
                 else if (RefDirection != null && Axis != null)
                 {
                     var za = _axis.XbimVector3D();
-                    za.Normalize();
+                    za.Normalized();
                     var xa = _refDirection.XbimVector3D();
-                    xa.Normalize();
+                    xa.Normalized();
                     var ya = Common.Geometry.XbimVector3D.CrossProduct(za, xa);
-                    ya.Normalize();
+                    ya.Normalized();
                     p.Add(xa);
                     p.Add(ya);
                     p.Add(za);

@@ -29,8 +29,7 @@ namespace Xbim.Ifc2x3.Extensions
             if (ax3.RefDirection != null && ax3.Axis != null)
             {
                 XbimVector3D za = ax3.Axis.XbimVector3D();
-                za.Normalize();
-                return za;
+                return za.Normalized();              
             }
             else
                 return new XbimVector3D(0, 0, 1);
@@ -41,32 +40,27 @@ namespace Xbim.Ifc2x3.Extensions
             if (ax3.RefDirection != null && ax3.Axis != null)
             {
                 XbimVector3D xa = ax3.RefDirection.XbimVector3D();
-                xa.Normalize();
-                return xa;
+                return xa.Normalized();                
             }
-            else
-                return new XbimVector3D(1, 0, 0);
+            return new XbimVector3D(1, 0, 0);
         }
 
         /// <summary>
         ///   Converts an Axis2Placement3D to a windows XbimMatrix3D
         /// </summary>
         /// <param name = "axis3"></param>
+        /// <param name="maps"></param>
         /// <returns></returns>
         public static XbimMatrix3D ToMatrix3D(this IfcAxis2Placement3D axis3, ConcurrentDictionary<int, Object> maps = null)
         {
             if (maps == null)
                 return ConvertAxis3D(axis3);
-            else
-            {
-                    object transform;
-                    if (maps != null && maps.TryGetValue(axis3.EntityLabel, out transform)) //already converted it just return cached
-                        return (XbimMatrix3D)transform;
-                    transform = ConvertAxis3D(axis3);
-                    if (maps != null) maps.TryAdd(axis3.EntityLabel, transform);
-                    return (XbimMatrix3D)transform;
-            }
-            
+            object transform;
+            if (maps.TryGetValue(axis3.EntityLabel, out transform)) //already converted it just return cached
+                return (XbimMatrix3D)transform;
+            transform = ConvertAxis3D(axis3);
+            maps.TryAdd(axis3.EntityLabel, transform);
+            return (XbimMatrix3D)transform;
         }
 
         private static XbimMatrix3D ConvertAxis3D(IfcAxis2Placement3D axis3)
@@ -75,11 +69,11 @@ namespace Xbim.Ifc2x3.Extensions
             if (axis3.RefDirection != null && axis3.Axis != null)
             {
                 XbimVector3D za = axis3.Axis.XbimVector3D();
-                za.Normalize();
+                za=za.Normalized();
                 XbimVector3D xa = axis3.RefDirection.XbimVector3D();
-                xa.Normalize();
+                xa=xa.Normalized();
                 XbimVector3D ya = XbimVector3D.CrossProduct(za, xa);
-                ya.Normalize();
+                ya=ya.Normalized();
                 return new XbimMatrix3D(xa.X, xa.Y, xa.Z, 0, ya.X, ya.Y, ya.Z, 0, za.X, za.Y, za.Z, 0, axis3.Location.X,
                                     axis3.Location.Y, axis3.Location.Z, 1);
             }

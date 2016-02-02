@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 
@@ -51,13 +52,12 @@ namespace Xbim.Common.Geometry
                         Y = br.ReadSingle(),
                         Z = br.ReadSingle()
                     },
-                    Size =
-                    {
-                        X = br.ReadSingle(),
-                        Y = br.ReadSingle(),
-                        Z = br.ReadSingle()
-                    }
-                };
+                    
+                };   
+                float x = br.ReadSingle();
+                float y = br.ReadSingle();
+                float z = br.ReadSingle();
+                region.Size = new XbimVector3D(x,y,z);
                 coll.Add(region);
             }
             return coll;
@@ -81,13 +81,12 @@ namespace Xbim.Common.Geometry
                         Y = br.ReadSingle(),
                         Z = br.ReadSingle()
                     },
-                    Size =
-                    {
-                        X = br.ReadSingle(),
-                        Y = br.ReadSingle(),
-                        Z = br.ReadSingle()
-                    }
+                   
                 };
+                float x = br.ReadSingle();
+                float y = br.ReadSingle();
+                float z = br.ReadSingle();
+                region.Size = new XbimVector3D(x, y, z);
                 Add(region);
             }
             

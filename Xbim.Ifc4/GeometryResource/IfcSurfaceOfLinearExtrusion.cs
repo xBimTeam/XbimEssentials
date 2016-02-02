@@ -92,14 +92,11 @@ namespace Xbim.Ifc4.GeometryResource
 			get 
 			{
 				//## Getter for ExtrusionAxis
-                return new Common.Geometry.XbimVector3D(
-                    _extrudedDirection.X, 
-                    _extrudedDirection.Y, 
-                    _extrudedDirection.Z)
-                {
-                    Magnitude = _depth
-                };
-				//##
+			    return new Common.Geometry.XbimVector3D(
+			        _extrudedDirection.X*_depth,
+			        _extrudedDirection.Y*_depth,
+			        _extrudedDirection.Z*_depth);
+			    //##
 			}
 		}
 

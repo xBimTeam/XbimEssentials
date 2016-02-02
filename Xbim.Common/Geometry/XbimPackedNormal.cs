@@ -133,7 +133,7 @@ namespace Xbim.Common.Geometry
                 var z = Math.Cos(lon) * Math.Sin(lat);
 
                 var v3D = new XbimVector3D(x, y, z);
-                v3D.Normalize();
+                v3D.Normalized();
                 return v3D;
             }
         }

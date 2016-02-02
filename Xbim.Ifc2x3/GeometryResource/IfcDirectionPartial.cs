@@ -73,7 +73,7 @@ namespace Xbim.Ifc2x3.GeometryResource
             if (Dim == 3)
             {
                 var v3D = new XbimVector3D(X, Y, Z);
-                v3D.Normalize();
+                v3D.Normalized();
                 return v3D;
             }
                 throw new ArgumentException("Only 3D Directions are supported for normalised at present");
