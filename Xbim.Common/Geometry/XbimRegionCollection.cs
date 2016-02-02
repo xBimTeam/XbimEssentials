@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 
@@ -45,18 +44,15 @@ namespace Xbim.Common.Geometry
                 var region = new XbimRegion
                 {
                     Name = br.ReadString(),
-                    Population = br.ReadInt32(),
-                    Centre =
-                    {
-                        X = br.ReadSingle(),
-                        Y = br.ReadSingle(),
-                        Z = br.ReadSingle()
-                    },
-                    
-                };   
+                    Population = br.ReadInt32()        
+                };
                 float x = br.ReadSingle();
                 float y = br.ReadSingle();
                 float z = br.ReadSingle();
+                region.Centre = new XbimPoint3D(x,y,z);
+                x = br.ReadSingle();
+                y = br.ReadSingle();
+                z = br.ReadSingle();
                 region.Size = new XbimVector3D(x,y,z);
                 coll.Add(region);
             }
@@ -74,18 +70,15 @@ namespace Xbim.Common.Geometry
                 var region = new XbimRegion
                 {
                     Name = br.ReadString(),
-                    Population = br.ReadInt32(),
-                    Centre =
-                    {
-                        X = br.ReadSingle(),
-                        Y = br.ReadSingle(),
-                        Z = br.ReadSingle()
-                    },
-                   
+                    Population = br.ReadInt32()
                 };
                 float x = br.ReadSingle();
                 float y = br.ReadSingle();
                 float z = br.ReadSingle();
+                region.Centre = new XbimPoint3D(x, y, z);
+                x = br.ReadSingle();
+                y = br.ReadSingle();
+                z = br.ReadSingle();
                 region.Size = new XbimVector3D(x, y, z);
                 Add(region);
             }
