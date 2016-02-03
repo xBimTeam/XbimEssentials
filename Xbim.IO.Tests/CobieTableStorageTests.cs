@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.CobieExpress;
 using Xbim.CobieExpress.IO;
 using Xbim.IO.TableStore;
 
@@ -42,6 +45,76 @@ namespace Xbim.MemoryModel.Tests
                 storage.LoadFrom("..\\..\\Lakeside.xlsx");
                 txn.Commit();
             }
+        }
+
+        [TestMethod]
+        public void SimpleSubObjectDeserialization()
+        {
+            const string file = "facility.xlsx";
+            var test = new CobieModel();
+            using (var txn = test.BeginTransaction("Sample data"))
+            {
+                test.Instances.New<CobieFacility>(f =>
+                {
+                    f.Name = "Superb Facility";
+                    f.VolumeUnits = test.Instances.New<CobieVolumeUnit>(u => u.Value = "square meters");
+                    f.Site = test.Instances.New<CobieSite>(s =>
+                    {
+                        s.Name = "Spectacular site";
+                        s.Description = "The best site you can imagine";
+                        s.ExternalId = "156";
+                    });
+                    f.Attributes.Add(test.Instances.New<CobieAttribute>(a =>
+                    {
+                        a.Name = "String attribute";
+                        a.Description = "Perfect description";
+                    }));
+                });
+                test.Instances.New<CobieType>(t =>
+                {
+                    t.Name = "Boiler";
+                    t.Description = "Very performant boiler which doesn't use almost any energy";
+                    t.Warranty = test.Instances.New<CobieWarranty>(w =>
+                    {
+                        w.Description = "Warranty information for a boiler";
+                        w.DurationLabor = 45;
+                        w.DurationParts = 78;
+                    });
+                });
+                txn.Commit();
+            }
+           
+
+            var mapping = GetCobieMapping();
+            var storage = new TableStore(test, mapping);
+            storage.Store(file);
+
+            var model = new CobieModel();
+            storage = new TableStore(model, mapping);
+            using (var txn = model.BeginTransaction("Loading XLSX"))
+            {
+                storage.LoadFrom(file);
+                txn.Commit();
+            }
+
+            var facility = model.Instances.FirstOrDefault<CobieFacility>();
+            var type = model.Instances.FirstOrDefault<CobieType>();
+
+            Assert.IsNotNull(facility);
+            Assert.IsNotNull(type);
+
+            Assert.IsNotNull(facility.Site);
+            Assert.IsNotNull(facility.Site.Name);
+            Assert.IsNotNull(facility.Site.Description);
+            Assert.IsNotNull(facility.Site.ExternalId);
+
+            Assert.IsNotNull(type.Warranty);
+            Assert.IsNotNull(type.Warranty.Description);
+            Assert.IsNotNull(type.Warranty.DurationParts);
+            Assert.IsNotNull(type.Warranty.DurationLabor);
+
+            Assert.IsNull(facility.VolumeUnits);
+            Assert.IsTrue(facility.Attributes.Any());
         }
 
         private ModelMapping GetCobieMapping()
@@ -118,7 +191,7 @@ namespace Xbim.MemoryModel.Tests
                                 Status = DataStatus.Required,
                                 //Colour = "#FFFF99",
                                 Column = "A",
-                                Paths = "Name",
+                                _Paths = "Name",
                                 DefaultValue = "n/a",
                             }
                         }
@@ -139,7 +212,7 @@ namespace Xbim.MemoryModel.Tests
                                 MultiRow = MultiRow.None,
                                 Status = DataStatus.Required,
                                 Column = "A",
-                                Paths = "Name",
+                                _Paths = "Name",
                                 DefaultValue = "n/a",
                             },
                             new PropertyMapping
@@ -148,7 +221,7 @@ namespace Xbim.MemoryModel.Tests
                                 MultiRow = MultiRow.None,
                                 Status = DataStatus.Reference,
                                 Column = "B",
-                                Paths = "parent.[table]",
+                                _Paths = "parent.[table]",
                                 DefaultValue = "n/a",
                             },
                             new PropertyMapping
@@ -157,7 +230,7 @@ namespace Xbim.MemoryModel.Tests
                                 MultiRow = MultiRow.None,
                                 Status = DataStatus.Reference,
                                 Column = "C",
-                                Paths = "parent.Name",
+                                _Paths = "parent.Name",
                                 DefaultValue = "n/a",
                             },
                             new PropertyMapping
@@ -165,7 +238,7 @@ namespace Xbim.MemoryModel.Tests
                                 Header = "Value",
                                 MultiRow = MultiRow.None,
                                 Column = "D",
-                                Paths = "Value",
+                                _Paths = "Value",
                                 DefaultValue = "n/a",
                             }
                         }

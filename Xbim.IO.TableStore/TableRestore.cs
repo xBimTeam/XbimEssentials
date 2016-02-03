@@ -61,6 +61,8 @@ namespace Xbim.IO.TableStore
 
             //refresh cache. This might change in between two loadings
             _multiRowIndicesCache = new Dictionary<string, int[]>();
+            _typeHintCache = new Dictionary<ClassMapping, Dictionary<string, int>>();
+            _forwardReferences.Clear();
 
             //create spreadsheet representaion 
             LoadFromWoorkbook(workbook);
@@ -88,9 +90,14 @@ namespace Xbim.IO.TableStore
                 LoadFromSheet(sheet, mapping);
             }
 
-            //assign forward references
+            //reconstruct references (possibly forward references)
+            foreach (var reference in _forwardReferences)
+                reference.Resolve(Log);
+            _forwardReferences.Clear();
 
-            //load partial tables
+            //load partial tables (also just a references)
+
+            //be happy
         }
 
         private void LoadFromSheet(ISheet sheet, ClassMapping mapping)
@@ -101,6 +108,7 @@ namespace Xbim.IO.TableStore
 
             //adjust mapping to sheet in case columns are in a different order
             AdjustMapping(sheet, mapping);
+            CacheColumnIndices(mapping);
 
             //cache key columns
             CacheMultiRowIndices(mapping);
@@ -142,17 +150,15 @@ namespace Xbim.IO.TableStore
             if (mapping.PropertyMappings != null && mapping.PropertyMappings.Any())
                 indices = mapping.PropertyMappings
                     .Where(p => p.IsMultiRowIdentity)
-                    .Select(m => CellReference.ConvertColStringToIndex(m.Column))
+                    .Select(m => m.ColumnIndex)
                     .ToArray();
            
             if (existing != null)
             {
-                //update and check if it is consistent
+                //update and check if it is consistent. Report inconsistency.
                 _multiRowIndicesCache[mapping.TableName] = indices;
                 if (existing.Length != indices.Length || !existing.SequenceEqual(indices))
-                {
-                    //todo: report consistency violation (two table definitions have different key columns)
-                }
+                    Log.WriteLine("Table {0} is defined in multiple class mappings with different key columns for a multi-value records", mapping.TableName);
             }
             else
                 _multiRowIndicesCache.Add(mapping.TableName, indices);
@@ -170,7 +176,7 @@ namespace Xbim.IO.TableStore
                 var lastExpType = lastEntity.ExpressType;
                 foreach (var prop in multiProps)
                 {
-                    SetPropertyValue(lastEntity, lastExpType, prop, row);
+                    SetPropertyValue(lastEntity, lastExpType, prop, row, mapping);
                 }
                 //throw new NotImplementedException();
                 return lastEntity;
@@ -179,28 +185,30 @@ namespace Xbim.IO.TableStore
             //get type of the coresponding object from ClassMapping or from a type hint, create instance
             var entity = GetNewEntity(row, mapping);
             var eType = entity.ExpressType;
-            foreach (var prop in mapping.PropertyMappings)
+            foreach (var prop in mapping.PropertyMappings.Where(m => m.Status != DataStatus.Reference))
             {
-                SetPropertyValue(lastEntity, eType, prop, row);
+                //fill in simple value fields
+                SetPropertyValue(entity, eType, prop, row, mapping);
             }
-            //fill in simple value fields
-            //reconstruct references (possibly forward references)
-            //be happy
 
+            if (mapping.PropertyMappings.Any(m => m.Status != DataStatus.Reference))
+            {
+                _forwardReferences.Add(new ForwardReference(entity, row, mapping, this));
+            }
             return entity;
         }
 
         //Express Type could be obtained inside but it would involve unnecessary number of look-ups internally
-        private void SetPropertyValue(IPersistEntity entity, ExpressType eType, PropertyMapping prop, IRow row)
+        private void SetPropertyValue(IPersistEntity entity, ExpressType eType, PropertyMapping pMapping, IRow row, ClassMapping cMapping)
         {
-            var colIdx = CellReference.ConvertColStringToIndex(prop.Column);
+            var colIdx = pMapping.ColumnIndex;
             var cell = row.GetCell(colIdx);
             //if it is not defined or it is just a default value, do nothing
-            if (cell == null || (cell.CellType == CellType.String && string.Compare(cell.StringCellValue, prop.DefaultValue, StringComparison.OrdinalIgnoreCase) == 0))
+            if (cell == null || (cell.CellType == CellType.String && string.Compare(cell.StringCellValue, pMapping.DefaultValue, StringComparison.OrdinalIgnoreCase) == 0))
                 return;
 
             //only first of possible search paths is used to set the value
-            var path = prop.PathsEnumeration.FirstOrDefault();
+            var path = pMapping.Paths.FirstOrDefault();
             if (string.IsNullOrWhiteSpace(path))
                 return;
 
@@ -209,36 +217,37 @@ namespace Xbim.IO.TableStore
             if (string.Equals(path, "[type]", StringComparison.Ordinal))
                 return;
 
-            if (prop.Status == DataStatus.Reference)
-            {
-                //todo
+            if (pMapping.Status == DataStatus.Reference)
+                //forward reference was created already elsewhere
                 return;
 
-                //if it is a parent, create the reference to solve
-                //optimization: check first letter before StartsWith() function. 
-                if (path[0] == 'p' && path.StartsWith("parent."))
-                {
-                    var referencePath = path.Substring(7); //trim "parent." from the beginning
-                    throw new NotImplementedException();
+            SetPropertyValue(entity, eType, path, cell, cMapping, pMapping);
+        }
 
-                    //this will help to identify parent type
-                    if (string.Equals(referencePath, "[table]", StringComparison.Ordinal))
-                        throw new NotImplementedException();
-                }
-            }
-
+        private void SetPropertyValue(IPersistEntity entity, ExpressType eType, string path, ICell cell, ClassMapping cMapping, PropertyMapping pMapping)
+        {
             //process the path (simple value, local reference, global reference)
             var parts = path.Split('.');
-            foreach (var part in parts)
+            for (var ip = 0; ip < parts.Length; ip++)
             {
-                var propName = part;
+                var propName = parts[ip];
                 var index = GetPropertyIndex(ref propName);
                 var pInfo = GetPropertyInfo(propName, eType, index);
 
                 var pType = pInfo.PropertyType;
+                //if it is an abstract type or interface we need to find a concrete type
+                if (pType.IsAbstract)
+                {
+                    pType = GetConcreteType(pType, cMapping, cell, pMapping);
+                    if (pType == null)
+                    {
+                        Log.WriteLine("It wasn't possible to find a concrete type for row {0}, cell {1}, table {2}", cell.Row.RowNum, cell.ColumnIndex, cMapping.TableName);
+                        break;
+                    }
+                }
 
                 //simple value
-                if (pType.IsValueType || typeof (string) == pType)
+                if (pType.IsValueType || typeof(string) == pType)
                 {
                     if (pInfo.GetSetMethod() == null)
                     {
@@ -250,6 +259,7 @@ namespace Xbim.IO.TableStore
                     break;
                 }
 
+                //simple value enumeration
                 var setType = GetSimpleValueEnumType(pType);
                 if (setType != null)
                 {
@@ -257,7 +267,7 @@ namespace Xbim.IO.TableStore
                     if (set != null && cell.CellType == CellType.String)
                     {
                         var strVal = cell.StringCellValue;
-                        var strParts = strVal.Split(new [] {Mapping.ListSeparator},
+                        var strParts = strVal.Split(new[] { Mapping.ListSeparator },
                             StringSplitOptions.RemoveEmptyEntries)
                             .Select(i => i.Trim());
                         foreach (var strPart in strParts)
@@ -268,38 +278,109 @@ namespace Xbim.IO.TableStore
                         }
                         break;
                     }
-                    if (pInfo.GetSetMethod() == null)
-                    {
-                        if (pInfo.DeclaringType != null)
-                            Log.WriteLine("There is no setter for {0} in {1}", pInfo.Name, pInfo.DeclaringType.Name);
-                        break;
-                    }
                 }
 
-                if (!pType.IsAbstract && typeof (IPersistEntity).IsAssignableFrom(pType))
+                if (!pType.IsAbstract && typeof(IPersistEntity).IsAssignableFrom(pType))
                 {
                     if (IsGlobalType(pType))
                     {
-                        //todo: get or create
+                        //todo: get or create after all entities are read (so it can use created entities by key values)
                     }
                     else
                     {
-                        //create
-                        var child = Model.Instances.New(pType);
+                        //get (if it was created before for other path) or create
+                        var child = pInfo.GetValue(entity, index == null ? null : new[] { index }) as IPersistEntity;
+                        if (child == null)
+                        {
+                            child = Model.Instances.New(pType);
+                            pInfo.SetValue(entity, child, index == null ? null : new[] { index });
+                        }
+                            
+
                         //get sub-path
+                        var subParts = parts.ToList().GetRange(ip + 1, parts.Length - ip - 1);
+                        var subPath = string.Join(".", subParts);
+
                         //recursive set values
+                        SetPropertyValue(child, child.ExpressType, subPath, cell, cMapping, pMapping);
                     }
+                    break;
                 }
 
-                //enumerable of IPersistEntity - might be ItemSet or inverse property
-
-                //select or abstract type - we need to find a hint or fallback type
-
-                //enumerable of select or abstract type values - we need to find a hint or fallback type
+                var eProperty = GetProperty(eType, propName);
+                
+                //enumerable of IPersistEntity or IEspressSelect
+                if (eProperty.EnumerableType != null)
+                {
+                    if (eProperty.IsInverse)
+                    {
+                        Log.WriteLine("Inverse property {0} of {1} is used in a way where it is not possible to load it into memory.", propName, eType.ExpressName);
+                        break;
+                    }
+                    if (eProperty.IsDerived)
+                    {
+                        Log.WriteLine("Derived property {0} of {1} is used in a way where it is not possible to load it into memory.", propName, eType.ExpressName);
+                        break;
+                    }
+                    Log.WriteLine("Property {0} of {1} is used in a way where it is not possible to load it into memory. It should probably be marked as a reference value.", propName, eType.ExpressName);
+                    break;
+                }
             }
-            
+        }
 
-            throw new NotImplementedException();
+
+        private Type GetConcreteType(Type absType, ClassMapping cMapping, ICell cell, PropertyMapping pMapping)
+        {
+            //if it is not an abstract type just return it
+            if (!absType.IsAbstract)
+                return absType;
+
+            int hintColumn;
+            Dictionary<string, int> hintPaths;
+            if (!_typeHintCache.TryGetValue(cMapping, out hintPaths))
+            {
+                hintPaths = new Dictionary<string, int>();
+                _typeHintCache.Add(cMapping, hintPaths);
+            }
+            var path = pMapping.Paths.FirstOrDefault() ?? "";
+            if (!hintPaths.TryGetValue(path, out hintColumn))
+            {
+                //try to find a hint
+                var pattern = path + "[type]";
+                var hintMapping = cMapping.PropertyMappings
+                    .FirstOrDefault(m => m.Paths.Any(p => p.EndsWith(pattern)));
+                hintColumn = hintMapping != null
+                    ? hintMapping.ColumnIndex
+                    : -1;
+                hintPaths.Add(path, hintColumn);
+            }
+
+            //try to get a hint type from a cell
+            if (hintColumn >= 0)
+            {
+                var hintCell = cell.Row.GetCell(hintColumn);
+                if (hintCell != null && hintCell.CellType == CellType.String)
+                {
+                    var hintType = hintCell.StringCellValue;
+                    if (!string.IsNullOrWhiteSpace(hintType))
+                    {
+                        var result = MetaData.ExpressType(hintType.ToUpper());
+                        if (result != null && !result.Type.IsAbstract)
+                            return result.Type;
+                    }
+                }
+            }
+
+            //use resolver if available
+            if (Resolvers != null)
+            {
+                var resolver = Resolvers.FirstOrDefault(r => r.CanResolve(absType));
+                if (resolver != null)
+                    return resolver.Resolve(absType, cell, cMapping, pMapping);
+            }
+
+            //return null if no non-abstract type could have been found
+            return null;
         }
 
         private Type GetSimpleValueEnumType(Type type)
@@ -325,7 +406,7 @@ namespace Xbim.IO.TableStore
                          Mapping.Scopes.Where(s => s.Scope == ClassScopeEnum.Model)
                              .Select(s => MetaData.ExpressType(s.Class.ToUpper()))
                              .ToList());
-            return gt.Any(t => t.Type == type);
+            return gt.Any(t => t.Type == type || t.SubTypes.Any(st => st.Type == type));
         }
 
         private bool IsMultiRow(IRow row, ClassMapping mapping, IRow lastRow)
@@ -395,12 +476,11 @@ namespace Xbim.IO.TableStore
             string typeName = null;
 
             //type hint property has priority
-            var hintProperty = mapping.PropertyMappings.FirstOrDefault(m => string.Equals(m.Paths, "[type]", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(m.Column));
+            var hintProperty = mapping.PropertyMappings.FirstOrDefault(m => string.Equals(m._Paths, "[type]", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(m.Column));
 
             if (hintProperty != null)
             {
-                var i = CellReference.ConvertColStringToIndex(hintProperty.Column);
-                var hintCell = row.GetCell(i);
+                var hintCell = row.GetCell(hintProperty.ColumnIndex);
                 if (hintCell != null && hintCell.CellType == CellType.String)
                     typeName = hintCell.StringCellValue;
             }
@@ -424,6 +504,12 @@ namespace Xbim.IO.TableStore
                 return eType;
 
             throw new XbimException(string.Format("It wasn't possible to find a non-abstract type for table {0}, class {1}", mapping.TableName, mapping.Class));
+        }
+
+        private static void CacheColumnIndices(ClassMapping mapping)
+        {
+            foreach (var pMap in mapping.PropertyMappings)
+                pMap.ColumnIndex = CellReference.ConvertColStringToIndex(pMap.Column);
         }
 
         private static void AdjustMapping(ISheet sheet, ClassMapping mapping)
@@ -463,10 +549,10 @@ namespace Xbim.IO.TableStore
                 }
 
                 //move the column mapping to the new position
-                pMapping.Column = column;
                 var current = mappings.FirstOrDefault(m => string.Equals(m.Column, column, StringComparison.OrdinalIgnoreCase));
                 if (current != null)
                     current.Column = null;
+                pMapping.Column = column;
             }
 
             var unassigned = mappings.Where(m => string.IsNullOrWhiteSpace(m.Column)).ToList();
@@ -490,7 +576,7 @@ namespace Xbim.IO.TableStore
             }
 
             //remove unassigned mappings
-            if (!unassigned.Any())
+            if (unassigned.Any())
                 return;
             foreach (var propertyMapping in unassigned)
                 mapping.PropertyMappings.Remove(propertyMapping);
@@ -504,7 +590,7 @@ namespace Xbim.IO.TableStore
             return type.IsGenericType && type.GetGenericTypeDefinition() == typeof (Nullable<>) ? Nullable.GetUnderlyingType(type) : type;
         }
 
-        private object CreateSimpleValue(Type type, string value)
+        internal object CreateSimpleValue(Type type, string value)
         {
             var underlying = GetNonNullableType(type);
 
@@ -572,7 +658,7 @@ namespace Xbim.IO.TableStore
             return null;
         }
 
-        private object CreateSimpleValue(Type type, ICell cell)
+        internal object CreateSimpleValue(Type type, ICell cell)
         {
             //return if there is no value in she cell
             if (cell.CellType == CellType.Blank) return null;
@@ -720,6 +806,14 @@ namespace Xbim.IO.TableStore
 
         private void SetSimpleValue(PropertyInfo info, object obj, ICell cell, object index = null)
         {
+            //check there is a setter defined for this property
+            if (info.GetSetMethod() == null)
+            {
+                if (info.DeclaringType != null)
+                    Log.WriteLine("There is no setter for {0} in {1}", info.Name, info.DeclaringType.Name);
+                return;
+            }
+
             //return if there is no value in she cell
             if (cell.CellType == CellType.Blank) return;
 

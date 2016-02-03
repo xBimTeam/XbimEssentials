@@ -67,10 +67,13 @@
     <Compile Include="EntityContext.cs" />
     <Compile Include="EnumMapping.cs" />
     <Compile Include="EnumNameMapping.cs" />
+    <Compile Include="ForwardReference.cs" />
     <Compile Include="ModelMapping.cs" />
     <Compile Include="PickClassMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyMapping.cs" />
+    <Compile Include="ReferenceContext.cs" />
+    <Compile Include="Resolvers\ITypeResolver.cs" />
     <Compile Include="StatusRepresentation.cs" />
     <Compile Include="TableRestore.cs" />
     <Compile Include="TableStore.cs" />

@@ -13,6 +13,7 @@ using NPOI.XSSF.UserModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Metadata;
+using Xbim.IO.TableStore.Resolvers;
 
 namespace Xbim.IO.TableStore
 {
@@ -21,6 +22,7 @@ namespace Xbim.IO.TableStore
         public IModel Model { get; private set; }
         public ModelMapping Mapping { get; private set; }
         public ExpressMetaData MetaData { get { return Model.Metadata; } }
+        public List<ITypeResolver> Resolvers { get; private set; } 
 
         #region Writing data out to a spreadsheet
         /// <summary>
@@ -40,17 +42,23 @@ namespace Xbim.IO.TableStore
         //cache of meta properties so it doesn't have to look them up in metadata all the time
         private readonly  Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>> _typePropertyCache = new Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>>();
 
+        //cache of type path hints used to get the type of an abstract values
+        private Dictionary<ClassMapping, Dictionary<string, int>> _typeHintCache; 
+
         // cache of index column indices for every table in use
         private Dictionary<string, int[]> _multiRowIndicesCache;
 
         //preprocessed enum aliases to speed things up
         private readonly Dictionary<string, string> _enumAliasesCache;
         private readonly Dictionary<string, string> _aliasesEnumCache;
- 
+
+        private readonly List<ForwardReference> _forwardReferences = new List<ForwardReference>(); 
+
         public TableStore(IModel model, ModelMapping mapping)
         {
             Model = model;
             Mapping = mapping;
+            Resolvers = new List<ITypeResolver>();
 
             if (mapping.EnumerationMappings != null && mapping.EnumerationMappings.Any())
             {
@@ -202,7 +210,7 @@ namespace Xbim.IO.TableStore
             foreach (var propertyMapping in mapping.PropertyMappings)
             {
                 object value = null;
-                foreach (var path in propertyMapping.PathsEnumeration)
+                foreach (var path in propertyMapping.Paths)
                 {
                     value = GetValue(entity, expType, path, context);
                     if (value != null) break;
@@ -365,6 +373,25 @@ namespace Xbim.IO.TableStore
             return mapping;
         }
 
+        private readonly Dictionary<string, ExpressType> _tableTypeCache = new Dictionary<string, ExpressType>(); 
+
+        internal ExpressType GetType(string tableName)
+        {
+            if (string.IsNullOrWhiteSpace(tableName))
+                return null;
+
+            ExpressType type;
+            if (_tableTypeCache.TryGetValue(tableName, out type))
+                return type;
+
+            var mapping = Mapping.ClassMappings.FirstOrDefault(
+                m => string.Equals(m.TableName, tableName, StringComparison.OrdinalIgnoreCase));
+            if (mapping != null)
+                type = MetaData.ExpressType(mapping.Class.ToUpper());
+            _tableTypeCache.Add(tableName, type);
+            return type;
+        }
+
         private object GetValue(IPersistEntity entity, ExpressType type, string path, EntityContext context)
         {
             while (true)
@@ -470,7 +497,7 @@ namespace Xbim.IO.TableStore
             }
         }
 
-        private ExpressMetaProperty GetProperty(ExpressType type, string name)
+        internal ExpressMetaProperty GetProperty(ExpressType type, string name)
         {
             ExpressMetaProperty property;
             Dictionary<string, ExpressMetaProperty> properties;

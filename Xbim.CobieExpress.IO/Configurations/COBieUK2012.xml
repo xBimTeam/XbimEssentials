@@ -184,12 +184,12 @@
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="parent.Created.CreatedOn" />
         <PropertyMapping Header="SheetName" Column="D" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]"  IsKey="true"/>
         <PropertyMapping Header="ParentName" Column="E" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Name"  IsKey="true"/>
-        <PropertyMapping Header="ChildNames" Column="F" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="ChildNames" Column="F" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Name" IsKey="true"/>
         <PropertyMapping Header="AssemblyType" Column="G" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="parent.Type.AssetType.Value" />
         <PropertyMapping Header="ExtSystem" Column="H" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="parent.ExternalSystem.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtObject" Column="I" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="parent.ExternalObject.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtIdentifier" Column="J" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="parent.ExternalId"  Hidden="true"/>
-        <PropertyMapping Header="Description" Column="K" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Description" Column="K" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Description" />
       </PropertyMappings>
     </ClassMapping>
     <ClassMapping Class="Connection" TableName="Connection" TableOrder="9" ParentClass="TypeOrComponent" ParentPath="ConnectedBefore">
@@ -373,9 +373,9 @@
     </EnumerationMapping>
   </EnumerationMappings>
   <Scopes>
-    <Scope Class="PickCalue" Scope="Global"/>
-    <Scope Class="ExternalObject" Scope="Global"/>
-    <Scope Class="ExternalSystem" Scope="Global"/>
-    <Scope Class="CreatedInfo" Scope="Global"/>
+    <Scope Class="PickValue" Scope="Model"/>
+    <Scope Class="ExternalObject" Scope="Model"/>
+    <Scope Class="ExternalSystem" Scope="Model"/>
+    <Scope Class="CreatedInfo" Scope="Model"/>
   </Scopes>
 </ModelMapping>

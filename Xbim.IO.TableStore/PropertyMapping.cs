@@ -17,7 +17,13 @@ namespace Xbim.IO.TableStore
         /// </summary>
         [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
         public string Column { get; set; }
-        
+
+        /// <summary>
+        /// Cached index to be used so that letter doesn't have to be converted to the index all the time
+        /// </summary>
+        [XmlIgnore]
+        internal int ColumnIndex { get; set; }
+
         /// <summary>
         /// Status of the column
         /// </summary>
@@ -49,8 +55,18 @@ namespace Xbim.IO.TableStore
         /// Special attribute .[type] might be used to refer to the Express type of the object.
         /// Special variable '()' might be used to refer to object higher in the context of search path within the parent object.
         /// </summary>
-        [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
-        public string Paths { get; set; }
+        [XmlAttribute("Paths", Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        // ReSharper disable once InconsistentNaming
+        public string _Paths
+        {
+            get { return _paths; }
+            set
+            {
+                _paths = value;
+                //empty cache
+                _pathsEnumerationCache = null;
+            }
+        }
 
         /// <summary>
         /// If TRUE the column of this property will be considered to be a key for deserialization
@@ -64,16 +80,19 @@ namespace Xbim.IO.TableStore
         [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
         public bool IsMultiRowIdentity { get; set; }
 
+        private List<string> _pathsEnumerationCache;
+        private string _paths;
+
         /// <summary>
         /// Preprocessed list of paths where value might be found.
         /// </summary>
         [XmlIgnore]
-        public IEnumerable<string> PathsEnumeration {
+        public IEnumerable<string> Paths {
             get
             {
-                return string.IsNullOrWhiteSpace(Paths) ? 
-                    Enumerable.Empty<string>() : 
-                    Paths.Split(',').Select(p => p.Trim(' '));
+                return _pathsEnumerationCache ?? (_pathsEnumerationCache =  string.IsNullOrWhiteSpace(_Paths) ? 
+                    new List<string>() : 
+                    _Paths.Split(',').Select(p => p.Trim(' ')).ToList());
             }
         }
     }
