@@ -62,6 +62,8 @@ namespace Xbim.IO.TableStore
             //refresh cache. This might change in between two loadings
             _multiRowIndicesCache = new Dictionary<string, int[]>();
             _typeHintCache = new Dictionary<ClassMapping, Dictionary<string, int>>();
+            _isMultiRowMappingCache = new Dictionary<ClassMapping, bool>();
+            _referenceContexts = new Dictionary<ClassMapping, ReferenceContext>();
             _forwardReferences.Clear();
 
             //create spreadsheet representaion 
@@ -113,10 +115,14 @@ namespace Xbim.IO.TableStore
             //cache key columns
             CacheMultiRowIndices(mapping);
 
+            //cache contexts
+            CacheReferenceContexts(mapping);
+
             //iterate over rows (be careful about MultiRow != None, merge values if necessary)
             var enumerator = sheet.GetRowEnumerator();
             IRow lastRow = null;
             IPersistEntity lastEntity = null;
+            var emptyCells = 0;
             while (enumerator.MoveNext())
             {
                 var row = enumerator.Current as IRow;
@@ -124,10 +130,29 @@ namespace Xbim.IO.TableStore
                 if (row == null || row.RowNum == 0)
                     continue;
 
+                if (!row.Cells.Any())
+                {
+                    emptyCells++;
+                    if (emptyCells == 3)
+                        //break processing if this is third empty row
+                        break;
+                    //skip empty row
+                    continue;
+                }
+                emptyCells = 0;
+
                 //last row might be used in case this is a MultiRow
                 lastEntity = LoadFromRow(row, mapping, lastRow, lastEntity);
                 lastRow = row;
             }
+        }
+
+        private void CacheReferenceContexts(ClassMapping mapping)
+        {
+            if (_referenceContexts.ContainsKey(mapping))
+                return;
+            var context = new ReferenceContext(this, mapping);
+            _referenceContexts.Add(mapping, context);
         }
 
         /// <summary>
@@ -204,7 +229,7 @@ namespace Xbim.IO.TableStore
             var colIdx = pMapping.ColumnIndex;
             var cell = row.GetCell(colIdx);
             //if it is not defined or it is just a default value, do nothing
-            if (cell == null || (cell.CellType == CellType.String && string.Compare(cell.StringCellValue, pMapping.DefaultValue, StringComparison.OrdinalIgnoreCase) == 0))
+            if (cell == null || (cell.CellType == CellType.String && string.Equals(cell.StringCellValue, pMapping.DefaultValue, StringComparison.OrdinalIgnoreCase)))
                 return;
 
             //only first of possible search paths is used to set the value
@@ -383,7 +408,7 @@ namespace Xbim.IO.TableStore
             return null;
         }
 
-        private Type GetSimpleValueEnumType(Type type)
+        private static Type GetSimpleValueEnumType(Type type)
         {
             if (type.IsValueType || type== typeof(string))
                 return null;
@@ -397,8 +422,6 @@ namespace Xbim.IO.TableStore
                 : null;
         }
 
-        private List<ExpressType> _globalTypes;
-
         private bool IsGlobalType(Type type)
         {
             var gt = _globalTypes ??
@@ -409,17 +432,35 @@ namespace Xbim.IO.TableStore
             return gt.Any(t => t.Type == type || t.SubTypes.Any(st => st.Type == type));
         }
 
+
         private bool IsMultiRow(IRow row, ClassMapping mapping, IRow lastRow)
         {
             if (lastRow == null) return false;
 
-            if (mapping.PropertyMappings == null || !mapping.PropertyMappings.Any())
-                return false;
+            bool isMultiMapping;
+            if (_isMultiRowMappingCache.TryGetValue(mapping, out isMultiMapping))
+            {
+                if (!isMultiMapping) return false;
+            }
+            else
+            {
+                if (mapping.PropertyMappings == null || !mapping.PropertyMappings.Any())
+                {
+                    _isMultiRowMappingCache.Add(mapping, false);
+                    return false;
+                }
 
-            var multiRowProperty = mapping.PropertyMappings.FirstOrDefault(m => m.MultiRow != MultiRow.None);
-            if (multiRowProperty == null)
-                return false;
+                var multiRowProperty = mapping.PropertyMappings.FirstOrDefault(m => m.MultiRow != MultiRow.None);
+                if (multiRowProperty == null)
+                {
+                    _isMultiRowMappingCache.Add(mapping, false);
+                    return false;
+                }
 
+                _isMultiRowMappingCache.Add(mapping, true);
+            }
+
+            
             var keyIndices = GetIdentityIndices(mapping);
             foreach (var index in keyIndices)
             {
@@ -476,7 +517,7 @@ namespace Xbim.IO.TableStore
             string typeName = null;
 
             //type hint property has priority
-            var hintProperty = mapping.PropertyMappings.FirstOrDefault(m => string.Equals(m._Paths, "[type]", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(m.Column));
+            var hintProperty = mapping.PropertyMappings.FirstOrDefault(m => string.Equals(m.Paths.FirstOrDefault(), "[type]", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(m.Column));
 
             if (hintProperty != null)
             {

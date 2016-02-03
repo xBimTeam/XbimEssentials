@@ -97,6 +97,8 @@ namespace Xbim.MemoryModel.Tests
                 txn.Commit();
             }
 
+            var context = new ReferenceContext(storage, mapping.ClassMappings.First(m => m.Class == "Attribute"));
+
             var facility = model.Instances.FirstOrDefault<CobieFacility>();
             var type = model.Instances.FirstOrDefault<CobieType>();
 

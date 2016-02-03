@@ -145,33 +145,6 @@ namespace Xbim.IO.TableStore
             }
         }
 
-        //todo: this should be cached in Store by property mapping and initial ExpressType
-        private List<ExpressMetaProperty> GetPath(string path, ExpressType type = null) 
-        {
-            if(string.IsNullOrWhiteSpace(path))
-                return new List<ExpressMetaProperty>();
-
-            var result = new List<ExpressMetaProperty>();
-            type = type ?? _handle.EntityExpressType;
-            var parts = path.Split('.');
-            foreach (var part in parts)
-            {
-                var eProp = Store.GetProperty(type, part);
-                if (eProp == null)
-                {
-                    _log.WriteLine("Type {0} doesn't have a property {1}", type.ExpressName, part);
-                    return new List<ExpressMetaProperty>();
-                }
-                result.Add(eProp);
-                type = Model.Metadata.ExpressType(eProp.EnumerableType ?? eProp.PropertyInfo.PropertyType);
-                
-                if (type != null) continue;
-                _log.WriteLine("Type {0} is not express type", (eProp.EnumerableType ?? eProp.PropertyInfo.PropertyType).Name);
-                return new List<ExpressMetaProperty>();
-            }
-            return result;
-        }
-
         private IEnumerable<IPersistEntity> GetReferencedEntities(string pathBase, ExpressType type)
         {
             //get parent values to find the parent object

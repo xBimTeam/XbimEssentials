@@ -52,7 +52,17 @@ namespace Xbim.IO.TableStore
         private readonly Dictionary<string, string> _enumAliasesCache;
         private readonly Dictionary<string, string> _aliasesEnumCache;
 
-        private readonly List<ForwardReference> _forwardReferences = new List<ForwardReference>(); 
+        //list of forward references to be resolved
+        private readonly List<ForwardReference> _forwardReferences = new List<ForwardReference>();
+
+        //cached check if the mapping contains any potentially multi-value columns
+        private Dictionary<ClassMapping, bool> _isMultiRowMappingCache;
+
+        //cache of global types so that it is not necessary to search and validate in configuration
+        private List<ExpressType> _globalTypes;
+
+        //cache of all reference contexts which are only built once (string parsing, search for express properties and types)
+        private Dictionary<ClassMapping, ReferenceContext> _referenceContexts; 
 
         public TableStore(IModel model, ModelMapping mapping)
         {
@@ -528,7 +538,7 @@ namespace Xbim.IO.TableStore
             return value;
         }
 
-        private PropertyInfo GetPropertyInfo(string name, ExpressType type, object index)
+        internal PropertyInfo GetPropertyInfo(string name, ExpressType type, object index)
         {
             var isIndexed = index != null;
             PropertyInfo pInfo;
@@ -558,7 +568,7 @@ namespace Xbim.IO.TableStore
             return pInfo;
         }
 
-        private static object GetPropertyIndex(ref string pathPart)
+        public static object GetPropertyIndex(ref string pathPart)
         {
             var isIndexed = pathPart.Contains("[") && pathPart.Contains("]");
             if (!isIndexed) return null;

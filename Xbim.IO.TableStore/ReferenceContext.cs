@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using NPOI.SS.UserModel;
+using Xbim.Common;
 using Xbim.Common.Metadata;
 
 namespace Xbim.IO.TableStore
 {
-    internal class ReferenceContext
+    public class ReferenceContext
     {
         public string Segment { get; set; }
         public List<PropertyMapping> Mappings { get; private set; }
@@ -32,6 +34,9 @@ namespace Xbim.IO.TableStore
         private TableStore Store { get; set; }
         private ClassMapping CMapping { get; set; }
         public object[] KeyValues { get; private set; }
+        public object Index { get; private set; }
+        public PropertyInfo PropertyInfo { get; private set; }
+        public bool IsRoot { get { return ParentContext == null; } }
         
         /// <summary>
         /// Only scalar children. These can be used to find an object
@@ -63,12 +68,12 @@ namespace Xbim.IO.TableStore
             Mappings = new List<PropertyMapping>();
             Children = new List<ReferenceContext>();
             ContextType = ReferenceContextType.Root;
-            PathTypeHint = Store.MetaData.ExpressType(cMapping.Class);
+            PathTypeHint = Store.MetaData.ExpressType(cMapping.Class.ToUpper());
 
             if (cMapping.PropertyMappings == null || !cMapping.PropertyMappings.Any())
                 return;
 
-            var parentPath = cMapping.ParentPath.Split('.').ToList();
+            var parentPath = (cMapping.ParentPath ?? "") .Split('.').ToList();
             foreach (var mapping in cMapping.PropertyMappings)
             {
                 var path = mapping.Paths.FirstOrDefault();
@@ -77,6 +82,7 @@ namespace Xbim.IO.TableStore
 
                 var segments = path.Split('.').ToList();
 
+                //if path uses upper context of parent, fix the path to be relative to parent
                 if (path[0] == '(')
                 {
                     var levelCount = path.Count(c => c == '(');
@@ -92,8 +98,11 @@ namespace Xbim.IO.TableStore
 
         }
 
-        private ReferenceContext(string segment, ReferenceContext parent)
+        private ReferenceContext(string segment, ReferenceContext parent, TableStore store, ClassMapping cMapping)
         {
+            Store = store;
+            CMapping = cMapping;
+
             //init lists
             Mappings = new List<PropertyMapping>();
             Children = new List<ReferenceContext>();
@@ -103,41 +112,57 @@ namespace Xbim.IO.TableStore
             var parts = segment.Split('\\');
             segment = parts[0];
             var typeHint = parts.Length > 1 ? parts[1] : null;
-
             Segment = segment;
+
             //set up path type hint if it is defined
             if (!string.IsNullOrWhiteSpace(typeHint))
-                PathTypeHint = Store.MetaData.ExpressType(typeHint);
+                PathTypeHint = Store.MetaData.ExpressType(typeHint.ToUpper());
 
             if (segment == "parent")
             {
-                PathTypeHint = Store.MetaData.ExpressType(CMapping.ParentClass);
+                PathTypeHint = Store.MetaData.ExpressType(CMapping.ParentClass.ToUpper());
                 ContextType = ReferenceContextType.Entity;
                 return;
             }
 
+            Index = TableStore.GetPropertyIndex(ref segment);
+            PropertyInfo = Store.GetPropertyInfo(segment, parent.SegmentType, Index);
             MetaProperty = Store.GetProperty(parent.SegmentType, segment);
-            if (MetaProperty == null)
+            var info = PropertyInfo != null
+                    ? PropertyInfo.PropertyType
+                    : (MetaProperty != null
+                        ? MetaProperty.EnumerableType ?? MetaProperty.PropertyInfo.PropertyType
+                        : null);
+
+            if (info == null)
             {
                 Store.Log.WriteLine("Type {0} doesn't have a property {1}.", parent.PathTypeHint.ExpressName, segment);
                 return;
             }
 
-            
-            PropertyTypeHint = Store.MetaData.ExpressType(MetaProperty.EnumerableType ?? MetaProperty.PropertyInfo.PropertyType);
+            PropertyTypeHint = Store.MetaData.ExpressType(MetaProperty != null ?
+                    MetaProperty.EnumerableType ?? MetaProperty.PropertyInfo.PropertyType :
+                    (PropertyInfo != null ? PropertyInfo.PropertyType : null) 
+                );
+
 
             //set up type of the context
-            var isEnumerable = MetaProperty.EnumerableType != null;
+            var isEnumerable = MetaProperty != null && MetaProperty.EnumerableType != null;
             if (isEnumerable)
             {
-                if(MetaProperty.EnumerableType.IsValueType || MetaProperty.EnumerableType == typeof(string))
+                if(MetaProperty.EnumerableType.IsValueType || 
+                    MetaProperty.EnumerableType == typeof(string) || 
+                    typeof(IExpressValueType).IsAssignableFrom(MetaProperty.EnumerableType))
                     ContextType = ReferenceContextType.ScalarList;
                 else
                     ContextType = ReferenceContextType.EntityList;
             }
             else
             {
-                if (MetaProperty.PropertyInfo.PropertyType.IsValueType || MetaProperty.PropertyInfo.PropertyType == typeof(string))
+                
+                if (info.IsValueType || 
+                    info == typeof(string) || 
+                    typeof(IExpressValueType).IsAssignableFrom(info))
                     ContextType = ReferenceContextType.Scalar;
                 else
                     ContextType = ReferenceContextType.Entity;
@@ -179,7 +204,7 @@ namespace Xbim.IO.TableStore
             {
                 var map = Mappings.First();
                 var cell = row.GetCell(map.ColumnIndex);
-                if (cell == null || cell.CellType != CellType.String) 
+                if (cell == null || cell.CellType != CellType.String || string.Equals(cell.StringCellValue, map.DefaultValue, StringComparison.OrdinalIgnoreCase)) 
                     return;
 
                 var strValue = cell.StringCellValue;
@@ -192,8 +217,12 @@ namespace Xbim.IO.TableStore
             {
                 var map = Mappings.First();
                 var cell = row.GetCell(map.ColumnIndex);
-                if (cell != null)
-                    KeyValues = new [] { Store.CreateSimpleValue(SegmentType.Type, cell) };
+                if (cell != null &&
+                    (cell.CellType != CellType.String ||
+                     !string.Equals(cell.StringCellValue, map.DefaultValue, StringComparison.OrdinalIgnoreCase)))
+                {
+                    KeyValues = new[] {Store.CreateSimpleValue(SegmentType.Type, cell)};
+                }
             }
         }
 
@@ -207,18 +236,16 @@ namespace Xbim.IO.TableStore
             var segmentName = segment.Split('\\')[0];
 
             //handle special cases
-            if (segments.Count != 1)
+            switch (segment)
             {
-                var nextSegment = segments[1].Split('\\')[0];
-                switch (nextSegment)
-                {
-                    case "[table]":
-                        TableHintMapping = pMapping;
-                        return;
-                    case "[type]":
-                        TypeHintMapping = pMapping;
-                        return;
-                }
+                case "[table]":
+                    TableHintMapping = pMapping;
+                    Mappings.Remove(pMapping);
+                    return;
+                case "[type]":
+                    TypeHintMapping = pMapping;
+                    Mappings.Remove(pMapping);
+                    return;
             }
 
             var existChild = Children.FirstOrDefault(c => c.Segment == segmentName);
@@ -226,14 +253,14 @@ namespace Xbim.IO.TableStore
                 existChild.AddMapping(pMapping, segments.GetRange(1, segments.Count - 1));
             else
             {
-                var child = new ReferenceContext(segment, this) { Store = Store, CMapping = CMapping };
+                var child = new ReferenceContext(segment, this, Store, CMapping);
                 child.AddMapping(pMapping, segments.GetRange(1, segments.Count - 1));
                 Children.Add(child);
             }
         }
     }
 
-    internal enum ReferenceContextType
+    public enum ReferenceContextType
     {
         Root,
         Entity,
