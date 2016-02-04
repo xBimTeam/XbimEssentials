@@ -42,9 +42,6 @@ namespace Xbim.IO.TableStore
         //cache of meta properties so it doesn't have to look them up in metadata all the time
         private readonly  Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>> _typePropertyCache = new Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>>();
 
-        //cache of type path hints used to get the type of an abstract values
-        private Dictionary<ClassMapping, Dictionary<string, int>> _typeHintCache; 
-
         // cache of index column indices for every table in use
         private Dictionary<string, int[]> _multiRowIndicesCache;
 
@@ -60,6 +57,7 @@ namespace Xbim.IO.TableStore
 
         //cache of global types so that it is not necessary to search and validate in configuration
         private List<ExpressType> _globalTypes;
+        private readonly Dictionary<ExpressType, Dictionary<string, IPersistEntity>> _globalEntities = new Dictionary<ExpressType, Dictionary<string, IPersistEntity>>();
 
         //cache of all reference contexts which are only built once (string parsing, search for express properties and types)
         private Dictionary<ClassMapping, ReferenceContext> _referenceContexts; 

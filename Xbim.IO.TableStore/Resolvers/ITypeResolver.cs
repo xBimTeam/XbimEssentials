@@ -26,5 +26,6 @@ namespace Xbim.IO.TableStore.Resolvers
         /// <param name="pMapping">Mapping for the current cell and property</param>
         /// <returns>non-abstract type</returns>
         Type Resolve(Type type, ICell cell, ClassMapping cMapping, PropertyMapping pMapping);
+        ExpressType Resolve(ExpressType abstractType, ReferenceContext context);
     }
 }

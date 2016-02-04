@@ -4,13 +4,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.SS.Util;
 using NPOI.XSSF.UserModel;
 using Xbim.Common;
-using Xbim.Common.Exceptions;
 using Xbim.Common.Metadata;
 
 namespace Xbim.IO.TableStore
@@ -61,10 +59,10 @@ namespace Xbim.IO.TableStore
 
             //refresh cache. This might change in between two loadings
             _multiRowIndicesCache = new Dictionary<string, int[]>();
-            _typeHintCache = new Dictionary<ClassMapping, Dictionary<string, int>>();
             _isMultiRowMappingCache = new Dictionary<ClassMapping, bool>();
             _referenceContexts = new Dictionary<ClassMapping, ReferenceContext>();
             _forwardReferences.Clear();
+            _globalEntities.Clear();
 
             //create spreadsheet representaion 
             LoadFromWoorkbook(workbook);
@@ -97,8 +95,8 @@ namespace Xbim.IO.TableStore
                 reference.Resolve(Log);
             _forwardReferences.Clear();
 
-            //load partial tables (also just a references)
-
+            //todo: load partial tables (also just a references)
+            
             //be happy
         }
 
@@ -116,7 +114,7 @@ namespace Xbim.IO.TableStore
             CacheMultiRowIndices(mapping);
 
             //cache contexts
-            CacheReferenceContexts(mapping);
+            var context = GetReferenceContext(mapping);
 
             //iterate over rows (be careful about MultiRow != None, merge values if necessary)
             var enumerator = sheet.GetRowEnumerator();
@@ -142,17 +140,19 @@ namespace Xbim.IO.TableStore
                 emptyCells = 0;
 
                 //last row might be used in case this is a MultiRow
-                lastEntity = LoadFromRow(row, mapping, lastRow, lastEntity);
+                lastEntity = LoadFromRow(row, context, lastRow, lastEntity);
                 lastRow = row;
             }
         }
 
-        private void CacheReferenceContexts(ClassMapping mapping)
+        private ReferenceContext GetReferenceContext(ClassMapping mapping)
         {
-            if (_referenceContexts.ContainsKey(mapping))
-                return;
-            var context = new ReferenceContext(this, mapping);
+            ReferenceContext context;
+            if (_referenceContexts.TryGetValue(mapping, out context))
+                return context;
+            context = new ReferenceContext(this, mapping);
             _referenceContexts.Add(mapping, context);
+            return context;
         }
 
         /// <summary>
@@ -190,236 +190,106 @@ namespace Xbim.IO.TableStore
 
         }
 
-        private IPersistEntity LoadFromRow(IRow row, ClassMapping mapping, IRow lastRow, IPersistEntity lastEntity)
+        private IPersistEntity LoadFromRow(IRow row, ReferenceContext context, IRow lastRow, IPersistEntity lastEntity)
         {
-            var multirow = IsMultiRow(row, mapping, lastRow);
+            //load data into the context
+            context.LoadData(row);
 
+            var multirow = IsMultiRow(row, context.CMapping, lastRow);
             if (multirow)
             {
                 //only add multivalue to the multivalue properties of last entity
-                var multiProps = mapping.PropertyMappings.Where(m => m.MultiRow != MultiRow.None);
-                var lastExpType = lastEntity.ExpressType;
-                foreach (var prop in multiProps)
-                {
-                    SetPropertyValue(lastEntity, lastExpType, prop, row, mapping);
-                }
-                //throw new NotImplementedException();
+                var subContexts = context.AllScalarChildren.Where(c => c.Mapping.MultiRow != MultiRow.None);
+                foreach (var ctx in subContexts)
+                    ResolveSubContext(ctx, lastEntity);
                 return lastEntity;
             }
 
+
             //get type of the coresponding object from ClassMapping or from a type hint, create instance
-            var entity = GetNewEntity(row, mapping);
-            var eType = entity.ExpressType;
-            foreach (var prop in mapping.PropertyMappings.Where(m => m.Status != DataStatus.Reference))
+            return ResolveContext(context);
+        }
+
+        private IPersistEntity ResolveContext(ReferenceContext context)
+        {
+            var eType = GetConcreteType(context);
+            IPersistEntity entity = null;
+            if (IsGlobalType(eType.Type) && GetOrCreateGlobalEntity(context, out entity, eType))
             {
-                //fill in simple value fields
-                SetPropertyValue(entity, eType, prop, row, mapping);
+                return entity;
             }
 
-            if (mapping.PropertyMappings.Any(m => m.Status != DataStatus.Reference))
+            //todo: only create new if it is not a reference
+            //create new entity if new global one was not created
+            if(entity == null)
+                entity = Model.Instances.New(eType.Type);
+
+            //scalar values to be set to the entity
+            foreach (var scalar in context.ScalarChildren)
             {
-                _forwardReferences.Add(new ForwardReference(entity, row, mapping, this));
+                var values = scalar.KeyValues;
+                if (values == null || values.Length == 0)
+                    continue;
+                if (scalar.ContextType == ReferenceContextType.ScalarList)
+                {
+                    //is should be ItemSet which is always initialized and inherits from IList
+                    var list = scalar.PropertyInfo.GetValue(entity, null) as IList;
+                    if(list == null)
+                        continue;
+                    foreach (var value in values)
+                        list.Add(value);
+                    continue;
+                }
+
+                //it is a single value
+                scalar.PropertyInfo.SetValue(entity, values[0], scalar.Index != null ? new []{scalar.Index} : null);
             }
+
+            //nested entities (global, local, referenced)
+            foreach (var child in context.EntityChildren)
+            {
+                var index = child.Index == null ? null : new[] {child.Index};
+                if (child.ContextType == ReferenceContextType.EntityList)
+                {
+                    //todo: we need to use a list(s) down the stream to get or create multiple objects
+                    //var set = child.PropertyInfo.GetValue(entity, index) as IList;
+                    //if (set != null)
+                    //    set.Add();
+
+                    //todo: handle situation where it is a forward reference
+                    throw new NotImplementedException();
+                    continue;
+                }
+
+                //it is a single entity but it might be a forward reference
+                var cEntity = ResolveContext(child);
+                child.PropertyInfo.SetValue(entity, cEntity, index);
+                //todo: handle situation where it is a forward reference
+                throw new NotImplementedException();
+            }
+
             return entity;
         }
 
-        //Express Type could be obtained inside but it would involve unnecessary number of look-ups internally
-        private void SetPropertyValue(IPersistEntity entity, ExpressType eType, PropertyMapping pMapping, IRow row, ClassMapping cMapping)
+        private void ResolveSubContext(ReferenceContext subContext, IPersistEntity rootEntity)
         {
-            var colIdx = pMapping.ColumnIndex;
-            var cell = row.GetCell(colIdx);
-            //if it is not defined or it is just a default value, do nothing
-            if (cell == null || (cell.CellType == CellType.String && string.Equals(cell.StringCellValue, pMapping.DefaultValue, StringComparison.OrdinalIgnoreCase)))
-                return;
-
-            //only first of possible search paths is used to set the value
-            var path = pMapping.Paths.FirstOrDefault();
-            if (string.IsNullOrWhiteSpace(path))
-                return;
-
-            //We have created this object already (entity). If this cell contains any useful information
-            //it had been used before.
-            if (string.Equals(path, "[type]", StringComparison.Ordinal))
-                return;
-
-            if (pMapping.Status == DataStatus.Reference)
-                //forward reference was created already elsewhere
-                return;
-
-            SetPropertyValue(entity, eType, path, cell, cMapping, pMapping);
-        }
-
-        private void SetPropertyValue(IPersistEntity entity, ExpressType eType, string path, ICell cell, ClassMapping cMapping, PropertyMapping pMapping)
-        {
-            //process the path (simple value, local reference, global reference)
-            var parts = path.Split('.');
-            for (var ip = 0; ip < parts.Length; ip++)
+            //get context path from root entity
+            var ctxStack = new Stack<ReferenceContext>();
+            while (subContext != null)
             {
-                var propName = parts[ip];
-                var index = GetPropertyIndex(ref propName);
-                var pInfo = GetPropertyInfo(propName, eType, index);
+                ctxStack.Push(subContext);
+                subContext = subContext.ParentContext;
+            }
 
-                var pType = pInfo.PropertyType;
-                //if it is an abstract type or interface we need to find a concrete type
-                if (pType.IsAbstract)
-                {
-                    pType = GetConcreteType(pType, cMapping, cell, pMapping);
-                    if (pType == null)
-                    {
-                        Log.WriteLine("It wasn't possible to find a concrete type for row {0}, cell {1}, table {2}", cell.Row.RowNum, cell.ColumnIndex, cMapping.TableName);
-                        break;
-                    }
-                }
-
-                //simple value
-                if (pType.IsValueType || typeof(string) == pType)
-                {
-                    if (pInfo.GetSetMethod() == null)
-                    {
-                        if (pInfo.DeclaringType != null)
-                            Log.WriteLine("There is no setter for {0} in {1}", pInfo.Name, pInfo.DeclaringType.Name);
-                        break;
-                    }
-                    SetSimpleValue(pInfo, entity, cell, index);
-                    break;
-                }
-
-                //simple value enumeration
-                var setType = GetSimpleValueEnumType(pType);
-                if (setType != null)
-                {
-                    var set = pInfo.GetValue(entity, null) as IList;
-                    if (set != null && cell.CellType == CellType.String)
-                    {
-                        var strVal = cell.StringCellValue;
-                        var strParts = strVal.Split(new[] { Mapping.ListSeparator },
-                            StringSplitOptions.RemoveEmptyEntries)
-                            .Select(i => i.Trim());
-                        foreach (var strPart in strParts)
-                        {
-                            var val = CreateSimpleValue(setType, strPart);
-                            if (val != null)
-                                set.Add(val);
-                        }
-                        break;
-                    }
-                }
-
-                if (!pType.IsAbstract && typeof(IPersistEntity).IsAssignableFrom(pType))
-                {
-                    if (IsGlobalType(pType))
-                    {
-                        //todo: get or create after all entities are read (so it can use created entities by key values)
-                    }
-                    else
-                    {
-                        //get (if it was created before for other path) or create
-                        var child = pInfo.GetValue(entity, index == null ? null : new[] { index }) as IPersistEntity;
-                        if (child == null)
-                        {
-                            child = Model.Instances.New(pType);
-                            pInfo.SetValue(entity, child, index == null ? null : new[] { index });
-                        }
-                            
-
-                        //get sub-path
-                        var subParts = parts.ToList().GetRange(ip + 1, parts.Length - ip - 1);
-                        var subPath = string.Join(".", subParts);
-
-                        //recursive set values
-                        SetPropertyValue(child, child.ExpressType, subPath, cell, cMapping, pMapping);
-                    }
-                    break;
-                }
-
-                var eProperty = GetProperty(eType, propName);
+            //use path to get to the bottom of the stact and add the value to it
+            ReferenceContext context;
+            var entity = rootEntity;
+            while ((context = ctxStack.Pop()) != null)
+            {
+                //browse to the level of the bottom context and call ResolveContext there
+                throw new NotImplementedException();
                 
-                //enumerable of IPersistEntity or IEspressSelect
-                if (eProperty.EnumerableType != null)
-                {
-                    if (eProperty.IsInverse)
-                    {
-                        Log.WriteLine("Inverse property {0} of {1} is used in a way where it is not possible to load it into memory.", propName, eType.ExpressName);
-                        break;
-                    }
-                    if (eProperty.IsDerived)
-                    {
-                        Log.WriteLine("Derived property {0} of {1} is used in a way where it is not possible to load it into memory.", propName, eType.ExpressName);
-                        break;
-                    }
-                    Log.WriteLine("Property {0} of {1} is used in a way where it is not possible to load it into memory. It should probably be marked as a reference value.", propName, eType.ExpressName);
-                    break;
-                }
             }
-        }
-
-
-        private Type GetConcreteType(Type absType, ClassMapping cMapping, ICell cell, PropertyMapping pMapping)
-        {
-            //if it is not an abstract type just return it
-            if (!absType.IsAbstract)
-                return absType;
-
-            int hintColumn;
-            Dictionary<string, int> hintPaths;
-            if (!_typeHintCache.TryGetValue(cMapping, out hintPaths))
-            {
-                hintPaths = new Dictionary<string, int>();
-                _typeHintCache.Add(cMapping, hintPaths);
-            }
-            var path = pMapping.Paths.FirstOrDefault() ?? "";
-            if (!hintPaths.TryGetValue(path, out hintColumn))
-            {
-                //try to find a hint
-                var pattern = path + "[type]";
-                var hintMapping = cMapping.PropertyMappings
-                    .FirstOrDefault(m => m.Paths.Any(p => p.EndsWith(pattern)));
-                hintColumn = hintMapping != null
-                    ? hintMapping.ColumnIndex
-                    : -1;
-                hintPaths.Add(path, hintColumn);
-            }
-
-            //try to get a hint type from a cell
-            if (hintColumn >= 0)
-            {
-                var hintCell = cell.Row.GetCell(hintColumn);
-                if (hintCell != null && hintCell.CellType == CellType.String)
-                {
-                    var hintType = hintCell.StringCellValue;
-                    if (!string.IsNullOrWhiteSpace(hintType))
-                    {
-                        var result = MetaData.ExpressType(hintType.ToUpper());
-                        if (result != null && !result.Type.IsAbstract)
-                            return result.Type;
-                    }
-                }
-            }
-
-            //use resolver if available
-            if (Resolvers != null)
-            {
-                var resolver = Resolvers.FirstOrDefault(r => r.CanResolve(absType));
-                if (resolver != null)
-                    return resolver.Resolve(absType, cell, cMapping, pMapping);
-            }
-
-            //return null if no non-abstract type could have been found
-            return null;
-        }
-
-        private static Type GetSimpleValueEnumType(Type type)
-        {
-            if (type.IsValueType || type== typeof(string))
-                return null;
-
-            if (!type.IsGenericType)
-                return null;
-
-            type = type.GetGenericArguments()[0];
-            return type.IsValueType || type == typeof (string)
-                ? type
-                : null;
         }
 
         private bool IsGlobalType(Type type)
@@ -431,7 +301,6 @@ namespace Xbim.IO.TableStore
                              .ToList());
             return gt.Any(t => t.Type == type || t.SubTypes.Any(st => st.Type == type));
         }
-
 
         private bool IsMultiRow(IRow row, ClassMapping mapping, IRow lastRow)
         {
@@ -506,45 +375,83 @@ namespace Xbim.IO.TableStore
             return true;
         }
 
-        private IPersistEntity GetNewEntity(IRow row, ClassMapping mapping)
+        /// <summary>
+        /// Returns true if it exists, FALSE if new entity fas created and needs to be filled in with data
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="entity"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private bool GetOrCreateGlobalEntity(ReferenceContext context, out IPersistEntity entity, ExpressType type = null)
         {
-            var eType = GetConcreteType(row, mapping);
-            return Model.Instances.New(eType.Type);
+            type = type ?? GetConcreteType(context);
+            Dictionary<string, IPersistEntity> entities;
+            if (!_globalEntities.TryGetValue(type, out entities))
+            {
+                entities = new Dictionary<string, IPersistEntity>();
+                _globalEntities.Add(type, entities);
+            }
+
+            var keys =
+                    context.AllScalarChildren.OrderBy(c => c.Segment)
+                        .Where(c => c.KeyValues != null)
+                        .SelectMany(c => c.KeyValues.Select(v => v.ToString()));
+            var key = string.Join(", ", keys);
+            if (entities.TryGetValue(key, out entity))
+                return true;
+
+            entity = Model.Instances.New(type.Type);
+            entities.Add(key, entity);
+            return false;
         }
 
-        private ExpressType GetConcreteType(IRow row, ClassMapping mapping)
+        internal Type GetConcreteType(ReferenceContext context, ICell cell)
         {
-            string typeName = null;
+            var cType = context.SegmentType;
+            if (cType != null && !cType.Type.IsAbstract)
+                return cType.Type;
 
-            //type hint property has priority
-            var hintProperty = mapping.PropertyMappings.FirstOrDefault(m => string.Equals(m.Paths.FirstOrDefault(), "[type]", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(m.Column));
-
-            if (hintProperty != null)
+            //use custom type resolver if there is a one which can resolve this type
+            if (cType != null && Resolvers != null && Resolvers.Any())
             {
-                var hintCell = row.GetCell(hintProperty.ColumnIndex);
-                if (hintCell != null && hintCell.CellType == CellType.String)
-                    typeName = hintCell.StringCellValue;
+                var resolver = Resolvers.FirstOrDefault(r => r.CanResolve(cType));
+                if (resolver != null)
+                    return resolver.Resolve(cType.Type, cell, context.CMapping, context.Mapping);
             }
-            else
-                typeName = mapping.Class;
 
-            if (string.IsNullOrWhiteSpace(typeName))
-                return null;
+            Log.WriteLine("It wasn't possible to find a non-abstract type for table {0}, class {1}",
+                context.CMapping.TableName, context.CMapping.Class);
+            return null;
+        }
 
-            var eType = MetaData.ExpressType(typeName.ToUpper());
-            if (eType != null && !eType.Type.IsAbstract)
-                return eType;
+        private ExpressType GetConcreteType(ReferenceContext context)
+        {
+            var cType = context.SegmentType;
+            if (cType != null && !cType.Type.IsAbstract)
+                return cType;
+
 
             //use fallback to retrieve a non-abstract type (defined in a configuration file?)
-            var fbTypeName = mapping.FallBackConcreteType;
-            if (string.IsNullOrWhiteSpace(fbTypeName))
-                throw new XbimException(string.Format("It wasn't possible to find a non-abstract type for table {0}, class {1}", mapping.TableName, mapping.Class));
+            var fbTypeName = context.CMapping.FallBackConcreteType;
+            if (context.IsRoot && !string.IsNullOrWhiteSpace(fbTypeName))
+            {
+                var eType = MetaData.ExpressType(fbTypeName.ToUpper());
+                if (eType != null && !eType.Type.IsAbstract)
+                    return eType;
+            }    
+            
 
-            eType = MetaData.ExpressType(fbTypeName.ToUpper());
-            if (eType != null && !eType.Type.IsAbstract)
-                return eType;
+            //use custom type resolver if there is a one which can resolve this type
+            if (cType != null && Resolvers != null && Resolvers.Any())
+            {
+                var resolver = Resolvers.FirstOrDefault(r => r.CanResolve(cType));
+                if(resolver != null)
+                    return resolver.Resolve(cType, context);
+            }
 
-            throw new XbimException(string.Format("It wasn't possible to find a non-abstract type for table {0}, class {1}", mapping.TableName, mapping.Class));
+            Log.WriteLine("It wasn't possible to find a non-abstract type for table {0}, class {1}",
+                context.CMapping.TableName, context.CMapping.Class);
+            return null;
         }
 
         private static void CacheColumnIndices(ClassMapping mapping)
@@ -843,24 +750,6 @@ namespace Xbim.IO.TableStore
 
             //if not suitable type was found, report it 
             throw new Exception("Unsupported type " + type.Name + " for value '" + cell + "'");
-        }
-
-        private void SetSimpleValue(PropertyInfo info, object obj, ICell cell, object index = null)
-        {
-            //check there is a setter defined for this property
-            if (info.GetSetMethod() == null)
-            {
-                if (info.DeclaringType != null)
-                    Log.WriteLine("There is no setter for {0} in {1}", info.Name, info.DeclaringType.Name);
-                return;
-            }
-
-            //return if there is no value in she cell
-            if (cell.CellType == CellType.Blank) return;
-
-            var type = info.PropertyType;
-            var value = CreateSimpleValue(type, cell);
-            info.SetValue(obj, value, index == null ? null : new []{index});
         }
 
         private string GetAliasEnumName(Type type, string alias)

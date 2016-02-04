@@ -220,7 +220,7 @@ namespace Xbim.CobieExpress.IO
                 refObj.Created = _modifiedInfo;
         }
 
-        public void SetDefaultNewEntityInfo(DateTime date, string email, string givenName, string familyName)
+        public CobieCreatedInfo SetDefaultNewEntityInfo(DateTime date, string email, string givenName, string familyName)
         {
             _newInfo = Instances.New<CobieCreatedInfo>(ci =>
             {
@@ -237,9 +237,10 @@ namespace Xbim.CobieExpress.IO
                             });
             });
             EntityNew += EntityNewCreatedInfo;
+            return _newInfo;
         }
 
-        public void SetDefaultModifiedEntityInfo(DateTime date, string email, string givenName, string familyName)
+        public CobieCreatedInfo SetDefaultModifiedEntityInfo(DateTime date, string email, string givenName, string familyName)
         {
             _modifiedInfo = Instances.New<CobieCreatedInfo>(ci =>
             {
@@ -256,6 +257,7 @@ namespace Xbim.CobieExpress.IO
                             });
             });
             EntityModified += EntityModifiedCreatedInfo;
+            return _modifiedInfo;
         }
         #endregion
 

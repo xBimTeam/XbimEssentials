@@ -54,6 +54,8 @@ namespace Xbim.MemoryModel.Tests
             var test = new CobieModel();
             using (var txn = test.BeginTransaction("Sample data"))
             {
+                test.SetDefaultNewEntityInfo(DateTime.Now, "martin.cerny@northumbria.ac.uk", "Martin", "Černý");
+                test.SetDefaultModifiedEntityInfo(DateTime.Now, "martin.cerny@northumbria.ac.uk", "Martin", "Černý");
                 test.Instances.New<CobieFacility>(f =>
                 {
                     f.Name = "Superb Facility";
