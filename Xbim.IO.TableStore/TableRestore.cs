@@ -90,12 +90,12 @@ namespace Xbim.IO.TableStore
                 LoadFromSheet(sheet, mapping);
             }
 
-            //reconstruct references (possibly forward references)
-            foreach (var reference in _forwardReferences)
-                reference.Resolve(Log);
-            _forwardReferences.Clear();
+            //resolve references (don't use foreach as new references might be added to the queue during the processing)
+            ForwardReference reference;
+            while ((reference = _forwardReferences.Dequeue()) != null)
+                reference.Resolve();
 
-            //todo: load partial tables (also just a references)
+            //todo: load partial tables (also just a references - use scalars to find an object and parent to assign it)
             
             //be happy
         }
@@ -199,7 +199,19 @@ namespace Xbim.IO.TableStore
             if (multirow)
             {
                 //only add multivalue to the multivalue properties of last entity
-                var subContexts = context.AllScalarChildren.Where(c => c.Mapping.MultiRow != MultiRow.None);
+                var subContexts = context.AllScalarChildren
+                    .Where(c => c.Mapping.MultiRow != MultiRow.None)
+                    .Select(c =>
+                    {
+                        //get to the first list level up or on the base level if it is a scalar list
+                        if (c.ContextType == ReferenceContextType.ScalarList)
+                            return c;
+                        while (c != null && c.ContextType != ReferenceContextType.EntityList)
+                            c = c.ParentContext;
+                        return c;
+                    })
+                    .Where(c => c != null)
+                    .Distinct();
                 foreach (var ctx in subContexts)
                     ResolveSubContext(ctx, lastEntity);
                 return lastEntity;
@@ -207,19 +219,25 @@ namespace Xbim.IO.TableStore
 
 
             //get type of the coresponding object from ClassMapping or from a type hint, create instance
-            return ResolveContext(context);
+            return ResolveContext(context, -1, false);
         }
 
-        private IPersistEntity ResolveContext(ReferenceContext context)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context">Reference context of the data</param>
+        /// <param name="scalarIndex">Index of value to be used in a value list in case of multi values</param>
+        /// <param name="entity">Existing entity which is parent to the context</param>
+        /// <returns></returns>
+        internal IPersistEntity ResolveContext(ReferenceContext context, int scalarIndex, bool onlyScalar, IPersistEntity entity = null)
         {
             var eType = GetConcreteType(context);
-            IPersistEntity entity = null;
-            if (IsGlobalType(eType.Type) && GetOrCreateGlobalEntity(context, out entity, eType))
+            if (entity == null && IsGlobalType(eType.Type) && GetOrCreateGlobalEntity(context, out entity, eType, scalarIndex))
             {
+                //it is a global entity and it was filled in with the data before
                 return entity;
             }
 
-            //todo: only create new if it is not a reference
             //create new entity if new global one was not created
             if(entity == null)
                 entity = Model.Instances.New(eType.Type);
@@ -227,7 +245,7 @@ namespace Xbim.IO.TableStore
             //scalar values to be set to the entity
             foreach (var scalar in context.ScalarChildren)
             {
-                var values = scalar.KeyValues;
+                var values = scalar.Values;
                 if (values == null || values.Length == 0)
                     continue;
                 if (scalar.ContextType == ReferenceContextType.ScalarList)
@@ -242,54 +260,182 @@ namespace Xbim.IO.TableStore
                 }
 
                 //it is a single value
-                scalar.PropertyInfo.SetValue(entity, values[0], scalar.Index != null ? new []{scalar.Index} : null);
+                var val = scalarIndex < 0 ? values[0]: (values.Length <= scalarIndex+1 ? values[scalarIndex] : null);
+                if(val != null)
+                    scalar.PropertyInfo.SetValue(entity, val, scalar.Index != null ? new[] { scalar.Index } : null);
             }
 
-            //nested entities (global, local, referenced)
-            foreach (var child in context.EntityChildren)
-            {
-                var index = child.Index == null ? null : new[] {child.Index};
-                if (child.ContextType == ReferenceContextType.EntityList)
-                {
-                    //todo: we need to use a list(s) down the stream to get or create multiple objects
-                    //var set = child.PropertyInfo.GetValue(entity, index) as IList;
-                    //if (set != null)
-                    //    set.Add();
+            if (onlyScalar)
+                return entity;
 
-                    //todo: handle situation where it is a forward reference
-                    throw new NotImplementedException();
+            //nested entities (global, local, referenced)
+            foreach (var childContext in context.EntityChildren)
+            {
+                if (childContext.IsReference)
+                {
+                    _forwardReferences.Enqueue(new ForwardReference(entity, childContext, this));
                     continue;
                 }
 
-                //it is a single entity but it might be a forward reference
-                var cEntity = ResolveContext(child);
-                child.PropertyInfo.SetValue(entity, cEntity, index);
-                //todo: handle situation where it is a forward reference
-                throw new NotImplementedException();
+                if (childContext.ContextType == ReferenceContextType.EntityList)
+                {
+                        var depth =
+                            childContext.ScalarChildren.Where(c => c.Values != null)
+                                .Select(c => c.Values.Length)
+                                .OrderByDescending(v => v)
+                                .FirstOrDefault();
+                        for (var i = 0; i < depth; i++)
+                        {
+                            var child = depth == 1 ? ResolveContext(childContext, -1, false) : ResolveContext(childContext, i, false);
+                            AssignEntity(entity, child, childContext);
+                        }    
+                    continue;
+                }
+
+                //it is a single entity
+                var cEntity = ResolveContext(childContext, -1, false);
+                AssignEntity(entity, cEntity, childContext);
             }
+
+            var parentContext = context.Children.FirstOrDefault(c => c.ContextType == ReferenceContextType.Parent);
+            if (parentContext != null)
+                _forwardReferences.Enqueue(new ForwardReference(entity, parentContext, this));
 
             return entity;
         }
 
+        internal void AssignEntity(IPersistEntity parent, IPersistEntity entity, ReferenceContext context)
+        {
+            if (context.MetaProperty != null && context.MetaProperty.IsDerived)
+            {
+                Log.WriteLine("It wasn't possible to add entity {0} as a {1} to parent {2} because it is a derived value",
+                    entity.ExpressType.ExpressName, context.Segment, parent.ExpressType.ExpressName);
+                return;
+            }
+
+            var index = context.Index == null ? null : new[] {context.Index};
+            //inverse property
+            if (context.MetaProperty != null && context.MetaProperty.IsInverse)
+            {
+                var remotePropName = context.MetaProperty.InverseAttributeProperty.RemoteProperty;
+                var entityType = entity.ExpressType;
+                var remoteProp = GetProperty(entityType, remotePropName);
+                //it is enumerable inverse
+                if (remoteProp.EnumerableType != null)
+                {
+                    var list = remoteProp.PropertyInfo.GetValue(entity, index) as IList;
+                    if (list != null)
+                    {
+                        list.Add(parent);
+                        return;
+                    }
+                }
+                //it is a single inverse entity
+                else
+                {
+                    remoteProp.PropertyInfo.SetValue(entity, parent, index);
+                    return;
+                }
+                Log.WriteLine("It wasn't possible to add entity {0} as a {1} to parent {2}", 
+                    entity.ExpressType.ExpressName, context.Segment, entityType.ExpressName);
+                return;
+            }
+            //explicit property
+            var info = context.PropertyInfo;
+            if (context.ContextType == ReferenceContextType.EntityList)
+            {
+                var list = info.GetValue(parent, index) as IList;
+                if (list != null)
+                {
+                    list.Add(entity);
+                    return;
+                }
+            }
+            else
+            {
+                if ((context.MetaProperty != null && context.MetaProperty.IsExplicit) || info.GetSetMethod() != null)
+                {
+                    info.SetValue(parent, entity, index);
+                    return;
+                }
+            }
+            Log.WriteLine("It wasn't possible to add entity {0} as a {1} to parent {2}",
+                entity.ExpressType.ExpressName, context.Segment, parent.ExpressType.ExpressName);
+        }
+
+        /// <summary>
+        /// This is used for a multi-row instances where only partial context needs to be processed
+        /// </summary>
+        /// <param name="subContext"></param>
+        /// <param name="rootEntity"></param>
         private void ResolveSubContext(ReferenceContext subContext, IPersistEntity rootEntity)
         {
             //get context path from root entity
             var ctxStack = new Stack<ReferenceContext>();
-            while (subContext != null)
+            var context = subContext;
+            while (context != null)
             {
-                ctxStack.Push(subContext);
-                subContext = subContext.ParentContext;
+                ctxStack.Push(context);
+                context = context.ParentContext;
             }
 
             //use path to get to the bottom of the stact and add the value to it
-            ReferenceContext context;
+            context = ctxStack.Pop();
             var entity = rootEntity;
-            while ((context = ctxStack.Pop()) != null)
+            //stop one level above the original subcontext
+            while (ctxStack.Peek() != subContext)
             {
                 //browse to the level of the bottom context and call ResolveContext there
-                throw new NotImplementedException();
-                
+                var index = context.Index != null ? new[] { context.Index } : null;
+                var value = context.PropertyInfo.GetValue(rootEntity, index);
+                if (value == null)
+                {
+                    Log.WriteLine("It wasn't possible to browse to the data entry point.");
+                    return;
+                }
+
+                if (context.ContextType == ReferenceContextType.Entity)
+                {
+                    entity = value as IPersistEntity;
+                    continue;
+                }
+
+                var entities = value as IEnumerable;
+                if (entities == null)
+                {
+                    Log.WriteLine("It wasn't possible to browse to the data entry point.");
+                    return;
+                }
+                foreach (var e in entities)
+                {
+                    if (!IsValidEntity(context, e)) 
+                        continue;
+                    entity = e as IPersistEntity;
+                    break;
+                }
             }
+            ResolveContext(context, -1, false, entity);
+        }
+
+        internal static bool IsValidEntity(ReferenceContext context, object entity)
+        {
+            if (!context.ScalarChildren.Any())
+                return true;
+
+            return context.ScalarChildren
+                .Where(s => s.Values != null && s.Values.Length > 0)
+                .All(scalar =>
+                {
+                    var prop = scalar.PropertyInfo;
+                    var vals = scalar.Values;
+                    var eVal = prop.GetValue(entity, null);
+                    if (scalar.ContextType != ReferenceContextType.ScalarList)
+                        return eVal != null && vals.Any(v => v.Equals(eVal));
+                    var list = eVal as IEnumerable;
+                    return list != null &&
+                           //it might be a multivalue
+                           list.Cast<object>().All(item => vals.Any(v => v.Equals(item)));
+                });
         }
 
         private bool IsGlobalType(Type type)
@@ -381,8 +527,9 @@ namespace Xbim.IO.TableStore
         /// <param name="context"></param>
         /// <param name="entity"></param>
         /// <param name="type"></param>
+        /// <param name="scalarIndex">Index to field of values to be used to create the key. If -1 no index is used and all values are used.</param>
         /// <returns></returns>
-        private bool GetOrCreateGlobalEntity(ReferenceContext context, out IPersistEntity entity, ExpressType type = null)
+        private bool GetOrCreateGlobalEntity(ReferenceContext context, out IPersistEntity entity, ExpressType type, int scalarIndex)
         {
             type = type ?? GetConcreteType(context);
             Dictionary<string, IPersistEntity> entities;
@@ -392,10 +539,18 @@ namespace Xbim.IO.TableStore
                 _globalEntities.Add(type, entities);
             }
 
-            var keys =
+            var keys = scalarIndex > -1 ?
+                   context.AllScalarChildren.OrderBy(c => c.Segment)
+                        .Where(c => c.Values != null)
+                        .Select(c =>
+                        {
+                            if (c.Values.Length == 1) return c.Values[0];
+                            return c.Values.Length >= scalarIndex + 1 ? c.Values[scalarIndex] : null;
+                        }  ).Where(v => v != null):
+
                     context.AllScalarChildren.OrderBy(c => c.Segment)
-                        .Where(c => c.KeyValues != null)
-                        .SelectMany(c => c.KeyValues.Select(v => v.ToString()));
+                        .Where(c => c.Values != null)
+                        .SelectMany(c => c.Values.Select(v => v.ToString()));
             var key = string.Join(", ", keys);
             if (entities.TryGetValue(key, out entity))
                 return true;

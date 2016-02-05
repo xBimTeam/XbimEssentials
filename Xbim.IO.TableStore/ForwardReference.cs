@@ -1,11 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using NPOI.SS.UserModel;
 using Xbim.Common;
-using Xbim.Common.Exceptions;
-using Xbim.Common.Metadata;
 
 namespace Xbim.IO.TableStore
 {
@@ -17,7 +14,7 @@ namespace Xbim.IO.TableStore
     /// </summary>
     internal class ForwardReference
     {
-        public ClassMapping CMapping { get; private set; }
+        public ReferenceContext Context { get; private set; }
         public TableStore Store { get; set; }
 
         /// <summary>
@@ -35,227 +32,197 @@ namespace Xbim.IO.TableStore
         /// </summary>
         public IModel Model { get { return _handle.Model; } }
 
+        private IPersistEntity Entity { get; set; }
 
-        public ForwardReference(XbimInstanceHandle handle, IRow row, ClassMapping cMapping, TableStore store)
+
+        public ForwardReference(XbimInstanceHandle handle, ReferenceContext context, TableStore store)
         {
-            CMapping = cMapping;
             Store = store;
             _handle = handle;
-            Row = row;
+            Row = context.CurrentRow;
+            Context = context;
         }
 
-        public ForwardReference(IPersistEntity entity, IRow row, ClassMapping cMapping, TableStore store)
+        public ForwardReference(IPersistEntity entity, ReferenceContext context, TableStore store)
         {
-            CMapping = cMapping;
             Store = store;
             _handle = new XbimInstanceHandle(entity);
-            Row = row;
+            Row = context.CurrentRow;
+            Context = context;
         }
-
-        private TextWriter _log;
 
         /// <summary>
         /// Resolves all references for the entity using configuration from class mapping and data from the row
         /// </summary>
-        /// <param name="log"></param>
-        public void Resolve(TextWriter log)
+        public void Resolve()
         {
-            _log = log;
+            //load context data
+            Context.LoadData(Row);
 
-            //resolve parent first if this is not a root mapping
-            ResolveParent();
+            //load entity from the model
+            // ReSharper disable once ImpureMethodCallOnReadonlyValueField
+            Entity = _handle.GetEntity();
 
-            //resolve all other references
+            //resolve parent if this is a parent context
+            if (Context.ContextType == ReferenceContextType.Parent)
+                ResolveParent();
+            //resolve all other kinds of references
+            else
+                ResolveMember();
+        }
+
+        private void ResolveMember()
+        {
+            if (Context.ContextType == ReferenceContextType.Parent)
+                return;
+
+            var children = GetReferencedEntities(Context).ToList();
+            foreach (var child in children)
+            {
+                AddToPath(Context, Entity, child);
+            }
         }
 
         private void ResolveParent()
         {
-            if (CMapping.IsRoot) return;
-
-            var childPath = CMapping.ParentPath;
-            if (string.IsNullOrWhiteSpace(childPath))
-            {
-                _log.WriteLine("It wasn't possible to resolve parent of {0} (label: {1}) because no parent path is defined in the configuration.", _handle.EntityExpressType.ExpressName, _handle.EntityLabel);
+            if (Context.ContextType != ReferenceContextType.Parent)
                 return;
-            }
 
-            var parentType = GetExpressType("parent");
-            if (parentType == null)
-            {
-                _log.WriteLine("It wasn't possible to resolve parent type of {0} (label: {1}) using data or configuration.", _handle.EntityExpressType.ExpressName, _handle.EntityLabel);
-                return;
-            }
-
-            //look up the parent object(s) in the model
-            var parents = GetReferencedEntities("parent", parentType).ToList();
-
+            var parents = GetReferencedEntities(Context).ToList();
             if (!parents.Any())
             {
-                _log.WriteLine("No parent of type {0} for {1} was found based on the key values.", parentType.ExpressName, _handle.EntityExpressType.ExpressName);
+                Store.Log.WriteLine("There is no parent of type {0} for type {1}", Context.SegmentType.ExpressName,
+                    Entity.ExpressType.ExpressName);
                 return;
             }
             if (parents.Count > 1)
             {
-                _log.WriteLine("Multiple parents of type {0} for {1} were found based on the key values. All will be used.", parentType.ExpressName, _handle.EntityExpressType.ExpressName);
+                Store.Log.WriteLine("There is more than one parent of type {0} for type {1}. All parents will be used.", Context.SegmentType.ExpressName,
+                    Entity.ExpressType.ExpressName);
             }
 
-            //assign to all parents rather than to loose the relation completely
-            // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            var entity = _handle.GetEntity();
+            var destination =
+                Context.AllChildren.FirstOrDefault(
+                    c =>
+                        !c.AllChildren.Any() &&
+                        (c.ContextType == ReferenceContextType.Entity ||
+                         c.ContextType == ReferenceContextType.EntityList));
+            if (destination == null)
+            {
+                Store.Log.WriteLine("There is destination path for type {1} in type {0}, table {2}.",
+                    Context.SegmentType.ExpressName,
+                    Entity.ExpressType.ExpressName, Context.CMapping.TableName);
+                return;
+            }
             foreach (var parent in parents)
             {
-                var parentEntity = parent;
-                //use child path in parent and add this object to the path (possibly using on-path values)
-                var parts = childPath.Split('.');
-                for (var i = 0; i < parts.Length; i++)
-                {
-                    var cProp = Store.GetProperty(parentType, parts[i]);
-                    if (cProp == null)
-                    {
-                        _log.WriteLine("Parent type {0} of {1} doesn't have a property {2} used in a parent path.", parentType.ExpressName, _handle.EntityExpressType.ExpressName, parts[i]);
-                        return;
-                    }
-                    if (i == parts.Length - 1)
-                    {
-                        if (cProp.IsInverse)
-                        {
-                            var remoteName = cProp.InverseAttributeProperty.RemoteProperty;
-                            cProp = Store.GetProperty(_handle.EntityExpressType, remoteName);
-
-                            //swap parent and entity
-                            var swap = parent;
-                            parentEntity = entity;
-                            entity = swap;
-                        }
-                        //it is an enumerable explicit type so it is ItemSet
-                        if (cProp.EnumerableType != null)
-                        {
-                            var list = cProp.PropertyInfo.GetValue(parentEntity, null) as IList;
-                            if (list == null)
-                                throw new XbimException("Inconsistent schema. Enumerable explicit attribute should always implement IList");
-                            list.Add(entity);
-                        }
-                        else
-                        {
-                            cProp.PropertyInfo.SetValue(parentEntity, entity, null);
-                        }
-                    }
-                }
-
+                AddToPath(Context, parent, Entity);
             }
         }
 
-        private IEnumerable<IPersistEntity> GetReferencedEntities(string pathBase, ExpressType type)
+        private void AddToPath(ReferenceContext targetContext, IPersistEntity root, IPersistEntity child)
         {
-            //get parent values to find the parent object
-            var propMaps = CMapping.PropertyMappings.Where(m =>
+            //get context path from root entity
+            var ctxStack = new Stack<ReferenceContext>();
+            var entityStack = new Stack<IPersistEntity>();
+            var context = targetContext;
+            while (context != null)
             {
-                var path = m.Paths.FirstOrDefault();
-                if (string.IsNullOrWhiteSpace(path))
-                    return false;
-                //all properties except for the ones which are only type helpers ([table], [type])
-                return path.StartsWith(pathBase) && !path.Contains('[');
-            });
-
-            var keys = new Dictionary<ExpressMetaProperty, object[]>();
-            foreach (var map in propMaps)
-            {
-                var keyCell = Row.GetCell(map.ColumnIndex);
-                if (keyCell == null)
-                    continue;
-
-                var propName = map.Paths.FirstOrDefault();
-                if (string.IsNullOrWhiteSpace(propName))
-                    continue;
-
-                //todo: handle multiple values
-                //only get the property name
-                propName = propName.Split('.').LastOrDefault();
-                if (string.IsNullOrWhiteSpace(propName))
-                    continue;
-                var eProp = Store.GetProperty(type, propName);
-                if (eProp == null)
-                {
-                    _log.WriteLine("Type {0} if {1} doesn't have a property {2}.", type.ExpressName, _handle.EntityExpressType.ExpressName, propName);
-                    continue;
-                }
-
-                var ePropType = eProp.PropertyInfo.PropertyType;
-                if (!ePropType.IsValueType && !(ePropType == typeof(string)))
-                {
-                    _log.WriteLine("Type {0} in {1} has a property {2} which is not a simple type", type.ExpressName, _handle.EntityExpressType.ExpressName, propName);
-                    continue;
-                }
-
-                //simple type or express value type
-                var keyValue = Store.CreateSimpleValue(ePropType, keyCell);
-                if (keyValue == null)
-                    continue;
-                keys.Add(eProp, new []{ keyValue });
+                ctxStack.Push(context);
+                context = context.ParentContext;
             }
 
-            //look up the parent object(s) in the model
-            return keys.Count == 0 ?
-                Model.Instances.OfType(type.Name, true).ToList() :
-                Model.Instances.OfType(type.Name, true).Where(e => keys.All(kvp =>
+            var entity = root;
+            while ((context = ctxStack.Pop()) != null)
+            {
+                entityStack.Push(entity);
+                //browse to the level of the bottom context and call ResolveContext there
+                var index = context.Index != null ? new[] { context.Index } : null;
+                var value = context.PropertyInfo.GetValue(root, index);
+                if (context.ContextType == ReferenceContextType.Entity)
                 {
-                    var prop = kvp.Key.PropertyInfo;
-                    var vals = kvp.Value;
-                    var eVal = prop.GetValue(e, null);
-                    return eVal != null && vals.Any(v => v.Equals(eVal));
-                })).ToList();
+                    var e = value as IPersistEntity;
+                    //if it is null, create a new one or assign the child
+                    if (e == null)
+                    {
+                        e = context == targetContext ? child : Store.ResolveContext(context, -1, true);
+                        Store.AssignEntity(entity, e, context);
+                        entity = e;
+                        continue;
+                    }
+
+                    //verify that this is the desired one by the values. If not, create a new one on this level and higher
+                    if (TableStore.IsValidEntity(context, e))
+                    {
+                        entity = e;
+                        continue;
+                    }
+
+                    //create a new one and assign it higher
+                    e = context == targetContext ? child : Store.ResolveContext(context, -1, true);
+                    Join(e, context, entityStack);
+                    continue;
+                }
+
+                //it should be enumerable
+                var entities = value as IEnumerable;
+                if (entities == null)
+                {
+                    Store.Log.WriteLine("It wasn't possible to browse to the data entry point.");
+                    return;
+                }
+                
+                if (context == targetContext)
+                {
+                    Store.AssignEntity(entity, child, context);
+                    return;
+                }
+                entity = entities.Cast<object>().FirstOrDefault(e => TableStore.IsValidEntity(context, e)) as IPersistEntity;
+                
+            }
+        }
+
+        private void Join(IPersistEntity entity, ReferenceContext context,
+            Stack<IPersistEntity> parents)
+        {
+            var temp = new Stack<IPersistEntity>();
+            IPersistEntity parent;
+            while ((parent = parents.Pop()) != null)
+            {
+                if (context.ContextType == ReferenceContextType.EntityList)
+                {
+                    Store.AssignEntity(parent, entity, context);
+                    break;
+                }
+
+                context = context.ParentContext;
+                var e = Store.ResolveContext(context, -1, true);
+                Store.AssignEntity(e, entity, context);
+                entity = e;
+                temp.Push(e);
+            }
+
+            //fill parents with the new stuff
+            while ((parent = temp.Pop()) != null)
+            {
+                parents.Push(parent);
+            }
         }
 
         /// <summary>
-        /// Type might be specified as a type hint with path 'parent.[type]' or with a table hint 'parent.[table]'
-        /// or as a parent class in mapping configuration.
+        /// Search the model for the entities satisfying the conditions in context
         /// </summary>
+        /// <param name="context"></param>
         /// <returns></returns>
-        private ExpressType GetExpressType(string pathBase)
+        private IEnumerable<IPersistEntity> GetReferencedEntities(ReferenceContext context)
         {
-            var typePath = pathBase + ".[type]";
-            var typeHintProp =
-                CMapping.PropertyMappings.FirstOrDefault(m => m.Paths.FirstOrDefault() == typePath);
-            if (typeHintProp != null)
-            {
-                var typeHintCell = Row.GetCell(typeHintProp.ColumnIndex);
-                if (typeHintCell != null && typeHintCell.CellType == CellType.String)
-                {
-                    var typeHintString = typeHintCell.StringCellValue;
-                    if (!string.IsNullOrWhiteSpace(typeHintString))
-                    {
-                        var typeHint = Model.Metadata.ExpressType(typeHintString.ToUpper());
-                        if (typeHint != null)
-                            return typeHint;    
-                    }
-                }
-            }
-
-            var tablePath = pathBase + ".[table]";
-            var tableHintProp =
-                CMapping.PropertyMappings.FirstOrDefault(m => m.Paths.FirstOrDefault() == tablePath);
-            if (tableHintProp != null)
-            {
-                var tableHintCell = Row.GetCell(tableHintProp.ColumnIndex);
-                if (tableHintCell != null && tableHintCell.CellType == CellType.String)
-                {
-                    var tableHintString = tableHintCell.StringCellValue;
-                    if (!string.IsNullOrWhiteSpace(tableHintString))
-                    {
-                        var tableType = Store.GetType(tableHintString);
-                        if (tableType != null)
-                            return tableType;
-                    }
-                }
-            }
-
-            if (pathBase == "parent")
-            {
-                var parentClass = CMapping.ParentClass.ToUpper();
-                return Model.Metadata.ExpressType(parentClass);    
-            }
-
-            return null;
+            var type = context.SegmentType;
+            //we don't have any data so use just a type for the search
+            return !context.HasData ? 
+                Model.Instances.OfType(type.Name, true) : 
+                Model.Instances.OfType(type.Name, true).Where(e => TableStore.IsValidEntity(context, e));
         }
+
+       
     }
 }

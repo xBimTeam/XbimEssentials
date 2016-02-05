@@ -33,7 +33,7 @@ namespace Xbim.IO.TableStore
         public ReferenceContextType ContextType { get; private set; }
         private TableStore Store { get; set; }
         public ClassMapping CMapping { get; private set; }
-        public object[] KeyValues { get; private set; }
+        public object[] Values { get; private set; }
         public object Index { get; private set; }
         public PropertyInfo PropertyInfo { get; private set; }
         public bool IsRoot { get { return ParentContext == null; } }
@@ -114,6 +114,14 @@ namespace Xbim.IO.TableStore
             return ScalarChildren.Any(c => c.Mapping != null && c.Mapping.Status == DataStatus.Reference);
         } }
 
+        /// <summary>
+        /// Any scalar child of any children has values loaded from a row
+        /// </summary>
+        public bool HasData
+        {
+            get { return AllScalarChildren.Any(c => c.Values != null && c.Values.Any()); }
+        }
+
         public ReferenceContext(TableStore store, ClassMapping cMapping)
         {
             Store = store;
@@ -179,7 +187,7 @@ namespace Xbim.IO.TableStore
             if (segment == "parent")
             {
                 PathTypeHint = Store.MetaData.ExpressType(CMapping.ParentClass.ToUpper());
-                ContextType = ReferenceContextType.Entity;
+                ContextType = ReferenceContextType.Parent;
                 return;
             }
 
@@ -235,7 +243,7 @@ namespace Xbim.IO.TableStore
             CurrentRow = row;
 
             //clear any old data
-            KeyValues = null;
+            Values = null;
             TableTypeHint = null;
             TypeTypeHint = null;
 
@@ -275,7 +283,7 @@ namespace Xbim.IO.TableStore
 
                 var strValue = cell.StringCellValue;
                 if (!string.IsNullOrWhiteSpace(strValue))
-                    KeyValues =
+                    Values =
                         strValue.Split(new[] {Store.Mapping.ListSeparator}, StringSplitOptions.RemoveEmptyEntries)
                             .Select(v => Store.CreateSimpleValue(SegmentType.Type, v.Trim())).ToArray();
             }
@@ -287,7 +295,7 @@ namespace Xbim.IO.TableStore
                 {
                     
 
-                    KeyValues = new[] {Store.CreateSimpleValue(valType, cell)};
+                    Values = new[] {Store.CreateSimpleValue(valType, cell)};
                 }
             }
         }
@@ -330,6 +338,7 @@ namespace Xbim.IO.TableStore
     public enum ReferenceContextType
     {
         Root,
+        Parent,
         Entity,
         EntityList,
         Scalar,

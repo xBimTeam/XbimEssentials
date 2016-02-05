@@ -50,7 +50,7 @@ namespace Xbim.IO.TableStore
         private readonly Dictionary<string, string> _aliasesEnumCache;
 
         //list of forward references to be resolved
-        private readonly List<ForwardReference> _forwardReferences = new List<ForwardReference>();
+        private readonly Queue<ForwardReference> _forwardReferences = new Queue<ForwardReference>();
 
         //cached check if the mapping contains any potentially multi-value columns
         private Dictionary<ClassMapping, bool> _isMultiRowMappingCache;
