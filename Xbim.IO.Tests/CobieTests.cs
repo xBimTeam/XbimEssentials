@@ -148,17 +148,20 @@ namespace Xbim.MemoryModel.Tests
         public void EsentDatabaseTest()
         {
             const string file = "SampleForEsent.stp";
-            var model = CreateTestModel();
-            using (var fileStream = new StreamWriter(file))
+            using (var model = CreateTestModel())
             {
-                model.SaveAsStep21(fileStream);
+                using (var fileStream = new StreamWriter(file))
+                {
+                    model.SaveAsStep21(fileStream);
+                }
             }
+            using (var db = new IO.Esent.EsentModel(new EntityFactory()))
+            {
+                db.CreateFrom(file, null, null, true);
 
-            var db = new IO.Esent.EsentModel(new EntityFactory());
-            db.CreateFrom(file, null, null, true);
-
-            var spaces = db.Instances.OfType<CobieSpace>();
-            Assert.IsTrue(spaces.Any());
+                var spaces = db.Instances.OfType<CobieSpace>();
+                Assert.IsTrue(spaces.Any());
+            }
         }
 
         private IO.Memory.MemoryModel CreateTestModel()

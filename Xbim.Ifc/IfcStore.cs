@@ -861,13 +861,15 @@ namespace Xbim.Ifc
                 var lookup = geomRead.ShapeGeometries;
                 var styles = geomRead.StyleIds;
                 var regions = geomRead.ContextRegions.SelectMany(r=>r).ToList();
-
+                //we need to get all the default styles for various products
+                var defaultStyles = geomRead.ShapeInstances.Select(i => -(int)i.IfcTypeId).Distinct();
+                var allStyles = defaultStyles.Concat(styles).ToList();
                 int numberOfGeometries = 0;
                 int numberOfVertices = 0;
                 int numberOfTriangles = 0;
                 int numberOfMatrices = 0;
                 int numberOfProducts = 0;
-                int numberOfStyles = styles.Count;
+                int numberOfStyles = allStyles.Count;
                 //start writing out
 
                 binaryStream.Write((Int32) WexBimId); //magic number
@@ -897,7 +899,8 @@ namespace Xbim.Ifc
                     binaryStream.Write(bounds.ToFloatArray());
                 }
                 //textures
-                foreach (var styleId in styles)
+
+                foreach (var styleId in allStyles)
                 {
                     XbimColour colour;
                     if (styleId > 0)
@@ -906,7 +909,7 @@ namespace Xbim.Ifc
                         var texture = XbimTexture.Create(ss);
                         colour = texture.ColourMap.FirstOrDefault();
                     }
-                    else //use the default in the colour map for th enetity type
+                    else //use the default in the colour map for the enetity type
                     {
                         var theType = _model.Metadata.GetType((short)Math.Abs(styleId));
                         colour = colourMap[theType.Name];

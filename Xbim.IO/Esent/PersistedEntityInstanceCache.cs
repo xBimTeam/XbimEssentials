@@ -1492,7 +1492,7 @@ namespace Xbim.IO.Esent
             Dispose(false);
             GC.SuppressFinalize(this);
         }
-      
+
         protected void Dispose(bool disposing)
         {
             // Check to see if Dispose has already been called.
