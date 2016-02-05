@@ -37,7 +37,7 @@ namespace Xbim.Ifc
         /// <summary>
         /// The default largest size in MB for an ifc file to be loaded into memory, above this size the store will choose to use the database storage media to mimise the memory footprint. This size can be set in the config file or in the open statement of this store 
         /// </summary>
-        public static double DefaultIfcDatabaseSizeThreshHold = 30; //default size set to 30MB
+        public static double DefaultIfcDatabaseSizeThreshHold = 100; //default size set to 100MB
         private IIfcOwnerHistory _ownerHistoryAddObject;
         private IIfcOwnerHistory _ownerHistoryModifyObject;
 
@@ -395,6 +395,7 @@ namespace Xbim.Ifc
                         //managed resources
                         var disposeInterface = _model as IDisposable;
                         if (disposeInterface != null) disposeInterface.Dispose();
+                        
                     }
                     //unmanaged, mostly esent related                  
                 }
@@ -411,8 +412,11 @@ namespace Xbim.Ifc
         public void Close()
         {
             var esent = _model as EsentModel;
-            if (esent != null) esent.Close();
-            Dispose();
+            if (esent != null)
+            {
+                esent.Close();              
+            }
+          
             try //try and tidy up if required
             {
                 if (_deleteModelOnClose && !string.IsNullOrWhiteSpace(_xbimFileName) && File.Exists(_xbimFileName))

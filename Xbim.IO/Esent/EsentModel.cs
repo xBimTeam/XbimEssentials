@@ -109,7 +109,7 @@ namespace Xbim.IO.Esent
         //sets or gets the Geometry Manager for this model
         public IGeometryManager GeometryManager { get; set; }
 
-        static public int ModelOpenCount
+        public static int ModelOpenCount
         {
             get
             {
@@ -880,6 +880,7 @@ namespace Xbim.IO.Esent
             GC.SuppressFinalize(this);
         }
 
+       
         protected void Dispose(bool disposing)
         {
             if (!_disposed)

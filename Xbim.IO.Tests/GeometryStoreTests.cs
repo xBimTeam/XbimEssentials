@@ -5,6 +5,7 @@ using Xbim.Common.Geometry;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.Ifc4;
+using Xbim.Ifc4.SharedBldgElements;
 using Xbim.IO;
 
 namespace Xbim.EsentModel.Tests
@@ -72,7 +73,55 @@ namespace Xbim.EsentModel.Tests
             }
         }
 
-        
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
+        public void ResourceReleaseTest()
+        {
+
+            using (var model = IfcStore.Open("SampleHouse4.ifc", null, 0))
+            {
+                var geomStore = model.GeometryStore;
+                using (var txn = geomStore.BeginInit())
+                {
+                    //ADD A GEOMETRY SHAPE
+                    var geomData = new XbimShapeGeometry()
+                    {
+                        IfcShapeLabel = 1,
+                        Format = XbimGeometryType.BoundingBox,
+                        GeometryHash = 0,
+                        LOD = XbimLOD.LOD100,
+                        ReferenceCount = 1,
+                        ShapeData = "2123",
+                        BoundingBox = XbimRect3D.Empty
+                    };
+                    var shapeGeomLabel = txn.AddShapeGeometry(geomData);
+
+                    //ADD A SHAPE INSTANCE
+                    var shapeInstance = new XbimShapeInstance()
+                    {
+                        ShapeGeometryLabel = shapeGeomLabel,
+                        StyleLabel = 5,
+                        RepresentationContext = 50
+
+                    };
+
+                    var instanceId = txn.AddShapeInstance(shapeInstance, shapeGeomLabel);
+                    Assert.IsTrue(instanceId == 1);
+
+                    //ADD A REGIONCOLLECTION
+                    var regions = new XbimRegionCollection();
+                    regions.ContextLabel = 50;
+                    var bb = new XbimRect3D(new XbimPoint3D(1, 1, 1), new XbimVector3D(10, 20, 30));
+                    regions.Add(new XbimRegion("region1", bb, 100));
+                    txn.AddRegions(regions);
+                    txn.Commit();
+                }
+                int c = model.Instances.OfType<IfcDoor>().Count();
+                model.Close();
+            }
+            Assert.IsTrue(IO.Esent.EsentModel.ModelOpenCount == 0);
+
+        }
 
         [DeploymentItem("TestFiles")]
         [TestMethod]

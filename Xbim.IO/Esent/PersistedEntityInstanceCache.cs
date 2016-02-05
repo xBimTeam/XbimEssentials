@@ -29,7 +29,7 @@ namespace Xbim.IO.Esent
         /// <summary>
         /// Holds a collection of all currently opened instances in this process
         /// </summary>
-        static readonly HashSet<PersistedEntityInstanceCache> OpenInstances;
+        static  readonly HashSet<PersistedEntityInstanceCache> OpenInstances;
 
         #region ESE Database
 
@@ -1492,7 +1492,7 @@ namespace Xbim.IO.Esent
             Dispose(false);
             GC.SuppressFinalize(this);
         }
-
+      
         protected void Dispose(bool disposing)
         {
             // Check to see if Dispose has already been called.

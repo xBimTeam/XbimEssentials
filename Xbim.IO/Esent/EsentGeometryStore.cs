@@ -10,6 +10,7 @@ namespace Xbim.IO.Esent
         private EsentGeometryInitialiser _currentTransaction = null;
         private EsentShapeInstanceCursor _shapeInstanceCursor;
         private EsentShapeGeometryCursor _shapeGeometryCursor;
+        private bool _disposed;
 
         public EsentGeometryStore(EsentModel esentModel )
         {           
@@ -74,13 +75,34 @@ namespace Xbim.IO.Esent
 
         public void Dispose()
         {
-            if (_currentTransaction != null) //we have terminated unexpectedly, the database may be corrupt
+            Dispose(true);
+            // Take yourself off the Finalization queue 
+            // to prevent finalization code for this object
+            // from executing a second time.
+            GC.SuppressFinalize(this);
+        }
+
+
+        public void Dispose(bool disposing)
+        {
+            if (!_disposed)
             {
-                _currentTransaction.Dispose();
-                _currentTransaction = null;
+                // If disposing equals true, dispose all managed 
+                // and unmanaged resources.
+                if (disposing)
+                {
+                    //managed resources                   
+                }
+                //unmanaged, mostly esent related              
+                if (_currentTransaction != null) //we have terminated unexpectedly, the database may be corrupt
+                {
+                    _currentTransaction.Dispose();
+                    _currentTransaction = null;
+                }
+                if (_shapeGeometryCursor != null) _esentModel.FreeTable(_shapeGeometryCursor);
+                if (_shapeInstanceCursor != null) _esentModel.FreeTable(_shapeInstanceCursor);
             }
-            if (_shapeGeometryCursor != null) _esentModel.FreeTable(_shapeGeometryCursor);
-            if (_shapeInstanceCursor != null) _esentModel.FreeTable(_shapeInstanceCursor);
+            _disposed = true;
         }
 
 
