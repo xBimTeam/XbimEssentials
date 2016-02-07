@@ -15,6 +15,7 @@ namespace Xbim.IO.Xml
 {
     public class XbimXmlReader4
     {
+        public event ReportProgressDelegate ProgressStatus;
         private readonly ExpressMetaData _metadata;
         private readonly GetOrCreateEntity _getOrCreate;
         private readonly FinishEntity _finish;
@@ -69,8 +70,9 @@ namespace Xbim.IO.Xml
 
         }
 
-        public StepFileHeader Read(XmlReader input, bool onlyHeader = false)
+        public StepFileHeader Read(XmlReader input, long streamSize, bool onlyHeader = false)
         {
+            _streamSize = streamSize;
             _idMap = new Dictionary<string, int>();
             
             var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
@@ -430,6 +432,7 @@ namespace Xbim.IO.Xml
         }
 
         private readonly char[] _separator = {' '};
+        private long _streamSize;
 
         private void SetPropertyFromString(ExpressMetaProperty property, IPersistEntity entity, string value, int[] pos, Type valueType = null)
         {
@@ -632,7 +635,7 @@ namespace Xbim.IO.Xml
                 using (var reader = XmlReader.Create(inStream))
                 {
                     var xReader = new XbimXmlReader4();
-                    return xReader.Read(reader, true);
+                    return xReader.Read(reader, -1, true);
                 }
             }
 

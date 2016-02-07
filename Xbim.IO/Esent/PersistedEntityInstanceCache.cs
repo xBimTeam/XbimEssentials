@@ -654,11 +654,11 @@ namespace Xbim.IO.Esent
         {
             using (var stream = File.OpenRead(xmlFilename))
             {
-                ImportIfcXml(xbimDbName, stream, progressHandler, keepOpen, cacheEntities);
+                ImportIfcXml(xbimDbName, stream, stream.Length, progressHandler, keepOpen, cacheEntities);
             }
         }
 
-        internal void ImportIfcXml(string xbimDbName, Stream inputStream, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false)
+        internal void ImportIfcXml(string xbimDbName, Stream inputStream, long streamSize, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false)
         {
             CreateDatabase(xbimDbName);
             Open(xbimDbName, XbimDBAccess.Exclusive);
@@ -680,7 +680,7 @@ namespace Xbim.IO.Esent
                                     //pulse will flush the model if necessary (based on the number of entities being processed)
                                     transaction.Pulse();
                                 }, Model.Metadata);
-                                _model.Header = reader3.Read(reader);
+                                _model.Header = reader3.Read(reader, streamSize);
                             }
                             else
                             {
@@ -690,7 +690,7 @@ namespace Xbim.IO.Esent
                                     //pulse will flush the model if necessary (based on the number of entities being processed)
                                     transaction.Pulse();
                                 }, Model.Metadata);
-                                _model.Header = xmlReader.Read(reader);
+                                _model.Header = xmlReader.Read(reader, streamSize);
                             }
                             var cursor = _model.GetTransactingCursor();
                             cursor.WriteHeader(_model.Header);
@@ -722,11 +722,11 @@ namespace Xbim.IO.Esent
         {
             using (var reader = new FileStream(toImportIfcFilename, FileMode.Open, FileAccess.Read))
             {
-                ImportStep(xbimDbName, reader, progressHandler, keepOpen, cacheEntities);
+                ImportStep(xbimDbName, reader, reader.Length, progressHandler, keepOpen, cacheEntities);
             }
         }
 
-        internal void ImportStep(string xbimDbName, Stream stream, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false, int codePageOverride = -1)
+        internal void ImportStep(string xbimDbName, Stream stream, long streamSize, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false, int codePageOverride = -1)
         {
 
             CreateDatabase(xbimDbName);
@@ -737,7 +737,7 @@ namespace Xbim.IO.Esent
             {
 
                 _forwardReferences = new BlockingCollection<StepForwardReference>();
-                using (var part21Parser = new P21toIndexParser(stream, table, this, codePageOverride))
+                using (var part21Parser = new P21toIndexParser(stream, streamSize, table, this, codePageOverride))
                 {
                     if (progressHandler != null) part21Parser.ProgressStatus += progressHandler;
                     part21Parser.Parse();
@@ -811,7 +811,7 @@ namespace Xbim.IO.Esent
                                     using (var reader = zipFile.GetInputStream(entry))
                                     {
                                         _forwardReferences = new BlockingCollection<StepForwardReference>();
-                                        using (var part21Parser = new P21toIndexParser(reader, table, this, codePageOverride))
+                                        using (var part21Parser = new P21toIndexParser(reader, entry.Size, table, this, codePageOverride))
                                         {
                                             if (progressHandler != null) part21Parser.ProgressStatus += progressHandler;
                                             part21Parser.Parse();
@@ -853,7 +853,7 @@ namespace Xbim.IO.Esent
                                                         //pulse will flush the model if necessary (based on the number of entities being processed)
                                                         transaction.Pulse();
                                                     }, Model.Metadata);
-                                                    _model.Header = reader3.Read(reader);
+                                                    _model.Header = reader3.Read(reader, entry.Size);
                                                 }
                                                 else
                                                 {
@@ -863,7 +863,7 @@ namespace Xbim.IO.Esent
                                                         //pulse will flush the model if necessary (based on the number of entities being processed)
                                                         transaction.Pulse();
                                                     }, Model.Metadata);
-                                                    _model.Header = xmlReader.Read(reader);
+                                                    _model.Header = xmlReader.Read(reader, entry.Size);
                                                 }
                                                 var cursor = _model.GetTransactingCursor();
                                                 cursor.WriteHeader(_model.Header);

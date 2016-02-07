@@ -229,10 +229,10 @@ namespace Xbim.Ifc2x3.IO
 
         }
 
-        public override bool CreateFrom(Stream inputStream, IfcStorageType streamType, string xbimDbName,
+        public override bool CreateFrom(Stream inputStream, long streamSize, IfcStorageType streamType, string xbimDbName,
             ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false)
         {
-            var result = base.CreateFrom(inputStream, streamType, xbimDbName, progDelegate, keepOpen, cacheEntities);
+            var result = base.CreateFrom(inputStream, streamSize, streamType, xbimDbName, progDelegate, keepOpen, cacheEntities);
             if (!keepOpen) return result;
 
             GetModelFactors();

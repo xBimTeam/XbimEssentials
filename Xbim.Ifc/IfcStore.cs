@@ -236,16 +236,17 @@ namespace Xbim.Ifc
                             foreach (ZipEntry zipEntry in zipFile)
                             {
                                 if (!zipEntry.IsFile) continue; // 
+                                var streamSize = zipEntry.Size;
                                 using (var reader = zipFile.GetInputStream(zipEntry))
                                 {
                                     var zipStorageType = zipEntry.Name.StorageType();
                                     if (zipStorageType == IfcStorageType.Ifc)
                                     {
-                                        model.LoadStep21(reader, progDelegate);
+                                        model.LoadStep21(reader, streamSize, progDelegate);
                                     }
                                     else if (zipStorageType == IfcStorageType.IfcXml)
                                     {
-                                        model.LoadXml(reader, progDelegate);
+                                        model.LoadXml(reader, streamSize, progDelegate);
                                     }
                                 }
                                 break; //now we have one
@@ -277,6 +278,8 @@ namespace Xbim.Ifc
                 if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0)
                     return IfcSchemaVersion.Ifc4;
                 if (string.Compare(schema, "Ifc2x3", StringComparison.OrdinalIgnoreCase) == 0)
+                    return IfcSchemaVersion.Ifc2X3;
+                if (string.Compare(schema, "Ifc2x2", StringComparison.OrdinalIgnoreCase) == 0) //return this as 2x3
                     return IfcSchemaVersion.Ifc2X3;
             }
 

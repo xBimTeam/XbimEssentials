@@ -96,7 +96,7 @@ namespace Xbim.IO.Esent
 
 
 
-        internal P21toIndexParser(Stream inputP21, EsentEntityCursor table, PersistedEntityInstanceCache cache, int codePageOverride = -1)
+        internal P21toIndexParser(Stream inputP21, long streamSize,  EsentEntityCursor table, PersistedEntityInstanceCache cache, int codePageOverride = -1)
             : base(inputP21)
         {
 
@@ -104,8 +104,7 @@ namespace Xbim.IO.Esent
             //  this.transaction = transaction;
             _modelCache = cache;
             _entityCount = 0;
-            if (inputP21.CanSeek)
-                _streamSize = inputP21.Length;
+            _streamSize = streamSize;
             _codePageOverride = codePageOverride;
         }
 

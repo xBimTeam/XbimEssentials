@@ -47,7 +47,7 @@ namespace Xbim.Essentials.Tests
             {
                 using (var model = new Xbim.Ifc2x3.IO.XbimModel())
                 {
-                    model.CreateFrom(fileStream, IfcStorageType.Ifc, "4walls1floorSite.xbim",null,true);                  
+                    model.CreateFrom(fileStream, fileStream.Length, IfcStorageType.Ifc, "4walls1floorSite.xbim", null, true);                  
                     model.Close();
                 }
                 fileStream.Close();
@@ -55,20 +55,7 @@ namespace Xbim.Essentials.Tests
 
         }
 
-        [TestMethod]
-        public void OpenIfcZipFileFromStream()
-        {
-            using (var fileStream = new FileStream("4walls1floorSite.ifczip", FileMode.Open, FileAccess.Read))
-            {
-                using (var model = new Xbim.Ifc2x3.IO.XbimModel())
-                {
-                    model.CreateFrom(fileStream, IfcStorageType.Ifc, "4walls1floorSite.xbim");
-                    model.Close();
-                }
-                fileStream.Close();
-            }
-
-        }
+       
         [TestMethod]
         public void OpenIfcXmlFileFromStream()
         {
@@ -76,7 +63,7 @@ namespace Xbim.Essentials.Tests
             {
                 using (var model = new Xbim.Ifc2x3.IO.XbimModel())
                 {
-                    model.CreateFrom(fileStream, IfcStorageType.Ifc, "4walls1floorSite.xbim");
+                    model.CreateFrom(fileStream, fileStream.Length, IfcStorageType.Ifc, "4walls1floorSite.xbim");
                     model.Close();
                 }
                 fileStream.Close();

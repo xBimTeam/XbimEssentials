@@ -76,7 +76,7 @@ namespace Xbim.IO.Memory
 
         public static IStepFileHeader GetStepFileHeader(Stream stream)
         {
-                var parser = new XbimP21Parser(stream, null);
+                var parser = new XbimP21Parser(stream, null,-1);
                 var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
                 parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
                 {
@@ -348,11 +348,11 @@ namespace Xbim.IO.Memory
         {
             using (var file = File.OpenRead(path))
             {
-                LoadXml(file, progDelegate);
+                LoadXml(file, file.Length, progDelegate);
             }
         }
 
-        public virtual void LoadXml(Stream stream, ReportProgressDelegate progDelegate = null)
+        public virtual void LoadXml(Stream stream, long streamSize, ReportProgressDelegate progDelegate = null)
         {
             _read.Clear();
             using (var reader = XmlReader.Create(stream))
@@ -361,12 +361,12 @@ namespace Xbim.IO.Memory
                 if (schema == "IFC2X3")
                 {
                     var reader3 = new IfcXmlReader(GetOrCreateXMLEntity, entity => { }, Metadata);
-                    Header = reader3.Read(reader);
+                    Header = reader3.Read(reader, streamSize);
                 }
                 else
                 {
                     var xmlReader = new XbimXmlReader4(GetOrCreateXMLEntity, entity => { }, Metadata);
-                    Header = xmlReader.Read(reader);       
+                    Header = xmlReader.Read(reader, streamSize);       
                 }
             }
 
@@ -411,6 +411,7 @@ namespace Xbim.IO.Memory
                 {
                     try
                     {
+                        if (!entry.IsFile) continue; //
                         var extension = Path.GetExtension(entry.Name) ?? "";
                         var xml = extension.ToLower().Contains("xml");
                         using (var zipFile = new ZipFile(stream))
@@ -418,9 +419,9 @@ namespace Xbim.IO.Memory
                             using (var reader = zipFile.GetInputStream(entry))
                             {
                                 if (xml)
-                                    LoadXml(reader, progDelegate);
+                                    LoadXml(reader, entry.Size, progDelegate);
                                 else
-                                    LoadStep21(reader, progDelegate);
+                                    LoadStep21(reader, entry.Size, progDelegate);
 
                                 reader.Close();
                                 zipFile.Close();
@@ -444,9 +445,9 @@ namespace Xbim.IO.Memory
         /// <param name="stream">Path to the file</param>
         /// <param name="progDelegate"></param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
-        public virtual int LoadStep21(Stream stream, ReportProgressDelegate progDelegate=null)
+        public virtual int LoadStep21(Stream stream, long streamSize, ReportProgressDelegate progDelegate=null)
         {
-            var parser = new XbimP21Parser(stream, Metadata);
+            var parser = new XbimP21Parser(stream, Metadata, streamSize);
             if (progDelegate != null) parser.ProgressStatus += progDelegate;
             var first = true;
             Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
@@ -505,7 +506,7 @@ namespace Xbim.IO.Memory
         {
             using (var stream = File.OpenRead(file))
             {
-                var result = LoadStep21(stream, progDelegate);
+                var result = LoadStep21(stream, stream.Length, progDelegate);
                 stream.Close();
                 return result;
             }

@@ -18,6 +18,7 @@ namespace Xbim.IO.Esent
         private int _instanceCount;
         private static IntPtr _geometryContextId;
         private static IntPtr _instanceContextId;
+private  bool _disposed;
         public EsentGeometryInitialiser(EsentGeometryStore esentGeometryStore, EsentShapeGeometryCursor shapeGeometryCursor, EsentShapeInstanceCursor shapeInstanceCursor)
         {
             try
@@ -117,12 +118,41 @@ namespace Xbim.IO.Esent
             }
         }
 
-
         public void Dispose()
-        {
-            _shapeInstanceTransaction.Dispose();
-            _shapeGeometryTransaction.Dispose();
+        { 
+            Dispose(true);
+            // Take yourself off the Finalization queue 
+            // to prevent finalization code for this object
+            // from executing a second time.
+            GC.SuppressFinalize(this);
+        }
 
+        public void Dispose(bool disposing)
+        {
+            if (_disposed) return;
+            if (disposing)
+            {
+                SetGeometryContext();
+                try
+                {
+                    _shapeGeometryTransaction.Dispose();
+                }
+                finally
+                {
+                    ResetGeometryContext();
+                }
+
+                SetInstanceContext();
+                try
+                {
+                    _shapeInstanceTransaction.Dispose();
+                }
+                finally
+                {
+                    ResetInstanceContext();
+                }             
+            }
+            _disposed = true;     
         }
 
         internal void Commit()

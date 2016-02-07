@@ -61,17 +61,17 @@ namespace Xbim.CobieExpress.IO
             return new CobieModel(model);
         }
 
-        public static CobieModel OpenStep21(Stream input, bool esentDB = false)
+        public static CobieModel OpenStep21(Stream input, long streamSize,bool esentDB = false)
         {
             if (esentDB)
             {
                 var esent = new EsentModel(new EntityFactory());
-                esent.CreateFrom(input, IfcStorageType.Stp, "temp.xbim", null, true);
+                esent.CreateFrom(input, streamSize, IfcStorageType.Stp, "temp.xbim", null, true);
                 return new CobieModel(esent);
             }
 
             var model = new MemoryModel(new EntityFactory());
-            model.LoadStep21(input);
+            model.LoadStep21(input, streamSize);
             return new CobieModel(model);
         }
 

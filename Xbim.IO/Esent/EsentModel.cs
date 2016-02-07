@@ -389,15 +389,15 @@ namespace Xbim.IO.Esent
             return true;
         }
 
-        public virtual bool CreateFrom(Stream inputStream, IfcStorageType streamType, string xbimDbName, ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false)
+        public virtual bool CreateFrom(Stream inputStream, long streamSize, IfcStorageType streamType, string xbimDbName, ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false)
         {
             Close();
             if(streamType.HasFlag(IfcStorageType.IfcZip))
                     Cache.ImportStepZip(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);   
             else if(streamType.HasFlag(IfcStorageType.Ifc))
-                    Cache.ImportStep(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
+                Cache.ImportStep(xbimDbName, inputStream, streamSize, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
             else if(streamType.HasFlag(IfcStorageType.IfcXml))
-                    Cache.ImportIfcXml(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities); 
+                    Cache.ImportIfcXml(xbimDbName, inputStream,streamSize, progDelegate, keepOpen, cacheEntities); 
             return true;
         }
 

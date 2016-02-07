@@ -47,17 +47,17 @@ namespace Xbim.IO.Step21
         private readonly List<int> _nestedIndex = new List<int>();
         public int[] NestedIndex { get { return _listNestLevel > 0 ? _nestedIndex.ToArray() : null; } }
 
-        private ExpressMetaData _metadata;
+        private readonly ExpressMetaData _metadata;
 
 
-        public XbimP21Parser(Stream strm, ExpressMetaData metadata)
+        public XbimP21Parser(Stream strm, ExpressMetaData metadata, long streamSize)
             : base(strm)
         {
             _metadata = metadata;
             var entityApproxCount = 5000;
-            if (strm.CanSeek)
+            if (streamSize>0)
             {
-                _streamSize = strm.Length;
+                _streamSize = streamSize;
                 entityApproxCount = Convert.ToInt32(_streamSize/50); //average 50 bytes per entity.
             }
 

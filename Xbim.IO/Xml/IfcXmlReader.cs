@@ -215,9 +215,13 @@ namespace Xbim.IO.Xml
         private string _expressNamespace;
         private string _cTypeAttribute;
         private string _posAttribute;
+        private long _streamSize;
+        private int _percentageParsed;
 
         private void StartElement(XmlReader input)
         {
+           
+
             var elementName = input.LocalName;
             bool isRefType;
             var id = GetId(input, out isRefType);
@@ -770,8 +774,11 @@ namespace Xbim.IO.Xml
         }
 
 
-        public StepFileHeader Read(XmlReader input)
+        public StepFileHeader Read(XmlReader input, long streamSize)
         {
+            
+            _streamSize = streamSize;
+
             // Read until end of file
             _idMap = new Dictionary<string, int>();
             _lastId = 0;
@@ -779,8 +786,10 @@ namespace Xbim.IO.Xml
             var foundHeader = false;
             var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
             var headerId="";
+            var lineInfo = input as IXmlLineInfo;
             while (_currentNode == null && input.Read()) //read through to UOS
             {
+                
                 switch (input.NodeType)
                 {
                     case XmlNodeType.Element:
