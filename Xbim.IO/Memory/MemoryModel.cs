@@ -355,21 +355,21 @@ namespace Xbim.IO.Memory
         public virtual void LoadXml(Stream stream, long streamSize, ReportProgressDelegate progDelegate = null)
         {
             _read.Clear();
-            using (var reader = XmlReader.Create(stream))
+            var schema = _entityFactory.SchemasIds.First();
+            if (schema == "IFC2X3")
             {
-                var schema = _entityFactory.SchemasIds.First();
-                if (schema == "IFC2X3")
-                {
-                    var reader3 = new IfcXmlReader(GetOrCreateXMLEntity, entity => { }, Metadata);
-                    Header = reader3.Read(reader, streamSize);
-                }
-                else
-                {
-                    var xmlReader = new XbimXmlReader4(GetOrCreateXMLEntity, entity => { }, Metadata);
-                    Header = xmlReader.Read(reader, streamSize);       
-                }
+                var reader3 = new IfcXmlReader(GetOrCreateXMLEntity, entity => { }, Metadata);
+                if (progDelegate != null) reader3.ProgressStatus += progDelegate;
+                Header = reader3.Read(stream);
+                if (progDelegate != null) reader3.ProgressStatus -= progDelegate;
             }
-
+            else
+            {
+                var xmlReader = new XbimXmlReader4(GetOrCreateXMLEntity, entity => { }, Metadata);
+                if (progDelegate != null) xmlReader.ProgressStatus += progDelegate;
+                Header = xmlReader.Read(stream);
+                if (progDelegate != null) xmlReader.ProgressStatus -= progDelegate;
+            }
             //purge
             _read.Clear();
         }

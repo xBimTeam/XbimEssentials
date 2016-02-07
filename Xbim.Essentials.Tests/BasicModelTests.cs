@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Ifc2x3.IO;
 using System.IO;
+using Xbim.Common;
 using Xbim.IO;
 
 namespace Xbim.Essentials.Tests
@@ -23,20 +24,34 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void OpenIfcZipFile()
         {
+            int percent = 0;
+            ReportProgressDelegate progDelegate = delegate(int percentProgress, object userState)
+            {
+                percent = percentProgress;
+
+            };
             using (var model = new Xbim.Ifc2x3.IO.XbimModel())
             {
-                model.CreateFrom("4walls1floorSite.ifczip");
+                model.CreateFrom("4walls1floorSite.ifczip", null, progDelegate);
                 model.Close();
+                Assert.IsTrue(percent == 100);
             }
-
         }
         [TestMethod]
         public void OpenIfcXmlFile()
         {
+            int percent = 0;
+            ReportProgressDelegate progDelegate = delegate(int percentProgress, object userState)
+            {
+                percent = percentProgress;
+
+            };
             using (var model = new Xbim.Ifc2x3.IO.XbimModel())
             {
-                model.CreateFrom("4walls1floorSite.ifcxml");
+
+                model.CreateFrom("4walls1floorSite.ifcxml",null,progDelegate);
                 model.Close();
+                Assert.IsTrue(percent==100);
             }
 
         }

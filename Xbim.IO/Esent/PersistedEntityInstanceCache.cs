@@ -654,11 +654,11 @@ namespace Xbim.IO.Esent
         {
             using (var stream = File.OpenRead(xmlFilename))
             {
-                ImportIfcXml(xbimDbName, stream, stream.Length, progressHandler, keepOpen, cacheEntities);
+                ImportIfcXml(xbimDbName, stream, progressHandler, keepOpen, cacheEntities);
             }
         }
 
-        internal void ImportIfcXml(string xbimDbName, Stream inputStream, long streamSize, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false)
+        internal void ImportIfcXml(string xbimDbName, Stream inputStream, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false)
         {
             CreateDatabase(xbimDbName);
             Open(xbimDbName, XbimDBAccess.Exclusive);
@@ -667,35 +667,34 @@ namespace Xbim.IO.Esent
             {
                 using (var transaction = _model.BeginTransaction())
                 {
-                    using (var xmlInStream = new StreamReader(inputStream, Encoding.GetEncoding("ISO-8859-9"))) //this is a work around to ensure latin character sets are read
+
+                    var schema = Model.Factory.SchemasIds.First();
+                    if (schema == "IFC2X3")
                     {
-                        using (var reader = XmlReader.Create(xmlInStream))
-                        {
-                            var schema = Model.Factory.SchemasIds.First();
-                            if (schema == "IFC2X3")
-                            {
-                                var reader3 = new IfcXmlReader(GetOrCreateEntity, e =>
-                                { //add entity to modified list
-                                    ModifiedEntities.TryAdd(e.EntityLabel, e);
-                                    //pulse will flush the model if necessary (based on the number of entities being processed)
-                                    transaction.Pulse();
-                                }, Model.Metadata);
-                                _model.Header = reader3.Read(reader, streamSize);
-                            }
-                            else
-                            {
-                                var xmlReader = new XbimXmlReader4(GetOrCreateEntity, e =>
-                                { //add entity to modified list
-                                    ModifiedEntities.TryAdd(e.EntityLabel, e);
-                                    //pulse will flush the model if necessary (based on the number of entities being processed)
-                                    transaction.Pulse();
-                                }, Model.Metadata);
-                                _model.Header = xmlReader.Read(reader, streamSize);
-                            }
-                            var cursor = _model.GetTransactingCursor();
-                            cursor.WriteHeader(_model.Header);
-                        }
+                        var reader3 = new IfcXmlReader(GetOrCreateEntity, e =>
+                        { //add entity to modified list
+                            ModifiedEntities.TryAdd(e.EntityLabel, e);
+                            //pulse will flush the model if necessary (based on the number of entities being processed)
+                            transaction.Pulse();
+                        }, Model.Metadata);
+                        if (progressHandler != null) reader3.ProgressStatus += progressHandler;
+                        _model.Header = reader3.Read(inputStream);
+                        if (progressHandler != null) reader3.ProgressStatus -= progressHandler;
                     }
+                    else
+                    {
+                        var xmlReader = new XbimXmlReader4(GetOrCreateEntity, e =>
+                        { //add entity to modified list
+                            ModifiedEntities.TryAdd(e.EntityLabel, e);
+                            //pulse will flush the model if necessary (based on the number of entities being processed)
+                            transaction.Pulse();
+                        }, Model.Metadata);
+                        if (progressHandler != null) xmlReader.ProgressStatus += progressHandler;
+                        _model.Header = xmlReader.Read(inputStream);
+                        if (progressHandler != null) xmlReader.ProgressStatus -= progressHandler;
+                    }
+                    var cursor = _model.GetTransactingCursor();
+                    cursor.WriteHeader(_model.Header);
                     transaction.Commit();
                 }
                 if (!keepOpen) Close();
@@ -842,32 +841,35 @@ namespace Xbim.IO.Esent
                                         // XmlReaderSettings settings = new XmlReaderSettings() { IgnoreComments = true, IgnoreWhitespace = false };
                                         using (var xmlInStream = zipFile.GetInputStream(entry))
                                         {
-                                            using (var reader = XmlReader.Create(xmlInStream))
+
+                                            var schema = Model.Factory.SchemasIds.First();
+                                            if (schema == "IFC2X3")
                                             {
-                                                var schema = Model.Factory.SchemasIds.First();
-                                                if (schema == "IFC2X3")
-                                                {
-                                                    var reader3 = new IfcXmlReader(GetOrCreateEntity, e =>
-                                                    { //add entity to modified list
-                                                        ModifiedEntities.TryAdd(e.EntityLabel, e);
-                                                        //pulse will flush the model if necessary (based on the number of entities being processed)
-                                                        transaction.Pulse();
-                                                    }, Model.Metadata);
-                                                    _model.Header = reader3.Read(reader, entry.Size);
-                                                }
-                                                else
-                                                {
-                                                    var xmlReader = new XbimXmlReader4(GetOrCreateEntity, e =>
-                                                    { //add entity to modified list
-                                                        ModifiedEntities.TryAdd(e.EntityLabel, e);
-                                                        //pulse will flush the model if necessary (based on the number of entities being processed)
-                                                        transaction.Pulse();
-                                                    }, Model.Metadata);
-                                                    _model.Header = xmlReader.Read(reader, entry.Size);
-                                                }
-                                                var cursor = _model.GetTransactingCursor();
-                                                cursor.WriteHeader(_model.Header);
+                                                var reader3 = new IfcXmlReader(GetOrCreateEntity, e =>
+                                                { //add entity to modified list
+                                                    ModifiedEntities.TryAdd(e.EntityLabel, e);
+                                                    //pulse will flush the model if necessary (based on the number of entities being processed)
+                                                    transaction.Pulse();
+                                                }, Model.Metadata);
+                                                if (progressHandler != null) reader3.ProgressStatus += progressHandler;
+                                                _model.Header = reader3.Read(xmlInStream);
+                                                if (progressHandler != null) reader3.ProgressStatus -= progressHandler;
                                             }
+                                            else
+                                            {
+                                                var xmlReader = new XbimXmlReader4(GetOrCreateEntity, e =>
+                                                { //add entity to modified list
+                                                    ModifiedEntities.TryAdd(e.EntityLabel, e);
+                                                    //pulse will flush the model if necessary (based on the number of entities being processed)
+                                                    transaction.Pulse();
+                                                }, Model.Metadata);
+                                                if (progressHandler != null) xmlReader.ProgressStatus += progressHandler;
+                                                _model.Header = xmlReader.Read(xmlInStream);
+                                                if (progressHandler != null) xmlReader.ProgressStatus -= progressHandler;
+                                            }
+                                            var cursor = _model.GetTransactingCursor();
+                                            cursor.WriteHeader(_model.Header);
+
                                         }
                                         transaction.Commit();
                                     }

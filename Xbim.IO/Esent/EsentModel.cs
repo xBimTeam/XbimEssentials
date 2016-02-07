@@ -397,7 +397,7 @@ namespace Xbim.IO.Esent
             else if(streamType.HasFlag(IfcStorageType.Ifc))
                 Cache.ImportStep(xbimDbName, inputStream, streamSize, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
             else if(streamType.HasFlag(IfcStorageType.IfcXml))
-                    Cache.ImportIfcXml(xbimDbName, inputStream,streamSize, progDelegate, keepOpen, cacheEntities); 
+                    Cache.ImportIfcXml(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities); 
             return true;
         }
 

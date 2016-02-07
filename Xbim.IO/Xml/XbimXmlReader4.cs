@@ -70,52 +70,67 @@ namespace Xbim.IO.Xml
 
         }
 
-        public StepFileHeader Read(XmlReader input, long streamSize, bool onlyHeader = false)
+        public StepFileHeader Read(Stream xmlStream, bool onlyHeader = false)
         {
-            _streamSize = streamSize;
-            _idMap = new Dictionary<string, int>();
-            
-            var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
-            var rootElement = true;
-            var headerElement = true;
-            while (input.Read())
+          //   using (var xmlInStream = new StreamReader(inputStream, Encoding.GetEncoding("ISO-8859-9"))) //this is a work around to ensure latin character sets are read
+                   
+            using (var input = XmlReader.Create(xmlStream))
             {
-                //skip everything except for element nodes
-                if (input.NodeType != XmlNodeType.Element)
-                    continue;
+                _streamSize = xmlStream.Length;
+                _idMap = new Dictionary<string, int>();
 
-                if (rootElement)
+                var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
+                var rootElement = true;
+                var headerElement = true;
+                while (input.Read())
                 {
-                    ReadSchemaInHeader(input, header);
-                    rootElement = false;
-                    continue;
-                }
+                    //skip everything except for element nodes
+                    if (input.NodeType != XmlNodeType.Element)
+                        continue;
 
-                if (headerElement)
-                {
-                    //header is the first inner node if defined (it is optional)
-                    var name = input.LocalName.ToLowerInvariant();
-                    if ((name == "header" || name == "iso_10303_28_header") && !input.IsEmptyElement)
+                    if (rootElement)
                     {
-                        header = ReadHeader(input, header);
+                        ReadSchemaInHeader(input, header);
+                        rootElement = false;
+                        continue;
                     }
-                    headerElement = false;
-                    continue;
+
+                    if (headerElement)
+                    {
+                        //header is the first inner node if defined (it is optional)
+                        var name = input.LocalName.ToLowerInvariant();
+                        if ((name == "header" || name == "iso_10303_28_header") && !input.IsEmptyElement)
+                        {
+                            header = ReadHeader(input, header);
+                        }
+                        headerElement = false;
+                        continue;
+                    }
+
+                    //if this is IFC2x3 file and we only need the header we need to make sure we read schema information from "uos" element
+                    if (input.LocalName == "uos")
+                    {
+                        ReadSchemaInHeader(input, header);
+                    }
+
+                    if (onlyHeader) return header;
+
+                    //process all root entities in the file (that has to be IPersistEntity)
+                    ReadEntity(input);
+                    if (_streamSize != -1 && ProgressStatus != null)
+                    {
+                        double pos = xmlStream.Position;
+                        var newPercentage = Convert.ToInt32(pos / _streamSize * 100.0);
+                        if (newPercentage > _percentageParsed)
+                        {
+                            ProgressStatus(_percentageParsed, "Parsing");
+                            _percentageParsed = newPercentage;
+                        }
+                    }
                 }
-
-                //if this is IFC2x3 file and we only need the header we need to make sure we read schema information from "uos" element
-                if (input.LocalName == "uos")
-                {
-                    ReadSchemaInHeader(input, header);
-                }
-
-                if (onlyHeader) return header;
-
-                //process all root entities in the file (that has to be IPersistEntity)
-                ReadEntity(input);
+                if(ProgressStatus!=null) ProgressStatus(100, "Parsing");
+                return header;
             }
-
-            return header;
 
         }
 
@@ -433,6 +448,7 @@ namespace Xbim.IO.Xml
 
         private readonly char[] _separator = {' '};
         private long _streamSize;
+        private int _percentageParsed;
 
         private void SetPropertyFromString(ExpressMetaProperty property, IPersistEntity entity, string value, int[] pos, Type valueType = null)
         {
@@ -629,16 +645,8 @@ namespace Xbim.IO.Xml
 
         public static IStepFileHeader ReadHeader(Stream input)
         {
-            using (var inStream = new StreamReader(input, Encoding.GetEncoding("ISO-8859-9")))
-            //this is a work around to ensure latin character sets are read
-            {
-                using (var reader = XmlReader.Create(inStream))
-                {
-                    var xReader = new XbimXmlReader4();
-                    return xReader.Read(reader, -1, true);
-                }
-            }
-
+            var xReader = new XbimXmlReader4();
+            return xReader.Read(input, true);
         }
 
         public static XmlSchemaVersion ReadSchemaVersion(XmlReader input)
