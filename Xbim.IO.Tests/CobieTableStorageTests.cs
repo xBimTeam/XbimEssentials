@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.CobieExpress;
 using Xbim.CobieExpress.IO;
+using Xbim.CobieExpress.IO.Resolvers;
 using Xbim.IO.TableStore;
 
 namespace Xbim.MemoryModel.Tests
@@ -39,12 +40,15 @@ namespace Xbim.MemoryModel.Tests
             var loaded = new CobieModel();
             var mapping = GetCobieMapping();
             var storage = new TableStore(loaded, mapping);
+            storage.Resolvers.Add(new AttributeTypeResolver());
 
             using (var txn = loaded.BeginTransaction("Loading XLSX"))
             {
                 storage.LoadFrom("..\\..\\Lakeside.xlsx");
                 txn.Commit();
             }
+
+            storage.Store("..\\..\\Lakeside2.xlsx");
         }
 
         [TestMethod]
@@ -54,8 +58,7 @@ namespace Xbim.MemoryModel.Tests
             var test = new CobieModel();
             using (var txn = test.BeginTransaction("Sample data"))
             {
-                test.SetDefaultNewEntityInfo(DateTime.Now, "martin.cerny@northumbria.ac.uk", "Martin", "Černý");
-                test.SetDefaultModifiedEntityInfo(DateTime.Now, "martin.cerny@northumbria.ac.uk", "Martin", "Černý");
+                test.SetDefaultEntityInfo(DateTime.Now, "martin.cerny@northumbria.ac.uk", "Martin", "Černý");
                 test.Instances.New<CobieFacility>(f =>
                 {
                     f.Name = "Superb Facility";
@@ -93,16 +96,17 @@ namespace Xbim.MemoryModel.Tests
 
             var model = new CobieModel();
             storage = new TableStore(model, mapping);
+            storage.Resolvers.Add(new AttributeTypeResolver());
+
             using (var txn = model.BeginTransaction("Loading XLSX"))
             {
                 storage.LoadFrom(file);
                 txn.Commit();
             }
 
-            var context = new ReferenceContext(storage, mapping.ClassMappings.First(m => m.Class == "Attribute"));
-
             var facility = model.Instances.FirstOrDefault<CobieFacility>();
             var type = model.Instances.FirstOrDefault<CobieType>();
+            var createdInfo = model.Instances.OfType<CobieCreatedInfo>();
 
             Assert.IsNotNull(facility);
             Assert.IsNotNull(type);
@@ -117,8 +121,9 @@ namespace Xbim.MemoryModel.Tests
             Assert.IsNotNull(type.Warranty.DurationParts);
             Assert.IsNotNull(type.Warranty.DurationLabor);
 
-            Assert.IsNull(facility.VolumeUnits);
+            Assert.IsNotNull(facility.VolumeUnits);
             Assert.IsTrue(facility.Attributes.Any());
+            Assert.IsTrue(createdInfo.Count() == 1);
         }
 
         private ModelMapping GetCobieMapping()

@@ -57,7 +57,7 @@ namespace Xbim.IO.TableStore
         public void Resolve()
         {
             //load context data
-            Context.LoadData(Row);
+            Context.LoadData(Row, false);
 
             //load entity from the model
             // ReSharper disable once ImpureMethodCallOnReadonlyValueField
@@ -77,9 +77,14 @@ namespace Xbim.IO.TableStore
                 return;
 
             var children = GetReferencedEntities(Context).ToList();
+            
+            //if no children was found but context contains data for creation of the object, create one
+            if(!children.Any() && Context.HasData)
+                children.Add(Store.ResolveContext(Context, -1, false));
+
             foreach (var child in children)
             {
-                AddToPath(Context, Entity, child);
+                Store.AssignEntity(Entity, child, Context);
             }
         }
 
@@ -116,29 +121,30 @@ namespace Xbim.IO.TableStore
             }
             foreach (var parent in parents)
             {
-                AddToPath(Context, parent, Entity);
+                AddToPath(destination, parent, Entity);
             }
         }
 
-        private void AddToPath(ReferenceContext targetContext, IPersistEntity root, IPersistEntity child)
+        private void AddToPath(ReferenceContext targetContext, IPersistEntity parent, IPersistEntity child)
         {
             //get context path from root entity
             var ctxStack = new Stack<ReferenceContext>();
             var entityStack = new Stack<IPersistEntity>();
             var context = targetContext;
-            while (context != null)
+            while (!context.IsRoot && context.ContextType != ReferenceContextType.Parent)
             {
                 ctxStack.Push(context);
                 context = context.ParentContext;
             }
 
-            var entity = root;
-            while ((context = ctxStack.Pop()) != null)
+            var entity = parent;
+            while (ctxStack.Count != 0)
             {
+                context = ctxStack.Pop();
                 entityStack.Push(entity);
                 //browse to the level of the bottom context and call ResolveContext there
                 var index = context.Index != null ? new[] { context.Index } : null;
-                var value = context.PropertyInfo.GetValue(root, index);
+                var value = context.PropertyInfo.GetValue(parent, index);
                 if (context.ContextType == ReferenceContextType.Entity)
                 {
                     var e = value as IPersistEntity;
@@ -178,7 +184,6 @@ namespace Xbim.IO.TableStore
                     return;
                 }
                 entity = entities.Cast<object>().FirstOrDefault(e => TableStore.IsValidEntity(context, e)) as IPersistEntity;
-                
             }
         }
 
@@ -187,8 +192,9 @@ namespace Xbim.IO.TableStore
         {
             var temp = new Stack<IPersistEntity>();
             IPersistEntity parent;
-            while ((parent = parents.Pop()) != null)
+            while (parents.Count != 0)
             {
+                parent = parents.Pop();
                 if (context.ContextType == ReferenceContextType.EntityList)
                 {
                     Store.AssignEntity(parent, entity, context);
@@ -203,8 +209,9 @@ namespace Xbim.IO.TableStore
             }
 
             //fill parents with the new stuff
-            while ((parent = temp.Pop()) != null)
+            while (temp.Count != 0)
             {
+                parent = temp.Pop();
                 parents.Push(parent);
             }
         }
@@ -217,8 +224,13 @@ namespace Xbim.IO.TableStore
         private IEnumerable<IPersistEntity> GetReferencedEntities(ReferenceContext context)
         {
             var type = context.SegmentType;
+
+            //return empty enumeration in case there are identifiers but no data
+            if (context.TypeHintMapping == null && context.TableHintMapping == null && context.ScalarChildren.Any() && !context.HasData)
+                return Enumerable.Empty<IPersistEntity>();
+
             //we don't have any data so use just a type for the search
-            return !context.HasData ? 
+            return !context.ScalarChildren.Any() ? 
                 Model.Instances.OfType(type.Name, true) : 
                 Model.Instances.OfType(type.Name, true).Where(e => TableStore.IsValidEntity(context, e));
         }

@@ -91,9 +91,11 @@ namespace Xbim.IO.TableStore
             }
 
             //resolve references (don't use foreach as new references might be added to the queue during the processing)
-            ForwardReference reference;
-            while ((reference = _forwardReferences.Dequeue()) != null)
+            while (_forwardReferences.Count != 0)
+            {
+                var reference = _forwardReferences.Dequeue();
                 reference.Resolve();
+            }
 
             //todo: load partial tables (also just a references - use scalars to find an object and parent to assign it)
             
@@ -160,7 +162,7 @@ namespace Xbim.IO.TableStore
         /// </summary>
         /// <param name="mapping"></param>
         /// <returns></returns>
-        private int[] GetIdentityIndices(ClassMapping mapping)
+        private IEnumerable<int> GetIdentityIndices(ClassMapping mapping)
         {
             return _multiRowIndicesCache[mapping.TableName];
         }
@@ -193,7 +195,7 @@ namespace Xbim.IO.TableStore
         private IPersistEntity LoadFromRow(IRow row, ReferenceContext context, IRow lastRow, IPersistEntity lastEntity)
         {
             //load data into the context
-            context.LoadData(row);
+            context.LoadData(row, true);
 
             var multirow = IsMultiRow(row, context.CMapping, lastRow);
             if (multirow)
@@ -213,7 +215,7 @@ namespace Xbim.IO.TableStore
                     .Where(c => c != null)
                     .Distinct();
                 foreach (var ctx in subContexts)
-                    ResolveSubContext(ctx, lastEntity);
+                    ResolveMultiContext(ctx, lastEntity);
                 return lastEntity;
             }
 
@@ -227,15 +229,22 @@ namespace Xbim.IO.TableStore
         /// </summary>
         /// <param name="context">Reference context of the data</param>
         /// <param name="scalarIndex">Index of value to be used in a value list in case of multi values</param>
+        /// <param name="onlyScalar"></param>
         /// <param name="entity">Existing entity which is parent to the context</param>
         /// <returns></returns>
-        internal IPersistEntity ResolveContext(ReferenceContext context, int scalarIndex, bool onlyScalar, IPersistEntity entity = null)
+        internal IPersistEntity ResolveContext(ReferenceContext context, int scalarIndex, bool onlyScalar)
         {
+            IPersistEntity entity = null;
             var eType = GetConcreteType(context);
-            if (entity == null && IsGlobalType(eType.Type) && GetOrCreateGlobalEntity(context, out entity, eType, scalarIndex))
+            if (IsGlobalType(eType.Type))
             {
+                //it is a global type but there are no values to fill in
+                if (!context.AllScalarChildren.Any(c => c.Values != null && c.Values.Any()))
+                    return null;
+
                 //it is a global entity and it was filled in with the data before
-                return entity;
+                if (GetOrCreateGlobalEntity(context, out entity, eType, scalarIndex))
+                    return entity;
             }
 
             //create new entity if new global one was not created
@@ -260,7 +269,7 @@ namespace Xbim.IO.TableStore
                 }
 
                 //it is a single value
-                var val = scalarIndex < 0 ? values[0]: (values.Length <= scalarIndex+1 ? values[scalarIndex] : null);
+                var val = scalarIndex < 0 ? values[0]: (values.Length >= scalarIndex+1 ? values[scalarIndex] : null);
                 if(val != null)
                     scalar.PropertyInfo.SetValue(entity, val, scalar.Index != null ? new[] { scalar.Index } : null);
             }
@@ -368,7 +377,7 @@ namespace Xbim.IO.TableStore
         /// </summary>
         /// <param name="subContext"></param>
         /// <param name="rootEntity"></param>
-        private void ResolveSubContext(ReferenceContext subContext, IPersistEntity rootEntity)
+        private void ResolveMultiContext(ReferenceContext subContext, IPersistEntity rootEntity)
         {
             //get context path from root entity
             var ctxStack = new Stack<ReferenceContext>();
@@ -414,13 +423,37 @@ namespace Xbim.IO.TableStore
                     break;
                 }
             }
-            ResolveContext(context, -1, false, entity);
+            if (subContext.IsReference)
+            {
+                var reference = new ForwardReference(entity, subContext, this);
+                _forwardReferences.Enqueue(reference);
+                return;
+            }
+
+            if (subContext.ContextType == ReferenceContextType.EntityList)
+            {
+                var child = ResolveContext(subContext, -1, false);
+                AssignEntity(entity, child, subContext);
+                return;
+            }
+
+            if (subContext.ContextType == ReferenceContextType.ScalarList)
+            {
+                var list = subContext.PropertyInfo.GetValue(entity, null) as IList;
+                if (list != null && subContext.Values != null && subContext.Values.Any())
+                    list.Add(subContext.Values[0]);
+            }
+            
         }
 
         internal static bool IsValidEntity(ReferenceContext context, object entity)
         {
             if (!context.ScalarChildren.Any())
                 return true;
+
+            //if it might have identifiers but doesn't have a one it can't find any
+            if (!context.HasData)
+                return false;
 
             return context.ScalarChildren
                 .Where(s => s.Values != null && s.Values.Length > 0)
@@ -493,8 +526,6 @@ namespace Xbim.IO.TableStore
 
                 switch (cellA.CellType)
                 {
-                    case CellType.Unknown:
-                        break;
                     case CellType.Numeric:
                         if (Math.Abs(cellA.NumericCellValue - cellB.NumericCellValue) > 1e-9)
                             return false;
@@ -503,18 +534,10 @@ namespace Xbim.IO.TableStore
                         if (cellA.StringCellValue != cellB.StringCellValue)
                             return false;
                         break;
-                    case CellType.Formula:
-                        break;
-                    case CellType.Blank:
-                        break;
                     case CellType.Boolean:
                         if (cellA.BooleanCellValue != cellB.BooleanCellValue)
                             return false;
                         break;
-                    case CellType.Error:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
                 }
             }
 
@@ -574,6 +597,28 @@ namespace Xbim.IO.TableStore
                     return resolver.Resolve(cType.Type, cell, context.CMapping, context.Mapping);
             }
 
+            if (context.PropertyInfo != null)
+            {
+                var pType = context.PropertyInfo.PropertyType;
+                pType = GetNonNullableType(pType);
+                if (pType.IsValueType || pType == typeof(string))
+                    return pType;
+
+                if (typeof (IEnumerable).IsAssignableFrom(pType))
+                {
+                    pType = pType.GetGenericArguments()[0];
+                    if (pType.IsValueType || pType == typeof (string))
+                        return pType;
+                }
+
+                if (Resolvers != null && Resolvers.Any())
+                {
+                    var resolver = Resolvers.FirstOrDefault(r => r.CanResolve(pType));
+                    if (resolver != null)
+                        return resolver.Resolve(pType, cell, context.CMapping, context.Mapping);
+                }
+            }
+
             Log.WriteLine("It wasn't possible to find a non-abstract type for table {0}, class {1}",
                 context.CMapping.TableName, context.CMapping.Class);
             return null;
@@ -601,7 +646,7 @@ namespace Xbim.IO.TableStore
             {
                 var resolver = Resolvers.FirstOrDefault(r => r.CanResolve(cType));
                 if(resolver != null)
-                    return resolver.Resolve(cType, context);
+                    return resolver.Resolve(cType, context, MetaData);
             }
 
             Log.WriteLine("It wasn't possible to find a non-abstract type for table {0}, class {1}",

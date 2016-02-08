@@ -204,25 +204,28 @@ namespace Xbim.CobieExpress.IO
         #endregion
 
         #region Entity created and modified default CreatedInfo assignment
-        private CobieCreatedInfo _newInfo;
-        private CobieCreatedInfo _modifiedInfo;
-        protected virtual void EntityNewCreatedInfo(IPersistEntity entity)
+        private CobieCreatedInfo _entityInfo;
+        private bool _ownChange;
+        private IPersistEntity _lastEntity;
+        protected virtual void SetEntityCreatedInfo(IPersistEntity entity)
         {
+            if (_ownChange)
+            {
+                if (ReferenceEquals(_lastEntity, entity))
+                    return;
+                _ownChange = false;
+            }
             var refObj = entity as CobieReferencedObject;
-            if (refObj != null)
-                refObj.Created = _newInfo;
+            if (refObj == null) return;
+
+            _ownChange = true;
+            _lastEntity = entity;
+            refObj.Created = _entityInfo;
         }
 
-        protected virtual void EntityModifiedCreatedInfo(IPersistEntity entity)
+        public CobieCreatedInfo SetDefaultEntityInfo(DateTime date, string email, string givenName, string familyName)
         {
-            var refObj = entity as CobieReferencedObject;
-            if (refObj != null)
-                refObj.Created = _modifiedInfo;
-        }
-
-        public CobieCreatedInfo SetDefaultNewEntityInfo(DateTime date, string email, string givenName, string familyName)
-        {
-            _newInfo = Instances.New<CobieCreatedInfo>(ci =>
+            _entityInfo = Instances.New<CobieCreatedInfo>(ci =>
             {
                 ci.CreatedOn = date;
                 ci.CreatedBy =
@@ -231,33 +234,15 @@ namespace Xbim.CobieExpress.IO
                     Instances.New<CobieContact>(
                             c =>
                             {
+                                c.Created = ci;
                                 c.Email = email;
                                 c.GivenName = givenName;
                                 c.FamilyName = familyName;
                             });
             });
-            EntityNew += EntityNewCreatedInfo;
-            return _newInfo;
-        }
-
-        public CobieCreatedInfo SetDefaultModifiedEntityInfo(DateTime date, string email, string givenName, string familyName)
-        {
-            _modifiedInfo = Instances.New<CobieCreatedInfo>(ci =>
-            {
-                ci.CreatedOn = date;
-                ci.CreatedBy =
-                    Instances.FirstOrDefault<CobieContact>(
-                        c => c.Email == email && c.GivenName == givenName && c.FamilyName == familyName) ??
-                    Instances.New<CobieContact>(
-                            c =>
-                            {
-                                c.Email = email;
-                                c.GivenName = givenName;
-                                c.FamilyName = familyName;
-                            });
-            });
-            EntityModified += EntityModifiedCreatedInfo;
-            return _modifiedInfo;
+            EntityNew += SetEntityCreatedInfo;
+            EntityModified += SetEntityCreatedInfo;
+            return _entityInfo;
         }
         #endregion
 
@@ -269,10 +254,8 @@ namespace Xbim.CobieExpress.IO
             _model.EntityDeleted -= OnEntityDeleted;
             _model.EntityModified -= OnEntityModified;
 
-            if (_newInfo != null)
-                EntityNew -= EntityNewCreatedInfo;
-            if (_modifiedInfo != null)
-                EntityModified -= EntityModifiedCreatedInfo;
+            if (_entityInfo != null)
+                EntityNew -= SetEntityCreatedInfo;
 
             //dispose model if it is disposable
             var dispModel = _model as IDisposable;

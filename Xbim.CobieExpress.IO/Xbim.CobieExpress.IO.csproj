@@ -69,6 +69,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resolvers\AttributeTypeResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.CobieExpress\Xbim.CobieExpress.csproj">

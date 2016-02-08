@@ -99,7 +99,7 @@
         <PropertyMapping Header="CreatedBy" Column="B" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="Created.CreatedBy.Email" />
         <PropertyMapping Header="CreatedOn" Column="C" Status="Required" MultiRow="None" DefaultValue="1900-12-31T23:59:59" Paths="Created.CreatedOn" />
         <PropertyMapping Header="Category" Column="D" Status="PickValue" MultiRow="None" DefaultValue="n/a" Paths="Categories.Value" />
-        <PropertyMapping Header="SpaceNames" Column="E" Status="Required" MultiRow="Always" DefaultValue="n/a" Paths="Spaces.Name"  IsKey="true"/>
+        <PropertyMapping Header="SpaceNames" Column="E" Status="Reference" MultiRow="Always" DefaultValue="n/a" Paths="Spaces.Name"  IsKey="true"/>
         <PropertyMapping Header="ExtSystem" Column="F" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtObject" Column="G" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalObject.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtIdentifier" Column="H" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalId"  Hidden="true"/>

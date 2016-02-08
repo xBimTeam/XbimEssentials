@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using NPOI.SS.UserModel;
@@ -8,6 +9,7 @@ using Xbim.Common.Metadata;
 
 namespace Xbim.IO.TableStore
 {
+    [DebuggerDisplay("{Segment}")]
     public class ReferenceContext
     {
         public string Segment { get; set; }
@@ -111,7 +113,7 @@ namespace Xbim.IO.TableStore
 
         public bool IsReference { get
         {
-            return ScalarChildren.Any(c => c.Mapping != null && c.Mapping.Status == DataStatus.Reference);
+            return (Mapping != null && Mapping.Status == DataStatus.Reference) || ScalarChildren.Any(c => c.Mapping != null && c.Mapping.Status == DataStatus.Reference);
         } }
 
         /// <summary>
@@ -236,10 +238,8 @@ namespace Xbim.IO.TableStore
 
         }
 
-        public void LoadData(IRow row)
+        public void LoadData(IRow row, bool skipReferences)
         {
-            //if there is no mapping it doesn't make a sense to load any data
-            if (Mapping == null) return;
             CurrentRow = row;
 
             //clear any old data
@@ -250,7 +250,7 @@ namespace Xbim.IO.TableStore
 
             //load child data
             foreach (var child in Children)
-                child.LoadData(row);
+                child.LoadData(row, skipReferences);
             
             //load type and table hint values if available
             if (TypeHintMapping != null)
@@ -269,13 +269,17 @@ namespace Xbim.IO.TableStore
             //return if this is not a leaf
             if (ContextType != ReferenceContextType.Scalar && ContextType != ReferenceContextType.ScalarList)
                 return;
-            
-            //if there is any enumeration on the path this needs to be treated as a list of values
-            var cell = row.GetCell(Mapping.ColumnIndex);
-            var valType = SegmentType.Type.IsAbstract
-                        ? Store.GetConcreteType(this, cell) :
-                        SegmentType.Type;
 
+            if (skipReferences && IsReference)
+                return;
+            
+            //if there is no mapping it doesn't make a sense to load any data
+            if (Mapping == null) return;
+
+            var cell = row.GetCell(Mapping.ColumnIndex);
+            var valType = Store.GetConcreteType(this, cell);
+
+            //if there is any enumeration on the path this needs to be treated as a list of values
             if (HasEnumerationOnPath)
             {
                 if (cell == null || cell.CellType != CellType.String || string.Equals(cell.StringCellValue, Mapping.DefaultValue, StringComparison.OrdinalIgnoreCase)) 
@@ -285,7 +289,7 @@ namespace Xbim.IO.TableStore
                 if (!string.IsNullOrWhiteSpace(strValue))
                     Values =
                         strValue.Split(new[] {Store.Mapping.ListSeparator}, StringSplitOptions.RemoveEmptyEntries)
-                            .Select(v => Store.CreateSimpleValue(SegmentType.Type, v.Trim())).ToArray();
+                            .Select(v => Store.CreateSimpleValue(valType, v.Trim())).ToArray();
             }
             else
             {
