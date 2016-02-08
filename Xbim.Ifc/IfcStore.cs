@@ -187,7 +187,7 @@ namespace Xbim.Ifc
             {
                 if(string.IsNullOrWhiteSpace(schemaIdentifier))
                     throw new FileLoadException(filePath + " is not a valid IFC file format, ifc, ifcxml, ifczip and xBIM are supported.");
-                throw new FileLoadException(filePath + ", is IFC file version " + schemaIdentifier + ". IFC2x3 and IFC4 are supported. Check your exporter settings please.");
+                throw new FileLoadException(filePath + ", is IFC file version " + schemaIdentifier + ". Only IFC2x3 and IFC4 are supported. Check your exporter settings please.");
             }
 
             if (storageType == IfcStorageType.Xbim) //open the XbimFile
@@ -279,8 +279,9 @@ namespace Xbim.Ifc
                     return IfcSchemaVersion.Ifc4;
                 if (string.Compare(schema, "Ifc2x3", StringComparison.OrdinalIgnoreCase) == 0)
                     return IfcSchemaVersion.Ifc2X3;
-                if (string.Compare(schema, "Ifc2x2", StringComparison.OrdinalIgnoreCase) == 0) //return this as 2x3
+                if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
                     return IfcSchemaVersion.Ifc2X3;
+                    
             }
 
             return IfcSchemaVersion.Unsupported;
