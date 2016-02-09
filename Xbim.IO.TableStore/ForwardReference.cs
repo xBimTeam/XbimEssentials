@@ -76,16 +76,14 @@ namespace Xbim.IO.TableStore
             if (Context.ContextType == ReferenceContextType.Parent)
                 return;
 
-            var children = GetReferencedEntities(Context).ToList();
+            var children = Store.GetReferencedEntities(Context).ToList();
             
             //if no children was found but context contains data for creation of the object, create one
             if(!children.Any() && Context.HasData)
                 children.Add(Store.ResolveContext(Context, -1, false));
 
             foreach (var child in children)
-            {
                 Store.AssignEntity(Entity, child, Context);
-            }
         }
 
         private void ResolveParent()
@@ -93,7 +91,7 @@ namespace Xbim.IO.TableStore
             if (Context.ContextType != ReferenceContextType.Parent)
                 return;
 
-            var parents = GetReferencedEntities(Context).ToList();
+            var parents = Store.GetReferencedEntities(Context).ToList();
             if (!parents.Any())
             {
                 Store.Log.WriteLine("There is no parent of type {0} for type {1}", Context.SegmentType.ExpressName,
@@ -216,24 +214,7 @@ namespace Xbim.IO.TableStore
             }
         }
 
-        /// <summary>
-        /// Search the model for the entities satisfying the conditions in context
-        /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
-        private IEnumerable<IPersistEntity> GetReferencedEntities(ReferenceContext context)
-        {
-            var type = context.SegmentType;
-
-            //return empty enumeration in case there are identifiers but no data
-            if (context.TypeHintMapping == null && context.TableHintMapping == null && context.ScalarChildren.Any() && !context.HasData)
-                return Enumerable.Empty<IPersistEntity>();
-
-            //we don't have any data so use just a type for the search
-            return !context.ScalarChildren.Any() ? 
-                Model.Instances.OfType(type.Name, true) : 
-                Model.Instances.OfType(type.Name, true).Where(e => TableStore.IsValidEntity(context, e));
-        }
+       
 
        
     }

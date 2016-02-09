@@ -52,6 +52,43 @@ namespace Xbim.MemoryModel.Tests
         }
 
         [TestMethod]
+        public void AssemblyRoundTrip()
+        {
+            const string file = "assembly.xlsx";
+            var test = new CobieModel();
+            using (var txn = test.BeginTransaction("Sample data"))
+            {
+                test.SetDefaultEntityInfo(DateTime.Now, "martin.cerny@northumbria.ac.uk", "Martin", "Černý");
+                test.Instances.New<CobieComponent>(c =>
+                {
+                    c.Name = "Component A";
+                    c.AssemblyOf.Add(test.Instances.New<CobieComponent>(c1 =>
+                    {
+                        c1.Name = "Component B";
+                    }));
+                });
+
+                txn.Commit();
+            }
+
+            string report;
+            test.ExportToTable(file, out report);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(report));
+
+            var model = CobieModel.ImportFromTable(file, out report);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(report));
+
+            var a = model.Instances.FirstOrDefault<CobieComponent>(c => c.Name.Contains("A"));
+            var b = model.Instances.FirstOrDefault<CobieComponent>(c => c.Name.Contains("B"));
+
+            Assert.IsTrue(a.AssemblyOf.Contains(b));
+            
+            //purge after test
+            File.Delete(file);
+        }
+
+
+        [TestMethod]
         public void SimpleSubObjectDeserialization()
         {
             const string file = "facility.xlsx";
@@ -73,6 +110,31 @@ namespace Xbim.MemoryModel.Tests
                     {
                         a.Name = "String attribute";
                         a.Description = "Perfect description";
+                        a.Value = new StringValue("Martin");
+                    }));
+                    f.Attributes.Add(test.Instances.New<CobieAttribute>(a =>
+                    {
+                        a.Name = "Boolean attribute";
+                        a.Description = "Perfect description";
+                        a.Value = new BooleanValue(true);
+                    }));
+                    f.Attributes.Add(test.Instances.New<CobieAttribute>(a =>
+                    {
+                        a.Name = "Float attribute";
+                        a.Description = "Perfect description";
+                        a.Value = new FloatValue(15.5d);
+                    }));
+                    f.Attributes.Add(test.Instances.New<CobieAttribute>(a =>
+                    {
+                        a.Name = "Date attribute";
+                        a.Description = "Perfect description";
+                        a.Value = new DateTimeValue("2009-06-15T13:45:30");
+                    }));
+                    f.Attributes.Add(test.Instances.New<CobieAttribute>(a =>
+                    {
+                        a.Name = "Integer attribute";
+                        a.Description = "Perfect description";
+                        a.Value = new IntegerValue(15);
                     }));
                 });
                 test.Instances.New<CobieType>(t =>
@@ -88,22 +150,14 @@ namespace Xbim.MemoryModel.Tests
                 });
                 txn.Commit();
             }
-           
 
-            var mapping = GetCobieMapping();
-            var storage = new TableStore(test, mapping);
-            storage.Store(file);
+            string report;
+            test.ExportToTable(file, out report);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(report));
 
-            var model = new CobieModel();
-            storage = new TableStore(model, mapping);
-            storage.Resolvers.Add(new AttributeTypeResolver());
-
-            using (var txn = model.BeginTransaction("Loading XLSX"))
-            {
-                storage.LoadFrom(file);
-                txn.Commit();
-            }
-
+            var model = CobieModel.ImportFromTable(file, out report);
+            Assert.IsTrue(string.IsNullOrWhiteSpace(report));
+            
             var facility = model.Instances.FirstOrDefault<CobieFacility>();
             var type = model.Instances.FirstOrDefault<CobieType>();
             var createdInfo = model.Instances.OfType<CobieCreatedInfo>();
@@ -122,142 +176,29 @@ namespace Xbim.MemoryModel.Tests
             Assert.IsNotNull(type.Warranty.DurationLabor);
 
             Assert.IsNotNull(facility.VolumeUnits);
-            Assert.IsTrue(facility.Attributes.Any());
+            Assert.IsTrue(facility.Attributes.Count == 5);
             Assert.IsTrue(createdInfo.Count() == 1);
+
+            //check converted values of attributes (that uses custom resolver)
+            var str = (StringValue)facility.Attributes.FirstOrDefault(a => a.Name == "String attribute").Value;
+            var bl = (BooleanValue)facility.Attributes.FirstOrDefault(a => a.Name == "Boolean attribute").Value;
+            var fl = (FloatValue)facility.Attributes.FirstOrDefault(a => a.Name == "Float attribute").Value;
+            var dt = (DateTimeValue)facility.Attributes.FirstOrDefault(a => a.Name == "Date attribute").Value;
+            var i = (IntegerValue)facility.Attributes.FirstOrDefault(a => a.Name == "Integer attribute").Value;
+
+            Assert.IsTrue(str == "Martin");
+            Assert.IsTrue(bl == true);
+            Assert.IsTrue(Math.Abs(fl - 15.5d) < 1e-5);
+            Assert.IsTrue(dt == "2009-06-15T13:45:30");
+            Assert.IsTrue(i == 15);
+
+            //purge after test
+            File.Delete(file);
         }
 
-        private ModelMapping GetCobieMapping()
+        private static ModelMapping GetCobieMapping()
         {
             return ModelMapping.Load(CobieExpress.IO.Properties.Resources.COBieUK2012);
-        }
-
-        // ReSharper disable once UnusedMember.Local
-        private ModelMapping GetSimpleMapping()
-        {
-            return new ModelMapping
-            {
-                Name = "Simple COBie mapping",
-                PickTableName = "PickLists",
-                StatusRepresentations = new List<StatusRepresentation>
-                {
-                    new StatusRepresentation
-                    {
-                        Status = DataStatus.Header,
-                        Colour = "#CCCCCC",
-                        FontWeight = FontWeight.Bold,
-                        Border = true
-                    },
-                    new StatusRepresentation
-                    {
-                        Status = DataStatus.Required,
-                        Colour = "#FFFF99",
-                        FontWeight = FontWeight.Normal,
-                        Border = true
-                    },
-                    new StatusRepresentation
-                    {
-                        Status = DataStatus.Reference,
-                        Colour = "#FFCC99",
-                        FontWeight = FontWeight.Normal,
-                        Border = true
-                    },
-                    new StatusRepresentation
-                    {
-                        Status = DataStatus.PickValue,
-                        Colour = "#FFCC99",
-                        FontWeight = FontWeight.Normal,
-                        Border = true
-                    },
-                    new StatusRepresentation
-                    {
-                        Status = DataStatus.ExternalReference,
-                        Colour = "#CC99FF",
-                        FontWeight = FontWeight.Normal,
-                        Border = true
-                    },
-                    new StatusRepresentation
-                    {
-                        Status = DataStatus.Optional,
-                        Colour = "#CCFFCC",
-                        FontWeight = FontWeight.Normal,
-                        Border = true
-                    },
-                },
-                ClassMappings = new List<ClassMapping>
-                {
-                    new ClassMapping
-                    {
-                        Class = "Facility",
-                        TableName = "Facility",
-                        TableOrder = 0,
-                        TableStatus = DataStatus.Required,
-                        PropertyMappings = new List<PropertyMapping>
-                        {
-                            new PropertyMapping
-                            {
-                                Header = "Name",
-                                MultiRow = MultiRow.None,
-                                Status = DataStatus.Required,
-                                //Colour = "#FFFF99",
-                                Column = "A",
-                                _Paths = "Name",
-                                DefaultValue = "n/a",
-                            }
-                        }
-                    },
-                    new ClassMapping
-                    {
-                        Class = "Attribute",
-                        TableName = "Attributes",
-                        TableOrder = 1,
-                        TableStatus = DataStatus.Optional,
-                        ParentClass = "Asset",
-                        ParentPath = "Attributes",
-                        PropertyMappings = new List<PropertyMapping>
-                        {
-                            new PropertyMapping
-                            {
-                                Header = "Name",
-                                MultiRow = MultiRow.None,
-                                Status = DataStatus.Required,
-                                Column = "A",
-                                _Paths = "Name",
-                                DefaultValue = "n/a",
-                            },
-                            new PropertyMapping
-                            {
-                                Header = "ParentSheet",
-                                MultiRow = MultiRow.None,
-                                Status = DataStatus.Reference,
-                                Column = "B",
-                                _Paths = "parent.[table]",
-                                DefaultValue = "n/a",
-                            },
-                            new PropertyMapping
-                            {
-                                Header = "ParentName",
-                                MultiRow = MultiRow.None,
-                                Status = DataStatus.Reference,
-                                Column = "C",
-                                _Paths = "parent.Name",
-                                DefaultValue = "n/a",
-                            },
-                            new PropertyMapping
-                            {
-                                Header = "Value",
-                                MultiRow = MultiRow.None,
-                                Column = "D",
-                                _Paths = "Value",
-                                DefaultValue = "n/a",
-                            }
-                        }
-                    }
-                },
-                PickClassMappings = new List<PickClassMapping>
-                {
-                    new PickClassMapping{Header = "Categories"}
-                }
-            };
         }
     }
 }

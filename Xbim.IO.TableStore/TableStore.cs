@@ -115,6 +115,7 @@ namespace Xbim.IO.TableStore
 
         public void Store(Stream stream, ExcelTypeEnum type, Stream template = null, bool recalculate = false)
         {
+            Log = new StringWriter();
             IWorkbook workbook;
             switch (type)
             {
@@ -405,7 +406,7 @@ namespace Xbim.IO.TableStore
             while (true)
             {
                 if (string.IsNullOrWhiteSpace(path))
-                    throw new XbimException("Path not defined");
+                    return null;
 
                 //if it is parent, skip to the root of the context
                 //optimization: check first letter before StartsWith() function. 
@@ -530,10 +531,20 @@ namespace Xbim.IO.TableStore
         private object GetPropertyValue(string pathPart, IPersistEntity entity, ExpressType type)
         {
             var propName = pathPart;
+            var ofType = GetPropertyTypeOf(ref propName);
             var propIndex = GetPropertyIndex(ref propName);
             var pInfo = GetPropertyInfo(propName, type, propIndex);
             var value = pInfo.GetValue(entity, propIndex == null ? null : new[] { propIndex });
-            return value;
+
+            if (ofType == null || value == null) return value;
+
+            var vType = value.GetType();
+            if (!typeof (IEnumerable).IsAssignableFrom(vType)) 
+                return ofType.IsAssignableFrom(vType) ? value : null;
+
+            var ofTypeMethod = vType.GetMethod("OfType");
+            ofTypeMethod = ofTypeMethod.MakeGenericMethod(ofType);
+            return ofTypeMethod.Invoke(value, null);
         }
 
         internal PropertyInfo GetPropertyInfo(string name, ExpressType type, object index)
@@ -566,14 +577,30 @@ namespace Xbim.IO.TableStore
             return pInfo;
         }
 
+        public Type GetPropertyTypeOf(ref string pathPart)
+        {
+            var isTyped = pathPart.Contains("\\");
+            if (!isTyped) return null;
+
+            var match = TypeOfRegex.Match(pathPart);
+            pathPart = match.Groups["name"].Value;
+            var typeName = match.Groups["type"].Value;
+            var eType = MetaData.ExpressType(typeName.ToUpper());
+            return eType != null ? eType.Type : null;
+        }
+
+        //static precompiled regular expressions
+        private static readonly Regex TypeOfRegex = new Regex("((?<name>).+)?\\\\(?<type>.+)", RegexOptions.Compiled);
+        private static readonly Regex PropertyIndexRegex = new Regex("((?<name>).+)?\\[(?<index>.+)\\]", RegexOptions.Compiled);
+
         public static object GetPropertyIndex(ref string pathPart)
         {
             var isIndexed = pathPart.Contains("[") && pathPart.Contains("]");
             if (!isIndexed) return null;
 
             object propIndex;
-            var match = new Regex("((?<name>).+)?\\[(?<index>.+)\\]")
-                .Match(pathPart);
+            var match = PropertyIndexRegex.Match(pathPart);
+
             var indexString = match.Groups["index"].Value;
             pathPart = match.Groups["name"].Value;
 

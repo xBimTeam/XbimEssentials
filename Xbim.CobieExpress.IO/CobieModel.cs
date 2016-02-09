@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Xbim.CobieExpress.IO.Resolvers;
 using Xbim.Common;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
@@ -9,6 +9,7 @@ using Xbim.Common.Step21;
 using Xbim.IO;
 using Xbim.IO.Esent;
 using Xbim.IO.Memory;
+using Xbim.IO.TableStore;
 
 namespace Xbim.CobieExpress.IO
 {
@@ -88,6 +89,64 @@ namespace Xbim.CobieExpress.IO
                 MemoryModel.SaveAsStep21(stream);
                 stream.Close();
             }
+        }
+
+        public void ExportToTable(string file, out string report, ModelMapping mapping = null)
+        {
+            var ext = (Path.GetExtension(file) ?? "").ToLower();
+            if (ext != ".xls" && ext != ".xlsx")
+                file = Path.ChangeExtension(file, ".xlsx");
+
+            mapping = mapping ?? ModelMapping.Load(Properties.Resources.COBieUK2012);
+            var storage = GetTableStore(this, mapping);
+            storage.Store(file);
+            report = storage.Log.ToString();
+        }
+
+        public void ExportToTable(Stream file, ExcelTypeEnum typeEnum, out string report, ModelMapping mapping = null)
+        {
+            mapping = mapping ?? ModelMapping.Load(Properties.Resources.COBieUK2012);
+            var storage = GetTableStore(this, mapping);
+            storage.Store(file, typeEnum);
+            report = storage.Log.ToString();
+        }
+
+
+        public static CobieModel ImportFromTable(string file, out string report, ModelMapping mapping = null)
+        {
+            var loaded = new CobieModel();
+            mapping = mapping ?? ModelMapping.Load(Properties.Resources.COBieUK2012);
+            var storage = GetTableStore(loaded, mapping);
+            using (var txn = loaded.BeginTransaction("Loading XLSX"))
+            {
+                storage.LoadFrom(file);
+                txn.Commit();
+            }
+
+            report = storage.Log.ToString();
+            return loaded;
+        }
+
+        public static CobieModel ImportFromTable(Stream file, ExcelTypeEnum typeEnum, out string report, ModelMapping mapping = null)
+        {
+            var loaded = new CobieModel();
+            mapping = mapping ?? ModelMapping.Load(Properties.Resources.COBieUK2012);
+            var storage = GetTableStore(loaded, mapping);
+            using (var txn = loaded.BeginTransaction("Loading XLSX"))
+            {
+                storage.LoadFrom(file, typeEnum);
+                txn.Commit();
+            }
+
+            report = storage.Log.ToString();
+            return loaded;
+        }
+
+        private static TableStore GetTableStore(IModel model, ModelMapping mapping)
+        {
+            var storage = new TableStore(model, mapping);
+            storage.Resolvers.Add(new AttributeTypeResolver());
+            return storage;
         }
 
         public void SaveAsStep21Zip(string file)

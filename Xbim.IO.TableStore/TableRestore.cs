@@ -75,6 +75,7 @@ namespace Xbim.IO.TableStore
                 return;
 
             var sheetsNumber = workbook.NumberOfSheets;
+            var partialSheets = new List<ISheet>();
             for (var i = 0; i < sheetsNumber; i++)
             {
                 var sheetName = workbook.GetSheetName(i);
@@ -86,9 +87,15 @@ namespace Xbim.IO.TableStore
                 var sheet = workbook.GetSheet(sheetName);
 
                 if (mapping.IsPartial)
+                {
+                    partialSheets.Add(sheet);
                     continue;
+                }
+
                 LoadFromSheet(sheet, mapping);
             }
+
+            ProcessPartialSheets(partialSheets);
 
             //resolve references (don't use foreach as new references might be added to the queue during the processing)
             while (_forwardReferences.Count != 0)
@@ -97,9 +104,57 @@ namespace Xbim.IO.TableStore
                 reference.Resolve();
             }
 
-            //todo: load partial tables (also just a references - use scalars to find an object and parent to assign it)
-            
             //be happy
+        }
+
+        private void ProcessPartialSheets(IEnumerable<ISheet> partialSheets)
+        {
+            foreach (var sheet in partialSheets)
+            {
+                var mapping =
+                    Mapping.ClassMappings.FirstOrDefault(
+                        m => string.Equals(sheet.SheetName, m.TableName, StringComparison.OrdinalIgnoreCase));
+                if (mapping == null)
+                    continue;
+
+                AdjustMapping(sheet, mapping);
+                CacheColumnIndices(mapping);
+                var context = GetReferenceContext(mapping);
+
+                var enumerator = sheet.GetRowEnumerator();
+                var emptyCells = 0;
+                while (enumerator.MoveNext())
+                {
+                    var row = enumerator.Current as IRow;
+                    //skip header row
+                    if (row == null || row.RowNum == 0)
+                        continue;
+
+                    if (!row.Cells.Any())
+                    {
+                        emptyCells++;
+                        if (emptyCells == 3)
+                            //break processing if this is third empty row
+                            break;
+                        //skip empty row
+                        continue;
+                    }
+                    emptyCells = 0;
+
+                    context.LoadData(row, false);
+                    var entities = GetReferencedEntities(context);
+                    var parentContext = context.Children.FirstOrDefault(c => c.ContextType == ReferenceContextType.Parent);
+                    if (parentContext == null)
+                    {
+                        Log.WriteLine("Table {0} is marked as a partial table but it doesn't have any parent mapping defined");
+                        continue;
+                    }
+                    foreach (var entity in entities)
+                    {
+                        _forwardReferences.Enqueue(new ForwardReference(entity, parentContext, this));
+                    }
+                }
+            }
         }
 
         private void LoadFromSheet(ISheet sheet, ClassMapping mapping)
@@ -225,12 +280,30 @@ namespace Xbim.IO.TableStore
         }
 
         /// <summary>
+        /// Search the model for the entities satisfying the conditions in context
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        internal IEnumerable<IPersistEntity> GetReferencedEntities(ReferenceContext context)
+        {
+            var type = context.SegmentType;
+
+            //return empty enumeration in case there are identifiers but no data
+            if (context.TypeHintMapping == null && context.TableHintMapping == null && context.ScalarChildren.Any() && !context.HasData)
+                return Enumerable.Empty<IPersistEntity>();
+
+            //we don't have any data so use just a type for the search
+            return !context.ScalarChildren.Any() ?
+                Model.Instances.OfType(type.Name, true) :
+                Model.Instances.OfType(type.Name, true).Where(e => IsValidEntity(context, e));
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="context">Reference context of the data</param>
         /// <param name="scalarIndex">Index of value to be used in a value list in case of multi values</param>
         /// <param name="onlyScalar"></param>
-        /// <param name="entity">Existing entity which is parent to the context</param>
         /// <returns></returns>
         internal IPersistEntity ResolveContext(ReferenceContext context, int scalarIndex, bool onlyScalar)
         {
@@ -918,7 +991,7 @@ namespace Xbim.IO.TableStore
                             Log.WriteLine("Wrong boolean format of {0} in cell {1}{2}, sheet {3}", cell.StringCellValue, CellReference.ConvertNumToColString(cell.ColumnIndex), cell.RowIndex + 1, cell.Sheet.SheetName);
                         break;
                     case CellType.Boolean:
-                            return isExpress ? Activator.CreateInstance(propType, cell.BooleanCellValue) : cell.BooleanCellValue;
+                            return isExpress ? Activator.CreateInstance(propType, (object)cell.BooleanCellValue) : cell.BooleanCellValue;
                     default:
                             Log.WriteLine("There is no suitable value for {0} in cell {1}{2}, sheet {3}", propType.Name, CellReference.ConvertNumToColString(cell.ColumnIndex), cell.RowIndex + 1, cell.Sheet.SheetName);
                         break;
