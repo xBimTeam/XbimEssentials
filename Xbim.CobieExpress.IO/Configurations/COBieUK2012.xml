@@ -310,9 +310,9 @@
         <PropertyMapping Header="RowName" Column="F" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Name"  IsKey="true"/>
         <PropertyMapping Header="Value" Column="G" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Value" />
         <PropertyMapping Header="Unit" Column="H" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Unit" />
-        <PropertyMapping Header="ExtSystem" Column="I" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name"  Hidden="true"/>
-        <PropertyMapping Header="ExtObject" Column="J" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalObject.Name"  Hidden="true"/>
-        <PropertyMapping Header="ExtIdentifier" Column="K" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalId"  Hidden="true"/>
+        <PropertyMapping Header="ExtSystem" Column="I" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name" Hidden="true"/>
+        <PropertyMapping Header="ExtObject" Column="J" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalObject.Name" />
+        <PropertyMapping Header="ExtIdentifier" Column="K" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalId" Hidden="true"/>
         <PropertyMapping Header="Description" Column="L" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Description" />
         <PropertyMapping Header="AllowedValues" Column="M" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="AllowedValues" />
       </PropertyMappings>
