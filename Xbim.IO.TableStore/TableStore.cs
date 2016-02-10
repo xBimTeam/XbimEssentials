@@ -252,23 +252,22 @@ namespace Xbim.IO.TableStore
 
             }
 
+            //adjust width of the columns after the first and the eight row 
+            //adjusting fully populated workbook takes ages. This should be almost all right
             if (row.RowNum == 1 || row.RowNum == 8)
-            {
-                //adjust width of the columns after the first and the eight row 
-                //adjusting fully populated workbook takes ages. This should be almost all right
                 AdjustAllColumns(sheet, mapping);
-            }
+
+            //it is not a multi row so return
+            if (multiRow <= 0 || multiValues == null || !multiValues.Any()) 
+                return;
 
             //add repeated rows if necessary
-            if (multiRow <= 0 || multiValues == null || !multiValues.Any()) return;
-
             foreach (var value in multiValues)
             {
                 var rowNum = GetNextRowNum(sheet);
                 var copy = sheet.CopyRow(multiRow, rowNum);
                 Store(copy, value, multiMapping);    
             }
-            
         }
 
 
@@ -710,6 +709,9 @@ namespace Xbim.IO.TableStore
             var row = sheet.GetRow(0) ?? sheet.CreateRow(0);
             InitMappingColumns(classMapping);
 
+            //freeze header row
+            sheet.CreateFreezePane(0, 1);
+
             //create header and column style for every mapped column
             foreach (var mapping in classMapping.PropertyMappings)
             {
@@ -809,11 +811,9 @@ namespace Xbim.IO.TableStore
         //This operation takes very long time if applied at the end when spreadsheet is fully populated
         private static void AdjustAllColumns(ISheet sheet, ClassMapping mapping)
         {
-            foreach (var propertyMapping in mapping.PropertyMappings)
-            {
-                var colIndex = CellReference.ConvertColStringToIndex(propertyMapping.Column);
+            foreach (var colIndex in mapping.PropertyMappings
+                .Select(propertyMapping => CellReference.ConvertColStringToIndex(propertyMapping.Column)))
                 sheet.AutoSizeColumn(colIndex);
-            }
         }
 
         private void SetUpTables(IWorkbook workbook, ModelMapping mapping)

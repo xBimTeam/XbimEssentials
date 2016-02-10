@@ -157,42 +157,42 @@ namespace Xbim.MemoryModel.Tests
 
         }
 
-        [TestMethod]
-        [DeploymentItem("TestFiles/LakesideRestaurant.cobieZip")]
-        public void StoreAsXLSX()
-        {
-            var model = CobieModel.OpenStep21Zip("LakesideRestaurant.cobieZip");
-            //var mapping = GetSimpleMapping();
-            var mapping = GetCobieMapping();
-            mapping.Init(model.Metadata);
+        //[TestMethod]
+        //[DeploymentItem("TestFiles/LakesideRestaurant.cobieZip")]
+        //public void StoreAsXLSX()
+        //{
+        //    var model = CobieModel.OpenStep21Zip("LakesideRestaurant.cobieZip");
+        //    //var mapping = GetSimpleMapping();
+        //    var mapping = GetCobieMapping();
+        //    mapping.Init(model.Metadata);
 
-            var w = new Stopwatch();
-            w.Start();
-            var storage = new TableStore(model, mapping);
-            storage.Store("..\\..\\Lakeside.xlsx");
-            w.Stop();
-            //Debug.WriteLine(@"{0}ms to store the data as a table.", w.ElapsedMilliseconds);
-            Trace.WriteLine(string.Format( @"{0}ms to store the data as a table.", w.ElapsedMilliseconds));
-        }
+        //    var w = new Stopwatch();
+        //    w.Start();
+        //    var storage = new TableStore(model, mapping);
+        //    storage.Store("..\\..\\Lakeside.xlsx");
+        //    w.Stop();
+        //    //Debug.WriteLine(@"{0}ms to store the data as a table.", w.ElapsedMilliseconds);
+        //    Trace.WriteLine(string.Format( @"{0}ms to store the data as a table.", w.ElapsedMilliseconds));
+        //}
 
-        [TestMethod]
-        [DeploymentItem("TestFiles/LakesideRestaurant.cobieZip")]
-        public void LoadFromXLSX()
-        {
-            //load back
-            var loaded = new CobieModel();
-            var mapping = GetCobieMapping();
-            var storage = new TableStore(loaded, mapping);
-            storage.Resolvers.Add(new AttributeTypeResolver());
+        //[TestMethod]
+        //[DeploymentItem("TestFiles/LakesideRestaurant.cobieZip")]
+        //public void LoadFromXLSX()
+        //{
+        //    //load back
+        //    var loaded = new CobieModel();
+        //    var mapping = GetCobieMapping();
+        //    var storage = new TableStore(loaded, mapping);
+        //    storage.Resolvers.Add(new AttributeTypeResolver());
 
-            using (var txn = loaded.BeginTransaction("Loading XLSX"))
-            {
-                storage.LoadFrom("..\\..\\Lakeside.xlsx");
-                txn.Commit();
-            }
+        //    using (var txn = loaded.BeginTransaction("Loading XLSX"))
+        //    {
+        //        storage.LoadFrom("..\\..\\Lakeside.xlsx");
+        //        txn.Commit();
+        //    }
 
-            storage.Store("..\\..\\Lakeside2.xlsx");
-        }
+        //    storage.Store("..\\..\\Lakeside2.xlsx");
+        //}
 
         [TestMethod]
         public void AssemblyRoundTrip()
