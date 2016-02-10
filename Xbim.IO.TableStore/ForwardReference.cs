@@ -142,7 +142,7 @@ namespace Xbim.IO.TableStore
                 entityStack.Push(entity);
                 //browse to the level of the bottom context and call ResolveContext there
                 var index = context.Index != null ? new[] { context.Index } : null;
-                var value = context.PropertyInfo.GetValue(parent, index);
+                var value = context.PropertyInfo.GetValue(entity, index);
                 if (context.ContextType == ReferenceContextType.Entity)
                 {
                     var e = value as IPersistEntity;
@@ -165,6 +165,7 @@ namespace Xbim.IO.TableStore
                     //create a new one and assign it higher
                     e = context == targetContext ? child : Store.ResolveContext(context, -1, true);
                     Join(e, context, entityStack);
+                    entity = e;
                     continue;
                 }
 
@@ -181,8 +182,64 @@ namespace Xbim.IO.TableStore
                     Store.AssignEntity(entity, child, context);
                     return;
                 }
-                entity = entities.Cast<object>().FirstOrDefault(e => TableStore.IsValidEntity(context, e)) as IPersistEntity;
+                
+                //get first valid entity
+                entity = GetFirstValid(entities.Cast<object>(), context);
+                //entity = entities.Cast<object>().FirstOrDefault(e => TableStore.IsValidEntity(context, e)) as IPersistEntity;
+                if (entity != null) continue;
+
+                //create new entity and assign it on a higher level
+                entity = Store.ResolveContext(context, -1, true);
+                AddToPath(context, parent, entity);
             }
+        }
+
+        private IPersistEntity GetFirstValid(IEnumerable<object> entities, ReferenceContext context)
+        {
+            var enumerable = entities as IList<object> ?? entities.ToList();
+
+            //if there is only one in the list, retun that one
+            if (enumerable.Count == 1)
+                return enumerable.First() as IPersistEntity;
+
+            if (enumerable.Count == 0)
+                return null;
+
+            //if context doesn't have any data at all on any level down
+            if (!context.HasData)
+            {
+                return null;
+            }
+
+            //this context has scalar data on its level
+            if (context.ScalarChildren.Any(c => c.Values != null && c.Values.Any()))
+            {
+                enumerable = enumerable.Where(e => TableStore.IsValidEntity(context, e)).ToList();
+                //if there is only one in the list, retun that one
+                if (enumerable.Count == 1)
+                    return enumerable.First() as IPersistEntity;
+
+                if (enumerable.Count == 0)
+                    return null;
+            }
+
+            return enumerable.FirstOrDefault(e =>
+                context.EntityChildren.All(c =>
+                {
+                    var index = c.Index != null ? new[] {c.Index} : null;
+                    var value = c.PropertyInfo.GetValue(e, index);
+                    //this is equivalent of contains any valid
+                    if (c.ContextType == ReferenceContextType.EntityList)
+                    {
+                        var enu = value as IEnumerable<IPersistEntity>;
+                        if (enu == null)
+                            return false;
+                        return GetFirstValid(enu, c) != null;
+                    }
+
+                    var ent = value as IPersistEntity;
+                    return ent != null && TableStore.IsValidEntity(c, ent);
+                })) as IPersistEntity;
         }
 
         private void Join(IPersistEntity entity, ReferenceContext context,
@@ -196,12 +253,13 @@ namespace Xbim.IO.TableStore
                 if (context.ContextType == ReferenceContextType.EntityList)
                 {
                     Store.AssignEntity(parent, entity, context);
+                    temp.Push(parent);
                     break;
                 }
 
-                context = context.ParentContext;
-                var e = Store.ResolveContext(context, -1, true);
+                var e = Store.ResolveContext(context.ParentContext, -1, true);
                 Store.AssignEntity(e, entity, context);
+                context = context.ParentContext;
                 entity = e;
                 temp.Push(e);
             }

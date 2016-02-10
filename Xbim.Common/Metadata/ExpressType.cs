@@ -131,19 +131,6 @@ namespace Xbim.Common.Metadata
                 if (attribute.Order > 0)
                 {
                     _properties.Add(attribute.Order, metaProperty);
-                    if (propInfo.PropertyType.IsGenericType && typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType))
-                    {
-                        var eType = propInfo.PropertyType;
-                        while (typeof(IEnumerable).IsAssignableFrom(eType))
-                        {
-                            var genArgs = eType.GetGenericArguments();
-                            if(genArgs.Any())
-                                eType = genArgs[0];
-                            else
-                                break;
-                        }
-                        metaProperty.EnumerableType = eType;
-                    }
                 }
                 else if (attribute.State == EntityAttributeState.Derived)
                 {
@@ -155,7 +142,22 @@ namespace Xbim.Common.Metadata
                     metaProperty.InverseAttributeProperty = invAttr;
                     _inverses.Add(metaProperty);
                 }
-               
+
+                //set up enumerable type
+                if (propInfo.PropertyType.IsGenericType && typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType))
+                {
+                    var eType = propInfo.PropertyType;
+                    while (typeof(IEnumerable).IsAssignableFrom(eType))
+                    {
+                        var genArgs = eType.GetGenericArguments();
+                        if (genArgs.Any())
+                            eType = genArgs[0];
+                        else
+                            break;
+                    }
+                    metaProperty.EnumerableType = eType;
+                }
+
                 var isIndexed =
                     propInfo.GetCustomAttributes(typeof(IndexedProperty), false).Any();
                 if (!isIndexed) continue;

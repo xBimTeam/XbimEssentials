@@ -150,7 +150,7 @@ namespace Xbim.IO.TableStore
                     var levelCount = path.Count(c => c == '(');
                     segments =
                         parentPath.GetRange(0, parentPath.Count - levelCount)
-                            .Concat(segments.GetRange(levelCount - 1, segments.Count - levelCount))
+                            .Concat(segments.GetRange(levelCount, segments.Count - levelCount))
                             .ToList();
                 }
 
@@ -278,6 +278,8 @@ namespace Xbim.IO.TableStore
 
             var cell = row.GetCell(Mapping.ColumnIndex);
             var valType = Store.GetConcreteType(this, cell);
+            if (valType == null)
+                return;
 
             //if there is any enumeration on the path this needs to be treated as a list of values
             if (HasEnumerationOnPath)

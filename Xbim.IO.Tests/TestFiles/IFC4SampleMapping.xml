@@ -26,8 +26,8 @@
       <PropertyMappings>
         <PropertyMapping Header="Name" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
         <PropertyMapping Header="Description" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Description" />
-        <PropertyMapping Header="Property Set" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="().Name" />
-        <PropertyMapping Header="Relation ID" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="().().GlobalId" />
+        <PropertyMapping Header="Property Set" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="().Name" />
+        <!--<PropertyMapping Header="Relation ID" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="().().GlobalId" />-->
         <PropertyMapping Header="Parent Name" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Name" />
         <PropertyMapping Header="Parent Sheet" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]" />
         <PropertyMapping Header="Value" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="NominalValue" />
