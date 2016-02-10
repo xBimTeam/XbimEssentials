@@ -407,14 +407,15 @@ namespace Xbim.IO.Memory
             using (var zipStream = new ZipInputStream(stream))
             {
                 var entry = zipStream.GetNextEntry();
-                while (entry != null)
-                {
-                    try
-                    {
+
                         if (!entry.IsFile) continue; //
-                        var extension = Path.GetExtension(entry.Name) ?? "";
-                        var xml = extension.ToLower().Contains("xml");
-                        using (var zipFile = new ZipFile(stream))
+                var extension = Path.GetExtension(entry.Name) ?? "";
+                var xml = extension.ToLower().Contains("xml");
+                using (var zipFile = new ZipFile(stream))
+                {
+                    while (entry != null)
+                    {
+                        try
                         {
                             using (var reader = zipFile.GetInputStream(entry))
                             {
@@ -424,18 +425,19 @@ namespace Xbim.IO.Memory
                                     LoadStep21(reader, entry.Size, progDelegate);
 
                                 reader.Close();
-                                zipFile.Close();
-                                zipStream.Close();
                                 return;
                             }
                         }
+                        catch (Exception e)
+                        {
+                            //if it crashed try next entry if available
+                            entry = zipStream.GetNextEntry();
+                        }
                     }
-                    catch (Exception)
-                    {
-                        //if it crashed try next entry if available
-                        entry = zipStream.GetNextEntry();
-                    }
+                    zipFile.Close();
                 }
+
+                zipStream.Close();
             }
         }
 

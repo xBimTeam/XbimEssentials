@@ -19,21 +19,23 @@ namespace Xbim.IO.TableStore
             PropertyMappings = new List<PropertyMapping>();
         }
 
-        private ModelMapping _modelMapping;
+        [XmlIgnore]
+        internal ModelMapping ModelMapping { get; private set; }
 
+        [XmlIgnore]
         private ExpressMetaData Metadata
         {
             get
             {
-                return _modelMapping != null ?
-                    _modelMapping.MetaData :
+                return ModelMapping != null ?
+                    ModelMapping.MetaData :
                     null;
             }
         }
 
         internal void Init(ModelMapping mapping)
         {
-            _modelMapping = mapping;
+            ModelMapping = mapping;
         }
 
         /// <summary>
@@ -79,6 +81,20 @@ namespace Xbim.IO.TableStore
         public string ParentPath { get; set; }
 
         /// <summary>
+        /// Type to be used for deserialization in case that the 'Class' is an abstract type and there is no [type] hint
+        /// in a property mappings
+        /// </summary>
+        [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public string FallBackConcreteType { get; set; }
+
+        /// <summary>
+        /// If class mapping is partial it won't be used to create new objects when the table is loaded
+        /// into object model. It will only be used to add additional information or references instead
+        /// </summary>
+        [XmlAttribute(Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public bool IsPartial { get; set; }
+
+        /// <summary>
         /// Property mappings
         /// </summary>
         [XmlArray("PropertyMappings", Namespace = "http://www.openbim.org/mapping/table/1.0"),
@@ -94,11 +110,11 @@ namespace Xbim.IO.TableStore
         {
             get
             {
-                if(_modelMapping == null || _modelMapping.ClassMappings == null)
+                if(ModelMapping == null || ModelMapping.ClassMappings == null)
                     yield break;
 
                 var type = Type;
-                foreach (var mapping in _modelMapping.ClassMappings)
+                foreach (var mapping in ModelMapping.ClassMappings)
                 {
                     if (mapping.IsRoot) continue;
 
@@ -170,7 +186,7 @@ namespace Xbim.IO.TableStore
                     {
                         if (ofType)
                         {
-                            type = _modelMapping.MetaData.ExpressType(ofTypeName.ToUpper());
+                            type = ModelMapping.MetaData.ExpressType(ofTypeName.ToUpper());
                             var instType = entity.ExpressType;
                             //only add the instance for further processing if it is of desired type
                             if(type == instType || type.AllSubTypes.Contains(instType))
@@ -195,7 +211,7 @@ namespace Xbim.IO.TableStore
                     {
                         if (ofType)
                         {
-                            type = _modelMapping.MetaData.ExpressType(ofTypeName.ToUpper());
+                            type = ModelMapping.MetaData.ExpressType(ofTypeName.ToUpper());
                             if(type == null)
                                 throw new XbimException(string.Format("{0} is not defined IPersistEntity type", ofTypeName));
 
@@ -213,7 +229,7 @@ namespace Xbim.IO.TableStore
                         else
                         {
                             var enumType = entityEnum.GetType().GetGenericArguments()[0];
-                            type = _modelMapping.MetaData.ExpressType(enumType);
+                            type = ModelMapping.MetaData.ExpressType(enumType);
                         }
                         context.Add(entityEnum);
                     }

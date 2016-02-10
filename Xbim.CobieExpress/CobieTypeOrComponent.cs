@@ -24,7 +24,6 @@ namespace Xbim.CobieExpress.Interfaces
 	public partial interface @ICobieTypeOrComponent : ICobieAsset
 	{
 		IEnumerable<ICobieTypeOrComponent> @AssemblyOf { get; }
-		IEnumerable<ICobieCoordinate> @Representations { get; }
 		IEnumerable<ICobieConnection> @Connecting {  get; }
 		IEnumerable<ICobieConnection> @ConnectedBefore {  get; }
 		IEnumerable<ICobieConnection> @ConnectedAfter {  get; }
@@ -41,7 +40,6 @@ namespace Xbim.CobieExpress
 	{
 		#region ICobieTypeOrComponent explicit implementation
 		IEnumerable<ICobieTypeOrComponent> ICobieTypeOrComponent.AssemblyOf { get { return @AssemblyOf; } }	
-		IEnumerable<ICobieCoordinate> ICobieTypeOrComponent.Representations { get { return @Representations; } }	
 		 
 		IEnumerable<ICobieConnection> ICobieTypeOrComponent.Connecting {  get { return @Connecting; } }
 		IEnumerable<ICobieConnection> ICobieTypeOrComponent.ConnectedBefore {  get { return @ConnectedBefore; } }
@@ -52,16 +50,14 @@ namespace Xbim.CobieExpress
 		internal CobieTypeOrComponent(IModel model) : base(model) 		{ 
 			Model = model; 
 			_assemblyOf = new OptionalItemSet<CobieTypeOrComponent>( this, 0 );
-			_representations = new OptionalItemSet<CobieCoordinate>( this, 0 );
 		}
 
 		#region Explicit attribute fields
 		private OptionalItemSet<CobieTypeOrComponent> _assemblyOf;
-		private OptionalItemSet<CobieCoordinate> _representations;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 14)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 15)]
 		public OptionalItemSet<CobieTypeOrComponent> @AssemblyOf 
 		{ 
 			get 
@@ -69,16 +65,6 @@ namespace Xbim.CobieExpress
 				if(ActivationStatus != ActivationStatus.NotActivated) return _assemblyOf;
 				((IPersistEntity)this).Activate(false);
 				return _assemblyOf;
-			} 
-		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 15)]
-		public OptionalItemSet<CobieCoordinate> @Representations 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _representations;
-				((IPersistEntity)this).Activate(false);
-				return _representations;
 			} 
 		}	
 		#endregion
@@ -132,15 +118,12 @@ namespace Xbim.CobieExpress
 				case 8: 
 				case 9: 
 				case 10: 
+				case 11: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 11: 
+				case 12: 
 					if (_assemblyOf == null) _assemblyOf = new OptionalItemSet<CobieTypeOrComponent>( this );
 					_assemblyOf.InternalAdd((CobieTypeOrComponent)value.EntityVal);
-					return;
-				case 12: 
-					if (_representations == null) _representations = new OptionalItemSet<CobieCoordinate>( this );
-					_representations.InternalAdd((CobieCoordinate)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

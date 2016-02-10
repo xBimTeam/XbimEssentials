@@ -75,7 +75,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
 		public CobieLinearUnit @LinearUnits 
 		{ 
 			get 
@@ -89,7 +89,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _linearUnits = v, _linearUnits, value,  "LinearUnits");
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
 		public CobieAreaUnit @AreaUnits 
 		{ 
 			get 
@@ -103,7 +103,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _areaUnits = v, _areaUnits, value,  "AreaUnits");
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
 		public CobieVolumeUnit @VolumeUnits 
 		{ 
 			get 
@@ -117,7 +117,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _volumeUnits = v, _volumeUnits, value,  "VolumeUnits");
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
+		[EntityAttribute(16, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
 		public CobieCurrencyUnit @CurrencyUnit 
 		{ 
 			get 
@@ -131,7 +131,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _currencyUnit = v, _currencyUnit, value,  "CurrencyUnit");
 			} 
 		}	
-		[EntityAttribute(16, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
+		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
 		public string @AreaMeasurement 
 		{ 
 			get 
@@ -146,7 +146,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(18, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
 		public CobieProject @Project 
 		{ 
 			get 
@@ -161,7 +161,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(18, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(19, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 21)]
 		public CobieSite @Site 
 		{ 
 			get 
@@ -175,7 +175,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _site = v, _site, value,  "Site");
 			} 
 		}	
-		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 21)]
+		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 22)]
 		public CobiePhase @Phase 
 		{ 
 			get 
@@ -195,7 +195,7 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Facility")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 22)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 23)]
 		public IEnumerable<CobieFloor> @Floors 
 		{ 
 			get 
@@ -204,7 +204,7 @@ namespace Xbim.CobieExpress
 			} 
 		}
 		[InverseProperty("Facility")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 23)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 24)]
 		public IEnumerable<CobieSystem> @Systems 
 		{ 
 			get 
@@ -231,30 +231,31 @@ namespace Xbim.CobieExpress
 				case 8: 
 				case 9: 
 				case 10: 
+				case 11: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 11: 
+				case 12: 
 					_linearUnits = (CobieLinearUnit)(value.EntityVal);
 					return;
-				case 12: 
+				case 13: 
 					_areaUnits = (CobieAreaUnit)(value.EntityVal);
 					return;
-				case 13: 
+				case 14: 
 					_volumeUnits = (CobieVolumeUnit)(value.EntityVal);
 					return;
-				case 14: 
+				case 15: 
 					_currencyUnit = (CobieCurrencyUnit)(value.EntityVal);
 					return;
-				case 15: 
+				case 16: 
 					_areaMeasurement = value.StringVal;
 					return;
-				case 16: 
+				case 17: 
 					_project = (CobieProject)(value.EntityVal);
 					return;
-				case 17: 
+				case 18: 
 					_site = (CobieSite)(value.EntityVal);
 					return;
-				case 18: 
+				case 19: 
 					_phase = (CobiePhase)(value.EntityVal);
 					return;
 				default:

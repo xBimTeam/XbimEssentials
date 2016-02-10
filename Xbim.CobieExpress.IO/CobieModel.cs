@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Xbim.CobieExpress.IO.Resolvers;
 using Xbim.Common;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
@@ -9,6 +9,7 @@ using Xbim.Common.Step21;
 using Xbim.IO;
 using Xbim.IO.Esent;
 using Xbim.IO.Memory;
+using Xbim.IO.TableStore;
 
 namespace Xbim.CobieExpress.IO
 {
@@ -88,6 +89,64 @@ namespace Xbim.CobieExpress.IO
                 MemoryModel.SaveAsStep21(stream);
                 stream.Close();
             }
+        }
+
+        public void ExportToTable(string file, out string report, ModelMapping mapping = null)
+        {
+            var ext = (Path.GetExtension(file) ?? "").ToLower();
+            if (ext != ".xls" && ext != ".xlsx")
+                file = Path.ChangeExtension(file, ".xlsx");
+
+            mapping = mapping ?? ModelMapping.Load(Properties.Resources.COBieUK2012);
+            var storage = GetTableStore(this, mapping);
+            storage.Store(file);
+            report = storage.Log.ToString();
+        }
+
+        public void ExportToTable(Stream file, ExcelTypeEnum typeEnum, out string report, ModelMapping mapping = null)
+        {
+            mapping = mapping ?? ModelMapping.Load(Properties.Resources.COBieUK2012);
+            var storage = GetTableStore(this, mapping);
+            storage.Store(file, typeEnum);
+            report = storage.Log.ToString();
+        }
+
+
+        public static CobieModel ImportFromTable(string file, out string report, ModelMapping mapping = null)
+        {
+            var loaded = new CobieModel();
+            mapping = mapping ?? ModelMapping.Load(Properties.Resources.COBieUK2012);
+            var storage = GetTableStore(loaded, mapping);
+            using (var txn = loaded.BeginTransaction("Loading XLSX"))
+            {
+                storage.LoadFrom(file);
+                txn.Commit();
+            }
+
+            report = storage.Log.ToString();
+            return loaded;
+        }
+
+        public static CobieModel ImportFromTable(Stream file, ExcelTypeEnum typeEnum, out string report, ModelMapping mapping = null)
+        {
+            var loaded = new CobieModel();
+            mapping = mapping ?? ModelMapping.Load(Properties.Resources.COBieUK2012);
+            var storage = GetTableStore(loaded, mapping);
+            using (var txn = loaded.BeginTransaction("Loading XLSX"))
+            {
+                storage.LoadFrom(file, typeEnum);
+                txn.Commit();
+            }
+
+            report = storage.Log.ToString();
+            return loaded;
+        }
+
+        private static TableStore GetTableStore(IModel model, ModelMapping mapping)
+        {
+            var storage = new TableStore(model, mapping);
+            storage.Resolvers.Add(new AttributeTypeResolver());
+            return storage;
         }
 
         public void SaveAsStep21Zip(string file)
@@ -204,25 +263,28 @@ namespace Xbim.CobieExpress.IO
         #endregion
 
         #region Entity created and modified default CreatedInfo assignment
-        private CobieCreatedInfo _newInfo;
-        private CobieCreatedInfo _modifiedInfo;
-        protected virtual void EntityNewCreatedInfo(IPersistEntity entity)
+        private CobieCreatedInfo _entityInfo;
+        private bool _ownChange;
+        private IPersistEntity _lastEntity;
+        protected virtual void SetEntityCreatedInfo(IPersistEntity entity)
         {
+            if (_ownChange)
+            {
+                if (ReferenceEquals(_lastEntity, entity))
+                    return;
+                _ownChange = false;
+            }
             var refObj = entity as CobieReferencedObject;
-            if (refObj != null)
-                refObj.Created = _newInfo;
+            if (refObj == null) return;
+
+            _ownChange = true;
+            _lastEntity = entity;
+            refObj.Created = _entityInfo;
         }
 
-        protected virtual void EntityModifiedCreatedInfo(IPersistEntity entity)
+        public CobieCreatedInfo SetDefaultEntityInfo(DateTime date, string email, string givenName, string familyName)
         {
-            var refObj = entity as CobieReferencedObject;
-            if (refObj != null)
-                refObj.Created = _modifiedInfo;
-        }
-
-        public void SetDefaultNewEntityInfo(DateTime date, string email, string givenName, string familyName)
-        {
-            _newInfo = Instances.New<CobieCreatedInfo>(ci =>
+            _entityInfo = Instances.New<CobieCreatedInfo>(ci =>
             {
                 ci.CreatedOn = date;
                 ci.CreatedBy =
@@ -231,31 +293,15 @@ namespace Xbim.CobieExpress.IO
                     Instances.New<CobieContact>(
                             c =>
                             {
+                                c.Created = ci;
                                 c.Email = email;
                                 c.GivenName = givenName;
                                 c.FamilyName = familyName;
                             });
             });
-            EntityNew += EntityNewCreatedInfo;
-        }
-
-        public void SetDefaultModifiedEntityInfo(DateTime date, string email, string givenName, string familyName)
-        {
-            _modifiedInfo = Instances.New<CobieCreatedInfo>(ci =>
-            {
-                ci.CreatedOn = date;
-                ci.CreatedBy =
-                    Instances.FirstOrDefault<CobieContact>(
-                        c => c.Email == email && c.GivenName == givenName && c.FamilyName == familyName) ??
-                    Instances.New<CobieContact>(
-                            c =>
-                            {
-                                c.Email = email;
-                                c.GivenName = givenName;
-                                c.FamilyName = familyName;
-                            });
-            });
-            EntityModified += EntityModifiedCreatedInfo;
+            EntityNew += SetEntityCreatedInfo;
+            EntityModified += SetEntityCreatedInfo;
+            return _entityInfo;
         }
         #endregion
 
@@ -267,10 +313,8 @@ namespace Xbim.CobieExpress.IO
             _model.EntityDeleted -= OnEntityDeleted;
             _model.EntityModified -= OnEntityModified;
 
-            if (_newInfo != null)
-                EntityNew -= EntityNewCreatedInfo;
-            if (_modifiedInfo != null)
-                EntityModified -= EntityModifiedCreatedInfo;
+            if (_entityInfo != null)
+                EntityNew -= SetEntityCreatedInfo;
 
             //dispose model if it is disposable
             var dispModel = _model as IDisposable;
