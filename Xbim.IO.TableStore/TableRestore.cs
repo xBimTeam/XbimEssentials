@@ -312,7 +312,7 @@ namespace Xbim.IO.TableStore
             if (IsGlobalType(eType.Type))
             {
                 //it is a global type but there are no values to fill in
-                if (!context.AllScalarChildren.Any(c => c.Values != null && c.Values.Any()))
+                if (!context.AllScalarChildren.Any(c => c.Values != null && c.Values.Length > 0))
                     return null;
 
                 //it is a global entity and it was filled in with the data before
@@ -513,7 +513,7 @@ namespace Xbim.IO.TableStore
             if (subContext.ContextType == ReferenceContextType.ScalarList)
             {
                 var list = subContext.PropertyInfo.GetValue(entity, null) as IList;
-                if (list != null && subContext.Values != null && subContext.Values.Any())
+                if (list != null && subContext.Values != null && subContext.Values.Length > 0)
                     list.Add(subContext.Values[0]);
             }
             
@@ -521,7 +521,7 @@ namespace Xbim.IO.TableStore
 
         internal static bool IsValidEntity(ReferenceContext context, object entity)
         {
-            if (!context.ScalarChildren.Any())
+            if (context.ScalarChildren.Count == 0)
                 return true;
 
             //if it might have identifiers but doesn't have a one it can't find any
@@ -530,18 +530,20 @@ namespace Xbim.IO.TableStore
 
             return context.ScalarChildren
                 .Where(s => s.Values != null && s.Values.Length > 0)
-                .All(scalar =>
-                {
-                    var prop = scalar.PropertyInfo;
-                    var vals = scalar.Values;
-                    var eVal = prop.GetValue(entity, null);
-                    if (scalar.ContextType != ReferenceContextType.ScalarList)
-                        return eVal != null && vals.Any(v => v.Equals(eVal));
-                    var list = eVal as IEnumerable;
-                    return list != null &&
-                           //it might be a multivalue
-                           list.Cast<object>().All(item => vals.Any(v => v.Equals(item)));
-                });
+                .All(scalar => IsValidInContext(scalar, entity));
+        }
+
+        private static bool IsValidInContext(ReferenceContext scalar, object entity)
+        {
+            var prop = scalar.PropertyInfo;
+            var vals = scalar.Values;
+            var eVal = prop.GetValue(entity, null);
+            if (scalar.ContextType != ReferenceContextType.ScalarList)
+                return eVal != null && vals.Any(v => v.Equals(eVal));
+            var list = eVal as IEnumerable;
+            return list != null &&
+                //it might be a multivalue
+                   list.Cast<object>().All(item => vals.Any(v => v.Equals(item)));
         }
 
         private bool IsGlobalType(Type type)

@@ -19,6 +19,12 @@ namespace Xbim.CobieExpress.IO.Resolvers
             return CanResolve(type.Type); 
         }
 
+        private static readonly Regex DateTimeRegex = new Regex("[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}",
+                            RegexOptions.Compiled);
+        private static readonly Regex FirstLetterRegex = new Regex("^[0-9].*",
+                            RegexOptions.Compiled);
+
+
         public Type Resolve(Type type, ICell cell, ClassMapping cMapping, PropertyMapping pMapping)
         {
             switch (cell.CellType)
@@ -30,12 +36,10 @@ namespace Xbim.CobieExpress.IO.Resolvers
                 case CellType.String:
                     //it might be string or datetime
                     var str = cell.StringCellValue;
-                    if (str.Length >= 19) //2009-06-15T13:45:30
+                    if (str.Length >= 19 && FirstLetterRegex.IsMatch(str[0].ToString())) //2009-06-15T13:45:30
                     {
-                        var exp = new Regex("[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}",
-                            RegexOptions.Compiled);
                         var dStr = str.Substring(0, 19);
-                        if (exp.IsMatch(dStr))
+                        if (DateTimeRegex.IsMatch(dStr))
                             return typeof (DateTimeValue);
                     }
                     return typeof (StringValue);

@@ -34,6 +34,8 @@ namespace Xbim.IO.TableStore
 
         private IPersistEntity Entity { get; set; }
 
+        private static readonly List<IPersistEntity> LastParents = new List<IPersistEntity>(); 
+
 
         public ForwardReference(XbimInstanceHandle handle, ReferenceContext context, TableStore store)
         {
@@ -91,7 +93,18 @@ namespace Xbim.IO.TableStore
             if (Context.ContextType != ReferenceContextType.Parent)
                 return;
 
-            var parents = Store.GetReferencedEntities(Context).ToList();
+            var cached = LastParents.Count > 0 && LastParents.All(e =>
+            {
+                //check type
+                var eType = e.ExpressType;
+                if (Context.SegmentType != eType && Context.SegmentType.SubTypes.All(s => s != eType))
+                    return false;
+
+                //check values
+                return TableStore.IsValidEntity(Context, e);
+            } );
+
+            var parents = cached ? LastParents : Store.GetReferencedEntities(Context).ToList();
             if (!parents.Any())
             {
                 Store.Log.WriteLine("There is no parent of type {0} for type {1}", Context.SegmentType.ExpressName,
@@ -120,6 +133,13 @@ namespace Xbim.IO.TableStore
             foreach (var parent in parents)
             {
                 AddToPath(destination, parent, Entity);
+            }
+
+            //cache parents if this was first occurance
+            if (!cached)
+            {
+                LastParents.Clear();
+                LastParents.AddRange(parents);
             }
         }
 
@@ -212,7 +232,7 @@ namespace Xbim.IO.TableStore
             }
 
             //this context has scalar data on its level
-            if (context.ScalarChildren.Any(c => c.Values != null && c.Values.Any()))
+            if (context.ScalarChildren.Any(c => c.Values != null && c.Values.Length > 0))
             {
                 enumerable = enumerable.Where(e => TableStore.IsValidEntity(context, e)).ToList();
                 //if there is only one in the list, retun that one

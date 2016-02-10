@@ -12,6 +12,7 @@ namespace Xbim.IO.TableStore
     [DebuggerDisplay("{Segment}")]
     public class ReferenceContext
     {
+        private readonly List<ReferenceContext> _scalarChildren = new List<ReferenceContext>();
         public string Segment { get; set; }
         public PropertyMapping Mapping { get; private set; }
         public ExpressMetaProperty MetaProperty { get; private set; }
@@ -27,7 +28,7 @@ namespace Xbim.IO.TableStore
         /// This should never return null if one of these is specified: 
         /// TypeTypeHint ?? PathTypeHint ?? TableTypeHint ?? PropertyTypeHint
         /// </summary>
-        public ExpressType SegmentType { get { return TypeTypeHint ?? PathTypeHint ?? TableTypeHint ?? PropertyTypeHint; } }
+        public ExpressType SegmentType { get { return TypeTypeHint ?? TableTypeHint ?? PathTypeHint ?? PropertyTypeHint; } }
         /// <summary>
         /// This will return null if property type is to be used
         /// </summary>
@@ -40,17 +41,14 @@ namespace Xbim.IO.TableStore
         public PropertyInfo PropertyInfo { get; private set; }
         public bool IsRoot { get { return ParentContext == null; } }
         public IRow CurrentRow { get; private set; }
-        
+
         /// <summary>
         /// Only scalar children. These can be used to find an object or to fill in the data.
         /// </summary>
-        public IEnumerable<ReferenceContext> ScalarChildren { get
+        public IList<ReferenceContext> ScalarChildren
         {
-            return
-                Children.Where(
-                    c =>
-                        c.ContextType == ReferenceContextType.Scalar || c.ContextType == ReferenceContextType.ScalarList);
-        }}
+            get { return _scalarChildren; }
+        }
 
         /// <summary>
         /// Only scalar children. These can be used to find an object or to fill in the data.
@@ -119,10 +117,7 @@ namespace Xbim.IO.TableStore
         /// <summary>
         /// Any scalar child of any children has values loaded from a row
         /// </summary>
-        public bool HasData
-        {
-            get { return AllScalarChildren.Any(c => c.Values != null && c.Values.Any()); }
-        }
+        public bool HasData { get; private set; }
 
         public ReferenceContext(TableStore store, ClassMapping cMapping)
         {
@@ -246,6 +241,7 @@ namespace Xbim.IO.TableStore
             Values = null;
             TableTypeHint = null;
             TypeTypeHint = null;
+            HasData = false;
 
 
             //load child data
@@ -280,6 +276,13 @@ namespace Xbim.IO.TableStore
             var valType = Store.GetConcreteType(this, cell);
             if (valType == null)
                 return;
+
+            //this context has a data which means all upper level contexts have some data to use.
+            HasData = true;
+            var parent = this;
+            while ((parent = parent.ParentContext) != null)
+                parent.HasData = true;
+            
 
             //if there is any enumeration on the path this needs to be treated as a list of values
             if (HasEnumerationOnPath)
@@ -337,6 +340,9 @@ namespace Xbim.IO.TableStore
                 var child = new ReferenceContext(segment, this, Store, CMapping);
                 child.AddMapping(pMapping, segments.GetRange(1, segments.Count - 1));
                 Children.Add(child);
+                //cache scalar children for optimization
+                if(child.ContextType == ReferenceContextType.Scalar || child.ContextType == ReferenceContextType.ScalarList)
+                    _scalarChildren.Add(child);
             }
         }
     }
