@@ -408,13 +408,17 @@ namespace Xbim.IO.Memory
             {
                 var entry = zipStream.GetNextEntry();
 
-                        if (!entry.IsFile) continue; //
                 var extension = Path.GetExtension(entry.Name) ?? "";
                 var xml = extension.ToLower().Contains("xml");
                 using (var zipFile = new ZipFile(stream))
                 {
                     while (entry != null)
                     {
+                        if (!entry.IsFile) 
+                        {
+                            entry = zipStream.GetNextEntry();
+                            continue; 
+                        }
                         try
                         {
                             using (var reader = zipFile.GetInputStream(entry))
