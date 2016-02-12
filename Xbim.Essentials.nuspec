@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>Xbim.Essentials</id>
-        <version>4.0.0-V126</version>
+        <version>4.0.0-V128</version>
         <title>xBIM Essentials 4</title>
         <authors>xBIM team</authors>
         <owners>Steve Lockley</owners>
@@ -30,33 +30,39 @@
 	</dependencies> 
     </metadata>
     <files>
-		<file src="Output\Release\Xbim.CobieExpress.dll"   target="lib\net40\Xbim.CobieExpress.dll" />
-		<file src="Output\Release\Xbim.Common.dll"         target="lib\net40\Xbim.Common.dll" />
-		<file src="Output\Release\Xbim.Ifc.Extensions.dll" target="lib\net40\Xbim.Ifc.Extensions.dll" />
-		<file src="Output\Release\Xbim.Ifc2x3.dll"         target="lib\net40\Xbim.Ifc2x3.dll" />
-		<file src="Output\Release\Xbim.Ifc2x3.IO.dll"      target="lib\net40\Xbim.Ifc2x3.IO.dll" />
-		<file src="Output\Release\Xbim.Ifc4.dll"           target="lib\net40\Xbim.Ifc4.dll" />
-		<file src="Output\Release\Xbim.Ifc.dll"            target="lib\net40\Xbim.Ifc.dll" />
-		<file src="Output\Release\Xbim.IO.dll"             target="lib\net40\Xbim.IO.dll" />
-		<file src="Output\Release\Xbim.Tessellator.dll"    target="lib\net40\Xbim.Tessellator.dll" />
-		<file src="Output\Release\Xbim.CobieExpress.pdb"   target="lib\net40\Xbim.CobieExpress.pdb" />
-		<file src="Output\Release\Xbim.Common.pdb"         target="lib\net40\Xbim.Common.pdb" />
-		<file src="Output\Release\Xbim.Ifc.Extensions.pdb" target="lib\net40\Xbim.Ifc.Extensions.pdb" />
-		<file src="Output\Release\Xbim.Ifc2x3.IO.pdb"      target="lib\net40\Xbim.Ifc2x3.IO.pdb" />
-		<file src="Output\Release\Xbim.Ifc2x3.pdb"         target="lib\net40\Xbim.Ifc2x3.pdb" />
-		<file src="Output\Release\Xbim.Ifc4.pdb"           target="lib\net40\Xbim.Ifc4.pdb" />
-		<file src="Output\Release\Xbim.Ifc.pdb"            target="lib\net40\Xbim.Ifc.pdb" />
-		<file src="Output\Release\Xbim.IO.pdb"             target="lib\net40\Xbim.IO.pdb" />
-		<file src="Output\Release\Xbim.Tessellator.pdb"    target="lib\net40\Xbim.Tessellator.pdb" />
-		<file src="Output\Release\Xbim.CobieExpress.XML"   target="lib\net40\Xbim.CobieExpress.XML" />
-		<file src="Output\Release\Xbim.Common.XML"         target="lib\net40\Xbim.Common.XML" />
-		<file src="Output\Release\Xbim.Ifc.Extensions.XML" target="lib\net40\Xbim.Ifc.Extensions.XML" />
-		<file src="Output\Release\Xbim.Ifc2x3.IO.XML"      target="lib\net40\Xbim.Ifc2x3.IO.XML" />
-		<file src="Output\Release\Xbim.Ifc2x3.XML"         target="lib\net40\Xbim.Ifc2x3.XML" />
-		<file src="Output\Release\Xbim.Ifc4.XML"           target="lib\net40\Xbim.Ifc4.XML" />
-    <file src="Output\Release\Xbim.Ifc.XML"            target="lib\net40\Xbim.Ifc.XML" />
-		<file src="Output\Release\Xbim.IO.XML"             target="lib\net40\Xbim.IO.XML" />
-    <file src="Output\Release\Xbim.Tessellator.XML"    target="lib\net40\Xbim.Tessellator.XML" />
+		<file src="Output\Release\Xbim.CobieExpress.IO.dll" target="lib\net40\Xbim.CobieExpress.IO.dll" />
+		<file src="Output\Release\Xbim.CobieExpress.dll"    target="lib\net40\Xbim.CobieExpress.dll" />
+		<file src="Output\Release\Xbim.Common.dll"          target="lib\net40\Xbim.Common.dll" />
+		<file src="Output\Release\Xbim.Ifc.Extensions.dll"  target="lib\net40\Xbim.Ifc.Extensions.dll" />
+		<file src="Output\Release\Xbim.Ifc2x3.dll"          target="lib\net40\Xbim.Ifc2x3.dll" />
+		<file src="Output\Release\Xbim.Ifc2x3.IO.dll"       target="lib\net40\Xbim.Ifc2x3.IO.dll" />
+		<file src="Output\Release\Xbim.Ifc4.dll"            target="lib\net40\Xbim.Ifc4.dll" />
+		<file src="Output\Release\Xbim.Ifc.dll"             target="lib\net40\Xbim.Ifc.dll" />
+		<file src="Output\Release\Xbim.IO.dll"              target="lib\net40\Xbim.IO.dll" />
+		<file src="Output\Release\Xbim.IO.TableStore.dll"   target="lib\net40\Xbim.IO.TableStore.dll" />
+		<file src="Output\Release\Xbim.Tessellator.dll"     target="lib\net40\Xbim.Tessellator.dll" />
+		<file src="Output\Release\Xbim.CobieExpress.IO.pdb" target="lib\net40\Xbim.CobieExpress.IO.pdb" />
+		<file src="Output\Release\Xbim.CobieExpress.pdb"    target="lib\net40\Xbim.CobieExpress.pdb" />
+		<file src="Output\Release\Xbim.Common.pdb"          target="lib\net40\Xbim.Common.pdb" />
+		<file src="Output\Release\Xbim.Ifc.Extensions.pdb"  target="lib\net40\Xbim.Ifc.Extensions.pdb" />
+		<file src="Output\Release\Xbim.Ifc2x3.IO.pdb"       target="lib\net40\Xbim.Ifc2x3.IO.pdb" />
+		<file src="Output\Release\Xbim.Ifc2x3.pdb"          target="lib\net40\Xbim.Ifc2x3.pdb" />
+		<file src="Output\Release\Xbim.Ifc4.pdb"            target="lib\net40\Xbim.Ifc4.pdb" />
+		<file src="Output\Release\Xbim.Ifc.pdb"             target="lib\net40\Xbim.Ifc.pdb" />
+		<file src="Output\Release\Xbim.IO.pdb"              target="lib\net40\Xbim.IO.pdb" />
+		<file src="Output\Release\Xbim.IO.TableStore.pdb"   target="lib\net40\Xbim.IO.TableStore.pdb" />
+		<file src="Output\Release\Xbim.Tessellator.pdb"     target="lib\net40\Xbim.Tessellator.pdb" />
+		<file src="Output\Release\Xbim.CobieExpress.IO.XML" target="lib\net40\Xbim.CobieExpress.IO.XML" />
+		<file src="Output\Release\Xbim.CobieExpress.XML"    target="lib\net40\Xbim.CobieExpress.XML" />
+		<file src="Output\Release\Xbim.Common.XML"          target="lib\net40\Xbim.Common.XML" />
+		<file src="Output\Release\Xbim.Ifc.Extensions.XML"  target="lib\net40\Xbim.Ifc.Extensions.XML" />
+		<file src="Output\Release\Xbim.Ifc2x3.IO.XML"       target="lib\net40\Xbim.Ifc2x3.IO.XML" />
+		<file src="Output\Release\Xbim.Ifc2x3.XML"          target="lib\net40\Xbim.Ifc2x3.XML" />
+		<file src="Output\Release\Xbim.Ifc4.XML"            target="lib\net40\Xbim.Ifc4.XML" />
+        <file src="Output\Release\Xbim.Ifc.XML"            	target="lib\net40\Xbim.Ifc.XML" />
+		<file src="Output\Release\Xbim.IO.XML"              target="lib\net40\Xbim.IO.XML" />
+		<file src="Output\Release\Xbim.IO.TableStore.XML"   target="lib\net40\Xbim.IO.TableStore.XML" />
+		<file src="Output\Release\Xbim.Tessellator.XML"     target="lib\net40\Xbim.Tessellator.XML" />
     </files>
 	
 </package>

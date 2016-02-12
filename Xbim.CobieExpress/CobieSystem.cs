@@ -55,7 +55,7 @@ namespace Xbim.CobieExpress
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 14)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 15)]
 		public OptionalItemSet<CobieComponent> @Components 
 		{ 
 			get 
@@ -66,7 +66,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
 		public CobieFacility @Facility 
 		{ 
 			get 
@@ -102,13 +102,14 @@ namespace Xbim.CobieExpress
 				case 8: 
 				case 9: 
 				case 10: 
+				case 11: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 11: 
+				case 12: 
 					if (_components == null) _components = new OptionalItemSet<CobieComponent>( this );
 					_components.InternalAdd((CobieComponent)value.EntityVal);
 					return;
-				case 12: 
+				case 13: 
 					_facility = (CobieFacility)(value.EntityVal);
 					return;
 				default:

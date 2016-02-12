@@ -52,7 +52,7 @@ namespace Xbim.CobieExpress
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 14)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 15)]
 		public OptionalItemSet<CobieSpace> @Spaces 
 		{ 
 			get 
@@ -84,9 +84,10 @@ namespace Xbim.CobieExpress
 				case 8: 
 				case 9: 
 				case 10: 
+				case 11: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 11: 
+				case 12: 
 					if (_spaces == null) _spaces = new OptionalItemSet<CobieSpace>( this );
 					_spaces.InternalAdd((CobieSpace)value.EntityVal);
 					return;

@@ -14,27 +14,27 @@ namespace Xbim.MemoryModel.Tests
     [TestClass]
     public class CobieTests
     {
-        [TestMethod]
-        [DeploymentItem("TestFiles/LakesideRestaurant.cobieZip")]
-        public void CobieXmlSerialization()
-        {
-            const string xmlFile = "..\\..\\LakesideRestaurantCobie.xml";
-            var model = new IO.Memory.MemoryModel(new EntityFactory());
-            model.LoadZip("LakesideRestaurant.cobieZip");
+        //[TestMethod]
+        //[DeploymentItem("TestFiles/LakesideRestaurant.cobieZip")]
+        //public void CobieXmlSerialization()
+        //{
+        //    const string xmlFile = "..\\..\\LakesideRestaurantCobie.xml";
+        //    var model = new IO.Memory.MemoryModel(new EntityFactory());
+        //    model.LoadZip("LakesideRestaurant.cobieZip");
 
-            var writer = new XbimXmlWriter4(configuration.COBieExpress, XbimXmlSettings.COBieExpress);
-            using (var xmlWriter = XmlWriter.Create(xmlFile, new XmlWriterSettings { IndentChars = "\t", Indent = true }))
-            {
-                writer.Write(model, xmlWriter, model.Instances.OfType<CobieFacility>().Concat(model.Instances));
-                xmlWriter.Close();
-            }
+        //    var writer = new XbimXmlWriter4(configuration.COBieExpress, XbimXmlSettings.COBieExpress);
+        //    using (var xmlWriter = XmlWriter.Create(xmlFile, new XmlWriterSettings { IndentChars = "\t", Indent = true }))
+        //    {
+        //        writer.Write(model, xmlWriter, model.Instances.OfType<CobieFacility>().Concat(model.Instances));
+        //        xmlWriter.Close();
+        //    }
 
-            var xmlModel = new IO.Memory.MemoryModel(new EntityFactory());
-            xmlModel.LoadXml(xmlFile);
+        //    var xmlModel = new IO.Memory.MemoryModel(new EntityFactory());
+        //    xmlModel.LoadXml(xmlFile);
 
-            Assert.AreEqual(model.Instances.Count, xmlModel.Instances.Count);
+        //    Assert.AreEqual(model.Instances.Count, xmlModel.Instances.Count);
 
-        }
+        //}
 
         [TestMethod]
         public void SerializeDeserialize()

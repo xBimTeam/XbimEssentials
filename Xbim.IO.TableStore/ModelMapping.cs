@@ -60,6 +60,15 @@ namespace Xbim.IO.TableStore
         XmlArrayItem("EnumerationMapping", Namespace = "http://www.openbim.org/mapping/table/1.0")]
         public List<EnumMapping> EnumerationMappings { get; set; }
 
+        /// <summary>
+        /// Scopes of classes. If no scope is defined it defaults to 'Local'. This is only important
+        /// for import of tabular data where this helpes to decide wheather to create new object
+        /// as a local to its parent or if the objec should be looked up in the model
+        /// </summary>
+        [XmlArray("Scopes", Namespace = "http://www.openbim.org/mapping/table/1.0"),
+        XmlArrayItem("Scope", Namespace = "http://www.openbim.org/mapping/table/1.0")]
+        public List<ClassScope> Scopes { get; set; }
+
         #region Serialization
         public ModelMapping()
         {

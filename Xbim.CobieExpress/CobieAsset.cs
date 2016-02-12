@@ -29,6 +29,7 @@ namespace Xbim.CobieExpress.Interfaces
 		IEnumerable<ICobieImpact> @Impacts { get; }
 		IEnumerable<ICobieDocument> @Documents { get; }
 		IEnumerable<ICobieAttribute> @Attributes { get; }
+		IEnumerable<ICobieCoordinate> @Representations { get; }
 		IEnumerable<ICobieIssue> @CausingIssues {  get; }
 		IEnumerable<ICobieIssue> @AffectedBy {  get; }
 	
@@ -49,6 +50,7 @@ namespace Xbim.CobieExpress
 		IEnumerable<ICobieImpact> ICobieAsset.Impacts { get { return @Impacts; } }	
 		IEnumerable<ICobieDocument> ICobieAsset.Documents { get { return @Documents; } }	
 		IEnumerable<ICobieAttribute> ICobieAsset.Attributes { get { return @Attributes; } }	
+		IEnumerable<ICobieCoordinate> ICobieAsset.Representations { get { return @Representations; } }	
 		 
 		IEnumerable<ICobieIssue> ICobieAsset.CausingIssues {  get { return @CausingIssues; } }
 		IEnumerable<ICobieIssue> ICobieAsset.AffectedBy {  get { return @AffectedBy; } }
@@ -61,6 +63,7 @@ namespace Xbim.CobieExpress
 			_impacts = new OptionalItemSet<CobieImpact>( this, 0 );
 			_documents = new OptionalItemSet<CobieDocument>( this, 0 );
 			_attributes = new OptionalItemSet<CobieAttribute>( this, 0 );
+			_representations = new OptionalItemSet<CobieCoordinate>( this, 0 );
 		}
 
 		#region Explicit attribute fields
@@ -70,6 +73,7 @@ namespace Xbim.CobieExpress
 		private OptionalItemSet<CobieImpact> _impacts;
 		private OptionalItemSet<CobieDocument> _documents;
 		private OptionalItemSet<CobieAttribute> _attributes;
+		private OptionalItemSet<CobieCoordinate> _representations;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -141,13 +145,23 @@ namespace Xbim.CobieExpress
 				return _attributes;
 			} 
 		}	
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 12)]
+		public OptionalItemSet<CobieCoordinate> @Representations 
+		{ 
+			get 
+			{
+				if(ActivationStatus != ActivationStatus.NotActivated) return _representations;
+				((IPersistEntity)this).Activate(false);
+				return _representations;
+			} 
+		}	
 		#endregion
 
 
 
 		#region Inverse attributes
 		[InverseProperty("Causing")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 12)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 13)]
 		public IEnumerable<CobieIssue> @CausingIssues 
 		{ 
 			get 
@@ -156,7 +170,7 @@ namespace Xbim.CobieExpress
 			} 
 		}
 		[InverseProperty("Affected")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 13)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 14)]
 		public IEnumerable<CobieIssue> @AffectedBy 
 		{ 
 			get 
@@ -200,6 +214,10 @@ namespace Xbim.CobieExpress
 				case 10: 
 					if (_attributes == null) _attributes = new OptionalItemSet<CobieAttribute>( this );
 					_attributes.InternalAdd((CobieAttribute)value.EntityVal);
+					return;
+				case 11: 
+					if (_representations == null) _representations = new OptionalItemSet<CobieCoordinate>( this );
+					_representations.InternalAdd((CobieCoordinate)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

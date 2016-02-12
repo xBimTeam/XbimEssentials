@@ -13,6 +13,7 @@ using NPOI.XSSF.UserModel;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Metadata;
+using Xbim.IO.TableStore.Resolvers;
 
 namespace Xbim.IO.TableStore
 {
@@ -21,6 +22,7 @@ namespace Xbim.IO.TableStore
         public IModel Model { get; private set; }
         public ModelMapping Mapping { get; private set; }
         public ExpressMetaData MetaData { get { return Model.Metadata; } }
+        public List<ITypeResolver> Resolvers { get; private set; } 
 
         #region Writing data out to a spreadsheet
         /// <summary>
@@ -38,16 +40,33 @@ namespace Xbim.IO.TableStore
         private readonly Dictionary<ExpressType, ClassMapping> _typeClassMappingsCache = new Dictionary<ExpressType, ClassMapping>(); 
 
         //cache of meta properties so it doesn't have to look them up in metadata all the time
-        private readonly  Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>> _typePropertyCache = new Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>>(); 
-       
+        private readonly  Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>> _typePropertyCache = new Dictionary<ExpressType, Dictionary<string, ExpressMetaProperty>>();
+
+        // cache of index column indices for every table in use
+        private Dictionary<string, int[]> _multiRowIndicesCache;
+
         //preprocessed enum aliases to speed things up
         private readonly Dictionary<string, string> _enumAliasesCache;
         private readonly Dictionary<string, string> _aliasesEnumCache;
- 
+
+        //list of forward references to be resolved
+        private readonly Queue<ForwardReference> _forwardReferences = new Queue<ForwardReference>();
+
+        //cached check if the mapping contains any potentially multi-value columns
+        private Dictionary<ClassMapping, bool> _isMultiRowMappingCache;
+
+        //cache of global types so that it is not necessary to search and validate in configuration
+        private List<ExpressType> _globalTypes;
+        private readonly Dictionary<ExpressType, Dictionary<string, IPersistEntity>> _globalEntities = new Dictionary<ExpressType, Dictionary<string, IPersistEntity>>();
+
+        //cache of all reference contexts which are only built once (string parsing, search for express properties and types)
+        private Dictionary<ClassMapping, ReferenceContext> _referenceContexts; 
+
         public TableStore(IModel model, ModelMapping mapping)
         {
             Model = model;
             Mapping = mapping;
+            Resolvers = new List<ITypeResolver>();
 
             if (mapping.EnumerationMappings != null && mapping.EnumerationMappings.Any())
             {
@@ -96,6 +115,7 @@ namespace Xbim.IO.TableStore
 
         public void Store(Stream stream, ExcelTypeEnum type, Stream template = null, bool recalculate = false)
         {
+            Log = new StringWriter();
             IWorkbook workbook;
             switch (type)
             {
@@ -199,7 +219,7 @@ namespace Xbim.IO.TableStore
             foreach (var propertyMapping in mapping.PropertyMappings)
             {
                 object value = null;
-                foreach (var path in propertyMapping.PathsEnumeration)
+                foreach (var path in propertyMapping.Paths)
                 {
                     value = GetValue(entity, expType, path, context);
                     if (value != null) break;
@@ -232,23 +252,22 @@ namespace Xbim.IO.TableStore
 
             }
 
+            //adjust width of the columns after the first and the eight row 
+            //adjusting fully populated workbook takes ages. This should be almost all right
             if (row.RowNum == 1 || row.RowNum == 8)
-            {
-                //adjust width of the columns after the first and the eight row 
-                //adjusting fully populated workbook takes ages. This should be almost all right
                 AdjustAllColumns(sheet, mapping);
-            }
+
+            //it is not a multi row so return
+            if (multiRow <= 0 || multiValues == null || !multiValues.Any()) 
+                return;
 
             //add repeated rows if necessary
-            if (multiRow <= 0 || multiValues == null || !multiValues.Any()) return;
-
             foreach (var value in multiValues)
             {
                 var rowNum = GetNextRowNum(sheet);
                 var copy = sheet.CopyRow(multiRow, rowNum);
                 Store(copy, value, multiMapping);    
             }
-            
         }
 
 
@@ -362,12 +381,31 @@ namespace Xbim.IO.TableStore
             return mapping;
         }
 
+        private readonly Dictionary<string, ExpressType> _tableTypeCache = new Dictionary<string, ExpressType>(); 
+
+        internal ExpressType GetType(string tableName)
+        {
+            if (string.IsNullOrWhiteSpace(tableName))
+                return null;
+
+            ExpressType type;
+            if (_tableTypeCache.TryGetValue(tableName, out type))
+                return type;
+
+            var mapping = Mapping.ClassMappings.FirstOrDefault(
+                m => string.Equals(m.TableName, tableName, StringComparison.OrdinalIgnoreCase));
+            if (mapping != null)
+                type = MetaData.ExpressType(mapping.Class.ToUpper());
+            _tableTypeCache.Add(tableName, type);
+            return type;
+        }
+
         private object GetValue(IPersistEntity entity, ExpressType type, string path, EntityContext context)
         {
             while (true)
             {
                 if (string.IsNullOrWhiteSpace(path))
-                    throw new XbimException("Path not defined");
+                    return null;
 
                 //if it is parent, skip to the root of the context
                 //optimization: check first letter before StartsWith() function. 
@@ -467,7 +505,7 @@ namespace Xbim.IO.TableStore
             }
         }
 
-        private ExpressMetaProperty GetProperty(ExpressType type, string name)
+        internal ExpressMetaProperty GetProperty(ExpressType type, string name)
         {
             ExpressMetaProperty property;
             Dictionary<string, ExpressMetaProperty> properties;
@@ -492,56 +530,94 @@ namespace Xbim.IO.TableStore
         private object GetPropertyValue(string pathPart, IPersistEntity entity, ExpressType type)
         {
             var propName = pathPart;
-            var isIndexed = propName.Contains("[") && propName.Contains("]");
-            object propIndex = null;
-            if (isIndexed)
-            {
-                var match = new Regex("((?<name>).+)?\\[(?<index>.+)\\]")
-                    .Match(propName);
-                var indexString = match.Groups["index"].Value;
-                propName = match.Groups["name"].Value;
+            var ofType = GetPropertyTypeOf(ref propName);
+            var propIndex = GetPropertyIndex(ref propName);
+            var pInfo = GetPropertyInfo(propName, type, propIndex);
+            var value = pInfo.GetValue(entity, propIndex == null ? null : new[] { propIndex });
 
-                if (indexString.Contains("'") || indexString.Contains("\""))
-                {
-                    propIndex = indexString.Trim('\'', '"');
-                }
-                else
-                {
-                    //try to convert it to integer access
-                    int indexInt;
-                    if (int.TryParse(indexString, out indexInt))
-                        propIndex = indexInt;
-                    else
-                        propIndex = indexString;
-                }
-            }
+            if (ofType == null || value == null) return value;
+
+            var vType = value.GetType();
+            if (!typeof (IEnumerable).IsAssignableFrom(vType)) 
+                return ofType.IsAssignableFrom(vType) ? value : null;
+
+            var ofTypeMethod = vType.GetMethod("OfType");
+            ofTypeMethod = ofTypeMethod.MakeGenericMethod(ofType);
+            return ofTypeMethod.Invoke(value, null);
+        }
+
+        internal PropertyInfo GetPropertyInfo(string name, ExpressType type, object index)
+        {
+            var isIndexed = index != null;
             PropertyInfo pInfo;
-            if (isIndexed && string.IsNullOrWhiteSpace(propName))
+            if (isIndexed && string.IsNullOrWhiteSpace(name))
             {
-                pInfo = type.Type.GetProperty("Item");
+                pInfo = type.Type.GetProperty("Item"); //anonymous index accessors are automatically named 'Item' by compiler
                 if (pInfo == null)
                     throw new XbimException(string.Format("{0} doesn't have an index access", type.Name));
 
                 var iParams = pInfo.GetIndexParameters();
-                if (iParams.All(p => p.ParameterType != propIndex.GetType()))
-                    throw new XbimException(string.Format("{0} doesn't have an index access for type {1}", type.Name, propIndex.GetType().Name));
+                if (iParams.All(p => p.ParameterType != index.GetType()))
+                    throw new XbimException(string.Format("{0} doesn't have an index access for type {1}", type.Name, index.GetType().Name));
             }
             else
             {
-                var expProp = GetProperty(type, propName);
+                var expProp = GetProperty(type, name);
                 if (expProp == null)
-                    throw new XbimException(string.Format("It wasn't possible to find property {0} in the object of type {1}", propName, type.Name));
+                    throw new XbimException(string.Format("It wasn't possible to find property {0} in the object of type {1}", name, type.Name));
                 pInfo = expProp.PropertyInfo;
                 if (isIndexed)
                 {
                     var iParams = pInfo.GetIndexParameters();
-                    if (iParams.All(p => p.ParameterType != propIndex.GetType()))
-                        throw new XbimException(string.Format("Property {0} in the object of type {1} doesn't have an index access for type {2}", propName, type.Name, propIndex.GetType().Name));
+                    if (iParams.All(p => p.ParameterType != index.GetType()))
+                        throw new XbimException(string.Format("Property {0} in the object of type {1} doesn't have an index access for type {2}", name, type.Name, index.GetType().Name));
                 }
             }
+            return pInfo;
+        }
 
-            var value = pInfo.GetValue(entity, propIndex == null ? null : new[] { propIndex });
-            return value;
+        public Type GetPropertyTypeOf(ref string pathPart)
+        {
+            var isTyped = pathPart.Contains("\\");
+            if (!isTyped) return null;
+
+            var match = TypeOfRegex.Match(pathPart);
+            pathPart = match.Groups["name"].Value;
+            var typeName = match.Groups["type"].Value;
+            var eType = MetaData.ExpressType(typeName.ToUpper());
+            return eType != null ? eType.Type : null;
+        }
+
+        //static precompiled regular expressions
+        private static readonly Regex TypeOfRegex = new Regex("((?<name>).+)?\\\\(?<type>.+)", RegexOptions.Compiled);
+        private static readonly Regex PropertyIndexRegex = new Regex("((?<name>).+)?\\[(?<index>.+)\\]", RegexOptions.Compiled);
+
+        public static object GetPropertyIndex(ref string pathPart)
+        {
+            var isIndexed = pathPart.Contains("[") && pathPart.Contains("]");
+            if (!isIndexed) return null;
+
+            object propIndex;
+            var match = PropertyIndexRegex.Match(pathPart);
+
+            var indexString = match.Groups["index"].Value;
+            pathPart = match.Groups["name"].Value;
+
+            if (indexString.Contains("'") || indexString.Contains("\""))
+            {
+                propIndex = indexString.Trim('\'', '"');
+            }
+            else
+            {
+                //try to convert it to integer access
+                int indexInt;
+                if (int.TryParse(indexString, out indexInt))
+                    propIndex = indexInt;
+                else
+                    propIndex = indexString;
+            }
+
+            return propIndex;
         }
 
         private static object GetFallbackValue(IPersistEntity entity, ExpressType type)
@@ -632,6 +708,9 @@ namespace Xbim.IO.TableStore
             var workbook = sheet.Workbook;
             var row = sheet.GetRow(0) ?? sheet.CreateRow(0);
             InitMappingColumns(classMapping);
+
+            //freeze header row
+            sheet.CreateFreezePane(0, 1);
 
             //create header and column style for every mapped column
             foreach (var mapping in classMapping.PropertyMappings)
@@ -732,11 +811,9 @@ namespace Xbim.IO.TableStore
         //This operation takes very long time if applied at the end when spreadsheet is fully populated
         private static void AdjustAllColumns(ISheet sheet, ClassMapping mapping)
         {
-            foreach (var propertyMapping in mapping.PropertyMappings)
-            {
-                var colIndex = CellReference.ConvertColStringToIndex(propertyMapping.Column);
+            foreach (var colIndex in mapping.PropertyMappings
+                .Select(propertyMapping => CellReference.ConvertColStringToIndex(propertyMapping.Column)))
                 sheet.AutoSizeColumn(colIndex);
-            }
         }
 
         private void SetUpTables(IWorkbook workbook, ModelMapping mapping)
