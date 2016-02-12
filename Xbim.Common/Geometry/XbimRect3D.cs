@@ -314,12 +314,9 @@ namespace Xbim.Common.Geometry
 
         #endregion
 
-        static public XbimRect3D Inflate( double x, double y, double z)
+        public XbimRect3D Inflate( double x, double y, double z)
         {
-            XbimRect3D rect = new XbimRect3D();
-            rect.X -= x; rect.Y -= y; rect.Z -= z;
-            rect.SizeX += x * 2; rect.SizeY += y * 2; rect.SizeZ += z * 2;
-            return rect;
+            return Inflate(this, x,y,z);
         }
 
         static public XbimRect3D Inflate(XbimRect3D original, double x, double y, double z)
@@ -336,12 +333,9 @@ namespace Xbim.Common.Geometry
             return new XbimRect3D(p, v);
         }
 
-        static public XbimRect3D Inflate(double d)
+        public XbimRect3D Inflate(double d)
         {
-            XbimRect3D rect = new XbimRect3D();
-            rect.X -= d; rect.Y -= d; rect.Z -= d;
-            rect.SizeX += d * 2; rect.SizeY += d * 2; rect.SizeZ += d * 2;
-            return rect;
+            return Inflate(this, d);
         }
 
         /// <summary>
