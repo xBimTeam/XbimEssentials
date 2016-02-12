@@ -677,7 +677,7 @@ namespace Xbim.IO.Memory
                 //try to get the value if it was created before
                 if (mappings.TryGetValue(toCopyHandle, out copyHandle))
                 {
-                    return (T)copyHandle.GetEntity();
+                    return (T) copyHandle.GetEntity();
                 }
 
                 var expressType = Metadata.ExpressType(toCopy);
@@ -692,7 +692,9 @@ namespace Xbim.IO.Memory
 
                 foreach (var prop in props)
                 {
-                    var value = propTransform != null ? propTransform(prop, toCopy) : prop.PropertyInfo.GetValue(toCopy, null);
+                    var value = propTransform != null
+                        ? propTransform(prop, toCopy)
+                        : prop.PropertyInfo.GetValue(toCopy, null);
                     if (value == null) continue;
 
                     var isInverse = (prop.EntityAttribute.Order == -1); //don't try and set the values for inverses
@@ -704,7 +706,9 @@ namespace Xbim.IO.Memory
                     }
                     else if (!isInverse && typeof (IPersistEntity).IsAssignableFrom(theType))
                     {
-                        prop.PropertyInfo.SetValue(copy, InsertCopy((IPersistEntity)value, mappings, propTransform, includeInverses, keepLabels, noTransaction), null);
+                        prop.PropertyInfo.SetValue(copy,
+                            InsertCopy((IPersistEntity) value, mappings, propTransform, includeInverses, keepLabels,
+                                noTransaction), null);
                     }
                     else if (!isInverse && typeof (IList).IsAssignableFrom(theType))
                     {
@@ -721,11 +725,13 @@ namespace Xbim.IO.Memory
                                 copyColl.Add(item);
                             else if (typeof (IPersistEntity).IsAssignableFrom(actualItemType))
                             {
-                                var cpy = InsertCopy((IPersistEntity)item, mappings, propTransform, includeInverses, keepLabels, noTransaction);
+                                var cpy = InsertCopy((IPersistEntity) item, mappings, propTransform, includeInverses,
+                                    keepLabels, noTransaction);
                                 copyColl.Add(cpy);
                             }
                             else
-                                throw new Exception(string.Format("Unexpected collection item type ({0}) found", itemType.Name));
+                                throw new Exception(string.Format("Unexpected collection item type ({0}) found",
+                                    itemType.Name));
                         }
                     }
                     else if (isInverse && value is IEnumerable<IPersistEntity>) //just an enumeration of IPersistEntity
@@ -737,13 +743,14 @@ namespace Xbim.IO.Memory
                     }
                     else if (isInverse && value is IPersistEntity) //it is an inverse and has a single value
                     {
-                        InsertCopy((IPersistEntity)value, mappings, propTransform, includeInverses, keepLabels, noTransaction);
+                        InsertCopy((IPersistEntity) value, mappings, propTransform, includeInverses, keepLabels,
+                            noTransaction);
                     }
                     else
                         throw new Exception(string.Format("Unexpected item type ({0})  found", theType.Name));
                 }
                 return (T) copy;
-            }
+            }          
             finally
             {
                 //make sure model is transactional at the end again

@@ -322,8 +322,19 @@ namespace Xbim.Common.Geometry
             return rect;
         }
 
-       
-       
+        static public XbimRect3D Inflate(XbimRect3D original, double x, double y, double z)
+        {           
+            XbimPoint3D p = new XbimPoint3D(original.X - x, original.Y - y, original.Z - z);
+            XbimVector3D v = new XbimVector3D(original.SizeX + (x * 2), original.SizeY + (y * 2), original.SizeZ +(z * 2));
+            return new XbimRect3D(p,v);
+        }
+
+        static public XbimRect3D Inflate(XbimRect3D original, double inflate)
+        {
+            XbimPoint3D p = new XbimPoint3D(original.X - inflate, original.Y - inflate, original.Z - inflate);
+            XbimVector3D v = new XbimVector3D(original.SizeX + (inflate* 2), original.SizeY + (inflate * 2), original.SizeZ + (inflate * 2));
+            return new XbimRect3D(p, v);
+        }
 
         static public XbimRect3D Inflate(double d)
         {
