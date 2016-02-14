@@ -20,6 +20,7 @@ namespace Xbim.Common.Geometry
         IXbimSolidSet Intersection(IXbimSolidSet toIntersect, double tolerance);
         IXbimSolidSet Intersection(IXbimSolid toIntersect, double tolerance);
         bool IsSimplified { get; }
+        IXbimSolidSet Range(int start, int count);
         /// <summary>
         /// Converts the object to a string in BRep format
         /// </summary>
