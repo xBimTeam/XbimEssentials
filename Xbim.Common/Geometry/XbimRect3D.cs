@@ -314,23 +314,28 @@ namespace Xbim.Common.Geometry
 
         #endregion
 
-        static public XbimRect3D Inflate( double x, double y, double z)
+        public XbimRect3D Inflate( double x, double y, double z)
         {
-            XbimRect3D rect = new XbimRect3D();
-            rect.X -= x; rect.Y -= y; rect.Z -= z;
-            rect.SizeX += x * 2; rect.SizeY += y * 2; rect.SizeZ += z * 2;
-            return rect;
+            return Inflate(this, x,y,z);
         }
 
-       
-       
+        static public XbimRect3D Inflate(XbimRect3D original, double x, double y, double z)
+        {           
+            XbimPoint3D p = new XbimPoint3D(original.X - x, original.Y - y, original.Z - z);
+            XbimVector3D v = new XbimVector3D(original.SizeX + (x * 2), original.SizeY + (y * 2), original.SizeZ +(z * 2));
+            return new XbimRect3D(p,v);
+        }
 
-        static public XbimRect3D Inflate(double d)
+        static public XbimRect3D Inflate(XbimRect3D original, double inflate)
         {
-            XbimRect3D rect = new XbimRect3D();
-            rect.X -= d; rect.Y -= d; rect.Z -= d;
-            rect.SizeX += d * 2; rect.SizeY += d * 2; rect.SizeZ += d * 2;
-            return rect;
+            XbimPoint3D p = new XbimPoint3D(original.X - inflate, original.Y - inflate, original.Z - inflate);
+            XbimVector3D v = new XbimVector3D(original.SizeX + (inflate* 2), original.SizeY + (inflate * 2), original.SizeZ + (inflate * 2));
+            return new XbimRect3D(p, v);
+        }
+
+        public XbimRect3D Inflate(double d)
+        {
+            return Inflate(this, d);
         }
 
         /// <summary>
