@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
@@ -665,13 +664,15 @@ namespace Xbim.IO.Xml
                 //read namespace info
                 while (input.MoveToNextAttribute())
                 {
-                    if (input.Value == "http://www.iai-tech.org/ifcXML/IFC2x3/FINAL")
+                    if (string.Equals(input.Value, "http://www.iai-tech.org/ifcXML/IFC2x3/FINAL", StringComparison.OrdinalIgnoreCase) || 
+                        string.Equals(input.Value, "http://www.iai-international.org/ifcXML2/RC2/IFC2X3", StringComparison.OrdinalIgnoreCase))
                         return XmlSchemaVersion.Ifc2x3;
 
-                    if (input.Value == "http://www.buildingsmart-tech.org/ifcXML/MVD4/IFC")
+                    if (string.Equals(input.Value, "http://www.buildingsmart-tech.org/ifcXML/MVD4/IFC", StringComparison.OrdinalIgnoreCase) ||
+                        string.Equals(input.Value, "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1", StringComparison.OrdinalIgnoreCase))
                         return XmlSchemaVersion.Ifc4Add1;
 
-                    if (input.Value == "http://www.buildingsmart-tech.org/ifcXML/IFC4/final")
+                    if (string.Equals(input.Value, "http://www.buildingsmart-tech.org/ifcXML/IFC4/final", StringComparison.OrdinalIgnoreCase))
                         return XmlSchemaVersion.Ifc4;
                 }
                 input.MoveToElement();
