@@ -84,6 +84,19 @@ namespace Xbim.Ifc
             CalculateModelFactors();
         }
 
+        protected IfcStore(IModel iModel, IfcSchemaVersion schema)
+        {
+            _model = iModel;
+            _model.EntityNew += _model_EntityNew;
+            _model.EntityDeleted += _model_EntityDeleted;
+            _model.EntityModified += _model_EntityModified;
+            _deleteModelOnClose = true;
+            FileName = null;
+            _xbimFileName = null;
+            _schema = schema;
+            _editorDetails = null;
+        }
+
         private void _model_EntityDeleted(IPersistEntity entity)
         {
             if (EntityDeleted == null) return;
@@ -468,22 +481,48 @@ namespace Xbim.Ifc
                     return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName); //it will delete itself anyway
                 }
             }
-            else //it will be memory model
-            {
 
-                if (ifcVersion == IfcSchemaVersion.Ifc4)
-                {
-                    var memoryModel = new MemoryModel(new Ifc4.EntityFactory());
-                    return new IfcStore(memoryModel, ifcVersion, editorDetails);
-                }
-                else //it will be Ifc2x3
-                {
-                    var memoryModel = new MemoryModel(new Ifc2x3.EntityFactory());
-                    return new IfcStore(memoryModel, ifcVersion, editorDetails);
-                }
+            //it will be memory model
+            if (ifcVersion == IfcSchemaVersion.Ifc4)
+            {
+                var memoryModel = new MemoryModel(new Ifc4.EntityFactory());
+                return new IfcStore(memoryModel, ifcVersion, editorDetails);
+            }
+            else //it will be Ifc2x3
+            {
+                var memoryModel = new MemoryModel(new Ifc2x3.EntityFactory());
+                return new IfcStore(memoryModel, ifcVersion, editorDetails);
             }
         }
 
+        public static IfcStore Create(IfcSchemaVersion ifcVersion, XbimStoreType storageType)
+        {
+            if (storageType == XbimStoreType.EsentDatabase)
+            {
+                if (ifcVersion == IfcSchemaVersion.Ifc4)
+                {
+                    var temporaryModel = EsentModel.CreateTemporaryModel(new Ifc4.EntityFactory());
+                    return new IfcStore(temporaryModel, ifcVersion); //it will delete itself anyway
+                }
+                else //it will be Ifc2x3
+                {
+                    var temporaryModel = EsentModel.CreateTemporaryModel(new Ifc2x3.EntityFactory());
+                    return new IfcStore(temporaryModel, ifcVersion); //it will delete itself anyway
+                }
+            }
+
+            //it will be memory model
+            if (ifcVersion == IfcSchemaVersion.Ifc4)
+            {
+                var memoryModel = new MemoryModel(new Ifc4.EntityFactory());
+                return new IfcStore(memoryModel, ifcVersion);
+            }
+            else //it will be Ifc2x3
+            {
+                var memoryModel = new MemoryModel(new Ifc2x3.EntityFactory());
+                return new IfcStore(memoryModel, ifcVersion);
+            }
+        }
         #region OwnerHistory Management
 
 
@@ -1355,6 +1394,230 @@ namespace Xbim.Ifc
         {
             get { return _model.InstanceHandles.ToList(); }
         }
+
+        #region Insert products with context
+
+        private List<IIfcProduct> _primaryElements = new List<IIfcProduct>();
+        private readonly List<IIfcProduct> _decomposition = new List<IIfcProduct>();
+        private bool _includeGeometry;
+
+        /// <summary>
+        /// This is a higher level function which uses InsertCopy function alongside with the knowledge of IFC schema to copy over
+        /// products with their types and other related information (classification, aggregation, documents, properties) and optionally
+        /// geometry. It will also bring in spatial hierarchy relevant to selected products. However, resulting model is not guaranteed 
+        /// to be compliant with any Model View Definition unless you explicitly check the compliance. Context of a single product tend to 
+        /// consist from hundreds of objects which need to be identified and copied over so this operation might be potentially expensive.
+        /// You should never call this function more than once between two models. It not only selects objects to be copied over but also
+        /// excludes other objects from being coppied over so that it doesn't bring the entire model in a chain dependencies. This means
+        /// that some objects are modified (like spatial relations) and won't get updated which would lead to an inconsistent copy.
+        /// </summary>
+        /// <param name="products">Products from other model to be inserted into this model</param>
+        /// <param name="includeGeometry">If TRUE, geometry of the products will be copied over.</param>
+        /// <param name="keepLabels">If TRUE, entity labels from original model will be used. Always set this to FALSE
+        /// if you are going to insert products from multiple source models or if you are going to insert products to a non-empty model</param>
+        /// <param name="mappings">Mappings to avoid multiple insertion of objects. Keep a single instance for insertion between two models.
+        /// If you also use InsertCopy() function for some other insertions, use the same instance of mappings.</param>
+        public void InsertProductsWithContext(IEnumerable<IIfcProduct> products, bool includeGeometry, bool keepLabels, XbimInstanceHandleMap mappings)
+        {
+            _primaryElements.Clear();
+            _decomposition.Clear();
+            _includeGeometry = includeGeometry;
+
+            var roots = products.Cast<IPersistEntity>().ToList();
+            //return if there is nothing to insert
+            if (!roots.Any())
+                return;
+
+            var source = roots.First().Model;
+            if (source == this)
+                //don't do anything if the source and target are the same
+                return;
+
+            var toInsert = GetEntitiesToInsert(source, roots);
+            //create new cache is none is defined
+            var cache = mappings ?? new XbimInstanceHandleMap(source, this);
+
+            foreach (var entity in toInsert)
+                InsertCopy(entity, cache, Filter, false, keepLabels);
+        }
+
+        private IEnumerable<IPersistEntity> GetEntitiesToInsert(IModel model, List<IPersistEntity> roots)
+        {
+            _primaryElements = roots.OfType<IIfcProduct>().ToList();
+
+            //add any aggregated elements. For example IfcRoof is typically aggregation of one or more slabs so we need to bring
+            //them along to have all the information both for geometry and for properties and materials.
+            //This has to happen before we add spatial hierarchy or it would bring in full hierarchy which is not an intention
+            var decompositionRels = GetAggregations(_primaryElements.ToList(), model).ToList();
+            _primaryElements.AddRange(_decomposition);
+            roots.AddRange(decompositionRels);
+
+            //we should add spatial hierarchy right here so it brings its attributes as well
+            var spatialRels = model.Instances.Where<IIfcRelContainedInSpatialStructure>(
+                r => _primaryElements.Any(e => r.RelatedElements.Contains(e))).ToList();
+            var spatialRefs =
+                model.Instances.Where<IIfcRelReferencedInSpatialStructure>(
+                    r => _primaryElements.Any(e => r.RelatedElements.Contains(e))).ToList();
+            var bottomSpatialHierarchy =
+                spatialRels.Select(r => r.RelatingStructure).Union(spatialRefs.Select(r => r.RelatingStructure)).ToList();
+            var spatialAggregations = GetUpstreamHierarchy(bottomSpatialHierarchy, model).ToList();
+
+            //add all spatial elements from bottom and from upstream hierarchy
+            _primaryElements.AddRange(bottomSpatialHierarchy);
+            _primaryElements.AddRange(spatialAggregations.Select(r => r.RelatingObject).OfType<IIfcProduct>());
+            roots.AddRange(spatialAggregations);
+            roots.AddRange(spatialRels);
+            roots.AddRange(spatialRefs);
+
+            //we should add any feature elements used to subtract mass from a product
+            var featureRels = GetFeatureRelations(_primaryElements).ToList();
+            var openings = featureRels.Select(r => r.RelatedOpeningElement);
+            _primaryElements.AddRange(openings);
+            roots.AddRange(featureRels);
+
+            //object types and properties for all primary products (elements and spatial elements)
+            roots.AddRange(_primaryElements.SelectMany(p => p.IsDefinedBy));
+            roots.AddRange(_primaryElements.SelectMany(p => p.IsTypedBy));
+
+
+
+            //assignmnet to groups will bring in all system aggregarions if defined in the file
+            roots.AddRange(_primaryElements.SelectMany(p => p.HasAssignments));
+
+            //associations with classification, material and documents
+            roots.AddRange(_primaryElements.SelectMany(p => p.HasAssociations));
+
+            return roots;
+        }
+
+        private object Filter(ExpressMetaProperty property, object parentObject)
+        {
+            if (_primaryElements != null && _primaryElements.Any())
+            {
+                if (typeof(IIfcProduct).IsAssignableFrom(property.PropertyInfo.PropertyType))
+                {
+                    var element = property.PropertyInfo.GetValue(parentObject, null) as IIfcProduct;
+                    if (element != null && _primaryElements.Contains(element))
+                        return element;
+                    return null;
+                }
+                if (property.EnumerableType != null && !property.EnumerableType.IsValueType && property.EnumerableType != typeof(string))
+                {
+                    var entities = property.PropertyInfo.GetValue(parentObject, null) as IEnumerable<IPersistEntity>;
+                    if (entities == null)
+                        return null;
+                    var persistEntities = entities as IList<IPersistEntity> ?? entities.ToList();
+                    var elementsToRemove = persistEntities.OfType<IIfcProduct>().Where(e => !_primaryElements.Contains(e)).ToList();
+                    //if there are no IfcElements return what is in there with no care
+                    if (elementsToRemove.Any())
+                        //return original values excluding elements not included in the primary set
+                        return persistEntities.Except(elementsToRemove).ToList();
+                }
+            }
+
+
+
+            //if geometry is to be included don't filter it out
+            if (_includeGeometry)
+                return property.PropertyInfo.GetValue(parentObject, null);
+
+            //leave out geometry and placement of products
+            if (parentObject is IIfcProduct &&
+                (property.PropertyInfo.Name == "Representation" || property.PropertyInfo.Name == "ObjectPlacement")
+                )
+                return null;
+
+            //leave out representation maps
+            if (parentObject is IIfcTypeProduct && property.PropertyInfo.Name == "RepresentationMaps")
+                return null;
+
+            //leave out eventual connection geometry
+            if (parentObject is IIfcRelSpaceBoundary && property.PropertyInfo.Name == "ConnectionGeometry")
+                return null;
+
+            //return the value for anything else
+            return property.PropertyInfo.GetValue(parentObject, null);
+        }
+
+        private static IEnumerable<IIfcRelVoidsElement> GetFeatureRelations(IEnumerable<IIfcProduct> products)
+        {
+            var elements = products.OfType<IIfcElement>().ToList();
+            if (!elements.Any()) yield break;
+            var model = elements.First().Model;
+            var rels = model.Instances.Where<IIfcRelVoidsElement>(r => elements.Any(e => Equals(e, r.RelatingBuildingElement)));
+            foreach (var rel in rels)
+                yield return rel;
+        }
+
+        private IEnumerable<IIfcRelDecomposes> GetAggregations(List<IIfcProduct> products, IModel model)
+        {
+            _decomposition.Clear();
+            while (true)
+            {
+                if (!products.Any())
+                    yield break;
+
+                var products1 = products;
+                var rels = model.Instances.Where<IIfcRelDecomposes>(r =>
+                {
+                    var aggr = r as IIfcRelAggregates;
+                    if (aggr != null)
+                        return products1.Any(p => Equals(aggr.RelatingObject, p));
+                    var nest = r as IIfcRelNests;
+                    if (nest != null)
+                        return products1.Any(p => Equals(nest.RelatingObject, p));
+                    var prj = r as IIfcRelProjectsElement;
+                    if (prj != null)
+                        return products1.Any(p => Equals(prj.RelatingElement, p));
+                    var voids = r as IIfcRelVoidsElement;
+                    if (voids != null)
+                        return products1.Any(p => Equals(voids.RelatingBuildingElement, p));
+                    return false;
+
+                }).ToList();
+                var relatedProducts = rels.SelectMany(r =>
+                {
+                    var aggr = r as IIfcRelAggregates;
+                    if (aggr != null)
+                        return aggr.RelatedObjects.OfType<IIfcProduct>();
+                    var nest = r as IIfcRelNests;
+                    if (nest != null)
+                        return nest.RelatedObjects.OfType<IIfcProduct>();
+                    var prj = r as IIfcRelProjectsElement;
+                    if (prj != null)
+                        return new IIfcProduct[] { prj.RelatedFeatureElement };
+                    var voids = r as IIfcRelVoidsElement;
+                    if (voids != null)
+                        return new IIfcProduct[] { voids.RelatedOpeningElement };
+                    return null;
+                }).Where(p => p != null).ToList();
+
+                foreach (var rel in rels)
+                    yield return rel;
+
+                products = relatedProducts;
+                _decomposition.AddRange(products);
+            }
+        }
+
+        private static IEnumerable<IIfcRelAggregates> GetUpstreamHierarchy(IEnumerable<IIfcSpatialElement> spatialStructureElements, IModel model)
+        {
+            while (true)
+            {
+                var elements = spatialStructureElements.ToList();
+                if (!elements.Any())
+                    yield break;
+
+                var rels = model.Instances.Where<IIfcRelAggregates>(r => elements.Any(s => r.RelatedObjects.Contains(s))).ToList();
+                var decomposing = rels.Select(r => r.RelatingObject).OfType<IIfcSpatialStructureElement>();
+
+                foreach (var rel in rels)
+                    yield return rel;
+
+                spatialStructureElements = decomposing;
+            }
+        }
+        #endregion
     }
 
 }
