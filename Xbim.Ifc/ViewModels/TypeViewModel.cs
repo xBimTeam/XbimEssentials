@@ -20,7 +20,7 @@ namespace Xbim.Ifc.ViewModels
         {
             get
             {
-                return _type.Name;
+                return _type.Name.Substring(3);
             }
         }
 

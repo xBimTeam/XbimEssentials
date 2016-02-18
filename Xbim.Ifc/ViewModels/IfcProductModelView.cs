@@ -45,11 +45,11 @@ namespace Xbim.Ifc.ViewModels
 
         public string Name
         {
-            get { 
-                var tmp = _product.ToString(); 
-                if (tmp.Trim() == string.Empty) // some applications write a single space in place of the name
-                    tmp = string.Format("{0} #{1}", _product.ExpressType.ExpressName, _product.EntityLabel);
-                return tmp;
+            get
+            {              
+                if(!string.IsNullOrWhiteSpace(_product.Name))
+                 return string.Format("{0} #{1} - {2}", _product.ExpressType.ExpressName, _product.EntityLabel, _product.Name);
+                return string.Format("{0} #{1}", _product.ExpressType.ExpressName, _product.EntityLabel);
             }
         }
 
