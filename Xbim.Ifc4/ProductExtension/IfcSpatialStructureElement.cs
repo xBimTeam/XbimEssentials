@@ -13,7 +13,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4.ProductExtension;
+using Xbim.Ifc4.Kernel;
+
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -154,9 +155,51 @@ namespace Xbim.Ifc4.ProductExtension
         }
         #endregion
 
-		#region Custom code (will survive code regeneration)
-		//## Custom code
-		//##
-		#endregion
-	}
+        #region Custom code (will survive code regeneration)
+        //## Custom code
+
+
+	    /// <summary>
+	    ///   Adds the  element to the set of  elements which are contained in this spatialstructure
+	    /// </summary>
+	    /// <param name = "prod"></param>
+	    public  void AddElement(IfcProduct prod)
+        {
+            if (prod == null) return;
+            IEnumerable<IfcRelContainedInSpatialStructure> relatedElements = ContainsElements;
+            var ifcRelContainedInSpatialStructures = relatedElements as IList<IfcRelContainedInSpatialStructure> ?? relatedElements.ToList();
+            if (!ifcRelContainedInSpatialStructures.Any()) //none defined create the relationship
+            {
+                IfcRelContainedInSpatialStructure relSe = Model.Instances.New<IfcRelContainedInSpatialStructure>();
+                relSe.RelatingStructure = this;
+                relSe.RelatedElements.Add(prod);
+            }
+            else
+            {
+                ifcRelContainedInSpatialStructures.First().RelatedElements.Add(prod);
+            }
+        }
+
+	    /// <summary>
+	    ///   Adds specified IfcSpatialStructureElement to the decomposition of this spatial structure element.
+	    /// </summary>
+	    /// <param name = "child">Child spatial structure element.</param>
+	    public void AddToSpatialDecomposition(IfcSpatialStructureElement child)
+        {
+            IEnumerable<IfcRelAggregates> decomposition =IsDecomposedBy;
+            var ifcRelDecomposes = decomposition as IList<IfcRelAggregates> ?? decomposition.ToList();
+            if (!ifcRelDecomposes.Any()) //none defined create the relationship
+            {
+                IfcRelAggregates relSub = Model.Instances.New<IfcRelAggregates>();
+                relSub.RelatingObject = this;
+                relSub.RelatedObjects.Add(child);
+            }
+            else
+            {
+                ifcRelDecomposes.First().RelatedObjects.Add(child);
+            }
+        }
+        //##
+        #endregion
+    }
 }
