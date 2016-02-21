@@ -30,19 +30,19 @@ namespace Xbim.MemoryModel.Tests
                 var styledItem = brep.StyledByItem.FirstOrDefault(); //this is not fast do not do on large models
                 Assert.IsNotNull(styledItem, "No StyledItem found in file");
 
-                
+
 
                 var repContext = m.Instances[100] as IIfcGeometricRepresentationContext;
-                 Assert.IsNotNull(repContext, "No context found in file");
+                Assert.IsNotNull(repContext, "No context found in file");
                 var geomStore = m.GeometryStore;
-                using ( var txn = geomStore.BeginInit())
+                using (var txn = geomStore.BeginInit())
                 {
-                   
-                    var tessellator = new XbimTessellator(m,XbimGeometryType.PolyhedronBinary);
+
+                    var tessellator = new XbimTessellator(m, XbimGeometryType.PolyhedronBinary);
                     var geom = tessellator.Mesh(brep);
-                    
-                 
-                    var geomId =txn.AddShapeGeometry(geom);
+
+
+                    var geomId = txn.AddShapeGeometry(geom);
                     //ADD A SHAPE INSTANCE
                     var shapeInstance = new XbimShapeInstance()
                     {
@@ -56,14 +56,15 @@ namespace Xbim.MemoryModel.Tests
                         RepresentationContext = repContext.EntityLabel
                     };
                     txn.AddShapeInstance(shapeInstance, geomId);
-                   txn.Commit();
+                    txn.Commit();
                 }
                 using (var bw = new BinaryWriter(new FileStream("test.wexBIM", FileMode.Create)))
                 {
                     m.SaveAsWexBim(bw);
                     bw.Close();
                 }
-                using (var fs = new FileStream(@"test.wexBIM", FileMode.Open, FileAccess.Read))
+            }
+            using (var fs = new FileStream(@"test.wexBIM", FileMode.Open, FileAccess.Read))
                 {
                     using (var br = new BinaryReader(fs))
                     {
@@ -93,45 +94,45 @@ namespace Xbim.MemoryModel.Tests
                         {
                             var styleId = br.ReadInt32();
                             var red = br.ReadSingle();
-                            var green = br.ReadSingle();
-                            var blue = br.ReadSingle();
-                            var alpha = br.ReadSingle();
-                        }
-                        for (int i = 0; i < productCount; i++)
+                        var green = br.ReadSingle();
+                        var blue = br.ReadSingle();
+                        var alpha = br.ReadSingle();
+                    }
+                    for (int i = 0; i < productCount; i++)
+                    {
+                        var productLabel = br.ReadInt32();
+                        var productType = br.ReadInt16();
+                        var boxBytes = br.ReadBytes(6 * sizeof(float));
+                        XbimRect3D bb = XbimRect3D.FromArray(boxBytes);
+                    }
+                    for (int i = 0; i < shapeCount; i++)
+                    {
+                        var shapeRepetition = br.ReadInt32();
+                        Assert.IsTrue(shapeRepetition > 0);
+                        if (shapeRepetition > 1)
                         {
-                            var productLabel = br.ReadInt32();
-                            var productType = br.ReadInt16();
-                            var boxBytes = br.ReadBytes(6 * sizeof(float));
-                            XbimRect3D bb = XbimRect3D.FromArray(boxBytes);
-                        }
-                        for (int i = 0; i < shapeCount; i++)
-                        {
-                            var shapeRepetition = br.ReadInt32();
-                            Assert.IsTrue(shapeRepetition > 0);
-                            if (shapeRepetition > 1)
-                            {
-                                for (int j = 0; j < shapeRepetition; j++)
-                                {
-                                    var ifcProductLabel = br.ReadInt32();
-                                    var instanceTypeId = br.ReadInt16();
-                                    var instanceLabel = br.ReadInt32();
-                                    var styleId = br.ReadInt32();
-                                    var transform = XbimMatrix3D.FromArray(br.ReadBytes(sizeof(float) * 16));
-                                }
-                                var triangulation = br.ReadShapeTriangulation();
-                            }
-                            else if (shapeRepetition == 1)
+                            for (int j = 0; j < shapeRepetition; j++)
                             {
                                 var ifcProductLabel = br.ReadInt32();
                                 var instanceTypeId = br.ReadInt16();
                                 var instanceLabel = br.ReadInt32();
                                 var styleId = br.ReadInt32();
-                                var triangulation = br.ReadShapeTriangulation();
+                                var transform = XbimMatrix3D.FromArray(br.ReadBytes(sizeof(double) * 16));
                             }
+                            var triangulation = br.ReadShapeTriangulation();
+                        }
+                        else if (shapeRepetition == 1)
+                        {
+                            var ifcProductLabel = br.ReadInt32();
+                            var instanceTypeId = br.ReadInt16();
+                            var instanceLabel = br.ReadInt32();
+                            var styleId = br.ReadInt32();
+                            var triangulation = br.ReadShapeTriangulation();
                         }
                     }
                 }
             }
         }
+
     }
 }
