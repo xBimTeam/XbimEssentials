@@ -994,6 +994,8 @@ namespace Xbim.Ifc
                 var openingElementId = _model.Metadata.ExpressTypeId("IFCOPENINGELEMENT");
                 foreach (var geometry in lookup)
                 {
+                    if (geometry.ShapeData.Length <= 0) //no geometry to display so don't write out any products for it
+                        continue;
                     if (geometry.ReferenceCount > 1)
                     {
                         var instances = geomRead.ShapeInstancesOfGeometry(geometry.ShapeLabel);
@@ -1035,8 +1037,6 @@ namespace Xbim.Ifc
 
                         // IXbimShapeGeometryData geometry = ShapeGeometry(kv.Key);
                         binaryStream.Write((Int32)1); //the number of repetitions of the geometry (1)
-
-
                         binaryStream.Write((Int32)xbimShapeInstance.IfcProductLabel);
                         binaryStream.Write((UInt16)xbimShapeInstance.IfcTypeId);
                         binaryStream.Write((Int32)xbimShapeInstance.InstanceLabel);
@@ -1045,8 +1045,7 @@ namespace Xbim.Ifc
                             : xbimShapeInstance.IfcTypeId * -1);
 
                         //Read all vertices and normals in the geometry stream and transform
-                        if (geometry.ShapeData.Length <= 0)
-                            continue;
+                       
                         var ms = new MemoryStream(((IXbimShapeGeometryData)geometry).ShapeData);
                         var br = new BinaryReader(ms);
                         var tr = br.ReadShapeTriangulation();

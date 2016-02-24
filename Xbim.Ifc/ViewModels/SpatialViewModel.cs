@@ -21,7 +21,9 @@ namespace Xbim.Ifc.ViewModels
         {
             get
             {
-                return _spatialStructure.Name;
+                if (!string.IsNullOrWhiteSpace(_spatialStructure.Name))
+                    return string.Format("{0} #{1}", _spatialStructure.Name, _spatialStructure.EntityLabel);
+                return string.Format("{0} #{1}", _spatialStructure.ExpressType.ExpressName.Substring(3), _spatialStructure.EntityLabel);               
             }
         }
         
