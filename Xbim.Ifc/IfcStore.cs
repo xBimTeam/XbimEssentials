@@ -892,7 +892,8 @@ namespace Xbim.Ifc
         /// This function is used to generate the .wexbim model files.
         /// </summary>
         /// <param name="binaryStream">An open writable streamer.</param>
-        public void SaveAsWexBim(BinaryWriter binaryStream)
+        /// <param name="products">Optional products to be written to the wexBIM file. If null, all products from the model will be saved</param>
+        public void SaveAsWexBim(BinaryWriter binaryStream, IEnumerable<IIfcProduct> products = null)
         {
             // ReSharper disable RedundantCast
             if(GeometryStore==null) throw new XbimException("Geometry store has not been initialised");
@@ -967,27 +968,26 @@ namespace Xbim.Ifc
                 }
 
                 //write out all the product bounding boxes
-                foreach (var product in Instances.OfType<IIfcProduct>())
+                foreach (var product in products ?? Instances.OfType<IIfcProduct>())
                 {
-                    if (!(product is IIfcFeatureElement))
+                    if (product is IIfcFeatureElement) continue;
+
+                    var bb = XbimRect3D.Empty;
+                    foreach (var si in geomRead.ShapeInstancesOfEntity(product))
                     {
-                        var bb = XbimRect3D.Empty;
-                        foreach (var si in geomRead.ShapeInstancesOfEntity(product))
-                        {
-                            var bbPart = XbimRect3D.TransformBy(si.BoundingBox, si.Transformation);
-                                //make sure we put the box in the right place and then convert to axis aligned
-                            if (bb.IsEmpty) bb = bbPart;
-                            else
-                                bb.Union(bbPart);
-                        }
-                        if (!bb.IsEmpty) //do not write out anything with no geometry
-                        {
-                            binaryStream.Write((Int32) product.EntityLabel);
-                            binaryStream.Write((UInt16) _model.Metadata.ExpressTypeId(product));
-                            binaryStream.Write(bb.ToFloatArray());
-                            numberOfProducts++;
-                        }
+                        var bbPart = XbimRect3D.TransformBy(si.BoundingBox, si.Transformation);
+                        //make sure we put the box in the right place and then convert to axis aligned
+                        if (bb.IsEmpty) bb = bbPart;
+                        else
+                            bb.Union(bbPart);
                     }
+                    //do not write out anything with no geometry
+                    if (bb.IsEmpty) continue;
+
+                    binaryStream.Write((Int32) product.EntityLabel);
+                    binaryStream.Write((UInt16) _model.Metadata.ExpressTypeId(product));
+                    binaryStream.Write(bb.ToFloatArray());
+                    numberOfProducts++;
                 }
 
                 //write out the multiple instances

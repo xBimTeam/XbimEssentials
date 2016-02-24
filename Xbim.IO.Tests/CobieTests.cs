@@ -5,7 +5,9 @@ using System.Linq;
 using System.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.CobieExpress;
+using Xbim.CobieExpress.IO;
 using Xbim.Common;
+using Xbim.IO.TableStore;
 using Xbim.IO.Xml;
 using Xbim.IO.Xml.BsConf;
 
@@ -35,6 +37,17 @@ namespace Xbim.MemoryModel.Tests
         //    Assert.AreEqual(model.Instances.Count, xmlModel.Instances.Count);
 
         //}
+
+        [TestMethod]
+        public void CobieComparison()
+        {
+            var file = @"c:\CODE\XbimGit\XbimExchange\TestResults\converted.cobie";
+            using (var model = CobieModel.OpenStep21(file))
+            {
+                string report;
+                model.ExportToTable(@"c:\CODE\XbimGit\XbimExchange\TestResults\converted.xlsx", out report);
+            }
+        }
 
         [TestMethod]
         public void SerializeDeserialize()
