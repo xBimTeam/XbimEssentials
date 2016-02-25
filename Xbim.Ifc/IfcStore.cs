@@ -659,7 +659,7 @@ namespace Xbim.Ifc
             }
         }
 
-        public IfcSchemaVersion IfcSchemaVesion
+        public IfcSchemaVersion IfcSchemaVersion
         {
             get
             {
@@ -990,8 +990,17 @@ namespace Xbim.Ifc
                     }
                 }
 
-                //write out the multiple instances
-                var openingElementId = _model.Metadata.ExpressTypeId("IFCOPENINGELEMENT");
+               //projections and openings have already been applied, 
+               
+                var toIgnore = new short[4];
+                toIgnore[0] = _model.Metadata.ExpressTypeId("IFCOPENINGELEMENT");
+                toIgnore[1] = _model.Metadata.ExpressTypeId("IFCPROJECTIONELEMENT");
+                if (IfcSchemaVersion == IfcSchemaVersion.Ifc4)
+                {
+                    toIgnore[2] = _model.Metadata.ExpressTypeId("IFCVOIDINGFEATURE");
+                    toIgnore[3] = _model.Metadata.ExpressTypeId("IFCSURFACEFEATURE");
+                }      
+
                 foreach (var geometry in lookup)
                 {
                     if (geometry.ShapeData.Length <= 0) //no geometry to display so don't write out any products for it
@@ -1002,8 +1011,12 @@ namespace Xbim.Ifc
                         var xbimShapeInstances = instances as IList<XbimShapeInstance> ?? instances.ToList();
                         if (!xbimShapeInstances.Any()) continue;
                         numberOfGeometries++;
-                        binaryStream.Write(geometry.ReferenceCount); //the number of repetitions of the geometry
-                        foreach (IXbimShapeInstanceData xbimShapeInstance in xbimShapeInstances)
+                        var toWrite = xbimShapeInstances.Where(si => !toIgnore.Contains(si.IfcTypeId) &&
+                                                                     si.RepresentationType ==
+                                                                     XbimGeometryRepresentationType
+                                                                         .OpeningsAndAdditionsIncluded).ToList();
+                        binaryStream.Write(toWrite.Count); //the number of repetitions of the geometry
+                        foreach (IXbimShapeInstanceData xbimShapeInstance in toWrite)
                             //write out each of the ids style and transforms
                         {
                             binaryStream.Write(xbimShapeInstance.IfcProductLabel);
@@ -1030,7 +1043,7 @@ namespace Xbim.Ifc
                     {
                         var xbimShapeInstance = geomRead.ShapeInstancesOfGeometry(geometry.ShapeLabel).FirstOrDefault();
 
-                        if (xbimShapeInstance == null || xbimShapeInstance.IfcTypeId == openingElementId ||
+                        if (xbimShapeInstance == null || toIgnore.Contains(xbimShapeInstance.IfcTypeId) ||
                             xbimShapeInstance.RepresentationType != XbimGeometryRepresentationType.OpeningsAndAdditionsIncluded)                           
                             continue;
                         numberOfGeometries++;

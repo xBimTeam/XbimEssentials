@@ -10,7 +10,7 @@ namespace Profiling.ProductExtraction
         {
             using (var source = IfcStore.Open("..\\..\\..\\Xbim.IO.Tests\\TestFiles\\SampleHouse4.ifc"))
             {
-                using (var target = IfcStore.Create(source.IfcSchemaVesion, XbimStoreType.InMemoryModel))
+                using (var target = IfcStore.Create(source.IfcSchemaVersion, XbimStoreType.InMemoryModel))
                 {
                     using (var txn = target.BeginTransaction("Copy"))
                     {

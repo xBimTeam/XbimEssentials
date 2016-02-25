@@ -92,7 +92,7 @@ namespace Utility.ExtractCobieData
 
             using (var source = IfcStore.Open(TxtInputFile.Text))
             {
-                using (var target = IfcStore.Create(source.IfcSchemaVesion , XbimStoreType.InMemoryModel))
+                using (var target = IfcStore.Create(source.IfcSchemaVersion , XbimStoreType.InMemoryModel))
                 {
                     //insertion itself will be configured to happen out of transaction but other operations might need to be transactional
                     using (var txn = target.BeginTransaction("COBie data extraction"))
