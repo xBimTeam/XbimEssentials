@@ -103,7 +103,7 @@
         <PropertyMapping Header="ExtSystem" Column="F" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtObject" Column="G" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalObject.Name"  Hidden="true"/>
         <PropertyMapping Header="ExtIdentifier" Column="H" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalId"  Hidden="true"/>
-        <PropertyMapping Header="Description" Column="I" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Description" />
+        <PropertyMapping Header="Description" Column="I" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Description" />
       </PropertyMappings>
     </ClassMapping>
     <ClassMapping Class="Type" TableName="Type" TableOrder="5">
