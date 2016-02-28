@@ -378,6 +378,7 @@ namespace Xbim.IO.Esent
                     break;
                 case IfcStorageType.IfcZip:
                 case IfcStorageType.StpZip:
+                case IfcStorageType.Zip:
                     InstanceCache.ImportStepZip(xbimDbName, importFrom, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
                     break;
                 case IfcStorageType.Xbim:
