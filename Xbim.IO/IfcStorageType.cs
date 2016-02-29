@@ -23,7 +23,8 @@ namespace Xbim.IO
         IfcZip = 4,
         Xbim = 8,
         Stp = 16,
-        StpZip = 32
+        StpZip = 32,
+        Zip = 64
     }
 
 

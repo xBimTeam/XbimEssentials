@@ -45,7 +45,7 @@ namespace Xbim.IO.Memory
             using (var stream = File.OpenRead(fileName))
             {
 
-                if (storageType.HasFlag(IfcStorageType.IfcZip))
+                if (storageType.HasFlag(IfcStorageType.IfcZip)|| storageType.HasFlag(IfcStorageType.Zip))
                 {
 
                     var zipEntry = GetZipEntry(stream);

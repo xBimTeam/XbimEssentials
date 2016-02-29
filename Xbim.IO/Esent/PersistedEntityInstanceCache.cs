@@ -228,7 +228,8 @@ namespace Xbim.IO.Esent
                     _session = new Session(_jetInstance);
                     try
                     {
-                        Api.JetAttachDatabase(_session, _databaseName, AttachDatabaseGrbit.None);
+                        if(!string.IsNullOrWhiteSpace(_databaseName))
+                            Api.JetAttachDatabase(_session, _databaseName, AttachDatabaseGrbit.None);
                     }
                     catch (EsentDatabaseDirtyShutdownException)
                     {

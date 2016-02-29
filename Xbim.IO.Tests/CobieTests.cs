@@ -38,16 +38,16 @@ namespace Xbim.MemoryModel.Tests
 
         //}
 
-        [TestMethod]
-        public void CobieComparison()
-        {
-            var file = @"c:\CODE\XbimGit\XbimExchange\TestResults\converted.cobie";
-            using (var model = CobieModel.OpenStep21(file))
-            {
-                string report;
-                model.ExportToTable(@"c:\CODE\XbimGit\XbimExchange\TestResults\converted.xlsx", out report);
-            }
-        }
+        //[TestMethod]
+        //public void CobieComparison()
+        //{
+        //    var file = @"c:\CODE\XbimGit\XbimExchange\TestResults\converted.cobie";
+        //    using (var model = CobieModel.OpenStep21(file))
+        //    {
+        //        string report;
+        //        model.ExportToTable(@"c:\CODE\XbimGit\XbimExchange\TestResults\converted.xlsx", out report);
+        //    }
+        //}
 
         [TestMethod]
         public void SerializeDeserialize()

@@ -229,20 +229,22 @@ namespace Xbim.Ifc
                     if (ifcVersion == IfcSchemaVersion.Ifc4)
                     {
                         var model = new EsentModel(new Ifc4.EntityFactory());
-                        model.CreateFrom(path, tmpFileName, progDelegate, true);
-                        return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
+                        if(model.CreateFrom(path, tmpFileName, progDelegate, true))
+                            return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
+                        throw new FileLoadException(filePath + " file was not a valid ifc format");
                     }
                     else //it will be Ifc2x3
                     {
                         var model = new EsentModel(new Ifc2x3.EntityFactory());
-                        model.CreateFrom(path, tmpFileName, progDelegate, true);
-                        return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
+                        if(model.CreateFrom(path, tmpFileName, progDelegate, true))
+                            return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
+                        throw new FileLoadException(filePath + " file was not a valid ifc format");
                     }
                 }
                 else //we can use a memory model
                 {
                     var model = ifcVersion == IfcSchemaVersion.Ifc4 ? new MemoryModel(new Ifc4.EntityFactory()) : new MemoryModel(new Ifc2x3.EntityFactory());
-                    if (storageType.HasFlag(IfcStorageType.IfcZip) )
+                    if (storageType.HasFlag(IfcStorageType.IfcZip) || storageType.HasFlag(IfcStorageType.Zip))
                     {
                         using (var zipFile = new ZipFile(path))
                         {
