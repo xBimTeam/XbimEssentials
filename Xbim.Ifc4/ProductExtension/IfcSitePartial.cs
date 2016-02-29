@@ -94,18 +94,6 @@ namespace Xbim.Ifc4.ProductExtension
             }
         }
 
-        public void AddElement(IfcProduct element)
-        {
-            var spatialStructure = ContainsElements.FirstOrDefault();
-            if (spatialStructure == null) //none defined create the relationship
-            {
-                var relSe = Model.Instances.New<IfcRelContainedInSpatialStructure>();
-                relSe.RelatingStructure = this;
-                relSe.RelatedElements.Add(element);
-            }
-            else
-                spatialStructure.RelatedElements.Add(element);
-        }
 #endregion
 
         #region Property Values

@@ -50,7 +50,7 @@
         <PropertyMapping Header="CurrencyUnit" Column="J" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="CurrencyUnit.Value" />
         <PropertyMapping Header="AreaMeasurement" Column="K" Status="PickValue" MultiRow="None" DefaultValue="unknown" Paths="AreaMeasurement" />
         <PropertyMapping Header="ExternalSystem" Column="L" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalSystem.Name"  Hidden="true"/>
-        <PropertyMapping Header="ExternalProjectObject" Column="M" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="ExternalObject.Name"  Hidden="true"/>
+        <PropertyMapping Header="ExternalProjectObject" Column="M" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="Project.ExternalObject.Name"  Hidden="true"/>
         <PropertyMapping Header="ExternalProjectIdentifier" Column="N" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="Project.ExternalId"  Hidden="true"/>
         <PropertyMapping Header="ExternalSiteObject" Column="O" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="Site.ExternalObject.Name"  Hidden="true"/>
         <PropertyMapping Header="ExternalSiteIdentifier" Column="P" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="Site.ExternalId"  Hidden="true"/>

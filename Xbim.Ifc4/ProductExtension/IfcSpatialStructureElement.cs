@@ -155,29 +155,25 @@ namespace Xbim.Ifc4.ProductExtension
         }
         #endregion
 
-        #region Custom code (will survive code regeneration)
         //## Custom code
+        #region Custom code (will survive code regeneration)
 
 
-	    /// <summary>
+        /// <summary>
 	    ///   Adds the  element to the set of  elements which are contained in this spatialstructure
 	    /// </summary>
-	    /// <param name = "prod"></param>
-	    public  void AddElement(IfcProduct prod)
+	    /// <param name = "product"></param>
+        public void AddElement(IfcProduct product)
         {
-            if (prod == null) return;
-            IEnumerable<IfcRelContainedInSpatialStructure> relatedElements = ContainsElements;
-            var ifcRelContainedInSpatialStructures = relatedElements as IList<IfcRelContainedInSpatialStructure> ?? relatedElements.ToList();
-            if (!ifcRelContainedInSpatialStructures.Any()) //none defined create the relationship
+            var spatialStructure = ContainsElements.FirstOrDefault();
+            if (spatialStructure == null) //none defined create the relationship
             {
-                IfcRelContainedInSpatialStructure relSe = Model.Instances.New<IfcRelContainedInSpatialStructure>();
+                var relSe = Model.Instances.New<IfcRelContainedInSpatialStructure>();
                 relSe.RelatingStructure = this;
-                relSe.RelatedElements.Add(prod);
+                relSe.RelatedElements.Add(product);
             }
             else
-            {
-                ifcRelContainedInSpatialStructures.First().RelatedElements.Add(prod);
-            }
+                spatialStructure.RelatedElements.Add(product);
         }
 
 	    /// <summary>
@@ -186,17 +182,16 @@ namespace Xbim.Ifc4.ProductExtension
 	    /// <param name = "child">Child spatial structure element.</param>
 	    public void AddToSpatialDecomposition(IfcSpatialStructureElement child)
         {
-            IEnumerable<IfcRelAggregates> decomposition =IsDecomposedBy;
-            var ifcRelDecomposes = decomposition as IList<IfcRelAggregates> ?? decomposition.ToList();
-            if (!ifcRelDecomposes.Any()) //none defined create the relationship
+            var ifcRelDecomposes = IsDecomposedBy.FirstOrDefault();
+            if (ifcRelDecomposes == null) //none defined create the relationship
             {
-                IfcRelAggregates relSub = Model.Instances.New<IfcRelAggregates>();
+                var relSub = Model.Instances.New<IfcRelAggregates>();
                 relSub.RelatingObject = this;
                 relSub.RelatedObjects.Add(child);
             }
             else
             {
-                ifcRelDecomposes.First().RelatedObjects.Add(child);
+                ifcRelDecomposes.RelatedObjects.Add(child);
             }
         }
         //##

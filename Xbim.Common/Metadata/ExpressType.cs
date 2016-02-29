@@ -14,7 +14,7 @@ namespace Xbim.Common.Metadata
         private readonly List<ExpressMetaProperty> _inverses = new List<ExpressMetaProperty>();
         private readonly List<ExpressMetaProperty> _derives = new List<ExpressMetaProperty>();
         private readonly List<ExpressType> _subTypes = new List<ExpressType>();
-        private List<Type> _nonAbstractSubTypes;
+        private List<ExpressType> _nonAbstractSubTypes;
         private readonly List<ExpressMetaProperty> _expressEnumerableProperties = new List<ExpressMetaProperty>();
         private readonly string _expressName;
         private readonly short _typeId;
@@ -75,7 +75,7 @@ namespace Xbim.Common.Metadata
         /// <summary>
         /// Don't ask for this before types hierarchy is finished or it will cache incomplete result.
         /// </summary>
-        public IEnumerable<Type> NonAbstractSubTypes
+        public IEnumerable<ExpressType> NonAbstractSubTypes
         {
             get
             {
@@ -83,7 +83,7 @@ namespace Xbim.Common.Metadata
                 {
                     //this needs to be set up after hierarchy is set up
                     if (_nonAbstractSubTypes != null) return _nonAbstractSubTypes;
-                    _nonAbstractSubTypes = new List<Type>();
+                    _nonAbstractSubTypes = new List<ExpressType>();
                     AddNonAbstractTypes(this, _nonAbstractSubTypes);
                 }
                 return _nonAbstractSubTypes;
@@ -240,10 +240,10 @@ namespace Xbim.Common.Metadata
             get { return _indexedValues; }
         }
 
-        private static void AddNonAbstractTypes(ExpressType expressType, ICollection<Type> nonAbstractTypes)
+        private static void AddNonAbstractTypes(ExpressType expressType, ICollection<ExpressType> nonAbstractTypes)
         {
             if (!expressType.Type.IsAbstract) //this is a concrete type so add it
-                nonAbstractTypes.Add(expressType.Type);
+                nonAbstractTypes.Add(expressType);
             foreach (var subType in expressType._subTypes)
                 AddNonAbstractTypes(subType, nonAbstractTypes);
         }

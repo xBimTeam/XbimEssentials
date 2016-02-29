@@ -270,7 +270,7 @@ namespace Xbim.IO.Xml
                 return;
             }
 
-            if (typeof(IEnumerable).IsAssignableFrom(propType))
+            if (typeof(IEnumerable).IsAssignableFrom(propType) && propType != typeof(string))
             {
                 //special case for IfcRelDefinesByProperties
                 //if (propName == "RelatedObjects" && entity.ExpressType.Name == "IfcRelDefinesByProperties")

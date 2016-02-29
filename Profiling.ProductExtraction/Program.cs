@@ -15,7 +15,7 @@ namespace Profiling.ProductExtraction
                     using (var txn = target.BeginTransaction("Copy"))
                     {
                         var products = source.Instances.OfType<IIfcBuildingElement>();
-                        target.InsertProductsWithContext(products, true, true, new XbimInstanceHandleMap(source, target));
+                        target.InsertCopy(products, true, true, new XbimInstanceHandleMap(source, target));
                         txn.Commit();
                     }
                 }    

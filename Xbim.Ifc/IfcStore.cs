@@ -1431,7 +1431,7 @@ namespace Xbim.Ifc
         /// if you are going to insert products from multiple source models or if you are going to insert products to a non-empty model</param>
         /// <param name="mappings">Mappings to avoid multiple insertion of objects. Keep a single instance for insertion between two models.
         /// If you also use InsertCopy() function for some other insertions, use the same instance of mappings.</param>
-        public void InsertProductsWithContext(IEnumerable<IIfcProduct> products, bool includeGeometry, bool keepLabels, XbimInstanceHandleMap mappings)
+        public void InsertCopy(IEnumerable<IIfcProduct> products, bool includeGeometry, bool keepLabels, XbimInstanceHandleMap mappings)
         {
             _primaryElements.Clear();
             _decomposition.Clear();
@@ -1452,7 +1452,7 @@ namespace Xbim.Ifc
             var cache = mappings ?? new XbimInstanceHandleMap(source, this);
 
             foreach (var entity in toInsert)
-                InsertCopy(entity, cache, Filter, false, keepLabels);
+                InsertCopy(entity, cache, Filter, true, keepLabels);
         }
 
         private IEnumerable<IPersistEntity> GetEntitiesToInsert(IModel model, List<IPersistEntity> roots)
@@ -1506,6 +1506,10 @@ namespace Xbim.Ifc
 
         private object Filter(ExpressMetaProperty property, object parentObject)
         {
+            //ignore inverses except for style
+            if (property.IsInverse)
+                return property.Name == "StyledByItem" ? property.PropertyInfo.GetValue(parentObject, null) : null;
+
             if (_primaryElements != null && _primaryElements.Any())
             {
                 if (typeof(IIfcProduct).IsAssignableFrom(property.PropertyInfo.PropertyType))
@@ -1517,15 +1521,17 @@ namespace Xbim.Ifc
                 }
                 if (property.EnumerableType != null && !property.EnumerableType.IsValueType && property.EnumerableType != typeof(string))
                 {
-                    var entities = property.PropertyInfo.GetValue(parentObject, null) as IEnumerable<IPersistEntity>;
-                    if (entities == null)
-                        return null;
-                    var persistEntities = entities as IList<IPersistEntity> ?? entities.ToList();
-                    var elementsToRemove = persistEntities.OfType<IIfcProduct>().Where(e => !_primaryElements.Contains(e)).ToList();
-                    //if there are no IfcElements return what is in there with no care
-                    if (elementsToRemove.Any())
-                        //return original values excluding elements not included in the primary set
-                        return persistEntities.Except(elementsToRemove).ToList();
+                    //this can either be a list of IPersistEntity or select type. The very base type is IPersist
+                    var entities = property.PropertyInfo.GetValue(parentObject, null) as IEnumerable<IPersist>;
+                    if (entities != null)
+                    {
+                        var persistEntities = entities as IList<IPersist> ?? entities.ToList();
+                        var elementsToRemove = persistEntities.OfType<IIfcProduct>().Where(e => !_primaryElements.Contains(e)).ToList();
+                        //if there are no IfcElements return what is in there with no care
+                        if (elementsToRemove.Any())
+                            //return original values excluding elements not included in the primary set
+                            return persistEntities.Except(elementsToRemove).ToList();    
+                    }
                 }
             }
 

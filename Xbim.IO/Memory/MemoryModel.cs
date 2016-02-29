@@ -673,6 +673,7 @@ namespace Xbim.IO.Memory
         public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, PropertyTranformDelegate propTransform, bool includeInverses,
            bool keepLabels, bool noTransaction) where T : IPersistEntity
         {
+            var tName = toCopy.ExpressType.Name;
             if (noTransaction)
                 IsTransactional = false;
             try

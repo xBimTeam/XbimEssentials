@@ -189,12 +189,12 @@ namespace Xbim.Common.Metadata
             return Enumerable.Empty<ExpressType>();
         }
 
-        public IEnumerable<Type> TypesImplementing(Type type)
+        public IEnumerable<ExpressType> TypesImplementing(Type type)
         {
             List<ExpressType> result;
             return _interfaceToExpressTypesLookup.TryGetValue(type, out result) ?
-                result.Select(t => t.Type) :
-                Enumerable.Empty<Type>();
+                result :
+                Enumerable.Empty<ExpressType>();
         }
 
         public IEnumerable<ExpressType> TypesImplementing(string stringType)
@@ -206,6 +206,22 @@ namespace Xbim.Common.Metadata
             return _interfaceToExpressTypesLookup.TryGetValue(exprType.Type, out result) ?
                 result :
                 Enumerable.Empty<ExpressType>();
+        }
+
+        public IEnumerable<short> NonAbstractSubTypes(Type type)
+        {
+            if (type.IsInterface)
+            {
+                List<ExpressType> result;
+                return _interfaceToExpressTypesLookup.TryGetValue(type, out result)
+                    ? result.Where(t => !t.Type.IsAbstract).Select(t => t.TypeId)
+                    : Enumerable.Empty<short>();
+            }
+
+            var eType = ExpressType(type);
+            return eType == null ? 
+                Enumerable.Empty<short>() : 
+                eType.NonAbstractSubTypes.Select(t => t.TypeId);
         }
 
         /// <summary>

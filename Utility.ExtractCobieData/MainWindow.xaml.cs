@@ -99,7 +99,7 @@ namespace Utility.ExtractCobieData
                     {
                         var toInsert = GetProductsToInsert(source);
                         var cache = new XbimInstanceHandleMap(source, target);
-                        target.InsertProductsWithContext(toInsert, CheckBoxIncludeGeometry.IsChecked ?? false, true, cache);
+                        target.InsertCopy(toInsert, CheckBoxIncludeGeometry.IsChecked ?? false, true, cache);
                         txn.Commit();
                     }
 

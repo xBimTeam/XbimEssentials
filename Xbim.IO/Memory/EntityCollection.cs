@@ -18,11 +18,11 @@ namespace Xbim.IO.Memory
             _model = model;
         }
 
-        private List<Type> GetQueryTypes(Type type)
+        private IEnumerable<Type> GetQueryTypes(Type type)
         {
             var expType = _model.Metadata.ExpressType(type);
             if (expType != null)
-                return expType.NonAbstractSubTypes.ToList();
+                return expType.NonAbstractSubTypes.Select(t => t.Type).ToList();
             
             if(!type.IsInterface) return new List<Type>();
 

@@ -53,8 +53,7 @@ namespace Xbim.IO.Esent
                 // bugfix here: loop did not use to include all implementations, but only first level down.
                 foreach (var sub in type.NonAbstractSubTypes)
                 {
-                    var ifcSub = _metadata.ExpressType(sub);
-                        excludeSet.Add(ifcSub.TypeId);
+                    excludeSet.Add(sub.TypeId);
                 }
             }
 

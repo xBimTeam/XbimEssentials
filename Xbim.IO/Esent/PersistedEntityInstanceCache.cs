@@ -960,7 +960,7 @@ namespace Xbim.IO.Esent
             var typeIds = new HashSet<short>();
             //get all the type ids we are going to check for
             foreach (var t in expressType.NonAbstractSubTypes)
-                typeIds.Add(Model.Metadata.ExpressTypeId(t));
+                typeIds.Add(t.TypeId);
             try
             {
 
@@ -1010,9 +1010,8 @@ namespace Xbim.IO.Esent
             {
                 foreach (var t in expressType.NonAbstractSubTypes)
                 {
-                    var typeId = Model.Metadata.ExpressTypeId(t);
                     XbimInstanceHandle ih;
-                    if (!entityTable.TrySeekEntityType(typeId, out ih))
+                    if (!entityTable.TrySeekEntityType(t.TypeId, out ih))
                         return true;
                 }
             }
@@ -1151,9 +1150,8 @@ namespace Xbim.IO.Esent
             {
                 foreach (var t in expressType.NonAbstractSubTypes)
                 {
-                    var typeId = Model.Metadata.ExpressTypeId(t);
                     XbimInstanceHandle ih;
-                    if (entityTable.TrySeekEntityType(typeId, out ih))
+                    if (entityTable.TrySeekEntityType(t.TypeId, out ih))
                     {
                         yield return ih;
                         while (entityTable.TryMoveNextEntityType(out ih))
@@ -1378,11 +1376,9 @@ namespace Xbim.IO.Esent
 
             // when searching for Interface types expressType is null
             //
-            IEnumerable<Type> typesToSearch;
-            if (eType != null)
-                typesToSearch = eType.NonAbstractSubTypes;
-            else
-                typesToSearch = Model.Metadata.TypesImplementing(typeof(TOType));
+            var typesToSearch = eType != null ? 
+                eType.NonAbstractSubTypes : 
+                Model.Metadata.TypesImplementing(typeof(TOType));
 
             var unindexedTypes = new HashSet<ExpressType>();
 
@@ -1394,16 +1390,15 @@ namespace Xbim.IO.Esent
             {
                 using (entityTable.BeginReadOnlyTransaction())
                 {
-                    foreach (var t in typesToSearch)
+                    foreach (var expressType in typesToSearch)
                     {
-                        var expressType = Model.Metadata.ExpressType(t);
                         if (!expressType.IndexedClass) //if the class is indexed we can seek, otherwise go slow
                         {
                             unindexedTypes.Add(expressType);
                             continue;
                         }
 
-                        var typeId = Model.Metadata.ExpressTypeId(t);
+                        var typeId = expressType.TypeId;
                         XbimInstanceHandle ih;
                         if (entityTable.TrySeekEntityType(typeId, out ih, indexKeyAsInt) &&
                             entityTable.TrySeekEntityLabel(ih.EntityLabel)) //we have the first instance
@@ -1749,7 +1744,7 @@ namespace Xbim.IO.Esent
             {
                 //get specific interface implementations and make sure it doesn't overlap
                 var implementations = Model.Metadata.ExpressTypesImplementing(type).Where(t => !t.Type.IsAbstract).ToList();
-                expressTypes = implementations.Where(implementation => !implementations.Any(i => i != implementation && i.NonAbstractSubTypes.Contains(implementation.Type)));
+                expressTypes = implementations.Where(implementation => !implementations.Any(i => i != implementation && i.NonAbstractSubTypes.Contains(implementation)));
             }
 
             foreach (var expressType in expressTypes)

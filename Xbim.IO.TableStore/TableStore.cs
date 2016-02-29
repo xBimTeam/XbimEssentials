@@ -708,6 +708,7 @@ namespace Xbim.IO.TableStore
             var workbook = sheet.Workbook;
             var row = sheet.GetRow(0) ?? sheet.CreateRow(0);
             InitMappingColumns(classMapping);
+            CacheColumnIndices(classMapping);
 
             //freeze header row
             sheet.CreateFreezePane(0, 1);
@@ -741,6 +742,11 @@ namespace Xbim.IO.TableStore
                 if (mapping.Hidden)
                     sheet.SetColumnHidden(cellIndex, true);
             }
+
+            //set up filter
+            var lastPropMap = classMapping.PropertyMappings.OrderBy(p => p.ColumnIndex).LastOrDefault();
+            if(lastPropMap != null)
+                sheet.SetAutoFilter(new CellRangeAddress(0, 1, 0, lastPropMap.ColumnIndex));
         }
 
         private static void InitMappingColumns(ClassMapping mapping)
