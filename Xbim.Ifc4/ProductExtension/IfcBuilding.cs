@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -34,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcBuilding", 453)]
+	[ExpressType("IfcBuilding", 169)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBuilding : IfcSpatialStructureElement, IInstantiableEntity, IIfcBuilding, IEqualityComparer<@IfcBuilding>, IEquatable<@IfcBuilding>
 	{

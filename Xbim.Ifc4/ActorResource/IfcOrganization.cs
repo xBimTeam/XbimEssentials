@@ -19,6 +19,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ActorResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -42,8 +44,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ActorResource
 {
-	[IndexedClass]
-	[ExpressType("IfcOrganization", 792)]
+	[ExpressType("IfcOrganization", 276)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOrganization : INotifyPropertyChanged, IInstantiableEntity, IIfcOrganization, IEqualityComparer<@IfcOrganization>, IEquatable<@IfcOrganization>
 	{

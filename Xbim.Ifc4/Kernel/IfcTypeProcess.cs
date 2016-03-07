@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -34,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcTypeProcess", 1126)]
+	[ExpressType("IfcTypeProcess", 1306)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcTypeProcess : IfcTypeObject, IIfcTypeProcess, IEqualityComparer<@IfcTypeProcess>, IEquatable<@IfcTypeProcess>
 	{

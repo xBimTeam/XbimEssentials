@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ExternalReferenceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
-	[ExpressType("IfcExternalReferenceRelationship", 641)]
+	[ExpressType("IfcExternalReferenceRelationship", 1173)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcExternalReferenceRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcExternalReferenceRelationship, IEqualityComparer<@IfcExternalReferenceRelationship>, IEquatable<@IfcExternalReferenceRelationship>
 	{

@@ -10,6 +10,8 @@
 using Xbim.Ifc2x3.ConstraintResource;
 using Xbim.Common;
 using Xbim.Ifc2x3.Interfaces;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {

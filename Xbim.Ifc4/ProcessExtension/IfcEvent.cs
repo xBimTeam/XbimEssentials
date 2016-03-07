@@ -17,6 +17,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.ProcessExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -36,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IfcEvent", 635)]
+	[ExpressType("IfcEvent", 1168)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEvent : IfcProcess, IInstantiableEntity, IIfcEvent, IEqualityComparer<@IfcEvent>, IEquatable<@IfcEvent>
 	{

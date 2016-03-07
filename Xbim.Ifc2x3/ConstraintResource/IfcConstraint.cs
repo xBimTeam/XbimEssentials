@@ -19,6 +19,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -47,7 +49,6 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ConstraintResource
 {
-	[IndexedClass]
 	[ExpressType("IfcConstraint", 81)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcConstraint : IPersistEntity, INotifyPropertyChanged, IIfcConstraint, IEqualityComparer<@IfcConstraint>, IEquatable<@IfcConstraint>

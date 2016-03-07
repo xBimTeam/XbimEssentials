@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.SharedBldgServiceElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -33,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
-	[ExpressType("IfcDistributionPort", 583)]
+	[ExpressType("IfcDistributionPort", 178)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDistributionPort : IfcPort, IInstantiableEntity, IIfcDistributionPort, IEqualityComparer<@IfcDistributionPort>, IEquatable<@IfcDistributionPort>
 	{

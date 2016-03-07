@@ -14,6 +14,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcExternalSpatialElement", 642)]
+	[ExpressType("IfcExternalSpatialElement", 1174)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcExternalSpatialElement : IfcExternalSpatialStructureElement, IInstantiableEntity, IIfcExternalSpatialElement, IEqualityComparer<@IfcExternalSpatialElement>, IEquatable<@IfcExternalSpatialElement>
 	{

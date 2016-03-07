@@ -14,6 +14,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcRelAssigns", 910)]
+	[ExpressType("IfcRelAssigns", 10)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcRelAssigns : IfcRelationship, IIfcRelAssigns, IEqualityComparer<@IfcRelAssigns>, IEquatable<@IfcRelAssigns>
 	{

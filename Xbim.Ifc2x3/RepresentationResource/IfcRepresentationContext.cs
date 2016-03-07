@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.RepresentationResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -35,7 +37,6 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.RepresentationResource
 {
-	[IndexedClass]
 	[ExpressType("IfcRepresentationContext", 378)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRepresentationContext : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentationContext, IEqualityComparer<@IfcRepresentationContext>, IEquatable<@IfcRepresentationContext>

@@ -14,6 +14,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.StructuralAnalysisDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -30,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IfcStructuralSurfaceReaction", 1054)]
+	[ExpressType("IfcStructuralSurfaceReaction", 1285)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralSurfaceReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralSurfaceReaction, IEqualityComparer<@IfcStructuralSurfaceReaction>, IEquatable<@IfcStructuralSurfaceReaction>
 	{

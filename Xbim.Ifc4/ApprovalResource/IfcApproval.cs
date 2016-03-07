@@ -21,6 +21,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ApprovalResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -50,8 +52,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ApprovalResource
 {
-	[IndexedClass]
-	[ExpressType("IfcApproval", 418)]
+	[ExpressType("IfcApproval", 626)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcApproval : INotifyPropertyChanged, IInstantiableEntity, IIfcApproval, IEqualityComparer<@IfcApproval>, IEquatable<@IfcApproval>
 	{

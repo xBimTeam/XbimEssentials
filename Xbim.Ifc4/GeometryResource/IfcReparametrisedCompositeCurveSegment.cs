@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcReparametrisedCompositeCurveSegment", 957)]
+	[ExpressType("IfcReparametrisedCompositeCurveSegment", 1255)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReparametrisedCompositeCurveSegment : IfcCompositeCurveSegment, IInstantiableEntity, IIfcReparametrisedCompositeCurveSegment, IEqualityComparer<@IfcReparametrisedCompositeCurveSegment>, IEquatable<@IfcReparametrisedCompositeCurveSegment>
 	{

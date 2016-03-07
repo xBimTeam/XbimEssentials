@@ -7,9 +7,11 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Ifc4.Interfaces;
+//## Custom using statements
+using System.Collections.Generic;
+//##
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {

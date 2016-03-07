@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -36,7 +38,6 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ConstraintResource
 {
-	[IndexedClass]
 	[ExpressType("IfcConstraintRelationship", 374)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConstraintRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintRelationship, IEqualityComparer<@IfcConstraintRelationship>, IEquatable<@IfcConstraintRelationship>

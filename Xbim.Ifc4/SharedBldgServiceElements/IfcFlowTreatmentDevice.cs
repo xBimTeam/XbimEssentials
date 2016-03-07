@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.SharedBldgServiceElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -29,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
-	[ExpressType("IfcFlowTreatmentDevice", 688)]
+	[ExpressType("IfcFlowTreatmentDevice", 425)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFlowTreatmentDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowTreatmentDevice, IEqualityComparer<@IfcFlowTreatmentDevice>, IEquatable<@IfcFlowTreatmentDevice>
 	{

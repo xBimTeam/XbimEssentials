@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IfcElectricVoltageMeasure", 31)]
+	[ExpressType("IfcElectricVoltageMeasure", 183)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcElectricVoltageMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>

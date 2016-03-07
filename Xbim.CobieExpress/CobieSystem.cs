@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -31,7 +33,6 @@ namespace Xbim.CobieExpress.Interfaces
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
 	[ExpressType("System", 24)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieSystem : CobieAsset, IInstantiableEntity, ICobieSystem, IEqualityComparer<@CobieSystem>, IEquatable<@CobieSystem>

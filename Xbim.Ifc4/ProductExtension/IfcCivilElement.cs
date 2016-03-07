@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -29,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcCivilElement", 490)]
+	[ExpressType("IfcCivilElement", 1122)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCivilElement : IfcElement, IInstantiableEntity, IIfcCivilElement, IEqualityComparer<@IfcCivilElement>, IEquatable<@IfcCivilElement>
 	{

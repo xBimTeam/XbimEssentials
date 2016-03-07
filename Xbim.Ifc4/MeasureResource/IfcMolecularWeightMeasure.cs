@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IfcMolecularWeightMeasure", 72)]
+	[ExpressType("IfcMolecularWeightMeasure", 397)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcMolecularWeightMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>

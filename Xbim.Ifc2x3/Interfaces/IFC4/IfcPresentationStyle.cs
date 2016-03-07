@@ -27,6 +27,5 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	//## Custom code
         public IEnumerable<IIfcSurfaceStyle> SurfaceStyles { get { return Enumerable.Empty<IfcSurfaceStyle>(); } }
 	//##
-	    
 	}
 }

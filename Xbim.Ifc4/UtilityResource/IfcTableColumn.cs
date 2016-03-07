@@ -18,6 +18,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.UtilityResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -38,7 +40,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.UtilityResource
 {
-	[ExpressType("IfcTableColumn", 1085)]
+	[ExpressType("IfcTableColumn", 1292)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTableColumn : INotifyPropertyChanged, IInstantiableEntity, IIfcTableColumn, IEqualityComparer<@IfcTableColumn>, IEquatable<@IfcTableColumn>
 	{

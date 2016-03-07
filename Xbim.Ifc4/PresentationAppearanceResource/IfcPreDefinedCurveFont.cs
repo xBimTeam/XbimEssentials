@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -29,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IfcPreDefinedCurveFont", 833)]
+	[ExpressType("IfcPreDefinedCurveFont", 287)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPreDefinedCurveFont : IfcPreDefinedItem, IIfcPreDefinedCurveFont, IEqualityComparer<@IfcPreDefinedCurveFont>, IEquatable<@IfcPreDefinedCurveFont>
 	{

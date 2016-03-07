@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ApprovalResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -34,7 +36,6 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ApprovalResource
 {
-	[IndexedClass]
 	[ExpressType("IfcApprovalPropertyRelationship", 376)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcApprovalPropertyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalPropertyRelationship, IEqualityComparer<@IfcApprovalPropertyRelationship>, IEquatable<@IfcApprovalPropertyRelationship>

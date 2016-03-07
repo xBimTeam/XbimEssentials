@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.BuildingControlsDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.BuildingControlsDomain
 {
-	[ExpressType("IfcActuator", 400)]
+	[ExpressType("IfcActuator", 1091)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcActuator : IfcDistributionControlElement, IInstantiableEntity, IIfcActuator, IEqualityComparer<@IfcActuator>, IEquatable<@IfcActuator>
 	{

@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IfcMagneticFluxDensityMeasure", 61)]
+	[ExpressType("IfcMagneticFluxDensityMeasure", 471)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcMagneticFluxDensityMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>

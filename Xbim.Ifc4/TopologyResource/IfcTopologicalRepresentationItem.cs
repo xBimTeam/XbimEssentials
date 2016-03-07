@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.TopologyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -30,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IfcTopologicalRepresentationItem", 1114)]
+	[ExpressType("IfcTopologicalRepresentationItem", 84)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcTopologicalRepresentationItem : IfcRepresentationItem, IIfcTopologicalRepresentationItem, IEqualityComparer<@IfcTopologicalRepresentationItem>, IEquatable<@IfcTopologicalRepresentationItem>
 	{

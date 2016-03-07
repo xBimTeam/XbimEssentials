@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.StructuralElementsDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IfcFootingType", 691)]
+	[ExpressType("IfcFootingType", 1183)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFootingType : IfcBuildingElementType, IInstantiableEntity, IIfcFootingType, IEqualityComparer<@IfcFootingType>, IEquatable<@IfcFootingType>
 	{

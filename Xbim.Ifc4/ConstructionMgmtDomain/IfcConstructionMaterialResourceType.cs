@@ -14,6 +14,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.ConstructionMgmtDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -30,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
-	[ExpressType("IfcConstructionMaterialResourceType", 527)]
+	[ExpressType("IfcConstructionMaterialResourceType", 1135)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConstructionMaterialResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcConstructionMaterialResourceType, IEqualityComparer<@IfcConstructionMaterialResourceType>, IEquatable<@IfcConstructionMaterialResourceType>
 	{

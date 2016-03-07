@@ -15,7 +15,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcPropertySetDefinitionSet", 90)]
+	[ExpressType("IfcPropertySetDefinitionSet", 996)]
 	[DefinedType(typeof(List<IfcPropertySetDefinition>))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcPropertySetDefinitionSet : IfcPropertySetDefinitionSelect, IExpressComplexType, System.IEquatable<List<IfcPropertySetDefinition>>

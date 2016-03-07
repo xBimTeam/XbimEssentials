@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProfileResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -30,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IfcMirroredProfileDef", 777)]
+	[ExpressType("IfcMirroredProfileDef", 1215)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMirroredProfileDef : IfcDerivedProfileDef, IInstantiableEntity, IIfcMirroredProfileDef, IEqualityComparer<@IfcMirroredProfileDef>, IEquatable<@IfcMirroredProfileDef>
 	{

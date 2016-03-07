@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.HvacDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IfcChiller", 483)]
+	[ExpressType("IfcChiller", 1119)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcChiller : IfcEnergyConversionDevice, IInstantiableEntity, IIfcChiller, IEqualityComparer<@IfcChiller>, IEquatable<@IfcChiller>
 	{

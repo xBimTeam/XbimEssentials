@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.SharedBldgElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -29,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IfcWindowStandardCase", 1155)]
+	[ExpressType("IfcWindowStandardCase", 1316)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWindowStandardCase : IfcWindow, IInstantiableEntity, IIfcWindowStandardCase, IEqualityComparer<@IfcWindowStandardCase>, IEquatable<@IfcWindowStandardCase>
 	{

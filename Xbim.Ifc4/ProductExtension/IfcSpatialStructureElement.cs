@@ -13,8 +13,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
 using Xbim.Ifc4.Kernel;
-
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcSpatialStructureElement", 1007)]
+	[ExpressType("IfcSpatialStructureElement", 170)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcSpatialStructureElement : IfcSpatialElement, IIfcSpatialStructureElement, IEqualityComparer<@IfcSpatialStructureElement>, IEquatable<@IfcSpatialStructureElement>
 	{
@@ -155,9 +157,8 @@ namespace Xbim.Ifc4.ProductExtension
         }
         #endregion
 
-        //## Custom code
-        #region Custom code (will survive code regeneration)
-
+		#region Custom code (will survive code regeneration)
+		//## Custom code
 
         /// <summary>
 	    ///   Adds the  element to the set of  elements which are contained in this spatialstructure
@@ -195,6 +196,6 @@ namespace Xbim.Ifc4.ProductExtension
             }
         }
         //##
-        #endregion
-    }
+		#endregion
+	}
 }

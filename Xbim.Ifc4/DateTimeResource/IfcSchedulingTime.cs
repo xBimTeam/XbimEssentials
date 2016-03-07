@@ -17,6 +17,8 @@ using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.DateTimeResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -35,7 +37,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IfcSchedulingTime", 978)]
+	[ExpressType("IfcSchedulingTime", 1263)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcSchedulingTime : IPersistEntity, INotifyPropertyChanged, IIfcSchedulingTime, IEqualityComparer<@IfcSchedulingTime>, IEquatable<@IfcSchedulingTime>
 	{

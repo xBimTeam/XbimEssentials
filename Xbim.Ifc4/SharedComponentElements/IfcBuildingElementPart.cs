@@ -14,6 +14,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.SharedComponentElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -30,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedComponentElements
 {
-	[ExpressType("IfcBuildingElementPart", 455)]
+	[ExpressType("IfcBuildingElementPart", 220)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBuildingElementPart : IfcElementComponent, IInstantiableEntity, IIfcBuildingElementPart, IEqualityComparer<@IfcBuildingElementPart>, IEquatable<@IfcBuildingElementPart>
 	{

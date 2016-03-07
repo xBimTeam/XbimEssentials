@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
-	[ExpressType("IfcConnectionGeometry", 518)]
+	[ExpressType("IfcConnectionGeometry", 70)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcConnectionGeometry : IPersistEntity, INotifyPropertyChanged, IIfcConnectionGeometry, IEqualityComparer<@IfcConnectionGeometry>, IEquatable<@IfcConnectionGeometry>
 	{

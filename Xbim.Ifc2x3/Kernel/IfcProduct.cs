@@ -14,13 +14,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
+//## Custom using statements
 using Xbim.Ifc2x3.ProductExtension;
-using Xbim.Ifc4.Interfaces;
-using IIfcObjectPlacement = Xbim.Ifc2x3.Interfaces.IIfcObjectPlacement;
-using IIfcProduct = Xbim.Ifc2x3.Interfaces.IIfcProduct;
-using IIfcProductRepresentation = Xbim.Ifc2x3.Interfaces.IIfcProductRepresentation;
-using IIfcRelAssignsToProduct = Xbim.Ifc2x3.Interfaces.IIfcRelAssignsToProduct;
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -195,7 +193,7 @@ namespace Xbim.Ifc2x3.Kernel
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
-        public IIfcSpatialElement IsContainedIn
+        public Xbim.Ifc4.Interfaces.IIfcSpatialElement IsContainedIn
         {
             get
             {

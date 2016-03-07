@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.TopologyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -29,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IfcFaceOuterBound", 652)]
+	[ExpressType("IfcFaceOuterBound", 201)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFaceOuterBound : IfcFaceBound, IInstantiableEntity, IIfcFaceOuterBound, IEqualityComparer<@IfcFaceOuterBound>, IEquatable<@IfcFaceOuterBound>
 	{

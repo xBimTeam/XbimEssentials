@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcRelDeclares", 937)]
+	[ExpressType("IfcRelDeclares", 1249)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelDeclares : IfcRelationship, IInstantiableEntity, IIfcRelDeclares, IEqualityComparer<@IfcRelDeclares>, IEquatable<@IfcRelDeclares>
 	{

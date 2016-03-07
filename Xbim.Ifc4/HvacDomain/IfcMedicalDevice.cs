@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.HvacDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.HvacDomain
 {
-	[ExpressType("IfcMedicalDevice", 771)]
+	[ExpressType("IfcMedicalDevice", 1212)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMedicalDevice : IfcFlowTerminal, IInstantiableEntity, IIfcMedicalDevice, IEqualityComparer<@IfcMedicalDevice>, IEquatable<@IfcMedicalDevice>
 	{

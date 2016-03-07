@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -37,8 +39,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[IndexedClass]
-	[ExpressType("IfcTextStyleTextModel", 1105)]
+	[ExpressType("IfcTextStyleTextModel", 581)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextStyleTextModel : IfcPresentationItem, IInstantiableEntity, IIfcTextStyleTextModel, IEqualityComparer<@IfcTextStyleTextModel>, IEquatable<@IfcTextStyleTextModel>
 	{

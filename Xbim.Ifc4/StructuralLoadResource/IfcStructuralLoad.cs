@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.StructuralLoadResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -33,8 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralLoadResource
 {
-	[IndexedClass]
-	[ExpressType("IfcStructuralLoad", 1030)]
+	[ExpressType("IfcStructuralLoad", 38)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralLoad : IPersistEntity, INotifyPropertyChanged, IIfcStructuralLoad, IEqualityComparer<@IfcStructuralLoad>, IEquatable<@IfcStructuralLoad>
 	{

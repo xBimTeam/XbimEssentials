@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ApprovalResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -32,8 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ApprovalResource
 {
-	[IndexedClass]
-	[ExpressType("IfcResourceApprovalRelationship", 963)]
+	[ExpressType("IfcResourceApprovalRelationship", 1256)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcResourceApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceApprovalRelationship, IEqualityComparer<@IfcResourceApprovalRelationship>, IEquatable<@IfcResourceApprovalRelationship>
 	{

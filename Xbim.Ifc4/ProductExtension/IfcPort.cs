@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -33,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcPort", 830)]
+	[ExpressType("IfcPort", 179)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPort : IfcProduct, IIfcPort, IEqualityComparer<@IfcPort>, IEquatable<@IfcPort>
 	{

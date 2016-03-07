@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.SharedBldgElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -29,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IfcSlabStandardCase", 995)]
+	[ExpressType("IfcSlabStandardCase", 1269)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSlabStandardCase : IfcSlab, IInstantiableEntity, IIfcSlabStandardCase, IEqualityComparer<@IfcSlabStandardCase>, IEquatable<@IfcSlabStandardCase>
 	{

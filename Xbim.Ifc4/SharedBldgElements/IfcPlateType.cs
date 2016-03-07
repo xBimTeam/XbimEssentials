@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.SharedBldgElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IfcPlateType", 823)]
+	[ExpressType("IfcPlateType", 526)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPlateType : IfcBuildingElementType, IInstantiableEntity, IIfcPlateType, IEqualityComparer<@IfcPlateType>, IEquatable<@IfcPlateType>
 	{

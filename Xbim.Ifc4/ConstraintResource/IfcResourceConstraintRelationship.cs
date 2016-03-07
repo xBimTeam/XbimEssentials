@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -32,7 +34,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstraintResource
 {
-	[ExpressType("IfcResourceConstraintRelationship", 964)]
+	[ExpressType("IfcResourceConstraintRelationship", 1257)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcResourceConstraintRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceConstraintRelationship, IEqualityComparer<@IfcResourceConstraintRelationship>, IEquatable<@IfcResourceConstraintRelationship>
 	{

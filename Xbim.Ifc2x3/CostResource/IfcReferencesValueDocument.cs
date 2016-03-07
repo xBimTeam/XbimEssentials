@@ -18,6 +18,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.CostResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -37,7 +39,6 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.CostResource
 {
-	[IndexedClass]
 	[ExpressType("IfcReferencesValueDocument", 551)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReferencesValueDocument : INotifyPropertyChanged, IInstantiableEntity, IIfcReferencesValueDocument, IEqualityComparer<@IfcReferencesValueDocument>, IEquatable<@IfcReferencesValueDocument>

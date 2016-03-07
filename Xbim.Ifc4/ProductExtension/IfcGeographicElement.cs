@@ -14,6 +14,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -30,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcGeographicElement", 696)]
+	[ExpressType("IfcGeographicElement", 1185)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGeographicElement : IfcElement, IInstantiableEntity, IIfcGeographicElement, IEqualityComparer<@IfcGeographicElement>, IEquatable<@IfcGeographicElement>
 	{

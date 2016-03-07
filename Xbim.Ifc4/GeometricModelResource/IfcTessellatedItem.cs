@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -30,7 +32,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IfcTessellatedItem", 1099)]
+	[ExpressType("IfcTessellatedItem", 1300)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcTessellatedItem : IfcGeometricRepresentationItem, IIfcTessellatedItem, IEqualityComparer<@IfcTessellatedItem>, IEquatable<@IfcTessellatedItem>
 	{

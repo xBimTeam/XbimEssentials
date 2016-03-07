@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.CostResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -37,7 +39,6 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.CostResource
 {
-	[IndexedClass]
 	[ExpressType("IfcAppliedValueRelationship", 691)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAppliedValueRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValueRelationship, IEqualityComparer<@IfcAppliedValueRelationship>, IEquatable<@IfcAppliedValueRelationship>

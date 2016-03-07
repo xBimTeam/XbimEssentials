@@ -19,6 +19,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ExternalReferenceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -37,7 +39,6 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
-	[IndexedClass]
 	[ExpressType("IfcExternalReference", 133)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcExternalReference : IPersistEntity, INotifyPropertyChanged, IIfcExternalReference, IEqualityComparer<@IfcExternalReference>, IEquatable<@IfcExternalReference>

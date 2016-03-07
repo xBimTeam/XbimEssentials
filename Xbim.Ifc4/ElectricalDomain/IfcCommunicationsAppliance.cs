@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.ElectricalDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IfcCommunicationsAppliance", 503)]
+	[ExpressType("IfcCommunicationsAppliance", 1127)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCommunicationsAppliance : IfcFlowTerminal, IInstantiableEntity, IIfcCommunicationsAppliance, IEqualityComparer<@IfcCommunicationsAppliance>, IEquatable<@IfcCommunicationsAppliance>
 	{

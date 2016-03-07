@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MaterialResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -34,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IfcMaterialRelationship", 766)]
+	[ExpressType("IfcMaterialRelationship", 1210)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcMaterialRelationship, IEqualityComparer<@IfcMaterialRelationship>, IEquatable<@IfcMaterialRelationship>
 	{

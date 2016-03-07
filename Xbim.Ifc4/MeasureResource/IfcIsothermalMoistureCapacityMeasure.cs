@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IfcIsothermalMoistureCapacityMeasure", 47)]
+	[ExpressType("IfcIsothermalMoistureCapacityMeasure", 232)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcIsothermalMoistureCapacityMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>

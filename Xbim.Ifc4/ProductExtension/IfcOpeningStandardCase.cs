@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -29,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcOpeningStandardCase", 791)]
+	[ExpressType("IfcOpeningStandardCase", 1217)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOpeningStandardCase : IfcOpeningElement, IInstantiableEntity, IIfcOpeningStandardCase, IEqualityComparer<@IfcOpeningStandardCase>, IEquatable<@IfcOpeningStandardCase>
 	{

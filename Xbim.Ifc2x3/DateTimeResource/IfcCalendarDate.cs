@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.DateTimeResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -35,7 +37,6 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
-	[IndexedClass]
 	[ExpressType("IfcCalendarDate", 407)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCalendarDate : INotifyPropertyChanged, IInstantiableEntity, IIfcCalendarDate, IEqualityComparer<@IfcCalendarDate>, IEquatable<@IfcCalendarDate>

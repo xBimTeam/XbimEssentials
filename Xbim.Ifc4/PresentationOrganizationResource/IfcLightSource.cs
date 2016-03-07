@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationOrganizationResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -36,7 +38,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
-	[ExpressType("IfcLightSource", 737)]
+	[ExpressType("IfcLightSource", 755)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcLightSource : IfcGeometricRepresentationItem, IIfcLightSource, IEqualityComparer<@IfcLightSource>, IEquatable<@IfcLightSource>
 	{

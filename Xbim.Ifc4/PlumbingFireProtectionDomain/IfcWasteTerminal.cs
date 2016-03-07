@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.PlumbingFireProtectionDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
-	[ExpressType("IfcWasteTerminal", 1150)]
+	[ExpressType("IfcWasteTerminal", 1315)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWasteTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcWasteTerminal, IEqualityComparer<@IfcWasteTerminal>, IEquatable<@IfcWasteTerminal>
 	{

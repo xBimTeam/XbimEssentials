@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcAxis2Placement3D", 429)]
+	[ExpressType("IfcAxis2Placement3D", 448)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAxis2Placement3D : IfcPlacement, IInstantiableEntity, IIfcAxis2Placement3D, IEqualityComparer<@IfcAxis2Placement3D>, IEquatable<@IfcAxis2Placement3D>
 	{

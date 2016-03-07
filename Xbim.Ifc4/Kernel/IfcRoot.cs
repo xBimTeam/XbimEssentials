@@ -18,6 +18,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -37,8 +39,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[IndexedClass]
-	[ExpressType("IfcRoot", 973)]
+	[ExpressType("IfcRoot", 12)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcRoot : IPersistEntity, INotifyPropertyChanged, IIfcRoot, IEqualityComparer<@IfcRoot>, IEquatable<@IfcRoot>
 	{

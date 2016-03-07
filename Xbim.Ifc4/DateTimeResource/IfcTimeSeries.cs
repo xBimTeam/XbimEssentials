@@ -20,6 +20,8 @@ using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.DateTimeResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -44,8 +46,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[IndexedClass]
-	[ExpressType("IfcTimeSeries", 1112)]
+	[ExpressType("IfcTimeSeries", 418)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcTimeSeries : IPersistEntity, INotifyPropertyChanged, IIfcTimeSeries, IEqualityComparer<@IfcTimeSeries>, IEquatable<@IfcTimeSeries>
 	{

@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.ElectricalDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IfcCableFittingType", 470)]
+	[ExpressType("IfcCableFittingType", 1114)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCableFittingType : IfcFlowFittingType, IInstantiableEntity, IIfcCableFittingType, IEqualityComparer<@IfcCableFittingType>, IEquatable<@IfcCableFittingType>
 	{

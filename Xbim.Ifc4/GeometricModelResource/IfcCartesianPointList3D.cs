@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IfcCartesianPointList3D", 476)]
+	[ExpressType("IfcCartesianPointList3D", 1118)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCartesianPointList3D : IfcCartesianPointList, IInstantiableEntity, IIfcCartesianPointList3D, IEqualityComparer<@IfcCartesianPointList3D>, IEquatable<@IfcCartesianPointList3D>
 	{

@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -33,8 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[IndexedClass]
-	[ExpressType("IfcPresentationStyle", 841)]
+	[ExpressType("IfcPresentationStyle", 34)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPresentationStyle : IPersistEntity, INotifyPropertyChanged, IIfcPresentationStyle, IEqualityComparer<@IfcPresentationStyle>, IEquatable<@IfcPresentationStyle>
 	{
@@ -259,7 +260,5 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public IEnumerable<IIfcSurfaceStyle> SurfaceStyles { get { return Enumerable.Empty<IIfcSurfaceStyle>(); } }
 		//##
 		#endregion
-
-	   
 	}
 }

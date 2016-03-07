@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.SharedBldgElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IfcRampFlightType", 890)]
+	[ExpressType("IfcRampFlightType", 283)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRampFlightType : IfcBuildingElementType, IInstantiableEntity, IIfcRampFlightType, IEqualityComparer<@IfcRampFlightType>, IEquatable<@IfcRampFlightType>
 	{

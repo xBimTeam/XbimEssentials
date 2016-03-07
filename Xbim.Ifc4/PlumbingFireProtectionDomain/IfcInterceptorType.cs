@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.PlumbingFireProtectionDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
-	[ExpressType("IfcInterceptorType", 719)]
+	[ExpressType("IfcInterceptorType", 1194)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcInterceptorType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IIfcInterceptorType, IEqualityComparer<@IfcInterceptorType>, IEquatable<@IfcInterceptorType>
 	{

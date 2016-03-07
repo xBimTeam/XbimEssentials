@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.SharedBldgElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IfcShadingDeviceType", 985)]
+	[ExpressType("IfcShadingDeviceType", 1266)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcShadingDeviceType : IfcBuildingElementType, IInstantiableEntity, IIfcShadingDeviceType, IEqualityComparer<@IfcShadingDeviceType>, IEquatable<@IfcShadingDeviceType>
 	{

@@ -18,6 +18,8 @@ using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.ActorResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -38,8 +40,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ActorResource
 {
-	[IndexedClass]
-	[ExpressType("IfcAddress", 402)]
+	[ExpressType("IfcAddress", 554)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcAddress : IPersistEntity, INotifyPropertyChanged, IIfcAddress, IEqualityComparer<@IfcAddress>, IEquatable<@IfcAddress>
 	{

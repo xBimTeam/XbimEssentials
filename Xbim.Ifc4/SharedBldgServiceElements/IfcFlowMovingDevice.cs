@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.SharedBldgServiceElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -29,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgServiceElements
 {
-	[ExpressType("IfcFlowMovingDevice", 680)]
+	[ExpressType("IfcFlowMovingDevice", 502)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFlowMovingDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowMovingDevice, IEqualityComparer<@IfcFlowMovingDevice>, IEquatable<@IfcFlowMovingDevice>
 	{

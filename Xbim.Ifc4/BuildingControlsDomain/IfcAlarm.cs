@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.BuildingControlsDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.BuildingControlsDomain
 {
-	[ExpressType("IfcAlarm", 412)]
+	[ExpressType("IfcAlarm", 1098)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAlarm : IfcDistributionControlElement, IInstantiableEntity, IIfcAlarm, IEqualityComparer<@IfcAlarm>, IEquatable<@IfcAlarm>
 	{

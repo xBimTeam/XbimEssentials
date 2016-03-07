@@ -18,6 +18,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -38,7 +40,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ConstraintResource
 {
-	[ExpressType("IfcReference", 899)]
+	[ExpressType("IfcReference", 1244)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReference : INotifyPropertyChanged, IInstantiableEntity, IIfcReference, IEqualityComparer<@IfcReference>, IEquatable<@IfcReference>
 	{

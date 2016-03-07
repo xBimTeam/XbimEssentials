@@ -17,6 +17,8 @@ using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.DateTimeResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -40,7 +42,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IfcRecurrencePattern", 898)]
+	[ExpressType("IfcRecurrencePattern", 1243)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRecurrencePattern : INotifyPropertyChanged, IInstantiableEntity, IIfcRecurrencePattern, IEqualityComparer<@IfcRecurrencePattern>, IEquatable<@IfcRecurrencePattern>
 	{

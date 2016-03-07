@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -33,7 +35,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PropertyResource
 {
-	[ExpressType("IfcExtendedProperties", 638)]
+	[ExpressType("IfcExtendedProperties", 1171)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcExtendedProperties : IfcPropertyAbstraction, IIfcExtendedProperties, IEqualityComparer<@IfcExtendedProperties>, IEquatable<@IfcExtendedProperties>
 	{

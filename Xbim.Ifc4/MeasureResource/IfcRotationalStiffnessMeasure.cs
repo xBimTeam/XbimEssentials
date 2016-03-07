@@ -13,7 +13,7 @@ using Xbim.Ifc4.StructuralLoadResource;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IfcRotationalStiffnessMeasure", 96)]
+	[ExpressType("IfcRotationalStiffnessMeasure", 679)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcRotationalStiffnessMeasure : IfcDerivedMeasureValue, IfcRotationalStiffnessSelect, IExpressValueType, System.IEquatable<double>

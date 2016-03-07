@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -29,7 +31,6 @@ namespace Xbim.CobieExpress.Interfaces
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
 	[ExpressType("AreaUnit", 40)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @CobieAreaUnit : CobiePickValue, IInstantiableEntity, ICobieAreaUnit, IEqualityComparer<@CobieAreaUnit>, IEquatable<@CobieAreaUnit>

@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -37,7 +39,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcRelInterferesElements", 946)]
+	[ExpressType("IfcRelInterferesElements", 1252)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelInterferesElements : IfcRelConnects, IInstantiableEntity, IIfcRelInterferesElements, IEqualityComparer<@IfcRelInterferesElements>, IEquatable<@IfcRelInterferesElements>
 	{

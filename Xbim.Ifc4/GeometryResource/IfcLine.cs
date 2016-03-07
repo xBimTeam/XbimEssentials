@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcLine", 743)]
+	[ExpressType("IfcLine", 272)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IIfcLine, IEqualityComparer<@IfcLine>, IEquatable<@IfcLine>
 	{

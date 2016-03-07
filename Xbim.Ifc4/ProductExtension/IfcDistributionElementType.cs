@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -29,7 +31,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcDistributionElementType", 580)]
+	[ExpressType("IfcDistributionElementType", 47)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDistributionElementType : IfcElementType, IInstantiableEntity, IIfcDistributionElementType, IEqualityComparer<@IfcDistributionElementType>, IEquatable<@IfcDistributionElementType>
 	{

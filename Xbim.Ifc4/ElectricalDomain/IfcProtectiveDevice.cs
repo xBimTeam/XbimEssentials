@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.ElectricalDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ElectricalDomain
 {
-	[ExpressType("IfcProtectiveDevice", 872)]
+	[ExpressType("IfcProtectiveDevice", 1235)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProtectiveDevice : IfcFlowController, IInstantiableEntity, IIfcProtectiveDevice, IEqualityComparer<@IfcProtectiveDevice>, IEquatable<@IfcProtectiveDevice>
 	{

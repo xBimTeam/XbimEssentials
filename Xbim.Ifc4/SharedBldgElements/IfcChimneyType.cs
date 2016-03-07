@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.SharedBldgElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IfcChimneyType", 486)]
+	[ExpressType("IfcChimneyType", 1121)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcChimneyType : IfcBuildingElementType, IInstantiableEntity, IIfcChimneyType, IEqualityComparer<@IfcChimneyType>, IEquatable<@IfcChimneyType>
 	{

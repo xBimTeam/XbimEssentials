@@ -59,11 +59,6 @@ namespace Xbim.Common
         }
     }
 
-    [AttributeUsage(AttributeTargets.Class)]
-    public sealed class IndexedClass : Attribute
-    {
-    }
-
 
     [AttributeUsage(AttributeTargets.Struct)]
     public sealed class DefinedTypeAttribute : Attribute

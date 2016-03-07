@@ -104,7 +104,8 @@ namespace Xbim.Common.Metadata
             _expressName = ((ExpressTypeAttribute)entNameAttr).Name;
             _expressNameUpper = _expressName.ToUpperInvariant();
 
-            IndexedClass = type.GetCustomAttributes(typeof(IndexedClass), true).Any();
+            //it is not an indexed class by default. If it has any indexed properties it is an indexed class but that is detected later on.
+            IndexedClass = false;
 
             var dta = type.GetCustomAttributes(typeof(DefinedTypeAttribute), false).FirstOrDefault() as DefinedTypeAttribute;
             if (dta != null)

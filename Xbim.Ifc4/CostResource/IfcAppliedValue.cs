@@ -21,6 +21,8 @@ using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.CostResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -47,8 +49,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.CostResource
 {
-	[IndexedClass]
-	[ExpressType("IfcAppliedValue", 417)]
+	[ExpressType("IfcAppliedValue", 79)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAppliedValue : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValue, IEqualityComparer<@IfcAppliedValue>, IEquatable<@IfcAppliedValue>
 	{

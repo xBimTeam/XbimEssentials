@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.SharedFacilitiesElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -31,7 +33,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.SharedFacilitiesElements
 {
-	[ExpressType("IfcSystemFurnitureElement", 1081)]
+	[ExpressType("IfcSystemFurnitureElement", 1291)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSystemFurnitureElement : IfcFurnishingElement, IInstantiableEntity, IIfcSystemFurnitureElement, IEqualityComparer<@IfcSystemFurnitureElement>, IEquatable<@IfcSystemFurnitureElement>
 	{

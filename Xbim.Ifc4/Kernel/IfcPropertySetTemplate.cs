@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -34,7 +36,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcPropertySetTemplate", 867)]
+	[ExpressType("IfcPropertySetTemplate", 1232)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPropertySetTemplate : IfcPropertyTemplateDefinition, IInstantiableEntity, IIfcPropertySetTemplate, IEqualityComparer<@IfcPropertySetTemplate>, IEquatable<@IfcPropertySetTemplate>
 	{
