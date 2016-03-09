@@ -141,6 +141,18 @@ namespace Xbim.IO.Memory
         }
 
         /// <summary>
+        /// This function will try and release a persistant entity from the model, if the entity is referenced by another entity 
+        /// it will stay in the model but can only be accessed via other entities,however if the model is saved and then reloaded 
+        /// the entity will be restored to persisted status
+        /// if the the entity is not referenced it will be garbage collected and removed and lost
+        /// Once dropped an entity cannot be accessed via the instances collection.
+        /// </summary>
+        /// <param name="entity"></param>
+        public void TryDrop(IPersistEntity entity)
+        {
+            _instances.RemoveReversible(entity);
+        }
+        /// <summary>
         /// This will delete the entity from model dictionary and also from any references in the model.
         /// Be carefull as this might take a while to check for all occurances of the object. Also make sure 
         /// you don't use this object anymore yourself because it won't get disposed until than. This operation
