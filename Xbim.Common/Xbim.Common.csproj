@@ -58,6 +58,7 @@
     <Compile Include="Geometry\IXbimSurface.cs" />
     <Compile Include="Geometry\XbimContextRegionCollection.cs" />
     <Compile Include="PlaceboTransaction.cs" />
+    <Compile Include="Collections\MultiValueDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
@@ -172,7 +173,6 @@
     <None Include="packages.config" />
     <None Include="XbimOpenSourceKeyFile.snk" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <Year>$([System.DateTime]::Now.ToString("yy"))</Year>

@@ -416,12 +416,12 @@ namespace Xbim.Tessellator
             var triangulatedMesh = new XbimTriangulatedMesh(faceCount, precision);
             foreach (var ifcFace in ifcFaces)
             {
-                var fc = (IIfcFace)_model.Instances[ifcFace.EntityLabel];
+                
                 //improves performance and reduces memory load
                 var tess = new Tess();
 
                 var contours = new List<ContourVertex[]>(/*Count?*/);
-                foreach (var bound in fc.Bounds) //build all the loops
+                foreach (var bound in ifcFace.Bounds) //build all the loops
                 {
                     var polyLoop = bound.Bound as IIfcPolyLoop;
                    

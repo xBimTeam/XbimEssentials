@@ -145,12 +145,49 @@ namespace Xbim.IO.Memory
         /// it will stay in the model but can only be accessed via other entities,however if the model is saved and then reloaded 
         /// the entity will be restored to persisted status
         /// if the the entity is not referenced it will be garbage collected and removed and lost
+        /// All entities that are directly referenced by this entity will also be made candidates to be dropped and dropped
+        /// inverse references are not pursued
         /// Once dropped an entity cannot be accessed via the instances collection.
+        /// Returns a collection of entities that have been dropped
         /// </summary>
-        /// <param name="entity"></param>
-        public void TryDrop(IPersistEntity entity)
+        /// <param name="entity">the root entity to drop</param>
+        public IEnumerable<IPersistEntity> TryDrop(IPersistEntity entity)
         {
+            var dropped = new HashSet<IPersistEntity>();
+            TryDrop(entity, dropped);
+            return dropped;
+        }
+
+        
+        private void TryDrop(IPersistEntity entity, HashSet<IPersistEntity> dropped)
+        {
+            
+            if (!dropped.Add(entity)) return; //if the entity is in the map do not delete it again
+            if (!_instances.Contains(entity)) return; //already gone
             _instances.RemoveReversible(entity);
+            var expressType = Metadata.ExpressType(entity);
+            foreach (var ifcProperty in expressType.Properties.Values)
+            //only delete persistent attributes, ignore inverses
+            {
+                if (ifcProperty.EntityAttribute.State != EntityAttributeState.DerivedOverride)
+                {
+                    var propVal = ifcProperty.PropertyInfo.GetValue(entity, null);
+                    var iPersist = propVal as IPersistEntity;
+                    if(iPersist != null)
+                        TryDrop(iPersist, dropped);
+                    else if (propVal is IExpressEnumerable)
+                    {
+                        var propType = ifcProperty.PropertyInfo.PropertyType;
+                        //only process lists that are real lists, see cartesianpoint
+                        var genType = propType.GetItemTypeFromGenericType();
+                        if (genType != null && typeof(IPersistEntity).IsAssignableFrom(genType))
+                        {
+                            foreach (var item in ((IExpressEnumerable)propVal).OfType<IPersistEntity>())
+                                TryDrop(item,  dropped);
+                        }
+                    }  
+                }
+            }
         }
         /// <summary>
         /// This will delete the entity from model dictionary and also from any references in the model.

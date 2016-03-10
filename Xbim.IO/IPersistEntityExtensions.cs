@@ -146,10 +146,10 @@ namespace Xbim.IO
         /// <param name="map"></param>
         internal static void WriteEntity(this IPersistEntity entity, TextWriter entityWriter, ExpressMetaData metadata, IDictionary<int, int> map = null)
         {
-            var type = metadata.ExpressType(entity);
-            if (map != null && map.Keys.Contains(entity.EntityLabel)) return; //if the entity is replaced in the map do not write it
-            entityWriter.Write("#{0}={1}(", entity.EntityLabel, type.ExpressNameUpper);
             var expressType = metadata.ExpressType(entity);
+            if (map != null && map.Keys.Contains(entity.EntityLabel)) return; //if the entity is replaced in the map do not write it
+            entityWriter.Write("#{0}={1}(", entity.EntityLabel, expressType.ExpressNameUpper);
+            
             var first = true;
             
             foreach (var ifcProperty in expressType.Properties.Values)
