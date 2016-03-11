@@ -1762,6 +1762,9 @@ namespace Xbim.IO
         /// <returns></returns>
         private XbimInstanceHandle InsertNew(Type type, int entityLabel)
         {
+            long c = _model.Instances.Count;
+            if (entityLabel < c)
+                entityLabel = (int)(c + 1);
             return _model.GetTransactingCursor().AddEntity(type, entityLabel);
         }
         

@@ -445,7 +445,11 @@ namespace Xbim.IO
             int highest = RetrieveHighestLabel();
             IfcType ifcType = IfcMetaData.IfcType(type);
             XbimInstanceHandle h = new XbimInstanceHandle(this.model, highest + 1, ifcType.TypeId);
-            AddEntity(h.EntityLabel, h.EntityTypeId, null, null, ifcType.IndexedClass);
+            long c = this.model.Instances.Count;
+            int label = h.EntityLabel;
+            if (label < c)
+                label = (int)(c + 1);
+            AddEntity(label, h.EntityTypeId, null, null, ifcType.IndexedClass);
             return h;
         }
 
