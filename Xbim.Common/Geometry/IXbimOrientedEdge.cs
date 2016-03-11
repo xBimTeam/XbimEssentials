@@ -1,4 +1,4 @@
-﻿namespace XbimGeometry.Interfaces
+﻿namespace Xbim.Common.Geometry
 {
     /// <summary>
     /// An oriented edge is an edge constructed from another edge and contains a BOOLEAN direction flag to indicate whether or not the orientation of the constructed edge agrees with the orientation of the original edge.

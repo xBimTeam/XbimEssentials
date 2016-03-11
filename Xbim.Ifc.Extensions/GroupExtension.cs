@@ -1,28 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using Xbim.Common;
 using Xbim.Ifc2x3.Kernel;
-using Xbim.XbimExtensions;
-using Xbim.XbimExtensions.Interfaces;
 
 namespace Xbim.Ifc2x3.Extensions
 {
     public static class GroupExtension
     {
-        private static IModel GetModel(IfcRoot root)
+        private static IModel GetModel(IPersistEntity root)
         {
-            IModel model = null;
-            IPersistIfcEntity persist = root as IPersistIfcEntity;
-            if (persist != null) model = persist.ModelOf;
-            if (model == null) model = root.ModelOf;
-
-            return model;
+            return root.Model;
         }
 
         public static void AddObjectToGroup(this IfcGroup gr, IfcObjectDefinition obj)
         {
-            IModel model = GetModel(gr);
+            var model = GetModel(gr);
 
             IfcRelAssignsToGroup relation = gr.IsGroupedBy;
             if (gr.IsGroupedBy == null) relation = model.Instances.New<IfcRelAssignsToGroup>(rel => rel.RelatingGroup = gr);
@@ -31,7 +22,7 @@ namespace Xbim.Ifc2x3.Extensions
 
         public static void AddObjectToGroup(this IfcGroup gr, IEnumerable<IfcObjectDefinition> objects)
         {
-            IModel model = GetModel(gr);
+            var model = GetModel(gr);
 
             IfcRelAssignsToGroup relation = gr.IsGroupedBy;
             if (gr.IsGroupedBy == null) relation = model.Instances.New<IfcRelAssignsToGroup>(rel => rel.RelatingGroup = gr);
@@ -57,10 +48,10 @@ namespace Xbim.Ifc2x3.Extensions
 
         public static IEnumerable<IfcGroup> GetParentGroups(this IfcGroup gr)
         {
-            IModel model = GetModel(gr);
+            var model = GetModel(gr);
 
-            IEnumerable<IfcRelAssignsToGroup> relations = model.Instances.Where<IfcRelAssignsToGroup>(rel => rel.RelatedObjects.Contains(gr));
-            foreach (IfcRelAssignsToGroup rel in relations)
+            var relations = model.Instances.Where<IfcRelAssignsToGroup>(rel => rel.RelatedObjects.Contains(gr));
+            foreach (var rel in relations)
             {
                 yield return rel.RelatingGroup;
             }
@@ -69,7 +60,7 @@ namespace Xbim.Ifc2x3.Extensions
         public static bool RemoveObjectFromGroup(this IfcGroup gr, IfcObjectDefinition obj)
         {
             if (gr == null || obj == null) return false;
-            IModel model = GetModel(gr);
+            var model = GetModel(gr);
             IfcRelAssignsToGroup relation = gr.IsGroupedBy;
             if (gr.IsGroupedBy == null) return false;
             if (!relation.RelatedObjects.Contains(obj)) return false;

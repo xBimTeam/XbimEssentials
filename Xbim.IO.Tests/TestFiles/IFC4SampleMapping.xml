@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<ModelMapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openbim.org/mapping/table/1.0"
+              Name="IFC4 Example" 
+              ListSeparator="," 
+              PickTableName="PickLists" 
+              >
+  <StatusRepresentations>
+    <StatusRepresentation Colour="#CCC" FontWeight="Bold" Border="true" Status="Header" />
+    <StatusRepresentation Colour="#FFFF99" FontWeight="Normal" Border="true" Status="Required" />
+    <StatusRepresentation Colour="#FFCC99" FontWeight="Normal" Border="true" Status="Reference" />
+    <StatusRepresentation Colour="#FFCC99" FontWeight="Normal" Border="true" Status="PickValue" />
+    <StatusRepresentation Colour="#CC99FF" FontWeight="Normal" Border="true" Status="ExternalReference" />
+    <StatusRepresentation Colour="#CCFFCC" FontWeight="Normal" Border="true" Status="Optional" />
+  </StatusRepresentations>
+  <ClassMappings>
+    <ClassMapping Class="IfcElement" TableName="Component" TableOrder="1">
+      <PropertyMappings>
+        <PropertyMapping Header="Name" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Is External" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="['IsExternal']" />
+        <PropertyMapping Header="Type Name" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="IsTypedBy.RelatingType.Name" />
+        <PropertyMapping Header="External Identifier" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="GlobalId" />
+        <PropertyMapping Header="IFC Type" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="[type]" />
+      </PropertyMappings>
+    </ClassMapping>
+    <ClassMapping Class="IfcPropertySingleValue" TableName="Attribute" TableOrder="2" ParentClass="IfcElement" ParentPath="IsDefinedBy.RelatingPropertyDefinition\IfcPropertySet.HasProperties\IfcPropertySingleValue">
+      <PropertyMappings>
+        <PropertyMapping Header="Name" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="Name" />
+        <PropertyMapping Header="Description" Status="Optional" MultiRow="None" DefaultValue="n/a" Paths="Description" />
+        <PropertyMapping Header="Property Set" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="().Name" />
+        <!--<PropertyMapping Header="Relation ID" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="().().GlobalId" />-->
+        <PropertyMapping Header="Parent Name" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.Name" />
+        <PropertyMapping Header="Parent Sheet" Status="Reference" MultiRow="None" DefaultValue="n/a" Paths="parent.[table]" />
+        <PropertyMapping Header="Value" Status="Required" MultiRow="None" DefaultValue="n/a" Paths="NominalValue" />
+        <PropertyMapping Header="Value Type" Status="ExternalReference" MultiRow="None" DefaultValue="n/a" Paths="NominalValue.[type]" />
+      </PropertyMappings>
+    </ClassMapping>
+  </ClassMappings>
+  <PickClassMappings>
+    <PickClassMapping Header="Categories" />
+  </PickClassMappings>
+</ModelMapping>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xbim.Ifc2x3.ProfileResource;
+﻿using Xbim.Ifc2x3.ProfileResource;
 
 namespace Xbim.Ifc2x3.Extensions
 {
@@ -15,7 +11,7 @@ namespace Xbim.Ifc2x3.Extensions
         /// <returns></returns>
         public static int GetGeometryHashCode(this IfcCircleProfileDef profile)
         {
-            var model = profile.ModelOf;
+            var model = profile.Model;
             return model.ModelFactors.GetGeometryDoubleHash(profile.Radius) ^ profile.Position.GetGeometryHashCode();
         }
 

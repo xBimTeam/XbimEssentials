@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using Xbim.Common.Geometry;
 
-namespace XbimGeometry.Interfaces
+namespace Xbim.Common.Geometry
 {
     /// <summary>
     /// Abstract class for all Xbim Geometry objects
@@ -28,6 +26,7 @@ namespace XbimGeometry.Interfaces
         /// <param name="matrix3D"></param>
         /// <returns></returns>
         IXbimGeometryObject TransformShallow(XbimMatrix3D matrix3D);
+        
 
     }
 }

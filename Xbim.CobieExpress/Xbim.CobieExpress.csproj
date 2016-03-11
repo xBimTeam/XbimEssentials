@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E13C5875-3365-40D3-8DBE-E864D3548491}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xbim.CobieExpress</RootNamespace>
+    <AssemblyName>Xbim.CobieExpress</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>1591;1572;1573;1574</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Output\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Output\Release\Xbim.CobieExpress.XML</DocumentationFile>
+    <NoWarn>1591;1572;1573;1574</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SharedFileVersionInfo.cs">
+      <Link>Properties\SharedFileVersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="AttributeValue.cs" />
+    <Compile Include="BooleanValue.cs" />
+    <Compile Include="CobieApprovalType.cs" />
+    <Compile Include="CobieAreaUnit.cs" />
+    <Compile Include="CobieAsset.cs" />
+    <Compile Include="CobieAssetType.cs" />
+    <Compile Include="CobieAttribute.cs" />
+    <Compile Include="CobieCategory.cs" />
+    <Compile Include="CobieClassification.cs" />
+    <Compile Include="CobieComponent.cs" />
+    <Compile Include="CobieConnection.cs" />
+    <Compile Include="CobieConnectionType.cs" />
+    <Compile Include="CobieContact.cs" />
+    <Compile Include="CobieCoordinate.cs" />
+    <Compile Include="CobieCreatedInfo.cs" />
+    <Compile Include="CobieCurrencyUnit.cs" />
+    <Compile Include="CobieDocument.cs" />
+    <Compile Include="CobieDocumentType.cs" />
+    <Compile Include="CobieDurationUnit.cs" />
+    <Compile Include="CobieExternalObject.cs" />
+    <Compile Include="CobieExternalSystem.cs" />
+    <Compile Include="CobieFacility.cs" />
+    <Compile Include="CobieFloor.cs" />
+    <Compile Include="CobieImpact.cs" />
+    <Compile Include="CobieImpactStage.cs" />
+    <Compile Include="CobieImpactType.cs" />
+    <Compile Include="CobieImpactUnit.cs" />
+    <Compile Include="CobieIssue.cs" />
+    <Compile Include="CobieIssueChance.cs" />
+    <Compile Include="CobieIssueImpact.cs" />
+    <Compile Include="CobieIssueRisk.cs" />
+    <Compile Include="CobieIssueType.cs" />
+    <Compile Include="CobieJob.cs" />
+    <Compile Include="CobieJobStatusType.cs" />
+    <Compile Include="CobieJobType.cs" />
+    <Compile Include="CobieLinearUnit.cs" />
+    <Compile Include="CobiePhase.cs" />
+    <Compile Include="CobiePickValue.cs" />
+    <Compile Include="CobieProject.cs" />
+    <Compile Include="CobieReferencedObject.cs" />
+    <Compile Include="CobieResource.cs" />
+    <Compile Include="CobieResourceType.cs" />
+    <Compile Include="CobieRole.cs" />
+    <Compile Include="CobieSite.cs" />
+    <Compile Include="CobieSpace.cs" />
+    <Compile Include="CobieSpare.cs" />
+    <Compile Include="CobieSpareType.cs" />
+    <Compile Include="CobieStageType.cs" />
+    <Compile Include="CobieSystem.cs" />
+    <Compile Include="CobieType.cs" />
+    <Compile Include="CobieTypeOrComponent.cs" />
+    <Compile Include="CobieVolumeUnit.cs" />
+    <Compile Include="CobieWarranty.cs" />
+    <Compile Include="CobieZone.cs" />
+    <Compile Include="CoordinateTypeEnum.cs" />
+    <Compile Include="CustomCode\CobieAttribute.cs" />
+    <Compile Include="CustomCode\DateTimeValue.cs" />
+    <Compile Include="DateTimeValue.cs" />
+    <Compile Include="EntityFactory.cs" />
+    <Compile Include="FloatValue.cs" />
+    <Compile Include="IntegerValue.cs" />
+    <Compile Include="ItemSet.cs" />
+    <Compile Include="OptionalItemSet.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpatialDivision.cs" />
+    <Compile Include="StringValue.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Xbim.Common/Xbim.Common.csproj">
+      <Project>{A34EF831-EA82-4A79-8C65-B5E1C6D9508D}</Project>
+      <Name>Xbim.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">
+      <Project>{a34ef831-ea82-4a79-8c65-b5e1c6d9508d}</Project>
+      <Name>Xbim.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="XbimOpenSourceKeyFile.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

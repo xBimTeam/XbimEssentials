@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xbim.Ifc2x3.GeometricModelResource;
+﻿using Xbim.Ifc2x3.GeometricModelResource;
 using Xbim.Ifc2x3.GeometryResource;
 
 namespace Xbim.Ifc2x3.Extensions

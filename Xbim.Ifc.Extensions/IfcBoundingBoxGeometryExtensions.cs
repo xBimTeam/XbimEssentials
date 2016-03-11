@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xbim.Ifc2x3.GeometricModelResource;
 using Xbim.Ifc2x3.GeometryResource;
 
@@ -16,7 +13,7 @@ namespace Xbim.Ifc2x3.Extensions
         /// <returns></returns>
         public static int GetGeometryHashCode(this IfcBoundingBox solid)
         {
-            Func<double, int> f = solid.ModelOf.ModelFactors.GetGeometryDoubleHash;
+            Func<double, int> f = solid.Model.ModelFactors.GetGeometryDoubleHash;
 
             return solid.Corner.GetGeometryHashCode() ^
                    f(solid.XDim) ^
@@ -34,7 +31,7 @@ namespace Xbim.Ifc2x3.Extensions
         {
             var bb = b as IfcBoundingBox;
             if (bb == null) return false; //different types are not the same
-            double precision = a.ModelOf.ModelFactors.Precision;
+            double precision = a.Model.ModelFactors.Precision;
             return Math.Abs(a.XDim - bb.XDim) <= precision &&
                 Math.Abs(a.YDim - bb.YDim) <= precision &&
                 Math.Abs(a.ZDim - bb.ZDim) <= precision &&

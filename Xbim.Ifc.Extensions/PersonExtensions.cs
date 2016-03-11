@@ -44,7 +44,7 @@ namespace Xbim.Ifc2x3.Extensions
         {
             if(ifcPerson.Addresses != null)
             {
-                return ifcPerson.Addresses.TelecomAddresses.Select(address => address.ElectronicMailAddresses)
+                return ifcPerson.Addresses.OfType<IfcTelecomAddress>().Select(address => address.ElectronicMailAddresses)
                     .Where(item => item != null).SelectMany(em => em)
                     .FirstOrDefault(em => string.Compare(emailAddress,em,true)==0)!=null;
             }
