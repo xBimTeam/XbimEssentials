@@ -24,7 +24,7 @@ namespace Xbim.IO.Memory
         private readonly MemoryModel _model;
         private readonly MultiValueDictionary<Type, IPersistEntity> _internal;
         private readonly Dictionary<int,IPersistEntity> _collection = new Dictionary<int,IPersistEntity>(0x77777);
-        private readonly List<int> _naturalOrder = new List<int>(0x77777); //about a default of half a million stops too much growing, and 7 is lucky; 
+        private List<int> _naturalOrder = new List<int>(0x77777); //about a default of half a million stops too much growing, and 7 is lucky; 
         internal IEntityFactory Factory => _model.EntityFactory;
         internal int NextLabel = 1;
         public EntityCollection(MemoryModel model)
@@ -234,18 +234,19 @@ namespace Xbim.IO.Memory
             if (_model.IsTransactional && _model.CurrentTransaction == null) throw new Exception("Operation out of transaction");
             var key = entity.GetType();
             bool removed = false;
+            var oldOrder = _naturalOrder;
             Action doAction = () =>
             {
                 _internal.Remove(key,entity);
                 removed =_collection.Remove(entity.EntityLabel);
-                //cannot remove as it will not be the last one, leave the redundant values in the list and skip in the enumerator
-               // if(_naturalOrder.Count>0) _naturalOrder.RemoveAt(_naturalOrder.Count - 1);
+                _naturalOrder = null;
+                ;
             };
             Action undo = () =>
             {
                 _internal.Add(key,entity);
                 _collection.Add(entity.EntityLabel, entity);
-                _naturalOrder.Add(entity.EntityLabel);
+                _naturalOrder = oldOrder;
             };
             doAction();
 
@@ -256,9 +257,9 @@ namespace Xbim.IO.Memory
 
         public IEnumerator<IPersistEntity> GetEnumerator()
         {
-            //return _internal.SelectMany(kv => kv.Value, (pair, entity) => entity).GetEnumerator();
-           // return _collection.GetEnumerator();
-           return new NaturalOrderEnumerator(_naturalOrder,_collection);
+            if(_naturalOrder!=null)
+                return new NaturalOrderEnumerator(_naturalOrder,_collection);
+            return _collection.Values.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
