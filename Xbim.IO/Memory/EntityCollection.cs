@@ -2,25 +2,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
 using Xbim.Common;
-using Xbim.Common.Metadata;
 
 namespace Xbim.IO.Memory
 {
     public class EntityCollection : IEntityCollection, IDisposable
     {
+        //simpler hasher as all entities will be in this model so no need to use its hash, small performance gain
+        private struct EntityLabelComparer : IEqualityComparer<IPersistEntity>
+        {
+            public bool Equals(IPersistEntity x, IPersistEntity y)
+            {
+                return x.EntityLabel == y.EntityLabel;
+            }
+
+            public int GetHashCode(IPersistEntity obj)
+            {
+                return obj.EntityLabel;
+            }
+        }
         private readonly MemoryModel _model;
         private readonly MultiValueDictionary<Type, IPersistEntity> _internal;
         private readonly Dictionary<int,IPersistEntity> _collection = new Dictionary<int,IPersistEntity>(0x77777);
         private readonly List<int> _naturalOrder = new List<int>(0x77777); //about a default of half a million stops too much growing, and 7 is lucky; 
-        internal IEntityFactory Factory{get { return _model.EntityFactory; }}
+        internal IEntityFactory Factory => _model.EntityFactory;
         internal int NextLabel = 1;
         public EntityCollection(MemoryModel model)
         {
             _model = model;
-            _internal = MultiValueDictionary<Type, IPersistEntity>.Create<HashSet<IPersistEntity>>();
-           
+            _internal = MultiValueDictionary<Type, IPersistEntity>.Create(()=> new HashSet<IPersistEntity>(new EntityLabelComparer()));
         }
 
         private IEnumerable<Type> GetQueryTypes(Type type)
@@ -228,7 +238,8 @@ namespace Xbim.IO.Memory
             {
                 _internal.Remove(key,entity);
                 removed =_collection.Remove(entity.EntityLabel);
-                if(_naturalOrder.Count>0) _naturalOrder.RemoveAt(_naturalOrder.Count - 1);
+                //cannot remove as it will not be the last one, leave the redundant values in the list and skip in the enumerator
+               // if(_naturalOrder.Count>0) _naturalOrder.RemoveAt(_naturalOrder.Count - 1);
             };
             Action undo = () =>
             {
@@ -250,7 +261,7 @@ namespace Xbim.IO.Memory
            return new NaturalOrderEnumerator(_naturalOrder,_collection);
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             //return _internal.SelectMany(kv => kv.Value, (pair, entity) => entity).GetEnumerator();
             return _collection.GetEnumerator();
@@ -262,60 +273,7 @@ namespace Xbim.IO.Memory
             _collection.Clear();
             _naturalOrder.Clear();            
         }
-      
-
-        private struct EntityLabelComparer:IEqualityComparer<IPersistEntity>
-        {
-            public bool Equals(IPersistEntity x, IPersistEntity y)
-            {
-                return x.EntityLabel == y.EntityLabel;
-            }
-
-            public int GetHashCode(IPersistEntity obj)
-            {
-                return obj.EntityLabel;
-            }
-        }
-
-        /// <summary>
-        /// This struct is solely for internal use to create a key for finding entities in the instances set
-        /// </summary>
-        private struct PersistEntityKey : IPersistEntity
-        {         
-
-            public PersistEntityKey(int entityLabel)
-            {
-                EntityLabel = entityLabel;
-            }
-
-            public void Parse(int propIndex, IPropertyValue value, int[] nested)
-            {
-                throw new NotImplementedException();
-            }
-
-            public string WhereRule()
-            {
-                throw new NotImplementedException();
-            }
-
-            public int EntityLabel { get; private set; }
-            public IModel Model => null;
-            public ActivationStatus ActivationStatus => ActivationStatus.NotActivated;
-
-            public void Activate(bool write)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void Activate(Action activation)
-            {
-                throw new NotImplementedException();
-            }
-
-            public ExpressType ExpressType => null;
-
-            public IModel ModelOf => null;
-        }
+              
 
         private class NaturalOrderEnumerator : IEnumerator<IPersistEntity>
         {
@@ -342,6 +300,7 @@ namespace Xbim.IO.Memory
                     if (_entities.TryGetValue(_naturalOrder[_current], out _currentEntity))
                         return true;
                 }
+                _currentEntity = null;
                 return false;
             }
 

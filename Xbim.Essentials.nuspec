@@ -2,10 +2,10 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>Xbim.Essentials</id>
-        <version>4.0.0-V150</version>
+        <version>4.0.0-V151</version>
         <title>xBIM Essentials 4</title>
         <authors>xBIM team</authors>
-        <owners>Steve Lockley</owners>
+        <owners>Steve Lockley, Martin Cerny</owners>
         <licenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimExchange/master/LICENCE.md</licenseUrl>
         <projectUrl>https://github.com/xBimTeam/XbimExchange</projectUrl>
         <iconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;s=200</iconUrl>
