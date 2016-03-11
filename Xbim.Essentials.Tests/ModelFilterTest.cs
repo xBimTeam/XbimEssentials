@@ -1,8 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xbim.Ifc2x3.Kernel;
 using System.IO;
+
+//using Xbim.Ifc2x3.ProductExtension;
+using System.Linq;
+
 using Xbim.Common;
+using Xbim.Common.Step21;
 using Xbim.Common.Metadata;
+using Xbim.Ifc;
+using Xbim.Ifc2x3.Kernel;
+using Xbim.Ifc2x3.ProductExtension;
+using System;
 
 namespace Xbim.Essentials.Tests
 {
@@ -10,6 +18,105 @@ namespace Xbim.Essentials.Tests
     [DeploymentItem(@"TestSourceFiles\")]
     public class ModelFilterTest
     {
+        static private Ifc2x3.IO.XbimModel CreateandInitModel(string projectName)
+        {
+            var model = Ifc2x3.IO.XbimModel.CreateModel(projectName + ".xBIM"); //create an empty model
+
+            //Begin a transaction as all changes to a model are transacted
+            using (var txn = model.BeginTransaction("Initialise Model"))
+            {
+                //do once only initialisation of model application and editor values
+                model.DefaultOwningUser.ThePerson.GivenName = "John";
+                model.DefaultOwningUser.ThePerson.FamilyName = "Bloggs";
+                model.DefaultOwningUser.TheOrganization.Name = "Department of Building";
+                model.DefaultOwningApplication.ApplicationIdentifier = "Construction Software inc.";
+                model.DefaultOwningApplication.ApplicationDeveloper.Name = "Construction Programmers Ltd.";
+                model.DefaultOwningApplication.ApplicationFullName = "Ifc sample programme";
+                model.DefaultOwningApplication.Version = "2.0.1";
+
+                //set up a project and initialise the defaults
+
+                var project = model.Instances.New<IfcProject>();
+                project.Initialize(ProjectUnits.SIUnitsUK);
+                project.Name = "testProject";
+                project.OwnerHistory.OwningUser = model.DefaultOwningUser;
+                project.OwnerHistory.OwningApplication = model.DefaultOwningApplication;
+
+                //validate and commit changes
+                //if (model.Validate(txn.Modified(), Console.Out) == 0)
+                //{
+                    txn.Commit();
+                    return model;
+                //}
+            }
+            return null; //failed so return nothing
+
+        }
+
+        [TestMethod]
+        public void MergeEntitiesTest()
+        {
+            var model_1_File = @"c:\Temp\HelloWall.ifc";// @"d:\ArciCAD\test_v2.ifc";
+            var copyFile = @"c:\Temp\copy.ifc";
+            var model_2_File = @"c:\Temp\House.ifc";//@"d:\ArciCAD\test_v2_ins.ifc";
+            var newmodel = CreateandInitModel("global_model");
+            using (var model_1 = new Ifc2x3.IO.XbimModel())
+            {
+                PropertyTranformDelegate propTransform = delegate (ExpressMetaProperty prop, object toCopy)
+                {
+                    var value = prop.PropertyInfo.GetValue(toCopy, null);
+                    return value;
+                };
+                model_1.CreateFrom(model_1_File, Path.GetTempFileName(), null, true);
+
+                using (var model_2 = new Ifc2x3.IO.XbimModel())
+                {
+                    model_2.CreateFrom(model_2_File, Path.GetTempFileName(), null, true);
+                    model_2.AutoAddOwnerHistory = true;
+
+                    bool rencontre = false;
+                    using (var txn = newmodel.BeginTransaction())
+                    {
+
+                        //target.Header = source.Header;
+                        var copied = new XbimInstanceHandleMap(model_1, newmodel);
+                        foreach (var item in model_1.Instances)
+                        {
+                            //var cpy =  target.InsertCopy(item, copied, txn, propTransform, true);
+                            if (item.GetType() == typeof(IfcProject))
+                                continue;
+                            newmodel.InsertCopy(item, copied, propTransform, false, false);
+                        }
+                        copied = new XbimInstanceHandleMap(model_2, newmodel);
+                        foreach (var item in model_2.Instances)
+                        {
+                            if (item.GetType() == typeof(IfcProject))
+                                continue;
+                            if (item.GetType() == typeof(IfcProduct))
+                            {
+                                var buildingElement = item as IfcBuildingElement;
+                                if (model_1.Instances.OfType<IfcBuildingElement>()
+                                .Any(item_1 => buildingElement != null && buildingElement.GlobalId == item_1.GlobalId))
+                                {
+                                    rencontre = true;
+                                }
+                                if (!rencontre)
+                                {
+                                    //newmodel.InsertCopy(item, propTransform, copied, txn, false, false);
+                                    newmodel.InsertCopy(item, copied, propTransform, false, false);
+                                }
+                            }
+
+                        }
+
+                        txn.Commit();
+                    }
+                    newmodel.SaveAs(copyFile);
+                }
+                newmodel.Close();
+            }
+        }
+
         [TestMethod]
         public void CopyAllEntitiesTest()
         {
