@@ -1,8 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xbim.Ifc2x3.Kernel;
 using System.IO;
+using System.Linq;
+
 using Xbim.Common;
 using Xbim.Common.Metadata;
+using Xbim.Ifc2x3.Kernel;
+using Xbim.Ifc2x3.ProductExtension;
 
 namespace Xbim.Essentials.Tests
 {
@@ -10,6 +13,85 @@ namespace Xbim.Essentials.Tests
     [DeploymentItem(@"TestSourceFiles\")]
     public class ModelFilterTest
     {
+        static private Ifc2x3.IO.XbimModel CreateandInitModel(string projectName)
+        {
+            var model = Ifc2x3.IO.XbimModel.CreateModel(projectName + ".xBIM"); //create an empty model
+            //Begin a transaction as all changes to a model are transacted
+            using (var txn = model.BeginTransaction("Initialise Model"))
+            {
+                //do once only initialisation of model application and editor values
+                model.DefaultOwningUser.ThePerson.GivenName = "John";
+                model.DefaultOwningUser.ThePerson.FamilyName = "Bloggs";
+                model.DefaultOwningUser.TheOrganization.Name = "Department of Building";
+                model.DefaultOwningApplication.ApplicationIdentifier = "Construction Software inc.";
+                model.DefaultOwningApplication.ApplicationDeveloper.Name = "Construction Programmers Ltd.";
+                model.DefaultOwningApplication.ApplicationFullName = "Ifc sample programme";
+                model.DefaultOwningApplication.Version = "2.0.1";
+                //set up a project and initialise the defaults
+                var project = model.Instances.New<IfcProject>();
+                project.Initialize(ProjectUnits.SIUnitsUK);
+                project.Name = "testProject";
+                project.OwnerHistory.OwningUser = model.DefaultOwningUser;
+                project.OwnerHistory.OwningApplication = model.DefaultOwningApplication;
+				
+                txn.Commit();
+                return model;
+            }
+            return null; //failed so return nothing
+        }
+
+        [TestMethod]
+        public void MergeProductsTest()
+        {
+            var model_1_File = "4walls1floorSite.ifc";
+            var copyFile = "copy.ifc";
+            var model_2_File = "House.ifc"; 
+            var newmodel = CreateandInitModel("global_model");
+            using (var model_1 = new Ifc2x3.IO.XbimModel())
+            {
+                PropertyTranformDelegate propTransform = delegate(ExpressMetaProperty prop, object toCopy)
+                {
+                    var value = prop.PropertyInfo.GetValue(toCopy, null);
+                    return value;
+                };
+                model_1.CreateFrom(model_1_File, Path.GetTempFileName(), null, true);
+
+                using (var model_2 = new Ifc2x3.IO.XbimModel())
+                {
+                    model_2.CreateFrom(model_2_File, Path.GetTempFileName(), null, true);
+                    model_2.AutoAddOwnerHistory = true;
+
+                    bool rencontre = false;
+                    using (var txn = newmodel.BeginTransaction())
+                    {
+                        var copied = new XbimInstanceHandleMap(model_1, newmodel);
+                        foreach (var item in model_1.IfcProducts)
+                        {
+                            newmodel.InsertCopy(item, copied, propTransform, false, false);
+                        }
+                        copied = new XbimInstanceHandleMap(model_2, newmodel);
+                        foreach (var item in model_2.IfcProducts)
+                        {
+                            var buildingElement = item as IfcBuildingElement;
+                            if (model_1.Instances.OfType<IfcBuildingElement>()
+                                .Any(item_1 => buildingElement != null && buildingElement.GlobalId == item_1.GlobalId))
+                            {
+                                rencontre = true;
+                            }
+                            if (!rencontre)
+                            {
+                                newmodel.InsertCopy(item, copied, propTransform, false, false);
+                            }
+                        }
+
+                        txn.Commit();
+                    }
+                    newmodel.SaveAs(copyFile);
+                }
+                newmodel.Close();
+            }
+        }
+
         [TestMethod]
         public void CopyAllEntitiesTest()
         {

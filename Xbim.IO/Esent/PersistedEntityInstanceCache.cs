@@ -1928,7 +1928,7 @@ namespace Xbim.IO.Esent
             }
         }
 
-        internal T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, bool includeInverses, PropertyTranformDelegate propTransform = null, bool keepLabels = true) where T : IPersistEntity
+        internal T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, bool includeInverses, PropertyTranformDelegate propTransform = null, bool keepLabels = false) where T : IPersistEntity
         {
             //check if the transaction needs pulsing
             var toCopyHandle = toCopy.GetHandle();
