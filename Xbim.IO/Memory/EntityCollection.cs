@@ -25,7 +25,11 @@ namespace Xbim.IO.Memory
         private readonly MultiValueDictionary<Type, IPersistEntity> _internal;
         private readonly Dictionary<int,IPersistEntity> _collection = new Dictionary<int,IPersistEntity>(0x77777);
         private List<int> _naturalOrder = new List<int>(0x77777); //about a default of half a million stops too much growing, and 7 is lucky; 
-        internal IEntityFactory Factory => _model.EntityFactory;
+        internal IEntityFactory Factory
+        {
+            get { return _model.EntityFactory; }
+        }
+
         internal int NextLabel = 1;
         public EntityCollection(MemoryModel model)
         {
@@ -182,7 +186,10 @@ namespace Xbim.IO.Memory
             }
         }
 
-        public long Count => _collection.Count;
+        public long Count
+        {
+            get { return _collection.Count; }
+        }
 
         public long CountOf<T>() where T : IPersistEntity
         {
