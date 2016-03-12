@@ -815,7 +815,7 @@ namespace System.Collections.Generic
         /// An <see cref="IEnumerable{TKey}"/> containing each <typeparamref name="TKey"/> 
         /// in this <see cref="MultiValueDictionary{TKey,TValue}"/> that has one or more associated 
         /// <typeparamref name="TValue"/>.
-        /// </value>
+     
         public IEnumerable<TKey> Keys
         {
             get
@@ -824,7 +824,13 @@ namespace System.Collections.Generic
             }
         }
 
-        ICollection<ICollection<TValue>> IDictionary<TKey, ICollection<TValue>>.Values { get; }
+        ICollection<ICollection<TValue>> IDictionary<TKey, ICollection<TValue>>.Values
+        {
+            get
+            {               
+               return dictionary.Select(kv => kv.Value).Cast<ICollection<TValue>>().ToList();               
+            }
+        }
 
         /// <summary>
         /// Attempts to get the <typeparamref name="TValue"/> associated with the given
@@ -851,7 +857,13 @@ namespace System.Collections.Generic
             return success;
         }
 
-        ICollection<TKey> IDictionary<TKey, ICollection<TValue>>.Keys { get; }
+        ICollection<TKey> IDictionary<TKey, ICollection<TValue>>.Keys
+        {
+            get
+            {
+                return dictionary.Keys;
+            }
+        }
 
         /// <summary>
         /// Gets an enumerable of <see cref="ICollection{TValue}"/> from this <see cref="MultiValueDictionary{TKey,TValue}"/>,
@@ -913,7 +925,10 @@ namespace System.Collections.Generic
             }
         }
 
-        public bool IsReadOnly { get; }
+        public bool IsReadOnly
+        {
+            get { return false; }
+        }
 
         IEnumerator<KeyValuePair<TKey, ICollection<TValue>>> IEnumerable<KeyValuePair<TKey, ICollection<TValue>>>.GetEnumerator()
         {
