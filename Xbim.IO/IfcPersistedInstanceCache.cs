@@ -1627,7 +1627,7 @@ namespace Xbim.IO
         }
         
 
-        internal T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, bool includeInverses,  PropertyTranformDelegate propTransform = null) where T : IPersistIfcEntity
+        internal T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, bool includeInverses, PropertyTranformDelegate propTransform = null, bool keepLabels = false) where T : IPersistIfcEntity
         {
             //check if the transaction needs pulsing
             
@@ -1643,7 +1643,7 @@ namespace Xbim.IO
             txn.Pulse();
             IfcType ifcType = IfcMetaData.IfcType(toCopy);
             int copyLabel = toCopy.EntityLabel;
-            copyHandle = InsertNew(ifcType.Type, copyLabel);
+            copyHandle = keepLabels ? InsertNew(ifcType.Type, copyLabel) : InsertNew(ifcType.Type);
             mappings.Add(toCopyHandle, copyHandle);
             if (typeof(IfcCartesianPoint) == ifcType.Type || typeof(IfcDirection) == ifcType.Type)//special cases for cartesian point and direction for efficiency
             {
