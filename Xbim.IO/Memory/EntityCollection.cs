@@ -205,7 +205,7 @@ namespace Xbim.IO.Memory
             var key = entity.GetType();
             _internal.Add(key, entity);
             _collection.Add(entity.EntityLabel,entity);
-            _naturalOrder?.Add(entity.EntityLabel);
+            if (_naturalOrder != null) _naturalOrder.Add(entity.EntityLabel);
         }
 
         private void AddReversible(IPersistEntity entity)
@@ -216,13 +216,13 @@ namespace Xbim.IO.Memory
             {
                 _internal.Remove(key,entity);
                 _collection.Remove(entity.EntityLabel);
-                _naturalOrder?.RemoveAt(_naturalOrder.Count-1);
+                if (_naturalOrder != null) _naturalOrder.RemoveAt(_naturalOrder.Count-1);
             };
             Action doAction = () =>
             {
                 _internal.Add(key, entity);
                 _collection.Add(entity.EntityLabel, entity);
-                _naturalOrder?.Add(entity.EntityLabel);
+                if (_naturalOrder != null) _naturalOrder.Add(entity.EntityLabel);
             };
             doAction();
 
