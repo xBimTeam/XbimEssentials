@@ -35,7 +35,7 @@ namespace Xbim.Essentials.Tests
 
                         foreach (var item in source.Instances)
                         {
-                            target.InsertCopy(item, copied, txn, propTransform);
+                            target.InsertCopy(item, copied, txn, propTransform, false, false);
                         }
                         txn.Commit();
                     }
