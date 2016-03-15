@@ -1032,7 +1032,7 @@ namespace Xbim.IO.Esent
         public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, PropertyTranformDelegate propTransform, bool includeInverses, bool keepLabels) where T : IPersistEntity
         {
             var txn = CurrentTransaction as XbimReadWriteTransaction;
-            return Cache.InsertCopy(toCopy, mappings, txn, includeInverses, propTransform);
+            return Cache.InsertCopy(toCopy, mappings, txn, includeInverses, propTransform, keepLabels);
         }
 
         internal void EndTransaction()
