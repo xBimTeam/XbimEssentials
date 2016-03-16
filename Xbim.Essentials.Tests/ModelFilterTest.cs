@@ -13,7 +13,7 @@ namespace Xbim.Essentials.Tests
     [DeploymentItem(@"TestSourceFiles\")]
     public class ModelFilterTest
     {
-        static private Ifc2x3.IO.XbimModel CreateandInitModel(string projectName)
+        private static Ifc2x3.IO.XbimModel CreateAndInitModel(string projectName)
         {
             var model = Ifc2x3.IO.XbimModel.CreateModel(projectName + ".xBIM"); //create an empty model
             //Begin a transaction as all changes to a model are transacted
@@ -37,58 +37,57 @@ namespace Xbim.Essentials.Tests
                 txn.Commit();
                 return model;
             }
-            return null; //failed so return nothing
         }
 
         [TestMethod]
         public void MergeProductsTest()
         {
-            var model_1_File = "4walls1floorSite.ifc";
-            var copyFile = "copy.ifc";
-            var model_2_File = "House.ifc"; 
-            var newmodel = CreateandInitModel("global_model");
-            using (var model_1 = new Ifc2x3.IO.XbimModel())
+            const string model1File = "4walls1floorSite.ifc";
+            const string copyFile = "copy.ifc";
+            const string model2File = "House.ifc"; 
+            var newModel = CreateAndInitModel("global_model");
+            using (var model1 = new Ifc2x3.IO.XbimModel())
             {
                 PropertyTranformDelegate propTransform = delegate(ExpressMetaProperty prop, object toCopy)
                 {
                     var value = prop.PropertyInfo.GetValue(toCopy, null);
                     return value;
                 };
-                model_1.CreateFrom(model_1_File, Path.GetTempFileName(), null, true);
+                model1.CreateFrom(model1File, Path.GetTempFileName(), null, true);
 
-                using (var model_2 = new Ifc2x3.IO.XbimModel())
+                using (var model2 = new Ifc2x3.IO.XbimModel())
                 {
-                    model_2.CreateFrom(model_2_File, Path.GetTempFileName(), null, true);
-                    model_2.AutoAddOwnerHistory = true;
+                    model2.CreateFrom(model2File, Path.GetTempFileName(), null, true);
+                    model2.AutoAddOwnerHistory = true;
 
-                    bool rencontre = false;
-                    using (var txn = newmodel.BeginTransaction())
+                    var rencontre = false;
+                    using (var txn = newModel.BeginTransaction())
                     {
-                        var copied = new XbimInstanceHandleMap(model_1, newmodel);
-                        foreach (var item in model_1.IfcProducts)
+                        var copied = new XbimInstanceHandleMap(model1, newModel);
+                        foreach (var item in model1.IfcProducts)
                         {
-                            newmodel.InsertCopy(item, copied, propTransform, false, false);
+                            newModel.InsertCopy(item, copied, propTransform, false, false);
                         }
-                        copied = new XbimInstanceHandleMap(model_2, newmodel);
-                        foreach (var item in model_2.IfcProducts)
+                        copied = new XbimInstanceHandleMap(model2, newModel);
+                        foreach (var item in model2.IfcProducts)
                         {
                             var buildingElement = item as IfcBuildingElement;
-                            if (model_1.Instances.OfType<IfcBuildingElement>()
-                                .Any(item_1 => buildingElement != null && buildingElement.GlobalId == item_1.GlobalId))
+                            if (model1.Instances.OfType<IfcBuildingElement>()
+                                .Any(item1 => buildingElement != null && buildingElement.GlobalId == item1.GlobalId))
                             {
                                 rencontre = true;
                             }
                             if (!rencontre)
                             {
-                                newmodel.InsertCopy(item, copied, propTransform, false, false);
+                                newModel.InsertCopy(item, copied, propTransform, false, false);
                             }
                         }
 
                         txn.Commit();
                     }
-                    newmodel.SaveAs(copyFile);
+                    newModel.SaveAs(copyFile);
                 }
-                newmodel.Close();
+                newModel.Close();
             }
         }
 
@@ -97,7 +96,7 @@ namespace Xbim.Essentials.Tests
         {
             var sourceFile = "source.ifc";
             var copyFile = "copy.ifc";
-            using (var source = new Xbim.Ifc2x3.IO.XbimModel())
+            using (var source = new Ifc2x3.IO.XbimModel())
             {
                 PropertyTranformDelegate propTransform = delegate (ExpressMetaProperty prop, object toCopy)
                 {
@@ -109,7 +108,7 @@ namespace Xbim.Essentials.Tests
                 //source.CreateFrom(@"C:\Users\Steve\Downloads\Test Models\Wall with complex openings.ifc", "source.xbim",null,true);
                 source.Open("BIM Logo-LetterM.xBIM");
                 source.SaveAs(sourceFile);
-                using (var target = Xbim.Ifc2x3.IO.XbimModel.CreateTemporaryModel())
+                using (var target = Ifc2x3.IO.XbimModel.CreateTemporaryModel())
                 {
                     target.AutoAddOwnerHistory = false;
                     using (var txn = target.BeginTransaction())
@@ -119,7 +118,7 @@ namespace Xbim.Essentials.Tests
 
                         foreach (var item in source.Instances)
                         {
-                            var cpy =  target.InsertCopy(item, copied, txn, propTransform,true);
+                            target.InsertCopy(item, copied, txn, propTransform,true);
                         }
                         txn.Commit();
                     }
@@ -134,17 +133,17 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void ExtractIfcGeometryEntitiesTest()
         {
-            using (var source = new Xbim.Ifc2x3.IO.XbimModel())
+            using (var source = new Ifc2x3.IO.XbimModel())
             {
                 PropertyTranformDelegate propTransform = delegate (ExpressMetaProperty prop, object toCopy)
                 {
 
-                    if (typeof(IfcProduct).IsAssignableFrom(toCopy.GetType()))
+                    if (toCopy is IfcProduct)
                     {
                         if (prop.PropertyInfo.Name == "ObjectPlacement" || prop.PropertyInfo.Name == "Representation")
                             return null;
                     }
-                    if (typeof(IfcTypeProduct).IsAssignableFrom(toCopy.GetType()))
+                    if (toCopy is IfcTypeProduct)
                     {
                         if (prop.PropertyInfo.Name == "RepresentationMaps")
                             return null;
@@ -154,12 +153,12 @@ namespace Xbim.Essentials.Tests
 
                 //source.LoadStep21("BIM Logo-LetterM.xBIM");
                 //source.SaveAs("WithGeometry.ifc");
-                string modelName = @"4walls1floorSite";
-                string xbimModelName = Path.ChangeExtension(modelName, "xbim");
+                var modelName = @"4walls1floorSite";
+                var xbimModelName = Path.ChangeExtension(modelName, "xbim");
 
                 source.CreateFrom(Path.ChangeExtension(modelName, "ifc"), null, null, true);
 
-                using (var target = Xbim.Ifc2x3.IO.XbimModel.CreateModel(Path.ChangeExtension(modelName + "_NoGeom", "xbim")))
+                using (var target = Ifc2x3.IO.XbimModel.CreateModel(Path.ChangeExtension(modelName + "_NoGeom", "xbim")))
                 {
                     target.AutoAddOwnerHistory = false;
                     using (var txn = target.BeginTransaction())

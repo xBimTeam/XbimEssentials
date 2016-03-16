@@ -6,7 +6,6 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Xml;
 using ICSharpCode.SharpZipLib.Zip;
@@ -637,7 +636,7 @@ namespace Xbim.IO.Esent
                         }
                         writer.Commit();
                     }
-                };
+                }
                 Close();
             }
             catch (Exception)
@@ -1284,7 +1283,8 @@ namespace Xbim.IO.Esent
         }
         private IEnumerable<TIfcType> InstancesOf<TIfcType>(IEnumerable<ExpressType> expressTypes, bool activate = false, HashSet<int> read = null) where TIfcType : IPersistEntity
         {
-            if (expressTypes.Any())
+            var types = expressTypes as ExpressType[] ?? expressTypes.ToArray();
+            if (types.Any())
             {
                 var entityLabels = read ?? new HashSet<int>();
                 var entityTable = GetEntityTable();
@@ -1293,7 +1293,7 @@ namespace Xbim.IO.Esent
                 {
                     //get all the type ids we are going to check for
                     var typeIds = new HashSet<short>();
-                    foreach (var t in expressTypes)
+                    foreach (var t in types)
                         typeIds.Add(t.TypeId);
                     using (entityTable.BeginReadOnlyTransaction())
                     {
