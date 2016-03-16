@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
        <metadata>
         <id>Xbim</id>
-        <version>3.0.0-Prerelease</version>
+        <version>3.0.1-Prerelease</version>
         <title>xBIM Essentials</title>
         <authors>xBIM team</authors>
         <owners>Steve Lockley</owners>

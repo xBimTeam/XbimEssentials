@@ -1273,6 +1273,22 @@ namespace Xbim.IO
         {
             return cache.InsertCopy<T>(toCopy, mappings, txn, includeInverses, propTransform);
         }
+
+        /// <summary>
+        /// Implementation of IModel variant of InsertCopy() function
+        /// </summary>
+        /// <typeparam name="T">Type of the object to be inserted. This must be a type supported by this model</typeparam>
+        /// <param name="toCopy">Object to copy</param>
+        /// <param name="mappings">Mappings make sure object is only inserted once. You should use one instance of mappings for all InsertCopy() calls between two models</param>
+        /// <param name="propTransform">Delegate which can be used to transform properties. You can use this to filter out certain properties or referenced objects</param>
+        /// <param name="includeInverses">If TRUE interse relations are also copied over. This may potentially bring over almost entire model if not controlled by propTransform delegate</param>
+        /// <param name="keepLabels">If TRUE entity labels of inserted objects will be the same as the labels of original objects. This should be FALSE if you are inserting objects to existing model
+        /// or if you are inserting objects from multiple source models into a single target model where entity labels may potentially clash.</param>
+        /// <returns>New created object in this model which is a deep copy of original object</returns>
+        public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, PropertyTranformDelegate propTransform, bool includeInverses, bool keepLabels) where T : IPersistIfcEntity
+        {
+            return cache.InsertCopy<T>(toCopy, mappings, txn, includeInverses, propTransform, keepLabels);
+        }
         internal void EndTransaction()
         {
             FreeTable(editTransactionEntityCursor); //release the cursor back to the pool

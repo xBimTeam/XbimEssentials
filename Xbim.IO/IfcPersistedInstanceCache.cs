@@ -1627,7 +1627,7 @@ namespace Xbim.IO
         }
         
 
-        internal T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, bool includeInverses,  PropertyTranformDelegate propTransform = null) where T : IPersistIfcEntity
+        internal T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, XbimReadWriteTransaction txn, bool includeInverses, PropertyTranformDelegate propTransform = null, bool keepLabels = true) where T : IPersistIfcEntity
         {
             //check if the transaction needs pulsing
             
@@ -1643,7 +1643,7 @@ namespace Xbim.IO
             txn.Pulse();
             IfcType ifcType = IfcMetaData.IfcType(toCopy);
             int copyLabel = toCopy.EntityLabel;
-            copyHandle = InsertNew(ifcType.Type, copyLabel);
+            copyHandle = keepLabels ? InsertNew(ifcType.Type, copyLabel) : InsertNew(ifcType.Type);
             mappings.Add(toCopyHandle, copyHandle);
             if (typeof(IfcCartesianPoint) == ifcType.Type || typeof(IfcDirection) == ifcType.Type)//special cases for cartesian point and direction for efficiency
             {
@@ -1686,7 +1686,7 @@ namespace Xbim.IO
                         //else 
                         else if (!isInverse && typeof(IPersistIfcEntity).IsAssignableFrom(theType))
                         {
-                            prop.PropertyInfo.SetValue(theCopy, InsertCopy((IPersistIfcEntity)value, mappings, txn, includeInverses, propTransform), null);
+                            prop.PropertyInfo.SetValue(theCopy, InsertCopy((IPersistIfcEntity)value, mappings, txn, includeInverses, propTransform, keepLabels), null);
                         }
                         else if (!isInverse && typeof(ExpressEnumerable).IsAssignableFrom(theType))
                         {
@@ -1709,7 +1709,7 @@ namespace Xbim.IO
                                     copyColl.Add(item);
                                 else if (typeof(IPersistIfcEntity).IsAssignableFrom(actualItemType))
                                 {
-                                    var cpy = InsertCopy((IPersistIfcEntity)item, mappings, txn, includeInverses, propTransform);
+                                    var cpy = InsertCopy((IPersistIfcEntity)item, mappings, txn, includeInverses, propTransform, keepLabels);
                                     copyColl.Add(cpy);
                                 }
                                 else
@@ -1722,7 +1722,7 @@ namespace Xbim.IO
                             {
                                 XbimInstanceHandle h;
                                 if (!mappings.TryGetValue(ent.GetHandle(), out h))
-                                    InsertCopy(ent, mappings, txn, includeInverses, propTransform);
+                                    InsertCopy(ent, mappings, txn, includeInverses, propTransform, keepLabels);
                             }
                         }
                         else if (isInverse && value is IPersistIfcEntity) //it is an inverse and has a single value
@@ -1730,7 +1730,7 @@ namespace Xbim.IO
                             XbimInstanceHandle h;
                             var v = (IPersistIfcEntity)value;
                             if (!mappings.TryGetValue(v.GetHandle(), out h))
-                                InsertCopy(v, mappings, txn, includeInverses, propTransform);
+                                InsertCopy(v, mappings, txn, includeInverses, propTransform, keepLabels);
                         }
                         else
                             throw new XbimException(string.Format("Unexpected item type ({0})  found", theType.Name));
