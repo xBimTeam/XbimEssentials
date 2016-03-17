@@ -33,9 +33,12 @@ namespace Xbim.CobieExpress
             _value = val;
         }
 
+	    private static readonly System.Globalization.CultureInfo Culture =
+	        System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+
 		public FloatValue(string val)
         {
-			_value = System.Convert.ToDouble(val, System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+			_value = System.Convert.ToDouble(val, Culture);
         }
 
         public static implicit operator FloatValue(double value)

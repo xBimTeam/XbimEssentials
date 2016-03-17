@@ -34,9 +34,12 @@ namespace Xbim.Ifc2x3.MeasureResource
             _value = val;
         }
 
+	    private static readonly System.Globalization.CultureInfo Culture =
+	        System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+
 		public IfcMonetaryMeasure(string val)
         {
-			_value = System.Convert.ToDouble(val, System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+			_value = System.Convert.ToDouble(val, Culture);
         }
 
         public static implicit operator IfcMonetaryMeasure(double value)
