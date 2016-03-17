@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDefinesByTemplate>(e => (e.RelatingTemplate as IfcPropertySetTemplate) == this, "RelatingTemplate", this);
+				return Model.Instances.Where<IfcRelDefinesByTemplate>(e => e.RelatingTemplate == this, "RelatingTemplate", this);
 			} 
 		}
 		#endregion
@@ -141,13 +141,6 @@ namespace Xbim.Ifc4.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*ExistsName:	ExistsName : EXISTS(SELF\IfcRoot.Name);*/
-		/*UniquePropertyNames:	UniquePropertyNames : IfcUniquePropertyTemplateNames(HasPropertyTemplates);*/
 		}
 		#endregion
 

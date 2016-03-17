@@ -88,14 +88,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : OuterCurve.Dim = 2;*/
-		/*WR2:	WR2 : NOT('IFC2X3.IFCLINE' IN TYPEOF(OuterCurve));*/
-		/*WR3:	WR3 : NOT('IFC2X3.IFCOFFSETCURVE2D' IN TYPEOF(OuterCurve));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

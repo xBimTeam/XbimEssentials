@@ -296,7 +296,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesApproval>(e => (e.RelatingApproval as IfcApproval) == this, "RelatingApproval", this);
+				return Model.Instances.Where<IfcRelAssociatesApproval>(e => e.RelatingApproval == this, "RelatingApproval", this);
 			} 
 		}
 		[InverseProperty("RelatingApproval")]
@@ -305,7 +305,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcResourceApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this, "RelatingApproval", this);
+				return Model.Instances.Where<IfcResourceApprovalRelationship>(e => e.RelatingApproval == this, "RelatingApproval", this);
 			} 
 		}
 		[InverseProperty("RelatedApprovals")]
@@ -323,7 +323,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this, "RelatingApproval", this);
+				return Model.Instances.Where<IfcApprovalRelationship>(e => e.RelatingApproval == this, "RelatingApproval", this);
 			} 
 		}
 		#endregion
@@ -413,12 +413,6 @@ namespace Xbim.Ifc4.ApprovalResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*HasIdentifierOrName:	HasIdentifierOrName : EXISTS (Identifier) OR EXISTS (Name);*/
 		}
 		#endregion
 

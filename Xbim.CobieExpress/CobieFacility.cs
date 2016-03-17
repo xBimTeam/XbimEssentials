@@ -201,7 +201,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieFloor>(e => (e.Facility as CobieFacility) == this, "Facility", this);
+				return Model.Instances.Where<CobieFloor>(e => e.Facility == this, "Facility", this);
 			} 
 		}
 		[InverseProperty("Facility")]
@@ -210,7 +210,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieSystem>(e => (e.Facility as CobieFacility) == this, "Facility", this);
+				return Model.Instances.Where<CobieSystem>(e => e.Facility == this, "Facility", this);
 			} 
 		}
 		#endregion
@@ -262,11 +262,6 @@ namespace Xbim.CobieExpress
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

@@ -169,13 +169,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : NOT(EXISTS(ShearAreaY)) OR (ShearAreaY >= 0.);*/
-		/*WR32:	WR32 : NOT(EXISTS(ShearAreaZ)) OR (ShearAreaZ >= 0.);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

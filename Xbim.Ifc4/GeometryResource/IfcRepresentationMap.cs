@@ -159,7 +159,7 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcShapeAspect>(e => (e.PartOfProductDefinitionShape as IfcRepresentationMap) == this, "PartOfProductDefinitionShape", this);
+				return Model.Instances.Where<IfcShapeAspect>(e => e.PartOfProductDefinitionShape == this, "PartOfProductDefinitionShape", this);
 			} 
 		}
 		[InverseProperty("MappingSource")]
@@ -168,7 +168,7 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMappedItem>(e => (e.MappingSource as IfcRepresentationMap) == this, "MappingSource", this);
+				return Model.Instances.Where<IfcMappedItem>(e => e.MappingSource == this, "MappingSource", this);
 			} 
 		}
 		#endregion
@@ -237,12 +237,6 @@ namespace Xbim.Ifc4.GeometryResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*ApplicableMappedRepr:	ApplicableMappedRepr : 'IFC4.IFCSHAPEMODEL' IN TYPEOF(MappedRepresentation);*/
 		}
 		#endregion
 

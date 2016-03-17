@@ -206,7 +206,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieFacility>(e => (e.Site as CobieSite) == this, "Site", this);
+				return Model.Instances.Where<CobieFacility>(e => e.Site == this, "Site", this);
 			} 
 		}
 		#endregion
@@ -284,11 +284,6 @@ namespace Xbim.CobieExpress
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

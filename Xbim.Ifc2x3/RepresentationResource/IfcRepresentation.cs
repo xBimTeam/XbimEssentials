@@ -194,7 +194,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRepresentationMap>(e => (e.MappedRepresentation as IfcRepresentation) == this, "MappedRepresentation", this);
+				return Model.Instances.Where<IfcRepresentationMap>(e => e.MappedRepresentation == this, "MappedRepresentation", this);
 			} 
 		}
 		[InverseProperty("AssignedItems")]
@@ -288,11 +288,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

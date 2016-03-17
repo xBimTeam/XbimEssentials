@@ -255,7 +255,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcResourceConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this, "RelatingConstraint", this);
+				return Model.Instances.Where<IfcResourceConstraintRelationship>(e => e.RelatingConstraint == this, "RelatingConstraint", this);
 			} 
 		}
 		#endregion
@@ -339,12 +339,6 @@ namespace Xbim.Ifc4.ConstraintResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11:((ConstraintGrade = IfcConstraintEnum.USERDEFINED) AND EXISTS(SELF\IfcConstraint.UserDefinedGrade));*/
 		}
 		#endregion
 

@@ -129,7 +129,7 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcStyledItem>(e => (e.Item as IfcRepresentationItem) == this, "Item", this);
+				return Model.Instances.Where<IfcStyledItem>(e => e.Item == this, "Item", this);
 			} 
 		}
 		#endregion
@@ -189,11 +189,6 @@ namespace Xbim.Ifc4.GeometryResource
 		{
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
-		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

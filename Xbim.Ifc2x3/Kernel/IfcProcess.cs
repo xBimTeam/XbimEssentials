@@ -60,7 +60,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToProcess>(e => (e.RelatingProcess as IfcProcess) == this, "RelatingProcess", this);
+				return Model.Instances.Where<IfcRelAssignsToProcess>(e => e.RelatingProcess == this, "RelatingProcess", this);
 			} 
 		}
 		[InverseProperty("RelatedProcess")]
@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSequence>(e => (e.RelatedProcess as IfcProcess) == this, "RelatedProcess", this);
+				return Model.Instances.Where<IfcRelSequence>(e => e.RelatedProcess == this, "RelatedProcess", this);
 			} 
 		}
 		[InverseProperty("RelatingProcess")]
@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSequence>(e => (e.RelatingProcess as IfcProcess) == this, "RelatingProcess", this);
+				return Model.Instances.Where<IfcRelSequence>(e => e.RelatingProcess == this, "RelatingProcess", this);
 			} 
 		}
 		#endregion
@@ -99,11 +99,6 @@ namespace Xbim.Ifc2x3.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

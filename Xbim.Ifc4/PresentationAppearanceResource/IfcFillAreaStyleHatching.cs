@@ -165,13 +165,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*PatternStart2D:	PatternStart2D : NOT(EXISTS(PatternStart)) OR (PatternStart.Dim = 2);*/
-		/*RefHatchLine2D:	RefHatchLine2D : NOT(EXISTS(PointOfReferenceHatchLine)) OR (PointOfReferenceHatchLine.Dim = 2);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

@@ -357,7 +357,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesDocument>(e => (e.RelatingDocument as IfcDocumentInformation) == this, "RelatingDocument", this);
+				return Model.Instances.Where<IfcRelAssociatesDocument>(e => e.RelatingDocument == this, "RelatingDocument", this);
 			} 
 		}
 		[InverseProperty("ReferencedDocument")]
@@ -366,7 +366,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDocumentReference>(e => (e.ReferencedDocument as IfcDocumentInformation) == this, "ReferencedDocument", this);
+				return Model.Instances.Where<IfcDocumentReference>(e => e.ReferencedDocument == this, "ReferencedDocument", this);
 			} 
 		}
 		[InverseProperty("RelatedDocuments")]
@@ -384,7 +384,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => (e.RelatingDocument as IfcDocumentInformation) == this, "RelatingDocument", this);
+				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => e.RelatingDocument == this, "RelatingDocument", this);
 			} 
 		}
 		#endregion
@@ -450,11 +450,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

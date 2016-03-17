@@ -105,12 +105,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR22:	WR22 : SweptArea.ProfileType = IfcProfileTypeEnum.Area;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

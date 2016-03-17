@@ -79,7 +79,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieConnection>(e => (e.RealizingComponent as CobieTypeOrComponent) == this, "RealizingComponent", this);
+				return Model.Instances.Where<CobieConnection>(e => e.RealizingComponent == this, "RealizingComponent", this);
 			} 
 		}
 		[InverseProperty("ComponentA")]
@@ -88,7 +88,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieConnection>(e => (e.ComponentA as CobieTypeOrComponent) == this, "ComponentA", this);
+				return Model.Instances.Where<CobieConnection>(e => e.ComponentA == this, "ComponentA", this);
 			} 
 		}
 		[InverseProperty("ComponentB")]
@@ -97,7 +97,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieConnection>(e => (e.ComponentB as CobieTypeOrComponent) == this, "ComponentB", this);
+				return Model.Instances.Where<CobieConnection>(e => e.ComponentB == this, "ComponentB", this);
 			} 
 		}
 		#endregion
@@ -129,11 +129,6 @@ namespace Xbim.CobieExpress
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

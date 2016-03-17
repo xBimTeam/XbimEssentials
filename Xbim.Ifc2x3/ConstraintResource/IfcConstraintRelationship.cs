@@ -253,12 +253,6 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11:	WR11 : SIZEOF(QUERY(temp <* RelatedConstraints | temp :=: RelatingConstraint )) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

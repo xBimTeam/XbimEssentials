@@ -136,13 +136,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : Scl2 > 0.0;*/
-		/*WR2:	WR2 : Scl3 > 0.0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

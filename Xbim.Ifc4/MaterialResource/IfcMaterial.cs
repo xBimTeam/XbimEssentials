@@ -118,7 +118,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMaterialDefinitionRepresentation>(e => (e.RepresentedMaterial as IfcMaterial) == this, "RepresentedMaterial", this);
+				return Model.Instances.Where<IfcMaterialDefinitionRepresentation>(e => e.RepresentedMaterial == this, "RepresentedMaterial", this);
 			} 
 		}
 		[InverseProperty("RelatedMaterials")]
@@ -136,7 +136,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMaterialRelationship>(e => (e.RelatingMaterial as IfcMaterial) == this, "RelatingMaterial", this);
+				return Model.Instances.Where<IfcMaterialRelationship>(e => e.RelatingMaterial == this, "RelatingMaterial", this);
 			} 
 		}
 		#endregion
@@ -159,11 +159,6 @@ namespace Xbim.Ifc4.MaterialResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

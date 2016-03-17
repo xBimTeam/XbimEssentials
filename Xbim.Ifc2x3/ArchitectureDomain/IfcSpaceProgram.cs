@@ -151,7 +151,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelInteractionRequirements>(e => (e.RelatedSpaceProgram as IfcSpaceProgram) == this, "RelatedSpaceProgram", this);
+				return Model.Instances.Where<IfcRelInteractionRequirements>(e => e.RelatedSpaceProgram == this, "RelatedSpaceProgram", this);
 			} 
 		}
 		[InverseProperty("RelatingSpaceProgram")]
@@ -160,7 +160,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelInteractionRequirements>(e => (e.RelatingSpaceProgram as IfcSpaceProgram) == this, "RelatingSpaceProgram", this);
+				return Model.Instances.Where<IfcRelInteractionRequirements>(e => e.RelatingSpaceProgram == this, "RelatingSpaceProgram", this);
 			} 
 		}
 		#endregion
@@ -196,11 +196,6 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

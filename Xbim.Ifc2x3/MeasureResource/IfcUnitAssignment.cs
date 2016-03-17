@@ -190,12 +190,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR01:	WR01 : IfcCorrectUnitAssignment(Units);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

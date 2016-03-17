@@ -419,7 +419,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => (e.RelatingDocument as IfcDocumentInformation) == this, "RelatingDocument", this);
+				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => e.RelatingDocument == this, "RelatingDocument", this);
 			} 
 		}
 		#endregion
@@ -535,11 +535,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

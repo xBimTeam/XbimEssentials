@@ -271,13 +271,6 @@ namespace Xbim.Ifc4.UtilityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(QUERY( Temp <* Rows | HIINDEX(Temp.RowCells) <> HIINDEX(Rows[1].RowCells))) = 0;*/
-		/*WR2:	WR2 : { 0 <= NumberOfHeadings <= 1 };*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

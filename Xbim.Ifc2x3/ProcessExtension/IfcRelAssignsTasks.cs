@@ -94,14 +94,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : HIINDEX(SELF\IfcRelAssigns.RelatedObjects) = 1;*/
-		/*WR2:	WR2 : 'IFC2X3.IFCTASK' IN TYPEOF(SELF\IfcRelAssigns.RelatedObjects[1]);*/
-		/*WR3:	WR3 : 'IFC2X3.IFCWORKCONTROL' IN TYPEOF(SELF\IfcRelAssignsToControl.RelatingControl);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

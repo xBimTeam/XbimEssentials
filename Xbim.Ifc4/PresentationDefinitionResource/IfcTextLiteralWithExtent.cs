@@ -108,12 +108,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : NOT('IFC4.IFCPLANARBOX' IN TYPEOF(Extent));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

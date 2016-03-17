@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.FirstOrDefault<IfcRelVoidsElement>(e => (e.RelatedOpeningElement as IfcFeatureElementSubtraction) == this, "RelatedOpeningElement", this);
+				return Model.Instances.FirstOrDefault<IfcRelVoidsElement>(e => e.RelatedOpeningElement == this, "RelatedOpeningElement", this);
 			} 
 		}
 		#endregion
@@ -80,13 +80,6 @@ namespace Xbim.Ifc4.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*HasNoSubtraction:	HasNoSubtraction : SIZEOF(SELF\IfcElement.HasOpenings) = 0;*/
-		/*IsNotFilling:	IsNotFilling : SIZEOF(SELF\IfcElement.FillsVoids) = 0;*/
 		}
 		#endregion
 

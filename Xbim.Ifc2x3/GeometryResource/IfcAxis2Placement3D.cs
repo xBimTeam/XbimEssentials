@@ -140,16 +140,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SELF\IfcPlacement.Location.Dim = 3;*/
-		/*WR2:	WR2 : (NOT (EXISTS (Axis))) OR (Axis.Dim = 3);*/
-		/*WR3:	WR3 : (NOT (EXISTS (RefDirection))) OR (RefDirection.Dim = 3);*/
-		/*WR4:	WR4 : (NOT (EXISTS (Axis))) OR (NOT (EXISTS (RefDirection))) OR (IfcCrossProduct(Axis,RefDirection).Magnitude > 0.0);*/
-		/*WR5:	WR5 : NOT ((EXISTS (Axis)) XOR (EXISTS (RefDirection)));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

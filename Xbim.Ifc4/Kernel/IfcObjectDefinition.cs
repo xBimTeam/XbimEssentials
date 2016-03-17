@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelNests>(e => (e.RelatingObject as IfcObjectDefinition) == this, "RelatingObject", this);
+				return Model.Instances.Where<IfcRelNests>(e => e.RelatingObject == this, "RelatingObject", this);
 			} 
 		}
 		[InverseProperty("RelatedDefinitions")]
@@ -104,7 +104,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAggregates>(e => (e.RelatingObject as IfcObjectDefinition) == this, "RelatingObject", this);
+				return Model.Instances.Where<IfcRelAggregates>(e => e.RelatingObject == this, "RelatingObject", this);
 			} 
 		}
 		[InverseProperty("RelatedObjects")]
@@ -142,11 +142,6 @@ namespace Xbim.Ifc4.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

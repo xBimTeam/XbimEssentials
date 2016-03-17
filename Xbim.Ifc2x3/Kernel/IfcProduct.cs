@@ -100,7 +100,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToProduct>(e => (e.RelatingProduct as IfcProduct) == this, "RelatingProduct", this);
+				return Model.Instances.Where<IfcRelAssignsToProduct>(e => e.RelatingProduct == this, "RelatingProduct", this);
 			} 
 		}
 		#endregion
@@ -127,12 +127,6 @@ namespace Xbim.Ifc2x3.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:                        OR (NOT(EXISTS(Representation)));*/
 		}
 		#endregion
 

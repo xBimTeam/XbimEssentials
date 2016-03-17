@@ -253,7 +253,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcConstraintClassificationRelationship>(e => (e.ClassifiedConstraint as IfcConstraint) == this, "ClassifiedConstraint", this);
+				return Model.Instances.Where<IfcConstraintClassificationRelationship>(e => e.ClassifiedConstraint == this, "ClassifiedConstraint", this);
 			} 
 		}
 		[InverseProperty("RelatingConstraint")]
@@ -262,7 +262,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this, "RelatingConstraint", this);
+				return Model.Instances.Where<IfcConstraintRelationship>(e => e.RelatingConstraint == this, "RelatingConstraint", this);
 			} 
 		}
 		[InverseProperty("RelatedConstraints")]
@@ -280,7 +280,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertyConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this, "RelatingConstraint", this);
+				return Model.Instances.Where<IfcPropertyConstraintRelationship>(e => e.RelatingConstraint == this, "RelatingConstraint", this);
 			} 
 		}
 		[InverseProperty("RelatingConstraint")]
@@ -289,7 +289,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcConstraintAggregationRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this, "RelatingConstraint", this);
+				return Model.Instances.Where<IfcConstraintAggregationRelationship>(e => e.RelatingConstraint == this, "RelatingConstraint", this);
 			} 
 		}
 		[InverseProperty("RelatedConstraints")]
@@ -382,12 +382,6 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11:             ((ConstraintGrade = IfcConstraintEnum.USERDEFINED) AND EXISTS(SELF\IfcConstraint.UserDefinedGrade));*/
 		}
 		#endregion
 

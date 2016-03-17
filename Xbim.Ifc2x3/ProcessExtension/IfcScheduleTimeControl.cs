@@ -370,7 +370,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				return Model.Instances.FirstOrDefault<IfcRelAssignsTasks>(e => (e.TimeForTask as IfcScheduleTimeControl) == this, "TimeForTask", this);
+				return Model.Instances.FirstOrDefault<IfcRelAssignsTasks>(e => e.TimeForTask == this, "TimeForTask", this);
 			} 
 		}
 		#endregion
@@ -445,11 +445,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

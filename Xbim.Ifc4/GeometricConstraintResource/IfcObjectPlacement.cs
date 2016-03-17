@@ -119,7 +119,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcProduct>(e => (e.ObjectPlacement as IfcObjectPlacement) == this, "ObjectPlacement", this);
+				return Model.Instances.Where<IfcProduct>(e => e.ObjectPlacement == this, "ObjectPlacement", this);
 			} 
 		}
 		[InverseProperty("PlacementRelTo")]
@@ -128,7 +128,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcLocalPlacement>(e => (e.PlacementRelTo as IfcObjectPlacement) == this, "PlacementRelTo", this);
+				return Model.Instances.Where<IfcLocalPlacement>(e => e.PlacementRelTo == this, "PlacementRelTo", this);
 			} 
 		}
 		#endregion
@@ -188,11 +188,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
-		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

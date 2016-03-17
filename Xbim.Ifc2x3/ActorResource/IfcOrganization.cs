@@ -216,7 +216,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcOrganizationRelationship>(e => (e.RelatingOrganization as IfcOrganization) == this, "RelatingOrganization", this);
+				return Model.Instances.Where<IfcOrganizationRelationship>(e => e.RelatingOrganization == this, "RelatingOrganization", this);
 			} 
 		}
 		[InverseProperty("TheOrganization")]
@@ -225,7 +225,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPersonAndOrganization>(e => (e.TheOrganization as IfcOrganization) == this, "TheOrganization", this);
+				return Model.Instances.Where<IfcPersonAndOrganization>(e => e.TheOrganization == this, "TheOrganization", this);
 			} 
 		}
 		#endregion
@@ -305,11 +305,6 @@ namespace Xbim.Ifc2x3.ActorResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

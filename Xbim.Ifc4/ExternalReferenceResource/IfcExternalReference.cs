@@ -175,7 +175,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => (e.RelatingReference as IfcExternalReference) == this, "RelatingReference", this);
+				return Model.Instances.Where<IfcExternalReferenceRelationship>(e => e.RelatingReference == this, "RelatingReference", this);
 			} 
 		}
 		#endregion
@@ -247,12 +247,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : EXISTS(Identification) OR EXISTS(Location) OR EXISTS(Name);*/
 		}
 		#endregion
 

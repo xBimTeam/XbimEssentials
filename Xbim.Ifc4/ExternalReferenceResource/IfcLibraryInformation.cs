@@ -169,7 +169,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesLibrary>(e => (e.RelatingLibrary as IfcLibraryInformation) == this, "RelatingLibrary", this);
+				return Model.Instances.Where<IfcRelAssociatesLibrary>(e => e.RelatingLibrary == this, "RelatingLibrary", this);
 			} 
 		}
 		[InverseProperty("ReferencedLibrary")]
@@ -178,7 +178,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcLibraryReference>(e => (e.ReferencedLibrary as IfcLibraryInformation) == this, "ReferencedLibrary", this);
+				return Model.Instances.Where<IfcLibraryReference>(e => e.ReferencedLibrary == this, "ReferencedLibrary", this);
 			} 
 		}
 		#endregion
@@ -210,11 +210,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

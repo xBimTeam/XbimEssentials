@@ -104,16 +104,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11:               )) <= 1;*/
-		/*WR12:               )) <= 1;*/
-		/*WR13:               )) <= 1;*/
-		/*WR14:               )) <= 1;*/
-		/*WR15:               )) <= 1;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

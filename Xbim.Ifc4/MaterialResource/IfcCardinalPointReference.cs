@@ -92,11 +92,6 @@ namespace Xbim.Ifc4.MaterialResource
             _value = value.IntegerVal;
             
 		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
-		}
 		#endregion
 
 		#region IExpressValueType implementation

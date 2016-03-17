@@ -79,14 +79,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*DimEqual2:	DimEqual2 : SELF\IfcCartesianTransformationOperator.Dim = 2;*/
-		/*Axis1Is2D:(SELF\IfcCartesianTransformationOperator.Axis1.Dim = 2);*/
-		/*Axis2Is2D:(SELF\IfcCartesianTransformationOperator.Axis2.Dim = 2);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

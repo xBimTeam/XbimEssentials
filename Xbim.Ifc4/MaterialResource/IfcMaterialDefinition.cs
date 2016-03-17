@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesMaterial>(e => (e.RelatingMaterial as IfcMaterialDefinition) == this, "RelatingMaterial", this);
+				return Model.Instances.Where<IfcRelAssociatesMaterial>(e => e.RelatingMaterial == this, "RelatingMaterial", this);
 			} 
 		}
 		[InverseProperty("RelatedResourceObjects")]
@@ -141,7 +141,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMaterialProperties>(e => (e.Material as IfcMaterialDefinition) == this, "Material", this);
+				return Model.Instances.Where<IfcMaterialProperties>(e => e.Material == this, "Material", this);
 			} 
 		}
 		#endregion
@@ -201,11 +201,6 @@ namespace Xbim.Ifc4.MaterialResource
 		{
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
-		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

@@ -281,13 +281,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : AxisCurve.Dim = 2;*/
-		/*WR2:	WR2 : (SIZEOF(PartOfU) = 1) XOR (SIZEOF(PartOfV) = 1) XOR (SIZEOF(PartOfW) = 1);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

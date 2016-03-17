@@ -95,11 +95,6 @@ namespace Xbim.Ifc4.Interfaces
             System.Enum.TryParse(value.EnumVal, true, out _value);
             
 		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
-		}
 		#endregion
 
 		#region IExpressValueType implementation

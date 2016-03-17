@@ -160,7 +160,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependingProperty as IfcProperty) == this, "DependingProperty", this);
+				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => e.DependingProperty == this, "DependingProperty", this);
 			} 
 		}
 		[InverseProperty("DependantProperty")]
@@ -169,7 +169,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependantProperty as IfcProperty) == this, "DependantProperty", this);
+				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => e.DependantProperty == this, "DependantProperty", this);
 			} 
 		}
 		[InverseProperty("HasProperties")]
@@ -247,11 +247,6 @@ namespace Xbim.Ifc2x3.PropertyResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

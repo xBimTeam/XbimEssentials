@@ -69,13 +69,6 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(SELF\IfcResource.ResourceOf) <=1;*/
-		/*WR2:            (SELF\IfcResource.ResourceOf[1].RelatedObjectsType = IfcObjectTypeEnum.PRODUCT);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

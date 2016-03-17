@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => (e.RelatedDraughtingCallout as IfcDraughtingCallout) == this, "RelatedDraughtingCallout", this);
+				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => e.RelatedDraughtingCallout == this, "RelatedDraughtingCallout", this);
 			} 
 		}
 		[InverseProperty("RelatingDraughtingCallout")]
@@ -87,7 +87,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => (e.RelatingDraughtingCallout as IfcDraughtingCallout) == this, "RelatingDraughtingCallout", this);
+				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => e.RelatingDraughtingCallout == this, "RelatingDraughtingCallout", this);
 			} 
 		}
 		#endregion
@@ -105,11 +105,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

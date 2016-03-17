@@ -64,14 +64,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11:	WR11 : SELF\IfcDraughtingCalloutRelationship.Name IN ['primary','secondary'];*/
-		/*WR12:                  'IFC2X3.IFCRADIUSDIMENSION']) = 1;*/
-		/*WR13:               IN TYPEOF (SELF\IfcDraughtingCalloutRelationship.RelatedDraughtingCallout));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

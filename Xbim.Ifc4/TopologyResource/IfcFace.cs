@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.TopologyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcTextureMap>(e => (e.MappedTo as IfcFace) == this, "MappedTo", this);
+				return Model.Instances.Where<IfcTextureMap>(e => e.MappedTo == this, "MappedTo", this);
 			} 
 		}
 		#endregion
@@ -94,12 +94,6 @@ namespace Xbim.Ifc4.TopologyResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*HasOuterBound:	HasOuterBound : SIZEOF(QUERY(temp <* Bounds | 'IFC4.IFCFACEOUTERBOUND' IN TYPEOF(temp))) <= 1;*/
 		}
 		#endregion
 

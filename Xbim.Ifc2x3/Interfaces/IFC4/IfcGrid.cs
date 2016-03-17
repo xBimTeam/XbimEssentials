@@ -38,9 +38,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 		}
 		IEnumerable<IIfcGridAxis> IIfcGrid.WAxes 
 		{ 
-			get {
-			    return WAxes;
-			}
+			get
+			{
+				foreach (var member in WAxes)
+				{
+					yield return member as IIfcGridAxis;
+				}
+			} 
 		}
 		Ifc4.Interfaces.IfcGridTypeEnum? IIfcGrid.PredefinedType 
 		{ 

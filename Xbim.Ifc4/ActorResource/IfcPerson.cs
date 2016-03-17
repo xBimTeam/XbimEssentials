@@ -246,7 +246,7 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPersonAndOrganization>(e => (e.ThePerson as IfcPerson) == this, "ThePerson", this);
+				return Model.Instances.Where<IfcPersonAndOrganization>(e => e.ThePerson == this, "ThePerson", this);
 			} 
 		}
 		#endregion
@@ -338,13 +338,6 @@ namespace Xbim.Ifc4.ActorResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*IdentifiablePerson:	IdentifiablePerson : EXISTS(Identification) OR EXISTS(FamilyName) OR EXISTS(GivenName);*/
-		/*ValidSetOfNames:	ValidSetOfNames : NOT EXISTS(MiddleNames) OR EXISTS(FamilyName) OR EXISTS(GivenName);*/
 		}
 		#endregion
 

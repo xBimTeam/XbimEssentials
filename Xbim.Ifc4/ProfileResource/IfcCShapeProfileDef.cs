@@ -169,14 +169,6 @@ namespace Xbim.Ifc4.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*ValidGirth:	ValidGirth : Girth < (Depth / 2.);*/
-		/*ValidInternalFilletRadius:((InternalFilletRadius <= Width/2. - WallThickness) AND (InternalFilletRadius <= Depth/2. - WallThickness));*/
-		/*ValidWallThickness:	ValidWallThickness : (WallThickness < Width/2.) AND (WallThickness < Depth/2.);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

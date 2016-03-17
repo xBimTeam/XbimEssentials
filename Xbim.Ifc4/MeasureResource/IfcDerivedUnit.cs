@@ -271,13 +271,6 @@ namespace Xbim.Ifc4.MeasureResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : (SIZEOF (Elements) > 1) OR ((SIZEOF (Elements) = 1) AND (Elements[1].Exponent <> 1 ));*/
-		/*WR2: (EXISTS(SELF.UserDefinedType)));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

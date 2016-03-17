@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSpaceBoundary2ndLevel>(e => (e.CorrespondingBoundary as IfcRelSpaceBoundary2ndLevel) == this, "CorrespondingBoundary", this);
+				return Model.Instances.Where<IfcRelSpaceBoundary2ndLevel>(e => e.CorrespondingBoundary == this, "CorrespondingBoundary", this);
 			} 
 		}
 		#endregion
@@ -108,11 +108,6 @@ namespace Xbim.Ifc4.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

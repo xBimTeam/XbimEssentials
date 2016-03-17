@@ -147,13 +147,6 @@ namespace Xbim.Ifc4.QuantityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*NoSelfReference:	NoSelfReference : SIZEOF(QUERY(temp <* HasQuantities | SELF :=: temp)) = 0;*/
-		/*UniqueQuantityNames:	UniqueQuantityNames : IfcUniqueQuantityNames(HasQuantities);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

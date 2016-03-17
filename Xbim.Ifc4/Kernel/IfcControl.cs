@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToControl>(e => (e.RelatingControl as IfcControl) == this, "RelatingControl", this);
+				return Model.Instances.Where<IfcRelAssignsToControl>(e => e.RelatingControl == this, "RelatingControl", this);
 			} 
 		}
 		#endregion
@@ -103,11 +103,6 @@ namespace Xbim.Ifc4.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

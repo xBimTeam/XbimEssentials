@@ -64,14 +64,6 @@ namespace Xbim.Ifc4.RepresentationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:)) = 0;*/
-		/*WR22:	WR22 : EXISTS(SELF\IfcRepresentation.RepresentationType);*/
-		/*WR23:	WR23 : IfcTopologyRepresentationTypes(SELF\IfcRepresentation.RepresentationType, SELF\IfcRepresentation.Items);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

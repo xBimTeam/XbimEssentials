@@ -245,7 +245,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPersonAndOrganization>(e => (e.ThePerson as IfcPerson) == this, "ThePerson", this);
+				return Model.Instances.Where<IfcPersonAndOrganization>(e => e.ThePerson == this, "ThePerson", this);
 			} 
 		}
 		#endregion
@@ -337,12 +337,6 @@ namespace Xbim.Ifc2x3.ActorResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            EXISTS(GivenName);*/
 		}
 		#endregion
 

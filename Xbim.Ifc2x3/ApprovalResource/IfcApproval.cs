@@ -246,7 +246,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcApprovalActorRelationship>(e => (e.Approval as IfcApproval) == this, "Approval", this);
+				return Model.Instances.Where<IfcApprovalActorRelationship>(e => e.Approval == this, "Approval", this);
 			} 
 		}
 		[InverseProperty("RelatedApproval")]
@@ -255,7 +255,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcApprovalRelationship>(e => (e.RelatedApproval as IfcApproval) == this, "RelatedApproval", this);
+				return Model.Instances.Where<IfcApprovalRelationship>(e => e.RelatedApproval == this, "RelatedApproval", this);
 			} 
 		}
 		[InverseProperty("RelatingApproval")]
@@ -264,7 +264,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this, "RelatingApproval", this);
+				return Model.Instances.Where<IfcApprovalRelationship>(e => e.RelatingApproval == this, "RelatingApproval", this);
 			} 
 		}
 		#endregion
@@ -348,11 +348,6 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

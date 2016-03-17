@@ -165,14 +165,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*DirectrixDim:	DirectrixDim : Directrix.Dim = 3;*/
-		/*InnerRadiusSize:	InnerRadiusSize : (NOT EXISTS(InnerRadius)) OR (Radius > InnerRadius);*/
-		/*DirectrixBounded:(SIZEOF(['IFC4.IFCCONIC', 'IFC4.IFCBOUNDEDCURVE'] * TYPEOF(Directrix)) = 1);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

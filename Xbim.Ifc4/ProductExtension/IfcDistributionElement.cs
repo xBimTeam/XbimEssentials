@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsPortToElement>(e => (e.RelatedElement as IfcDistributionElement) == this, "RelatedElement", this);
+				return Model.Instances.Where<IfcRelConnectsPortToElement>(e => e.RelatedElement == this, "RelatedElement", this);
 			} 
 		}
 		#endregion
@@ -80,11 +80,6 @@ namespace Xbim.Ifc4.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

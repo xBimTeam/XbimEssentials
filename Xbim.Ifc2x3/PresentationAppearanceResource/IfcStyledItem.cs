@@ -124,13 +124,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11:	WR11 : SIZEOF(Styles) = 1;*/
-		/*WR12:	WR12 : NOT('IFC2X3.IFCSTYLEDITEM' IN TYPEOF(Item));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators

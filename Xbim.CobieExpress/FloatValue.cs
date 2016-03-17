@@ -95,11 +95,6 @@ namespace Xbim.CobieExpress
             _value = value.RealVal;
             
 		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
-		}
 		#endregion
 
 		#region IExpressValueType implementation

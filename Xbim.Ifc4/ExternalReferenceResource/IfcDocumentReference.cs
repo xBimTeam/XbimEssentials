@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesDocument>(e => (e.RelatingDocument as IfcDocumentReference) == this, "RelatingDocument", this);
+				return Model.Instances.Where<IfcRelAssociatesDocument>(e => e.RelatingDocument == this, "RelatingDocument", this);
 			} 
 		}
 		#endregion
@@ -123,12 +123,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : EXISTS(Name) XOR EXISTS(ReferencedDocument);*/
 		}
 		#endregion
 

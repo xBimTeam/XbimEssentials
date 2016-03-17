@@ -239,7 +239,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcAppliedValueRelationship>(e => (e.ComponentOfTotal as IfcAppliedValue) == this, "ComponentOfTotal", this);
+				return Model.Instances.Where<IfcAppliedValueRelationship>(e => e.ComponentOfTotal == this, "ComponentOfTotal", this);
 			} 
 		}
 		[InverseProperty("Components")]
@@ -329,12 +329,6 @@ namespace Xbim.Ifc2x3.CostResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            EXISTS (ValueOfComponents);*/
 		}
 		#endregion
 

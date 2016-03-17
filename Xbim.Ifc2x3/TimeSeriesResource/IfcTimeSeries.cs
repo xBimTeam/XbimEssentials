@@ -261,7 +261,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcTimeSeriesReferenceRelationship>(e => (e.ReferencedTimeSeries as IfcTimeSeries) == this, "ReferencedTimeSeries", this);
+				return Model.Instances.Where<IfcTimeSeriesReferenceRelationship>(e => e.ReferencedTimeSeries == this, "ReferencedTimeSeries", this);
 			} 
 		}
 		#endregion
@@ -348,11 +348,6 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 

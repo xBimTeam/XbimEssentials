@@ -190,7 +190,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcCoordinateOperation>(e => (e.SourceCRS as IfcCoordinateReferenceSystem) == this, "SourceCRS", this);
+				return Model.Instances.Where<IfcCoordinateOperation>(e => e.SourceCRS == this, "SourceCRS", this);
 			} 
 		}
 		#endregion
@@ -265,11 +265,6 @@ namespace Xbim.Ifc4.RepresentationResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
