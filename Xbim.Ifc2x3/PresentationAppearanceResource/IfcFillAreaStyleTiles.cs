@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyleTiles", 725)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTiles, IEqualityComparer<@IfcFillAreaStyleTiles>, IEquatable<@IfcFillAreaStyleTiles>
+	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTiles, IEquatable<@IfcFillAreaStyleTiles>
 	{
 		#region IIfcFillAreaStyleTiles explicit implementation
 		IIfcOneDirectionRepeatFactor IIfcFillAreaStyleTiles.TilingPattern { get { return @TilingPattern; } }	
@@ -171,17 +171,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcFillAreaStyleTiles left, @IfcFillAreaStyleTiles right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFillAreaStyleTiles x, @IfcFillAreaStyleTiles y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFillAreaStyleTiles obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

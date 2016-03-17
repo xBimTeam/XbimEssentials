@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityTime", 254)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityTime : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityTime, IEqualityComparer<@IfcQuantityTime>, IEquatable<@IfcQuantityTime>
+	public  partial class @IfcQuantityTime : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityTime, IEquatable<@IfcQuantityTime>
 	{
 		#region IIfcQuantityTime explicit implementation
 		IfcTimeMeasure IIfcQuantityTime.TimeValue { get { return @TimeValue; } }	
@@ -139,17 +139,6 @@ namespace Xbim.Ifc2x3.QuantityResource
         public static bool operator !=(@IfcQuantityTime left, @IfcQuantityTime right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcQuantityTime x, @IfcQuantityTime y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcQuantityTime obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

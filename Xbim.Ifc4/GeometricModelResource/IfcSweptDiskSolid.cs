@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcSweptDiskSolid", 547)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IIfcSweptDiskSolid, IEqualityComparer<@IfcSweptDiskSolid>, IEquatable<@IfcSweptDiskSolid>
+	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IIfcSweptDiskSolid, IEquatable<@IfcSweptDiskSolid>
 	{
 		#region IIfcSweptDiskSolid explicit implementation
 		IIfcCurve IIfcSweptDiskSolid.Directrix { get { return @Directrix; } }	
@@ -216,17 +216,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcSweptDiskSolid left, @IfcSweptDiskSolid right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSweptDiskSolid x, @IfcSweptDiskSolid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSweptDiskSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

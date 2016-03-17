@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 {
 	[ExpressType("IfcDoorStyle", 492)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorStyle : IfcTypeProduct, IInstantiableEntity, IIfcDoorStyle, IEqualityComparer<@IfcDoorStyle>, IEquatable<@IfcDoorStyle>
+	public  partial class @IfcDoorStyle : IfcTypeProduct, IInstantiableEntity, IIfcDoorStyle, IEquatable<@IfcDoorStyle>
 	{
 		#region IIfcDoorStyle explicit implementation
 		IfcDoorStyleOperationEnum IIfcDoorStyle.OperationType { get { return @OperationType; } }	
@@ -203,17 +203,6 @@ namespace Xbim.Ifc4.ArchitectureDomain
         public static bool operator !=(@IfcDoorStyle left, @IfcDoorStyle right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDoorStyle x, @IfcDoorStyle y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDoorStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

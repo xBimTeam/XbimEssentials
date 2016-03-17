@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcCartesianPointList3D", 1118)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianPointList3D : IfcCartesianPointList, IInstantiableEntity, IIfcCartesianPointList3D, IEqualityComparer<@IfcCartesianPointList3D>, IEquatable<@IfcCartesianPointList3D>
+	public  partial class @IfcCartesianPointList3D : IfcCartesianPointList, IInstantiableEntity, IIfcCartesianPointList3D, IEquatable<@IfcCartesianPointList3D>
 	{
 		#region IIfcCartesianPointList3D explicit implementation
 		IEnumerable<IEnumerable<IfcLengthMeasure>> IIfcCartesianPointList3D.CoordList { get { return @CoordList; } }	
@@ -131,17 +131,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcCartesianPointList3D left, @IfcCartesianPointList3D right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCartesianPointList3D x, @IfcCartesianPointList3D y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCartesianPointList3D obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

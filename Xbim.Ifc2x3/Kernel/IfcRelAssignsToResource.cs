@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssignsToResource", 9)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToResource : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToResource, IEqualityComparer<@IfcRelAssignsToResource>, IEquatable<@IfcRelAssignsToResource>
+	public  partial class @IfcRelAssignsToResource : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToResource, IEquatable<@IfcRelAssignsToResource>
 	{
 		#region IIfcRelAssignsToResource explicit implementation
 		IIfcResource IIfcRelAssignsToResource.RelatingResource { get { return @RelatingResource; } }	
@@ -141,17 +141,6 @@ namespace Xbim.Ifc2x3.Kernel
         public static bool operator !=(@IfcRelAssignsToResource left, @IfcRelAssignsToResource right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssignsToResource x, @IfcRelAssignsToResource y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToResource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

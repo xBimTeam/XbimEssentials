@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcRailingType", 415)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRailingType : IfcBuildingElementType, IInstantiableEntity, IIfcRailingType, IEqualityComparer<@IfcRailingType>, IEquatable<@IfcRailingType>
+	public  partial class @IfcRailingType : IfcBuildingElementType, IInstantiableEntity, IIfcRailingType, IEquatable<@IfcRailingType>
 	{
 		#region IIfcRailingType explicit implementation
 		IfcRailingTypeEnum IIfcRailingType.PredefinedType { get { return @PredefinedType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         public static bool operator !=(@IfcRailingType left, @IfcRailingType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRailingType x, @IfcRailingType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRailingType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

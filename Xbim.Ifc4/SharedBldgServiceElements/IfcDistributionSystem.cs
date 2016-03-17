@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IfcDistributionSystem", 1150)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionSystem : IfcSystem, IInstantiableEntity, IIfcDistributionSystem, IEqualityComparer<@IfcDistributionSystem>, IEquatable<@IfcDistributionSystem>
+	public  partial class @IfcDistributionSystem : IfcSystem, IInstantiableEntity, IIfcDistributionSystem, IEquatable<@IfcDistributionSystem>
 	{
 		#region IIfcDistributionSystem explicit implementation
 		IfcLabel? IIfcDistributionSystem.LongName { get { return @LongName; } }	
@@ -160,17 +160,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
         public static bool operator !=(@IfcDistributionSystem left, @IfcDistributionSystem right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDistributionSystem x, @IfcDistributionSystem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDistributionSystem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

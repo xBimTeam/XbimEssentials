@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralCurveMember", 224)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralCurveMember : IfcStructuralMember, IInstantiableEntity, IIfcStructuralCurveMember, IEqualityComparer<@IfcStructuralCurveMember>, IEquatable<@IfcStructuralCurveMember>
+	public  partial class @IfcStructuralCurveMember : IfcStructuralMember, IInstantiableEntity, IIfcStructuralCurveMember, IEquatable<@IfcStructuralCurveMember>
 	{
 		#region IIfcStructuralCurveMember explicit implementation
 		IfcStructuralCurveMemberTypeEnum IIfcStructuralCurveMember.PredefinedType { get { return @PredefinedType; } }	
@@ -162,17 +162,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
         public static bool operator !=(@IfcStructuralCurveMember left, @IfcStructuralCurveMember right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralCurveMember x, @IfcStructuralCurveMember y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralCurveMember obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

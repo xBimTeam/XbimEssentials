@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcPlateType", 526)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlateType : IfcBuildingElementType, IInstantiableEntity, IIfcPlateType, IEqualityComparer<@IfcPlateType>, IEquatable<@IfcPlateType>
+	public  partial class @IfcPlateType : IfcBuildingElementType, IInstantiableEntity, IIfcPlateType, IEquatable<@IfcPlateType>
 	{
 		#region IIfcPlateType explicit implementation
 		IfcPlateTypeEnum IIfcPlateType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcPlateType left, @IfcPlateType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPlateType x, @IfcPlateType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPlateType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

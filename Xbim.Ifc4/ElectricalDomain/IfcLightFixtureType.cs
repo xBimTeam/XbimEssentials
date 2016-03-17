@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcLightFixtureType", 517)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightFixtureType : IfcFlowTerminalType, IInstantiableEntity, IIfcLightFixtureType, IEqualityComparer<@IfcLightFixtureType>, IEquatable<@IfcLightFixtureType>
+	public  partial class @IfcLightFixtureType : IfcFlowTerminalType, IInstantiableEntity, IIfcLightFixtureType, IEquatable<@IfcLightFixtureType>
 	{
 		#region IIfcLightFixtureType explicit implementation
 		IfcLightFixtureTypeEnum IIfcLightFixtureType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcLightFixtureType left, @IfcLightFixtureType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLightFixtureType x, @IfcLightFixtureType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLightFixtureType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

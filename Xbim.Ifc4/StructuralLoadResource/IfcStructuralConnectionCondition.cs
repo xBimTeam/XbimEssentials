@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralConnectionCondition", 639)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralConnectionCondition : IPersistEntity, INotifyPropertyChanged, IIfcStructuralConnectionCondition, IEqualityComparer<@IfcStructuralConnectionCondition>, IEquatable<@IfcStructuralConnectionCondition>
+	public abstract partial class @IfcStructuralConnectionCondition : IPersistEntity, INotifyPropertyChanged, IIfcStructuralConnectionCondition, IEquatable<@IfcStructuralConnectionCondition>
 	{
 		#region IIfcStructuralConnectionCondition explicit implementation
 		IfcLabel? IIfcStructuralConnectionCondition.Name { get { return @Name; } }	
@@ -241,17 +241,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
         public static bool operator !=(@IfcStructuralConnectionCondition left, @IfcStructuralConnectionCondition right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralConnectionCondition x, @IfcStructuralConnectionCondition y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralConnectionCondition obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

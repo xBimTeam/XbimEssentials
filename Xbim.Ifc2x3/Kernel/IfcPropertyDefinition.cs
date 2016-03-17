@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcPropertyDefinition", 98)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPropertyDefinition : IfcRoot, IIfcPropertyDefinition, IEqualityComparer<@IfcPropertyDefinition>, IEquatable<@IfcPropertyDefinition>
+	public abstract partial class @IfcPropertyDefinition : IfcRoot, IIfcPropertyDefinition, IEquatable<@IfcPropertyDefinition>
 	{
 		#region IIfcPropertyDefinition explicit implementation
 		 
@@ -125,17 +125,6 @@ namespace Xbim.Ifc2x3.Kernel
         public static bool operator !=(@IfcPropertyDefinition left, @IfcPropertyDefinition right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPropertyDefinition x, @IfcPropertyDefinition y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyDefinition obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

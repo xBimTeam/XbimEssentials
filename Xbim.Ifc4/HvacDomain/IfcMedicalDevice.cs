@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcMedicalDevice", 1212)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMedicalDevice : IfcFlowTerminal, IInstantiableEntity, IIfcMedicalDevice, IEqualityComparer<@IfcMedicalDevice>, IEquatable<@IfcMedicalDevice>
+	public  partial class @IfcMedicalDevice : IfcFlowTerminal, IInstantiableEntity, IIfcMedicalDevice, IEquatable<@IfcMedicalDevice>
 	{
 		#region IIfcMedicalDevice explicit implementation
 		IfcMedicalDeviceTypeEnum? IIfcMedicalDevice.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcMedicalDevice left, @IfcMedicalDevice right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMedicalDevice x, @IfcMedicalDevice y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMedicalDevice obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

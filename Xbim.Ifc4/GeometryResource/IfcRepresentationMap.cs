@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcRepresentationMap", 95)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRepresentationMap : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentationMap, IEqualityComparer<@IfcRepresentationMap>, IEquatable<@IfcRepresentationMap>
+	public  partial class @IfcRepresentationMap : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentationMap, IEquatable<@IfcRepresentationMap>
 	{
 		#region IIfcRepresentationMap explicit implementation
 		IIfcAxis2Placement IIfcRepresentationMap.MappingOrigin { get { return @MappingOrigin; } }	
@@ -287,17 +287,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcRepresentationMap left, @IfcRepresentationMap right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRepresentationMap x, @IfcRepresentationMap y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRepresentationMap obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

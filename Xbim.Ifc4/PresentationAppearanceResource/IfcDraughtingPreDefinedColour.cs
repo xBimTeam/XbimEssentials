@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcDraughtingPreDefinedColour", 607)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingPreDefinedColour : IfcPreDefinedColour, IInstantiableEntity, IIfcDraughtingPreDefinedColour, IEqualityComparer<@IfcDraughtingPreDefinedColour>, IEquatable<@IfcDraughtingPreDefinedColour>
+	public  partial class @IfcDraughtingPreDefinedColour : IfcPreDefinedColour, IInstantiableEntity, IIfcDraughtingPreDefinedColour, IEquatable<@IfcDraughtingPreDefinedColour>
 	{
 		#region IIfcDraughtingPreDefinedColour explicit implementation
 		 
@@ -110,17 +110,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcDraughtingPreDefinedColour left, @IfcDraughtingPreDefinedColour right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDraughtingPreDefinedColour x, @IfcDraughtingPreDefinedColour y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDraughtingPreDefinedColour obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

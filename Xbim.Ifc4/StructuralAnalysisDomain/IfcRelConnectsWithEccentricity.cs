@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelConnectsWithEccentricity", 322)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsWithEccentricity : IfcRelConnectsStructuralMember, IInstantiableEntity, IIfcRelConnectsWithEccentricity, IEqualityComparer<@IfcRelConnectsWithEccentricity>, IEquatable<@IfcRelConnectsWithEccentricity>
+	public  partial class @IfcRelConnectsWithEccentricity : IfcRelConnectsStructuralMember, IInstantiableEntity, IIfcRelConnectsWithEccentricity, IEquatable<@IfcRelConnectsWithEccentricity>
 	{
 		#region IIfcRelConnectsWithEccentricity explicit implementation
 		IIfcConnectionGeometry IIfcRelConnectsWithEccentricity.ConnectionConstraint { get { return @ConnectionConstraint; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
         public static bool operator !=(@IfcRelConnectsWithEccentricity left, @IfcRelConnectsWithEccentricity right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelConnectsWithEccentricity x, @IfcRelConnectsWithEccentricity y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelConnectsWithEccentricity obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

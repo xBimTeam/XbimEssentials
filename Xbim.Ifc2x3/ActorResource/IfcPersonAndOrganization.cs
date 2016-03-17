@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcPersonAndOrganization", 663)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPersonAndOrganization : INotifyPropertyChanged, IInstantiableEntity, IIfcPersonAndOrganization, IEqualityComparer<@IfcPersonAndOrganization>, IEquatable<@IfcPersonAndOrganization>
+	public  partial class @IfcPersonAndOrganization : INotifyPropertyChanged, IInstantiableEntity, IIfcPersonAndOrganization, IEquatable<@IfcPersonAndOrganization>
 	{
 		#region IIfcPersonAndOrganization explicit implementation
 		IIfcPerson IIfcPersonAndOrganization.ThePerson { get { return @ThePerson; } }	
@@ -281,17 +281,6 @@ namespace Xbim.Ifc2x3.ActorResource
         public static bool operator !=(@IfcPersonAndOrganization left, @IfcPersonAndOrganization right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPersonAndOrganization x, @IfcPersonAndOrganization y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPersonAndOrganization obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcAdvancedBrepWithVoids", 1093)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAdvancedBrepWithVoids : IfcAdvancedBrep, IInstantiableEntity, IIfcAdvancedBrepWithVoids, IEqualityComparer<@IfcAdvancedBrepWithVoids>, IEquatable<@IfcAdvancedBrepWithVoids>
+	public  partial class @IfcAdvancedBrepWithVoids : IfcAdvancedBrep, IInstantiableEntity, IIfcAdvancedBrepWithVoids, IEquatable<@IfcAdvancedBrepWithVoids>
 	{
 		#region IIfcAdvancedBrepWithVoids explicit implementation
 		IEnumerable<IIfcClosedShell> IIfcAdvancedBrepWithVoids.Voids { get { return @Voids; } }	
@@ -134,17 +134,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcAdvancedBrepWithVoids left, @IfcAdvancedBrepWithVoids right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAdvancedBrepWithVoids x, @IfcAdvancedBrepWithVoids y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAdvancedBrepWithVoids obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

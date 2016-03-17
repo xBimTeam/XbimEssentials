@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralPointConnection", 533)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralPointConnection : IfcStructuralConnection, IInstantiableEntity, IIfcStructuralPointConnection, IEqualityComparer<@IfcStructuralPointConnection>, IEquatable<@IfcStructuralPointConnection>
+	public  partial class @IfcStructuralPointConnection : IfcStructuralConnection, IInstantiableEntity, IIfcStructuralPointConnection, IEquatable<@IfcStructuralPointConnection>
 	{
 		#region IIfcStructuralPointConnection explicit implementation
 		 
@@ -116,17 +116,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         public static bool operator !=(@IfcStructuralPointConnection left, @IfcStructuralPointConnection right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralPointConnection x, @IfcStructuralPointConnection y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralPointConnection obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

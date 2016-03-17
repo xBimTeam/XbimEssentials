@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcBoundaryNodeCondition", 394)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundaryNodeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryNodeCondition, IEqualityComparer<@IfcBoundaryNodeCondition>, IEquatable<@IfcBoundaryNodeCondition>
+	public  partial class @IfcBoundaryNodeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryNodeCondition, IEquatable<@IfcBoundaryNodeCondition>
 	{
 		#region IIfcBoundaryNodeCondition explicit implementation
 		IIfcTranslationalStiffnessSelect IIfcBoundaryNodeCondition.TranslationalStiffnessX { get { return @TranslationalStiffnessX; } }	
@@ -234,17 +234,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
         public static bool operator !=(@IfcBoundaryNodeCondition left, @IfcBoundaryNodeCondition right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBoundaryNodeCondition x, @IfcBoundaryNodeCondition y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBoundaryNodeCondition obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

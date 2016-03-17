@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcSpace", 454)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IIfcSpace, IEqualityComparer<@IfcSpace>, IEquatable<@IfcSpace>
+	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IIfcSpace, IEquatable<@IfcSpace>
 	{
 		#region IIfcSpace explicit implementation
 		IfcSpaceTypeEnum? IIfcSpace.PredefinedType { get { return @PredefinedType; } }	
@@ -190,17 +190,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcSpace left, @IfcSpace right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSpace x, @IfcSpace y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpace obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

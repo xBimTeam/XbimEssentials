@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyle", 260)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSurfaceStyle, IEqualityComparer<@IfcSurfaceStyle>, IEquatable<@IfcSurfaceStyle>
+	public  partial class @IfcSurfaceStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSurfaceStyle, IEquatable<@IfcSurfaceStyle>
 	{
 		#region IIfcSurfaceStyle explicit implementation
 		IfcSurfaceSide IIfcSurfaceStyle.Side { get { return @Side; } }	
@@ -157,17 +157,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcSurfaceStyle left, @IfcSurfaceStyle right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSurfaceStyle x, @IfcSurfaceStyle y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

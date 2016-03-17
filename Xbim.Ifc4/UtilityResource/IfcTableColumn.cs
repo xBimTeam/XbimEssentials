@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.UtilityResource
 {
 	[ExpressType("IfcTableColumn", 1292)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTableColumn : INotifyPropertyChanged, IInstantiableEntity, IIfcTableColumn, IEqualityComparer<@IfcTableColumn>, IEquatable<@IfcTableColumn>
+	public  partial class @IfcTableColumn : INotifyPropertyChanged, IInstantiableEntity, IIfcTableColumn, IEquatable<@IfcTableColumn>
 	{
 		#region IIfcTableColumn explicit implementation
 		IfcIdentifier? IIfcTableColumn.Identifier { get { return @Identifier; } }	
@@ -322,17 +322,6 @@ namespace Xbim.Ifc4.UtilityResource
         public static bool operator !=(@IfcTableColumn left, @IfcTableColumn right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTableColumn x, @IfcTableColumn y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTableColumn obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcMaterialDefinitionRepresentation", 2)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialDefinitionRepresentation : IfcProductRepresentation, IInstantiableEntity, IIfcMaterialDefinitionRepresentation, IEqualityComparer<@IfcMaterialDefinitionRepresentation>, IEquatable<@IfcMaterialDefinitionRepresentation>
+	public  partial class @IfcMaterialDefinitionRepresentation : IfcProductRepresentation, IInstantiableEntity, IIfcMaterialDefinitionRepresentation, IEquatable<@IfcMaterialDefinitionRepresentation>
 	{
 		#region IIfcMaterialDefinitionRepresentation explicit implementation
 		IIfcMaterial IIfcMaterialDefinitionRepresentation.RepresentedMaterial { get { return @RepresentedMaterial; } }	
@@ -139,17 +139,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
         public static bool operator !=(@IfcMaterialDefinitionRepresentation left, @IfcMaterialDefinitionRepresentation right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialDefinitionRepresentation x, @IfcMaterialDefinitionRepresentation y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialDefinitionRepresentation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

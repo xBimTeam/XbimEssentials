@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcWindowType", 1317)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWindowType : IfcBuildingElementType, IInstantiableEntity, IIfcWindowType, IEqualityComparer<@IfcWindowType>, IEquatable<@IfcWindowType>
+	public  partial class @IfcWindowType : IfcBuildingElementType, IInstantiableEntity, IIfcWindowType, IEquatable<@IfcWindowType>
 	{
 		#region IIfcWindowType explicit implementation
 		IfcWindowTypeEnum IIfcWindowType.PredefinedType { get { return @PredefinedType; } }	
@@ -205,17 +205,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcWindowType left, @IfcWindowType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcWindowType x, @IfcWindowType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWindowType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

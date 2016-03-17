@@ -46,7 +46,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcSpaceThermalLoadProperties", 610)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceThermalLoadProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSpaceThermalLoadProperties, IEqualityComparer<@IfcSpaceThermalLoadProperties>, IEquatable<@IfcSpaceThermalLoadProperties>
+	public  partial class @IfcSpaceThermalLoadProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSpaceThermalLoadProperties, IEquatable<@IfcSpaceThermalLoadProperties>
 	{
 		#region IIfcSpaceThermalLoadProperties explicit implementation
 		IfcPositiveRatioMeasure? IIfcSpaceThermalLoadProperties.ApplicableValueRatio { get { return @ApplicableValueRatio; } }	
@@ -320,17 +320,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         public static bool operator !=(@IfcSpaceThermalLoadProperties left, @IfcSpaceThermalLoadProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSpaceThermalLoadProperties x, @IfcSpaceThermalLoadProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpaceThermalLoadProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

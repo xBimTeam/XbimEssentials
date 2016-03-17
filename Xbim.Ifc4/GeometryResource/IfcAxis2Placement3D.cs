@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcAxis2Placement3D", 448)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAxis2Placement3D : IfcPlacement, IInstantiableEntity, IIfcAxis2Placement3D, IEqualityComparer<@IfcAxis2Placement3D>, IEquatable<@IfcAxis2Placement3D>
+	public  partial class @IfcAxis2Placement3D : IfcPlacement, IInstantiableEntity, IIfcAxis2Placement3D, IEquatable<@IfcAxis2Placement3D>
 	{
 		#region IIfcAxis2Placement3D explicit implementation
 		IIfcDirection IIfcAxis2Placement3D.Axis { get { return @Axis; } }	
@@ -193,17 +193,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcAxis2Placement3D left, @IfcAxis2Placement3D right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAxis2Placement3D x, @IfcAxis2Placement3D y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAxis2Placement3D obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

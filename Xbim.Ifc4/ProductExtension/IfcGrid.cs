@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcGrid", 564)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IIfcGrid, IEqualityComparer<@IfcGrid>, IEquatable<@IfcGrid>
+	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IIfcGrid, IEquatable<@IfcGrid>
 	{
 		#region IIfcGrid explicit implementation
 		IEnumerable<IIfcGridAxis> IIfcGrid.UAxes { get { return @UAxes; } }	
@@ -213,17 +213,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcGrid left, @IfcGrid right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGrid x, @IfcGrid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGrid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

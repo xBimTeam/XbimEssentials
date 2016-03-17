@@ -55,7 +55,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcScheduleTimeControl", 402)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcScheduleTimeControl : IfcControl, IInstantiableEntity, IIfcScheduleTimeControl, IEqualityComparer<@IfcScheduleTimeControl>, IEquatable<@IfcScheduleTimeControl>
+	public  partial class @IfcScheduleTimeControl : IfcControl, IInstantiableEntity, IIfcScheduleTimeControl, IEquatable<@IfcScheduleTimeControl>
 	{
 		#region IIfcScheduleTimeControl explicit implementation
 		IIfcDateTimeSelect IIfcScheduleTimeControl.ActualStart { get { return @ActualStart; } }	
@@ -494,17 +494,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
         public static bool operator !=(@IfcScheduleTimeControl left, @IfcScheduleTimeControl right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcScheduleTimeControl x, @IfcScheduleTimeControl y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcScheduleTimeControl obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

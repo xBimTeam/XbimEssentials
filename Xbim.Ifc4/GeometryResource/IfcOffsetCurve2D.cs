@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcOffsetCurve2D", 687)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOffsetCurve2D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve2D, IEqualityComparer<@IfcOffsetCurve2D>, IEquatable<@IfcOffsetCurve2D>
+	public  partial class @IfcOffsetCurve2D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve2D, IEquatable<@IfcOffsetCurve2D>
 	{
 		#region IIfcOffsetCurve2D explicit implementation
 		IIfcCurve IIfcOffsetCurve2D.BasisCurve { get { return @BasisCurve; } }	
@@ -173,17 +173,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcOffsetCurve2D left, @IfcOffsetCurve2D right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOffsetCurve2D x, @IfcOffsetCurve2D y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOffsetCurve2D obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

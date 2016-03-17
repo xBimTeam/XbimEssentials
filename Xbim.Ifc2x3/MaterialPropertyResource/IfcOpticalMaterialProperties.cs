@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcOpticalMaterialProperties", 718)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOpticalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcOpticalMaterialProperties, IEqualityComparer<@IfcOpticalMaterialProperties>, IEquatable<@IfcOpticalMaterialProperties>
+	public  partial class @IfcOpticalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcOpticalMaterialProperties, IEquatable<@IfcOpticalMaterialProperties>
 	{
 		#region IIfcOpticalMaterialProperties explicit implementation
 		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleTransmittance { get { return @VisibleTransmittance; } }	
@@ -295,17 +295,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         public static bool operator !=(@IfcOpticalMaterialProperties left, @IfcOpticalMaterialProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOpticalMaterialProperties x, @IfcOpticalMaterialProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOpticalMaterialProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

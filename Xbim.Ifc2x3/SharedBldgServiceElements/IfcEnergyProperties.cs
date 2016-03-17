@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcEnergyProperties", 176)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEnergyProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcEnergyProperties, IEqualityComparer<@IfcEnergyProperties>, IEquatable<@IfcEnergyProperties>
+	public  partial class @IfcEnergyProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcEnergyProperties, IEquatable<@IfcEnergyProperties>
 	{
 		#region IIfcEnergyProperties explicit implementation
 		IfcEnergySequenceEnum? IIfcEnergyProperties.EnergySequence { get { return @EnergySequence; } }	
@@ -159,17 +159,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         public static bool operator !=(@IfcEnergyProperties left, @IfcEnergyProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcEnergyProperties x, @IfcEnergyProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEnergyProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

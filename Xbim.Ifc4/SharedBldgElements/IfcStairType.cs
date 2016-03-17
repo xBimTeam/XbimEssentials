@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcStairType", 1278)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStairType : IfcBuildingElementType, IInstantiableEntity, IIfcStairType, IEqualityComparer<@IfcStairType>, IEquatable<@IfcStairType>
+	public  partial class @IfcStairType : IfcBuildingElementType, IInstantiableEntity, IIfcStairType, IEquatable<@IfcStairType>
 	{
 		#region IIfcStairType explicit implementation
 		IfcStairTypeEnum IIfcStairType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcStairType left, @IfcStairType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStairType x, @IfcStairType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStairType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

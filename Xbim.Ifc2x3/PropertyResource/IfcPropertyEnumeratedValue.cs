@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertyEnumeratedValue", 629)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyEnumeratedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyEnumeratedValue, IEqualityComparer<@IfcPropertyEnumeratedValue>, IEquatable<@IfcPropertyEnumeratedValue>
+	public  partial class @IfcPropertyEnumeratedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyEnumeratedValue, IEquatable<@IfcPropertyEnumeratedValue>
 	{
 		#region IIfcPropertyEnumeratedValue explicit implementation
 		IEnumerable<IIfcValue> IIfcPropertyEnumeratedValue.EnumerationValues { get { return @EnumerationValues; } }	
@@ -155,17 +155,6 @@ namespace Xbim.Ifc2x3.PropertyResource
         public static bool operator !=(@IfcPropertyEnumeratedValue left, @IfcPropertyEnumeratedValue right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPropertyEnumeratedValue x, @IfcPropertyEnumeratedValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyEnumeratedValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

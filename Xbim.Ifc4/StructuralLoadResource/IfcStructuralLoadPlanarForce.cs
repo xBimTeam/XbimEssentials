@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadPlanarForce", 174)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadPlanarForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadPlanarForce, IEqualityComparer<@IfcStructuralLoadPlanarForce>, IEquatable<@IfcStructuralLoadPlanarForce>
+	public  partial class @IfcStructuralLoadPlanarForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadPlanarForce, IEquatable<@IfcStructuralLoadPlanarForce>
 	{
 		#region IIfcStructuralLoadPlanarForce explicit implementation
 		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceX { get { return @PlanarForceX; } }	
@@ -175,17 +175,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
         public static bool operator !=(@IfcStructuralLoadPlanarForce left, @IfcStructuralLoadPlanarForce right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralLoadPlanarForce x, @IfcStructuralLoadPlanarForce y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLoadPlanarForce obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

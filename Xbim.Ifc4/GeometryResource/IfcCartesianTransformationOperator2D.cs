@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcCartesianTransformationOperator2D", 145)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator2D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator2D, IEqualityComparer<@IfcCartesianTransformationOperator2D>, IEquatable<@IfcCartesianTransformationOperator2D>
+	public  partial class @IfcCartesianTransformationOperator2D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator2D, IEquatable<@IfcCartesianTransformationOperator2D>
 	{
 		#region IIfcCartesianTransformationOperator2D explicit implementation
 		 
@@ -130,17 +130,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcCartesianTransformationOperator2D left, @IfcCartesianTransformationOperator2D right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCartesianTransformationOperator2D x, @IfcCartesianTransformationOperator2D y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCartesianTransformationOperator2D obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

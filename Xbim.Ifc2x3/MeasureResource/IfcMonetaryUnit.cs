@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcMonetaryUnit", 545)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMonetaryUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMonetaryUnit, IEqualityComparer<@IfcMonetaryUnit>, IEquatable<@IfcMonetaryUnit>
+	public  partial class @IfcMonetaryUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMonetaryUnit, IEquatable<@IfcMonetaryUnit>
 	{
 		#region IIfcMonetaryUnit explicit implementation
 		IfcCurrencyEnum IIfcMonetaryUnit.Currency { get { return @Currency; } }	
@@ -240,17 +240,6 @@ namespace Xbim.Ifc2x3.MeasureResource
         public static bool operator !=(@IfcMonetaryUnit left, @IfcMonetaryUnit right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMonetaryUnit x, @IfcMonetaryUnit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMonetaryUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcCooledBeamType", 367)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCooledBeamType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcCooledBeamType, IEqualityComparer<@IfcCooledBeamType>, IEquatable<@IfcCooledBeamType>
+	public  partial class @IfcCooledBeamType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcCooledBeamType, IEquatable<@IfcCooledBeamType>
 	{
 		#region IIfcCooledBeamType explicit implementation
 		IfcCooledBeamTypeEnum IIfcCooledBeamType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcCooledBeamType left, @IfcCooledBeamType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCooledBeamType x, @IfcCooledBeamType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCooledBeamType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

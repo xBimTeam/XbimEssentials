@@ -41,7 +41,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Warranty", 22)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieWarranty : INotifyPropertyChanged, IInstantiableEntity, ICobieWarranty, IEqualityComparer<@CobieWarranty>, IEquatable<@CobieWarranty>
+	public  partial class @CobieWarranty : INotifyPropertyChanged, IInstantiableEntity, ICobieWarranty, IEquatable<@CobieWarranty>
 	{
 		#region ICobieWarranty explicit implementation
 		string ICobieWarranty.Description { get { return @Description; } }	
@@ -340,17 +340,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieWarranty left, @CobieWarranty right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieWarranty x, @CobieWarranty y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieWarranty obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

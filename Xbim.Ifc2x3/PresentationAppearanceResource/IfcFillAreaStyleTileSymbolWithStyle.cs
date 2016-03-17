@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyleTileSymbolWithStyle", 726)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleTileSymbolWithStyle : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTileSymbolWithStyle, IEqualityComparer<@IfcFillAreaStyleTileSymbolWithStyle>, IEquatable<@IfcFillAreaStyleTileSymbolWithStyle>
+	public  partial class @IfcFillAreaStyleTileSymbolWithStyle : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTileSymbolWithStyle, IEquatable<@IfcFillAreaStyleTileSymbolWithStyle>
 	{
 		#region IIfcFillAreaStyleTileSymbolWithStyle explicit implementation
 		IIfcAnnotationSymbolOccurrence IIfcFillAreaStyleTileSymbolWithStyle.Symbol { get { return @Symbol; } }	
@@ -133,17 +133,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcFillAreaStyleTileSymbolWithStyle left, @IfcFillAreaStyleTileSymbolWithStyle right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFillAreaStyleTileSymbolWithStyle x, @IfcFillAreaStyleTileSymbolWithStyle y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFillAreaStyleTileSymbolWithStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

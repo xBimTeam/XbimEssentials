@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcPolygonalBoundedHalfSpace", 623)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPolygonalBoundedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcPolygonalBoundedHalfSpace, IEqualityComparer<@IfcPolygonalBoundedHalfSpace>, IEquatable<@IfcPolygonalBoundedHalfSpace>
+	public  partial class @IfcPolygonalBoundedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcPolygonalBoundedHalfSpace, IEquatable<@IfcPolygonalBoundedHalfSpace>
 	{
 		#region IIfcPolygonalBoundedHalfSpace explicit implementation
 		IIfcAxis2Placement3D IIfcPolygonalBoundedHalfSpace.Position { get { return @Position; } }	
@@ -158,17 +158,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcPolygonalBoundedHalfSpace left, @IfcPolygonalBoundedHalfSpace right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPolygonalBoundedHalfSpace x, @IfcPolygonalBoundedHalfSpace y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPolygonalBoundedHalfSpace obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

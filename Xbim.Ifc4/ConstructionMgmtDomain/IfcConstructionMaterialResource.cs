@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	[ExpressType("IfcConstructionMaterialResource", 243)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstructionMaterialResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionMaterialResource, IEqualityComparer<@IfcConstructionMaterialResource>, IEquatable<@IfcConstructionMaterialResource>
+	public  partial class @IfcConstructionMaterialResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionMaterialResource, IEquatable<@IfcConstructionMaterialResource>
 	{
 		#region IIfcConstructionMaterialResource explicit implementation
 		IfcConstructionMaterialResourceTypeEnum? IIfcConstructionMaterialResource.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
         public static bool operator !=(@IfcConstructionMaterialResource left, @IfcConstructionMaterialResource right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConstructionMaterialResource x, @IfcConstructionMaterialResource y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConstructionMaterialResource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

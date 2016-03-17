@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcSwitchingDevice", 1290)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSwitchingDevice : IfcFlowController, IInstantiableEntity, IIfcSwitchingDevice, IEqualityComparer<@IfcSwitchingDevice>, IEquatable<@IfcSwitchingDevice>
+	public  partial class @IfcSwitchingDevice : IfcFlowController, IInstantiableEntity, IIfcSwitchingDevice, IEquatable<@IfcSwitchingDevice>
 	{
 		#region IIfcSwitchingDevice explicit implementation
 		IfcSwitchingDeviceTypeEnum? IIfcSwitchingDevice.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcSwitchingDevice left, @IfcSwitchingDevice right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSwitchingDevice x, @IfcSwitchingDevice y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSwitchingDevice obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

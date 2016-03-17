@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcRepresentationContext", 378)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRepresentationContext : IPersistEntity, INotifyPropertyChanged, IIfcRepresentationContext, IEqualityComparer<@IfcRepresentationContext>, IEquatable<@IfcRepresentationContext>
+	public abstract partial class @IfcRepresentationContext : IPersistEntity, INotifyPropertyChanged, IIfcRepresentationContext, IEquatable<@IfcRepresentationContext>
 	{
 		#region IIfcRepresentationContext explicit implementation
 		IfcLabel? IIfcRepresentationContext.ContextIdentifier { get { return @ContextIdentifier; } }	
@@ -274,17 +274,6 @@ namespace Xbim.Ifc4.RepresentationResource
         public static bool operator !=(@IfcRepresentationContext left, @IfcRepresentationContext right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRepresentationContext x, @IfcRepresentationContext y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRepresentationContext obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

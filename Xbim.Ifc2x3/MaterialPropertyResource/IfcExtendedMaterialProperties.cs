@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcExtendedMaterialProperties", 585)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExtendedMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcExtendedMaterialProperties, IEqualityComparer<@IfcExtendedMaterialProperties>, IEquatable<@IfcExtendedMaterialProperties>
+	public  partial class @IfcExtendedMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcExtendedMaterialProperties, IEquatable<@IfcExtendedMaterialProperties>
 	{
 		#region IIfcExtendedMaterialProperties explicit implementation
 		IEnumerable<IIfcProperty> IIfcExtendedMaterialProperties.ExtendedProperties { get { return @ExtendedProperties; } }	
@@ -174,17 +174,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         public static bool operator !=(@IfcExtendedMaterialProperties left, @IfcExtendedMaterialProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcExtendedMaterialProperties x, @IfcExtendedMaterialProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExtendedMaterialProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

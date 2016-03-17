@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcCurveBoundedSurface", 1146)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveBoundedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcCurveBoundedSurface, IEqualityComparer<@IfcCurveBoundedSurface>, IEquatable<@IfcCurveBoundedSurface>
+	public  partial class @IfcCurveBoundedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcCurveBoundedSurface, IEquatable<@IfcCurveBoundedSurface>
 	{
 		#region IIfcCurveBoundedSurface explicit implementation
 		IIfcSurface IIfcCurveBoundedSurface.BasisSurface { get { return @BasisSurface; } }	
@@ -170,17 +170,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcCurveBoundedSurface left, @IfcCurveBoundedSurface right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCurveBoundedSurface x, @IfcCurveBoundedSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCurveBoundedSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

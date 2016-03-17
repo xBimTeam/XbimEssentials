@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcObject", 21)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcObject : IfcObjectDefinition, IIfcObject, IEqualityComparer<@IfcObject>, IEquatable<@IfcObject>
+	public abstract partial class @IfcObject : IfcObjectDefinition, IIfcObject, IEquatable<@IfcObject>
 	{
 		#region IIfcObject explicit implementation
 		IfcLabel? IIfcObject.ObjectType { get { return @ObjectType; } }	
@@ -185,17 +185,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcObject left, @IfcObject right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcObject x, @IfcObject y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcObject obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

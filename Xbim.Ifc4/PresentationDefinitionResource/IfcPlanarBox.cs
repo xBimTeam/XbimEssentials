@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 {
 	[ExpressType("IfcPlanarBox", 762)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlanarBox : IfcPlanarExtent, IInstantiableEntity, IIfcPlanarBox, IEqualityComparer<@IfcPlanarBox>, IEquatable<@IfcPlanarBox>
+	public  partial class @IfcPlanarBox : IfcPlanarExtent, IInstantiableEntity, IIfcPlanarBox, IEquatable<@IfcPlanarBox>
 	{
 		#region IIfcPlanarBox explicit implementation
 		IIfcAxis2Placement IIfcPlanarBox.Placement { get { return @Placement; } }	
@@ -136,17 +136,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
         public static bool operator !=(@IfcPlanarBox left, @IfcPlanarBox right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPlanarBox x, @IfcPlanarBox y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPlanarBox obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

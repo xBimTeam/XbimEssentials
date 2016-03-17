@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcConnectedFaceSet", 160)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectedFaceSet : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcConnectedFaceSet, IEqualityComparer<@IfcConnectedFaceSet>, IEquatable<@IfcConnectedFaceSet>
+	public  partial class @IfcConnectedFaceSet : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcConnectedFaceSet, IEquatable<@IfcConnectedFaceSet>
 	{
 		#region IIfcConnectedFaceSet explicit implementation
 		IEnumerable<IIfcFace> IIfcConnectedFaceSet.CfsFaces { get { return @CfsFaces; } }	
@@ -129,17 +129,6 @@ namespace Xbim.Ifc2x3.TopologyResource
         public static bool operator !=(@IfcConnectedFaceSet left, @IfcConnectedFaceSet right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConnectedFaceSet x, @IfcConnectedFaceSet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConnectedFaceSet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

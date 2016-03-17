@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcMechanicalMaterialProperties", 436)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcMechanicalMaterialProperties, IEqualityComparer<@IfcMechanicalMaterialProperties>, IEquatable<@IfcMechanicalMaterialProperties>
+	public  partial class @IfcMechanicalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcMechanicalMaterialProperties, IEquatable<@IfcMechanicalMaterialProperties>
 	{
 		#region IIfcMechanicalMaterialProperties explicit implementation
 		IfcDynamicViscosityMeasure? IIfcMechanicalMaterialProperties.DynamicViscosity { get { return @DynamicViscosity; } }	
@@ -217,17 +217,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         public static bool operator !=(@IfcMechanicalMaterialProperties left, @IfcMechanicalMaterialProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMechanicalMaterialProperties x, @IfcMechanicalMaterialProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMechanicalMaterialProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

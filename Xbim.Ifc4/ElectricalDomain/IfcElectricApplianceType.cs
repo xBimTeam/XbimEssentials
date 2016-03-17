@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcElectricApplianceType", 192)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricApplianceType : IfcFlowTerminalType, IInstantiableEntity, IIfcElectricApplianceType, IEqualityComparer<@IfcElectricApplianceType>, IEquatable<@IfcElectricApplianceType>
+	public  partial class @IfcElectricApplianceType : IfcFlowTerminalType, IInstantiableEntity, IIfcElectricApplianceType, IEquatable<@IfcElectricApplianceType>
 	{
 		#region IIfcElectricApplianceType explicit implementation
 		IfcElectricApplianceTypeEnum IIfcElectricApplianceType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcElectricApplianceType left, @IfcElectricApplianceType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElectricApplianceType x, @IfcElectricApplianceType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElectricApplianceType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

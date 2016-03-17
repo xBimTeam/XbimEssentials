@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyleTextModel", 581)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleTextModel : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleTextModel, IEqualityComparer<@IfcTextStyleTextModel>, IEquatable<@IfcTextStyleTextModel>
+	public  partial class @IfcTextStyleTextModel : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleTextModel, IEquatable<@IfcTextStyleTextModel>
 	{
 		#region IIfcTextStyleTextModel explicit implementation
 		IIfcSizeSelect IIfcTextStyleTextModel.TextIndent { get { return @TextIndent; } }	
@@ -360,17 +360,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcTextStyleTextModel left, @IfcTextStyleTextModel right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTextStyleTextModel x, @IfcTextStyleTextModel y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextStyleTextModel obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

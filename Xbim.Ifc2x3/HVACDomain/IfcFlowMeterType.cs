@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcFlowMeterType", 366)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowMeterType : IfcFlowControllerType, IInstantiableEntity, IIfcFlowMeterType, IEqualityComparer<@IfcFlowMeterType>, IEquatable<@IfcFlowMeterType>
+	public  partial class @IfcFlowMeterType : IfcFlowControllerType, IInstantiableEntity, IIfcFlowMeterType, IEquatable<@IfcFlowMeterType>
 	{
 		#region IIfcFlowMeterType explicit implementation
 		IfcFlowMeterTypeEnum IIfcFlowMeterType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc2x3.HVACDomain
         public static bool operator !=(@IfcFlowMeterType left, @IfcFlowMeterType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFlowMeterType x, @IfcFlowMeterType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFlowMeterType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

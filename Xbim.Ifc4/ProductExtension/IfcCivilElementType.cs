@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcCivilElementType", 1123)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCivilElementType : IfcElementType, IInstantiableEntity, IIfcCivilElementType, IEqualityComparer<@IfcCivilElementType>, IEquatable<@IfcCivilElementType>
+	public  partial class @IfcCivilElementType : IfcElementType, IInstantiableEntity, IIfcCivilElementType, IEquatable<@IfcCivilElementType>
 	{
 		#region IIfcCivilElementType explicit implementation
 		 
@@ -117,17 +117,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcCivilElementType left, @IfcCivilElementType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCivilElementType x, @IfcCivilElementType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCivilElementType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

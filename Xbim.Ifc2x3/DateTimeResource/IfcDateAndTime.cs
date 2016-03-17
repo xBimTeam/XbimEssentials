@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcDateAndTime", 373)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDateAndTime : INotifyPropertyChanged, IInstantiableEntity, IIfcDateAndTime, IEqualityComparer<@IfcDateAndTime>, IEquatable<@IfcDateAndTime>
+	public  partial class @IfcDateAndTime : INotifyPropertyChanged, IInstantiableEntity, IIfcDateAndTime, IEquatable<@IfcDateAndTime>
 	{
 		#region IIfcDateAndTime explicit implementation
 		IIfcCalendarDate IIfcDateAndTime.DateComponent { get { return @DateComponent; } }	
@@ -261,17 +261,6 @@ namespace Xbim.Ifc2x3.DateTimeResource
         public static bool operator !=(@IfcDateAndTime left, @IfcDateAndTime right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDateAndTime x, @IfcDateAndTime y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDateAndTime obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

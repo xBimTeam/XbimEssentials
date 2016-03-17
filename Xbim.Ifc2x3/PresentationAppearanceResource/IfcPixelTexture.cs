@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcPixelTexture", 728)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPixelTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcPixelTexture, IEqualityComparer<@IfcPixelTexture>, IEquatable<@IfcPixelTexture>
+	public  partial class @IfcPixelTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcPixelTexture, IEquatable<@IfcPixelTexture>
 	{
 		#region IIfcPixelTexture explicit implementation
 		IfcInteger IIfcPixelTexture.Width { get { return @Width; } }	
@@ -200,17 +200,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcPixelTexture left, @IfcPixelTexture right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPixelTexture x, @IfcPixelTexture y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPixelTexture obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

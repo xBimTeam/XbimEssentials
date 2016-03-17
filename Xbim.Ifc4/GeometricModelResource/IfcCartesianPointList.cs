@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcCartesianPointList", 1116)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcCartesianPointList : IfcGeometricRepresentationItem, IIfcCartesianPointList, IEqualityComparer<@IfcCartesianPointList>, IEquatable<@IfcCartesianPointList>
+	public abstract partial class @IfcCartesianPointList : IfcGeometricRepresentationItem, IIfcCartesianPointList, IEquatable<@IfcCartesianPointList>
 	{
 		#region IIfcCartesianPointList explicit implementation
 		 
@@ -120,17 +120,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcCartesianPointList left, @IfcCartesianPointList right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCartesianPointList x, @IfcCartesianPointList y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCartesianPointList obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

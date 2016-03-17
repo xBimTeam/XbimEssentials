@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcSolidModel", 150)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSolidModel : IfcGeometricRepresentationItem, IIfcSolidModel, IEqualityComparer<@IfcSolidModel>, IEquatable<@IfcSolidModel>
+	public abstract partial class @IfcSolidModel : IfcGeometricRepresentationItem, IIfcSolidModel, IEquatable<@IfcSolidModel>
 	{
 		#region IIfcSolidModel explicit implementation
 		 
@@ -118,17 +118,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcSolidModel left, @IfcSolidModel right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSolidModel x, @IfcSolidModel y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSolidModel obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

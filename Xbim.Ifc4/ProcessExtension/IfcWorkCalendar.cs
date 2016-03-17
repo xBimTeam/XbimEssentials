@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcWorkCalendar", 1318)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWorkCalendar : IfcControl, IInstantiableEntity, IIfcWorkCalendar, IEqualityComparer<@IfcWorkCalendar>, IEquatable<@IfcWorkCalendar>
+	public  partial class @IfcWorkCalendar : IfcControl, IInstantiableEntity, IIfcWorkCalendar, IEquatable<@IfcWorkCalendar>
 	{
 		#region IIfcWorkCalendar explicit implementation
 		IEnumerable<IIfcWorkTime> IIfcWorkCalendar.WorkingTimes { get { return @WorkingTimes; } }	
@@ -178,17 +178,6 @@ namespace Xbim.Ifc4.ProcessExtension
         public static bool operator !=(@IfcWorkCalendar left, @IfcWorkCalendar right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcWorkCalendar x, @IfcWorkCalendar y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWorkCalendar obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

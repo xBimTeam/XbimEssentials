@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcSurfaceOfLinearExtrusion", 256)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceOfLinearExtrusion : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfLinearExtrusion, IEqualityComparer<@IfcSurfaceOfLinearExtrusion>, IEquatable<@IfcSurfaceOfLinearExtrusion>
+	public  partial class @IfcSurfaceOfLinearExtrusion : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfLinearExtrusion, IEquatable<@IfcSurfaceOfLinearExtrusion>
 	{
 		#region IIfcSurfaceOfLinearExtrusion explicit implementation
 		IIfcDirection IIfcSurfaceOfLinearExtrusion.ExtrudedDirection { get { return @ExtrudedDirection; } }	
@@ -174,17 +174,6 @@ namespace Xbim.Ifc2x3.GeometryResource
         public static bool operator !=(@IfcSurfaceOfLinearExtrusion left, @IfcSurfaceOfLinearExtrusion right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSurfaceOfLinearExtrusion x, @IfcSurfaceOfLinearExtrusion y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceOfLinearExtrusion obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

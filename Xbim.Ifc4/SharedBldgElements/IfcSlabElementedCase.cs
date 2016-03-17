@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcSlabElementedCase", 1268)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSlabElementedCase : IfcSlab, IInstantiableEntity, IIfcSlabElementedCase, IEqualityComparer<@IfcSlabElementedCase>, IEquatable<@IfcSlabElementedCase>
+	public  partial class @IfcSlabElementedCase : IfcSlab, IInstantiableEntity, IIfcSlabElementedCase, IEquatable<@IfcSlabElementedCase>
 	{
 		#region IIfcSlabElementedCase explicit implementation
 		 
@@ -118,17 +118,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcSlabElementedCase left, @IfcSlabElementedCase right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSlabElementedCase x, @IfcSlabElementedCase y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSlabElementedCase obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

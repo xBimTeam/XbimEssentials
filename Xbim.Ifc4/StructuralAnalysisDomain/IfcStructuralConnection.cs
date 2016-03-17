@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralConnection", 265)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralConnection : IfcStructuralItem, IIfcStructuralConnection, IEqualityComparer<@IfcStructuralConnection>, IEquatable<@IfcStructuralConnection>
+	public abstract partial class @IfcStructuralConnection : IfcStructuralItem, IIfcStructuralConnection, IEquatable<@IfcStructuralConnection>
 	{
 		#region IIfcStructuralConnection explicit implementation
 		IIfcBoundaryCondition IIfcStructuralConnection.AppliedCondition { get { return @AppliedCondition; } }	
@@ -154,17 +154,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
         public static bool operator !=(@IfcStructuralConnection left, @IfcStructuralConnection right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralConnection x, @IfcStructuralConnection y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralConnection obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

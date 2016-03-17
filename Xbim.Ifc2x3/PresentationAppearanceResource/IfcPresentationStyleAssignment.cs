@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcPresentationStyleAssignment", 584)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationStyleAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationStyleAssignment, IEqualityComparer<@IfcPresentationStyleAssignment>, IEquatable<@IfcPresentationStyleAssignment>
+	public  partial class @IfcPresentationStyleAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationStyleAssignment, IEquatable<@IfcPresentationStyleAssignment>
 	{
 		#region IIfcPresentationStyleAssignment explicit implementation
 		IEnumerable<IIfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles { get { return @Styles; } }	
@@ -238,17 +238,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcPresentationStyleAssignment left, @IfcPresentationStyleAssignment right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPresentationStyleAssignment x, @IfcPresentationStyleAssignment y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPresentationStyleAssignment obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

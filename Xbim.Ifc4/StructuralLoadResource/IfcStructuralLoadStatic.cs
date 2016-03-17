@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadStatic", 37)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralLoadStatic : IfcStructuralLoadOrResult, IIfcStructuralLoadStatic, IEqualityComparer<@IfcStructuralLoadStatic>, IEquatable<@IfcStructuralLoadStatic>
+	public abstract partial class @IfcStructuralLoadStatic : IfcStructuralLoadOrResult, IIfcStructuralLoadStatic, IEquatable<@IfcStructuralLoadStatic>
 	{
 		#region IIfcStructuralLoadStatic explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
         public static bool operator !=(@IfcStructuralLoadStatic left, @IfcStructuralLoadStatic right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralLoadStatic x, @IfcStructuralLoadStatic y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLoadStatic obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcBoundingBox", 151)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundingBox : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBoundingBox, IEqualityComparer<@IfcBoundingBox>, IEquatable<@IfcBoundingBox>
+	public  partial class @IfcBoundingBox : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBoundingBox, IEquatable<@IfcBoundingBox>
 	{
 		#region IIfcBoundingBox explicit implementation
 		IIfcCartesianPoint IIfcBoundingBox.Corner { get { return @Corner; } }	
@@ -207,17 +207,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
         public static bool operator !=(@IfcBoundingBox left, @IfcBoundingBox right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBoundingBox x, @IfcBoundingBox y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBoundingBox obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

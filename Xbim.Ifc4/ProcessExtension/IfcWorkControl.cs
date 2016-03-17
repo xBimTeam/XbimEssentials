@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcWorkControl", 185)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcWorkControl : IfcControl, IIfcWorkControl, IEqualityComparer<@IfcWorkControl>, IEquatable<@IfcWorkControl>
+	public abstract partial class @IfcWorkControl : IfcControl, IIfcWorkControl, IEquatable<@IfcWorkControl>
 	{
 		#region IIfcWorkControl explicit implementation
 		IfcDateTime IIfcWorkControl.CreationDate { get { return @CreationDate; } }	
@@ -261,17 +261,6 @@ namespace Xbim.Ifc4.ProcessExtension
         public static bool operator !=(@IfcWorkControl left, @IfcWorkControl right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcWorkControl x, @IfcWorkControl y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWorkControl obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

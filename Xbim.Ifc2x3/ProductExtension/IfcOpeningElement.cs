@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcOpeningElement", 498)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOpeningElement : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcOpeningElement, IEqualityComparer<@IfcOpeningElement>, IEquatable<@IfcOpeningElement>
+	public  partial class @IfcOpeningElement : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcOpeningElement, IEquatable<@IfcOpeningElement>
 	{
 		#region IIfcOpeningElement explicit implementation
 		 
@@ -129,17 +129,6 @@ namespace Xbim.Ifc2x3.ProductExtension
         public static bool operator !=(@IfcOpeningElement left, @IfcOpeningElement right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOpeningElement x, @IfcOpeningElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOpeningElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

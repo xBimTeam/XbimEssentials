@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcExternallyDefinedHatchStyle", 724)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternallyDefinedHatchStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedHatchStyle, IEqualityComparer<@IfcExternallyDefinedHatchStyle>, IEquatable<@IfcExternallyDefinedHatchStyle>
+	public  partial class @IfcExternallyDefinedHatchStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedHatchStyle, IEquatable<@IfcExternallyDefinedHatchStyle>
 	{
 		#region IIfcExternallyDefinedHatchStyle explicit implementation
 		 
@@ -112,17 +112,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcExternallyDefinedHatchStyle left, @IfcExternallyDefinedHatchStyle right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcExternallyDefinedHatchStyle x, @IfcExternallyDefinedHatchStyle y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExternallyDefinedHatchStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

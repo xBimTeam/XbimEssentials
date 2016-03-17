@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcRelSchedulesCostItems", 700)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSchedulesCostItems : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelSchedulesCostItems, IEqualityComparer<@IfcRelSchedulesCostItems>, IEquatable<@IfcRelSchedulesCostItems>
+	public  partial class @IfcRelSchedulesCostItems : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelSchedulesCostItems, IEquatable<@IfcRelSchedulesCostItems>
 	{
 		#region IIfcRelSchedulesCostItems explicit implementation
 		 
@@ -118,17 +118,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
         public static bool operator !=(@IfcRelSchedulesCostItems left, @IfcRelSchedulesCostItems right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelSchedulesCostItems x, @IfcRelSchedulesCostItems y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelSchedulesCostItems obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

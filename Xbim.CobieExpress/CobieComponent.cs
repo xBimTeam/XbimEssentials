@@ -42,7 +42,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Component", 23)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieComponent : CobieTypeOrComponent, IInstantiableEntity, ICobieComponent, IEqualityComparer<@CobieComponent>, IEquatable<@CobieComponent>
+	public  partial class @CobieComponent : CobieTypeOrComponent, IInstantiableEntity, ICobieComponent, IEquatable<@CobieComponent>
 	{
 		#region ICobieComponent explicit implementation
 		string ICobieComponent.SerialNumber { get { return @SerialNumber; } }	
@@ -299,17 +299,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieComponent left, @CobieComponent right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieComponent x, @CobieComponent y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieComponent obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

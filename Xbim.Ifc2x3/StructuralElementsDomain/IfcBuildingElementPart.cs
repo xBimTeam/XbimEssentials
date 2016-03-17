@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcBuildingElementPart", 220)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuildingElementPart : IfcBuildingElementComponent, IInstantiableEntity, IIfcBuildingElementPart, IEqualityComparer<@IfcBuildingElementPart>, IEquatable<@IfcBuildingElementPart>
+	public  partial class @IfcBuildingElementPart : IfcBuildingElementComponent, IInstantiableEntity, IIfcBuildingElementPart, IEquatable<@IfcBuildingElementPart>
 	{
 		#region IIfcBuildingElementPart explicit implementation
 		 
@@ -116,17 +116,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
         public static bool operator !=(@IfcBuildingElementPart left, @IfcBuildingElementPart right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBuildingElementPart x, @IfcBuildingElementPart y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBuildingElementPart obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

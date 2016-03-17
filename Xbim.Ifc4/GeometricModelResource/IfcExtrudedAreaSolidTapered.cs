@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcExtrudedAreaSolidTapered", 1176)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExtrudedAreaSolidTapered : IfcExtrudedAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolidTapered, IEqualityComparer<@IfcExtrudedAreaSolidTapered>, IEquatable<@IfcExtrudedAreaSolidTapered>
+	public  partial class @IfcExtrudedAreaSolidTapered : IfcExtrudedAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolidTapered, IEquatable<@IfcExtrudedAreaSolidTapered>
 	{
 		#region IIfcExtrudedAreaSolidTapered explicit implementation
 		IIfcProfileDef IIfcExtrudedAreaSolidTapered.EndSweptArea { get { return @EndSweptArea; } }	
@@ -139,17 +139,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcExtrudedAreaSolidTapered left, @IfcExtrudedAreaSolidTapered right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcExtrudedAreaSolidTapered x, @IfcExtrudedAreaSolidTapered y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExtrudedAreaSolidTapered obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

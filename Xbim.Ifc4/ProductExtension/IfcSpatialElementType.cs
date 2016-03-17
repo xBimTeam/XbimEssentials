@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcSpatialElementType", 1274)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSpatialElementType : IfcTypeProduct, IIfcSpatialElementType, IEqualityComparer<@IfcSpatialElementType>, IEquatable<@IfcSpatialElementType>
+	public abstract partial class @IfcSpatialElementType : IfcTypeProduct, IIfcSpatialElementType, IEquatable<@IfcSpatialElementType>
 	{
 		#region IIfcSpatialElementType explicit implementation
 		IfcLabel? IIfcSpatialElementType.ElementType { get { return @ElementType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcSpatialElementType left, @IfcSpatialElementType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSpatialElementType x, @IfcSpatialElementType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpatialElementType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

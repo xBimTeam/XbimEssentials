@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcCartesianTransformationOperator3DnonUniform", 479)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D, IInstantiableEntity, IIfcCartesianTransformationOperator3DnonUniform, IEqualityComparer<@IfcCartesianTransformationOperator3DnonUniform>, IEquatable<@IfcCartesianTransformationOperator3DnonUniform>
+	public  partial class @IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D, IInstantiableEntity, IIfcCartesianTransformationOperator3DnonUniform, IEquatable<@IfcCartesianTransformationOperator3DnonUniform>
 	{
 		#region IIfcCartesianTransformationOperator3DnonUniform explicit implementation
 		IfcReal? IIfcCartesianTransformationOperator3DnonUniform.Scale2 { get { return @Scale2; } }	
@@ -187,17 +187,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcCartesianTransformationOperator3DnonUniform left, @IfcCartesianTransformationOperator3DnonUniform right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCartesianTransformationOperator3DnonUniform x, @IfcCartesianTransformationOperator3DnonUniform y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCartesianTransformationOperator3DnonUniform obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

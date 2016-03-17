@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcTask", 72)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IIfcTask, IEqualityComparer<@IfcTask>, IEquatable<@IfcTask>
+	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IIfcTask, IEquatable<@IfcTask>
 	{
 		#region IIfcTask explicit implementation
 		IfcIdentifier IIfcTask.TaskId { get { return @TaskId; } }	
@@ -223,17 +223,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
         public static bool operator !=(@IfcTask left, @IfcTask right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTask x, @IfcTask y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTask obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

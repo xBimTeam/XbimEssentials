@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcDuctSegment", 1154)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDuctSegment : IfcFlowSegment, IInstantiableEntity, IIfcDuctSegment, IEqualityComparer<@IfcDuctSegment>, IEquatable<@IfcDuctSegment>
+	public  partial class @IfcDuctSegment : IfcFlowSegment, IInstantiableEntity, IIfcDuctSegment, IEquatable<@IfcDuctSegment>
 	{
 		#region IIfcDuctSegment explicit implementation
 		IfcDuctSegmentTypeEnum? IIfcDuctSegment.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcDuctSegment left, @IfcDuctSegment right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDuctSegment x, @IfcDuctSegment y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDuctSegment obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

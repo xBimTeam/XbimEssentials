@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcCondition", 482)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCondition : IfcGroup, IInstantiableEntity, IIfcCondition, IEqualityComparer<@IfcCondition>, IEquatable<@IfcCondition>
+	public  partial class @IfcCondition : IfcGroup, IInstantiableEntity, IIfcCondition, IEquatable<@IfcCondition>
 	{
 		#region IIfcCondition explicit implementation
 		 
@@ -114,17 +114,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
         public static bool operator !=(@IfcCondition left, @IfcCondition right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCondition x, @IfcCondition y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCondition obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

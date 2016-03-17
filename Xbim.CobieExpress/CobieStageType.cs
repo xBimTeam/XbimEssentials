@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("StageType", 54)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieStageType : CobiePickValue, IInstantiableEntity, ICobieStageType, IEqualityComparer<@CobieStageType>, IEquatable<@CobieStageType>
+	public  partial class @CobieStageType : CobiePickValue, IInstantiableEntity, ICobieStageType, IEquatable<@CobieStageType>
 	{
 		#region ICobieStageType explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieStageType left, @CobieStageType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieStageType x, @CobieStageType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieStageType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

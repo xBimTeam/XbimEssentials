@@ -45,7 +45,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcRepresentation", 87)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRepresentation : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentation, IEqualityComparer<@IfcRepresentation>, IEquatable<@IfcRepresentation>
+	public  partial class @IfcRepresentation : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentation, IEquatable<@IfcRepresentation>
 	{
 		#region IIfcRepresentation explicit implementation
 		IIfcRepresentationContext IIfcRepresentation.ContextOfItems { get { return @ContextOfItems; } }	
@@ -337,17 +337,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
         public static bool operator !=(@IfcRepresentation left, @IfcRepresentation right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRepresentation x, @IfcRepresentation y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRepresentation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

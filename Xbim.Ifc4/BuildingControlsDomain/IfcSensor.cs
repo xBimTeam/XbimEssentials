@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	[ExpressType("IfcSensor", 1264)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSensor : IfcDistributionControlElement, IInstantiableEntity, IIfcSensor, IEqualityComparer<@IfcSensor>, IEquatable<@IfcSensor>
+	public  partial class @IfcSensor : IfcDistributionControlElement, IInstantiableEntity, IIfcSensor, IEquatable<@IfcSensor>
 	{
 		#region IIfcSensor explicit implementation
 		IfcSensorTypeEnum? IIfcSensor.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
         public static bool operator !=(@IfcSensor left, @IfcSensor right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSensor x, @IfcSensor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSensor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	[ExpressType("IfcAlarmType", 275)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAlarmType : IfcDistributionControlElementType, IInstantiableEntity, IIfcAlarmType, IEqualityComparer<@IfcAlarmType>, IEquatable<@IfcAlarmType>
+	public  partial class @IfcAlarmType : IfcDistributionControlElementType, IInstantiableEntity, IIfcAlarmType, IEquatable<@IfcAlarmType>
 	{
 		#region IIfcAlarmType explicit implementation
 		IfcAlarmTypeEnum IIfcAlarmType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
         public static bool operator !=(@IfcAlarmType left, @IfcAlarmType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAlarmType x, @IfcAlarmType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAlarmType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

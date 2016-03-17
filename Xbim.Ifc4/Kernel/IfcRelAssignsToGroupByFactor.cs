@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelAssignsToGroupByFactor", 1248)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToGroupByFactor : IfcRelAssignsToGroup, IInstantiableEntity, IIfcRelAssignsToGroupByFactor, IEqualityComparer<@IfcRelAssignsToGroupByFactor>, IEquatable<@IfcRelAssignsToGroupByFactor>
+	public  partial class @IfcRelAssignsToGroupByFactor : IfcRelAssignsToGroup, IInstantiableEntity, IIfcRelAssignsToGroupByFactor, IEquatable<@IfcRelAssignsToGroupByFactor>
 	{
 		#region IIfcRelAssignsToGroupByFactor explicit implementation
 		IfcRatioMeasure IIfcRelAssignsToGroupByFactor.Factor { get { return @Factor; } }	
@@ -141,17 +141,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcRelAssignsToGroupByFactor left, @IfcRelAssignsToGroupByFactor right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssignsToGroupByFactor x, @IfcRelAssignsToGroupByFactor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToGroupByFactor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

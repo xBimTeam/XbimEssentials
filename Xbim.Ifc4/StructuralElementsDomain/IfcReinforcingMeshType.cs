@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IfcReinforcingMeshType", 1247)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcingMeshType : IfcReinforcingElementType, IInstantiableEntity, IIfcReinforcingMeshType, IEqualityComparer<@IfcReinforcingMeshType>, IEquatable<@IfcReinforcingMeshType>
+	public  partial class @IfcReinforcingMeshType : IfcReinforcingElementType, IInstantiableEntity, IIfcReinforcingMeshType, IEquatable<@IfcReinforcingMeshType>
 	{
 		#region IIfcReinforcingMeshType explicit implementation
 		IfcReinforcingMeshTypeEnum IIfcReinforcingMeshType.PredefinedType { get { return @PredefinedType; } }	
@@ -343,17 +343,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
         public static bool operator !=(@IfcReinforcingMeshType left, @IfcReinforcingMeshType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcReinforcingMeshType x, @IfcReinforcingMeshType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReinforcingMeshType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

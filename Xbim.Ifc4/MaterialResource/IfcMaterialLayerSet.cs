@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialLayerSet", 205)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerSet : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialLayerSet, IEqualityComparer<@IfcMaterialLayerSet>, IEquatable<@IfcMaterialLayerSet>
+	public  partial class @IfcMaterialLayerSet : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialLayerSet, IEquatable<@IfcMaterialLayerSet>
 	{
 		#region IIfcMaterialLayerSet explicit implementation
 		IEnumerable<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers { get { return @MaterialLayers; } }	
@@ -185,17 +185,6 @@ namespace Xbim.Ifc4.MaterialResource
         public static bool operator !=(@IfcMaterialLayerSet left, @IfcMaterialLayerSet right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialLayerSet x, @IfcMaterialLayerSet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialLayerSet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelAssociatesMaterial", 497)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesMaterial : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesMaterial, IEqualityComparer<@IfcRelAssociatesMaterial>, IEquatable<@IfcRelAssociatesMaterial>
+	public  partial class @IfcRelAssociatesMaterial : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesMaterial, IEquatable<@IfcRelAssociatesMaterial>
 	{
 		#region IIfcRelAssociatesMaterial explicit implementation
 		IIfcMaterialSelect IIfcRelAssociatesMaterial.RelatingMaterial { get { return @RelatingMaterial; } }	
@@ -142,17 +142,6 @@ namespace Xbim.Ifc2x3.ProductExtension
         public static bool operator !=(@IfcRelAssociatesMaterial left, @IfcRelAssociatesMaterial right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssociatesMaterial x, @IfcRelAssociatesMaterial y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssociatesMaterial obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcUnitaryEquipment", 1310)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcUnitaryEquipment : IfcEnergyConversionDevice, IInstantiableEntity, IIfcUnitaryEquipment, IEqualityComparer<@IfcUnitaryEquipment>, IEquatable<@IfcUnitaryEquipment>
+	public  partial class @IfcUnitaryEquipment : IfcEnergyConversionDevice, IInstantiableEntity, IIfcUnitaryEquipment, IEquatable<@IfcUnitaryEquipment>
 	{
 		#region IIfcUnitaryEquipment explicit implementation
 		IfcUnitaryEquipmentTypeEnum? IIfcUnitaryEquipment.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcUnitaryEquipment left, @IfcUnitaryEquipment right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcUnitaryEquipment x, @IfcUnitaryEquipment y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcUnitaryEquipment obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

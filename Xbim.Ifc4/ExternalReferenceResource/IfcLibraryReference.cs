@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IfcLibraryReference", 598)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLibraryReference : IfcExternalReference, IInstantiableEntity, IIfcLibraryReference, IEqualityComparer<@IfcLibraryReference>, IEquatable<@IfcLibraryReference>
+	public  partial class @IfcLibraryReference : IfcExternalReference, IInstantiableEntity, IIfcLibraryReference, IEquatable<@IfcLibraryReference>
 	{
 		#region IIfcLibraryReference explicit implementation
 		IfcText? IIfcLibraryReference.Description { get { return @Description; } }	
@@ -192,17 +192,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
         public static bool operator !=(@IfcLibraryReference left, @IfcLibraryReference right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLibraryReference x, @IfcLibraryReference y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLibraryReference obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

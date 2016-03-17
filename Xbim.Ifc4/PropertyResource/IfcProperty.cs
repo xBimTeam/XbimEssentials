@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IfcProperty", 5)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProperty : IfcPropertyAbstraction, IIfcProperty, IEqualityComparer<@IfcProperty>, IEquatable<@IfcProperty>
+	public abstract partial class @IfcProperty : IfcPropertyAbstraction, IIfcProperty, IEquatable<@IfcProperty>
 	{
 		#region IIfcProperty explicit implementation
 		IfcIdentifier IIfcProperty.Name { get { return @Name; } }	
@@ -223,17 +223,6 @@ namespace Xbim.Ifc4.PropertyResource
         public static bool operator !=(@IfcProperty left, @IfcProperty right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcProperty x, @IfcProperty y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProperty obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

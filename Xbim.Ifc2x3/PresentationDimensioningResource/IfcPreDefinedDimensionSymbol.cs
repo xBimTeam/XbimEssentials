@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcPreDefinedDimensionSymbol", 747)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPreDefinedDimensionSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedDimensionSymbol, IEqualityComparer<@IfcPreDefinedDimensionSymbol>, IEquatable<@IfcPreDefinedDimensionSymbol>
+	public  partial class @IfcPreDefinedDimensionSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedDimensionSymbol, IEquatable<@IfcPreDefinedDimensionSymbol>
 	{
 		#region IIfcPreDefinedDimensionSymbol explicit implementation
 		 
@@ -111,17 +111,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
         public static bool operator !=(@IfcPreDefinedDimensionSymbol left, @IfcPreDefinedDimensionSymbol right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPreDefinedDimensionSymbol x, @IfcPreDefinedDimensionSymbol y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPreDefinedDimensionSymbol obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

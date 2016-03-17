@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IfcPreDefinedProperties", 1225)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedProperties : IfcPropertyAbstraction, IIfcPreDefinedProperties, IEqualityComparer<@IfcPreDefinedProperties>, IEquatable<@IfcPreDefinedProperties>
+	public abstract partial class @IfcPreDefinedProperties : IfcPropertyAbstraction, IIfcPreDefinedProperties, IEquatable<@IfcPreDefinedProperties>
 	{
 		#region IIfcPreDefinedProperties explicit implementation
 		 
@@ -103,17 +103,6 @@ namespace Xbim.Ifc4.PropertyResource
         public static bool operator !=(@IfcPreDefinedProperties left, @IfcPreDefinedProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPreDefinedProperties x, @IfcPreDefinedProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPreDefinedProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

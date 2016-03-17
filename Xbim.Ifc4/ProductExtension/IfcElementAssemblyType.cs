@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcElementAssemblyType", 1163)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElementAssemblyType : IfcElementType, IInstantiableEntity, IIfcElementAssemblyType, IEqualityComparer<@IfcElementAssemblyType>, IEquatable<@IfcElementAssemblyType>
+	public  partial class @IfcElementAssemblyType : IfcElementType, IInstantiableEntity, IIfcElementAssemblyType, IEquatable<@IfcElementAssemblyType>
 	{
 		#region IIfcElementAssemblyType explicit implementation
 		IfcElementAssemblyTypeEnum IIfcElementAssemblyType.PredefinedType { get { return @PredefinedType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcElementAssemblyType left, @IfcElementAssemblyType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElementAssemblyType x, @IfcElementAssemblyType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElementAssemblyType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcLinearDimension", 746)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLinearDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IIfcLinearDimension, IEqualityComparer<@IfcLinearDimension>, IEquatable<@IfcLinearDimension>
+	public  partial class @IfcLinearDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IIfcLinearDimension, IEquatable<@IfcLinearDimension>
 	{
 		#region IIfcLinearDimension explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
         public static bool operator !=(@IfcLinearDimension left, @IfcLinearDimension right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLinearDimension x, @IfcLinearDimension y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLinearDimension obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

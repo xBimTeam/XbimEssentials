@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcFanType", 651)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFanType : IfcFlowMovingDeviceType, IInstantiableEntity, IIfcFanType, IEqualityComparer<@IfcFanType>, IEquatable<@IfcFanType>
+	public  partial class @IfcFanType : IfcFlowMovingDeviceType, IInstantiableEntity, IIfcFanType, IEquatable<@IfcFanType>
 	{
 		#region IIfcFanType explicit implementation
 		IfcFanTypeEnum IIfcFanType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcFanType left, @IfcFanType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFanType x, @IfcFanType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFanType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

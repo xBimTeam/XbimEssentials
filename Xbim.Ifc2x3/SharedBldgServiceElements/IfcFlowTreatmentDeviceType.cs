@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcFlowTreatmentDeviceType", 140)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFlowTreatmentDeviceType : IfcDistributionFlowElementType, IIfcFlowTreatmentDeviceType, IEqualityComparer<@IfcFlowTreatmentDeviceType>, IEquatable<@IfcFlowTreatmentDeviceType>
+	public abstract partial class @IfcFlowTreatmentDeviceType : IfcDistributionFlowElementType, IIfcFlowTreatmentDeviceType, IEquatable<@IfcFlowTreatmentDeviceType>
 	{
 		#region IIfcFlowTreatmentDeviceType explicit implementation
 		 
@@ -117,17 +117,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         public static bool operator !=(@IfcFlowTreatmentDeviceType left, @IfcFlowTreatmentDeviceType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFlowTreatmentDeviceType x, @IfcFlowTreatmentDeviceType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFlowTreatmentDeviceType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

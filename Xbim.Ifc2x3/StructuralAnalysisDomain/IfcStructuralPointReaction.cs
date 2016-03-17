@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralPointReaction", 354)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralPointReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralPointReaction, IEqualityComparer<@IfcStructuralPointReaction>, IEquatable<@IfcStructuralPointReaction>
+	public  partial class @IfcStructuralPointReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralPointReaction, IEquatable<@IfcStructuralPointReaction>
 	{
 		#region IIfcStructuralPointReaction explicit implementation
 		 
@@ -118,17 +118,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         public static bool operator !=(@IfcStructuralPointReaction left, @IfcStructuralPointReaction right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralPointReaction x, @IfcStructuralPointReaction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralPointReaction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

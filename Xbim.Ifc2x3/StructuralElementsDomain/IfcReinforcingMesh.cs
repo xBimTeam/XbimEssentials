@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcReinforcingMesh", 531)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcingMesh : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingMesh, IEqualityComparer<@IfcReinforcingMesh>, IEquatable<@IfcReinforcingMesh>
+	public  partial class @IfcReinforcingMesh : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingMesh, IEquatable<@IfcReinforcingMesh>
 	{
 		#region IIfcReinforcingMesh explicit implementation
 		IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshLength { get { return @MeshLength; } }	
@@ -283,17 +283,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
         public static bool operator !=(@IfcReinforcingMesh left, @IfcReinforcingMesh right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcReinforcingMesh x, @IfcReinforcingMesh y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReinforcingMesh obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

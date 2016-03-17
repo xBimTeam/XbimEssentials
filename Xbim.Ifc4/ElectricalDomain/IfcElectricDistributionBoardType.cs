@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcElectricDistributionBoardType", 1158)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricDistributionBoardType : IfcFlowControllerType, IInstantiableEntity, IIfcElectricDistributionBoardType, IEqualityComparer<@IfcElectricDistributionBoardType>, IEquatable<@IfcElectricDistributionBoardType>
+	public  partial class @IfcElectricDistributionBoardType : IfcFlowControllerType, IInstantiableEntity, IIfcElectricDistributionBoardType, IEquatable<@IfcElectricDistributionBoardType>
 	{
 		#region IIfcElectricDistributionBoardType explicit implementation
 		IfcElectricDistributionBoardTypeEnum IIfcElectricDistributionBoardType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcElectricDistributionBoardType left, @IfcElectricDistributionBoardType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElectricDistributionBoardType x, @IfcElectricDistributionBoardType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElectricDistributionBoardType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IfcDraughtingPreDefinedTextFont", 761)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingPreDefinedTextFont : IfcPreDefinedTextFont, IInstantiableEntity, IIfcDraughtingPreDefinedTextFont, IEqualityComparer<@IfcDraughtingPreDefinedTextFont>, IEquatable<@IfcDraughtingPreDefinedTextFont>
+	public  partial class @IfcDraughtingPreDefinedTextFont : IfcPreDefinedTextFont, IInstantiableEntity, IIfcDraughtingPreDefinedTextFont, IEquatable<@IfcDraughtingPreDefinedTextFont>
 	{
 		#region IIfcDraughtingPreDefinedTextFont explicit implementation
 		 
@@ -110,17 +110,6 @@ namespace Xbim.Ifc2x3.PresentationResource
         public static bool operator !=(@IfcDraughtingPreDefinedTextFont left, @IfcDraughtingPreDefinedTextFont right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDraughtingPreDefinedTextFont x, @IfcDraughtingPreDefinedTextFont y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDraughtingPreDefinedTextFont obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

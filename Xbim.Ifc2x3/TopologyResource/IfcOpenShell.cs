@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcOpenShell", 488)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOpenShell : IfcConnectedFaceSet, IInstantiableEntity, IIfcOpenShell, IEqualityComparer<@IfcOpenShell>, IEquatable<@IfcOpenShell>
+	public  partial class @IfcOpenShell : IfcConnectedFaceSet, IInstantiableEntity, IIfcOpenShell, IEquatable<@IfcOpenShell>
 	{
 		#region IIfcOpenShell explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.Ifc2x3.TopologyResource
         public static bool operator !=(@IfcOpenShell left, @IfcOpenShell right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOpenShell x, @IfcOpenShell y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOpenShell obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

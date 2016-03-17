@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IfcConstructionEquipmentResource", 408)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstructionEquipmentResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionEquipmentResource, IEqualityComparer<@IfcConstructionEquipmentResource>, IEquatable<@IfcConstructionEquipmentResource>
+	public  partial class @IfcConstructionEquipmentResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionEquipmentResource, IEquatable<@IfcConstructionEquipmentResource>
 	{
 		#region IIfcConstructionEquipmentResource explicit implementation
 		 
@@ -117,17 +117,6 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
         public static bool operator !=(@IfcConstructionEquipmentResource left, @IfcConstructionEquipmentResource right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConstructionEquipmentResource x, @IfcConstructionEquipmentResource y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConstructionEquipmentResource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDraughtingCallout", 222)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDraughtingCallout, IEqualityComparer<@IfcDraughtingCallout>, IEquatable<@IfcDraughtingCallout>
+	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDraughtingCallout, IEquatable<@IfcDraughtingCallout>
 	{
 		#region IIfcDraughtingCallout explicit implementation
 		IEnumerable<IIfcDraughtingCalloutElement> IIfcDraughtingCallout.Contents { get { return @Contents; } }	
@@ -154,17 +154,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
         public static bool operator !=(@IfcDraughtingCallout left, @IfcDraughtingCallout right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDraughtingCallout x, @IfcDraughtingCallout y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDraughtingCallout obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

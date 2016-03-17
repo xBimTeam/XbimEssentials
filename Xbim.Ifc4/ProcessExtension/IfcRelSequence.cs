@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcRelSequence", 490)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IIfcRelSequence, IEqualityComparer<@IfcRelSequence>, IEquatable<@IfcRelSequence>
+	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IIfcRelSequence, IEquatable<@IfcRelSequence>
 	{
 		#region IIfcRelSequence explicit implementation
 		IIfcProcess IIfcRelSequence.RelatingProcess { get { return @RelatingProcess; } }	
@@ -224,17 +224,6 @@ namespace Xbim.Ifc4.ProcessExtension
         public static bool operator !=(@IfcRelSequence left, @IfcRelSequence right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelSequence x, @IfcRelSequence y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelSequence obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcGeneralMaterialProperties", 716)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeneralMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcGeneralMaterialProperties, IEqualityComparer<@IfcGeneralMaterialProperties>, IEquatable<@IfcGeneralMaterialProperties>
+	public  partial class @IfcGeneralMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcGeneralMaterialProperties, IEquatable<@IfcGeneralMaterialProperties>
 	{
 		#region IIfcGeneralMaterialProperties explicit implementation
 		IfcMolecularWeightMeasure? IIfcGeneralMaterialProperties.MolecularWeight { get { return @MolecularWeight; } }	
@@ -175,17 +175,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         public static bool operator !=(@IfcGeneralMaterialProperties left, @IfcGeneralMaterialProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGeneralMaterialProperties x, @IfcGeneralMaterialProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGeneralMaterialProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

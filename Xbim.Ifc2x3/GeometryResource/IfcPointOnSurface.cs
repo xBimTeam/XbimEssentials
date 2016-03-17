@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcPointOnSurface", 65)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPointOnSurface : IfcPoint, IInstantiableEntity, IIfcPointOnSurface, IEqualityComparer<@IfcPointOnSurface>, IEquatable<@IfcPointOnSurface>
+	public  partial class @IfcPointOnSurface : IfcPoint, IInstantiableEntity, IIfcPointOnSurface, IEquatable<@IfcPointOnSurface>
 	{
 		#region IIfcPointOnSurface explicit implementation
 		IIfcSurface IIfcPointOnSurface.BasisSurface { get { return @BasisSurface; } }	
@@ -187,17 +187,6 @@ namespace Xbim.Ifc2x3.GeometryResource
         public static bool operator !=(@IfcPointOnSurface left, @IfcPointOnSurface right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPointOnSurface x, @IfcPointOnSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPointOnSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

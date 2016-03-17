@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	[ExpressType("IfcLaborResourceType", 1196)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLaborResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcLaborResourceType, IEqualityComparer<@IfcLaborResourceType>, IEquatable<@IfcLaborResourceType>
+	public  partial class @IfcLaborResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcLaborResourceType, IEquatable<@IfcLaborResourceType>
 	{
 		#region IIfcLaborResourceType explicit implementation
 		IfcLaborResourceTypeEnum IIfcLaborResourceType.PredefinedType { get { return @PredefinedType; } }	
@@ -145,17 +145,6 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
         public static bool operator !=(@IfcLaborResourceType left, @IfcLaborResourceType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLaborResourceType x, @IfcLaborResourceType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLaborResourceType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcFixedReferenceSweptAreaSolid", 1180)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFixedReferenceSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcFixedReferenceSweptAreaSolid, IEqualityComparer<@IfcFixedReferenceSweptAreaSolid>, IEquatable<@IfcFixedReferenceSweptAreaSolid>
+	public  partial class @IfcFixedReferenceSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcFixedReferenceSweptAreaSolid, IEquatable<@IfcFixedReferenceSweptAreaSolid>
 	{
 		#region IIfcFixedReferenceSweptAreaSolid explicit implementation
 		IIfcCurve IIfcFixedReferenceSweptAreaSolid.Directrix { get { return @Directrix; } }	
@@ -198,17 +198,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcFixedReferenceSweptAreaSolid left, @IfcFixedReferenceSweptAreaSolid right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFixedReferenceSweptAreaSolid x, @IfcFixedReferenceSweptAreaSolid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFixedReferenceSweptAreaSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

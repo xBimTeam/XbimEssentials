@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcAirToAirHeatRecoveryType", 588)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAirToAirHeatRecoveryType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcAirToAirHeatRecoveryType, IEqualityComparer<@IfcAirToAirHeatRecoveryType>, IEquatable<@IfcAirToAirHeatRecoveryType>
+	public  partial class @IfcAirToAirHeatRecoveryType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcAirToAirHeatRecoveryType, IEquatable<@IfcAirToAirHeatRecoveryType>
 	{
 		#region IIfcAirToAirHeatRecoveryType explicit implementation
 		IfcAirToAirHeatRecoveryTypeEnum IIfcAirToAirHeatRecoveryType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcAirToAirHeatRecoveryType left, @IfcAirToAirHeatRecoveryType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAirToAirHeatRecoveryType x, @IfcAirToAirHeatRecoveryType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAirToAirHeatRecoveryType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

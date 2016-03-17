@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcTextureCoordinate", 732)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTextureCoordinate : IPersistEntity, INotifyPropertyChanged, IIfcTextureCoordinate, IEqualityComparer<@IfcTextureCoordinate>, IEquatable<@IfcTextureCoordinate>
+	public abstract partial class @IfcTextureCoordinate : IPersistEntity, INotifyPropertyChanged, IIfcTextureCoordinate, IEquatable<@IfcTextureCoordinate>
 	{
 		#region IIfcTextureCoordinate explicit implementation
 		 
@@ -225,17 +225,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
         public static bool operator !=(@IfcTextureCoordinate left, @IfcTextureCoordinate right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTextureCoordinate x, @IfcTextureCoordinate y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextureCoordinate obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

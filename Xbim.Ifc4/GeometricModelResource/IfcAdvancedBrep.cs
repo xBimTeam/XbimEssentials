@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcAdvancedBrep", 1092)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAdvancedBrep : IfcManifoldSolidBrep, IInstantiableEntity, IIfcAdvancedBrep, IEqualityComparer<@IfcAdvancedBrep>, IEquatable<@IfcAdvancedBrep>
+	public  partial class @IfcAdvancedBrep : IfcManifoldSolidBrep, IInstantiableEntity, IIfcAdvancedBrep, IEquatable<@IfcAdvancedBrep>
 	{
 		#region IIfcAdvancedBrep explicit implementation
 		 
@@ -110,17 +110,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcAdvancedBrep left, @IfcAdvancedBrep right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAdvancedBrep x, @IfcAdvancedBrep y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAdvancedBrep obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

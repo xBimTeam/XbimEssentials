@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationFillAreaOccurrence", 544)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationFillAreaOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationFillAreaOccurrence, IEqualityComparer<@IfcAnnotationFillAreaOccurrence>, IEquatable<@IfcAnnotationFillAreaOccurrence>
+	public  partial class @IfcAnnotationFillAreaOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationFillAreaOccurrence, IEquatable<@IfcAnnotationFillAreaOccurrence>
 	{
 		#region IIfcAnnotationFillAreaOccurrence explicit implementation
 		IIfcPoint IIfcAnnotationFillAreaOccurrence.FillStyleTarget { get { return @FillStyleTarget; } }	
@@ -159,17 +159,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
         public static bool operator !=(@IfcAnnotationFillAreaOccurrence left, @IfcAnnotationFillAreaOccurrence right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAnnotationFillAreaOccurrence x, @IfcAnnotationFillAreaOccurrence y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAnnotationFillAreaOccurrence obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

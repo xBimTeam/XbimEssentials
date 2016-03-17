@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcElectricTimeControl", 1162)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricTimeControl : IfcFlowController, IInstantiableEntity, IIfcElectricTimeControl, IEqualityComparer<@IfcElectricTimeControl>, IEquatable<@IfcElectricTimeControl>
+	public  partial class @IfcElectricTimeControl : IfcFlowController, IInstantiableEntity, IIfcElectricTimeControl, IEquatable<@IfcElectricTimeControl>
 	{
 		#region IIfcElectricTimeControl explicit implementation
 		IfcElectricTimeControlTypeEnum? IIfcElectricTimeControl.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcElectricTimeControl left, @IfcElectricTimeControl right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElectricTimeControl x, @IfcElectricTimeControl y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElectricTimeControl obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

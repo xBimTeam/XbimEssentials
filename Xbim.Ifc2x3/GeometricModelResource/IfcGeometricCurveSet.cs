@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcGeometricCurveSet", 237)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricCurveSet : IfcGeometricSet, IInstantiableEntity, IIfcGeometricCurveSet, IEqualityComparer<@IfcGeometricCurveSet>, IEquatable<@IfcGeometricCurveSet>
+	public  partial class @IfcGeometricCurveSet : IfcGeometricSet, IInstantiableEntity, IIfcGeometricCurveSet, IEquatable<@IfcGeometricCurveSet>
 	{
 		#region IIfcGeometricCurveSet explicit implementation
 		 
@@ -110,17 +110,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
         public static bool operator !=(@IfcGeometricCurveSet left, @IfcGeometricCurveSet right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGeometricCurveSet x, @IfcGeometricCurveSet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGeometricCurveSet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

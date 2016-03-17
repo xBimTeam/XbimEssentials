@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextureVertexList", 1301)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureVertexList : IfcPresentationItem, IInstantiableEntity, IIfcTextureVertexList, IEqualityComparer<@IfcTextureVertexList>, IEquatable<@IfcTextureVertexList>
+	public  partial class @IfcTextureVertexList : IfcPresentationItem, IInstantiableEntity, IIfcTextureVertexList, IEquatable<@IfcTextureVertexList>
 	{
 		#region IIfcTextureVertexList explicit implementation
 		IEnumerable<IEnumerable<IfcParameterValue>> IIfcTextureVertexList.TexCoordsList { get { return @TexCoordsList; } }	
@@ -132,17 +132,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcTextureVertexList left, @IfcTextureVertexList right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTextureVertexList x, @IfcTextureVertexList y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextureVertexList obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

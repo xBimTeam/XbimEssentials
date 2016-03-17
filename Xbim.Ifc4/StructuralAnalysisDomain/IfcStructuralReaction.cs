@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralReaction", 355)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralReaction : IfcStructuralActivity, IIfcStructuralReaction, IEqualityComparer<@IfcStructuralReaction>, IEquatable<@IfcStructuralReaction>
+	public abstract partial class @IfcStructuralReaction : IfcStructuralActivity, IIfcStructuralReaction, IEquatable<@IfcStructuralReaction>
 	{
 		#region IIfcStructuralReaction explicit implementation
 		 
@@ -117,17 +117,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
         public static bool operator !=(@IfcStructuralReaction left, @IfcStructuralReaction right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralReaction x, @IfcStructuralReaction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralReaction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

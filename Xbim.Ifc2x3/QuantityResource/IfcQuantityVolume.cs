@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityVolume", 100)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityVolume : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityVolume, IEqualityComparer<@IfcQuantityVolume>, IEquatable<@IfcQuantityVolume>
+	public  partial class @IfcQuantityVolume : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityVolume, IEquatable<@IfcQuantityVolume>
 	{
 		#region IIfcQuantityVolume explicit implementation
 		IfcVolumeMeasure IIfcQuantityVolume.VolumeValue { get { return @VolumeValue; } }	
@@ -139,17 +139,6 @@ namespace Xbim.Ifc2x3.QuantityResource
         public static bool operator !=(@IfcQuantityVolume left, @IfcQuantityVolume right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcQuantityVolume x, @IfcQuantityVolume y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcQuantityVolume obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcWindowPanelProperties", 96)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWindowPanelProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcWindowPanelProperties, IEqualityComparer<@IfcWindowPanelProperties>, IEquatable<@IfcWindowPanelProperties>
+	public  partial class @IfcWindowPanelProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcWindowPanelProperties, IEquatable<@IfcWindowPanelProperties>
 	{
 		#region IIfcWindowPanelProperties explicit implementation
 		IfcWindowPanelOperationEnum IIfcWindowPanelProperties.OperationType { get { return @OperationType; } }	
@@ -220,17 +220,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         public static bool operator !=(@IfcWindowPanelProperties left, @IfcWindowPanelProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcWindowPanelProperties x, @IfcWindowPanelProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWindowPanelProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

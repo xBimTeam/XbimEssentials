@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcShellBasedSurfaceModel", 235)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcShellBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcShellBasedSurfaceModel, IEqualityComparer<@IfcShellBasedSurfaceModel>, IEquatable<@IfcShellBasedSurfaceModel>
+	public  partial class @IfcShellBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcShellBasedSurfaceModel, IEquatable<@IfcShellBasedSurfaceModel>
 	{
 		#region IIfcShellBasedSurfaceModel explicit implementation
 		IEnumerable<IIfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary { get { return @SbsmBoundary; } }	
@@ -145,17 +145,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcShellBasedSurfaceModel left, @IfcShellBasedSurfaceModel right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcShellBasedSurfaceModel x, @IfcShellBasedSurfaceModel y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcShellBasedSurfaceModel obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcTextureVertex", 735)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureVertex : INotifyPropertyChanged, IInstantiableEntity, IIfcTextureVertex, IEqualityComparer<@IfcTextureVertex>, IEquatable<@IfcTextureVertex>
+	public  partial class @IfcTextureVertex : INotifyPropertyChanged, IInstantiableEntity, IIfcTextureVertex, IEquatable<@IfcTextureVertex>
 	{
 		#region IIfcTextureVertex explicit implementation
 		IEnumerable<IfcParameterValue> IIfcTextureVertex.Coordinates { get { return @Coordinates; } }	
@@ -239,17 +239,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
         public static bool operator !=(@IfcTextureVertex left, @IfcTextureVertex right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTextureVertex x, @IfcTextureVertex y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextureVertex obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

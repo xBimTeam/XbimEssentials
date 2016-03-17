@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcBoundaryFaceCondition", 674)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundaryFaceCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryFaceCondition, IEqualityComparer<@IfcBoundaryFaceCondition>, IEquatable<@IfcBoundaryFaceCondition>
+	public  partial class @IfcBoundaryFaceCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryFaceCondition, IEquatable<@IfcBoundaryFaceCondition>
 	{
 		#region IIfcBoundaryFaceCondition explicit implementation
 		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaX { get { return @LinearStiffnessByAreaX; } }	
@@ -175,17 +175,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
         public static bool operator !=(@IfcBoundaryFaceCondition left, @IfcBoundaryFaceCondition right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBoundaryFaceCondition x, @IfcBoundaryFaceCondition y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBoundaryFaceCondition obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

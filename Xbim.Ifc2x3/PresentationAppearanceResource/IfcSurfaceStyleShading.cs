@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleShading", 316)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleShading : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleShading, IEqualityComparer<@IfcSurfaceStyleShading>, IEquatable<@IfcSurfaceStyleShading>
+	public  partial class @IfcSurfaceStyleShading : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleShading, IEquatable<@IfcSurfaceStyleShading>
 	{
 		#region IIfcSurfaceStyleShading explicit implementation
 		IIfcColourRgb IIfcSurfaceStyleShading.SurfaceColour { get { return @SurfaceColour; } }	
@@ -241,17 +241,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcSurfaceStyleShading left, @IfcSurfaceStyleShading right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSurfaceStyleShading x, @IfcSurfaceStyleShading y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceStyleShading obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

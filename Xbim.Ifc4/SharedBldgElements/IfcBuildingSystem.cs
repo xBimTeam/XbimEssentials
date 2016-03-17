@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcBuildingSystem", 1108)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuildingSystem : IfcSystem, IInstantiableEntity, IIfcBuildingSystem, IEqualityComparer<@IfcBuildingSystem>, IEquatable<@IfcBuildingSystem>
+	public  partial class @IfcBuildingSystem : IfcSystem, IInstantiableEntity, IIfcBuildingSystem, IEquatable<@IfcBuildingSystem>
 	{
 		#region IIfcBuildingSystem explicit implementation
 		IfcBuildingSystemTypeEnum? IIfcBuildingSystem.PredefinedType { get { return @PredefinedType; } }	
@@ -160,17 +160,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcBuildingSystem left, @IfcBuildingSystem right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBuildingSystem x, @IfcBuildingSystem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBuildingSystem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcProtectiveDeviceTrippingUnit", 1236)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProtectiveDeviceTrippingUnit : IfcDistributionControlElement, IInstantiableEntity, IIfcProtectiveDeviceTrippingUnit, IEqualityComparer<@IfcProtectiveDeviceTrippingUnit>, IEquatable<@IfcProtectiveDeviceTrippingUnit>
+	public  partial class @IfcProtectiveDeviceTrippingUnit : IfcDistributionControlElement, IInstantiableEntity, IIfcProtectiveDeviceTrippingUnit, IEquatable<@IfcProtectiveDeviceTrippingUnit>
 	{
 		#region IIfcProtectiveDeviceTrippingUnit explicit implementation
 		IfcProtectiveDeviceTrippingUnitTypeEnum? IIfcProtectiveDeviceTrippingUnit.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcProtectiveDeviceTrippingUnit left, @IfcProtectiveDeviceTrippingUnit right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcProtectiveDeviceTrippingUnit x, @IfcProtectiveDeviceTrippingUnit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProtectiveDeviceTrippingUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

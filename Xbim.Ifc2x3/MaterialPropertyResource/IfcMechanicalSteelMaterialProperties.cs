@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcMechanicalSteelMaterialProperties", 510)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalSteelMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalSteelMaterialProperties, IEqualityComparer<@IfcMechanicalSteelMaterialProperties>, IEquatable<@IfcMechanicalSteelMaterialProperties>
+	public  partial class @IfcMechanicalSteelMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalSteelMaterialProperties, IEquatable<@IfcMechanicalSteelMaterialProperties>
 	{
 		#region IIfcMechanicalSteelMaterialProperties explicit implementation
 		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.YieldStress { get { return @YieldStress; } }	
@@ -262,17 +262,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         public static bool operator !=(@IfcMechanicalSteelMaterialProperties left, @IfcMechanicalSteelMaterialProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMechanicalSteelMaterialProperties x, @IfcMechanicalSteelMaterialProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMechanicalSteelMaterialProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

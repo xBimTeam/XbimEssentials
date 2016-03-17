@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcCenterLineProfileDef", 353)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCenterLineProfileDef : IfcArbitraryOpenProfileDef, IInstantiableEntity, IIfcCenterLineProfileDef, IEqualityComparer<@IfcCenterLineProfileDef>, IEquatable<@IfcCenterLineProfileDef>
+	public  partial class @IfcCenterLineProfileDef : IfcArbitraryOpenProfileDef, IInstantiableEntity, IIfcCenterLineProfileDef, IEquatable<@IfcCenterLineProfileDef>
 	{
 		#region IIfcCenterLineProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcCenterLineProfileDef.Thickness { get { return @Thickness; } }	
@@ -137,17 +137,6 @@ namespace Xbim.Ifc4.ProfileResource
         public static bool operator !=(@IfcCenterLineProfileDef left, @IfcCenterLineProfileDef right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCenterLineProfileDef x, @IfcCenterLineProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCenterLineProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

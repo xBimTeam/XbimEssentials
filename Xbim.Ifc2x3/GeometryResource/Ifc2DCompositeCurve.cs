@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("Ifc2DCompositeCurve", 524)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @Ifc2DCompositeCurve : IfcCompositeCurve, IInstantiableEntity, IIfc2DCompositeCurve, IEqualityComparer<@Ifc2DCompositeCurve>, IEquatable<@Ifc2DCompositeCurve>
+	public  partial class @Ifc2DCompositeCurve : IfcCompositeCurve, IInstantiableEntity, IIfc2DCompositeCurve, IEquatable<@Ifc2DCompositeCurve>
 	{
 		#region IIfc2DCompositeCurve explicit implementation
 		 
@@ -112,17 +112,6 @@ namespace Xbim.Ifc2x3.GeometryResource
         public static bool operator !=(@Ifc2DCompositeCurve left, @Ifc2DCompositeCurve right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@Ifc2DCompositeCurve x, @Ifc2DCompositeCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@Ifc2DCompositeCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

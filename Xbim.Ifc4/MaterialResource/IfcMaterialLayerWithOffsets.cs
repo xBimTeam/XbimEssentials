@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialLayerWithOffsets", 1204)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerWithOffsets : IfcMaterialLayer, IInstantiableEntity, IIfcMaterialLayerWithOffsets, IEqualityComparer<@IfcMaterialLayerWithOffsets>, IEquatable<@IfcMaterialLayerWithOffsets>
+	public  partial class @IfcMaterialLayerWithOffsets : IfcMaterialLayer, IInstantiableEntity, IIfcMaterialLayerWithOffsets, IEquatable<@IfcMaterialLayerWithOffsets>
 	{
 		#region IIfcMaterialLayerWithOffsets explicit implementation
 		IfcLayerSetDirectionEnum IIfcMaterialLayerWithOffsets.OffsetDirection { get { return @OffsetDirection; } }	
@@ -159,17 +159,6 @@ namespace Xbim.Ifc4.MaterialResource
         public static bool operator !=(@IfcMaterialLayerWithOffsets left, @IfcMaterialLayerWithOffsets right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialLayerWithOffsets x, @IfcMaterialLayerWithOffsets y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialLayerWithOffsets obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

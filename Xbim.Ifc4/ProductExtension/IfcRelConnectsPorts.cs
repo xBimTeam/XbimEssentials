@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcRelConnectsPorts", 215)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsPorts : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsPorts, IEqualityComparer<@IfcRelConnectsPorts>, IEquatable<@IfcRelConnectsPorts>
+	public  partial class @IfcRelConnectsPorts : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsPorts, IEquatable<@IfcRelConnectsPorts>
 	{
 		#region IIfcRelConnectsPorts explicit implementation
 		IIfcPort IIfcRelConnectsPorts.RelatingPort { get { return @RelatingPort; } }	
@@ -181,17 +181,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcRelConnectsPorts left, @IfcRelConnectsPorts right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelConnectsPorts x, @IfcRelConnectsPorts y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelConnectsPorts obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

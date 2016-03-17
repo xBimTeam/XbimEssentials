@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcConversionBasedUnit", 92)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConversionBasedUnit : IfcNamedUnit, IInstantiableEntity, IIfcConversionBasedUnit, IEqualityComparer<@IfcConversionBasedUnit>, IEquatable<@IfcConversionBasedUnit>
+	public  partial class @IfcConversionBasedUnit : IfcNamedUnit, IInstantiableEntity, IIfcConversionBasedUnit, IEquatable<@IfcConversionBasedUnit>
 	{
 		#region IIfcConversionBasedUnit explicit implementation
 		IfcLabel IIfcConversionBasedUnit.Name { get { return @Name; } }	
@@ -155,17 +155,6 @@ namespace Xbim.Ifc2x3.MeasureResource
         public static bool operator !=(@IfcConversionBasedUnit left, @IfcConversionBasedUnit right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConversionBasedUnit x, @IfcConversionBasedUnit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConversionBasedUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

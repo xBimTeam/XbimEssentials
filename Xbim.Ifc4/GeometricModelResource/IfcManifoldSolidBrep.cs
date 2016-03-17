@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcManifoldSolidBrep", 149)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcManifoldSolidBrep : IfcSolidModel, IIfcManifoldSolidBrep, IEqualityComparer<@IfcManifoldSolidBrep>, IEquatable<@IfcManifoldSolidBrep>
+	public abstract partial class @IfcManifoldSolidBrep : IfcSolidModel, IIfcManifoldSolidBrep, IEquatable<@IfcManifoldSolidBrep>
 	{
 		#region IIfcManifoldSolidBrep explicit implementation
 		IIfcClosedShell IIfcManifoldSolidBrep.Outer { get { return @Outer; } }	
@@ -132,17 +132,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcManifoldSolidBrep left, @IfcManifoldSolidBrep right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcManifoldSolidBrep x, @IfcManifoldSolidBrep y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcManifoldSolidBrep obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

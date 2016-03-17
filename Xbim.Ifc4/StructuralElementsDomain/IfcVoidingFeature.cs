@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IfcVoidingFeature", 1313)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVoidingFeature : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcVoidingFeature, IEqualityComparer<@IfcVoidingFeature>, IEquatable<@IfcVoidingFeature>
+	public  partial class @IfcVoidingFeature : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcVoidingFeature, IEquatable<@IfcVoidingFeature>
 	{
 		#region IIfcVoidingFeature explicit implementation
 		IfcVoidingFeatureTypeEnum? IIfcVoidingFeature.PredefinedType { get { return @PredefinedType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
         public static bool operator !=(@IfcVoidingFeature left, @IfcVoidingFeature right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcVoidingFeature x, @IfcVoidingFeature y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcVoidingFeature obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

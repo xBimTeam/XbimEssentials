@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcRelOccupiesSpaces", 324)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelOccupiesSpaces : IfcRelAssignsToActor, IInstantiableEntity, IIfcRelOccupiesSpaces, IEqualityComparer<@IfcRelOccupiesSpaces>, IEquatable<@IfcRelOccupiesSpaces>
+	public  partial class @IfcRelOccupiesSpaces : IfcRelAssignsToActor, IInstantiableEntity, IIfcRelOccupiesSpaces, IEquatable<@IfcRelOccupiesSpaces>
 	{
 		#region IIfcRelOccupiesSpaces explicit implementation
 		 
@@ -117,17 +117,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
         public static bool operator !=(@IfcRelOccupiesSpaces left, @IfcRelOccupiesSpaces right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelOccupiesSpaces x, @IfcRelOccupiesSpaces y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelOccupiesSpaces obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

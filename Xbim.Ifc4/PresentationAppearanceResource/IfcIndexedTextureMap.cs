@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcIndexedTextureMap", 1191)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcIndexedTextureMap : IfcTextureCoordinate, IIfcIndexedTextureMap, IEqualityComparer<@IfcIndexedTextureMap>, IEquatable<@IfcIndexedTextureMap>
+	public abstract partial class @IfcIndexedTextureMap : IfcTextureCoordinate, IIfcIndexedTextureMap, IEquatable<@IfcIndexedTextureMap>
 	{
 		#region IIfcIndexedTextureMap explicit implementation
 		IIfcTessellatedFaceSet IIfcIndexedTextureMap.MappedTo { get { return @MappedTo; } }	
@@ -156,17 +156,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcIndexedTextureMap left, @IfcIndexedTextureMap right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcIndexedTextureMap x, @IfcIndexedTextureMap y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcIndexedTextureMap obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

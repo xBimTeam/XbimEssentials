@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionPointGeometry", 71)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPointGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPointGeometry, IEqualityComparer<@IfcConnectionPointGeometry>, IEquatable<@IfcConnectionPointGeometry>
+	public  partial class @IfcConnectionPointGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPointGeometry, IEquatable<@IfcConnectionPointGeometry>
 	{
 		#region IIfcConnectionPointGeometry explicit implementation
 		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatingElement { get { return @PointOnRelatingElement; } }	
@@ -151,17 +151,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
         public static bool operator !=(@IfcConnectionPointGeometry left, @IfcConnectionPointGeometry right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConnectionPointGeometry x, @IfcConnectionPointGeometry y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConnectionPointGeometry obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

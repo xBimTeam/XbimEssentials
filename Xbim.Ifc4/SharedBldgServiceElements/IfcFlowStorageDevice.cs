@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IfcFlowStorageDevice", 371)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowStorageDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowStorageDevice, IEqualityComparer<@IfcFlowStorageDevice>, IEquatable<@IfcFlowStorageDevice>
+	public  partial class @IfcFlowStorageDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowStorageDevice, IEquatable<@IfcFlowStorageDevice>
 	{
 		#region IIfcFlowStorageDevice explicit implementation
 		 
@@ -116,17 +116,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
         public static bool operator !=(@IfcFlowStorageDevice left, @IfcFlowStorageDevice right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFlowStorageDevice x, @IfcFlowStorageDevice y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFlowStorageDevice obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

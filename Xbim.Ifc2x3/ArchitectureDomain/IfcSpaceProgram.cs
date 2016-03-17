@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 {
 	[ExpressType("IfcSpaceProgram", 709)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceProgram : IfcControl, IInstantiableEntity, IIfcSpaceProgram, IEqualityComparer<@IfcSpaceProgram>, IEquatable<@IfcSpaceProgram>
+	public  partial class @IfcSpaceProgram : IfcControl, IInstantiableEntity, IIfcSpaceProgram, IEquatable<@IfcSpaceProgram>
 	{
 		#region IIfcSpaceProgram explicit implementation
 		IfcIdentifier IIfcSpaceProgram.SpaceProgramIdentifier { get { return @SpaceProgramIdentifier; } }	
@@ -245,17 +245,6 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
         public static bool operator !=(@IfcSpaceProgram left, @IfcSpaceProgram right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSpaceProgram x, @IfcSpaceProgram y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpaceProgram obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

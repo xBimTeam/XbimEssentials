@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcFailureConnectionCondition", 640)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFailureConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcFailureConnectionCondition, IEqualityComparer<@IfcFailureConnectionCondition>, IEquatable<@IfcFailureConnectionCondition>
+	public  partial class @IfcFailureConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcFailureConnectionCondition, IEquatable<@IfcFailureConnectionCondition>
 	{
 		#region IIfcFailureConnectionCondition explicit implementation
 		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureX { get { return @TensionFailureX; } }	
@@ -235,17 +235,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
         public static bool operator !=(@IfcFailureConnectionCondition left, @IfcFailureConnectionCondition right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFailureConnectionCondition x, @IfcFailureConnectionCondition y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFailureConnectionCondition obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

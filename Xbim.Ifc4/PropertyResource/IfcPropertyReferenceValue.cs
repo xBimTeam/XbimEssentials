@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IfcPropertyReferenceValue", 277)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyReferenceValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyReferenceValue, IEqualityComparer<@IfcPropertyReferenceValue>, IEquatable<@IfcPropertyReferenceValue>
+	public  partial class @IfcPropertyReferenceValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyReferenceValue, IEquatable<@IfcPropertyReferenceValue>
 	{
 		#region IIfcPropertyReferenceValue explicit implementation
 		IfcText? IIfcPropertyReferenceValue.UsageName { get { return @UsageName; } }	
@@ -156,17 +156,6 @@ namespace Xbim.Ifc4.PropertyResource
         public static bool operator !=(@IfcPropertyReferenceValue left, @IfcPropertyReferenceValue right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPropertyReferenceValue x, @IfcPropertyReferenceValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyReferenceValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

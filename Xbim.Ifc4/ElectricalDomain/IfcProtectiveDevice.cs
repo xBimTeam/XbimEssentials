@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcProtectiveDevice", 1235)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProtectiveDevice : IfcFlowController, IInstantiableEntity, IIfcProtectiveDevice, IEqualityComparer<@IfcProtectiveDevice>, IEquatable<@IfcProtectiveDevice>
+	public  partial class @IfcProtectiveDevice : IfcFlowController, IInstantiableEntity, IIfcProtectiveDevice, IEquatable<@IfcProtectiveDevice>
 	{
 		#region IIfcProtectiveDevice explicit implementation
 		IfcProtectiveDeviceTypeEnum? IIfcProtectiveDevice.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcProtectiveDevice left, @IfcProtectiveDevice right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcProtectiveDevice x, @IfcProtectiveDevice y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProtectiveDevice obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

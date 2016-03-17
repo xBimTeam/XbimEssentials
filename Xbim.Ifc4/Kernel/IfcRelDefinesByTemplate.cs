@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelDefinesByTemplate", 1251)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelDefinesByTemplate : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByTemplate, IEqualityComparer<@IfcRelDefinesByTemplate>, IEquatable<@IfcRelDefinesByTemplate>
+	public  partial class @IfcRelDefinesByTemplate : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByTemplate, IEquatable<@IfcRelDefinesByTemplate>
 	{
 		#region IIfcRelDefinesByTemplate explicit implementation
 		IEnumerable<IIfcPropertySetDefinition> IIfcRelDefinesByTemplate.RelatedPropertySets { get { return @RelatedPropertySets; } }	
@@ -157,17 +157,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcRelDefinesByTemplate left, @IfcRelDefinesByTemplate right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelDefinesByTemplate x, @IfcRelDefinesByTemplate y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelDefinesByTemplate obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

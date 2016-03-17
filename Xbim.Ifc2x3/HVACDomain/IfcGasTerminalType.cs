@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcGasTerminalType", 701)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGasTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcGasTerminalType, IEqualityComparer<@IfcGasTerminalType>, IEquatable<@IfcGasTerminalType>
+	public  partial class @IfcGasTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcGasTerminalType, IEquatable<@IfcGasTerminalType>
 	{
 		#region IIfcGasTerminalType explicit implementation
 		IfcGasTerminalTypeEnum IIfcGasTerminalType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc2x3.HVACDomain
         public static bool operator !=(@IfcGasTerminalType left, @IfcGasTerminalType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGasTerminalType x, @IfcGasTerminalType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGasTerminalType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

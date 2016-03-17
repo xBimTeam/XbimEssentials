@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcRationalBSplineSurfaceWithKnots", 1242)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRationalBSplineSurfaceWithKnots : IfcBSplineSurfaceWithKnots, IInstantiableEntity, IIfcRationalBSplineSurfaceWithKnots, IEqualityComparer<@IfcRationalBSplineSurfaceWithKnots>, IEquatable<@IfcRationalBSplineSurfaceWithKnots>
+	public  partial class @IfcRationalBSplineSurfaceWithKnots : IfcBSplineSurfaceWithKnots, IInstantiableEntity, IIfcRationalBSplineSurfaceWithKnots, IEquatable<@IfcRationalBSplineSurfaceWithKnots>
 	{
 		#region IIfcRationalBSplineSurfaceWithKnots explicit implementation
 		IEnumerable<IEnumerable<IfcReal>> IIfcRationalBSplineSurfaceWithKnots.WeightsData { get { return @WeightsData; } }	
@@ -161,17 +161,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcRationalBSplineSurfaceWithKnots left, @IfcRationalBSplineSurfaceWithKnots right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRationalBSplineSurfaceWithKnots x, @IfcRationalBSplineSurfaceWithKnots y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRationalBSplineSurfaceWithKnots obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

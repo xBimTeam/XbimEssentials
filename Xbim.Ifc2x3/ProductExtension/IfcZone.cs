@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcZone", 669)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcZone : IfcGroup, IInstantiableEntity, IIfcZone, IEqualityComparer<@IfcZone>, IEquatable<@IfcZone>
+	public  partial class @IfcZone : IfcGroup, IInstantiableEntity, IIfcZone, IEquatable<@IfcZone>
 	{
 		#region IIfcZone explicit implementation
 		 
@@ -115,17 +115,6 @@ namespace Xbim.Ifc2x3.ProductExtension
         public static bool operator !=(@IfcZone left, @IfcZone right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcZone x, @IfcZone y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcZone obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcPlane", 388)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlane : IfcElementarySurface, IInstantiableEntity, IIfcPlane, IEqualityComparer<@IfcPlane>, IEquatable<@IfcPlane>
+	public  partial class @IfcPlane : IfcElementarySurface, IInstantiableEntity, IIfcPlane, IEquatable<@IfcPlane>
 	{
 		#region IIfcPlane explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcPlane left, @IfcPlane right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPlane x, @IfcPlane y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPlane obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IfcTimeSeriesReferenceRelationship", 673)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimeSeriesReferenceRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcTimeSeriesReferenceRelationship, IEqualityComparer<@IfcTimeSeriesReferenceRelationship>, IEquatable<@IfcTimeSeriesReferenceRelationship>
+	public  partial class @IfcTimeSeriesReferenceRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcTimeSeriesReferenceRelationship, IEquatable<@IfcTimeSeriesReferenceRelationship>
 	{
 		#region IIfcTimeSeriesReferenceRelationship explicit implementation
 		IIfcTimeSeries IIfcTimeSeriesReferenceRelationship.ReferencedTimeSeries { get { return @ReferencedTimeSeries; } }	
@@ -260,17 +260,6 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
         public static bool operator !=(@IfcTimeSeriesReferenceRelationship left, @IfcTimeSeriesReferenceRelationship right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTimeSeriesReferenceRelationship x, @IfcTimeSeriesReferenceRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTimeSeriesReferenceRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

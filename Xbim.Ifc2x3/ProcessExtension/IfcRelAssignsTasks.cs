@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcRelAssignsTasks", 618)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsTasks : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsTasks, IEqualityComparer<@IfcRelAssignsTasks>, IEquatable<@IfcRelAssignsTasks>
+	public  partial class @IfcRelAssignsTasks : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsTasks, IEquatable<@IfcRelAssignsTasks>
 	{
 		#region IIfcRelAssignsTasks explicit implementation
 		IIfcScheduleTimeControl IIfcRelAssignsTasks.TimeForTask { get { return @TimeForTask; } }	
@@ -145,17 +145,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
         public static bool operator !=(@IfcRelAssignsTasks left, @IfcRelAssignsTasks right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssignsTasks x, @IfcRelAssignsTasks y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsTasks obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

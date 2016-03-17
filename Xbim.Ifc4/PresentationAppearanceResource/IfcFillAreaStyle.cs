@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyle", 33)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IIfcFillAreaStyle, IEqualityComparer<@IfcFillAreaStyle>, IEquatable<@IfcFillAreaStyle>
+	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IIfcFillAreaStyle, IEquatable<@IfcFillAreaStyle>
 	{
 		#region IIfcFillAreaStyle explicit implementation
 		IEnumerable<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { get { return @FillStyles; } }	
@@ -156,17 +156,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcFillAreaStyle left, @IfcFillAreaStyle right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFillAreaStyle x, @IfcFillAreaStyle y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFillAreaStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

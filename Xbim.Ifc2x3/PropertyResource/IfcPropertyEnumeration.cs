@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertyEnumeration", 597)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyEnumeration : INotifyPropertyChanged, IInstantiableEntity, IIfcPropertyEnumeration, IEqualityComparer<@IfcPropertyEnumeration>, IEquatable<@IfcPropertyEnumeration>
+	public  partial class @IfcPropertyEnumeration : INotifyPropertyChanged, IInstantiableEntity, IIfcPropertyEnumeration, IEquatable<@IfcPropertyEnumeration>
 	{
 		#region IIfcPropertyEnumeration explicit implementation
 		IfcLabel IIfcPropertyEnumeration.Name { get { return @Name; } }	
@@ -280,17 +280,6 @@ namespace Xbim.Ifc2x3.PropertyResource
         public static bool operator !=(@IfcPropertyEnumeration left, @IfcPropertyEnumeration right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPropertyEnumeration x, @IfcPropertyEnumeration y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyEnumeration obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

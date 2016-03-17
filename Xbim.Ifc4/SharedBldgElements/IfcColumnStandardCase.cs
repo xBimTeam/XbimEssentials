@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcColumnStandardCase", 1126)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcColumnStandardCase : IfcColumn, IInstantiableEntity, IIfcColumnStandardCase, IEqualityComparer<@IfcColumnStandardCase>, IEquatable<@IfcColumnStandardCase>
+	public  partial class @IfcColumnStandardCase : IfcColumn, IInstantiableEntity, IIfcColumnStandardCase, IEquatable<@IfcColumnStandardCase>
 	{
 		#region IIfcColumnStandardCase explicit implementation
 		 
@@ -118,17 +118,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcColumnStandardCase left, @IfcColumnStandardCase right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcColumnStandardCase x, @IfcColumnStandardCase y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcColumnStandardCase obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

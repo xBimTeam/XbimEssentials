@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralSurfaceReaction", 1285)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSurfaceReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralSurfaceReaction, IEqualityComparer<@IfcStructuralSurfaceReaction>, IEquatable<@IfcStructuralSurfaceReaction>
+	public  partial class @IfcStructuralSurfaceReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralSurfaceReaction, IEquatable<@IfcStructuralSurfaceReaction>
 	{
 		#region IIfcStructuralSurfaceReaction explicit implementation
 		IfcStructuralSurfaceActivityTypeEnum IIfcStructuralSurfaceReaction.PredefinedType { get { return @PredefinedType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
         public static bool operator !=(@IfcStructuralSurfaceReaction left, @IfcStructuralSurfaceReaction right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralSurfaceReaction x, @IfcStructuralSurfaceReaction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralSurfaceReaction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

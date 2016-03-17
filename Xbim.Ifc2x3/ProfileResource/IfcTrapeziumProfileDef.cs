@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcTrapeziumProfileDef", 561)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTrapeziumProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcTrapeziumProfileDef, IEqualityComparer<@IfcTrapeziumProfileDef>, IEquatable<@IfcTrapeziumProfileDef>
+	public  partial class @IfcTrapeziumProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcTrapeziumProfileDef, IEquatable<@IfcTrapeziumProfileDef>
 	{
 		#region IIfcTrapeziumProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.BottomXDim { get { return @BottomXDim; } }	
@@ -197,17 +197,6 @@ namespace Xbim.Ifc2x3.ProfileResource
         public static bool operator !=(@IfcTrapeziumProfileDef left, @IfcTrapeziumProfileDef right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTrapeziumProfileDef x, @IfcTrapeziumProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTrapeziumProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

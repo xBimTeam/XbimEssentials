@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcSectionReinforcementProperties", 508)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionReinforcementProperties : INotifyPropertyChanged, IInstantiableEntity, IIfcSectionReinforcementProperties, IEqualityComparer<@IfcSectionReinforcementProperties>, IEquatable<@IfcSectionReinforcementProperties>
+	public  partial class @IfcSectionReinforcementProperties : INotifyPropertyChanged, IInstantiableEntity, IIfcSectionReinforcementProperties, IEquatable<@IfcSectionReinforcementProperties>
 	{
 		#region IIfcSectionReinforcementProperties explicit implementation
 		IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalStartPosition { get { return @LongitudinalStartPosition; } }	
@@ -339,17 +339,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
         public static bool operator !=(@IfcSectionReinforcementProperties left, @IfcSectionReinforcementProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSectionReinforcementProperties x, @IfcSectionReinforcementProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSectionReinforcementProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

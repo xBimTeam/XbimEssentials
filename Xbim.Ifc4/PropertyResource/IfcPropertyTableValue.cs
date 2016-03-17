@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IfcPropertyTableValue", 557)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyTableValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyTableValue, IEqualityComparer<@IfcPropertyTableValue>, IEquatable<@IfcPropertyTableValue>
+	public  partial class @IfcPropertyTableValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyTableValue, IEquatable<@IfcPropertyTableValue>
 	{
 		#region IIfcPropertyTableValue explicit implementation
 		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefiningValues { get { return @DefiningValues; } }	
@@ -235,17 +235,6 @@ namespace Xbim.Ifc4.PropertyResource
         public static bool operator !=(@IfcPropertyTableValue left, @IfcPropertyTableValue right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPropertyTableValue x, @IfcPropertyTableValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyTableValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

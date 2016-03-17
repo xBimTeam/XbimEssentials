@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcDoorType", 1152)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorType : IfcBuildingElementType, IInstantiableEntity, IIfcDoorType, IEqualityComparer<@IfcDoorType>, IEquatable<@IfcDoorType>
+	public  partial class @IfcDoorType : IfcBuildingElementType, IInstantiableEntity, IIfcDoorType, IEquatable<@IfcDoorType>
 	{
 		#region IIfcDoorType explicit implementation
 		IfcDoorTypeEnum IIfcDoorType.PredefinedType { get { return @PredefinedType; } }	
@@ -205,17 +205,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcDoorType left, @IfcDoorType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDoorType x, @IfcDoorType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDoorType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

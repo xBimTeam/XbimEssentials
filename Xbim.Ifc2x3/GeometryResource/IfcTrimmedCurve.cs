@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcTrimmedCurve", 143)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTrimmedCurve : IfcBoundedCurve, IInstantiableEntity, IIfcTrimmedCurve, IEqualityComparer<@IfcTrimmedCurve>, IEquatable<@IfcTrimmedCurve>
+	public  partial class @IfcTrimmedCurve : IfcBoundedCurve, IInstantiableEntity, IIfcTrimmedCurve, IEquatable<@IfcTrimmedCurve>
 	{
 		#region IIfcTrimmedCurve explicit implementation
 		IIfcCurve IIfcTrimmedCurve.BasisCurve { get { return @BasisCurve; } }	
@@ -210,17 +210,6 @@ namespace Xbim.Ifc2x3.GeometryResource
         public static bool operator !=(@IfcTrimmedCurve left, @IfcTrimmedCurve right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTrimmedCurve x, @IfcTrimmedCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTrimmedCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

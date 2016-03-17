@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IfcIrregularTimeSeriesValue", 609)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIrregularTimeSeriesValue : INotifyPropertyChanged, IInstantiableEntity, IIfcIrregularTimeSeriesValue, IEqualityComparer<@IfcIrregularTimeSeriesValue>, IEquatable<@IfcIrregularTimeSeriesValue>
+	public  partial class @IfcIrregularTimeSeriesValue : INotifyPropertyChanged, IInstantiableEntity, IIfcIrregularTimeSeriesValue, IEquatable<@IfcIrregularTimeSeriesValue>
 	{
 		#region IIfcIrregularTimeSeriesValue explicit implementation
 		IIfcDateTimeSelect IIfcIrregularTimeSeriesValue.TimeStamp { get { return @TimeStamp; } }	
@@ -260,17 +260,6 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
         public static bool operator !=(@IfcIrregularTimeSeriesValue left, @IfcIrregularTimeSeriesValue right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcIrregularTimeSeriesValue x, @IfcIrregularTimeSeriesValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcIrregularTimeSeriesValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcHygroscopicMaterialProperties", 717)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHygroscopicMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcHygroscopicMaterialProperties, IEqualityComparer<@IfcHygroscopicMaterialProperties>, IEquatable<@IfcHygroscopicMaterialProperties>
+	public  partial class @IfcHygroscopicMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcHygroscopicMaterialProperties, IEquatable<@IfcHygroscopicMaterialProperties>
 	{
 		#region IIfcHygroscopicMaterialProperties explicit implementation
 		IfcPositiveRatioMeasure? IIfcHygroscopicMaterialProperties.UpperVaporResistanceFactor { get { return @UpperVaporResistanceFactor; } }	
@@ -215,17 +215,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         public static bool operator !=(@IfcHygroscopicMaterialProperties left, @IfcHygroscopicMaterialProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcHygroscopicMaterialProperties x, @IfcHygroscopicMaterialProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcHygroscopicMaterialProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcBuildingStorey", 459)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuildingStorey : IfcSpatialStructureElement, IInstantiableEntity, IIfcBuildingStorey, IEqualityComparer<@IfcBuildingStorey>, IEquatable<@IfcBuildingStorey>
+	public  partial class @IfcBuildingStorey : IfcSpatialStructureElement, IInstantiableEntity, IIfcBuildingStorey, IEquatable<@IfcBuildingStorey>
 	{
 		#region IIfcBuildingStorey explicit implementation
 		IfcLengthMeasure? IIfcBuildingStorey.Elevation { get { return @Elevation; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcBuildingStorey left, @IfcBuildingStorey right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBuildingStorey x, @IfcBuildingStorey y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBuildingStorey obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

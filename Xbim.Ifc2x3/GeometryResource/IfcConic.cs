@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcConic", 299)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConic : IfcCurve, IIfcConic, IEqualityComparer<@IfcConic>, IEquatable<@IfcConic>
+	public abstract partial class @IfcConic : IfcCurve, IIfcConic, IEquatable<@IfcConic>
 	{
 		#region IIfcConic explicit implementation
 		IIfcAxis2Placement IIfcConic.Position { get { return @Position; } }	
@@ -131,17 +131,6 @@ namespace Xbim.Ifc2x3.GeometryResource
         public static bool operator !=(@IfcConic left, @IfcConic right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConic x, @IfcConic y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConic obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

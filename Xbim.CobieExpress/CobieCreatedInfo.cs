@@ -37,7 +37,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("CreatedInfo", 10)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieCreatedInfo : INotifyPropertyChanged, IInstantiableEntity, ICobieCreatedInfo, IEqualityComparer<@CobieCreatedInfo>, IEquatable<@CobieCreatedInfo>
+	public  partial class @CobieCreatedInfo : INotifyPropertyChanged, IInstantiableEntity, ICobieCreatedInfo, IEquatable<@CobieCreatedInfo>
 	{
 		#region ICobieCreatedInfo explicit implementation
 		ICobieContact ICobieCreatedInfo.CreatedBy { get { return @CreatedBy; } }	
@@ -260,17 +260,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieCreatedInfo left, @CobieCreatedInfo right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieCreatedInfo x, @CobieCreatedInfo y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieCreatedInfo obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

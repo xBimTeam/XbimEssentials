@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcRelAssignsToProjectOrder", 698)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToProjectOrder : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsToProjectOrder, IEqualityComparer<@IfcRelAssignsToProjectOrder>, IEquatable<@IfcRelAssignsToProjectOrder>
+	public  partial class @IfcRelAssignsToProjectOrder : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsToProjectOrder, IEquatable<@IfcRelAssignsToProjectOrder>
 	{
 		#region IIfcRelAssignsToProjectOrder explicit implementation
 		 
@@ -116,17 +116,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
         public static bool operator !=(@IfcRelAssignsToProjectOrder left, @IfcRelAssignsToProjectOrder right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssignsToProjectOrder x, @IfcRelAssignsToProjectOrder y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToProjectOrder obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

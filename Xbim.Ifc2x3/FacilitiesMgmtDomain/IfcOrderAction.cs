@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcOrderAction", 591)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrderAction : IfcTask, IInstantiableEntity, IIfcOrderAction, IEqualityComparer<@IfcOrderAction>, IEquatable<@IfcOrderAction>
+	public  partial class @IfcOrderAction : IfcTask, IInstantiableEntity, IIfcOrderAction, IEquatable<@IfcOrderAction>
 	{
 		#region IIfcOrderAction explicit implementation
 		IfcIdentifier IIfcOrderAction.ActionID { get { return @ActionID; } }	
@@ -145,17 +145,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
         public static bool operator !=(@IfcOrderAction left, @IfcOrderAction right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOrderAction x, @IfcOrderAction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOrderAction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

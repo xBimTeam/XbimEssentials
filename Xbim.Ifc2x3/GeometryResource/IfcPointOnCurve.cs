@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcPointOnCurve", 654)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPointOnCurve : IfcPoint, IInstantiableEntity, IIfcPointOnCurve, IEqualityComparer<@IfcPointOnCurve>, IEquatable<@IfcPointOnCurve>
+	public  partial class @IfcPointOnCurve : IfcPoint, IInstantiableEntity, IIfcPointOnCurve, IEquatable<@IfcPointOnCurve>
 	{
 		#region IIfcPointOnCurve explicit implementation
 		IIfcCurve IIfcPointOnCurve.BasisCurve { get { return @BasisCurve; } }	
@@ -165,17 +165,6 @@ namespace Xbim.Ifc2x3.GeometryResource
         public static bool operator !=(@IfcPointOnCurve left, @IfcPointOnCurve right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPointOnCurve x, @IfcPointOnCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPointOnCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

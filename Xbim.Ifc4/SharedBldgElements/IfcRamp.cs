@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcRamp", 414)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRamp : IfcBuildingElement, IInstantiableEntity, IIfcRamp, IEqualityComparer<@IfcRamp>, IEquatable<@IfcRamp>
+	public  partial class @IfcRamp : IfcBuildingElement, IInstantiableEntity, IIfcRamp, IEquatable<@IfcRamp>
 	{
 		#region IIfcRamp explicit implementation
 		IfcRampTypeEnum? IIfcRamp.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcRamp left, @IfcRamp right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRamp x, @IfcRamp y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRamp obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

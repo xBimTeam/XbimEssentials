@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcChillerType", 368)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcChillerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcChillerType, IEqualityComparer<@IfcChillerType>, IEquatable<@IfcChillerType>
+	public  partial class @IfcChillerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcChillerType, IEquatable<@IfcChillerType>
 	{
 		#region IIfcChillerType explicit implementation
 		IfcChillerTypeEnum IIfcChillerType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcChillerType left, @IfcChillerType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcChillerType x, @IfcChillerType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcChillerType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

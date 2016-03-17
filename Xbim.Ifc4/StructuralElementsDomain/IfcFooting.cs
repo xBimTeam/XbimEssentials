@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IfcFooting", 120)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFooting : IfcBuildingElement, IInstantiableEntity, IIfcFooting, IEqualityComparer<@IfcFooting>, IEquatable<@IfcFooting>
+	public  partial class @IfcFooting : IfcBuildingElement, IInstantiableEntity, IIfcFooting, IEquatable<@IfcFooting>
 	{
 		#region IIfcFooting explicit implementation
 		IfcFootingTypeEnum? IIfcFooting.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
         public static bool operator !=(@IfcFooting left, @IfcFooting right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFooting x, @IfcFooting y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFooting obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

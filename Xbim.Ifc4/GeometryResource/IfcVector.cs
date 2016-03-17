@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcVector", 652)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVector : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcVector, IEqualityComparer<@IfcVector>, IEquatable<@IfcVector>
+	public  partial class @IfcVector : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcVector, IEquatable<@IfcVector>
 	{
 		#region IIfcVector explicit implementation
 		IIfcDirection IIfcVector.Orientation { get { return @Orientation; } }	
@@ -168,17 +168,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcVector left, @IfcVector right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcVector x, @IfcVector y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcVector obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

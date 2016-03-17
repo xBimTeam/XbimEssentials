@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 {
 	[ExpressType("IfcDoorPanelProperties", 602)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorPanelProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcDoorPanelProperties, IEqualityComparer<@IfcDoorPanelProperties>, IEquatable<@IfcDoorPanelProperties>
+	public  partial class @IfcDoorPanelProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcDoorPanelProperties, IEquatable<@IfcDoorPanelProperties>
 	{
 		#region IIfcDoorPanelProperties explicit implementation
 		IfcPositiveLengthMeasure? IIfcDoorPanelProperties.PanelDepth { get { return @PanelDepth; } }	
@@ -221,17 +221,6 @@ namespace Xbim.Ifc4.ArchitectureDomain
         public static bool operator !=(@IfcDoorPanelProperties left, @IfcDoorPanelProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDoorPanelProperties x, @IfcDoorPanelProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDoorPanelProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

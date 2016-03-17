@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("CurrencyUnit", 42)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieCurrencyUnit : CobiePickValue, IInstantiableEntity, ICobieCurrencyUnit, IEqualityComparer<@CobieCurrencyUnit>, IEquatable<@CobieCurrencyUnit>
+	public  partial class @CobieCurrencyUnit : CobiePickValue, IInstantiableEntity, ICobieCurrencyUnit, IEquatable<@CobieCurrencyUnit>
 	{
 		#region ICobieCurrencyUnit explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieCurrencyUnit left, @CobieCurrencyUnit right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieCurrencyUnit x, @CobieCurrencyUnit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieCurrencyUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

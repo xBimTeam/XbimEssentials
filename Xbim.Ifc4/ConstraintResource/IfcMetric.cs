@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.ConstraintResource
 {
 	[ExpressType("IfcMetric", 80)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IIfcMetric, IEqualityComparer<@IfcMetric>, IEquatable<@IfcMetric>
+	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IIfcMetric, IEquatable<@IfcMetric>
 	{
 		#region IIfcMetric explicit implementation
 		IfcBenchmarkEnum IIfcMetric.Benchmark { get { return @Benchmark; } }	
@@ -201,17 +201,6 @@ namespace Xbim.Ifc4.ConstraintResource
         public static bool operator !=(@IfcMetric left, @IfcMetric right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMetric x, @IfcMetric y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMetric obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

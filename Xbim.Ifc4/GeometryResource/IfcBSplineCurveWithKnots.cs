@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcBSplineCurveWithKnots", 1101)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBSplineCurveWithKnots : IfcBSplineCurve, IInstantiableEntity, IIfcBSplineCurveWithKnots, IEqualityComparer<@IfcBSplineCurveWithKnots>, IEquatable<@IfcBSplineCurveWithKnots>
+	public  partial class @IfcBSplineCurveWithKnots : IfcBSplineCurve, IInstantiableEntity, IIfcBSplineCurveWithKnots, IEquatable<@IfcBSplineCurveWithKnots>
 	{
 		#region IIfcBSplineCurveWithKnots explicit implementation
 		IEnumerable<IfcInteger> IIfcBSplineCurveWithKnots.KnotMultiplicities { get { return @KnotMultiplicities; } }	
@@ -191,17 +191,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcBSplineCurveWithKnots left, @IfcBSplineCurveWithKnots right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBSplineCurveWithKnots x, @IfcBSplineCurveWithKnots y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBSplineCurveWithKnots obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

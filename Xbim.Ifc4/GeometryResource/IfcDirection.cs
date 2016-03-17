@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcDirection", 344)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDirection, IEqualityComparer<@IfcDirection>, IEquatable<@IfcDirection>
+	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDirection, IEquatable<@IfcDirection>
 	{
 		#region IIfcDirection explicit implementation
 		IEnumerable<IfcReal> IIfcDirection.DirectionRatios { get { return @DirectionRatios; } }	
@@ -146,17 +146,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcDirection left, @IfcDirection right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDirection x, @IfcDirection y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDirection obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

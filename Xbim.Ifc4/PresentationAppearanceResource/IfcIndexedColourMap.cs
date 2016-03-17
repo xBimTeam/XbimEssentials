@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcIndexedColourMap", 1189)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIndexedColourMap : IfcPresentationItem, IInstantiableEntity, IIfcIndexedColourMap, IEqualityComparer<@IfcIndexedColourMap>, IEquatable<@IfcIndexedColourMap>
+	public  partial class @IfcIndexedColourMap : IfcPresentationItem, IInstantiableEntity, IIfcIndexedColourMap, IEquatable<@IfcIndexedColourMap>
 	{
 		#region IIfcIndexedColourMap explicit implementation
 		IIfcTessellatedFaceSet IIfcIndexedColourMap.MappedTo { get { return @MappedTo; } }	
@@ -193,17 +193,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcIndexedColourMap left, @IfcIndexedColourMap right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcIndexedColourMap x, @IfcIndexedColourMap y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcIndexedColourMap obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcMirroredProfileDef", 1215)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMirroredProfileDef : IfcDerivedProfileDef, IInstantiableEntity, IIfcMirroredProfileDef, IEqualityComparer<@IfcMirroredProfileDef>, IEquatable<@IfcMirroredProfileDef>
+	public  partial class @IfcMirroredProfileDef : IfcDerivedProfileDef, IInstantiableEntity, IIfcMirroredProfileDef, IEquatable<@IfcMirroredProfileDef>
 	{
 		#region IIfcMirroredProfileDef explicit implementation
 		 
@@ -131,17 +131,6 @@ namespace Xbim.Ifc4.ProfileResource
         public static bool operator !=(@IfcMirroredProfileDef left, @IfcMirroredProfileDef right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMirroredProfileDef x, @IfcMirroredProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMirroredProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

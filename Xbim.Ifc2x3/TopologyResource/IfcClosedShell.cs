@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcClosedShell", 161)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClosedShell : IfcConnectedFaceSet, IInstantiableEntity, IIfcClosedShell, IEqualityComparer<@IfcClosedShell>, IEquatable<@IfcClosedShell>
+	public  partial class @IfcClosedShell : IfcConnectedFaceSet, IInstantiableEntity, IIfcClosedShell, IEquatable<@IfcClosedShell>
 	{
 		#region IIfcClosedShell explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.Ifc2x3.TopologyResource
         public static bool operator !=(@IfcClosedShell left, @IfcClosedShell right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcClosedShell x, @IfcClosedShell y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcClosedShell obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

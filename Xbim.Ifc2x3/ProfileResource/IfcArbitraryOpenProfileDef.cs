@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcArbitraryOpenProfileDef", 219)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcArbitraryOpenProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryOpenProfileDef, IEqualityComparer<@IfcArbitraryOpenProfileDef>, IEquatable<@IfcArbitraryOpenProfileDef>
+	public  partial class @IfcArbitraryOpenProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryOpenProfileDef, IEquatable<@IfcArbitraryOpenProfileDef>
 	{
 		#region IIfcArbitraryOpenProfileDef explicit implementation
 		IIfcBoundedCurve IIfcArbitraryOpenProfileDef.Curve { get { return @Curve; } }	
@@ -138,17 +138,6 @@ namespace Xbim.Ifc2x3.ProfileResource
         public static bool operator !=(@IfcArbitraryOpenProfileDef left, @IfcArbitraryOpenProfileDef right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcArbitraryOpenProfileDef x, @IfcArbitraryOpenProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcArbitraryOpenProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

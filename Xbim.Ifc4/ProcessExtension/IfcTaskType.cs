@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcTaskType", 1296)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTaskType : IfcTypeProcess, IInstantiableEntity, IIfcTaskType, IEqualityComparer<@IfcTaskType>, IEquatable<@IfcTaskType>
+	public  partial class @IfcTaskType : IfcTypeProcess, IInstantiableEntity, IIfcTaskType, IEquatable<@IfcTaskType>
 	{
 		#region IIfcTaskType explicit implementation
 		IfcTaskTypeEnum IIfcTaskType.PredefinedType { get { return @PredefinedType; } }	
@@ -165,17 +165,6 @@ namespace Xbim.Ifc4.ProcessExtension
         public static bool operator !=(@IfcTaskType left, @IfcTaskType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTaskType x, @IfcTaskType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTaskType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

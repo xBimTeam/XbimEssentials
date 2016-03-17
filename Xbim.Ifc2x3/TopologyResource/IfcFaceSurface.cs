@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcFaceSurface", 85)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFaceSurface : IfcFace, IInstantiableEntity, IIfcFaceSurface, IEqualityComparer<@IfcFaceSurface>, IEquatable<@IfcFaceSurface>
+	public  partial class @IfcFaceSurface : IfcFace, IInstantiableEntity, IIfcFaceSurface, IEquatable<@IfcFaceSurface>
 	{
 		#region IIfcFaceSurface explicit implementation
 		IIfcSurface IIfcFaceSurface.FaceSurface { get { return @FaceSurface; } }	
@@ -156,17 +156,6 @@ namespace Xbim.Ifc2x3.TopologyResource
         public static bool operator !=(@IfcFaceSurface left, @IfcFaceSurface right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFaceSurface x, @IfcFaceSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFaceSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

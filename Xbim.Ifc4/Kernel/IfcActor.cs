@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcActor", 250)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActor : IfcObject, IInstantiableEntity, IIfcActor, IEqualityComparer<@IfcActor>, IEquatable<@IfcActor>
+	public  partial class @IfcActor : IfcObject, IInstantiableEntity, IIfcActor, IEquatable<@IfcActor>
 	{
 		#region IIfcActor explicit implementation
 		IIfcActorSelect IIfcActor.TheActor { get { return @TheActor; } }	
@@ -152,17 +152,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcActor left, @IfcActor right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcActor x, @IfcActor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcActor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

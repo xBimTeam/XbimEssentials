@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcInventory", 768)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IIfcInventory, IEqualityComparer<@IfcInventory>, IEquatable<@IfcInventory>
+	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IIfcInventory, IEquatable<@IfcInventory>
 	{
 		#region IIfcInventory explicit implementation
 		IfcInventoryTypeEnum IIfcInventory.InventoryType { get { return @InventoryType; } }	
@@ -241,17 +241,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
         public static bool operator !=(@IfcInventory left, @IfcInventory right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcInventory x, @IfcInventory y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcInventory obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

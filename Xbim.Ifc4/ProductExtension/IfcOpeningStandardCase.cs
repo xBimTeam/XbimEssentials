@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcOpeningStandardCase", 1217)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOpeningStandardCase : IfcOpeningElement, IInstantiableEntity, IIfcOpeningStandardCase, IEqualityComparer<@IfcOpeningStandardCase>, IEquatable<@IfcOpeningStandardCase>
+	public  partial class @IfcOpeningStandardCase : IfcOpeningElement, IInstantiableEntity, IIfcOpeningStandardCase, IEquatable<@IfcOpeningStandardCase>
 	{
 		#region IIfcOpeningStandardCase explicit implementation
 		 
@@ -117,17 +117,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcOpeningStandardCase left, @IfcOpeningStandardCase right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOpeningStandardCase x, @IfcOpeningStandardCase y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOpeningStandardCase obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelAssociatesProfileProperties", 676)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesProfileProperties : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesProfileProperties, IEqualityComparer<@IfcRelAssociatesProfileProperties>, IEquatable<@IfcRelAssociatesProfileProperties>
+	public  partial class @IfcRelAssociatesProfileProperties : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesProfileProperties, IEquatable<@IfcRelAssociatesProfileProperties>
 	{
 		#region IIfcRelAssociatesProfileProperties explicit implementation
 		IIfcProfileProperties IIfcRelAssociatesProfileProperties.RelatingProfileProperties { get { return @RelatingProfileProperties; } }	
@@ -181,17 +181,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         public static bool operator !=(@IfcRelAssociatesProfileProperties left, @IfcRelAssociatesProfileProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssociatesProfileProperties x, @IfcRelAssociatesProfileProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssociatesProfileProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

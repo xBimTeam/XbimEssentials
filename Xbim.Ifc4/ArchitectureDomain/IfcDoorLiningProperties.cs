@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 {
 	[ExpressType("IfcDoorLiningProperties", 493)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorLiningProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcDoorLiningProperties, IEqualityComparer<@IfcDoorLiningProperties>, IEquatable<@IfcDoorLiningProperties>
+	public  partial class @IfcDoorLiningProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcDoorLiningProperties, IEquatable<@IfcDoorLiningProperties>
 	{
 		#region IIfcDoorLiningProperties explicit implementation
 		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningDepth { get { return @LiningDepth; } }	
@@ -385,17 +385,6 @@ namespace Xbim.Ifc4.ArchitectureDomain
         public static bool operator !=(@IfcDoorLiningProperties left, @IfcDoorLiningProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDoorLiningProperties x, @IfcDoorLiningProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDoorLiningProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

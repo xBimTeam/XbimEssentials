@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcFilter", 1178)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFilter : IfcFlowTreatmentDevice, IInstantiableEntity, IIfcFilter, IEqualityComparer<@IfcFilter>, IEquatable<@IfcFilter>
+	public  partial class @IfcFilter : IfcFlowTreatmentDevice, IInstantiableEntity, IIfcFilter, IEquatable<@IfcFilter>
 	{
 		#region IIfcFilter explicit implementation
 		IfcFilterTypeEnum? IIfcFilter.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcFilter left, @IfcFilter right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFilter x, @IfcFilter y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFilter obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

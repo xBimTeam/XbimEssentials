@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("AssetType", 44)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieAssetType : CobiePickValue, IInstantiableEntity, ICobieAssetType, IEqualityComparer<@CobieAssetType>, IEquatable<@CobieAssetType>
+	public  partial class @CobieAssetType : CobiePickValue, IInstantiableEntity, ICobieAssetType, IEquatable<@CobieAssetType>
 	{
 		#region ICobieAssetType explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieAssetType left, @CobieAssetType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieAssetType x, @CobieAssetType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieAssetType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

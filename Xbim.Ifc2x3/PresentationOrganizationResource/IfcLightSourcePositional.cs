@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSourcePositional", 759)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourcePositional : IfcLightSource, IInstantiableEntity, IIfcLightSourcePositional, IEqualityComparer<@IfcLightSourcePositional>, IEquatable<@IfcLightSourcePositional>
+	public  partial class @IfcLightSourcePositional : IfcLightSource, IInstantiableEntity, IIfcLightSourcePositional, IEquatable<@IfcLightSourcePositional>
 	{
 		#region IIfcLightSourcePositional explicit implementation
 		IIfcCartesianPoint IIfcLightSourcePositional.Position { get { return @Position; } }	
@@ -219,17 +219,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
         public static bool operator !=(@IfcLightSourcePositional left, @IfcLightSourcePositional right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLightSourcePositional x, @IfcLightSourcePositional y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLightSourcePositional obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

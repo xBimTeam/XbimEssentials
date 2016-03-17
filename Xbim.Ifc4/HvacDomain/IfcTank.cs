@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcTank", 1293)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTank : IfcFlowStorageDevice, IInstantiableEntity, IIfcTank, IEqualityComparer<@IfcTank>, IEquatable<@IfcTank>
+	public  partial class @IfcTank : IfcFlowStorageDevice, IInstantiableEntity, IIfcTank, IEquatable<@IfcTank>
 	{
 		#region IIfcTank explicit implementation
 		IfcTankTypeEnum? IIfcTank.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcTank left, @IfcTank right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTank x, @IfcTank y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTank obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

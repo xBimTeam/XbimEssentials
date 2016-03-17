@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcProxy", 447)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProxy : IfcProduct, IInstantiableEntity, IIfcProxy, IEqualityComparer<@IfcProxy>, IEquatable<@IfcProxy>
+	public  partial class @IfcProxy : IfcProduct, IInstantiableEntity, IIfcProxy, IEquatable<@IfcProxy>
 	{
 		#region IIfcProxy explicit implementation
 		IfcObjectTypeEnum IIfcProxy.ProxyType { get { return @ProxyType; } }	
@@ -162,17 +162,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcProxy left, @IfcProxy right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcProxy x, @IfcProxy y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProxy obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

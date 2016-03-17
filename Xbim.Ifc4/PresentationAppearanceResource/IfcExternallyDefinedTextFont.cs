@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcExternallyDefinedTextFont", 132)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternallyDefinedTextFont : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedTextFont, IEqualityComparer<@IfcExternallyDefinedTextFont>, IEquatable<@IfcExternallyDefinedTextFont>
+	public  partial class @IfcExternallyDefinedTextFont : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedTextFont, IEquatable<@IfcExternallyDefinedTextFont>
 	{
 		#region IIfcExternallyDefinedTextFont explicit implementation
 		 
@@ -112,17 +112,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcExternallyDefinedTextFont left, @IfcExternallyDefinedTextFont right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcExternallyDefinedTextFont x, @IfcExternallyDefinedTextFont y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExternallyDefinedTextFont obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

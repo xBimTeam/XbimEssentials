@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcRightCircularCone", 703)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRightCircularCone : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCone, IEqualityComparer<@IfcRightCircularCone>, IEquatable<@IfcRightCircularCone>
+	public  partial class @IfcRightCircularCone : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCone, IEquatable<@IfcRightCircularCone>
 	{
 		#region IIfcRightCircularCone explicit implementation
 		IfcPositiveLengthMeasure IIfcRightCircularCone.Height { get { return @Height; } }	
@@ -155,17 +155,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
         public static bool operator !=(@IfcRightCircularCone left, @IfcRightCircularCone right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRightCircularCone x, @IfcRightCircularCone y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRightCircularCone obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

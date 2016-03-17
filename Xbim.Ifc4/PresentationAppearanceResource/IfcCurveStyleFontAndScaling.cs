@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcCurveStyleFontAndScaling", 569)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyleFontAndScaling : IfcPresentationItem, IInstantiableEntity, IIfcCurveStyleFontAndScaling, IEqualityComparer<@IfcCurveStyleFontAndScaling>, IEquatable<@IfcCurveStyleFontAndScaling>
+	public  partial class @IfcCurveStyleFontAndScaling : IfcPresentationItem, IInstantiableEntity, IIfcCurveStyleFontAndScaling, IEquatable<@IfcCurveStyleFontAndScaling>
 	{
 		#region IIfcCurveStyleFontAndScaling explicit implementation
 		IfcLabel? IIfcCurveStyleFontAndScaling.Name { get { return @Name; } }	
@@ -173,17 +173,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcCurveStyleFontAndScaling left, @IfcCurveStyleFontAndScaling right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCurveStyleFontAndScaling x, @IfcCurveStyleFontAndScaling y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCurveStyleFontAndScaling obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

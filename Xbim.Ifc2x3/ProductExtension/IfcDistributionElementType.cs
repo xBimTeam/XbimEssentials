@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcDistributionElementType", 47)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionElementType : IfcElementType, IInstantiableEntity, IIfcDistributionElementType, IEqualityComparer<@IfcDistributionElementType>, IEquatable<@IfcDistributionElementType>
+	public  partial class @IfcDistributionElementType : IfcElementType, IInstantiableEntity, IIfcDistributionElementType, IEquatable<@IfcDistributionElementType>
 	{
 		#region IIfcDistributionElementType explicit implementation
 		 
@@ -117,17 +117,6 @@ namespace Xbim.Ifc2x3.ProductExtension
         public static bool operator !=(@IfcDistributionElementType left, @IfcDistributionElementType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDistributionElementType x, @IfcDistributionElementType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDistributionElementType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

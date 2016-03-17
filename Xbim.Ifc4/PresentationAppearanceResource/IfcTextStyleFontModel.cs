@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyleFontModel", 503)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleFontModel : IfcPreDefinedTextFont, IInstantiableEntity, IIfcTextStyleFontModel, IEqualityComparer<@IfcTextStyleFontModel>, IEquatable<@IfcTextStyleFontModel>
+	public  partial class @IfcTextStyleFontModel : IfcPreDefinedTextFont, IInstantiableEntity, IIfcTextStyleFontModel, IEquatable<@IfcTextStyleFontModel>
 	{
 		#region IIfcTextStyleFontModel explicit implementation
 		IEnumerable<IfcTextFontName> IIfcTextStyleFontModel.FontFamily { get { return @FontFamily; } }	
@@ -213,17 +213,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcTextStyleFontModel left, @IfcTextStyleFontModel right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTextStyleFontModel x, @IfcTextStyleFontModel y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextStyleFontModel obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

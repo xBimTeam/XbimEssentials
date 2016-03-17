@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcFuelProperties", 715)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFuelProperties : IfcMaterialProperties, IInstantiableEntity, IIfcFuelProperties, IEqualityComparer<@IfcFuelProperties>, IEquatable<@IfcFuelProperties>
+	public  partial class @IfcFuelProperties : IfcMaterialProperties, IInstantiableEntity, IIfcFuelProperties, IEquatable<@IfcFuelProperties>
 	{
 		#region IIfcFuelProperties explicit implementation
 		IfcThermodynamicTemperatureMeasure? IIfcFuelProperties.CombustionTemperature { get { return @CombustionTemperature; } }	
@@ -195,17 +195,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         public static bool operator !=(@IfcFuelProperties left, @IfcFuelProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFuelProperties x, @IfcFuelProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFuelProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

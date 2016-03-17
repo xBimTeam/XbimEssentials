@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelAssociatesLibrary", 522)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesLibrary : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesLibrary, IEqualityComparer<@IfcRelAssociatesLibrary>, IEquatable<@IfcRelAssociatesLibrary>
+	public  partial class @IfcRelAssociatesLibrary : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesLibrary, IEquatable<@IfcRelAssociatesLibrary>
 	{
 		#region IIfcRelAssociatesLibrary explicit implementation
 		IIfcLibrarySelect IIfcRelAssociatesLibrary.RelatingLibrary { get { return @RelatingLibrary; } }	
@@ -140,17 +140,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcRelAssociatesLibrary left, @IfcRelAssociatesLibrary right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssociatesLibrary x, @IfcRelAssociatesLibrary y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssociatesLibrary obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

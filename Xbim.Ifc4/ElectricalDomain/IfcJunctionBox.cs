@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcJunctionBox", 1195)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcJunctionBox : IfcFlowFitting, IInstantiableEntity, IIfcJunctionBox, IEqualityComparer<@IfcJunctionBox>, IEquatable<@IfcJunctionBox>
+	public  partial class @IfcJunctionBox : IfcFlowFitting, IInstantiableEntity, IIfcJunctionBox, IEquatable<@IfcJunctionBox>
 	{
 		#region IIfcJunctionBox explicit implementation
 		IfcJunctionBoxTypeEnum? IIfcJunctionBox.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcJunctionBox left, @IfcJunctionBox right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcJunctionBox x, @IfcJunctionBox y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcJunctionBox obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

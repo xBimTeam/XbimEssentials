@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IfcResourceLevelRelationship", 1258)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcResourceLevelRelationship : IPersistEntity, INotifyPropertyChanged, IIfcResourceLevelRelationship, IEqualityComparer<@IfcResourceLevelRelationship>, IEquatable<@IfcResourceLevelRelationship>
+	public abstract partial class @IfcResourceLevelRelationship : IPersistEntity, INotifyPropertyChanged, IIfcResourceLevelRelationship, IEquatable<@IfcResourceLevelRelationship>
 	{
 		#region IIfcResourceLevelRelationship explicit implementation
 		IfcLabel? IIfcResourceLevelRelationship.Name { get { return @Name; } }	
@@ -261,17 +261,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
         public static bool operator !=(@IfcResourceLevelRelationship left, @IfcResourceLevelRelationship right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcResourceLevelRelationship x, @IfcResourceLevelRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcResourceLevelRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

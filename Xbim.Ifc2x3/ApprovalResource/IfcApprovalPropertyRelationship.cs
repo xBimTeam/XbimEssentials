@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 {
 	[ExpressType("IfcApprovalPropertyRelationship", 376)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApprovalPropertyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalPropertyRelationship, IEqualityComparer<@IfcApprovalPropertyRelationship>, IEquatable<@IfcApprovalPropertyRelationship>
+	public  partial class @IfcApprovalPropertyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalPropertyRelationship, IEquatable<@IfcApprovalPropertyRelationship>
 	{
 		#region IIfcApprovalPropertyRelationship explicit implementation
 		IEnumerable<IIfcProperty> IIfcApprovalPropertyRelationship.ApprovedProperties { get { return @ApprovedProperties; } }	
@@ -259,17 +259,6 @@ namespace Xbim.Ifc2x3.ApprovalResource
         public static bool operator !=(@IfcApprovalPropertyRelationship left, @IfcApprovalPropertyRelationship right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcApprovalPropertyRelationship x, @IfcApprovalPropertyRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcApprovalPropertyRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

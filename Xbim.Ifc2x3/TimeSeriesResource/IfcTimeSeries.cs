@@ -48,7 +48,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IfcTimeSeries", 418)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTimeSeries : IPersistEntity, INotifyPropertyChanged, IIfcTimeSeries, IEqualityComparer<@IfcTimeSeries>, IEquatable<@IfcTimeSeries>
+	public abstract partial class @IfcTimeSeries : IPersistEntity, INotifyPropertyChanged, IIfcTimeSeries, IEquatable<@IfcTimeSeries>
 	{
 		#region IIfcTimeSeries explicit implementation
 		IfcLabel IIfcTimeSeries.Name { get { return @Name; } }	
@@ -397,17 +397,6 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
         public static bool operator !=(@IfcTimeSeries left, @IfcTimeSeries right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTimeSeries x, @IfcTimeSeries y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTimeSeries obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

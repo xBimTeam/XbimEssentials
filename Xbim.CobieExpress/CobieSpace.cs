@@ -40,7 +40,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Space", 18)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSpace : CobieAsset, IInstantiableEntity, ICobieSpace, IEqualityComparer<@CobieSpace>, IEquatable<@CobieSpace>
+	public  partial class @CobieSpace : CobieAsset, IInstantiableEntity, ICobieSpace, IEquatable<@CobieSpace>
 	{
 		#region ICobieSpace explicit implementation
 		string ICobieSpace.RoomTag { get { return @RoomTag; } }	
@@ -250,17 +250,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieSpace left, @CobieSpace right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieSpace x, @CobieSpace y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieSpace obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcElementAssembly", 18)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElementAssembly : IfcElement, IInstantiableEntity, IIfcElementAssembly, IEqualityComparer<@IfcElementAssembly>, IEquatable<@IfcElementAssembly>
+	public  partial class @IfcElementAssembly : IfcElement, IInstantiableEntity, IIfcElementAssembly, IEquatable<@IfcElementAssembly>
 	{
 		#region IIfcElementAssembly explicit implementation
 		IfcAssemblyPlaceEnum? IIfcElementAssembly.AssemblyPlace { get { return @AssemblyPlace; } }	
@@ -162,17 +162,6 @@ namespace Xbim.Ifc2x3.ProductExtension
         public static bool operator !=(@IfcElementAssembly left, @IfcElementAssembly right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElementAssembly x, @IfcElementAssembly y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElementAssembly obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelConnectsStructuralElement", 413)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsStructuralElement : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralElement, IEqualityComparer<@IfcRelConnectsStructuralElement>, IEquatable<@IfcRelConnectsStructuralElement>
+	public  partial class @IfcRelConnectsStructuralElement : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralElement, IEquatable<@IfcRelConnectsStructuralElement>
 	{
 		#region IIfcRelConnectsStructuralElement explicit implementation
 		IIfcElement IIfcRelConnectsStructuralElement.RelatingElement { get { return @RelatingElement; } }	
@@ -161,17 +161,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         public static bool operator !=(@IfcRelConnectsStructuralElement left, @IfcRelConnectsStructuralElement right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelConnectsStructuralElement x, @IfcRelConnectsStructuralElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelConnectsStructuralElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

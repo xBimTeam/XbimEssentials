@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcDocumentReference", 450)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentReference : IfcExternalReference, IInstantiableEntity, IIfcDocumentReference, IEqualityComparer<@IfcDocumentReference>, IEquatable<@IfcDocumentReference>
+	public  partial class @IfcDocumentReference : IfcExternalReference, IInstantiableEntity, IIfcDocumentReference, IEquatable<@IfcDocumentReference>
 	{
 		#region IIfcDocumentReference explicit implementation
 		 
@@ -125,17 +125,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
         public static bool operator !=(@IfcDocumentReference left, @IfcDocumentReference right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDocumentReference x, @IfcDocumentReference y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDocumentReference obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

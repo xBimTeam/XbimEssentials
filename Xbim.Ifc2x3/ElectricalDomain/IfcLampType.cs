@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcLampType", 592)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLampType : IfcFlowTerminalType, IInstantiableEntity, IIfcLampType, IEqualityComparer<@IfcLampType>, IEquatable<@IfcLampType>
+	public  partial class @IfcLampType : IfcFlowTerminalType, IInstantiableEntity, IIfcLampType, IEquatable<@IfcLampType>
 	{
 		#region IIfcLampType explicit implementation
 		IfcLampTypeEnum IIfcLampType.PredefinedType { get { return @PredefinedType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc2x3.ElectricalDomain
         public static bool operator !=(@IfcLampType left, @IfcLampType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLampType x, @IfcLampType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLampType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

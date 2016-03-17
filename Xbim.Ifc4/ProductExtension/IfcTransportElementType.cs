@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcTransportElementType", 475)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTransportElementType : IfcElementType, IInstantiableEntity, IIfcTransportElementType, IEqualityComparer<@IfcTransportElementType>, IEquatable<@IfcTransportElementType>
+	public  partial class @IfcTransportElementType : IfcElementType, IInstantiableEntity, IIfcTransportElementType, IEquatable<@IfcTransportElementType>
 	{
 		#region IIfcTransportElementType explicit implementation
 		IfcTransportElementTypeEnum IIfcTransportElementType.PredefinedType { get { return @PredefinedType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcTransportElementType left, @IfcTransportElementType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTransportElementType x, @IfcTransportElementType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTransportElementType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

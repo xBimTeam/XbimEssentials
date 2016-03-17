@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IfcExternalInformation", 1172)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcExternalInformation : IPersistEntity, INotifyPropertyChanged, IIfcExternalInformation, IEqualityComparer<@IfcExternalInformation>, IEquatable<@IfcExternalInformation>
+	public abstract partial class @IfcExternalInformation : IPersistEntity, INotifyPropertyChanged, IIfcExternalInformation, IEquatable<@IfcExternalInformation>
 	{
 		#region IIfcExternalInformation explicit implementation
 		 
@@ -212,17 +212,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
         public static bool operator !=(@IfcExternalInformation left, @IfcExternalInformation right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcExternalInformation x, @IfcExternalInformation y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExternalInformation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

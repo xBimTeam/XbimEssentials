@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcWindowStyle", 345)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWindowStyle : IfcTypeProduct, IInstantiableEntity, IIfcWindowStyle, IEqualityComparer<@IfcWindowStyle>, IEquatable<@IfcWindowStyle>
+	public  partial class @IfcWindowStyle : IfcTypeProduct, IInstantiableEntity, IIfcWindowStyle, IEquatable<@IfcWindowStyle>
 	{
 		#region IIfcWindowStyle explicit implementation
 		IfcWindowStyleConstructionEnum IIfcWindowStyle.ConstructionType { get { return @ConstructionType; } }	
@@ -202,17 +202,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         public static bool operator !=(@IfcWindowStyle left, @IfcWindowStyle right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcWindowStyle x, @IfcWindowStyle y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWindowStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

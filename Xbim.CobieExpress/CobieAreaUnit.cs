@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("AreaUnit", 40)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieAreaUnit : CobiePickValue, IInstantiableEntity, ICobieAreaUnit, IEqualityComparer<@CobieAreaUnit>, IEquatable<@CobieAreaUnit>
+	public  partial class @CobieAreaUnit : CobiePickValue, IInstantiableEntity, ICobieAreaUnit, IEquatable<@CobieAreaUnit>
 	{
 		#region ICobieAreaUnit explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieAreaUnit left, @CobieAreaUnit right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieAreaUnit x, @CobieAreaUnit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieAreaUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

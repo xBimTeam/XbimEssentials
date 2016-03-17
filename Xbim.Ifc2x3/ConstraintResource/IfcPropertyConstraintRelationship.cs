@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IfcPropertyConstraintRelationship", 625)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyConstraintRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcPropertyConstraintRelationship, IEqualityComparer<@IfcPropertyConstraintRelationship>, IEquatable<@IfcPropertyConstraintRelationship>
+	public  partial class @IfcPropertyConstraintRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcPropertyConstraintRelationship, IEquatable<@IfcPropertyConstraintRelationship>
 	{
 		#region IIfcPropertyConstraintRelationship explicit implementation
 		IIfcConstraint IIfcPropertyConstraintRelationship.RelatingConstraint { get { return @RelatingConstraint; } }	
@@ -301,17 +301,6 @@ namespace Xbim.Ifc2x3.ConstraintResource
         public static bool operator !=(@IfcPropertyConstraintRelationship left, @IfcPropertyConstraintRelationship right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPropertyConstraintRelationship x, @IfcPropertyConstraintRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyConstraintRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

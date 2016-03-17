@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcGeographicElement", 1185)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeographicElement : IfcElement, IInstantiableEntity, IIfcGeographicElement, IEqualityComparer<@IfcGeographicElement>, IEquatable<@IfcGeographicElement>
+	public  partial class @IfcGeographicElement : IfcElement, IInstantiableEntity, IIfcGeographicElement, IEquatable<@IfcGeographicElement>
 	{
 		#region IIfcGeographicElement explicit implementation
 		IfcGeographicElementTypeEnum? IIfcGeographicElement.PredefinedType { get { return @PredefinedType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcGeographicElement left, @IfcGeographicElement right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGeographicElement x, @IfcGeographicElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGeographicElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

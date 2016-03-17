@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcDerivedUnit", 630)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDerivedUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnit, IEqualityComparer<@IfcDerivedUnit>, IEquatable<@IfcDerivedUnit>
+	public  partial class @IfcDerivedUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnit, IEquatable<@IfcDerivedUnit>
 	{
 		#region IIfcDerivedUnit explicit implementation
 		IEnumerable<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements { get { return @Elements; } }	
@@ -321,17 +321,6 @@ namespace Xbim.Ifc2x3.MeasureResource
         public static bool operator !=(@IfcDerivedUnit left, @IfcDerivedUnit right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDerivedUnit x, @IfcDerivedUnit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDerivedUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

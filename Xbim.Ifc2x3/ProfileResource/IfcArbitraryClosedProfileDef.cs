@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcArbitraryClosedProfileDef", 115)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcArbitraryClosedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryClosedProfileDef, IEqualityComparer<@IfcArbitraryClosedProfileDef>, IEquatable<@IfcArbitraryClosedProfileDef>
+	public  partial class @IfcArbitraryClosedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryClosedProfileDef, IEquatable<@IfcArbitraryClosedProfileDef>
 	{
 		#region IIfcArbitraryClosedProfileDef explicit implementation
 		IIfcCurve IIfcArbitraryClosedProfileDef.OuterCurve { get { return @OuterCurve; } }	
@@ -139,17 +139,6 @@ namespace Xbim.Ifc2x3.ProfileResource
         public static bool operator !=(@IfcArbitraryClosedProfileDef left, @IfcArbitraryClosedProfileDef right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcArbitraryClosedProfileDef x, @IfcArbitraryClosedProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcArbitraryClosedProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

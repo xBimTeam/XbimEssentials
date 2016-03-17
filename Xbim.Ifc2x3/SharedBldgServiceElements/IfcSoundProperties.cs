@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcSoundProperties", 474)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSoundProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundProperties, IEqualityComparer<@IfcSoundProperties>, IEquatable<@IfcSoundProperties>
+	public  partial class @IfcSoundProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundProperties, IEquatable<@IfcSoundProperties>
 	{
 		#region IIfcSoundProperties explicit implementation
 		IfcBoolean IIfcSoundProperties.IsAttenuating { get { return @IsAttenuating; } }	
@@ -177,17 +177,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         public static bool operator !=(@IfcSoundProperties left, @IfcSoundProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSoundProperties x, @IfcSoundProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSoundProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

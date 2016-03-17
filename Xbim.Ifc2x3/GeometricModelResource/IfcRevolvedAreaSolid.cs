@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcRevolvedAreaSolid", 515)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRevolvedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcRevolvedAreaSolid, IEqualityComparer<@IfcRevolvedAreaSolid>, IEquatable<@IfcRevolvedAreaSolid>
+	public  partial class @IfcRevolvedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcRevolvedAreaSolid, IEquatable<@IfcRevolvedAreaSolid>
 	{
 		#region IIfcRevolvedAreaSolid explicit implementation
 		IIfcAxis1Placement IIfcRevolvedAreaSolid.Axis { get { return @Axis; } }	
@@ -181,17 +181,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
         public static bool operator !=(@IfcRevolvedAreaSolid left, @IfcRevolvedAreaSolid right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRevolvedAreaSolid x, @IfcRevolvedAreaSolid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRevolvedAreaSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

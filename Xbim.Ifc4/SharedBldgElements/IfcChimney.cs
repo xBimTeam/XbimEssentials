@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcChimney", 1120)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcChimney : IfcBuildingElement, IInstantiableEntity, IIfcChimney, IEqualityComparer<@IfcChimney>, IEquatable<@IfcChimney>
+	public  partial class @IfcChimney : IfcBuildingElement, IInstantiableEntity, IIfcChimney, IEquatable<@IfcChimney>
 	{
 		#region IIfcChimney explicit implementation
 		IfcChimneyTypeEnum? IIfcChimney.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcChimney left, @IfcChimney right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcChimney x, @IfcChimney y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcChimney obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcCableCarrierSegment", 1112)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCableCarrierSegment : IfcFlowSegment, IInstantiableEntity, IIfcCableCarrierSegment, IEqualityComparer<@IfcCableCarrierSegment>, IEquatable<@IfcCableCarrierSegment>
+	public  partial class @IfcCableCarrierSegment : IfcFlowSegment, IInstantiableEntity, IIfcCableCarrierSegment, IEquatable<@IfcCableCarrierSegment>
 	{
 		#region IIfcCableCarrierSegment explicit implementation
 		IfcCableCarrierSegmentTypeEnum? IIfcCableCarrierSegment.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcCableCarrierSegment left, @IfcCableCarrierSegment right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCableCarrierSegment x, @IfcCableCarrierSegment y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCableCarrierSegment obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

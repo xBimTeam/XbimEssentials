@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IfcFlowMovingDevice", 502)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowMovingDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowMovingDevice, IEqualityComparer<@IfcFlowMovingDevice>, IEquatable<@IfcFlowMovingDevice>
+	public  partial class @IfcFlowMovingDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowMovingDevice, IEquatable<@IfcFlowMovingDevice>
 	{
 		#region IIfcFlowMovingDevice explicit implementation
 		 
@@ -116,17 +116,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
         public static bool operator !=(@IfcFlowMovingDevice left, @IfcFlowMovingDevice right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFlowMovingDevice x, @IfcFlowMovingDevice y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFlowMovingDevice obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

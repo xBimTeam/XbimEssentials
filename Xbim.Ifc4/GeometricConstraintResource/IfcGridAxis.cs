@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[ExpressType("IfcGridAxis", 441)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGridAxis : INotifyPropertyChanged, IInstantiableEntity, IIfcGridAxis, IEqualityComparer<@IfcGridAxis>, IEquatable<@IfcGridAxis>
+	public  partial class @IfcGridAxis : INotifyPropertyChanged, IInstantiableEntity, IIfcGridAxis, IEquatable<@IfcGridAxis>
 	{
 		#region IIfcGridAxis explicit implementation
 		IfcLabel? IIfcGridAxis.AxisTag { get { return @AxisTag; } }	
@@ -331,17 +331,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
         public static bool operator !=(@IfcGridAxis left, @IfcGridAxis right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGridAxis x, @IfcGridAxis y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGridAxis obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

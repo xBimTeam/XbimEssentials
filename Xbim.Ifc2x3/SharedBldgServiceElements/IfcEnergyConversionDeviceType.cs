@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcEnergyConversionDeviceType", 60)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcEnergyConversionDeviceType : IfcDistributionFlowElementType, IIfcEnergyConversionDeviceType, IEqualityComparer<@IfcEnergyConversionDeviceType>, IEquatable<@IfcEnergyConversionDeviceType>
+	public abstract partial class @IfcEnergyConversionDeviceType : IfcDistributionFlowElementType, IIfcEnergyConversionDeviceType, IEquatable<@IfcEnergyConversionDeviceType>
 	{
 		#region IIfcEnergyConversionDeviceType explicit implementation
 		 
@@ -117,17 +117,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         public static bool operator !=(@IfcEnergyConversionDeviceType left, @IfcEnergyConversionDeviceType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcEnergyConversionDeviceType x, @IfcEnergyConversionDeviceType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEnergyConversionDeviceType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

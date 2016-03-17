@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcFlowTerminal", 46)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowTerminal : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowTerminal, IEqualityComparer<@IfcFlowTerminal>, IEquatable<@IfcFlowTerminal>
+	public  partial class @IfcFlowTerminal : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowTerminal, IEquatable<@IfcFlowTerminal>
 	{
 		#region IIfcFlowTerminal explicit implementation
 		 
@@ -116,17 +116,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         public static bool operator !=(@IfcFlowTerminal left, @IfcFlowTerminal right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFlowTerminal x, @IfcFlowTerminal y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFlowTerminal obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

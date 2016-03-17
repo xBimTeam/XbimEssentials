@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcPreDefinedColour", 608)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedColour : IfcPreDefinedItem, IIfcPreDefinedColour, IEqualityComparer<@IfcPreDefinedColour>, IEquatable<@IfcPreDefinedColour>
+	public abstract partial class @IfcPreDefinedColour : IfcPreDefinedItem, IIfcPreDefinedColour, IEquatable<@IfcPreDefinedColour>
 	{
 		#region IIfcPreDefinedColour explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcPreDefinedColour left, @IfcPreDefinedColour right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPreDefinedColour x, @IfcPreDefinedColour y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPreDefinedColour obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

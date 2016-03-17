@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialProfile", 1205)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialProfile : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialProfile, IEqualityComparer<@IfcMaterialProfile>, IEquatable<@IfcMaterialProfile>
+	public  partial class @IfcMaterialProfile : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialProfile, IEquatable<@IfcMaterialProfile>
 	{
 		#region IIfcMaterialProfile explicit implementation
 		IfcLabel? IIfcMaterialProfile.Name { get { return @Name; } }	
@@ -247,17 +247,6 @@ namespace Xbim.Ifc4.MaterialResource
         public static bool operator !=(@IfcMaterialProfile left, @IfcMaterialProfile right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialProfile x, @IfcMaterialProfile y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialProfile obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

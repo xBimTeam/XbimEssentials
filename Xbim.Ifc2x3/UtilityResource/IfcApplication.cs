@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 {
 	[ExpressType("IfcApplication", 627)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApplication : INotifyPropertyChanged, IInstantiableEntity, IIfcApplication, IEqualityComparer<@IfcApplication>, IEquatable<@IfcApplication>
+	public  partial class @IfcApplication : INotifyPropertyChanged, IInstantiableEntity, IIfcApplication, IEquatable<@IfcApplication>
 	{
 		#region IIfcApplication explicit implementation
 		IIfcOrganization IIfcApplication.ApplicationDeveloper { get { return @ApplicationDeveloper; } }	
@@ -302,17 +302,6 @@ namespace Xbim.Ifc2x3.UtilityResource
         public static bool operator !=(@IfcApplication left, @IfcApplication right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcApplication x, @IfcApplication y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcApplication obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcDamperType", 514)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDamperType : IfcFlowControllerType, IInstantiableEntity, IIfcDamperType, IEqualityComparer<@IfcDamperType>, IEquatable<@IfcDamperType>
+	public  partial class @IfcDamperType : IfcFlowControllerType, IInstantiableEntity, IIfcDamperType, IEquatable<@IfcDamperType>
 	{
 		#region IIfcDamperType explicit implementation
 		IfcDamperTypeEnum IIfcDamperType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc2x3.HVACDomain
         public static bool operator !=(@IfcDamperType left, @IfcDamperType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDamperType x, @IfcDamperType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDamperType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcSurfaceReinforcementArea", 1288)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceReinforcementArea : IfcStructuralLoadOrResult, IInstantiableEntity, IIfcSurfaceReinforcementArea, IEqualityComparer<@IfcSurfaceReinforcementArea>, IEquatable<@IfcSurfaceReinforcementArea>
+	public  partial class @IfcSurfaceReinforcementArea : IfcStructuralLoadOrResult, IInstantiableEntity, IIfcSurfaceReinforcementArea, IEquatable<@IfcSurfaceReinforcementArea>
 	{
 		#region IIfcSurfaceReinforcementArea explicit implementation
 		IEnumerable<IfcLengthMeasure> IIfcSurfaceReinforcementArea.SurfaceReinforcement1 { get { return @SurfaceReinforcement1; } }	
@@ -175,17 +175,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
         public static bool operator !=(@IfcSurfaceReinforcementArea left, @IfcSurfaceReinforcementArea right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSurfaceReinforcementArea x, @IfcSurfaceReinforcementArea y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceReinforcementArea obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

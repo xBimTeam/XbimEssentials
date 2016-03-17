@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 {
 	[ExpressType("IfcPerformanceHistory", 710)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IIfcPerformanceHistory, IEqualityComparer<@IfcPerformanceHistory>, IEquatable<@IfcPerformanceHistory>
+	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IIfcPerformanceHistory, IEquatable<@IfcPerformanceHistory>
 	{
 		#region IIfcPerformanceHistory explicit implementation
 		IfcLabel IIfcPerformanceHistory.LifeCyclePhase { get { return @LifeCyclePhase; } }	
@@ -140,17 +140,6 @@ namespace Xbim.Ifc2x3.ControlExtension
         public static bool operator !=(@IfcPerformanceHistory left, @IfcPerformanceHistory right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPerformanceHistory x, @IfcPerformanceHistory y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPerformanceHistory obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

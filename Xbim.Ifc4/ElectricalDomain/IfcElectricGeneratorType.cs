@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcElectricGeneratorType", 241)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricGeneratorType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcElectricGeneratorType, IEqualityComparer<@IfcElectricGeneratorType>, IEquatable<@IfcElectricGeneratorType>
+	public  partial class @IfcElectricGeneratorType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcElectricGeneratorType, IEquatable<@IfcElectricGeneratorType>
 	{
 		#region IIfcElectricGeneratorType explicit implementation
 		IfcElectricGeneratorTypeEnum IIfcElectricGeneratorType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcElectricGeneratorType left, @IfcElectricGeneratorType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElectricGeneratorType x, @IfcElectricGeneratorType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElectricGeneratorType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

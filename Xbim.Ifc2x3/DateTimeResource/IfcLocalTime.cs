@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcLocalTime", 483)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLocalTime : INotifyPropertyChanged, IInstantiableEntity, IIfcLocalTime, IEqualityComparer<@IfcLocalTime>, IEquatable<@IfcLocalTime>
+	public  partial class @IfcLocalTime : INotifyPropertyChanged, IInstantiableEntity, IIfcLocalTime, IEquatable<@IfcLocalTime>
 	{
 		#region IIfcLocalTime explicit implementation
 		IfcHourInDay IIfcLocalTime.HourComponent { get { return @HourComponent; } }	
@@ -322,17 +322,6 @@ namespace Xbim.Ifc2x3.DateTimeResource
         public static bool operator !=(@IfcLocalTime left, @IfcLocalTime right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLocalTime x, @IfcLocalTime y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLocalTime obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

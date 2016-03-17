@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcSystem", 229)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSystem : IfcGroup, IInstantiableEntity, IIfcSystem, IEqualityComparer<@IfcSystem>, IEquatable<@IfcSystem>
+	public  partial class @IfcSystem : IfcGroup, IInstantiableEntity, IIfcSystem, IEquatable<@IfcSystem>
 	{
 		#region IIfcSystem explicit implementation
 		 
@@ -127,17 +127,6 @@ namespace Xbim.Ifc2x3.ProductExtension
         public static bool operator !=(@IfcSystem left, @IfcSystem right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSystem x, @IfcSystem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSystem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcRelContainedInSpatialStructure", 559)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelContainedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IIfcRelContainedInSpatialStructure, IEqualityComparer<@IfcRelContainedInSpatialStructure>, IEquatable<@IfcRelContainedInSpatialStructure>
+	public  partial class @IfcRelContainedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IIfcRelContainedInSpatialStructure, IEquatable<@IfcRelContainedInSpatialStructure>
 	{
 		#region IIfcRelContainedInSpatialStructure explicit implementation
 		IEnumerable<IIfcProduct> IIfcRelContainedInSpatialStructure.RelatedElements { get { return @RelatedElements; } }	
@@ -159,17 +159,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcRelContainedInSpatialStructure left, @IfcRelContainedInSpatialStructure right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelContainedInSpatialStructure x, @IfcRelContainedInSpatialStructure y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelContainedInSpatialStructure obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

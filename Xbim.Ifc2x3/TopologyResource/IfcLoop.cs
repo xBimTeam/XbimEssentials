@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcLoop", 199)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLoop : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcLoop, IEqualityComparer<@IfcLoop>, IEquatable<@IfcLoop>
+	public  partial class @IfcLoop : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcLoop, IEquatable<@IfcLoop>
 	{
 		#region IIfcLoop explicit implementation
 		 
@@ -103,17 +103,6 @@ namespace Xbim.Ifc2x3.TopologyResource
         public static bool operator !=(@IfcLoop left, @IfcLoop right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLoop x, @IfcLoop y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLoop obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

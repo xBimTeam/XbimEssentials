@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelAssignsToProduct", 309)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToProduct : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProduct, IEqualityComparer<@IfcRelAssignsToProduct>, IEquatable<@IfcRelAssignsToProduct>
+	public  partial class @IfcRelAssignsToProduct : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProduct, IEquatable<@IfcRelAssignsToProduct>
 	{
 		#region IIfcRelAssignsToProduct explicit implementation
 		IIfcProductSelect IIfcRelAssignsToProduct.RelatingProduct { get { return @RelatingProduct; } }	
@@ -141,17 +141,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcRelAssignsToProduct left, @IfcRelAssignsToProduct right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssignsToProduct x, @IfcRelAssignsToProduct y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToProduct obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

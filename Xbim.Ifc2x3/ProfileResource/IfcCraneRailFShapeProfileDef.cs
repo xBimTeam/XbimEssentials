@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcCraneRailFShapeProfileDef", 112)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCraneRailFShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCraneRailFShapeProfileDef, IEqualityComparer<@IfcCraneRailFShapeProfileDef>, IEquatable<@IfcCraneRailFShapeProfileDef>
+	public  partial class @IfcCraneRailFShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCraneRailFShapeProfileDef, IEquatable<@IfcCraneRailFShapeProfileDef>
 	{
 		#region IIfcCraneRailFShapeProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.OverallHeight { get { return @OverallHeight; } }	
@@ -297,17 +297,6 @@ namespace Xbim.Ifc2x3.ProfileResource
         public static bool operator !=(@IfcCraneRailFShapeProfileDef left, @IfcCraneRailFShapeProfileDef right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCraneRailFShapeProfileDef x, @IfcCraneRailFShapeProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCraneRailFShapeProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

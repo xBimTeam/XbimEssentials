@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcPreDefinedSymbol", 568)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedSymbol : IfcPreDefinedItem, IIfcPreDefinedSymbol, IEqualityComparer<@IfcPreDefinedSymbol>, IEquatable<@IfcPreDefinedSymbol>
+	public abstract partial class @IfcPreDefinedSymbol : IfcPreDefinedItem, IIfcPreDefinedSymbol, IEquatable<@IfcPreDefinedSymbol>
 	{
 		#region IIfcPreDefinedSymbol explicit implementation
 		 
@@ -110,17 +110,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
         public static bool operator !=(@IfcPreDefinedSymbol left, @IfcPreDefinedSymbol right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPreDefinedSymbol x, @IfcPreDefinedSymbol y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPreDefinedSymbol obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

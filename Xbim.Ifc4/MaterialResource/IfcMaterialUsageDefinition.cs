@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialUsageDefinition", 1211)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcMaterialUsageDefinition : IPersistEntity, INotifyPropertyChanged, IIfcMaterialUsageDefinition, IEqualityComparer<@IfcMaterialUsageDefinition>, IEquatable<@IfcMaterialUsageDefinition>
+	public abstract partial class @IfcMaterialUsageDefinition : IPersistEntity, INotifyPropertyChanged, IIfcMaterialUsageDefinition, IEquatable<@IfcMaterialUsageDefinition>
 	{
 		#region IIfcMaterialUsageDefinition explicit implementation
 		 
@@ -226,17 +226,6 @@ namespace Xbim.Ifc4.MaterialResource
         public static bool operator !=(@IfcMaterialUsageDefinition left, @IfcMaterialUsageDefinition right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialUsageDefinition x, @IfcMaterialUsageDefinition y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialUsageDefinition obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

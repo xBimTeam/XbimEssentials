@@ -40,7 +40,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("ReferencedObject", 11)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @CobieReferencedObject : IPersistEntity, INotifyPropertyChanged, ICobieReferencedObject, IEqualityComparer<@CobieReferencedObject>, IEquatable<@CobieReferencedObject>
+	public abstract partial class @CobieReferencedObject : IPersistEntity, INotifyPropertyChanged, ICobieReferencedObject, IEquatable<@CobieReferencedObject>
 	{
 		#region ICobieReferencedObject explicit implementation
 		ICobieCreatedInfo ICobieReferencedObject.Created { get { return @Created; } }	
@@ -320,17 +320,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieReferencedObject left, @CobieReferencedObject right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieReferencedObject x, @CobieReferencedObject y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieReferencedObject obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

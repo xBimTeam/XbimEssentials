@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcPreDefinedCurveFont", 287)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedCurveFont : IfcPreDefinedItem, IIfcPreDefinedCurveFont, IEqualityComparer<@IfcPreDefinedCurveFont>, IEquatable<@IfcPreDefinedCurveFont>
+	public abstract partial class @IfcPreDefinedCurveFont : IfcPreDefinedItem, IIfcPreDefinedCurveFont, IEquatable<@IfcPreDefinedCurveFont>
 	{
 		#region IIfcPreDefinedCurveFont explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcPreDefinedCurveFont left, @IfcPreDefinedCurveFont right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPreDefinedCurveFont x, @IfcPreDefinedCurveFont y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPreDefinedCurveFont obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

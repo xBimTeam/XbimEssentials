@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcSlab", 99)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSlab : IfcBuildingElement, IInstantiableEntity, IIfcSlab, IEqualityComparer<@IfcSlab>, IEquatable<@IfcSlab>
+	public  partial class @IfcSlab : IfcBuildingElement, IInstantiableEntity, IIfcSlab, IEquatable<@IfcSlab>
 	{
 		#region IIfcSlab explicit implementation
 		IfcSlabTypeEnum? IIfcSlab.PredefinedType { get { return @PredefinedType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         public static bool operator !=(@IfcSlab left, @IfcSlab right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSlab x, @IfcSlab y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSlab obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

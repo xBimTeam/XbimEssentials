@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcDuctSilencerType", 141)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDuctSilencerType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IIfcDuctSilencerType, IEqualityComparer<@IfcDuctSilencerType>, IEquatable<@IfcDuctSilencerType>
+	public  partial class @IfcDuctSilencerType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IIfcDuctSilencerType, IEquatable<@IfcDuctSilencerType>
 	{
 		#region IIfcDuctSilencerType explicit implementation
 		IfcDuctSilencerTypeEnum IIfcDuctSilencerType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcDuctSilencerType left, @IfcDuctSilencerType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDuctSilencerType x, @IfcDuctSilencerType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDuctSilencerType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

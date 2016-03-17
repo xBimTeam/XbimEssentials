@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.ConstraintResource
 {
 	[ExpressType("IfcReference", 1244)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReference : INotifyPropertyChanged, IInstantiableEntity, IIfcReference, IEqualityComparer<@IfcReference>, IEquatable<@IfcReference>
+	public  partial class @IfcReference : INotifyPropertyChanged, IInstantiableEntity, IIfcReference, IEquatable<@IfcReference>
 	{
 		#region IIfcReference explicit implementation
 		IfcIdentifier? IIfcReference.TypeIdentifier { get { return @TypeIdentifier; } }	
@@ -320,17 +320,6 @@ namespace Xbim.Ifc4.ConstraintResource
         public static bool operator !=(@IfcReference left, @IfcReference right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcReference x, @IfcReference y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReference obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

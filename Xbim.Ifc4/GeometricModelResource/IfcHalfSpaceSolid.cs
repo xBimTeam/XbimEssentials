@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcHalfSpaceSolid", 338)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHalfSpaceSolid : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcHalfSpaceSolid, IEqualityComparer<@IfcHalfSpaceSolid>, IEquatable<@IfcHalfSpaceSolid>
+	public  partial class @IfcHalfSpaceSolid : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcHalfSpaceSolid, IEquatable<@IfcHalfSpaceSolid>
 	{
 		#region IIfcHalfSpaceSolid explicit implementation
 		IIfcSurface IIfcHalfSpaceSolid.BaseSurface { get { return @BaseSurface; } }	
@@ -166,17 +166,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcHalfSpaceSolid left, @IfcHalfSpaceSolid right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcHalfSpaceSolid x, @IfcHalfSpaceSolid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcHalfSpaceSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcStructuralProfileProperties", 683)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralProfileProperties : IfcGeneralProfileProperties, IInstantiableEntity, IIfcStructuralProfileProperties, IEqualityComparer<@IfcStructuralProfileProperties>, IEquatable<@IfcStructuralProfileProperties>
+	public  partial class @IfcStructuralProfileProperties : IfcGeneralProfileProperties, IInstantiableEntity, IIfcStructuralProfileProperties, IEquatable<@IfcStructuralProfileProperties>
 	{
 		#region IIfcStructuralProfileProperties explicit implementation
 		IfcMomentOfInertiaMeasure? IIfcStructuralProfileProperties.TorsionalConstantX { get { return @TorsionalConstantX; } }	
@@ -443,17 +443,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
         public static bool operator !=(@IfcStructuralProfileProperties left, @IfcStructuralProfileProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralProfileProperties x, @IfcStructuralProfileProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralProfileProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

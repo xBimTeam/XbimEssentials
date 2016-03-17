@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("ApprovalType", 55)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieApprovalType : CobiePickValue, IInstantiableEntity, ICobieApprovalType, IEqualityComparer<@CobieApprovalType>, IEquatable<@CobieApprovalType>
+	public  partial class @CobieApprovalType : CobiePickValue, IInstantiableEntity, ICobieApprovalType, IEquatable<@CobieApprovalType>
 	{
 		#region ICobieApprovalType explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieApprovalType left, @CobieApprovalType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieApprovalType x, @CobieApprovalType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieApprovalType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

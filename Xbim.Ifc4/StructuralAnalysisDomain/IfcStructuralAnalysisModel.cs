@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralAnalysisModel", 230)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralAnalysisModel : IfcSystem, IInstantiableEntity, IIfcStructuralAnalysisModel, IEqualityComparer<@IfcStructuralAnalysisModel>, IEquatable<@IfcStructuralAnalysisModel>
+	public  partial class @IfcStructuralAnalysisModel : IfcSystem, IInstantiableEntity, IIfcStructuralAnalysisModel, IEquatable<@IfcStructuralAnalysisModel>
 	{
 		#region IIfcStructuralAnalysisModel explicit implementation
 		IfcAnalysisModelTypeEnum IIfcStructuralAnalysisModel.PredefinedType { get { return @PredefinedType; } }	
@@ -220,17 +220,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
         public static bool operator !=(@IfcStructuralAnalysisModel left, @IfcStructuralAnalysisModel right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralAnalysisModel x, @IfcStructuralAnalysisModel y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralAnalysisModel obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

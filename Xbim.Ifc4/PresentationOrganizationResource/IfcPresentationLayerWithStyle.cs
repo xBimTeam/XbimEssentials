@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[ExpressType("IfcPresentationLayerWithStyle", 259)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IIfcPresentationLayerWithStyle, IEqualityComparer<@IfcPresentationLayerWithStyle>, IEquatable<@IfcPresentationLayerWithStyle>
+	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IIfcPresentationLayerWithStyle, IEquatable<@IfcPresentationLayerWithStyle>
 	{
 		#region IIfcPresentationLayerWithStyle explicit implementation
 		IfcLogical IIfcPresentationLayerWithStyle.LayerOn { get { return @LayerOn; } }	
@@ -198,17 +198,6 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
         public static bool operator !=(@IfcPresentationLayerWithStyle left, @IfcPresentationLayerWithStyle right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPresentationLayerWithStyle x, @IfcPresentationLayerWithStyle y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPresentationLayerWithStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

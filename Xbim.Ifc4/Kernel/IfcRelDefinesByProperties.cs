@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelDefinesByProperties", 247)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelDefinesByProperties : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByProperties, IEqualityComparer<@IfcRelDefinesByProperties>, IEquatable<@IfcRelDefinesByProperties>
+	public  partial class @IfcRelDefinesByProperties : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByProperties, IEquatable<@IfcRelDefinesByProperties>
 	{
 		#region IIfcRelDefinesByProperties explicit implementation
 		IEnumerable<IIfcObjectDefinition> IIfcRelDefinesByProperties.RelatedObjects { get { return @RelatedObjects; } }	
@@ -157,17 +157,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcRelDefinesByProperties left, @IfcRelDefinesByProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelDefinesByProperties x, @IfcRelDefinesByProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelDefinesByProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

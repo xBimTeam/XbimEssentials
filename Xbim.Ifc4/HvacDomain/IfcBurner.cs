@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcBurner", 1109)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBurner : IfcEnergyConversionDevice, IInstantiableEntity, IIfcBurner, IEqualityComparer<@IfcBurner>, IEquatable<@IfcBurner>
+	public  partial class @IfcBurner : IfcEnergyConversionDevice, IInstantiableEntity, IIfcBurner, IEquatable<@IfcBurner>
 	{
 		#region IIfcBurner explicit implementation
 		IfcBurnerTypeEnum? IIfcBurner.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcBurner left, @IfcBurner right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBurner x, @IfcBurner y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBurner obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

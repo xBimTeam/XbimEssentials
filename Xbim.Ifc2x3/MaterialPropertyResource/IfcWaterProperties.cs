@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcWaterProperties", 721)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWaterProperties : IfcMaterialProperties, IInstantiableEntity, IIfcWaterProperties, IEqualityComparer<@IfcWaterProperties>, IEquatable<@IfcWaterProperties>
+	public  partial class @IfcWaterProperties : IfcMaterialProperties, IInstantiableEntity, IIfcWaterProperties, IEquatable<@IfcWaterProperties>
 	{
 		#region IIfcWaterProperties explicit implementation
 		bool? IIfcWaterProperties.IsPotable { get { return @IsPotable; } }	
@@ -255,17 +255,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         public static bool operator !=(@IfcWaterProperties left, @IfcWaterProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcWaterProperties x, @IfcWaterProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWaterProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

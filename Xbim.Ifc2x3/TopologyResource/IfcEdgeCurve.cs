@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcEdgeCurve", 203)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEdgeCurve : IfcEdge, IInstantiableEntity, IIfcEdgeCurve, IEqualityComparer<@IfcEdgeCurve>, IEquatable<@IfcEdgeCurve>
+	public  partial class @IfcEdgeCurve : IfcEdge, IInstantiableEntity, IIfcEdgeCurve, IEquatable<@IfcEdgeCurve>
 	{
 		#region IIfcEdgeCurve explicit implementation
 		IIfcCurve IIfcEdgeCurve.EdgeGeometry { get { return @EdgeGeometry; } }	
@@ -157,17 +157,6 @@ namespace Xbim.Ifc2x3.TopologyResource
         public static bool operator !=(@IfcEdgeCurve left, @IfcEdgeCurve right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcEdgeCurve x, @IfcEdgeCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEdgeCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

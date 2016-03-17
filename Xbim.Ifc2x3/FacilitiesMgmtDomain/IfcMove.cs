@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcMove", 74)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMove : IfcTask, IInstantiableEntity, IIfcMove, IEqualityComparer<@IfcMove>, IEquatable<@IfcMove>
+	public  partial class @IfcMove : IfcTask, IInstantiableEntity, IIfcMove, IEquatable<@IfcMove>
 	{
 		#region IIfcMove explicit implementation
 		IIfcSpatialStructureElement IIfcMove.MoveFrom { get { return @MoveFrom; } }	
@@ -187,17 +187,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
         public static bool operator !=(@IfcMove left, @IfcMove right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMove x, @IfcMove y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMove obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

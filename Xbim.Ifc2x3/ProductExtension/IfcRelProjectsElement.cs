@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelProjectsElement", 311)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelProjectsElement : IfcRelConnects, IInstantiableEntity, IIfcRelProjectsElement, IEqualityComparer<@IfcRelProjectsElement>, IEquatable<@IfcRelProjectsElement>
+	public  partial class @IfcRelProjectsElement : IfcRelConnects, IInstantiableEntity, IIfcRelProjectsElement, IEquatable<@IfcRelProjectsElement>
 	{
 		#region IIfcRelProjectsElement explicit implementation
 		IIfcElement IIfcRelProjectsElement.RelatingElement { get { return @RelatingElement; } }	
@@ -160,17 +160,6 @@ namespace Xbim.Ifc2x3.ProductExtension
         public static bool operator !=(@IfcRelProjectsElement left, @IfcRelProjectsElement right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelProjectsElement x, @IfcRelProjectsElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelProjectsElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

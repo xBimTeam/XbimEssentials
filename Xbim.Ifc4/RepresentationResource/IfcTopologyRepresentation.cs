@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcTopologyRepresentation", 88)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTopologyRepresentation : IfcShapeModel, IInstantiableEntity, IIfcTopologyRepresentation, IEqualityComparer<@IfcTopologyRepresentation>, IEquatable<@IfcTopologyRepresentation>
+	public  partial class @IfcTopologyRepresentation : IfcShapeModel, IInstantiableEntity, IIfcTopologyRepresentation, IEquatable<@IfcTopologyRepresentation>
 	{
 		#region IIfcTopologyRepresentation explicit implementation
 		 
@@ -115,17 +115,6 @@ namespace Xbim.Ifc4.RepresentationResource
         public static bool operator !=(@IfcTopologyRepresentation left, @IfcTopologyRepresentation right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTopologyRepresentation x, @IfcTopologyRepresentation y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTopologyRepresentation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

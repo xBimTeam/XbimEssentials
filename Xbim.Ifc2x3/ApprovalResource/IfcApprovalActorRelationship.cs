@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 {
 	[ExpressType("IfcApprovalActorRelationship", 442)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApprovalActorRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalActorRelationship, IEqualityComparer<@IfcApprovalActorRelationship>, IEquatable<@IfcApprovalActorRelationship>
+	public  partial class @IfcApprovalActorRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcApprovalActorRelationship, IEquatable<@IfcApprovalActorRelationship>
 	{
 		#region IIfcApprovalActorRelationship explicit implementation
 		IIfcActorSelect IIfcApprovalActorRelationship.Actor { get { return @Actor; } }	
@@ -282,17 +282,6 @@ namespace Xbim.Ifc2x3.ApprovalResource
         public static bool operator !=(@IfcApprovalActorRelationship left, @IfcApprovalActorRelationship right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcApprovalActorRelationship x, @IfcApprovalActorRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcApprovalActorRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

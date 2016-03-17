@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSourceGoniometric", 758)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceGoniometric : IfcLightSource, IInstantiableEntity, IIfcLightSourceGoniometric, IEqualityComparer<@IfcLightSourceGoniometric>, IEquatable<@IfcLightSourceGoniometric>
+	public  partial class @IfcLightSourceGoniometric : IfcLightSource, IInstantiableEntity, IIfcLightSourceGoniometric, IEquatable<@IfcLightSourceGoniometric>
 	{
 		#region IIfcLightSourceGoniometric explicit implementation
 		IIfcAxis2Placement3D IIfcLightSourceGoniometric.Position { get { return @Position; } }	
@@ -240,17 +240,6 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
         public static bool operator !=(@IfcLightSourceGoniometric left, @IfcLightSourceGoniometric right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLightSourceGoniometric x, @IfcLightSourceGoniometric y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLightSourceGoniometric obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

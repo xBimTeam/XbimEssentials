@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcCurtainWallType", 494)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurtainWallType : IfcBuildingElementType, IInstantiableEntity, IIfcCurtainWallType, IEqualityComparer<@IfcCurtainWallType>, IEquatable<@IfcCurtainWallType>
+	public  partial class @IfcCurtainWallType : IfcBuildingElementType, IInstantiableEntity, IIfcCurtainWallType, IEquatable<@IfcCurtainWallType>
 	{
 		#region IIfcCurtainWallType explicit implementation
 		IfcCurtainWallTypeEnum IIfcCurtainWallType.PredefinedType { get { return @PredefinedType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         public static bool operator !=(@IfcCurtainWallType left, @IfcCurtainWallType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCurtainWallType x, @IfcCurtainWallType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCurtainWallType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcVertexPoint", 521)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVertexPoint : IfcVertex, IInstantiableEntity, IIfcVertexPoint, IEqualityComparer<@IfcVertexPoint>, IEquatable<@IfcVertexPoint>
+	public  partial class @IfcVertexPoint : IfcVertex, IInstantiableEntity, IIfcVertexPoint, IEquatable<@IfcVertexPoint>
 	{
 		#region IIfcVertexPoint explicit implementation
 		IIfcPoint IIfcVertexPoint.VertexGeometry { get { return @VertexGeometry; } }	
@@ -133,17 +133,6 @@ namespace Xbim.Ifc2x3.TopologyResource
         public static bool operator !=(@IfcVertexPoint left, @IfcVertexPoint right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcVertexPoint x, @IfcVertexPoint y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcVertexPoint obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

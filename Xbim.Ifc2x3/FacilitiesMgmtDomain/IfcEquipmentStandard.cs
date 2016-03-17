@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcEquipmentStandard", 152)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEquipmentStandard : IfcControl, IInstantiableEntity, IIfcEquipmentStandard, IEqualityComparer<@IfcEquipmentStandard>, IEquatable<@IfcEquipmentStandard>
+	public  partial class @IfcEquipmentStandard : IfcControl, IInstantiableEntity, IIfcEquipmentStandard, IEquatable<@IfcEquipmentStandard>
 	{
 		#region IIfcEquipmentStandard explicit implementation
 		 
@@ -114,17 +114,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
         public static bool operator !=(@IfcEquipmentStandard left, @IfcEquipmentStandard right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcEquipmentStandard x, @IfcEquipmentStandard y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEquipmentStandard obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

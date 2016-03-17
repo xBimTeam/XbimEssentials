@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcCoil", 1124)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCoil : IfcEnergyConversionDevice, IInstantiableEntity, IIfcCoil, IEqualityComparer<@IfcCoil>, IEquatable<@IfcCoil>
+	public  partial class @IfcCoil : IfcEnergyConversionDevice, IInstantiableEntity, IIfcCoil, IEquatable<@IfcCoil>
 	{
 		#region IIfcCoil explicit implementation
 		IfcCoilTypeEnum? IIfcCoil.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcCoil left, @IfcCoil right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCoil x, @IfcCoil y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCoil obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

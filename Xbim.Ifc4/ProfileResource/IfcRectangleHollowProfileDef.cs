@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcRectangleHollowProfileDef", 562)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangleHollowProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRectangleHollowProfileDef, IEqualityComparer<@IfcRectangleHollowProfileDef>, IEquatable<@IfcRectangleHollowProfileDef>
+	public  partial class @IfcRectangleHollowProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRectangleHollowProfileDef, IEquatable<@IfcRectangleHollowProfileDef>
 	{
 		#region IIfcRectangleHollowProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcRectangleHollowProfileDef.WallThickness { get { return @WallThickness; } }	
@@ -182,17 +182,6 @@ namespace Xbim.Ifc4.ProfileResource
         public static bool operator !=(@IfcRectangleHollowProfileDef left, @IfcRectangleHollowProfileDef right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRectangleHollowProfileDef x, @IfcRectangleHollowProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRectangleHollowProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

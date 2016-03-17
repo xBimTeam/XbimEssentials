@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcWorkPlan", 187)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWorkPlan : IfcWorkControl, IInstantiableEntity, IIfcWorkPlan, IEqualityComparer<@IfcWorkPlan>, IEquatable<@IfcWorkPlan>
+	public  partial class @IfcWorkPlan : IfcWorkControl, IInstantiableEntity, IIfcWorkPlan, IEquatable<@IfcWorkPlan>
 	{
 		#region IIfcWorkPlan explicit implementation
 		 
@@ -123,17 +123,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
         public static bool operator !=(@IfcWorkPlan left, @IfcWorkPlan right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcWorkPlan x, @IfcWorkPlan y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWorkPlan obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

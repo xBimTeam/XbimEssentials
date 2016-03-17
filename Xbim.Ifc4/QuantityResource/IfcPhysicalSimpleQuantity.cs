@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.QuantityResource
 {
 	[ExpressType("IfcPhysicalSimpleQuantity", 101)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPhysicalSimpleQuantity : IfcPhysicalQuantity, IIfcPhysicalSimpleQuantity, IEqualityComparer<@IfcPhysicalSimpleQuantity>, IEquatable<@IfcPhysicalSimpleQuantity>
+	public abstract partial class @IfcPhysicalSimpleQuantity : IfcPhysicalQuantity, IIfcPhysicalSimpleQuantity, IEquatable<@IfcPhysicalSimpleQuantity>
 	{
 		#region IIfcPhysicalSimpleQuantity explicit implementation
 		IIfcNamedUnit IIfcPhysicalSimpleQuantity.Unit { get { return @Unit; } }	
@@ -136,17 +136,6 @@ namespace Xbim.Ifc4.QuantityResource
         public static bool operator !=(@IfcPhysicalSimpleQuantity left, @IfcPhysicalSimpleQuantity right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPhysicalSimpleQuantity x, @IfcPhysicalSimpleQuantity y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPhysicalSimpleQuantity obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

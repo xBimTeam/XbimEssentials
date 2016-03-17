@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcRampFlightType", 283)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRampFlightType : IfcBuildingElementType, IInstantiableEntity, IIfcRampFlightType, IEqualityComparer<@IfcRampFlightType>, IEquatable<@IfcRampFlightType>
+	public  partial class @IfcRampFlightType : IfcBuildingElementType, IInstantiableEntity, IIfcRampFlightType, IEquatable<@IfcRampFlightType>
 	{
 		#region IIfcRampFlightType explicit implementation
 		IfcRampFlightTypeEnum IIfcRampFlightType.PredefinedType { get { return @PredefinedType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         public static bool operator !=(@IfcRampFlightType left, @IfcRampFlightType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRampFlightType x, @IfcRampFlightType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRampFlightType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

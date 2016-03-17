@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IfcPropertyBoundedValue", 3)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyBoundedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyBoundedValue, IEqualityComparer<@IfcPropertyBoundedValue>, IEquatable<@IfcPropertyBoundedValue>
+	public  partial class @IfcPropertyBoundedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyBoundedValue, IEquatable<@IfcPropertyBoundedValue>
 	{
 		#region IIfcPropertyBoundedValue explicit implementation
 		IIfcValue IIfcPropertyBoundedValue.UpperBoundValue { get { return @UpperBoundValue; } }	
@@ -199,17 +199,6 @@ namespace Xbim.Ifc4.PropertyResource
         public static bool operator !=(@IfcPropertyBoundedValue left, @IfcPropertyBoundedValue right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPropertyBoundedValue x, @IfcPropertyBoundedValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyBoundedValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

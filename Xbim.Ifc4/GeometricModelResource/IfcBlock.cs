@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcBlock", 702)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBlock : IfcCsgPrimitive3D, IInstantiableEntity, IIfcBlock, IEqualityComparer<@IfcBlock>, IEquatable<@IfcBlock>
+	public  partial class @IfcBlock : IfcCsgPrimitive3D, IInstantiableEntity, IIfcBlock, IEquatable<@IfcBlock>
 	{
 		#region IIfcBlock explicit implementation
 		IfcPositiveLengthMeasure IIfcBlock.XLength { get { return @XLength; } }	
@@ -175,17 +175,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcBlock left, @IfcBlock right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBlock x, @IfcBlock y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBlock obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

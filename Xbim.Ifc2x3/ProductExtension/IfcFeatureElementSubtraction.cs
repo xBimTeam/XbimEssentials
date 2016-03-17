@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcFeatureElementSubtraction", 499)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFeatureElementSubtraction : IfcFeatureElement, IIfcFeatureElementSubtraction, IEqualityComparer<@IfcFeatureElementSubtraction>, IEquatable<@IfcFeatureElementSubtraction>
+	public abstract partial class @IfcFeatureElementSubtraction : IfcFeatureElement, IIfcFeatureElementSubtraction, IEquatable<@IfcFeatureElementSubtraction>
 	{
 		#region IIfcFeatureElementSubtraction explicit implementation
 		 
@@ -129,17 +129,6 @@ namespace Xbim.Ifc2x3.ProductExtension
         public static bool operator !=(@IfcFeatureElementSubtraction left, @IfcFeatureElementSubtraction right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFeatureElementSubtraction x, @IfcFeatureElementSubtraction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFeatureElementSubtraction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

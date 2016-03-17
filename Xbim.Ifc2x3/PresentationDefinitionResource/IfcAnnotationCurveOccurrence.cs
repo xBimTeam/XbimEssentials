@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationCurveOccurrence", 57)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationCurveOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationCurveOccurrence, IEqualityComparer<@IfcAnnotationCurveOccurrence>, IEquatable<@IfcAnnotationCurveOccurrence>
+	public  partial class @IfcAnnotationCurveOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationCurveOccurrence, IEquatable<@IfcAnnotationCurveOccurrence>
 	{
 		#region IIfcAnnotationCurveOccurrence explicit implementation
 		 
@@ -113,17 +113,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
         public static bool operator !=(@IfcAnnotationCurveOccurrence left, @IfcAnnotationCurveOccurrence right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAnnotationCurveOccurrence x, @IfcAnnotationCurveOccurrence y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAnnotationCurveOccurrence obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

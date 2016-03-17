@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcSpaceHeater", 1272)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceHeater : IfcFlowTerminal, IInstantiableEntity, IIfcSpaceHeater, IEqualityComparer<@IfcSpaceHeater>, IEquatable<@IfcSpaceHeater>
+	public  partial class @IfcSpaceHeater : IfcFlowTerminal, IInstantiableEntity, IIfcSpaceHeater, IEquatable<@IfcSpaceHeater>
 	{
 		#region IIfcSpaceHeater explicit implementation
 		IfcSpaceHeaterTypeEnum? IIfcSpaceHeater.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcSpaceHeater left, @IfcSpaceHeater right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSpaceHeater x, @IfcSpaceHeater y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpaceHeater obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcEllipseProfileDef", 285)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEllipseProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcEllipseProfileDef, IEqualityComparer<@IfcEllipseProfileDef>, IEquatable<@IfcEllipseProfileDef>
+	public  partial class @IfcEllipseProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcEllipseProfileDef, IEquatable<@IfcEllipseProfileDef>
 	{
 		#region IIfcEllipseProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcEllipseProfileDef.SemiAxis1 { get { return @SemiAxis1; } }	
@@ -157,17 +157,6 @@ namespace Xbim.Ifc2x3.ProfileResource
         public static bool operator !=(@IfcEllipseProfileDef left, @IfcEllipseProfileDef right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcEllipseProfileDef x, @IfcEllipseProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEllipseProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

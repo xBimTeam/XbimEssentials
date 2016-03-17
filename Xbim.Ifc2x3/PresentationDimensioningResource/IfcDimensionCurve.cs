@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDimensionCurve", 742)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IIfcDimensionCurve, IEqualityComparer<@IfcDimensionCurve>, IEquatable<@IfcDimensionCurve>
+	public  partial class @IfcDimensionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IIfcDimensionCurve, IEquatable<@IfcDimensionCurve>
 	{
 		#region IIfcDimensionCurve explicit implementation
 		 
@@ -128,17 +128,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
         public static bool operator !=(@IfcDimensionCurve left, @IfcDimensionCurve right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDimensionCurve x, @IfcDimensionCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDimensionCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

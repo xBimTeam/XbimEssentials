@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcMapConversion", 1200)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMapConversion : IfcCoordinateOperation, IInstantiableEntity, IIfcMapConversion, IEqualityComparer<@IfcMapConversion>, IEquatable<@IfcMapConversion>
+	public  partial class @IfcMapConversion : IfcCoordinateOperation, IInstantiableEntity, IIfcMapConversion, IEquatable<@IfcMapConversion>
 	{
 		#region IIfcMapConversion explicit implementation
 		IfcLengthMeasure IIfcMapConversion.Eastings { get { return @Eastings; } }	
@@ -236,17 +236,6 @@ namespace Xbim.Ifc4.RepresentationResource
         public static bool operator !=(@IfcMapConversion left, @IfcMapConversion right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMapConversion x, @IfcMapConversion y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMapConversion obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

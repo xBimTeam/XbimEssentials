@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextureMap", 734)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureMap, IEqualityComparer<@IfcTextureMap>, IEquatable<@IfcTextureMap>
+	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureMap, IEquatable<@IfcTextureMap>
 	{
 		#region IIfcTextureMap explicit implementation
 		IEnumerable<IIfcTextureVertex> IIfcTextureMap.Vertices { get { return @Vertices; } }	
@@ -154,17 +154,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcTextureMap left, @IfcTextureMap right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTextureMap x, @IfcTextureMap y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextureMap obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

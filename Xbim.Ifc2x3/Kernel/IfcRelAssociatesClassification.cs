@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssociatesClassification", 343)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesClassification : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesClassification, IEqualityComparer<@IfcRelAssociatesClassification>, IEquatable<@IfcRelAssociatesClassification>
+	public  partial class @IfcRelAssociatesClassification : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesClassification, IEquatable<@IfcRelAssociatesClassification>
 	{
 		#region IIfcRelAssociatesClassification explicit implementation
 		IIfcClassificationNotationSelect IIfcRelAssociatesClassification.RelatingClassification { get { return @RelatingClassification; } }	
@@ -139,17 +139,6 @@ namespace Xbim.Ifc2x3.Kernel
         public static bool operator !=(@IfcRelAssociatesClassification left, @IfcRelAssociatesClassification right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssociatesClassification x, @IfcRelAssociatesClassification y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssociatesClassification obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

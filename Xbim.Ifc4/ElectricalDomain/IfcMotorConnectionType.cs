@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcMotorConnectionType", 155)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMotorConnectionType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcMotorConnectionType, IEqualityComparer<@IfcMotorConnectionType>, IEquatable<@IfcMotorConnectionType>
+	public  partial class @IfcMotorConnectionType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcMotorConnectionType, IEquatable<@IfcMotorConnectionType>
 	{
 		#region IIfcMotorConnectionType explicit implementation
 		IfcMotorConnectionTypeEnum IIfcMotorConnectionType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcMotorConnectionType left, @IfcMotorConnectionType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMotorConnectionType x, @IfcMotorConnectionType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMotorConnectionType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

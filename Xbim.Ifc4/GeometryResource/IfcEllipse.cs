@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcEllipse", 298)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEllipse : IfcConic, IInstantiableEntity, IIfcEllipse, IEqualityComparer<@IfcEllipse>, IEquatable<@IfcEllipse>
+	public  partial class @IfcEllipse : IfcConic, IInstantiableEntity, IIfcEllipse, IEquatable<@IfcEllipse>
 	{
 		#region IIfcEllipse explicit implementation
 		IfcPositiveLengthMeasure IIfcEllipse.SemiAxis1 { get { return @SemiAxis1; } }	
@@ -155,17 +155,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcEllipse left, @IfcEllipse right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcEllipse x, @IfcEllipse y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEllipse obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

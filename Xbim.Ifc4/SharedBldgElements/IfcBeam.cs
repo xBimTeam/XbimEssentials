@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcBeam", 171)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBeam : IfcBuildingElement, IInstantiableEntity, IIfcBeam, IEqualityComparer<@IfcBeam>, IEquatable<@IfcBeam>
+	public  partial class @IfcBeam : IfcBuildingElement, IInstantiableEntity, IIfcBeam, IEquatable<@IfcBeam>
 	{
 		#region IIfcBeam explicit implementation
 		IfcBeamTypeEnum? IIfcBeam.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcBeam left, @IfcBeam right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBeam x, @IfcBeam y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBeam obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

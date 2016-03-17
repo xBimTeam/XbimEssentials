@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcOneDirectionRepeatFactor", 32)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOneDirectionRepeatFactor : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcOneDirectionRepeatFactor, IEqualityComparer<@IfcOneDirectionRepeatFactor>, IEquatable<@IfcOneDirectionRepeatFactor>
+	public  partial class @IfcOneDirectionRepeatFactor : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcOneDirectionRepeatFactor, IEquatable<@IfcOneDirectionRepeatFactor>
 	{
 		#region IIfcOneDirectionRepeatFactor explicit implementation
 		IIfcVector IIfcOneDirectionRepeatFactor.RepeatFactor { get { return @RepeatFactor; } }	
@@ -132,17 +132,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcOneDirectionRepeatFactor left, @IfcOneDirectionRepeatFactor right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOneDirectionRepeatFactor x, @IfcOneDirectionRepeatFactor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOneDirectionRepeatFactor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

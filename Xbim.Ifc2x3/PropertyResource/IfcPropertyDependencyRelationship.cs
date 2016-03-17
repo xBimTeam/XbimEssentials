@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertyDependencyRelationship", 444)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyDependencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcPropertyDependencyRelationship, IEqualityComparer<@IfcPropertyDependencyRelationship>, IEquatable<@IfcPropertyDependencyRelationship>
+	public  partial class @IfcPropertyDependencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcPropertyDependencyRelationship, IEquatable<@IfcPropertyDependencyRelationship>
 	{
 		#region IIfcPropertyDependencyRelationship explicit implementation
 		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty { get { return @DependingProperty; } }	
@@ -324,17 +324,6 @@ namespace Xbim.Ifc2x3.PropertyResource
         public static bool operator !=(@IfcPropertyDependencyRelationship left, @IfcPropertyDependencyRelationship right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPropertyDependencyRelationship x, @IfcPropertyDependencyRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyDependencyRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

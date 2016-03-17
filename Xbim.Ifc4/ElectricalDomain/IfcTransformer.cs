@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcTransformer", 1303)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTransformer : IfcEnergyConversionDevice, IInstantiableEntity, IIfcTransformer, IEqualityComparer<@IfcTransformer>, IEquatable<@IfcTransformer>
+	public  partial class @IfcTransformer : IfcEnergyConversionDevice, IInstantiableEntity, IIfcTransformer, IEquatable<@IfcTransformer>
 	{
 		#region IIfcTransformer explicit implementation
 		IfcTransformerTypeEnum? IIfcTransformer.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcTransformer left, @IfcTransformer right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTransformer x, @IfcTransformer y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTransformer obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

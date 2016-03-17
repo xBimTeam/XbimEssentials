@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcRelInterferesElements", 1252)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelInterferesElements : IfcRelConnects, IInstantiableEntity, IIfcRelInterferesElements, IEqualityComparer<@IfcRelInterferesElements>, IEquatable<@IfcRelInterferesElements>
+	public  partial class @IfcRelInterferesElements : IfcRelConnects, IInstantiableEntity, IIfcRelInterferesElements, IEquatable<@IfcRelInterferesElements>
 	{
 		#region IIfcRelInterferesElements explicit implementation
 		IIfcElement IIfcRelInterferesElements.RelatingElement { get { return @RelatingElement; } }	
@@ -223,17 +223,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcRelInterferesElements left, @IfcRelInterferesElements right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelInterferesElements x, @IfcRelInterferesElements y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelInterferesElements obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

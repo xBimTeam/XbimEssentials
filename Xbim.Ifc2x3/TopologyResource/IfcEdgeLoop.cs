@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcEdgeLoop", 302)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEdgeLoop : IfcLoop, IInstantiableEntity, IIfcEdgeLoop, IEqualityComparer<@IfcEdgeLoop>, IEquatable<@IfcEdgeLoop>
+	public  partial class @IfcEdgeLoop : IfcLoop, IInstantiableEntity, IIfcEdgeLoop, IEquatable<@IfcEdgeLoop>
 	{
 		#region IIfcEdgeLoop explicit implementation
 		IEnumerable<IIfcOrientedEdge> IIfcEdgeLoop.EdgeList { get { return @EdgeList; } }	
@@ -145,17 +145,6 @@ namespace Xbim.Ifc2x3.TopologyResource
         public static bool operator !=(@IfcEdgeLoop left, @IfcEdgeLoop right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcEdgeLoop x, @IfcEdgeLoop y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEdgeLoop obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

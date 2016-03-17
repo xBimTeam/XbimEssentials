@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcBezierCurve", 166)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBezierCurve : IfcBSplineCurve, IInstantiableEntity, IIfcBezierCurve, IEqualityComparer<@IfcBezierCurve>, IEquatable<@IfcBezierCurve>
+	public  partial class @IfcBezierCurve : IfcBSplineCurve, IInstantiableEntity, IIfcBezierCurve, IEquatable<@IfcBezierCurve>
 	{
 		#region IIfcBezierCurve explicit implementation
 		 
@@ -113,17 +113,6 @@ namespace Xbim.Ifc2x3.GeometryResource
         public static bool operator !=(@IfcBezierCurve left, @IfcBezierCurve right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBezierCurve x, @IfcBezierCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBezierCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

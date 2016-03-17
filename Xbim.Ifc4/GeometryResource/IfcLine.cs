@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcLine", 272)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IIfcLine, IEqualityComparer<@IfcLine>, IEquatable<@IfcLine>
+	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IIfcLine, IEquatable<@IfcLine>
 	{
 		#region IIfcLine explicit implementation
 		IIfcCartesianPoint IIfcLine.Pnt { get { return @Pnt; } }	
@@ -152,17 +152,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcLine left, @IfcLine right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLine x, @IfcLine y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLine obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralLoadGroup", 573)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadGroup : IfcGroup, IInstantiableEntity, IIfcStructuralLoadGroup, IEqualityComparer<@IfcStructuralLoadGroup>, IEquatable<@IfcStructuralLoadGroup>
+	public  partial class @IfcStructuralLoadGroup : IfcGroup, IInstantiableEntity, IIfcStructuralLoadGroup, IEquatable<@IfcStructuralLoadGroup>
 	{
 		#region IIfcStructuralLoadGroup explicit implementation
 		IfcLoadGroupTypeEnum IIfcStructuralLoadGroup.PredefinedType { get { return @PredefinedType; } }	
@@ -244,17 +244,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         public static bool operator !=(@IfcStructuralLoadGroup left, @IfcStructuralLoadGroup right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralLoadGroup x, @IfcStructuralLoadGroup y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLoadGroup obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

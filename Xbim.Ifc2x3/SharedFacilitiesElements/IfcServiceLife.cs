@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcServiceLife", 769)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IIfcServiceLife, IEqualityComparer<@IfcServiceLife>, IEquatable<@IfcServiceLife>
+	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IIfcServiceLife, IEquatable<@IfcServiceLife>
 	{
 		#region IIfcServiceLife explicit implementation
 		IfcServiceLifeTypeEnum IIfcServiceLife.ServiceLifeType { get { return @ServiceLifeType; } }	
@@ -160,17 +160,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
         public static bool operator !=(@IfcServiceLife left, @IfcServiceLife right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcServiceLife x, @IfcServiceLife y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcServiceLife obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

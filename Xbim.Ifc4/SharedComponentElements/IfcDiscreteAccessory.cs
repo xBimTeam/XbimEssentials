@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 {
 	[ExpressType("IfcDiscreteAccessory", 423)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDiscreteAccessory : IfcElementComponent, IInstantiableEntity, IIfcDiscreteAccessory, IEqualityComparer<@IfcDiscreteAccessory>, IEquatable<@IfcDiscreteAccessory>
+	public  partial class @IfcDiscreteAccessory : IfcElementComponent, IInstantiableEntity, IIfcDiscreteAccessory, IEquatable<@IfcDiscreteAccessory>
 	{
 		#region IIfcDiscreteAccessory explicit implementation
 		IfcDiscreteAccessoryTypeEnum? IIfcDiscreteAccessory.PredefinedType { get { return @PredefinedType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc4.SharedComponentElements
         public static bool operator !=(@IfcDiscreteAccessory left, @IfcDiscreteAccessory right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDiscreteAccessory x, @IfcDiscreteAccessory y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDiscreteAccessory obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

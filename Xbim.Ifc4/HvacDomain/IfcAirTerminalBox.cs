@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcAirTerminalBox", 1096)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAirTerminalBox : IfcFlowController, IInstantiableEntity, IIfcAirTerminalBox, IEqualityComparer<@IfcAirTerminalBox>, IEquatable<@IfcAirTerminalBox>
+	public  partial class @IfcAirTerminalBox : IfcFlowController, IInstantiableEntity, IIfcAirTerminalBox, IEquatable<@IfcAirTerminalBox>
 	{
 		#region IIfcAirTerminalBox explicit implementation
 		IfcAirTerminalBoxTypeEnum? IIfcAirTerminalBox.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcAirTerminalBox left, @IfcAirTerminalBox right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAirTerminalBox x, @IfcAirTerminalBox y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAirTerminalBox obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

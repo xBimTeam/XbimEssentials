@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcEnvironmentalImpactValue", 78)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEnvironmentalImpactValue : IfcAppliedValue, IInstantiableEntity, IIfcEnvironmentalImpactValue, IEqualityComparer<@IfcEnvironmentalImpactValue>, IEquatable<@IfcEnvironmentalImpactValue>
+	public  partial class @IfcEnvironmentalImpactValue : IfcAppliedValue, IInstantiableEntity, IIfcEnvironmentalImpactValue, IEquatable<@IfcEnvironmentalImpactValue>
 	{
 		#region IIfcEnvironmentalImpactValue explicit implementation
 		IfcLabel IIfcEnvironmentalImpactValue.ImpactType { get { return @ImpactType; } }	
@@ -181,17 +181,6 @@ namespace Xbim.Ifc2x3.CostResource
         public static bool operator !=(@IfcEnvironmentalImpactValue left, @IfcEnvironmentalImpactValue right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcEnvironmentalImpactValue x, @IfcEnvironmentalImpactValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEnvironmentalImpactValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

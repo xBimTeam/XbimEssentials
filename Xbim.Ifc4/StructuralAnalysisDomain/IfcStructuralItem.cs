@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralItem", 226)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralItem : IfcProduct, IIfcStructuralItem, IEqualityComparer<@IfcStructuralItem>, IEquatable<@IfcStructuralItem>
+	public abstract partial class @IfcStructuralItem : IfcProduct, IIfcStructuralItem, IEquatable<@IfcStructuralItem>
 	{
 		#region IIfcStructuralItem explicit implementation
 		 
@@ -129,17 +129,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
         public static bool operator !=(@IfcStructuralItem left, @IfcStructuralItem right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralItem x, @IfcStructuralItem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralItem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

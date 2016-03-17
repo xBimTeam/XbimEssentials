@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcIndexedPolyCurve", 1190)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIndexedPolyCurve : IfcBoundedCurve, IInstantiableEntity, IIfcIndexedPolyCurve, IEqualityComparer<@IfcIndexedPolyCurve>, IEquatable<@IfcIndexedPolyCurve>
+	public  partial class @IfcIndexedPolyCurve : IfcBoundedCurve, IInstantiableEntity, IIfcIndexedPolyCurve, IEquatable<@IfcIndexedPolyCurve>
 	{
 		#region IIfcIndexedPolyCurve explicit implementation
 		IIfcCartesianPointList IIfcIndexedPolyCurve.Points { get { return @Points; } }	
@@ -172,17 +172,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcIndexedPolyCurve left, @IfcIndexedPolyCurve right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcIndexedPolyCurve x, @IfcIndexedPolyCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcIndexedPolyCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

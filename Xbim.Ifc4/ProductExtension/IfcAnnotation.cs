@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcAnnotation", 634)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotation : IfcProduct, IInstantiableEntity, IIfcAnnotation, IEqualityComparer<@IfcAnnotation>, IEquatable<@IfcAnnotation>
+	public  partial class @IfcAnnotation : IfcProduct, IInstantiableEntity, IIfcAnnotation, IEquatable<@IfcAnnotation>
 	{
 		#region IIfcAnnotation explicit implementation
 		 
@@ -129,17 +129,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcAnnotation left, @IfcAnnotation right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAnnotation x, @IfcAnnotation y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAnnotation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

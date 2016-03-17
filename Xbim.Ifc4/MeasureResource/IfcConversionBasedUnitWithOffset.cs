@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcConversionBasedUnitWithOffset", 1140)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConversionBasedUnitWithOffset : IfcConversionBasedUnit, IInstantiableEntity, IIfcConversionBasedUnitWithOffset, IEqualityComparer<@IfcConversionBasedUnitWithOffset>, IEquatable<@IfcConversionBasedUnitWithOffset>
+	public  partial class @IfcConversionBasedUnitWithOffset : IfcConversionBasedUnit, IInstantiableEntity, IIfcConversionBasedUnitWithOffset, IEquatable<@IfcConversionBasedUnitWithOffset>
 	{
 		#region IIfcConversionBasedUnitWithOffset explicit implementation
 		IfcReal IIfcConversionBasedUnitWithOffset.ConversionOffset { get { return @ConversionOffset; } }	
@@ -137,17 +137,6 @@ namespace Xbim.Ifc4.MeasureResource
         public static bool operator !=(@IfcConversionBasedUnitWithOffset left, @IfcConversionBasedUnitWithOffset right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConversionBasedUnitWithOffset x, @IfcConversionBasedUnitWithOffset y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConversionBasedUnitWithOffset obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IfcComplexProperty", 379)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcComplexProperty : IfcProperty, IInstantiableEntity, IIfcComplexProperty, IEqualityComparer<@IfcComplexProperty>, IEquatable<@IfcComplexProperty>
+	public  partial class @IfcComplexProperty : IfcProperty, IInstantiableEntity, IIfcComplexProperty, IEquatable<@IfcComplexProperty>
 	{
 		#region IIfcComplexProperty explicit implementation
 		IfcIdentifier IIfcComplexProperty.UsageName { get { return @UsageName; } }	
@@ -157,17 +157,6 @@ namespace Xbim.Ifc4.PropertyResource
         public static bool operator !=(@IfcComplexProperty left, @IfcComplexProperty right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcComplexProperty x, @IfcComplexProperty y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcComplexProperty obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

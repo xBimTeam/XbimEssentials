@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcTendon", 261)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTendon : IfcReinforcingElement, IInstantiableEntity, IIfcTendon, IEqualityComparer<@IfcTendon>, IEquatable<@IfcTendon>
+	public  partial class @IfcTendon : IfcReinforcingElement, IInstantiableEntity, IIfcTendon, IEquatable<@IfcTendon>
 	{
 		#region IIfcTendon explicit implementation
 		IfcTendonTypeEnum IIfcTendon.PredefinedType { get { return @PredefinedType; } }	
@@ -284,17 +284,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
         public static bool operator !=(@IfcTendon left, @IfcTendon right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTendon x, @IfcTendon y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTendon obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

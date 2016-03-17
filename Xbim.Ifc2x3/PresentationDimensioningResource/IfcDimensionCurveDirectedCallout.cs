@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDimensionCurveDirectedCallout", 737)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionCurveDirectedCallout : IfcDraughtingCallout, IInstantiableEntity, IIfcDimensionCurveDirectedCallout, IEqualityComparer<@IfcDimensionCurveDirectedCallout>, IEquatable<@IfcDimensionCurveDirectedCallout>
+	public  partial class @IfcDimensionCurveDirectedCallout : IfcDraughtingCallout, IInstantiableEntity, IIfcDimensionCurveDirectedCallout, IEquatable<@IfcDimensionCurveDirectedCallout>
 	{
 		#region IIfcDimensionCurveDirectedCallout explicit implementation
 		 
@@ -111,17 +111,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
         public static bool operator !=(@IfcDimensionCurveDirectedCallout left, @IfcDimensionCurveDirectedCallout right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDimensionCurveDirectedCallout x, @IfcDimensionCurveDirectedCallout y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDimensionCurveDirectedCallout obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

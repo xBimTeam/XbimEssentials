@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelConnectsElements", 312)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsElements : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsElements, IEqualityComparer<@IfcRelConnectsElements>, IEquatable<@IfcRelConnectsElements>
+	public  partial class @IfcRelConnectsElements : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsElements, IEquatable<@IfcRelConnectsElements>
 	{
 		#region IIfcRelConnectsElements explicit implementation
 		IIfcConnectionGeometry IIfcRelConnectsElements.ConnectionGeometry { get { return @ConnectionGeometry; } }	
@@ -182,17 +182,6 @@ namespace Xbim.Ifc2x3.ProductExtension
         public static bool operator !=(@IfcRelConnectsElements left, @IfcRelConnectsElements right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelConnectsElements x, @IfcRelConnectsElements y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelConnectsElements obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

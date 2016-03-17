@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IfcLaborResource", 156)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLaborResource : IfcConstructionResource, IInstantiableEntity, IIfcLaborResource, IEqualityComparer<@IfcLaborResource>, IEquatable<@IfcLaborResource>
+	public  partial class @IfcLaborResource : IfcConstructionResource, IInstantiableEntity, IIfcLaborResource, IEquatable<@IfcLaborResource>
 	{
 		#region IIfcLaborResource explicit implementation
 		IfcText? IIfcLaborResource.SkillSet { get { return @SkillSet; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
         public static bool operator !=(@IfcLaborResource left, @IfcLaborResource right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLaborResource x, @IfcLaborResource y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLaborResource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcHeatExchangerType", 365)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHeatExchangerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcHeatExchangerType, IEqualityComparer<@IfcHeatExchangerType>, IEquatable<@IfcHeatExchangerType>
+	public  partial class @IfcHeatExchangerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcHeatExchangerType, IEquatable<@IfcHeatExchangerType>
 	{
 		#region IIfcHeatExchangerType explicit implementation
 		IfcHeatExchangerTypeEnum IIfcHeatExchangerType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcHeatExchangerType left, @IfcHeatExchangerType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcHeatExchangerType x, @IfcHeatExchangerType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcHeatExchangerType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

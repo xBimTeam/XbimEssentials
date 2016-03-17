@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("DurationUnit", 43)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieDurationUnit : CobiePickValue, IInstantiableEntity, ICobieDurationUnit, IEqualityComparer<@CobieDurationUnit>, IEquatable<@CobieDurationUnit>
+	public  partial class @CobieDurationUnit : CobiePickValue, IInstantiableEntity, ICobieDurationUnit, IEquatable<@CobieDurationUnit>
 	{
 		#region ICobieDurationUnit explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieDurationUnit left, @CobieDurationUnit right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieDurationUnit x, @CobieDurationUnit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieDurationUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

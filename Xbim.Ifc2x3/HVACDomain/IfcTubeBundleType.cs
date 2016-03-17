@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcTubeBundleType", 138)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTubeBundleType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcTubeBundleType, IEqualityComparer<@IfcTubeBundleType>, IEquatable<@IfcTubeBundleType>
+	public  partial class @IfcTubeBundleType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcTubeBundleType, IEquatable<@IfcTubeBundleType>
 	{
 		#region IIfcTubeBundleType explicit implementation
 		IfcTubeBundleTypeEnum IIfcTubeBundleType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc2x3.HVACDomain
         public static bool operator !=(@IfcTubeBundleType left, @IfcTubeBundleType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTubeBundleType x, @IfcTubeBundleType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTubeBundleType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcOutletType", 240)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOutletType : IfcFlowTerminalType, IInstantiableEntity, IIfcOutletType, IEqualityComparer<@IfcOutletType>, IEquatable<@IfcOutletType>
+	public  partial class @IfcOutletType : IfcFlowTerminalType, IInstantiableEntity, IIfcOutletType, IEquatable<@IfcOutletType>
 	{
 		#region IIfcOutletType explicit implementation
 		IfcOutletTypeEnum IIfcOutletType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcOutletType left, @IfcOutletType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOutletType x, @IfcOutletType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOutletType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

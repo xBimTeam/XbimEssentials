@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcHumidifier", 1188)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHumidifier : IfcEnergyConversionDevice, IInstantiableEntity, IIfcHumidifier, IEqualityComparer<@IfcHumidifier>, IEquatable<@IfcHumidifier>
+	public  partial class @IfcHumidifier : IfcEnergyConversionDevice, IInstantiableEntity, IIfcHumidifier, IEquatable<@IfcHumidifier>
 	{
 		#region IIfcHumidifier explicit implementation
 		IfcHumidifierTypeEnum? IIfcHumidifier.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcHumidifier left, @IfcHumidifier right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcHumidifier x, @IfcHumidifier y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcHumidifier obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

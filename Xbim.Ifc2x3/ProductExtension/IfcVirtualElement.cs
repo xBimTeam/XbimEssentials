@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcVirtualElement", 168)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVirtualElement : IfcElement, IInstantiableEntity, IIfcVirtualElement, IEqualityComparer<@IfcVirtualElement>, IEquatable<@IfcVirtualElement>
+	public  partial class @IfcVirtualElement : IfcElement, IInstantiableEntity, IIfcVirtualElement, IEquatable<@IfcVirtualElement>
 	{
 		#region IIfcVirtualElement explicit implementation
 		 
@@ -116,17 +116,6 @@ namespace Xbim.Ifc2x3.ProductExtension
         public static bool operator !=(@IfcVirtualElement left, @IfcVirtualElement right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcVirtualElement x, @IfcVirtualElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcVirtualElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcSweptSurface", 110)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSweptSurface : IfcSurface, IIfcSweptSurface, IEqualityComparer<@IfcSweptSurface>, IEquatable<@IfcSweptSurface>
+	public abstract partial class @IfcSweptSurface : IfcSurface, IIfcSweptSurface, IEquatable<@IfcSweptSurface>
 	{
 		#region IIfcSweptSurface explicit implementation
 		IIfcProfileDef IIfcSweptSurface.SweptCurve { get { return @SweptCurve; } }	
@@ -153,17 +153,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcSweptSurface left, @IfcSweptSurface right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSweptSurface x, @IfcSweptSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSweptSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

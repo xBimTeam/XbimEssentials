@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcCShapeProfileDef", 501)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCShapeProfileDef, IEqualityComparer<@IfcCShapeProfileDef>, IEquatable<@IfcCShapeProfileDef>
+	public  partial class @IfcCShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCShapeProfileDef, IEquatable<@IfcCShapeProfileDef>
 	{
 		#region IIfcCShapeProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Depth { get { return @Depth; } }	
@@ -240,17 +240,6 @@ namespace Xbim.Ifc2x3.ProfileResource
         public static bool operator !=(@IfcCShapeProfileDef left, @IfcCShapeProfileDef right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCShapeProfileDef x, @IfcCShapeProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCShapeProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

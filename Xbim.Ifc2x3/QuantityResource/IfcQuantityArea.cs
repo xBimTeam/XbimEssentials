@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityArea", 495)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityArea : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityArea, IEqualityComparer<@IfcQuantityArea>, IEquatable<@IfcQuantityArea>
+	public  partial class @IfcQuantityArea : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityArea, IEquatable<@IfcQuantityArea>
 	{
 		#region IIfcQuantityArea explicit implementation
 		IfcAreaMeasure IIfcQuantityArea.AreaValue { get { return @AreaValue; } }	
@@ -139,17 +139,6 @@ namespace Xbim.Ifc2x3.QuantityResource
         public static bool operator !=(@IfcQuantityArea left, @IfcQuantityArea right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcQuantityArea x, @IfcQuantityArea y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcQuantityArea obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

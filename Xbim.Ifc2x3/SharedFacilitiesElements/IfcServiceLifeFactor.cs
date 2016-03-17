@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcServiceLifeFactor", 770)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcServiceLifeFactor : IfcPropertySetDefinition, IInstantiableEntity, IIfcServiceLifeFactor, IEqualityComparer<@IfcServiceLifeFactor>, IEquatable<@IfcServiceLifeFactor>
+	public  partial class @IfcServiceLifeFactor : IfcPropertySetDefinition, IInstantiableEntity, IIfcServiceLifeFactor, IEquatable<@IfcServiceLifeFactor>
 	{
 		#region IIfcServiceLifeFactor explicit implementation
 		IfcServiceLifeFactorTypeEnum IIfcServiceLifeFactor.PredefinedType { get { return @PredefinedType; } }	
@@ -200,17 +200,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
         public static bool operator !=(@IfcServiceLifeFactor left, @IfcServiceLifeFactor right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcServiceLifeFactor x, @IfcServiceLifeFactor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcServiceLifeFactor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

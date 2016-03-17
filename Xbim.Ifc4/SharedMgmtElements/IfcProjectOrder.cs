@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 {
 	[ExpressType("IfcProjectOrder", 696)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectOrder : IfcControl, IInstantiableEntity, IIfcProjectOrder, IEqualityComparer<@IfcProjectOrder>, IEquatable<@IfcProjectOrder>
+	public  partial class @IfcProjectOrder : IfcControl, IInstantiableEntity, IIfcProjectOrder, IEquatable<@IfcProjectOrder>
 	{
 		#region IIfcProjectOrder explicit implementation
 		IfcProjectOrderTypeEnum? IIfcProjectOrder.PredefinedType { get { return @PredefinedType; } }	
@@ -181,17 +181,6 @@ namespace Xbim.Ifc4.SharedMgmtElements
         public static bool operator !=(@IfcProjectOrder left, @IfcProjectOrder right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcProjectOrder x, @IfcProjectOrder y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProjectOrder obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

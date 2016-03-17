@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcBSplineSurface", 1102)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcBSplineSurface : IfcBoundedSurface, IIfcBSplineSurface, IEqualityComparer<@IfcBSplineSurface>, IEquatable<@IfcBSplineSurface>
+	public abstract partial class @IfcBSplineSurface : IfcBoundedSurface, IIfcBSplineSurface, IEquatable<@IfcBSplineSurface>
 	{
 		#region IIfcBSplineSurface explicit implementation
 		IfcInteger IIfcBSplineSurface.UDegree { get { return @UDegree; } }	
@@ -296,17 +296,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcBSplineSurface left, @IfcBSplineSurface right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBSplineSurface x, @IfcBSplineSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBSplineSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

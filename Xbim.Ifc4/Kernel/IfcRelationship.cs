@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelationship", 11)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRelationship : IfcRoot, IIfcRelationship, IEqualityComparer<@IfcRelationship>, IEquatable<@IfcRelationship>
+	public abstract partial class @IfcRelationship : IfcRoot, IIfcRelationship, IEquatable<@IfcRelationship>
 	{
 		#region IIfcRelationship explicit implementation
 		 
@@ -112,17 +112,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcRelationship left, @IfcRelationship right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelationship x, @IfcRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

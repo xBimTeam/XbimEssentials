@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcLocalPlacement", 481)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLocalPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcLocalPlacement, IEqualityComparer<@IfcLocalPlacement>, IEquatable<@IfcLocalPlacement>
+	public  partial class @IfcLocalPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcLocalPlacement, IEquatable<@IfcLocalPlacement>
 	{
 		#region IIfcLocalPlacement explicit implementation
 		IIfcObjectPlacement IIfcLocalPlacement.PlacementRelTo { get { return @PlacementRelTo; } }	
@@ -154,17 +154,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
         public static bool operator !=(@IfcLocalPlacement left, @IfcLocalPlacement right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLocalPlacement x, @IfcLocalPlacement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLocalPlacement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

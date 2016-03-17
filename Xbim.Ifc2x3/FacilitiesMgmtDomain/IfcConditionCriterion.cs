@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcConditionCriterion", 688)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConditionCriterion : IfcControl, IInstantiableEntity, IIfcConditionCriterion, IEqualityComparer<@IfcConditionCriterion>, IEquatable<@IfcConditionCriterion>
+	public  partial class @IfcConditionCriterion : IfcControl, IInstantiableEntity, IIfcConditionCriterion, IEquatable<@IfcConditionCriterion>
 	{
 		#region IIfcConditionCriterion explicit implementation
 		IIfcConditionCriterionSelect IIfcConditionCriterion.Criterion { get { return @Criterion; } }	
@@ -161,17 +161,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
         public static bool operator !=(@IfcConditionCriterion left, @IfcConditionCriterion right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConditionCriterion x, @IfcConditionCriterion y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConditionCriterion obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

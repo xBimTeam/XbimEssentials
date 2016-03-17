@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcAppliedValueRelationship", 691)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAppliedValueRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValueRelationship, IEqualityComparer<@IfcAppliedValueRelationship>, IEquatable<@IfcAppliedValueRelationship>
+	public  partial class @IfcAppliedValueRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValueRelationship, IEquatable<@IfcAppliedValueRelationship>
 	{
 		#region IIfcAppliedValueRelationship explicit implementation
 		IIfcAppliedValue IIfcAppliedValueRelationship.ComponentOfTotal { get { return @ComponentOfTotal; } }	
@@ -321,17 +321,6 @@ namespace Xbim.Ifc2x3.CostResource
         public static bool operator !=(@IfcAppliedValueRelationship left, @IfcAppliedValueRelationship right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAppliedValueRelationship x, @IfcAppliedValueRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAppliedValueRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

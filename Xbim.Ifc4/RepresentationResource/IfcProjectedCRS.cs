@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcProjectedCRS", 1230)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectedCRS : IfcCoordinateReferenceSystem, IInstantiableEntity, IIfcProjectedCRS, IEqualityComparer<@IfcProjectedCRS>, IEquatable<@IfcProjectedCRS>
+	public  partial class @IfcProjectedCRS : IfcCoordinateReferenceSystem, IInstantiableEntity, IIfcProjectedCRS, IEquatable<@IfcProjectedCRS>
 	{
 		#region IIfcProjectedCRS explicit implementation
 		IfcIdentifier? IIfcProjectedCRS.MapProjection { get { return @MapProjection; } }	
@@ -179,17 +179,6 @@ namespace Xbim.Ifc4.RepresentationResource
         public static bool operator !=(@IfcProjectedCRS left, @IfcProjectedCRS right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcProjectedCRS x, @IfcProjectedCRS y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProjectedCRS obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

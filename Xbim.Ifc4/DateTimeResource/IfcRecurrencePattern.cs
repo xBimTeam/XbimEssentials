@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcRecurrencePattern", 1243)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRecurrencePattern : INotifyPropertyChanged, IInstantiableEntity, IIfcRecurrencePattern, IEqualityComparer<@IfcRecurrencePattern>, IEquatable<@IfcRecurrencePattern>
+	public  partial class @IfcRecurrencePattern : INotifyPropertyChanged, IInstantiableEntity, IIfcRecurrencePattern, IEquatable<@IfcRecurrencePattern>
 	{
 		#region IIfcRecurrencePattern explicit implementation
 		IfcRecurrenceTypeEnum IIfcRecurrencePattern.RecurrenceType { get { return @RecurrenceType; } }	
@@ -373,17 +373,6 @@ namespace Xbim.Ifc4.DateTimeResource
         public static bool operator !=(@IfcRecurrencePattern left, @IfcRecurrencePattern right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRecurrencePattern x, @IfcRecurrencePattern y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRecurrencePattern obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

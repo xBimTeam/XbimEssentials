@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
 	[ExpressType("IfcInterceptor", 1193)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcInterceptor : IfcFlowTreatmentDevice, IInstantiableEntity, IIfcInterceptor, IEqualityComparer<@IfcInterceptor>, IEquatable<@IfcInterceptor>
+	public  partial class @IfcInterceptor : IfcFlowTreatmentDevice, IInstantiableEntity, IIfcInterceptor, IEquatable<@IfcInterceptor>
 	{
 		#region IIfcInterceptor explicit implementation
 		IfcInterceptorTypeEnum? IIfcInterceptor.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
         public static bool operator !=(@IfcInterceptor left, @IfcInterceptor right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcInterceptor x, @IfcInterceptor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcInterceptor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

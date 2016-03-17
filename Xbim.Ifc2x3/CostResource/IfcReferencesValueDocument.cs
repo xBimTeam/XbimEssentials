@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcReferencesValueDocument", 551)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReferencesValueDocument : INotifyPropertyChanged, IInstantiableEntity, IIfcReferencesValueDocument, IEqualityComparer<@IfcReferencesValueDocument>, IEquatable<@IfcReferencesValueDocument>
+	public  partial class @IfcReferencesValueDocument : INotifyPropertyChanged, IInstantiableEntity, IIfcReferencesValueDocument, IEquatable<@IfcReferencesValueDocument>
 	{
 		#region IIfcReferencesValueDocument explicit implementation
 		IIfcDocumentSelect IIfcReferencesValueDocument.ReferencedDocument { get { return @ReferencedDocument; } }	
@@ -301,17 +301,6 @@ namespace Xbim.Ifc2x3.CostResource
         public static bool operator !=(@IfcReferencesValueDocument left, @IfcReferencesValueDocument right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcReferencesValueDocument x, @IfcReferencesValueDocument y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReferencesValueDocument obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

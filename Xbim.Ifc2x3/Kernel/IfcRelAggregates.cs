@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAggregates", 631)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAggregates : IfcRelDecomposes, IInstantiableEntity, IIfcRelAggregates, IEqualityComparer<@IfcRelAggregates>, IEquatable<@IfcRelAggregates>
+	public  partial class @IfcRelAggregates : IfcRelDecomposes, IInstantiableEntity, IIfcRelAggregates, IEquatable<@IfcRelAggregates>
 	{
 		#region IIfcRelAggregates explicit implementation
 		 
@@ -114,17 +114,6 @@ namespace Xbim.Ifc2x3.Kernel
         public static bool operator !=(@IfcRelAggregates left, @IfcRelAggregates right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAggregates x, @IfcRelAggregates y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAggregates obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

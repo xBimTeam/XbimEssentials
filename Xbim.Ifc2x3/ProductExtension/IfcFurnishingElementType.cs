@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcFurnishingElementType", 358)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFurnishingElementType : IfcElementType, IInstantiableEntity, IIfcFurnishingElementType, IEqualityComparer<@IfcFurnishingElementType>, IEquatable<@IfcFurnishingElementType>
+	public  partial class @IfcFurnishingElementType : IfcElementType, IInstantiableEntity, IIfcFurnishingElementType, IEquatable<@IfcFurnishingElementType>
 	{
 		#region IIfcFurnishingElementType explicit implementation
 		 
@@ -117,17 +117,6 @@ namespace Xbim.Ifc2x3.ProductExtension
         public static bool operator !=(@IfcFurnishingElementType left, @IfcFurnishingElementType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFurnishingElementType x, @IfcFurnishingElementType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFurnishingElementType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

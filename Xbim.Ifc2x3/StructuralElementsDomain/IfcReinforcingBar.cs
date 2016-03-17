@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcReinforcingBar", 571)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcingBar : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingBar, IEqualityComparer<@IfcReinforcingBar>, IEquatable<@IfcReinforcingBar>
+	public  partial class @IfcReinforcingBar : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingBar, IEquatable<@IfcReinforcingBar>
 	{
 		#region IIfcReinforcingBar explicit implementation
 		IfcPositiveLengthMeasure IIfcReinforcingBar.NominalDiameter { get { return @NominalDiameter; } }	
@@ -225,17 +225,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
         public static bool operator !=(@IfcReinforcingBar left, @IfcReinforcingBar right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcReinforcingBar x, @IfcReinforcingBar y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReinforcingBar obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelAssignsToProcess", 249)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProcess, IEqualityComparer<@IfcRelAssignsToProcess>, IEquatable<@IfcRelAssignsToProcess>
+	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProcess, IEquatable<@IfcRelAssignsToProcess>
 	{
 		#region IIfcRelAssignsToProcess explicit implementation
 		IIfcProcessSelect IIfcRelAssignsToProcess.RelatingProcess { get { return @RelatingProcess; } }	
@@ -162,17 +162,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcRelAssignsToProcess left, @IfcRelAssignsToProcess right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssignsToProcess x, @IfcRelAssignsToProcess y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToProcess obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

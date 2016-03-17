@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcProjectLibrary", 1229)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectLibrary : IfcContext, IInstantiableEntity, IIfcProjectLibrary, IEqualityComparer<@IfcProjectLibrary>, IEquatable<@IfcProjectLibrary>
+	public  partial class @IfcProjectLibrary : IfcContext, IInstantiableEntity, IIfcProjectLibrary, IEquatable<@IfcProjectLibrary>
 	{
 		#region IIfcProjectLibrary explicit implementation
 		 
@@ -117,17 +117,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcProjectLibrary left, @IfcProjectLibrary right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcProjectLibrary x, @IfcProjectLibrary y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProjectLibrary obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

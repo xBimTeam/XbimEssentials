@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcExternallyDefinedSymbol", 391)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternallyDefinedSymbol : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedSymbol, IEqualityComparer<@IfcExternallyDefinedSymbol>, IEquatable<@IfcExternallyDefinedSymbol>
+	public  partial class @IfcExternallyDefinedSymbol : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedSymbol, IEquatable<@IfcExternallyDefinedSymbol>
 	{
 		#region IIfcExternallyDefinedSymbol explicit implementation
 		 
@@ -112,17 +112,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
         public static bool operator !=(@IfcExternallyDefinedSymbol left, @IfcExternallyDefinedSymbol right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcExternallyDefinedSymbol x, @IfcExternallyDefinedSymbol y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExternallyDefinedSymbol obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

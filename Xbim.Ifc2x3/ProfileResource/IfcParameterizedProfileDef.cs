@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcParameterizedProfileDef", 104)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcParameterizedProfileDef : IfcProfileDef, IIfcParameterizedProfileDef, IEqualityComparer<@IfcParameterizedProfileDef>, IEquatable<@IfcParameterizedProfileDef>
+	public abstract partial class @IfcParameterizedProfileDef : IfcProfileDef, IIfcParameterizedProfileDef, IEquatable<@IfcParameterizedProfileDef>
 	{
 		#region IIfcParameterizedProfileDef explicit implementation
 		IIfcAxis2Placement2D IIfcParameterizedProfileDef.Position { get { return @Position; } }	
@@ -136,17 +136,6 @@ namespace Xbim.Ifc2x3.ProfileResource
         public static bool operator !=(@IfcParameterizedProfileDef left, @IfcParameterizedProfileDef right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcParameterizedProfileDef x, @IfcParameterizedProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcParameterizedProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

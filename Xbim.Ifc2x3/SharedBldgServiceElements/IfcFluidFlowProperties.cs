@@ -52,7 +52,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcFluidFlowProperties", 466)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFluidFlowProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcFluidFlowProperties, IEqualityComparer<@IfcFluidFlowProperties>, IEquatable<@IfcFluidFlowProperties>
+	public  partial class @IfcFluidFlowProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcFluidFlowProperties, IEquatable<@IfcFluidFlowProperties>
 	{
 		#region IIfcFluidFlowProperties explicit implementation
 		IfcPropertySourceEnum IIfcFluidFlowProperties.PropertySource { get { return @PropertySource; } }	
@@ -421,17 +421,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         public static bool operator !=(@IfcFluidFlowProperties left, @IfcFluidFlowProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFluidFlowProperties x, @IfcFluidFlowProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFluidFlowProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

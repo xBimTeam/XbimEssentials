@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcSectionProperties", 184)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionProperties : IfcPreDefinedProperties, IInstantiableEntity, IIfcSectionProperties, IEqualityComparer<@IfcSectionProperties>, IEquatable<@IfcSectionProperties>
+	public  partial class @IfcSectionProperties : IfcPreDefinedProperties, IInstantiableEntity, IIfcSectionProperties, IEquatable<@IfcSectionProperties>
 	{
 		#region IIfcSectionProperties explicit implementation
 		IfcSectionTypeEnum IIfcSectionProperties.SectionType { get { return @SectionType; } }	
@@ -172,17 +172,6 @@ namespace Xbim.Ifc4.ProfileResource
         public static bool operator !=(@IfcSectionProperties left, @IfcSectionProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSectionProperties x, @IfcSectionProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSectionProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

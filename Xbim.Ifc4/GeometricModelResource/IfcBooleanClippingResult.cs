@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcBooleanClippingResult", 340)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBooleanClippingResult : IfcBooleanResult, IInstantiableEntity, IIfcBooleanClippingResult, IEqualityComparer<@IfcBooleanClippingResult>, IEquatable<@IfcBooleanClippingResult>
+	public  partial class @IfcBooleanClippingResult : IfcBooleanResult, IInstantiableEntity, IIfcBooleanClippingResult, IEquatable<@IfcBooleanClippingResult>
 	{
 		#region IIfcBooleanClippingResult explicit implementation
 		 
@@ -114,17 +114,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcBooleanClippingResult left, @IfcBooleanClippingResult right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBooleanClippingResult x, @IfcBooleanClippingResult y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBooleanClippingResult obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

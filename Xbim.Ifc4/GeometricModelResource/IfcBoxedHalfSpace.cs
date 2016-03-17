@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcBoxedHalfSpace", 655)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoxedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcBoxedHalfSpace, IEqualityComparer<@IfcBoxedHalfSpace>, IEquatable<@IfcBoxedHalfSpace>
+	public  partial class @IfcBoxedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcBoxedHalfSpace, IEquatable<@IfcBoxedHalfSpace>
 	{
 		#region IIfcBoxedHalfSpace explicit implementation
 		IIfcBoundingBox IIfcBoxedHalfSpace.Enclosure { get { return @Enclosure; } }	
@@ -136,17 +136,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcBoxedHalfSpace left, @IfcBoxedHalfSpace right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBoxedHalfSpace x, @IfcBoxedHalfSpace y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBoxedHalfSpace obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

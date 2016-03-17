@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IfcExternalReference", 133)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcExternalReference : IPersistEntity, INotifyPropertyChanged, IIfcExternalReference, IEqualityComparer<@IfcExternalReference>, IEquatable<@IfcExternalReference>
+	public abstract partial class @IfcExternalReference : IPersistEntity, INotifyPropertyChanged, IIfcExternalReference, IEquatable<@IfcExternalReference>
 	{
 		#region IIfcExternalReference explicit implementation
 		IfcURIReference? IIfcExternalReference.Location { get { return @Location; } }	
@@ -297,17 +297,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
         public static bool operator !=(@IfcExternalReference left, @IfcExternalReference right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcExternalReference x, @IfcExternalReference y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExternalReference obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

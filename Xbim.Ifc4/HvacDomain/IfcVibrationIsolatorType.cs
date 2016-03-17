@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcVibrationIsolatorType", 137)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVibrationIsolatorType : IfcElementComponentType, IInstantiableEntity, IIfcVibrationIsolatorType, IEqualityComparer<@IfcVibrationIsolatorType>, IEquatable<@IfcVibrationIsolatorType>
+	public  partial class @IfcVibrationIsolatorType : IfcElementComponentType, IInstantiableEntity, IIfcVibrationIsolatorType, IEquatable<@IfcVibrationIsolatorType>
 	{
 		#region IIfcVibrationIsolatorType explicit implementation
 		IfcVibrationIsolatorTypeEnum IIfcVibrationIsolatorType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcVibrationIsolatorType left, @IfcVibrationIsolatorType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcVibrationIsolatorType x, @IfcVibrationIsolatorType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcVibrationIsolatorType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("JobStatusType", 49)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieJobStatusType : CobiePickValue, IInstantiableEntity, ICobieJobStatusType, IEqualityComparer<@CobieJobStatusType>, IEquatable<@CobieJobStatusType>
+	public  partial class @CobieJobStatusType : CobiePickValue, IInstantiableEntity, ICobieJobStatusType, IEquatable<@CobieJobStatusType>
 	{
 		#region ICobieJobStatusType explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieJobStatusType left, @CobieJobStatusType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieJobStatusType x, @CobieJobStatusType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieJobStatusType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

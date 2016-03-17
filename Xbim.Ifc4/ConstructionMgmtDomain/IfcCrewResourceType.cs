@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	[ExpressType("IfcCrewResourceType", 1145)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCrewResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcCrewResourceType, IEqualityComparer<@IfcCrewResourceType>, IEquatable<@IfcCrewResourceType>
+	public  partial class @IfcCrewResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcCrewResourceType, IEquatable<@IfcCrewResourceType>
 	{
 		#region IIfcCrewResourceType explicit implementation
 		IfcCrewResourceTypeEnum IIfcCrewResourceType.PredefinedType { get { return @PredefinedType; } }	
@@ -145,17 +145,6 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
         public static bool operator !=(@IfcCrewResourceType left, @IfcCrewResourceType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCrewResourceType x, @IfcCrewResourceType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCrewResourceType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

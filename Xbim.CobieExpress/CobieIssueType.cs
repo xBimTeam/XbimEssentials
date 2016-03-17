@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("IssueType", 56)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieIssueType : CobiePickValue, IInstantiableEntity, ICobieIssueType, IEqualityComparer<@CobieIssueType>, IEquatable<@CobieIssueType>
+	public  partial class @CobieIssueType : CobiePickValue, IInstantiableEntity, ICobieIssueType, IEquatable<@CobieIssueType>
 	{
 		#region ICobieIssueType explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieIssueType left, @CobieIssueType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieIssueType x, @CobieIssueType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieIssueType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

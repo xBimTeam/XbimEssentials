@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcPump", 1238)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPump : IfcFlowMovingDevice, IInstantiableEntity, IIfcPump, IEqualityComparer<@IfcPump>, IEquatable<@IfcPump>
+	public  partial class @IfcPump : IfcFlowMovingDevice, IInstantiableEntity, IIfcPump, IEquatable<@IfcPump>
 	{
 		#region IIfcPump explicit implementation
 		IfcPumpTypeEnum? IIfcPump.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcPump left, @IfcPump right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPump x, @IfcPump y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPump obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

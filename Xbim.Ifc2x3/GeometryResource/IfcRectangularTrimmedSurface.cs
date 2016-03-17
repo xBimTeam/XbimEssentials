@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcRectangularTrimmedSurface", 653)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangularTrimmedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcRectangularTrimmedSurface, IEqualityComparer<@IfcRectangularTrimmedSurface>, IEquatable<@IfcRectangularTrimmedSurface>
+	public  partial class @IfcRectangularTrimmedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcRectangularTrimmedSurface, IEquatable<@IfcRectangularTrimmedSurface>
 	{
 		#region IIfcRectangularTrimmedSurface explicit implementation
 		IIfcSurface IIfcRectangularTrimmedSurface.BasisSurface { get { return @BasisSurface; } }	
@@ -269,17 +269,6 @@ namespace Xbim.Ifc2x3.GeometryResource
         public static bool operator !=(@IfcRectangularTrimmedSurface left, @IfcRectangularTrimmedSurface right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRectangularTrimmedSurface x, @IfcRectangularTrimmedSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRectangularTrimmedSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

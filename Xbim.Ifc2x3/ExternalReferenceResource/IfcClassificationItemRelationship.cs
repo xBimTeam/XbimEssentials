@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcClassificationItemRelationship", 210)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationItemRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationItemRelationship, IEqualityComparer<@IfcClassificationItemRelationship>, IEquatable<@IfcClassificationItemRelationship>
+	public  partial class @IfcClassificationItemRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationItemRelationship, IEquatable<@IfcClassificationItemRelationship>
 	{
 		#region IIfcClassificationItemRelationship explicit implementation
 		IIfcClassificationItem IIfcClassificationItemRelationship.RelatingItem { get { return @RelatingItem; } }	
@@ -260,17 +260,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
         public static bool operator !=(@IfcClassificationItemRelationship left, @IfcClassificationItemRelationship right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcClassificationItemRelationship x, @IfcClassificationItemRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcClassificationItemRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

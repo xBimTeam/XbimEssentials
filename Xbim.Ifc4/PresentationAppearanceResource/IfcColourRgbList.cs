@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcColourRgbList", 1125)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcColourRgbList : IfcPresentationItem, IInstantiableEntity, IIfcColourRgbList, IEqualityComparer<@IfcColourRgbList>, IEquatable<@IfcColourRgbList>
+	public  partial class @IfcColourRgbList : IfcPresentationItem, IInstantiableEntity, IIfcColourRgbList, IEquatable<@IfcColourRgbList>
 	{
 		#region IIfcColourRgbList explicit implementation
 		IEnumerable<IEnumerable<IfcNormalisedRatioMeasure>> IIfcColourRgbList.ColourList { get { return @ColourList; } }	
@@ -132,17 +132,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcColourRgbList left, @IfcColourRgbList right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcColourRgbList x, @IfcColourRgbList y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcColourRgbList obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

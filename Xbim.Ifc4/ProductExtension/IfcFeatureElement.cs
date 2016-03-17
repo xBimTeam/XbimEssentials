@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcFeatureElement", 386)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFeatureElement : IfcElement, IIfcFeatureElement, IEqualityComparer<@IfcFeatureElement>, IEquatable<@IfcFeatureElement>
+	public abstract partial class @IfcFeatureElement : IfcElement, IIfcFeatureElement, IEquatable<@IfcFeatureElement>
 	{
 		#region IIfcFeatureElement explicit implementation
 		 
@@ -116,17 +116,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcFeatureElement left, @IfcFeatureElement right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFeatureElement x, @IfcFeatureElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFeatureElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

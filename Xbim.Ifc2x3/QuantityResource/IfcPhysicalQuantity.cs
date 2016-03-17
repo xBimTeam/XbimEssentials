@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcPhysicalQuantity", 102)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPhysicalQuantity : IPersistEntity, INotifyPropertyChanged, IIfcPhysicalQuantity, IEqualityComparer<@IfcPhysicalQuantity>, IEquatable<@IfcPhysicalQuantity>
+	public abstract partial class @IfcPhysicalQuantity : IPersistEntity, INotifyPropertyChanged, IIfcPhysicalQuantity, IEquatable<@IfcPhysicalQuantity>
 	{
 		#region IIfcPhysicalQuantity explicit implementation
 		IfcLabel IIfcPhysicalQuantity.Name { get { return @Name; } }	
@@ -274,17 +274,6 @@ namespace Xbim.Ifc2x3.QuantityResource
         public static bool operator !=(@IfcPhysicalQuantity left, @IfcPhysicalQuantity right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPhysicalQuantity x, @IfcPhysicalQuantity y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPhysicalQuantity obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

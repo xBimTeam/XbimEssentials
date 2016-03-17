@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcRelAssociatesAppliedValue", 699)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesAppliedValue : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesAppliedValue, IEqualityComparer<@IfcRelAssociatesAppliedValue>, IEquatable<@IfcRelAssociatesAppliedValue>
+	public  partial class @IfcRelAssociatesAppliedValue : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesAppliedValue, IEquatable<@IfcRelAssociatesAppliedValue>
 	{
 		#region IIfcRelAssociatesAppliedValue explicit implementation
 		IIfcAppliedValue IIfcRelAssociatesAppliedValue.RelatingAppliedValue { get { return @RelatingAppliedValue; } }	
@@ -140,17 +140,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
         public static bool operator !=(@IfcRelAssociatesAppliedValue left, @IfcRelAssociatesAppliedValue right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssociatesAppliedValue x, @IfcRelAssociatesAppliedValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssociatesAppliedValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

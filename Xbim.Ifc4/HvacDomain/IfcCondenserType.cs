@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcCondenserType", 297)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCondenserType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcCondenserType, IEqualityComparer<@IfcCondenserType>, IEquatable<@IfcCondenserType>
+	public  partial class @IfcCondenserType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcCondenserType, IEquatable<@IfcCondenserType>
 	{
 		#region IIfcCondenserType explicit implementation
 		IfcCondenserTypeEnum IIfcCondenserType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcCondenserType left, @IfcCondenserType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCondenserType x, @IfcCondenserType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCondenserType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

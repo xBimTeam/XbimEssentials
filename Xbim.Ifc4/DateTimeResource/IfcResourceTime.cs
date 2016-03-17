@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcResourceTime", 1259)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcResourceTime : IfcSchedulingTime, IInstantiableEntity, IIfcResourceTime, IEqualityComparer<@IfcResourceTime>, IEquatable<@IfcResourceTime>
+	public  partial class @IfcResourceTime : IfcSchedulingTime, IInstantiableEntity, IIfcResourceTime, IEquatable<@IfcResourceTime>
 	{
 		#region IIfcResourceTime explicit implementation
 		IfcDuration? IIfcResourceTime.ScheduleWork { get { return @ScheduleWork; } }	
@@ -417,17 +417,6 @@ namespace Xbim.Ifc4.DateTimeResource
         public static bool operator !=(@IfcResourceTime left, @IfcResourceTime right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcResourceTime x, @IfcResourceTime y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcResourceTime obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

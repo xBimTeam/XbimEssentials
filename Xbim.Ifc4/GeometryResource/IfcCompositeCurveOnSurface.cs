@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcCompositeCurveOnSurface", 1130)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompositeCurveOnSurface : IfcCompositeCurve, IInstantiableEntity, IIfcCompositeCurveOnSurface, IEqualityComparer<@IfcCompositeCurveOnSurface>, IEquatable<@IfcCompositeCurveOnSurface>
+	public  partial class @IfcCompositeCurveOnSurface : IfcCompositeCurve, IInstantiableEntity, IIfcCompositeCurveOnSurface, IEquatable<@IfcCompositeCurveOnSurface>
 	{
 		#region IIfcCompositeCurveOnSurface explicit implementation
 		 
@@ -125,17 +125,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcCompositeCurveOnSurface left, @IfcCompositeCurveOnSurface right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCompositeCurveOnSurface x, @IfcCompositeCurveOnSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCompositeCurveOnSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

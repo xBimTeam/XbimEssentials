@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcTypeResource", 1307)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTypeResource : IfcTypeObject, IIfcTypeResource, IEqualityComparer<@IfcTypeResource>, IEquatable<@IfcTypeResource>
+	public abstract partial class @IfcTypeResource : IfcTypeObject, IIfcTypeResource, IEquatable<@IfcTypeResource>
 	{
 		#region IIfcTypeResource explicit implementation
 		IfcIdentifier? IIfcTypeResource.Identification { get { return @Identification; } }	
@@ -193,17 +193,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcTypeResource left, @IfcTypeResource right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTypeResource x, @IfcTypeResource y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTypeResource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

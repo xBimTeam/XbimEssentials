@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcOccupant", 641)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOccupant : IfcActor, IInstantiableEntity, IIfcOccupant, IEqualityComparer<@IfcOccupant>, IEquatable<@IfcOccupant>
+	public  partial class @IfcOccupant : IfcActor, IInstantiableEntity, IIfcOccupant, IEquatable<@IfcOccupant>
 	{
 		#region IIfcOccupant explicit implementation
 		IfcOccupantTypeEnum IIfcOccupant.PredefinedType { get { return @PredefinedType; } }	
@@ -141,17 +141,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
         public static bool operator !=(@IfcOccupant left, @IfcOccupant right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOccupant x, @IfcOccupant y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOccupant obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

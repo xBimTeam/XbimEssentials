@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcWallElementedCase", 1314)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWallElementedCase : IfcWall, IInstantiableEntity, IIfcWallElementedCase, IEqualityComparer<@IfcWallElementedCase>, IEquatable<@IfcWallElementedCase>
+	public  partial class @IfcWallElementedCase : IfcWall, IInstantiableEntity, IIfcWallElementedCase, IEquatable<@IfcWallElementedCase>
 	{
 		#region IIfcWallElementedCase explicit implementation
 		 
@@ -118,17 +118,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcWallElementedCase left, @IfcWallElementedCase right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcWallElementedCase x, @IfcWallElementedCase y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWallElementedCase obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

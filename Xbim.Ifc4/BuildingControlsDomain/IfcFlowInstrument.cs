@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	[ExpressType("IfcFlowInstrument", 1181)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowInstrument : IfcDistributionControlElement, IInstantiableEntity, IIfcFlowInstrument, IEqualityComparer<@IfcFlowInstrument>, IEquatable<@IfcFlowInstrument>
+	public  partial class @IfcFlowInstrument : IfcDistributionControlElement, IInstantiableEntity, IIfcFlowInstrument, IEquatable<@IfcFlowInstrument>
 	{
 		#region IIfcFlowInstrument explicit implementation
 		IfcFlowInstrumentTypeEnum? IIfcFlowInstrument.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
         public static bool operator !=(@IfcFlowInstrument left, @IfcFlowInstrument right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFlowInstrument x, @IfcFlowInstrument y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFlowInstrument obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

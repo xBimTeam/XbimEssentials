@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcRelSpaceBoundary1stLevel", 1253)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSpaceBoundary1stLevel : IfcRelSpaceBoundary, IInstantiableEntity, IIfcRelSpaceBoundary1stLevel, IEqualityComparer<@IfcRelSpaceBoundary1stLevel>, IEquatable<@IfcRelSpaceBoundary1stLevel>
+	public  partial class @IfcRelSpaceBoundary1stLevel : IfcRelSpaceBoundary, IInstantiableEntity, IIfcRelSpaceBoundary1stLevel, IEquatable<@IfcRelSpaceBoundary1stLevel>
 	{
 		#region IIfcRelSpaceBoundary1stLevel explicit implementation
 		IIfcRelSpaceBoundary1stLevel IIfcRelSpaceBoundary1stLevel.ParentBoundary { get { return @ParentBoundary; } }	
@@ -156,17 +156,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcRelSpaceBoundary1stLevel left, @IfcRelSpaceBoundary1stLevel right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelSpaceBoundary1stLevel x, @IfcRelSpaceBoundary1stLevel y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelSpaceBoundary1stLevel obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

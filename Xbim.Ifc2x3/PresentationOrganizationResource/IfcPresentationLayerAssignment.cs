@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcPresentationLayerAssignment", 258)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationLayerAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationLayerAssignment, IEqualityComparer<@IfcPresentationLayerAssignment>, IEquatable<@IfcPresentationLayerAssignment>
+	public  partial class @IfcPresentationLayerAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationLayerAssignment, IEquatable<@IfcPresentationLayerAssignment>
 	{
 		#region IIfcPresentationLayerAssignment explicit implementation
 		IfcLabel IIfcPresentationLayerAssignment.Name { get { return @Name; } }	
@@ -300,17 +300,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
         public static bool operator !=(@IfcPresentationLayerAssignment left, @IfcPresentationLayerAssignment right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPresentationLayerAssignment x, @IfcPresentationLayerAssignment y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPresentationLayerAssignment obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

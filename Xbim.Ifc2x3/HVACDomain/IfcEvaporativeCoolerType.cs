@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcEvaporativeCoolerType", 621)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEvaporativeCoolerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcEvaporativeCoolerType, IEqualityComparer<@IfcEvaporativeCoolerType>, IEquatable<@IfcEvaporativeCoolerType>
+	public  partial class @IfcEvaporativeCoolerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcEvaporativeCoolerType, IEquatable<@IfcEvaporativeCoolerType>
 	{
 		#region IIfcEvaporativeCoolerType explicit implementation
 		IfcEvaporativeCoolerTypeEnum IIfcEvaporativeCoolerType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc2x3.HVACDomain
         public static bool operator !=(@IfcEvaporativeCoolerType left, @IfcEvaporativeCoolerType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcEvaporativeCoolerType x, @IfcEvaporativeCoolerType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEvaporativeCoolerType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

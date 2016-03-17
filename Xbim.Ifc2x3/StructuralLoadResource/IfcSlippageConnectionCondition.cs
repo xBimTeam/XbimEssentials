@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcSlippageConnectionCondition", 638)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSlippageConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcSlippageConnectionCondition, IEqualityComparer<@IfcSlippageConnectionCondition>, IEquatable<@IfcSlippageConnectionCondition>
+	public  partial class @IfcSlippageConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcSlippageConnectionCondition, IEquatable<@IfcSlippageConnectionCondition>
 	{
 		#region IIfcSlippageConnectionCondition explicit implementation
 		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageX { get { return @SlippageX; } }	
@@ -175,17 +175,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
         public static bool operator !=(@IfcSlippageConnectionCondition left, @IfcSlippageConnectionCondition right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSlippageConnectionCondition x, @IfcSlippageConnectionCondition y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSlippageConnectionCondition obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

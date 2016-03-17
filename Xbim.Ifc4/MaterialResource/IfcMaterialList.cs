@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialList", 246)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialList : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialList, IEqualityComparer<@IfcMaterialList>, IEquatable<@IfcMaterialList>
+	public  partial class @IfcMaterialList : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialList, IEquatable<@IfcMaterialList>
 	{
 		#region IIfcMaterialList explicit implementation
 		IEnumerable<IIfcMaterial> IIfcMaterialList.Materials { get { return @Materials; } }	
@@ -238,17 +238,6 @@ namespace Xbim.Ifc4.MaterialResource
         public static bool operator !=(@IfcMaterialList left, @IfcMaterialList right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialList x, @IfcMaterialList y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialList obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

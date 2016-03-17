@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcPolyline", 500)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPolyline : IfcBoundedCurve, IInstantiableEntity, IIfcPolyline, IEqualityComparer<@IfcPolyline>, IEquatable<@IfcPolyline>
+	public  partial class @IfcPolyline : IfcBoundedCurve, IInstantiableEntity, IIfcPolyline, IEquatable<@IfcPolyline>
 	{
 		#region IIfcPolyline explicit implementation
 		IEnumerable<IIfcCartesianPoint> IIfcPolyline.Points { get { return @Points; } }	
@@ -130,17 +130,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcPolyline left, @IfcPolyline right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPolyline x, @IfcPolyline y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPolyline obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

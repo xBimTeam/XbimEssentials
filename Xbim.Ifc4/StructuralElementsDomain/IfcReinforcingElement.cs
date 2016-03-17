@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IfcReinforcingElement", 262)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcReinforcingElement : IfcElementComponent, IIfcReinforcingElement, IEqualityComparer<@IfcReinforcingElement>, IEquatable<@IfcReinforcingElement>
+	public abstract partial class @IfcReinforcingElement : IfcElementComponent, IIfcReinforcingElement, IEquatable<@IfcReinforcingElement>
 	{
 		#region IIfcReinforcingElement explicit implementation
 		IfcLabel? IIfcReinforcingElement.SteelGrade { get { return @SteelGrade; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
         public static bool operator !=(@IfcReinforcingElement left, @IfcReinforcingElement right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcReinforcingElement x, @IfcReinforcingElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReinforcingElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

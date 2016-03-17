@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcWall", 452)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWall : IfcBuildingElement, IInstantiableEntity, IIfcWall, IEqualityComparer<@IfcWall>, IEquatable<@IfcWall>
+	public  partial class @IfcWall : IfcBuildingElement, IInstantiableEntity, IIfcWall, IEquatable<@IfcWall>
 	{
 		#region IIfcWall explicit implementation
 		IfcWallTypeEnum? IIfcWall.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcWall left, @IfcWall right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcWall x, @IfcWall y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWall obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

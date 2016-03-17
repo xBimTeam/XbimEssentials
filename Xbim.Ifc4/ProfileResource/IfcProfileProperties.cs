@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcProfileProperties", 649)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProfileProperties : IfcExtendedProperties, IInstantiableEntity, IIfcProfileProperties, IEqualityComparer<@IfcProfileProperties>, IEquatable<@IfcProfileProperties>
+	public  partial class @IfcProfileProperties : IfcExtendedProperties, IInstantiableEntity, IIfcProfileProperties, IEquatable<@IfcProfileProperties>
 	{
 		#region IIfcProfileProperties explicit implementation
 		IIfcProfileDef IIfcProfileProperties.ProfileDefinition { get { return @ProfileDefinition; } }	
@@ -138,17 +138,6 @@ namespace Xbim.Ifc4.ProfileResource
         public static bool operator !=(@IfcProfileProperties left, @IfcProfileProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcProfileProperties x, @IfcProfileProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProfileProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

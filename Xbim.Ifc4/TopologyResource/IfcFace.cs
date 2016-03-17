@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcFace", 83)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFace : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFace, IEqualityComparer<@IfcFace>, IEquatable<@IfcFace>
+	public  partial class @IfcFace : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFace, IEquatable<@IfcFace>
 	{
 		#region IIfcFace explicit implementation
 		IEnumerable<IIfcFaceBound> IIfcFace.Bounds { get { return @Bounds; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.TopologyResource
         public static bool operator !=(@IfcFace left, @IfcFace right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFace x, @IfcFace y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFace obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

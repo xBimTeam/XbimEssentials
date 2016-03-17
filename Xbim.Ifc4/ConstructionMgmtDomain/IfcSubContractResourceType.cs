@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	[ExpressType("IfcSubContractResourceType", 1286)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSubContractResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcSubContractResourceType, IEqualityComparer<@IfcSubContractResourceType>, IEquatable<@IfcSubContractResourceType>
+	public  partial class @IfcSubContractResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcSubContractResourceType, IEquatable<@IfcSubContractResourceType>
 	{
 		#region IIfcSubContractResourceType explicit implementation
 		IfcSubContractResourceTypeEnum IIfcSubContractResourceType.PredefinedType { get { return @PredefinedType; } }	
@@ -145,17 +145,6 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
         public static bool operator !=(@IfcSubContractResourceType left, @IfcSubContractResourceType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSubContractResourceType x, @IfcSubContractResourceType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSubContractResourceType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

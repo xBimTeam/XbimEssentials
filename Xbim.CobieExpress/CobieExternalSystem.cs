@@ -36,7 +36,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("ExternalSystem", 8)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieExternalSystem : INotifyPropertyChanged, IInstantiableEntity, ICobieExternalSystem, IEqualityComparer<@CobieExternalSystem>, IEquatable<@CobieExternalSystem>
+	public  partial class @CobieExternalSystem : INotifyPropertyChanged, IInstantiableEntity, ICobieExternalSystem, IEquatable<@CobieExternalSystem>
 	{
 		#region ICobieExternalSystem explicit implementation
 		string ICobieExternalSystem.Name { get { return @Name; } }	
@@ -240,17 +240,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieExternalSystem left, @CobieExternalSystem right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieExternalSystem x, @CobieExternalSystem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieExternalSystem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcExternallyDefinedSurfaceStyle", 318)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternallyDefinedSurfaceStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedSurfaceStyle, IEqualityComparer<@IfcExternallyDefinedSurfaceStyle>, IEquatable<@IfcExternallyDefinedSurfaceStyle>
+	public  partial class @IfcExternallyDefinedSurfaceStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedSurfaceStyle, IEquatable<@IfcExternallyDefinedSurfaceStyle>
 	{
 		#region IIfcExternallyDefinedSurfaceStyle explicit implementation
 		 
@@ -112,17 +112,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcExternallyDefinedSurfaceStyle left, @IfcExternallyDefinedSurfaceStyle right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcExternallyDefinedSurfaceStyle x, @IfcExternallyDefinedSurfaceStyle y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExternallyDefinedSurfaceStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcRelCoversBldgElements", 24)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelCoversBldgElements : IfcRelConnects, IInstantiableEntity, IIfcRelCoversBldgElements, IEqualityComparer<@IfcRelCoversBldgElements>, IEquatable<@IfcRelCoversBldgElements>
+	public  partial class @IfcRelCoversBldgElements : IfcRelConnects, IInstantiableEntity, IIfcRelCoversBldgElements, IEquatable<@IfcRelCoversBldgElements>
 	{
 		#region IIfcRelCoversBldgElements explicit implementation
 		IIfcElement IIfcRelCoversBldgElements.RelatingBuildingElement { get { return @RelatingBuildingElement; } }	
@@ -159,17 +159,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcRelCoversBldgElements left, @IfcRelCoversBldgElements right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelCoversBldgElements x, @IfcRelCoversBldgElements y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelCoversBldgElements obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcPort", 179)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPort : IfcProduct, IIfcPort, IEqualityComparer<@IfcPort>, IEquatable<@IfcPort>
+	public abstract partial class @IfcPort : IfcProduct, IIfcPort, IEquatable<@IfcPort>
 	{
 		#region IIfcPort explicit implementation
 		 
@@ -151,17 +151,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcPort left, @IfcPort right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPort x, @IfcPort y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPort obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

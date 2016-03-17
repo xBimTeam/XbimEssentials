@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSourceSpot", 760)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceSpot : IfcLightSourcePositional, IInstantiableEntity, IIfcLightSourceSpot, IEqualityComparer<@IfcLightSourceSpot>, IEquatable<@IfcLightSourceSpot>
+	public  partial class @IfcLightSourceSpot : IfcLightSourcePositional, IInstantiableEntity, IIfcLightSourceSpot, IEquatable<@IfcLightSourceSpot>
 	{
 		#region IIfcLightSourceSpot explicit implementation
 		IIfcDirection IIfcLightSourceSpot.Orientation { get { return @Orientation; } }	
@@ -204,17 +204,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
         public static bool operator !=(@IfcLightSourceSpot left, @IfcLightSourceSpot right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLightSourceSpot x, @IfcLightSourceSpot y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLightSourceSpot obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

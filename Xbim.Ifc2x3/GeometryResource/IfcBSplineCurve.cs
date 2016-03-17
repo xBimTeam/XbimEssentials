@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcBSplineCurve", 167)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcBSplineCurve : IfcBoundedCurve, IIfcBSplineCurve, IEqualityComparer<@IfcBSplineCurve>, IEquatable<@IfcBSplineCurve>
+	public abstract partial class @IfcBSplineCurve : IfcBoundedCurve, IIfcBSplineCurve, IEquatable<@IfcBSplineCurve>
 	{
 		#region IIfcBSplineCurve explicit implementation
 		long IIfcBSplineCurve.Degree { get { return @Degree; } }	
@@ -236,17 +236,6 @@ namespace Xbim.Ifc2x3.GeometryResource
         public static bool operator !=(@IfcBSplineCurve left, @IfcBSplineCurve right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBSplineCurve x, @IfcBSplineCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBSplineCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

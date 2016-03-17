@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcSurface", 111)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSurface : IfcGeometricRepresentationItem, IIfcSurface, IEqualityComparer<@IfcSurface>, IEquatable<@IfcSurface>
+	public abstract partial class @IfcSurface : IfcGeometricRepresentationItem, IIfcSurface, IEquatable<@IfcSurface>
 	{
 		#region IIfcSurface explicit implementation
 		 
@@ -130,17 +130,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcSurface left, @IfcSurface right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSurface x, @IfcSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

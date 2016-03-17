@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcStructuralSteelProfileProperties", 692)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSteelProfileProperties : IfcStructuralProfileProperties, IInstantiableEntity, IIfcStructuralSteelProfileProperties, IEqualityComparer<@IfcStructuralSteelProfileProperties>, IEquatable<@IfcStructuralSteelProfileProperties>
+	public  partial class @IfcStructuralSteelProfileProperties : IfcStructuralProfileProperties, IInstantiableEntity, IIfcStructuralSteelProfileProperties, IEquatable<@IfcStructuralSteelProfileProperties>
 	{
 		#region IIfcStructuralSteelProfileProperties explicit implementation
 		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaZ { get { return @ShearAreaZ; } }	
@@ -219,17 +219,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
         public static bool operator !=(@IfcStructuralSteelProfileProperties left, @IfcStructuralSteelProfileProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralSteelProfileProperties x, @IfcStructuralSteelProfileProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralSteelProfileProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

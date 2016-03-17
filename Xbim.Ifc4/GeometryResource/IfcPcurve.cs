@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcPcurve", 1220)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPcurve : IfcCurve, IInstantiableEntity, IIfcPcurve, IEqualityComparer<@IfcPcurve>, IEquatable<@IfcPcurve>
+	public  partial class @IfcPcurve : IfcCurve, IInstantiableEntity, IIfcPcurve, IEquatable<@IfcPcurve>
 	{
 		#region IIfcPcurve explicit implementation
 		IIfcSurface IIfcPcurve.BasisSurface { get { return @BasisSurface; } }	
@@ -152,17 +152,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcPcurve left, @IfcPcurve right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPcurve x, @IfcPcurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPcurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcRelaxation", 364)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelaxation : INotifyPropertyChanged, IInstantiableEntity, IIfcRelaxation, IEqualityComparer<@IfcRelaxation>, IEquatable<@IfcRelaxation>
+	public  partial class @IfcRelaxation : INotifyPropertyChanged, IInstantiableEntity, IIfcRelaxation, IEquatable<@IfcRelaxation>
 	{
 		#region IIfcRelaxation explicit implementation
 		IfcNormalisedRatioMeasure IIfcRelaxation.RelaxationValue { get { return @RelaxationValue; } }	
@@ -261,17 +261,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
         public static bool operator !=(@IfcRelaxation left, @IfcRelaxation right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelaxation x, @IfcRelaxation y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelaxation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

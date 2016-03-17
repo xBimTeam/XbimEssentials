@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcGeometricRepresentationSubContext", 556)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationSubContext, IEqualityComparer<@IfcGeometricRepresentationSubContext>, IEquatable<@IfcGeometricRepresentationSubContext>
+	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationSubContext, IEquatable<@IfcGeometricRepresentationSubContext>
 	{
 		#region IIfcGeometricRepresentationSubContext explicit implementation
 		IIfcGeometricRepresentationContext IIfcGeometricRepresentationSubContext.ParentContext { get { return @ParentContext; } }	
@@ -254,17 +254,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
         public static bool operator !=(@IfcGeometricRepresentationSubContext left, @IfcGeometricRepresentationSubContext right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGeometricRepresentationSubContext x, @IfcGeometricRepresentationSubContext y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGeometricRepresentationSubContext obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

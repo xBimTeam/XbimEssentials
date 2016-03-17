@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleLighting", 117)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleLighting : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleLighting, IEqualityComparer<@IfcSurfaceStyleLighting>, IEquatable<@IfcSurfaceStyleLighting>
+	public  partial class @IfcSurfaceStyleLighting : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleLighting, IEquatable<@IfcSurfaceStyleLighting>
 	{
 		#region IIfcSurfaceStyleLighting explicit implementation
 		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseTransmissionColour { get { return @DiffuseTransmissionColour; } }	
@@ -301,17 +301,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcSurfaceStyleLighting left, @IfcSurfaceStyleLighting right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSurfaceStyleLighting x, @IfcSurfaceStyleLighting y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceStyleLighting obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

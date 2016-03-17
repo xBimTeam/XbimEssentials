@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadSingleForceWarping", 393)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleForceWarping : IfcStructuralLoadSingleForce, IInstantiableEntity, IIfcStructuralLoadSingleForceWarping, IEqualityComparer<@IfcStructuralLoadSingleForceWarping>, IEquatable<@IfcStructuralLoadSingleForceWarping>
+	public  partial class @IfcStructuralLoadSingleForceWarping : IfcStructuralLoadSingleForce, IInstantiableEntity, IIfcStructuralLoadSingleForceWarping, IEquatable<@IfcStructuralLoadSingleForceWarping>
 	{
 		#region IIfcStructuralLoadSingleForceWarping explicit implementation
 		IfcWarpingMomentMeasure? IIfcStructuralLoadSingleForceWarping.WarpingMoment { get { return @WarpingMoment; } }	
@@ -141,17 +141,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
         public static bool operator !=(@IfcStructuralLoadSingleForceWarping left, @IfcStructuralLoadSingleForceWarping right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralLoadSingleForceWarping x, @IfcStructuralLoadSingleForceWarping y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLoadSingleForceWarping obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

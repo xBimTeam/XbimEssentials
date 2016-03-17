@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyleHatching", 462)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleHatching, IEqualityComparer<@IfcFillAreaStyleHatching>, IEquatable<@IfcFillAreaStyleHatching>
+	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleHatching, IEquatable<@IfcFillAreaStyleHatching>
 	{
 		#region IIfcFillAreaStyleHatching explicit implementation
 		IIfcCurveStyle IIfcFillAreaStyleHatching.HatchLineAppearance { get { return @HatchLineAppearance; } }	
@@ -216,17 +216,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcFillAreaStyleHatching left, @IfcFillAreaStyleHatching right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFillAreaStyleHatching x, @IfcFillAreaStyleHatching y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFillAreaStyleHatching obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

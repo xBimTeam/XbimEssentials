@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionPortGeometry", 713)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPortGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPortGeometry, IEqualityComparer<@IfcConnectionPortGeometry>, IEquatable<@IfcConnectionPortGeometry>
+	public  partial class @IfcConnectionPortGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPortGeometry, IEquatable<@IfcConnectionPortGeometry>
 	{
 		#region IIfcConnectionPortGeometry explicit implementation
 		IIfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatingElement { get { return @LocationAtRelatingElement; } }	
@@ -173,17 +173,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
         public static bool operator !=(@IfcConnectionPortGeometry left, @IfcConnectionPortGeometry right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConnectionPortGeometry x, @IfcConnectionPortGeometry y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConnectionPortGeometry obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

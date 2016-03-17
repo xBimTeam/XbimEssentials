@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcDimensionalExponents", 303)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionalExponents : INotifyPropertyChanged, IInstantiableEntity, IIfcDimensionalExponents, IEqualityComparer<@IfcDimensionalExponents>, IEquatable<@IfcDimensionalExponents>
+	public  partial class @IfcDimensionalExponents : INotifyPropertyChanged, IInstantiableEntity, IIfcDimensionalExponents, IEquatable<@IfcDimensionalExponents>
 	{
 		#region IIfcDimensionalExponents explicit implementation
 		long IIfcDimensionalExponents.LengthExponent { get { return @LengthExponent; } }	
@@ -360,17 +360,6 @@ namespace Xbim.Ifc4.MeasureResource
         public static bool operator !=(@IfcDimensionalExponents left, @IfcDimensionalExponents right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDimensionalExponents x, @IfcDimensionalExponents y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDimensionalExponents obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

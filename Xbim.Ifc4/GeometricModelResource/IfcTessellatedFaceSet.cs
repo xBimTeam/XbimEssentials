@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcTessellatedFaceSet", 1299)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTessellatedFaceSet : IfcTessellatedItem, IIfcTessellatedFaceSet, IEqualityComparer<@IfcTessellatedFaceSet>, IEquatable<@IfcTessellatedFaceSet>
+	public abstract partial class @IfcTessellatedFaceSet : IfcTessellatedItem, IIfcTessellatedFaceSet, IEquatable<@IfcTessellatedFaceSet>
 	{
 		#region IIfcTessellatedFaceSet explicit implementation
 		IIfcCartesianPointList3D IIfcTessellatedFaceSet.Coordinates { get { return @Coordinates; } }	
@@ -196,17 +196,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcTessellatedFaceSet left, @IfcTessellatedFaceSet right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTessellatedFaceSet x, @IfcTessellatedFaceSet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTessellatedFaceSet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

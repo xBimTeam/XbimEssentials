@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcDefinedSymbol", 461)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDefinedSymbol : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDefinedSymbol, IEqualityComparer<@IfcDefinedSymbol>, IEquatable<@IfcDefinedSymbol>
+	public  partial class @IfcDefinedSymbol : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDefinedSymbol, IEquatable<@IfcDefinedSymbol>
 	{
 		#region IIfcDefinedSymbol explicit implementation
 		IIfcDefinedSymbolSelect IIfcDefinedSymbol.Definition { get { return @Definition; } }	
@@ -152,17 +152,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
         public static bool operator !=(@IfcDefinedSymbol left, @IfcDefinedSymbol right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDefinedSymbol x, @IfcDefinedSymbol y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDefinedSymbol obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

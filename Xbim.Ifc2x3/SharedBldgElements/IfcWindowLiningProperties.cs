@@ -45,7 +45,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcWindowLiningProperties", 252)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWindowLiningProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcWindowLiningProperties, IEqualityComparer<@IfcWindowLiningProperties>, IEquatable<@IfcWindowLiningProperties>
+	public  partial class @IfcWindowLiningProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcWindowLiningProperties, IEquatable<@IfcWindowLiningProperties>
 	{
 		#region IIfcWindowLiningProperties explicit implementation
 		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.LiningDepth { get { return @LiningDepth; } }	
@@ -304,17 +304,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         public static bool operator !=(@IfcWindowLiningProperties left, @IfcWindowLiningProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcWindowLiningProperties x, @IfcWindowLiningProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWindowLiningProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

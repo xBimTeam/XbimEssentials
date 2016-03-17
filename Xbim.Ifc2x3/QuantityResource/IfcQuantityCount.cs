@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityCount", 457)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityCount : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityCount, IEqualityComparer<@IfcQuantityCount>, IEquatable<@IfcQuantityCount>
+	public  partial class @IfcQuantityCount : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityCount, IEquatable<@IfcQuantityCount>
 	{
 		#region IIfcQuantityCount explicit implementation
 		IfcCountMeasure IIfcQuantityCount.CountValue { get { return @CountValue; } }	
@@ -138,17 +138,6 @@ namespace Xbim.Ifc2x3.QuantityResource
         public static bool operator !=(@IfcQuantityCount left, @IfcQuantityCount right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcQuantityCount x, @IfcQuantityCount y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcQuantityCount obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

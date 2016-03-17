@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.ActorResource
 {
 	[ExpressType("IfcAddress", 554)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcAddress : IPersistEntity, INotifyPropertyChanged, IIfcAddress, IEqualityComparer<@IfcAddress>, IEquatable<@IfcAddress>
+	public abstract partial class @IfcAddress : IPersistEntity, INotifyPropertyChanged, IIfcAddress, IEquatable<@IfcAddress>
 	{
 		#region IIfcAddress explicit implementation
 		IfcAddressTypeEnum? IIfcAddress.Purpose { get { return @Purpose; } }	
@@ -307,17 +307,6 @@ namespace Xbim.Ifc4.ActorResource
         public static bool operator !=(@IfcAddress left, @IfcAddress right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAddress x, @IfcAddress y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAddress obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

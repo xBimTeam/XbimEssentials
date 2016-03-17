@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 {
 	[ExpressType("IfcMechanicalFastener", 536)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalFastener : IfcElementComponent, IInstantiableEntity, IIfcMechanicalFastener, IEqualityComparer<@IfcMechanicalFastener>, IEquatable<@IfcMechanicalFastener>
+	public  partial class @IfcMechanicalFastener : IfcElementComponent, IInstantiableEntity, IIfcMechanicalFastener, IEquatable<@IfcMechanicalFastener>
 	{
 		#region IIfcMechanicalFastener explicit implementation
 		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalDiameter { get { return @NominalDiameter; } }	
@@ -184,17 +184,6 @@ namespace Xbim.Ifc4.SharedComponentElements
         public static bool operator !=(@IfcMechanicalFastener left, @IfcMechanicalFastener right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMechanicalFastener x, @IfcMechanicalFastener y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMechanicalFastener obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

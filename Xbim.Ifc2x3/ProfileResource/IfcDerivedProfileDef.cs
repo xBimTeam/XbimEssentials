@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcDerivedProfileDef", 390)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDerivedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcDerivedProfileDef, IEqualityComparer<@IfcDerivedProfileDef>, IEquatable<@IfcDerivedProfileDef>
+	public  partial class @IfcDerivedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcDerivedProfileDef, IEquatable<@IfcDerivedProfileDef>
 	{
 		#region IIfcDerivedProfileDef explicit implementation
 		IIfcProfileDef IIfcDerivedProfileDef.ParentProfile { get { return @ParentProfile; } }	
@@ -178,17 +178,6 @@ namespace Xbim.Ifc2x3.ProfileResource
         public static bool operator !=(@IfcDerivedProfileDef left, @IfcDerivedProfileDef right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDerivedProfileDef x, @IfcDerivedProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDerivedProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

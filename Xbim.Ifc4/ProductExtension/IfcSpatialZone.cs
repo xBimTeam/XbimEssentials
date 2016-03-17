@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcSpatialZone", 1275)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpatialZone : IfcSpatialElement, IInstantiableEntity, IIfcSpatialZone, IEqualityComparer<@IfcSpatialZone>, IEquatable<@IfcSpatialZone>
+	public  partial class @IfcSpatialZone : IfcSpatialElement, IInstantiableEntity, IIfcSpatialZone, IEquatable<@IfcSpatialZone>
 	{
 		#region IIfcSpatialZone explicit implementation
 		IfcSpatialZoneTypeEnum? IIfcSpatialZone.PredefinedType { get { return @PredefinedType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcSpatialZone left, @IfcSpatialZone right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSpatialZone x, @IfcSpatialZone y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpatialZone obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

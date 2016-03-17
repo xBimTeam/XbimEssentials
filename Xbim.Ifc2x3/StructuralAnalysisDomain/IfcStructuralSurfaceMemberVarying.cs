@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralSurfaceMemberVarying", 421)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IIfcStructuralSurfaceMemberVarying, IEqualityComparer<@IfcStructuralSurfaceMemberVarying>, IEquatable<@IfcStructuralSurfaceMemberVarying>
+	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IIfcStructuralSurfaceMemberVarying, IEquatable<@IfcStructuralSurfaceMemberVarying>
 	{
 		#region IIfcStructuralSurfaceMemberVarying explicit implementation
 		IEnumerable<IfcPositiveLengthMeasure> IIfcStructuralSurfaceMemberVarying.SubsequentThickness { get { return @SubsequentThickness; } }	
@@ -181,17 +181,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         public static bool operator !=(@IfcStructuralSurfaceMemberVarying left, @IfcStructuralSurfaceMemberVarying right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralSurfaceMemberVarying x, @IfcStructuralSurfaceMemberVarying y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralSurfaceMemberVarying obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

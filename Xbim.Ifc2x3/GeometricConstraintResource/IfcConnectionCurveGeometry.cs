@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionCurveGeometry", 590)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionCurveGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionCurveGeometry, IEqualityComparer<@IfcConnectionCurveGeometry>, IEquatable<@IfcConnectionCurveGeometry>
+	public  partial class @IfcConnectionCurveGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionCurveGeometry, IEquatable<@IfcConnectionCurveGeometry>
 	{
 		#region IIfcConnectionCurveGeometry explicit implementation
 		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatingElement { get { return @CurveOnRelatingElement; } }	
@@ -151,17 +151,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
         public static bool operator !=(@IfcConnectionCurveGeometry left, @IfcConnectionCurveGeometry right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConnectionCurveGeometry x, @IfcConnectionCurveGeometry y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConnectionCurveGeometry obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelVoidsElement", 496)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelVoidsElement : IfcRelConnects, IInstantiableEntity, IIfcRelVoidsElement, IEqualityComparer<@IfcRelVoidsElement>, IEquatable<@IfcRelVoidsElement>
+	public  partial class @IfcRelVoidsElement : IfcRelConnects, IInstantiableEntity, IIfcRelVoidsElement, IEquatable<@IfcRelVoidsElement>
 	{
 		#region IIfcRelVoidsElement explicit implementation
 		IIfcElement IIfcRelVoidsElement.RelatingBuildingElement { get { return @RelatingBuildingElement; } }	
@@ -160,17 +160,6 @@ namespace Xbim.Ifc2x3.ProductExtension
         public static bool operator !=(@IfcRelVoidsElement left, @IfcRelVoidsElement right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelVoidsElement x, @IfcRelVoidsElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelVoidsElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

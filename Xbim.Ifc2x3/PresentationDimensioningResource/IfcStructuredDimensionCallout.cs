@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcStructuredDimensionCallout", 752)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuredDimensionCallout : IfcDraughtingCallout, IInstantiableEntity, IIfcStructuredDimensionCallout, IEqualityComparer<@IfcStructuredDimensionCallout>, IEquatable<@IfcStructuredDimensionCallout>
+	public  partial class @IfcStructuredDimensionCallout : IfcDraughtingCallout, IInstantiableEntity, IIfcStructuredDimensionCallout, IEquatable<@IfcStructuredDimensionCallout>
 	{
 		#region IIfcStructuredDimensionCallout explicit implementation
 		 
@@ -110,17 +110,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
         public static bool operator !=(@IfcStructuredDimensionCallout left, @IfcStructuredDimensionCallout right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuredDimensionCallout x, @IfcStructuredDimensionCallout y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuredDimensionCallout obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

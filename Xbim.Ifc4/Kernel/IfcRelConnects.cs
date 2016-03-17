@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelConnects", 16)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRelConnects : IfcRelationship, IIfcRelConnects, IEqualityComparer<@IfcRelConnects>, IEquatable<@IfcRelConnects>
+	public abstract partial class @IfcRelConnects : IfcRelationship, IIfcRelConnects, IEquatable<@IfcRelConnects>
 	{
 		#region IIfcRelConnects explicit implementation
 		 
@@ -112,17 +112,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcRelConnects left, @IfcRelConnects right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelConnects x, @IfcRelConnects y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelConnects obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

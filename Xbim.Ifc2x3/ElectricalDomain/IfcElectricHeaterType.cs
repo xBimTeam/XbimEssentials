@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcElectricHeaterType", 190)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricHeaterType : IfcFlowTerminalType, IInstantiableEntity, IIfcElectricHeaterType, IEqualityComparer<@IfcElectricHeaterType>, IEquatable<@IfcElectricHeaterType>
+	public  partial class @IfcElectricHeaterType : IfcFlowTerminalType, IInstantiableEntity, IIfcElectricHeaterType, IEquatable<@IfcElectricHeaterType>
 	{
 		#region IIfcElectricHeaterType explicit implementation
 		IfcElectricHeaterTypeEnum IIfcElectricHeaterType.PredefinedType { get { return @PredefinedType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc2x3.ElectricalDomain
         public static bool operator !=(@IfcElectricHeaterType left, @IfcElectricHeaterType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElectricHeaterType x, @IfcElectricHeaterType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElectricHeaterType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

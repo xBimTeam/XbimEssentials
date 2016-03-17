@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 {
 	[ExpressType("IfcTableRow", 661)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTableRow : INotifyPropertyChanged, IInstantiableEntity, IIfcTableRow, IEqualityComparer<@IfcTableRow>, IEquatable<@IfcTableRow>
+	public  partial class @IfcTableRow : INotifyPropertyChanged, IInstantiableEntity, IIfcTableRow, IEquatable<@IfcTableRow>
 	{
 		#region IIfcTableRow explicit implementation
 		IEnumerable<IIfcValue> IIfcTableRow.RowCells { get { return @RowCells; } }	
@@ -272,17 +272,6 @@ namespace Xbim.Ifc2x3.UtilityResource
         public static bool operator !=(@IfcTableRow left, @IfcTableRow right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTableRow x, @IfcTableRow y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTableRow obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

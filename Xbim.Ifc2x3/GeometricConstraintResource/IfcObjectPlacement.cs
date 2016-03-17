@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcObjectPlacement", 440)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcObjectPlacement : IPersistEntity, INotifyPropertyChanged, IIfcObjectPlacement, IEqualityComparer<@IfcObjectPlacement>, IEquatable<@IfcObjectPlacement>
+	public abstract partial class @IfcObjectPlacement : IPersistEntity, INotifyPropertyChanged, IIfcObjectPlacement, IEquatable<@IfcObjectPlacement>
 	{
 		#region IIfcObjectPlacement explicit implementation
 		 
@@ -237,17 +237,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
         public static bool operator !=(@IfcObjectPlacement left, @IfcObjectPlacement right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcObjectPlacement x, @IfcObjectPlacement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcObjectPlacement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

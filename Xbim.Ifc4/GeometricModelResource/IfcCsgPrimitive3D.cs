@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcCsgPrimitive3D", 714)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcCsgPrimitive3D : IfcGeometricRepresentationItem, IIfcCsgPrimitive3D, IEqualityComparer<@IfcCsgPrimitive3D>, IEquatable<@IfcCsgPrimitive3D>
+	public abstract partial class @IfcCsgPrimitive3D : IfcGeometricRepresentationItem, IIfcCsgPrimitive3D, IEquatable<@IfcCsgPrimitive3D>
 	{
 		#region IIfcCsgPrimitive3D explicit implementation
 		IIfcAxis2Placement3D IIfcCsgPrimitive3D.Position { get { return @Position; } }	
@@ -145,17 +145,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcCsgPrimitive3D left, @IfcCsgPrimitive3D right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCsgPrimitive3D x, @IfcCsgPrimitive3D y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCsgPrimitive3D obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

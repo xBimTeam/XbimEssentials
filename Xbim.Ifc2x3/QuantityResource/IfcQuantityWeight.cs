@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityWeight", 603)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityWeight : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityWeight, IEqualityComparer<@IfcQuantityWeight>, IEquatable<@IfcQuantityWeight>
+	public  partial class @IfcQuantityWeight : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityWeight, IEquatable<@IfcQuantityWeight>
 	{
 		#region IIfcQuantityWeight explicit implementation
 		IfcMassMeasure IIfcQuantityWeight.WeightValue { get { return @WeightValue; } }	
@@ -139,17 +139,6 @@ namespace Xbim.Ifc2x3.QuantityResource
         public static bool operator !=(@IfcQuantityWeight left, @IfcQuantityWeight right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcQuantityWeight x, @IfcQuantityWeight y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcQuantityWeight obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

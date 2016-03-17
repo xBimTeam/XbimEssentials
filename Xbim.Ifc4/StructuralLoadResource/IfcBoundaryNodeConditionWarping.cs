@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcBoundaryNodeConditionWarping", 395)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundaryNodeConditionWarping : IfcBoundaryNodeCondition, IInstantiableEntity, IIfcBoundaryNodeConditionWarping, IEqualityComparer<@IfcBoundaryNodeConditionWarping>, IEquatable<@IfcBoundaryNodeConditionWarping>
+	public  partial class @IfcBoundaryNodeConditionWarping : IfcBoundaryNodeCondition, IInstantiableEntity, IIfcBoundaryNodeConditionWarping, IEquatable<@IfcBoundaryNodeConditionWarping>
 	{
 		#region IIfcBoundaryNodeConditionWarping explicit implementation
 		IIfcWarpingStiffnessSelect IIfcBoundaryNodeConditionWarping.WarpingStiffness { get { return @WarpingStiffness; } }	
@@ -140,17 +140,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
         public static bool operator !=(@IfcBoundaryNodeConditionWarping left, @IfcBoundaryNodeConditionWarping right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBoundaryNodeConditionWarping x, @IfcBoundaryNodeConditionWarping y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBoundaryNodeConditionWarping obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

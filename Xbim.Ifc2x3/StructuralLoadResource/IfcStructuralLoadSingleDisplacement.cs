@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadSingleDisplacement", 289)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleDisplacement : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadSingleDisplacement, IEqualityComparer<@IfcStructuralLoadSingleDisplacement>, IEquatable<@IfcStructuralLoadSingleDisplacement>
+	public  partial class @IfcStructuralLoadSingleDisplacement : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadSingleDisplacement, IEquatable<@IfcStructuralLoadSingleDisplacement>
 	{
 		#region IIfcStructuralLoadSingleDisplacement explicit implementation
 		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementX { get { return @DisplacementX; } }	
@@ -235,17 +235,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
         public static bool operator !=(@IfcStructuralLoadSingleDisplacement left, @IfcStructuralLoadSingleDisplacement right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralLoadSingleDisplacement x, @IfcStructuralLoadSingleDisplacement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLoadSingleDisplacement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcRoofType", 1261)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRoofType : IfcBuildingElementType, IInstantiableEntity, IIfcRoofType, IEqualityComparer<@IfcRoofType>, IEquatable<@IfcRoofType>
+	public  partial class @IfcRoofType : IfcBuildingElementType, IInstantiableEntity, IIfcRoofType, IEquatable<@IfcRoofType>
 	{
 		#region IIfcRoofType explicit implementation
 		IfcRoofTypeEnum IIfcRoofType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcRoofType left, @IfcRoofType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRoofType x, @IfcRoofType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRoofType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

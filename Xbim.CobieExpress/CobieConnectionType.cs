@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("ConnectionType", 45)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieConnectionType : CobiePickValue, IInstantiableEntity, ICobieConnectionType, IEqualityComparer<@CobieConnectionType>, IEquatable<@CobieConnectionType>
+	public  partial class @CobieConnectionType : CobiePickValue, IInstantiableEntity, ICobieConnectionType, IEquatable<@CobieConnectionType>
 	{
 		#region ICobieConnectionType explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieConnectionType left, @CobieConnectionType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieConnectionType x, @CobieConnectionType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieConnectionType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

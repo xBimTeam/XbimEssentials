@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcImageTexture", 727)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcImageTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcImageTexture, IEqualityComparer<@IfcImageTexture>, IEquatable<@IfcImageTexture>
+	public  partial class @IfcImageTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcImageTexture, IEquatable<@IfcImageTexture>
 	{
 		#region IIfcImageTexture explicit implementation
 		IfcIdentifier IIfcImageTexture.UrlReference { get { return @UrlReference; } }	
@@ -138,17 +138,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcImageTexture left, @IfcImageTexture right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcImageTexture x, @IfcImageTexture y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcImageTexture obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 {
 	[ExpressType("IfcTimeSeriesSchedule", 712)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IIfcTimeSeriesSchedule, IEqualityComparer<@IfcTimeSeriesSchedule>, IEquatable<@IfcTimeSeriesSchedule>
+	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IIfcTimeSeriesSchedule, IEquatable<@IfcTimeSeriesSchedule>
 	{
 		#region IIfcTimeSeriesSchedule explicit implementation
 		IEnumerable<IIfcDateTimeSelect> IIfcTimeSeriesSchedule.ApplicableDates { get { return @ApplicableDates; } }	
@@ -180,17 +180,6 @@ namespace Xbim.Ifc2x3.ControlExtension
         public static bool operator !=(@IfcTimeSeriesSchedule left, @IfcTimeSeriesSchedule right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTimeSeriesSchedule x, @IfcTimeSeriesSchedule y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTimeSeriesSchedule obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

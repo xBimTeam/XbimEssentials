@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextureCoordinateGenerator", 733)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureCoordinateGenerator : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureCoordinateGenerator, IEqualityComparer<@IfcTextureCoordinateGenerator>, IEquatable<@IfcTextureCoordinateGenerator>
+	public  partial class @IfcTextureCoordinateGenerator : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureCoordinateGenerator, IEquatable<@IfcTextureCoordinateGenerator>
 	{
 		#region IIfcTextureCoordinateGenerator explicit implementation
 		IfcLabel IIfcTextureCoordinateGenerator.Mode { get { return @Mode; } }	
@@ -153,17 +153,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcTextureCoordinateGenerator left, @IfcTextureCoordinateGenerator right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTextureCoordinateGenerator x, @IfcTextureCoordinateGenerator y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextureCoordinateGenerator obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

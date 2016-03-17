@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcSolarDeviceType", 1271)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSolarDeviceType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcSolarDeviceType, IEqualityComparer<@IfcSolarDeviceType>, IEquatable<@IfcSolarDeviceType>
+	public  partial class @IfcSolarDeviceType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcSolarDeviceType, IEquatable<@IfcSolarDeviceType>
 	{
 		#region IIfcSolarDeviceType explicit implementation
 		IfcSolarDeviceTypeEnum IIfcSolarDeviceType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcSolarDeviceType left, @IfcSolarDeviceType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSolarDeviceType x, @IfcSolarDeviceType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSolarDeviceType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

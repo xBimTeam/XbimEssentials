@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.ActorResource
 {
 	[ExpressType("IfcActorRole", 595)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActorRole : INotifyPropertyChanged, IInstantiableEntity, IIfcActorRole, IEqualityComparer<@IfcActorRole>, IEquatable<@IfcActorRole>
+	public  partial class @IfcActorRole : INotifyPropertyChanged, IInstantiableEntity, IIfcActorRole, IEquatable<@IfcActorRole>
 	{
 		#region IIfcActorRole explicit implementation
 		IfcRoleEnum IIfcActorRole.Role { get { return @Role; } }	
@@ -296,17 +296,6 @@ namespace Xbim.Ifc4.ActorResource
         public static bool operator !=(@IfcActorRole left, @IfcActorRole right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcActorRole x, @IfcActorRole y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcActorRole obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

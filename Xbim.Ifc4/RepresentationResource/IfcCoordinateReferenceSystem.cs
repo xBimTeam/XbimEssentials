@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcCoordinateReferenceSystem", 1144)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcCoordinateReferenceSystem : IPersistEntity, INotifyPropertyChanged, IIfcCoordinateReferenceSystem, IEqualityComparer<@IfcCoordinateReferenceSystem>, IEquatable<@IfcCoordinateReferenceSystem>
+	public abstract partial class @IfcCoordinateReferenceSystem : IPersistEntity, INotifyPropertyChanged, IIfcCoordinateReferenceSystem, IEquatable<@IfcCoordinateReferenceSystem>
 	{
 		#region IIfcCoordinateReferenceSystem explicit implementation
 		IfcLabel IIfcCoordinateReferenceSystem.Name { get { return @Name; } }	
@@ -314,17 +314,6 @@ namespace Xbim.Ifc4.RepresentationResource
         public static bool operator !=(@IfcCoordinateReferenceSystem left, @IfcCoordinateReferenceSystem right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCoordinateReferenceSystem x, @IfcCoordinateReferenceSystem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCoordinateReferenceSystem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionSurfaceGeometry", 69)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionSurfaceGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionSurfaceGeometry, IEqualityComparer<@IfcConnectionSurfaceGeometry>, IEquatable<@IfcConnectionSurfaceGeometry>
+	public  partial class @IfcConnectionSurfaceGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionSurfaceGeometry, IEquatable<@IfcConnectionSurfaceGeometry>
 	{
 		#region IIfcConnectionSurfaceGeometry explicit implementation
 		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatingElement { get { return @SurfaceOnRelatingElement; } }	
@@ -151,17 +151,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
         public static bool operator !=(@IfcConnectionSurfaceGeometry left, @IfcConnectionSurfaceGeometry right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConnectionSurfaceGeometry x, @IfcConnectionSurfaceGeometry y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConnectionSurfaceGeometry obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

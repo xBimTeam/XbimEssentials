@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralSurfaceMember", 420)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSurfaceMember : IfcStructuralMember, IInstantiableEntity, IIfcStructuralSurfaceMember, IEqualityComparer<@IfcStructuralSurfaceMember>, IEquatable<@IfcStructuralSurfaceMember>
+	public  partial class @IfcStructuralSurfaceMember : IfcStructuralMember, IInstantiableEntity, IIfcStructuralSurfaceMember, IEquatable<@IfcStructuralSurfaceMember>
 	{
 		#region IIfcStructuralSurfaceMember explicit implementation
 		IfcStructuralSurfaceTypeEnum IIfcStructuralSurfaceMember.PredefinedType { get { return @PredefinedType; } }	
@@ -161,17 +161,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         public static bool operator !=(@IfcStructuralSurfaceMember left, @IfcStructuralSurfaceMember right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralSurfaceMember x, @IfcStructuralSurfaceMember y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralSurfaceMember obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

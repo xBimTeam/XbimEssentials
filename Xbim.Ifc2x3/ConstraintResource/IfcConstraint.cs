@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IfcConstraint", 81)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConstraint : IPersistEntity, INotifyPropertyChanged, IIfcConstraint, IEqualityComparer<@IfcConstraint>, IEquatable<@IfcConstraint>
+	public abstract partial class @IfcConstraint : IPersistEntity, INotifyPropertyChanged, IIfcConstraint, IEquatable<@IfcConstraint>
 	{
 		#region IIfcConstraint explicit implementation
 		IfcLabel IIfcConstraint.Name { get { return @Name; } }	
@@ -432,17 +432,6 @@ namespace Xbim.Ifc2x3.ConstraintResource
         public static bool operator !=(@IfcConstraint left, @IfcConstraint right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConstraint x, @IfcConstraint y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConstraint obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

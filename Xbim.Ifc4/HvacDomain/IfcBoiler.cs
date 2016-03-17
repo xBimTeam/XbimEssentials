@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcBoiler", 1105)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoiler : IfcEnergyConversionDevice, IInstantiableEntity, IIfcBoiler, IEqualityComparer<@IfcBoiler>, IEquatable<@IfcBoiler>
+	public  partial class @IfcBoiler : IfcEnergyConversionDevice, IInstantiableEntity, IIfcBoiler, IEquatable<@IfcBoiler>
 	{
 		#region IIfcBoiler explicit implementation
 		IfcBoilerTypeEnum? IIfcBoiler.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcBoiler left, @IfcBoiler right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBoiler x, @IfcBoiler y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBoiler obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

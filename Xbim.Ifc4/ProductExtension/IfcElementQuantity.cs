@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcElementQuantity", 458)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElementQuantity : IfcQuantitySet, IInstantiableEntity, IIfcElementQuantity, IEqualityComparer<@IfcElementQuantity>, IEquatable<@IfcElementQuantity>
+	public  partial class @IfcElementQuantity : IfcQuantitySet, IInstantiableEntity, IIfcElementQuantity, IEquatable<@IfcElementQuantity>
 	{
 		#region IIfcElementQuantity explicit implementation
 		IfcLabel? IIfcElementQuantity.MethodOfMeasurement { get { return @MethodOfMeasurement; } }	
@@ -159,17 +159,6 @@ namespace Xbim.Ifc4.ProductExtension
         public static bool operator !=(@IfcElementQuantity left, @IfcElementQuantity right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElementQuantity x, @IfcElementQuantity y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElementQuantity obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

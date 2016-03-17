@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcOrientedEdge", 596)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrientedEdge : IfcEdge, IInstantiableEntity, IIfcOrientedEdge, IEqualityComparer<@IfcOrientedEdge>, IEquatable<@IfcOrientedEdge>
+	public  partial class @IfcOrientedEdge : IfcEdge, IInstantiableEntity, IIfcOrientedEdge, IEquatable<@IfcOrientedEdge>
 	{
 		#region IIfcOrientedEdge explicit implementation
 		IIfcEdge IIfcOrientedEdge.EdgeElement { get { return @EdgeElement; } }	
@@ -192,17 +192,6 @@ namespace Xbim.Ifc4.TopologyResource
         public static bool operator !=(@IfcOrientedEdge left, @IfcOrientedEdge right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOrientedEdge x, @IfcOrientedEdge y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOrientedEdge obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

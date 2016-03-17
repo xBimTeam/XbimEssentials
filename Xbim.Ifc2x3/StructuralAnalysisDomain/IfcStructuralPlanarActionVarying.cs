@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralPlanarActionVarying", 357)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralPlanarActionVarying : IfcStructuralPlanarAction, IInstantiableEntity, IIfcStructuralPlanarActionVarying, IEqualityComparer<@IfcStructuralPlanarActionVarying>, IEquatable<@IfcStructuralPlanarActionVarying>
+	public  partial class @IfcStructuralPlanarActionVarying : IfcStructuralPlanarAction, IInstantiableEntity, IIfcStructuralPlanarActionVarying, IEquatable<@IfcStructuralPlanarActionVarying>
 	{
 		#region IIfcStructuralPlanarActionVarying explicit implementation
 		IIfcShapeAspect IIfcStructuralPlanarActionVarying.VaryingAppliedLoadLocation { get { return @VaryingAppliedLoadLocation; } }	
@@ -181,17 +181,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
         public static bool operator !=(@IfcStructuralPlanarActionVarying left, @IfcStructuralPlanarActionVarying right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralPlanarActionVarying x, @IfcStructuralPlanarActionVarying y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralPlanarActionVarying obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

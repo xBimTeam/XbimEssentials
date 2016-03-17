@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightDistributionData", 753)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightDistributionData : INotifyPropertyChanged, IInstantiableEntity, IIfcLightDistributionData, IEqualityComparer<@IfcLightDistributionData>, IEquatable<@IfcLightDistributionData>
+	public  partial class @IfcLightDistributionData : INotifyPropertyChanged, IInstantiableEntity, IIfcLightDistributionData, IEquatable<@IfcLightDistributionData>
 	{
 		#region IIfcLightDistributionData explicit implementation
 		IfcPlaneAngleMeasure IIfcLightDistributionData.MainPlaneAngle { get { return @MainPlaneAngle; } }	
@@ -277,17 +277,6 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
         public static bool operator !=(@IfcLightDistributionData left, @IfcLightDistributionData right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLightDistributionData x, @IfcLightDistributionData y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLightDistributionData obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

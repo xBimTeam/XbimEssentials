@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcComplexPropertyTemplate", 1129)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcComplexPropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcComplexPropertyTemplate, IEqualityComparer<@IfcComplexPropertyTemplate>, IEquatable<@IfcComplexPropertyTemplate>
+	public  partial class @IfcComplexPropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcComplexPropertyTemplate, IEquatable<@IfcComplexPropertyTemplate>
 	{
 		#region IIfcComplexPropertyTemplate explicit implementation
 		IfcLabel? IIfcComplexPropertyTemplate.UsageName { get { return @UsageName; } }	
@@ -179,17 +179,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcComplexPropertyTemplate left, @IfcComplexPropertyTemplate right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcComplexPropertyTemplate x, @IfcComplexPropertyTemplate y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcComplexPropertyTemplate obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

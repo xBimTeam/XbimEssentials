@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcAsset", 767)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IIfcAsset, IEqualityComparer<@IfcAsset>, IEquatable<@IfcAsset>
+	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IIfcAsset, IEquatable<@IfcAsset>
 	{
 		#region IIfcAsset explicit implementation
 		IfcIdentifier IIfcAsset.AssetID { get { return @AssetID; } }	
@@ -304,17 +304,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
         public static bool operator !=(@IfcAsset left, @IfcAsset right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAsset x, @IfcAsset y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAsset obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -36,7 +36,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("PickValue", 35)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @CobiePickValue : IPersistEntity, INotifyPropertyChanged, ICobiePickValue, IEqualityComparer<@CobiePickValue>, IEquatable<@CobiePickValue>
+	public abstract partial class @CobiePickValue : IPersistEntity, INotifyPropertyChanged, ICobiePickValue, IEquatable<@CobiePickValue>
 	{
 		#region ICobiePickValue explicit implementation
 		string ICobiePickValue.Value { get { return @Value; } }	
@@ -240,17 +240,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobiePickValue left, @CobiePickValue right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobiePickValue x, @CobiePickValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobiePickValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

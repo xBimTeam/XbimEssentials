@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcElectricalElement", 23)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricalElement : IfcElement, IInstantiableEntity, IIfcElectricalElement, IEqualityComparer<@IfcElectricalElement>, IEquatable<@IfcElectricalElement>
+	public  partial class @IfcElectricalElement : IfcElement, IInstantiableEntity, IIfcElectricalElement, IEquatable<@IfcElectricalElement>
 	{
 		#region IIfcElectricalElement explicit implementation
 		 
@@ -116,17 +116,6 @@ namespace Xbim.Ifc2x3.ProductExtension
         public static bool operator !=(@IfcElectricalElement left, @IfcElectricalElement right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElectricalElement x, @IfcElectricalElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElectricalElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

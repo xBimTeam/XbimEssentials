@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcIndexedTriangleTextureMap", 1192)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIndexedTriangleTextureMap : IfcIndexedTextureMap, IInstantiableEntity, IIfcIndexedTriangleTextureMap, IEqualityComparer<@IfcIndexedTriangleTextureMap>, IEquatable<@IfcIndexedTriangleTextureMap>
+	public  partial class @IfcIndexedTriangleTextureMap : IfcIndexedTextureMap, IInstantiableEntity, IIfcIndexedTriangleTextureMap, IEquatable<@IfcIndexedTriangleTextureMap>
 	{
 		#region IIfcIndexedTriangleTextureMap explicit implementation
 		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcIndexedTriangleTextureMap.TexCoordIndex { get { return @TexCoordIndex; } }	
@@ -136,17 +136,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcIndexedTriangleTextureMap left, @IfcIndexedTriangleTextureMap right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcIndexedTriangleTextureMap x, @IfcIndexedTriangleTextureMap y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcIndexedTriangleTextureMap obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

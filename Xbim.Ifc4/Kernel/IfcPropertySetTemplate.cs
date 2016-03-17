@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcPropertySetTemplate", 1232)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertySetTemplate : IfcPropertyTemplateDefinition, IInstantiableEntity, IIfcPropertySetTemplate, IEqualityComparer<@IfcPropertySetTemplate>, IEquatable<@IfcPropertySetTemplate>
+	public  partial class @IfcPropertySetTemplate : IfcPropertyTemplateDefinition, IInstantiableEntity, IIfcPropertySetTemplate, IEquatable<@IfcPropertySetTemplate>
 	{
 		#region IIfcPropertySetTemplate explicit implementation
 		IfcPropertySetTemplateTypeEnum? IIfcPropertySetTemplate.TemplateType { get { return @TemplateType; } }	
@@ -192,17 +192,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcPropertySetTemplate left, @IfcPropertySetTemplate right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPropertySetTemplate x, @IfcPropertySetTemplate y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertySetTemplate obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

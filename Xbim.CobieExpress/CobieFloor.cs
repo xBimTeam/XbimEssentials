@@ -37,7 +37,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Floor", 17)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieFloor : CobieAsset, IInstantiableEntity, ICobieFloor, IEqualityComparer<@CobieFloor>, IEquatable<@CobieFloor>
+	public  partial class @CobieFloor : CobieAsset, IInstantiableEntity, ICobieFloor, IEquatable<@CobieFloor>
 	{
 		#region ICobieFloor explicit implementation
 		double? ICobieFloor.Elevation { get { return @Elevation; } }	
@@ -199,17 +199,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieFloor left, @CobieFloor right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieFloor x, @CobieFloor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieFloor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

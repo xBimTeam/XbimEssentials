@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightIntensityDistribution", 754)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightIntensityDistribution : INotifyPropertyChanged, IInstantiableEntity, IIfcLightIntensityDistribution, IEqualityComparer<@IfcLightIntensityDistribution>, IEquatable<@IfcLightIntensityDistribution>
+	public  partial class @IfcLightIntensityDistribution : INotifyPropertyChanged, IInstantiableEntity, IIfcLightIntensityDistribution, IEquatable<@IfcLightIntensityDistribution>
 	{
 		#region IIfcLightIntensityDistribution explicit implementation
 		IfcLightDistributionCurveEnum IIfcLightIntensityDistribution.LightDistributionCurve { get { return @LightDistributionCurve; } }	
@@ -258,17 +258,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
         public static bool operator !=(@IfcLightIntensityDistribution left, @IfcLightIntensityDistribution right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLightIntensityDistribution x, @IfcLightIntensityDistribution y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLightIntensityDistribution obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

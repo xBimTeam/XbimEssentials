@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcPipeFittingType", 511)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPipeFittingType : IfcFlowFittingType, IInstantiableEntity, IIfcPipeFittingType, IEqualityComparer<@IfcPipeFittingType>, IEquatable<@IfcPipeFittingType>
+	public  partial class @IfcPipeFittingType : IfcFlowFittingType, IInstantiableEntity, IIfcPipeFittingType, IEquatable<@IfcPipeFittingType>
 	{
 		#region IIfcPipeFittingType explicit implementation
 		IfcPipeFittingTypeEnum IIfcPipeFittingType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc2x3.HVACDomain
         public static bool operator !=(@IfcPipeFittingType left, @IfcPipeFittingType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPipeFittingType x, @IfcPipeFittingType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPipeFittingType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

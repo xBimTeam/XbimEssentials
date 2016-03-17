@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcCompressorType", 586)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompressorType : IfcFlowMovingDeviceType, IInstantiableEntity, IIfcCompressorType, IEqualityComparer<@IfcCompressorType>, IEquatable<@IfcCompressorType>
+	public  partial class @IfcCompressorType : IfcFlowMovingDeviceType, IInstantiableEntity, IIfcCompressorType, IEquatable<@IfcCompressorType>
 	{
 		#region IIfcCompressorType explicit implementation
 		IfcCompressorTypeEnum IIfcCompressorType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc2x3.HVACDomain
         public static bool operator !=(@IfcCompressorType left, @IfcCompressorType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCompressorType x, @IfcCompressorType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCompressorType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

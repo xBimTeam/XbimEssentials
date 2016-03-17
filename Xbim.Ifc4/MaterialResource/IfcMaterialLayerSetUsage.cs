@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialLayerSetUsage", 165)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerSetUsage : IfcMaterialUsageDefinition, IInstantiableEntity, IIfcMaterialLayerSetUsage, IEqualityComparer<@IfcMaterialLayerSetUsage>, IEquatable<@IfcMaterialLayerSetUsage>
+	public  partial class @IfcMaterialLayerSetUsage : IfcMaterialUsageDefinition, IInstantiableEntity, IIfcMaterialLayerSetUsage, IEquatable<@IfcMaterialLayerSetUsage>
 	{
 		#region IIfcMaterialLayerSetUsage explicit implementation
 		IIfcMaterialLayerSet IIfcMaterialLayerSetUsage.ForLayerSet { get { return @ForLayerSet; } }	
@@ -212,17 +212,6 @@ namespace Xbim.Ifc4.MaterialResource
         public static bool operator !=(@IfcMaterialLayerSetUsage left, @IfcMaterialLayerSetUsage right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialLayerSetUsage x, @IfcMaterialLayerSetUsage y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialLayerSetUsage obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

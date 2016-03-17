@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcVirtualGridIntersection", 589)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVirtualGridIntersection : INotifyPropertyChanged, IInstantiableEntity, IIfcVirtualGridIntersection, IEqualityComparer<@IfcVirtualGridIntersection>, IEquatable<@IfcVirtualGridIntersection>
+	public  partial class @IfcVirtualGridIntersection : INotifyPropertyChanged, IInstantiableEntity, IIfcVirtualGridIntersection, IEquatable<@IfcVirtualGridIntersection>
 	{
 		#region IIfcVirtualGridIntersection explicit implementation
 		IEnumerable<IIfcGridAxis> IIfcVirtualGridIntersection.IntersectingAxes { get { return @IntersectingAxes; } }	
@@ -258,17 +258,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
         public static bool operator !=(@IfcVirtualGridIntersection left, @IfcVirtualGridIntersection right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcVirtualGridIntersection x, @IfcVirtualGridIntersection y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcVirtualGridIntersection obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

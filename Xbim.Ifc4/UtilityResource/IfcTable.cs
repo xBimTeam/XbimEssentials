@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.UtilityResource
 {
 	[ExpressType("IfcTable", 377)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTable : INotifyPropertyChanged, IInstantiableEntity, IIfcTable, IEqualityComparer<@IfcTable>, IEquatable<@IfcTable>
+	public  partial class @IfcTable : INotifyPropertyChanged, IInstantiableEntity, IIfcTable, IEquatable<@IfcTable>
 	{
 		#region IIfcTable explicit implementation
 		IfcLabel? IIfcTable.Name { get { return @Name; } }	
@@ -321,17 +321,6 @@ namespace Xbim.Ifc4.UtilityResource
         public static bool operator !=(@IfcTable left, @IfcTable right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTable x, @IfcTable y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTable obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

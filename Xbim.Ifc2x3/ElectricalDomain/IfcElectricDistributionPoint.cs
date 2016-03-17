@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcElectricDistributionPoint", 242)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricDistributionPoint : IfcFlowController, IInstantiableEntity, IIfcElectricDistributionPoint, IEqualityComparer<@IfcElectricDistributionPoint>, IEquatable<@IfcElectricDistributionPoint>
+	public  partial class @IfcElectricDistributionPoint : IfcFlowController, IInstantiableEntity, IIfcElectricDistributionPoint, IEquatable<@IfcElectricDistributionPoint>
 	{
 		#region IIfcElectricDistributionPoint explicit implementation
 		IfcElectricDistributionPointFunctionEnum IIfcElectricDistributionPoint.DistributionPointFunction { get { return @DistributionPointFunction; } }	
@@ -164,17 +164,6 @@ namespace Xbim.Ifc2x3.ElectricalDomain
         public static bool operator !=(@IfcElectricDistributionPoint left, @IfcElectricDistributionPoint right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElectricDistributionPoint x, @IfcElectricDistributionPoint y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElectricDistributionPoint obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

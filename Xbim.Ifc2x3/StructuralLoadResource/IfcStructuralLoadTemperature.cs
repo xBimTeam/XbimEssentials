@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadTemperature", 36)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadTemperature : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadTemperature, IEqualityComparer<@IfcStructuralLoadTemperature>, IEquatable<@IfcStructuralLoadTemperature>
+	public  partial class @IfcStructuralLoadTemperature : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadTemperature, IEquatable<@IfcStructuralLoadTemperature>
 	{
 		#region IIfcStructuralLoadTemperature explicit implementation
 		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaT_Constant { get { return @DeltaT_Constant; } }	
@@ -175,17 +175,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
         public static bool operator !=(@IfcStructuralLoadTemperature left, @IfcStructuralLoadTemperature right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralLoadTemperature x, @IfcStructuralLoadTemperature y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLoadTemperature obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

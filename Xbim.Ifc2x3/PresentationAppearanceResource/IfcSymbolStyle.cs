@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSymbolStyle", 729)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSymbolStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSymbolStyle, IEqualityComparer<@IfcSymbolStyle>, IEquatable<@IfcSymbolStyle>
+	public  partial class @IfcSymbolStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSymbolStyle, IEquatable<@IfcSymbolStyle>
 	{
 		#region IIfcSymbolStyle explicit implementation
 		IIfcSymbolStyleSelect IIfcSymbolStyle.StyleOfSymbol { get { return @StyleOfSymbol; } }	
@@ -134,17 +134,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcSymbolStyle left, @IfcSymbolStyle right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSymbolStyle x, @IfcSymbolStyle y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSymbolStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

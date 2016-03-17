@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 {
 	[ExpressType("IfcPermit", 189)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IIfcPermit, IEqualityComparer<@IfcPermit>, IEquatable<@IfcPermit>
+	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IIfcPermit, IEquatable<@IfcPermit>
 	{
 		#region IIfcPermit explicit implementation
 		IfcPermitTypeEnum? IIfcPermit.PredefinedType { get { return @PredefinedType; } }	
@@ -181,17 +181,6 @@ namespace Xbim.Ifc4.SharedMgmtElements
         public static bool operator !=(@IfcPermit left, @IfcPermit right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPermit x, @IfcPermit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPermit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

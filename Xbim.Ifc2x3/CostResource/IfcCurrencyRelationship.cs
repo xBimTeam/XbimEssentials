@@ -43,7 +43,7 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcCurrencyRelationship", 195)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurrencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcCurrencyRelationship, IEqualityComparer<@IfcCurrencyRelationship>, IEquatable<@IfcCurrencyRelationship>
+	public  partial class @IfcCurrencyRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcCurrencyRelationship, IEquatable<@IfcCurrencyRelationship>
 	{
 		#region IIfcCurrencyRelationship explicit implementation
 		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatingMonetaryUnit { get { return @RelatingMonetaryUnit; } }	
@@ -323,17 +323,6 @@ namespace Xbim.Ifc2x3.CostResource
         public static bool operator !=(@IfcCurrencyRelationship left, @IfcCurrencyRelationship right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCurrencyRelationship x, @IfcCurrencyRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCurrencyRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

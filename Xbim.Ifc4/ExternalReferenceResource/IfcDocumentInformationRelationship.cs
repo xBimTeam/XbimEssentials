@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IfcDocumentInformationRelationship", 491)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentInformationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcDocumentInformationRelationship, IEqualityComparer<@IfcDocumentInformationRelationship>, IEquatable<@IfcDocumentInformationRelationship>
+	public  partial class @IfcDocumentInformationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcDocumentInformationRelationship, IEquatable<@IfcDocumentInformationRelationship>
 	{
 		#region IIfcDocumentInformationRelationship explicit implementation
 		IIfcDocumentInformation IIfcDocumentInformationRelationship.RelatingDocument { get { return @RelatingDocument; } }	
@@ -176,17 +176,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
         public static bool operator !=(@IfcDocumentInformationRelationship left, @IfcDocumentInformationRelationship right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDocumentInformationRelationship x, @IfcDocumentInformationRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDocumentInformationRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

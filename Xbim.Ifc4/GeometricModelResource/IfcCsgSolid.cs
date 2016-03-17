@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcCsgSolid", 548)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCsgSolid : IfcSolidModel, IInstantiableEntity, IIfcCsgSolid, IEqualityComparer<@IfcCsgSolid>, IEquatable<@IfcCsgSolid>
+	public  partial class @IfcCsgSolid : IfcSolidModel, IInstantiableEntity, IIfcCsgSolid, IEquatable<@IfcCsgSolid>
 	{
 		#region IIfcCsgSolid explicit implementation
 		IIfcCsgSelect IIfcCsgSolid.TreeRootExpression { get { return @TreeRootExpression; } }	
@@ -131,17 +131,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcCsgSolid left, @IfcCsgSolid right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCsgSolid x, @IfcCsgSolid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCsgSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

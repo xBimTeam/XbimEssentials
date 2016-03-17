@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcGroup", 228)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGroup : IfcObject, IInstantiableEntity, IIfcGroup, IEqualityComparer<@IfcGroup>, IEquatable<@IfcGroup>
+	public  partial class @IfcGroup : IfcObject, IInstantiableEntity, IIfcGroup, IEquatable<@IfcGroup>
 	{
 		#region IIfcGroup explicit implementation
 		 
@@ -126,17 +126,6 @@ namespace Xbim.Ifc2x3.Kernel
         public static bool operator !=(@IfcGroup left, @IfcGroup right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGroup x, @IfcGroup y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGroup obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

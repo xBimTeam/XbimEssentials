@@ -42,7 +42,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Asset", 13)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @CobieAsset : CobieReferencedObject, ICobieAsset, IEqualityComparer<@CobieAsset>, IEquatable<@CobieAsset>
+	public abstract partial class @CobieAsset : CobieReferencedObject, ICobieAsset, IEquatable<@CobieAsset>
 	{
 		#region ICobieAsset explicit implementation
 		string ICobieAsset.Name { get { return @Name; } }	
@@ -272,17 +272,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieAsset left, @CobieAsset right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieAsset x, @CobieAsset y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieAsset obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

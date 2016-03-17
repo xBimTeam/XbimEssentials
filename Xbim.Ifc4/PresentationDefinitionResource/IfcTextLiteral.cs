@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 {
 	[ExpressType("IfcTextLiteral", 29)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextLiteral : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcTextLiteral, IEqualityComparer<@IfcTextLiteral>, IEquatable<@IfcTextLiteral>
+	public  partial class @IfcTextLiteral : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcTextLiteral, IEquatable<@IfcTextLiteral>
 	{
 		#region IIfcTextLiteral explicit implementation
 		IfcPresentableText IIfcTextLiteral.Literal { get { return @Literal; } }	
@@ -173,17 +173,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
         public static bool operator !=(@IfcTextLiteral left, @IfcTextLiteral right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTextLiteral x, @IfcTextLiteral y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextLiteral obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

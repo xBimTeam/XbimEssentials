@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcRoundedEdgeFeature", 766)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRoundedEdgeFeature : IfcEdgeFeature, IInstantiableEntity, IIfcRoundedEdgeFeature, IEqualityComparer<@IfcRoundedEdgeFeature>, IEquatable<@IfcRoundedEdgeFeature>
+	public  partial class @IfcRoundedEdgeFeature : IfcEdgeFeature, IInstantiableEntity, IIfcRoundedEdgeFeature, IEquatable<@IfcRoundedEdgeFeature>
 	{
 		#region IIfcRoundedEdgeFeature explicit implementation
 		IfcPositiveLengthMeasure? IIfcRoundedEdgeFeature.Radius { get { return @Radius; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc2x3.SharedComponentElements
         public static bool operator !=(@IfcRoundedEdgeFeature left, @IfcRoundedEdgeFeature right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRoundedEdgeFeature x, @IfcRoundedEdgeFeature y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRoundedEdgeFeature obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

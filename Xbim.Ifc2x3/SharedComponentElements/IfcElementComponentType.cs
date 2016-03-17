@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcElementComponentType", 136)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcElementComponentType : IfcElementType, IIfcElementComponentType, IEqualityComparer<@IfcElementComponentType>, IEquatable<@IfcElementComponentType>
+	public abstract partial class @IfcElementComponentType : IfcElementType, IIfcElementComponentType, IEquatable<@IfcElementComponentType>
 	{
 		#region IIfcElementComponentType explicit implementation
 		 
@@ -118,17 +118,6 @@ namespace Xbim.Ifc2x3.SharedComponentElements
         public static bool operator !=(@IfcElementComponentType left, @IfcElementComponentType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElementComponentType x, @IfcElementComponentType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElementComponentType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

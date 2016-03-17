@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.ActorResource
 {
 	[ExpressType("IfcPostalAddress", 662)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IIfcPostalAddress, IEqualityComparer<@IfcPostalAddress>, IEquatable<@IfcPostalAddress>
+	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IIfcPostalAddress, IEquatable<@IfcPostalAddress>
 	{
 		#region IIfcPostalAddress explicit implementation
 		IfcLabel? IIfcPostalAddress.InternalLocation { get { return @InternalLocation; } }	
@@ -256,17 +256,6 @@ namespace Xbim.Ifc4.ActorResource
         public static bool operator !=(@IfcPostalAddress left, @IfcPostalAddress right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPostalAddress x, @IfcPostalAddress y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPostalAddress obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

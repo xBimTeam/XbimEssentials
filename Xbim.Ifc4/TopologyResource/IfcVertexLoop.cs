@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcVertexLoop", 244)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVertexLoop : IfcLoop, IInstantiableEntity, IIfcVertexLoop, IEqualityComparer<@IfcVertexLoop>, IEquatable<@IfcVertexLoop>
+	public  partial class @IfcVertexLoop : IfcLoop, IInstantiableEntity, IIfcVertexLoop, IEquatable<@IfcVertexLoop>
 	{
 		#region IIfcVertexLoop explicit implementation
 		IIfcVertex IIfcVertexLoop.LoopVertex { get { return @LoopVertex; } }	
@@ -131,17 +131,6 @@ namespace Xbim.Ifc4.TopologyResource
         public static bool operator !=(@IfcVertexLoop left, @IfcVertexLoop right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcVertexLoop x, @IfcVertexLoop y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcVertexLoop obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

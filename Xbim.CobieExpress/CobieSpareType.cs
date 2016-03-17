@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("SpareType", 46)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSpareType : CobiePickValue, IInstantiableEntity, ICobieSpareType, IEqualityComparer<@CobieSpareType>, IEquatable<@CobieSpareType>
+	public  partial class @CobieSpareType : CobiePickValue, IInstantiableEntity, ICobieSpareType, IEquatable<@CobieSpareType>
 	{
 		#region ICobieSpareType explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieSpareType left, @CobieSpareType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieSpareType x, @CobieSpareType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieSpareType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	[ExpressType("IfcActuatorType", 485)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActuatorType : IfcDistributionControlElementType, IInstantiableEntity, IIfcActuatorType, IEqualityComparer<@IfcActuatorType>, IEquatable<@IfcActuatorType>
+	public  partial class @IfcActuatorType : IfcDistributionControlElementType, IInstantiableEntity, IIfcActuatorType, IEquatable<@IfcActuatorType>
 	{
 		#region IIfcActuatorType explicit implementation
 		IfcActuatorTypeEnum IIfcActuatorType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
         public static bool operator !=(@IfcActuatorType left, @IfcActuatorType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcActuatorType x, @IfcActuatorType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcActuatorType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

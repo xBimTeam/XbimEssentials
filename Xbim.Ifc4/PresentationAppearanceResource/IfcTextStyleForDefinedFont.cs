@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyleForDefinedFont", 611)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleForDefinedFont : IfcPresentationItem, IInstantiableEntity, IIfcTextStyleForDefinedFont, IEqualityComparer<@IfcTextStyleForDefinedFont>, IEquatable<@IfcTextStyleForDefinedFont>
+	public  partial class @IfcTextStyleForDefinedFont : IfcPresentationItem, IInstantiableEntity, IIfcTextStyleForDefinedFont, IEquatable<@IfcTextStyleForDefinedFont>
 	{
 		#region IIfcTextStyleForDefinedFont explicit implementation
 		IIfcColour IIfcTextStyleForDefinedFont.Colour { get { return @Colour; } }	
@@ -152,17 +152,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcTextStyleForDefinedFont left, @IfcTextStyleForDefinedFont right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTextStyleForDefinedFont x, @IfcTextStyleForDefinedFont y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextStyleForDefinedFont obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

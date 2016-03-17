@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcSectionedSpine", 300)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionedSpine : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcSectionedSpine, IEqualityComparer<@IfcSectionedSpine>, IEquatable<@IfcSectionedSpine>
+	public  partial class @IfcSectionedSpine : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcSectionedSpine, IEquatable<@IfcSectionedSpine>
 	{
 		#region IIfcSectionedSpine explicit implementation
 		IIfcCompositeCurve IIfcSectionedSpine.SpineCurve { get { return @SpineCurve; } }	
@@ -186,17 +186,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcSectionedSpine left, @IfcSectionedSpine right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSectionedSpine x, @IfcSectionedSpine y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSectionedSpine obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

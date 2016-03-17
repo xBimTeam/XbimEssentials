@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcStairFlight", 25)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStairFlight : IfcBuildingElement, IInstantiableEntity, IIfcStairFlight, IEqualityComparer<@IfcStairFlight>, IEquatable<@IfcStairFlight>
+	public  partial class @IfcStairFlight : IfcBuildingElement, IInstantiableEntity, IIfcStairFlight, IEquatable<@IfcStairFlight>
 	{
 		#region IIfcStairFlight explicit implementation
 		long? IIfcStairFlight.NumberOfRiser { get { return @NumberOfRiser; } }	
@@ -203,17 +203,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         public static bool operator !=(@IfcStairFlight left, @IfcStairFlight right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStairFlight x, @IfcStairFlight y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStairFlight obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

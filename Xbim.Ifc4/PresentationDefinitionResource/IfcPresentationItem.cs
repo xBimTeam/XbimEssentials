@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 {
 	[ExpressType("IfcPresentationItem", 1227)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPresentationItem : IPersistEntity, INotifyPropertyChanged, IIfcPresentationItem, IEqualityComparer<@IfcPresentationItem>, IEquatable<@IfcPresentationItem>
+	public abstract partial class @IfcPresentationItem : IPersistEntity, INotifyPropertyChanged, IIfcPresentationItem, IEquatable<@IfcPresentationItem>
 	{
 		#region IIfcPresentationItem explicit implementation
 		 
@@ -212,17 +212,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
         public static bool operator !=(@IfcPresentationItem left, @IfcPresentationItem right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPresentationItem x, @IfcPresentationItem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPresentationItem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

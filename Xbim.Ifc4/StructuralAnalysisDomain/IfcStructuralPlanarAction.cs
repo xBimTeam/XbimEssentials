@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralPlanarAction", 39)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralPlanarAction : IfcStructuralSurfaceAction, IInstantiableEntity, IIfcStructuralPlanarAction, IEqualityComparer<@IfcStructuralPlanarAction>, IEquatable<@IfcStructuralPlanarAction>
+	public  partial class @IfcStructuralPlanarAction : IfcStructuralSurfaceAction, IInstantiableEntity, IIfcStructuralPlanarAction, IEquatable<@IfcStructuralPlanarAction>
 	{
 		#region IIfcStructuralPlanarAction explicit implementation
 		 
@@ -122,17 +122,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
         public static bool operator !=(@IfcStructuralPlanarAction left, @IfcStructuralPlanarAction right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralPlanarAction x, @IfcStructuralPlanarAction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralPlanarAction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

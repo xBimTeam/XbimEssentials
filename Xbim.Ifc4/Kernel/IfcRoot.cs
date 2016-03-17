@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRoot", 12)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRoot : IPersistEntity, INotifyPropertyChanged, IIfcRoot, IEqualityComparer<@IfcRoot>, IEquatable<@IfcRoot>
+	public abstract partial class @IfcRoot : IPersistEntity, INotifyPropertyChanged, IIfcRoot, IEquatable<@IfcRoot>
 	{
 		#region IIfcRoot explicit implementation
 		IfcGloballyUniqueId IIfcRoot.GlobalId { get { return @GlobalId; } }	
@@ -302,17 +302,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcRoot left, @IfcRoot right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRoot x, @IfcRoot y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRoot obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

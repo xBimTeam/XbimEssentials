@@ -43,7 +43,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceTexture", 722)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSurfaceTexture : IfcPresentationItem, IIfcSurfaceTexture, IEqualityComparer<@IfcSurfaceTexture>, IEquatable<@IfcSurfaceTexture>
+	public abstract partial class @IfcSurfaceTexture : IfcPresentationItem, IIfcSurfaceTexture, IEquatable<@IfcSurfaceTexture>
 	{
 		#region IIfcSurfaceTexture explicit implementation
 		IfcBoolean IIfcSurfaceTexture.RepeatS { get { return @RepeatS; } }	
@@ -236,17 +236,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcSurfaceTexture left, @IfcSurfaceTexture right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSurfaceTexture x, @IfcSurfaceTexture y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceTexture obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

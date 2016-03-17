@@ -45,7 +45,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 {
 	[ExpressType("IfcOwnerHistory", 519)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOwnerHistory : INotifyPropertyChanged, IInstantiableEntity, IIfcOwnerHistory, IEqualityComparer<@IfcOwnerHistory>, IEquatable<@IfcOwnerHistory>
+	public  partial class @IfcOwnerHistory : INotifyPropertyChanged, IInstantiableEntity, IIfcOwnerHistory, IEquatable<@IfcOwnerHistory>
 	{
 		#region IIfcOwnerHistory explicit implementation
 		IIfcPersonAndOrganization IIfcOwnerHistory.OwningUser { get { return @OwningUser; } }	
@@ -382,17 +382,6 @@ namespace Xbim.Ifc2x3.UtilityResource
         public static bool operator !=(@IfcOwnerHistory left, @IfcOwnerHistory right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOwnerHistory x, @IfcOwnerHistory y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOwnerHistory obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

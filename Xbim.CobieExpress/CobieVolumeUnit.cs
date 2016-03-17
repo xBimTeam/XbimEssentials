@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("VolumeUnit", 41)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieVolumeUnit : CobiePickValue, IInstantiableEntity, ICobieVolumeUnit, IEqualityComparer<@CobieVolumeUnit>, IEquatable<@CobieVolumeUnit>
+	public  partial class @CobieVolumeUnit : CobiePickValue, IInstantiableEntity, ICobieVolumeUnit, IEquatable<@CobieVolumeUnit>
 	{
 		#region ICobieVolumeUnit explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieVolumeUnit left, @CobieVolumeUnit right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieVolumeUnit x, @CobieVolumeUnit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieVolumeUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

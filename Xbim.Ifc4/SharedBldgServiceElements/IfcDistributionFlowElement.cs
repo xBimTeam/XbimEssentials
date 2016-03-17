@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IfcDistributionFlowElement", 45)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionFlowElement : IfcDistributionElement, IInstantiableEntity, IIfcDistributionFlowElement, IEqualityComparer<@IfcDistributionFlowElement>, IEquatable<@IfcDistributionFlowElement>
+	public  partial class @IfcDistributionFlowElement : IfcDistributionElement, IInstantiableEntity, IIfcDistributionFlowElement, IEquatable<@IfcDistributionFlowElement>
 	{
 		#region IIfcDistributionFlowElement explicit implementation
 		 
@@ -130,17 +130,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
         public static bool operator !=(@IfcDistributionFlowElement left, @IfcDistributionFlowElement right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDistributionFlowElement x, @IfcDistributionFlowElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDistributionFlowElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

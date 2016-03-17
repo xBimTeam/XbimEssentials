@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcTypeProcess", 1306)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTypeProcess : IfcTypeObject, IIfcTypeProcess, IEqualityComparer<@IfcTypeProcess>, IEquatable<@IfcTypeProcess>
+	public abstract partial class @IfcTypeProcess : IfcTypeObject, IIfcTypeProcess, IEquatable<@IfcTypeProcess>
 	{
 		#region IIfcTypeProcess explicit implementation
 		IfcIdentifier? IIfcTypeProcess.Identification { get { return @Identification; } }	
@@ -193,17 +193,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcTypeProcess left, @IfcTypeProcess right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTypeProcess x, @IfcTypeProcess y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTypeProcess obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

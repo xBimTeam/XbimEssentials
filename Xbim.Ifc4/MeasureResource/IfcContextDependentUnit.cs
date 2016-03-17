@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcContextDependentUnit", 304)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcContextDependentUnit : IfcNamedUnit, IInstantiableEntity, IIfcContextDependentUnit, IEqualityComparer<@IfcContextDependentUnit>, IEquatable<@IfcContextDependentUnit>
+	public  partial class @IfcContextDependentUnit : IfcNamedUnit, IInstantiableEntity, IIfcContextDependentUnit, IEquatable<@IfcContextDependentUnit>
 	{
 		#region IIfcContextDependentUnit explicit implementation
 		IfcLabel IIfcContextDependentUnit.Name { get { return @Name; } }	
@@ -149,17 +149,6 @@ namespace Xbim.Ifc4.MeasureResource
         public static bool operator !=(@IfcContextDependentUnit left, @IfcContextDependentUnit right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcContextDependentUnit x, @IfcContextDependentUnit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcContextDependentUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

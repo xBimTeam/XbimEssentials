@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSource", 755)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcLightSource : IfcGeometricRepresentationItem, IIfcLightSource, IEqualityComparer<@IfcLightSource>, IEquatable<@IfcLightSource>
+	public abstract partial class @IfcLightSource : IfcGeometricRepresentationItem, IIfcLightSource, IEquatable<@IfcLightSource>
 	{
 		#region IIfcLightSource explicit implementation
 		IfcLabel? IIfcLightSource.Name { get { return @Name; } }	
@@ -194,17 +194,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
         public static bool operator !=(@IfcLightSource left, @IfcLightSource right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLightSource x, @IfcLightSource y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLightSource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

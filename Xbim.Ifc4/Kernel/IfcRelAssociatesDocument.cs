@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelAssociatesDocument", 307)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesDocument : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesDocument, IEqualityComparer<@IfcRelAssociatesDocument>, IEquatable<@IfcRelAssociatesDocument>
+	public  partial class @IfcRelAssociatesDocument : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesDocument, IEquatable<@IfcRelAssociatesDocument>
 	{
 		#region IIfcRelAssociatesDocument explicit implementation
 		IIfcDocumentSelect IIfcRelAssociatesDocument.RelatingDocument { get { return @RelatingDocument; } }	
@@ -140,17 +140,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcRelAssociatesDocument left, @IfcRelAssociatesDocument right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssociatesDocument x, @IfcRelAssociatesDocument y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssociatesDocument obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

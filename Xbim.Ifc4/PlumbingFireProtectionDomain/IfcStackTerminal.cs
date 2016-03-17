@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
 	[ExpressType("IfcStackTerminal", 1277)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStackTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcStackTerminal, IEqualityComparer<@IfcStackTerminal>, IEquatable<@IfcStackTerminal>
+	public  partial class @IfcStackTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcStackTerminal, IEquatable<@IfcStackTerminal>
 	{
 		#region IIfcStackTerminal explicit implementation
 		IfcStackTerminalTypeEnum? IIfcStackTerminal.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
         public static bool operator !=(@IfcStackTerminal left, @IfcStackTerminal right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStackTerminal x, @IfcStackTerminal y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStackTerminal obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

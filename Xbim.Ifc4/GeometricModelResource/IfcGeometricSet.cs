@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcGeometricSet", 236)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricSet : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcGeometricSet, IEqualityComparer<@IfcGeometricSet>, IEquatable<@IfcGeometricSet>
+	public  partial class @IfcGeometricSet : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcGeometricSet, IEquatable<@IfcGeometricSet>
 	{
 		#region IIfcGeometricSet explicit implementation
 		IEnumerable<IIfcGeometricSetSelect> IIfcGeometricSet.Elements { get { return @Elements; } }	
@@ -147,17 +147,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcGeometricSet left, @IfcGeometricSet right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGeometricSet x, @IfcGeometricSet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGeometricSet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

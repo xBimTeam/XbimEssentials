@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcGeneralProfileProperties", 648)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeneralProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcGeneralProfileProperties, IEqualityComparer<@IfcGeneralProfileProperties>, IEquatable<@IfcGeneralProfileProperties>
+	public  partial class @IfcGeneralProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcGeneralProfileProperties, IEquatable<@IfcGeneralProfileProperties>
 	{
 		#region IIfcGeneralProfileProperties explicit implementation
 		IfcMassPerLengthMeasure? IIfcGeneralProfileProperties.PhysicalWeight { get { return @PhysicalWeight; } }	
@@ -217,17 +217,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
         public static bool operator !=(@IfcGeneralProfileProperties left, @IfcGeneralProfileProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGeneralProfileProperties x, @IfcGeneralProfileProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGeneralProfileProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

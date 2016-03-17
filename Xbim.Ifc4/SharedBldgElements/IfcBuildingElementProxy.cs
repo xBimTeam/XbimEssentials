@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcBuildingElementProxy", 560)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuildingElementProxy : IfcBuildingElement, IInstantiableEntity, IIfcBuildingElementProxy, IEqualityComparer<@IfcBuildingElementProxy>, IEquatable<@IfcBuildingElementProxy>
+	public  partial class @IfcBuildingElementProxy : IfcBuildingElement, IInstantiableEntity, IIfcBuildingElementProxy, IEquatable<@IfcBuildingElementProxy>
 	{
 		#region IIfcBuildingElementProxy explicit implementation
 		IfcBuildingElementProxyTypeEnum? IIfcBuildingElementProxy.PredefinedType { get { return @PredefinedType; } }	
@@ -145,17 +145,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcBuildingElementProxy left, @IfcBuildingElementProxy right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBuildingElementProxy x, @IfcBuildingElementProxy y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBuildingElementProxy obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

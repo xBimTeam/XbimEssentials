@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 {
 	[ExpressType("IfcSystemFurnitureElementType", 422)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSystemFurnitureElementType : IfcFurnishingElementType, IInstantiableEntity, IIfcSystemFurnitureElementType, IEqualityComparer<@IfcSystemFurnitureElementType>, IEquatable<@IfcSystemFurnitureElementType>
+	public  partial class @IfcSystemFurnitureElementType : IfcFurnishingElementType, IInstantiableEntity, IIfcSystemFurnitureElementType, IEquatable<@IfcSystemFurnitureElementType>
 	{
 		#region IIfcSystemFurnitureElementType explicit implementation
 		IfcSystemFurnitureElementTypeEnum? IIfcSystemFurnitureElementType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
         public static bool operator !=(@IfcSystemFurnitureElementType left, @IfcSystemFurnitureElementType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSystemFurnitureElementType x, @IfcSystemFurnitureElementType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSystemFurnitureElementType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

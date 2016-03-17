@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcTelecomAddress", 553)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IIfcTelecomAddress, IEqualityComparer<@IfcTelecomAddress>, IEquatable<@IfcTelecomAddress>
+	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IIfcTelecomAddress, IEquatable<@IfcTelecomAddress>
 	{
 		#region IIfcTelecomAddress explicit implementation
 		IEnumerable<IfcLabel> IIfcTelecomAddress.TelephoneNumbers { get { return @TelephoneNumbers; } }	
@@ -212,17 +212,6 @@ namespace Xbim.Ifc2x3.ActorResource
         public static bool operator !=(@IfcTelecomAddress left, @IfcTelecomAddress right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTelecomAddress x, @IfcTelecomAddress y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTelecomAddress obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

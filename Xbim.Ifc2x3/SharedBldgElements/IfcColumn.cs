@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcColumn", 383)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcColumn : IfcBuildingElement, IInstantiableEntity, IIfcColumn, IEqualityComparer<@IfcColumn>, IEquatable<@IfcColumn>
+	public  partial class @IfcColumn : IfcBuildingElement, IInstantiableEntity, IIfcColumn, IEquatable<@IfcColumn>
 	{
 		#region IIfcColumn explicit implementation
 		 
@@ -117,17 +117,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         public static bool operator !=(@IfcColumn left, @IfcColumn right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcColumn x, @IfcColumn y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcColumn obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

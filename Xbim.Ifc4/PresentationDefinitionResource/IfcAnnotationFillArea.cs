@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationFillArea", 173)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationFillArea : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationFillArea, IEqualityComparer<@IfcAnnotationFillArea>, IEquatable<@IfcAnnotationFillArea>
+	public  partial class @IfcAnnotationFillArea : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationFillArea, IEquatable<@IfcAnnotationFillArea>
 	{
 		#region IIfcAnnotationFillArea explicit implementation
 		IIfcCurve IIfcAnnotationFillArea.OuterBoundary { get { return @OuterBoundary; } }	
@@ -150,17 +150,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
         public static bool operator !=(@IfcAnnotationFillArea left, @IfcAnnotationFillArea right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAnnotationFillArea x, @IfcAnnotationFillArea y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAnnotationFillArea obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

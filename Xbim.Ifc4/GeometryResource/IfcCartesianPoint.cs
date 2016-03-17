@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcCartesianPoint", 410)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IIfcCartesianPoint, IEqualityComparer<@IfcCartesianPoint>, IEquatable<@IfcCartesianPoint>
+	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IIfcCartesianPoint, IEquatable<@IfcCartesianPoint>
 	{
 		#region IIfcCartesianPoint explicit implementation
 		IEnumerable<IfcLengthMeasure> IIfcCartesianPoint.Coordinates { get { return @Coordinates; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcCartesianPoint left, @IfcCartesianPoint right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCartesianPoint x, @IfcCartesianPoint y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCartesianPoint obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCompositeCurveSegment", 460)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompositeCurveSegment : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcCompositeCurveSegment, IEqualityComparer<@IfcCompositeCurveSegment>, IEquatable<@IfcCompositeCurveSegment>
+	public  partial class @IfcCompositeCurveSegment : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcCompositeCurveSegment, IEquatable<@IfcCompositeCurveSegment>
 	{
 		#region IIfcCompositeCurveSegment explicit implementation
 		IfcTransitionCode IIfcCompositeCurveSegment.Transition { get { return @Transition; } }	
@@ -199,17 +199,6 @@ namespace Xbim.Ifc2x3.GeometryResource
         public static bool operator !=(@IfcCompositeCurveSegment left, @IfcCompositeCurveSegment right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCompositeCurveSegment x, @IfcCompositeCurveSegment y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCompositeCurveSegment obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcSweptDiskSolidPolygonal", 1289)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSweptDiskSolidPolygonal : IfcSweptDiskSolid, IInstantiableEntity, IIfcSweptDiskSolidPolygonal, IEqualityComparer<@IfcSweptDiskSolidPolygonal>, IEquatable<@IfcSweptDiskSolidPolygonal>
+	public  partial class @IfcSweptDiskSolidPolygonal : IfcSweptDiskSolid, IInstantiableEntity, IIfcSweptDiskSolidPolygonal, IEquatable<@IfcSweptDiskSolidPolygonal>
 	{
 		#region IIfcSweptDiskSolidPolygonal explicit implementation
 		IfcPositiveLengthMeasure? IIfcSweptDiskSolidPolygonal.FilletRadius { get { return @FilletRadius; } }	
@@ -141,17 +141,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcSweptDiskSolidPolygonal left, @IfcSweptDiskSolidPolygonal right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSweptDiskSolidPolygonal x, @IfcSweptDiskSolidPolygonal y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSweptDiskSolidPolygonal obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

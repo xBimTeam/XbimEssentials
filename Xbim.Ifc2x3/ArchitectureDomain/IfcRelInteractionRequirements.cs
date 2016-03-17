@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 {
 	[ExpressType("IfcRelInteractionRequirements", 708)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelInteractionRequirements : IfcRelConnects, IInstantiableEntity, IIfcRelInteractionRequirements, IEqualityComparer<@IfcRelInteractionRequirements>, IEquatable<@IfcRelInteractionRequirements>
+	public  partial class @IfcRelInteractionRequirements : IfcRelConnects, IInstantiableEntity, IIfcRelInteractionRequirements, IEquatable<@IfcRelInteractionRequirements>
 	{
 		#region IIfcRelInteractionRequirements explicit implementation
 		IfcCountMeasure? IIfcRelInteractionRequirements.DailyInteraction { get { return @DailyInteraction; } }	
@@ -222,17 +222,6 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
         public static bool operator !=(@IfcRelInteractionRequirements left, @IfcRelInteractionRequirements right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelInteractionRequirements x, @IfcRelInteractionRequirements y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelInteractionRequirements obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

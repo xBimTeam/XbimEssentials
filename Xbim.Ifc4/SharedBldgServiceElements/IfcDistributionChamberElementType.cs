@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IfcDistributionChamberElementType", 396)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionChamberElementType : IfcDistributionFlowElementType, IInstantiableEntity, IIfcDistributionChamberElementType, IEqualityComparer<@IfcDistributionChamberElementType>, IEquatable<@IfcDistributionChamberElementType>
+	public  partial class @IfcDistributionChamberElementType : IfcDistributionFlowElementType, IInstantiableEntity, IIfcDistributionChamberElementType, IEquatable<@IfcDistributionChamberElementType>
 	{
 		#region IIfcDistributionChamberElementType explicit implementation
 		IfcDistributionChamberElementTypeEnum IIfcDistributionChamberElementType.PredefinedType { get { return @PredefinedType; } }	
@@ -143,17 +143,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
         public static bool operator !=(@IfcDistributionChamberElementType left, @IfcDistributionChamberElementType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDistributionChamberElementType x, @IfcDistributionChamberElementType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDistributionChamberElementType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

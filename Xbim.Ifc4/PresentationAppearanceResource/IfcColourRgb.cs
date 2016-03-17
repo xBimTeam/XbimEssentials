@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcColourRgb", 27)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcColourRgb : IfcColourSpecification, IInstantiableEntity, IIfcColourRgb, IEqualityComparer<@IfcColourRgb>, IEquatable<@IfcColourRgb>
+	public  partial class @IfcColourRgb : IfcColourSpecification, IInstantiableEntity, IIfcColourRgb, IEquatable<@IfcColourRgb>
 	{
 		#region IIfcColourRgb explicit implementation
 		IfcNormalisedRatioMeasure IIfcColourRgb.Red { get { return @Red; } }	
@@ -175,17 +175,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         public static bool operator !=(@IfcColourRgb left, @IfcColourRgb right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcColourRgb x, @IfcColourRgb y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcColourRgb obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

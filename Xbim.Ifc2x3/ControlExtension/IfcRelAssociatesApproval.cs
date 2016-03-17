@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 {
 	[ExpressType("IfcRelAssociatesApproval", 342)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesApproval : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesApproval, IEqualityComparer<@IfcRelAssociatesApproval>, IEquatable<@IfcRelAssociatesApproval>
+	public  partial class @IfcRelAssociatesApproval : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesApproval, IEquatable<@IfcRelAssociatesApproval>
 	{
 		#region IIfcRelAssociatesApproval explicit implementation
 		IIfcApproval IIfcRelAssociatesApproval.RelatingApproval { get { return @RelatingApproval; } }	
@@ -140,17 +140,6 @@ namespace Xbim.Ifc2x3.ControlExtension
         public static bool operator !=(@IfcRelAssociatesApproval left, @IfcRelAssociatesApproval right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssociatesApproval x, @IfcRelAssociatesApproval y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssociatesApproval obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

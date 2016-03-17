@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcQuantitySet", 1239)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcQuantitySet : IfcPropertySetDefinition, IIfcQuantitySet, IEqualityComparer<@IfcQuantitySet>, IEquatable<@IfcQuantitySet>
+	public abstract partial class @IfcQuantitySet : IfcPropertySetDefinition, IIfcQuantitySet, IEquatable<@IfcQuantitySet>
 	{
 		#region IIfcQuantitySet explicit implementation
 		 
@@ -112,17 +112,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcQuantitySet left, @IfcQuantitySet right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcQuantitySet x, @IfcQuantitySet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcQuantitySet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

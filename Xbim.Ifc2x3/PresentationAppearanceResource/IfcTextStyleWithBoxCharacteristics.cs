@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyleWithBoxCharacteristics", 730)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleWithBoxCharacteristics : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleWithBoxCharacteristics, IEqualityComparer<@IfcTextStyleWithBoxCharacteristics>, IEquatable<@IfcTextStyleWithBoxCharacteristics>
+	public  partial class @IfcTextStyleWithBoxCharacteristics : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleWithBoxCharacteristics, IEquatable<@IfcTextStyleWithBoxCharacteristics>
 	{
 		#region IIfcTextStyleWithBoxCharacteristics explicit implementation
 		IfcPositiveLengthMeasure? IIfcTextStyleWithBoxCharacteristics.BoxHeight { get { return @BoxHeight; } }	
@@ -321,17 +321,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcTextStyleWithBoxCharacteristics left, @IfcTextStyleWithBoxCharacteristics right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTextStyleWithBoxCharacteristics x, @IfcTextStyleWithBoxCharacteristics y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextStyleWithBoxCharacteristics obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

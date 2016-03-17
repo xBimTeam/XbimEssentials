@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IfcPile", 572)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPile : IfcBuildingElement, IInstantiableEntity, IIfcPile, IEqualityComparer<@IfcPile>, IEquatable<@IfcPile>
+	public  partial class @IfcPile : IfcBuildingElement, IInstantiableEntity, IIfcPile, IEquatable<@IfcPile>
 	{
 		#region IIfcPile explicit implementation
 		IfcPileTypeEnum? IIfcPile.PredefinedType { get { return @PredefinedType; } }	
@@ -164,17 +164,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
         public static bool operator !=(@IfcPile left, @IfcPile right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPile x, @IfcPile y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPile obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

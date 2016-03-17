@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcElectricalCircuit", 406)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricalCircuit : IfcSystem, IInstantiableEntity, IIfcElectricalCircuit, IEqualityComparer<@IfcElectricalCircuit>, IEquatable<@IfcElectricalCircuit>
+	public  partial class @IfcElectricalCircuit : IfcSystem, IInstantiableEntity, IIfcElectricalCircuit, IEquatable<@IfcElectricalCircuit>
 	{
 		#region IIfcElectricalCircuit explicit implementation
 		 
@@ -114,17 +114,6 @@ namespace Xbim.Ifc2x3.ElectricalDomain
         public static bool operator !=(@IfcElectricalCircuit left, @IfcElectricalCircuit right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElectricalCircuit x, @IfcElectricalCircuit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElectricalCircuit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcCompositeProfileDef", 172)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompositeProfileDef : IfcProfileDef, IInstantiableEntity, IIfcCompositeProfileDef, IEqualityComparer<@IfcCompositeProfileDef>, IEquatable<@IfcCompositeProfileDef>
+	public  partial class @IfcCompositeProfileDef : IfcProfileDef, IInstantiableEntity, IIfcCompositeProfileDef, IEquatable<@IfcCompositeProfileDef>
 	{
 		#region IIfcCompositeProfileDef explicit implementation
 		IEnumerable<IIfcProfileDef> IIfcCompositeProfileDef.Profiles { get { return @Profiles; } }	
@@ -156,17 +156,6 @@ namespace Xbim.Ifc2x3.ProfileResource
         public static bool operator !=(@IfcCompositeProfileDef left, @IfcCompositeProfileDef right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCompositeProfileDef x, @IfcCompositeProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCompositeProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

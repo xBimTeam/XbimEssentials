@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelNests", 305)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelNests : IfcRelDecomposes, IInstantiableEntity, IIfcRelNests, IEqualityComparer<@IfcRelNests>, IEquatable<@IfcRelNests>
+	public  partial class @IfcRelNests : IfcRelDecomposes, IInstantiableEntity, IIfcRelNests, IEquatable<@IfcRelNests>
 	{
 		#region IIfcRelNests explicit implementation
 		IIfcObjectDefinition IIfcRelNests.RelatingObject { get { return @RelatingObject; } }	
@@ -158,17 +158,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcRelNests left, @IfcRelNests right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelNests x, @IfcRelNests y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelNests obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

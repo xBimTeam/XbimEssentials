@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcPlateStandardCase", 1224)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlateStandardCase : IfcPlate, IInstantiableEntity, IIfcPlateStandardCase, IEqualityComparer<@IfcPlateStandardCase>, IEquatable<@IfcPlateStandardCase>
+	public  partial class @IfcPlateStandardCase : IfcPlate, IInstantiableEntity, IIfcPlateStandardCase, IEquatable<@IfcPlateStandardCase>
 	{
 		#region IIfcPlateStandardCase explicit implementation
 		 
@@ -118,17 +118,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcPlateStandardCase left, @IfcPlateStandardCase right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPlateStandardCase x, @IfcPlateStandardCase y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPlateStandardCase obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

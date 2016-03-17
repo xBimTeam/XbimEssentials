@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	[ExpressType("IfcController", 1139)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcController : IfcDistributionControlElement, IInstantiableEntity, IIfcController, IEqualityComparer<@IfcController>, IEquatable<@IfcController>
+	public  partial class @IfcController : IfcDistributionControlElement, IInstantiableEntity, IIfcController, IEquatable<@IfcController>
 	{
 		#region IIfcController explicit implementation
 		IfcControllerTypeEnum? IIfcController.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
         public static bool operator !=(@IfcController left, @IfcController right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcController x, @IfcController y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcController obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

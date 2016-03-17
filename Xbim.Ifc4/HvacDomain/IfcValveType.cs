@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcValveType", 465)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcValveType : IfcFlowControllerType, IInstantiableEntity, IIfcValveType, IEqualityComparer<@IfcValveType>, IEquatable<@IfcValveType>
+	public  partial class @IfcValveType : IfcFlowControllerType, IInstantiableEntity, IIfcValveType, IEquatable<@IfcValveType>
 	{
 		#region IIfcValveType explicit implementation
 		IfcValveTypeEnum IIfcValveType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.HvacDomain
         public static bool operator !=(@IfcValveType left, @IfcValveType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcValveType x, @IfcValveType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcValveType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

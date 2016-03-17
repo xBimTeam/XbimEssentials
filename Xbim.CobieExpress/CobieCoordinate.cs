@@ -41,7 +41,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Coordinate", 33)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieCoordinate : CobieReferencedObject, IInstantiableEntity, ICobieCoordinate, IEqualityComparer<@CobieCoordinate>, IEquatable<@CobieCoordinate>
+	public  partial class @CobieCoordinate : CobieReferencedObject, IInstantiableEntity, ICobieCoordinate, IEquatable<@CobieCoordinate>
 	{
 		#region ICobieCoordinate explicit implementation
 		string ICobieCoordinate.Name { get { return @Name; } }	
@@ -278,17 +278,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieCoordinate left, @CobieCoordinate right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieCoordinate x, @CobieCoordinate y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieCoordinate obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

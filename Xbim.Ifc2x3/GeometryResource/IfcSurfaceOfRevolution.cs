@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcSurfaceOfRevolution", 109)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceOfRevolution : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfRevolution, IEqualityComparer<@IfcSurfaceOfRevolution>, IEquatable<@IfcSurfaceOfRevolution>
+	public  partial class @IfcSurfaceOfRevolution : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfRevolution, IEquatable<@IfcSurfaceOfRevolution>
 	{
 		#region IIfcSurfaceOfRevolution explicit implementation
 		IIfcAxis1Placement IIfcSurfaceOfRevolution.AxisPosition { get { return @AxisPosition; } }	
@@ -157,17 +157,6 @@ namespace Xbim.Ifc2x3.GeometryResource
         public static bool operator !=(@IfcSurfaceOfRevolution left, @IfcSurfaceOfRevolution right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSurfaceOfRevolution x, @IfcSurfaceOfRevolution y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceOfRevolution obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

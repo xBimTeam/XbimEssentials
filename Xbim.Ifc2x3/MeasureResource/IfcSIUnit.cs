@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcSIUnit", 164)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSIUnit : IfcNamedUnit, IInstantiableEntity, IIfcSIUnit, IEqualityComparer<@IfcSIUnit>, IEquatable<@IfcSIUnit>
+	public  partial class @IfcSIUnit : IfcNamedUnit, IInstantiableEntity, IIfcSIUnit, IEquatable<@IfcSIUnit>
 	{
 		#region IIfcSIUnit explicit implementation
 		IfcSIPrefix? IIfcSIUnit.Prefix { get { return @Prefix; } }	
@@ -169,17 +169,6 @@ namespace Xbim.Ifc2x3.MeasureResource
         public static bool operator !=(@IfcSIUnit left, @IfcSIUnit right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSIUnit x, @IfcSIUnit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSIUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

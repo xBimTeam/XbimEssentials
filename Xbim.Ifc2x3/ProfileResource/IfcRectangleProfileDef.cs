@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcRectangleProfileDef", 103)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcRectangleProfileDef, IEqualityComparer<@IfcRectangleProfileDef>, IEquatable<@IfcRectangleProfileDef>
+	public  partial class @IfcRectangleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcRectangleProfileDef, IEquatable<@IfcRectangleProfileDef>
 	{
 		#region IIfcRectangleProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcRectangleProfileDef.XDim { get { return @XDim; } }	
@@ -157,17 +157,6 @@ namespace Xbim.Ifc2x3.ProfileResource
         public static bool operator !=(@IfcRectangleProfileDef left, @IfcRectangleProfileDef right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRectangleProfileDef x, @IfcRectangleProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRectangleProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

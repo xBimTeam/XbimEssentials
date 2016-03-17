@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcCoveringType", 565)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCoveringType : IfcBuildingElementType, IInstantiableEntity, IIfcCoveringType, IEqualityComparer<@IfcCoveringType>, IEquatable<@IfcCoveringType>
+	public  partial class @IfcCoveringType : IfcBuildingElementType, IInstantiableEntity, IIfcCoveringType, IEquatable<@IfcCoveringType>
 	{
 		#region IIfcCoveringType explicit implementation
 		IfcCoveringTypeEnum IIfcCoveringType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcCoveringType left, @IfcCoveringType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCoveringType x, @IfcCoveringType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCoveringType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

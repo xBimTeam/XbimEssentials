@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcShadingDeviceType", 1266)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcShadingDeviceType : IfcBuildingElementType, IInstantiableEntity, IIfcShadingDeviceType, IEqualityComparer<@IfcShadingDeviceType>, IEquatable<@IfcShadingDeviceType>
+	public  partial class @IfcShadingDeviceType : IfcBuildingElementType, IInstantiableEntity, IIfcShadingDeviceType, IEquatable<@IfcShadingDeviceType>
 	{
 		#region IIfcShadingDeviceType explicit implementation
 		IfcShadingDeviceTypeEnum IIfcShadingDeviceType.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.SharedBldgElements
         public static bool operator !=(@IfcShadingDeviceType left, @IfcShadingDeviceType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcShadingDeviceType x, @IfcShadingDeviceType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcShadingDeviceType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

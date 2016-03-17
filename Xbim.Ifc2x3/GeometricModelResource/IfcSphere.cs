@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcSphere", 706)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSphere : IfcCsgPrimitive3D, IInstantiableEntity, IIfcSphere, IEqualityComparer<@IfcSphere>, IEquatable<@IfcSphere>
+	public  partial class @IfcSphere : IfcCsgPrimitive3D, IInstantiableEntity, IIfcSphere, IEquatable<@IfcSphere>
 	{
 		#region IIfcSphere explicit implementation
 		IfcPositiveLengthMeasure IIfcSphere.Radius { get { return @Radius; } }	
@@ -135,17 +135,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
         public static bool operator !=(@IfcSphere left, @IfcSphere right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSphere x, @IfcSphere y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSphere obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

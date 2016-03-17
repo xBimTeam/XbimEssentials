@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcReparametrisedCompositeCurveSegment", 1255)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReparametrisedCompositeCurveSegment : IfcCompositeCurveSegment, IInstantiableEntity, IIfcReparametrisedCompositeCurveSegment, IEqualityComparer<@IfcReparametrisedCompositeCurveSegment>, IEquatable<@IfcReparametrisedCompositeCurveSegment>
+	public  partial class @IfcReparametrisedCompositeCurveSegment : IfcCompositeCurveSegment, IInstantiableEntity, IIfcReparametrisedCompositeCurveSegment, IEquatable<@IfcReparametrisedCompositeCurveSegment>
 	{
 		#region IIfcReparametrisedCompositeCurveSegment explicit implementation
 		IfcParameterValue IIfcReparametrisedCompositeCurveSegment.ParamLength { get { return @ParamLength; } }	
@@ -138,17 +138,6 @@ namespace Xbim.Ifc4.GeometryResource
         public static bool operator !=(@IfcReparametrisedCompositeCurveSegment left, @IfcReparametrisedCompositeCurveSegment right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcReparametrisedCompositeCurveSegment x, @IfcReparametrisedCompositeCurveSegment y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReparametrisedCompositeCurveSegment obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcRibPlateProfileProperties", 763)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRibPlateProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcRibPlateProfileProperties, IEqualityComparer<@IfcRibPlateProfileProperties>, IEquatable<@IfcRibPlateProfileProperties>
+	public  partial class @IfcRibPlateProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcRibPlateProfileProperties, IEquatable<@IfcRibPlateProfileProperties>
 	{
 		#region IIfcRibPlateProfileProperties explicit implementation
 		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.Thickness { get { return @Thickness; } }	
@@ -216,17 +216,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
         public static bool operator !=(@IfcRibPlateProfileProperties left, @IfcRibPlateProfileProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRibPlateProfileProperties x, @IfcRibPlateProfileProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRibPlateProfileProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcBlobTexture", 723)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcBlobTexture, IEqualityComparer<@IfcBlobTexture>, IEquatable<@IfcBlobTexture>
+	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcBlobTexture, IEquatable<@IfcBlobTexture>
 	{
 		#region IIfcBlobTexture explicit implementation
 		IfcIdentifier IIfcBlobTexture.RasterFormat { get { return @RasterFormat; } }	
@@ -159,17 +159,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcBlobTexture left, @IfcBlobTexture right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBlobTexture x, @IfcBlobTexture y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBlobTexture obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

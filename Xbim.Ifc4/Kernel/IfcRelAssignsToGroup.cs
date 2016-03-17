@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelAssignsToGroup", 278)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToGroup : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToGroup, IEqualityComparer<@IfcRelAssignsToGroup>, IEquatable<@IfcRelAssignsToGroup>
+	public  partial class @IfcRelAssignsToGroup : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToGroup, IEquatable<@IfcRelAssignsToGroup>
 	{
 		#region IIfcRelAssignsToGroup explicit implementation
 		IIfcGroup IIfcRelAssignsToGroup.RelatingGroup { get { return @RelatingGroup; } }	
@@ -141,17 +141,6 @@ namespace Xbim.Ifc4.Kernel
         public static bool operator !=(@IfcRelAssignsToGroup left, @IfcRelAssignsToGroup right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssignsToGroup x, @IfcRelAssignsToGroup y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToGroup obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

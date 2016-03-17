@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleRendering", 317)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IIfcSurfaceStyleRendering, IEqualityComparer<@IfcSurfaceStyleRendering>, IEquatable<@IfcSurfaceStyleRendering>
+	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IIfcSurfaceStyleRendering, IEquatable<@IfcSurfaceStyleRendering>
 	{
 		#region IIfcSurfaceStyleRendering explicit implementation
 		IfcNormalisedRatioMeasure? IIfcSurfaceStyleRendering.Transparency { get { return @Transparency; } }	
@@ -275,17 +275,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         public static bool operator !=(@IfcSurfaceStyleRendering left, @IfcSurfaceStyleRendering right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSurfaceStyleRendering x, @IfcSurfaceStyleRendering y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceStyleRendering obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

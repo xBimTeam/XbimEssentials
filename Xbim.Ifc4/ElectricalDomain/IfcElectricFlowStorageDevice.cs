@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcElectricFlowStorageDevice", 1159)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricFlowStorageDevice : IfcFlowStorageDevice, IInstantiableEntity, IIfcElectricFlowStorageDevice, IEqualityComparer<@IfcElectricFlowStorageDevice>, IEquatable<@IfcElectricFlowStorageDevice>
+	public  partial class @IfcElectricFlowStorageDevice : IfcFlowStorageDevice, IInstantiableEntity, IIfcElectricFlowStorageDevice, IEquatable<@IfcElectricFlowStorageDevice>
 	{
 		#region IIfcElectricFlowStorageDevice explicit implementation
 		IfcElectricFlowStorageDeviceTypeEnum? IIfcElectricFlowStorageDevice.PredefinedType { get { return @PredefinedType; } }	
@@ -144,17 +144,6 @@ namespace Xbim.Ifc4.ElectricalDomain
         public static bool operator !=(@IfcElectricFlowStorageDevice left, @IfcElectricFlowStorageDevice right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElectricFlowStorageDevice x, @IfcElectricFlowStorageDevice y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElectricFlowStorageDevice obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

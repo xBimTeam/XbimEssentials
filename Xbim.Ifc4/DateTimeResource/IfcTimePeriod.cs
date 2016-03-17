@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcTimePeriod", 1302)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimePeriod : INotifyPropertyChanged, IInstantiableEntity, IIfcTimePeriod, IEqualityComparer<@IfcTimePeriod>, IEquatable<@IfcTimePeriod>
+	public  partial class @IfcTimePeriod : INotifyPropertyChanged, IInstantiableEntity, IIfcTimePeriod, IEquatable<@IfcTimePeriod>
 	{
 		#region IIfcTimePeriod explicit implementation
 		IfcTime IIfcTimePeriod.StartTime { get { return @StartTime; } }	
@@ -260,17 +260,6 @@ namespace Xbim.Ifc4.DateTimeResource
         public static bool operator !=(@IfcTimePeriod left, @IfcTimePeriod right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTimePeriod x, @IfcTimePeriod y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTimePeriod obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

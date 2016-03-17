@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IfcReinforcingBarType", 1245)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcingBarType : IfcReinforcingElementType, IInstantiableEntity, IIfcReinforcingBarType, IEqualityComparer<@IfcReinforcingBarType>, IEquatable<@IfcReinforcingBarType>
+	public  partial class @IfcReinforcingBarType : IfcReinforcingElementType, IInstantiableEntity, IIfcReinforcingBarType, IEquatable<@IfcReinforcingBarType>
 	{
 		#region IIfcReinforcingBarType explicit implementation
 		IfcReinforcingBarTypeEnum IIfcReinforcingBarType.PredefinedType { get { return @PredefinedType; } }	
@@ -263,17 +263,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
         public static bool operator !=(@IfcReinforcingBarType left, @IfcReinforcingBarType right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcReinforcingBarType x, @IfcReinforcingBarType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReinforcingBarType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

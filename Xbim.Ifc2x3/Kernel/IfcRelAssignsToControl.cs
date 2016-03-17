@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssignsToControl", 558)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToControl : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToControl, IEqualityComparer<@IfcRelAssignsToControl>, IEquatable<@IfcRelAssignsToControl>
+	public  partial class @IfcRelAssignsToControl : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToControl, IEquatable<@IfcRelAssignsToControl>
 	{
 		#region IIfcRelAssignsToControl explicit implementation
 		IIfcControl IIfcRelAssignsToControl.RelatingControl { get { return @RelatingControl; } }	
@@ -141,17 +141,6 @@ namespace Xbim.Ifc2x3.Kernel
         public static bool operator !=(@IfcRelAssignsToControl left, @IfcRelAssignsToControl right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssignsToControl x, @IfcRelAssignsToControl y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToControl obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

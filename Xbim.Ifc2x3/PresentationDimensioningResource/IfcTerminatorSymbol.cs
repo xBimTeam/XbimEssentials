@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcTerminatorSymbol", 743)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTerminatorSymbol : IfcAnnotationSymbolOccurrence, IInstantiableEntity, IIfcTerminatorSymbol, IEqualityComparer<@IfcTerminatorSymbol>, IEquatable<@IfcTerminatorSymbol>
+	public  partial class @IfcTerminatorSymbol : IfcAnnotationSymbolOccurrence, IInstantiableEntity, IIfcTerminatorSymbol, IEquatable<@IfcTerminatorSymbol>
 	{
 		#region IIfcTerminatorSymbol explicit implementation
 		IIfcAnnotationCurveOccurrence IIfcTerminatorSymbol.AnnotatedCurve { get { return @AnnotatedCurve; } }	
@@ -138,17 +138,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
         public static bool operator !=(@IfcTerminatorSymbol left, @IfcTerminatorSymbol right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTerminatorSymbol x, @IfcTerminatorSymbol y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTerminatorSymbol obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

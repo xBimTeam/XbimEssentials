@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcCircleProfileDef", 113)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCircleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCircleProfileDef, IEqualityComparer<@IfcCircleProfileDef>, IEquatable<@IfcCircleProfileDef>
+	public  partial class @IfcCircleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCircleProfileDef, IEquatable<@IfcCircleProfileDef>
 	{
 		#region IIfcCircleProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcCircleProfileDef.Radius { get { return @Radius; } }	
@@ -137,17 +137,6 @@ namespace Xbim.Ifc4.ProfileResource
         public static bool operator !=(@IfcCircleProfileDef left, @IfcCircleProfileDef right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCircleProfileDef x, @IfcCircleProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCircleProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

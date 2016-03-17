@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcFacetedBrep", 148)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFacetedBrep : IfcManifoldSolidBrep, IInstantiableEntity, IIfcFacetedBrep, IEqualityComparer<@IfcFacetedBrep>, IEquatable<@IfcFacetedBrep>
+	public  partial class @IfcFacetedBrep : IfcManifoldSolidBrep, IInstantiableEntity, IIfcFacetedBrep, IEquatable<@IfcFacetedBrep>
 	{
 		#region IIfcFacetedBrep explicit implementation
 		 
@@ -109,17 +109,6 @@ namespace Xbim.Ifc4.GeometricModelResource
         public static bool operator !=(@IfcFacetedBrep left, @IfcFacetedBrep right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFacetedBrep x, @IfcFacetedBrep y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFacetedBrep obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDraughtingCalloutRelationship", 740)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingCalloutRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcDraughtingCalloutRelationship, IEqualityComparer<@IfcDraughtingCalloutRelationship>, IEquatable<@IfcDraughtingCalloutRelationship>
+	public  partial class @IfcDraughtingCalloutRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcDraughtingCalloutRelationship, IEquatable<@IfcDraughtingCalloutRelationship>
 	{
 		#region IIfcDraughtingCalloutRelationship explicit implementation
 		IfcLabel? IIfcDraughtingCalloutRelationship.Name { get { return @Name; } }	
@@ -303,17 +303,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
         public static bool operator !=(@IfcDraughtingCalloutRelationship left, @IfcDraughtingCalloutRelationship right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDraughtingCalloutRelationship x, @IfcDraughtingCalloutRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDraughtingCalloutRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

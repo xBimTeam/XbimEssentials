@@ -42,7 +42,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Document", 30)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieDocument : CobieReferencedObject, IInstantiableEntity, ICobieDocument, IEqualityComparer<@CobieDocument>, IEquatable<@CobieDocument>
+	public  partial class @CobieDocument : CobieReferencedObject, IInstantiableEntity, ICobieDocument, IEquatable<@CobieDocument>
 	{
 		#region ICobieDocument explicit implementation
 		string ICobieDocument.Name { get { return @Name; } }	
@@ -298,17 +298,6 @@ namespace Xbim.CobieExpress
         public static bool operator !=(@CobieDocument left, @CobieDocument right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@CobieDocument x, @CobieDocument y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieDocument obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

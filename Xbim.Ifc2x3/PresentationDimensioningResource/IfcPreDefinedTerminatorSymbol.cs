@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcPreDefinedTerminatorSymbol", 749)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPreDefinedTerminatorSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedTerminatorSymbol, IEqualityComparer<@IfcPreDefinedTerminatorSymbol>, IEquatable<@IfcPreDefinedTerminatorSymbol>
+	public  partial class @IfcPreDefinedTerminatorSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedTerminatorSymbol, IEquatable<@IfcPreDefinedTerminatorSymbol>
 	{
 		#region IIfcPreDefinedTerminatorSymbol explicit implementation
 		 
@@ -111,17 +111,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
         public static bool operator !=(@IfcPreDefinedTerminatorSymbol left, @IfcPreDefinedTerminatorSymbol right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPreDefinedTerminatorSymbol x, @IfcPreDefinedTerminatorSymbol y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPreDefinedTerminatorSymbol obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

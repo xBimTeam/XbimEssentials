@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcDoor", 213)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IIfcDoor, IEqualityComparer<@IfcDoor>, IEquatable<@IfcDoor>
+	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IIfcDoor, IEquatable<@IfcDoor>
 	{
 		#region IIfcDoor explicit implementation
 		IfcPositiveLengthMeasure? IIfcDoor.OverallHeight { get { return @OverallHeight; } }	
@@ -163,17 +163,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         public static bool operator !=(@IfcDoor left, @IfcDoor right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDoor x, @IfcDoor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDoor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

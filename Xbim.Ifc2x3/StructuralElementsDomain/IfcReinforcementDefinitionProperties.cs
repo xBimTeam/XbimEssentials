@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcReinforcementDefinitionProperties", 263)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcementDefinitionProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcReinforcementDefinitionProperties, IEqualityComparer<@IfcReinforcementDefinitionProperties>, IEquatable<@IfcReinforcementDefinitionProperties>
+	public  partial class @IfcReinforcementDefinitionProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcReinforcementDefinitionProperties, IEquatable<@IfcReinforcementDefinitionProperties>
 	{
 		#region IIfcReinforcementDefinitionProperties explicit implementation
 		IfcLabel? IIfcReinforcementDefinitionProperties.DefinitionType { get { return @DefinitionType; } }	
@@ -158,17 +158,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
         public static bool operator !=(@IfcReinforcementDefinitionProperties left, @IfcReinforcementDefinitionProperties right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcReinforcementDefinitionProperties x, @IfcReinforcementDefinitionProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReinforcementDefinitionProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 

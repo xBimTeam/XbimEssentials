@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcArbitraryProfileDefWithVoids", 116)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IIfcArbitraryProfileDefWithVoids, IEqualityComparer<@IfcArbitraryProfileDefWithVoids>, IEquatable<@IfcArbitraryProfileDefWithVoids>
+	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IIfcArbitraryProfileDefWithVoids, IEquatable<@IfcArbitraryProfileDefWithVoids>
 	{
 		#region IIfcArbitraryProfileDefWithVoids explicit implementation
 		IEnumerable<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves { get { return @InnerCurves; } }	
@@ -138,17 +138,6 @@ namespace Xbim.Ifc4.ProfileResource
         public static bool operator !=(@IfcArbitraryProfileDefWithVoids left, @IfcArbitraryProfileDefWithVoids right)
         {
             return !(left == right);
-        }
-
-
-        public bool Equals(@IfcArbitraryProfileDefWithVoids x, @IfcArbitraryProfileDefWithVoids y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcArbitraryProfileDefWithVoids obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
         }
         #endregion
 
