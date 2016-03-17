@@ -120,6 +120,27 @@ namespace Xbim.Ifc4.GeometryResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcPoint left, IfcGeometricSetSelect right)
+		{
+			return left == right as @IfcPoint;
+		}
+
+		public static bool operator !=(@IfcPoint left, IfcGeometricSetSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcPoint left, IfcPointOrVertexPoint right)
+		{
+			return left == right as @IfcPoint;
+		}
+
+		public static bool operator !=(@IfcPoint left, IfcPointOrVertexPoint right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

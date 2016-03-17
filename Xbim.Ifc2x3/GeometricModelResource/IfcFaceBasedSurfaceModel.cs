@@ -147,6 +147,17 @@ namespace Xbim.Ifc2x3.GeometricModelResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcFaceBasedSurfaceModel left, IfcSurfaceOrFaceSurface right)
+		{
+			return left == right as @IfcFaceBasedSurfaceModel;
+		}
+
+		public static bool operator !=(@IfcFaceBasedSurfaceModel left, IfcSurfaceOrFaceSurface right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

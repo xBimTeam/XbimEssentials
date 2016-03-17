@@ -264,6 +264,37 @@ namespace Xbim.Ifc2x3.MeasureResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcMeasureWithUnit left, IfcAppliedValueSelect right)
+		{
+			return left == right as @IfcMeasureWithUnit;
+		}
+
+		public static bool operator !=(@IfcMeasureWithUnit left, IfcAppliedValueSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcMeasureWithUnit left, IfcConditionCriterionSelect right)
+		{
+			return left == right as @IfcMeasureWithUnit;
+		}
+
+		public static bool operator !=(@IfcMeasureWithUnit left, IfcConditionCriterionSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcMeasureWithUnit left, IfcMetricValueSelect right)
+		{
+			return left == right as @IfcMeasureWithUnit;
+		}
+
+		public static bool operator !=(@IfcMeasureWithUnit left, IfcMetricValueSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -150,6 +150,17 @@ namespace Xbim.Ifc4.MeasureResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcContextDependentUnit left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcContextDependentUnit;
+		}
+
+		public static bool operator !=(@IfcContextDependentUnit left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

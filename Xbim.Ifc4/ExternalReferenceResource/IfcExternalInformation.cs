@@ -213,6 +213,17 @@ namespace Xbim.Ifc4.ExternalReferenceResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcExternalInformation left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcExternalInformation;
+		}
+
+		public static bool operator !=(@IfcExternalInformation left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

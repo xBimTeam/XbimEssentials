@@ -177,6 +177,17 @@ namespace Xbim.Ifc2x3.PresentationResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcColourRgb left, IfcColourOrFactor right)
+		{
+			return left == right as @IfcColourRgb;
+		}
+
+		public static bool operator !=(@IfcColourRgb left, IfcColourOrFactor right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

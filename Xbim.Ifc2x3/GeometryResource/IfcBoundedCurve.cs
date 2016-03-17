@@ -105,6 +105,17 @@ namespace Xbim.Ifc2x3.GeometryResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcBoundedCurve left, IfcCurveOrEdgeCurve right)
+		{
+			return left == right as @IfcBoundedCurve;
+		}
+
+		public static bool operator !=(@IfcBoundedCurve left, IfcCurveOrEdgeCurve right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

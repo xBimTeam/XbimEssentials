@@ -464,6 +464,17 @@ namespace Xbim.Ifc4.ApprovalResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcApproval left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcApproval;
+		}
+
+		public static bool operator !=(@IfcApproval left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

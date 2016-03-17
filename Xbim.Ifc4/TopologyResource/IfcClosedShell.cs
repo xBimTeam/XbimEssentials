@@ -111,6 +111,27 @@ namespace Xbim.Ifc4.TopologyResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcClosedShell left, IfcShell right)
+		{
+			return left == right as @IfcClosedShell;
+		}
+
+		public static bool operator !=(@IfcClosedShell left, IfcShell right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcClosedShell left, IfcSolidOrShell right)
+		{
+			return left == right as @IfcClosedShell;
+		}
+
+		public static bool operator !=(@IfcClosedShell left, IfcSolidOrShell right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -380,6 +380,17 @@ namespace Xbim.Ifc2x3.CostResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcAppliedValue left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcAppliedValue;
+		}
+
+		public static bool operator !=(@IfcAppliedValue left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

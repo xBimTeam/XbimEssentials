@@ -302,6 +302,7 @@ namespace Xbim.Ifc2x3.ActorResource
         {
             return !(left == right);
         }
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

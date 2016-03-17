@@ -298,6 +298,37 @@ namespace Xbim.Ifc4.ExternalReferenceResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcExternalReference left, IfcLightDistributionDataSourceSelect right)
+		{
+			return left == right as @IfcExternalReference;
+		}
+
+		public static bool operator !=(@IfcExternalReference left, IfcLightDistributionDataSourceSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcExternalReference left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcExternalReference;
+		}
+
+		public static bool operator !=(@IfcExternalReference left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcExternalReference left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcExternalReference;
+		}
+
+		public static bool operator !=(@IfcExternalReference left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

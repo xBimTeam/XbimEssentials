@@ -257,6 +257,7 @@ namespace Xbim.Ifc4.ActorResource
         {
             return !(left == right);
         }
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

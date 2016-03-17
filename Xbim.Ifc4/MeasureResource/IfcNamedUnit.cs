@@ -262,6 +262,17 @@ namespace Xbim.Ifc4.MeasureResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcNamedUnit left, IfcUnit right)
+		{
+			return left == right as @IfcNamedUnit;
+		}
+
+		public static bool operator !=(@IfcNamedUnit left, IfcUnit right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

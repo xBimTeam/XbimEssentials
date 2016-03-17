@@ -174,6 +174,17 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcCurveStyleFontAndScaling left, IfcCurveFontOrScaledCurveFontSelect right)
+		{
+			return left == right as @IfcCurveStyleFontAndScaling;
+		}
+
+		public static bool operator !=(@IfcCurveStyleFontAndScaling left, IfcCurveFontOrScaledCurveFontSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

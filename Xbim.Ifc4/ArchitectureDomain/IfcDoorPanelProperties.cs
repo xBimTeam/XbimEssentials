@@ -222,6 +222,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
         {
             return !(left == right);
         }
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

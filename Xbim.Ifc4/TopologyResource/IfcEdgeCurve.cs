@@ -159,6 +159,17 @@ namespace Xbim.Ifc4.TopologyResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcEdgeCurve left, IfcCurveOrEdgeCurve right)
+		{
+			return left == right as @IfcEdgeCurve;
+		}
+
+		public static bool operator !=(@IfcEdgeCurve left, IfcCurveOrEdgeCurve right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

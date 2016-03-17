@@ -390,6 +390,17 @@ namespace Xbim.Ifc4.ConstraintResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcConstraint left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcConstraint;
+		}
+
+		public static bool operator !=(@IfcConstraint left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

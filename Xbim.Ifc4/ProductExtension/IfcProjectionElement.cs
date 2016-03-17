@@ -142,6 +142,7 @@ namespace Xbim.Ifc4.ProductExtension
         {
             return !(left == right);
         }
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

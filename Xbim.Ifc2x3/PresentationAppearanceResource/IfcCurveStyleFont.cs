@@ -260,6 +260,17 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcCurveStyleFont left, IfcCurveStyleFontSelect right)
+		{
+			return left == right as @IfcCurveStyleFont;
+		}
+
+		public static bool operator !=(@IfcCurveStyleFont left, IfcCurveStyleFontSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

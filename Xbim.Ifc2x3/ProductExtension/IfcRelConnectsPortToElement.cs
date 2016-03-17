@@ -161,6 +161,7 @@ namespace Xbim.Ifc2x3.ProductExtension
         {
             return !(left == right);
         }
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

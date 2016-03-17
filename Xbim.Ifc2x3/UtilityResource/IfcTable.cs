@@ -304,6 +304,17 @@ namespace Xbim.Ifc2x3.UtilityResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcTable left, IfcMetricValueSelect right)
+		{
+			return left == right as @IfcTable;
+		}
+
+		public static bool operator !=(@IfcTable left, IfcMetricValueSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

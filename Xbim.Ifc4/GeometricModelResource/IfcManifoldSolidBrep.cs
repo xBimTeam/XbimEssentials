@@ -133,6 +133,7 @@ namespace Xbim.Ifc4.GeometricModelResource
         {
             return !(left == right);
         }
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

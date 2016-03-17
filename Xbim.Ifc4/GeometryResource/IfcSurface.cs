@@ -131,6 +131,27 @@ namespace Xbim.Ifc4.GeometryResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcSurface left, IfcGeometricSetSelect right)
+		{
+			return left == right as @IfcSurface;
+		}
+
+		public static bool operator !=(@IfcSurface left, IfcGeometricSetSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcSurface left, IfcSurfaceOrFaceSurface right)
+		{
+			return left == right as @IfcSurface;
+		}
+
+		public static bool operator !=(@IfcSurface left, IfcSurfaceOrFaceSurface right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

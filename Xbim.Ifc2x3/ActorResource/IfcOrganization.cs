@@ -355,6 +355,27 @@ namespace Xbim.Ifc2x3.ActorResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcOrganization left, IfcActorSelect right)
+		{
+			return left == right as @IfcOrganization;
+		}
+
+		public static bool operator !=(@IfcOrganization left, IfcActorSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcOrganization left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcOrganization;
+		}
+
+		public static bool operator !=(@IfcOrganization left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

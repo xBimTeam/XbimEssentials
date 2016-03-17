@@ -192,6 +192,17 @@ namespace Xbim.Ifc4.Kernel
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcObjectDefinition left, IfcDefinitionSelect right)
+		{
+			return left == right as @IfcObjectDefinition;
+		}
+
+		public static bool operator !=(@IfcObjectDefinition left, IfcDefinitionSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

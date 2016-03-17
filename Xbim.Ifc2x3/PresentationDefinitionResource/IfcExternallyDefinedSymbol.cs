@@ -113,6 +113,17 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcExternallyDefinedSymbol left, IfcDefinedSymbolSelect right)
+		{
+			return left == right as @IfcExternallyDefinedSymbol;
+		}
+
+		public static bool operator !=(@IfcExternallyDefinedSymbol left, IfcDefinedSymbolSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

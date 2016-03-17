@@ -321,6 +321,27 @@ namespace Xbim.Ifc4.ConstraintResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcReference left, IfcAppliedValueSelect right)
+		{
+			return left == right as @IfcReference;
+		}
+
+		public static bool operator !=(@IfcReference left, IfcAppliedValueSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcReference left, IfcMetricValueSelect right)
+		{
+			return left == right as @IfcReference;
+		}
+
+		public static bool operator !=(@IfcReference left, IfcMetricValueSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

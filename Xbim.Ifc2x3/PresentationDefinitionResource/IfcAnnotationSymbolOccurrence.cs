@@ -114,6 +114,17 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcAnnotationSymbolOccurrence left, IfcDraughtingCalloutElement right)
+		{
+			return left == right as @IfcAnnotationSymbolOccurrence;
+		}
+
+		public static bool operator !=(@IfcAnnotationSymbolOccurrence left, IfcDraughtingCalloutElement right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

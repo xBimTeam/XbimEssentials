@@ -251,6 +251,17 @@ namespace Xbim.CobieExpress
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@CobieSpace left, SpatialDivision right)
+		{
+			return left == right as @CobieSpace;
+		}
+
+		public static bool operator !=(@CobieSpace left, SpatialDivision right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

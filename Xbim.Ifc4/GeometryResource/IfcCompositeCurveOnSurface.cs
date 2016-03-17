@@ -126,6 +126,17 @@ namespace Xbim.Ifc4.GeometryResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcCompositeCurveOnSurface left, IfcCurveOnSurface right)
+		{
+			return left == right as @IfcCompositeCurveOnSurface;
+		}
+
+		public static bool operator !=(@IfcCompositeCurveOnSurface left, IfcCurveOnSurface right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

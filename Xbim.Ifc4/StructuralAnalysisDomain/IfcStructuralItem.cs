@@ -130,6 +130,17 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcStructuralItem left, IfcStructuralActivityAssignmentSelect right)
+		{
+			return left == right as @IfcStructuralItem;
+		}
+
+		public static bool operator !=(@IfcStructuralItem left, IfcStructuralActivityAssignmentSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

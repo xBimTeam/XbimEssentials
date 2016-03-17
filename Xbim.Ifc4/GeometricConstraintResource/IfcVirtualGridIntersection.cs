@@ -259,6 +259,17 @@ namespace Xbim.Ifc4.GeometricConstraintResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcVirtualGridIntersection left, IfcGridPlacementDirectionSelect right)
+		{
+			return left == right as @IfcVirtualGridIntersection;
+		}
+
+		public static bool operator !=(@IfcVirtualGridIntersection left, IfcGridPlacementDirectionSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -232,6 +232,7 @@ namespace Xbim.Ifc4.ProfileResource
         {
             return !(left == right);
         }
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

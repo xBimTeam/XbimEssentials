@@ -227,6 +227,17 @@ namespace Xbim.Ifc4.PropertyResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcPropertyAbstraction left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcPropertyAbstraction;
+		}
+
+		public static bool operator !=(@IfcPropertyAbstraction left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

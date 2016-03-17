@@ -275,6 +275,17 @@ namespace Xbim.Ifc2x3.MaterialResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcMaterialLayerSet left, IfcMaterialSelect right)
+		{
+			return left == right as @IfcMaterialLayerSet;
+		}
+
+		public static bool operator !=(@IfcMaterialLayerSet left, IfcMaterialSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

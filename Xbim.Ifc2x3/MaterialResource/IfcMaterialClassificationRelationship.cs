@@ -261,6 +261,7 @@ namespace Xbim.Ifc2x3.MaterialResource
         {
             return !(left == right);
         }
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

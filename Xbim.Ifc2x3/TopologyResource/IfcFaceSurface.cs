@@ -157,6 +157,17 @@ namespace Xbim.Ifc2x3.TopologyResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcFaceSurface left, IfcSurfaceOrFaceSurface right)
+		{
+			return left == right as @IfcFaceSurface;
+		}
+
+		public static bool operator !=(@IfcFaceSurface left, IfcSurfaceOrFaceSurface right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

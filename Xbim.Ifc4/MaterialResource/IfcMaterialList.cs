@@ -239,6 +239,17 @@ namespace Xbim.Ifc4.MaterialResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcMaterialList left, IfcMaterialSelect right)
+		{
+			return left == right as @IfcMaterialList;
+		}
+
+		public static bool operator !=(@IfcMaterialList left, IfcMaterialSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

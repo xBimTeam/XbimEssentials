@@ -161,6 +161,17 @@ namespace Xbim.Ifc4.GeometryResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcAxis2Placement2D left, IfcAxis2Placement right)
+		{
+			return left == right as @IfcAxis2Placement2D;
+		}
+
+		public static bool operator !=(@IfcAxis2Placement2D left, IfcAxis2Placement right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

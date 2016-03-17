@@ -259,6 +259,17 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcLightIntensityDistribution left, IfcLightDistributionDataSourceSelect right)
+		{
+			return left == right as @IfcLightIntensityDistribution;
+		}
+
+		public static bool operator !=(@IfcLightIntensityDistribution left, IfcLightDistributionDataSourceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

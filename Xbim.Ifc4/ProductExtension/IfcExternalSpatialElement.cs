@@ -155,6 +155,17 @@ namespace Xbim.Ifc4.ProductExtension
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcExternalSpatialElement left, IfcSpaceBoundarySelect right)
+		{
+			return left == right as @IfcExternalSpatialElement;
+		}
+
+		public static bool operator !=(@IfcExternalSpatialElement left, IfcSpaceBoundarySelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -288,6 +288,17 @@ namespace Xbim.Ifc4.GeometryResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcRepresentationMap left, IfcProductRepresentationSelect right)
+		{
+			return left == right as @IfcRepresentationMap;
+		}
+
+		public static bool operator !=(@IfcRepresentationMap left, IfcProductRepresentationSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

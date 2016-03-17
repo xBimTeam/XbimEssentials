@@ -146,6 +146,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
         {
             return !(left == right);
         }
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

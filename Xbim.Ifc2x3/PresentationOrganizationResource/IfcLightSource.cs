@@ -195,6 +195,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
         {
             return !(left == right);
         }
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

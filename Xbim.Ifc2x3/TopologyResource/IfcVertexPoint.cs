@@ -134,6 +134,17 @@ namespace Xbim.Ifc2x3.TopologyResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcVertexPoint left, IfcPointOrVertexPoint right)
+		{
+			return left == right as @IfcVertexPoint;
+		}
+
+		public static bool operator !=(@IfcVertexPoint left, IfcPointOrVertexPoint right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

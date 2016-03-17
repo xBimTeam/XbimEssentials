@@ -281,6 +281,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
         {
             return !(left == right);
         }
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

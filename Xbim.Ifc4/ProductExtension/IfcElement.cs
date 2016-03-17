@@ -279,6 +279,17 @@ namespace Xbim.Ifc4.ProductExtension
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcElement left, IfcStructuralActivityAssignmentSelect right)
+		{
+			return left == right as @IfcElement;
+		}
+
+		public static bool operator !=(@IfcElement left, IfcStructuralActivityAssignmentSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -110,6 +110,17 @@ namespace Xbim.Ifc2x3.PresentationResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcPreDefinedTextFont left, IfcTextFontSelect right)
+		{
+			return left == right as @IfcPreDefinedTextFont;
+		}
+
+		public static bool operator !=(@IfcPreDefinedTextFont left, IfcTextFontSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

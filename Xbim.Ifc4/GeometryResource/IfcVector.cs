@@ -169,6 +169,27 @@ namespace Xbim.Ifc4.GeometryResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcVector left, IfcHatchLineDistanceSelect right)
+		{
+			return left == right as @IfcVector;
+		}
+
+		public static bool operator !=(@IfcVector left, IfcHatchLineDistanceSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcVector left, IfcVectorOrDirection right)
+		{
+			return left == right as @IfcVector;
+		}
+
+		public static bool operator !=(@IfcVector left, IfcVectorOrDirection right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

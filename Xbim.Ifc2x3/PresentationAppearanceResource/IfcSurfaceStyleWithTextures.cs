@@ -239,6 +239,17 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcSurfaceStyleWithTextures left, IfcSurfaceStyleElementSelect right)
+		{
+			return left == right as @IfcSurfaceStyleWithTextures;
+		}
+
+		public static bool operator !=(@IfcSurfaceStyleWithTextures left, IfcSurfaceStyleElementSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -132,6 +132,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         {
             return !(left == right);
         }
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

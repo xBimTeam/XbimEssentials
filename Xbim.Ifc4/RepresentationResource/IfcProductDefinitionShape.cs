@@ -138,6 +138,17 @@ namespace Xbim.Ifc4.RepresentationResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcProductDefinitionShape left, IfcProductRepresentationSelect right)
+		{
+			return left == right as @IfcProductDefinitionShape;
+		}
+
+		public static bool operator !=(@IfcProductDefinitionShape left, IfcProductRepresentationSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

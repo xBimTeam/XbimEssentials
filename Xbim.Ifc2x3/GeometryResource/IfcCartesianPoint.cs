@@ -145,6 +145,17 @@ namespace Xbim.Ifc2x3.GeometryResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcCartesianPoint left, IfcTrimmingSelect right)
+		{
+			return left == right as @IfcCartesianPoint;
+		}
+
+		public static bool operator !=(@IfcCartesianPoint left, IfcTrimmingSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

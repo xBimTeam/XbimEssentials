@@ -388,6 +388,27 @@ namespace Xbim.Ifc2x3.ActorResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcPerson left, IfcActorSelect right)
+		{
+			return left == right as @IfcPerson;
+		}
+
+		public static bool operator !=(@IfcPerson left, IfcActorSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcPerson left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcPerson;
+		}
+
+		public static bool operator !=(@IfcPerson left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

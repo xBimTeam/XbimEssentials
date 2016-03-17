@@ -361,6 +361,17 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcTextStyleTextModel left, IfcTextStyleSelect right)
+		{
+			return left == right as @IfcTextStyleTextModel;
+		}
+
+		public static bool operator !=(@IfcTextStyleTextModel left, IfcTextStyleSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

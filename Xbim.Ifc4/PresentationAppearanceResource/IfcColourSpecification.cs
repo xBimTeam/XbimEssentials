@@ -134,6 +134,17 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcColourSpecification left, IfcColour right)
+		{
+			return left == right as @IfcColourSpecification;
+		}
+
+		public static bool operator !=(@IfcColourSpecification left, IfcColour right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -287,6 +287,17 @@ namespace Xbim.Ifc4.ProfileResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcProfileDef left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcProfileDef;
+		}
+
+		public static bool operator !=(@IfcProfileDef left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

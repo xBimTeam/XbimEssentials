@@ -113,6 +113,17 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcExternallyDefinedHatchStyle left, IfcFillStyleSelect right)
+		{
+			return left == right as @IfcExternallyDefinedHatchStyle;
+		}
+
+		public static bool operator !=(@IfcExternallyDefinedHatchStyle left, IfcFillStyleSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

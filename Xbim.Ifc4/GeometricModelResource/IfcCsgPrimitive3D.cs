@@ -146,6 +146,27 @@ namespace Xbim.Ifc4.GeometricModelResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcCsgPrimitive3D left, IfcBooleanOperand right)
+		{
+			return left == right as @IfcCsgPrimitive3D;
+		}
+
+		public static bool operator !=(@IfcCsgPrimitive3D left, IfcBooleanOperand right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcCsgPrimitive3D left, IfcCsgSelect right)
+		{
+			return left == right as @IfcCsgPrimitive3D;
+		}
+
+		public static bool operator !=(@IfcCsgPrimitive3D left, IfcCsgSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

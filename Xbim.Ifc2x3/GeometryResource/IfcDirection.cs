@@ -145,6 +145,27 @@ namespace Xbim.Ifc2x3.GeometryResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcDirection left, IfcOrientationSelect right)
+		{
+			return left == right as @IfcDirection;
+		}
+
+		public static bool operator !=(@IfcDirection left, IfcOrientationSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcDirection left, IfcVectorOrDirection right)
+		{
+			return left == right as @IfcDirection;
+		}
+
+		public static bool operator !=(@IfcDirection left, IfcVectorOrDirection right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -283,6 +283,27 @@ namespace Xbim.Ifc2x3.DateTimeResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcCalendarDate left, IfcDateTimeSelect right)
+		{
+			return left == right as @IfcCalendarDate;
+		}
+
+		public static bool operator !=(@IfcCalendarDate left, IfcDateTimeSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcCalendarDate left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcCalendarDate;
+		}
+
+		public static bool operator !=(@IfcCalendarDate left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

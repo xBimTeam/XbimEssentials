@@ -315,6 +315,17 @@ namespace Xbim.Ifc4.RepresentationResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcCoordinateReferenceSystem left, IfcCoordinateReferenceSystemSelect right)
+		{
+			return left == right as @IfcCoordinateReferenceSystem;
+		}
+
+		public static bool operator !=(@IfcCoordinateReferenceSystem left, IfcCoordinateReferenceSystemSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -398,6 +398,27 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcTimeSeries left, IfcMetricValueSelect right)
+		{
+			return left == right as @IfcTimeSeries;
+		}
+
+		public static bool operator !=(@IfcTimeSeries left, IfcMetricValueSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcTimeSeries left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcTimeSeries;
+		}
+
+		public static bool operator !=(@IfcTimeSeries left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -277,6 +277,27 @@ namespace Xbim.Ifc4.ExternalReferenceResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcClassification left, IfcClassificationReferenceSelect right)
+		{
+			return left == right as @IfcClassification;
+		}
+
+		public static bool operator !=(@IfcClassification left, IfcClassificationReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcClassification left, IfcClassificationSelect right)
+		{
+			return left == right as @IfcClassification;
+		}
+
+		public static bool operator !=(@IfcClassification left, IfcClassificationSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

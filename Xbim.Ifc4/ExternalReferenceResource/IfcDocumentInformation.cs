@@ -500,6 +500,17 @@ namespace Xbim.Ifc4.ExternalReferenceResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcDocumentInformation left, IfcDocumentSelect right)
+		{
+			return left == right as @IfcDocumentInformation;
+		}
+
+		public static bool operator !=(@IfcDocumentInformation left, IfcDocumentSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

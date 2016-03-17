@@ -239,6 +239,17 @@ namespace Xbim.Ifc4.GeometryResource
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcRepresentationItem left, IfcLayeredItem right)
+		{
+			return left == right as @IfcRepresentationItem;
+		}
+
+		public static bool operator !=(@IfcRepresentationItem left, IfcLayeredItem right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

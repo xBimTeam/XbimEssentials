@@ -196,6 +196,17 @@ namespace Xbim.Ifc4.Kernel
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcProcess left, IfcProcessSelect right)
+		{
+			return left == right as @IfcProcess;
+		}
+
+		public static bool operator !=(@IfcProcess left, IfcProcessSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

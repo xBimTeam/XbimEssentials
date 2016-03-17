@@ -173,6 +173,17 @@ namespace Xbim.Ifc4.Kernel
         {
             return !(left == right);
         }
+
+        public static bool operator ==(@IfcResource left, IfcResourceSelect right)
+		{
+			return left == right as @IfcResource;
+		}
+
+		public static bool operator !=(@IfcResource left, IfcResourceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)
