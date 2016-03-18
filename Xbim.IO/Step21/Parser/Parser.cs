@@ -123,42 +123,46 @@ namespace Xbim.IO.Parser
 
     abstract partial class P21Parser : ShiftReduceParser<ValueType, LexLocation>
     {
-        public P21Parser(Stream strm)
+        protected P21Parser(Stream strm)
             : base(new Scanner(strm))
         {
         }
 
+        protected P21Parser()
+            : base(new Scanner())
+        {
+        }
 
         internal virtual void SetErrorMessage()
         {
         }
 
-        internal abstract void CharacterError();
-        internal abstract void BeginParse();
-        internal abstract void EndParse();
-        internal abstract void BeginHeader();
-        internal abstract void EndHeader();
-        internal abstract void BeginScope();
-        internal abstract void EndScope();
-        internal abstract void EndSec();
-        internal abstract void BeginList();
-        internal abstract void EndList();
-        internal abstract void BeginComplex();
-        internal abstract void EndComplex();
-        internal abstract void SetType(string entityTypeName);
-        internal abstract void NewEntity(string entityLabel);
-        internal abstract void EndEntity();
-        internal abstract void EndHeaderEntity();
-        internal abstract void SetIntegerValue(string value);
-        internal abstract void SetHexValue(string value);
-        internal abstract void SetFloatValue(string value);
-        internal abstract void SetStringValue(string value);
-        internal abstract void SetEnumValue(string value);
-        internal abstract void SetBooleanValue(string value);
-        internal abstract void SetNonDefinedValue();
-        internal abstract void SetOverrideValue();
-        internal abstract void SetObjectValue(string value);
-        internal abstract void EndNestedType(string value);
-        internal abstract void BeginNestedType(string value);
+        protected abstract void CharacterError();
+        protected abstract void BeginParse();
+        protected abstract void EndParse();
+        protected abstract void BeginHeader();
+        protected abstract void EndHeader();
+        protected abstract void BeginScope();
+        protected abstract void EndScope();
+        protected abstract void EndSec();
+        protected abstract void BeginList();
+        protected abstract void EndList();
+        protected abstract void BeginComplex();
+        protected abstract void EndComplex();
+        protected abstract void SetType(string entityTypeName);
+        protected abstract void NewEntity(string entityLabel);
+        protected abstract void EndEntity();
+        protected abstract void EndHeaderEntity();
+        protected abstract void SetIntegerValue(string value);
+        protected abstract void SetHexValue(string value);
+        protected abstract void SetFloatValue(string value);
+        protected abstract void SetStringValue(string value);
+        protected abstract void SetEnumValue(string value);
+        protected abstract void SetBooleanValue(string value);
+        protected abstract void SetNonDefinedValue();
+        protected abstract void SetOverrideValue();
+        protected abstract void SetObjectValue(string value);
+        protected abstract void EndNestedType(string value);
+        protected abstract void BeginNestedType(string value);
     }
 }

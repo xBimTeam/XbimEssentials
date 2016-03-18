@@ -75,15 +75,15 @@ namespace Xbim.IO.Step21
         {
         }
 
-        internal override void CharacterError()
+        protected override void CharacterError()
         {
         }
 
-        internal override void BeginParse()
+        protected override void BeginParse()
         {
         }
 
-        internal override void EndParse()
+        protected override void EndParse()
         {
             foreach (var defRef in _deferredReferences)
             {
@@ -93,27 +93,27 @@ namespace Xbim.IO.Step21
             }
         }
 
-        internal override void BeginHeader()
+        protected override void BeginHeader()
         {
         }
 
-        internal override void EndHeader()
+        protected override void EndHeader()
         {
         }
 
-        internal override void BeginScope()
+        protected override void BeginScope()
         {
         }
 
-        internal override void EndScope()
+        protected override void EndScope()
         {
         }
 
-        internal override void EndSec()
+        protected override void EndSec()
         {
         }
 
-        internal override void BeginList()
+        protected override void BeginList()
         {
             var p21 = _processStack.Peek();
             if (p21.CurrentParamIndex == -1)
@@ -129,7 +129,7 @@ namespace Xbim.IO.Step21
                 _nestedIndex[_listNestLevel - 2]++;
         }
 
-        internal override void EndList()
+        protected override void EndList()
         {
             _listNestLevel--;
             if (_listNestLevel == 0)
@@ -143,15 +143,15 @@ namespace Xbim.IO.Step21
             if (_listNestLevel <= 0) _nestedIndex.Clear();
         }
 
-        internal override void BeginComplex()
+        protected override void BeginComplex()
         {
         }
 
-        internal override void EndComplex()
+        protected override void EndComplex()
         {
         }
 
-        internal override void NewEntity(string entityLabel)
+        protected override void NewEntity(string entityLabel)
         {
             _currentInstance = new Part21Entity(entityLabel);
             // Console.WriteLine(CurrentSemanticValue.strVal);
@@ -167,7 +167,7 @@ namespace Xbim.IO.Step21
             if (Cancel) YYAccept();
         }
 
-        internal override void SetType(string entityTypeName)
+        protected override void SetType(string entityTypeName)
         {
             if (InHeader)
             {
@@ -188,7 +188,7 @@ namespace Xbim.IO.Step21
             if (Cancel) YYAccept();
         }
 
-        internal override void EndEntity()
+        protected override void EndEntity()
         {
             var p21 = _processStack.Pop();
             //Debug.Assert(_processStack.Count == 0);
@@ -200,7 +200,7 @@ namespace Xbim.IO.Step21
             // Console.WriteLine("EndEntity - " + CurrentSemanticValue.strVal);
         }
 
-        internal override void EndHeaderEntity()
+        protected override void EndHeaderEntity()
         {
             _processStack.Pop();
 
@@ -208,43 +208,43 @@ namespace Xbim.IO.Step21
             // Console.WriteLine("EndHeaderEntity - " + CurrentSemanticValue.strVal);
         }
 
-        internal override void SetIntegerValue(string value)
+        protected override void SetIntegerValue(string value)
         {
             _propertyValue.Init(value, StepParserType.Integer);
             SetEntityParameter(value);
         }
 
-        internal override void SetHexValue(string value)
+        protected override void SetHexValue(string value)
         {
             _propertyValue.Init(value, StepParserType.HexaDecimal);
             SetEntityParameter(value);
         }
 
-        internal override void SetFloatValue(string value)
+        protected override void SetFloatValue(string value)
         {
             _propertyValue.Init(value, StepParserType.Real);
             SetEntityParameter(value);
         }
 
-        internal override void SetStringValue(string value)
+        protected override void SetStringValue(string value)
         {
             _propertyValue.Init(value, StepParserType.String);
             SetEntityParameter(value);
         }
 
-        internal override void SetEnumValue(string value)
+        protected override void SetEnumValue(string value)
         {
             _propertyValue.Init(value.Trim('.'), StepParserType.Enum);
             SetEntityParameter(value);
         }
 
-        internal override void SetBooleanValue(string value)
+        protected override void SetBooleanValue(string value)
         {
             _propertyValue.Init(value, StepParserType.Boolean);
             SetEntityParameter(value);
         }
 
-        internal override void SetNonDefinedValue()
+        protected override void SetNonDefinedValue()
         {
             if (_listNestLevel == 0)
             {
@@ -253,7 +253,7 @@ namespace Xbim.IO.Step21
             }
         }
 
-        internal override void SetOverrideValue()
+        protected override void SetOverrideValue()
         {
             if (_listNestLevel == 0)
             {
@@ -262,7 +262,7 @@ namespace Xbim.IO.Step21
             }
         }
 
-        internal override void SetObjectValue(string value)
+        protected override void SetObjectValue(string value)
         {
             var refId = Convert.ToInt32(value.TrimStart('#'));
             if (!TrySetObjectValue(_currentInstance.Entity, _currentInstance.CurrentParamIndex, refId, NestedIndex))
@@ -278,7 +278,7 @@ namespace Xbim.IO.Step21
             }
         }
 
-        internal override void EndNestedType(string value)
+        protected override void EndNestedType(string value)
         {
             try
             {
@@ -314,7 +314,7 @@ namespace Xbim.IO.Step21
             }
         }
 
-        internal override void BeginNestedType(string value)
+        protected override void BeginNestedType(string value)
         {
             int[] reqProps;
             if (EntityCreate != null)

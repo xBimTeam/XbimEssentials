@@ -52,7 +52,7 @@ startHeader : HEADER
 stepFile1	: beginStep startHeader headerEntities endSec endOfHeader model endSec endStep;
 stepFile2	: beginStep startHeader endSec endOfHeader model endSec endStep ;
 stepFile3	: beginStep startHeader endSec endOfHeader model error ;
-stepFile	: stepFile1 | stepFile2 | stepFile3;
+stepFile	: stepFile1 | stepFile2 | stepFile3 | model;
 
 endSec	: ENDSEC{EndSec();}
 	| ENDSEC trailingSpace {EndSec();}	
