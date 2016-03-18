@@ -41,12 +41,12 @@ namespace Xbim.IO.Memory
         {
             var expType = _model.Metadata.ExpressType(type);
             if (expType != null)
-                return expType.NonAbstractSubTypes.Select(t => t.Type).ToList();
+                return expType.NonAbstractSubTypes.Select(t => t.Type);
             
             if(!type.IsInterface) return new List<Type>();
 
             var implementations = _model.Metadata.ExpressTypesImplementing(type).Where(i => !i.Type.IsAbstract);
-            return implementations.Select(e => e.Type).ToList();
+            return implementations.Select(e => e.Type);
         }
 
         public IEnumerable<T> Where<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument)
@@ -130,7 +130,7 @@ namespace Xbim.IO.Memory
         {
             foreach (var entity in OfType<T>())
             {
-                _model.Activate(entity, true);
+                if (activate) _model.Activate(entity, true);
                 yield return entity;
             }
         }
@@ -140,7 +140,11 @@ namespace Xbim.IO.Memory
             var queryType = _model.Metadata.ExpressType(stringType.ToUpperInvariant());
             if(queryType == null) 
                 throw new ArgumentException("StringType must be a name of the existing persist entity type");
-            return OfType(queryType.Type);
+            foreach (var entity in OfType(queryType.Type))
+            {
+                if (activate) _model.Activate(entity, true);
+                yield return entity;
+            }
         }
 
         public IPersistEntity New(Type t)
@@ -193,11 +197,14 @@ namespace Xbim.IO.Memory
 
         public long CountOf<T>() where T : IPersistEntity
         {
-            var queryType = typeof(T);
-            ICollection<IPersistEntity> entities;           
-            if (_internal.TryGetValue(queryType, out entities))
-                 return entities.Count;
-            return 0;
+            return OfType<T>().Count();
+
+            //Steve's code bellow wouldn't consider abstract types and interfaces.
+            //var queryType = typeof(T);
+            //ICollection<IPersistEntity> entities;           
+            //if (_internal.TryGetValue(queryType, out entities))
+            //     return entities.Count;
+            //return 0;
         }
 
         internal void InternalAdd(IPersistEntity entity)
@@ -247,7 +254,6 @@ namespace Xbim.IO.Memory
                 _internal.Remove(key,entity);
                 removed =_collection.Remove(entity.EntityLabel);
                 _naturalOrder = null;
-                ;
             };
             Action undo = () =>
             {
