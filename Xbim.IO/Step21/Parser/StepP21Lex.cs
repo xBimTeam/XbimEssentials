@@ -6,9 +6,9 @@
 //
 //  GPLEX Version:  1.2.2
 //  Machine:  C13300493
-//  DateTime: 21.3.16 11:53:06
+//  DateTime: 21.3.16 12:07:42
 //  UserName: mxfm2
-//  GPLEX input file <StepP21Lex.LEX - 21.3.16 11:53:01>
+//  GPLEX input file <StepP21Lex.LEX - 21.3.16 12:07:40>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: verbose, parser, minimize
@@ -1187,8 +1187,8 @@ if (!comment) {SetValue(); return((int)Tokens.BOOLEAN); }
         case 74: // Recognized '"*/"',	Shortest string "*/"
 comment=false;
             break;
-        case 75: // Recognized '[\']([\n]|(\\X0\\)|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[\\][\'])*[\']',	Shortest string "''"
-        case 76: // Recognized '[\']([\n]|(\\X0\\)|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[\\][\'])*[\']',	Shortest string "'\\'"
+        case 75: // Recognized '[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[\\][X][0][\\]|[\\][\'])*[\']',	Shortest string "''"
+        case 76: // Recognized '[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[\\][X][0][\\]|[\\][\'])*[\']',	Shortest string "'\\'"
 if (!comment) { SetValue();  return((int)Tokens.STRING); }
             break;
         case 77: // Recognized '&SCOPE',	Shortest string "&SCOPE"
