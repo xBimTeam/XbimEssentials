@@ -61,7 +61,7 @@ namespace Xbim.MemoryModel.Tests
 
         [TestMethod]
         [DeploymentItem("TestFiles")]
-        public void ErrorRecoveryOfParserTest()
+        public void ScannerTest()
         {
 
             
@@ -81,24 +81,24 @@ namespace Xbim.MemoryModel.Tests
         
         }
 
-        
-        //   [ TestMethod]
-        //[DeploymentItem("TestFiles")]
-        //public void ErrorRecoveryOfParserTest()
-        //{
-          
-        //    //in memory model
-        //    using (var store = IfcStore.Open("Badly formed Ifc file.ifc"))
-        //    {              
-        //        store.Close();
-        //    }
-        //    //esent database
-        //    using (var store = IfcStore.Open("Badly formed Ifc file.ifc", null, 0))
-        //    {
-                
-        //        store.Close();
-        //    }
-        //}
+
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
+        public void ErrorRecoveryOfParserTest()
+        {
+
+            //in memory model
+            using (var store = IfcStore.Open("Badly formed Ifc file.ifc"))
+            {
+                store.Close();
+            }
+            //esent database
+            using (var store = IfcStore.Open("Badly formed Ifc file.ifc", null, 0))
+            {
+
+                store.Close();
+            }
+        }
         [TestMethod]
         [DeploymentItem("TestFiles")]
         public void IfcOpenZipTest()
