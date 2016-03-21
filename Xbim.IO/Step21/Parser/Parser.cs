@@ -121,7 +121,7 @@ namespace Xbim.IO.Parser
         }
     }
 
-    abstract partial class P21Parser : ShiftReduceParser<ValueType, LexLocation>
+    abstract partial class P21Parser
     {
         protected P21Parser(Stream strm)
             : base(new Scanner(strm))

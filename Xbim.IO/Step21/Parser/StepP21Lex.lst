@@ -2,17 +2,18 @@
 =============================================================================
 NFSA Summary for input file <StepP21Lex.LEX>
 =============================================================================
+Total NFSA states = 1420
 Number of Start Conditions = 1
 Start condition INITIAL:
-  number of patterns = 39, number of nfsa states = 203, accept states = 39
+  number of patterns = 39, number of nfsa states = 207, accept states = 39
 =============================================================================
-GPLEX: NFSA built.   27 msec
+GPLEX: NFSA built.   26 msec
 =============================================================================
-GPLEX: DFSA built.   85 msec
+GPLEX: DFSA built.   42 msec
 =============================================================================
-GPLEX: DFSA minimized.   92 msec
+GPLEX: DFSA minimized.   24 msec
 =============================================================================
-GPLEX: Shortest strings found.   41 msec
+GPLEX: Shortest strings found.    4 msec
 =============================================================================
 DFSA Summary
 =============================================================================
@@ -20,7 +21,7 @@ Number of dfsa instances = 1
 Start condition INITIAL:
   number of dfsa states = 117, number of accept states = 94
 =============================================================================
-GPLEX: C# file emitted.   84 msec
+GPLEX: C# file emitted.   43 msec
 =============================================================================
 GPLEX Summary
 =============================================================================
@@ -59,7 +60,7 @@ In <0>, after ".0E0" automaton could accept "[\-\+\.0-9][\.0-9]+E[\-\+0-9][0-9]*
 In <0>, after "+0" automaton could accept "[\-\+0-9][0-9]*" in state 73
 --- after ''E'' automaton is in a non-accept state and might need to backup
 
-In <0>, after "''" automaton could accept "[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047])*[\']" in state 75
+In <0>, after "''" automaton could accept "[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[\047][\'])*[\']" in state 75
 --- after ''''' automaton is in a non-accept state and might need to backup
 
 In <0>, after "#0" automaton could accept "#[0-9]+" in state 77
