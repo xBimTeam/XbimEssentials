@@ -6,9 +6,9 @@
 //
 //  GPLEX Version:  1.2.2
 //  Machine:  C13300493
-//  DateTime: 21.3.16 14:43:01
+//  DateTime: 21.3.16 16:55:18
 //  UserName: mxfm2
-//  GPLEX input file <StepP21Lex.LEX - 21.3.16 14:42:58>
+//  GPLEX input file <StepP21Lex.LEX - 21.3.16 16:55:15>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: verbose, parser, minimize
@@ -515,25 +515,9 @@ public static int Pass = 1;
 /* NxS[  75] */ // Shortest string "''"
       new Table(39, 1, -1, new sbyte[] {95}),
 /* NxS[  76] */ // Shortest string "'\\'"
-      new Table(1, 128, 95, new sbyte[] {-1, -1, -1, -1, -1, -1, 
-          -1, -1, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 
-          95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 
-          76, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 
-          95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 
-          95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 
-          95, 95, 95, 95, 95, 98, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 
-          95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 
-          95, 95, 95, 95, 95, 95, 95, 95, -1, -1}),
+      new Table(40, 5, 95, new sbyte[] {-1, -1, 95, 95, -1}),
 /* NxS[  77] */ // Shortest string "'\\X\\\\X0\\'"
-      new Table(1, 128, 95, new sbyte[] {-1, -1, -1, -1, -1, -1, 
-          -1, -1, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 
-          95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 
-          76, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 
-          95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 
-          95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 
-          95, 95, 95, 95, 95, 98, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 
-          95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 
-          95, 95, 95, 95, 95, 95, 95, 95, -1, -1}),
+      new Table(40, 5, 95, new sbyte[] {-1, -1, 95, 95, -1}),
 /* NxS[  78] */ new Table(0, 0, -1, null), // Shortest string "&SCOPE"
 /* NxS[  79] */ // Shortest string "#0"
       new Table(9, 53, -1, new sbyte[] {110, -1, -1, -1, -1, -1, 
@@ -1287,11 +1271,11 @@ if (!comment) {SetValue(); return((int)Tokens.BOOLEAN); }
         case 74: // Recognized '"*/"',	Shortest string "*/"
 comment=false;
             break;
-        case 75: // Recognized '[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|(\\\'))*(\\X0\\){0}[\']',	Shortest string "''"
-        case 76: // Recognized '[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|(\\\'))*(\\X0\\){0}[\']',	Shortest string "'\\'"
+        case 75: // Recognized '[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|(\\\'[^,\(\)]))*[\']',	Shortest string "''"
+        case 76: // Recognized '[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|(\\\'[^,\(\)]))*[\']',	Shortest string "'\\'"
 if (!comment) { SetValue();  return((int)Tokens.STRING); }
             break;
-        case 77: // Recognized '[\'](\\X[24]?\\)([0-9A-F])*(\\X0\\)[\']',	Shortest string "'\\X\\\\X0\\'"
+        case 77: // Recognized '(\'\\X[24]?\\)[0-9A-F]*(\\X0\\\')',	Shortest string "'\\X\\\\X0\\'"
 if (!comment) { SetValue();  return((int)Tokens.STRING); }
             break;
         case 78: // Recognized '&SCOPE',	Shortest string "&SCOPE"
