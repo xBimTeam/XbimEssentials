@@ -77,6 +77,7 @@ namespace Xbim.IO.Step21
 
         internal override void CharacterError()
         {
+            _logger.WarnFormat("Error parsing Ifc File, illegal character found");
         }
 
         internal override void BeginParse()
@@ -341,18 +342,31 @@ namespace Xbim.IO.Step21
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
                 {
-                    var expressType = _metadata.ExpressType(mainEntity.Entity);
+                    if (_metadata != null)
+                    {
+                        var expressType = _metadata.ExpressType(mainEntity.Entity);
 
-                    var propertyName = mainEntity.CurrentParamIndex + 1 > expressType.Properties.Count ? "[UnknownProperty]" :
-                        expressType.Properties[mainEntity.CurrentParamIndex + 1].PropertyInfo.Name;
 
-                    _logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
-                                               mainEntity.EntityLabel, 
-                                               mainEntity.Entity.GetType().Name.ToUpper(),
-                                               mainEntity.CurrentParamIndex + 1,
-                                               propertyName,
-                                               value);
-                   
+                        var propertyName = mainEntity.CurrentParamIndex + 1 > expressType.Properties.Count
+                            ? "[UnknownProperty]"
+                            : expressType.Properties[mainEntity.CurrentParamIndex + 1].PropertyInfo.Name;
+
+                        _logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
+                            mainEntity.EntityLabel,
+                            mainEntity.Entity.GetType().Name.ToUpper(),
+                            mainEntity.CurrentParamIndex + 1,
+                            propertyName,
+                            value);
+                    }
+                    else
+                    {
+                        _logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2} value = {3}",
+                           mainEntity.EntityLabel,
+                           mainEntity.Entity.GetType().Name.ToUpper(),
+                           mainEntity.CurrentParamIndex + 1,                          
+                           value);
+                    }
+
                 }
                 else
                 {
