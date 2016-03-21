@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.ActorResource
 {
 	[ExpressType("IfcOrganizationRelationship", 486)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrganizationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcOrganizationRelationship, IEqualityComparer<@IfcOrganizationRelationship>, IEquatable<@IfcOrganizationRelationship>
+	public  partial class @IfcOrganizationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcOrganizationRelationship, IEquatable<@IfcOrganizationRelationship>
 	{
 		#region IIfcOrganizationRelationship explicit implementation
 		IIfcOrganization IIfcOrganizationRelationship.RelatingOrganization { get { return @RelatingOrganization; } }	
@@ -108,11 +108,6 @@ namespace Xbim.Ifc4.ActorResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -158,16 +153,6 @@ namespace Xbim.Ifc4.ActorResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcOrganizationRelationship x, @IfcOrganizationRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOrganizationRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

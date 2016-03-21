@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcGeneralMaterialProperties", 716)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeneralMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcGeneralMaterialProperties, IEqualityComparer<@IfcGeneralMaterialProperties>, IEquatable<@IfcGeneralMaterialProperties>
+	public  partial class @IfcGeneralMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcGeneralMaterialProperties, IEquatable<@IfcGeneralMaterialProperties>
 	{
 		#region IIfcGeneralMaterialProperties explicit implementation
 		IfcMolecularWeightMeasure? IIfcGeneralMaterialProperties.MolecularWeight { get { return @MolecularWeight; } }	
@@ -127,11 +127,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -177,16 +172,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcGeneralMaterialProperties x, @IfcGeneralMaterialProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGeneralMaterialProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

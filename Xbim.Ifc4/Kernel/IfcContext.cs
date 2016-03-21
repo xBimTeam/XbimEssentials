@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcContext", 1138)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcContext : IfcObjectDefinition, IIfcContext, IEqualityComparer<@IfcContext>, IEquatable<@IfcContext>
+	public abstract partial class @IfcContext : IfcObjectDefinition, IIfcContext, IEquatable<@IfcContext>
 	{
 		#region IIfcContext explicit implementation
 		IfcLabel? IIfcContext.ObjectType { get { return @ObjectType; } }	
@@ -156,7 +156,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDeclares>(e => (e.RelatingContext as IfcContext) == this, "RelatingContext", this);
+				return Model.Instances.Where<IfcRelDeclares>(e => e.RelatingContext == this, "RelatingContext", this);
 			} 
 		}
 		#endregion
@@ -192,11 +192,6 @@ namespace Xbim.Ifc4.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -243,16 +238,6 @@ namespace Xbim.Ifc4.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcContext x, @IfcContext y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcContext obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

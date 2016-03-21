@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcExternalReference", 133)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcExternalReference : IPersistEntity, INotifyPropertyChanged, IIfcExternalReference, IEqualityComparer<@IfcExternalReference>, IEquatable<@IfcExternalReference>
+	public abstract partial class @IfcExternalReference : IPersistEntity, INotifyPropertyChanged, IIfcExternalReference, IEquatable<@IfcExternalReference>
 	{
 		#region IIfcExternalReference explicit implementation
 		IfcLabel? IIfcExternalReference.Location { get { return @Location; } }	
@@ -235,12 +235,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : EXISTS(ItemReference) OR EXISTS(Location) OR EXISTS(Name);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -286,16 +280,26 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcExternalReference left, IfcLightDistributionDataSourceSelect right)
+		{
+			return left == right as @IfcExternalReference;
+		}
 
-        public bool Equals(@IfcExternalReference x, @IfcExternalReference y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcExternalReference left, IfcLightDistributionDataSourceSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcExternalReference obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcExternalReference left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcExternalReference;
+		}
+
+		public static bool operator !=(@IfcExternalReference left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

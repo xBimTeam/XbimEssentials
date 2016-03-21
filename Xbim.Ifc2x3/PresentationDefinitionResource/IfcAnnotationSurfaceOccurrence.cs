@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationSurfaceOccurrence", 509)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationSurfaceOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationSurfaceOccurrence, IEqualityComparer<@IfcAnnotationSurfaceOccurrence>, IEquatable<@IfcAnnotationSurfaceOccurrence>
+	public  partial class @IfcAnnotationSurfaceOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationSurfaceOccurrence, IEquatable<@IfcAnnotationSurfaceOccurrence>
 	{
 		#region IIfcAnnotationSurfaceOccurrence explicit implementation
 		 
@@ -62,12 +62,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:              TYPEOF(SELF\IfcStyledItem.Item)) > 0);*/
 		}
 		#endregion
 
@@ -114,16 +108,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcAnnotationSurfaceOccurrence x, @IfcAnnotationSurfaceOccurrence y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAnnotationSurfaceOccurrence obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

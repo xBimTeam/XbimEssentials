@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 {
 	[ExpressType("IfcTimeSeriesSchedule", 712)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IIfcTimeSeriesSchedule, IEqualityComparer<@IfcTimeSeriesSchedule>, IEquatable<@IfcTimeSeriesSchedule>
+	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IIfcTimeSeriesSchedule, IEquatable<@IfcTimeSeriesSchedule>
 	{
 		#region IIfcTimeSeriesSchedule explicit implementation
 		IEnumerable<IIfcDateTimeSelect> IIfcTimeSeriesSchedule.ApplicableDates { get { return @ApplicableDates; } }	
@@ -131,12 +131,6 @@ namespace Xbim.Ifc2x3.ControlExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR41:	WR41 : NOT(TimeSeriesScheduleType=IfcTimeSeriesScheduleTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -182,16 +176,6 @@ namespace Xbim.Ifc2x3.ControlExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTimeSeriesSchedule x, @IfcTimeSeriesSchedule y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTimeSeriesSchedule obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

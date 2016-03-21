@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IfcExtendedProperties", 1171)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcExtendedProperties : IfcPropertyAbstraction, IIfcExtendedProperties, IEqualityComparer<@IfcExtendedProperties>, IEquatable<@IfcExtendedProperties>
+	public abstract partial class @IfcExtendedProperties : IfcPropertyAbstraction, IIfcExtendedProperties, IEquatable<@IfcExtendedProperties>
 	{
 		#region IIfcExtendedProperties explicit implementation
 		IfcIdentifier? IIfcExtendedProperties.Name { get { return @Name; } }	
@@ -122,11 +122,6 @@ namespace Xbim.Ifc4.PropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -172,16 +167,6 @@ namespace Xbim.Ifc4.PropertyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcExtendedProperties x, @IfcExtendedProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExtendedProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

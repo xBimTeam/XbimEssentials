@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleShading", 316)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleShading : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleShading, IEqualityComparer<@IfcSurfaceStyleShading>, IEquatable<@IfcSurfaceStyleShading>
+	public  partial class @IfcSurfaceStyleShading : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleShading, IEquatable<@IfcSurfaceStyleShading>
 	{
 		#region IIfcSurfaceStyleShading explicit implementation
 		IIfcColourRgb IIfcSurfaceStyleShading.SurfaceColour { get { return @SurfaceColour; } }	
@@ -105,11 +105,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -155,16 +150,16 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcSurfaceStyleShading left, IfcSurfaceStyleElementSelect right)
+		{
+			return left == right as @IfcSurfaceStyleShading;
+		}
 
-        public bool Equals(@IfcSurfaceStyleShading x, @IfcSurfaceStyleShading y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcSurfaceStyleShading left, IfcSurfaceStyleElementSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcSurfaceStyleShading obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

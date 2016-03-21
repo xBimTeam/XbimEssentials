@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyleForDefinedFont", 611)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleForDefinedFont : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleForDefinedFont, IEqualityComparer<@IfcTextStyleForDefinedFont>, IEquatable<@IfcTextStyleForDefinedFont>
+	public  partial class @IfcTextStyleForDefinedFont : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleForDefinedFont, IEquatable<@IfcTextStyleForDefinedFont>
 	{
 		#region IIfcTextStyleForDefinedFont explicit implementation
 		IIfcColour IIfcTextStyleForDefinedFont.Colour { get { return @Colour; } }	
@@ -213,11 +213,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -263,16 +258,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcTextStyleForDefinedFont left, IfcCharacterStyleSelect right)
+		{
+			return left == right as @IfcTextStyleForDefinedFont;
+		}
 
-        public bool Equals(@IfcTextStyleForDefinedFont x, @IfcTextStyleForDefinedFont y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcTextStyleForDefinedFont left, IfcCharacterStyleSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcTextStyleForDefinedFont obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

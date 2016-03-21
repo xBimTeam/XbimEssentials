@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyleTileSymbolWithStyle", 726)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleTileSymbolWithStyle : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTileSymbolWithStyle, IEqualityComparer<@IfcFillAreaStyleTileSymbolWithStyle>, IEquatable<@IfcFillAreaStyleTileSymbolWithStyle>
+	public  partial class @IfcFillAreaStyleTileSymbolWithStyle : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTileSymbolWithStyle, IEquatable<@IfcFillAreaStyleTileSymbolWithStyle>
 	{
 		#region IIfcFillAreaStyleTileSymbolWithStyle explicit implementation
 		IIfcAnnotationSymbolOccurrence IIfcFillAreaStyleTileSymbolWithStyle.Symbol { get { return @Symbol; } }	
@@ -85,11 +85,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -135,16 +130,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcFillAreaStyleTileSymbolWithStyle left, IfcFillAreaStyleTileShapeSelect right)
+		{
+			return left == right as @IfcFillAreaStyleTileSymbolWithStyle;
+		}
 
-        public bool Equals(@IfcFillAreaStyleTileSymbolWithStyle x, @IfcFillAreaStyleTileSymbolWithStyle y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcFillAreaStyleTileSymbolWithStyle left, IfcFillAreaStyleTileShapeSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcFillAreaStyleTileSymbolWithStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

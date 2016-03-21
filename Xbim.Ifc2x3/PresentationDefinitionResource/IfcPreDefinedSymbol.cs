@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcPreDefinedSymbol", 568)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedSymbol : IfcPreDefinedItem, IIfcPreDefinedSymbol, IEqualityComparer<@IfcPreDefinedSymbol>, IEquatable<@IfcPreDefinedSymbol>
+	public abstract partial class @IfcPreDefinedSymbol : IfcPreDefinedItem, IIfcPreDefinedSymbol, IEquatable<@IfcPreDefinedSymbol>
 	{
 		#region IIfcPreDefinedSymbol explicit implementation
 		 
@@ -61,11 +61,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -112,16 +107,16 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcPreDefinedSymbol left, IfcDefinedSymbolSelect right)
+		{
+			return left == right as @IfcPreDefinedSymbol;
+		}
 
-        public bool Equals(@IfcPreDefinedSymbol x, @IfcPreDefinedSymbol y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcPreDefinedSymbol left, IfcDefinedSymbolSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcPreDefinedSymbol obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

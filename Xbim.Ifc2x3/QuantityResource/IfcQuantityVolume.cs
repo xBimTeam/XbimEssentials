@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityVolume", 100)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityVolume : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityVolume, IEqualityComparer<@IfcQuantityVolume>, IEquatable<@IfcQuantityVolume>
+	public  partial class @IfcQuantityVolume : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityVolume, IEquatable<@IfcQuantityVolume>
 	{
 		#region IIfcQuantityVolume explicit implementation
 		IfcVolumeMeasure IIfcQuantityVolume.VolumeValue { get { return @VolumeValue; } }	
@@ -89,13 +89,6 @@ namespace Xbim.Ifc2x3.QuantityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:                (SELF\IfcPhysicalSimpleQuantity.Unit.UnitType = IfcUnitEnum.VOLUMEUNIT);*/
-		/*WR22:	WR22 : VolumeValue >= 0.;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -141,16 +134,6 @@ namespace Xbim.Ifc2x3.QuantityResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcQuantityVolume x, @IfcQuantityVolume y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcQuantityVolume obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

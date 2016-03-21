@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDimensionCurve", 742)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IIfcDimensionCurve, IEqualityComparer<@IfcDimensionCurve>, IEquatable<@IfcDimensionCurve>
+	public  partial class @IfcDimensionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IIfcDimensionCurve, IEquatable<@IfcDimensionCurve>
 	{
 		#region IIfcDimensionCurve explicit implementation
 		 
@@ -57,7 +57,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcTerminatorSymbol>(e => (e.AnnotatedCurve as IfcDimensionCurve) == this, "AnnotatedCurve", this);
+				return Model.Instances.Where<IfcTerminatorSymbol>(e => e.AnnotatedCurve == this, "AnnotatedCurve", this);
 			} 
 		}
 		#endregion
@@ -76,14 +76,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR51:                   >= 1;*/
-		/*WR52:                            'IFCTERMINATORSYMBOL.ANNOTATEDCURVE') | (Dct2.Role = IfcDimensionExtentUsage.TARGET))) <= 1);*/
-		/*WR53:               = 0;*/
 		}
 		#endregion
 
@@ -130,16 +122,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDimensionCurve x, @IfcDimensionCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDimensionCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

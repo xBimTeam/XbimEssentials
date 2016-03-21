@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcProperty", 5)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProperty : IPersistEntity, INotifyPropertyChanged, IIfcProperty, IEqualityComparer<@IfcProperty>, IEquatable<@IfcProperty>
+	public abstract partial class @IfcProperty : IPersistEntity, INotifyPropertyChanged, IIfcProperty, IEquatable<@IfcProperty>
 	{
 		#region IIfcProperty explicit implementation
 		IfcIdentifier IIfcProperty.Name { get { return @Name; } }	
@@ -160,7 +160,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependingProperty as IfcProperty) == this, "DependingProperty", this);
+				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => e.DependingProperty == this, "DependingProperty", this);
 			} 
 		}
 		[InverseProperty("DependantProperty")]
@@ -169,7 +169,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => (e.DependantProperty as IfcProperty) == this, "DependantProperty", this);
+				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => e.DependantProperty == this, "DependantProperty", this);
 			} 
 		}
 		[InverseProperty("HasProperties")]
@@ -248,11 +248,6 @@ namespace Xbim.Ifc2x3.PropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -298,16 +293,6 @@ namespace Xbim.Ifc2x3.PropertyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcProperty x, @IfcProperty y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProperty obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
 	[ExpressType("IfcFireSuppressionTerminal", 1179)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFireSuppressionTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcFireSuppressionTerminal, IEqualityComparer<@IfcFireSuppressionTerminal>, IEquatable<@IfcFireSuppressionTerminal>
+	public  partial class @IfcFireSuppressionTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcFireSuppressionTerminal, IEquatable<@IfcFireSuppressionTerminal>
 	{
 		#region IIfcFireSuppressionTerminal explicit implementation
 		IfcFireSuppressionTerminalTypeEnum? IIfcFireSuppressionTerminal.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcFireSuppressionTerminalTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCFIRESUPPRESSIONTERMINALTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFireSuppressionTerminal x, @IfcFireSuppressionTerminal y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFireSuppressionTerminal obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

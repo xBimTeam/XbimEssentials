@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[ExpressType("IfcGridPlacement", 439)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGridPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcGridPlacement, IEqualityComparer<@IfcGridPlacement>, IEquatable<@IfcGridPlacement>
+	public  partial class @IfcGridPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcGridPlacement, IEquatable<@IfcGridPlacement>
 	{
 		#region IIfcGridPlacement explicit implementation
 		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementLocation { get { return @PlacementLocation; } }	
@@ -103,11 +103,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -153,16 +148,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcGridPlacement x, @IfcGridPlacement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGridPlacement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcUnitAssignment", 245)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcUnitAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcUnitAssignment, IEqualityComparer<@IfcUnitAssignment>, IEquatable<@IfcUnitAssignment>
+	public  partial class @IfcUnitAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcUnitAssignment, IEquatable<@IfcUnitAssignment>
 	{
 		#region IIfcUnitAssignment explicit implementation
 		IEnumerable<IIfcUnit> IIfcUnitAssignment.Units { get { return @Units; } }	
@@ -190,12 +190,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR01:	WR01 : IfcCorrectUnitAssignment(Units);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -241,16 +235,6 @@ namespace Xbim.Ifc2x3.MeasureResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcUnitAssignment x, @IfcUnitAssignment y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcUnitAssignment obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

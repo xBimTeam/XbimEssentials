@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IfcExternalInformation", 1172)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcExternalInformation : IPersistEntity, INotifyPropertyChanged, IIfcExternalInformation, IEqualityComparer<@IfcExternalInformation>, IEquatable<@IfcExternalInformation>
+	public abstract partial class @IfcExternalInformation : IPersistEntity, INotifyPropertyChanged, IIfcExternalInformation, IEquatable<@IfcExternalInformation>
 	{
 		#region IIfcExternalInformation explicit implementation
 		 
@@ -164,11 +164,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -214,16 +209,16 @@ namespace Xbim.Ifc4.ExternalReferenceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcExternalInformation left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcExternalInformation;
+		}
 
-        public bool Equals(@IfcExternalInformation x, @IfcExternalInformation y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcExternalInformation left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcExternalInformation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

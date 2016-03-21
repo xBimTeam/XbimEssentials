@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcCoordinateReferenceSystem", 1144)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcCoordinateReferenceSystem : IPersistEntity, INotifyPropertyChanged, IIfcCoordinateReferenceSystem, IEqualityComparer<@IfcCoordinateReferenceSystem>, IEquatable<@IfcCoordinateReferenceSystem>
+	public abstract partial class @IfcCoordinateReferenceSystem : IPersistEntity, INotifyPropertyChanged, IIfcCoordinateReferenceSystem, IEquatable<@IfcCoordinateReferenceSystem>
 	{
 		#region IIfcCoordinateReferenceSystem explicit implementation
 		IfcLabel IIfcCoordinateReferenceSystem.Name { get { return @Name; } }	
@@ -190,7 +190,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcCoordinateOperation>(e => (e.SourceCRS as IfcCoordinateReferenceSystem) == this, "SourceCRS", this);
+				return Model.Instances.Where<IfcCoordinateOperation>(e => e.SourceCRS == this, "SourceCRS", this);
 			} 
 		}
 		#endregion
@@ -266,11 +266,6 @@ namespace Xbim.Ifc4.RepresentationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -316,16 +311,16 @@ namespace Xbim.Ifc4.RepresentationResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcCoordinateReferenceSystem left, IfcCoordinateReferenceSystemSelect right)
+		{
+			return left == right as @IfcCoordinateReferenceSystem;
+		}
 
-        public bool Equals(@IfcCoordinateReferenceSystem x, @IfcCoordinateReferenceSystem y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcCoordinateReferenceSystem left, IfcCoordinateReferenceSystemSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcCoordinateReferenceSystem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

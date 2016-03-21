@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcShapeAspect", 665)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcShapeAspect : INotifyPropertyChanged, IInstantiableEntity, IIfcShapeAspect, IEqualityComparer<@IfcShapeAspect>, IEquatable<@IfcShapeAspect>
+	public  partial class @IfcShapeAspect : INotifyPropertyChanged, IInstantiableEntity, IIfcShapeAspect, IEquatable<@IfcShapeAspect>
 	{
 		#region IIfcShapeAspect explicit implementation
 		IEnumerable<IIfcShapeModel> IIfcShapeAspect.ShapeRepresentations { get { return @ShapeRepresentations; } }	
@@ -273,11 +273,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -323,16 +318,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcShapeAspect x, @IfcShapeAspect y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcShapeAspect obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

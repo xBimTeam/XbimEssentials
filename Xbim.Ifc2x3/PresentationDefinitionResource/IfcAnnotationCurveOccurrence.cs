@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationCurveOccurrence", 57)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationCurveOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationCurveOccurrence, IEqualityComparer<@IfcAnnotationCurveOccurrence>, IEquatable<@IfcAnnotationCurveOccurrence>
+	public  partial class @IfcAnnotationCurveOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationCurveOccurrence, IEquatable<@IfcAnnotationCurveOccurrence>
 	{
 		#region IIfcAnnotationCurveOccurrence explicit implementation
 		 
@@ -63,12 +63,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:             ('IFC2X3.IFCCURVE' IN TYPEOF (SELF\IfcStyledItem.Item));*/
 		}
 		#endregion
 
@@ -115,16 +109,16 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcAnnotationCurveOccurrence left, IfcDraughtingCalloutElement right)
+		{
+			return left == right as @IfcAnnotationCurveOccurrence;
+		}
 
-        public bool Equals(@IfcAnnotationCurveOccurrence x, @IfcAnnotationCurveOccurrence y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcAnnotationCurveOccurrence left, IfcDraughtingCalloutElement right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcAnnotationCurveOccurrence obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

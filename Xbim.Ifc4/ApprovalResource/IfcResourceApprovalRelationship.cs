@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.ApprovalResource
 {
 	[ExpressType("IfcResourceApprovalRelationship", 1256)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcResourceApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceApprovalRelationship, IEqualityComparer<@IfcResourceApprovalRelationship>, IEquatable<@IfcResourceApprovalRelationship>
+	public  partial class @IfcResourceApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceApprovalRelationship, IEquatable<@IfcResourceApprovalRelationship>
 	{
 		#region IIfcResourceApprovalRelationship explicit implementation
 		IEnumerable<IIfcResourceObjectSelect> IIfcResourceApprovalRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
@@ -108,11 +108,6 @@ namespace Xbim.Ifc4.ApprovalResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -158,16 +153,6 @@ namespace Xbim.Ifc4.ApprovalResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcResourceApprovalRelationship x, @IfcResourceApprovalRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcResourceApprovalRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCartesianTransformationOperator3D", 337)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator3D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator3D, IEqualityComparer<@IfcCartesianTransformationOperator3D>, IEquatable<@IfcCartesianTransformationOperator3D>
+	public  partial class @IfcCartesianTransformationOperator3D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator3D, IEquatable<@IfcCartesianTransformationOperator3D>
 	{
 		#region IIfcCartesianTransformationOperator3D explicit implementation
 		IIfcDirection IIfcCartesianTransformationOperator3D.Axis3 { get { return @Axis3; } }	
@@ -104,15 +104,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SELF\IfcCartesianTransformationOperator.Dim = 3;*/
-		/*WR2:            (SELF\IfcCartesianTransformationOperator.Axis1.Dim = 3);*/
-		/*WR3:            (SELF\IfcCartesianTransformationOperator.Axis2.Dim = 3);*/
-		/*WR4:	WR4 : NOT(EXISTS(Axis3)) OR (Axis3.Dim = 3);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -158,16 +149,6 @@ namespace Xbim.Ifc2x3.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCartesianTransformationOperator3D x, @IfcCartesianTransformationOperator3D y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCartesianTransformationOperator3D obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcEdgeFeature", 764)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcEdgeFeature : IfcFeatureElementSubtraction, IIfcEdgeFeature, IEqualityComparer<@IfcEdgeFeature>, IEquatable<@IfcEdgeFeature>
+	public abstract partial class @IfcEdgeFeature : IfcFeatureElementSubtraction, IIfcEdgeFeature, IEquatable<@IfcEdgeFeature>
 	{
 		#region IIfcEdgeFeature explicit implementation
 		IfcPositiveLengthMeasure? IIfcEdgeFeature.FeatureLength { get { return @FeatureLength; } }	
@@ -95,11 +95,6 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -145,16 +140,6 @@ namespace Xbim.Ifc2x3.SharedComponentElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcEdgeFeature x, @IfcEdgeFeature y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEdgeFeature obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

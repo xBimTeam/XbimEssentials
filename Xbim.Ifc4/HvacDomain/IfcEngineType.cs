@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcEngineType", 1165)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEngineType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcEngineType, IEqualityComparer<@IfcEngineType>, IEquatable<@IfcEngineType>
+	public  partial class @IfcEngineType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcEngineType, IEquatable<@IfcEngineType>
 	{
 		#region IIfcEngineType explicit implementation
 		IfcEngineTypeEnum IIfcEngineType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc4.HvacDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcEngineTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc4.HvacDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcEngineType x, @IfcEngineType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEngineType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -43,7 +43,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 {
 	[ExpressType("IfcInventory", 768)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IIfcInventory, IEqualityComparer<@IfcInventory>, IEquatable<@IfcInventory>
+	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IIfcInventory, IEquatable<@IfcInventory>
 	{
 		#region IIfcInventory explicit implementation
 		IfcInventoryTypeEnum? IIfcInventory.PredefinedType { get { return @PredefinedType; } }	
@@ -192,11 +192,6 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -242,16 +237,6 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcInventory x, @IfcInventory y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcInventory obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

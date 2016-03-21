@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleRefraction", 636)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleRefraction : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleRefraction, IEqualityComparer<@IfcSurfaceStyleRefraction>, IEquatable<@IfcSurfaceStyleRefraction>
+	public  partial class @IfcSurfaceStyleRefraction : INotifyPropertyChanged, IInstantiableEntity, IIfcSurfaceStyleRefraction, IEquatable<@IfcSurfaceStyleRefraction>
 	{
 		#region IIfcSurfaceStyleRefraction explicit implementation
 		IfcReal? IIfcSurfaceStyleRefraction.RefractionIndex { get { return @RefractionIndex; } }	
@@ -213,11 +213,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -263,16 +258,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcSurfaceStyleRefraction left, IfcSurfaceStyleElementSelect right)
+		{
+			return left == right as @IfcSurfaceStyleRefraction;
+		}
 
-        public bool Equals(@IfcSurfaceStyleRefraction x, @IfcSurfaceStyleRefraction y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcSurfaceStyleRefraction left, IfcSurfaceStyleElementSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcSurfaceStyleRefraction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

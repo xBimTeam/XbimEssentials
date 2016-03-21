@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IfcSurfaceFeature", 1287)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceFeature : IfcFeatureElement, IInstantiableEntity, IIfcSurfaceFeature, IEqualityComparer<@IfcSurfaceFeature>, IEquatable<@IfcSurfaceFeature>
+	public  partial class @IfcSurfaceFeature : IfcFeatureElement, IInstantiableEntity, IIfcSurfaceFeature, IEquatable<@IfcSurfaceFeature>
 	{
 		#region IIfcSurfaceFeature explicit implementation
 		IfcSurfaceFeatureTypeEnum? IIfcSurfaceFeature.PredefinedType { get { return @PredefinedType; } }	
@@ -94,12 +94,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*HasObjectType:	HasObjectType : NOT EXISTS(PredefinedType) OR (PredefinedType <> IfcSurfaceFeatureTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -145,16 +139,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSurfaceFeature x, @IfcSurfaceFeature y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceFeature obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

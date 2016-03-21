@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcExternallyDefinedSymbol", 391)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternallyDefinedSymbol : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedSymbol, IEqualityComparer<@IfcExternallyDefinedSymbol>, IEquatable<@IfcExternallyDefinedSymbol>
+	public  partial class @IfcExternallyDefinedSymbol : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedSymbol, IEquatable<@IfcExternallyDefinedSymbol>
 	{
 		#region IIfcExternallyDefinedSymbol explicit implementation
 		 
@@ -63,11 +63,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -114,16 +109,16 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcExternallyDefinedSymbol left, IfcDefinedSymbolSelect right)
+		{
+			return left == right as @IfcExternallyDefinedSymbol;
+		}
 
-        public bool Equals(@IfcExternallyDefinedSymbol x, @IfcExternallyDefinedSymbol y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcExternallyDefinedSymbol left, IfcDefinedSymbolSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcExternallyDefinedSymbol obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

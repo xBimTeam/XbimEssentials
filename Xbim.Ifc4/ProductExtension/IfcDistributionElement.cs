@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcDistributionElement", 44)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionElement : IfcElement, IInstantiableEntity, IIfcDistributionElement, IEqualityComparer<@IfcDistributionElement>, IEquatable<@IfcDistributionElement>
+	public  partial class @IfcDistributionElement : IfcElement, IInstantiableEntity, IIfcDistributionElement, IEquatable<@IfcDistributionElement>
 	{
 		#region IIfcDistributionElement explicit implementation
 		 
@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsPortToElement>(e => (e.RelatedElement as IfcDistributionElement) == this, "RelatedElement", this);
+				return Model.Instances.Where<IfcRelConnectsPortToElement>(e => e.RelatedElement == this, "RelatedElement", this);
 			} 
 		}
 		#endregion
@@ -80,11 +80,6 @@ namespace Xbim.Ifc4.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -131,16 +126,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDistributionElement x, @IfcDistributionElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDistributionElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

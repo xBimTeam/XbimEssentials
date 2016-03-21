@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcElementAssemblyType", 1163)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElementAssemblyType : IfcElementType, IInstantiableEntity, IIfcElementAssemblyType, IEqualityComparer<@IfcElementAssemblyType>, IEquatable<@IfcElementAssemblyType>
+	public  partial class @IfcElementAssemblyType : IfcElementType, IInstantiableEntity, IIfcElementAssemblyType, IEquatable<@IfcElementAssemblyType>
 	{
 		#region IIfcElementAssemblyType explicit implementation
 		IfcElementAssemblyTypeEnum IIfcElementAssemblyType.PredefinedType { get { return @PredefinedType; } }	
@@ -94,12 +94,6 @@ namespace Xbim.Ifc4.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcElementAssemblyTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -145,16 +139,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcElementAssemblyType x, @IfcElementAssemblyType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElementAssemblyType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

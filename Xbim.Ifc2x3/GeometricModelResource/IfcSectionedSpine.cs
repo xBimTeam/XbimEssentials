@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcSectionedSpine", 300)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionedSpine : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcSectionedSpine, IEqualityComparer<@IfcSectionedSpine>, IEquatable<@IfcSectionedSpine>
+	public  partial class @IfcSectionedSpine : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcSectionedSpine, IEquatable<@IfcSectionedSpine>
 	{
 		#region IIfcSectionedSpine explicit implementation
 		IIfcCompositeCurve IIfcSectionedSpine.SpineCurve { get { return @SpineCurve; } }	
@@ -135,14 +135,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(CrossSections) = SIZEOF(CrossSectionPositions);*/
-		/*WR2:	WR2 : SIZEOF(QUERY(temp <* CrossSections | CrossSections[1].ProfileType <> temp.ProfileType)) = 0;*/
-		/*WR3:	WR3 : SpineCurve.Dim = 3;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -188,16 +180,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSectionedSpine x, @IfcSectionedSpine y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSectionedSpine obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

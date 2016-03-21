@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcCostValue", 658)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostValue : IfcAppliedValue, IInstantiableEntity, IIfcCostValue, IEqualityComparer<@IfcCostValue>, IEquatable<@IfcCostValue>
+	public  partial class @IfcCostValue : IfcAppliedValue, IInstantiableEntity, IIfcCostValue, IEquatable<@IfcCostValue>
 	{
 		#region IIfcCostValue explicit implementation
 		IfcLabel IIfcCostValue.CostType { get { return @CostType; } }	
@@ -113,11 +113,6 @@ namespace Xbim.Ifc2x3.CostResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -163,16 +158,16 @@ namespace Xbim.Ifc2x3.CostResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcCostValue left, IfcMetricValueSelect right)
+		{
+			return left == right as @IfcCostValue;
+		}
 
-        public bool Equals(@IfcCostValue x, @IfcCostValue y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcCostValue left, IfcMetricValueSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcCostValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

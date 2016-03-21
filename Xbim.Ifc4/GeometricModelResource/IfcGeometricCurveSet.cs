@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcGeometricCurveSet", 237)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricCurveSet : IfcGeometricSet, IInstantiableEntity, IIfcGeometricCurveSet, IEqualityComparer<@IfcGeometricCurveSet>, IEquatable<@IfcGeometricCurveSet>
+	public  partial class @IfcGeometricCurveSet : IfcGeometricSet, IInstantiableEntity, IIfcGeometricCurveSet, IEquatable<@IfcGeometricCurveSet>
 	{
 		#region IIfcGeometricCurveSet explicit implementation
 		 
@@ -60,12 +60,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*NoSurfaces:'IFC4.IFCSURFACE' IN TYPEOF(Temp))) = 0;*/
 		}
 		#endregion
 
@@ -112,16 +106,6 @@ namespace Xbim.Ifc4.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcGeometricCurveSet x, @IfcGeometricCurveSet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGeometricCurveSet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IfcPropertyDependencyRelationship", 444)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyDependencyRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcPropertyDependencyRelationship, IEqualityComparer<@IfcPropertyDependencyRelationship>, IEquatable<@IfcPropertyDependencyRelationship>
+	public  partial class @IfcPropertyDependencyRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcPropertyDependencyRelationship, IEquatable<@IfcPropertyDependencyRelationship>
 	{
 		#region IIfcPropertyDependencyRelationship explicit implementation
 		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty { get { return @DependingProperty; } }	
@@ -131,12 +131,6 @@ namespace Xbim.Ifc4.PropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*NoSelfReference:	NoSelfReference : DependingProperty :<>: DependantProperty;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -182,16 +176,6 @@ namespace Xbim.Ifc4.PropertyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPropertyDependencyRelationship x, @IfcPropertyDependencyRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyDependencyRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

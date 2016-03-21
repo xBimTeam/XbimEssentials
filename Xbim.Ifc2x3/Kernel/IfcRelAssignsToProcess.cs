@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssignsToProcess", 249)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProcess, IEqualityComparer<@IfcRelAssignsToProcess>, IEquatable<@IfcRelAssignsToProcess>
+	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProcess, IEquatable<@IfcRelAssignsToProcess>
 	{
 		#region IIfcRelAssignsToProcess explicit implementation
 		IIfcProcess IIfcRelAssignsToProcess.RelatingProcess { get { return @RelatingProcess; } }	
@@ -113,12 +113,6 @@ namespace Xbim.Ifc2x3.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(QUERY(Temp <* SELF\IfcRelAssigns.RelatedObjects | RelatingProcess :=: Temp)) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -164,16 +158,6 @@ namespace Xbim.Ifc2x3.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelAssignsToProcess x, @IfcRelAssignsToProcess y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToProcess obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

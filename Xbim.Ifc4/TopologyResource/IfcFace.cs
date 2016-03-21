@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcFace", 83)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFace : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFace, IEqualityComparer<@IfcFace>, IEquatable<@IfcFace>
+	public  partial class @IfcFace : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFace, IEquatable<@IfcFace>
 	{
 		#region IIfcFace explicit implementation
 		IEnumerable<IIfcFaceBound> IIfcFace.Bounds { get { return @Bounds; } }	
@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.TopologyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcTextureMap>(e => (e.MappedTo as IfcFace) == this, "MappedTo", this);
+				return Model.Instances.Where<IfcTextureMap>(e => e.MappedTo == this, "MappedTo", this);
 			} 
 		}
 		#endregion
@@ -94,12 +94,6 @@ namespace Xbim.Ifc4.TopologyResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*HasOuterBound:	HasOuterBound : SIZEOF(QUERY(temp <* Bounds | 'IFC4.IFCFACEOUTERBOUND' IN TYPEOF(temp))) <= 1;*/
 		}
 		#endregion
 
@@ -146,16 +140,6 @@ namespace Xbim.Ifc4.TopologyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFace x, @IfcFace y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFace obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

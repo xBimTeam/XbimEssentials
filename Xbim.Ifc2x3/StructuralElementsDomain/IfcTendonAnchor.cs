@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcTendonAnchor", 675)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTendonAnchor : IfcReinforcingElement, IInstantiableEntity, IIfcTendonAnchor, IEqualityComparer<@IfcTendonAnchor>, IEquatable<@IfcTendonAnchor>
+	public  partial class @IfcTendonAnchor : IfcReinforcingElement, IInstantiableEntity, IIfcTendonAnchor, IEquatable<@IfcTendonAnchor>
 	{
 		#region IIfcTendonAnchor explicit implementation
 		 
@@ -68,11 +68,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -119,16 +114,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTendonAnchor x, @IfcTendonAnchor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTendonAnchor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

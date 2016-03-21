@@ -144,7 +144,7 @@ namespace Xbim.Common.Metadata
             if (!_typeToExpressTypeLookup.ContainsKey(baseParent))
             {
                 _typeToExpressTypeLookup.Add(baseParent, expressParent = new ExpressType(baseParent));
-                var typeLookup = baseParent.Name.ToUpper();
+                var typeLookup = baseParent.Name.ToUpperInvariant();
                 if (!_typeNameToExpressTypeLookup.ContainsKey(typeLookup))
                     _typeNameToExpressTypeLookup.Add(typeLookup, expressParent);
                 expressParent.SubTypes.Add(child);

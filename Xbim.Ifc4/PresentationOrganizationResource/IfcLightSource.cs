@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSource", 755)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcLightSource : IfcGeometricRepresentationItem, IIfcLightSource, IEqualityComparer<@IfcLightSource>, IEquatable<@IfcLightSource>
+	public abstract partial class @IfcLightSource : IfcGeometricRepresentationItem, IIfcLightSource, IEquatable<@IfcLightSource>
 	{
 		#region IIfcLightSource explicit implementation
 		IfcLabel? IIfcLightSource.Name { get { return @Name; } }	
@@ -146,11 +146,6 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -196,16 +191,6 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcLightSource x, @IfcLightSource y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLightSource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

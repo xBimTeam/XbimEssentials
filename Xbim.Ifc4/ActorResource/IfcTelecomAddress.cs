@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.ActorResource
 {
 	[ExpressType("IfcTelecomAddress", 553)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IIfcTelecomAddress, IEqualityComparer<@IfcTelecomAddress>, IEquatable<@IfcTelecomAddress>
+	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IIfcTelecomAddress, IEquatable<@IfcTelecomAddress>
 	{
 		#region IIfcTelecomAddress explicit implementation
 		IEnumerable<IfcLabel> IIfcTelecomAddress.TelephoneNumbers { get { return @TelephoneNumbers; } }	
@@ -182,12 +182,6 @@ namespace Xbim.Ifc4.ActorResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*MinimumDataProvided:EXISTS (MessagingIDs);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -233,16 +227,6 @@ namespace Xbim.Ifc4.ActorResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTelecomAddress x, @IfcTelecomAddress y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTelecomAddress obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

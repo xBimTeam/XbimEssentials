@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcSpace", 454)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IIfcSpace, IEqualityComparer<@IfcSpace>, IEquatable<@IfcSpace>
+	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IIfcSpace, IEquatable<@IfcSpace>
 	{
 		#region IIfcSpace explicit implementation
 		IfcSpaceTypeEnum? IIfcSpace.PredefinedType { get { return @PredefinedType; } }	
@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelCoversSpaces>(e => (e.RelatingSpace as IfcSpace) == this, "RelatingSpace", this);
+				return Model.Instances.Where<IfcRelCoversSpaces>(e => e.RelatingSpace == this, "RelatingSpace", this);
 			} 
 		}
 		[InverseProperty("RelatingSpace")]
@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSpaceBoundary>(e => (e.RelatingSpace as IfcSpace) == this, "RelatingSpace", this);
+				return Model.Instances.Where<IfcRelSpaceBoundary>(e => e.RelatingSpace == this, "RelatingSpace", this);
 			} 
 		}
 		#endregion
@@ -139,13 +139,6 @@ namespace Xbim.Ifc4.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcSpaceTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCSPACETYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
 		}
 		#endregion
 
@@ -192,16 +185,16 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcSpace left, IfcSpaceBoundarySelect right)
+		{
+			return left == right as @IfcSpace;
+		}
 
-        public bool Equals(@IfcSpace x, @IfcSpace y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcSpace left, IfcSpaceBoundarySelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcSpace obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

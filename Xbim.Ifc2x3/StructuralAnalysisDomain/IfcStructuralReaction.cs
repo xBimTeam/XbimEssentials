@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralReaction", 355)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralReaction : IfcStructuralActivity, IIfcStructuralReaction, IEqualityComparer<@IfcStructuralReaction>, IEquatable<@IfcStructuralReaction>
+	public abstract partial class @IfcStructuralReaction : IfcStructuralActivity, IIfcStructuralReaction, IEquatable<@IfcStructuralReaction>
 	{
 		#region IIfcStructuralReaction explicit implementation
 		 
@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcStructuralAction>(e => (e.CausedBy as IfcStructuralReaction) == this, "CausedBy", this);
+				return Model.Instances.Where<IfcStructuralAction>(e => e.CausedBy == this, "CausedBy", this);
 			} 
 		}
 		#endregion
@@ -81,11 +81,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -132,16 +127,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralReaction x, @IfcStructuralReaction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralReaction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

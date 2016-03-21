@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcRectangularTrimmedSurface", 653)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangularTrimmedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcRectangularTrimmedSurface, IEqualityComparer<@IfcRectangularTrimmedSurface>, IEquatable<@IfcRectangularTrimmedSurface>
+	public  partial class @IfcRectangularTrimmedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcRectangularTrimmedSurface, IEquatable<@IfcRectangularTrimmedSurface>
 	{
 		#region IIfcRectangularTrimmedSurface explicit implementation
 		IIfcSurface IIfcRectangularTrimmedSurface.BasisSurface { get { return @BasisSurface; } }	
@@ -204,15 +204,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*U1AndU2Different:	U1AndU2Different : U1 <> U2;*/
-		/*V1AndV2Different:	V1AndV2Different : V1 <> V2;*/
-		/*UsenseCompatible:         (Usense = (U2 > U1));*/
-		/*VsenseCompatible:	VsenseCompatible : Vsense = (V2 > V1);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -258,16 +249,6 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRectangularTrimmedSurface x, @IfcRectangularTrimmedSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRectangularTrimmedSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

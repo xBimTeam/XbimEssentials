@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IfcFlowTreatmentDeviceType", 140)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFlowTreatmentDeviceType : IfcDistributionFlowElementType, IIfcFlowTreatmentDeviceType, IEqualityComparer<@IfcFlowTreatmentDeviceType>, IEquatable<@IfcFlowTreatmentDeviceType>
+	public abstract partial class @IfcFlowTreatmentDeviceType : IfcDistributionFlowElementType, IIfcFlowTreatmentDeviceType, IEquatable<@IfcFlowTreatmentDeviceType>
 	{
 		#region IIfcFlowTreatmentDeviceType explicit implementation
 		 
@@ -68,11 +68,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -119,16 +114,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFlowTreatmentDeviceType x, @IfcFlowTreatmentDeviceType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFlowTreatmentDeviceType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

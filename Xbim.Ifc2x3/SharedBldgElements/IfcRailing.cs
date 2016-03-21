@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcRailing", 350)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRailing : IfcBuildingElement, IInstantiableEntity, IIfcRailing, IEqualityComparer<@IfcRailing>, IEquatable<@IfcRailing>
+	public  partial class @IfcRailing : IfcBuildingElement, IInstantiableEntity, IIfcRailing, IEquatable<@IfcRailing>
 	{
 		#region IIfcRailing explicit implementation
 		IfcRailingTypeEnum? IIfcRailing.PredefinedType { get { return @PredefinedType; } }	
@@ -94,12 +94,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR61:              ((PredefinedType = IfcRailingTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -145,16 +139,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRailing x, @IfcRailing y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRailing obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

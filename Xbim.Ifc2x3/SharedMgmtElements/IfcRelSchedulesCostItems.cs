@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcRelSchedulesCostItems", 700)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSchedulesCostItems : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelSchedulesCostItems, IEqualityComparer<@IfcRelSchedulesCostItems>, IEquatable<@IfcRelSchedulesCostItems>
+	public  partial class @IfcRelSchedulesCostItems : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelSchedulesCostItems, IEquatable<@IfcRelSchedulesCostItems>
 	{
 		#region IIfcRelSchedulesCostItems explicit implementation
 		 
@@ -67,13 +67,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11:               )) = 0;*/
-		/*WR12:	WR12 : 'IFC2X3.IFCCOSTSCHEDULE' IN TYPEOF (SELF\IfcRelAssignsToControl.RelatingControl);*/
 		}
 		#endregion
 
@@ -120,16 +113,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelSchedulesCostItems x, @IfcRelSchedulesCostItems y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelSchedulesCostItems obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

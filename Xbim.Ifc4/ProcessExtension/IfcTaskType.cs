@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcTaskType", 1296)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTaskType : IfcTypeProcess, IInstantiableEntity, IIfcTaskType, IEqualityComparer<@IfcTaskType>, IEquatable<@IfcTaskType>
+	public  partial class @IfcTaskType : IfcTypeProcess, IInstantiableEntity, IIfcTaskType, IEquatable<@IfcTaskType>
 	{
 		#region IIfcTaskType explicit implementation
 		IfcTaskTypeEnum IIfcTaskType.PredefinedType { get { return @PredefinedType; } }	
@@ -116,12 +116,6 @@ namespace Xbim.Ifc4.ProcessExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:	CorrectPredefinedType : (PredefinedType <> IfcTaskTypeEnum.USERDEFINED) OR ((PredefinedType = IfcTaskTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcTypeProcess.ProcessType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -167,16 +161,6 @@ namespace Xbim.Ifc4.ProcessExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTaskType x, @IfcTaskType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTaskType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

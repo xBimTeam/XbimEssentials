@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcAxis2Placement3D", 448)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAxis2Placement3D : IfcPlacement, IInstantiableEntity, IIfcAxis2Placement3D, IEqualityComparer<@IfcAxis2Placement3D>, IEquatable<@IfcAxis2Placement3D>
+	public  partial class @IfcAxis2Placement3D : IfcPlacement, IInstantiableEntity, IIfcAxis2Placement3D, IEquatable<@IfcAxis2Placement3D>
 	{
 		#region IIfcAxis2Placement3D explicit implementation
 		IIfcDirection IIfcAxis2Placement3D.Axis { get { return @Axis; } }	
@@ -140,16 +140,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*LocationIs3D:	LocationIs3D : SELF\IfcPlacement.Location.Dim = 3;*/
-		/*AxisIs3D:	AxisIs3D : (NOT (EXISTS (Axis))) OR (Axis.Dim = 3);*/
-		/*RefDirIs3D:	RefDirIs3D : (NOT (EXISTS (RefDirection))) OR (RefDirection.Dim = 3);*/
-		/*AxisToRefDirPosition:	AxisToRefDirPosition : (NOT (EXISTS (Axis))) OR (NOT (EXISTS (RefDirection))) OR (IfcCrossProduct(Axis,RefDirection).Magnitude > 0.0);*/
-		/*AxisAndRefDirProvision:	AxisAndRefDirProvision : NOT ((EXISTS (Axis)) XOR (EXISTS (RefDirection)));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -195,16 +185,16 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcAxis2Placement3D left, IfcAxis2Placement right)
+		{
+			return left == right as @IfcAxis2Placement3D;
+		}
 
-        public bool Equals(@IfcAxis2Placement3D x, @IfcAxis2Placement3D y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcAxis2Placement3D left, IfcAxis2Placement right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcAxis2Placement3D obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

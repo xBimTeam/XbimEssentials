@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionPointEccentricity", 405)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPointEccentricity : IfcConnectionPointGeometry, IInstantiableEntity, IIfcConnectionPointEccentricity, IEqualityComparer<@IfcConnectionPointEccentricity>, IEquatable<@IfcConnectionPointEccentricity>
+	public  partial class @IfcConnectionPointEccentricity : IfcConnectionPointGeometry, IInstantiableEntity, IIfcConnectionPointEccentricity, IEquatable<@IfcConnectionPointEccentricity>
 	{
 		#region IIfcConnectionPointEccentricity explicit implementation
 		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInX { get { return @EccentricityInX; } }	
@@ -128,11 +128,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -178,16 +173,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcConnectionPointEccentricity x, @IfcConnectionPointEccentricity y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConnectionPointEccentricity obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

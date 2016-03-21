@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcProductRepresentation", 1)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProductRepresentation : INotifyPropertyChanged, IInstantiableEntity, IIfcProductRepresentation, IEqualityComparer<@IfcProductRepresentation>, IEquatable<@IfcProductRepresentation>
+	public  partial class @IfcProductRepresentation : INotifyPropertyChanged, IInstantiableEntity, IIfcProductRepresentation, IEquatable<@IfcProductRepresentation>
 	{
 		#region IIfcProductRepresentation explicit implementation
 		IfcLabel? IIfcProductRepresentation.Name { get { return @Name; } }	
@@ -232,11 +232,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -282,16 +277,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcProductRepresentation x, @IfcProductRepresentation y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProductRepresentation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcCivilElement", 1122)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCivilElement : IfcElement, IInstantiableEntity, IIfcCivilElement, IEqualityComparer<@IfcCivilElement>, IEquatable<@IfcCivilElement>
+	public  partial class @IfcCivilElement : IfcElement, IInstantiableEntity, IIfcCivilElement, IEquatable<@IfcCivilElement>
 	{
 		#region IIfcCivilElement explicit implementation
 		 
@@ -67,11 +67,6 @@ namespace Xbim.Ifc4.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -118,16 +113,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCivilElement x, @IfcCivilElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCivilElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 {
 	[ExpressType("IfcApproval", 626)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApproval : INotifyPropertyChanged, IInstantiableEntity, IIfcApproval, IEqualityComparer<@IfcApproval>, IEquatable<@IfcApproval>
+	public  partial class @IfcApproval : INotifyPropertyChanged, IInstantiableEntity, IIfcApproval, IEquatable<@IfcApproval>
 	{
 		#region IIfcApproval explicit implementation
 		IfcText? IIfcApproval.Description { get { return @Description; } }	
@@ -246,7 +246,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcApprovalActorRelationship>(e => (e.Approval as IfcApproval) == this, "Approval", this);
+				return Model.Instances.Where<IfcApprovalActorRelationship>(e => e.Approval == this, "Approval", this);
 			} 
 		}
 		[InverseProperty("RelatedApproval")]
@@ -255,7 +255,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcApprovalRelationship>(e => (e.RelatedApproval as IfcApproval) == this, "RelatedApproval", this);
+				return Model.Instances.Where<IfcApprovalRelationship>(e => e.RelatedApproval == this, "RelatedApproval", this);
 			} 
 		}
 		[InverseProperty("RelatingApproval")]
@@ -264,7 +264,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this, "RelatingApproval", this);
+				return Model.Instances.Where<IfcApprovalRelationship>(e => e.RelatingApproval == this, "RelatingApproval", this);
 			} 
 		}
 		#endregion
@@ -349,11 +349,6 @@ namespace Xbim.Ifc2x3.ApprovalResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -399,16 +394,6 @@ namespace Xbim.Ifc2x3.ApprovalResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcApproval x, @IfcApproval y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcApproval obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

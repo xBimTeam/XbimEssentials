@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 {
 	[ExpressType("IfcPlanarExtent", 469)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlanarExtent : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcPlanarExtent, IEqualityComparer<@IfcPlanarExtent>, IEquatable<@IfcPlanarExtent>
+	public  partial class @IfcPlanarExtent : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcPlanarExtent, IEquatable<@IfcPlanarExtent>
 	{
 		#region IIfcPlanarExtent explicit implementation
 		IfcLengthMeasure IIfcPlanarExtent.SizeInX { get { return @SizeInX; } }	
@@ -105,11 +105,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -155,16 +150,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPlanarExtent x, @IfcPlanarExtent y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPlanarExtent obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

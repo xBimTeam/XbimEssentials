@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcRampType", 1240)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRampType : IfcBuildingElementType, IInstantiableEntity, IIfcRampType, IEqualityComparer<@IfcRampType>, IEquatable<@IfcRampType>
+	public  partial class @IfcRampType : IfcBuildingElementType, IInstantiableEntity, IIfcRampType, IEquatable<@IfcRampType>
 	{
 		#region IIfcRampType explicit implementation
 		IfcRampTypeEnum IIfcRampType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcRampTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc4.SharedBldgElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRampType x, @IfcRampType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRampType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

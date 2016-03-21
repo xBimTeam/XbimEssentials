@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcExtrudedAreaSolid", 238)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExtrudedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolid, IEqualityComparer<@IfcExtrudedAreaSolid>, IEquatable<@IfcExtrudedAreaSolid>
+	public  partial class @IfcExtrudedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolid, IEquatable<@IfcExtrudedAreaSolid>
 	{
 		#region IIfcExtrudedAreaSolid explicit implementation
 		IIfcDirection IIfcExtrudedAreaSolid.ExtrudedDirection { get { return @ExtrudedDirection; } }	
@@ -109,12 +109,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : IfcDotProduct(IfcRepresentationItem() || IfcGeometricRepresentationItem() || IfcDirection([0.0,0.0,1.0]), SELF.ExtrudedDirection) <> 0.0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -160,16 +154,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcExtrudedAreaSolid x, @IfcExtrudedAreaSolid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExtrudedAreaSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

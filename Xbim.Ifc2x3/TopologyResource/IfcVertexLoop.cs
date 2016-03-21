@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcVertexLoop", 244)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVertexLoop : IfcLoop, IInstantiableEntity, IIfcVertexLoop, IEqualityComparer<@IfcVertexLoop>, IEquatable<@IfcVertexLoop>
+	public  partial class @IfcVertexLoop : IfcLoop, IInstantiableEntity, IIfcVertexLoop, IEquatable<@IfcVertexLoop>
 	{
 		#region IIfcVertexLoop explicit implementation
 		IIfcVertex IIfcVertexLoop.LoopVertex { get { return @LoopVertex; } }	
@@ -83,11 +83,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -133,16 +128,6 @@ namespace Xbim.Ifc2x3.TopologyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcVertexLoop x, @IfcVertexLoop y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcVertexLoop obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

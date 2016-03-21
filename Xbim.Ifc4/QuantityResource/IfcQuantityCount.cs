@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.QuantityResource
 {
 	[ExpressType("IfcQuantityCount", 457)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityCount : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityCount, IEqualityComparer<@IfcQuantityCount>, IEquatable<@IfcQuantityCount>
+	public  partial class @IfcQuantityCount : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityCount, IEquatable<@IfcQuantityCount>
 	{
 		#region IIfcQuantityCount explicit implementation
 		IfcCountMeasure IIfcQuantityCount.CountValue { get { return @CountValue; } }	
@@ -109,12 +109,6 @@ namespace Xbim.Ifc4.QuantityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:	WR21 : CountValue >= 0.;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -160,16 +154,6 @@ namespace Xbim.Ifc4.QuantityResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcQuantityCount x, @IfcQuantityCount y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcQuantityCount obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

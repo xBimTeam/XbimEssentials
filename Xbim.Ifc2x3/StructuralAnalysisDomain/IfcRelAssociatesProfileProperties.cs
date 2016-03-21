@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelAssociatesProfileProperties", 676)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesProfileProperties : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesProfileProperties, IEqualityComparer<@IfcRelAssociatesProfileProperties>, IEquatable<@IfcRelAssociatesProfileProperties>
+	public  partial class @IfcRelAssociatesProfileProperties : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesProfileProperties, IEquatable<@IfcRelAssociatesProfileProperties>
 	{
 		#region IIfcRelAssociatesProfileProperties explicit implementation
 		IIfcProfileProperties IIfcRelAssociatesProfileProperties.RelatingProfileProperties { get { return @RelatingProfileProperties; } }	
@@ -133,11 +133,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -183,16 +178,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelAssociatesProfileProperties x, @IfcRelAssociatesProfileProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssociatesProfileProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

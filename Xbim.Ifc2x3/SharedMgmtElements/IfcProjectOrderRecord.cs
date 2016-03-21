@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcProjectOrderRecord", 697)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectOrderRecord : IfcControl, IInstantiableEntity, IIfcProjectOrderRecord, IEqualityComparer<@IfcProjectOrderRecord>, IEquatable<@IfcProjectOrderRecord>
+	public  partial class @IfcProjectOrderRecord : IfcControl, IInstantiableEntity, IIfcProjectOrderRecord, IEquatable<@IfcProjectOrderRecord>
 	{
 		#region IIfcProjectOrderRecord explicit implementation
 		IEnumerable<IIfcRelAssignsToProjectOrder> IIfcProjectOrderRecord.Records { get { return @Records; } }	
@@ -109,11 +109,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -159,16 +154,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcProjectOrderRecord x, @IfcProjectOrderRecord y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProjectOrderRecord obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

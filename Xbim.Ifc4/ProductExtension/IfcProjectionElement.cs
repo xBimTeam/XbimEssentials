@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcProjectionElement", 384)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectionElement : IfcFeatureElementAddition, IInstantiableEntity, IIfcProjectionElement, IEqualityComparer<@IfcProjectionElement>, IEquatable<@IfcProjectionElement>
+	public  partial class @IfcProjectionElement : IfcFeatureElementAddition, IInstantiableEntity, IIfcProjectionElement, IEquatable<@IfcProjectionElement>
 	{
 		#region IIfcProjectionElement explicit implementation
 		IfcProjectionElementTypeEnum? IIfcProjectionElement.PredefinedType { get { return @PredefinedType; } }	
@@ -93,11 +93,6 @@ namespace Xbim.Ifc4.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -143,16 +138,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcProjectionElement x, @IfcProjectionElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProjectionElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

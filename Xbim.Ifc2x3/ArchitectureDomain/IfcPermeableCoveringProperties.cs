@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 {
 	[ExpressType("IfcPermeableCoveringProperties", 707)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPermeableCoveringProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcPermeableCoveringProperties, IEqualityComparer<@IfcPermeableCoveringProperties>, IEquatable<@IfcPermeableCoveringProperties>
+	public  partial class @IfcPermeableCoveringProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcPermeableCoveringProperties, IEquatable<@IfcPermeableCoveringProperties>
 	{
 		#region IIfcPermeableCoveringProperties explicit implementation
 		IfcPermeableCoveringOperationEnum IIfcPermeableCoveringProperties.OperationType { get { return @OperationType; } }	
@@ -173,11 +173,6 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -223,16 +218,6 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPermeableCoveringProperties x, @IfcPermeableCoveringProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPermeableCoveringProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

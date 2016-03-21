@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcPolyline", 500)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPolyline : IfcBoundedCurve, IInstantiableEntity, IIfcPolyline, IEqualityComparer<@IfcPolyline>, IEquatable<@IfcPolyline>
+	public  partial class @IfcPolyline : IfcBoundedCurve, IInstantiableEntity, IIfcPolyline, IEquatable<@IfcPolyline>
 	{
 		#region IIfcPolyline explicit implementation
 		IEnumerable<IIfcCartesianPoint> IIfcPolyline.Points { get { return @Points; } }	
@@ -81,12 +81,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*SameDim:	SameDim : SIZEOF(QUERY(Temp <* Points | Temp.Dim <> Points[1].Dim)) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -132,16 +126,6 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPolyline x, @IfcPolyline y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPolyline obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

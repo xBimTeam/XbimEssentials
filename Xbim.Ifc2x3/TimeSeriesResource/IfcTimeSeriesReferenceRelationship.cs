@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IfcTimeSeriesReferenceRelationship", 673)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimeSeriesReferenceRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcTimeSeriesReferenceRelationship, IEqualityComparer<@IfcTimeSeriesReferenceRelationship>, IEquatable<@IfcTimeSeriesReferenceRelationship>
+	public  partial class @IfcTimeSeriesReferenceRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcTimeSeriesReferenceRelationship, IEquatable<@IfcTimeSeriesReferenceRelationship>
 	{
 		#region IIfcTimeSeriesReferenceRelationship explicit implementation
 		IIfcTimeSeries IIfcTimeSeriesReferenceRelationship.ReferencedTimeSeries { get { return @ReferencedTimeSeries; } }	
@@ -212,11 +212,6 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -262,16 +257,6 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTimeSeriesReferenceRelationship x, @IfcTimeSeriesReferenceRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTimeSeriesReferenceRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

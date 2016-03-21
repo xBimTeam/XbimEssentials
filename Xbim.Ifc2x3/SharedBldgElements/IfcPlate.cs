@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcPlate", 351)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlate : IfcBuildingElement, IInstantiableEntity, IIfcPlate, IEqualityComparer<@IfcPlate>, IEquatable<@IfcPlate>
+	public  partial class @IfcPlate : IfcBuildingElement, IInstantiableEntity, IIfcPlate, IEquatable<@IfcPlate>
 	{
 		#region IIfcPlate explicit implementation
 		 
@@ -68,11 +68,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -119,16 +114,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPlate x, @IfcPlate y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPlate obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

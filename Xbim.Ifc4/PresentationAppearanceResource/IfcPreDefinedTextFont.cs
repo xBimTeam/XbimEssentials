@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcPreDefinedTextFont", 504)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedTextFont : IfcPreDefinedItem, IIfcPreDefinedTextFont, IEqualityComparer<@IfcPreDefinedTextFont>, IEquatable<@IfcPreDefinedTextFont>
+	public abstract partial class @IfcPreDefinedTextFont : IfcPreDefinedItem, IIfcPreDefinedTextFont, IEquatable<@IfcPreDefinedTextFont>
 	{
 		#region IIfcPreDefinedTextFont explicit implementation
 		 
@@ -60,11 +60,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -111,16 +106,16 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcPreDefinedTextFont left, IfcTextFontSelect right)
+		{
+			return left == right as @IfcPreDefinedTextFont;
+		}
 
-        public bool Equals(@IfcPreDefinedTextFont x, @IfcPreDefinedTextFont y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcPreDefinedTextFont left, IfcTextFontSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcPreDefinedTextFont obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

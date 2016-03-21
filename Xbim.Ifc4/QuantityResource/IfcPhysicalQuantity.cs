@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.QuantityResource
 {
 	[ExpressType("IfcPhysicalQuantity", 102)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPhysicalQuantity : IPersistEntity, INotifyPropertyChanged, IIfcPhysicalQuantity, IEqualityComparer<@IfcPhysicalQuantity>, IEquatable<@IfcPhysicalQuantity>
+	public abstract partial class @IfcPhysicalQuantity : IPersistEntity, INotifyPropertyChanged, IIfcPhysicalQuantity, IEquatable<@IfcPhysicalQuantity>
 	{
 		#region IIfcPhysicalQuantity explicit implementation
 		IfcLabel IIfcPhysicalQuantity.Name { get { return @Name; } }	
@@ -238,11 +238,6 @@ namespace Xbim.Ifc4.QuantityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -288,16 +283,16 @@ namespace Xbim.Ifc4.QuantityResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcPhysicalQuantity left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcPhysicalQuantity;
+		}
 
-        public bool Equals(@IfcPhysicalQuantity x, @IfcPhysicalQuantity y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcPhysicalQuantity left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcPhysicalQuantity obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

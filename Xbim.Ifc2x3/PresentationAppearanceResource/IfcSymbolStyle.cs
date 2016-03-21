@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSymbolStyle", 729)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSymbolStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSymbolStyle, IEqualityComparer<@IfcSymbolStyle>, IEquatable<@IfcSymbolStyle>
+	public  partial class @IfcSymbolStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSymbolStyle, IEquatable<@IfcSymbolStyle>
 	{
 		#region IIfcSymbolStyle explicit implementation
 		IIfcSymbolStyleSelect IIfcSymbolStyle.StyleOfSymbol { get { return @StyleOfSymbol; } }	
@@ -86,11 +86,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -136,16 +131,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcSymbolStyle left, IfcPresentationStyleSelect right)
+		{
+			return left == right as @IfcSymbolStyle;
+		}
 
-        public bool Equals(@IfcSymbolStyle x, @IfcSymbolStyle y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcSymbolStyle left, IfcPresentationStyleSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcSymbolStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

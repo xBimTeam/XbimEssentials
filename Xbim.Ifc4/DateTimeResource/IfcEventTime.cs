@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcEventTime", 1169)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEventTime : IfcSchedulingTime, IInstantiableEntity, IIfcEventTime, IEqualityComparer<@IfcEventTime>, IEquatable<@IfcEventTime>
+	public  partial class @IfcEventTime : IfcSchedulingTime, IInstantiableEntity, IIfcEventTime, IEquatable<@IfcEventTime>
 	{
 		#region IIfcEventTime explicit implementation
 		IfcDateTime? IIfcEventTime.ActualDate { get { return @ActualDate; } }	
@@ -148,11 +148,6 @@ namespace Xbim.Ifc4.DateTimeResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -198,16 +193,6 @@ namespace Xbim.Ifc4.DateTimeResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcEventTime x, @IfcEventTime y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEventTime obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcFilter", 1178)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFilter : IfcFlowTreatmentDevice, IInstantiableEntity, IIfcFilter, IEqualityComparer<@IfcFilter>, IEquatable<@IfcFilter>
+	public  partial class @IfcFilter : IfcFlowTreatmentDevice, IInstantiableEntity, IIfcFilter, IEquatable<@IfcFilter>
 	{
 		#region IIfcFilter explicit implementation
 		IfcFilterTypeEnum? IIfcFilter.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.HvacDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcFilterTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCFILTERTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.HvacDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFilter x, @IfcFilter y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFilter obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

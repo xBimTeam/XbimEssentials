@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcEnvironmentalImpactValue", 78)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEnvironmentalImpactValue : IfcAppliedValue, IInstantiableEntity, IIfcEnvironmentalImpactValue, IEqualityComparer<@IfcEnvironmentalImpactValue>, IEquatable<@IfcEnvironmentalImpactValue>
+	public  partial class @IfcEnvironmentalImpactValue : IfcAppliedValue, IInstantiableEntity, IIfcEnvironmentalImpactValue, IEquatable<@IfcEnvironmentalImpactValue>
 	{
 		#region IIfcEnvironmentalImpactValue explicit implementation
 		IfcLabel IIfcEnvironmentalImpactValue.ImpactType { get { return @ImpactType; } }	
@@ -132,12 +132,6 @@ namespace Xbim.Ifc2x3.CostResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            ((Category = IfcEnvironmentalImpactCategoryEnum.USERDEFINED) AND EXISTS(SELF\IfcEnvironmentalImpactValue.UserDefinedCategory));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -183,16 +177,6 @@ namespace Xbim.Ifc2x3.CostResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcEnvironmentalImpactValue x, @IfcEnvironmentalImpactValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEnvironmentalImpactValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

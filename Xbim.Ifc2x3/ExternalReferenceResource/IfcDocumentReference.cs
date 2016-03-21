@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcDocumentReference", 450)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentReference : IfcExternalReference, IInstantiableEntity, IIfcDocumentReference, IEqualityComparer<@IfcDocumentReference>, IEquatable<@IfcDocumentReference>
+	public  partial class @IfcDocumentReference : IfcExternalReference, IInstantiableEntity, IIfcDocumentReference, IEquatable<@IfcDocumentReference>
 	{
 		#region IIfcDocumentReference explicit implementation
 		 
@@ -75,12 +75,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : EXISTS(Name) XOR EXISTS(ReferenceToDocument[1]);*/
 		}
 		#endregion
 
@@ -127,16 +121,16 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcDocumentReference left, IfcDocumentSelect right)
+		{
+			return left == right as @IfcDocumentReference;
+		}
 
-        public bool Equals(@IfcDocumentReference x, @IfcDocumentReference y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcDocumentReference left, IfcDocumentSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcDocumentReference obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

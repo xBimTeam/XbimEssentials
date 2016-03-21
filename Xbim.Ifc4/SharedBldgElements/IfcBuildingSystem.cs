@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcBuildingSystem", 1108)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuildingSystem : IfcSystem, IInstantiableEntity, IIfcBuildingSystem, IEqualityComparer<@IfcBuildingSystem>, IEquatable<@IfcBuildingSystem>
+	public  partial class @IfcBuildingSystem : IfcSystem, IInstantiableEntity, IIfcBuildingSystem, IEquatable<@IfcBuildingSystem>
 	{
 		#region IIfcBuildingSystem explicit implementation
 		IfcBuildingSystemTypeEnum? IIfcBuildingSystem.PredefinedType { get { return @PredefinedType; } }	
@@ -112,11 +112,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -162,16 +157,6 @@ namespace Xbim.Ifc4.SharedBldgElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcBuildingSystem x, @IfcBuildingSystem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBuildingSystem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

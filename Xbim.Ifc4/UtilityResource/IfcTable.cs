@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.UtilityResource
 {
 	[ExpressType("IfcTable", 377)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTable : INotifyPropertyChanged, IInstantiableEntity, IIfcTable, IEqualityComparer<@IfcTable>, IEquatable<@IfcTable>
+	public  partial class @IfcTable : INotifyPropertyChanged, IInstantiableEntity, IIfcTable, IEquatable<@IfcTable>
 	{
 		#region IIfcTable explicit implementation
 		IfcLabel? IIfcTable.Name { get { return @Name; } }	
@@ -271,13 +271,6 @@ namespace Xbim.Ifc4.UtilityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(QUERY( Temp <* Rows | HIINDEX(Temp.RowCells) <> HIINDEX(Rows[1].RowCells))) = 0;*/
-		/*WR2:	WR2 : { 0 <= NumberOfHeadings <= 1 };*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -323,16 +316,26 @@ namespace Xbim.Ifc4.UtilityResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcTable left, IfcMetricValueSelect right)
+		{
+			return left == right as @IfcTable;
+		}
 
-        public bool Equals(@IfcTable x, @IfcTable y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcTable left, IfcMetricValueSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcTable obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcTable left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcTable;
+		}
+
+		public static bool operator !=(@IfcTable left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

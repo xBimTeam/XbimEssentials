@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.CostResource
 {
 	[ExpressType("IfcCurrencyRelationship", 195)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurrencyRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcCurrencyRelationship, IEqualityComparer<@IfcCurrencyRelationship>, IEquatable<@IfcCurrencyRelationship>
+	public  partial class @IfcCurrencyRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcCurrencyRelationship, IEquatable<@IfcCurrencyRelationship>
 	{
 		#region IIfcCurrencyRelationship explicit implementation
 		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatingMonetaryUnit { get { return @RelatingMonetaryUnit; } }	
@@ -170,11 +170,6 @@ namespace Xbim.Ifc4.CostResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -220,16 +215,6 @@ namespace Xbim.Ifc4.CostResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCurrencyRelationship x, @IfcCurrencyRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCurrencyRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

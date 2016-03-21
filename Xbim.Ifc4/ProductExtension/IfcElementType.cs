@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcElementType", 48)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcElementType : IfcTypeProduct, IIfcElementType, IEqualityComparer<@IfcElementType>, IEquatable<@IfcElementType>
+	public abstract partial class @IfcElementType : IfcTypeProduct, IIfcElementType, IEquatable<@IfcElementType>
 	{
 		#region IIfcElementType explicit implementation
 		IfcLabel? IIfcElementType.ElementType { get { return @ElementType; } }	
@@ -95,11 +95,6 @@ namespace Xbim.Ifc4.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -145,16 +140,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcElementType x, @IfcElementType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElementType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

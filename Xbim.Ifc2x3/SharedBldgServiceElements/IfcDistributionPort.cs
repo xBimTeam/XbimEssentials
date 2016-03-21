@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcDistributionPort", 178)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionPort : IfcPort, IInstantiableEntity, IIfcDistributionPort, IEqualityComparer<@IfcDistributionPort>, IEquatable<@IfcDistributionPort>
+	public  partial class @IfcDistributionPort : IfcPort, IInstantiableEntity, IIfcDistributionPort, IEquatable<@IfcDistributionPort>
 	{
 		#region IIfcDistributionPort explicit implementation
 		IfcFlowDirectionEnum? IIfcDistributionPort.FlowDirection { get { return @FlowDirection; } }	
@@ -93,11 +93,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -143,16 +138,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDistributionPort x, @IfcDistributionPort y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDistributionPort obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

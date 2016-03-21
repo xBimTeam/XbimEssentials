@@ -43,7 +43,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Facility", 14)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieFacility : CobieAsset, IInstantiableEntity, ICobieFacility, IEqualityComparer<@CobieFacility>, IEquatable<@CobieFacility>
+	public  partial class @CobieFacility : CobieAsset, IInstantiableEntity, ICobieFacility, IEquatable<@CobieFacility>
 	{
 		#region ICobieFacility explicit implementation
 		ICobieLinearUnit ICobieFacility.LinearUnits { get { return @LinearUnits; } }	
@@ -201,7 +201,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieFloor>(e => (e.Facility as CobieFacility) == this, "Facility", this);
+				return Model.Instances.Where<CobieFloor>(e => e.Facility == this, "Facility", this);
 			} 
 		}
 		[InverseProperty("Facility")]
@@ -210,7 +210,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieSystem>(e => (e.Facility as CobieFacility) == this, "Facility", this);
+				return Model.Instances.Where<CobieSystem>(e => e.Facility == this, "Facility", this);
 			} 
 		}
 		#endregion
@@ -263,11 +263,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -313,16 +308,16 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
+        public static bool operator ==(@CobieFacility left, SpatialDivision right)
+		{
+			return left == right as @CobieFacility;
+		}
 
-        public bool Equals(@CobieFacility x, @CobieFacility y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@CobieFacility left, SpatialDivision right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@CobieFacility obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

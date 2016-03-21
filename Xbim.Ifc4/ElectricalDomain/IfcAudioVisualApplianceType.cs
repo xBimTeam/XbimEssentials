@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcAudioVisualApplianceType", 1100)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAudioVisualApplianceType : IfcFlowTerminalType, IInstantiableEntity, IIfcAudioVisualApplianceType, IEqualityComparer<@IfcAudioVisualApplianceType>, IEquatable<@IfcAudioVisualApplianceType>
+	public  partial class @IfcAudioVisualApplianceType : IfcFlowTerminalType, IInstantiableEntity, IIfcAudioVisualApplianceType, IEquatable<@IfcAudioVisualApplianceType>
 	{
 		#region IIfcAudioVisualApplianceType explicit implementation
 		IfcAudioVisualApplianceTypeEnum IIfcAudioVisualApplianceType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc4.ElectricalDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcAudioVisualApplianceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc4.ElectricalDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcAudioVisualApplianceType x, @IfcAudioVisualApplianceType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAudioVisualApplianceType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

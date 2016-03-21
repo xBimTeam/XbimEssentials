@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Common;
 using Xbim.Ifc2x3;
 using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.IO.Memory;
@@ -53,7 +54,13 @@ namespace Xbim.Essentials.Tests
             Assert.IsTrue(distinct.Contains(wall1));
             Assert.IsTrue(distinct.Contains(wall2));
 
-
+            //it should also work on interface list
+            var entities = new List<IPersistEntity> { wall1, wall2, wall3, wall4 };
+            var distinctEntities = entities.Distinct().ToList();
+            Assert.AreEqual(3, distinctEntities.Count);
+            //but it "contains" the object as far as the list is concerned
+            Assert.IsTrue(distinctEntities.Contains(wall1));
+            Assert.IsTrue(distinctEntities.Contains(wall2));
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 {
 	[ExpressType("IfcActionRequest", 516)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActionRequest : IfcControl, IInstantiableEntity, IIfcActionRequest, IEqualityComparer<@IfcActionRequest>, IEquatable<@IfcActionRequest>
+	public  partial class @IfcActionRequest : IfcControl, IInstantiableEntity, IIfcActionRequest, IEquatable<@IfcActionRequest>
 	{
 		#region IIfcActionRequest explicit implementation
 		IfcActionRequestTypeEnum? IIfcActionRequest.PredefinedType { get { return @PredefinedType; } }	
@@ -133,11 +133,6 @@ namespace Xbim.Ifc4.SharedMgmtElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -183,16 +178,6 @@ namespace Xbim.Ifc4.SharedMgmtElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcActionRequest x, @IfcActionRequest y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcActionRequest obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

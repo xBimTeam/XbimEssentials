@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcFlowMovingDeviceType", 587)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFlowMovingDeviceType : IfcDistributionFlowElementType, IIfcFlowMovingDeviceType, IEqualityComparer<@IfcFlowMovingDeviceType>, IEquatable<@IfcFlowMovingDeviceType>
+	public abstract partial class @IfcFlowMovingDeviceType : IfcDistributionFlowElementType, IIfcFlowMovingDeviceType, IEquatable<@IfcFlowMovingDeviceType>
 	{
 		#region IIfcFlowMovingDeviceType explicit implementation
 		 
@@ -68,11 +68,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -119,16 +114,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFlowMovingDeviceType x, @IfcFlowMovingDeviceType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFlowMovingDeviceType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

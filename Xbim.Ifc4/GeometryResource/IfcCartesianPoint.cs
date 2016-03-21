@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcCartesianPoint", 410)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IIfcCartesianPoint, IEqualityComparer<@IfcCartesianPoint>, IEquatable<@IfcCartesianPoint>
+	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IIfcCartesianPoint, IEquatable<@IfcCartesianPoint>
 	{
 		#region IIfcCartesianPoint explicit implementation
 		IEnumerable<IfcLengthMeasure> IIfcCartesianPoint.Coordinates { get { return @Coordinates; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CP2Dor3D:	CP2Dor3D : HIINDEX(Coordinates) >= 2;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,16 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcCartesianPoint left, IfcTrimmingSelect right)
+		{
+			return left == right as @IfcCartesianPoint;
+		}
 
-        public bool Equals(@IfcCartesianPoint x, @IfcCartesianPoint y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcCartesianPoint left, IfcTrimmingSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcCartesianPoint obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

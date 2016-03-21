@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcOpeningElement", 498)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOpeningElement : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcOpeningElement, IEqualityComparer<@IfcOpeningElement>, IEquatable<@IfcOpeningElement>
+	public  partial class @IfcOpeningElement : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcOpeningElement, IEquatable<@IfcOpeningElement>
 	{
 		#region IIfcOpeningElement explicit implementation
 		IfcOpeningElementTypeEnum? IIfcOpeningElement.PredefinedType { get { return @PredefinedType; } }	
@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelFillsElement>(e => (e.RelatingOpeningElement as IfcOpeningElement) == this, "RelatingOpeningElement", this);
+				return Model.Instances.Where<IfcRelFillsElement>(e => e.RelatingOpeningElement == this, "RelatingOpeningElement", this);
 			} 
 		}
 		#endregion
@@ -105,11 +105,6 @@ namespace Xbim.Ifc4.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -156,16 +151,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcOpeningElement x, @IfcOpeningElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOpeningElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IfcFlowController", 121)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowController : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowController, IEqualityComparer<@IfcFlowController>, IEquatable<@IfcFlowController>
+	public  partial class @IfcFlowController : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowController, IEquatable<@IfcFlowController>
 	{
 		#region IIfcFlowController explicit implementation
 		 
@@ -67,11 +67,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -118,16 +113,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFlowController x, @IfcFlowController y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFlowController obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

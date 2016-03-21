@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcTransportElement", 416)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTransportElement : IfcElement, IInstantiableEntity, IIfcTransportElement, IEqualityComparer<@IfcTransportElement>, IEquatable<@IfcTransportElement>
+	public  partial class @IfcTransportElement : IfcElement, IInstantiableEntity, IIfcTransportElement, IEquatable<@IfcTransportElement>
 	{
 		#region IIfcTransportElement explicit implementation
 		IfcTransportElementTypeEnum? IIfcTransportElement.OperationType { get { return @OperationType; } }	
@@ -134,11 +134,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -184,16 +179,6 @@ namespace Xbim.Ifc2x3.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTransportElement x, @IfcTransportElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTransportElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

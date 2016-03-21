@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcFaceSurface", 85)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFaceSurface : IfcFace, IInstantiableEntity, IIfcFaceSurface, IEqualityComparer<@IfcFaceSurface>, IEquatable<@IfcFaceSurface>
+	public  partial class @IfcFaceSurface : IfcFace, IInstantiableEntity, IIfcFaceSurface, IEquatable<@IfcFaceSurface>
 	{
 		#region IIfcFaceSurface explicit implementation
 		IIfcSurface IIfcFaceSurface.FaceSurface { get { return @FaceSurface; } }	
@@ -108,11 +108,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -158,16 +153,16 @@ namespace Xbim.Ifc2x3.TopologyResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcFaceSurface left, IfcSurfaceOrFaceSurface right)
+		{
+			return left == right as @IfcFaceSurface;
+		}
 
-        public bool Equals(@IfcFaceSurface x, @IfcFaceSurface y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcFaceSurface left, IfcSurfaceOrFaceSurface right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcFaceSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

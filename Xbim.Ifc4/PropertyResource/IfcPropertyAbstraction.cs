@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IfcPropertyAbstraction", 1231)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPropertyAbstraction : IPersistEntity, INotifyPropertyChanged, IIfcPropertyAbstraction, IEqualityComparer<@IfcPropertyAbstraction>, IEquatable<@IfcPropertyAbstraction>
+	public abstract partial class @IfcPropertyAbstraction : IPersistEntity, INotifyPropertyChanged, IIfcPropertyAbstraction, IEquatable<@IfcPropertyAbstraction>
 	{
 		#region IIfcPropertyAbstraction explicit implementation
 		 
@@ -178,11 +178,6 @@ namespace Xbim.Ifc4.PropertyResource
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -228,16 +223,16 @@ namespace Xbim.Ifc4.PropertyResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcPropertyAbstraction left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcPropertyAbstraction;
+		}
 
-        public bool Equals(@IfcPropertyAbstraction x, @IfcPropertyAbstraction y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcPropertyAbstraction left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcPropertyAbstraction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IfcPreDefinedColour", 608)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedColour : IfcPreDefinedItem, IIfcPreDefinedColour, IEqualityComparer<@IfcPreDefinedColour>, IEquatable<@IfcPreDefinedColour>
+	public abstract partial class @IfcPreDefinedColour : IfcPreDefinedItem, IIfcPreDefinedColour, IEquatable<@IfcPreDefinedColour>
 	{
 		#region IIfcPreDefinedColour explicit implementation
 		 
@@ -60,11 +60,6 @@ namespace Xbim.Ifc2x3.PresentationResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -111,16 +106,16 @@ namespace Xbim.Ifc2x3.PresentationResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcPreDefinedColour left, IfcColour right)
+		{
+			return left == right as @IfcPreDefinedColour;
+		}
 
-        public bool Equals(@IfcPreDefinedColour x, @IfcPreDefinedColour y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcPreDefinedColour left, IfcColour right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcPreDefinedColour obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

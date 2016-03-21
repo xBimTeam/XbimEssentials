@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcElectricGenerator", 1160)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricGenerator : IfcEnergyConversionDevice, IInstantiableEntity, IIfcElectricGenerator, IEqualityComparer<@IfcElectricGenerator>, IEquatable<@IfcElectricGenerator>
+	public  partial class @IfcElectricGenerator : IfcEnergyConversionDevice, IInstantiableEntity, IIfcElectricGenerator, IEquatable<@IfcElectricGenerator>
 	{
 		#region IIfcElectricGenerator explicit implementation
 		IfcElectricGeneratorTypeEnum? IIfcElectricGenerator.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.ElectricalDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcElectricGeneratorTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCELECTRICGENERATORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.ElectricalDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcElectricGenerator x, @IfcElectricGenerator y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElectricGenerator obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

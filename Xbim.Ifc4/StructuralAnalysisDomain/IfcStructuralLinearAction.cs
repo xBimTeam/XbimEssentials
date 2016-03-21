@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralLinearAction", 463)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLinearAction : IfcStructuralCurveAction, IInstantiableEntity, IIfcStructuralLinearAction, IEqualityComparer<@IfcStructuralLinearAction>, IEquatable<@IfcStructuralLinearAction>
+	public  partial class @IfcStructuralLinearAction : IfcStructuralCurveAction, IInstantiableEntity, IIfcStructuralLinearAction, IEquatable<@IfcStructuralLinearAction>
 	{
 		#region IIfcStructuralLinearAction explicit implementation
 		 
@@ -71,13 +71,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*SuitableLoadType:	SuitableLoadType : SIZEOF(['IFC4.IFCSTRUCTURALLOADLINEARFORCE', 'IFC4.IFCSTRUCTURALLOADTEMPERATURE'] * TYPEOF(SELF\IfcStructuralActivity.AppliedLoad)) = 1;*/
-		/*ConstPredefinedType:	ConstPredefinedType : SELF\IfcStructuralCurveAction.PredefinedType = IfcStructuralCurveActivityTypeEnum.CONST;*/
 		}
 		#endregion
 
@@ -124,16 +117,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralLinearAction x, @IfcStructuralLinearAction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLinearAction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

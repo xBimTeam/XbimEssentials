@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcClassificationItem", 14)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationItem : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationItem, IEqualityComparer<@IfcClassificationItem>, IEquatable<@IfcClassificationItem>
+	public  partial class @IfcClassificationItem : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationItem, IEquatable<@IfcClassificationItem>
 	{
 		#region IIfcClassificationItem explicit implementation
 		IIfcClassificationNotationFacet IIfcClassificationItem.Notation { get { return @Notation; } }	
@@ -185,7 +185,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcClassificationItemRelationship>(e => (e.RelatingItem as IfcClassificationItem) == this, "RelatingItem", this);
+				return Model.Instances.Where<IfcClassificationItemRelationship>(e => e.RelatingItem == this, "RelatingItem", this);
 			} 
 		}
 		#endregion
@@ -258,11 +258,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -308,16 +303,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcClassificationItem x, @IfcClassificationItem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcClassificationItem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

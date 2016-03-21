@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcTendon", 261)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTendon : IfcReinforcingElement, IInstantiableEntity, IIfcTendon, IEqualityComparer<@IfcTendon>, IEquatable<@IfcTendon>
+	public  partial class @IfcTendon : IfcReinforcingElement, IInstantiableEntity, IIfcTendon, IEquatable<@IfcTendon>
 	{
 		#region IIfcTendon explicit implementation
 		IfcTendonTypeEnum IIfcTendon.PredefinedType { get { return @PredefinedType; } }	
@@ -235,12 +235,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : (PredefinedType <> IfcTendonTypeEnum.USERDEFINED) OR ((PredefinedType = IfcTendonTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -286,16 +280,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTendon x, @IfcTendon y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTendon obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

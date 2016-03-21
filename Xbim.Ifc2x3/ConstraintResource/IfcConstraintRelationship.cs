@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IfcConstraintRelationship", 374)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstraintRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintRelationship, IEqualityComparer<@IfcConstraintRelationship>, IEquatable<@IfcConstraintRelationship>
+	public  partial class @IfcConstraintRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcConstraintRelationship, IEquatable<@IfcConstraintRelationship>
 	{
 		#region IIfcConstraintRelationship explicit implementation
 		IfcLabel? IIfcConstraintRelationship.Name { get { return @Name; } }	
@@ -253,12 +253,6 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11:	WR11 : SIZEOF(QUERY(temp <* RelatedConstraints | temp :=: RelatingConstraint )) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -304,16 +298,6 @@ namespace Xbim.Ifc2x3.ConstraintResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcConstraintRelationship x, @IfcConstraintRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConstraintRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

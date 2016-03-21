@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcTrimmedCurve", 143)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTrimmedCurve : IfcBoundedCurve, IInstantiableEntity, IIfcTrimmedCurve, IEqualityComparer<@IfcTrimmedCurve>, IEquatable<@IfcTrimmedCurve>
+	public  partial class @IfcTrimmedCurve : IfcBoundedCurve, IInstantiableEntity, IIfcTrimmedCurve, IEquatable<@IfcTrimmedCurve>
 	{
 		#region IIfcTrimmedCurve explicit implementation
 		IIfcCurve IIfcTrimmedCurve.BasisCurve { get { return @BasisCurve; } }	
@@ -159,14 +159,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR41:	WR41 : (HIINDEX(Trim1) = 1) OR (TYPEOF(Trim1[1]) <> TYPEOF(Trim1[2]));*/
-		/*WR42:	WR42 : (HIINDEX(Trim2) = 1) OR (TYPEOF(Trim2[1]) <> TYPEOF(Trim2[2]));*/
-		/*WR43:	WR43 : NOT('IFC2X3.IFCBOUNDEDCURVE' IN TYPEOF(BasisCurve));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -212,16 +204,6 @@ namespace Xbim.Ifc2x3.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTrimmedCurve x, @IfcTrimmedCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTrimmedCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

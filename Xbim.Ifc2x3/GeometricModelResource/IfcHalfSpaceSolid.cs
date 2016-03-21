@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcHalfSpaceSolid", 338)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHalfSpaceSolid : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcHalfSpaceSolid, IEqualityComparer<@IfcHalfSpaceSolid>, IEquatable<@IfcHalfSpaceSolid>
+	public  partial class @IfcHalfSpaceSolid : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcHalfSpaceSolid, IEquatable<@IfcHalfSpaceSolid>
 	{
 		#region IIfcHalfSpaceSolid explicit implementation
 		IIfcSurface IIfcHalfSpaceSolid.BaseSurface { get { return @BaseSurface; } }	
@@ -117,11 +117,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -167,16 +162,16 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcHalfSpaceSolid left, IfcBooleanOperand right)
+		{
+			return left == right as @IfcHalfSpaceSolid;
+		}
 
-        public bool Equals(@IfcHalfSpaceSolid x, @IfcHalfSpaceSolid y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcHalfSpaceSolid left, IfcBooleanOperand right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcHalfSpaceSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

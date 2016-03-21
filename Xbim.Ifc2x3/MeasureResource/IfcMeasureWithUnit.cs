@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcMeasureWithUnit", 7)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMeasureWithUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMeasureWithUnit, IEqualityComparer<@IfcMeasureWithUnit>, IEquatable<@IfcMeasureWithUnit>
+	public  partial class @IfcMeasureWithUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMeasureWithUnit, IEquatable<@IfcMeasureWithUnit>
 	{
 		#region IIfcMeasureWithUnit explicit implementation
 		IIfcValue IIfcMeasureWithUnit.ValueComponent { get { return @ValueComponent; } }	
@@ -215,11 +215,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -265,16 +260,36 @@ namespace Xbim.Ifc2x3.MeasureResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcMeasureWithUnit left, IfcAppliedValueSelect right)
+		{
+			return left == right as @IfcMeasureWithUnit;
+		}
 
-        public bool Equals(@IfcMeasureWithUnit x, @IfcMeasureWithUnit y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcMeasureWithUnit left, IfcAppliedValueSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcMeasureWithUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcMeasureWithUnit left, IfcConditionCriterionSelect right)
+		{
+			return left == right as @IfcMeasureWithUnit;
+		}
+
+		public static bool operator !=(@IfcMeasureWithUnit left, IfcConditionCriterionSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcMeasureWithUnit left, IfcMetricValueSelect right)
+		{
+			return left == right as @IfcMeasureWithUnit;
+		}
+
+		public static bool operator !=(@IfcMeasureWithUnit left, IfcMetricValueSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

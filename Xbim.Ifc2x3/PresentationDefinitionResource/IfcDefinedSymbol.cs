@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcDefinedSymbol", 461)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDefinedSymbol : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDefinedSymbol, IEqualityComparer<@IfcDefinedSymbol>, IEquatable<@IfcDefinedSymbol>
+	public  partial class @IfcDefinedSymbol : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDefinedSymbol, IEquatable<@IfcDefinedSymbol>
 	{
 		#region IIfcDefinedSymbol explicit implementation
 		IIfcDefinedSymbolSelect IIfcDefinedSymbol.Definition { get { return @Definition; } }	
@@ -104,11 +104,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -154,16 +149,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDefinedSymbol x, @IfcDefinedSymbol y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDefinedSymbol obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

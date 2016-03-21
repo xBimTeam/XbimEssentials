@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcSurfaceReinforcementArea", 1288)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceReinforcementArea : IfcStructuralLoadOrResult, IInstantiableEntity, IIfcSurfaceReinforcementArea, IEqualityComparer<@IfcSurfaceReinforcementArea>, IEquatable<@IfcSurfaceReinforcementArea>
+	public  partial class @IfcSurfaceReinforcementArea : IfcStructuralLoadOrResult, IInstantiableEntity, IIfcSurfaceReinforcementArea, IEquatable<@IfcSurfaceReinforcementArea>
 	{
 		#region IIfcSurfaceReinforcementArea explicit implementation
 		IEnumerable<IfcLengthMeasure> IIfcSurfaceReinforcementArea.SurfaceReinforcement1 { get { return @SurfaceReinforcement1; } }	
@@ -123,15 +123,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*SurfaceAndOrShearAreaSpecified:	SurfaceAndOrShearAreaSpecified : EXISTS(SurfaceReinforcement1) OR EXISTS(SurfaceReinforcement2) OR EXISTS(ShearReinforcement);*/
-		/*NonnegativeArea1:);*/
-		/*NonnegativeArea2:);*/
-		/*NonnegativeArea3:	NonnegativeArea3 : (NOT EXISTS(ShearReinforcement)) OR (ShearReinforcement >= 0.);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -177,16 +168,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSurfaceReinforcementArea x, @IfcSurfaceReinforcementArea y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceReinforcementArea obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

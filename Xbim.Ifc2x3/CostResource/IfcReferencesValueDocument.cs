@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcReferencesValueDocument", 551)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReferencesValueDocument : INotifyPropertyChanged, IInstantiableEntity, IIfcReferencesValueDocument, IEqualityComparer<@IfcReferencesValueDocument>, IEquatable<@IfcReferencesValueDocument>
+	public  partial class @IfcReferencesValueDocument : INotifyPropertyChanged, IInstantiableEntity, IIfcReferencesValueDocument, IEquatable<@IfcReferencesValueDocument>
 	{
 		#region IIfcReferencesValueDocument explicit implementation
 		IIfcDocumentSelect IIfcReferencesValueDocument.ReferencedDocument { get { return @ReferencedDocument; } }	
@@ -253,11 +253,6 @@ namespace Xbim.Ifc2x3.CostResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -303,16 +298,6 @@ namespace Xbim.Ifc2x3.CostResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcReferencesValueDocument x, @IfcReferencesValueDocument y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReferencesValueDocument obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

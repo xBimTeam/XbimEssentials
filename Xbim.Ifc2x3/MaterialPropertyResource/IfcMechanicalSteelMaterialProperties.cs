@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcMechanicalSteelMaterialProperties", 510)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalSteelMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalSteelMaterialProperties, IEqualityComparer<@IfcMechanicalSteelMaterialProperties>, IEquatable<@IfcMechanicalSteelMaterialProperties>
+	public  partial class @IfcMechanicalSteelMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalSteelMaterialProperties, IEquatable<@IfcMechanicalSteelMaterialProperties>
 	{
 		#region IIfcMechanicalSteelMaterialProperties explicit implementation
 		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.YieldStress { get { return @YieldStress; } }	
@@ -210,15 +210,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : NOT(EXISTS(YieldStress)) OR (YieldStress >= 0.);*/
-		/*WR32:	WR32 : NOT(EXISTS(UltimateStress)) OR (UltimateStress >= 0.);*/
-		/*WR33:	WR33 : NOT(EXISTS(HardeningModule)) OR (HardeningModule >= 0.);*/
-		/*WR34:	WR34 : NOT(EXISTS(ProportionalStress)) OR (ProportionalStress >= 0.);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -264,16 +255,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcMechanicalSteelMaterialProperties x, @IfcMechanicalSteelMaterialProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMechanicalSteelMaterialProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

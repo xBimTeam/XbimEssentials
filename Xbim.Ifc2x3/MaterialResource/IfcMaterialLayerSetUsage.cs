@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 {
 	[ExpressType("IfcMaterialLayerSetUsage", 165)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerSetUsage : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialLayerSetUsage, IEqualityComparer<@IfcMaterialLayerSetUsage>, IEquatable<@IfcMaterialLayerSetUsage>
+	public  partial class @IfcMaterialLayerSetUsage : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialLayerSetUsage, IEquatable<@IfcMaterialLayerSetUsage>
 	{
 		#region IIfcMaterialLayerSetUsage explicit implementation
 		IIfcMaterialLayerSet IIfcMaterialLayerSetUsage.ForLayerSet { get { return @ForLayerSet; } }	
@@ -253,11 +253,6 @@ namespace Xbim.Ifc2x3.MaterialResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -303,16 +298,16 @@ namespace Xbim.Ifc2x3.MaterialResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcMaterialLayerSetUsage left, IfcMaterialSelect right)
+		{
+			return left == right as @IfcMaterialLayerSetUsage;
+		}
 
-        public bool Equals(@IfcMaterialLayerSetUsage x, @IfcMaterialLayerSetUsage y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcMaterialLayerSetUsage left, IfcMaterialSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcMaterialLayerSetUsage obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

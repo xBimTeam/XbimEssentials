@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcOutlet", 1219)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOutlet : IfcFlowTerminal, IInstantiableEntity, IIfcOutlet, IEqualityComparer<@IfcOutlet>, IEquatable<@IfcOutlet>
+	public  partial class @IfcOutlet : IfcFlowTerminal, IInstantiableEntity, IIfcOutlet, IEquatable<@IfcOutlet>
 	{
 		#region IIfcOutlet explicit implementation
 		IfcOutletTypeEnum? IIfcOutlet.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.ElectricalDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcOutletTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCOUTLETTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.ElectricalDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcOutlet x, @IfcOutlet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOutlet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

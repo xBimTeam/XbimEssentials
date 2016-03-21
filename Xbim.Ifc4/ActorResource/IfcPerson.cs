@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.ActorResource
 {
 	[ExpressType("IfcPerson", 198)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPerson : INotifyPropertyChanged, IInstantiableEntity, IIfcPerson, IEqualityComparer<@IfcPerson>, IEquatable<@IfcPerson>
+	public  partial class @IfcPerson : INotifyPropertyChanged, IInstantiableEntity, IIfcPerson, IEquatable<@IfcPerson>
 	{
 		#region IIfcPerson explicit implementation
 		IfcIdentifier? IIfcPerson.Identification { get { return @Identification; } }	
@@ -246,7 +246,7 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPersonAndOrganization>(e => (e.ThePerson as IfcPerson) == this, "ThePerson", this);
+				return Model.Instances.Where<IfcPersonAndOrganization>(e => e.ThePerson == this, "ThePerson", this);
 			} 
 		}
 		#endregion
@@ -339,13 +339,6 @@ namespace Xbim.Ifc4.ActorResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*IdentifiablePerson:	IdentifiablePerson : EXISTS(Identification) OR EXISTS(FamilyName) OR EXISTS(GivenName);*/
-		/*ValidSetOfNames:	ValidSetOfNames : NOT EXISTS(MiddleNames) OR EXISTS(FamilyName) OR EXISTS(GivenName);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -391,16 +384,36 @@ namespace Xbim.Ifc4.ActorResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcPerson left, IfcActorSelect right)
+		{
+			return left == right as @IfcPerson;
+		}
 
-        public bool Equals(@IfcPerson x, @IfcPerson y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcPerson left, IfcActorSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcPerson obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcPerson left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcPerson;
+		}
+
+		public static bool operator !=(@IfcPerson left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcPerson left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcPerson;
+		}
+
+		public static bool operator !=(@IfcPerson left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcDuctSilencer", 1155)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDuctSilencer : IfcFlowTreatmentDevice, IInstantiableEntity, IIfcDuctSilencer, IEqualityComparer<@IfcDuctSilencer>, IEquatable<@IfcDuctSilencer>
+	public  partial class @IfcDuctSilencer : IfcFlowTreatmentDevice, IInstantiableEntity, IIfcDuctSilencer, IEquatable<@IfcDuctSilencer>
 	{
 		#region IIfcDuctSilencer explicit implementation
 		IfcDuctSilencerTypeEnum? IIfcDuctSilencer.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.HvacDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcDuctSilencerTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCDUCTSILENCERTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.HvacDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDuctSilencer x, @IfcDuctSilencer y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDuctSilencer obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IfcLibraryInformation", 449)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLibraryInformation : IfcExternalInformation, IInstantiableEntity, IIfcLibraryInformation, IEqualityComparer<@IfcLibraryInformation>, IEquatable<@IfcLibraryInformation>
+	public  partial class @IfcLibraryInformation : IfcExternalInformation, IInstantiableEntity, IIfcLibraryInformation, IEquatable<@IfcLibraryInformation>
 	{
 		#region IIfcLibraryInformation explicit implementation
 		IfcLabel IIfcLibraryInformation.Name { get { return @Name; } }	
@@ -169,7 +169,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesLibrary>(e => (e.RelatingLibrary as IfcLibraryInformation) == this, "RelatingLibrary", this);
+				return Model.Instances.Where<IfcRelAssociatesLibrary>(e => e.RelatingLibrary == this, "RelatingLibrary", this);
 			} 
 		}
 		[InverseProperty("ReferencedLibrary")]
@@ -178,7 +178,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcLibraryReference>(e => (e.ReferencedLibrary as IfcLibraryInformation) == this, "ReferencedLibrary", this);
+				return Model.Instances.Where<IfcLibraryReference>(e => e.ReferencedLibrary == this, "ReferencedLibrary", this);
 			} 
 		}
 		#endregion
@@ -210,11 +210,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -261,16 +256,16 @@ namespace Xbim.Ifc4.ExternalReferenceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcLibraryInformation left, IfcLibrarySelect right)
+		{
+			return left == right as @IfcLibraryInformation;
+		}
 
-        public bool Equals(@IfcLibraryInformation x, @IfcLibraryInformation y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcLibraryInformation left, IfcLibrarySelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcLibraryInformation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

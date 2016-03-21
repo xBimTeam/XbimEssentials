@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDraughtingCalloutRelationship", 740)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingCalloutRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcDraughtingCalloutRelationship, IEqualityComparer<@IfcDraughtingCalloutRelationship>, IEquatable<@IfcDraughtingCalloutRelationship>
+	public  partial class @IfcDraughtingCalloutRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcDraughtingCalloutRelationship, IEquatable<@IfcDraughtingCalloutRelationship>
 	{
 		#region IIfcDraughtingCalloutRelationship explicit implementation
 		IfcLabel? IIfcDraughtingCalloutRelationship.Name { get { return @Name; } }	
@@ -255,11 +255,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -305,16 +300,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDraughtingCalloutRelationship x, @IfcDraughtingCalloutRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDraughtingCalloutRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

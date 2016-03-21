@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyleWithBoxCharacteristics", 730)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleWithBoxCharacteristics : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleWithBoxCharacteristics, IEqualityComparer<@IfcTextStyleWithBoxCharacteristics>, IEquatable<@IfcTextStyleWithBoxCharacteristics>
+	public  partial class @IfcTextStyleWithBoxCharacteristics : INotifyPropertyChanged, IInstantiableEntity, IIfcTextStyleWithBoxCharacteristics, IEquatable<@IfcTextStyleWithBoxCharacteristics>
 	{
 		#region IIfcTextStyleWithBoxCharacteristics explicit implementation
 		IfcPositiveLengthMeasure? IIfcTextStyleWithBoxCharacteristics.BoxHeight { get { return @BoxHeight; } }	
@@ -273,11 +273,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -323,16 +318,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcTextStyleWithBoxCharacteristics left, IfcTextStyleSelect right)
+		{
+			return left == right as @IfcTextStyleWithBoxCharacteristics;
+		}
 
-        public bool Equals(@IfcTextStyleWithBoxCharacteristics x, @IfcTextStyleWithBoxCharacteristics y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcTextStyleWithBoxCharacteristics left, IfcTextStyleSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcTextStyleWithBoxCharacteristics obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

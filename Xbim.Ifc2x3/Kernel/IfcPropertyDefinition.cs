@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcPropertyDefinition", 98)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPropertyDefinition : IfcRoot, IIfcPropertyDefinition, IEqualityComparer<@IfcPropertyDefinition>, IEquatable<@IfcPropertyDefinition>
+	public abstract partial class @IfcPropertyDefinition : IfcRoot, IIfcPropertyDefinition, IEquatable<@IfcPropertyDefinition>
 	{
 		#region IIfcPropertyDefinition explicit implementation
 		 
@@ -76,11 +76,6 @@ namespace Xbim.Ifc2x3.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -127,16 +122,6 @@ namespace Xbim.Ifc2x3.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPropertyDefinition x, @IfcPropertyDefinition y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyDefinition obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

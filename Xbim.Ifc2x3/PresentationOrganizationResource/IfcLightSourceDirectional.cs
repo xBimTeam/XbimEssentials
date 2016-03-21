@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSourceDirectional", 757)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceDirectional : IfcLightSource, IInstantiableEntity, IIfcLightSourceDirectional, IEqualityComparer<@IfcLightSourceDirectional>, IEquatable<@IfcLightSourceDirectional>
+	public  partial class @IfcLightSourceDirectional : IfcLightSource, IInstantiableEntity, IIfcLightSourceDirectional, IEquatable<@IfcLightSourceDirectional>
 	{
 		#region IIfcLightSourceDirectional explicit implementation
 		IIfcDirection IIfcLightSourceDirectional.Orientation { get { return @Orientation; } }	
@@ -90,11 +90,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -140,16 +135,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcLightSourceDirectional x, @IfcLightSourceDirectional y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLightSourceDirectional obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

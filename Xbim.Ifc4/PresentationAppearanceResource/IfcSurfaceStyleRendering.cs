@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleRendering", 317)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IIfcSurfaceStyleRendering, IEqualityComparer<@IfcSurfaceStyleRendering>, IEquatable<@IfcSurfaceStyleRendering>
+	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IIfcSurfaceStyleRendering, IEquatable<@IfcSurfaceStyleRendering>
 	{
 		#region IIfcSurfaceStyleRendering explicit implementation
 		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour { get { return @DiffuseColour; } }	
@@ -207,11 +207,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -257,16 +252,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSurfaceStyleRendering x, @IfcSurfaceStyleRendering y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceStyleRendering obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

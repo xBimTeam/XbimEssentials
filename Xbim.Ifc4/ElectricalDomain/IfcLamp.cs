@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcLamp", 1198)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLamp : IfcFlowTerminal, IInstantiableEntity, IIfcLamp, IEqualityComparer<@IfcLamp>, IEquatable<@IfcLamp>
+	public  partial class @IfcLamp : IfcFlowTerminal, IInstantiableEntity, IIfcLamp, IEquatable<@IfcLamp>
 	{
 		#region IIfcLamp explicit implementation
 		IfcLampTypeEnum? IIfcLamp.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.ElectricalDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcLampTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCLAMPTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.ElectricalDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcLamp x, @IfcLamp y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLamp obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

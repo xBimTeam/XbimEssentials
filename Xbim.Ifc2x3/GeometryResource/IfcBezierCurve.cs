@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcBezierCurve", 166)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBezierCurve : IfcBSplineCurve, IInstantiableEntity, IIfcBezierCurve, IEqualityComparer<@IfcBezierCurve>, IEquatable<@IfcBezierCurve>
+	public  partial class @IfcBezierCurve : IfcBSplineCurve, IInstantiableEntity, IIfcBezierCurve, IEquatable<@IfcBezierCurve>
 	{
 		#region IIfcBezierCurve explicit implementation
 		 
@@ -64,11 +64,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -115,16 +110,6 @@ namespace Xbim.Ifc2x3.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcBezierCurve x, @IfcBezierCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBezierCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

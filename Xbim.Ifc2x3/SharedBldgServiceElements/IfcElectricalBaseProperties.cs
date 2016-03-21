@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcElectricalBaseProperties", 177)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricalBaseProperties : IfcEnergyProperties, IInstantiableEntity, IIfcElectricalBaseProperties, IEqualityComparer<@IfcElectricalBaseProperties>, IEquatable<@IfcElectricalBaseProperties>
+	public  partial class @IfcElectricalBaseProperties : IfcEnergyProperties, IInstantiableEntity, IIfcElectricalBaseProperties, IEquatable<@IfcElectricalBaseProperties>
 	{
 		#region IIfcElectricalBaseProperties explicit implementation
 		IfcElectricCurrentEnum? IIfcElectricalBaseProperties.ElectricCurrentType { get { return @ElectricCurrentType; } }	
@@ -232,11 +232,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -282,16 +277,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcElectricalBaseProperties x, @IfcElectricalBaseProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElectricalBaseProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

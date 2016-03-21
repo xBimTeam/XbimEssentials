@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcPlacement", 281)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPlacement : IfcGeometricRepresentationItem, IIfcPlacement, IEqualityComparer<@IfcPlacement>, IEquatable<@IfcPlacement>
+	public abstract partial class @IfcPlacement : IfcGeometricRepresentationItem, IIfcPlacement, IEquatable<@IfcPlacement>
 	{
 		#region IIfcPlacement explicit implementation
 		IIfcCartesianPoint IIfcPlacement.Location { get { return @Location; } }	
@@ -97,11 +97,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -147,16 +142,6 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPlacement x, @IfcPlacement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPlacement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

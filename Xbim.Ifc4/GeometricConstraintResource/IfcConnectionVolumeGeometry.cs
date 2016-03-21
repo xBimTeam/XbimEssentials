@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionVolumeGeometry", 1133)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionVolumeGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionVolumeGeometry, IEqualityComparer<@IfcConnectionVolumeGeometry>, IEquatable<@IfcConnectionVolumeGeometry>
+	public  partial class @IfcConnectionVolumeGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionVolumeGeometry, IEquatable<@IfcConnectionVolumeGeometry>
 	{
 		#region IIfcConnectionVolumeGeometry explicit implementation
 		IIfcSolidOrShell IIfcConnectionVolumeGeometry.VolumeOnRelatingElement { get { return @VolumeOnRelatingElement; } }	
@@ -103,11 +103,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -153,16 +148,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcConnectionVolumeGeometry x, @IfcConnectionVolumeGeometry y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConnectionVolumeGeometry obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

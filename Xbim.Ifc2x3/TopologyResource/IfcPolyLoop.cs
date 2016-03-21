@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcPolyLoop", 200)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPolyLoop : IfcLoop, IInstantiableEntity, IIfcPolyLoop, IEqualityComparer<@IfcPolyLoop>, IEquatable<@IfcPolyLoop>
+	public  partial class @IfcPolyLoop : IfcLoop, IInstantiableEntity, IIfcPolyLoop, IEquatable<@IfcPolyLoop>
 	{
 		#region IIfcPolyLoop explicit implementation
 		IEnumerable<IIfcCartesianPoint> IIfcPolyLoop.Polygon { get { return @Polygon; } }	
@@ -82,12 +82,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:	WR21 : SIZEOF(QUERY(Temp <* Polygon | Temp.Dim <> Polygon[1].Dim)) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -133,16 +127,6 @@ namespace Xbim.Ifc2x3.TopologyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPolyLoop x, @IfcPolyLoop y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPolyLoop obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

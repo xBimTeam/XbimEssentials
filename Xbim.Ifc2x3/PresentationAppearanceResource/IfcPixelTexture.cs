@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcPixelTexture", 728)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPixelTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcPixelTexture, IEqualityComparer<@IfcPixelTexture>, IEquatable<@IfcPixelTexture>
+	public  partial class @IfcPixelTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcPixelTexture, IEquatable<@IfcPixelTexture>
 	{
 		#region IIfcPixelTexture explicit implementation
 		IfcInteger IIfcPixelTexture.Width { get { return @Width; } }	
@@ -148,15 +148,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:	WR21 : Width >= 1;*/
-		/*WR22:	WR22 : Height >= 1;*/
-		/*WR23:	WR23 : {1 <= ColourComponents <= 4};*/
-		/*WR24:	WR24 : SIZEOF(Pixel) = (Width * Height);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -202,16 +193,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPixelTexture x, @IfcPixelTexture y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPixelTexture obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

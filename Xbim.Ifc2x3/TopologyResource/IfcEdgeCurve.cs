@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcEdgeCurve", 203)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEdgeCurve : IfcEdge, IInstantiableEntity, IIfcEdgeCurve, IEqualityComparer<@IfcEdgeCurve>, IEquatable<@IfcEdgeCurve>
+	public  partial class @IfcEdgeCurve : IfcEdge, IInstantiableEntity, IIfcEdgeCurve, IEquatable<@IfcEdgeCurve>
 	{
 		#region IIfcEdgeCurve explicit implementation
 		IIfcCurve IIfcEdgeCurve.EdgeGeometry { get { return @EdgeGeometry; } }	
@@ -109,11 +109,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -159,16 +154,16 @@ namespace Xbim.Ifc2x3.TopologyResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcEdgeCurve left, IfcCurveOrEdgeCurve right)
+		{
+			return left == right as @IfcEdgeCurve;
+		}
 
-        public bool Equals(@IfcEdgeCurve x, @IfcEdgeCurve y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcEdgeCurve left, IfcCurveOrEdgeCurve right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcEdgeCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

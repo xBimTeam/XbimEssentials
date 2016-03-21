@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcSpace", 454)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IIfcSpace, IEqualityComparer<@IfcSpace>, IEquatable<@IfcSpace>
+	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IIfcSpace, IEquatable<@IfcSpace>
 	{
 		#region IIfcSpace explicit implementation
 		IfcInternalOrExternalEnum IIfcSpace.InteriorOrExteriorSpace { get { return @InteriorOrExteriorSpace; } }	
@@ -98,7 +98,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelCoversSpaces>(e => (e.RelatedSpace as IfcSpace) == this, "RelatedSpace", this);
+				return Model.Instances.Where<IfcRelCoversSpaces>(e => e.RelatedSpace == this, "RelatedSpace", this);
 			} 
 		}
 		[InverseProperty("RelatingSpace")]
@@ -107,7 +107,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSpaceBoundary>(e => (e.RelatingSpace as IfcSpace) == this, "RelatingSpace", this);
+				return Model.Instances.Where<IfcRelSpaceBoundary>(e => e.RelatingSpace == this, "RelatingSpace", this);
 			} 
 		}
 		#endregion
@@ -138,11 +138,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -189,16 +184,6 @@ namespace Xbim.Ifc2x3.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSpace x, @IfcSpace y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpace obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

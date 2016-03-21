@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcPipeFittingType", 511)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPipeFittingType : IfcFlowFittingType, IInstantiableEntity, IIfcPipeFittingType, IEqualityComparer<@IfcPipeFittingType>, IEquatable<@IfcPipeFittingType>
+	public  partial class @IfcPipeFittingType : IfcFlowFittingType, IInstantiableEntity, IIfcPipeFittingType, IEquatable<@IfcPipeFittingType>
 	{
 		#region IIfcPipeFittingType explicit implementation
 		IfcPipeFittingTypeEnum IIfcPipeFittingType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc2x3.HVACDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            ((PredefinedType = IfcPipeFittingTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc2x3.HVACDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPipeFittingType x, @IfcPipeFittingType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPipeFittingType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

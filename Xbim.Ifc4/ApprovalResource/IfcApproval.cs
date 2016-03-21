@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.ApprovalResource
 {
 	[ExpressType("IfcApproval", 626)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApproval : INotifyPropertyChanged, IInstantiableEntity, IIfcApproval, IEqualityComparer<@IfcApproval>, IEquatable<@IfcApproval>
+	public  partial class @IfcApproval : INotifyPropertyChanged, IInstantiableEntity, IIfcApproval, IEquatable<@IfcApproval>
 	{
 		#region IIfcApproval explicit implementation
 		IfcIdentifier? IIfcApproval.Identifier { get { return @Identifier; } }	
@@ -296,7 +296,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesApproval>(e => (e.RelatingApproval as IfcApproval) == this, "RelatingApproval", this);
+				return Model.Instances.Where<IfcRelAssociatesApproval>(e => e.RelatingApproval == this, "RelatingApproval", this);
 			} 
 		}
 		[InverseProperty("RelatingApproval")]
@@ -305,7 +305,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcResourceApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this, "RelatingApproval", this);
+				return Model.Instances.Where<IfcResourceApprovalRelationship>(e => e.RelatingApproval == this, "RelatingApproval", this);
 			} 
 		}
 		[InverseProperty("RelatedApprovals")]
@@ -323,7 +323,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcApprovalRelationship>(e => (e.RelatingApproval as IfcApproval) == this, "RelatingApproval", this);
+				return Model.Instances.Where<IfcApprovalRelationship>(e => e.RelatingApproval == this, "RelatingApproval", this);
 			} 
 		}
 		#endregion
@@ -414,12 +414,6 @@ namespace Xbim.Ifc4.ApprovalResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*HasIdentifierOrName:	HasIdentifierOrName : EXISTS (Identifier) OR EXISTS (Name);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -465,16 +459,16 @@ namespace Xbim.Ifc4.ApprovalResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcApproval left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcApproval;
+		}
 
-        public bool Equals(@IfcApproval x, @IfcApproval y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcApproval left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcApproval obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcRelSequence", 490)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IIfcRelSequence, IEqualityComparer<@IfcRelSequence>, IEquatable<@IfcRelSequence>
+	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IIfcRelSequence, IEquatable<@IfcRelSequence>
 	{
 		#region IIfcRelSequence explicit implementation
 		IIfcProcess IIfcRelSequence.RelatingProcess { get { return @RelatingProcess; } }	
@@ -174,13 +174,6 @@ namespace Xbim.Ifc4.ProcessExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*AvoidInconsistentSequence:	AvoidInconsistentSequence : RelatingProcess :<>: RelatedProcess;*/
-		/*CorrectSequenceType:	CorrectSequenceType : (SequenceType <> IfcSequenceEnum.USERDEFINED) OR ((SequenceType = IfcSequenceEnum.USERDEFINED) AND EXISTS(UserDefinedSequenceType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -226,16 +219,6 @@ namespace Xbim.Ifc4.ProcessExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelSequence x, @IfcRelSequence y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelSequence obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

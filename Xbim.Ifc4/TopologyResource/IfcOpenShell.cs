@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcOpenShell", 488)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOpenShell : IfcConnectedFaceSet, IInstantiableEntity, IIfcOpenShell, IEqualityComparer<@IfcOpenShell>, IEquatable<@IfcOpenShell>
+	public  partial class @IfcOpenShell : IfcConnectedFaceSet, IInstantiableEntity, IIfcOpenShell, IEquatable<@IfcOpenShell>
 	{
 		#region IIfcOpenShell explicit implementation
 		 
@@ -60,11 +60,6 @@ namespace Xbim.Ifc4.TopologyResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -111,16 +106,16 @@ namespace Xbim.Ifc4.TopologyResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcOpenShell left, IfcShell right)
+		{
+			return left == right as @IfcOpenShell;
+		}
 
-        public bool Equals(@IfcOpenShell x, @IfcOpenShell y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcOpenShell left, IfcShell right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcOpenShell obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

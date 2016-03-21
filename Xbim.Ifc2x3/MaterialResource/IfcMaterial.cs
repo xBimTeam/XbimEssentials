@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 {
 	[ExpressType("IfcMaterial", 94)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterial : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterial, IEqualityComparer<@IfcMaterial>, IEquatable<@IfcMaterial>
+	public  partial class @IfcMaterial : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterial, IEquatable<@IfcMaterial>
 	{
 		#region IIfcMaterial explicit implementation
 		IfcLabel IIfcMaterial.Name { get { return @Name; } }	
@@ -143,7 +143,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMaterialDefinitionRepresentation>(e => (e.RepresentedMaterial as IfcMaterial) == this, "RepresentedMaterial", this);
+				return Model.Instances.Where<IfcMaterialDefinitionRepresentation>(e => e.RepresentedMaterial == this, "RepresentedMaterial", this);
 			} 
 		}
 		[InverseProperty("ClassifiedMaterial")]
@@ -152,7 +152,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMaterialClassificationRelationship>(e => (e.ClassifiedMaterial as IfcMaterial) == this, "ClassifiedMaterial", this);
+				return Model.Instances.Where<IfcMaterialClassificationRelationship>(e => e.ClassifiedMaterial == this, "ClassifiedMaterial", this);
 			} 
 		}
 		#endregion
@@ -219,11 +219,6 @@ namespace Xbim.Ifc2x3.MaterialResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -269,16 +264,26 @@ namespace Xbim.Ifc2x3.MaterialResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcMaterial left, IfcMaterialSelect right)
+		{
+			return left == right as @IfcMaterial;
+		}
 
-        public bool Equals(@IfcMaterial x, @IfcMaterial y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcMaterial left, IfcMaterialSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcMaterial obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcMaterial left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcMaterial;
+		}
+
+		public static bool operator !=(@IfcMaterial left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

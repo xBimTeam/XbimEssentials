@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcClassificationNotation", 13)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationNotation : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationNotation, IEqualityComparer<@IfcClassificationNotation>, IEquatable<@IfcClassificationNotation>
+	public  partial class @IfcClassificationNotation : INotifyPropertyChanged, IInstantiableEntity, IIfcClassificationNotation, IEquatable<@IfcClassificationNotation>
 	{
 		#region IIfcClassificationNotation explicit implementation
 		IEnumerable<IIfcClassificationNotationFacet> IIfcClassificationNotation.NotationFacets { get { return @NotationFacets; } }	
@@ -190,11 +190,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -240,16 +235,16 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcClassificationNotation left, IfcClassificationNotationSelect right)
+		{
+			return left == right as @IfcClassificationNotation;
+		}
 
-        public bool Equals(@IfcClassificationNotation x, @IfcClassificationNotation y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcClassificationNotation left, IfcClassificationNotationSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcClassificationNotation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

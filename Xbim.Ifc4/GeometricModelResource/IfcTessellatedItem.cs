@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcTessellatedItem", 1300)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTessellatedItem : IfcGeometricRepresentationItem, IIfcTessellatedItem, IEqualityComparer<@IfcTessellatedItem>, IEquatable<@IfcTessellatedItem>
+	public abstract partial class @IfcTessellatedItem : IfcGeometricRepresentationItem, IIfcTessellatedItem, IEquatable<@IfcTessellatedItem>
 	{
 		#region IIfcTessellatedItem explicit implementation
 		 
@@ -55,11 +55,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -106,16 +101,6 @@ namespace Xbim.Ifc4.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTessellatedItem x, @IfcTessellatedItem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTessellatedItem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

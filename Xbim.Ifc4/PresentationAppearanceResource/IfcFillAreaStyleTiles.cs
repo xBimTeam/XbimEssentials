@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyleTiles", 725)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTiles, IEqualityComparer<@IfcFillAreaStyleTiles>, IEquatable<@IfcFillAreaStyleTiles>
+	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTiles, IEquatable<@IfcFillAreaStyleTiles>
 	{
 		#region IIfcFillAreaStyleTiles explicit implementation
 		IEnumerable<IIfcVector> IIfcFillAreaStyleTiles.TilingPattern { get { return @TilingPattern; } }	
@@ -121,11 +121,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -171,16 +166,16 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcFillAreaStyleTiles left, IfcFillStyleSelect right)
+		{
+			return left == right as @IfcFillAreaStyleTiles;
+		}
 
-        public bool Equals(@IfcFillAreaStyleTiles x, @IfcFillAreaStyleTiles y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcFillAreaStyleTiles left, IfcFillStyleSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcFillAreaStyleTiles obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

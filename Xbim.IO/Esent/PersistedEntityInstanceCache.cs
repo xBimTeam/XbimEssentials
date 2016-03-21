@@ -6,7 +6,6 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Xml;
 using ICSharpCode.SharpZipLib.Zip;
@@ -637,7 +636,7 @@ namespace Xbim.IO.Esent
                         }
                         writer.Commit();
                     }
-                };
+                }
                 Close();
             }
             catch (Exception)
@@ -1284,7 +1283,8 @@ namespace Xbim.IO.Esent
         }
         private IEnumerable<TIfcType> InstancesOf<TIfcType>(IEnumerable<ExpressType> expressTypes, bool activate = false, HashSet<int> read = null) where TIfcType : IPersistEntity
         {
-            if (expressTypes.Any())
+            var types = expressTypes as ExpressType[] ?? expressTypes.ToArray();
+            if (types.Any())
             {
                 var entityLabels = read ?? new HashSet<int>();
                 var entityTable = GetEntityTable();
@@ -1293,7 +1293,7 @@ namespace Xbim.IO.Esent
                 {
                     //get all the type ids we are going to check for
                     var typeIds = new HashSet<short>();
-                    foreach (var t in expressTypes)
+                    foreach (var t in types)
                         typeIds.Add(t.TypeId);
                     using (entityTable.BeginReadOnlyTransaction())
                     {
@@ -1973,7 +1973,7 @@ namespace Xbim.IO.Esent
                 //else 
                 else if (!isInverse && typeof(IPersistEntity).IsAssignableFrom(theType))
                 {
-                    prop.PropertyInfo.SetValue(theCopy, InsertCopy((IPersistEntity)value, mappings, txn, includeInverses, propTransform), null);
+                    prop.PropertyInfo.SetValue(theCopy, InsertCopy((IPersistEntity)value, mappings, txn, includeInverses, propTransform, keepLabels), null);
                 }
                 else if (!isInverse && typeof(IList).IsAssignableFrom(theType))
                 {
@@ -1990,7 +1990,7 @@ namespace Xbim.IO.Esent
                             copyColl.Add(item);
                         else if (typeof(IPersistEntity).IsAssignableFrom(actualItemType))
                         {
-                            var cpy = InsertCopy((IPersistEntity)item, mappings, txn, includeInverses, propTransform);
+                            var cpy = InsertCopy((IPersistEntity)item, mappings, txn, includeInverses, propTransform, keepLabels);
                             copyColl.Add(cpy);
                         }
                         else
@@ -2003,7 +2003,7 @@ namespace Xbim.IO.Esent
                     {
                         XbimInstanceHandle h;
                         if (!mappings.TryGetValue(ent.GetHandle(), out h))
-                            InsertCopy(ent, mappings, txn, includeInverses, propTransform);
+                            InsertCopy(ent, mappings, txn, includeInverses, propTransform, keepLabels);
                     }
                 }
                 else if (isInverse && value is IPersistEntity) //it is an inverse and has a single value
@@ -2011,7 +2011,7 @@ namespace Xbim.IO.Esent
                     XbimInstanceHandle h;
                     var v = (IPersistEntity)value;
                     if (!mappings.TryGetValue(v.GetHandle(), out h))
-                        InsertCopy(v, mappings, txn, includeInverses, propTransform);
+                        InsertCopy(v, mappings, txn, includeInverses, propTransform, keepLabels);
                 }
                 else
                     throw new XbimException(string.Format("Unexpected item type ({0})  found", theType.Name));

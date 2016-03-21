@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelOverridesProperties", 248)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelOverridesProperties : IfcRelDefinesByProperties, IInstantiableEntity, IIfcRelOverridesProperties, IEqualityComparer<@IfcRelOverridesProperties>, IEquatable<@IfcRelOverridesProperties>
+	public  partial class @IfcRelOverridesProperties : IfcRelDefinesByProperties, IInstantiableEntity, IIfcRelOverridesProperties, IEquatable<@IfcRelOverridesProperties>
 	{
 		#region IIfcRelOverridesProperties explicit implementation
 		IEnumerable<IIfcProperty> IIfcRelOverridesProperties.OverridingProperties { get { return @OverridingProperties; } }	
@@ -90,12 +90,6 @@ namespace Xbim.Ifc2x3.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(SELF\IfcRelDefines.RelatedObjects) = 1;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -141,16 +135,6 @@ namespace Xbim.Ifc2x3.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelOverridesProperties x, @IfcRelOverridesProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelOverridesProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

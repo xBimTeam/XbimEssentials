@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcMechanicalFastener", 536)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalFastener : IfcFastener, IInstantiableEntity, IIfcMechanicalFastener, IEqualityComparer<@IfcMechanicalFastener>, IEquatable<@IfcMechanicalFastener>
+	public  partial class @IfcMechanicalFastener : IfcFastener, IInstantiableEntity, IIfcMechanicalFastener, IEquatable<@IfcMechanicalFastener>
 	{
 		#region IIfcMechanicalFastener explicit implementation
 		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalDiameter { get { return @NominalDiameter; } }	
@@ -114,11 +114,6 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -164,16 +159,6 @@ namespace Xbim.Ifc2x3.SharedComponentElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcMechanicalFastener x, @IfcMechanicalFastener y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMechanicalFastener obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IfcDraughtingPreDefinedTextFont", 761)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingPreDefinedTextFont : IfcPreDefinedTextFont, IInstantiableEntity, IIfcDraughtingPreDefinedTextFont, IEqualityComparer<@IfcDraughtingPreDefinedTextFont>, IEquatable<@IfcDraughtingPreDefinedTextFont>
+	public  partial class @IfcDraughtingPreDefinedTextFont : IfcPreDefinedTextFont, IInstantiableEntity, IIfcDraughtingPreDefinedTextFont, IEquatable<@IfcDraughtingPreDefinedTextFont>
 	{
 		#region IIfcDraughtingPreDefinedTextFont explicit implementation
 		 
@@ -60,12 +60,6 @@ namespace Xbim.Ifc2x3.PresentationResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : SELF\IfcPreDefinedItem.Name IN ['ISO 3098-1 font A','ISO 3098-1 font B'];*/
 		}
 		#endregion
 
@@ -112,16 +106,6 @@ namespace Xbim.Ifc2x3.PresentationResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDraughtingPreDefinedTextFont x, @IfcDraughtingPreDefinedTextFont y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDraughtingPreDefinedTextFont obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcExternallyDefinedHatchStyle", 724)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternallyDefinedHatchStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedHatchStyle, IEqualityComparer<@IfcExternallyDefinedHatchStyle>, IEquatable<@IfcExternallyDefinedHatchStyle>
+	public  partial class @IfcExternallyDefinedHatchStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedHatchStyle, IEquatable<@IfcExternallyDefinedHatchStyle>
 	{
 		#region IIfcExternallyDefinedHatchStyle explicit implementation
 		 
@@ -63,11 +63,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -114,16 +109,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcExternallyDefinedHatchStyle left, IfcFillStyleSelect right)
+		{
+			return left == right as @IfcExternallyDefinedHatchStyle;
+		}
 
-        public bool Equals(@IfcExternallyDefinedHatchStyle x, @IfcExternallyDefinedHatchStyle y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcExternallyDefinedHatchStyle left, IfcFillStyleSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcExternallyDefinedHatchStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

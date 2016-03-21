@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcBeamType", 632)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBeamType : IfcBuildingElementType, IInstantiableEntity, IIfcBeamType, IEqualityComparer<@IfcBeamType>, IEquatable<@IfcBeamType>
+	public  partial class @IfcBeamType : IfcBuildingElementType, IInstantiableEntity, IIfcBeamType, IEquatable<@IfcBeamType>
 	{
 		#region IIfcBeamType explicit implementation
 		IfcBeamTypeEnum IIfcBeamType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcBeamTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc4.SharedBldgElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcBeamType x, @IfcBeamType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBeamType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

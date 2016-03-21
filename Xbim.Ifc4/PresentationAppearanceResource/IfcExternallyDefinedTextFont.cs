@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcExternallyDefinedTextFont", 132)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternallyDefinedTextFont : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedTextFont, IEqualityComparer<@IfcExternallyDefinedTextFont>, IEquatable<@IfcExternallyDefinedTextFont>
+	public  partial class @IfcExternallyDefinedTextFont : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedTextFont, IEquatable<@IfcExternallyDefinedTextFont>
 	{
 		#region IIfcExternallyDefinedTextFont explicit implementation
 		 
@@ -63,11 +63,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -114,16 +109,16 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcExternallyDefinedTextFont left, IfcTextFontSelect right)
+		{
+			return left == right as @IfcExternallyDefinedTextFont;
+		}
 
-        public bool Equals(@IfcExternallyDefinedTextFont x, @IfcExternallyDefinedTextFont y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcExternallyDefinedTextFont left, IfcTextFontSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcExternallyDefinedTextFont obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

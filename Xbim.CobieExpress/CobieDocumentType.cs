@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("DocumentType", 53)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieDocumentType : CobiePickValue, IInstantiableEntity, ICobieDocumentType, IEqualityComparer<@CobieDocumentType>, IEquatable<@CobieDocumentType>
+	public  partial class @CobieDocumentType : CobiePickValue, IInstantiableEntity, ICobieDocumentType, IEquatable<@CobieDocumentType>
 	{
 		#region ICobieDocumentType explicit implementation
 		 
@@ -60,11 +60,6 @@ namespace Xbim.CobieExpress
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -111,16 +106,6 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
-
-        public bool Equals(@CobieDocumentType x, @CobieDocumentType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieDocumentType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

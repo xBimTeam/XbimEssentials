@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcObject", 21)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcObject : IfcObjectDefinition, IIfcObject, IEqualityComparer<@IfcObject>, IEquatable<@IfcObject>
+	public abstract partial class @IfcObject : IfcObjectDefinition, IIfcObject, IEquatable<@IfcObject>
 	{
 		#region IIfcObject explicit implementation
 		IfcLabel? IIfcObject.ObjectType { get { return @ObjectType; } }	
@@ -94,7 +94,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDefinesByObject>(e => (e.RelatingObject as IfcObject) == this, "RelatingObject", this);
+				return Model.Instances.Where<IfcRelDefinesByObject>(e => e.RelatingObject == this, "RelatingObject", this);
 			} 
 		}
 		[InverseProperty("RelatedObjects")]
@@ -135,12 +135,6 @@ namespace Xbim.Ifc4.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*UniquePropertySetNames:	UniquePropertySetNames : ((SIZEOF(IsDefinedBy) = 0) OR IfcUniqueDefinitionNames(IsDefinedBy));*/
 		}
 		#endregion
 
@@ -187,16 +181,6 @@ namespace Xbim.Ifc4.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcObject x, @IfcObject y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcObject obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

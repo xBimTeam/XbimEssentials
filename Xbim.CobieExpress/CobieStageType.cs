@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("StageType", 54)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieStageType : CobiePickValue, IInstantiableEntity, ICobieStageType, IEqualityComparer<@CobieStageType>, IEquatable<@CobieStageType>
+	public  partial class @CobieStageType : CobiePickValue, IInstantiableEntity, ICobieStageType, IEquatable<@CobieStageType>
 	{
 		#region ICobieStageType explicit implementation
 		 
@@ -60,11 +60,6 @@ namespace Xbim.CobieExpress
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -111,16 +106,6 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
-
-        public bool Equals(@CobieStageType x, @CobieStageType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieStageType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

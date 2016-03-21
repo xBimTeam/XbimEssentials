@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcElementComponent", 424)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcElementComponent : IfcElement, IIfcElementComponent, IEqualityComparer<@IfcElementComponent>, IEquatable<@IfcElementComponent>
+	public abstract partial class @IfcElementComponent : IfcElement, IIfcElementComponent, IEquatable<@IfcElementComponent>
 	{
 		#region IIfcElementComponent explicit implementation
 		 
@@ -68,11 +68,6 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -119,16 +114,6 @@ namespace Xbim.Ifc2x3.SharedComponentElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcElementComponent x, @IfcElementComponent y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElementComponent obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

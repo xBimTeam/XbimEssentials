@@ -36,7 +36,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("PickValue", 35)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @CobiePickValue : IPersistEntity, INotifyPropertyChanged, ICobiePickValue, IEqualityComparer<@CobiePickValue>, IEquatable<@CobiePickValue>
+	public abstract partial class @CobiePickValue : IPersistEntity, INotifyPropertyChanged, ICobiePickValue, IEquatable<@CobiePickValue>
 	{
 		#region ICobiePickValue explicit implementation
 		string ICobiePickValue.Value { get { return @Value; } }	
@@ -192,11 +192,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -242,16 +237,6 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
-
-        public bool Equals(@CobiePickValue x, @CobiePickValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobiePickValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

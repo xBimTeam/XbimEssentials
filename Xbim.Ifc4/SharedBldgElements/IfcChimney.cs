@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcChimney", 1120)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcChimney : IfcBuildingElement, IInstantiableEntity, IIfcChimney, IEqualityComparer<@IfcChimney>, IEquatable<@IfcChimney>
+	public  partial class @IfcChimney : IfcBuildingElement, IInstantiableEntity, IIfcChimney, IEquatable<@IfcChimney>
 	{
 		#region IIfcChimney explicit implementation
 		IfcChimneyTypeEnum? IIfcChimney.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcChimneyTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCCHIMNEYTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.SharedBldgElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcChimney x, @IfcChimney y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcChimney obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcTopologyRepresentation", 88)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTopologyRepresentation : IfcShapeModel, IInstantiableEntity, IIfcTopologyRepresentation, IEqualityComparer<@IfcTopologyRepresentation>, IEquatable<@IfcTopologyRepresentation>
+	public  partial class @IfcTopologyRepresentation : IfcShapeModel, IInstantiableEntity, IIfcTopologyRepresentation, IEquatable<@IfcTopologyRepresentation>
 	{
 		#region IIfcTopologyRepresentation explicit implementation
 		 
@@ -63,14 +63,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:             )) = 0;*/
-		/*WR22:	WR22 : EXISTS(SELF\IfcRepresentation.RepresentationType);*/
-		/*WR23:	WR23 : IfcTopologyRepresentationTypes(SELF\IfcRepresentation.RepresentationType, SELF\IfcRepresentation.Items);*/
 		}
 		#endregion
 
@@ -117,16 +109,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTopologyRepresentation x, @IfcTopologyRepresentation y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTopologyRepresentation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

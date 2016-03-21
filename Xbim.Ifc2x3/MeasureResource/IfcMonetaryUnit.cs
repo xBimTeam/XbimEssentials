@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcMonetaryUnit", 545)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMonetaryUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMonetaryUnit, IEqualityComparer<@IfcMonetaryUnit>, IEquatable<@IfcMonetaryUnit>
+	public  partial class @IfcMonetaryUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcMonetaryUnit, IEquatable<@IfcMonetaryUnit>
 	{
 		#region IIfcMonetaryUnit explicit implementation
 		IfcCurrencyEnum IIfcMonetaryUnit.Currency { get { return @Currency; } }	
@@ -192,11 +192,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -242,16 +237,16 @@ namespace Xbim.Ifc2x3.MeasureResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcMonetaryUnit left, IfcUnit right)
+		{
+			return left == right as @IfcMonetaryUnit;
+		}
 
-        public bool Equals(@IfcMonetaryUnit x, @IfcMonetaryUnit y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcMonetaryUnit left, IfcUnit right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcMonetaryUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

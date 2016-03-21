@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcComplexPropertyTemplate", 1129)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcComplexPropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcComplexPropertyTemplate, IEqualityComparer<@IfcComplexPropertyTemplate>, IEquatable<@IfcComplexPropertyTemplate>
+	public  partial class @IfcComplexPropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcComplexPropertyTemplate, IEquatable<@IfcComplexPropertyTemplate>
 	{
 		#region IIfcComplexPropertyTemplate explicit implementation
 		IfcLabel? IIfcComplexPropertyTemplate.UsageName { get { return @UsageName; } }	
@@ -129,13 +129,6 @@ namespace Xbim.Ifc4.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*UniquePropertyNames:	UniquePropertyNames : IfcUniquePropertyTemplateNames(HasPropertyTemplates);*/
-		/*NoSelfReference:	NoSelfReference : SIZEOF(QUERY(temp <* HasPropertyTemplates | SELF :=: temp)) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -181,16 +174,6 @@ namespace Xbim.Ifc4.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcComplexPropertyTemplate x, @IfcComplexPropertyTemplate y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcComplexPropertyTemplate obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

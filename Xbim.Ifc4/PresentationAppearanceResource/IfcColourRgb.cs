@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcColourRgb", 27)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcColourRgb : IfcColourSpecification, IInstantiableEntity, IIfcColourRgb, IEqualityComparer<@IfcColourRgb>, IEquatable<@IfcColourRgb>
+	public  partial class @IfcColourRgb : IfcColourSpecification, IInstantiableEntity, IIfcColourRgb, IEquatable<@IfcColourRgb>
 	{
 		#region IIfcColourRgb explicit implementation
 		IfcNormalisedRatioMeasure IIfcColourRgb.Red { get { return @Red; } }	
@@ -127,11 +127,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -177,16 +172,16 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcColourRgb left, IfcColourOrFactor right)
+		{
+			return left == right as @IfcColourRgb;
+		}
 
-        public bool Equals(@IfcColourRgb x, @IfcColourRgb y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcColourRgb left, IfcColourOrFactor right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcColourRgb obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

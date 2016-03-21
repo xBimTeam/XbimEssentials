@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralSurfaceAction", 1284)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSurfaceAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralSurfaceAction, IEqualityComparer<@IfcStructuralSurfaceAction>, IEquatable<@IfcStructuralSurfaceAction>
+	public  partial class @IfcStructuralSurfaceAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralSurfaceAction, IEquatable<@IfcStructuralSurfaceAction>
 	{
 		#region IIfcStructuralSurfaceAction explicit implementation
 		IfcProjectedOrTrueLengthEnum? IIfcStructuralSurfaceAction.ProjectedOrTrue { get { return @ProjectedOrTrue; } }	
@@ -115,13 +115,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*ProjectedIsGlobal: (SELF\IfcStructuralActivity.GlobalOrLocal = GLOBAL_COORDS));*/
-		/*HasObjectType:	HasObjectType : (PredefinedType <> IfcStructuralSurfaceActivityTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -167,16 +160,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralSurfaceAction x, @IfcStructuralSurfaceAction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralSurfaceAction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcControl", 76)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcControl : IfcObject, IIfcControl, IEqualityComparer<@IfcControl>, IEquatable<@IfcControl>
+	public abstract partial class @IfcControl : IfcObject, IIfcControl, IEquatable<@IfcControl>
 	{
 		#region IIfcControl explicit implementation
 		IfcIdentifier? IIfcControl.Identification { get { return @Identification; } }	
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToControl>(e => (e.RelatingControl as IfcControl) == this, "RelatingControl", this);
+				return Model.Instances.Where<IfcRelAssignsToControl>(e => e.RelatingControl == this, "RelatingControl", this);
 			} 
 		}
 		#endregion
@@ -103,11 +103,6 @@ namespace Xbim.Ifc4.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -154,16 +149,6 @@ namespace Xbim.Ifc4.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcControl x, @IfcControl y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcControl obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelDecomposes", 306)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRelDecomposes : IfcRelationship, IIfcRelDecomposes, IEqualityComparer<@IfcRelDecomposes>, IEquatable<@IfcRelDecomposes>
+	public abstract partial class @IfcRelDecomposes : IfcRelationship, IIfcRelDecomposes, IEquatable<@IfcRelDecomposes>
 	{
 		#region IIfcRelDecomposes explicit implementation
 		IIfcObjectDefinition IIfcRelDecomposes.RelatingObject { get { return @RelatingObject; } }	
@@ -109,12 +109,6 @@ namespace Xbim.Ifc2x3.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : SIZEOF(QUERY(Temp <* RelatedObjects | RelatingObject :=: Temp)) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -160,16 +154,6 @@ namespace Xbim.Ifc2x3.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelDecomposes x, @IfcRelDecomposes y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelDecomposes obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

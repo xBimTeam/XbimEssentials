@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcDuctFitting", 1153)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDuctFitting : IfcFlowFitting, IInstantiableEntity, IIfcDuctFitting, IEqualityComparer<@IfcDuctFitting>, IEquatable<@IfcDuctFitting>
+	public  partial class @IfcDuctFitting : IfcFlowFitting, IInstantiableEntity, IIfcDuctFitting, IEquatable<@IfcDuctFitting>
 	{
 		#region IIfcDuctFitting explicit implementation
 		IfcDuctFittingTypeEnum? IIfcDuctFitting.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.HvacDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcDuctFittingTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCDUCTFITTINGTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.HvacDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDuctFitting x, @IfcDuctFitting y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDuctFitting obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

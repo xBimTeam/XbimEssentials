@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Ifc4.GeometryResource;
@@ -10,7 +9,7 @@ using Xbim.Ifc4.RepresentationResource;
 
 namespace Xbim.Ifc4.Interfaces
 {
-    public partial interface @IIfcProject : IIfcContext
+    public partial interface @IIfcProject
     {
         
         void Initialize(ProjectUnits units);
@@ -22,7 +21,7 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-    public partial class IfcProject : IfcContext, IInstantiableEntity, IIfcProject, IEqualityComparer<@IfcProject>, IEquatable<@IfcProject>
+    public partial class IfcProject
     {
         public IfcGeometricRepresentationContext ModelContext
         {

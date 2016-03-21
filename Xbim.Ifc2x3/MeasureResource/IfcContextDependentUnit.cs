@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcContextDependentUnit", 304)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcContextDependentUnit : IfcNamedUnit, IInstantiableEntity, IIfcContextDependentUnit, IEqualityComparer<@IfcContextDependentUnit>, IEquatable<@IfcContextDependentUnit>
+	public  partial class @IfcContextDependentUnit : IfcNamedUnit, IInstantiableEntity, IIfcContextDependentUnit, IEquatable<@IfcContextDependentUnit>
 	{
 		#region IIfcContextDependentUnit explicit implementation
 		IfcLabel IIfcContextDependentUnit.Name { get { return @Name; } }	
@@ -87,11 +87,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -137,16 +132,6 @@ namespace Xbim.Ifc2x3.MeasureResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcContextDependentUnit x, @IfcContextDependentUnit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcContextDependentUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

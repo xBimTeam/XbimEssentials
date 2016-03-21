@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralLinearAction", 463)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLinearAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralLinearAction, IEqualityComparer<@IfcStructuralLinearAction>, IEquatable<@IfcStructuralLinearAction>
+	public  partial class @IfcStructuralLinearAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralLinearAction, IEquatable<@IfcStructuralLinearAction>
 	{
 		#region IIfcStructuralLinearAction explicit implementation
 		IfcProjectedOrTrueLengthEnum IIfcStructuralLinearAction.ProjectedOrTrue { get { return @ProjectedOrTrue; } }	
@@ -96,12 +96,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR61:             * TYPEOF(SELF\IfcStructuralActivity.AppliedLoad)) = 1;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -147,16 +141,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralLinearAction x, @IfcStructuralLinearAction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLinearAction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -41,7 +41,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Site", 16)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSite : INotifyPropertyChanged, IInstantiableEntity, ICobieSite, IEqualityComparer<@CobieSite>, IEquatable<@CobieSite>
+	public  partial class @CobieSite : INotifyPropertyChanged, IInstantiableEntity, ICobieSite, IEquatable<@CobieSite>
 	{
 		#region ICobieSite explicit implementation
 		string ICobieSite.Name { get { return @Name; } }	
@@ -206,7 +206,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieFacility>(e => (e.Site as CobieSite) == this, "Site", this);
+				return Model.Instances.Where<CobieFacility>(e => e.Site == this, "Site", this);
 			} 
 		}
 		#endregion
@@ -285,11 +285,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -335,16 +330,16 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
+        public static bool operator ==(@CobieSite left, SpatialDivision right)
+		{
+			return left == right as @CobieSite;
+		}
 
-        public bool Equals(@CobieSite x, @CobieSite y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@CobieSite left, SpatialDivision right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@CobieSite obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -45,7 +45,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcCostSchedule", 695)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IEqualityComparer<@IfcCostSchedule>, IEquatable<@IfcCostSchedule>
+	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IEquatable<@IfcCostSchedule>
 	{
 		#region IIfcCostSchedule explicit implementation
 		IIfcActorSelect IIfcCostSchedule.SubmittedBy { get { return @SubmittedBy; } }	
@@ -232,11 +232,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -282,16 +277,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCostSchedule x, @IfcCostSchedule y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCostSchedule obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

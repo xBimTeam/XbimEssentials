@@ -48,7 +48,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IfcTimeSeries", 418)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTimeSeries : IPersistEntity, INotifyPropertyChanged, IIfcTimeSeries, IEqualityComparer<@IfcTimeSeries>, IEquatable<@IfcTimeSeries>
+	public abstract partial class @IfcTimeSeries : IPersistEntity, INotifyPropertyChanged, IIfcTimeSeries, IEquatable<@IfcTimeSeries>
 	{
 		#region IIfcTimeSeries explicit implementation
 		IfcLabel IIfcTimeSeries.Name { get { return @Name; } }	
@@ -261,7 +261,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcTimeSeriesReferenceRelationship>(e => (e.ReferencedTimeSeries as IfcTimeSeries) == this, "ReferencedTimeSeries", this);
+				return Model.Instances.Where<IfcTimeSeriesReferenceRelationship>(e => e.ReferencedTimeSeries == this, "ReferencedTimeSeries", this);
 			} 
 		}
 		#endregion
@@ -349,11 +349,6 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -399,16 +394,26 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcTimeSeries left, IfcMetricValueSelect right)
+		{
+			return left == right as @IfcTimeSeries;
+		}
 
-        public bool Equals(@IfcTimeSeries x, @IfcTimeSeries y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcTimeSeries left, IfcMetricValueSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcTimeSeries obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcTimeSeries left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcTimeSeries;
+		}
+
+		public static bool operator !=(@IfcTimeSeries left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

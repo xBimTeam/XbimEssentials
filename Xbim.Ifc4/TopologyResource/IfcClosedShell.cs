@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcClosedShell", 161)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClosedShell : IfcConnectedFaceSet, IInstantiableEntity, IIfcClosedShell, IEqualityComparer<@IfcClosedShell>, IEquatable<@IfcClosedShell>
+	public  partial class @IfcClosedShell : IfcConnectedFaceSet, IInstantiableEntity, IIfcClosedShell, IEquatable<@IfcClosedShell>
 	{
 		#region IIfcClosedShell explicit implementation
 		 
@@ -61,11 +61,6 @@ namespace Xbim.Ifc4.TopologyResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -112,16 +107,26 @@ namespace Xbim.Ifc4.TopologyResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcClosedShell left, IfcShell right)
+		{
+			return left == right as @IfcClosedShell;
+		}
 
-        public bool Equals(@IfcClosedShell x, @IfcClosedShell y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcClosedShell left, IfcShell right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcClosedShell obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcClosedShell left, IfcSolidOrShell right)
+		{
+			return left == right as @IfcClosedShell;
+		}
+
+		public static bool operator !=(@IfcClosedShell left, IfcSolidOrShell right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

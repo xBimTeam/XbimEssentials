@@ -37,7 +37,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("CreatedInfo", 10)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieCreatedInfo : INotifyPropertyChanged, IInstantiableEntity, ICobieCreatedInfo, IEqualityComparer<@CobieCreatedInfo>, IEquatable<@CobieCreatedInfo>
+	public  partial class @CobieCreatedInfo : INotifyPropertyChanged, IInstantiableEntity, ICobieCreatedInfo, IEquatable<@CobieCreatedInfo>
 	{
 		#region ICobieCreatedInfo explicit implementation
 		ICobieContact ICobieCreatedInfo.CreatedBy { get { return @CreatedBy; } }	
@@ -212,11 +212,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -262,16 +257,6 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
-
-        public bool Equals(@CobieCreatedInfo x, @CobieCreatedInfo y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieCreatedInfo obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

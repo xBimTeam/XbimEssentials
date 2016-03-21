@@ -40,7 +40,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Space", 18)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSpace : CobieAsset, IInstantiableEntity, ICobieSpace, IEqualityComparer<@CobieSpace>, IEquatable<@CobieSpace>
+	public  partial class @CobieSpace : CobieAsset, IInstantiableEntity, ICobieSpace, IEquatable<@CobieSpace>
 	{
 		#region ICobieSpace explicit implementation
 		string ICobieSpace.RoomTag { get { return @RoomTag; } }	
@@ -202,11 +202,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -252,16 +247,16 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
+        public static bool operator ==(@CobieSpace left, SpatialDivision right)
+		{
+			return left == right as @CobieSpace;
+		}
 
-        public bool Equals(@CobieSpace x, @CobieSpace y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@CobieSpace left, SpatialDivision right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@CobieSpace obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

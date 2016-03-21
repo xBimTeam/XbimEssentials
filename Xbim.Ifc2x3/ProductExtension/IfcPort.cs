@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcPort", 179)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPort : IfcProduct, IIfcPort, IEqualityComparer<@IfcPort>, IEquatable<@IfcPort>
+	public abstract partial class @IfcPort : IfcProduct, IIfcPort, IEquatable<@IfcPort>
 	{
 		#region IIfcPort explicit implementation
 		 
@@ -61,7 +61,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.FirstOrDefault<IfcRelConnectsPortToElement>(e => (e.RelatingPort as IfcPort) == this, "RelatingPort", this);
+				return Model.Instances.FirstOrDefault<IfcRelConnectsPortToElement>(e => e.RelatingPort == this, "RelatingPort", this);
 			} 
 		}
 		[InverseProperty("RelatedPort")]
@@ -70,7 +70,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsPorts>(e => (e.RelatedPort as IfcPort) == this, "RelatedPort", this);
+				return Model.Instances.Where<IfcRelConnectsPorts>(e => e.RelatedPort == this, "RelatedPort", this);
 			} 
 		}
 		[InverseProperty("RelatingPort")]
@@ -79,7 +79,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsPorts>(e => (e.RelatingPort as IfcPort) == this, "RelatingPort", this);
+				return Model.Instances.Where<IfcRelConnectsPorts>(e => e.RelatingPort == this, "RelatingPort", this);
 			} 
 		}
 		#endregion
@@ -102,11 +102,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -153,16 +148,6 @@ namespace Xbim.Ifc2x3.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPort x, @IfcPort y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPort obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

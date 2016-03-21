@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationSymbolOccurrence", 134)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationSymbolOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationSymbolOccurrence, IEqualityComparer<@IfcAnnotationSymbolOccurrence>, IEquatable<@IfcAnnotationSymbolOccurrence>
+	public  partial class @IfcAnnotationSymbolOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationSymbolOccurrence, IEquatable<@IfcAnnotationSymbolOccurrence>
 	{
 		#region IIfcAnnotationSymbolOccurrence explicit implementation
 		 
@@ -63,12 +63,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:             ('IFC2X3.IFCDEFINEDSYMBOL' IN TYPEOF (SELF\IfcStyledItem.Item));*/
 		}
 		#endregion
 
@@ -115,16 +109,16 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcAnnotationSymbolOccurrence left, IfcDraughtingCalloutElement right)
+		{
+			return left == right as @IfcAnnotationSymbolOccurrence;
+		}
 
-        public bool Equals(@IfcAnnotationSymbolOccurrence x, @IfcAnnotationSymbolOccurrence y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcAnnotationSymbolOccurrence left, IfcDraughtingCalloutElement right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcAnnotationSymbolOccurrence obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

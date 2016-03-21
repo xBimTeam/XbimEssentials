@@ -42,7 +42,7 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcAddress", 554)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcAddress : IPersistEntity, INotifyPropertyChanged, IIfcAddress, IEqualityComparer<@IfcAddress>, IEquatable<@IfcAddress>
+	public abstract partial class @IfcAddress : IPersistEntity, INotifyPropertyChanged, IIfcAddress, IEquatable<@IfcAddress>
 	{
 		#region IIfcAddress explicit implementation
 		IfcAddressTypeEnum? IIfcAddress.Purpose { get { return @Purpose; } }	
@@ -258,12 +258,6 @@ namespace Xbim.Ifc2x3.ActorResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:              EXISTS(SELF.UserDefinedPurpose)));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -309,16 +303,16 @@ namespace Xbim.Ifc2x3.ActorResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcAddress left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcAddress;
+		}
 
-        public bool Equals(@IfcAddress x, @IfcAddress y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcAddress left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcAddress obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

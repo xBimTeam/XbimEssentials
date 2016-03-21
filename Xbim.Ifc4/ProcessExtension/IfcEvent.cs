@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcEvent", 1168)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEvent : IfcProcess, IInstantiableEntity, IIfcEvent, IEqualityComparer<@IfcEvent>, IEquatable<@IfcEvent>
+	public  partial class @IfcEvent : IfcProcess, IInstantiableEntity, IIfcEvent, IEquatable<@IfcEvent>
 	{
 		#region IIfcEvent explicit implementation
 		IfcEventTypeEnum? IIfcEvent.PredefinedType { get { return @PredefinedType; } }	
@@ -155,13 +155,6 @@ namespace Xbim.Ifc4.ProcessExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR (PredefinedType <> IfcEventTypeEnum.USERDEFINED) OR ((PredefinedType = IfcEventTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:	CorrectTypeAssigned : NOT(EXISTS(EventTriggerType)) OR (EventTriggerType <> IfcEventTriggerTypeEnum.USERDEFINED) OR ((EventTriggerType = IfcEventTriggerTypeEnum.USERDEFINED) AND EXISTS(UserDefinedEventTriggerType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -207,16 +200,6 @@ namespace Xbim.Ifc4.ProcessExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcEvent x, @IfcEvent y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEvent obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

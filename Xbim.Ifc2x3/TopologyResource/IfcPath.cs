@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcPath", 771)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPath : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcPath, IEqualityComparer<@IfcPath>, IEquatable<@IfcPath>
+	public  partial class @IfcPath : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcPath, IEquatable<@IfcPath>
 	{
 		#region IIfcPath explicit implementation
 		IEnumerable<IIfcOrientedEdge> IIfcPath.EdgeList { get { return @EdgeList; } }	
@@ -81,12 +81,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : IfcPathHeadToTail(SELF);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -132,16 +126,6 @@ namespace Xbim.Ifc2x3.TopologyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPath x, @IfcPath y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPath obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

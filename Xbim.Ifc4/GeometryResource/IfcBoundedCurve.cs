@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcBoundedCurve", 144)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcBoundedCurve : IfcCurve, IIfcBoundedCurve, IEqualityComparer<@IfcBoundedCurve>, IEquatable<@IfcBoundedCurve>
+	public abstract partial class @IfcBoundedCurve : IfcCurve, IIfcBoundedCurve, IEquatable<@IfcBoundedCurve>
 	{
 		#region IIfcBoundedCurve explicit implementation
 		 
@@ -55,11 +55,6 @@ namespace Xbim.Ifc4.GeometryResource
 		{
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -106,16 +101,16 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcBoundedCurve left, IfcCurveOrEdgeCurve right)
+		{
+			return left == right as @IfcBoundedCurve;
+		}
 
-        public bool Equals(@IfcBoundedCurve x, @IfcBoundedCurve y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcBoundedCurve left, IfcCurveOrEdgeCurve right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcBoundedCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

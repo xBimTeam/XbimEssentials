@@ -92,11 +92,6 @@ namespace Xbim.Ifc2x3.MeasureResource
             _value = value.IntegerVal;
             
 		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
-		}
 		#endregion
 
 		#region IExpressValueType implementation

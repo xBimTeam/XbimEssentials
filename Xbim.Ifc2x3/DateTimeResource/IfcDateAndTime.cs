@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcDateAndTime", 373)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDateAndTime : INotifyPropertyChanged, IInstantiableEntity, IIfcDateAndTime, IEqualityComparer<@IfcDateAndTime>, IEquatable<@IfcDateAndTime>
+	public  partial class @IfcDateAndTime : INotifyPropertyChanged, IInstantiableEntity, IIfcDateAndTime, IEquatable<@IfcDateAndTime>
 	{
 		#region IIfcDateAndTime explicit implementation
 		IIfcCalendarDate IIfcDateAndTime.DateComponent { get { return @DateComponent; } }	
@@ -213,11 +213,6 @@ namespace Xbim.Ifc2x3.DateTimeResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -263,16 +258,26 @@ namespace Xbim.Ifc2x3.DateTimeResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcDateAndTime left, IfcDateTimeSelect right)
+		{
+			return left == right as @IfcDateAndTime;
+		}
 
-        public bool Equals(@IfcDateAndTime x, @IfcDateAndTime y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcDateAndTime left, IfcDateTimeSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcDateAndTime obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcDateAndTime left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcDateAndTime;
+		}
+
+		public static bool operator !=(@IfcDateAndTime left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

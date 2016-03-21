@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcLocalTime", 483)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLocalTime : INotifyPropertyChanged, IInstantiableEntity, IIfcLocalTime, IEqualityComparer<@IfcLocalTime>, IEquatable<@IfcLocalTime>
+	public  partial class @IfcLocalTime : INotifyPropertyChanged, IInstantiableEntity, IIfcLocalTime, IEquatable<@IfcLocalTime>
 	{
 		#region IIfcLocalTime explicit implementation
 		IfcHourInDay IIfcLocalTime.HourComponent { get { return @HourComponent; } }	
@@ -273,12 +273,6 @@ namespace Xbim.Ifc2x3.DateTimeResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:	WR21 : IfcValidTime (SELF);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -324,16 +318,26 @@ namespace Xbim.Ifc2x3.DateTimeResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcLocalTime left, IfcDateTimeSelect right)
+		{
+			return left == right as @IfcLocalTime;
+		}
 
-        public bool Equals(@IfcLocalTime x, @IfcLocalTime y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcLocalTime left, IfcDateTimeSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcLocalTime obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcLocalTime left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcLocalTime;
+		}
+
+		public static bool operator !=(@IfcLocalTime left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

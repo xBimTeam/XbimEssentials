@@ -1,8 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xbim.Ifc2x3.Kernel;
 using System.IO;
+using System.Linq;
+
 using Xbim.Common;
 using Xbim.Common.Metadata;
+using Xbim.Ifc2x3.Kernel;
+using Xbim.Ifc2x3.ProductExtension;
 
 namespace Xbim.Essentials.Tests
 {
@@ -10,12 +13,90 @@ namespace Xbim.Essentials.Tests
     [DeploymentItem(@"TestSourceFiles\")]
     public class ModelFilterTest
     {
+        private static Ifc2x3.IO.XbimModel CreateAndInitModel(string projectName)
+        {
+            var model = Ifc2x3.IO.XbimModel.CreateModel(projectName + ".xBIM"); //create an empty model
+            //Begin a transaction as all changes to a model are transacted
+            using (var txn = model.BeginTransaction("Initialise Model"))
+            {
+                //do once only initialisation of model application and editor values
+                model.DefaultOwningUser.ThePerson.GivenName = "John";
+                model.DefaultOwningUser.ThePerson.FamilyName = "Bloggs";
+                model.DefaultOwningUser.TheOrganization.Name = "Department of Building";
+                model.DefaultOwningApplication.ApplicationIdentifier = "Construction Software inc.";
+                model.DefaultOwningApplication.ApplicationDeveloper.Name = "Construction Programmers Ltd.";
+                model.DefaultOwningApplication.ApplicationFullName = "Ifc sample programme";
+                model.DefaultOwningApplication.Version = "2.0.1";
+                //set up a project and initialise the defaults
+                var project = model.Instances.New<IfcProject>();
+                project.Initialize(ProjectUnits.SIUnitsUK);
+                project.Name = "testProject";
+                project.OwnerHistory.OwningUser = model.DefaultOwningUser;
+                project.OwnerHistory.OwningApplication = model.DefaultOwningApplication;
+				
+                txn.Commit();
+                return model;
+            }
+        }
+
+        [TestMethod]
+        public void MergeProductsTest()
+        {
+            const string model1File = "4walls1floorSite.ifc";
+            const string copyFile = "copy.ifc";
+            const string model2File = "House.ifc"; 
+            var newModel = CreateAndInitModel("global_model");
+            using (var model1 = new Ifc2x3.IO.XbimModel())
+            {
+                PropertyTranformDelegate propTransform = delegate(ExpressMetaProperty prop, object toCopy)
+                {
+                    var value = prop.PropertyInfo.GetValue(toCopy, null);
+                    return value;
+                };
+                model1.CreateFrom(model1File, Path.GetTempFileName(), null, true);
+
+                using (var model2 = new Ifc2x3.IO.XbimModel())
+                {
+                    model2.CreateFrom(model2File, Path.GetTempFileName(), null, true);
+                    model2.AutoAddOwnerHistory = true;
+
+                    var rencontre = false;
+                    using (var txn = newModel.BeginTransaction())
+                    {
+                        var copied = new XbimInstanceHandleMap(model1, newModel);
+                        foreach (var item in model1.IfcProducts)
+                        {
+                            newModel.InsertCopy(item, copied, propTransform, false, false);
+                        }
+                        copied = new XbimInstanceHandleMap(model2, newModel);
+                        foreach (var item in model2.IfcProducts)
+                        {
+                            var buildingElement = item as IfcBuildingElement;
+                            if (model1.Instances.OfType<IfcBuildingElement>()
+                                .Any(item1 => buildingElement != null && buildingElement.GlobalId == item1.GlobalId))
+                            {
+                                rencontre = true;
+                            }
+                            if (!rencontre)
+                            {
+                                newModel.InsertCopy(item, copied, propTransform, false, false);
+                            }
+                        }
+
+                        txn.Commit();
+                    }
+                    newModel.SaveAs(copyFile);
+                }
+                newModel.Close();
+            }
+        }
+
         [TestMethod]
         public void CopyAllEntitiesTest()
         {
             var sourceFile = "source.ifc";
             var copyFile = "copy.ifc";
-            using (var source = new Xbim.Ifc2x3.IO.XbimModel())
+            using (var source = new Ifc2x3.IO.XbimModel())
             {
                 PropertyTranformDelegate propTransform = delegate (ExpressMetaProperty prop, object toCopy)
                 {
@@ -27,7 +108,7 @@ namespace Xbim.Essentials.Tests
                 //source.CreateFrom(@"C:\Users\Steve\Downloads\Test Models\Wall with complex openings.ifc", "source.xbim",null,true);
                 source.Open("BIM Logo-LetterM.xBIM");
                 source.SaveAs(sourceFile);
-                using (var target = Xbim.Ifc2x3.IO.XbimModel.CreateTemporaryModel())
+                using (var target = Ifc2x3.IO.XbimModel.CreateTemporaryModel())
                 {
                     target.AutoAddOwnerHistory = false;
                     using (var txn = target.BeginTransaction())
@@ -37,7 +118,7 @@ namespace Xbim.Essentials.Tests
 
                         foreach (var item in source.Instances)
                         {
-                            var cpy =  target.InsertCopy(item, copied, txn, propTransform,true);
+                            target.InsertCopy(item, copied, txn, propTransform,true);
                         }
                         txn.Commit();
                     }
@@ -52,17 +133,17 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void ExtractIfcGeometryEntitiesTest()
         {
-            using (var source = new Xbim.Ifc2x3.IO.XbimModel())
+            using (var source = new Ifc2x3.IO.XbimModel())
             {
                 PropertyTranformDelegate propTransform = delegate (ExpressMetaProperty prop, object toCopy)
                 {
 
-                    if (typeof(IfcProduct).IsAssignableFrom(toCopy.GetType()))
+                    if (toCopy is IfcProduct)
                     {
                         if (prop.PropertyInfo.Name == "ObjectPlacement" || prop.PropertyInfo.Name == "Representation")
                             return null;
                     }
-                    if (typeof(IfcTypeProduct).IsAssignableFrom(toCopy.GetType()))
+                    if (toCopy is IfcTypeProduct)
                     {
                         if (prop.PropertyInfo.Name == "RepresentationMaps")
                             return null;
@@ -72,12 +153,12 @@ namespace Xbim.Essentials.Tests
 
                 //source.LoadStep21("BIM Logo-LetterM.xBIM");
                 //source.SaveAs("WithGeometry.ifc");
-                string modelName = @"4walls1floorSite";
-                string xbimModelName = Path.ChangeExtension(modelName, "xbim");
+                var modelName = @"4walls1floorSite";
+                var xbimModelName = Path.ChangeExtension(modelName, "xbim");
 
                 source.CreateFrom(Path.ChangeExtension(modelName, "ifc"), null, null, true);
 
-                using (var target = Xbim.Ifc2x3.IO.XbimModel.CreateModel(Path.ChangeExtension(modelName + "_NoGeom", "xbim")))
+                using (var target = Ifc2x3.IO.XbimModel.CreateModel(Path.ChangeExtension(modelName + "_NoGeom", "xbim")))
                 {
                     target.AutoAddOwnerHistory = false;
                     using (var txn = target.BeginTransaction())
