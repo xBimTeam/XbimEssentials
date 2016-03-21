@@ -4,6 +4,9 @@ using System.Linq;
 
 using Xbim.Common;
 using Xbim.Common.Metadata;
+using Xbim.Common.Step21;
+using Xbim.Ifc;
+using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProductExtension;
 
@@ -44,32 +47,30 @@ namespace Xbim.Essentials.Tests
         {
             const string model1File = "4walls1floorSite.ifc";
             const string copyFile = "copy.ifc";
-            const string model2File = "House.ifc"; 
-            var newModel = CreateAndInitModel("global_model");
-            using (var model1 = new Ifc2x3.IO.XbimModel())
+            const string model2File = "House.ifc";
+            var newModel = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel);
+            using (var model1 = IfcStore.Open(model1File))
             {
                 PropertyTranformDelegate propTransform = delegate(ExpressMetaProperty prop, object toCopy)
                 {
                     var value = prop.PropertyInfo.GetValue(toCopy, null);
                     return value;
                 };
-                model1.CreateFrom(model1File, Path.GetTempFileName(), null, true);
+               
 
-                using (var model2 = new Ifc2x3.IO.XbimModel())
+                using (var model2 = IfcStore.Open(model2File))
                 {
-                    model2.CreateFrom(model2File, Path.GetTempFileName(), null, true);
-                    model2.AutoAddOwnerHistory = true;
 
                     var rencontre = false;
                     using (var txn = newModel.BeginTransaction())
                     {
                         var copied = new XbimInstanceHandleMap(model1, newModel);
-                        foreach (var item in model1.IfcProducts)
+                        foreach (var item in model1.Instances.OfType<IfcProduct>())
                         {
                             newModel.InsertCopy(item, copied, propTransform, false, false);
                         }
                         copied = new XbimInstanceHandleMap(model2, newModel);
-                        foreach (var item in model2.IfcProducts)
+                        foreach (var item in model2.Instances.OfType<IfcProduct>())
                         {
                             var buildingElement = item as IfcBuildingElement;
                             if (model1.Instances.OfType<IfcBuildingElement>()
