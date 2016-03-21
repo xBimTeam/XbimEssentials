@@ -7,27 +7,27 @@ Number of Start Conditions = 1
 Start condition INITIAL:
   number of patterns = 39, number of nfsa states = 207, accept states = 39
 =============================================================================
-GPLEX: NFSA built.   26 msec
+GPLEX: NFSA built.   18 msec
 =============================================================================
-GPLEX: DFSA built.   42 msec
+GPLEX: DFSA built.   37 msec
 =============================================================================
-GPLEX: DFSA minimized.   24 msec
+GPLEX: DFSA minimized.   36 msec
 =============================================================================
-GPLEX: Shortest strings found.    4 msec
+GPLEX: Shortest strings found.    3 msec
 =============================================================================
 DFSA Summary
 =============================================================================
 Number of dfsa instances = 1
 Start condition INITIAL:
-  number of dfsa states = 117, number of accept states = 94
+  number of dfsa states = 120, number of accept states = 96
 =============================================================================
-GPLEX: C# file emitted.   43 msec
+GPLEX: C# file emitted.   34 msec
 =============================================================================
 GPLEX Summary
 =============================================================================
-Total number of states = 100, total accept states = 81, backup states = 12
-Original state number was 118, minimized machine has 100 states
-Nextstate table compression was 85.05%, 3,827 entries Vs 25,600
+Total number of states = 102, total accept states = 82, backup states = 13
+Original state number was 121, minimized machine has 102 states
+Nextstate table compression was 84.36%, 4,083 entries Vs 26,112
 
 Backup state report --- 
 In <0>, after "\"" automaton could accept "[^)]" in state 8
@@ -60,10 +60,13 @@ In <0>, after ".0E0" automaton could accept "[\-\+\.0-9][\.0-9]+E[\-\+0-9][0-9]*
 In <0>, after "+0" automaton could accept "[\-\+0-9][0-9]*" in state 73
 --- after ''E'' automaton is in a non-accept state and might need to backup
 
-In <0>, after "''" automaton could accept "[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[\047][\'])*[\']" in state 75
+In <0>, after "''" automaton could accept "[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[\\][\'])*[\']" in state 75
 --- after ''''' automaton is in a non-accept state and might need to backup
 
-In <0>, after "#0" automaton could accept "#[0-9]+" in state 77
+In <0>, after "'\\'" automaton could accept "[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[\\][\'])*[\']" in state 76
+--- after ''\0'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "#0" automaton could accept "#[0-9]+" in state 78
 --- after ''\t'' automaton is in a non-accept state and might need to backup
 
 =============================================================================
