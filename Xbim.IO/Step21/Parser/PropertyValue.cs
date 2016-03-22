@@ -27,13 +27,13 @@ namespace Xbim.IO.Step21.Parser
             return Char.ConvertFromUtf32(value);
         }
 
-        internal void Init(string value, StepParserType type)
+        public void Init(string value, StepParserType type)
         {
             _strVal = value;
             _stepParserType = type;
         }
 
-        internal void Init(object value)
+        public void Init(object value)
         {
             _entityVal = value;
             _stepParserType = StepParserType.Entity;
