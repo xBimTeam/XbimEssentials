@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 {
 	[ExpressType("IfcPerformanceHistory", 710)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IIfcPerformanceHistory, IEqualityComparer<@IfcPerformanceHistory>, IEquatable<@IfcPerformanceHistory>
+	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IIfcPerformanceHistory, IEquatable<@IfcPerformanceHistory>
 	{
 		#region IIfcPerformanceHistory explicit implementation
 		IfcLabel IIfcPerformanceHistory.LifeCyclePhase { get { return @LifeCyclePhase; } }	
@@ -92,11 +92,6 @@ namespace Xbim.Ifc2x3.ControlExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -142,16 +137,6 @@ namespace Xbim.Ifc2x3.ControlExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPerformanceHistory x, @IfcPerformanceHistory y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPerformanceHistory obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

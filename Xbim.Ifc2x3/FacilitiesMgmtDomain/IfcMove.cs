@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcMove", 74)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMove : IfcTask, IInstantiableEntity, IIfcMove, IEqualityComparer<@IfcMove>, IEquatable<@IfcMove>
+	public  partial class @IfcMove : IfcTask, IInstantiableEntity, IIfcMove, IEquatable<@IfcMove>
 	{
 		#region IIfcMove explicit implementation
 		IIfcSpatialStructureElement IIfcMove.MoveFrom { get { return @MoveFrom; } }	
@@ -136,14 +136,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(SELF\IfcProcess.OperatesOn) >= 1;*/
-		/*WR2:              )) >= 1;*/
-		/*WR3:	WR3 : EXISTS(SELF\IfcRoot.Name);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -189,16 +181,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcMove x, @IfcMove y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMove obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

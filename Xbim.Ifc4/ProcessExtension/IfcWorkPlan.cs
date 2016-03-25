@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcWorkPlan", 187)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWorkPlan : IfcWorkControl, IInstantiableEntity, IIfcWorkPlan, IEqualityComparer<@IfcWorkPlan>, IEquatable<@IfcWorkPlan>
+	public  partial class @IfcWorkPlan : IfcWorkControl, IInstantiableEntity, IIfcWorkPlan, IEquatable<@IfcWorkPlan>
 	{
 		#region IIfcWorkPlan explicit implementation
 		IfcWorkPlanTypeEnum? IIfcWorkPlan.PredefinedType { get { return @PredefinedType; } }	
@@ -98,12 +98,6 @@ namespace Xbim.Ifc4.ProcessExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcWorkPlanTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -149,16 +143,6 @@ namespace Xbim.Ifc4.ProcessExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcWorkPlan x, @IfcWorkPlan y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWorkPlan obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

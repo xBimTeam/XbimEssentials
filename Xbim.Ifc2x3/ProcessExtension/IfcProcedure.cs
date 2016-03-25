@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcProcedure", 294)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProcedure : IfcProcess, IInstantiableEntity, IIfcProcedure, IEqualityComparer<@IfcProcedure>, IEquatable<@IfcProcedure>
+	public  partial class @IfcProcedure : IfcProcess, IInstantiableEntity, IIfcProcedure, IEquatable<@IfcProcedure>
 	{
 		#region IIfcProcedure explicit implementation
 		IfcIdentifier IIfcProcedure.ProcedureID { get { return @ProcedureID; } }	
@@ -132,15 +132,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(QUERY(temp <* SELF\IfcObjectDefinition.Decomposes | NOT('IFC2X3.IFCRELNESTS' IN TYPEOF(temp)))) = 0;*/
-		/*WR2:	WR2 : SIZEOF(QUERY(temp <* SELF\IfcObjectDefinition.IsDecomposedBy | NOT('IFC2X3.IFCRELNESTS' IN TYPEOF(temp)))) = 0;*/
-		/*WR3:	WR3 : EXISTS(SELF\IfcRoot.Name);*/
-		/*WR4:            ((ProcedureType = IfcProcedureTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcProcedure.UserDefinedProcedureType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -186,16 +177,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcProcedure x, @IfcProcedure y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProcedure obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

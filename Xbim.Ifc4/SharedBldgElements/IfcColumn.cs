@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcColumn", 383)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcColumn : IfcBuildingElement, IInstantiableEntity, IIfcColumn, IEqualityComparer<@IfcColumn>, IEquatable<@IfcColumn>
+	public  partial class @IfcColumn : IfcBuildingElement, IInstantiableEntity, IIfcColumn, IEquatable<@IfcColumn>
 	{
 		#region IIfcColumn explicit implementation
 		IfcColumnTypeEnum? IIfcColumn.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcColumnTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCCOLUMNTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.SharedBldgElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcColumn x, @IfcColumn y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcColumn obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

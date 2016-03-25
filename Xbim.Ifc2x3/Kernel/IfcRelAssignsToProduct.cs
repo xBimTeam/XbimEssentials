@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssignsToProduct", 309)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToProduct : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProduct, IEqualityComparer<@IfcRelAssignsToProduct>, IEquatable<@IfcRelAssignsToProduct>
+	public  partial class @IfcRelAssignsToProduct : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProduct, IEquatable<@IfcRelAssignsToProduct>
 	{
 		#region IIfcRelAssignsToProduct explicit implementation
 		IIfcProduct IIfcRelAssignsToProduct.RelatingProduct { get { return @RelatingProduct; } }	
@@ -92,12 +92,6 @@ namespace Xbim.Ifc2x3.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(QUERY(Temp <* SELF\IfcRelAssigns.RelatedObjects | RelatingProduct :=: Temp)) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -143,16 +137,6 @@ namespace Xbim.Ifc2x3.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelAssignsToProduct x, @IfcRelAssignsToProduct y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToProduct obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

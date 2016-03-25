@@ -45,7 +45,7 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcOrganization", 276)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrganization : INotifyPropertyChanged, IInstantiableEntity, IIfcOrganization, IEqualityComparer<@IfcOrganization>, IEquatable<@IfcOrganization>
+	public  partial class @IfcOrganization : INotifyPropertyChanged, IInstantiableEntity, IIfcOrganization, IEquatable<@IfcOrganization>
 	{
 		#region IIfcOrganization explicit implementation
 		IfcIdentifier? IIfcOrganization.Id { get { return @Id; } }	
@@ -216,7 +216,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcOrganizationRelationship>(e => (e.RelatingOrganization as IfcOrganization) == this, "RelatingOrganization", this);
+				return Model.Instances.Where<IfcOrganizationRelationship>(e => e.RelatingOrganization == this, "RelatingOrganization", this);
 			} 
 		}
 		[InverseProperty("TheOrganization")]
@@ -225,7 +225,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPersonAndOrganization>(e => (e.TheOrganization as IfcOrganization) == this, "TheOrganization", this);
+				return Model.Instances.Where<IfcPersonAndOrganization>(e => e.TheOrganization == this, "TheOrganization", this);
 			} 
 		}
 		#endregion
@@ -306,11 +306,6 @@ namespace Xbim.Ifc2x3.ActorResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -356,16 +351,26 @@ namespace Xbim.Ifc2x3.ActorResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcOrganization left, IfcActorSelect right)
+		{
+			return left == right as @IfcOrganization;
+		}
 
-        public bool Equals(@IfcOrganization x, @IfcOrganization y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcOrganization left, IfcActorSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcOrganization obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcOrganization left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcOrganization;
+		}
+
+		public static bool operator !=(@IfcOrganization left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

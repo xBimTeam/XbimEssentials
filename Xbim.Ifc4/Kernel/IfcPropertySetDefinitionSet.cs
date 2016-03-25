@@ -104,11 +104,6 @@ namespace Xbim.Ifc4.Kernel
             _value.Add(value.EntityVal as IfcPropertySetDefinition);
             
 		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
-		}
 		#endregion
 
 		#region IExpressValueType implementation

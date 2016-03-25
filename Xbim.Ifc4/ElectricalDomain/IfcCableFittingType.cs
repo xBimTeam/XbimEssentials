@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcCableFittingType", 1114)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCableFittingType : IfcFlowFittingType, IInstantiableEntity, IIfcCableFittingType, IEqualityComparer<@IfcCableFittingType>, IEquatable<@IfcCableFittingType>
+	public  partial class @IfcCableFittingType : IfcFlowFittingType, IInstantiableEntity, IIfcCableFittingType, IEquatable<@IfcCableFittingType>
 	{
 		#region IIfcCableFittingType explicit implementation
 		IfcCableFittingTypeEnum IIfcCableFittingType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc4.ElectricalDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcCableFittingTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc4.ElectricalDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCableFittingType x, @IfcCableFittingType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCableFittingType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialProfileSetUsageTapering", 1208)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialProfileSetUsageTapering : IfcMaterialProfileSetUsage, IInstantiableEntity, IIfcMaterialProfileSetUsageTapering, IEqualityComparer<@IfcMaterialProfileSetUsageTapering>, IEquatable<@IfcMaterialProfileSetUsageTapering>
+	public  partial class @IfcMaterialProfileSetUsageTapering : IfcMaterialProfileSetUsage, IInstantiableEntity, IIfcMaterialProfileSetUsageTapering, IEquatable<@IfcMaterialProfileSetUsageTapering>
 	{
 		#region IIfcMaterialProfileSetUsageTapering explicit implementation
 		IIfcMaterialProfileSet IIfcMaterialProfileSetUsageTapering.ForProfileEndSet { get { return @ForProfileEndSet; } }	
@@ -108,11 +108,6 @@ namespace Xbim.Ifc4.MaterialResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -158,16 +153,6 @@ namespace Xbim.Ifc4.MaterialResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcMaterialProfileSetUsageTapering x, @IfcMaterialProfileSetUsageTapering y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialProfileSetUsageTapering obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

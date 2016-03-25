@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcTextureCoordinate", 732)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTextureCoordinate : IPersistEntity, INotifyPropertyChanged, IIfcTextureCoordinate, IEqualityComparer<@IfcTextureCoordinate>, IEquatable<@IfcTextureCoordinate>
+	public abstract partial class @IfcTextureCoordinate : IPersistEntity, INotifyPropertyChanged, IIfcTextureCoordinate, IEquatable<@IfcTextureCoordinate>
 	{
 		#region IIfcTextureCoordinate explicit implementation
 		 
@@ -116,7 +116,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcAnnotationSurface>(e => (e.TextureCoordinates as IfcTextureCoordinate) == this, "TextureCoordinates", this);
+				return Model.Instances.Where<IfcAnnotationSurface>(e => e.TextureCoordinates == this, "TextureCoordinates", this);
 			} 
 		}
 		#endregion
@@ -177,11 +177,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -227,16 +222,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTextureCoordinate x, @IfcTextureCoordinate y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextureCoordinate obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

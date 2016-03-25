@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcCoordinateOperation", 1143)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcCoordinateOperation : IPersistEntity, INotifyPropertyChanged, IIfcCoordinateOperation, IEqualityComparer<@IfcCoordinateOperation>, IEquatable<@IfcCoordinateOperation>
+	public abstract partial class @IfcCoordinateOperation : IPersistEntity, INotifyPropertyChanged, IIfcCoordinateOperation, IEquatable<@IfcCoordinateOperation>
 	{
 		#region IIfcCoordinateOperation explicit implementation
 		IIfcCoordinateReferenceSystemSelect IIfcCoordinateOperation.SourceCRS { get { return @SourceCRS; } }	
@@ -213,11 +213,6 @@ namespace Xbim.Ifc4.RepresentationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -263,16 +258,6 @@ namespace Xbim.Ifc4.RepresentationResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCoordinateOperation x, @IfcCoordinateOperation y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCoordinateOperation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

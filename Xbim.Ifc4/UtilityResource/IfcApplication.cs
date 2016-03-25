@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.UtilityResource
 {
 	[ExpressType("IfcApplication", 627)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApplication : INotifyPropertyChanged, IInstantiableEntity, IIfcApplication, IEqualityComparer<@IfcApplication>, IEquatable<@IfcApplication>
+	public  partial class @IfcApplication : INotifyPropertyChanged, IInstantiableEntity, IIfcApplication, IEquatable<@IfcApplication>
 	{
 		#region IIfcApplication explicit implementation
 		IIfcOrganization IIfcApplication.ApplicationDeveloper { get { return @ApplicationDeveloper; } }	
@@ -254,11 +254,6 @@ namespace Xbim.Ifc4.UtilityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -304,16 +299,6 @@ namespace Xbim.Ifc4.UtilityResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcApplication x, @IfcApplication y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcApplication obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

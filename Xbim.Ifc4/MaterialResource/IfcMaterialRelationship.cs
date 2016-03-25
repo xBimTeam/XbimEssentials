@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialRelationship", 1210)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcMaterialRelationship, IEqualityComparer<@IfcMaterialRelationship>, IEquatable<@IfcMaterialRelationship>
+	public  partial class @IfcMaterialRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcMaterialRelationship, IEquatable<@IfcMaterialRelationship>
 	{
 		#region IIfcMaterialRelationship explicit implementation
 		IIfcMaterial IIfcMaterialRelationship.RelatingMaterial { get { return @RelatingMaterial; } }	
@@ -129,11 +129,6 @@ namespace Xbim.Ifc4.MaterialResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -179,16 +174,6 @@ namespace Xbim.Ifc4.MaterialResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcMaterialRelationship x, @IfcMaterialRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

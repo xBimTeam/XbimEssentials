@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCartesianTransformationOperator2D", 145)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator2D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator2D, IEqualityComparer<@IfcCartesianTransformationOperator2D>, IEquatable<@IfcCartesianTransformationOperator2D>
+	public  partial class @IfcCartesianTransformationOperator2D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator2D, IEquatable<@IfcCartesianTransformationOperator2D>
 	{
 		#region IIfcCartesianTransformationOperator2D explicit implementation
 		 
@@ -78,14 +78,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SELF\IfcCartesianTransformationOperator.Dim = 2;*/
-		/*WR2:            (SELF\IfcCartesianTransformationOperator.Axis1.Dim = 2);*/
-		/*WR3:            (SELF\IfcCartesianTransformationOperator.Axis2.Dim = 2);*/
 		}
 		#endregion
 
@@ -132,16 +124,6 @@ namespace Xbim.Ifc2x3.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCartesianTransformationOperator2D x, @IfcCartesianTransformationOperator2D y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCartesianTransformationOperator2D obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

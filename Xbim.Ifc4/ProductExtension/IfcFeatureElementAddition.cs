@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcFeatureElementAddition", 385)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFeatureElementAddition : IfcFeatureElement, IIfcFeatureElementAddition, IEqualityComparer<@IfcFeatureElementAddition>, IEquatable<@IfcFeatureElementAddition>
+	public abstract partial class @IfcFeatureElementAddition : IfcFeatureElement, IIfcFeatureElementAddition, IEquatable<@IfcFeatureElementAddition>
 	{
 		#region IIfcFeatureElementAddition explicit implementation
 		 
@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.FirstOrDefault<IfcRelProjectsElement>(e => (e.RelatedFeatureElement as IfcFeatureElementAddition) == this, "RelatedFeatureElement", this);
+				return Model.Instances.FirstOrDefault<IfcRelProjectsElement>(e => e.RelatedFeatureElement == this, "RelatedFeatureElement", this);
 			} 
 		}
 		#endregion
@@ -80,11 +80,6 @@ namespace Xbim.Ifc4.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -131,16 +126,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFeatureElementAddition x, @IfcFeatureElementAddition y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFeatureElementAddition obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

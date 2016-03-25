@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyleHatching", 462)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleHatching, IEqualityComparer<@IfcFillAreaStyleHatching>, IEquatable<@IfcFillAreaStyleHatching>
+	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleHatching, IEquatable<@IfcFillAreaStyleHatching>
 	{
 		#region IIfcFillAreaStyleHatching explicit implementation
 		IIfcCurveStyle IIfcFillAreaStyleHatching.HatchLineAppearance { get { return @HatchLineAppearance; } }	
@@ -165,13 +165,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*PatternStart2D:	PatternStart2D : NOT(EXISTS(PatternStart)) OR (PatternStart.Dim = 2);*/
-		/*RefHatchLine2D:	RefHatchLine2D : NOT(EXISTS(PointOfReferenceHatchLine)) OR (PointOfReferenceHatchLine.Dim = 2);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -217,16 +210,16 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcFillAreaStyleHatching left, IfcFillStyleSelect right)
+		{
+			return left == right as @IfcFillAreaStyleHatching;
+		}
 
-        public bool Equals(@IfcFillAreaStyleHatching x, @IfcFillAreaStyleHatching y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcFillAreaStyleHatching left, IfcFillStyleSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcFillAreaStyleHatching obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

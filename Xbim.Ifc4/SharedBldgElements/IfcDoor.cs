@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcDoor", 213)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IIfcDoor, IEqualityComparer<@IfcDoor>, IEquatable<@IfcDoor>
+	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IIfcDoor, IEquatable<@IfcDoor>
 	{
 		#region IIfcDoor explicit implementation
 		IfcPositiveLengthMeasure? IIfcDoor.OverallHeight { get { return @OverallHeight; } }	
@@ -175,12 +175,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectStyleAssigned:OR ('IFC4.IFCDOORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -226,16 +220,6 @@ namespace Xbim.Ifc4.SharedBldgElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDoor x, @IfcDoor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDoor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

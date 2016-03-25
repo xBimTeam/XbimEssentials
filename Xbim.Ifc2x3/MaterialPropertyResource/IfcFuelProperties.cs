@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcFuelProperties", 715)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFuelProperties : IfcMaterialProperties, IInstantiableEntity, IIfcFuelProperties, IEqualityComparer<@IfcFuelProperties>, IEquatable<@IfcFuelProperties>
+	public  partial class @IfcFuelProperties : IfcMaterialProperties, IInstantiableEntity, IIfcFuelProperties, IEquatable<@IfcFuelProperties>
 	{
 		#region IIfcFuelProperties explicit implementation
 		IfcThermodynamicTemperatureMeasure? IIfcFuelProperties.CombustionTemperature { get { return @CombustionTemperature; } }	
@@ -147,11 +147,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -197,16 +192,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFuelProperties x, @IfcFuelProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFuelProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

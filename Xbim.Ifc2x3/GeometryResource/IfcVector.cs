@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcVector", 652)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVector : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcVector, IEqualityComparer<@IfcVector>, IEquatable<@IfcVector>
+	public  partial class @IfcVector : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcVector, IEquatable<@IfcVector>
 	{
 		#region IIfcVector explicit implementation
 		IIfcDirection IIfcVector.Orientation { get { return @Orientation; } }	
@@ -118,12 +118,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : Magnitude >= 0.0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -169,16 +163,16 @@ namespace Xbim.Ifc2x3.GeometryResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcVector left, IfcVectorOrDirection right)
+		{
+			return left == right as @IfcVector;
+		}
 
-        public bool Equals(@IfcVector x, @IfcVector y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcVector left, IfcVectorOrDirection right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcVector obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

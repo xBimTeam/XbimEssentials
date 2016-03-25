@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcGeometricRepresentationSubContext", 556)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationSubContext, IEqualityComparer<@IfcGeometricRepresentationSubContext>, IEquatable<@IfcGeometricRepresentationSubContext>
+	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationSubContext, IEquatable<@IfcGeometricRepresentationSubContext>
 	{
 		#region IIfcGeometricRepresentationSubContext explicit implementation
 		IIfcGeometricRepresentationContext IIfcGeometricRepresentationSubContext.ParentContext { get { return @ParentContext; } }	
@@ -204,13 +204,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : NOT('IFC2X3.IFCGEOMETRICREPRESENTATIONSUBCONTEXT' IN TYPEOF(ParentContext));*/
-		/*WR32:              EXISTS(UserDefinedTargetView));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -256,16 +249,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcGeometricRepresentationSubContext x, @IfcGeometricRepresentationSubContext y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGeometricRepresentationSubContext obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -52,7 +52,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcFluidFlowProperties", 466)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFluidFlowProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcFluidFlowProperties, IEqualityComparer<@IfcFluidFlowProperties>, IEquatable<@IfcFluidFlowProperties>
+	public  partial class @IfcFluidFlowProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcFluidFlowProperties, IEquatable<@IfcFluidFlowProperties>
 	{
 		#region IIfcFluidFlowProperties explicit implementation
 		IfcPropertySourceEnum IIfcFluidFlowProperties.PropertySource { get { return @PropertySource; } }	
@@ -373,11 +373,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -423,16 +418,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFluidFlowProperties x, @IfcFluidFlowProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFluidFlowProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationFillAreaOccurrence", 544)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationFillAreaOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationFillAreaOccurrence, IEqualityComparer<@IfcAnnotationFillAreaOccurrence>, IEquatable<@IfcAnnotationFillAreaOccurrence>
+	public  partial class @IfcAnnotationFillAreaOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationFillAreaOccurrence, IEquatable<@IfcAnnotationFillAreaOccurrence>
 	{
 		#region IIfcAnnotationFillAreaOccurrence explicit implementation
 		IIfcPoint IIfcAnnotationFillAreaOccurrence.FillStyleTarget { get { return @FillStyleTarget; } }	
@@ -110,12 +110,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:             ('IFC2X3.IFCANNOTATIONFILLAREA' IN TYPEOF (SELF\IfcStyledItem.Item));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -161,16 +155,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcAnnotationFillAreaOccurrence x, @IfcAnnotationFillAreaOccurrence y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAnnotationFillAreaOccurrence obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcRelContainedInSpatialStructure", 559)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelContainedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IIfcRelContainedInSpatialStructure, IEqualityComparer<@IfcRelContainedInSpatialStructure>, IEquatable<@IfcRelContainedInSpatialStructure>
+	public  partial class @IfcRelContainedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IIfcRelContainedInSpatialStructure, IEquatable<@IfcRelContainedInSpatialStructure>
 	{
 		#region IIfcRelContainedInSpatialStructure explicit implementation
 		IEnumerable<IIfcProduct> IIfcRelContainedInSpatialStructure.RelatedElements { get { return @RelatedElements; } }	
@@ -110,12 +110,6 @@ namespace Xbim.Ifc4.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : SIZEOF(QUERY(temp <* RelatedElements | 'IFC4.IFCSPATIALSTRUCTUREELEMENT' IN TYPEOF(temp))) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -161,16 +155,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelContainedInSpatialStructure x, @IfcRelContainedInSpatialStructure y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelContainedInSpatialStructure obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

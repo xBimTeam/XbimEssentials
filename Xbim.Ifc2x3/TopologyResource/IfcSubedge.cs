@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcSubedge", 487)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSubedge : IfcEdge, IInstantiableEntity, IIfcSubedge, IEqualityComparer<@IfcSubedge>, IEquatable<@IfcSubedge>
+	public  partial class @IfcSubedge : IfcEdge, IInstantiableEntity, IIfcSubedge, IEquatable<@IfcSubedge>
 	{
 		#region IIfcSubedge explicit implementation
 		IIfcEdge IIfcSubedge.ParentEdge { get { return @ParentEdge; } }	
@@ -87,11 +87,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -137,16 +132,6 @@ namespace Xbim.Ifc2x3.TopologyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSubedge x, @IfcSubedge y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSubedge obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

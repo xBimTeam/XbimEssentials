@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.UtilityResource
 {
 	[ExpressType("IfcOwnerHistory", 519)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOwnerHistory : INotifyPropertyChanged, IInstantiableEntity, IIfcOwnerHistory, IEqualityComparer<@IfcOwnerHistory>, IEquatable<@IfcOwnerHistory>
+	public  partial class @IfcOwnerHistory : INotifyPropertyChanged, IInstantiableEntity, IIfcOwnerHistory, IEquatable<@IfcOwnerHistory>
 	{
 		#region IIfcOwnerHistory explicit implementation
 		IIfcPersonAndOrganization IIfcOwnerHistory.OwningUser { get { return @OwningUser; } }	
@@ -334,12 +334,6 @@ namespace Xbim.Ifc4.UtilityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectChangeAction:(NOT(EXISTS(LastModifiedDate)) AND EXISTS(ChangeAction) AND ((ChangeAction = IfcChangeActionEnum.NOTDEFINED) OR (ChangeAction = IfcChangeActionEnum.NOCHANGE)));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -385,16 +379,6 @@ namespace Xbim.Ifc4.UtilityResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcOwnerHistory x, @IfcOwnerHistory y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOwnerHistory obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcArbitraryClosedProfileDef", 115)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcArbitraryClosedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryClosedProfileDef, IEqualityComparer<@IfcArbitraryClosedProfileDef>, IEquatable<@IfcArbitraryClosedProfileDef>
+	public  partial class @IfcArbitraryClosedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryClosedProfileDef, IEquatable<@IfcArbitraryClosedProfileDef>
 	{
 		#region IIfcArbitraryClosedProfileDef explicit implementation
 		IIfcCurve IIfcArbitraryClosedProfileDef.OuterCurve { get { return @OuterCurve; } }	
@@ -88,14 +88,6 @@ namespace Xbim.Ifc4.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : OuterCurve.Dim = 2;*/
-		/*WR2:	WR2 : NOT('IFC4.IFCLINE' IN TYPEOF(OuterCurve));*/
-		/*WR3:	WR3 : NOT('IFC4.IFCOFFSETCURVE2D' IN TYPEOF(OuterCurve));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -141,16 +133,6 @@ namespace Xbim.Ifc4.ProfileResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcArbitraryClosedProfileDef x, @IfcArbitraryClosedProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcArbitraryClosedProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

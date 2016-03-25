@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadLinearForce", 419)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadLinearForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadLinearForce, IEqualityComparer<@IfcStructuralLoadLinearForce>, IEquatable<@IfcStructuralLoadLinearForce>
+	public  partial class @IfcStructuralLoadLinearForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadLinearForce, IEquatable<@IfcStructuralLoadLinearForce>
 	{
 		#region IIfcStructuralLoadLinearForce explicit implementation
 		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceX { get { return @LinearForceX; } }	
@@ -187,11 +187,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -237,16 +232,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralLoadLinearForce x, @IfcStructuralLoadLinearForce y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLoadLinearForce obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcFurnishingElement", 253)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFurnishingElement : IfcElement, IInstantiableEntity, IIfcFurnishingElement, IEqualityComparer<@IfcFurnishingElement>, IEquatable<@IfcFurnishingElement>
+	public  partial class @IfcFurnishingElement : IfcElement, IInstantiableEntity, IIfcFurnishingElement, IEquatable<@IfcFurnishingElement>
 	{
 		#region IIfcFurnishingElement explicit implementation
 		 
@@ -67,11 +67,6 @@ namespace Xbim.Ifc4.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -118,16 +113,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFurnishingElement x, @IfcFurnishingElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFurnishingElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

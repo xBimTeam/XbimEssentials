@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IfcDistributionCircuit", 1149)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionCircuit : IfcDistributionSystem, IInstantiableEntity, IIfcDistributionCircuit, IEqualityComparer<@IfcDistributionCircuit>, IEquatable<@IfcDistributionCircuit>
+	public  partial class @IfcDistributionCircuit : IfcDistributionSystem, IInstantiableEntity, IIfcDistributionCircuit, IEquatable<@IfcDistributionCircuit>
 	{
 		#region IIfcDistributionCircuit explicit implementation
 		 
@@ -66,11 +66,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -117,16 +112,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDistributionCircuit x, @IfcDistributionCircuit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDistributionCircuit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

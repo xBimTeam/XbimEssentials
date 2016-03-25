@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcTypeObject", 42)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTypeObject : IfcObjectDefinition, IInstantiableEntity, IIfcTypeObject, IEqualityComparer<@IfcTypeObject>, IEquatable<@IfcTypeObject>
+	public  partial class @IfcTypeObject : IfcObjectDefinition, IInstantiableEntity, IIfcTypeObject, IEquatable<@IfcTypeObject>
 	{
 		#region IIfcTypeObject explicit implementation
 		IfcIdentifier? IIfcTypeObject.ApplicableOccurrence { get { return @ApplicableOccurrence; } }	
@@ -94,7 +94,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDefinesByType>(e => (e.RelatingType as IfcTypeObject) == this, "RelatingType", this);
+				return Model.Instances.Where<IfcRelDefinesByType>(e => e.RelatingType == this, "RelatingType", this);
 			} 
 		}
 		#endregion
@@ -121,13 +121,6 @@ namespace Xbim.Ifc4.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*NameRequired:	NameRequired : EXISTS(SELF\IfcRoot.Name);*/
-		/*UniquePropertySetNames:	UniquePropertySetNames : (NOT(EXISTS(HasPropertySets))) OR IfcUniquePropertySetNames(HasPropertySets);*/
 		}
 		#endregion
 
@@ -174,16 +167,6 @@ namespace Xbim.Ifc4.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTypeObject x, @IfcTypeObject y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTypeObject obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

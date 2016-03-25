@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcSweptAreaSolid", 239)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSweptAreaSolid : IfcSolidModel, IIfcSweptAreaSolid, IEqualityComparer<@IfcSweptAreaSolid>, IEquatable<@IfcSweptAreaSolid>
+	public abstract partial class @IfcSweptAreaSolid : IfcSolidModel, IIfcSweptAreaSolid, IEquatable<@IfcSweptAreaSolid>
 	{
 		#region IIfcSweptAreaSolid explicit implementation
 		IIfcProfileDef IIfcSweptAreaSolid.SweptArea { get { return @SweptArea; } }	
@@ -105,12 +105,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR22:	WR22 : SweptArea.ProfileType = IfcProfileTypeEnum.Area;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -156,16 +150,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSweptAreaSolid x, @IfcSweptAreaSolid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSweptAreaSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

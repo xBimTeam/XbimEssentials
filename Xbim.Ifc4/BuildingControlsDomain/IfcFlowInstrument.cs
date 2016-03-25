@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	[ExpressType("IfcFlowInstrument", 1181)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowInstrument : IfcDistributionControlElement, IInstantiableEntity, IIfcFlowInstrument, IEqualityComparer<@IfcFlowInstrument>, IEquatable<@IfcFlowInstrument>
+	public  partial class @IfcFlowInstrument : IfcDistributionControlElement, IInstantiableEntity, IIfcFlowInstrument, IEquatable<@IfcFlowInstrument>
 	{
 		#region IIfcFlowInstrument explicit implementation
 		IfcFlowInstrumentTypeEnum? IIfcFlowInstrument.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcFlowInstrumentTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:('IFC4.IFCFLOWINSTRUMENTTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFlowInstrument x, @IfcFlowInstrument y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFlowInstrument obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

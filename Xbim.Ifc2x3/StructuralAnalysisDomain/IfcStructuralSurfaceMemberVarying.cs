@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralSurfaceMemberVarying", 421)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IIfcStructuralSurfaceMemberVarying, IEqualityComparer<@IfcStructuralSurfaceMemberVarying>, IEquatable<@IfcStructuralSurfaceMemberVarying>
+	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IIfcStructuralSurfaceMemberVarying, IEquatable<@IfcStructuralSurfaceMemberVarying>
 	{
 		#region IIfcStructuralSurfaceMemberVarying explicit implementation
 		IEnumerable<IfcPositiveLengthMeasure> IIfcStructuralSurfaceMemberVarying.SubsequentThickness { get { return @SubsequentThickness; } }	
@@ -130,14 +130,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR61:	WR61 : EXISTS(SELF\IfcStructuralSurfaceMember.Thickness);*/
-		/*WR62:               )) = 0;*/
-		/*WR63:               )) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -183,16 +175,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralSurfaceMemberVarying x, @IfcStructuralSurfaceMemberVarying y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralSurfaceMemberVarying obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

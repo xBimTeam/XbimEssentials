@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcMemberStandardCase", 1214)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMemberStandardCase : IfcMember, IInstantiableEntity, IIfcMemberStandardCase, IEqualityComparer<@IfcMemberStandardCase>, IEquatable<@IfcMemberStandardCase>
+	public  partial class @IfcMemberStandardCase : IfcMember, IInstantiableEntity, IIfcMemberStandardCase, IEquatable<@IfcMemberStandardCase>
 	{
 		#region IIfcMemberStandardCase explicit implementation
 		 
@@ -68,12 +68,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*HasMaterialProfileSetUsage:              )) = 1;*/
 		}
 		#endregion
 
@@ -120,16 +114,6 @@ namespace Xbim.Ifc4.SharedBldgElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcMemberStandardCase x, @IfcMemberStandardCase y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMemberStandardCase obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

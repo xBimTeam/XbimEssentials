@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcRelAssociatesAppliedValue", 699)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesAppliedValue : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesAppliedValue, IEqualityComparer<@IfcRelAssociatesAppliedValue>, IEquatable<@IfcRelAssociatesAppliedValue>
+	public  partial class @IfcRelAssociatesAppliedValue : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesAppliedValue, IEquatable<@IfcRelAssociatesAppliedValue>
 	{
 		#region IIfcRelAssociatesAppliedValue explicit implementation
 		IIfcAppliedValue IIfcRelAssociatesAppliedValue.RelatingAppliedValue { get { return @RelatingAppliedValue; } }	
@@ -92,11 +92,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -142,16 +137,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelAssociatesAppliedValue x, @IfcRelAssociatesAppliedValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssociatesAppliedValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

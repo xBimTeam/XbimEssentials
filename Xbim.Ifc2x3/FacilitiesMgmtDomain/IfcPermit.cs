@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcPermit", 189)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IIfcPermit, IEqualityComparer<@IfcPermit>, IEquatable<@IfcPermit>
+	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IIfcPermit, IEquatable<@IfcPermit>
 	{
 		#region IIfcPermit explicit implementation
 		IfcIdentifier IIfcPermit.PermitID { get { return @PermitID; } }	
@@ -92,11 +92,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -142,16 +137,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPermit x, @IfcPermit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPermit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

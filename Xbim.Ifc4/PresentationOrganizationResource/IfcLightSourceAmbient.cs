@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSourceAmbient", 756)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceAmbient : IfcLightSource, IInstantiableEntity, IIfcLightSourceAmbient, IEqualityComparer<@IfcLightSourceAmbient>, IEquatable<@IfcLightSourceAmbient>
+	public  partial class @IfcLightSourceAmbient : IfcLightSource, IInstantiableEntity, IIfcLightSourceAmbient, IEquatable<@IfcLightSourceAmbient>
 	{
 		#region IIfcLightSourceAmbient explicit implementation
 		 
@@ -63,11 +63,6 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -114,16 +109,6 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcLightSourceAmbient x, @IfcLightSourceAmbient y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLightSourceAmbient obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

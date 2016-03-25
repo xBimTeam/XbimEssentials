@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDimensionCurveTerminator", 744)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionCurveTerminator : IfcTerminatorSymbol, IInstantiableEntity, IIfcDimensionCurveTerminator, IEqualityComparer<@IfcDimensionCurveTerminator>, IEquatable<@IfcDimensionCurveTerminator>
+	public  partial class @IfcDimensionCurveTerminator : IfcTerminatorSymbol, IInstantiableEntity, IIfcDimensionCurveTerminator, IEquatable<@IfcDimensionCurveTerminator>
 	{
 		#region IIfcDimensionCurveTerminator explicit implementation
 		IfcDimensionExtentUsage IIfcDimensionCurveTerminator.Role { get { return @Role; } }	
@@ -89,12 +89,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR61:             (SELF\IfcTerminatorSymbol.AnnotatedCurve);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -140,16 +134,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDimensionCurveTerminator x, @IfcDimensionCurveTerminator y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDimensionCurveTerminator obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

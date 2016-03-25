@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcPoint", 66)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPoint : IfcGeometricRepresentationItem, IIfcPoint, IEqualityComparer<@IfcPoint>, IEquatable<@IfcPoint>
+	public abstract partial class @IfcPoint : IfcGeometricRepresentationItem, IIfcPoint, IEquatable<@IfcPoint>
 	{
 		#region IIfcPoint explicit implementation
 		 
@@ -70,11 +70,6 @@ namespace Xbim.Ifc4.GeometryResource
 		{
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -121,16 +116,26 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcPoint left, IfcGeometricSetSelect right)
+		{
+			return left == right as @IfcPoint;
+		}
 
-        public bool Equals(@IfcPoint x, @IfcPoint y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcPoint left, IfcGeometricSetSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcPoint obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcPoint left, IfcPointOrVertexPoint right)
+		{
+			return left == right as @IfcPoint;
+		}
+
+		public static bool operator !=(@IfcPoint left, IfcPointOrVertexPoint right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

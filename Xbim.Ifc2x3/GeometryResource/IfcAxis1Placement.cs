@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcAxis1Placement", 280)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAxis1Placement : IfcPlacement, IInstantiableEntity, IIfcAxis1Placement, IEqualityComparer<@IfcAxis1Placement>, IEquatable<@IfcAxis1Placement>
+	public  partial class @IfcAxis1Placement : IfcPlacement, IInstantiableEntity, IIfcAxis1Placement, IEquatable<@IfcAxis1Placement>
 	{
 		#region IIfcAxis1Placement explicit implementation
 		IIfcDirection IIfcAxis1Placement.Axis { get { return @Axis; } }	
@@ -100,13 +100,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : (NOT (EXISTS (Axis))) OR (Axis.Dim = 3);*/
-		/*WR2:	WR2 : SELF\IfcPlacement.Location.Dim = 3;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -152,16 +145,6 @@ namespace Xbim.Ifc2x3.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcAxis1Placement x, @IfcAxis1Placement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAxis1Placement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

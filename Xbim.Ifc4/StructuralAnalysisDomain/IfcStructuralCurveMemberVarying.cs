@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralCurveMemberVarying", 227)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralCurveMemberVarying : IfcStructuralCurveMember, IInstantiableEntity, IIfcStructuralCurveMemberVarying, IEqualityComparer<@IfcStructuralCurveMemberVarying>, IEquatable<@IfcStructuralCurveMemberVarying>
+	public  partial class @IfcStructuralCurveMemberVarying : IfcStructuralCurveMember, IInstantiableEntity, IIfcStructuralCurveMemberVarying, IEquatable<@IfcStructuralCurveMemberVarying>
 	{
 		#region IIfcStructuralCurveMemberVarying explicit implementation
 		 
@@ -68,11 +68,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -119,16 +114,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralCurveMemberVarying x, @IfcStructuralCurveMemberVarying y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralCurveMemberVarying obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

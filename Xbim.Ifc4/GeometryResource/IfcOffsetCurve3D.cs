@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcOffsetCurve3D", 67)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOffsetCurve3D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve3D, IEqualityComparer<@IfcOffsetCurve3D>, IEquatable<@IfcOffsetCurve3D>
+	public  partial class @IfcOffsetCurve3D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve3D, IEquatable<@IfcOffsetCurve3D>
 	{
 		#region IIfcOffsetCurve3D explicit implementation
 		IIfcCurve IIfcOffsetCurve3D.BasisCurve { get { return @BasisCurve; } }	
@@ -144,12 +144,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*DimIs2D:	DimIs2D : BasisCurve.Dim = 3;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -195,16 +189,6 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcOffsetCurve3D x, @IfcOffsetCurve3D y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOffsetCurve3D obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

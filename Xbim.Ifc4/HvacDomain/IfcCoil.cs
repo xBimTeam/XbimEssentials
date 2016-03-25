@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcCoil", 1124)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCoil : IfcEnergyConversionDevice, IInstantiableEntity, IIfcCoil, IEqualityComparer<@IfcCoil>, IEquatable<@IfcCoil>
+	public  partial class @IfcCoil : IfcEnergyConversionDevice, IInstantiableEntity, IIfcCoil, IEquatable<@IfcCoil>
 	{
 		#region IIfcCoil explicit implementation
 		IfcCoilTypeEnum? IIfcCoil.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.HvacDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcCoilTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCCOILTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.HvacDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCoil x, @IfcCoil y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCoil obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

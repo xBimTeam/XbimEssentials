@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcProjectedCRS", 1230)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectedCRS : IfcCoordinateReferenceSystem, IInstantiableEntity, IIfcProjectedCRS, IEqualityComparer<@IfcProjectedCRS>, IEquatable<@IfcProjectedCRS>
+	public  partial class @IfcProjectedCRS : IfcCoordinateReferenceSystem, IInstantiableEntity, IIfcProjectedCRS, IEquatable<@IfcProjectedCRS>
 	{
 		#region IIfcProjectedCRS explicit implementation
 		IfcIdentifier? IIfcProjectedCRS.MapProjection { get { return @MapProjection; } }	
@@ -130,12 +130,6 @@ namespace Xbim.Ifc4.RepresentationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*IsLengthUnit:	IsLengthUnit : NOT(EXISTS(MapUnit)) OR (MapUnit.UnitType = IfcUnitEnum.LENGTHUNIT);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -181,16 +175,6 @@ namespace Xbim.Ifc4.RepresentationResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcProjectedCRS x, @IfcProjectedCRS y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProjectedCRS obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

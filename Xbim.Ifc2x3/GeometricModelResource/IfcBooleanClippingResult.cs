@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcBooleanClippingResult", 340)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBooleanClippingResult : IfcBooleanResult, IInstantiableEntity, IIfcBooleanClippingResult, IEqualityComparer<@IfcBooleanClippingResult>, IEquatable<@IfcBooleanClippingResult>
+	public  partial class @IfcBooleanClippingResult : IfcBooleanResult, IInstantiableEntity, IIfcBooleanClippingResult, IEquatable<@IfcBooleanClippingResult>
 	{
 		#region IIfcBooleanClippingResult explicit implementation
 		 
@@ -62,14 +62,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : ('IFC2X3.IFCSWEPTAREASOLID' IN TYPEOF(FirstOperand)) OR ('IFC2X3.IFCBOOLEANCLIPPINGRESULT' IN TYPEOF(FirstOperand));*/
-		/*WR2:	WR2 : ('IFC2X3.IFCHALFSPACESOLID' IN TYPEOF(SecondOperand));*/
-		/*WR3:	WR3 : Operator = DIFFERENCE;*/
 		}
 		#endregion
 
@@ -116,16 +108,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcBooleanClippingResult x, @IfcBooleanClippingResult y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBooleanClippingResult obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IfcConstraint", 81)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConstraint : IPersistEntity, INotifyPropertyChanged, IIfcConstraint, IEqualityComparer<@IfcConstraint>, IEquatable<@IfcConstraint>
+	public abstract partial class @IfcConstraint : IPersistEntity, INotifyPropertyChanged, IIfcConstraint, IEquatable<@IfcConstraint>
 	{
 		#region IIfcConstraint explicit implementation
 		IfcLabel IIfcConstraint.Name { get { return @Name; } }	
@@ -253,7 +253,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcConstraintClassificationRelationship>(e => (e.ClassifiedConstraint as IfcConstraint) == this, "ClassifiedConstraint", this);
+				return Model.Instances.Where<IfcConstraintClassificationRelationship>(e => e.ClassifiedConstraint == this, "ClassifiedConstraint", this);
 			} 
 		}
 		[InverseProperty("RelatingConstraint")]
@@ -262,7 +262,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this, "RelatingConstraint", this);
+				return Model.Instances.Where<IfcConstraintRelationship>(e => e.RelatingConstraint == this, "RelatingConstraint", this);
 			} 
 		}
 		[InverseProperty("RelatedConstraints")]
@@ -280,7 +280,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertyConstraintRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this, "RelatingConstraint", this);
+				return Model.Instances.Where<IfcPropertyConstraintRelationship>(e => e.RelatingConstraint == this, "RelatingConstraint", this);
 			} 
 		}
 		[InverseProperty("RelatingConstraint")]
@@ -289,7 +289,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcConstraintAggregationRelationship>(e => (e.RelatingConstraint as IfcConstraint) == this, "RelatingConstraint", this);
+				return Model.Instances.Where<IfcConstraintAggregationRelationship>(e => e.RelatingConstraint == this, "RelatingConstraint", this);
 			} 
 		}
 		[InverseProperty("RelatedConstraints")]
@@ -383,12 +383,6 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11:             ((ConstraintGrade = IfcConstraintEnum.USERDEFINED) AND EXISTS(SELF\IfcConstraint.UserDefinedGrade));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -434,16 +428,6 @@ namespace Xbim.Ifc2x3.ConstraintResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcConstraint x, @IfcConstraint y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConstraint obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

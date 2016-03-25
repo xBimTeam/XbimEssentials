@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcTank", 1293)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTank : IfcFlowStorageDevice, IInstantiableEntity, IIfcTank, IEqualityComparer<@IfcTank>, IEquatable<@IfcTank>
+	public  partial class @IfcTank : IfcFlowStorageDevice, IInstantiableEntity, IIfcTank, IEquatable<@IfcTank>
 	{
 		#region IIfcTank explicit implementation
 		IfcTankTypeEnum? IIfcTank.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.HvacDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcTankTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCTANKTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.HvacDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTank x, @IfcTank y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTank obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

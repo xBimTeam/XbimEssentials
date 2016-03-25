@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcDiscreteAccessory", 423)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDiscreteAccessory : IfcElementComponent, IInstantiableEntity, IIfcDiscreteAccessory, IEqualityComparer<@IfcDiscreteAccessory>, IEquatable<@IfcDiscreteAccessory>
+	public  partial class @IfcDiscreteAccessory : IfcElementComponent, IInstantiableEntity, IIfcDiscreteAccessory, IEquatable<@IfcDiscreteAccessory>
 	{
 		#region IIfcDiscreteAccessory explicit implementation
 		 
@@ -67,11 +67,6 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -118,16 +113,6 @@ namespace Xbim.Ifc2x3.SharedComponentElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDiscreteAccessory x, @IfcDiscreteAccessory y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDiscreteAccessory obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

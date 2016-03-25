@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.CostResource
 {
 	[ExpressType("IfcAppliedValue", 79)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAppliedValue : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValue, IEqualityComparer<@IfcAppliedValue>, IEquatable<@IfcAppliedValue>
+	public  partial class @IfcAppliedValue : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValue, IEquatable<@IfcAppliedValue>
 	{
 		#region IIfcAppliedValue explicit implementation
 		IfcLabel? IIfcAppliedValue.Name { get { return @Name; } }	
@@ -388,11 +388,6 @@ namespace Xbim.Ifc4.CostResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -438,16 +433,36 @@ namespace Xbim.Ifc4.CostResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcAppliedValue left, IfcMetricValueSelect right)
+		{
+			return left == right as @IfcAppliedValue;
+		}
 
-        public bool Equals(@IfcAppliedValue x, @IfcAppliedValue y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcAppliedValue left, IfcMetricValueSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcAppliedValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcAppliedValue left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcAppliedValue;
+		}
+
+		public static bool operator !=(@IfcAppliedValue left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
+        public static bool operator ==(@IfcAppliedValue left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcAppliedValue;
+		}
+
+		public static bool operator !=(@IfcAppliedValue left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

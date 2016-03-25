@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcArbitraryOpenProfileDef", 219)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcArbitraryOpenProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryOpenProfileDef, IEqualityComparer<@IfcArbitraryOpenProfileDef>, IEquatable<@IfcArbitraryOpenProfileDef>
+	public  partial class @IfcArbitraryOpenProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryOpenProfileDef, IEquatable<@IfcArbitraryOpenProfileDef>
 	{
 		#region IIfcArbitraryOpenProfileDef explicit implementation
 		IIfcBoundedCurve IIfcArbitraryOpenProfileDef.Curve { get { return @Curve; } }	
@@ -88,13 +88,6 @@ namespace Xbim.Ifc4.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11: (SELF\IfcProfileDef.ProfileType = IfcProfileTypeEnum.CURVE);*/
-		/*WR12:	WR12 : Curve.Dim = 2;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -140,16 +133,6 @@ namespace Xbim.Ifc4.ProfileResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcArbitraryOpenProfileDef x, @IfcArbitraryOpenProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcArbitraryOpenProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

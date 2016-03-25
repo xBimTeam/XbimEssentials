@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
 	[ExpressType("IfcWasteTerminal", 1315)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWasteTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcWasteTerminal, IEqualityComparer<@IfcWasteTerminal>, IEquatable<@IfcWasteTerminal>
+	public  partial class @IfcWasteTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcWasteTerminal, IEquatable<@IfcWasteTerminal>
 	{
 		#region IIfcWasteTerminal explicit implementation
 		IfcWasteTerminalTypeEnum? IIfcWasteTerminal.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcWasteTerminalTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCWASTETERMINALTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcWasteTerminal x, @IfcWasteTerminal y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWasteTerminal obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

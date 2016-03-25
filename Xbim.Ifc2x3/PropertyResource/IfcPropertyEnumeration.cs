@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertyEnumeration", 597)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyEnumeration : INotifyPropertyChanged, IInstantiableEntity, IIfcPropertyEnumeration, IEqualityComparer<@IfcPropertyEnumeration>, IEquatable<@IfcPropertyEnumeration>
+	public  partial class @IfcPropertyEnumeration : INotifyPropertyChanged, IInstantiableEntity, IIfcPropertyEnumeration, IEquatable<@IfcPropertyEnumeration>
 	{
 		#region IIfcPropertyEnumeration explicit implementation
 		IfcLabel IIfcPropertyEnumeration.Name { get { return @Name; } }	
@@ -231,12 +231,6 @@ namespace Xbim.Ifc2x3.PropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR01:               )) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -282,16 +276,6 @@ namespace Xbim.Ifc2x3.PropertyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPropertyEnumeration x, @IfcPropertyEnumeration y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyEnumeration obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

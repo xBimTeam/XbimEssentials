@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralItem", 226)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralItem : IfcProduct, IIfcStructuralItem, IEqualityComparer<@IfcStructuralItem>, IEquatable<@IfcStructuralItem>
+	public abstract partial class @IfcStructuralItem : IfcProduct, IIfcStructuralItem, IEquatable<@IfcStructuralItem>
 	{
 		#region IIfcStructuralItem explicit implementation
 		 
@@ -57,7 +57,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsStructuralActivity>(e => (e.RelatingElement as IfcStructuralItem) == this, "RelatingElement", this);
+				return Model.Instances.Where<IfcRelConnectsStructuralActivity>(e => e.RelatingElement == this, "RelatingElement", this);
 			} 
 		}
 		#endregion
@@ -80,11 +80,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -131,16 +126,16 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcStructuralItem left, IfcStructuralActivityAssignmentSelect right)
+		{
+			return left == right as @IfcStructuralItem;
+		}
 
-        public bool Equals(@IfcStructuralItem x, @IfcStructuralItem y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcStructuralItem left, IfcStructuralActivityAssignmentSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcStructuralItem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

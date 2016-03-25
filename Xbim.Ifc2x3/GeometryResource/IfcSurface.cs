@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcSurface", 111)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSurface : IfcGeometricRepresentationItem, IIfcSurface, IEqualityComparer<@IfcSurface>, IEquatable<@IfcSurface>
+	public abstract partial class @IfcSurface : IfcGeometricRepresentationItem, IIfcSurface, IEquatable<@IfcSurface>
 	{
 		#region IIfcSurface explicit implementation
 		 
@@ -82,11 +82,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -132,16 +127,26 @@ namespace Xbim.Ifc2x3.GeometryResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcSurface left, IfcGeometricSetSelect right)
+		{
+			return left == right as @IfcSurface;
+		}
 
-        public bool Equals(@IfcSurface x, @IfcSurface y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcSurface left, IfcGeometricSetSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcSurface left, IfcSurfaceOrFaceSurface right)
+		{
+			return left == right as @IfcSurface;
+		}
+
+		public static bool operator !=(@IfcSurface left, IfcSurfaceOrFaceSurface right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

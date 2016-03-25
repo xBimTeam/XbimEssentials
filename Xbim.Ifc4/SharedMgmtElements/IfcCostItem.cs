@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 {
 	[ExpressType("IfcCostItem", 694)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostItem : IfcControl, IInstantiableEntity, IIfcCostItem, IEqualityComparer<@IfcCostItem>, IEquatable<@IfcCostItem>
+	public  partial class @IfcCostItem : IfcControl, IInstantiableEntity, IIfcCostItem, IEquatable<@IfcCostItem>
 	{
 		#region IIfcCostItem explicit implementation
 		IfcCostItemTypeEnum? IIfcCostItem.PredefinedType { get { return @PredefinedType; } }	
@@ -130,11 +130,6 @@ namespace Xbim.Ifc4.SharedMgmtElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -180,16 +175,6 @@ namespace Xbim.Ifc4.SharedMgmtElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCostItem x, @IfcCostItem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCostItem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

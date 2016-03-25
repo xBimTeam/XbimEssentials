@@ -88,11 +88,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
             _value = value.StringVal;
             
 		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
-		}
 		#endregion
 
 		#region IExpressValueType implementation

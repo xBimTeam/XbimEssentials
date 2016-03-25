@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcRationalBSplineCurveWithKnots", 1241)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRationalBSplineCurveWithKnots : IfcBSplineCurveWithKnots, IInstantiableEntity, IIfcRationalBSplineCurveWithKnots, IEqualityComparer<@IfcRationalBSplineCurveWithKnots>, IEquatable<@IfcRationalBSplineCurveWithKnots>
+	public  partial class @IfcRationalBSplineCurveWithKnots : IfcBSplineCurveWithKnots, IInstantiableEntity, IIfcRationalBSplineCurveWithKnots, IEquatable<@IfcRationalBSplineCurveWithKnots>
 	{
 		#region IIfcRationalBSplineCurveWithKnots explicit implementation
 		IEnumerable<IfcReal> IIfcRationalBSplineCurveWithKnots.WeightsData { get { return @WeightsData; } }	
@@ -106,13 +106,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*SameNumOfWeightsAndPoints:	SameNumOfWeightsAndPoints : SIZEOF(WeightsData) = SIZEOF(SELF\IfcBSplineCurve.ControlPointsList);*/
-		/*WeightsGreaterZero:	WeightsGreaterZero : IfcCurveWeightsPositive(SELF);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -158,16 +151,6 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRationalBSplineCurveWithKnots x, @IfcRationalBSplineCurveWithKnots y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRationalBSplineCurveWithKnots obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

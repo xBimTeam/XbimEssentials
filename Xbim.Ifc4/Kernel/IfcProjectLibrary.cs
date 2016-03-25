@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcProjectLibrary", 1229)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectLibrary : IfcContext, IInstantiableEntity, IIfcProjectLibrary, IEqualityComparer<@IfcProjectLibrary>, IEquatable<@IfcProjectLibrary>
+	public  partial class @IfcProjectLibrary : IfcContext, IInstantiableEntity, IIfcProjectLibrary, IEquatable<@IfcProjectLibrary>
 	{
 		#region IIfcProjectLibrary explicit implementation
 		 
@@ -68,11 +68,6 @@ namespace Xbim.Ifc4.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -119,16 +114,6 @@ namespace Xbim.Ifc4.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcProjectLibrary x, @IfcProjectLibrary y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProjectLibrary obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

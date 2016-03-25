@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralPointReaction", 354)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralPointReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralPointReaction, IEqualityComparer<@IfcStructuralPointReaction>, IEquatable<@IfcStructuralPointReaction>
+	public  partial class @IfcStructuralPointReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralPointReaction, IEquatable<@IfcStructuralPointReaction>
 	{
 		#region IIfcStructuralPointReaction explicit implementation
 		 
@@ -68,12 +68,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*SuitableLoadType:	SuitableLoadType : SIZEOF(['IFC4.IFCSTRUCTURALLOADSINGLEFORCE', 'IFC4.IFCSTRUCTURALLOADSINGLEDISPLACEMENT'] * TYPEOF(SELF\IfcStructuralActivity.AppliedLoad)) = 1;*/
 		}
 		#endregion
 
@@ -120,16 +114,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralPointReaction x, @IfcStructuralPointReaction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralPointReaction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

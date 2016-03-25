@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcSpaceHeaterType", 59)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceHeaterType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcSpaceHeaterType, IEqualityComparer<@IfcSpaceHeaterType>, IEquatable<@IfcSpaceHeaterType>
+	public  partial class @IfcSpaceHeaterType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcSpaceHeaterType, IEquatable<@IfcSpaceHeaterType>
 	{
 		#region IIfcSpaceHeaterType explicit implementation
 		IfcSpaceHeaterTypeEnum IIfcSpaceHeaterType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc2x3.HVACDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            ((PredefinedType = IfcSpaceHeaterTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc2x3.HVACDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSpaceHeaterType x, @IfcSpaceHeaterType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpaceHeaterType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

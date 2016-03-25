@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 {
 	[ExpressType("IfcAsset", 767)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IIfcAsset, IEqualityComparer<@IfcAsset>, IEquatable<@IfcAsset>
+	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IIfcAsset, IEquatable<@IfcAsset>
 	{
 		#region IIfcAsset explicit implementation
 		IfcIdentifier? IIfcAsset.Identification { get { return @Identification; } }	
@@ -255,11 +255,6 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -305,16 +300,6 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcAsset x, @IfcAsset y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAsset obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

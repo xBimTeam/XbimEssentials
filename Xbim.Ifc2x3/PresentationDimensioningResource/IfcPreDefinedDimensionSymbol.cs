@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcPreDefinedDimensionSymbol", 747)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPreDefinedDimensionSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedDimensionSymbol, IEqualityComparer<@IfcPreDefinedDimensionSymbol>, IEquatable<@IfcPreDefinedDimensionSymbol>
+	public  partial class @IfcPreDefinedDimensionSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedDimensionSymbol, IEquatable<@IfcPreDefinedDimensionSymbol>
 	{
 		#region IIfcPreDefinedDimensionSymbol explicit implementation
 		 
@@ -61,12 +61,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:                  'slope','spherical diameter','spherical radius','square'];*/
 		}
 		#endregion
 
@@ -113,16 +107,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPreDefinedDimensionSymbol x, @IfcPreDefinedDimensionSymbol y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPreDefinedDimensionSymbol obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialUsageDefinition", 1211)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcMaterialUsageDefinition : IPersistEntity, INotifyPropertyChanged, IIfcMaterialUsageDefinition, IEqualityComparer<@IfcMaterialUsageDefinition>, IEquatable<@IfcMaterialUsageDefinition>
+	public abstract partial class @IfcMaterialUsageDefinition : IPersistEntity, INotifyPropertyChanged, IIfcMaterialUsageDefinition, IEquatable<@IfcMaterialUsageDefinition>
 	{
 		#region IIfcMaterialUsageDefinition explicit implementation
 		 
@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesMaterial>(e => (e.RelatingMaterial as IfcMaterialUsageDefinition) == this, "RelatingMaterial", this);
+				return Model.Instances.Where<IfcRelAssociatesMaterial>(e => e.RelatingMaterial == this, "RelatingMaterial", this);
 			} 
 		}
 		#endregion
@@ -178,11 +178,6 @@ namespace Xbim.Ifc4.MaterialResource
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -228,16 +223,16 @@ namespace Xbim.Ifc4.MaterialResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcMaterialUsageDefinition left, IfcMaterialSelect right)
+		{
+			return left == right as @IfcMaterialUsageDefinition;
+		}
 
-        public bool Equals(@IfcMaterialUsageDefinition x, @IfcMaterialUsageDefinition y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcMaterialUsageDefinition left, IfcMaterialSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcMaterialUsageDefinition obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

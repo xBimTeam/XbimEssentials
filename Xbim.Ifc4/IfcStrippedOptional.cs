@@ -95,11 +95,6 @@ namespace Xbim.Ifc4
             _value = value.BooleanVal;
             
 		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
-		}
 		#endregion
 
 		#region IExpressValueType implementation

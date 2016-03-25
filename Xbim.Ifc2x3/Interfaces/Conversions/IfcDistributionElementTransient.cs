@@ -233,10 +233,5 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         {
             _element.Parse(propIndex, value, nested);
         }
-
-        public string WhereRule()
-        {
-            return _element.WhereRule();
-        }
     }
 }

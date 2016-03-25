@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcCoordinatedUniversalTimeOffset", 690)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCoordinatedUniversalTimeOffset : INotifyPropertyChanged, IInstantiableEntity, IIfcCoordinatedUniversalTimeOffset, IEqualityComparer<@IfcCoordinatedUniversalTimeOffset>, IEquatable<@IfcCoordinatedUniversalTimeOffset>
+	public  partial class @IfcCoordinatedUniversalTimeOffset : INotifyPropertyChanged, IInstantiableEntity, IIfcCoordinatedUniversalTimeOffset, IEquatable<@IfcCoordinatedUniversalTimeOffset>
 	{
 		#region IIfcCoordinatedUniversalTimeOffset explicit implementation
 		IfcHourInDay IIfcCoordinatedUniversalTimeOffset.HourOffset { get { return @HourOffset; } }	
@@ -232,11 +232,6 @@ namespace Xbim.Ifc2x3.DateTimeResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -282,16 +277,6 @@ namespace Xbim.Ifc2x3.DateTimeResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCoordinatedUniversalTimeOffset x, @IfcCoordinatedUniversalTimeOffset y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCoordinatedUniversalTimeOffset obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

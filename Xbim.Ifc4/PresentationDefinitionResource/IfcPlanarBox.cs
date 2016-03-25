@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 {
 	[ExpressType("IfcPlanarBox", 762)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlanarBox : IfcPlanarExtent, IInstantiableEntity, IIfcPlanarBox, IEqualityComparer<@IfcPlanarBox>, IEquatable<@IfcPlanarBox>
+	public  partial class @IfcPlanarBox : IfcPlanarExtent, IInstantiableEntity, IIfcPlanarBox, IEquatable<@IfcPlanarBox>
 	{
 		#region IIfcPlanarBox explicit implementation
 		IIfcAxis2Placement IIfcPlanarBox.Placement { get { return @Placement; } }	
@@ -88,11 +88,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -138,16 +133,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPlanarBox x, @IfcPlanarBox y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPlanarBox obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

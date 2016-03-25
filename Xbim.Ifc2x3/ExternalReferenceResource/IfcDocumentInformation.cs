@@ -57,7 +57,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcDocumentInformation", 208)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentInformation : INotifyPropertyChanged, IInstantiableEntity, IIfcDocumentInformation, IEqualityComparer<@IfcDocumentInformation>, IEquatable<@IfcDocumentInformation>
+	public  partial class @IfcDocumentInformation : INotifyPropertyChanged, IInstantiableEntity, IIfcDocumentInformation, IEquatable<@IfcDocumentInformation>
 	{
 		#region IIfcDocumentInformation explicit implementation
 		IfcIdentifier IIfcDocumentInformation.DocumentId { get { return @DocumentId; } }	
@@ -419,7 +419,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => (e.RelatingDocument as IfcDocumentInformation) == this, "RelatingDocument", this);
+				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => e.RelatingDocument == this, "RelatingDocument", this);
 			} 
 		}
 		#endregion
@@ -536,11 +536,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -586,16 +581,16 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcDocumentInformation left, IfcDocumentSelect right)
+		{
+			return left == right as @IfcDocumentInformation;
+		}
 
-        public bool Equals(@IfcDocumentInformation x, @IfcDocumentInformation y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcDocumentInformation left, IfcDocumentSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcDocumentInformation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

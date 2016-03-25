@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IfcPropertyBoundedValue", 3)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyBoundedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyBoundedValue, IEqualityComparer<@IfcPropertyBoundedValue>, IEquatable<@IfcPropertyBoundedValue>
+	public  partial class @IfcPropertyBoundedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyBoundedValue, IEquatable<@IfcPropertyBoundedValue>
 	{
 		#region IIfcPropertyBoundedValue explicit implementation
 		IIfcValue IIfcPropertyBoundedValue.UpperBoundValue { get { return @UpperBoundValue; } }	
@@ -148,14 +148,6 @@ namespace Xbim.Ifc4.PropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*SameUnitUpperLower:(TYPEOF(UpperBoundValue) = TYPEOF(LowerBoundValue));*/
-		/*SameUnitUpperSet:(TYPEOF(UpperBoundValue) = TYPEOF(SetPointValue));*/
-		/*SameUnitLowerSet:(TYPEOF(LowerBoundValue) = TYPEOF(SetPointValue));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -201,16 +193,6 @@ namespace Xbim.Ifc4.PropertyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPropertyBoundedValue x, @IfcPropertyBoundedValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyBoundedValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

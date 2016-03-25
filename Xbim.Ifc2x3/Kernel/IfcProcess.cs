@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcProcess", 73)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProcess : IfcObject, IIfcProcess, IEqualityComparer<@IfcProcess>, IEquatable<@IfcProcess>
+	public abstract partial class @IfcProcess : IfcObject, IIfcProcess, IEquatable<@IfcProcess>
 	{
 		#region IIfcProcess explicit implementation
 		 
@@ -60,7 +60,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToProcess>(e => (e.RelatingProcess as IfcProcess) == this, "RelatingProcess", this);
+				return Model.Instances.Where<IfcRelAssignsToProcess>(e => e.RelatingProcess == this, "RelatingProcess", this);
 			} 
 		}
 		[InverseProperty("RelatedProcess")]
@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSequence>(e => (e.RelatedProcess as IfcProcess) == this, "RelatedProcess", this);
+				return Model.Instances.Where<IfcRelSequence>(e => e.RelatedProcess == this, "RelatedProcess", this);
 			} 
 		}
 		[InverseProperty("RelatingProcess")]
@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSequence>(e => (e.RelatingProcess as IfcProcess) == this, "RelatingProcess", this);
+				return Model.Instances.Where<IfcRelSequence>(e => e.RelatingProcess == this, "RelatingProcess", this);
 			} 
 		}
 		#endregion
@@ -99,11 +99,6 @@ namespace Xbim.Ifc2x3.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -150,16 +145,6 @@ namespace Xbim.Ifc2x3.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcProcess x, @IfcProcess y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProcess obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

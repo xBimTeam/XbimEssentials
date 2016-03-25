@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcNamedUnit", 93)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcNamedUnit : IPersistEntity, INotifyPropertyChanged, IIfcNamedUnit, IEqualityComparer<@IfcNamedUnit>, IEquatable<@IfcNamedUnit>
+	public abstract partial class @IfcNamedUnit : IPersistEntity, INotifyPropertyChanged, IIfcNamedUnit, IEquatable<@IfcNamedUnit>
 	{
 		#region IIfcNamedUnit explicit implementation
 		IIfcDimensionalExponents IIfcNamedUnit.Dimensions { get { return @Dimensions; } }	
@@ -212,12 +212,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : IfcCorrectDimensions (SELF.UnitType, SELF.Dimensions);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -263,16 +257,16 @@ namespace Xbim.Ifc2x3.MeasureResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcNamedUnit left, IfcUnit right)
+		{
+			return left == right as @IfcNamedUnit;
+		}
 
-        public bool Equals(@IfcNamedUnit x, @IfcNamedUnit y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcNamedUnit left, IfcUnit right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcNamedUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcDerivedProfileDef", 390)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDerivedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcDerivedProfileDef, IEqualityComparer<@IfcDerivedProfileDef>, IEquatable<@IfcDerivedProfileDef>
+	public  partial class @IfcDerivedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcDerivedProfileDef, IEquatable<@IfcDerivedProfileDef>
 	{
 		#region IIfcDerivedProfileDef explicit implementation
 		IIfcProfileDef IIfcDerivedProfileDef.ParentProfile { get { return @ParentProfile; } }	
@@ -129,12 +129,6 @@ namespace Xbim.Ifc4.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*InvariantProfileType:	InvariantProfileType : SELF\IfcProfileDef.ProfileType = ParentProfile.ProfileType;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -180,16 +174,6 @@ namespace Xbim.Ifc4.ProfileResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDerivedProfileDef x, @IfcDerivedProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDerivedProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

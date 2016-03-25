@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcVertex", 520)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVertex : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcVertex, IEqualityComparer<@IfcVertex>, IEquatable<@IfcVertex>
+	public  partial class @IfcVertex : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcVertex, IEquatable<@IfcVertex>
 	{
 		#region IIfcVertex explicit implementation
 		 
@@ -54,11 +54,6 @@ namespace Xbim.Ifc4.TopologyResource
 		{
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -105,16 +100,6 @@ namespace Xbim.Ifc4.TopologyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcVertex x, @IfcVertex y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcVertex obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

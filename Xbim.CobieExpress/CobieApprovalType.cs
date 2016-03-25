@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("ApprovalType", 55)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieApprovalType : CobiePickValue, IInstantiableEntity, ICobieApprovalType, IEqualityComparer<@CobieApprovalType>, IEquatable<@CobieApprovalType>
+	public  partial class @CobieApprovalType : CobiePickValue, IInstantiableEntity, ICobieApprovalType, IEquatable<@CobieApprovalType>
 	{
 		#region ICobieApprovalType explicit implementation
 		 
@@ -60,11 +60,6 @@ namespace Xbim.CobieExpress
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -111,16 +106,6 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
-
-        public bool Equals(@CobieApprovalType x, @CobieApprovalType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieApprovalType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

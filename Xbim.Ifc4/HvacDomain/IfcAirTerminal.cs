@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcAirTerminal", 1095)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAirTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcAirTerminal, IEqualityComparer<@IfcAirTerminal>, IEquatable<@IfcAirTerminal>
+	public  partial class @IfcAirTerminal : IfcFlowTerminal, IInstantiableEntity, IIfcAirTerminal, IEquatable<@IfcAirTerminal>
 	{
 		#region IIfcAirTerminal explicit implementation
 		IfcAirTerminalTypeEnum? IIfcAirTerminal.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.HvacDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcAirTerminalTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCAIRTERMINALTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.HvacDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcAirTerminal x, @IfcAirTerminal y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAirTerminal obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

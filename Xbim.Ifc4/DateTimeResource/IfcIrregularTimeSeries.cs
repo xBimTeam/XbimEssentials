@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcIrregularTimeSeries", 570)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIrregularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcIrregularTimeSeries, IEqualityComparer<@IfcIrregularTimeSeries>, IEquatable<@IfcIrregularTimeSeries>
+	public  partial class @IfcIrregularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcIrregularTimeSeries, IEquatable<@IfcIrregularTimeSeries>
 	{
 		#region IIfcIrregularTimeSeries explicit implementation
 		IEnumerable<IIfcIrregularTimeSeriesValue> IIfcIrregularTimeSeries.Values { get { return @Values; } }	
@@ -91,11 +91,6 @@ namespace Xbim.Ifc4.DateTimeResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -141,16 +136,6 @@ namespace Xbim.Ifc4.DateTimeResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcIrregularTimeSeries x, @IfcIrregularTimeSeries y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcIrregularTimeSeries obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

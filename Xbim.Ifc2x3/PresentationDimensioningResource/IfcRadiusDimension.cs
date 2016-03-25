@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcRadiusDimension", 751)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRadiusDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IIfcRadiusDimension, IEqualityComparer<@IfcRadiusDimension>, IEquatable<@IfcRadiusDimension>
+	public  partial class @IfcRadiusDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IIfcRadiusDimension, IEquatable<@IfcRadiusDimension>
 	{
 		#region IIfcRadiusDimension explicit implementation
 		 
@@ -60,11 +60,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -111,16 +106,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRadiusDimension x, @IfcRadiusDimension y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRadiusDimension obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

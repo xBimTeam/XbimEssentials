@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadSingleForceWarping", 393)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleForceWarping : IfcStructuralLoadSingleForce, IInstantiableEntity, IIfcStructuralLoadSingleForceWarping, IEqualityComparer<@IfcStructuralLoadSingleForceWarping>, IEquatable<@IfcStructuralLoadSingleForceWarping>
+	public  partial class @IfcStructuralLoadSingleForceWarping : IfcStructuralLoadSingleForce, IInstantiableEntity, IIfcStructuralLoadSingleForceWarping, IEquatable<@IfcStructuralLoadSingleForceWarping>
 	{
 		#region IIfcStructuralLoadSingleForceWarping explicit implementation
 		IfcWarpingMomentMeasure? IIfcStructuralLoadSingleForceWarping.WarpingMoment { get { return @WarpingMoment; } }	
@@ -93,11 +93,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -143,16 +138,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralLoadSingleForceWarping x, @IfcStructuralLoadSingleForceWarping y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLoadSingleForceWarping obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

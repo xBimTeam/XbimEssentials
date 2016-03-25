@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 {
 	[ExpressType("IfcInterceptor", 1193)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcInterceptor : IfcFlowTreatmentDevice, IInstantiableEntity, IIfcInterceptor, IEqualityComparer<@IfcInterceptor>, IEquatable<@IfcInterceptor>
+	public  partial class @IfcInterceptor : IfcFlowTreatmentDevice, IInstantiableEntity, IIfcInterceptor, IEquatable<@IfcInterceptor>
 	{
 		#region IIfcInterceptor explicit implementation
 		IfcInterceptorTypeEnum? IIfcInterceptor.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcInterceptorTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCINTERCEPTORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.PlumbingFireProtectionDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcInterceptor x, @IfcInterceptor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcInterceptor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

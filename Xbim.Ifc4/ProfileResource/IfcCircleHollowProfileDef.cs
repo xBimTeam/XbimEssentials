@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcCircleHollowProfileDef", 114)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCircleHollowProfileDef : IfcCircleProfileDef, IInstantiableEntity, IIfcCircleHollowProfileDef, IEqualityComparer<@IfcCircleHollowProfileDef>, IEquatable<@IfcCircleHollowProfileDef>
+	public  partial class @IfcCircleHollowProfileDef : IfcCircleProfileDef, IInstantiableEntity, IIfcCircleHollowProfileDef, IEquatable<@IfcCircleHollowProfileDef>
 	{
 		#region IIfcCircleHollowProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcCircleHollowProfileDef.WallThickness { get { return @WallThickness; } }	
@@ -90,12 +90,6 @@ namespace Xbim.Ifc4.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : WallThickness < SELF\IfcCircleProfileDef.Radius;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -141,16 +135,6 @@ namespace Xbim.Ifc4.ProfileResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCircleHollowProfileDef x, @IfcCircleHollowProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCircleHollowProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

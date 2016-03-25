@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcBlobTexture", 723)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcBlobTexture, IEqualityComparer<@IfcBlobTexture>, IEquatable<@IfcBlobTexture>
+	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcBlobTexture, IEquatable<@IfcBlobTexture>
 	{
 		#region IIfcBlobTexture explicit implementation
 		IfcIdentifier IIfcBlobTexture.RasterFormat { get { return @RasterFormat; } }	
@@ -110,12 +110,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11:	WR11 : SELF.RasterFormat IN ['BMP', 'JPG', 'GIF', 'PNG'];*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -161,16 +155,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcBlobTexture x, @IfcBlobTexture y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBlobTexture obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

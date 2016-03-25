@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcRelCoversSpaces", 17)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelCoversSpaces : IfcRelConnects, IInstantiableEntity, IIfcRelCoversSpaces, IEqualityComparer<@IfcRelCoversSpaces>, IEquatable<@IfcRelCoversSpaces>
+	public  partial class @IfcRelCoversSpaces : IfcRelConnects, IInstantiableEntity, IIfcRelCoversSpaces, IEquatable<@IfcRelCoversSpaces>
 	{
 		#region IIfcRelCoversSpaces explicit implementation
 		IIfcSpace IIfcRelCoversSpaces.RelatingSpace { get { return @RelatingSpace; } }	
@@ -111,11 +111,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -161,16 +156,6 @@ namespace Xbim.Ifc4.SharedBldgElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelCoversSpaces x, @IfcRelCoversSpaces y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelCoversSpaces obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

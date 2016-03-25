@@ -113,12 +113,12 @@ namespace Xbim.IO.Esent
             Debug.WriteLine("TODO");
         }
 
-        internal override void CharacterError()
+        protected override void CharacterError()
         {
             Debug.WriteLine("TODO");
         }
 
-        internal override void BeginParse()
+        protected override void BeginParse()
         {
             _binaryWriter = new BinaryWriter(new MemoryStream(0x7FFF));
             toStore = new BlockingCollection<Tuple<int, short, List<int>, byte[], bool>>(512);
@@ -186,7 +186,7 @@ namespace Xbim.IO.Esent
             );
         }
 
-        internal override void EndParse()
+        protected override void EndParse()
         {
             toStore.CompleteAdding();
             storeProcessor.Wait();
@@ -208,27 +208,27 @@ namespace Xbim.IO.Esent
             Dispose();
         }
 
-        internal override void BeginHeader()
+        protected override void BeginHeader()
         {
             // Debug.WriteLine("TODO");
         }
 
-        internal override void EndHeader()
+        protected override void EndHeader()
         {
             // _header.Write(_binaryWriter);
         }
 
-        internal override void BeginScope()
+        protected override void BeginScope()
         {
             // Debug.WriteLine("TODO");
         }
 
-        internal override void EndScope()
+        protected override void EndScope()
         {
             // Debug.WriteLine("TODO");
         }
 
-        internal override void EndSec()
+        protected override void EndSec()
         {
             // Debug.WriteLine("TODO");
         }
@@ -236,7 +236,7 @@ namespace Xbim.IO.Esent
         private readonly List<int> _nestedIndex = new List<int>();
         public int[] NestedIndex { get { return _listNestLevel > 0 ? _nestedIndex.ToArray() : null; } }
 
-        internal override void BeginList()
+        protected override void BeginList()
         {
             var p21 = _processStack.Peek();
             if (p21.CurrentParamIndex == -1)
@@ -254,7 +254,7 @@ namespace Xbim.IO.Esent
 
         }
 
-        internal override void EndList()
+        protected override void EndList()
         {
             _listNestLevel--;
             if (_listNestLevel == 0)
@@ -267,17 +267,17 @@ namespace Xbim.IO.Esent
             if (_listNestLevel <= 0) _nestedIndex.Clear();
         }
 
-        internal override void BeginComplex()
+        protected override void BeginComplex()
         {
             _binaryWriter.Write((byte)P21ParseAction.BeginComplex);
         }
 
-        internal override void EndComplex()
+        protected override void EndComplex()
         {
             _binaryWriter.Write((byte)P21ParseAction.EndComplex);
         }
 
-        internal override void NewEntity(string entityLabel)
+        protected override void NewEntity(string entityLabel)
         {
             _currentInstance = new Part21Entity(entityLabel);
             _processStack.Push(_currentInstance);
@@ -301,7 +301,7 @@ namespace Xbim.IO.Esent
             }
         }
 
-        internal override void SetType(string entityTypeName)
+        protected override void SetType(string entityTypeName)
         {
             if (InHeader)
             {
@@ -334,7 +334,7 @@ namespace Xbim.IO.Esent
             }
         }
 
-        internal override void EndEntity()
+        protected override void EndEntity()
         {
             var p21 = _processStack.Pop();
             Debug.Assert(_processStack.Count == 0);
@@ -352,13 +352,13 @@ namespace Xbim.IO.Esent
 
         }
 
-        internal override void EndHeaderEntity()
+        protected override void EndHeaderEntity()
         {
             _processStack.Pop();
             _currentInstance = null;
         }
 
-        internal override void SetIntegerValue(string value)
+        protected override void SetIntegerValue(string value)
         {
             if (InHeader)
             {
@@ -375,7 +375,7 @@ namespace Xbim.IO.Esent
             if (_listNestLevel == 0) _currentInstance.CurrentParamIndex++;
         }
 
-        internal override void SetHexValue(string value)
+        protected override void SetHexValue(string value)
         {
             if (InHeader)
             {
@@ -393,7 +393,7 @@ namespace Xbim.IO.Esent
             if (_listNestLevel == 0) _currentInstance.CurrentParamIndex++;
         }
 
-        internal override void SetFloatValue(string value)
+        protected override void SetFloatValue(string value)
         {
             if (InHeader)
             {
@@ -410,7 +410,7 @@ namespace Xbim.IO.Esent
             if (_listNestLevel == 0) _currentInstance.CurrentParamIndex++;
         }
 
-        internal override void SetStringValue(string value)
+        protected override void SetStringValue(string value)
         {
             if (InHeader)
             {
@@ -434,7 +434,7 @@ namespace Xbim.IO.Esent
                 _currentInstance.CurrentParamIndex++;
         }
 
-        internal override void SetEnumValue(string value)
+        protected override void SetEnumValue(string value)
         {
             if (InHeader)
             {
@@ -451,7 +451,7 @@ namespace Xbim.IO.Esent
             if (_listNestLevel == 0) _currentInstance.CurrentParamIndex++;
         }
 
-        internal override void SetBooleanValue(string value)
+        protected override void SetBooleanValue(string value)
         {
             if (InHeader)
             {
@@ -467,19 +467,19 @@ namespace Xbim.IO.Esent
             if (_listNestLevel == 0) _currentInstance.CurrentParamIndex++;
         }
 
-        internal override void SetNonDefinedValue()
+        protected override void SetNonDefinedValue()
         {
             if (_listNestLevel == 0) _currentInstance.CurrentParamIndex++;
             _binaryWriter.Write((byte)P21ParseAction.SetNonDefinedValue);
         }
 
-        internal override void SetOverrideValue()
+        protected override void SetOverrideValue()
         {
             if (_listNestLevel == 0) _currentInstance.CurrentParamIndex++;
             _binaryWriter.Write((byte)P21ParseAction.SetOverrideValue);
         }
 
-        internal override void SetObjectValue(string value)
+        protected override void SetObjectValue(string value)
         {
             var val = Convert.ToInt32(value.TrimStart('#'));
 
@@ -510,13 +510,13 @@ namespace Xbim.IO.Esent
 
         }
 
-        internal override void EndNestedType(string value)
+        protected override void EndNestedType(string value)
         {
             _binaryWriter.Write((byte)P21ParseAction.EndNestedType);
             if (_listNestLevel == 0) _currentInstance.CurrentParamIndex++;
         }
 
-        internal override void BeginNestedType(string value)
+        protected override void BeginNestedType(string value)
         {
             _binaryWriter.Write((byte)P21ParseAction.BeginNestedType);
             _binaryWriter.Write(value);

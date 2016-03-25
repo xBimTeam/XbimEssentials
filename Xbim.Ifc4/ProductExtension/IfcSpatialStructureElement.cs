@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcSpatialStructureElement", 170)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSpatialStructureElement : IfcSpatialElement, IIfcSpatialStructureElement, IEqualityComparer<@IfcSpatialStructureElement>, IEquatable<@IfcSpatialStructureElement>
+	public abstract partial class @IfcSpatialStructureElement : IfcSpatialElement, IIfcSpatialStructureElement, IEquatable<@IfcSpatialStructureElement>
 	{
 		#region IIfcSpatialStructureElement explicit implementation
 		IfcElementCompositionEnum? IIfcSpatialStructureElement.CompositionType { get { return @CompositionType; } }	
@@ -94,12 +94,6 @@ namespace Xbim.Ifc4.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR41:);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -145,16 +139,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSpatialStructureElement x, @IfcSpatialStructureElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpatialStructureElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

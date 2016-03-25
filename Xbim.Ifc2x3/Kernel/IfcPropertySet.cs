@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcPropertySet", 666)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertySet : IfcPropertySetDefinition, IInstantiableEntity, IIfcPropertySet, IEqualityComparer<@IfcPropertySet>, IEquatable<@IfcPropertySet>
+	public  partial class @IfcPropertySet : IfcPropertySetDefinition, IInstantiableEntity, IIfcPropertySet, IEquatable<@IfcPropertySet>
 	{
 		#region IIfcPropertySet explicit implementation
 		IEnumerable<IIfcProperty> IIfcPropertySet.HasProperties { get { return @HasProperties; } }	
@@ -88,13 +88,6 @@ namespace Xbim.Ifc2x3.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : EXISTS(SELF\IfcRoot.Name);*/
-		/*WR32:	WR32 : IfcUniquePropertyName(HasProperties);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -140,16 +133,6 @@ namespace Xbim.Ifc2x3.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPropertySet x, @IfcPropertySet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertySet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

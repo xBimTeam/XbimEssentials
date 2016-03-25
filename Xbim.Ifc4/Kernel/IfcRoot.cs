@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRoot", 12)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRoot : IPersistEntity, INotifyPropertyChanged, IIfcRoot, IEqualityComparer<@IfcRoot>, IEquatable<@IfcRoot>
+	public abstract partial class @IfcRoot : IPersistEntity, INotifyPropertyChanged, IIfcRoot, IEquatable<@IfcRoot>
 	{
 		#region IIfcRoot explicit implementation
 		IfcGloballyUniqueId IIfcRoot.GlobalId { get { return @GlobalId; } }	
@@ -254,11 +254,6 @@ namespace Xbim.Ifc4.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -304,16 +299,6 @@ namespace Xbim.Ifc4.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRoot x, @IfcRoot y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRoot obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

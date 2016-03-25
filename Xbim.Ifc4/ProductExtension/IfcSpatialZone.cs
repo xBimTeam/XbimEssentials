@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcSpatialZone", 1275)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpatialZone : IfcSpatialElement, IInstantiableEntity, IIfcSpatialZone, IEqualityComparer<@IfcSpatialZone>, IEquatable<@IfcSpatialZone>
+	public  partial class @IfcSpatialZone : IfcSpatialElement, IInstantiableEntity, IIfcSpatialZone, IEquatable<@IfcSpatialZone>
 	{
 		#region IIfcSpatialZone explicit implementation
 		IfcSpatialZoneTypeEnum? IIfcSpatialZone.PredefinedType { get { return @PredefinedType; } }	
@@ -93,13 +93,6 @@ namespace Xbim.Ifc4.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcSpatialZoneTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCSPATIALZONETYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -145,16 +138,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSpatialZone x, @IfcSpatialZone y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpatialZone obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

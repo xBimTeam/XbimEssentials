@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterialProfile", 1205)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialProfile : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialProfile, IEqualityComparer<@IfcMaterialProfile>, IEquatable<@IfcMaterialProfile>
+	public  partial class @IfcMaterialProfile : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialProfile, IEquatable<@IfcMaterialProfile>
 	{
 		#region IIfcMaterialProfile explicit implementation
 		IfcLabel? IIfcMaterialProfile.Name { get { return @Name; } }	
@@ -198,12 +198,6 @@ namespace Xbim.Ifc4.MaterialResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*NormalizedPriority:	NormalizedPriority : NOT(EXISTS(Priority)) OR {0 <= Priority <= 100};*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -249,16 +243,6 @@ namespace Xbim.Ifc4.MaterialResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcMaterialProfile x, @IfcMaterialProfile y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialProfile obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

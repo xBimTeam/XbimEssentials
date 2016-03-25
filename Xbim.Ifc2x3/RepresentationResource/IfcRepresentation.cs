@@ -45,7 +45,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcRepresentation", 87)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRepresentation : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentation, IEqualityComparer<@IfcRepresentation>, IEquatable<@IfcRepresentation>
+	public  partial class @IfcRepresentation : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentation, IEquatable<@IfcRepresentation>
 	{
 		#region IIfcRepresentation explicit implementation
 		IIfcRepresentationContext IIfcRepresentation.ContextOfItems { get { return @ContextOfItems; } }	
@@ -194,7 +194,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRepresentationMap>(e => (e.MappedRepresentation as IfcRepresentation) == this, "MappedRepresentation", this);
+				return Model.Instances.Where<IfcRepresentationMap>(e => e.MappedRepresentation == this, "MappedRepresentation", this);
 			} 
 		}
 		[InverseProperty("AssignedItems")]
@@ -289,11 +289,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -339,16 +334,16 @@ namespace Xbim.Ifc2x3.RepresentationResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcRepresentation left, IfcLayeredItem right)
+		{
+			return left == right as @IfcRepresentation;
+		}
 
-        public bool Equals(@IfcRepresentation x, @IfcRepresentation y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcRepresentation left, IfcLayeredItem right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcRepresentation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

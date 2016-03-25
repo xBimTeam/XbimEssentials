@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcServiceLifeFactor", 770)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcServiceLifeFactor : IfcPropertySetDefinition, IInstantiableEntity, IIfcServiceLifeFactor, IEqualityComparer<@IfcServiceLifeFactor>, IEquatable<@IfcServiceLifeFactor>
+	public  partial class @IfcServiceLifeFactor : IfcPropertySetDefinition, IInstantiableEntity, IIfcServiceLifeFactor, IEquatable<@IfcServiceLifeFactor>
 	{
 		#region IIfcServiceLifeFactor explicit implementation
 		IfcServiceLifeFactorTypeEnum IIfcServiceLifeFactor.PredefinedType { get { return @PredefinedType; } }	
@@ -151,12 +151,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:             OR EXISTS(SELF\IfcObject.ObjectType);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -202,16 +196,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcServiceLifeFactor x, @IfcServiceLifeFactor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcServiceLifeFactor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

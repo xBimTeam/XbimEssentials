@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.UtilityResource
 {
 	[ExpressType("IfcTableRow", 661)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTableRow : INotifyPropertyChanged, IInstantiableEntity, IIfcTableRow, IEqualityComparer<@IfcTableRow>, IEquatable<@IfcTableRow>
+	public  partial class @IfcTableRow : INotifyPropertyChanged, IInstantiableEntity, IIfcTableRow, IEquatable<@IfcTableRow>
 	{
 		#region IIfcTableRow explicit implementation
 		IEnumerable<IIfcValue> IIfcTableRow.RowCells { get { return @RowCells; } }	
@@ -211,11 +211,6 @@ namespace Xbim.Ifc4.UtilityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -261,16 +256,6 @@ namespace Xbim.Ifc4.UtilityResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTableRow x, @IfcTableRow y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTableRow obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcFlowMeter", 1182)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowMeter : IfcFlowController, IInstantiableEntity, IIfcFlowMeter, IEqualityComparer<@IfcFlowMeter>, IEquatable<@IfcFlowMeter>
+	public  partial class @IfcFlowMeter : IfcFlowController, IInstantiableEntity, IIfcFlowMeter, IEquatable<@IfcFlowMeter>
 	{
 		#region IIfcFlowMeter explicit implementation
 		IfcFlowMeterTypeEnum? IIfcFlowMeter.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.HvacDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcFlowMeterTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCFLOWMETERTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.HvacDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFlowMeter x, @IfcFlowMeter y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFlowMeter obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

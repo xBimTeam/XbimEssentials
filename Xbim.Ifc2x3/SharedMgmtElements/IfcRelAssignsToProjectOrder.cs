@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcRelAssignsToProjectOrder", 698)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToProjectOrder : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsToProjectOrder, IEqualityComparer<@IfcRelAssignsToProjectOrder>, IEquatable<@IfcRelAssignsToProjectOrder>
+	public  partial class @IfcRelAssignsToProjectOrder : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsToProjectOrder, IEquatable<@IfcRelAssignsToProjectOrder>
 	{
 		#region IIfcRelAssignsToProjectOrder explicit implementation
 		 
@@ -67,11 +67,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -118,16 +113,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelAssignsToProjectOrder x, @IfcRelAssignsToProjectOrder y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToProjectOrder obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

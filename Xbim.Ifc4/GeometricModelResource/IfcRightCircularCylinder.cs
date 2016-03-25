@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcRightCircularCylinder", 704)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRightCircularCylinder : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCylinder, IEqualityComparer<@IfcRightCircularCylinder>, IEquatable<@IfcRightCircularCylinder>
+	public  partial class @IfcRightCircularCylinder : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCylinder, IEquatable<@IfcRightCircularCylinder>
 	{
 		#region IIfcRightCircularCylinder explicit implementation
 		IfcPositiveLengthMeasure IIfcRightCircularCylinder.Height { get { return @Height; } }	
@@ -107,11 +107,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -157,16 +152,6 @@ namespace Xbim.Ifc4.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRightCircularCylinder x, @IfcRightCircularCylinder y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRightCircularCylinder obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

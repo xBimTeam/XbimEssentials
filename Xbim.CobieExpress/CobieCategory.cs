@@ -35,7 +35,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Category", 36)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieCategory : CobiePickValue, IInstantiableEntity, ICobieCategory, IEqualityComparer<@CobieCategory>, IEquatable<@CobieCategory>
+	public  partial class @CobieCategory : CobiePickValue, IInstantiableEntity, ICobieCategory, IEquatable<@CobieCategory>
 	{
 		#region ICobieCategory explicit implementation
 		string ICobieCategory.Description { get { return @Description; } }	
@@ -107,11 +107,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -157,16 +152,6 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
-
-        public bool Equals(@CobieCategory x, @CobieCategory y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieCategory obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

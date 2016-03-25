@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IfcPropertyListValue", 489)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyListValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyListValue, IEqualityComparer<@IfcPropertyListValue>, IEquatable<@IfcPropertyListValue>
+	public  partial class @IfcPropertyListValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyListValue, IEquatable<@IfcPropertyListValue>
 	{
 		#region IIfcPropertyListValue explicit implementation
 		IEnumerable<IIfcValue> IIfcPropertyListValue.ListValues { get { return @ListValues; } }	
@@ -106,12 +106,6 @@ namespace Xbim.Ifc4.PropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:  )) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -157,16 +151,6 @@ namespace Xbim.Ifc4.PropertyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPropertyListValue x, @IfcPropertyListValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyListValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

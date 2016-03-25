@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcRelConnectsPathElements", 668)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsPathElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsPathElements, IEqualityComparer<@IfcRelConnectsPathElements>, IEquatable<@IfcRelConnectsPathElements>
+	public  partial class @IfcRelConnectsPathElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsPathElements, IEquatable<@IfcRelConnectsPathElements>
 	{
 		#region IIfcRelConnectsPathElements explicit implementation
 		IEnumerable<long> IIfcRelConnectsPathElements.RelatingPriorities { get { return @RelatingPriorities; } }	
@@ -149,11 +149,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -199,16 +194,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelConnectsPathElements x, @IfcRelConnectsPathElements y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelConnectsPathElements obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

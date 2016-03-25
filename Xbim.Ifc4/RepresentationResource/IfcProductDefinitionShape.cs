@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcProductDefinitionShape", 90)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProductDefinitionShape : IfcProductRepresentation, IInstantiableEntity, IIfcProductDefinitionShape, IEqualityComparer<@IfcProductDefinitionShape>, IEquatable<@IfcProductDefinitionShape>
+	public  partial class @IfcProductDefinitionShape : IfcProductRepresentation, IInstantiableEntity, IIfcProductDefinitionShape, IEquatable<@IfcProductDefinitionShape>
 	{
 		#region IIfcProductDefinitionShape explicit implementation
 		 
@@ -59,7 +59,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcProduct>(e => (e.Representation as IfcProductDefinitionShape) == this, "Representation", this);
+				return Model.Instances.Where<IfcProduct>(e => e.Representation == this, "Representation", this);
 			} 
 		}
 		[InverseProperty("PartOfProductDefinitionShape")]
@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcShapeAspect>(e => (e.PartOfProductDefinitionShape as IfcProductDefinitionShape) == this, "PartOfProductDefinitionShape", this);
+				return Model.Instances.Where<IfcShapeAspect>(e => e.PartOfProductDefinitionShape == this, "PartOfProductDefinitionShape", this);
 			} 
 		}
 		#endregion
@@ -87,12 +87,6 @@ namespace Xbim.Ifc4.RepresentationResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*OnlyShapeModel:)) = 0;*/
 		}
 		#endregion
 
@@ -139,16 +133,16 @@ namespace Xbim.Ifc4.RepresentationResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcProductDefinitionShape left, IfcProductRepresentationSelect right)
+		{
+			return left == right as @IfcProductDefinitionShape;
+		}
 
-        public bool Equals(@IfcProductDefinitionShape x, @IfcProductDefinitionShape y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcProductDefinitionShape left, IfcProductRepresentationSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcProductDefinitionShape obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

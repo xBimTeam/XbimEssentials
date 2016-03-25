@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcBuildingElement", 26)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcBuildingElement : IfcElement, IIfcBuildingElement, IEqualityComparer<@IfcBuildingElement>, IEquatable<@IfcBuildingElement>
+	public abstract partial class @IfcBuildingElement : IfcElement, IIfcBuildingElement, IEquatable<@IfcBuildingElement>
 	{
 		#region IIfcBuildingElement explicit implementation
 		 
@@ -67,12 +67,6 @@ namespace Xbim.Ifc4.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*MaxOneMaterialAssociation:  )) <= 1;*/
 		}
 		#endregion
 
@@ -119,16 +113,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcBuildingElement x, @IfcBuildingElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBuildingElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

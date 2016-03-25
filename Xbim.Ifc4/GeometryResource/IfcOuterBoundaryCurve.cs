@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcOuterBoundaryCurve", 1218)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOuterBoundaryCurve : IfcBoundaryCurve, IInstantiableEntity, IIfcOuterBoundaryCurve, IEqualityComparer<@IfcOuterBoundaryCurve>, IEquatable<@IfcOuterBoundaryCurve>
+	public  partial class @IfcOuterBoundaryCurve : IfcBoundaryCurve, IInstantiableEntity, IIfcOuterBoundaryCurve, IEquatable<@IfcOuterBoundaryCurve>
 	{
 		#region IIfcOuterBoundaryCurve explicit implementation
 		 
@@ -61,11 +61,6 @@ namespace Xbim.Ifc4.GeometryResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -112,16 +107,6 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcOuterBoundaryCurve x, @IfcOuterBoundaryCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOuterBoundaryCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

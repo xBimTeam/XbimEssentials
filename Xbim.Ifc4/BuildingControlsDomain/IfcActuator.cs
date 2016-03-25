@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	[ExpressType("IfcActuator", 1091)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActuator : IfcDistributionControlElement, IInstantiableEntity, IIfcActuator, IEqualityComparer<@IfcActuator>, IEquatable<@IfcActuator>
+	public  partial class @IfcActuator : IfcDistributionControlElement, IInstantiableEntity, IIfcActuator, IEquatable<@IfcActuator>
 	{
 		#region IIfcActuator explicit implementation
 		IfcActuatorTypeEnum? IIfcActuator.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcActuatorTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:('IFC4.IFCACTUATORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcActuator x, @IfcActuator y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcActuator obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

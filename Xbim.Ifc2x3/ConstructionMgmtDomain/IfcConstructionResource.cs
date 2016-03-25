@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IfcConstructionResource", 157)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConstructionResource : IfcResource, IIfcConstructionResource, IEqualityComparer<@IfcConstructionResource>, IEquatable<@IfcConstructionResource>
+	public abstract partial class @IfcConstructionResource : IfcResource, IIfcConstructionResource, IEquatable<@IfcConstructionResource>
 	{
 		#region IIfcConstructionResource explicit implementation
 		IfcIdentifier? IIfcConstructionResource.ResourceIdentifier { get { return @ResourceIdentifier; } }	
@@ -152,11 +152,6 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -202,16 +197,6 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcConstructionResource x, @IfcConstructionResource y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConstructionResource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

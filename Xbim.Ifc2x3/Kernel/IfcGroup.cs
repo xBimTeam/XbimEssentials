@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcGroup", 228)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGroup : IfcObject, IInstantiableEntity, IIfcGroup, IEqualityComparer<@IfcGroup>, IEquatable<@IfcGroup>
+	public  partial class @IfcGroup : IfcObject, IInstantiableEntity, IIfcGroup, IEquatable<@IfcGroup>
 	{
 		#region IIfcGroup explicit implementation
 		 
@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.FirstOrDefault<IfcRelAssignsToGroup>(e => (e.RelatingGroup as IfcGroup) == this, "RelatingGroup", this);
+				return Model.Instances.FirstOrDefault<IfcRelAssignsToGroup>(e => e.RelatingGroup == this, "RelatingGroup", this);
 			} 
 		}
 		#endregion
@@ -77,11 +77,6 @@ namespace Xbim.Ifc2x3.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -128,16 +123,6 @@ namespace Xbim.Ifc2x3.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcGroup x, @IfcGroup y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGroup obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

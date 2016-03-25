@@ -33,7 +33,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("AreaUnit", 40)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieAreaUnit : CobiePickValue, IInstantiableEntity, ICobieAreaUnit, IEqualityComparer<@CobieAreaUnit>, IEquatable<@CobieAreaUnit>
+	public  partial class @CobieAreaUnit : CobiePickValue, IInstantiableEntity, ICobieAreaUnit, IEquatable<@CobieAreaUnit>
 	{
 		#region ICobieAreaUnit explicit implementation
 		 
@@ -60,11 +60,6 @@ namespace Xbim.CobieExpress
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -111,16 +106,6 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
-
-        public bool Equals(@CobieAreaUnit x, @CobieAreaUnit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieAreaUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

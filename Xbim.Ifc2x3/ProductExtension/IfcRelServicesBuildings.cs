@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelServicesBuildings", 600)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelServicesBuildings : IfcRelConnects, IInstantiableEntity, IIfcRelServicesBuildings, IEqualityComparer<@IfcRelServicesBuildings>, IEquatable<@IfcRelServicesBuildings>
+	public  partial class @IfcRelServicesBuildings : IfcRelConnects, IInstantiableEntity, IIfcRelServicesBuildings, IEquatable<@IfcRelServicesBuildings>
 	{
 		#region IIfcRelServicesBuildings explicit implementation
 		IIfcSystem IIfcRelServicesBuildings.RelatingSystem { get { return @RelatingSystem; } }	
@@ -110,11 +110,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -160,16 +155,6 @@ namespace Xbim.Ifc2x3.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelServicesBuildings x, @IfcRelServicesBuildings y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelServicesBuildings obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

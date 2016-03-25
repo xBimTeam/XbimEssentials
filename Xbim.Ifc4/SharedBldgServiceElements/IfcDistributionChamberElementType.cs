@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IfcDistributionChamberElementType", 396)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionChamberElementType : IfcDistributionFlowElementType, IInstantiableEntity, IIfcDistributionChamberElementType, IEqualityComparer<@IfcDistributionChamberElementType>, IEquatable<@IfcDistributionChamberElementType>
+	public  partial class @IfcDistributionChamberElementType : IfcDistributionFlowElementType, IInstantiableEntity, IIfcDistributionChamberElementType, IEquatable<@IfcDistributionChamberElementType>
 	{
 		#region IIfcDistributionChamberElementType explicit implementation
 		IfcDistributionChamberElementTypeEnum IIfcDistributionChamberElementType.PredefinedType { get { return @PredefinedType; } }	
@@ -94,12 +94,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcDistributionChamberElementTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -145,16 +139,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDistributionChamberElementType x, @IfcDistributionChamberElementType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDistributionChamberElementType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

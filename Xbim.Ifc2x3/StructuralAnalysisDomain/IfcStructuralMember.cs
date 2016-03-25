@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralMember", 225)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralMember : IfcStructuralItem, IIfcStructuralMember, IEqualityComparer<@IfcStructuralMember>, IEquatable<@IfcStructuralMember>
+	public abstract partial class @IfcStructuralMember : IfcStructuralItem, IIfcStructuralMember, IEquatable<@IfcStructuralMember>
 	{
 		#region IIfcStructuralMember explicit implementation
 		 
@@ -58,7 +58,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsStructuralElement>(e => (e.RelatedStructuralMember as IfcStructuralMember) == this, "RelatedStructuralMember", this);
+				return Model.Instances.Where<IfcRelConnectsStructuralElement>(e => e.RelatedStructuralMember == this, "RelatedStructuralMember", this);
 			} 
 		}
 		[InverseProperty("RelatingStructuralMember")]
@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsStructuralMember>(e => (e.RelatingStructuralMember as IfcStructuralMember) == this, "RelatingStructuralMember", this);
+				return Model.Instances.Where<IfcRelConnectsStructuralMember>(e => e.RelatingStructuralMember == this, "RelatingStructuralMember", this);
 			} 
 		}
 		#endregion
@@ -90,11 +90,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -141,16 +136,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralMember x, @IfcStructuralMember y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralMember obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

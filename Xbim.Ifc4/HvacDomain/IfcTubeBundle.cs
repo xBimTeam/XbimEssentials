@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcTubeBundle", 1305)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTubeBundle : IfcEnergyConversionDevice, IInstantiableEntity, IIfcTubeBundle, IEqualityComparer<@IfcTubeBundle>, IEquatable<@IfcTubeBundle>
+	public  partial class @IfcTubeBundle : IfcEnergyConversionDevice, IInstantiableEntity, IIfcTubeBundle, IEquatable<@IfcTubeBundle>
 	{
 		#region IIfcTubeBundle explicit implementation
 		IfcTubeBundleTypeEnum? IIfcTubeBundle.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.HvacDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcTubeBundleTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCTUBEBUNDLETYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.HvacDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTubeBundle x, @IfcTubeBundle y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTubeBundle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

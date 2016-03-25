@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IfcReinforcingElementType", 1246)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcReinforcingElementType : IfcElementComponentType, IIfcReinforcingElementType, IEqualityComparer<@IfcReinforcingElementType>, IEquatable<@IfcReinforcingElementType>
+	public abstract partial class @IfcReinforcingElementType : IfcElementComponentType, IIfcReinforcingElementType, IEquatable<@IfcReinforcingElementType>
 	{
 		#region IIfcReinforcingElementType explicit implementation
 		 
@@ -69,11 +69,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -120,16 +115,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcReinforcingElementType x, @IfcReinforcingElementType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReinforcingElementType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

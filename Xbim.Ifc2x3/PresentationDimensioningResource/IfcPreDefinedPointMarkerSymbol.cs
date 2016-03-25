@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcPreDefinedPointMarkerSymbol", 748)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPreDefinedPointMarkerSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedPointMarkerSymbol, IEqualityComparer<@IfcPreDefinedPointMarkerSymbol>, IEquatable<@IfcPreDefinedPointMarkerSymbol>
+	public  partial class @IfcPreDefinedPointMarkerSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedPointMarkerSymbol, IEquatable<@IfcPreDefinedPointMarkerSymbol>
 	{
 		#region IIfcPreDefinedPointMarkerSymbol explicit implementation
 		 
@@ -61,12 +61,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : SELF\IfcPreDefinedItem.Name IN ['asterisk','circle','dot','plus','square','triangle','x'];*/
 		}
 		#endregion
 
@@ -113,16 +107,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPreDefinedPointMarkerSymbol x, @IfcPreDefinedPointMarkerSymbol y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPreDefinedPointMarkerSymbol obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

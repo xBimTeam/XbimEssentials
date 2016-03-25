@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcAppliedValueRelationship", 691)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAppliedValueRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValueRelationship, IEqualityComparer<@IfcAppliedValueRelationship>, IEquatable<@IfcAppliedValueRelationship>
+	public  partial class @IfcAppliedValueRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValueRelationship, IEquatable<@IfcAppliedValueRelationship>
 	{
 		#region IIfcAppliedValueRelationship explicit implementation
 		IIfcAppliedValue IIfcAppliedValueRelationship.ComponentOfTotal { get { return @ComponentOfTotal; } }	
@@ -273,11 +273,6 @@ namespace Xbim.Ifc2x3.CostResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -323,16 +318,6 @@ namespace Xbim.Ifc2x3.CostResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcAppliedValueRelationship x, @IfcAppliedValueRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAppliedValueRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

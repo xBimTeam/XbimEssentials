@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.QuantityResource
 {
 	[ExpressType("IfcQuantityLength", 527)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityLength : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityLength, IEqualityComparer<@IfcQuantityLength>, IEquatable<@IfcQuantityLength>
+	public  partial class @IfcQuantityLength : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityLength, IEquatable<@IfcQuantityLength>
 	{
 		#region IIfcQuantityLength explicit implementation
 		IfcLengthMeasure IIfcQuantityLength.LengthValue { get { return @LengthValue; } }	
@@ -109,13 +109,6 @@ namespace Xbim.Ifc4.QuantityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:   (SELF\IfcPhysicalSimpleQuantity.Unit.UnitType = IfcUnitEnum.LENGTHUNIT);*/
-		/*WR22:	WR22 : LengthValue >= 0.;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -161,16 +154,6 @@ namespace Xbim.Ifc4.QuantityResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcQuantityLength x, @IfcQuantityLength y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcQuantityLength obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

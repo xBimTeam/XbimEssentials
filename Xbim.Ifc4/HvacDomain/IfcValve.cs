@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcValve", 1311)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcValve : IfcFlowController, IInstantiableEntity, IIfcValve, IEqualityComparer<@IfcValve>, IEquatable<@IfcValve>
+	public  partial class @IfcValve : IfcFlowController, IInstantiableEntity, IIfcValve, IEquatable<@IfcValve>
 	{
 		#region IIfcValve explicit implementation
 		IfcValveTypeEnum? IIfcValve.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.HvacDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcValveTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCVALVETYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.HvacDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcValve x, @IfcValve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcValve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

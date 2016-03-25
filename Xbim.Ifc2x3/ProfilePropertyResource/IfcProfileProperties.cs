@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcProfileProperties", 649)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProfileProperties : IPersistEntity, INotifyPropertyChanged, IIfcProfileProperties, IEqualityComparer<@IfcProfileProperties>, IEquatable<@IfcProfileProperties>
+	public abstract partial class @IfcProfileProperties : IPersistEntity, INotifyPropertyChanged, IIfcProfileProperties, IEquatable<@IfcProfileProperties>
 	{
 		#region IIfcProfileProperties explicit implementation
 		IfcLabel? IIfcProfileProperties.ProfileName { get { return @ProfileName; } }	
@@ -214,11 +214,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -264,16 +259,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcProfileProperties x, @IfcProfileProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProfileProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

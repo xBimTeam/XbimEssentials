@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 {
 	[ExpressType("IfcMaterialList", 246)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialList : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialList, IEqualityComparer<@IfcMaterialList>, IEquatable<@IfcMaterialList>
+	public  partial class @IfcMaterialList : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialList, IEquatable<@IfcMaterialList>
 	{
 		#region IIfcMaterialList explicit implementation
 		IEnumerable<IIfcMaterial> IIfcMaterialList.Materials { get { return @Materials; } }	
@@ -191,11 +191,6 @@ namespace Xbim.Ifc2x3.MaterialResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -241,16 +236,26 @@ namespace Xbim.Ifc2x3.MaterialResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcMaterialList left, IfcMaterialSelect right)
+		{
+			return left == right as @IfcMaterialList;
+		}
 
-        public bool Equals(@IfcMaterialList x, @IfcMaterialList y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcMaterialList left, IfcMaterialSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcMaterialList obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcMaterialList left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcMaterialList;
+		}
+
+		public static bool operator !=(@IfcMaterialList left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IfcPile", 572)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPile : IfcBuildingElement, IInstantiableEntity, IIfcPile, IEqualityComparer<@IfcPile>, IEquatable<@IfcPile>
+	public  partial class @IfcPile : IfcBuildingElement, IInstantiableEntity, IIfcPile, IEquatable<@IfcPile>
 	{
 		#region IIfcPile explicit implementation
 		IfcPileTypeEnum? IIfcPile.PredefinedType { get { return @PredefinedType; } }	
@@ -114,13 +114,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcPileTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:('IFC4.IFCPILETYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -166,16 +159,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPile x, @IfcPile y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPile obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

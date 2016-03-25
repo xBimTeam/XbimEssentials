@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcProtectiveDevice", 1235)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProtectiveDevice : IfcFlowController, IInstantiableEntity, IIfcProtectiveDevice, IEqualityComparer<@IfcProtectiveDevice>, IEquatable<@IfcProtectiveDevice>
+	public  partial class @IfcProtectiveDevice : IfcFlowController, IInstantiableEntity, IIfcProtectiveDevice, IEquatable<@IfcProtectiveDevice>
 	{
 		#region IIfcProtectiveDevice explicit implementation
 		IfcProtectiveDeviceTypeEnum? IIfcProtectiveDevice.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.ElectricalDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcProtectiveDeviceTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCPROTECTIVEDEVICETYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.ElectricalDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcProtectiveDevice x, @IfcProtectiveDevice y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProtectiveDevice obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDimensionCalloutRelationship", 741)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionCalloutRelationship : IfcDraughtingCalloutRelationship, IInstantiableEntity, IIfcDimensionCalloutRelationship, IEqualityComparer<@IfcDimensionCalloutRelationship>, IEquatable<@IfcDimensionCalloutRelationship>
+	public  partial class @IfcDimensionCalloutRelationship : IfcDraughtingCalloutRelationship, IInstantiableEntity, IIfcDimensionCalloutRelationship, IEquatable<@IfcDimensionCalloutRelationship>
 	{
 		#region IIfcDimensionCalloutRelationship explicit implementation
 		 
@@ -63,14 +63,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11:	WR11 : SELF\IfcDraughtingCalloutRelationship.Name IN ['primary','secondary'];*/
-		/*WR12:                  'IFC2X3.IFCRADIUSDIMENSION']) = 1;*/
-		/*WR13:               IN TYPEOF (SELF\IfcDraughtingCalloutRelationship.RelatedDraughtingCallout));*/
 		}
 		#endregion
 
@@ -117,16 +109,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDimensionCalloutRelationship x, @IfcDimensionCalloutRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDimensionCalloutRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

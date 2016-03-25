@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcStair", 346)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStair : IfcBuildingElement, IInstantiableEntity, IIfcStair, IEqualityComparer<@IfcStair>, IEquatable<@IfcStair>
+	public  partial class @IfcStair : IfcBuildingElement, IInstantiableEntity, IIfcStair, IEquatable<@IfcStair>
 	{
 		#region IIfcStair explicit implementation
 		IfcStairTypeEnum? IIfcStair.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcStairTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCSTAIRTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.SharedBldgElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStair x, @IfcStair y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStair obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

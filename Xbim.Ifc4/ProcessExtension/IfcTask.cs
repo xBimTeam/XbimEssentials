@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcTask", 72)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IIfcTask, IEqualityComparer<@IfcTask>, IEquatable<@IfcTask>
+	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IIfcTask, IEquatable<@IfcTask>
 	{
 		#region IIfcTask explicit implementation
 		IfcLabel? IIfcTask.Status { get { return @Status; } }	
@@ -195,13 +195,6 @@ namespace Xbim.Ifc4.ProcessExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*HasName:	HasName : EXISTS(SELF\IfcRoot.Name);*/
-		/*CorrectPredefinedType:	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR (PredefinedType <> IfcTaskTypeEnum.USERDEFINED) OR ((PredefinedType = IfcTaskTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -247,16 +240,6 @@ namespace Xbim.Ifc4.ProcessExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTask x, @IfcTask y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTask obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

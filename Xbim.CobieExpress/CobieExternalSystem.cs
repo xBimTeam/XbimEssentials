@@ -36,7 +36,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("ExternalSystem", 8)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieExternalSystem : INotifyPropertyChanged, IInstantiableEntity, ICobieExternalSystem, IEqualityComparer<@CobieExternalSystem>, IEquatable<@CobieExternalSystem>
+	public  partial class @CobieExternalSystem : INotifyPropertyChanged, IInstantiableEntity, ICobieExternalSystem, IEquatable<@CobieExternalSystem>
 	{
 		#region ICobieExternalSystem explicit implementation
 		string ICobieExternalSystem.Name { get { return @Name; } }	
@@ -192,11 +192,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -242,16 +237,6 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
-
-        public bool Equals(@CobieExternalSystem x, @CobieExternalSystem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieExternalSystem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

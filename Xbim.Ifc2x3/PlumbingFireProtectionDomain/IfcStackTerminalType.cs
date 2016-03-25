@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
 	[ExpressType("IfcStackTerminalType", 476)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStackTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcStackTerminalType, IEqualityComparer<@IfcStackTerminalType>, IEquatable<@IfcStackTerminalType>
+	public  partial class @IfcStackTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcStackTerminalType, IEquatable<@IfcStackTerminalType>
 	{
 		#region IIfcStackTerminalType explicit implementation
 		IfcStackTerminalTypeEnum IIfcStackTerminalType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,11 +95,6 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -145,16 +140,6 @@ namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStackTerminalType x, @IfcStackTerminalType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStackTerminalType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.ProcessExtension
 {
 	[ExpressType("IfcWorkCalendar", 1318)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWorkCalendar : IfcControl, IInstantiableEntity, IIfcWorkCalendar, IEqualityComparer<@IfcWorkCalendar>, IEquatable<@IfcWorkCalendar>
+	public  partial class @IfcWorkCalendar : IfcControl, IInstantiableEntity, IIfcWorkCalendar, IEquatable<@IfcWorkCalendar>
 	{
 		#region IIfcWorkCalendar explicit implementation
 		IEnumerable<IIfcWorkTime> IIfcWorkCalendar.WorkingTimes { get { return @WorkingTimes; } }	
@@ -129,12 +129,6 @@ namespace Xbim.Ifc4.ProcessExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcWorkCalendarTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -180,16 +174,6 @@ namespace Xbim.Ifc4.ProcessExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcWorkCalendar x, @IfcWorkCalendar y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWorkCalendar obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

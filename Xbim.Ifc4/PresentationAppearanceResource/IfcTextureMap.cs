@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextureMap", 734)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureMap, IEqualityComparer<@IfcTextureMap>, IEquatable<@IfcTextureMap>
+	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureMap, IEquatable<@IfcTextureMap>
 	{
 		#region IIfcTextureMap explicit implementation
 		IEnumerable<IIfcTextureVertex> IIfcTextureMap.Vertices { get { return @Vertices; } }	
@@ -106,11 +106,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -156,16 +151,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTextureMap x, @IfcTextureMap y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextureMap obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcFace", 83)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFace : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFace, IEqualityComparer<@IfcFace>, IEquatable<@IfcFace>
+	public  partial class @IfcFace : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFace, IEquatable<@IfcFace>
 	{
 		#region IIfcFace explicit implementation
 		IEnumerable<IIfcFaceBound> IIfcFace.Bounds { get { return @Bounds; } }	
@@ -81,12 +81,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(QUERY(temp <* Bounds | 'IFC2X3.IFCFACEOUTERBOUND' IN TYPEOF(temp))) <= 1;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -132,16 +126,6 @@ namespace Xbim.Ifc2x3.TopologyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFace x, @IfcFace y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFace obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

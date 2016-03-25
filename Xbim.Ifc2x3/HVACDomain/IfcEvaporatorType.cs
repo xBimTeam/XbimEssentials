@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcEvaporatorType", 513)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEvaporatorType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcEvaporatorType, IEqualityComparer<@IfcEvaporatorType>, IEquatable<@IfcEvaporatorType>
+	public  partial class @IfcEvaporatorType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcEvaporatorType, IEquatable<@IfcEvaporatorType>
 	{
 		#region IIfcEvaporatorType explicit implementation
 		IfcEvaporatorTypeEnum IIfcEvaporatorType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc2x3.HVACDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            ((PredefinedType = IfcEvaporatorTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc2x3.HVACDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcEvaporatorType x, @IfcEvaporatorType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEvaporatorType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

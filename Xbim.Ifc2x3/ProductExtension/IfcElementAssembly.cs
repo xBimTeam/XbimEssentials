@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcElementAssembly", 18)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElementAssembly : IfcElement, IInstantiableEntity, IIfcElementAssembly, IEqualityComparer<@IfcElementAssembly>, IEquatable<@IfcElementAssembly>
+	public  partial class @IfcElementAssembly : IfcElement, IInstantiableEntity, IIfcElementAssembly, IEquatable<@IfcElementAssembly>
 	{
 		#region IIfcElementAssembly explicit implementation
 		IfcAssemblyPlaceEnum? IIfcElementAssembly.AssemblyPlace { get { return @AssemblyPlace; } }	
@@ -113,12 +113,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : (PredefinedType <> IfcElementAssemblyTypeEnum.USERDEFINED) OR ((PredefinedType = IfcElementAssemblyTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -164,16 +158,6 @@ namespace Xbim.Ifc2x3.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcElementAssembly x, @IfcElementAssembly y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElementAssembly obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

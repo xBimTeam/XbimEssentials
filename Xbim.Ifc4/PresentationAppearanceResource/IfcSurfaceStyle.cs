@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyle", 260)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSurfaceStyle, IEqualityComparer<@IfcSurfaceStyle>, IEquatable<@IfcSurfaceStyle>
+	public  partial class @IfcSurfaceStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSurfaceStyle, IEquatable<@IfcSurfaceStyle>
 	{
 		#region IIfcSurfaceStyle explicit implementation
 		IfcSurfaceSide IIfcSurfaceStyle.Side { get { return @Side; } }	
@@ -104,16 +104,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*MaxOneShading:  )) <= 1;*/
-		/*MaxOneLighting:  )) <= 1;*/
-		/*MaxOneRefraction:  )) <= 1;*/
-		/*MaxOneTextures:  )) <= 1;*/
-		/*MaxOneExtDefined:  )) <= 1;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -159,16 +149,16 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcSurfaceStyle left, IfcPresentationStyleSelect right)
+		{
+			return left == right as @IfcSurfaceStyle;
+		}
 
-        public bool Equals(@IfcSurfaceStyle x, @IfcSurfaceStyle y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcSurfaceStyle left, IfcPresentationStyleSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcSurfaceStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

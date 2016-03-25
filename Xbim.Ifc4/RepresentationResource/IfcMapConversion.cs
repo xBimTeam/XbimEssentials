@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcMapConversion", 1200)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMapConversion : IfcCoordinateOperation, IInstantiableEntity, IIfcMapConversion, IEqualityComparer<@IfcMapConversion>, IEquatable<@IfcMapConversion>
+	public  partial class @IfcMapConversion : IfcCoordinateOperation, IInstantiableEntity, IIfcMapConversion, IEquatable<@IfcMapConversion>
 	{
 		#region IIfcMapConversion explicit implementation
 		IfcLengthMeasure IIfcMapConversion.Eastings { get { return @Eastings; } }	
@@ -188,11 +188,6 @@ namespace Xbim.Ifc4.RepresentationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -238,16 +233,6 @@ namespace Xbim.Ifc4.RepresentationResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcMapConversion x, @IfcMapConversion y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMapConversion obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

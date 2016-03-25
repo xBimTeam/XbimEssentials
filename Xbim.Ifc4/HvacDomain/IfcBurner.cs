@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcBurner", 1109)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBurner : IfcEnergyConversionDevice, IInstantiableEntity, IIfcBurner, IEqualityComparer<@IfcBurner>, IEquatable<@IfcBurner>
+	public  partial class @IfcBurner : IfcEnergyConversionDevice, IInstantiableEntity, IIfcBurner, IEquatable<@IfcBurner>
 	{
 		#region IIfcBurner explicit implementation
 		IfcBurnerTypeEnum? IIfcBurner.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.HvacDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcBurnerTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCBURNERTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.HvacDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcBurner x, @IfcBurner y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBurner obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcProxy", 447)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProxy : IfcProduct, IInstantiableEntity, IIfcProxy, IEqualityComparer<@IfcProxy>, IEquatable<@IfcProxy>
+	public  partial class @IfcProxy : IfcProduct, IInstantiableEntity, IIfcProxy, IEquatable<@IfcProxy>
 	{
 		#region IIfcProxy explicit implementation
 		IfcObjectTypeEnum IIfcProxy.ProxyType { get { return @ProxyType; } }	
@@ -113,12 +113,6 @@ namespace Xbim.Ifc2x3.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : EXISTS(SELF\IfcRoot.Name);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -164,16 +158,6 @@ namespace Xbim.Ifc2x3.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcProxy x, @IfcProxy y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProxy obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

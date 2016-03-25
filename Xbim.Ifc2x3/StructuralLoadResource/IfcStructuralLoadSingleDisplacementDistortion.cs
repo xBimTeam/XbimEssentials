@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadSingleDisplacementDistortion", 290)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleDisplacementDistortion : IfcStructuralLoadSingleDisplacement, IInstantiableEntity, IIfcStructuralLoadSingleDisplacementDistortion, IEqualityComparer<@IfcStructuralLoadSingleDisplacementDistortion>, IEquatable<@IfcStructuralLoadSingleDisplacementDistortion>
+	public  partial class @IfcStructuralLoadSingleDisplacementDistortion : IfcStructuralLoadSingleDisplacement, IInstantiableEntity, IIfcStructuralLoadSingleDisplacementDistortion, IEquatable<@IfcStructuralLoadSingleDisplacementDistortion>
 	{
 		#region IIfcStructuralLoadSingleDisplacementDistortion explicit implementation
 		IfcCurvatureMeasure? IIfcStructuralLoadSingleDisplacementDistortion.Distortion { get { return @Distortion; } }	
@@ -93,11 +93,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -143,16 +138,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralLoadSingleDisplacementDistortion x, @IfcStructuralLoadSingleDisplacementDistortion y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLoadSingleDisplacementDistortion obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

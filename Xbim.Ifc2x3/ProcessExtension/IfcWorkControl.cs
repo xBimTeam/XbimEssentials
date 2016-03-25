@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcWorkControl", 185)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcWorkControl : IfcControl, IIfcWorkControl, IEqualityComparer<@IfcWorkControl>, IEquatable<@IfcWorkControl>
+	public abstract partial class @IfcWorkControl : IfcControl, IIfcWorkControl, IEquatable<@IfcWorkControl>
 	{
 		#region IIfcWorkControl explicit implementation
 		IfcIdentifier IIfcWorkControl.Identifier { get { return @Identifier; } }	
@@ -272,12 +272,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            ((WorkControlType = IfcWorkControlTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcWorkControl.UserDefinedControlType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -323,16 +317,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcWorkControl x, @IfcWorkControl y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWorkControl obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

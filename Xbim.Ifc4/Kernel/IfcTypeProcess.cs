@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcTypeProcess", 1306)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTypeProcess : IfcTypeObject, IIfcTypeProcess, IEqualityComparer<@IfcTypeProcess>, IEquatable<@IfcTypeProcess>
+	public abstract partial class @IfcTypeProcess : IfcTypeObject, IIfcTypeProcess, IEquatable<@IfcTypeProcess>
 	{
 		#region IIfcTypeProcess explicit implementation
 		IfcIdentifier? IIfcTypeProcess.Identification { get { return @Identification; } }	
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToProcess>(e => (e.RelatingProcess as IfcTypeProcess) == this, "RelatingProcess", this);
+				return Model.Instances.Where<IfcRelAssignsToProcess>(e => e.RelatingProcess == this, "RelatingProcess", this);
 			} 
 		}
 		#endregion
@@ -144,11 +144,6 @@ namespace Xbim.Ifc4.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -195,16 +190,16 @@ namespace Xbim.Ifc4.Kernel
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcTypeProcess left, IfcProcessSelect right)
+		{
+			return left == right as @IfcTypeProcess;
+		}
 
-        public bool Equals(@IfcTypeProcess x, @IfcTypeProcess y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcTypeProcess left, IfcProcessSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcTypeProcess obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

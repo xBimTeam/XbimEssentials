@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcCylindricalSurface", 1147)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCylindricalSurface : IfcElementarySurface, IInstantiableEntity, IIfcCylindricalSurface, IEqualityComparer<@IfcCylindricalSurface>, IEquatable<@IfcCylindricalSurface>
+	public  partial class @IfcCylindricalSurface : IfcElementarySurface, IInstantiableEntity, IIfcCylindricalSurface, IEquatable<@IfcCylindricalSurface>
 	{
 		#region IIfcCylindricalSurface explicit implementation
 		IfcPositiveLengthMeasure IIfcCylindricalSurface.Radius { get { return @Radius; } }	
@@ -87,11 +87,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -137,16 +132,6 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCylindricalSurface x, @IfcCylindricalSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCylindricalSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcLagTime", 1197)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLagTime : IfcSchedulingTime, IInstantiableEntity, IIfcLagTime, IEqualityComparer<@IfcLagTime>, IEquatable<@IfcLagTime>
+	public  partial class @IfcLagTime : IfcSchedulingTime, IInstantiableEntity, IIfcLagTime, IEquatable<@IfcLagTime>
 	{
 		#region IIfcLagTime explicit implementation
 		IIfcTimeOrRatioSelect IIfcLagTime.LagValue { get { return @LagValue; } }	
@@ -108,11 +108,6 @@ namespace Xbim.Ifc4.DateTimeResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -158,16 +153,6 @@ namespace Xbim.Ifc4.DateTimeResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcLagTime x, @IfcLagTime y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLagTime obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

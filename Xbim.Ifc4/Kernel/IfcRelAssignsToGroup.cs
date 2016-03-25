@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelAssignsToGroup", 278)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToGroup : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToGroup, IEqualityComparer<@IfcRelAssignsToGroup>, IEquatable<@IfcRelAssignsToGroup>
+	public  partial class @IfcRelAssignsToGroup : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToGroup, IEquatable<@IfcRelAssignsToGroup>
 	{
 		#region IIfcRelAssignsToGroup explicit implementation
 		IIfcGroup IIfcRelAssignsToGroup.RelatingGroup { get { return @RelatingGroup; } }	
@@ -92,12 +92,6 @@ namespace Xbim.Ifc4.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*NoSelfReference:	NoSelfReference : SIZEOF(QUERY(Temp <* SELF\IfcRelAssigns.RelatedObjects | RelatingGroup :=: Temp)) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -143,16 +137,6 @@ namespace Xbim.Ifc4.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelAssignsToGroup x, @IfcRelAssignsToGroup y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToGroup obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

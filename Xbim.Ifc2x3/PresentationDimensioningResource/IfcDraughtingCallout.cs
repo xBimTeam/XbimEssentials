@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDraughtingCallout", 222)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDraughtingCallout, IEqualityComparer<@IfcDraughtingCallout>, IEquatable<@IfcDraughtingCallout>
+	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDraughtingCallout, IEquatable<@IfcDraughtingCallout>
 	{
 		#region IIfcDraughtingCallout explicit implementation
 		IEnumerable<IIfcDraughtingCalloutElement> IIfcDraughtingCallout.Contents { get { return @Contents; } }	
@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => (e.RelatedDraughtingCallout as IfcDraughtingCallout) == this, "RelatedDraughtingCallout", this);
+				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => e.RelatedDraughtingCallout == this, "RelatedDraughtingCallout", this);
 			} 
 		}
 		[InverseProperty("RelatingDraughtingCallout")]
@@ -87,7 +87,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => (e.RelatingDraughtingCallout as IfcDraughtingCallout) == this, "RelatingDraughtingCallout", this);
+				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => e.RelatingDraughtingCallout == this, "RelatingDraughtingCallout", this);
 			} 
 		}
 		#endregion
@@ -105,11 +105,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -156,16 +151,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDraughtingCallout x, @IfcDraughtingCallout y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDraughtingCallout obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

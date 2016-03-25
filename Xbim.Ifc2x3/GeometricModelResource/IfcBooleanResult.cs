@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcBooleanResult", 339)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBooleanResult : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBooleanResult, IEqualityComparer<@IfcBooleanResult>, IEquatable<@IfcBooleanResult>
+	public  partial class @IfcBooleanResult : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBooleanResult, IEquatable<@IfcBooleanResult>
 	{
 		#region IIfcBooleanResult explicit implementation
 		IfcBooleanOperator IIfcBooleanResult.Operator { get { return @Operator; } }	
@@ -137,12 +137,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : FirstOperand.Dim = SecondOperand.Dim;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -188,16 +182,26 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcBooleanResult left, IfcBooleanOperand right)
+		{
+			return left == right as @IfcBooleanResult;
+		}
 
-        public bool Equals(@IfcBooleanResult x, @IfcBooleanResult y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcBooleanResult left, IfcBooleanOperand right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcBooleanResult obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcBooleanResult left, IfcCsgSelect right)
+		{
+			return left == right as @IfcBooleanResult;
+		}
+
+		public static bool operator !=(@IfcBooleanResult left, IfcCsgSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

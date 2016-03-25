@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcTopologicalRepresentationItem", 84)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTopologicalRepresentationItem : IfcRepresentationItem, IIfcTopologicalRepresentationItem, IEqualityComparer<@IfcTopologicalRepresentationItem>, IEquatable<@IfcTopologicalRepresentationItem>
+	public abstract partial class @IfcTopologicalRepresentationItem : IfcRepresentationItem, IIfcTopologicalRepresentationItem, IEquatable<@IfcTopologicalRepresentationItem>
 	{
 		#region IIfcTopologicalRepresentationItem explicit implementation
 		 
@@ -55,11 +55,6 @@ namespace Xbim.Ifc4.TopologyResource
 		{
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -106,16 +101,6 @@ namespace Xbim.Ifc4.TopologyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTopologicalRepresentationItem x, @IfcTopologicalRepresentationItem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTopologicalRepresentationItem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

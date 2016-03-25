@@ -43,7 +43,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IfcReinforcingMesh", 531)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcingMesh : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingMesh, IEqualityComparer<@IfcReinforcingMesh>, IEquatable<@IfcReinforcingMesh>
+	public  partial class @IfcReinforcingMesh : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingMesh, IEquatable<@IfcReinforcingMesh>
 	{
 		#region IIfcReinforcingMesh explicit implementation
 		IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshLength { get { return @MeshLength; } }	
@@ -255,13 +255,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcReinforcingMeshTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:('IFC4.IFCREINFORCINGMESHTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -307,16 +300,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcReinforcingMesh x, @IfcReinforcingMesh y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReinforcingMesh obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

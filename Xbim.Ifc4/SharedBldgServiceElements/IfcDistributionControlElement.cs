@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 {
 	[ExpressType("IfcDistributionControlElement", 468)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionControlElement : IfcDistributionElement, IInstantiableEntity, IIfcDistributionControlElement, IEqualityComparer<@IfcDistributionControlElement>, IEquatable<@IfcDistributionControlElement>
+	public  partial class @IfcDistributionControlElement : IfcDistributionElement, IInstantiableEntity, IIfcDistributionControlElement, IEquatable<@IfcDistributionControlElement>
 	{
 		#region IIfcDistributionControlElement explicit implementation
 		 
@@ -82,11 +82,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -132,16 +127,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDistributionControlElement x, @IfcDistributionControlElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDistributionControlElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

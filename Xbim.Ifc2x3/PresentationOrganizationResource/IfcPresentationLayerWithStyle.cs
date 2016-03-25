@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcPresentationLayerWithStyle", 259)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IIfcPresentationLayerWithStyle, IEqualityComparer<@IfcPresentationLayerWithStyle>, IEquatable<@IfcPresentationLayerWithStyle>
+	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IIfcPresentationLayerWithStyle, IEquatable<@IfcPresentationLayerWithStyle>
 	{
 		#region IIfcPresentationLayerWithStyle explicit implementation
 		bool? IIfcPresentationLayerWithStyle.LayerOn { get { return @LayerOn; } }	
@@ -148,11 +148,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -198,16 +193,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPresentationLayerWithStyle x, @IfcPresentationLayerWithStyle y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPresentationLayerWithStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

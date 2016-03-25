@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IfcReinforcingBar", 571)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcingBar : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingBar, IEqualityComparer<@IfcReinforcingBar>, IEquatable<@IfcReinforcingBar>
+	public  partial class @IfcReinforcingBar : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingBar, IEquatable<@IfcReinforcingBar>
 	{
 		#region IIfcReinforcingBar explicit implementation
 		IfcPositiveLengthMeasure? IIfcReinforcingBar.NominalDiameter { get { return @NominalDiameter; } }	
@@ -175,13 +175,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcReinforcingBarTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:('IFC4.IFCREINFORCINGBARTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -227,16 +220,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcReinforcingBar x, @IfcReinforcingBar y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReinforcingBar obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

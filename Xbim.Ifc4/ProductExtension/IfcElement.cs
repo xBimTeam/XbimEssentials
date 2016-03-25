@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcElement", 19)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcElement : IfcProduct, IIfcElement, IEqualityComparer<@IfcElement>, IEquatable<@IfcElement>
+	public abstract partial class @IfcElement : IfcProduct, IIfcElement, IEquatable<@IfcElement>
 	{
 		#region IIfcElement explicit implementation
 		IfcIdentifier? IIfcElement.Tag { get { return @Tag; } }	
@@ -104,7 +104,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelFillsElement>(e => (e.RelatedBuildingElement as IfcElement) == this, "RelatedBuildingElement", this);
+				return Model.Instances.Where<IfcRelFillsElement>(e => e.RelatedBuildingElement == this, "RelatedBuildingElement", this);
 			} 
 		}
 		[InverseProperty("RelatingElement")]
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsElements>(e => (e.RelatingElement as IfcElement) == this, "RelatingElement", this);
+				return Model.Instances.Where<IfcRelConnectsElements>(e => e.RelatingElement == this, "RelatingElement", this);
 			} 
 		}
 		[InverseProperty("RelatedElement")]
@@ -122,7 +122,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelInterferesElements>(e => (e.RelatedElement as IfcElement) == this, "RelatedElement", this);
+				return Model.Instances.Where<IfcRelInterferesElements>(e => e.RelatedElement == this, "RelatedElement", this);
 			} 
 		}
 		[InverseProperty("RelatingElement")]
@@ -131,7 +131,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelInterferesElements>(e => (e.RelatingElement as IfcElement) == this, "RelatingElement", this);
+				return Model.Instances.Where<IfcRelInterferesElements>(e => e.RelatingElement == this, "RelatingElement", this);
 			} 
 		}
 		[InverseProperty("RelatingElement")]
@@ -140,7 +140,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelProjectsElement>(e => (e.RelatingElement as IfcElement) == this, "RelatingElement", this);
+				return Model.Instances.Where<IfcRelProjectsElement>(e => e.RelatingElement == this, "RelatingElement", this);
 			} 
 		}
 		[InverseProperty("RelatedElements")]
@@ -158,7 +158,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelVoidsElement>(e => (e.RelatingBuildingElement as IfcElement) == this, "RelatingBuildingElement", this);
+				return Model.Instances.Where<IfcRelVoidsElement>(e => e.RelatingBuildingElement == this, "RelatingBuildingElement", this);
 			} 
 		}
 		[InverseProperty("RealizingElements")]
@@ -176,7 +176,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSpaceBoundary>(e => (e.RelatedBuildingElement as IfcElement) == this, "RelatedBuildingElement", this);
+				return Model.Instances.Where<IfcRelSpaceBoundary>(e => e.RelatedBuildingElement == this, "RelatedBuildingElement", this);
 			} 
 		}
 		[InverseProperty("RelatedElement")]
@@ -185,7 +185,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsElements>(e => (e.RelatedElement as IfcElement) == this, "RelatedElement", this);
+				return Model.Instances.Where<IfcRelConnectsElements>(e => e.RelatedElement == this, "RelatedElement", this);
 			} 
 		}
 		[InverseProperty("RelatedElements")]
@@ -203,7 +203,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelCoversBldgElements>(e => (e.RelatingBuildingElement as IfcElement) == this, "RelatingBuildingElement", this);
+				return Model.Instances.Where<IfcRelCoversBldgElements>(e => e.RelatingBuildingElement == this, "RelatingBuildingElement", this);
 			} 
 		}
 		#endregion
@@ -229,11 +229,6 @@ namespace Xbim.Ifc4.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -280,16 +275,16 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcElement left, IfcStructuralActivityAssignmentSelect right)
+		{
+			return left == right as @IfcElement;
+		}
 
-        public bool Equals(@IfcElement x, @IfcElement y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcElement left, IfcStructuralActivityAssignmentSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

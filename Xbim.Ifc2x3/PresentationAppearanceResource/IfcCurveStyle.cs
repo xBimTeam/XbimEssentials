@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcCurveStyle", 118)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyle : IfcPresentationStyle, IInstantiableEntity, IIfcCurveStyle, IEqualityComparer<@IfcCurveStyle>, IEquatable<@IfcCurveStyle>
+	public  partial class @IfcCurveStyle : IfcPresentationStyle, IInstantiableEntity, IIfcCurveStyle, IEquatable<@IfcCurveStyle>
 	{
 		#region IIfcCurveStyle explicit implementation
 		IIfcCurveFontOrScaledCurveFontSelect IIfcCurveStyle.CurveFont { get { return @CurveFont; } }	
@@ -127,12 +127,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11:              (CurveWidth = 'by layer'));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -178,16 +172,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcCurveStyle left, IfcPresentationStyleSelect right)
+		{
+			return left == right as @IfcCurveStyle;
+		}
 
-        public bool Equals(@IfcCurveStyle x, @IfcCurveStyle y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcCurveStyle left, IfcPresentationStyleSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcCurveStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

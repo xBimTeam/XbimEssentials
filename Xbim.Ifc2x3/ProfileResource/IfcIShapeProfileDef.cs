@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcIShapeProfileDef", 352)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcIShapeProfileDef, IEqualityComparer<@IfcIShapeProfileDef>, IEquatable<@IfcIShapeProfileDef>
+	public  partial class @IfcIShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcIShapeProfileDef, IEquatable<@IfcIShapeProfileDef>
 	{
 		#region IIfcIShapeProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallWidth { get { return @OverallWidth; } }	
@@ -169,14 +169,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : FlangeThickness < (OverallDepth / 2.);*/
-		/*WR2:	WR2 : WebThickness < OverallWidth;*/
-		/*WR3:             (FilletRadius <= (OverallDepth - (2. * FlangeThickness))/2.));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -222,16 +214,6 @@ namespace Xbim.Ifc2x3.ProfileResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcIShapeProfileDef x, @IfcIShapeProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcIShapeProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

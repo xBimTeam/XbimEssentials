@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcBuildingElementComponent", 221)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcBuildingElementComponent : IfcBuildingElement, IIfcBuildingElementComponent, IEqualityComparer<@IfcBuildingElementComponent>, IEquatable<@IfcBuildingElementComponent>
+	public abstract partial class @IfcBuildingElementComponent : IfcBuildingElement, IIfcBuildingElementComponent, IEquatable<@IfcBuildingElementComponent>
 	{
 		#region IIfcBuildingElementComponent explicit implementation
 		 
@@ -68,11 +68,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -119,16 +114,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcBuildingElementComponent x, @IfcBuildingElementComponent y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBuildingElementComponent obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

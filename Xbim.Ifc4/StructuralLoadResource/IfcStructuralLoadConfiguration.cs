@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadConfiguration", 1282)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadConfiguration : IfcStructuralLoad, IInstantiableEntity, IIfcStructuralLoadConfiguration, IEqualityComparer<@IfcStructuralLoadConfiguration>, IEquatable<@IfcStructuralLoadConfiguration>
+	public  partial class @IfcStructuralLoadConfiguration : IfcStructuralLoad, IInstantiableEntity, IIfcStructuralLoadConfiguration, IEquatable<@IfcStructuralLoadConfiguration>
 	{
 		#region IIfcStructuralLoadConfiguration explicit implementation
 		IEnumerable<IIfcStructuralLoadOrResult> IIfcStructuralLoadConfiguration.Values { get { return @Values; } }	
@@ -104,12 +104,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*ValidListSize:	ValidListSize : NOT EXISTS(Locations) OR (SIZEOF(Locations) = SIZEOF(Values));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -155,16 +149,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralLoadConfiguration x, @IfcStructuralLoadConfiguration y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLoadConfiguration obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

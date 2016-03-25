@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightIntensityDistribution", 754)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightIntensityDistribution : INotifyPropertyChanged, IInstantiableEntity, IIfcLightIntensityDistribution, IEqualityComparer<@IfcLightIntensityDistribution>, IEquatable<@IfcLightIntensityDistribution>
+	public  partial class @IfcLightIntensityDistribution : INotifyPropertyChanged, IInstantiableEntity, IIfcLightIntensityDistribution, IEquatable<@IfcLightIntensityDistribution>
 	{
 		#region IIfcLightIntensityDistribution explicit implementation
 		IfcLightDistributionCurveEnum IIfcLightIntensityDistribution.LightDistributionCurve { get { return @LightDistributionCurve; } }	
@@ -210,11 +210,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -260,16 +255,16 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcLightIntensityDistribution left, IfcLightDistributionDataSourceSelect right)
+		{
+			return left == right as @IfcLightIntensityDistribution;
+		}
 
-        public bool Equals(@IfcLightIntensityDistribution x, @IfcLightIntensityDistribution y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcLightIntensityDistribution left, IfcLightDistributionDataSourceSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcLightIntensityDistribution obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

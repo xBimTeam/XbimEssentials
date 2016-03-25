@@ -58,7 +58,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Type", 21)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieType : CobieTypeOrComponent, IInstantiableEntity, ICobieType, IEqualityComparer<@CobieType>, IEquatable<@CobieType>
+	public  partial class @CobieType : CobieTypeOrComponent, IInstantiableEntity, ICobieType, IEquatable<@CobieType>
 	{
 		#region ICobieType explicit implementation
 		ICobieAssetType ICobieType.AssetType { get { return @AssetType; } }	
@@ -439,7 +439,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieComponent>(e => (e.Type as CobieType) == this, "Type", this);
+				return Model.Instances.Where<CobieComponent>(e => e.Type == this, "Type", this);
 			} 
 		}
 		[InverseProperty("Type")]
@@ -448,7 +448,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieSpare>(e => (e.Type as CobieType) == this, "Type", this);
+				return Model.Instances.Where<CobieSpare>(e => e.Type == this, "Type", this);
 			} 
 		}
 		[InverseProperty("Type")]
@@ -457,7 +457,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieJob>(e => (e.Type as CobieType) == this, "Type", this);
+				return Model.Instances.Where<CobieJob>(e => e.Type == this, "Type", this);
 			} 
 		}
 		#endregion
@@ -553,11 +553,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -603,16 +598,6 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
-
-        public bool Equals(@CobieType x, @CobieType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

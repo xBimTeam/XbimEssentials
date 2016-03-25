@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcCoolingTower", 1142)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCoolingTower : IfcEnergyConversionDevice, IInstantiableEntity, IIfcCoolingTower, IEqualityComparer<@IfcCoolingTower>, IEquatable<@IfcCoolingTower>
+	public  partial class @IfcCoolingTower : IfcEnergyConversionDevice, IInstantiableEntity, IIfcCoolingTower, IEquatable<@IfcCoolingTower>
 	{
 		#region IIfcCoolingTower explicit implementation
 		IfcCoolingTowerTypeEnum? IIfcCoolingTower.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.HvacDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcCoolingTowerTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCCOOLINGTOWERTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.HvacDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCoolingTower x, @IfcCoolingTower y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCoolingTower obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

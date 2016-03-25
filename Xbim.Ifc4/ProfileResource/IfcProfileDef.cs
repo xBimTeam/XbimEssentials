@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcProfileDef", 105)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProfileDef : INotifyPropertyChanged, IInstantiableEntity, IIfcProfileDef, IEqualityComparer<@IfcProfileDef>, IEquatable<@IfcProfileDef>
+	public  partial class @IfcProfileDef : INotifyPropertyChanged, IInstantiableEntity, IIfcProfileDef, IEquatable<@IfcProfileDef>
 	{
 		#region IIfcProfileDef explicit implementation
 		IfcProfileTypeEnum IIfcProfileDef.ProfileType { get { return @ProfileType; } }	
@@ -168,7 +168,7 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcProfileProperties>(e => (e.ProfileDefinition as IfcProfileDef) == this, "ProfileDefinition", this);
+				return Model.Instances.Where<IfcProfileProperties>(e => e.ProfileDefinition == this, "ProfileDefinition", this);
 			} 
 		}
 		#endregion
@@ -238,11 +238,6 @@ namespace Xbim.Ifc4.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -288,16 +283,16 @@ namespace Xbim.Ifc4.ProfileResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcProfileDef left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcProfileDef;
+		}
 
-        public bool Equals(@IfcProfileDef x, @IfcProfileDef y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcProfileDef left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -38,7 +38,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Classification", 37)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieClassification : INotifyPropertyChanged, IInstantiableEntity, ICobieClassification, IEqualityComparer<@CobieClassification>, IEquatable<@CobieClassification>
+	public  partial class @CobieClassification : INotifyPropertyChanged, IInstantiableEntity, ICobieClassification, IEquatable<@CobieClassification>
 	{
 		#region ICobieClassification explicit implementation
 		string ICobieClassification.Name { get { return @Name; } }	
@@ -155,7 +155,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieCategory>(e => (e.Classification as CobieClassification) == this, "Classification", this);
+				return Model.Instances.Where<CobieCategory>(e => e.Classification == this, "Classification", this);
 			} 
 		}
 		#endregion
@@ -225,11 +225,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -275,16 +270,6 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
-
-        public bool Equals(@CobieClassification x, @CobieClassification y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieClassification obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

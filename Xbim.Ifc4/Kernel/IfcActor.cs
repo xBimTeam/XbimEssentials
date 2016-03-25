@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcActor", 250)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActor : IfcObject, IInstantiableEntity, IIfcActor, IEqualityComparer<@IfcActor>, IEquatable<@IfcActor>
+	public  partial class @IfcActor : IfcObject, IInstantiableEntity, IIfcActor, IEquatable<@IfcActor>
 	{
 		#region IIfcActor explicit implementation
 		IIfcActorSelect IIfcActor.TheActor { get { return @TheActor; } }	
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToActor>(e => (e.RelatingActor as IfcActor) == this, "RelatingActor", this);
+				return Model.Instances.Where<IfcRelAssignsToActor>(e => e.RelatingActor == this, "RelatingActor", this);
 			} 
 		}
 		#endregion
@@ -103,11 +103,6 @@ namespace Xbim.Ifc4.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -154,16 +149,6 @@ namespace Xbim.Ifc4.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcActor x, @IfcActor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcActor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

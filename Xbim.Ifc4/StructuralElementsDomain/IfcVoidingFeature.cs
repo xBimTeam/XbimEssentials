@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 {
 	[ExpressType("IfcVoidingFeature", 1313)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVoidingFeature : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcVoidingFeature, IEqualityComparer<@IfcVoidingFeature>, IEquatable<@IfcVoidingFeature>
+	public  partial class @IfcVoidingFeature : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcVoidingFeature, IEquatable<@IfcVoidingFeature>
 	{
 		#region IIfcVoidingFeature explicit implementation
 		IfcVoidingFeatureTypeEnum? IIfcVoidingFeature.PredefinedType { get { return @PredefinedType; } }	
@@ -94,12 +94,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*HasObjectType:	HasObjectType : NOT EXISTS(PredefinedType) OR (PredefinedType <> IfcVoidingFeatureTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -145,16 +139,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcVoidingFeature x, @IfcVoidingFeature y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcVoidingFeature obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

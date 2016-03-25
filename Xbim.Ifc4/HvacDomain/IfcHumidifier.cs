@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.HvacDomain
 {
 	[ExpressType("IfcHumidifier", 1188)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHumidifier : IfcEnergyConversionDevice, IInstantiableEntity, IIfcHumidifier, IEqualityComparer<@IfcHumidifier>, IEquatable<@IfcHumidifier>
+	public  partial class @IfcHumidifier : IfcEnergyConversionDevice, IInstantiableEntity, IIfcHumidifier, IEquatable<@IfcHumidifier>
 	{
 		#region IIfcHumidifier explicit implementation
 		IfcHumidifierTypeEnum? IIfcHumidifier.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.HvacDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcHumidifierTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCHUMIDIFIERTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.HvacDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcHumidifier x, @IfcHumidifier y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcHumidifier obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

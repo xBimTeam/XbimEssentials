@@ -581,18 +581,18 @@ namespace Xbim.IO.Esent
                 }
             }
 
-            string str = ent.WhereRule();
-            if (!string.IsNullOrEmpty(str))
-            {
-                if (notIndented)
-                {
-                    itw.WriteLine("#{0} - {1}", ent.EntityLabel, expressType.Type.Name);
-                    itw.Indent++;
-                    notIndented = false;
-                }
-                itw.WriteLine(str.Trim('\n'));
-                errors++;
-            }
+            //string str = ent.WhereRule();
+            //if (!string.IsNullOrEmpty(str))
+            //{
+            //    if (notIndented)
+            //    {
+            //        itw.WriteLine("#{0} - {1}", ent.EntityLabel, expressType.Type.Name);
+            //        itw.Indent++;
+            //        notIndented = false;
+            //    }
+            //    itw.WriteLine(str.Trim('\n'));
+            //    errors++;
+            //}
             if (!notIndented) itw.Indent--;
             return errors;
         }
@@ -614,12 +614,12 @@ namespace Xbim.IO.Esent
                 return null;
 
             //if it is IPersist (either IPersistEntity or IExpressValueType) check WhereRule() defined in schema. 
-            var persist = propVal as IPersist;
-            if (persist != null)
-            {
-                var err = persist.WhereRule();
-                if (!string.IsNullOrEmpty(err)) return err;
-            }
+            //var persist = propVal as IPersist;
+            //if (persist != null)
+            //{
+            //    var err = persist.WhereRule();
+            //    if (!string.IsNullOrEmpty(err)) return err;
+            //}
 
             if (entAttr.EntityType != EntityAttributeType.Set && entAttr.EntityType != EntityAttributeType.List &&
                 entAttr.EntityType != EntityAttributeType.ListUnique && entAttr.EntityType != EntityAttributeType.Array && 
@@ -1032,7 +1032,7 @@ namespace Xbim.IO.Esent
         public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, PropertyTranformDelegate propTransform, bool includeInverses, bool keepLabels) where T : IPersistEntity
         {
             var txn = CurrentTransaction as XbimReadWriteTransaction;
-            return Cache.InsertCopy(toCopy, mappings, txn, includeInverses, propTransform);
+            return Cache.InsertCopy(toCopy, mappings, txn, includeInverses, propTransform, keepLabels);
         }
 
         internal void EndTransaction()

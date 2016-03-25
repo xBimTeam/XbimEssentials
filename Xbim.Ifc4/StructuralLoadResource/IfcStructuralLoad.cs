@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoad", 38)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralLoad : IPersistEntity, INotifyPropertyChanged, IIfcStructuralLoad, IEqualityComparer<@IfcStructuralLoad>, IEquatable<@IfcStructuralLoad>
+	public abstract partial class @IfcStructuralLoad : IPersistEntity, INotifyPropertyChanged, IIfcStructuralLoad, IEquatable<@IfcStructuralLoad>
 	{
 		#region IIfcStructuralLoad explicit implementation
 		IfcLabel? IIfcStructuralLoad.Name { get { return @Name; } }	
@@ -193,11 +193,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -243,16 +238,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralLoad x, @IfcStructuralLoad y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLoad obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

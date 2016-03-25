@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcRepresentationItem", 31)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRepresentationItem : IPersistEntity, INotifyPropertyChanged, IIfcRepresentationItem, IEqualityComparer<@IfcRepresentationItem>, IEquatable<@IfcRepresentationItem>
+	public abstract partial class @IfcRepresentationItem : IPersistEntity, INotifyPropertyChanged, IIfcRepresentationItem, IEquatable<@IfcRepresentationItem>
 	{
 		#region IIfcRepresentationItem explicit implementation
 		 
@@ -129,7 +129,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcStyledItem>(e => (e.Item as IfcRepresentationItem) == this, "Item", this);
+				return Model.Instances.Where<IfcStyledItem>(e => e.Item == this, "Item", this);
 			} 
 		}
 		#endregion
@@ -190,11 +190,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -240,16 +235,16 @@ namespace Xbim.Ifc2x3.GeometryResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcRepresentationItem left, IfcLayeredItem right)
+		{
+			return left == right as @IfcRepresentationItem;
+		}
 
-        public bool Equals(@IfcRepresentationItem x, @IfcRepresentationItem y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcRepresentationItem left, IfcLayeredItem right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcRepresentationItem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

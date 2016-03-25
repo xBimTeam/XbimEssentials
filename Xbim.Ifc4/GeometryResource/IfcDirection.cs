@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcDirection", 344)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDirection, IEqualityComparer<@IfcDirection>, IEquatable<@IfcDirection>
+	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDirection, IEquatable<@IfcDirection>
 	{
 		#region IIfcDirection explicit implementation
 		IEnumerable<IfcReal> IIfcDirection.DirectionRatios { get { return @DirectionRatios; } }	
@@ -97,12 +97,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*MagnitudeGreaterZero:	MagnitudeGreaterZero : SIZEOF(QUERY(Tmp <* DirectionRatios | Tmp <> 0.0)) > 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -148,16 +142,26 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcDirection left, IfcGridPlacementDirectionSelect right)
+		{
+			return left == right as @IfcDirection;
+		}
 
-        public bool Equals(@IfcDirection x, @IfcDirection y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcDirection left, IfcGridPlacementDirectionSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcDirection obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcDirection left, IfcVectorOrDirection right)
+		{
+			return left == right as @IfcDirection;
+		}
+
+		public static bool operator !=(@IfcDirection left, IfcVectorOrDirection right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

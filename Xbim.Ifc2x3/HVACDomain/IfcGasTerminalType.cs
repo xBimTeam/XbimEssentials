@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcGasTerminalType", 701)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGasTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcGasTerminalType, IEqualityComparer<@IfcGasTerminalType>, IEquatable<@IfcGasTerminalType>
+	public  partial class @IfcGasTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcGasTerminalType, IEquatable<@IfcGasTerminalType>
 	{
 		#region IIfcGasTerminalType explicit implementation
 		IfcGasTerminalTypeEnum IIfcGasTerminalType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc2x3.HVACDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            ((PredefinedType = IfcGasTerminalTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc2x3.HVACDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcGasTerminalType x, @IfcGasTerminalType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGasTerminalType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

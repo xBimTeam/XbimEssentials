@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralCurveReaction", 1280)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralCurveReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralCurveReaction, IEqualityComparer<@IfcStructuralCurveReaction>, IEquatable<@IfcStructuralCurveReaction>
+	public  partial class @IfcStructuralCurveReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralCurveReaction, IEquatable<@IfcStructuralCurveReaction>
 	{
 		#region IIfcStructuralCurveReaction explicit implementation
 		IfcStructuralCurveActivityTypeEnum IIfcStructuralCurveReaction.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*HasObjectType:	HasObjectType : (PredefinedType <> IfcStructuralCurveActivityTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);*/
-		/*SuitablePredefinedType:	SuitablePredefinedType : (PredefinedType <> IfcStructuralCurveActivityTypeEnum.SINUS) AND (PredefinedType <> IfcStructuralCurveActivityTypeEnum.PARABOLA);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralCurveReaction x, @IfcStructuralCurveReaction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralCurveReaction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

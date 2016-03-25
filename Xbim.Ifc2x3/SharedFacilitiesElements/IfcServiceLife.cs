@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcServiceLife", 769)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IIfcServiceLife, IEqualityComparer<@IfcServiceLife>, IEquatable<@IfcServiceLife>
+	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IIfcServiceLife, IEquatable<@IfcServiceLife>
 	{
 		#region IIfcServiceLife explicit implementation
 		IfcServiceLifeTypeEnum IIfcServiceLife.ServiceLifeType { get { return @ServiceLifeType; } }	
@@ -112,11 +112,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -162,16 +157,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcServiceLife x, @IfcServiceLife y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcServiceLife obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

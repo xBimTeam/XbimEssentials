@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcResource", 158)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcResource : IfcObject, IIfcResource, IEqualityComparer<@IfcResource>, IEquatable<@IfcResource>
+	public abstract partial class @IfcResource : IfcObject, IIfcResource, IEquatable<@IfcResource>
 	{
 		#region IIfcResource explicit implementation
 		IfcIdentifier? IIfcResource.Identification { get { return @Identification; } }	
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToResource>(e => (e.RelatingResource as IfcResource) == this, "RelatingResource", this);
+				return Model.Instances.Where<IfcRelAssignsToResource>(e => e.RelatingResource == this, "RelatingResource", this);
 			} 
 		}
 		#endregion
@@ -123,11 +123,6 @@ namespace Xbim.Ifc4.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -174,16 +169,16 @@ namespace Xbim.Ifc4.Kernel
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcResource left, IfcResourceSelect right)
+		{
+			return left == right as @IfcResource;
+		}
 
-        public bool Equals(@IfcResource x, @IfcResource y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcResource left, IfcResourceSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcResource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

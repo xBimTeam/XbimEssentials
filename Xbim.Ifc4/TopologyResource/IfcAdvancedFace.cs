@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcAdvancedFace", 1094)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAdvancedFace : IfcFaceSurface, IInstantiableEntity, IIfcAdvancedFace, IEqualityComparer<@IfcAdvancedFace>, IEquatable<@IfcAdvancedFace>
+	public  partial class @IfcAdvancedFace : IfcFaceSurface, IInstantiableEntity, IIfcAdvancedFace, IEquatable<@IfcAdvancedFace>
 	{
 		#region IIfcAdvancedFace explicit implementation
 		 
@@ -62,14 +62,6 @@ namespace Xbim.Ifc4.TopologyResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*ApplicableSurface:TYPEOF(SELF\IfcFaceSurface.FaceSurface)) = 1;*/
-		/*RequiresEdgeCurve:))) = 0;*/
-		/*ApplicableEdgeCurves:))) = 0;*/
 		}
 		#endregion
 
@@ -116,16 +108,6 @@ namespace Xbim.Ifc4.TopologyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcAdvancedFace x, @IfcAdvancedFace y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAdvancedFace obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

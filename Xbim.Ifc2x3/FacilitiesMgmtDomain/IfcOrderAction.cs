@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcOrderAction", 591)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrderAction : IfcTask, IInstantiableEntity, IIfcOrderAction, IEqualityComparer<@IfcOrderAction>, IEquatable<@IfcOrderAction>
+	public  partial class @IfcOrderAction : IfcTask, IInstantiableEntity, IIfcOrderAction, IEquatable<@IfcOrderAction>
 	{
 		#region IIfcOrderAction explicit implementation
 		IfcIdentifier IIfcOrderAction.ActionID { get { return @ActionID; } }	
@@ -97,11 +97,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -147,16 +142,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcOrderAction x, @IfcOrderAction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOrderAction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

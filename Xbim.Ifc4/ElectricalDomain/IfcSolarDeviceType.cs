@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcSolarDeviceType", 1271)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSolarDeviceType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcSolarDeviceType, IEqualityComparer<@IfcSolarDeviceType>, IEquatable<@IfcSolarDeviceType>
+	public  partial class @IfcSolarDeviceType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcSolarDeviceType, IEquatable<@IfcSolarDeviceType>
 	{
 		#region IIfcSolarDeviceType explicit implementation
 		IfcSolarDeviceTypeEnum IIfcSolarDeviceType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc4.ElectricalDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcSolarDeviceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc4.ElectricalDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSolarDeviceType x, @IfcSolarDeviceType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSolarDeviceType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

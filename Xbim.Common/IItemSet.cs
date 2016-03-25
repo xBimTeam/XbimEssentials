@@ -6,9 +6,13 @@ using System.ComponentModel;
 
 namespace Xbim.Common
 {
-    public interface IItemSet<T> : IList<T>, IList, INotifyCollectionChanged, INotifyPropertyChanged, IExpressEnumerable
+    public interface IItemSet
     {
-		IPersistEntity OwningEntity { get; }
+        IPersistEntity OwningEntity { get; }
+        
+    }
+    public interface IItemSet<T> : IList<T>, IList, INotifyCollectionChanged, INotifyPropertyChanged, IExpressEnumerable, IItemSet
+    {
         void AddRange(IEnumerable<T> values);
         T First { get; }
         T FirstOrDefault();

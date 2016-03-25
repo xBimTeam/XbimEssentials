@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcSite", 349)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSite : IfcSpatialStructureElement, IInstantiableEntity, IIfcSite, IEqualityComparer<@IfcSite>, IEquatable<@IfcSite>
+	public  partial class @IfcSite : IfcSpatialStructureElement, IInstantiableEntity, IIfcSite, IEquatable<@IfcSite>
 	{
 		#region IIfcSite explicit implementation
 		IfcCompoundPlaneAngleMeasure? IIfcSite.RefLatitude { get { return @RefLatitude; } }	
@@ -182,11 +182,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -232,16 +227,6 @@ namespace Xbim.Ifc2x3.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSite x, @IfcSite y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSite obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

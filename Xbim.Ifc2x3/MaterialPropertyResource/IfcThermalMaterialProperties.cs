@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcThermalMaterialProperties", 720)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcThermalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcThermalMaterialProperties, IEqualityComparer<@IfcThermalMaterialProperties>, IEquatable<@IfcThermalMaterialProperties>
+	public  partial class @IfcThermalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcThermalMaterialProperties, IEquatable<@IfcThermalMaterialProperties>
 	{
 		#region IIfcThermalMaterialProperties explicit implementation
 		IfcSpecificHeatCapacityMeasure? IIfcThermalMaterialProperties.SpecificHeatCapacity { get { return @SpecificHeatCapacity; } }	
@@ -147,11 +147,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -197,16 +192,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcThermalMaterialProperties x, @IfcThermalMaterialProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcThermalMaterialProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

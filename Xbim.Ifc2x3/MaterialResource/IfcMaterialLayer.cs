@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 {
 	[ExpressType("IfcMaterialLayer", 446)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayer : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialLayer, IEqualityComparer<@IfcMaterialLayer>, IEquatable<@IfcMaterialLayer>
+	public  partial class @IfcMaterialLayer : INotifyPropertyChanged, IInstantiableEntity, IIfcMaterialLayer, IEquatable<@IfcMaterialLayer>
 	{
 		#region IIfcMaterialLayer explicit implementation
 		IIfcMaterial IIfcMaterialLayer.Material { get { return @Material; } }	
@@ -247,11 +247,6 @@ namespace Xbim.Ifc2x3.MaterialResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -297,16 +292,26 @@ namespace Xbim.Ifc2x3.MaterialResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcMaterialLayer left, IfcMaterialSelect right)
+		{
+			return left == right as @IfcMaterialLayer;
+		}
 
-        public bool Equals(@IfcMaterialLayer x, @IfcMaterialLayer y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcMaterialLayer left, IfcMaterialSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcMaterialLayer obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcMaterialLayer left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcMaterialLayer;
+		}
+
+		public static bool operator !=(@IfcMaterialLayer left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

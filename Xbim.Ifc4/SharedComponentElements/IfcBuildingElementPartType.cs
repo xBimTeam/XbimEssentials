@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 {
 	[ExpressType("IfcBuildingElementPartType", 1107)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuildingElementPartType : IfcElementComponentType, IInstantiableEntity, IIfcBuildingElementPartType, IEqualityComparer<@IfcBuildingElementPartType>, IEquatable<@IfcBuildingElementPartType>
+	public  partial class @IfcBuildingElementPartType : IfcElementComponentType, IInstantiableEntity, IIfcBuildingElementPartType, IEquatable<@IfcBuildingElementPartType>
 	{
 		#region IIfcBuildingElementPartType explicit implementation
 		IfcBuildingElementPartTypeEnum IIfcBuildingElementPartType.PredefinedType { get { return @PredefinedType; } }	
@@ -94,12 +94,6 @@ namespace Xbim.Ifc4.SharedComponentElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcBuildingElementPartTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -145,16 +139,6 @@ namespace Xbim.Ifc4.SharedComponentElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcBuildingElementPartType x, @IfcBuildingElementPartType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBuildingElementPartType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

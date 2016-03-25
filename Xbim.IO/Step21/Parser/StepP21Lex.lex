@@ -37,7 +37,7 @@
 [\-\+0-9][0-9]*	    { if (!comment) {SetValue();  return((int)Tokens.INTEGER); } }
 [\-\+\.0-9][\.0-9]+	{ if (!comment) {SetValue(); return((int)Tokens.FLOAT); } }
 [\-\+\.0-9][\.0-9]+E[\-\+0-9][0-9]* {if (!comment) { SetValue(); return((int)Tokens.FLOAT); } }
-[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047])*[\']	{ if (!comment) { SetValue();  return((int)Tokens.STRING); } }
+[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[^\\][^X][^0](\\\'))*[\'] { if (!comment) { SetValue();  return((int)Tokens.STRING); } }
 [\"][0-9A-F]+[\"] 	{if (!comment) {SetValue(); return((int)Tokens.HEXA); } }
 [\.][TF][\.]	    {if (!comment) {SetValue(); return((int)Tokens.BOOLEAN); } }
 [\.][U][\.]	        {if (!comment) {return((int)Tokens.NONDEF); } }

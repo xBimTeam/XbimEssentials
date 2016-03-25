@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcRelVoidsElement", 496)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelVoidsElement : IfcRelDecomposes, IInstantiableEntity, IIfcRelVoidsElement, IEqualityComparer<@IfcRelVoidsElement>, IEquatable<@IfcRelVoidsElement>
+	public  partial class @IfcRelVoidsElement : IfcRelDecomposes, IInstantiableEntity, IIfcRelVoidsElement, IEquatable<@IfcRelVoidsElement>
 	{
 		#region IIfcRelVoidsElement explicit implementation
 		IIfcElement IIfcRelVoidsElement.RelatingBuildingElement { get { return @RelatingBuildingElement; } }	
@@ -112,11 +112,6 @@ namespace Xbim.Ifc4.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -162,16 +157,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelVoidsElement x, @IfcRelVoidsElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelVoidsElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

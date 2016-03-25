@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityTime", 254)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityTime : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityTime, IEqualityComparer<@IfcQuantityTime>, IEquatable<@IfcQuantityTime>
+	public  partial class @IfcQuantityTime : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityTime, IEquatable<@IfcQuantityTime>
 	{
 		#region IIfcQuantityTime explicit implementation
 		IfcTimeMeasure IIfcQuantityTime.TimeValue { get { return @TimeValue; } }	
@@ -89,13 +89,6 @@ namespace Xbim.Ifc2x3.QuantityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:                (SELF\IfcPhysicalSimpleQuantity.Unit.UnitType = IfcUnitEnum.TIMEUNIT);*/
-		/*WR22:	WR22 : TimeValue >= 0.;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -141,16 +134,6 @@ namespace Xbim.Ifc2x3.QuantityResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcQuantityTime x, @IfcQuantityTime y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcQuantityTime obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

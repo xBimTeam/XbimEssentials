@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcLine", 272)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IIfcLine, IEqualityComparer<@IfcLine>, IEquatable<@IfcLine>
+	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IIfcLine, IEquatable<@IfcLine>
 	{
 		#region IIfcLine explicit implementation
 		IIfcCartesianPoint IIfcLine.Pnt { get { return @Pnt; } }	
@@ -103,12 +103,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : Dir.Dim = Pnt.Dim;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -154,16 +148,6 @@ namespace Xbim.Ifc2x3.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcLine x, @IfcLine y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLine obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

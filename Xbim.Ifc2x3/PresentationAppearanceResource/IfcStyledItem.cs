@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcStyledItem", 56)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStyledItem : IfcRepresentationItem, IInstantiableEntity, IIfcStyledItem, IEqualityComparer<@IfcStyledItem>, IEquatable<@IfcStyledItem>
+	public  partial class @IfcStyledItem : IfcRepresentationItem, IInstantiableEntity, IIfcStyledItem, IEquatable<@IfcStyledItem>
 	{
 		#region IIfcStyledItem explicit implementation
 		IIfcRepresentationItem IIfcStyledItem.Item { get { return @Item; } }	
@@ -124,13 +124,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11:	WR11 : SIZEOF(Styles) = 1;*/
-		/*WR12:	WR12 : NOT('IFC2X3.IFCSTYLEDITEM' IN TYPEOF(Item));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -176,16 +169,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStyledItem x, @IfcStyledItem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStyledItem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

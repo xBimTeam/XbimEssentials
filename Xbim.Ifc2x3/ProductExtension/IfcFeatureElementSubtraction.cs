@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcFeatureElementSubtraction", 499)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFeatureElementSubtraction : IfcFeatureElement, IIfcFeatureElementSubtraction, IEqualityComparer<@IfcFeatureElementSubtraction>, IEquatable<@IfcFeatureElementSubtraction>
+	public abstract partial class @IfcFeatureElementSubtraction : IfcFeatureElement, IIfcFeatureElementSubtraction, IEquatable<@IfcFeatureElementSubtraction>
 	{
 		#region IIfcFeatureElementSubtraction explicit implementation
 		 
@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.FirstOrDefault<IfcRelVoidsElement>(e => (e.RelatedOpeningElement as IfcFeatureElementSubtraction) == this, "RelatedOpeningElement", this);
+				return Model.Instances.FirstOrDefault<IfcRelVoidsElement>(e => e.RelatedOpeningElement == this, "RelatedOpeningElement", this);
 			} 
 		}
 		#endregion
@@ -80,11 +80,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -131,16 +126,6 @@ namespace Xbim.Ifc2x3.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFeatureElementSubtraction x, @IfcFeatureElementSubtraction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFeatureElementSubtraction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

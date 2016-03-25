@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcTessellatedFaceSet", 1299)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTessellatedFaceSet : IfcTessellatedItem, IIfcTessellatedFaceSet, IEqualityComparer<@IfcTessellatedFaceSet>, IEquatable<@IfcTessellatedFaceSet>
+	public abstract partial class @IfcTessellatedFaceSet : IfcTessellatedItem, IIfcTessellatedFaceSet, IEquatable<@IfcTessellatedFaceSet>
 	{
 		#region IIfcTessellatedFaceSet explicit implementation
 		IIfcCartesianPointList3D IIfcTessellatedFaceSet.Coordinates { get { return @Coordinates; } }	
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcIndexedColourMap>(e => (e.MappedTo as IfcTessellatedFaceSet) == this, "MappedTo", this);
+				return Model.Instances.Where<IfcIndexedColourMap>(e => e.MappedTo == this, "MappedTo", this);
 			} 
 		}
 		[InverseProperty("MappedTo")]
@@ -122,7 +122,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcIndexedTextureMap>(e => (e.MappedTo as IfcTessellatedFaceSet) == this, "MappedTo", this);
+				return Model.Instances.Where<IfcIndexedTextureMap>(e => e.MappedTo == this, "MappedTo", this);
 			} 
 		}
 		#endregion
@@ -147,11 +147,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -198,16 +193,6 @@ namespace Xbim.Ifc4.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTessellatedFaceSet x, @IfcTessellatedFaceSet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTessellatedFaceSet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

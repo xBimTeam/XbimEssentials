@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcPresentationStyleAssignment", 584)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationStyleAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationStyleAssignment, IEqualityComparer<@IfcPresentationStyleAssignment>, IEquatable<@IfcPresentationStyleAssignment>
+	public  partial class @IfcPresentationStyleAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationStyleAssignment, IEquatable<@IfcPresentationStyleAssignment>
 	{
 		#region IIfcPresentationStyleAssignment explicit implementation
 		IEnumerable<IIfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles { get { return @Styles; } }	
@@ -190,11 +190,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -240,16 +235,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPresentationStyleAssignment x, @IfcPresentationStyleAssignment y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPresentationStyleAssignment obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

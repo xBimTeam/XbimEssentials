@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ElectricalDomain
 {
 	[ExpressType("IfcProtectiveDeviceTrippingUnitType", 1237)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProtectiveDeviceTrippingUnitType : IfcDistributionControlElementType, IInstantiableEntity, IIfcProtectiveDeviceTrippingUnitType, IEqualityComparer<@IfcProtectiveDeviceTrippingUnitType>, IEquatable<@IfcProtectiveDeviceTrippingUnitType>
+	public  partial class @IfcProtectiveDeviceTrippingUnitType : IfcDistributionControlElementType, IInstantiableEntity, IIfcProtectiveDeviceTrippingUnitType, IEquatable<@IfcProtectiveDeviceTrippingUnitType>
 	{
 		#region IIfcProtectiveDeviceTrippingUnitType explicit implementation
 		IfcProtectiveDeviceTrippingUnitTypeEnum IIfcProtectiveDeviceTrippingUnitType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc4.ElectricalDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcProtectiveDeviceTrippingUnitTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc4.ElectricalDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcProtectiveDeviceTrippingUnitType x, @IfcProtectiveDeviceTrippingUnitType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProtectiveDeviceTrippingUnitType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

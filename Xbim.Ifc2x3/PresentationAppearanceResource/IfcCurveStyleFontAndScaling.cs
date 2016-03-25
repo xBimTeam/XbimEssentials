@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcCurveStyleFontAndScaling", 569)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyleFontAndScaling : INotifyPropertyChanged, IInstantiableEntity, IIfcCurveStyleFontAndScaling, IEqualityComparer<@IfcCurveStyleFontAndScaling>, IEquatable<@IfcCurveStyleFontAndScaling>
+	public  partial class @IfcCurveStyleFontAndScaling : INotifyPropertyChanged, IInstantiableEntity, IIfcCurveStyleFontAndScaling, IEquatable<@IfcCurveStyleFontAndScaling>
 	{
 		#region IIfcCurveStyleFontAndScaling explicit implementation
 		IfcLabel? IIfcCurveStyleFontAndScaling.Name { get { return @Name; } }	
@@ -233,11 +233,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -283,16 +278,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcCurveStyleFontAndScaling left, IfcCurveFontOrScaledCurveFontSelect right)
+		{
+			return left == right as @IfcCurveStyleFontAndScaling;
+		}
 
-        public bool Equals(@IfcCurveStyleFontAndScaling x, @IfcCurveStyleFontAndScaling y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcCurveStyleFontAndScaling left, IfcCurveFontOrScaledCurveFontSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcCurveStyleFontAndScaling obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

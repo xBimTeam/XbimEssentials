@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCartesianTransformationOperator2DnonUniform", 147)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator2DnonUniform : IfcCartesianTransformationOperator2D, IInstantiableEntity, IIfcCartesianTransformationOperator2DnonUniform, IEqualityComparer<@IfcCartesianTransformationOperator2DnonUniform>, IEquatable<@IfcCartesianTransformationOperator2DnonUniform>
+	public  partial class @IfcCartesianTransformationOperator2DnonUniform : IfcCartesianTransformationOperator2D, IInstantiableEntity, IIfcCartesianTransformationOperator2DnonUniform, IEquatable<@IfcCartesianTransformationOperator2DnonUniform>
 	{
 		#region IIfcCartesianTransformationOperator2DnonUniform explicit implementation
 		double? IIfcCartesianTransformationOperator2DnonUniform.Scale2 { get { return @Scale2; } }	
@@ -103,12 +103,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : Scl2 > 0.0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -154,16 +148,6 @@ namespace Xbim.Ifc2x3.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCartesianTransformationOperator2DnonUniform x, @IfcCartesianTransformationOperator2DnonUniform y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCartesianTransformationOperator2DnonUniform obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

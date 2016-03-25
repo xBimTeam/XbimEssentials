@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationSurface", 731)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationSurface : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationSurface, IEqualityComparer<@IfcAnnotationSurface>, IEquatable<@IfcAnnotationSurface>
+	public  partial class @IfcAnnotationSurface : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationSurface, IEquatable<@IfcAnnotationSurface>
 	{
 		#region IIfcAnnotationSurface explicit implementation
 		IIfcGeometricRepresentationItem IIfcAnnotationSurface.Item { get { return @Item; } }	
@@ -105,12 +105,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR01:               ) >= 1;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -156,16 +150,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcAnnotationSurface x, @IfcAnnotationSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAnnotationSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcExternalSpatialElement", 1174)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternalSpatialElement : IfcExternalSpatialStructureElement, IInstantiableEntity, IIfcExternalSpatialElement, IEqualityComparer<@IfcExternalSpatialElement>, IEquatable<@IfcExternalSpatialElement>
+	public  partial class @IfcExternalSpatialElement : IfcExternalSpatialStructureElement, IInstantiableEntity, IIfcExternalSpatialElement, IEquatable<@IfcExternalSpatialElement>
 	{
 		#region IIfcExternalSpatialElement explicit implementation
 		IfcExternalSpatialElementTypeEnum? IIfcExternalSpatialElement.PredefinedType { get { return @PredefinedType; } }	
@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSpaceBoundary>(e => (e.RelatingSpace as IfcExternalSpatialElement) == this, "RelatingSpace", this);
+				return Model.Instances.Where<IfcRelSpaceBoundary>(e => e.RelatingSpace == this, "RelatingSpace", this);
 			} 
 		}
 		#endregion
@@ -105,11 +105,6 @@ namespace Xbim.Ifc4.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -156,16 +151,16 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcExternalSpatialElement left, IfcSpaceBoundarySelect right)
+		{
+			return left == right as @IfcExternalSpatialElement;
+		}
 
-        public bool Equals(@IfcExternalSpatialElement x, @IfcExternalSpatialElement y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcExternalSpatialElement left, IfcSpaceBoundarySelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcExternalSpatialElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

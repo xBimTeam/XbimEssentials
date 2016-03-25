@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
@@ -6,6 +7,7 @@ using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.IO;
+using Xbim.IO.Parser;
 
 namespace Xbim.MemoryModel.Tests
 {
@@ -57,6 +59,46 @@ namespace Xbim.MemoryModel.Tests
             }
         }
 
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
+        public void ScannerTest()
+        {
+
+            
+            using (var strm = File.OpenRead("Badly formed Ifc file.ifc"))
+            {
+                var scanner = new Scanner(strm);
+                int tok;
+                do
+                {
+
+                    tok = scanner.yylex();
+                    var txt = scanner.yytext;
+                    Console.WriteLine("Tok={0}, Txt = {1}", Enum.GetName(typeof(Tokens),tok),txt);
+                }
+                while ( tok!= (int) Tokens.EOF);
+            }
+        
+        }
+
+
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
+        public void ErrorRecoveryOfParserTest()
+        {
+
+            //in memory model
+            using (var store = IfcStore.Open("Badly formed Ifc file.ifc"))
+            {
+                store.Close();
+            }
+            //esent database
+            using (var store = IfcStore.Open("Badly formed Ifc file.ifc", null, 0))
+            {
+
+                store.Close();
+            }
+        }
         [TestMethod]
         [DeploymentItem("TestFiles")]
         public void IfcOpenZipTest()

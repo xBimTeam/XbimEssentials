@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcConditionCriterion", 688)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConditionCriterion : IfcControl, IInstantiableEntity, IIfcConditionCriterion, IEqualityComparer<@IfcConditionCriterion>, IEquatable<@IfcConditionCriterion>
+	public  partial class @IfcConditionCriterion : IfcControl, IInstantiableEntity, IIfcConditionCriterion, IEquatable<@IfcConditionCriterion>
 	{
 		#region IIfcConditionCriterion explicit implementation
 		IIfcConditionCriterionSelect IIfcConditionCriterion.Criterion { get { return @Criterion; } }	
@@ -112,12 +112,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : EXISTS(SELF\IfcRoot.Name);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -163,16 +157,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcConditionCriterion x, @IfcConditionCriterion y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConditionCriterion obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

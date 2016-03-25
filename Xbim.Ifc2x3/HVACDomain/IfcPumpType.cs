@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcPumpType", 685)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPumpType : IfcFlowMovingDeviceType, IInstantiableEntity, IIfcPumpType, IEqualityComparer<@IfcPumpType>, IEquatable<@IfcPumpType>
+	public  partial class @IfcPumpType : IfcFlowMovingDeviceType, IInstantiableEntity, IIfcPumpType, IEquatable<@IfcPumpType>
 	{
 		#region IIfcPumpType explicit implementation
 		IfcPumpTypeEnum IIfcPumpType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc2x3.HVACDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            ((PredefinedType = IfcPumpTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc2x3.HVACDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPumpType x, @IfcPumpType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPumpType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

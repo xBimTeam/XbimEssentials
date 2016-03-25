@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.TopologyResource
 {
 	[ExpressType("IfcConnectedFaceSet", 160)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectedFaceSet : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcConnectedFaceSet, IEqualityComparer<@IfcConnectedFaceSet>, IEquatable<@IfcConnectedFaceSet>
+	public  partial class @IfcConnectedFaceSet : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcConnectedFaceSet, IEquatable<@IfcConnectedFaceSet>
 	{
 		#region IIfcConnectedFaceSet explicit implementation
 		IEnumerable<IIfcFace> IIfcConnectedFaceSet.CfsFaces { get { return @CfsFaces; } }	
@@ -81,11 +81,6 @@ namespace Xbim.Ifc4.TopologyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -131,16 +126,6 @@ namespace Xbim.Ifc4.TopologyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcConnectedFaceSet x, @IfcConnectedFaceSet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConnectedFaceSet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

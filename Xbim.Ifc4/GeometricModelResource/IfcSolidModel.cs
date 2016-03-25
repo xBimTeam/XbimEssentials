@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcSolidModel", 150)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSolidModel : IfcGeometricRepresentationItem, IIfcSolidModel, IEqualityComparer<@IfcSolidModel>, IEquatable<@IfcSolidModel>
+	public abstract partial class @IfcSolidModel : IfcGeometricRepresentationItem, IIfcSolidModel, IEquatable<@IfcSolidModel>
 	{
 		#region IIfcSolidModel explicit implementation
 		 
@@ -69,11 +69,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -120,16 +115,26 @@ namespace Xbim.Ifc4.GeometricModelResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcSolidModel left, IfcBooleanOperand right)
+		{
+			return left == right as @IfcSolidModel;
+		}
 
-        public bool Equals(@IfcSolidModel x, @IfcSolidModel y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcSolidModel left, IfcBooleanOperand right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcSolidModel obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcSolidModel left, IfcSolidOrShell right)
+		{
+			return left == right as @IfcSolidModel;
+		}
+
+		public static bool operator !=(@IfcSolidModel left, IfcSolidOrShell right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

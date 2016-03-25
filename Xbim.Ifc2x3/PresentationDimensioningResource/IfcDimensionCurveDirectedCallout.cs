@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDimensionCurveDirectedCallout", 737)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionCurveDirectedCallout : IfcDraughtingCallout, IInstantiableEntity, IIfcDimensionCurveDirectedCallout, IEqualityComparer<@IfcDimensionCurveDirectedCallout>, IEquatable<@IfcDimensionCurveDirectedCallout>
+	public  partial class @IfcDimensionCurveDirectedCallout : IfcDraughtingCallout, IInstantiableEntity, IIfcDimensionCurveDirectedCallout, IEquatable<@IfcDimensionCurveDirectedCallout>
 	{
 		#region IIfcDimensionCurveDirectedCallout explicit implementation
 		 
@@ -60,13 +60,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR41:                  = 1;*/
-		/*WR42:                      TYPEOF (Dc)))) <= 2;*/
 		}
 		#endregion
 
@@ -113,16 +106,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDimensionCurveDirectedCallout x, @IfcDimensionCurveDirectedCallout y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDimensionCurveDirectedCallout obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcRoundedRectangleProfileDef", 106)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRoundedRectangleProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRoundedRectangleProfileDef, IEqualityComparer<@IfcRoundedRectangleProfileDef>, IEquatable<@IfcRoundedRectangleProfileDef>
+	public  partial class @IfcRoundedRectangleProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRoundedRectangleProfileDef, IEquatable<@IfcRoundedRectangleProfileDef>
 	{
 		#region IIfcRoundedRectangleProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcRoundedRectangleProfileDef.RoundingRadius { get { return @RoundingRadius; } }	
@@ -91,12 +91,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:              (RoundingRadius <= (SELF\IfcRectangleProfileDef.YDim/2.)));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -142,16 +136,6 @@ namespace Xbim.Ifc2x3.ProfileResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRoundedRectangleProfileDef x, @IfcRoundedRectangleProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRoundedRectangleProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

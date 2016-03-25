@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcSurfaceCurveSweptAreaSolid", 480)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceCurveSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcSurfaceCurveSweptAreaSolid, IEqualityComparer<@IfcSurfaceCurveSweptAreaSolid>, IEquatable<@IfcSurfaceCurveSweptAreaSolid>
+	public  partial class @IfcSurfaceCurveSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcSurfaceCurveSweptAreaSolid, IEquatable<@IfcSurfaceCurveSweptAreaSolid>
 	{
 		#region IIfcSurfaceCurveSweptAreaSolid explicit implementation
 		IIfcCurve IIfcSurfaceCurveSweptAreaSolid.Directrix { get { return @Directrix; } }	
@@ -149,11 +149,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -199,16 +194,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSurfaceCurveSweptAreaSolid x, @IfcSurfaceCurveSweptAreaSolid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceCurveSweptAreaSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

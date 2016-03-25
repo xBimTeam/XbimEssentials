@@ -41,7 +41,7 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcPostalAddress", 662)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IIfcPostalAddress, IEqualityComparer<@IfcPostalAddress>, IEquatable<@IfcPostalAddress>
+	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IIfcPostalAddress, IEquatable<@IfcPostalAddress>
 	{
 		#region IIfcPostalAddress explicit implementation
 		IfcLabel? IIfcPostalAddress.InternalLocation { get { return @InternalLocation; } }	
@@ -207,12 +207,6 @@ namespace Xbim.Ifc2x3.ActorResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            EXISTS (Country);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -258,16 +252,6 @@ namespace Xbim.Ifc2x3.ActorResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPostalAddress x, @IfcPostalAddress y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPostalAddress obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("Ifc2DCompositeCurve", 524)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @Ifc2DCompositeCurve : IfcCompositeCurve, IInstantiableEntity, IIfc2DCompositeCurve, IEqualityComparer<@Ifc2DCompositeCurve>, IEquatable<@Ifc2DCompositeCurve>
+	public  partial class @Ifc2DCompositeCurve : IfcCompositeCurve, IInstantiableEntity, IIfc2DCompositeCurve, IEquatable<@Ifc2DCompositeCurve>
 	{
 		#region IIfc2DCompositeCurve explicit implementation
 		 
@@ -61,13 +61,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SELF\IfcCompositeCurve.ClosedCurve;*/
-		/*WR2:	WR2 : SELF\IfcCurve.Dim = 2;*/
 		}
 		#endregion
 
@@ -114,16 +107,6 @@ namespace Xbim.Ifc2x3.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@Ifc2DCompositeCurve x, @Ifc2DCompositeCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@Ifc2DCompositeCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

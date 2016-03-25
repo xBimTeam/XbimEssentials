@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcPlane", 388)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlane : IfcElementarySurface, IInstantiableEntity, IIfcPlane, IEqualityComparer<@IfcPlane>, IEquatable<@IfcPlane>
+	public  partial class @IfcPlane : IfcElementarySurface, IInstantiableEntity, IIfcPlane, IEquatable<@IfcPlane>
 	{
 		#region IIfcPlane explicit implementation
 		 
@@ -60,11 +60,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -111,16 +106,6 @@ namespace Xbim.Ifc2x3.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPlane x, @IfcPlane y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPlane obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

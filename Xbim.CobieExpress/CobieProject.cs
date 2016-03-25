@@ -42,7 +42,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Project", 15)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieProject : INotifyPropertyChanged, IInstantiableEntity, ICobieProject, IEqualityComparer<@CobieProject>, IEquatable<@CobieProject>
+	public  partial class @CobieProject : INotifyPropertyChanged, IInstantiableEntity, ICobieProject, IEquatable<@CobieProject>
 	{
 		#region ICobieProject explicit implementation
 		string ICobieProject.Name { get { return @Name; } }	
@@ -208,7 +208,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobiePhase>(e => (e.Project as CobieProject) == this, "Project", this);
+				return Model.Instances.Where<CobiePhase>(e => e.Project == this, "Project", this);
 			} 
 		}
 		[InverseProperty("Project")]
@@ -217,7 +217,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieFacility>(e => (e.Project as CobieProject) == this, "Project", this);
+				return Model.Instances.Where<CobieFacility>(e => e.Project == this, "Project", this);
 			} 
 		}
 		#endregion
@@ -296,11 +296,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -346,16 +341,6 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
-
-        public bool Equals(@CobieProject x, @CobieProject y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieProject obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

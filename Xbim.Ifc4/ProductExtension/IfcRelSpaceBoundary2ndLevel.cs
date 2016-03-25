@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcRelSpaceBoundary2ndLevel", 1254)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSpaceBoundary2ndLevel : IfcRelSpaceBoundary1stLevel, IInstantiableEntity, IIfcRelSpaceBoundary2ndLevel, IEqualityComparer<@IfcRelSpaceBoundary2ndLevel>, IEquatable<@IfcRelSpaceBoundary2ndLevel>
+	public  partial class @IfcRelSpaceBoundary2ndLevel : IfcRelSpaceBoundary1stLevel, IInstantiableEntity, IIfcRelSpaceBoundary2ndLevel, IEquatable<@IfcRelSpaceBoundary2ndLevel>
 	{
 		#region IIfcRelSpaceBoundary2ndLevel explicit implementation
 		IIfcRelSpaceBoundary2ndLevel IIfcRelSpaceBoundary2ndLevel.CorrespondingBoundary { get { return @CorrespondingBoundary; } }	
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSpaceBoundary2ndLevel>(e => (e.CorrespondingBoundary as IfcRelSpaceBoundary2ndLevel) == this, "CorrespondingBoundary", this);
+				return Model.Instances.Where<IfcRelSpaceBoundary2ndLevel>(e => e.CorrespondingBoundary == this, "CorrespondingBoundary", this);
 			} 
 		}
 		#endregion
@@ -108,11 +108,6 @@ namespace Xbim.Ifc4.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -159,16 +154,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelSpaceBoundary2ndLevel x, @IfcRelSpaceBoundary2ndLevel y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelSpaceBoundary2ndLevel obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

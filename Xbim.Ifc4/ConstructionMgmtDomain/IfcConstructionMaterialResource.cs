@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	[ExpressType("IfcConstructionMaterialResource", 243)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstructionMaterialResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionMaterialResource, IEqualityComparer<@IfcConstructionMaterialResource>, IEquatable<@IfcConstructionMaterialResource>
+	public  partial class @IfcConstructionMaterialResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionMaterialResource, IEquatable<@IfcConstructionMaterialResource>
 	{
 		#region IIfcConstructionMaterialResource explicit implementation
 		IfcConstructionMaterialResourceTypeEnum? IIfcConstructionMaterialResource.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcConstructionMaterialResourceTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcConstructionMaterialResource x, @IfcConstructionMaterialResource y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConstructionMaterialResource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

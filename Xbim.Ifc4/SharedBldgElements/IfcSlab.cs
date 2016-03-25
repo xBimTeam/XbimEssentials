@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcSlab", 99)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSlab : IfcBuildingElement, IInstantiableEntity, IIfcSlab, IEqualityComparer<@IfcSlab>, IEquatable<@IfcSlab>
+	public  partial class @IfcSlab : IfcBuildingElement, IInstantiableEntity, IIfcSlab, IEquatable<@IfcSlab>
 	{
 		#region IIfcSlab explicit implementation
 		IfcSlabTypeEnum? IIfcSlab.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcSlabTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:  ('IFC4.IFCSLABTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.SharedBldgElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSlab x, @IfcSlab y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSlab obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

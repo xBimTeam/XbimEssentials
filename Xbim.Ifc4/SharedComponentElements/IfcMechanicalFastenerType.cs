@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.SharedComponentElements
 {
 	[ExpressType("IfcMechanicalFastenerType", 643)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalFastenerType : IfcElementComponentType, IInstantiableEntity, IIfcMechanicalFastenerType, IEqualityComparer<@IfcMechanicalFastenerType>, IEquatable<@IfcMechanicalFastenerType>
+	public  partial class @IfcMechanicalFastenerType : IfcElementComponentType, IInstantiableEntity, IIfcMechanicalFastenerType, IEquatable<@IfcMechanicalFastenerType>
 	{
 		#region IIfcMechanicalFastenerType explicit implementation
 		IfcMechanicalFastenerTypeEnum IIfcMechanicalFastenerType.PredefinedType { get { return @PredefinedType; } }	
@@ -135,12 +135,6 @@ namespace Xbim.Ifc4.SharedComponentElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcMechanicalFastenerTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -186,16 +180,6 @@ namespace Xbim.Ifc4.SharedComponentElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcMechanicalFastenerType x, @IfcMechanicalFastenerType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMechanicalFastenerType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.DateTimeResource
 {
 	[ExpressType("IfcTaskTime", 1294)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTaskTime : IfcSchedulingTime, IInstantiableEntity, IIfcTaskTime, IEqualityComparer<@IfcTaskTime>, IEquatable<@IfcTaskTime>
+	public  partial class @IfcTaskTime : IfcSchedulingTime, IInstantiableEntity, IIfcTaskTime, IEquatable<@IfcTaskTime>
 	{
 		#region IIfcTaskTime explicit implementation
 		IfcTaskDurationEnum? IIfcTaskTime.DurationType { get { return @DurationType; } }	
@@ -409,11 +409,6 @@ namespace Xbim.Ifc4.DateTimeResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -459,16 +454,6 @@ namespace Xbim.Ifc4.DateTimeResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTaskTime x, @IfcTaskTime y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTaskTime obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

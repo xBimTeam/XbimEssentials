@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 {
 	[ExpressType("IfcCoveringType", 565)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCoveringType : IfcBuildingElementType, IInstantiableEntity, IIfcCoveringType, IEqualityComparer<@IfcCoveringType>, IEquatable<@IfcCoveringType>
+	public  partial class @IfcCoveringType : IfcBuildingElementType, IInstantiableEntity, IIfcCoveringType, IEquatable<@IfcCoveringType>
 	{
 		#region IIfcCoveringType explicit implementation
 		IfcCoveringTypeEnum IIfcCoveringType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcCoveringTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc4.SharedBldgElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcCoveringType x, @IfcCoveringType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCoveringType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

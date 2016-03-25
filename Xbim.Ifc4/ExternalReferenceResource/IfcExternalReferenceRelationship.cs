@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IfcExternalReferenceRelationship", 1173)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternalReferenceRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcExternalReferenceRelationship, IEqualityComparer<@IfcExternalReferenceRelationship>, IEquatable<@IfcExternalReferenceRelationship>
+	public  partial class @IfcExternalReferenceRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcExternalReferenceRelationship, IEquatable<@IfcExternalReferenceRelationship>
 	{
 		#region IIfcExternalReferenceRelationship explicit implementation
 		IIfcExternalReference IIfcExternalReferenceRelationship.RelatingReference { get { return @RelatingReference; } }	
@@ -107,11 +107,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -157,16 +152,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcExternalReferenceRelationship x, @IfcExternalReferenceRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExternalReferenceRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

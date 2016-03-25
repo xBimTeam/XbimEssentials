@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcPersonAndOrganization", 663)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPersonAndOrganization : INotifyPropertyChanged, IInstantiableEntity, IIfcPersonAndOrganization, IEqualityComparer<@IfcPersonAndOrganization>, IEquatable<@IfcPersonAndOrganization>
+	public  partial class @IfcPersonAndOrganization : INotifyPropertyChanged, IInstantiableEntity, IIfcPersonAndOrganization, IEquatable<@IfcPersonAndOrganization>
 	{
 		#region IIfcPersonAndOrganization explicit implementation
 		IIfcPerson IIfcPersonAndOrganization.ThePerson { get { return @ThePerson; } }	
@@ -233,11 +233,6 @@ namespace Xbim.Ifc2x3.ActorResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -283,16 +278,26 @@ namespace Xbim.Ifc2x3.ActorResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcPersonAndOrganization left, IfcActorSelect right)
+		{
+			return left == right as @IfcPersonAndOrganization;
+		}
 
-        public bool Equals(@IfcPersonAndOrganization x, @IfcPersonAndOrganization y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcPersonAndOrganization left, IfcActorSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcPersonAndOrganization obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcPersonAndOrganization left, IfcObjectReferenceSelect right)
+		{
+			return left == right as @IfcPersonAndOrganization;
+		}
+
+		public static bool operator !=(@IfcPersonAndOrganization left, IfcObjectReferenceSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcDuctSilencerType", 141)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDuctSilencerType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IIfcDuctSilencerType, IEqualityComparer<@IfcDuctSilencerType>, IEquatable<@IfcDuctSilencerType>
+	public  partial class @IfcDuctSilencerType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IIfcDuctSilencerType, IEquatable<@IfcDuctSilencerType>
 	{
 		#region IIfcDuctSilencerType explicit implementation
 		IfcDuctSilencerTypeEnum IIfcDuctSilencerType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc2x3.HVACDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            ((PredefinedType = IfcDuctSilencerTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc2x3.HVACDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDuctSilencerType x, @IfcDuctSilencerType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDuctSilencerType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

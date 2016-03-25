@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcPcurve", 1220)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPcurve : IfcCurve, IInstantiableEntity, IIfcPcurve, IEqualityComparer<@IfcPcurve>, IEquatable<@IfcPcurve>
+	public  partial class @IfcPcurve : IfcCurve, IInstantiableEntity, IIfcPcurve, IEquatable<@IfcPcurve>
 	{
 		#region IIfcPcurve explicit implementation
 		IIfcSurface IIfcPcurve.BasisSurface { get { return @BasisSurface; } }	
@@ -103,12 +103,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*DimIs2D:	DimIs2D : ReferenceCurve.Dim = 2;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -154,16 +148,16 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcPcurve left, IfcCurveOnSurface right)
+		{
+			return left == right as @IfcPcurve;
+		}
 
-        public bool Equals(@IfcPcurve x, @IfcPcurve y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcPcurve left, IfcCurveOnSurface right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcPcurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

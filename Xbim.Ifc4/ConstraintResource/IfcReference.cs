@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.ConstraintResource
 {
 	[ExpressType("IfcReference", 1244)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReference : INotifyPropertyChanged, IInstantiableEntity, IIfcReference, IEqualityComparer<@IfcReference>, IEquatable<@IfcReference>
+	public  partial class @IfcReference : INotifyPropertyChanged, IInstantiableEntity, IIfcReference, IEquatable<@IfcReference>
 	{
 		#region IIfcReference explicit implementation
 		IfcIdentifier? IIfcReference.TypeIdentifier { get { return @TypeIdentifier; } }	
@@ -272,11 +272,6 @@ namespace Xbim.Ifc4.ConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -322,16 +317,26 @@ namespace Xbim.Ifc4.ConstraintResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcReference left, IfcAppliedValueSelect right)
+		{
+			return left == right as @IfcReference;
+		}
 
-        public bool Equals(@IfcReference x, @IfcReference y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcReference left, IfcAppliedValueSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcReference obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcReference left, IfcMetricValueSelect right)
+		{
+			return left == right as @IfcReference;
+		}
+
+		public static bool operator !=(@IfcReference left, IfcMetricValueSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

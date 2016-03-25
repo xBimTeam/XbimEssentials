@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcConversionBasedUnit", 92)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConversionBasedUnit : IfcNamedUnit, IInstantiableEntity, IIfcConversionBasedUnit, IEqualityComparer<@IfcConversionBasedUnit>, IEquatable<@IfcConversionBasedUnit>
+	public  partial class @IfcConversionBasedUnit : IfcNamedUnit, IInstantiableEntity, IIfcConversionBasedUnit, IEquatable<@IfcConversionBasedUnit>
 	{
 		#region IIfcConversionBasedUnit explicit implementation
 		IfcLabel IIfcConversionBasedUnit.Name { get { return @Name; } }	
@@ -121,11 +121,6 @@ namespace Xbim.Ifc4.MeasureResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -171,16 +166,16 @@ namespace Xbim.Ifc4.MeasureResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcConversionBasedUnit left, IfcResourceObjectSelect right)
+		{
+			return left == right as @IfcConversionBasedUnit;
+		}
 
-        public bool Equals(@IfcConversionBasedUnit x, @IfcConversionBasedUnit y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcConversionBasedUnit left, IfcResourceObjectSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcConversionBasedUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

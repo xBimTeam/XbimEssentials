@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcStructuralSteelProfileProperties", 692)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSteelProfileProperties : IfcStructuralProfileProperties, IInstantiableEntity, IIfcStructuralSteelProfileProperties, IEqualityComparer<@IfcStructuralSteelProfileProperties>, IEquatable<@IfcStructuralSteelProfileProperties>
+	public  partial class @IfcStructuralSteelProfileProperties : IfcStructuralProfileProperties, IInstantiableEntity, IIfcStructuralSteelProfileProperties, IEquatable<@IfcStructuralSteelProfileProperties>
 	{
 		#region IIfcStructuralSteelProfileProperties explicit implementation
 		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaZ { get { return @ShearAreaZ; } }	
@@ -169,13 +169,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : NOT(EXISTS(ShearAreaY)) OR (ShearAreaY >= 0.);*/
-		/*WR32:	WR32 : NOT(EXISTS(ShearAreaZ)) OR (ShearAreaZ >= 0.);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -221,16 +214,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralSteelProfileProperties x, @IfcStructuralSteelProfileProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralSteelProfileProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

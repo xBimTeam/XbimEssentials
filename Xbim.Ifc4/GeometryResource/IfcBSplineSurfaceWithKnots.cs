@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcBSplineSurfaceWithKnots", 1103)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBSplineSurfaceWithKnots : IfcBSplineSurface, IInstantiableEntity, IIfcBSplineSurfaceWithKnots, IEqualityComparer<@IfcBSplineSurfaceWithKnots>, IEquatable<@IfcBSplineSurfaceWithKnots>
+	public  partial class @IfcBSplineSurfaceWithKnots : IfcBSplineSurface, IInstantiableEntity, IIfcBSplineSurfaceWithKnots, IEquatable<@IfcBSplineSurfaceWithKnots>
 	{
 		#region IIfcBSplineSurfaceWithKnots explicit implementation
 		IEnumerable<IfcInteger> IIfcBSplineSurfaceWithKnots.UMultiplicities { get { return @UMultiplicities; } }	
@@ -191,15 +191,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*UDirectionConstraints:  SELF\IfcBSplineSurface.UUpper, UMultiplicities, UKnots);*/
-		/*VDirectionConstraints:  SELF\IfcBSplineSurface.VUpper, VMultiplicities, VKnots);*/
-		/*CorrespondingULists:	CorrespondingULists : SIZEOF(UMultiplicities) = KnotUUpper;*/
-		/*CorrespondingVLists:	CorrespondingVLists : SIZEOF(VMultiplicities) = KnotVUpper;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -245,16 +236,6 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcBSplineSurfaceWithKnots x, @IfcBSplineSurfaceWithKnots y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBSplineSurfaceWithKnots obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

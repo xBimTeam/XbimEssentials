@@ -37,7 +37,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcRectangleHollowProfileDef", 562)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangleHollowProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRectangleHollowProfileDef, IEqualityComparer<@IfcRectangleHollowProfileDef>, IEquatable<@IfcRectangleHollowProfileDef>
+	public  partial class @IfcRectangleHollowProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRectangleHollowProfileDef, IEquatable<@IfcRectangleHollowProfileDef>
 	{
 		#region IIfcRectangleHollowProfileDef explicit implementation
 		IfcPositiveLengthMeasure IIfcRectangleHollowProfileDef.WallThickness { get { return @WallThickness; } }	
@@ -131,14 +131,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:             (WallThickness < (SELF\IfcRectangleProfileDef.YDim/2.));*/
-		/*WR32:              (OuterFilletRadius <= (SELF\IfcRectangleProfileDef.YDim/2.)));*/
-		/*WR33:              (InnerFilletRadius <= (SELF\IfcRectangleProfileDef.YDim/2. - WallThickness)));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -184,16 +176,6 @@ namespace Xbim.Ifc2x3.ProfileResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRectangleHollowProfileDef x, @IfcRectangleHollowProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRectangleHollowProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

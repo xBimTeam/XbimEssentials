@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcWorkPlan", 187)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWorkPlan : IfcWorkControl, IInstantiableEntity, IIfcWorkPlan, IEqualityComparer<@IfcWorkPlan>, IEquatable<@IfcWorkPlan>
+	public  partial class @IfcWorkPlan : IfcWorkControl, IInstantiableEntity, IIfcWorkPlan, IEquatable<@IfcWorkPlan>
 	{
 		#region IIfcWorkPlan explicit implementation
 		 
@@ -74,11 +74,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -125,16 +120,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcWorkPlan x, @IfcWorkPlan y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWorkPlan obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

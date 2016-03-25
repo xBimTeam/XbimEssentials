@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcSweptDiskSolidPolygonal", 1289)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSweptDiskSolidPolygonal : IfcSweptDiskSolid, IInstantiableEntity, IIfcSweptDiskSolidPolygonal, IEqualityComparer<@IfcSweptDiskSolidPolygonal>, IEquatable<@IfcSweptDiskSolidPolygonal>
+	public  partial class @IfcSweptDiskSolidPolygonal : IfcSweptDiskSolid, IInstantiableEntity, IIfcSweptDiskSolidPolygonal, IEquatable<@IfcSweptDiskSolidPolygonal>
 	{
 		#region IIfcSweptDiskSolidPolygonal explicit implementation
 		IfcPositiveLengthMeasure? IIfcSweptDiskSolidPolygonal.FilletRadius { get { return @FilletRadius; } }	
@@ -91,13 +91,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectRadii:	CorrectRadii : NOT(EXISTS(FilletRadius)) OR (FilletRadius >= SELF\IfcSweptDiskSolid.Radius);*/
-		/*DirectrixIsPolyline:	DirectrixIsPolyline : 'IFC4.IFCPOLYLINE' IN TYPEOF(SELF\IfcSweptDiskSolid.Directrix);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -143,16 +136,6 @@ namespace Xbim.Ifc4.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSweptDiskSolidPolygonal x, @IfcSweptDiskSolidPolygonal y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSweptDiskSolidPolygonal obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

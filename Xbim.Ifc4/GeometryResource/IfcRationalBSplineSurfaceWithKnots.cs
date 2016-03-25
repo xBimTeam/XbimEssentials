@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcRationalBSplineSurfaceWithKnots", 1242)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRationalBSplineSurfaceWithKnots : IfcBSplineSurfaceWithKnots, IInstantiableEntity, IIfcRationalBSplineSurfaceWithKnots, IEqualityComparer<@IfcRationalBSplineSurfaceWithKnots>, IEquatable<@IfcRationalBSplineSurfaceWithKnots>
+	public  partial class @IfcRationalBSplineSurfaceWithKnots : IfcBSplineSurfaceWithKnots, IInstantiableEntity, IIfcRationalBSplineSurfaceWithKnots, IEquatable<@IfcRationalBSplineSurfaceWithKnots>
 	{
 		#region IIfcRationalBSplineSurfaceWithKnots explicit implementation
 		IEnumerable<IEnumerable<IfcReal>> IIfcRationalBSplineSurfaceWithKnots.WeightsData { get { return @WeightsData; } }	
@@ -111,13 +111,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrespondingWeightsDataLists:(SIZEOF(WeightsData[1]) = SIZEOF(SELF\IfcBSplineSurface.ControlPointsList[1]));*/
-		/*WeightValuesGreaterZero:	WeightValuesGreaterZero : IfcSurfaceWeightsPositive(SELF);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -163,16 +156,6 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRationalBSplineSurfaceWithKnots x, @IfcRationalBSplineSurfaceWithKnots y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRationalBSplineSurfaceWithKnots obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

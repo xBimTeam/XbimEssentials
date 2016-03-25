@@ -231,7 +231,7 @@ namespace Xbim.Common.Metadata
             return keys;
         }
 
-        internal IEnumerable<PropertyInfo> IndexedProperties
+        public IEnumerable<PropertyInfo> IndexedProperties
         {
             get { return _indexedProperties ?? Enumerable.Empty<PropertyInfo>(); }
         }

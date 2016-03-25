@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IfcConstructionProductResource", 660)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstructionProductResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionProductResource, IEqualityComparer<@IfcConstructionProductResource>, IEquatable<@IfcConstructionProductResource>
+	public  partial class @IfcConstructionProductResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionProductResource, IEquatable<@IfcConstructionProductResource>
 	{
 		#region IIfcConstructionProductResource explicit implementation
 		 
@@ -68,13 +68,6 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(SELF\IfcResource.ResourceOf) <=1;*/
-		/*WR2:            (SELF\IfcResource.ResourceOf[1].RelatedObjectsType = IfcObjectTypeEnum.PRODUCT);*/
 		}
 		#endregion
 
@@ -121,16 +114,6 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcConstructionProductResource x, @IfcConstructionProductResource y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConstructionProductResource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

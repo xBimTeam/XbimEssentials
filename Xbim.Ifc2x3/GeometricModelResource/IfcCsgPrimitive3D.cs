@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcCsgPrimitive3D", 714)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcCsgPrimitive3D : IfcGeometricRepresentationItem, IIfcCsgPrimitive3D, IEqualityComparer<@IfcCsgPrimitive3D>, IEquatable<@IfcCsgPrimitive3D>
+	public abstract partial class @IfcCsgPrimitive3D : IfcGeometricRepresentationItem, IIfcCsgPrimitive3D, IEquatable<@IfcCsgPrimitive3D>
 	{
 		#region IIfcCsgPrimitive3D explicit implementation
 		IIfcAxis2Placement3D IIfcCsgPrimitive3D.Position { get { return @Position; } }	
@@ -97,11 +97,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -147,16 +142,26 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcCsgPrimitive3D left, IfcBooleanOperand right)
+		{
+			return left == right as @IfcCsgPrimitive3D;
+		}
 
-        public bool Equals(@IfcCsgPrimitive3D x, @IfcCsgPrimitive3D y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcCsgPrimitive3D left, IfcBooleanOperand right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcCsgPrimitive3D obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcCsgPrimitive3D left, IfcCsgSelect right)
+		{
+			return left == right as @IfcCsgPrimitive3D;
+		}
+
+		public static bool operator !=(@IfcCsgPrimitive3D left, IfcCsgSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

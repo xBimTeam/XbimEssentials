@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.UtilityResource
 {
 	[ExpressType("IfcTableColumn", 1292)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTableColumn : INotifyPropertyChanged, IInstantiableEntity, IIfcTableColumn, IEqualityComparer<@IfcTableColumn>, IEquatable<@IfcTableColumn>
+	public  partial class @IfcTableColumn : INotifyPropertyChanged, IInstantiableEntity, IIfcTableColumn, IEquatable<@IfcTableColumn>
 	{
 		#region IIfcTableColumn explicit implementation
 		IfcIdentifier? IIfcTableColumn.Identifier { get { return @Identifier; } }	
@@ -274,11 +274,6 @@ namespace Xbim.Ifc4.UtilityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -324,16 +319,6 @@ namespace Xbim.Ifc4.UtilityResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTableColumn x, @IfcTableColumn y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTableColumn obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

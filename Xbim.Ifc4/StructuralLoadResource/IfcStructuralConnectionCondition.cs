@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralConnectionCondition", 639)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralConnectionCondition : IPersistEntity, INotifyPropertyChanged, IIfcStructuralConnectionCondition, IEqualityComparer<@IfcStructuralConnectionCondition>, IEquatable<@IfcStructuralConnectionCondition>
+	public abstract partial class @IfcStructuralConnectionCondition : IPersistEntity, INotifyPropertyChanged, IIfcStructuralConnectionCondition, IEquatable<@IfcStructuralConnectionCondition>
 	{
 		#region IIfcStructuralConnectionCondition explicit implementation
 		IfcLabel? IIfcStructuralConnectionCondition.Name { get { return @Name; } }	
@@ -193,11 +193,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -243,16 +238,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcStructuralConnectionCondition x, @IfcStructuralConnectionCondition y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralConnectionCondition obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

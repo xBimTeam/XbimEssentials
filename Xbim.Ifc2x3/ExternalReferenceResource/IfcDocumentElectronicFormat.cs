@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcDocumentElectronicFormat", 599)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentElectronicFormat : INotifyPropertyChanged, IInstantiableEntity, IIfcDocumentElectronicFormat, IEqualityComparer<@IfcDocumentElectronicFormat>, IEquatable<@IfcDocumentElectronicFormat>
+	public  partial class @IfcDocumentElectronicFormat : INotifyPropertyChanged, IInstantiableEntity, IIfcDocumentElectronicFormat, IEquatable<@IfcDocumentElectronicFormat>
 	{
 		#region IIfcDocumentElectronicFormat explicit implementation
 		IfcLabel? IIfcDocumentElectronicFormat.FileExtension { get { return @FileExtension; } }	
@@ -233,12 +233,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : EXISTS(FileExtension) OR EXISTS(MimeContentType);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -284,16 +278,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcDocumentElectronicFormat x, @IfcDocumentElectronicFormat y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDocumentElectronicFormat obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

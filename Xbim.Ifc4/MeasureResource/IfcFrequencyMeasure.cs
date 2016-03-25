@@ -33,9 +33,12 @@ namespace Xbim.Ifc4.MeasureResource
             _value = val;
         }
 
+	    private static readonly System.Globalization.CultureInfo Culture =
+	        System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+
 		public IfcFrequencyMeasure(string val)
         {
-			_value = System.Convert.ToDouble(val, System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+			_value = System.Convert.ToDouble(val, Culture);
         }
 
         public static implicit operator IfcFrequencyMeasure(double value)
@@ -91,11 +94,6 @@ namespace Xbim.Ifc4.MeasureResource
 				throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
             _value = value.RealVal;
             
-		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
 		}
 		#endregion
 

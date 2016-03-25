@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
 	[ExpressType("IfcLaborResourceType", 1196)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLaborResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcLaborResourceType, IEqualityComparer<@IfcLaborResourceType>, IEquatable<@IfcLaborResourceType>
+	public  partial class @IfcLaborResourceType : IfcConstructionResourceType, IInstantiableEntity, IIfcLaborResourceType, IEquatable<@IfcLaborResourceType>
 	{
 		#region IIfcLaborResourceType explicit implementation
 		IfcLaborResourceTypeEnum IIfcLaborResourceType.PredefinedType { get { return @PredefinedType; } }	
@@ -96,12 +96,6 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcLaborResourceTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcTypeResource.ResourceType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -147,16 +141,6 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcLaborResourceType x, @IfcLaborResourceType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLaborResourceType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

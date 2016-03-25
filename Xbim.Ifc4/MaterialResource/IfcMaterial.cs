@@ -41,7 +41,7 @@ namespace Xbim.Ifc4.MaterialResource
 {
 	[ExpressType("IfcMaterial", 94)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterial : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterial, IEqualityComparer<@IfcMaterial>, IEquatable<@IfcMaterial>
+	public  partial class @IfcMaterial : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterial, IEquatable<@IfcMaterial>
 	{
 		#region IIfcMaterial explicit implementation
 		IfcLabel IIfcMaterial.Name { get { return @Name; } }	
@@ -118,7 +118,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMaterialDefinitionRepresentation>(e => (e.RepresentedMaterial as IfcMaterial) == this, "RepresentedMaterial", this);
+				return Model.Instances.Where<IfcMaterialDefinitionRepresentation>(e => e.RepresentedMaterial == this, "RepresentedMaterial", this);
 			} 
 		}
 		[InverseProperty("RelatedMaterials")]
@@ -136,7 +136,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMaterialRelationship>(e => (e.RelatingMaterial as IfcMaterial) == this, "RelatingMaterial", this);
+				return Model.Instances.Where<IfcMaterialRelationship>(e => e.RelatingMaterial == this, "RelatingMaterial", this);
 			} 
 		}
 		#endregion
@@ -159,11 +159,6 @@ namespace Xbim.Ifc4.MaterialResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -210,16 +205,6 @@ namespace Xbim.Ifc4.MaterialResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcMaterial x, @IfcMaterial y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterial obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

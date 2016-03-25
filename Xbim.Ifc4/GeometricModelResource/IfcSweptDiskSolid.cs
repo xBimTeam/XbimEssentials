@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcSweptDiskSolid", 547)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IIfcSweptDiskSolid, IEqualityComparer<@IfcSweptDiskSolid>, IEquatable<@IfcSweptDiskSolid>
+	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IIfcSweptDiskSolid, IEquatable<@IfcSweptDiskSolid>
 	{
 		#region IIfcSweptDiskSolid explicit implementation
 		IIfcCurve IIfcSweptDiskSolid.Directrix { get { return @Directrix; } }	
@@ -165,14 +165,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*DirectrixDim:	DirectrixDim : Directrix.Dim = 3;*/
-		/*InnerRadiusSize:	InnerRadiusSize : (NOT EXISTS(InnerRadius)) OR (Radius > InnerRadius);*/
-		/*DirectrixBounded:(SIZEOF(['IFC4.IFCCONIC', 'IFC4.IFCBOUNDEDCURVE'] * TYPEOF(Directrix)) = 1);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -218,16 +210,6 @@ namespace Xbim.Ifc4.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSweptDiskSolid x, @IfcSweptDiskSolid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSweptDiskSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcBuildingStorey", 459)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuildingStorey : IfcSpatialStructureElement, IInstantiableEntity, IIfcBuildingStorey, IEqualityComparer<@IfcBuildingStorey>, IEquatable<@IfcBuildingStorey>
+	public  partial class @IfcBuildingStorey : IfcSpatialStructureElement, IInstantiableEntity, IIfcBuildingStorey, IEquatable<@IfcBuildingStorey>
 	{
 		#region IIfcBuildingStorey explicit implementation
 		IfcLengthMeasure? IIfcBuildingStorey.Elevation { get { return @Elevation; } }	
@@ -95,11 +95,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -145,16 +140,6 @@ namespace Xbim.Ifc2x3.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcBuildingStorey x, @IfcBuildingStorey y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBuildingStorey obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.RepresentationResource
 {
 	[ExpressType("IfcRepresentationContext", 378)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRepresentationContext : IPersistEntity, INotifyPropertyChanged, IIfcRepresentationContext, IEqualityComparer<@IfcRepresentationContext>, IEquatable<@IfcRepresentationContext>
+	public abstract partial class @IfcRepresentationContext : IPersistEntity, INotifyPropertyChanged, IIfcRepresentationContext, IEquatable<@IfcRepresentationContext>
 	{
 		#region IIfcRepresentationContext explicit implementation
 		IfcLabel? IIfcRepresentationContext.ContextIdentifier { get { return @ContextIdentifier; } }	
@@ -156,7 +156,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRepresentation>(e => (e.ContextOfItems as IfcRepresentationContext) == this, "ContextOfItems", this);
+				return Model.Instances.Where<IfcRepresentation>(e => e.ContextOfItems == this, "ContextOfItems", this);
 			} 
 		}
 		#endregion
@@ -226,11 +226,6 @@ namespace Xbim.Ifc4.RepresentationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -276,16 +271,6 @@ namespace Xbim.Ifc4.RepresentationResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRepresentationContext x, @IfcRepresentationContext y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRepresentationContext obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

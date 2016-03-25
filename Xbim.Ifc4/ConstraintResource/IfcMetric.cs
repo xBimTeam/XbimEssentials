@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.ConstraintResource
 {
 	[ExpressType("IfcMetric", 80)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IIfcMetric, IEqualityComparer<@IfcMetric>, IEquatable<@IfcMetric>
+	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IIfcMetric, IEquatable<@IfcMetric>
 	{
 		#region IIfcMetric explicit implementation
 		IfcBenchmarkEnum IIfcMetric.Benchmark { get { return @Benchmark; } }	
@@ -153,11 +153,6 @@ namespace Xbim.Ifc4.ConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -203,16 +198,6 @@ namespace Xbim.Ifc4.ConstraintResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcMetric x, @IfcMetric y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMetric obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

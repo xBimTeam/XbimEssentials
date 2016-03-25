@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcSweptSurface", 110)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSweptSurface : IfcSurface, IIfcSweptSurface, IEqualityComparer<@IfcSweptSurface>, IEquatable<@IfcSweptSurface>
+	public abstract partial class @IfcSweptSurface : IfcSurface, IIfcSweptSurface, IEquatable<@IfcSweptSurface>
 	{
 		#region IIfcSweptSurface explicit implementation
 		IIfcProfileDef IIfcSweptSurface.SweptCurve { get { return @SweptCurve; } }	
@@ -117,13 +117,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : NOT('IFC2X3.IFCDERIVEDPROFILEDEF' IN TYPEOF(SweptCurve));*/
-		/*WR2:	WR2 : SweptCurve.ProfileType = IfcProfileTypeEnum.Curve;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -169,16 +162,6 @@ namespace Xbim.Ifc2x3.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSweptSurface x, @IfcSweptSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSweptSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

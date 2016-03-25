@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcObjectPlacement", 440)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcObjectPlacement : IPersistEntity, INotifyPropertyChanged, IIfcObjectPlacement, IEqualityComparer<@IfcObjectPlacement>, IEquatable<@IfcObjectPlacement>
+	public abstract partial class @IfcObjectPlacement : IPersistEntity, INotifyPropertyChanged, IIfcObjectPlacement, IEquatable<@IfcObjectPlacement>
 	{
 		#region IIfcObjectPlacement explicit implementation
 		 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcProduct>(e => (e.ObjectPlacement as IfcObjectPlacement) == this, "ObjectPlacement", this);
+				return Model.Instances.Where<IfcProduct>(e => e.ObjectPlacement == this, "ObjectPlacement", this);
 			} 
 		}
 		[InverseProperty("PlacementRelTo")]
@@ -128,7 +128,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcLocalPlacement>(e => (e.PlacementRelTo as IfcObjectPlacement) == this, "PlacementRelTo", this);
+				return Model.Instances.Where<IfcLocalPlacement>(e => e.PlacementRelTo == this, "PlacementRelTo", this);
 			} 
 		}
 		#endregion
@@ -189,11 +189,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -239,16 +234,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcObjectPlacement x, @IfcObjectPlacement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcObjectPlacement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

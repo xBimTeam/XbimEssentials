@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcSectionProperties", 184)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionProperties : IfcPreDefinedProperties, IInstantiableEntity, IIfcSectionProperties, IEqualityComparer<@IfcSectionProperties>, IEquatable<@IfcSectionProperties>
+	public  partial class @IfcSectionProperties : IfcPreDefinedProperties, IInstantiableEntity, IIfcSectionProperties, IEquatable<@IfcSectionProperties>
 	{
 		#region IIfcSectionProperties explicit implementation
 		IfcSectionTypeEnum IIfcSectionProperties.SectionType { get { return @SectionType; } }	
@@ -124,11 +124,6 @@ namespace Xbim.Ifc4.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -174,16 +169,6 @@ namespace Xbim.Ifc4.ProfileResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSectionProperties x, @IfcSectionProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSectionProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

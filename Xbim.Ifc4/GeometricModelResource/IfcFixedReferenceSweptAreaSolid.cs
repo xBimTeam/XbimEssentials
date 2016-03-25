@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcFixedReferenceSweptAreaSolid", 1180)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFixedReferenceSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcFixedReferenceSweptAreaSolid, IEqualityComparer<@IfcFixedReferenceSweptAreaSolid>, IEquatable<@IfcFixedReferenceSweptAreaSolid>
+	public  partial class @IfcFixedReferenceSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcFixedReferenceSweptAreaSolid, IEquatable<@IfcFixedReferenceSweptAreaSolid>
 	{
 		#region IIfcFixedReferenceSweptAreaSolid explicit implementation
 		IIfcCurve IIfcFixedReferenceSweptAreaSolid.Directrix { get { return @Directrix; } }	
@@ -149,12 +149,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*DirectrixBounded:(SIZEOF(['IFC4.IFCCONIC', 'IFC4.IFCBOUNDEDCURVE'] * TYPEOF(Directrix)) = 1);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -200,16 +194,6 @@ namespace Xbim.Ifc4.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFixedReferenceSweptAreaSolid x, @IfcFixedReferenceSweptAreaSolid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFixedReferenceSweptAreaSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

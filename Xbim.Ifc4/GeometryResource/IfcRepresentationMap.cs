@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcRepresentationMap", 95)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRepresentationMap : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentationMap, IEqualityComparer<@IfcRepresentationMap>, IEquatable<@IfcRepresentationMap>
+	public  partial class @IfcRepresentationMap : INotifyPropertyChanged, IInstantiableEntity, IIfcRepresentationMap, IEquatable<@IfcRepresentationMap>
 	{
 		#region IIfcRepresentationMap explicit implementation
 		IIfcAxis2Placement IIfcRepresentationMap.MappingOrigin { get { return @MappingOrigin; } }	
@@ -159,7 +159,7 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcShapeAspect>(e => (e.PartOfProductDefinitionShape as IfcRepresentationMap) == this, "PartOfProductDefinitionShape", this);
+				return Model.Instances.Where<IfcShapeAspect>(e => e.PartOfProductDefinitionShape == this, "PartOfProductDefinitionShape", this);
 			} 
 		}
 		[InverseProperty("MappingSource")]
@@ -168,7 +168,7 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMappedItem>(e => (e.MappingSource as IfcRepresentationMap) == this, "MappingSource", this);
+				return Model.Instances.Where<IfcMappedItem>(e => e.MappingSource == this, "MappingSource", this);
 			} 
 		}
 		#endregion
@@ -238,12 +238,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*ApplicableMappedRepr:	ApplicableMappedRepr : 'IFC4.IFCSHAPEMODEL' IN TYPEOF(MappedRepresentation);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -289,16 +283,16 @@ namespace Xbim.Ifc4.GeometryResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcRepresentationMap left, IfcProductRepresentationSelect right)
+		{
+			return left == right as @IfcRepresentationMap;
+		}
 
-        public bool Equals(@IfcRepresentationMap x, @IfcRepresentationMap y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcRepresentationMap left, IfcProductRepresentationSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcRepresentationMap obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

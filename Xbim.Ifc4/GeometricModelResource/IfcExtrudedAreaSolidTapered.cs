@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcExtrudedAreaSolidTapered", 1176)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExtrudedAreaSolidTapered : IfcExtrudedAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolidTapered, IEqualityComparer<@IfcExtrudedAreaSolidTapered>, IEquatable<@IfcExtrudedAreaSolidTapered>
+	public  partial class @IfcExtrudedAreaSolidTapered : IfcExtrudedAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolidTapered, IEquatable<@IfcExtrudedAreaSolidTapered>
 	{
 		#region IIfcExtrudedAreaSolidTapered explicit implementation
 		IIfcProfileDef IIfcExtrudedAreaSolidTapered.EndSweptArea { get { return @EndSweptArea; } }	
@@ -90,12 +90,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectProfileAssignment:	CorrectProfileAssignment : IfcTaperedSweptAreaProfiles(SELF\IfcSweptAreaSolid.SweptArea, SELF.EndSweptArea);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -141,16 +135,6 @@ namespace Xbim.Ifc4.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcExtrudedAreaSolidTapered x, @IfcExtrudedAreaSolidTapered y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExtrudedAreaSolidTapered obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

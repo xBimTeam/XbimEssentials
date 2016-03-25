@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.ProfileResource
 {
 	[ExpressType("IfcArbitraryProfileDefWithVoids", 116)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IIfcArbitraryProfileDefWithVoids, IEqualityComparer<@IfcArbitraryProfileDefWithVoids>, IEquatable<@IfcArbitraryProfileDefWithVoids>
+	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IIfcArbitraryProfileDefWithVoids, IEquatable<@IfcArbitraryProfileDefWithVoids>
 	{
 		#region IIfcArbitraryProfileDefWithVoids explicit implementation
 		IEnumerable<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves { get { return @InnerCurves; } }	
@@ -87,14 +87,6 @@ namespace Xbim.Ifc4.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SELF\IfcProfileDef.ProfileType = AREA;*/
-		/*WR2:	WR2 : SIZEOF(QUERY(temp <* InnerCurves | temp.Dim <> 2)) = 0;*/
-		/*WR3:	WR3 : SIZEOF(QUERY(temp <* InnerCurves | 'IFC4.IFCLINE' IN TYPEOF(temp))) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -140,16 +132,6 @@ namespace Xbim.Ifc4.ProfileResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcArbitraryProfileDefWithVoids x, @IfcArbitraryProfileDefWithVoids y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcArbitraryProfileDefWithVoids obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
 	[ExpressType("IfcSpatialElement", 1273)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSpatialElement : IfcProduct, IIfcSpatialElement, IEqualityComparer<@IfcSpatialElement>, IEquatable<@IfcSpatialElement>
+	public abstract partial class @IfcSpatialElement : IfcProduct, IIfcSpatialElement, IEquatable<@IfcSpatialElement>
 	{
 		#region IIfcSpatialElement explicit implementation
 		IfcLabel? IIfcSpatialElement.LongName { get { return @LongName; } }	
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelContainedInSpatialStructure>(e => (e.RelatingStructure as IfcSpatialElement) == this, "RelatingStructure", this);
+				return Model.Instances.Where<IfcRelContainedInSpatialStructure>(e => e.RelatingStructure == this, "RelatingStructure", this);
 			} 
 		}
 		[InverseProperty("RelatedBuildings")]
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelReferencedInSpatialStructure>(e => (e.RelatingStructure as IfcSpatialElement) == this, "RelatingStructure", this);
+				return Model.Instances.Where<IfcRelReferencedInSpatialStructure>(e => e.RelatingStructure == this, "RelatingStructure", this);
 			} 
 		}
 		#endregion
@@ -128,11 +128,6 @@ namespace Xbim.Ifc4.ProductExtension
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -179,16 +174,6 @@ namespace Xbim.Ifc4.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSpatialElement x, @IfcSpatialElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpatialElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

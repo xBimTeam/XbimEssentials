@@ -35,7 +35,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("System", 24)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSystem : CobieAsset, IInstantiableEntity, ICobieSystem, IEqualityComparer<@CobieSystem>, IEquatable<@CobieSystem>
+	public  partial class @CobieSystem : CobieAsset, IInstantiableEntity, ICobieSystem, IEquatable<@CobieSystem>
 	{
 		#region ICobieSystem explicit implementation
 		IEnumerable<ICobieComponent> ICobieSystem.Components { get { return @Components; } }	
@@ -117,11 +117,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -167,16 +162,6 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
-
-        public bool Equals(@CobieSystem x, @CobieSystem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieSystem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

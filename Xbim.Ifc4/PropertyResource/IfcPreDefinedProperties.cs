@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.PropertyResource
 {
 	[ExpressType("IfcPreDefinedProperties", 1225)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedProperties : IfcPropertyAbstraction, IIfcPreDefinedProperties, IEqualityComparer<@IfcPreDefinedProperties>, IEquatable<@IfcPreDefinedProperties>
+	public abstract partial class @IfcPreDefinedProperties : IfcPropertyAbstraction, IIfcPreDefinedProperties, IEquatable<@IfcPreDefinedProperties>
 	{
 		#region IIfcPreDefinedProperties explicit implementation
 		 
@@ -54,11 +54,6 @@ namespace Xbim.Ifc4.PropertyResource
 		{
 			//there are no attributes defined for this entity
             throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -105,16 +100,6 @@ namespace Xbim.Ifc4.PropertyResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPreDefinedProperties x, @IfcPreDefinedProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPreDefinedProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

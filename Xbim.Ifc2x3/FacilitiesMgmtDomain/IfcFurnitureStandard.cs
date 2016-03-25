@@ -34,7 +34,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcFurnitureStandard", 75)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFurnitureStandard : IfcControl, IInstantiableEntity, IIfcFurnitureStandard, IEqualityComparer<@IfcFurnitureStandard>, IEquatable<@IfcFurnitureStandard>
+	public  partial class @IfcFurnitureStandard : IfcControl, IInstantiableEntity, IIfcFurnitureStandard, IEquatable<@IfcFurnitureStandard>
 	{
 		#region IIfcFurnitureStandard explicit implementation
 		 
@@ -65,11 +65,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -116,16 +111,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFurnitureStandard x, @IfcFurnitureStandard y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFurnitureStandard obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

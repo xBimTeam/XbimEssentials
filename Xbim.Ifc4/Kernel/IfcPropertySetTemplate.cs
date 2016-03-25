@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcPropertySetTemplate", 1232)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertySetTemplate : IfcPropertyTemplateDefinition, IInstantiableEntity, IIfcPropertySetTemplate, IEqualityComparer<@IfcPropertySetTemplate>, IEquatable<@IfcPropertySetTemplate>
+	public  partial class @IfcPropertySetTemplate : IfcPropertyTemplateDefinition, IInstantiableEntity, IIfcPropertySetTemplate, IEquatable<@IfcPropertySetTemplate>
 	{
 		#region IIfcPropertySetTemplate explicit implementation
 		IfcPropertySetTemplateTypeEnum? IIfcPropertySetTemplate.TemplateType { get { return @TemplateType; } }	
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDefinesByTemplate>(e => (e.RelatingTemplate as IfcPropertySetTemplate) == this, "RelatingTemplate", this);
+				return Model.Instances.Where<IfcRelDefinesByTemplate>(e => e.RelatingTemplate == this, "RelatingTemplate", this);
 			} 
 		}
 		#endregion
@@ -141,13 +141,6 @@ namespace Xbim.Ifc4.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*ExistsName:	ExistsName : EXISTS(SELF\IfcRoot.Name);*/
-		/*UniquePropertyNames:	UniquePropertyNames : IfcUniquePropertyTemplateNames(HasPropertyTemplates);*/
 		}
 		#endregion
 
@@ -194,16 +187,6 @@ namespace Xbim.Ifc4.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPropertySetTemplate x, @IfcPropertySetTemplate y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertySetTemplate obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

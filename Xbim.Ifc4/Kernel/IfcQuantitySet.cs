@@ -33,7 +33,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcQuantitySet", 1239)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcQuantitySet : IfcPropertySetDefinition, IIfcQuantitySet, IEqualityComparer<@IfcQuantitySet>, IEquatable<@IfcQuantitySet>
+	public abstract partial class @IfcQuantitySet : IfcPropertySetDefinition, IIfcQuantitySet, IEquatable<@IfcQuantitySet>
 	{
 		#region IIfcQuantitySet explicit implementation
 		 
@@ -63,11 +63,6 @@ namespace Xbim.Ifc4.Kernel
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -114,16 +109,6 @@ namespace Xbim.Ifc4.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcQuantitySet x, @IfcQuantitySet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcQuantitySet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

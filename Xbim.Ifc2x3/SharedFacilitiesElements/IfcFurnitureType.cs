@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcFurnitureType", 359)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFurnitureType : IfcFurnishingElementType, IInstantiableEntity, IIfcFurnitureType, IEqualityComparer<@IfcFurnitureType>, IEquatable<@IfcFurnitureType>
+	public  partial class @IfcFurnitureType : IfcFurnishingElementType, IInstantiableEntity, IIfcFurnitureType, IEquatable<@IfcFurnitureType>
 	{
 		#region IIfcFurnitureType explicit implementation
 		IfcAssemblyPlaceEnum IIfcFurnitureType.AssemblyPlace { get { return @AssemblyPlace; } }	
@@ -95,11 +95,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -145,16 +140,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcFurnitureType x, @IfcFurnitureType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFurnitureType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

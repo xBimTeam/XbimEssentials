@@ -36,7 +36,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelFillsElement", 563)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelFillsElement : IfcRelConnects, IInstantiableEntity, IIfcRelFillsElement, IEqualityComparer<@IfcRelFillsElement>, IEquatable<@IfcRelFillsElement>
+	public  partial class @IfcRelFillsElement : IfcRelConnects, IInstantiableEntity, IIfcRelFillsElement, IEquatable<@IfcRelFillsElement>
 	{
 		#region IIfcRelFillsElement explicit implementation
 		IIfcOpeningElement IIfcRelFillsElement.RelatingOpeningElement { get { return @RelatingOpeningElement; } }	
@@ -112,11 +112,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -162,16 +157,6 @@ namespace Xbim.Ifc2x3.ProductExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelFillsElement x, @IfcRelFillsElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelFillsElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	[ExpressType("IfcUnitaryControlElementType", 1309)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcUnitaryControlElementType : IfcDistributionControlElementType, IInstantiableEntity, IIfcUnitaryControlElementType, IEqualityComparer<@IfcUnitaryControlElementType>, IEquatable<@IfcUnitaryControlElementType>
+	public  partial class @IfcUnitaryControlElementType : IfcDistributionControlElementType, IInstantiableEntity, IIfcUnitaryControlElementType, IEquatable<@IfcUnitaryControlElementType>
 	{
 		#region IIfcUnitaryControlElementType explicit implementation
 		IfcUnitaryControlElementTypeEnum IIfcUnitaryControlElementType.PredefinedType { get { return @PredefinedType; } }	
@@ -95,12 +95,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcUnitaryControlElementTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +140,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcUnitaryControlElementType x, @IfcUnitaryControlElementType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcUnitaryControlElementType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

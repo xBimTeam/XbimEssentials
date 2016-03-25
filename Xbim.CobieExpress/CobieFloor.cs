@@ -37,7 +37,7 @@ namespace Xbim.CobieExpress
 {
 	[ExpressType("Floor", 17)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieFloor : CobieAsset, IInstantiableEntity, ICobieFloor, IEqualityComparer<@CobieFloor>, IEquatable<@CobieFloor>
+	public  partial class @CobieFloor : CobieAsset, IInstantiableEntity, ICobieFloor, IEquatable<@CobieFloor>
 	{
 		#region ICobieFloor explicit implementation
 		double? ICobieFloor.Elevation { get { return @Elevation; } }	
@@ -113,7 +113,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieSpace>(e => (e.Floor as CobieFloor) == this, "Floor", this);
+				return Model.Instances.Where<CobieSpace>(e => e.Floor == this, "Floor", this);
 			} 
 		}
 		#endregion
@@ -150,11 +150,6 @@ namespace Xbim.CobieExpress
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -201,16 +196,16 @@ namespace Xbim.CobieExpress
             return !(left == right);
         }
 
+        public static bool operator ==(@CobieFloor left, SpatialDivision right)
+		{
+			return left == right as @CobieFloor;
+		}
 
-        public bool Equals(@CobieFloor x, @CobieFloor y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@CobieFloor left, SpatialDivision right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@CobieFloor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

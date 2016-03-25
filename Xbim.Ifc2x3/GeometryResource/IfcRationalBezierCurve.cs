@@ -35,7 +35,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcRationalBezierCurve", 546)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRationalBezierCurve : IfcBezierCurve, IInstantiableEntity, IIfcRationalBezierCurve, IEqualityComparer<@IfcRationalBezierCurve>, IEquatable<@IfcRationalBezierCurve>
+	public  partial class @IfcRationalBezierCurve : IfcBezierCurve, IInstantiableEntity, IIfcRationalBezierCurve, IEquatable<@IfcRationalBezierCurve>
 	{
 		#region IIfcRationalBezierCurve explicit implementation
 		IEnumerable<double> IIfcRationalBezierCurve.WeightsData { get { return @WeightsData; } }	
@@ -102,13 +102,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(WeightsData) = SIZEOF(SELF\IfcBSplineCurve.ControlPointsList);*/
-		/*WR2:	WR2 : IfcCurveWeightsPositive(SELF);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -154,16 +147,6 @@ namespace Xbim.Ifc2x3.GeometryResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRationalBezierCurve x, @IfcRationalBezierCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRationalBezierCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

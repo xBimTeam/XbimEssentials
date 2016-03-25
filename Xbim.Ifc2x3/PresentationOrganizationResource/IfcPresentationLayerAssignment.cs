@@ -40,7 +40,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcPresentationLayerAssignment", 258)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationLayerAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationLayerAssignment, IEqualityComparer<@IfcPresentationLayerAssignment>, IEquatable<@IfcPresentationLayerAssignment>
+	public  partial class @IfcPresentationLayerAssignment : INotifyPropertyChanged, IInstantiableEntity, IIfcPresentationLayerAssignment, IEquatable<@IfcPresentationLayerAssignment>
 	{
 		#region IIfcPresentationLayerAssignment explicit implementation
 		IfcLabel IIfcPresentationLayerAssignment.Name { get { return @Name; } }	
@@ -252,11 +252,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -302,16 +297,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcPresentationLayerAssignment x, @IfcPresentationLayerAssignment y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPresentationLayerAssignment obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -40,7 +40,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 {
 	[ExpressType("IfcClassificationReference", 209)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationReference : IfcExternalReference, IInstantiableEntity, IIfcClassificationReference, IEqualityComparer<@IfcClassificationReference>, IEquatable<@IfcClassificationReference>
+	public  partial class @IfcClassificationReference : IfcExternalReference, IInstantiableEntity, IIfcClassificationReference, IEquatable<@IfcClassificationReference>
 	{
 		#region IIfcClassificationReference explicit implementation
 		IIfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource { get { return @ReferencedSource; } }	
@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesClassification>(e => (e.RelatingClassification as IfcClassificationReference) == this, "RelatingClassification", this);
+				return Model.Instances.Where<IfcRelAssociatesClassification>(e => e.RelatingClassification == this, "RelatingClassification", this);
 			} 
 		}
 		[InverseProperty("ReferencedSource")]
@@ -126,7 +126,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcClassificationReference>(e => (e.ReferencedSource as IfcClassificationReference) == this, "ReferencedSource", this);
+				return Model.Instances.Where<IfcClassificationReference>(e => e.ReferencedSource == this, "ReferencedSource", this);
 			} 
 		}
 		#endregion
@@ -154,11 +154,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -205,16 +200,26 @@ namespace Xbim.Ifc4.ExternalReferenceResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcClassificationReference left, IfcClassificationReferenceSelect right)
+		{
+			return left == right as @IfcClassificationReference;
+		}
 
-        public bool Equals(@IfcClassificationReference x, @IfcClassificationReference y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcClassificationReference left, IfcClassificationReferenceSelect right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcClassificationReference obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
+        public static bool operator ==(@IfcClassificationReference left, IfcClassificationSelect right)
+		{
+			return left == right as @IfcClassificationReference;
+		}
+
+		public static bool operator !=(@IfcClassificationReference left, IfcClassificationSelect right)
+		{
+			return !(left == right);
+		}
+
         #endregion
 
 		#region Custom code (will survive code regeneration)

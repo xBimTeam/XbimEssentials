@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	[ExpressType("IfcAlarm", 1098)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAlarm : IfcDistributionControlElement, IInstantiableEntity, IIfcAlarm, IEqualityComparer<@IfcAlarm>, IEquatable<@IfcAlarm>
+	public  partial class @IfcAlarm : IfcDistributionControlElement, IInstantiableEntity, IIfcAlarm, IEquatable<@IfcAlarm>
 	{
 		#region IIfcAlarm explicit implementation
 		IfcAlarmTypeEnum? IIfcAlarm.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcAlarmTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:('IFC4.IFCALARMTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcAlarm x, @IfcAlarm y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAlarm obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

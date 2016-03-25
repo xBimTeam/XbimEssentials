@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcTriangulatedFaceSet", 1304)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTriangulatedFaceSet : IfcTessellatedFaceSet, IInstantiableEntity, IIfcTriangulatedFaceSet, IEqualityComparer<@IfcTriangulatedFaceSet>, IEquatable<@IfcTriangulatedFaceSet>
+	public  partial class @IfcTriangulatedFaceSet : IfcTessellatedFaceSet, IInstantiableEntity, IIfcTriangulatedFaceSet, IEquatable<@IfcTriangulatedFaceSet>
 	{
 		#region IIfcTriangulatedFaceSet explicit implementation
 		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcTriangulatedFaceSet.CoordIndex { get { return @CoordIndex; } }	
@@ -121,11 +121,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -171,16 +166,6 @@ namespace Xbim.Ifc4.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcTriangulatedFaceSet x, @IfcTriangulatedFaceSet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTriangulatedFaceSet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

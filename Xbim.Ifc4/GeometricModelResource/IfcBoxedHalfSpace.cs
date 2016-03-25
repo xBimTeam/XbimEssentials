@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 {
 	[ExpressType("IfcBoxedHalfSpace", 655)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoxedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcBoxedHalfSpace, IEqualityComparer<@IfcBoxedHalfSpace>, IEquatable<@IfcBoxedHalfSpace>
+	public  partial class @IfcBoxedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcBoxedHalfSpace, IEquatable<@IfcBoxedHalfSpace>
 	{
 		#region IIfcBoxedHalfSpace explicit implementation
 		IIfcBoundingBox IIfcBoxedHalfSpace.Enclosure { get { return @Enclosure; } }	
@@ -87,12 +87,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*UnboundedSurface:	UnboundedSurface : NOT ('IFC4.IFCCURVEBOUNDEDPLANE' IN TYPEOF(SELF\IfcHalfSpaceSolid.BaseSurface));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -138,16 +132,6 @@ namespace Xbim.Ifc4.GeometricModelResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcBoxedHalfSpace x, @IfcBoxedHalfSpace y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBoxedHalfSpace obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

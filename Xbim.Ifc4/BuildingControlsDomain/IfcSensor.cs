@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 {
 	[ExpressType("IfcSensor", 1264)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSensor : IfcDistributionControlElement, IInstantiableEntity, IIfcSensor, IEqualityComparer<@IfcSensor>, IEquatable<@IfcSensor>
+	public  partial class @IfcSensor : IfcDistributionControlElement, IInstantiableEntity, IIfcSensor, IEquatable<@IfcSensor>
 	{
 		#region IIfcSensor explicit implementation
 		IfcSensorTypeEnum? IIfcSensor.PredefinedType { get { return @PredefinedType; } }	
@@ -94,13 +94,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType: ((PredefinedType = IfcSensorTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:('IFC4.IFCSENSORTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,16 +139,6 @@ namespace Xbim.Ifc4.BuildingControlsDomain
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcSensor x, @IfcSensor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSensor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

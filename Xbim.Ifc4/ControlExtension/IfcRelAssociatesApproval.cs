@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.ControlExtension
 {
 	[ExpressType("IfcRelAssociatesApproval", 342)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesApproval : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesApproval, IEqualityComparer<@IfcRelAssociatesApproval>, IEquatable<@IfcRelAssociatesApproval>
+	public  partial class @IfcRelAssociatesApproval : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesApproval, IEquatable<@IfcRelAssociatesApproval>
 	{
 		#region IIfcRelAssociatesApproval explicit implementation
 		IIfcApproval IIfcRelAssociatesApproval.RelatingApproval { get { return @RelatingApproval; } }	
@@ -93,11 +93,6 @@ namespace Xbim.Ifc4.ControlExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -143,16 +138,6 @@ namespace Xbim.Ifc4.ControlExtension
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelAssociatesApproval x, @IfcRelAssociatesApproval y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssociatesApproval obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -38,7 +38,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcFaceBasedSurfaceModel", 438)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFaceBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFaceBasedSurfaceModel, IEqualityComparer<@IfcFaceBasedSurfaceModel>, IEquatable<@IfcFaceBasedSurfaceModel>
+	public  partial class @IfcFaceBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFaceBasedSurfaceModel, IEquatable<@IfcFaceBasedSurfaceModel>
 	{
 		#region IIfcFaceBasedSurfaceModel explicit implementation
 		IEnumerable<IIfcConnectedFaceSet> IIfcFaceBasedSurfaceModel.FbsmFaces { get { return @FbsmFaces; } }	
@@ -98,11 +98,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -148,16 +143,16 @@ namespace Xbim.Ifc2x3.GeometricModelResource
             return !(left == right);
         }
 
+        public static bool operator ==(@IfcFaceBasedSurfaceModel left, IfcSurfaceOrFaceSurface right)
+		{
+			return left == right as @IfcFaceBasedSurfaceModel;
+		}
 
-        public bool Equals(@IfcFaceBasedSurfaceModel x, @IfcFaceBasedSurfaceModel y)
-        {
-            return x == y;
-        }
+		public static bool operator !=(@IfcFaceBasedSurfaceModel left, IfcSurfaceOrFaceSurface right)
+		{
+			return !(left == right);
+		}
 
-        public int GetHashCode(@IfcFaceBasedSurfaceModel obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

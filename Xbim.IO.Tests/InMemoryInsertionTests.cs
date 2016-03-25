@@ -44,7 +44,8 @@ namespace Xbim.MemoryModel.Tests
 
             using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
-                model.LoadStep21(original);
+                var errs = model.LoadStep21(original);
+                Assert.AreEqual(0, errs);
                 var wall = model.Instances.FirstOrDefault<IfcWall>();
                 using (var iModel = new IO.Memory.MemoryModel(new EntityFactory()))
                 {

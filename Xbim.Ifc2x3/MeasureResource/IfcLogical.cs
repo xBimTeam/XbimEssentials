@@ -102,11 +102,6 @@ namespace Xbim.Ifc2x3.MeasureResource
             _value = value.BooleanVal;
             
 		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
-		}
 		#endregion
 
 		#region IExpressValueType implementation

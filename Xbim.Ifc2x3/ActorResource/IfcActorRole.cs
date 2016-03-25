@@ -39,7 +39,7 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcActorRole", 595)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActorRole : INotifyPropertyChanged, IInstantiableEntity, IIfcActorRole, IEqualityComparer<@IfcActorRole>, IEquatable<@IfcActorRole>
+	public  partial class @IfcActorRole : INotifyPropertyChanged, IInstantiableEntity, IIfcActorRole, IEquatable<@IfcActorRole>
 	{
 		#region IIfcActorRole explicit implementation
 		IfcRoleEnum IIfcActorRole.Role { get { return @Role; } }	
@@ -233,12 +233,6 @@ namespace Xbim.Ifc2x3.ActorResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:              EXISTS(SELF.UserDefinedRole));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -284,16 +278,6 @@ namespace Xbim.Ifc2x3.ActorResource
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcActorRole x, @IfcActorRole y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcActorRole obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

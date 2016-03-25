@@ -35,7 +35,7 @@ namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcRelAssignsToGroupByFactor", 1248)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToGroupByFactor : IfcRelAssignsToGroup, IInstantiableEntity, IIfcRelAssignsToGroupByFactor, IEqualityComparer<@IfcRelAssignsToGroupByFactor>, IEquatable<@IfcRelAssignsToGroupByFactor>
+	public  partial class @IfcRelAssignsToGroupByFactor : IfcRelAssignsToGroup, IInstantiableEntity, IIfcRelAssignsToGroupByFactor, IEquatable<@IfcRelAssignsToGroupByFactor>
 	{
 		#region IIfcRelAssignsToGroupByFactor explicit implementation
 		IfcRatioMeasure IIfcRelAssignsToGroupByFactor.Factor { get { return @Factor; } }	
@@ -93,11 +93,6 @@ namespace Xbim.Ifc4.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -143,16 +138,6 @@ namespace Xbim.Ifc4.Kernel
             return !(left == right);
         }
 
-
-        public bool Equals(@IfcRelAssignsToGroupByFactor x, @IfcRelAssignsToGroupByFactor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToGroupByFactor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)
