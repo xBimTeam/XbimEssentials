@@ -42,6 +42,14 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 		}
 	//## Custom code
+        IEnumerable<IIfcRelDefinesByProperties> IIfcTypeObject.DefinedByProperties
+        {
+            get
+            {
+                //this will never return anything because IIfcRelDefinesByProperties.RelatedObjects is of different type in IFC4
+                yield break;
+            }
+        }
 	//##
 	}
 }
