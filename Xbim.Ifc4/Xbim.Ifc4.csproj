@@ -117,7 +117,9 @@
     <Compile Include="CostResource\IfcCostValue.cs" />
     <Compile Include="CostResource\IfcCurrencyRelationship.cs" />
     <Compile Include="DateTimeResource\IfcDate.cs" />
+    <Compile Include="DateTimeResource\IfcDatePartial.cs" />
     <Compile Include="DateTimeResource\IfcDateTime.cs" />
+    <Compile Include="DateTimeResource\IfcDateTimePartial.cs" />
     <Compile Include="DateTimeResource\IfcDayInMonthNumber.cs" />
     <Compile Include="DateTimeResource\IfcDayInWeekNumber.cs" />
     <Compile Include="DateTimeResource\IfcDuration.cs" />
@@ -664,6 +666,7 @@
     <Compile Include="Kernel\IfcRoot.cs" />
     <Compile Include="Kernel\IfcSimplePropertyTemplate.cs" />
     <Compile Include="Kernel\IfcTypeObject.cs" />
+    <Compile Include="Kernel\IfcTypeObjectPartial.cs" />
     <Compile Include="Kernel\IfcTypeProcess.cs" />
     <Compile Include="Kernel\IfcTypeProduct.cs" />
     <Compile Include="Kernel\IfcTypeResource.cs" />

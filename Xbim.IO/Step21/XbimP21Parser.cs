@@ -32,11 +32,11 @@ namespace Xbim.IO.Step21
         private readonly ILogger _logger = LoggerFactory.GetLogger();
         public event ReportProgressDelegate ProgressStatus;
         private readonly Stack<Part21Entity> _processStack = new Stack<Part21Entity>();
-        private int _listNestLevel = -1;
-        private Part21Entity _currentInstance;
+        protected int ListNestLevel = -1;
+        protected Part21Entity CurrentInstance;
         public event CreateEntityEventHandler EntityCreate;
         private readonly Dictionary<long, IPersist> _entities;
-        private PropertyValue _propertyValue;
+        protected PropertyValue PropertyValue;
         private readonly List<DeferredReference> _deferredReferences;
         private readonly double _streamSize = -1;
         private int _errorCount;
@@ -45,7 +45,7 @@ namespace Xbim.IO.Step21
         private bool _deferListItems;
         public bool Cancel = false;
         private readonly List<int> _nestedIndex = new List<int>();
-        public int[] NestedIndex { get { return _listNestLevel > 0 ? _nestedIndex.ToArray() : null; } }
+        public int[] NestedIndex { get { return ListNestLevel > 0 ? _nestedIndex.ToArray() : null; } }
 
         private readonly ExpressMetaData _metadata;
 
@@ -63,6 +63,15 @@ namespace Xbim.IO.Step21
 
             _entities = new Dictionary<long, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount/2); //assume 50% deferred
+            _errorCount = 0;
+        }
+
+        protected XbimP21Parser(ExpressMetaData metadata)
+        {
+            _metadata = metadata;
+            const int entityApproxCount = 5000;
+            _entities = new Dictionary<long, IPersist>(entityApproxCount);
+            _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred
             _errorCount = 0;
         }
 
@@ -120,28 +129,28 @@ namespace Xbim.IO.Step21
             if (p21.CurrentParamIndex == -1)
                 p21.CurrentParamIndex++; //first time in take the first argument
 
-            _listNestLevel++;
+            ListNestLevel++;
             //  Console.WriteLine("BeginList");
-            if (_listNestLevel < 2) return;
+            if (ListNestLevel < 2) return;
 
-            if (_listNestLevel -1 > _nestedIndex.Count)
+            if (ListNestLevel -1 > _nestedIndex.Count)
                 _nestedIndex.Add(0);
             else
-                _nestedIndex[_listNestLevel - 2]++;
+                _nestedIndex[ListNestLevel - 2]++;
         }
 
         protected override void EndList()
         {
-            _listNestLevel--;
-            if (_listNestLevel == 0)
+            ListNestLevel--;
+            if (ListNestLevel == 0)
             {
-                _currentInstance.CurrentParamIndex++;
+                CurrentInstance.CurrentParamIndex++;
                 _deferListItems = false;
             }
             //Console.WriteLine("EndList");
 
             //we are finished with the list
-            if (_listNestLevel <= 0) _nestedIndex.Clear();
+            if (ListNestLevel <= 0) _nestedIndex.Clear();
         }
 
         protected override void BeginComplex()
@@ -154,9 +163,9 @@ namespace Xbim.IO.Step21
 
         protected override void NewEntity(string entityLabel)
         {
-            _currentInstance = new Part21Entity(entityLabel);
+            CurrentInstance = new Part21Entity(entityLabel);
             // Console.WriteLine(CurrentSemanticValue.strVal);
-            _processStack.Push(_currentInstance);
+            _processStack.Push(CurrentInstance);
             if (_streamSize == -1 || ProgressStatus == null) return;
 
             var sc = (Scanner) Scanner;
@@ -173,11 +182,11 @@ namespace Xbim.IO.Step21
             if (InHeader)
             {
                 int[] reqParams;
-                _currentInstance = new Part21Entity(EntityCreate(entityTypeName, null, InHeader, out reqParams))
+                CurrentInstance = new Part21Entity(EntityCreate(entityTypeName, null, InHeader, out reqParams))
                 {
                     RequiredParameters = reqParams
                 };
-                if(_currentInstance != null) _processStack.Push(_currentInstance);
+                if(CurrentInstance != null) _processStack.Push(CurrentInstance);
             }
             else
             {
@@ -193,7 +202,7 @@ namespace Xbim.IO.Step21
         {
             var p21 = _processStack.Pop();
             //Debug.Assert(_processStack.Count == 0);
-            _currentInstance = null;
+            CurrentInstance = null;
             if (p21.Entity != null)
                 _entities.Add(p21.EntityLabel, p21.Entity);
 
@@ -205,60 +214,60 @@ namespace Xbim.IO.Step21
         {
             _processStack.Pop();
 
-            _currentInstance = null;
+            CurrentInstance = null;
             // Console.WriteLine("EndHeaderEntity - " + CurrentSemanticValue.strVal);
         }
 
         protected override void SetIntegerValue(string value)
         {
-            _propertyValue.Init(value, StepParserType.Integer);
+            PropertyValue.Init(value, StepParserType.Integer);
             SetEntityParameter(value);
         }
 
         protected override void SetHexValue(string value)
         {
-            _propertyValue.Init(value, StepParserType.HexaDecimal);
+            PropertyValue.Init(value, StepParserType.HexaDecimal);
             SetEntityParameter(value);
         }
 
         protected override void SetFloatValue(string value)
         {
-            _propertyValue.Init(value, StepParserType.Real);
+            PropertyValue.Init(value, StepParserType.Real);
             SetEntityParameter(value);
         }
 
         protected override void SetStringValue(string value)
         {
-            _propertyValue.Init(value, StepParserType.String);
+            PropertyValue.Init(value, StepParserType.String);
             SetEntityParameter(value);
         }
 
         protected override void SetEnumValue(string value)
         {
-            _propertyValue.Init(value.Trim('.'), StepParserType.Enum);
+            PropertyValue.Init(value.Trim('.'), StepParserType.Enum);
             SetEntityParameter(value);
         }
 
         protected override void SetBooleanValue(string value)
         {
-            _propertyValue.Init(value, StepParserType.Boolean);
+            PropertyValue.Init(value, StepParserType.Boolean);
             SetEntityParameter(value);
         }
 
         protected override void SetNonDefinedValue()
         {
-            if (_listNestLevel == 0)
+            if (ListNestLevel == 0)
             {
-                _currentInstance.CurrentParamIndex++;
+                CurrentInstance.CurrentParamIndex++;
                 _deferListItems = false;
             }
         }
 
         protected override void SetOverrideValue()
         {
-            if (_listNestLevel == 0)
+            if (ListNestLevel == 0)
             {
-                _currentInstance.CurrentParamIndex++;
+                CurrentInstance.CurrentParamIndex++;
                 _deferListItems = false;
             }
         }
@@ -266,15 +275,15 @@ namespace Xbim.IO.Step21
         protected override void SetObjectValue(string value)
         {
             var refId = Convert.ToInt32(value.TrimStart('#'));
-            if (!TrySetObjectValue(_currentInstance.Entity, _currentInstance.CurrentParamIndex, refId, NestedIndex))
+            if (!TrySetObjectValue(CurrentInstance.Entity, CurrentInstance.CurrentParamIndex, refId, NestedIndex))
             {
-                _deferredReferences.Add(new DeferredReference(_currentInstance.CurrentParamIndex,
-                                                              _currentInstance.Entity, refId, NestedIndex));
-                if (_listNestLevel != 0) _deferListItems = true;
+                _deferredReferences.Add(new DeferredReference(CurrentInstance.CurrentParamIndex,
+                                                              CurrentInstance.Entity, refId, NestedIndex));
+                if (ListNestLevel != 0) _deferListItems = true;
             }
-            if (_listNestLevel == 0)
+            if (ListNestLevel == 0)
             {
-                _currentInstance.CurrentParamIndex++;
+                CurrentInstance.CurrentParamIndex++;
                 _deferListItems = false;
             }
         }
@@ -283,10 +292,10 @@ namespace Xbim.IO.Step21
         {
             try
             {
-                _propertyValue.Init(_processStack.Pop().Entity);
-                _currentInstance = _processStack.Peek();
-                if (_currentInstance.Entity != null)
-                    _currentInstance.ParameterSetter(_currentInstance.CurrentParamIndex, _propertyValue, NestedIndex);
+                PropertyValue.Init(_processStack.Pop().Entity);
+                CurrentInstance = _processStack.Peek();
+                if (CurrentInstance.Entity != null)
+                    CurrentInstance.ParameterSetter(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
             }
             catch (Exception )
             {
@@ -308,9 +317,9 @@ namespace Xbim.IO.Step21
                     _logger.Error("Unhandled Parser error, in Parser.cs EndNestedType");
                 }
             }
-            if (_listNestLevel == 0)
+            if (ListNestLevel == 0)
             {
-                _currentInstance.CurrentParamIndex++;
+                CurrentInstance.CurrentParamIndex++;
                 _deferListItems = false;
             }
         }
@@ -319,11 +328,11 @@ namespace Xbim.IO.Step21
         {
             int[] reqProps;
             if (EntityCreate != null)
-                _currentInstance = new Part21Entity(EntityCreate(value, null, InHeader, out reqProps))
+                CurrentInstance = new Part21Entity(EntityCreate(value, null, InHeader, out reqProps))
                 {
                     RequiredParameters = reqProps
                 };
-            _processStack.Push(_currentInstance);
+            _processStack.Push(CurrentInstance);
             if (Cancel) YYAccept();
         }
 
@@ -331,8 +340,8 @@ namespace Xbim.IO.Step21
         {
             try
             {
-                if (_currentInstance.Entity != null)
-                    _currentInstance.ParameterSetter(_currentInstance.CurrentParamIndex, _propertyValue, NestedIndex);
+                if (CurrentInstance.Entity != null)
+                    CurrentInstance.ParameterSetter(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
             }
             catch (Exception )
             {
@@ -373,9 +382,9 @@ namespace Xbim.IO.Step21
                     _logger.Error("Unhandled Parser error, in Parser.cs SetEntityParameter");
                 }
             }
-            if (_listNestLevel == 0)
+            if (ListNestLevel == 0)
             {
-                _currentInstance.CurrentParamIndex++;
+                CurrentInstance.CurrentParamIndex++;
                 _deferListItems = false;
             }
         }
@@ -393,8 +402,8 @@ namespace Xbim.IO.Step21
                 IPersist refEntity;
                 if (_entities.TryGetValue(refId, out refEntity) && host != null)
                 {
-                    _propertyValue.Init(refEntity);
-                    (host).Parse(paramIndex, _propertyValue, listNextLevel);
+                    PropertyValue.Init(refEntity);
+                    (host).Parse(paramIndex, PropertyValue, listNextLevel);
                     return true;
                 }
             }
