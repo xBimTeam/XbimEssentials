@@ -123,5 +123,12 @@ namespace Xbim.Ifc4.Interfaces
         //Read and write functions
         void WriteTriangulation(TextWriter tw, IXbimGeometryObject shape, double tolerance, double deflection, double angle);
         void WriteTriangulation(BinaryWriter bw, IXbimGeometryObject shape, double tolerance, double deflection, double angle);
+
+        //Transforms an object geometrically and returns a new copy of the object, geometryObject passed is unchanged.
+        IXbimGeometryObject Transform(IXbimGeometryObject geometryObject, IIfcCartesianTransformationOperator transformation);
+        //Moves an object to the required placement, the original geometry is unchanged a copy is returned.
+        IXbimGeometryObject Move(IXbimGeometryObject geometryObject, IIfcPlacement placement);
+        //Moves an object to the required placement, the original geometry is unchanged a copy is returned.
+        IXbimGeometryObject Move(IXbimGeometryObject geometryObject, IIfcObjectPlacement objectPlacement);
     }
 }

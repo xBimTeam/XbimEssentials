@@ -64,7 +64,7 @@ namespace Xbim.MemoryModel.Tests
                     bw.Close();
                 }
             }
-            using (var fs = new FileStream(@"test.wexBIM", FileMode.Open, FileAccess.Read))
+            using (var fs = new FileStream(@"C:\Users\Steve\Documents\IFC Models\vectorworks_ifc2.wexbim", FileMode.Open, FileAccess.Read))
                 {
                     using (var br = new BinaryReader(fs))
                     {
@@ -120,6 +120,8 @@ namespace Xbim.MemoryModel.Tests
                                 var transform = XbimMatrix3D.FromArray(br.ReadBytes(sizeof(double) * 16));
                             }
                             var triangulation = br.ReadShapeTriangulation();
+                            Assert.IsTrue(triangulation.Vertices.Count > 0, "Number of vertices should be greater than zero");
+
                         }
                         else if (shapeRepetition == 1)
                         {
@@ -128,6 +130,7 @@ namespace Xbim.MemoryModel.Tests
                             var instanceLabel = br.ReadInt32();
                             var styleId = br.ReadInt32();
                             var triangulation = br.ReadShapeTriangulation();
+                            Assert.IsTrue(triangulation.Vertices.Count>0, "Number of vertices should be greater than zero");
                         }
                     }
                 }
