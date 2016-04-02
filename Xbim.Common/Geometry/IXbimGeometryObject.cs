@@ -15,7 +15,7 @@ namespace Xbim.Common.Geometry
         bool IsSet { get; }
         XbimRect3D BoundingBox { get; }
         /// <summary>
-        /// Returns a copy of the current object transformed by matrix3D, it is guranteed to return the same type as "this"
+        /// Returns a copy of the current object transformed by matrix3D, it is gauranteed to return the same type as "this"
         /// </summary>
         /// <param name="matrix3D"></param>
         /// <returns></returns>
@@ -26,7 +26,10 @@ namespace Xbim.Common.Geometry
         /// <param name="matrix3D"></param>
         /// <returns></returns>
         IXbimGeometryObject TransformShallow(XbimMatrix3D matrix3D);
-        
+        /// <summary>
+        /// Gets or sets an arbitrary object value that can be used to store custom information about this element
+        /// </summary>
+        object Tag { get; set; }
 
     }
 }
