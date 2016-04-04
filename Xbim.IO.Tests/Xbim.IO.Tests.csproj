@@ -82,6 +82,7 @@
     <Compile Include="ParsingTests.cs" />
     <Compile Include="GeometryStoreTests.cs" />
     <Compile Include="Ifc4GeometryTests.cs" />
+    <Compile Include="ReadingFileWithComments.cs" />
     <Compile Include="TableStorageTests.cs" />
     <Compile Include="WexBIMTests.cs" />
     <Compile Include="XmlTests4.cs" />
@@ -150,6 +151,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\LakesideRestaurant.cobieZip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\mapped-shape-with-transformation.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\SampleHouse4.ifc">
