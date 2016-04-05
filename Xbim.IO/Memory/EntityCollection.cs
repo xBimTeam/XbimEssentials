@@ -22,7 +22,7 @@ namespace Xbim.IO.Memory
             }
         }
         private readonly MemoryModel _model;
-        private readonly MultiValueDictionary<Type, IPersistEntity> _internal;
+        private readonly XbimMultiValueDictionary<Type, IPersistEntity> _internal;
         private readonly Dictionary<int,IPersistEntity> _collection = new Dictionary<int,IPersistEntity>(0x77777);
         private List<int> _naturalOrder = new List<int>(0x77777); //about a default of half a million stops too much growing, and 7 is lucky; 
         internal IEntityFactory Factory
@@ -34,7 +34,7 @@ namespace Xbim.IO.Memory
         public EntityCollection(MemoryModel model)
         {
             _model = model;
-            _internal = MultiValueDictionary<Type, IPersistEntity>.Create(()=> new HashSet<IPersistEntity>(new EntityLabelComparer()));
+            _internal = XbimMultiValueDictionary<Type, IPersistEntity>.Create(()=> new HashSet<IPersistEntity>(new EntityLabelComparer()));
         }
 
         private IEnumerable<Type> GetQueryTypes(Type type)

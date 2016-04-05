@@ -64,7 +64,7 @@ namespace Xbim.MemoryModel.Tests
                     bw.Close();
                 }
             }
-            using (var fs = new FileStream(@"C:\Users\Steve\Documents\IFC Models\vectorworks_ifc2.wexbim", FileMode.Open, FileAccess.Read))
+            using (var fs = new FileStream(@"test.wexBIM", FileMode.Open, FileAccess.Read))
                 {
                     using (var br = new BinaryReader(fs))
                     {
