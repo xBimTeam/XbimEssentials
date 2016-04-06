@@ -46,6 +46,13 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 		}
 	//## Custom code
+        Ifc4.MeasureResource.IfcIdentifier IPropertyOrQuantity.Name
+        {
+            get
+            {
+                return new Ifc4.MeasureResource.IfcIdentifier(Name);
+            }
+        }
 	//##
 	}
 }

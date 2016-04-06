@@ -605,6 +605,7 @@
     <Compile Include="Interfaces\IfcWorkCalendarTypeEnum.cs" />
     <Compile Include="Interfaces\IfcWorkPlanTypeEnum.cs" />
     <Compile Include="Interfaces\IfcWorkScheduleTypeEnum.cs" />
+    <Compile Include="IPropertyOrQuantity.cs" />
     <Compile Include="ItemSet.cs" />
     <Compile Include="IXbimGeometryEngine.cs" />
     <Compile Include="Kernel\IfcActor.cs" />
@@ -1029,12 +1030,14 @@
     <Compile Include="PropertyResource\IfcPropertyEnumeratedValue.cs" />
     <Compile Include="PropertyResource\IfcPropertyEnumeration.cs" />
     <Compile Include="PropertyResource\IfcPropertyListValue.cs" />
+    <Compile Include="PropertyResource\IfcPropertyPartial.cs" />
     <Compile Include="PropertyResource\IfcPropertyReferenceValue.cs" />
     <Compile Include="PropertyResource\IfcPropertySingleValue.cs" />
     <Compile Include="PropertyResource\IfcPropertyTableValue.cs" />
     <Compile Include="PropertyResource\IfcSimpleProperty.cs" />
     <Compile Include="QuantityResource\IfcPhysicalComplexQuantity.cs" />
     <Compile Include="QuantityResource\IfcPhysicalQuantity.cs" />
+    <Compile Include="QuantityResource\IfcPhysicalQuantityPartial.cs" />
     <Compile Include="QuantityResource\IfcPhysicalSimpleQuantity.cs" />
     <Compile Include="QuantityResource\IfcQuantityArea.cs" />
     <Compile Include="QuantityResource\IfcQuantityCount.cs" />
