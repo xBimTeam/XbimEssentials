@@ -128,9 +128,11 @@ namespace Xbim.Ifc4.Interfaces
 
         //Transforms an object geometrically and returns a new copy of the object, geometryObject passed is unchanged.
         IXbimGeometryObject Transformed(IXbimGeometryObject geometryObject, IIfcCartesianTransformationOperator transformation);
-        //Moves an object to the required placement, the original geometry is unchanged a copy is returned.
+        //Moves an object to the required placement, the original geometry is unchanged a copy is returned. Tags are preserved
         IXbimGeometryObject Moved(IXbimGeometryObject geometryObject, IIfcPlacement placement);
-        //Moves an object to the required placement, the original geometry is unchanged a copy is returned.
+        //Moves an object to the required placement, the original geometry is unchanged a copy is returned. Tags are preserved
         IXbimGeometryObject Moved(IXbimGeometryObject geometryObject, IIfcObjectPlacement objectPlacement);
+        //Moves an object to the required placement, the original geometry is unchanged a copy is returned. Tags are preserved
+        IXbimGeometryObject Moved(IXbimGeometryObject geometryObject, IIfcAxis2Placement objectPlacement);
     }
 }
