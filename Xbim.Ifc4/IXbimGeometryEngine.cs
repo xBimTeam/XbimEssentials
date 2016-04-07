@@ -133,6 +133,9 @@ namespace Xbim.Ifc4.Interfaces
         //Moves an object to the required placement, the original geometry is unchanged a copy is returned. Tags are preserved
         IXbimGeometryObject Moved(IXbimGeometryObject geometryObject, IIfcObjectPlacement objectPlacement);
         //Moves an object to the required placement, the original geometry is unchanged a copy is returned. Tags are preserved
-        IXbimGeometryObject Moved(IXbimGeometryObject geometryObject, IIfcAxis2Placement objectPlacement);
+        IXbimGeometryObject Moved(IXbimGeometryObject geometryObject, IIfcAxis2Placement3D placement);
+        IXbimGeometryObject Moved(IXbimGeometryObject geometryObject, IIfcAxis2Placement2D placement);
+
+
     }
 }
