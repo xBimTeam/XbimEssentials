@@ -27,6 +27,12 @@ namespace Xbim.Essentials.Tests
             IfcTimeStamp stamp = dt;
             Assert.AreEqual((TimeSpan)stamp, dt - new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc));
 
+            IfcTime time = dt;
+            Assert.AreEqual(time.ToString(), "10:54:02.0000000");
+            time = "10:54:02.0000000";
+            var sTime = DateTime.Today.AddHours(10).AddMinutes(54).AddSeconds(2);
+            Assert.AreEqual((DateTime)time, sTime);
+
         }
     }
 }

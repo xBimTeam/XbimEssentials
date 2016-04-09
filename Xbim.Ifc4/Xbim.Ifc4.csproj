@@ -137,6 +137,7 @@
     <Compile Include="DateTimeResource\IfcTaskTimeRecurring.cs" />
     <Compile Include="DateTimeResource\IfcTime.cs" />
     <Compile Include="DateTimeResource\IfcTimeOrRatioSelect.cs" />
+    <Compile Include="DateTimeResource\IfcTimePartial.cs" />
     <Compile Include="DateTimeResource\IfcTimePeriod.cs" />
     <Compile Include="DateTimeResource\IfcTimeSeries.cs" />
     <Compile Include="DateTimeResource\IfcTimeSeriesValue.cs" />
