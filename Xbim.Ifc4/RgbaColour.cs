@@ -26,7 +26,7 @@ namespace Xbim.Ifc4
         public double Green { get; set; }
         public double Blue { get; set; }
         public double Alpha { get; set; }
-        public static RgbaColour Empty { get; }
+        public static RgbaColour Empty { get; private set; }
         static RgbaColour() { Empty=new RgbaColour();}
         public static RgbaColour operator *(RgbaColour rgba, double ratio)
         {
