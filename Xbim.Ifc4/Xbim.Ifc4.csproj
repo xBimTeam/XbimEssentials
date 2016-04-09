@@ -605,9 +605,12 @@
     <Compile Include="Interfaces\IfcWorkCalendarTypeEnum.cs" />
     <Compile Include="Interfaces\IfcWorkPlanTypeEnum.cs" />
     <Compile Include="Interfaces\IfcWorkScheduleTypeEnum.cs" />
+    <Compile Include="IPhongMaterial.cs" />
     <Compile Include="IPropertyOrQuantity.cs" />
     <Compile Include="ItemSet.cs" />
     <Compile Include="IXbimGeometryEngine.cs" />
+    <Compile Include="IXbimMeshCollectionReceiver.cs" />
+    <Compile Include="IXbimMeshReceiver.cs" />
     <Compile Include="Kernel\IfcActor.cs" />
     <Compile Include="Kernel\IfcComplexPropertyTemplate.cs" />
     <Compile Include="Kernel\IfcContext.cs" />
@@ -1064,6 +1067,7 @@
     <Compile Include="RepresentationResource\IfcStyledRepresentation.cs" />
     <Compile Include="RepresentationResource\IfcStyleModel.cs" />
     <Compile Include="RepresentationResource\IfcTopologyRepresentation.cs" />
+    <Compile Include="RgbaColour.cs" />
     <Compile Include="SharedBldgElements\IfcBeam.cs" />
     <Compile Include="SharedBldgElements\IfcBeamStandardCase.cs" />
     <Compile Include="SharedBldgElements\IfcBeamType.cs" />

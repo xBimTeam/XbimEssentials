@@ -24,6 +24,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ifc2x3", "Ifc2x3", "{83A06ECA-AECB-47B1-9A4C-850E6F9E1FEC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ifc4", "Ifc4", "{3C36CA96-57D2-4FC7-9F34-FDD7A3E83106}"
+	ProjectSection(SolutionItems) = preProject
+		Xbim.Common\Geometry\RgbaColour.cs = Xbim.Common\Geometry\RgbaColour.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CobieExpress", "CobieExpress", "{E9D35CB0-7004-4527-ACA0-8482C7B8AF52}"
 EndProject

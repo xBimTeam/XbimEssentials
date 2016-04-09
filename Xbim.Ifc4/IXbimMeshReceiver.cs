@@ -1,4 +1,4 @@
-﻿namespace Xbim.Common.Geometry
+﻿namespace Xbim.Ifc4
 {
     public interface IXbimMeshReceiver
     {
@@ -18,5 +18,6 @@
         void AddTriangle(int face, int a, int b, int c);
         //add a quadrilateral to the face, a, b, c and d c are previously added nodes to the face
         void AddQuad(int face, int a, int b, int c, int d);
+        IPhongMaterial Material { get; set; }
     }
 }
