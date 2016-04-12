@@ -16,47 +16,17 @@ namespace Xbim.Essentials.Tests
     [DeploymentItem(@"TestSourceFiles\")]
     public class ModelFilterTest
     {
-        private static Ifc2x3.IO.XbimModel CreateAndInitModel(string projectName)
-        {
-            var model = Ifc2x3.IO.XbimModel.CreateModel(projectName + ".xBIM"); //create an empty model
-            //Begin a transaction as all changes to a model are transacted
-            using (var txn = model.BeginTransaction("Initialise Model"))
-            {
-                //do once only initialisation of model application and editor values
-                model.DefaultOwningUser.ThePerson.GivenName = "John";
-                model.DefaultOwningUser.ThePerson.FamilyName = "Bloggs";
-                model.DefaultOwningUser.TheOrganization.Name = "Department of Building";
-                model.DefaultOwningApplication.ApplicationIdentifier = "Construction Software inc.";
-                model.DefaultOwningApplication.ApplicationDeveloper.Name = "Construction Programmers Ltd.";
-                model.DefaultOwningApplication.ApplicationFullName = "Ifc sample programme";
-                model.DefaultOwningApplication.Version = "2.0.1";
-                //set up a project and initialise the defaults
-                var project = model.Instances.New<IfcProject>();
-                project.Initialize(ProjectUnits.SIUnitsUK);
-                project.Name = "testProject";
-                project.OwnerHistory.OwningUser = model.DefaultOwningUser;
-                project.OwnerHistory.OwningApplication = model.DefaultOwningApplication;
-				
-                txn.Commit();
-                return model;
-            }
-        }
-
         [TestMethod]
         public void MergeProductsTest()
         {
             const string model1File = "4walls1floorSite.ifc";
             const string copyFile = "copy.ifc";
-            const string model2File = "House.ifc";
+            const string model2File = "House-Renga.ifc";
             var newModel = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel);
             using (var model1 = IfcStore.Open(model1File))
             {
-                PropertyTranformDelegate propTransform = delegate(ExpressMetaProperty prop, object toCopy)
-                {
-                    var value = prop.PropertyInfo.GetValue(toCopy, null);
-                    return value;
-                };
-               
+                PropertyTranformDelegate propTransform = PropTransform;
+
 
                 using (var model2 = IfcStore.Open(model2File))
                 {
@@ -99,13 +69,9 @@ namespace Xbim.Essentials.Tests
             var copyFile = "copy.ifc";
             using (var source = new Ifc2x3.IO.XbimModel())
             {
-                PropertyTranformDelegate propTransform = delegate (ExpressMetaProperty prop, object toCopy)
-                {
-                    var value = prop.PropertyInfo.GetValue(toCopy, null);
-                    return value;
-                };
+                PropertyTranformDelegate propTransform = PropTransform;
                 //source.CreateFrom(@"C:\Users\Steve\Downloads\Test Models\crash\NBS_LakesideRestaurant_EcoBuild2015_Revit2014_.ifc","source.xbim",null,true);
-               
+
                 //source.CreateFrom(@"C:\Users\Steve\Downloads\Test Models\Wall with complex openings.ifc", "source.xbim",null,true);
                 source.Open("BIM Logo-LetterM.xBIM");
                 source.SaveAs(sourceFile);
@@ -119,7 +85,7 @@ namespace Xbim.Essentials.Tests
 
                         foreach (var item in source.Instances)
                         {
-                            target.InsertCopy(item, copied, txn, propTransform,true);
+                            target.InsertCopy(item, copied, txn, propTransform, true);
                         }
                         txn.Commit();
                     }
@@ -127,7 +93,109 @@ namespace Xbim.Essentials.Tests
                 }
                 source.Close();
                 //the two files should be the same
-               FileCompare(sourceFile, copyFile);
+                FileCompare(sourceFile, copyFile);
+            }
+        }
+
+        /// <summary>
+        ///  Model create in Revit
+        /// </summary>
+        [TestMethod]
+        public void CopyAllEntitiesOfComplexModelOfRevitTest()
+        {
+            var sourceFile = "rac_basic_sample_project.ifczip";
+            var copyFile = "rac_basic_sample_project_copy.ifc";
+            using (var source = IfcStore.Open(sourceFile))
+            {
+                PropertyTranformDelegate propTransform = PropTransform;
+
+                using (var target = Ifc2x3.IO.XbimModel.CreateTemporaryModel())
+                {
+                    target.AutoAddOwnerHistory = false;
+                    using (var txn = target.BeginTransaction())
+                    {
+                        target.Header = source.Header;
+                        var copied = new XbimInstanceHandleMap(source, target);
+
+                        foreach (var item in source.Instances)
+                        {
+                            target.InsertCopy(item, copied, txn, propTransform, true);
+                        }
+                        txn.Commit();
+                    }
+                    target.SaveAs(copyFile);
+                }
+                source.Close();
+                //the two files should be the same
+                FileCompare(sourceFile, copyFile);
+            }
+        }
+
+        /// <summary>
+        ///  Model create in ArchiCAD
+        /// </summary>
+        [TestMethod]
+        public void CopyAllEntitiesOfComplexModelOfArchiCADTest()
+        {
+            var sourceFile = "House-ArchiCAD.ifc";
+            var copyFile = "House-ArchiCAD_copy.ifc";
+            using (var source = IfcStore.Open(sourceFile))
+            {
+                PropertyTranformDelegate propTransform = PropTransform;
+
+                using (var target = Ifc2x3.IO.XbimModel.CreateTemporaryModel())
+                {
+                    target.AutoAddOwnerHistory = false;
+                    using (var txn = target.BeginTransaction())
+                    {
+                        target.Header = source.Header;
+                        var copied = new XbimInstanceHandleMap(source, target);
+
+                        foreach (var item in source.Instances)
+                        {
+                            target.InsertCopy(item, copied, txn, propTransform, true);
+                        }
+                        txn.Commit();
+                    }
+                    target.SaveAs(copyFile);
+                }
+                source.Close();
+                //the two files should be the same
+                FileCompare(sourceFile, copyFile);
+            }
+        }
+
+        /// <summary>
+        ///  Model create in Renga Architecture http://rengacad.com/ru/
+        /// </summary>
+        [TestMethod]
+        public void CopyAllEntitiesOfComplexModelOfRengaTest()
+        {
+            var sourceFile = "House-Renga.ifc";
+            var copyFile = "House-Renga_copy.ifc";
+            using (var source = IfcStore.Open(sourceFile))
+            {
+                PropertyTranformDelegate propTransform = PropTransform;
+
+                using (var target = Ifc2x3.IO.XbimModel.CreateTemporaryModel())
+                {
+                    target.AutoAddOwnerHistory = false;
+                    using (var txn = target.BeginTransaction())
+                    {
+                        target.Header = source.Header;
+                        var copied = new XbimInstanceHandleMap(source, target);
+
+                        foreach (var item in source.Instances)
+                        {
+                            target.InsertCopy(item, copied, txn, propTransform, true);
+                        }
+                        txn.Commit();
+                    }
+                    target.SaveAs(copyFile);
+                }
+                source.Close();
+                //the two files should be the same
+                FileCompare(sourceFile, copyFile);
             }
         }
 
@@ -184,7 +252,11 @@ namespace Xbim.Essentials.Tests
             }
         }
 
-
+        private static object PropTransform(ExpressMetaProperty prop, object toCopy)
+        {
+            var value = prop.PropertyInfo.GetValue(toCopy, null);
+            return value;
+        }
 
         // This method accepts two strings the represent two files to 
         // compare. A return value of 0 indicates that the contents of the files
@@ -194,15 +266,13 @@ namespace Xbim.Essentials.Tests
         {
             string file1Line;
             string file2Line;
-            
+
             // Determine if the same file was referenced two times.
             if (file1 == file2)
             {
                 // Return to indicate that the files are the same.
                 return;
             }
-
-
 
             //// Check the file sizes. If they are not the same, the files 
             //// are not the same.
