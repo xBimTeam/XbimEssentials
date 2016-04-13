@@ -6,7 +6,9 @@ using Xbim.Common;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
-using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc2x3.Extensions;
+using Xbim.Ifc2x3.GeometricConstraintResource;
+using Xbim.Ifc2x3.GeometryResource;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProductExtension;
 
@@ -117,7 +119,8 @@ namespace Xbim.Essentials.Tests
                 }
                 source.Close();
                 //the two files should be the same
-                FileCompare(sourceFile, copyFile);
+                //FileCompare(sourceFile, copyFile);
+                Diff2IfcFiles(sourceFile, copyFile);
             }
         }
 
@@ -149,7 +152,8 @@ namespace Xbim.Essentials.Tests
                 }
                 source.Close();
                 //the two files should be the same
-                FileCompare(sourceFile, copyFile);
+                //FileCompare(sourceFile, copyFile);
+                Diff2IfcFiles(sourceFile, copyFile);
             }
         }
 
@@ -181,7 +185,8 @@ namespace Xbim.Essentials.Tests
                 }
                 source.Close();
                 //the two files should be the same
-                FileCompare(sourceFile, copyFile);
+                Diff2IfcFiles(sourceFile, copyFile);
+                //FileCompare(sourceFile, copyFile);
             }
         }
 
@@ -235,6 +240,221 @@ namespace Xbim.Essentials.Tests
             var value = prop.PropertyInfo.GetValue(toCopy, null);
             return value;
         }
+
+        private void Diff2IfcFiles(string file1, string file2)
+        {
+            var _firstModel = IfcStore.Open(file1);//GetXbimModelByFileName(firstModeFileName, true);
+            var _secondModel = IfcStore.Open(file2);//GetXbimModelByFileName(secondModelFileName, true);
+            if (_firstModel == null || _secondModel == null)
+                return;
+            if (_firstModel.Instances.OfType<IfcProject>().FirstOrDefault().GlobalId != _secondModel.Instances.OfType<IfcProject>().FirstOrDefault().GlobalId)
+                Assert.Fail("GUID does not match the file");
+            //if (_firstModel.IfcProject.Name != _secondModel.IfcProject.Name)
+            //    Assert.Fail("Project Name does not match");
+            var firstModelBuildingElements = _firstModel.Instances.OfType<IfcBuildingElement>().ToList();
+            var secondModelBuildingElements = _secondModel.Instances.OfType<IfcBuildingElement>().ToList();
+            if (secondModelBuildingElements.Count() != firstModelBuildingElements.Count())
+                Assert.Fail("Quantity of of construction projects is different");
+
+            var firstModelBuildings = _firstModel.Instances.OfType<IfcBuilding>().ToList();
+            var firstModelBuildingStorys = _firstModel.Instances.OfType<IfcBuildingStorey>().ToList();
+            var secondModelBuildings = _secondModel.Instances.OfType<IfcBuilding>().ToList();
+            var secondModelBuildingStorys = _secondModel.Instances.OfType<IfcBuildingStorey>().ToList();
+
+            var colectionBuildingsOneGuid = firstModelBuildings.Select(p => p.GlobalId).ToList();
+            var colectionBuildingsTwoGuid = secondModelBuildings.Select(p => p.GlobalId).ToList();
+
+            var crossingBuildingsGuid = colectionBuildingsOneGuid.Intersect(colectionBuildingsTwoGuid).ToList();
+            if (crossingBuildingsGuid.Count() != 0)
+            {
+                if (!(crossingBuildingsGuid.Count() == colectionBuildingsOneGuid.Count() && colectionBuildingsOneGuid.Count() == colectionBuildingsTwoGuid.Count()))
+                {
+                    Assert.Fail("Various quantity buildings");
+                }
+            }
+            else
+            {
+                Assert.Fail("different buildings");
+            }
+            var colectionBuildingStorysOneGuid = firstModelBuildingStorys.Select(p => p.GlobalId).ToList();
+            var colectionBuildingStorysTwoGuid = secondModelBuildingStorys.Select(p => p.GlobalId).ToList();
+            var crossingBuildingStorysGuid = colectionBuildingStorysOneGuid.Intersect(colectionBuildingStorysTwoGuid).ToList();
+            if (crossingBuildingStorysGuid.Count() != 0)
+            {
+                if (!(crossingBuildingStorysGuid.Count() == colectionBuildingStorysOneGuid.Count() && colectionBuildingStorysOneGuid.Count() == colectionBuildingStorysTwoGuid.Count()))
+                {
+                    Assert.Fail("Different Quantity of floors");
+                }
+            }
+            else
+            {
+                Assert.Fail("Разные уровни");
+            }
+            var modified = 0;
+            var elementModified = 0;
+            var elementDeleted = 0;
+            var elementInserted = 0;
+            var numberOfCoincidences = 0;
+            var isCoincidence = false;
+            foreach (var firstModelBuildingElement in firstModelBuildingElements)
+            {
+                foreach (var secondModelBuildingElement in secondModelBuildingElements)
+                {
+                    if (firstModelBuildingElement.GlobalId != secondModelBuildingElement.GlobalId) continue;
+                    isCoincidence = true;
+                    var iSElementModified = false;
+                    numberOfCoincidences++;
+                    if (firstModelBuildingElement.GetType() != secondModelBuildingElement.GetType())
+                    {
+                        Assert.Fail(string.Format("{0} The discrepancy between the types of objects 1: {1} 2: {2}"
+                            , firstModelBuildingElement.GlobalId, firstModelBuildingElement.GetType(), secondModelBuildingElement.GetType()));
+                    }
+                    if (firstModelBuildingElement.OwnerHistory.CreationDate != secondModelBuildingElement.OwnerHistory.CreationDate)
+                    {
+                        //
+                    }
+                    if (firstModelBuildingElement.OwnerHistory.LastModifiedDate != null && secondModelBuildingElement.OwnerHistory.LastModifiedDate != null)
+                    {
+                        if (firstModelBuildingElement.OwnerHistory.LastModifiedDate < secondModelBuildingElement.OwnerHistory.LastModifiedDate)
+                        {
+                            Assert.Fail(string.Format("{0} In the second model element is changed {1}",
+                                firstModelBuildingElement.GlobalId, firstModelBuildingElement.GetType()));
+                            iSElementModified = true;
+                            modified++;
+                        }
+                    }
+
+                    if (firstModelBuildingElement.GetMaterial() != null && secondModelBuildingElement.GetMaterial() != null)
+                    {
+                        //if (firstModelBuildingElement.GetMaterial().Name != secondModelBuildingElement.GetMaterial().Name)
+                        //{
+                        //    Assert.Fail(string.Format("{0} changed material {1}", firstModelBuildingElement.GlobalId, firstModelBuildingElement.GetType()));
+                        //    iSElementModified = true;
+                        //    modified++;
+                        //}
+                    }
+
+                    //var ifcObj1 = firstModelBuildingElement as IfcObject;
+                    //var ifcObj2 = secondModelBuildingElement as IfcObject;
+                    //{
+                    //    var typeEntity1 = ifcObj1.GetType();
+                    //    var typeEntity2 = ifcObj2.GetDefiningType();
+                    //    if (typeEntity1 != null && typeEntity2 != null)
+                    //    {
+                    //        if (typeEntity1.GlobalId != typeEntity2.GlobalId)
+                    //        {
+                    //            Assert.Fail(string.Format("{0}  style changed {1}", firstModelBuildingElement.GlobalId, firstModelBuildingElement.GetType()));
+                    //            iSElementModified = true;
+                    //            modified++;
+                    //        }
+                    //    }
+                    //}
+
+                    if (firstModelBuildingElement.ObjectPlacement is IfcLocalPlacement && secondModelBuildingElement.ObjectPlacement is IfcLocalPlacement)
+                    {
+                        var localPlac1 = firstModelBuildingElement.ObjectPlacement as IfcLocalPlacement;
+                        var localPlac2 = secondModelBuildingElement.ObjectPlacement as IfcLocalPlacement;
+                        if (localPlac1.RelativePlacement is IfcAxis2Placement3D && localPlac2.RelativePlacement is IfcAxis2Placement3D)
+                        {
+                            var a1 = localPlac1.RelativePlacement as IfcAxis2Placement3D;
+                            var a2 = localPlac2.RelativePlacement as IfcAxis2Placement3D;
+                            var loc1 = a1.Location;
+                            var loc2 = a2.Location;
+
+                            if (loc1.X.ToString("N") != loc2.X.ToString("N")
+                                || loc1.Y.ToString("N") != loc2.Y.ToString("N")
+                                || loc1.Z.ToString("N") != loc2.Z.ToString("N"))
+                            {
+                                Assert.Fail((string.Format("{0} moved object {1}", firstModelBuildingElement.GlobalId, firstModelBuildingElement.GetType())));
+                                iSElementModified = true;
+                                modified++;
+                            }
+                        }
+                    }
+
+                    //var ifcType1 = IfcMetaData.IfcType(firstModelBuildingElement);
+                    //var props1 = ifcType1.IfcProperties.Values.Where(p => !p.IfcAttribute.IsDerivedOverride).ToList();
+                    //var ifcType2 = IfcMetaData.IfcType(secondModelBuildingElement);
+                    //var props2 = ifcType2.IfcProperties.Values.Where(p => !p.IfcAttribute.IsDerivedOverride).ToList();
+                    //if (ifcType1.Name == "IfcBuildingElementProxy" || ifcType2.Name == "IfcBuildingElementProxy")
+                    //    continue;
+                    //if (ifcType1.Name == "IfcSlab" || ifcType2.Name == "IfcSlab")
+                    //    continue;
+                    //var pr = props1.Intersect(props2).ToList();
+                    //if (pr.Count() == props1.Count() && pr.Count() == props2.Count())
+                    //{
+                    //    int i = 0;
+                    //    foreach (var prop1 in props1)
+                    //    {
+                    //        var prop2 = props2.ToList()[i];
+                    //        i++;
+                    //        if (prop1.PropertyInfo.Name != prop2.PropertyInfo.Name) continue;
+                    //        if (prop1.PropertyInfo.Name == "CreationDate")
+                    //            continue;
+                    //        if (prop1.PropertyInfo.Name == "OwnerHistory")
+                    //            continue;
+                    //        if (prop1.PropertyInfo.Name == "Representation")
+                    //            continue;
+                    //        if (prop1.PropertyInfo.Name == "ObjectPlacement")
+                    //            continue;
+                    //        var val1 = prop1.PropertyInfo.GetValue(firstModelBuildingElement, null);
+                    //        var val2 = prop2.PropertyInfo.GetValue(secondModelBuildingElement, null);
+                    //        if (val1 == null || val2 == null) continue;
+                    //        if (val1.Equals(val2)) continue;
+                    //        Assert.Fail(string.Format("{0} property {1} object was changed: {2} : {3} : {4}"
+                    //            , firstModelBuildingElement.GlobalId, prop1.PropertyInfo.Name, firstModelBuildingElement.GetType(), val1, val2));
+                    //        iSElementModified = true;
+                    //        modified++;
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    Assert.Fail(string.Format("{0} Different number of properties {1}"
+                    //        , firstModelBuildingElement.GlobalId, firstModelBuildingElement.GetType()));
+                    //    iSElementModified = true;
+                    //    modified++;
+                    //}
+                    if (iSElementModified)
+                    {
+                        elementModified++;
+                    }
+                    break;
+                }
+                if (!isCoincidence)
+                {
+                    Assert.Fail(string.Format("{0} In the second model has a deleted item {1}"
+                        , firstModelBuildingElement.GlobalId, firstModelBuildingElement.GetType()));
+                    elementDeleted++;
+                }
+                isCoincidence = false;
+            }
+
+            if (numberOfCoincidences == 0)
+            {
+                Assert.Fail("Matching objects not found");
+            }
+
+            foreach (var s2edItem in secondModelBuildingElements)
+            {
+                isCoincidence = false;
+                foreach (var f2stItem in firstModelBuildingElements)
+                {
+                    if (f2stItem.GlobalId == s2edItem.GlobalId)
+                    {
+                        isCoincidence = true;
+                    }
+                }
+                if (!isCoincidence)
+                {
+                    Assert.Fail(string.Format("{0} In the second model has the added element {1}"
+                        , s2edItem.GlobalId, s2edItem.GetType()));
+                    elementInserted++;
+                }
+            }
+            //Assert.Fail(string.Format("changes: {0} modified elements:{1} added: {2} removed: {3}"
+            //    , modified, elementModified, elementInserted, elementDeleted));
+        }
+    
 
         // This method accepts two strings the represent two files to 
         // compare. A return value of 0 indicates that the contents of the files
