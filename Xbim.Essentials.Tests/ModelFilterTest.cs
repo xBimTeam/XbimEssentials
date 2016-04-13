@@ -26,11 +26,8 @@ namespace Xbim.Essentials.Tests
             using (var model1 = IfcStore.Open(model1File))
             {
                 PropertyTranformDelegate propTransform = PropTransform;
-
-
                 using (var model2 = IfcStore.Open(model2File))
                 {
-
                     var rencontre = false;
                     using (var txn = newModel.BeginTransaction())
                     {
@@ -53,7 +50,6 @@ namespace Xbim.Essentials.Tests
                                 newModel.InsertCopy(item, copied, propTransform, false, false);
                             }
                         }
-
                         txn.Commit();
                     }
                     newModel.SaveAs(copyFile);
@@ -67,25 +63,21 @@ namespace Xbim.Essentials.Tests
         {
             var sourceFile = "source.ifc";
             var copyFile = "copy.ifc";
-            using (var source = new Ifc2x3.IO.XbimModel())
+            using (var source = IfcStore.Open("BIM Logo-LetterM.xBIM"))
             {
                 PropertyTranformDelegate propTransform = PropTransform;
                 //source.CreateFrom(@"C:\Users\Steve\Downloads\Test Models\crash\NBS_LakesideRestaurant_EcoBuild2015_Revit2014_.ifc","source.xbim",null,true);
-
                 //source.CreateFrom(@"C:\Users\Steve\Downloads\Test Models\Wall with complex openings.ifc", "source.xbim",null,true);
-                source.Open("BIM Logo-LetterM.xBIM");
                 source.SaveAs(sourceFile);
-                using (var target = Ifc2x3.IO.XbimModel.CreateTemporaryModel())
+                using (var target = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel))
                 {
-                    target.AutoAddOwnerHistory = false;
                     using (var txn = target.BeginTransaction())
                     {
-                        target.Header = source.Header;
                         var copied = new XbimInstanceHandleMap(source, target);
 
                         foreach (var item in source.Instances)
                         {
-                            target.InsertCopy(item, copied, txn, propTransform, true);
+                            target.InsertCopy(item, copied, propTransform, true, true);
                         }
                         txn.Commit();
                     }
@@ -109,17 +101,15 @@ namespace Xbim.Essentials.Tests
             {
                 PropertyTranformDelegate propTransform = PropTransform;
 
-                using (var target = Ifc2x3.IO.XbimModel.CreateTemporaryModel())
+                using (var target = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel))
                 {
-                    target.AutoAddOwnerHistory = false;
                     using (var txn = target.BeginTransaction())
                     {
-                        target.Header = source.Header;
                         var copied = new XbimInstanceHandleMap(source, target);
 
                         foreach (var item in source.Instances)
                         {
-                            target.InsertCopy(item, copied, txn, propTransform, true);
+                            target.InsertCopy(item, copied, propTransform, true, true);
                         }
                         txn.Commit();
                     }
@@ -143,17 +133,15 @@ namespace Xbim.Essentials.Tests
             {
                 PropertyTranformDelegate propTransform = PropTransform;
 
-                using (var target = Ifc2x3.IO.XbimModel.CreateTemporaryModel())
+                using (var target = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel))
                 {
-                    target.AutoAddOwnerHistory = false;
                     using (var txn = target.BeginTransaction())
                     {
-                        target.Header = source.Header;
                         var copied = new XbimInstanceHandleMap(source, target);
 
                         foreach (var item in source.Instances)
                         {
-                            target.InsertCopy(item, copied, txn, propTransform, true);
+                            target.InsertCopy(item, copied, propTransform, true, true);
                         }
                         txn.Commit();
                     }
@@ -177,17 +165,15 @@ namespace Xbim.Essentials.Tests
             {
                 PropertyTranformDelegate propTransform = PropTransform;
 
-                using (var target = Ifc2x3.IO.XbimModel.CreateTemporaryModel())
+                using (var target = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel))
                 {
-                    target.AutoAddOwnerHistory = false;
                     using (var txn = target.BeginTransaction())
                     {
-                        target.Header = source.Header;
                         var copied = new XbimInstanceHandleMap(source, target);
 
                         foreach (var item in source.Instances)
                         {
-                            target.InsertCopy(item, copied, txn, propTransform, true);
+                            target.InsertCopy(item, copied, propTransform, true, true);
                         }
                         txn.Commit();
                     }
@@ -202,11 +188,12 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void ExtractIfcGeometryEntitiesTest()
         {
-            using (var source = new Ifc2x3.IO.XbimModel())
+            var modelName = @"4walls1floorSite";
+            var xbimModelName = Path.ChangeExtension(modelName, "xbim");
+            using (var source = IfcStore.Open(xbimModelName))
             {
                 PropertyTranformDelegate propTransform = delegate (ExpressMetaProperty prop, object toCopy)
                 {
-
                     if (toCopy is IfcProduct)
                     {
                         if (prop.PropertyInfo.Name == "ObjectPlacement" || prop.PropertyInfo.Name == "Representation")
@@ -219,33 +206,24 @@ namespace Xbim.Essentials.Tests
                     }
                     return prop.PropertyInfo.GetValue(toCopy, null);//just pass through the value               
                 };
-
                 //source.LoadStep21("BIM Logo-LetterM.xBIM");
-                //source.SaveAs("WithGeometry.ifc");
-                var modelName = @"4walls1floorSite";
-                var xbimModelName = Path.ChangeExtension(modelName, "xbim");
-
-                source.CreateFrom(Path.ChangeExtension(modelName, "ifc"), null, null, true);
-
-                using (var target = Ifc2x3.IO.XbimModel.CreateModel(Path.ChangeExtension(modelName + "_NoGeom", "xbim")))
+                //source.SaveAs("WithGeometry.ifc");   
+                using (var target = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.EsentDatabase))
                 {
-                    target.AutoAddOwnerHistory = false;
                     using (var txn = target.BeginTransaction())
                     {
                         var copied = new XbimInstanceHandleMap(source, target);
 
                         foreach (var item in source.Instances.OfType<IfcRoot>())
                         {
-                            target.InsertCopy(item, copied, txn, propTransform, false);
+                            target.InsertCopy(item, copied, propTransform, true, false);
                         }
                         txn.Commit();
                     }
 
                     target.SaveAs(Path.ChangeExtension(modelName + "_NoGeom", "ifc"));
                     target.Close();
-
                 }
-
                 source.Close();
                 // XbimModel.Compact(Path.ChangeExtension(modelName + "_NoGeom", "xbim"), Path.ChangeExtension(modelName + "_NoGeom_Compacted", "xbim"));
                 //the two files should be the same
