@@ -124,6 +124,9 @@
     <None Include="TestSourceFiles\House-ArchiCAD.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestSourceFiles\HVAC-Mech.ifc" >
+	 <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
     <None Include="TestSourceFiles\IfcBSplineSurfaceWithKnots.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
