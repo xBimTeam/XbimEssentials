@@ -18,6 +18,13 @@
         void AddTriangle(int face, int a, int b, int c);
         //add a quadrilateral to the face, a, b, c and d c are previously added nodes to the face
         void AddQuad(int face, int a, int b, int c, int d);
+        /// <summary>
+        /// The front or both material
+        /// </summary>
         IPhongMaterial Material { get; set; }
+        /// <summary>
+        /// the back material
+        /// </summary>
+        IPhongMaterial BackMaterial { get; set; }
     }
 }
