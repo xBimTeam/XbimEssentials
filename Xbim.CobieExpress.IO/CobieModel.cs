@@ -179,6 +179,25 @@ namespace Xbim.CobieExpress.IO
             return new CobieModel(model);
         }
 
+        public void InsertCopy(IEnumerable<CobieComponent> components, bool keepLabels, XbimInstanceHandleMap mappings)
+        {
+            foreach (var component in components)
+            {
+                InsertCopy(component, mappings, InsertCopyComponentFilter, true, keepLabels);
+            }
+        }
+
+        private object InsertCopyComponentFilter(ExpressMetaProperty property, object parentObject)
+        {
+            if (!property.IsInverse) 
+                return property.PropertyInfo.GetValue(parentObject, null);
+            
+            if (property.Name == "InSystems")
+                return property.PropertyInfo.GetValue(parentObject, null);
+
+            return null;
+        }
+
         #region IModel implementation using inner model
         public int UserDefinedId 
         { 
