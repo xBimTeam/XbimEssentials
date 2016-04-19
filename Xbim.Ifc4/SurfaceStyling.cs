@@ -56,7 +56,10 @@ namespace Xbim.Ifc4
         }
 
 
-        public bool IsEmpty => FrontFaceStyle == null && BackFaceStyle == null;
+        public bool IsEmpty
+        {
+            get { return FrontFaceStyle == null && BackFaceStyle == null; }
+        }
 
         /// <summary>
         /// Returns the front face if defined or the default

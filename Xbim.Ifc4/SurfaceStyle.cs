@@ -20,7 +20,11 @@ namespace Xbim.Ifc4
         private readonly IIfcSurfaceStyle _surfaceStyle;
         public string Name { get; set; }
 
-        public IfcSurfaceSide Side => _surfaceStyle?.Side ?? IfcSurfaceSide.BOTH;
+        public IfcSurfaceSide Side
+        {
+            get { return _surfaceStyle?.Side ?? IfcSurfaceSide.BOTH; }
+        }
+
         string IPhongMaterial.Name { get; set; }
         public RgbaColour AmbientColour { get;  set; }
         public RgbaColour DiffuseColour { get;  set; }
