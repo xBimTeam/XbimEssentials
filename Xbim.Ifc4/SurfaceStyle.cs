@@ -22,7 +22,12 @@ namespace Xbim.Ifc4
 
         public IfcSurfaceSide Side
         {
-            get { return _surfaceStyle?.Side ?? IfcSurfaceSide.BOTH; }
+            get
+            {
+                if (_surfaceStyle != null)
+                    return _surfaceStyle.Side;
+                return IfcSurfaceSide.BOTH;
+            }
         }
 
         string IPhongMaterial.Name { get; set; }
