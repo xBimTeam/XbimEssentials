@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.Ifc2x3", "Xbim.Ifc2x3\Xbim.Ifc2x3.csproj", "{B6668419-D7A4-4736-B4D8-018756CCF134}"
 EndProject
@@ -24,9 +24,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ifc2x3", "Ifc2x3", "{83A06ECA-AECB-47B1-9A4C-850E6F9E1FEC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ifc4", "Ifc4", "{3C36CA96-57D2-4FC7-9F34-FDD7A3E83106}"
-	ProjectSection(SolutionItems) = preProject
-		Xbim.Common\Geometry\RgbaColour.cs = Xbim.Common\Geometry\RgbaColour.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CobieExpress", "CobieExpress", "{E9D35CB0-7004-4527-ACA0-8482C7B8AF52}"
 EndProject

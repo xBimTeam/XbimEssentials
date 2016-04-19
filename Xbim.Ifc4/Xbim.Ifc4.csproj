@@ -1242,6 +1242,8 @@
     <Compile Include="StructuralLoadResource\IfcSurfaceReinforcementArea.cs" />
     <Compile Include="StructuralLoadResource\IfcTranslationalStiffnessSelect.cs" />
     <Compile Include="StructuralLoadResource\IfcWarpingStiffnessSelect.cs" />
+    <Compile Include="SurfaceStyle.cs" />
+    <Compile Include="SurfaceStyling.cs" />
     <Compile Include="TopologyResource\IfcAdvancedFace.cs" />
     <Compile Include="TopologyResource\IfcClosedShell.cs" />
     <Compile Include="TopologyResource\IfcConnectedFaceSet.cs" />
