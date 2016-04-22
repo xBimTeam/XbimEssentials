@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToProcess>(e => e.RelatingProcess == this, "RelatingProcess", this);
+				return Model.Instances.Where<IfcRelAssignsToProcess>(e => Equals(e.RelatingProcess), "RelatingProcess", this);
 			} 
 		}
 		#endregion

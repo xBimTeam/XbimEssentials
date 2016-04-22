@@ -71,7 +71,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDecomposes>(e => e.RelatingObject == this, "RelatingObject", this);
+				return Model.Instances.Where<IfcRelDecomposes>(e => Equals(e.RelatingObject), "RelatingObject", this);
 			} 
 		}
 		[InverseProperty("RelatedObjects")]

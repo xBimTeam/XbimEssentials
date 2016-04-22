@@ -79,7 +79,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieConnection>(e => e.RealizingComponent == this, "RealizingComponent", this);
+				return Model.Instances.Where<CobieConnection>(e => Equals(e.RealizingComponent), "RealizingComponent", this);
 			} 
 		}
 		[InverseProperty("ComponentA")]
@@ -88,7 +88,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieConnection>(e => e.ComponentA == this, "ComponentA", this);
+				return Model.Instances.Where<CobieConnection>(e => Equals(e.ComponentA), "ComponentA", this);
 			} 
 		}
 		[InverseProperty("ComponentB")]
@@ -97,7 +97,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieConnection>(e => e.ComponentB == this, "ComponentB", this);
+				return Model.Instances.Where<CobieConnection>(e => Equals(e.ComponentB), "ComponentB", this);
 			} 
 		}
 		#endregion

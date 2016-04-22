@@ -155,7 +155,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieCategory>(e => e.Classification == this, "Classification", this);
+				return Model.Instances.Where<CobieCategory>(e => Equals(e.Classification), "Classification", this);
 			} 
 		}
 		#endregion

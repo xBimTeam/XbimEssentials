@@ -59,7 +59,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcProduct>(e => e.Representation == this, "Representation", this);
+				return Model.Instances.Where<IfcProduct>(e => Equals(e.Representation), "Representation", this);
 			} 
 		}
 		[InverseProperty("PartOfProductDefinitionShape")]
@@ -68,7 +68,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcShapeAspect>(e => e.PartOfProductDefinitionShape == this, "PartOfProductDefinitionShape", this);
+				return Model.Instances.Where<IfcShapeAspect>(e => Equals(e.PartOfProductDefinitionShape), "PartOfProductDefinitionShape", this);
 			} 
 		}
 		#endregion

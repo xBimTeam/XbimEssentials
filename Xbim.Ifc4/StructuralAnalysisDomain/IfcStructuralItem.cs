@@ -57,7 +57,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsStructuralActivity>(e => e.RelatingElement == this, "RelatingElement", this);
+				return Model.Instances.Where<IfcRelConnectsStructuralActivity>(e => Equals(e.RelatingElement), "RelatingElement", this);
 			} 
 		}
 		#endregion

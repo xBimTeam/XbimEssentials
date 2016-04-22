@@ -115,7 +115,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesLibrary>(e => e.RelatingLibrary == this, "RelatingLibrary", this);
+				return Model.Instances.Where<IfcRelAssociatesLibrary>(e => Equals(e.RelatingLibrary), "RelatingLibrary", this);
 			} 
 		}
 		#endregion

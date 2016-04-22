@@ -61,7 +61,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.FirstOrDefault<IfcRelConnectsPortToElement>(e => e.RelatingPort == this, "RelatingPort", this);
+				return Model.Instances.FirstOrDefault<IfcRelConnectsPortToElement>(e => Equals(e.RelatingPort), "RelatingPort", this);
 			} 
 		}
 		[InverseProperty("RelatedPort")]
@@ -70,7 +70,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsPorts>(e => e.RelatedPort == this, "RelatedPort", this);
+				return Model.Instances.Where<IfcRelConnectsPorts>(e => Equals(e.RelatedPort), "RelatedPort", this);
 			} 
 		}
 		[InverseProperty("RelatingPort")]
@@ -79,7 +79,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsPorts>(e => e.RelatingPort == this, "RelatingPort", this);
+				return Model.Instances.Where<IfcRelConnectsPorts>(e => Equals(e.RelatingPort), "RelatingPort", this);
 			} 
 		}
 		#endregion

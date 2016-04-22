@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsStructuralActivity>(e => e.RelatedStructuralActivity == this, "RelatedStructuralActivity", this);
+				return Model.Instances.Where<IfcRelConnectsStructuralActivity>(e => Equals(e.RelatedStructuralActivity), "RelatedStructuralActivity", this);
 			} 
 		}
 		#endregion

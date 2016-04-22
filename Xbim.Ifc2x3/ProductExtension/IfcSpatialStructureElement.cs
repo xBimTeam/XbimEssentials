@@ -101,7 +101,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelReferencedInSpatialStructure>(e => e.RelatingStructure == this, "RelatingStructure", this);
+				return Model.Instances.Where<IfcRelReferencedInSpatialStructure>(e => Equals(e.RelatingStructure), "RelatingStructure", this);
 			} 
 		}
 		[InverseProperty("RelatedBuildings")]
@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelContainedInSpatialStructure>(e => e.RelatingStructure == this, "RelatingStructure", this);
+				return Model.Instances.Where<IfcRelContainedInSpatialStructure>(e => Equals(e.RelatingStructure), "RelatingStructure", this);
 			} 
 		}
 		#endregion

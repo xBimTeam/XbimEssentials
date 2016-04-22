@@ -103,7 +103,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsStructuralElement>(e => e.RelatingElement == this, "RelatingElement", this);
+				return Model.Instances.Where<IfcRelConnectsStructuralElement>(e => Equals(e.RelatingElement), "RelatingElement", this);
 			} 
 		}
 		[InverseProperty("RelatedBuildingElement")]
@@ -112,7 +112,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelFillsElement>(e => e.RelatedBuildingElement == this, "RelatedBuildingElement", this);
+				return Model.Instances.Where<IfcRelFillsElement>(e => Equals(e.RelatedBuildingElement), "RelatedBuildingElement", this);
 			} 
 		}
 		[InverseProperty("RelatingElement")]
@@ -121,7 +121,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsElements>(e => e.RelatingElement == this, "RelatingElement", this);
+				return Model.Instances.Where<IfcRelConnectsElements>(e => Equals(e.RelatingElement), "RelatingElement", this);
 			} 
 		}
 		[InverseProperty("RelatingBuildingElement")]
@@ -130,7 +130,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelCoversBldgElements>(e => e.RelatingBuildingElement == this, "RelatingBuildingElement", this);
+				return Model.Instances.Where<IfcRelCoversBldgElements>(e => Equals(e.RelatingBuildingElement), "RelatingBuildingElement", this);
 			} 
 		}
 		[InverseProperty("RelatingElement")]
@@ -139,7 +139,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelProjectsElement>(e => e.RelatingElement == this, "RelatingElement", this);
+				return Model.Instances.Where<IfcRelProjectsElement>(e => Equals(e.RelatingElement), "RelatingElement", this);
 			} 
 		}
 		[InverseProperty("RelatedElements")]
@@ -157,7 +157,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsPortToElement>(e => e.RelatedElement == this, "RelatedElement", this);
+				return Model.Instances.Where<IfcRelConnectsPortToElement>(e => Equals(e.RelatedElement), "RelatedElement", this);
 			} 
 		}
 		[InverseProperty("RelatingBuildingElement")]
@@ -166,7 +166,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelVoidsElement>(e => e.RelatingBuildingElement == this, "RelatingBuildingElement", this);
+				return Model.Instances.Where<IfcRelVoidsElement>(e => Equals(e.RelatingBuildingElement), "RelatingBuildingElement", this);
 			} 
 		}
 		[InverseProperty("RealizingElements")]
@@ -184,7 +184,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSpaceBoundary>(e => e.RelatedBuildingElement == this, "RelatedBuildingElement", this);
+				return Model.Instances.Where<IfcRelSpaceBoundary>(e => Equals(e.RelatedBuildingElement), "RelatedBuildingElement", this);
 			} 
 		}
 		[InverseProperty("RelatedElement")]
@@ -193,7 +193,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsElements>(e => e.RelatedElement == this, "RelatedElement", this);
+				return Model.Instances.Where<IfcRelConnectsElements>(e => Equals(e.RelatedElement), "RelatedElement", this);
 			} 
 		}
 		[InverseProperty("RelatedElements")]

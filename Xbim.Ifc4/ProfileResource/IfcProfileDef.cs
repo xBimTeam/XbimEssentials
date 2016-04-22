@@ -168,7 +168,7 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcProfileProperties>(e => e.ProfileDefinition == this, "ProfileDefinition", this);
+				return Model.Instances.Where<IfcProfileProperties>(e => Equals(e.ProfileDefinition), "ProfileDefinition", this);
 			} 
 		}
 		#endregion

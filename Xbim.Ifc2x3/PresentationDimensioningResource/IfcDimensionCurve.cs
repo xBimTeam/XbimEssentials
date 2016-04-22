@@ -57,7 +57,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcTerminatorSymbol>(e => e.AnnotatedCurve == this, "AnnotatedCurve", this);
+				return Model.Instances.Where<IfcTerminatorSymbol>(e => Equals(e.AnnotatedCurve), "AnnotatedCurve", this);
 			} 
 		}
 		#endregion

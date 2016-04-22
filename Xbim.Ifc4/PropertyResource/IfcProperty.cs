@@ -118,7 +118,7 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => e.DependingProperty == this, "DependingProperty", this);
+				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => Equals(e.DependingProperty), "DependingProperty", this);
 			} 
 		}
 		[InverseProperty("DependantProperty")]
@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => e.DependantProperty == this, "DependantProperty", this);
+				return Model.Instances.Where<IfcPropertyDependencyRelationship>(e => Equals(e.DependantProperty), "DependantProperty", this);
 			} 
 		}
 		[InverseProperty("HasProperties")]

@@ -79,7 +79,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToActor>(e => e.RelatingActor == this, "RelatingActor", this);
+				return Model.Instances.Where<IfcRelAssignsToActor>(e => Equals(e.RelatingActor), "RelatingActor", this);
 			} 
 		}
 		#endregion

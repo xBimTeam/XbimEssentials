@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelNests>(e => e.RelatingObject == this, "RelatingObject", this);
+				return Model.Instances.Where<IfcRelNests>(e => Equals(e.RelatingObject), "RelatingObject", this);
 			} 
 		}
 		[InverseProperty("RelatedDefinitions")]
@@ -104,7 +104,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAggregates>(e => e.RelatingObject == this, "RelatingObject", this);
+				return Model.Instances.Where<IfcRelAggregates>(e => Equals(e.RelatingObject), "RelatingObject", this);
 			} 
 		}
 		[InverseProperty("RelatedObjects")]

@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelFillsElement>(e => e.RelatingOpeningElement == this, "RelatingOpeningElement", this);
+				return Model.Instances.Where<IfcRelFillsElement>(e => Equals(e.RelatingOpeningElement), "RelatingOpeningElement", this);
 			} 
 		}
 		#endregion

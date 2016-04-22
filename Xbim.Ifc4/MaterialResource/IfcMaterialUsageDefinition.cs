@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesMaterial>(e => e.RelatingMaterial == this, "RelatingMaterial", this);
+				return Model.Instances.Where<IfcRelAssociatesMaterial>(e => Equals(e.RelatingMaterial), "RelatingMaterial", this);
 			} 
 		}
 		#endregion

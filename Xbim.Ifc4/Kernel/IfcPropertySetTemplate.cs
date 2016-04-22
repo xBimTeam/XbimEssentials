@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDefinesByTemplate>(e => e.RelatingTemplate == this, "RelatingTemplate", this);
+				return Model.Instances.Where<IfcRelDefinesByTemplate>(e => Equals(e.RelatingTemplate), "RelatingTemplate", this);
 			} 
 		}
 		#endregion

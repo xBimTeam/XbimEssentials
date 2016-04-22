@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToProduct>(e => e.RelatingProduct == this, "RelatingProduct", this);
+				return Model.Instances.Where<IfcRelAssignsToProduct>(e => Equals(e.RelatingProduct), "RelatingProduct", this);
 			} 
 		}
 		#endregion

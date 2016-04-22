@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSpaceBoundary2ndLevel>(e => e.CorrespondingBoundary == this, "CorrespondingBoundary", this);
+				return Model.Instances.Where<IfcRelSpaceBoundary2ndLevel>(e => Equals(e.CorrespondingBoundary), "CorrespondingBoundary", this);
 			} 
 		}
 		#endregion

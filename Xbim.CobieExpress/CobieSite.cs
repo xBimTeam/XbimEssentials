@@ -206,7 +206,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieFacility>(e => e.Site == this, "Site", this);
+				return Model.Instances.Where<CobieFacility>(e => Equals(e.Site), "Site", this);
 			} 
 		}
 		#endregion

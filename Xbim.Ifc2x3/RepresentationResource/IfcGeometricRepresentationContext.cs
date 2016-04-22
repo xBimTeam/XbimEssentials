@@ -130,7 +130,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcGeometricRepresentationSubContext>(e => e.ParentContext == this, "ParentContext", this);
+				return Model.Instances.Where<IfcGeometricRepresentationSubContext>(e => Equals(e.ParentContext), "ParentContext", this);
 			} 
 		}
 		#endregion

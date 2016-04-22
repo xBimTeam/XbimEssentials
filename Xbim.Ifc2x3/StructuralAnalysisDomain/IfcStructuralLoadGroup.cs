@@ -150,7 +150,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcStructuralResultGroup>(e => e.ResultForLoadGroup == this, "ResultForLoadGroup", this);
+				return Model.Instances.Where<IfcStructuralResultGroup>(e => Equals(e.ResultForLoadGroup), "ResultForLoadGroup", this);
 			} 
 		}
 		[InverseProperty("LoadedBy")]

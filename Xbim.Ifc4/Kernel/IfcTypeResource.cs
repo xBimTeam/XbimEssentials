@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToResource>(e => e.RelatingResource == this, "RelatingResource", this);
+				return Model.Instances.Where<IfcRelAssignsToResource>(e => Equals(e.RelatingResource), "RelatingResource", this);
 			} 
 		}
 		#endregion

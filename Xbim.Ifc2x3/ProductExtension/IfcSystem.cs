@@ -57,7 +57,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelServicesBuildings>(e => e.RelatingSystem == this, "RelatingSystem", this);
+				return Model.Instances.Where<IfcRelServicesBuildings>(e => Equals(e.RelatingSystem), "RelatingSystem", this);
 			} 
 		}
 		#endregion

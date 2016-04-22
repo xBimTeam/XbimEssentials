@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToGroup>(e => e.RelatingGroup == this, "RelatingGroup", this);
+				return Model.Instances.Where<IfcRelAssignsToGroup>(e => Equals(e.RelatingGroup), "RelatingGroup", this);
 			} 
 		}
 		#endregion

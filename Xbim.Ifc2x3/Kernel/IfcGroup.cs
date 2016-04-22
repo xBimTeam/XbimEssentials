@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.FirstOrDefault<IfcRelAssignsToGroup>(e => e.RelatingGroup == this, "RelatingGroup", this);
+				return Model.Instances.FirstOrDefault<IfcRelAssignsToGroup>(e => Equals(e.RelatingGroup), "RelatingGroup", this);
 			} 
 		}
 		#endregion

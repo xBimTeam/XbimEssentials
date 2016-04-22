@@ -194,7 +194,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRepresentationMap>(e => e.MappedRepresentation == this, "MappedRepresentation", this);
+				return Model.Instances.Where<IfcRepresentationMap>(e => Equals(e.MappedRepresentation), "MappedRepresentation", this);
 			} 
 		}
 		[InverseProperty("AssignedItems")]

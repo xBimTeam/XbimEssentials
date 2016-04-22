@@ -216,7 +216,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcOrganizationRelationship>(e => e.RelatingOrganization == this, "RelatingOrganization", this);
+				return Model.Instances.Where<IfcOrganizationRelationship>(e => Equals(e.RelatingOrganization), "RelatingOrganization", this);
 			} 
 		}
 		[InverseProperty("TheOrganization")]
@@ -225,7 +225,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcPersonAndOrganization>(e => e.TheOrganization == this, "TheOrganization", this);
+				return Model.Instances.Where<IfcPersonAndOrganization>(e => Equals(e.TheOrganization), "TheOrganization", this);
 			} 
 		}
 		#endregion

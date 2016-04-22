@@ -296,7 +296,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesApproval>(e => e.RelatingApproval == this, "RelatingApproval", this);
+				return Model.Instances.Where<IfcRelAssociatesApproval>(e => Equals(e.RelatingApproval), "RelatingApproval", this);
 			} 
 		}
 		[InverseProperty("RelatingApproval")]
@@ -305,7 +305,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcResourceApprovalRelationship>(e => e.RelatingApproval == this, "RelatingApproval", this);
+				return Model.Instances.Where<IfcResourceApprovalRelationship>(e => Equals(e.RelatingApproval), "RelatingApproval", this);
 			} 
 		}
 		[InverseProperty("RelatedApprovals")]
@@ -323,7 +323,7 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcApprovalRelationship>(e => e.RelatingApproval == this, "RelatingApproval", this);
+				return Model.Instances.Where<IfcApprovalRelationship>(e => Equals(e.RelatingApproval), "RelatingApproval", this);
 			} 
 		}
 		#endregion

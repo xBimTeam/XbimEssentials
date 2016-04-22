@@ -370,7 +370,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				return Model.Instances.FirstOrDefault<IfcRelAssignsTasks>(e => e.TimeForTask == this, "TimeForTask", this);
+				return Model.Instances.FirstOrDefault<IfcRelAssignsTasks>(e => Equals(e.TimeForTask), "TimeForTask", this);
 			} 
 		}
 		#endregion

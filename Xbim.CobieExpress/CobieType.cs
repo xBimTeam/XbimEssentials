@@ -439,7 +439,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieComponent>(e => e.Type == this, "Type", this);
+				return Model.Instances.Where<CobieComponent>(e => Equals(e.Type), "Type", this);
 			} 
 		}
 		[InverseProperty("Type")]
@@ -448,7 +448,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieSpare>(e => e.Type == this, "Type", this);
+				return Model.Instances.Where<CobieSpare>(e => Equals(e.Type), "Type", this);
 			} 
 		}
 		[InverseProperty("Type")]
@@ -457,7 +457,7 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieJob>(e => e.Type == this, "Type", this);
+				return Model.Instances.Where<CobieJob>(e => Equals(e.Type), "Type", this);
 			} 
 		}
 		#endregion
