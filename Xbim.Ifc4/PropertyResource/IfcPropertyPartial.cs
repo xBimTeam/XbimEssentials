@@ -4,7 +4,7 @@
     /// Readonly interface for IfcProperty
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial interface IIfcProperty : IPropertyOrQuantity
+    public partial interface IIfcProperty
     {
 
     }

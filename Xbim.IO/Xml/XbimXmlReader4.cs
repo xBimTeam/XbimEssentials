@@ -133,7 +133,7 @@ namespace Xbim.IO.Xml
 
         }
 
-        private void ReadSchemaInHeader(XmlReader input, StepFileHeader header)
+        private void ReadSchemaInHeader(XmlReader input, IStepFileHeader header)
         {
             if (!input.IsEmptyElement && input.HasAttributes)
             {

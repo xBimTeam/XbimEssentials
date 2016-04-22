@@ -405,7 +405,7 @@ namespace Xbim.IO.Memory
         {
             _read.Clear();
             var schema = _entityFactory.SchemasIds.First();
-            if (schema == "IFC2X3")
+            if (string.Equals(schema, "IFC2X3", StringComparison.OrdinalIgnoreCase))
             {
                 var reader3 = new IfcXmlReader(GetOrCreateXMLEntity, entity => { }, Metadata);
                 if (progDelegate != null) reader3.ProgressStatus += progDelegate;
@@ -419,6 +419,12 @@ namespace Xbim.IO.Memory
                 Header = xmlReader.Read(stream);
                 if (progDelegate != null) xmlReader.ProgressStatus -= progDelegate;
             }
+
+            if(Header.FileSchema.Schemas == null)
+                Header.FileSchema.Schemas = new List<string>();
+            if (!Header.FileSchema.Schemas.Any())
+                Header.FileSchema.Schemas.Add(schema);
+
             //purge
             _read.Clear();
         }
@@ -498,6 +504,7 @@ namespace Xbim.IO.Memory
         /// Opens the model from STEP21 file. 
         /// </summary>
         /// <param name="stream">Path to the file</param>
+        /// <param name="streamSize"></param>
         /// <param name="progDelegate"></param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
         public virtual int LoadStep21(Stream stream, long streamSize, ReportProgressDelegate progDelegate=null)

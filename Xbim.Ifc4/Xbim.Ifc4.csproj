@@ -607,7 +607,6 @@
     <Compile Include="Interfaces\IfcWorkPlanTypeEnum.cs" />
     <Compile Include="Interfaces\IfcWorkScheduleTypeEnum.cs" />
     <Compile Include="IPhongMaterial.cs" />
-    <Compile Include="IPropertyOrQuantity.cs" />
     <Compile Include="ItemSet.cs" />
     <Compile Include="IXbimGeometryEngine.cs" />
     <Compile Include="IXbimMeshCollectionReceiver.cs" />

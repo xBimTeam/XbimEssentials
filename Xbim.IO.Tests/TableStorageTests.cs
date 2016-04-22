@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.CobieExpress;
 using Xbim.CobieExpress.IO;
 using Xbim.CobieExpress.IO.Resolvers;
+using Xbim.Common;
 using Xbim.Ifc;
 using Xbim.Ifc4.Kernel;
 using Xbim.Ifc4.MeasureResource;
@@ -19,6 +20,64 @@ namespace Xbim.MemoryModel.Tests
     [TestClass]
     public class TableStorageTests
     {
+        //[TestMethod]
+        public void SplitAndExport()
+        {
+            const string file = @"c:\Users\mxfm2\Desktop\Jeff\CFH-IBI-B01-ZZ-M3-BA-001_MainBuilding_v3_2016.cobie";
+            using (var cobie = CobieModel.OpenStep21(file))
+            {
+                var floors = cobie.Instances.OfType<CobieFloor>();
+                foreach (var floor in floors)
+                {
+                    var components = floor.Spaces.SelectMany(s => s.Components);
+                    var floorName = floor.Name;
+                    var output = Path.ChangeExtension(file, "_" + floorName + ".cobie");
+                    var outputXlsx = Path.ChangeExtension(file, "_" + floorName + ".xlsx");
+                    using (var cobieFloor = new CobieModel())
+                    {
+                        using (var txn = cobieFloor.BeginTransaction("Insertion of a single floor"))
+                        {
+                            cobieFloor.InsertCopy(components, false, new XbimInstanceHandleMap(cobie, cobieFloor));
+                            MakeUniqueNames<CobieFacility>(cobieFloor);
+                            MakeUniqueNames<CobieFloor>(cobieFloor);
+                            MakeUniqueNames<CobieSpace>(cobieFloor);
+                            MakeUniqueNames<CobieZone>(cobieFloor);
+                            MakeUniqueNames<CobieComponent>(cobieFloor);
+                            MakeUniqueNames<CobieSystem>(cobieFloor);
+                            MakeUniqueNames<CobieType>(cobieFloor);
+                            txn.Commit();                            
+                        }
+                        cobieFloor.SaveAsStep21(output);
+                        string report;
+                        cobieFloor.ExportToTable(outputXlsx, out report);
+                    }
+                }
+            }
+        }
+
+        private static void MakeUniqueNames<T>(IModel model) where T : CobieAsset
+        {
+            var groups = model.Instances.OfType<T>().GroupBy(a => a.Name);
+            foreach (var @group in groups)
+            {
+                if (group.Count() == 1)
+                {
+                    var item = group.First();
+                    if (string.IsNullOrEmpty(item.Name))
+                        item.Name = item.ExternalObject.Name;
+                    continue;
+                }
+
+                var counter = 1;
+                foreach (var item in group)
+                {
+                    if (string.IsNullOrEmpty(item.Name))
+                        item.Name = item.ExternalObject.Name;
+                    item.Name = string.Format("{0} ({1})", item.Name, counter++);
+                }
+            }
+        }
+
         [TestMethod]
         [DeploymentItem("TestFiles\\SampleHouse4.ifc")]
         public void Ifc4TableStorageTest()
