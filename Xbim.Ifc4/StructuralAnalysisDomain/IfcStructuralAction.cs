@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _destabilizingLoad = v, _destabilizingLoad, value,  "DestabilizingLoad");
+				SetValue( v =>  _destabilizingLoad = v, _destabilizingLoad, value,  "DestabilizingLoad", 10);
 			} 
 		}	
 		#endregion

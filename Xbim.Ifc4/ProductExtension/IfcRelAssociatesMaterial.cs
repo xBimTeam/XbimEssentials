@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatingMaterial = v, _relatingMaterial, value,  "RelatingMaterial");
+				SetValue( v =>  _relatingMaterial = v, _relatingMaterial, value,  "RelatingMaterial", 6);
 			} 
 		}	
 		#endregion

@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _outer = v, _outer, value,  "Outer");
+				SetValue( v =>  _outer = v, _outer, value,  "Outer", 1);
 			} 
 		}	
 		#endregion

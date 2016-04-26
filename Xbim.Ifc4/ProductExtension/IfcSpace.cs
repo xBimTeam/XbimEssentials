@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 26)]
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _elevationWithFlooring = v, _elevationWithFlooring, value,  "ElevationWithFlooring");
+				SetValue( v =>  _elevationWithFlooring = v, _elevationWithFlooring, value,  "ElevationWithFlooring", 11);
 			} 
 		}	
 		#endregion

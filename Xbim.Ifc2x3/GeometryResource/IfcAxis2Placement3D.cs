@@ -65,7 +65,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _axis = v, _axis, value,  "Axis");
+				SetValue( v =>  _axis = v, _axis, value,  "Axis", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -79,7 +79,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _refDirection = v, _refDirection, value,  "RefDirection");
+				SetValue( v =>  _refDirection = v, _refDirection, value,  "RefDirection", 3);
 			} 
 		}	
 		#endregion

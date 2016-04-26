@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _linearStiffnessByLengthX = v, _linearStiffnessByLengthX, value,  "LinearStiffnessByLengthX");
+				SetValue( v =>  _linearStiffnessByLengthX = v, _linearStiffnessByLengthX, value,  "LinearStiffnessByLengthX", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -92,7 +92,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _linearStiffnessByLengthY = v, _linearStiffnessByLengthY, value,  "LinearStiffnessByLengthY");
+				SetValue( v =>  _linearStiffnessByLengthY = v, _linearStiffnessByLengthY, value,  "LinearStiffnessByLengthY", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -106,7 +106,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _linearStiffnessByLengthZ = v, _linearStiffnessByLengthZ, value,  "LinearStiffnessByLengthZ");
+				SetValue( v =>  _linearStiffnessByLengthZ = v, _linearStiffnessByLengthZ, value,  "LinearStiffnessByLengthZ", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -120,7 +120,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _rotationalStiffnessByLengthX = v, _rotationalStiffnessByLengthX, value,  "RotationalStiffnessByLengthX");
+				SetValue( v =>  _rotationalStiffnessByLengthX = v, _rotationalStiffnessByLengthX, value,  "RotationalStiffnessByLengthX", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -134,7 +134,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _rotationalStiffnessByLengthY = v, _rotationalStiffnessByLengthY, value,  "RotationalStiffnessByLengthY");
+				SetValue( v =>  _rotationalStiffnessByLengthY = v, _rotationalStiffnessByLengthY, value,  "RotationalStiffnessByLengthY", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _rotationalStiffnessByLengthZ = v, _rotationalStiffnessByLengthZ, value,  "RotationalStiffnessByLengthZ");
+				SetValue( v =>  _rotationalStiffnessByLengthZ = v, _rotationalStiffnessByLengthZ, value,  "RotationalStiffnessByLengthZ", 7);
 			} 
 		}	
 		#endregion

@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _forProfileEndSet = v, _forProfileEndSet, value,  "ForProfileEndSet");
+				SetValue( v =>  _forProfileEndSet = v, _forProfileEndSet, value,  "ForProfileEndSet", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _cardinalEndPoint = v, _cardinalEndPoint, value,  "CardinalEndPoint");
+				SetValue( v =>  _cardinalEndPoint = v, _cardinalEndPoint, value,  "CardinalEndPoint", 5);
 			} 
 		}	
 		#endregion

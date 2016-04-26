@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _volumeOnRelatingElement = v, _volumeOnRelatingElement, value,  "VolumeOnRelatingElement");
+				SetValue( v =>  _volumeOnRelatingElement = v, _volumeOnRelatingElement, value,  "VolumeOnRelatingElement", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _volumeOnRelatedElement = v, _volumeOnRelatedElement, value,  "VolumeOnRelatedElement");
+				SetValue( v =>  _volumeOnRelatedElement = v, _volumeOnRelatedElement, value,  "VolumeOnRelatedElement", 2);
 			} 
 		}	
 		#endregion

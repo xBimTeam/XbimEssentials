@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _spaceProgramIdentifier = v, _spaceProgramIdentifier, value,  "SpaceProgramIdentifier");
+				SetValue( v =>  _spaceProgramIdentifier = v, _spaceProgramIdentifier, value,  "SpaceProgramIdentifier", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -95,7 +95,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _maxRequiredArea = v, _maxRequiredArea, value,  "MaxRequiredArea");
+				SetValue( v =>  _maxRequiredArea = v, _maxRequiredArea, value,  "MaxRequiredArea", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -109,7 +109,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _minRequiredArea = v, _minRequiredArea, value,  "MinRequiredArea");
+				SetValue( v =>  _minRequiredArea = v, _minRequiredArea, value,  "MinRequiredArea", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
@@ -123,7 +123,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _requestedLocation = v, _requestedLocation, value,  "RequestedLocation");
+				SetValue( v =>  _requestedLocation = v, _requestedLocation, value,  "RequestedLocation", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -137,7 +137,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _standardRequiredArea = v, _standardRequiredArea, value,  "StandardRequiredArea");
+				SetValue( v =>  _standardRequiredArea = v, _standardRequiredArea, value,  "StandardRequiredArea", 10);
 			} 
 		}	
 		#endregion

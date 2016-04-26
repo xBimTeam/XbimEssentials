@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _depth = v, _depth, value,  "Depth");
+				SetValue( v =>  _depth = v, _depth, value,  "Depth", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -92,7 +92,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _flangeWidth = v, _flangeWidth, value,  "FlangeWidth");
+				SetValue( v =>  _flangeWidth = v, _flangeWidth, value,  "FlangeWidth", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -106,7 +106,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness");
+				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -120,7 +120,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _flangeThickness = v, _flangeThickness, value,  "FlangeThickness");
+				SetValue( v =>  _flangeThickness = v, _flangeThickness, value,  "FlangeThickness", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -134,7 +134,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius");
+				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _edgeRadius = v, _edgeRadius, value,  "EdgeRadius");
+				SetValue( v =>  _edgeRadius = v, _edgeRadius, value,  "EdgeRadius", 9);
 			} 
 		}	
 		#endregion

@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _radius = v, _radius, value,  "Radius");
+				SetValue( v =>  _radius = v, _radius, value,  "Radius", 4);
 			} 
 		}	
 		#endregion

@@ -74,7 +74,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -88,7 +88,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _lightColour = v, _lightColour, value,  "LightColour");
+				SetValue( v =>  _lightColour = v, _lightColour, value,  "LightColour", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -102,7 +102,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _ambientIntensity = v, _ambientIntensity, value,  "AmbientIntensity");
+				SetValue( v =>  _ambientIntensity = v, _ambientIntensity, value,  "AmbientIntensity", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -116,7 +116,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _intensity = v, _intensity, value,  "Intensity");
+				SetValue( v =>  _intensity = v, _intensity, value,  "Intensity", 4);
 			} 
 		}	
 		#endregion

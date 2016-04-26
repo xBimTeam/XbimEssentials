@@ -114,8 +114,8 @@ namespace Xbim.Ifc4.UtilityResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTable(IModel model) 		{ 
 			Model = model; 
-			_rows = new OptionalItemSet<IfcTableRow>( this, 0 );
-			_columns = new OptionalItemSet<IfcTableColumn>( this, 0 );
+			_rows = new OptionalItemSet<IfcTableRow>( this, 0,  2);
+			_columns = new OptionalItemSet<IfcTableColumn>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -136,7 +136,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 2)]
@@ -217,7 +217,7 @@ namespace Xbim.Ifc4.UtilityResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -246,7 +246,7 @@ namespace Xbim.Ifc4.UtilityResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -260,11 +260,9 @@ namespace Xbim.Ifc4.UtilityResource
 					_name = value.StringVal;
 					return;
 				case 1: 
-					if (_rows == null) _rows = new OptionalItemSet<IfcTableRow>( this );
 					_rows.InternalAdd((IfcTableRow)value.EntityVal);
 					return;
 				case 2: 
-					if (_columns == null) _columns = new OptionalItemSet<IfcTableColumn>( this );
 					_columns.InternalAdd((IfcTableColumn)value.EntityVal);
 					return;
 				default:

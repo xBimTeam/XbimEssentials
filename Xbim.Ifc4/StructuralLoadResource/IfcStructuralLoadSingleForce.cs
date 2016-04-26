@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _forceX = v, _forceX, value,  "ForceX");
+				SetValue( v =>  _forceX = v, _forceX, value,  "ForceX", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -92,7 +92,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _forceY = v, _forceY, value,  "ForceY");
+				SetValue( v =>  _forceY = v, _forceY, value,  "ForceY", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -106,7 +106,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _forceZ = v, _forceZ, value,  "ForceZ");
+				SetValue( v =>  _forceZ = v, _forceZ, value,  "ForceZ", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -120,7 +120,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _momentX = v, _momentX, value,  "MomentX");
+				SetValue( v =>  _momentX = v, _momentX, value,  "MomentX", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -134,7 +134,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _momentY = v, _momentY, value,  "MomentY");
+				SetValue( v =>  _momentY = v, _momentY, value,  "MomentY", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -148,7 +148,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _momentZ = v, _momentZ, value,  "MomentZ");
+				SetValue( v =>  _momentZ = v, _momentZ, value,  "MomentZ", 7);
 			} 
 		}	
 		#endregion

@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _pointOnRelatingElement = v, _pointOnRelatingElement, value,  "PointOnRelatingElement");
+				SetValue( v =>  _pointOnRelatingElement = v, _pointOnRelatingElement, value,  "PointOnRelatingElement", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _pointOnRelatedElement = v, _pointOnRelatedElement, value,  "PointOnRelatedElement");
+				SetValue( v =>  _pointOnRelatedElement = v, _pointOnRelatedElement, value,  "PointOnRelatedElement", 2);
 			} 
 		}	
 		#endregion

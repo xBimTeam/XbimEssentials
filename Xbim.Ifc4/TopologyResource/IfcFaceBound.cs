@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.TopologyResource
 			} 
 			set
 			{
-				SetValue( v =>  _bound = v, _bound, value,  "Bound");
+				SetValue( v =>  _bound = v, _bound, value,  "Bound", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.TopologyResource
 			} 
 			set
 			{
-				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation");
+				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation", 2);
 			} 
 		}	
 		#endregion

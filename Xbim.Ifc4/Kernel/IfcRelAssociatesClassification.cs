@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _relatingClassification = v, _relatingClassification, value,  "RelatingClassification");
+				SetValue( v =>  _relatingClassification = v, _relatingClassification, value,  "RelatingClassification", 6);
 			} 
 		}	
 		#endregion

@@ -108,7 +108,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _propertySource = v, _propertySource, value,  "PropertySource");
+				SetValue( v =>  _propertySource = v, _propertySource, value,  "PropertySource", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
@@ -122,7 +122,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _flowConditionTimeSeries = v, _flowConditionTimeSeries, value,  "FlowConditionTimeSeries");
+				SetValue( v =>  _flowConditionTimeSeries = v, _flowConditionTimeSeries, value,  "FlowConditionTimeSeries", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
@@ -136,7 +136,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _velocityTimeSeries = v, _velocityTimeSeries, value,  "VelocityTimeSeries");
+				SetValue( v =>  _velocityTimeSeries = v, _velocityTimeSeries, value,  "VelocityTimeSeries", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
@@ -150,7 +150,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _flowrateTimeSeries = v, _flowrateTimeSeries, value,  "FlowrateTimeSeries");
+				SetValue( v =>  _flowrateTimeSeries = v, _flowrateTimeSeries, value,  "FlowrateTimeSeries", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
@@ -164,7 +164,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _fluid = v, _fluid, value,  "Fluid");
+				SetValue( v =>  _fluid = v, _fluid, value,  "Fluid", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -178,7 +178,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _pressureTimeSeries = v, _pressureTimeSeries, value,  "PressureTimeSeries");
+				SetValue( v =>  _pressureTimeSeries = v, _pressureTimeSeries, value,  "PressureTimeSeries", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -192,7 +192,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedPropertySource = v, _userDefinedPropertySource, value,  "UserDefinedPropertySource");
+				SetValue( v =>  _userDefinedPropertySource = v, _userDefinedPropertySource, value,  "UserDefinedPropertySource", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -206,7 +206,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _temperatureSingleValue = v, _temperatureSingleValue, value,  "TemperatureSingleValue");
+				SetValue( v =>  _temperatureSingleValue = v, _temperatureSingleValue, value,  "TemperatureSingleValue", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -220,7 +220,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _wetBulbTemperatureSingleValue = v, _wetBulbTemperatureSingleValue, value,  "WetBulbTemperatureSingleValue");
+				SetValue( v =>  _wetBulbTemperatureSingleValue = v, _wetBulbTemperatureSingleValue, value,  "WetBulbTemperatureSingleValue", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
@@ -234,7 +234,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _wetBulbTemperatureTimeSeries = v, _wetBulbTemperatureTimeSeries, value,  "WetBulbTemperatureTimeSeries");
+				SetValue( v =>  _wetBulbTemperatureTimeSeries = v, _wetBulbTemperatureTimeSeries, value,  "WetBulbTemperatureTimeSeries", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
@@ -248,7 +248,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _temperatureTimeSeries = v, _temperatureTimeSeries, value,  "TemperatureTimeSeries");
+				SetValue( v =>  _temperatureTimeSeries = v, _temperatureTimeSeries, value,  "TemperatureTimeSeries", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
@@ -262,7 +262,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _flowrateSingleValue = v, _flowrateSingleValue, value,  "FlowrateSingleValue");
+				SetValue( v =>  _flowrateSingleValue = v, _flowrateSingleValue, value,  "FlowrateSingleValue", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -276,7 +276,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _flowConditionSingleValue = v, _flowConditionSingleValue, value,  "FlowConditionSingleValue");
+				SetValue( v =>  _flowConditionSingleValue = v, _flowConditionSingleValue, value,  "FlowConditionSingleValue", 17);
 			} 
 		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -290,7 +290,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _velocitySingleValue = v, _velocitySingleValue, value,  "VelocitySingleValue");
+				SetValue( v =>  _velocitySingleValue = v, _velocitySingleValue, value,  "VelocitySingleValue", 18);
 			} 
 		}	
 		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -304,7 +304,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _pressureSingleValue = v, _pressureSingleValue, value,  "PressureSingleValue");
+				SetValue( v =>  _pressureSingleValue = v, _pressureSingleValue, value,  "PressureSingleValue", 19);
 			} 
 		}	
 		#endregion

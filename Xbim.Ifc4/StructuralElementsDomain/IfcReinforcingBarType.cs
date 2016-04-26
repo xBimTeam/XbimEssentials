@@ -57,7 +57,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcingBarType(IModel model) : base(model) 		{ 
 			Model = model; 
-			_bendingParameters = new OptionalItemSet<IfcBendingParameterSelect>( this, 0 );
+			_bendingParameters = new OptionalItemSet<IfcBendingParameterSelect>( this, 0,  16);
 		}
 
 		#region Explicit attribute fields
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter");
+				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -110,7 +110,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea");
+				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -124,7 +124,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _barLength = v, _barLength, value,  "BarLength");
+				SetValue( v =>  _barLength = v, _barLength, value,  "BarLength", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 23)]
@@ -138,7 +138,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _barSurface = v, _barSurface, value,  "BarSurface");
+				SetValue( v =>  _barSurface = v, _barSurface, value,  "BarSurface", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
@@ -152,7 +152,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _bendingShapeCode = v, _bendingShapeCode, value,  "BendingShapeCode");
+				SetValue( v =>  _bendingShapeCode = v, _bendingShapeCode, value,  "BendingShapeCode", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 25)]
@@ -206,7 +206,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 					_bendingShapeCode = value.StringVal;
 					return;
 				case 15: 
-					if (_bendingParameters == null) _bendingParameters = new OptionalItemSet<IfcBendingParameterSelect>( this );
 					_bendingParameters.InternalAdd((IfcBendingParameterSelect)value.EntityVal);
 					return;
 				default:

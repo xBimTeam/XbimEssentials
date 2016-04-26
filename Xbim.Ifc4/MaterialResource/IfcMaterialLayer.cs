@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _material = v, _material, value,  "Material");
+				SetValue( v =>  _material = v, _material, value,  "Material", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _layerThickness = v, _layerThickness, value,  "LayerThickness");
+				SetValue( v =>  _layerThickness = v, _layerThickness, value,  "LayerThickness", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _isVentilated = v, _isVentilated, value,  "IsVentilated");
+				SetValue( v =>  _isVentilated = v, _isVentilated, value,  "IsVentilated", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -139,7 +139,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -153,7 +153,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _category = v, _category, value,  "Category");
+				SetValue( v =>  _category = v, _category, value,  "Category", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -167,7 +167,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _priority = v, _priority, value,  "Priority");
+				SetValue( v =>  _priority = v, _priority, value,  "Priority", 7);
 			} 
 		}	
 		#endregion

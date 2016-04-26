@@ -46,7 +46,7 @@ namespace Xbim.Ifc4.Kernel
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDeclares(IModel model) : base(model) 		{ 
 			Model = model; 
-			_relatedDefinitions = new ItemSet<IfcDefinitionSelect>( this, 0 );
+			_relatedDefinitions = new ItemSet<IfcDefinitionSelect>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _relatingContext = v, _relatingContext, value,  "RelatingContext");
+				SetValue( v =>  _relatingContext = v, _relatingContext, value,  "RelatingContext", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -102,7 +102,6 @@ namespace Xbim.Ifc4.Kernel
 					_relatingContext = (IfcContext)(value.EntityVal);
 					return;
 				case 5: 
-					if (_relatedDefinitions == null) _relatedDefinitions = new ItemSet<IfcDefinitionSelect>( this );
 					_relatedDefinitions.InternalAdd((IfcDefinitionSelect)value.EntityVal);
 					return;
 				default:

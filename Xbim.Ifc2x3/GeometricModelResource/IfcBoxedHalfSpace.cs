@@ -62,7 +62,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _enclosure = v, _enclosure, value,  "Enclosure");
+				SetValue( v =>  _enclosure = v, _enclosure, value,  "Enclosure", 3);
 			} 
 		}	
 		#endregion

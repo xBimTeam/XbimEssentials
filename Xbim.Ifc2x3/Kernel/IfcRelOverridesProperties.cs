@@ -45,7 +45,7 @@ namespace Xbim.Ifc2x3.Kernel
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelOverridesProperties(IModel model) : base(model) 		{ 
 			Model = model; 
-			_overridingProperties = new ItemSet<IfcProperty>( this, 0 );
+			_overridingProperties = new ItemSet<IfcProperty>( this, 0,  7);
 		}
 
 		#region Explicit attribute fields
@@ -83,7 +83,6 @@ namespace Xbim.Ifc2x3.Kernel
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 6: 
-					if (_overridingProperties == null) _overridingProperties = new ItemSet<IfcProperty>( this );
 					_overridingProperties.InternalAdd((IfcProperty)value.EntityVal);
 					return;
 				default:

@@ -109,7 +109,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProductRepresentation(IModel model) 		{ 
 			Model = model; 
-			_representations = new ItemSet<IfcRepresentation>( this, 0 );
+			_representations = new ItemSet<IfcRepresentation>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -130,7 +130,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -144,7 +144,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[IndexedProperty]
@@ -179,7 +179,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -208,7 +208,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -225,7 +225,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
 					_description = value.StringVal;
 					return;
 				case 2: 
-					if (_representations == null) _representations = new ItemSet<IfcRepresentation>( this );
 					_representations.InternalAdd((IfcRepresentation)value.EntityVal);
 					return;
 				default:

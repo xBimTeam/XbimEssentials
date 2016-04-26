@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _elevation = v, _elevation, value,  "Elevation");
+				SetValue( v =>  _elevation = v, _elevation, value,  "Elevation", 10);
 			} 
 		}	
 		#endregion

@@ -70,7 +70,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _parentProfile = v, _parentProfile, value,  "ParentProfile");
+				SetValue( v =>  _parentProfile = v, _parentProfile, value,  "ParentProfile", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _operator = v, _operator, value,  "Operator");
+				SetValue( v =>  _operator = v, _operator, value,  "Operator", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -98,7 +98,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _label = v, _label, value,  "Label");
+				SetValue( v =>  _label = v, _label, value,  "Label", 5);
 			} 
 		}	
 		#endregion

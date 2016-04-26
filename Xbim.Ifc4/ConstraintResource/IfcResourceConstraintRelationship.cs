@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcResourceConstraintRelationship(IModel model) : base(model) 		{ 
 			Model = model; 
-			_relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this, 0 );
+			_relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _relatingConstraint = v, _relatingConstraint, value,  "RelatingConstraint");
+				SetValue( v =>  _relatingConstraint = v, _relatingConstraint, value,  "RelatingConstraint", 3);
 			} 
 		}	
 		[IndexedProperty]
@@ -101,7 +101,6 @@ namespace Xbim.Ifc4.ConstraintResource
 					_relatingConstraint = (IfcConstraint)(value.EntityVal);
 					return;
 				case 3: 
-					if (_relatedResourceObjects == null) _relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this );
 					_relatedResourceObjects.InternalAdd((IfcResourceObjectSelect)value.EntityVal);
 					return;
 				default:

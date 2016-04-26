@@ -56,7 +56,7 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieSpare(IModel model) : base(model) 		{ 
 			Model = model; 
-			_suppliers = new OptionalItemSet<CobieContact>( this, 0 );
+			_suppliers = new OptionalItemSet<CobieContact>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
@@ -81,7 +81,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -95,7 +95,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -109,7 +109,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _spareType = v, _spareType, value,  "SpareType");
+				SetValue( v =>  _spareType = v, _spareType, value,  "SpareType", 8);
 			} 
 		}	
 		[IndexedProperty]
@@ -124,7 +124,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _type = v, _type, value,  "Type");
+				SetValue( v =>  _type = v, _type, value,  "Type", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 10)]
@@ -148,7 +148,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _setNumber = v, _setNumber, value,  "SetNumber");
+				SetValue( v =>  _setNumber = v, _setNumber, value,  "SetNumber", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -162,7 +162,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _partNumber = v, _partNumber, value,  "PartNumber");
+				SetValue( v =>  _partNumber = v, _partNumber, value,  "PartNumber", 12);
 			} 
 		}	
 		#endregion
@@ -196,7 +196,6 @@ namespace Xbim.CobieExpress
 					_type = (CobieType)(value.EntityVal);
 					return;
 				case 9: 
-					if (_suppliers == null) _suppliers = new OptionalItemSet<CobieContact>( this );
 					_suppliers.InternalAdd((CobieContact)value.EntityVal);
 					return;
 				case 10: 

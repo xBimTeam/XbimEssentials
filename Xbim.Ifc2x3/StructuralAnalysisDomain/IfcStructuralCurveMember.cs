@@ -62,7 +62,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 8);
 			} 
 		}	
 		#endregion

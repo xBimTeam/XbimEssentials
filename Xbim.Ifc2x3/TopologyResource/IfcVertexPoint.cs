@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 			} 
 			set
 			{
-				SetValue( v =>  _vertexGeometry = v, _vertexGeometry, value,  "VertexGeometry");
+				SetValue( v =>  _vertexGeometry = v, _vertexGeometry, value,  "VertexGeometry", 1);
 			} 
 		}	
 		#endregion

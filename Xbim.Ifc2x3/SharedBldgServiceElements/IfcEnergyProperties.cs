@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _energySequence = v, _energySequence, value,  "EnergySequence");
+				SetValue( v =>  _energySequence = v, _energySequence, value,  "EnergySequence", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedEnergySequence = v, _userDefinedEnergySequence, value,  "UserDefinedEnergySequence");
+				SetValue( v =>  _userDefinedEnergySequence = v, _userDefinedEnergySequence, value,  "UserDefinedEnergySequence", 6);
 			} 
 		}	
 		#endregion

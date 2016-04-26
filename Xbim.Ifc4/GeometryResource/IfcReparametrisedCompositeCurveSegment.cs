@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _paramLength = v, _paramLength, value,  "ParamLength");
+				SetValue( v =>  _paramLength = v, _paramLength, value,  "ParamLength", 4);
 			} 
 		}	
 		#endregion

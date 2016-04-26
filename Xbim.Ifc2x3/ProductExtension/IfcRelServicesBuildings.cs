@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelServicesBuildings(IModel model) : base(model) 		{ 
 			Model = model; 
-			_relatedBuildings = new ItemSet<IfcSpatialStructureElement>( this, 0 );
+			_relatedBuildings = new ItemSet<IfcSpatialStructureElement>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
@@ -68,7 +68,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatingSystem = v, _relatingSystem, value,  "RelatingSystem");
+				SetValue( v =>  _relatingSystem = v, _relatingSystem, value,  "RelatingSystem", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -103,7 +103,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 					_relatingSystem = (IfcSystem)(value.EntityVal);
 					return;
 				case 5: 
-					if (_relatedBuildings == null) _relatedBuildings = new ItemSet<IfcSpatialStructureElement>( this );
 					_relatedBuildings.InternalAdd((IfcSpatialStructureElement)value.EntityVal);
 					return;
 				default:

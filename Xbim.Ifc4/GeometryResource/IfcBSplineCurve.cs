@@ -55,7 +55,7 @@ namespace Xbim.Ifc4.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineCurve(IModel model) : base(model) 		{ 
 			Model = model; 
-			_controlPointsList = new ItemSet<IfcCartesianPoint>( this, 0 );
+			_controlPointsList = new ItemSet<IfcCartesianPoint>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _degree = v, _degree, value,  "Degree");
+				SetValue( v =>  _degree = v, _degree, value,  "Degree", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 4)]
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _curveForm = v, _curveForm, value,  "CurveForm");
+				SetValue( v =>  _curveForm = v, _curveForm, value,  "CurveForm", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -116,7 +116,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _closedCurve = v, _closedCurve, value,  "ClosedCurve");
+				SetValue( v =>  _closedCurve = v, _closedCurve, value,  "ClosedCurve", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -130,7 +130,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect");
+				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect", 5);
 			} 
 		}	
 		#endregion
@@ -172,7 +172,6 @@ namespace Xbim.Ifc4.GeometryResource
 					_degree = value.IntegerVal;
 					return;
 				case 1: 
-					if (_controlPointsList == null) _controlPointsList = new ItemSet<IfcCartesianPoint>( this );
 					_controlPointsList.InternalAdd((IfcCartesianPoint)value.EntityVal);
 					return;
 				case 2: 

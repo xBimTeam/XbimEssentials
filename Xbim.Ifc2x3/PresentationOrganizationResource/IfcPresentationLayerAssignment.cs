@@ -111,7 +111,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPresentationLayerAssignment(IModel model) 		{ 
 			Model = model; 
-			_assignedItems = new ItemSet<IfcLayeredItem>( this, 0 );
+			_assignedItems = new ItemSet<IfcLayeredItem>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -133,7 +133,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -147,7 +147,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[IndexedProperty]
@@ -172,7 +172,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier");
+				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier", 4);
 			} 
 		}	
 		#endregion
@@ -196,7 +196,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -225,7 +225,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -242,7 +242,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 					_description = value.StringVal;
 					return;
 				case 2: 
-					if (_assignedItems == null) _assignedItems = new ItemSet<IfcLayeredItem>( this );
 					_assignedItems.InternalAdd((IfcLayeredItem)value.EntityVal);
 					return;
 				case 3: 

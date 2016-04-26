@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _forProfileSet = v, _forProfileSet, value,  "ForProfileSet");
+				SetValue( v =>  _forProfileSet = v, _forProfileSet, value,  "ForProfileSet", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _cardinalPoint = v, _cardinalPoint, value,  "CardinalPoint");
+				SetValue( v =>  _cardinalPoint = v, _cardinalPoint, value,  "CardinalPoint", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _referenceExtent = v, _referenceExtent, value,  "ReferenceExtent");
+				SetValue( v =>  _referenceExtent = v, _referenceExtent, value,  "ReferenceExtent", 3);
 			} 
 		}	
 		#endregion

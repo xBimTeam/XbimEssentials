@@ -68,7 +68,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 			} 
 			set
 			{
-				SetValue( v =>  _intent = v, _intent, value,  "Intent");
+				SetValue( v =>  _intent = v, _intent, value,  "Intent", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatingConstraint = v, _relatingConstraint, value,  "RelatingConstraint");
+				SetValue( v =>  _relatingConstraint = v, _relatingConstraint, value,  "RelatingConstraint", 7);
 			} 
 		}	
 		#endregion

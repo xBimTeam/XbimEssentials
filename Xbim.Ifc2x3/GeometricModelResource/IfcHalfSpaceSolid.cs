@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _baseSurface = v, _baseSurface, value,  "BaseSurface");
+				SetValue( v =>  _baseSurface = v, _baseSurface, value,  "BaseSurface", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _agreementFlag = v, _agreementFlag, value,  "AgreementFlag");
+				SetValue( v =>  _agreementFlag = v, _agreementFlag, value,  "AgreementFlag", 2);
 			} 
 		}	
 		#endregion

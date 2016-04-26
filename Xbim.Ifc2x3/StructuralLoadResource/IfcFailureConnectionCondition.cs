@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _tensionFailureX = v, _tensionFailureX, value,  "TensionFailureX");
+				SetValue( v =>  _tensionFailureX = v, _tensionFailureX, value,  "TensionFailureX", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -92,7 +92,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _tensionFailureY = v, _tensionFailureY, value,  "TensionFailureY");
+				SetValue( v =>  _tensionFailureY = v, _tensionFailureY, value,  "TensionFailureY", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -106,7 +106,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _tensionFailureZ = v, _tensionFailureZ, value,  "TensionFailureZ");
+				SetValue( v =>  _tensionFailureZ = v, _tensionFailureZ, value,  "TensionFailureZ", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -120,7 +120,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _compressionFailureX = v, _compressionFailureX, value,  "CompressionFailureX");
+				SetValue( v =>  _compressionFailureX = v, _compressionFailureX, value,  "CompressionFailureX", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -134,7 +134,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _compressionFailureY = v, _compressionFailureY, value,  "CompressionFailureY");
+				SetValue( v =>  _compressionFailureY = v, _compressionFailureY, value,  "CompressionFailureY", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _compressionFailureZ = v, _compressionFailureZ, value,  "CompressionFailureZ");
+				SetValue( v =>  _compressionFailureZ = v, _compressionFailureZ, value,  "CompressionFailureZ", 7);
 			} 
 		}	
 		#endregion

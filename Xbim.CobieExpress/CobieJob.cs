@@ -70,7 +70,7 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieJob(IModel model) : base(model) 		{ 
 			Model = model; 
-			_resources = new OptionalItemSet<CobieResource>( this, 0 );
+			_resources = new OptionalItemSet<CobieResource>( this, 0,  18);
 		}
 
 		#region Explicit attribute fields
@@ -102,7 +102,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _taskNumber = v, _taskNumber, value,  "TaskNumber");
+				SetValue( v =>  _taskNumber = v, _taskNumber, value,  "TaskNumber", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -116,7 +116,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -130,7 +130,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
@@ -144,7 +144,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _jobType = v, _jobType, value,  "JobType");
+				SetValue( v =>  _jobType = v, _jobType, value,  "JobType", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
@@ -158,7 +158,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _jobStatusType = v, _jobStatusType, value,  "JobStatusType");
+				SetValue( v =>  _jobStatusType = v, _jobStatusType, value,  "JobStatusType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -172,7 +172,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _duration = v, _duration, value,  "Duration");
+				SetValue( v =>  _duration = v, _duration, value,  "Duration", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
@@ -186,7 +186,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit");
+				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -200,7 +200,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _start = v, _start, value,  "Start");
+				SetValue( v =>  _start = v, _start, value,  "Start", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -214,7 +214,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _startUnit = v, _startUnit, value,  "StartUnit");
+				SetValue( v =>  _startUnit = v, _startUnit, value,  "StartUnit", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -228,7 +228,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _frequency = v, _frequency, value,  "Frequency");
+				SetValue( v =>  _frequency = v, _frequency, value,  "Frequency", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
@@ -242,7 +242,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _frequencyUnit = v, _frequencyUnit, value,  "FrequencyUnit");
+				SetValue( v =>  _frequencyUnit = v, _frequencyUnit, value,  "FrequencyUnit", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
@@ -256,7 +256,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _priors = v, _priors, value,  "Priors");
+				SetValue( v =>  _priors = v, _priors, value,  "Priors", 17);
 			} 
 		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 18)]
@@ -281,7 +281,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _type = v, _type, value,  "Type");
+				SetValue( v =>  _type = v, _type, value,  "Type", 19);
 			} 
 		}	
 		#endregion
@@ -339,7 +339,6 @@ namespace Xbim.CobieExpress
 					_priors = (CobieJob)(value.EntityVal);
 					return;
 				case 17: 
-					if (_resources == null) _resources = new OptionalItemSet<CobieResource>( this );
 					_resources.InternalAdd((CobieResource)value.EntityVal);
 					return;
 				case 18: 

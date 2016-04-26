@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _correspondingBoundary = v, _correspondingBoundary, value,  "CorrespondingBoundary");
+				SetValue( v =>  _correspondingBoundary = v, _correspondingBoundary, value,  "CorrespondingBoundary", 11);
 			} 
 		}	
 		#endregion

@@ -107,7 +107,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstraintClassificationRelationship(IModel model) 		{ 
 			Model = model; 
-			_relatedClassifications = new ItemSet<IfcClassificationNotationSelect>( this, 0 );
+			_relatedClassifications = new ItemSet<IfcClassificationNotationSelect>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -128,7 +128,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _classifiedConstraint = v, _classifiedConstraint, value,  "ClassifiedConstraint");
+				SetValue( v =>  _classifiedConstraint = v, _classifiedConstraint, value,  "ClassifiedConstraint", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
@@ -162,7 +162,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -191,7 +191,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -205,7 +205,6 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					_classifiedConstraint = (IfcConstraint)(value.EntityVal);
 					return;
 				case 1: 
-					if (_relatedClassifications == null) _relatedClassifications = new ItemSet<IfcClassificationNotationSelect>( this );
 					_relatedClassifications.InternalAdd((IfcClassificationNotationSelect)value.EntityVal);
 					return;
 				default:

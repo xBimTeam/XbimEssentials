@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _position = v, _position, value,  "Position");
+				SetValue( v =>  _position = v, _position, value,  "Position", 3);
 			} 
 		}	
 		#endregion

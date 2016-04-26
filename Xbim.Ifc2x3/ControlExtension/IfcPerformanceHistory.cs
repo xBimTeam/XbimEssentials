@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 			} 
 			set
 			{
-				SetValue( v =>  _lifeCyclePhase = v, _lifeCyclePhase, value,  "LifeCyclePhase");
+				SetValue( v =>  _lifeCyclePhase = v, _lifeCyclePhase, value,  "LifeCyclePhase", 6);
 			} 
 		}	
 		#endregion

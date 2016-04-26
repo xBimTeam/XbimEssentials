@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight");
+				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 34)]
@@ -90,7 +90,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _overallWidth = v, _overallWidth, value,  "OverallWidth");
+				SetValue( v =>  _overallWidth = v, _overallWidth, value,  "OverallWidth", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 35)]
@@ -104,7 +104,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 36)]
@@ -118,7 +118,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType");
+				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 37)]
@@ -132,7 +132,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedOperationType = v, _userDefinedOperationType, value,  "UserDefinedOperationType");
+				SetValue( v =>  _userDefinedOperationType = v, _userDefinedOperationType, value,  "UserDefinedOperationType", 13);
 			} 
 		}	
 		#endregion

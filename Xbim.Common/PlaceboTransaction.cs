@@ -25,7 +25,7 @@ namespace Xbim.Common
            //do nothing
         }
 
-        public void AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType)
+        public void AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType, byte property)
         {
             //do nothing
         }

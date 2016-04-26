@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _durationType = v, _durationType, value,  "DurationType");
+				SetValue( v =>  _durationType = v, _durationType, value,  "DurationType", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleDuration = v, _scheduleDuration, value,  "ScheduleDuration");
+				SetValue( v =>  _scheduleDuration = v, _scheduleDuration, value,  "ScheduleDuration", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -139,7 +139,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleStart = v, _scheduleStart, value,  "ScheduleStart");
+				SetValue( v =>  _scheduleStart = v, _scheduleStart, value,  "ScheduleStart", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -153,7 +153,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleFinish = v, _scheduleFinish, value,  "ScheduleFinish");
+				SetValue( v =>  _scheduleFinish = v, _scheduleFinish, value,  "ScheduleFinish", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -167,7 +167,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _earlyStart = v, _earlyStart, value,  "EarlyStart");
+				SetValue( v =>  _earlyStart = v, _earlyStart, value,  "EarlyStart", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -181,7 +181,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _earlyFinish = v, _earlyFinish, value,  "EarlyFinish");
+				SetValue( v =>  _earlyFinish = v, _earlyFinish, value,  "EarlyFinish", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -195,7 +195,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _lateStart = v, _lateStart, value,  "LateStart");
+				SetValue( v =>  _lateStart = v, _lateStart, value,  "LateStart", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -209,7 +209,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _lateFinish = v, _lateFinish, value,  "LateFinish");
+				SetValue( v =>  _lateFinish = v, _lateFinish, value,  "LateFinish", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -223,7 +223,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _freeFloat = v, _freeFloat, value,  "FreeFloat");
+				SetValue( v =>  _freeFloat = v, _freeFloat, value,  "FreeFloat", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -237,7 +237,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _totalFloat = v, _totalFloat, value,  "TotalFloat");
+				SetValue( v =>  _totalFloat = v, _totalFloat, value,  "TotalFloat", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -251,7 +251,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _isCritical = v, _isCritical, value,  "IsCritical");
+				SetValue( v =>  _isCritical = v, _isCritical, value,  "IsCritical", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -265,7 +265,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _statusTime = v, _statusTime, value,  "StatusTime");
+				SetValue( v =>  _statusTime = v, _statusTime, value,  "StatusTime", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -279,7 +279,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _actualDuration = v, _actualDuration, value,  "ActualDuration");
+				SetValue( v =>  _actualDuration = v, _actualDuration, value,  "ActualDuration", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -293,7 +293,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _actualStart = v, _actualStart, value,  "ActualStart");
+				SetValue( v =>  _actualStart = v, _actualStart, value,  "ActualStart", 17);
 			} 
 		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
@@ -307,7 +307,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _actualFinish = v, _actualFinish, value,  "ActualFinish");
+				SetValue( v =>  _actualFinish = v, _actualFinish, value,  "ActualFinish", 18);
 			} 
 		}	
 		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
@@ -321,7 +321,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _remainingTime = v, _remainingTime, value,  "RemainingTime");
+				SetValue( v =>  _remainingTime = v, _remainingTime, value,  "RemainingTime", 19);
 			} 
 		}	
 		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -335,7 +335,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _completion = v, _completion, value,  "Completion");
+				SetValue( v =>  _completion = v, _completion, value,  "Completion", 20);
 			} 
 		}	
 		#endregion

@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _serviceLifeType = v, _serviceLifeType, value,  "ServiceLifeType");
+				SetValue( v =>  _serviceLifeType = v, _serviceLifeType, value,  "ServiceLifeType", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _serviceLifeDuration = v, _serviceLifeDuration, value,  "ServiceLifeDuration");
+				SetValue( v =>  _serviceLifeDuration = v, _serviceLifeDuration, value,  "ServiceLifeDuration", 7);
 			} 
 		}	
 		#endregion

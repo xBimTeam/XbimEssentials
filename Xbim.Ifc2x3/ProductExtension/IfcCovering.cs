@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 9);
 			} 
 		}	
 		#endregion

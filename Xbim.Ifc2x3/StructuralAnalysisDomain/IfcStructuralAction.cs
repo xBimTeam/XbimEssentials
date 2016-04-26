@@ -65,7 +65,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _destabilizingLoad = v, _destabilizingLoad, value,  "DestabilizingLoad");
+				SetValue( v =>  _destabilizingLoad = v, _destabilizingLoad, value,  "DestabilizingLoad", 10);
 			} 
 		}	
 		[IndexedProperty]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _causedBy = v, _causedBy, value,  "CausedBy");
+				SetValue( v =>  _causedBy = v, _causedBy, value,  "CausedBy", 11);
 			} 
 		}	
 		#endregion

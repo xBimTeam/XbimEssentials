@@ -75,7 +75,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _referencedSource = v, _referencedSource, value,  "ReferencedSource");
+				SetValue( v =>  _referencedSource = v, _referencedSource, value,  "ReferencedSource", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -89,7 +89,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -103,7 +103,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _sort = v, _sort, value,  "Sort");
+				SetValue( v =>  _sort = v, _sort, value,  "Sort", 6);
 			} 
 		}	
 		#endregion

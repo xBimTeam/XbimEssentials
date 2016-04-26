@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _outerCurve = v, _outerCurve, value,  "OuterCurve");
+				SetValue( v =>  _outerCurve = v, _outerCurve, value,  "OuterCurve", 3);
 			} 
 		}	
 		#endregion

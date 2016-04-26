@@ -62,7 +62,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _styleOfSymbol = v, _styleOfSymbol, value,  "StyleOfSymbol");
+				SetValue( v =>  _styleOfSymbol = v, _styleOfSymbol, value,  "StyleOfSymbol", 2);
 			} 
 		}	
 		#endregion

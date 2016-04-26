@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _lagValue = v, _lagValue, value,  "LagValue");
+				SetValue( v =>  _lagValue = v, _lagValue, value,  "LagValue", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 5)]
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _durationType = v, _durationType, value,  "DurationType");
+				SetValue( v =>  _durationType = v, _durationType, value,  "DurationType", 5);
 			} 
 		}	
 		#endregion

@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDirection(IModel model) : base(model) 		{ 
 			Model = model; 
-			_directionRatios = new ItemSet<IfcReal>( this, 3 );
+			_directionRatios = new ItemSet<IfcReal>( this, 3,  1);
 		}
 
 		#region Explicit attribute fields
@@ -90,7 +90,6 @@ namespace Xbim.Ifc4.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_directionRatios == null) _directionRatios = new ItemSet<IfcReal>( this );
 					_directionRatios.InternalAdd(value.RealVal);
 					return;
 				default:

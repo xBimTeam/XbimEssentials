@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType");
+				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _constructionType = v, _constructionType, value,  "ConstructionType");
+				SetValue( v =>  _constructionType = v, _constructionType, value,  "ConstructionType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -100,7 +100,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence");
+				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -114,7 +114,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _sizeable = v, _sizeable, value,  "Sizeable");
+				SetValue( v =>  _sizeable = v, _sizeable, value,  "Sizeable", 12);
 			} 
 		}	
 		#endregion

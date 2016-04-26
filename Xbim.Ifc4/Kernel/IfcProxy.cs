@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _proxyType = v, _proxyType, value,  "ProxyType");
+				SetValue( v =>  _proxyType = v, _proxyType, value,  "ProxyType", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _tag = v, _tag, value,  "Tag");
+				SetValue( v =>  _tag = v, _tag, value,  "Tag", 9);
 			} 
 		}	
 		#endregion

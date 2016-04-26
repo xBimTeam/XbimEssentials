@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _representedMaterial = v, _representedMaterial, value,  "RepresentedMaterial");
+				SetValue( v =>  _representedMaterial = v, _representedMaterial, value,  "RepresentedMaterial", 4);
 			} 
 		}	
 		#endregion

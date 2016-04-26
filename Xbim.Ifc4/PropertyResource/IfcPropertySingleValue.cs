@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _nominalValue = v, _nominalValue, value,  "NominalValue");
+				SetValue( v =>  _nominalValue = v, _nominalValue, value,  "NominalValue", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _unit = v, _unit, value,  "Unit");
+				SetValue( v =>  _unit = v, _unit, value,  "Unit", 4);
 			} 
 		}	
 		#endregion

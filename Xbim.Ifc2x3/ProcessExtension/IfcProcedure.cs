@@ -70,7 +70,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _procedureID = v, _procedureID, value,  "ProcedureID");
+				SetValue( v =>  _procedureID = v, _procedureID, value,  "ProcedureID", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _procedureType = v, _procedureType, value,  "ProcedureType");
+				SetValue( v =>  _procedureType = v, _procedureType, value,  "ProcedureType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -98,7 +98,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedProcedureType = v, _userDefinedProcedureType, value,  "UserDefinedProcedureType");
+				SetValue( v =>  _userDefinedProcedureType = v, _userDefinedProcedureType, value,  "UserDefinedProcedureType", 8);
 			} 
 		}	
 		#endregion

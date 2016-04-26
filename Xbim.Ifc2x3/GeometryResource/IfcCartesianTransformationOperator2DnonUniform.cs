@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _scale2 = v, _scale2, value,  "Scale2");
+				SetValue( v =>  _scale2 = v, _scale2, value,  "Scale2", 5);
 			} 
 		}	
 		#endregion

@@ -71,7 +71,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _transition = v, _transition, value,  "Transition");
+				SetValue( v =>  _transition = v, _transition, value,  "Transition", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -85,7 +85,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _sameSense = v, _sameSense, value,  "SameSense");
+				SetValue( v =>  _sameSense = v, _sameSense, value,  "SameSense", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -99,7 +99,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _parentCurve = v, _parentCurve, value,  "ParentCurve");
+				SetValue( v =>  _parentCurve = v, _parentCurve, value,  "ParentCurve", 3);
 			} 
 		}	
 		#endregion

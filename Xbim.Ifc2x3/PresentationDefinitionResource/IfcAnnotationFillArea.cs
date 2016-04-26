@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAnnotationFillArea(IModel model) : base(model) 		{ 
 			Model = model; 
-			_innerBoundaries = new OptionalItemSet<IfcCurve>( this, 0 );
+			_innerBoundaries = new OptionalItemSet<IfcCurve>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
-				SetValue( v =>  _outerBoundary = v, _outerBoundary, value,  "OuterBoundary");
+				SetValue( v =>  _outerBoundary = v, _outerBoundary, value,  "OuterBoundary", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
@@ -95,7 +95,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 					_outerBoundary = (IfcCurve)(value.EntityVal);
 					return;
 				case 1: 
-					if (_innerBoundaries == null) _innerBoundaries = new OptionalItemSet<IfcCurve>( this );
 					_innerBoundaries.InternalAdd((IfcCurve)value.EntityVal);
 					return;
 				default:

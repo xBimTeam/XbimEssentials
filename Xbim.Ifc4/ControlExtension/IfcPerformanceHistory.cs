@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.ControlExtension
 			} 
 			set
 			{
-				SetValue( v =>  _lifeCyclePhase = v, _lifeCyclePhase, value,  "LifeCyclePhase");
+				SetValue( v =>  _lifeCyclePhase = v, _lifeCyclePhase, value,  "LifeCyclePhase", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.ControlExtension
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 8);
 			} 
 		}	
 		#endregion

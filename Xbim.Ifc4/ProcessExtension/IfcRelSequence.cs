@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess");
+				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -93,7 +93,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatedProcess = v, _relatedProcess, value,  "RelatedProcess");
+				SetValue( v =>  _relatedProcess = v, _relatedProcess, value,  "RelatedProcess", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -107,7 +107,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _timeLag = v, _timeLag, value,  "TimeLag");
+				SetValue( v =>  _timeLag = v, _timeLag, value,  "TimeLag", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 8)]
@@ -121,7 +121,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _sequenceType = v, _sequenceType, value,  "SequenceType");
+				SetValue( v =>  _sequenceType = v, _sequenceType, value,  "SequenceType", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -135,7 +135,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedSequenceType = v, _userDefinedSequenceType, value,  "UserDefinedSequenceType");
+				SetValue( v =>  _userDefinedSequenceType = v, _userDefinedSequenceType, value,  "UserDefinedSequenceType", 9);
 			} 
 		}	
 		#endregion

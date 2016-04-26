@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _repeatFactor = v, _repeatFactor, value,  "RepeatFactor");
+				SetValue( v =>  _repeatFactor = v, _repeatFactor, value,  "RepeatFactor", 1);
 			} 
 		}	
 		#endregion

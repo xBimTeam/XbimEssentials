@@ -169,7 +169,7 @@ namespace Xbim.IO.Esent
         /// </summary>
         public event DeletedEntityHandler EntityDeleted;
 
-        internal void HandleEntityChange(ChangeType changeType, IPersistEntity entity)
+        internal void HandleEntityChange(ChangeType changeType, IPersistEntity entity, byte property)
         {
             switch (changeType)
             {
@@ -183,7 +183,7 @@ namespace Xbim.IO.Esent
                     break;
                 case ChangeType.Modified:
                     if (EntityModified != null)
-                        EntityModified(entity);
+                        EntityModified(entity, property);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("changeType", changeType, null);

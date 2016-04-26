@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.ProfileResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCompositeProfileDef(IModel model) : base(model) 		{ 
 			Model = model; 
-			_profiles = new ItemSet<IfcProfileDef>( this, 0 );
+			_profiles = new ItemSet<IfcProfileDef>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _label = v, _label, value,  "Label");
+				SetValue( v =>  _label = v, _label, value,  "Label", 4);
 			} 
 		}	
 		#endregion
@@ -96,7 +96,6 @@ namespace Xbim.Ifc4.ProfileResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 2: 
-					if (_profiles == null) _profiles = new ItemSet<IfcProfileDef>( this );
 					_profiles.InternalAdd((IfcProfileDef)value.EntityVal);
 					return;
 				case 3: 

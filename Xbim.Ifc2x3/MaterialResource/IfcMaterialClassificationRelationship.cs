@@ -107,7 +107,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialClassificationRelationship(IModel model) 		{ 
 			Model = model; 
-			_materialClassifications = new ItemSet<IfcClassificationNotationSelect>( this, 0 );
+			_materialClassifications = new ItemSet<IfcClassificationNotationSelect>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -138,7 +138,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _classifiedMaterial = v, _classifiedMaterial, value,  "ClassifiedMaterial");
+				SetValue( v =>  _classifiedMaterial = v, _classifiedMaterial, value,  "ClassifiedMaterial", 2);
 			} 
 		}	
 		#endregion
@@ -162,7 +162,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -191,7 +191,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -202,7 +202,6 @@ namespace Xbim.Ifc2x3.MaterialResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_materialClassifications == null) _materialClassifications = new ItemSet<IfcClassificationNotationSelect>( this );
 					_materialClassifications.InternalAdd((IfcClassificationNotationSelect)value.EntityVal);
 					return;
 				case 1: 

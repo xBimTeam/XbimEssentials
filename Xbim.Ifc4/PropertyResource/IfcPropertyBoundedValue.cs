@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _upperBoundValue = v, _upperBoundValue, value,  "UpperBoundValue");
+				SetValue( v =>  _upperBoundValue = v, _upperBoundValue, value,  "UpperBoundValue", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _lowerBoundValue = v, _lowerBoundValue, value,  "LowerBoundValue");
+				SetValue( v =>  _lowerBoundValue = v, _lowerBoundValue, value,  "LowerBoundValue", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _unit = v, _unit, value,  "Unit");
+				SetValue( v =>  _unit = v, _unit, value,  "Unit", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -114,7 +114,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _setPointValue = v, _setPointValue, value,  "SetPointValue");
+				SetValue( v =>  _setPointValue = v, _setPointValue, value,  "SetPointValue", 6);
 			} 
 		}	
 		#endregion

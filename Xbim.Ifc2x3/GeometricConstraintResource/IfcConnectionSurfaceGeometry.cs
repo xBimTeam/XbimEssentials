@@ -65,7 +65,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _surfaceOnRelatingElement = v, _surfaceOnRelatingElement, value,  "SurfaceOnRelatingElement");
+				SetValue( v =>  _surfaceOnRelatingElement = v, _surfaceOnRelatingElement, value,  "SurfaceOnRelatingElement", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -79,7 +79,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _surfaceOnRelatedElement = v, _surfaceOnRelatedElement, value,  "SurfaceOnRelatedElement");
+				SetValue( v =>  _surfaceOnRelatedElement = v, _surfaceOnRelatedElement, value,  "SurfaceOnRelatedElement", 2);
 			} 
 		}	
 		#endregion

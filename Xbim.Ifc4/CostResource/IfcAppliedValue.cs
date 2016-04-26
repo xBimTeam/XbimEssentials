@@ -129,7 +129,7 @@ namespace Xbim.Ifc4.CostResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAppliedValue(IModel model) 		{ 
 			Model = model; 
-			_components = new OptionalItemSet<IfcAppliedValue>( this, 0 );
+			_components = new OptionalItemSet<IfcAppliedValue>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
@@ -157,7 +157,7 @@ namespace Xbim.Ifc4.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -171,7 +171,7 @@ namespace Xbim.Ifc4.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -185,7 +185,7 @@ namespace Xbim.Ifc4.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _appliedValue = v, _appliedValue, value,  "AppliedValue");
+				SetValue( v =>  _appliedValue = v, _appliedValue, value,  "AppliedValue", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -199,7 +199,7 @@ namespace Xbim.Ifc4.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _unitBasis = v, _unitBasis, value,  "UnitBasis");
+				SetValue( v =>  _unitBasis = v, _unitBasis, value,  "UnitBasis", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -213,7 +213,7 @@ namespace Xbim.Ifc4.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _applicableDate = v, _applicableDate, value,  "ApplicableDate");
+				SetValue( v =>  _applicableDate = v, _applicableDate, value,  "ApplicableDate", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -227,7 +227,7 @@ namespace Xbim.Ifc4.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _fixedUntilDate = v, _fixedUntilDate, value,  "FixedUntilDate");
+				SetValue( v =>  _fixedUntilDate = v, _fixedUntilDate, value,  "FixedUntilDate", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -241,7 +241,7 @@ namespace Xbim.Ifc4.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _category = v, _category, value,  "Category");
+				SetValue( v =>  _category = v, _category, value,  "Category", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -255,7 +255,7 @@ namespace Xbim.Ifc4.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _condition = v, _condition, value,  "Condition");
+				SetValue( v =>  _condition = v, _condition, value,  "Condition", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 9)]
@@ -269,7 +269,7 @@ namespace Xbim.Ifc4.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _arithmeticOperator = v, _arithmeticOperator, value,  "ArithmeticOperator");
+				SetValue( v =>  _arithmeticOperator = v, _arithmeticOperator, value,  "ArithmeticOperator", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 10)]
@@ -314,7 +314,7 @@ namespace Xbim.Ifc4.CostResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -343,7 +343,7 @@ namespace Xbim.Ifc4.CostResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -381,7 +381,6 @@ namespace Xbim.Ifc4.CostResource
                     _arithmeticOperator = (IfcArithmeticOperatorEnum) System.Enum.Parse(typeof (IfcArithmeticOperatorEnum), value.EnumVal, true);
 					return;
 				case 9: 
-					if (_components == null) _components = new OptionalItemSet<IfcAppliedValue>( this );
 					_components.InternalAdd((IfcAppliedValue)value.EntityVal);
 					return;
 				default:

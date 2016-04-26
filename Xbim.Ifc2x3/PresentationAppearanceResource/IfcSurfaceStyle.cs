@@ -46,7 +46,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyle(IModel model) : base(model) 		{ 
 			Model = model; 
-			_styles = new ItemSet<IfcSurfaceStyleElementSelect>( this, 5 );
+			_styles = new ItemSet<IfcSurfaceStyleElementSelect>( this, 5,  3);
 		}
 
 		#region Explicit attribute fields
@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _side = v, _side, value,  "Side");
+				SetValue( v =>  _side = v, _side, value,  "Side", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 5, 3)]
@@ -97,7 +97,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
                     _side = (IfcSurfaceSide) System.Enum.Parse(typeof (IfcSurfaceSide), value.EnumVal, true);
 					return;
 				case 2: 
-					if (_styles == null) _styles = new ItemSet<IfcSurfaceStyleElementSelect>( this );
 					_styles.InternalAdd((IfcSurfaceStyleElementSelect)value.EntityVal);
 					return;
 				default:

@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve");
+				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _pointParameter = v, _pointParameter, value,  "PointParameter");
+				SetValue( v =>  _pointParameter = v, _pointParameter, value,  "PointParameter", 2);
 			} 
 		}	
 		#endregion

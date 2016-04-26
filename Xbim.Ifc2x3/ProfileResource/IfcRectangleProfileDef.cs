@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _xDim = v, _xDim, value,  "XDim");
+				SetValue( v =>  _xDim = v, _xDim, value,  "XDim", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _yDim = v, _yDim, value,  "YDim");
+				SetValue( v =>  _yDim = v, _yDim, value,  "YDim", 5);
 			} 
 		}	
 		#endregion

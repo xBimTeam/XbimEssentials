@@ -70,7 +70,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _elevation = v, _elevation, value,  "Elevation");
+				SetValue( v =>  _elevation = v, _elevation, value,  "Elevation", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -84,7 +84,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _height = v, _height, value,  "Height");
+				SetValue( v =>  _height = v, _height, value,  "Height", 14);
 			} 
 		}	
 		[IndexedProperty]
@@ -99,7 +99,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _facility = v, _facility, value,  "Facility");
+				SetValue( v =>  _facility = v, _facility, value,  "Facility", 15);
 			} 
 		}	
 		#endregion

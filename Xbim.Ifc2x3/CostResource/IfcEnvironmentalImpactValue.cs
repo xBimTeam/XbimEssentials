@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _impactType = v, _impactType, value,  "ImpactType");
+				SetValue( v =>  _impactType = v, _impactType, value,  "ImpactType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _category = v, _category, value,  "Category");
+				SetValue( v =>  _category = v, _category, value,  "Category", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedCategory = v, _userDefinedCategory, value,  "UserDefinedCategory");
+				SetValue( v =>  _userDefinedCategory = v, _userDefinedCategory, value,  "UserDefinedCategory", 9);
 			} 
 		}	
 		#endregion

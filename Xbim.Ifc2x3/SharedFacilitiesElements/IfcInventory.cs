@@ -58,7 +58,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcInventory(IModel model) : base(model) 		{ 
 			Model = model; 
-			_responsiblePersons = new ItemSet<IfcPerson>( this, 0 );
+			_responsiblePersons = new ItemSet<IfcPerson>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _inventoryType = v, _inventoryType, value,  "InventoryType");
+				SetValue( v =>  _inventoryType = v, _inventoryType, value,  "InventoryType", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -96,7 +96,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _jurisdiction = v, _jurisdiction, value,  "Jurisdiction");
+				SetValue( v =>  _jurisdiction = v, _jurisdiction, value,  "Jurisdiction", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 14)]
@@ -120,7 +120,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _lastUpdateDate = v, _lastUpdateDate, value,  "LastUpdateDate");
+				SetValue( v =>  _lastUpdateDate = v, _lastUpdateDate, value,  "LastUpdateDate", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
@@ -134,7 +134,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue");
+				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _originalValue = v, _originalValue, value,  "OriginalValue");
+				SetValue( v =>  _originalValue = v, _originalValue, value,  "OriginalValue", 11);
 			} 
 		}	
 		#endregion
@@ -176,7 +176,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					_jurisdiction = (IfcActorSelect)(value.EntityVal);
 					return;
 				case 7: 
-					if (_responsiblePersons == null) _responsiblePersons = new ItemSet<IfcPerson>( this );
 					_responsiblePersons.InternalAdd((IfcPerson)value.EntityVal);
 					return;
 				case 8: 

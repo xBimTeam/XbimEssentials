@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.QuantityResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPhysicalComplexQuantity(IModel model) : base(model) 		{ 
 			Model = model; 
-			_hasQuantities = new ItemSet<IfcPhysicalQuantity>( this, 0 );
+			_hasQuantities = new ItemSet<IfcPhysicalQuantity>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.QuantityResource
 			} 
 			set
 			{
-				SetValue( v =>  _discrimination = v, _discrimination, value,  "Discrimination");
+				SetValue( v =>  _discrimination = v, _discrimination, value,  "Discrimination", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.QuantityResource
 			} 
 			set
 			{
-				SetValue( v =>  _quality = v, _quality, value,  "Quality");
+				SetValue( v =>  _quality = v, _quality, value,  "Quality", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -112,7 +112,7 @@ namespace Xbim.Ifc4.QuantityResource
 			} 
 			set
 			{
-				SetValue( v =>  _usage = v, _usage, value,  "Usage");
+				SetValue( v =>  _usage = v, _usage, value,  "Usage", 6);
 			} 
 		}	
 		#endregion
@@ -131,7 +131,6 @@ namespace Xbim.Ifc4.QuantityResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 2: 
-					if (_hasQuantities == null) _hasQuantities = new ItemSet<IfcPhysicalQuantity>( this );
 					_hasQuantities.InternalAdd((IfcPhysicalQuantity)value.EntityVal);
 					return;
 				case 3: 

@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _rasterFormat = v, _rasterFormat, value,  "RasterFormat");
+				SetValue( v =>  _rasterFormat = v, _rasterFormat, value,  "RasterFormat", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _rasterCode = v, _rasterCode, value,  "RasterCode");
+				SetValue( v =>  _rasterCode = v, _rasterCode, value,  "RasterCode", 7);
 			} 
 		}	
 		#endregion

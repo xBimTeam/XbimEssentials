@@ -62,7 +62,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _treeRootExpression = v, _treeRootExpression, value,  "TreeRootExpression");
+				SetValue( v =>  _treeRootExpression = v, _treeRootExpression, value,  "TreeRootExpression", 1);
 			} 
 		}	
 		#endregion

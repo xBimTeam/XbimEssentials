@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _bottomXDim = v, _bottomXDim, value,  "BottomXDim");
+				SetValue( v =>  _bottomXDim = v, _bottomXDim, value,  "BottomXDim", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _topXDim = v, _topXDim, value,  "TopXDim");
+				SetValue( v =>  _topXDim = v, _topXDim, value,  "TopXDim", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _yDim = v, _yDim, value,  "YDim");
+				SetValue( v =>  _yDim = v, _yDim, value,  "YDim", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -114,7 +114,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _topXOffset = v, _topXOffset, value,  "TopXOffset");
+				SetValue( v =>  _topXOffset = v, _topXOffset, value,  "TopXOffset", 7);
 			} 
 		}	
 		#endregion

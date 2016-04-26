@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _visibleSegmentLength = v, _visibleSegmentLength, value,  "VisibleSegmentLength");
+				SetValue( v =>  _visibleSegmentLength = v, _visibleSegmentLength, value,  "VisibleSegmentLength", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _invisibleSegmentLength = v, _invisibleSegmentLength, value,  "InvisibleSegmentLength");
+				SetValue( v =>  _invisibleSegmentLength = v, _invisibleSegmentLength, value,  "InvisibleSegmentLength", 2);
 			} 
 		}	
 		#endregion

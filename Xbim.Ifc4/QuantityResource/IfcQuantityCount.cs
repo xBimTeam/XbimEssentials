@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.QuantityResource
 			} 
 			set
 			{
-				SetValue( v =>  _countValue = v, _countValue, value,  "CountValue");
+				SetValue( v =>  _countValue = v, _countValue, value,  "CountValue", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.QuantityResource
 			} 
 			set
 			{
-				SetValue( v =>  _formula = v, _formula, value,  "Formula");
+				SetValue( v =>  _formula = v, _formula, value,  "Formula", 5);
 			} 
 		}	
 		#endregion

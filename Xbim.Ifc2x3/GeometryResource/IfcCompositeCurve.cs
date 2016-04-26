@@ -48,7 +48,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCompositeCurve(IModel model) : base(model) 		{ 
 			Model = model; 
-			_segments = new ItemSet<IfcCompositeCurveSegment>( this, 0 );
+			_segments = new ItemSet<IfcCompositeCurveSegment>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -79,7 +79,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect");
+				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect", 2);
 			} 
 		}	
 		#endregion
@@ -119,7 +119,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_segments == null) _segments = new ItemSet<IfcCompositeCurveSegment>( this );
 					_segments.InternalAdd((IfcCompositeCurveSegment)value.EntityVal);
 					return;
 				case 1: 

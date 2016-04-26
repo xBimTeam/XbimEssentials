@@ -149,7 +149,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -163,7 +163,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -177,7 +177,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
-				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime");
+				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -191,7 +191,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
-				SetValue( v =>  _endTime = v, _endTime, value,  "EndTime");
+				SetValue( v =>  _endTime = v, _endTime, value,  "EndTime", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 5)]
@@ -205,7 +205,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
-				SetValue( v =>  _timeSeriesDataType = v, _timeSeriesDataType, value,  "TimeSeriesDataType");
+				SetValue( v =>  _timeSeriesDataType = v, _timeSeriesDataType, value,  "TimeSeriesDataType", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 6)]
@@ -219,7 +219,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
-				SetValue( v =>  _dataOrigin = v, _dataOrigin, value,  "DataOrigin");
+				SetValue( v =>  _dataOrigin = v, _dataOrigin, value,  "DataOrigin", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -233,7 +233,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedDataOrigin = v, _userDefinedDataOrigin, value,  "UserDefinedDataOrigin");
+				SetValue( v =>  _userDefinedDataOrigin = v, _userDefinedDataOrigin, value,  "UserDefinedDataOrigin", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -247,7 +247,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
-				SetValue( v =>  _unit = v, _unit, value,  "Unit");
+				SetValue( v =>  _unit = v, _unit, value,  "Unit", 8);
 			} 
 		}	
 		#endregion
@@ -282,7 +282,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -311,7 +311,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.MaterialResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialProfileWithOffsets(IModel model) : base(model) 		{ 
 			Model = model; 
-			_offsetValues = new ItemSet<IfcLengthMeasure>( this, 2 );
+			_offsetValues = new ItemSet<IfcLengthMeasure>( this, 2,  7);
 		}
 
 		#region Explicit attribute fields
@@ -83,7 +83,6 @@ namespace Xbim.Ifc4.MaterialResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 6: 
-					if (_offsetValues == null) _offsetValues = new ItemSet<IfcLengthMeasure>( this );
 					_offsetValues.InternalAdd(value.RealVal);
 					return;
 				default:

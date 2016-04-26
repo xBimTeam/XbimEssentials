@@ -48,7 +48,7 @@ namespace Xbim.Ifc4.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveBoundedPlane(IModel model) : base(model) 		{ 
 			Model = model; 
-			_innerBoundaries = new ItemSet<IfcCurve>( this, 0 );
+			_innerBoundaries = new ItemSet<IfcCurve>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface");
+				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _outerBoundary = v, _outerBoundary, value,  "OuterBoundary");
+				SetValue( v =>  _outerBoundary = v, _outerBoundary, value,  "OuterBoundary", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
@@ -114,7 +114,6 @@ namespace Xbim.Ifc4.GeometryResource
 					_outerBoundary = (IfcCurve)(value.EntityVal);
 					return;
 				case 2: 
-					if (_innerBoundaries == null) _innerBoundaries = new ItemSet<IfcCurve>( this );
 					_innerBoundaries.InternalAdd((IfcCurve)value.EntityVal);
 					return;
 				default:

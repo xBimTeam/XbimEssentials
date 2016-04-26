@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			} 
 			set
 			{
-				SetValue( v =>  _extent = v, _extent, value,  "Extent");
+				SetValue( v =>  _extent = v, _extent, value,  "Extent", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			} 
 			set
 			{
-				SetValue( v =>  _boxAlignment = v, _boxAlignment, value,  "BoxAlignment");
+				SetValue( v =>  _boxAlignment = v, _boxAlignment, value,  "BoxAlignment", 5);
 			} 
 		}	
 		#endregion

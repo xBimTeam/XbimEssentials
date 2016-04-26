@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _thickness = v, _thickness, value,  "Thickness");
+				SetValue( v =>  _thickness = v, _thickness, value,  "Thickness", 9);
 			} 
 		}	
 		#endregion

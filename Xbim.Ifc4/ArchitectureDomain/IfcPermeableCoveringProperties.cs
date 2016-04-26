@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType");
+				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _panelPosition = v, _panelPosition, value,  "PanelPosition");
+				SetValue( v =>  _panelPosition = v, _panelPosition, value,  "PanelPosition", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _frameDepth = v, _frameDepth, value,  "FrameDepth");
+				SetValue( v =>  _frameDepth = v, _frameDepth, value,  "FrameDepth", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -119,7 +119,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _frameThickness = v, _frameThickness, value,  "FrameThickness");
+				SetValue( v =>  _frameThickness = v, _frameThickness, value,  "FrameThickness", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -133,7 +133,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle");
+				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle", 9);
 			} 
 		}	
 		#endregion

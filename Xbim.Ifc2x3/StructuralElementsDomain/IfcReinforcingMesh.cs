@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _meshLength = v, _meshLength, value,  "MeshLength");
+				SetValue( v =>  _meshLength = v, _meshLength, value,  "MeshLength", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
@@ -98,7 +98,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _meshWidth = v, _meshWidth, value,  "MeshWidth");
+				SetValue( v =>  _meshWidth = v, _meshWidth, value,  "MeshWidth", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 30)]
@@ -112,7 +112,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _longitudinalBarNominalDiameter = v, _longitudinalBarNominalDiameter, value,  "LongitudinalBarNominalDiameter");
+				SetValue( v =>  _longitudinalBarNominalDiameter = v, _longitudinalBarNominalDiameter, value,  "LongitudinalBarNominalDiameter", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 31)]
@@ -126,7 +126,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _transverseBarNominalDiameter = v, _transverseBarNominalDiameter, value,  "TransverseBarNominalDiameter");
+				SetValue( v =>  _transverseBarNominalDiameter = v, _transverseBarNominalDiameter, value,  "TransverseBarNominalDiameter", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 32)]
@@ -140,7 +140,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _longitudinalBarCrossSectionArea = v, _longitudinalBarCrossSectionArea, value,  "LongitudinalBarCrossSectionArea");
+				SetValue( v =>  _longitudinalBarCrossSectionArea = v, _longitudinalBarCrossSectionArea, value,  "LongitudinalBarCrossSectionArea", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 33)]
@@ -154,7 +154,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _transverseBarCrossSectionArea = v, _transverseBarCrossSectionArea, value,  "TransverseBarCrossSectionArea");
+				SetValue( v =>  _transverseBarCrossSectionArea = v, _transverseBarCrossSectionArea, value,  "TransverseBarCrossSectionArea", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 34)]
@@ -168,7 +168,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _longitudinalBarSpacing = v, _longitudinalBarSpacing, value,  "LongitudinalBarSpacing");
+				SetValue( v =>  _longitudinalBarSpacing = v, _longitudinalBarSpacing, value,  "LongitudinalBarSpacing", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 35)]
@@ -182,7 +182,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _transverseBarSpacing = v, _transverseBarSpacing, value,  "TransverseBarSpacing");
+				SetValue( v =>  _transverseBarSpacing = v, _transverseBarSpacing, value,  "TransverseBarSpacing", 17);
 			} 
 		}	
 		#endregion

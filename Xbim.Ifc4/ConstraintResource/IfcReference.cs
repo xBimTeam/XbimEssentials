@@ -114,7 +114,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReference(IModel model) 		{ 
 			Model = model; 
-			_listPositions = new OptionalItemSet<IfcInteger>( this, 0 );
+			_listPositions = new OptionalItemSet<IfcInteger>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
@@ -137,7 +137,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _typeIdentifier = v, _typeIdentifier, value,  "TypeIdentifier");
+				SetValue( v =>  _typeIdentifier = v, _typeIdentifier, value,  "TypeIdentifier", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -151,7 +151,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _attributeIdentifier = v, _attributeIdentifier, value,  "AttributeIdentifier");
+				SetValue( v =>  _attributeIdentifier = v, _attributeIdentifier, value,  "AttributeIdentifier", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -165,7 +165,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _instanceName = v, _instanceName, value,  "InstanceName");
+				SetValue( v =>  _instanceName = v, _instanceName, value,  "InstanceName", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 4)]
@@ -189,7 +189,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _innerReference = v, _innerReference, value,  "InnerReference");
+				SetValue( v =>  _innerReference = v, _innerReference, value,  "InnerReference", 5);
 			} 
 		}	
 		#endregion
@@ -213,7 +213,7 @@ namespace Xbim.Ifc4.ConstraintResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -242,7 +242,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -262,7 +262,6 @@ namespace Xbim.Ifc4.ConstraintResource
 					_instanceName = value.StringVal;
 					return;
 				case 3: 
-					if (_listPositions == null) _listPositions = new OptionalItemSet<IfcInteger>( this );
 					_listPositions.InternalAdd(value.IntegerVal);
 					return;
 				case 4: 

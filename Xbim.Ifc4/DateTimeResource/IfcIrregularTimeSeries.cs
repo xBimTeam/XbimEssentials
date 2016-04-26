@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIrregularTimeSeries(IModel model) : base(model) 		{ 
 			Model = model; 
-			_values = new ItemSet<IfcIrregularTimeSeriesValue>( this, 0 );
+			_values = new ItemSet<IfcIrregularTimeSeriesValue>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
@@ -84,7 +84,6 @@ namespace Xbim.Ifc4.DateTimeResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 8: 
-					if (_values == null) _values = new ItemSet<IfcIrregularTimeSeriesValue>( this );
 					_values.InternalAdd((IfcIrregularTimeSeriesValue)value.EntityVal);
 					return;
 				default:

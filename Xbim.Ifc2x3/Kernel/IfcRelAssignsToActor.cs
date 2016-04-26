@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _relatingActor = v, _relatingActor, value,  "RelatingActor");
+				SetValue( v =>  _relatingActor = v, _relatingActor, value,  "RelatingActor", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _actingRole = v, _actingRole, value,  "ActingRole");
+				SetValue( v =>  _actingRole = v, _actingRole, value,  "ActingRole", 8);
 			} 
 		}	
 		#endregion

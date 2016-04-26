@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.MeasureResource
 			} 
 			set
 			{
-				SetValue( v =>  _prefix = v, _prefix, value,  "Prefix");
+				SetValue( v =>  _prefix = v, _prefix, value,  "Prefix", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 4)]
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.MeasureResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 4);
 			} 
 		}	
 		#endregion

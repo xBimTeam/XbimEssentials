@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			} 
 			set
 			{
-				SetValue( v =>  _featureLength = v, _featureLength, value,  "FeatureLength");
+				SetValue( v =>  _featureLength = v, _featureLength, value,  "FeatureLength", 9);
 			} 
 		}	
 		#endregion

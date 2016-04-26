@@ -46,7 +46,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeometricSet(IModel model) : base(model) 		{ 
 			Model = model; 
-			_elements = new ItemSet<IfcGeometricSetSelect>( this, 0 );
+			_elements = new ItemSet<IfcGeometricSetSelect>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -91,7 +91,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_elements == null) _elements = new ItemSet<IfcGeometricSetSelect>( this );
 					_elements.InternalAdd((IfcGeometricSetSelect)value.EntityVal);
 					return;
 				default:

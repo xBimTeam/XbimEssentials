@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _deltaT_Constant = v, _deltaT_Constant, value,  "DeltaT_Constant");
+				SetValue( v =>  _deltaT_Constant = v, _deltaT_Constant, value,  "DeltaT_Constant", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _deltaT_Y = v, _deltaT_Y, value,  "DeltaT_Y");
+				SetValue( v =>  _deltaT_Y = v, _deltaT_Y, value,  "DeltaT_Y", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _deltaT_Z = v, _deltaT_Z, value,  "DeltaT_Z");
+				SetValue( v =>  _deltaT_Z = v, _deltaT_Z, value,  "DeltaT_Z", 4);
 			} 
 		}	
 		#endregion

@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.MaterialResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialProfileSet(IModel model) : base(model) 		{ 
 			Model = model; 
-			_materialProfiles = new ItemSet<IfcMaterialProfile>( this, 0 );
+			_materialProfiles = new ItemSet<IfcMaterialProfile>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[IndexedProperty]
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _compositeProfile = v, _compositeProfile, value,  "CompositeProfile");
+				SetValue( v =>  _compositeProfile = v, _compositeProfile, value,  "CompositeProfile", 4);
 			} 
 		}	
 		#endregion
@@ -134,7 +134,6 @@ namespace Xbim.Ifc4.MaterialResource
 					_description = value.StringVal;
 					return;
 				case 2: 
-					if (_materialProfiles == null) _materialProfiles = new ItemSet<IfcMaterialProfile>( this );
 					_materialProfiles.InternalAdd((IfcMaterialProfile)value.EntityVal);
 					return;
 				case 3: 

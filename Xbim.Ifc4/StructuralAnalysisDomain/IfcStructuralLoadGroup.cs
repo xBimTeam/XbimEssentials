@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
@@ -94,7 +94,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _actionType = v, _actionType, value,  "ActionType");
+				SetValue( v =>  _actionType = v, _actionType, value,  "ActionType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _actionSource = v, _actionSource, value,  "ActionSource");
+				SetValue( v =>  _actionSource = v, _actionSource, value,  "ActionSource", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -122,7 +122,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _coefficient = v, _coefficient, value,  "Coefficient");
+				SetValue( v =>  _coefficient = v, _coefficient, value,  "Coefficient", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -136,7 +136,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose");
+				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose", 10);
 			} 
 		}	
 		#endregion

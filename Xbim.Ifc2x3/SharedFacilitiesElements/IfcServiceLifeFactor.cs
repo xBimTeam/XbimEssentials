@@ -73,7 +73,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
@@ -87,7 +87,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _upperValue = v, _upperValue, value,  "UpperValue");
+				SetValue( v =>  _upperValue = v, _upperValue, value,  "UpperValue", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
@@ -101,7 +101,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _mostUsedValue = v, _mostUsedValue, value,  "MostUsedValue");
+				SetValue( v =>  _mostUsedValue = v, _mostUsedValue, value,  "MostUsedValue", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
@@ -115,7 +115,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _lowerValue = v, _lowerValue, value,  "LowerValue");
+				SetValue( v =>  _lowerValue = v, _lowerValue, value,  "LowerValue", 8);
 			} 
 		}	
 		#endregion

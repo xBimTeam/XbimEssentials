@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 			set
 			{
-				SetValue( v =>  _areaValue = v, _areaValue, value,  "AreaValue");
+				SetValue( v =>  _areaValue = v, _areaValue, value,  "AreaValue", 4);
 			} 
 		}	
 		#endregion

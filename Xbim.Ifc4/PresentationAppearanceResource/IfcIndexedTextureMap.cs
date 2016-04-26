@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _mappedTo = v, _mappedTo, value,  "MappedTo");
+				SetValue( v =>  _mappedTo = v, _mappedTo, value,  "MappedTo", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _texCoords = v, _texCoords, value,  "TexCoords");
+				SetValue( v =>  _texCoords = v, _texCoords, value,  "TexCoords", 3);
 			} 
 		}	
 		#endregion

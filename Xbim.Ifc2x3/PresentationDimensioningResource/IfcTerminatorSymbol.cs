@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 			} 
 			set
 			{
-				SetValue( v =>  _annotatedCurve = v, _annotatedCurve, value,  "AnnotatedCurve");
+				SetValue( v =>  _annotatedCurve = v, _annotatedCurve, value,  "AnnotatedCurve", 4);
 			} 
 		}	
 		#endregion

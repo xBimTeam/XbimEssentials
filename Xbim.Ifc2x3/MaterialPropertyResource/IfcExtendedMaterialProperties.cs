@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExtendedMaterialProperties(IModel model) : base(model) 		{ 
 			Model = model; 
-			_extendedProperties = new ItemSet<IfcProperty>( this, 0 );
+			_extendedProperties = new ItemSet<IfcProperty>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -95,7 +95,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 4);
 			} 
 		}	
 		#endregion
@@ -113,7 +113,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 1: 
-					if (_extendedProperties == null) _extendedProperties = new ItemSet<IfcProperty>( this );
 					_extendedProperties.InternalAdd((IfcProperty)value.EntityVal);
 					return;
 				case 2: 

@@ -125,7 +125,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _createdBy = v, _createdBy, value,  "CreatedBy");
+				SetValue( v =>  _createdBy = v, _createdBy, value,  "CreatedBy", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -139,7 +139,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _createdOn = v, _createdOn, value,  "CreatedOn");
+				SetValue( v =>  _createdOn = v, _createdOn, value,  "CreatedOn", 2);
 			} 
 		}	
 		#endregion
@@ -163,7 +163,7 @@ namespace Xbim.CobieExpress
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -192,7 +192,7 @@ namespace Xbim.CobieExpress
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

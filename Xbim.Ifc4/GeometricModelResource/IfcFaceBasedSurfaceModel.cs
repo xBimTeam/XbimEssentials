@@ -48,7 +48,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFaceBasedSurfaceModel(IModel model) : base(model) 		{ 
 			Model = model; 
-			_fbsmFaces = new ItemSet<IfcConnectedFaceSet>( this, 0 );
+			_fbsmFaces = new ItemSet<IfcConnectedFaceSet>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -91,7 +91,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_fbsmFaces == null) _fbsmFaces = new ItemSet<IfcConnectedFaceSet>( this );
 					_fbsmFaces.InternalAdd((IfcConnectedFaceSet)value.EntityVal);
 					return;
 				default:

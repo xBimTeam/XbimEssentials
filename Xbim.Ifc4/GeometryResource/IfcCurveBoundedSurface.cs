@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveBoundedSurface(IModel model) : base(model) 		{ 
 			Model = model; 
-			_boundaries = new ItemSet<IfcBoundaryCurve>( this, 0 );
+			_boundaries = new ItemSet<IfcBoundaryCurve>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface");
+				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
@@ -94,7 +94,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _implicitOuter = v, _implicitOuter, value,  "ImplicitOuter");
+				SetValue( v =>  _implicitOuter = v, _implicitOuter, value,  "ImplicitOuter", 3);
 			} 
 		}	
 		#endregion
@@ -112,7 +112,6 @@ namespace Xbim.Ifc4.GeometryResource
 					_basisSurface = (IfcSurface)(value.EntityVal);
 					return;
 				case 1: 
-					if (_boundaries == null) _boundaries = new ItemSet<IfcBoundaryCurve>( this );
 					_boundaries.InternalAdd((IfcBoundaryCurve)value.EntityVal);
 					return;
 				case 2: 

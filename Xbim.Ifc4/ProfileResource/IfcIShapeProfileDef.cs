@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _overallWidth = v, _overallWidth, value,  "OverallWidth");
+				SetValue( v =>  _overallWidth = v, _overallWidth, value,  "OverallWidth", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -95,7 +95,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _overallDepth = v, _overallDepth, value,  "OverallDepth");
+				SetValue( v =>  _overallDepth = v, _overallDepth, value,  "OverallDepth", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -109,7 +109,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness");
+				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _flangeThickness = v, _flangeThickness, value,  "FlangeThickness");
+				SetValue( v =>  _flangeThickness = v, _flangeThickness, value,  "FlangeThickness", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -137,7 +137,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius");
+				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -151,7 +151,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _flangeEdgeRadius = v, _flangeEdgeRadius, value,  "FlangeEdgeRadius");
+				SetValue( v =>  _flangeEdgeRadius = v, _flangeEdgeRadius, value,  "FlangeEdgeRadius", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -165,7 +165,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _flangeSlope = v, _flangeSlope, value,  "FlangeSlope");
+				SetValue( v =>  _flangeSlope = v, _flangeSlope, value,  "FlangeSlope", 10);
 			} 
 		}	
 		#endregion

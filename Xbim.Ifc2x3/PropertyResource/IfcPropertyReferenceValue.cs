@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _usageName = v, _usageName, value,  "UsageName");
+				SetValue( v =>  _usageName = v, _usageName, value,  "UsageName", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _propertyReference = v, _propertyReference, value,  "PropertyReference");
+				SetValue( v =>  _propertyReference = v, _propertyReference, value,  "PropertyReference", 4);
 			} 
 		}	
 		#endregion

@@ -90,7 +90,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _tag = v, _tag, value,  "Tag");
+				SetValue( v =>  _tag = v, _tag, value,  "Tag", 8);
 			} 
 		}	
 		#endregion

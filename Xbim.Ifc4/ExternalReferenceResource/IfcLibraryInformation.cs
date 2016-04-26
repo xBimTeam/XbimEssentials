@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _version = v, _version, value,  "Version");
+				SetValue( v =>  _version = v, _version, value,  "Version", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _publisher = v, _publisher, value,  "Publisher");
+				SetValue( v =>  _publisher = v, _publisher, value,  "Publisher", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _versionDate = v, _versionDate, value,  "VersionDate");
+				SetValue( v =>  _versionDate = v, _versionDate, value,  "VersionDate", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -141,7 +141,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _location = v, _location, value,  "Location");
+				SetValue( v =>  _location = v, _location, value,  "Location", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -155,7 +155,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 6);
 			} 
 		}	
 		#endregion

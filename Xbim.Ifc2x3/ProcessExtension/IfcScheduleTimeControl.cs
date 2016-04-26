@@ -118,7 +118,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _actualStart = v, _actualStart, value,  "ActualStart");
+				SetValue( v =>  _actualStart = v, _actualStart, value,  "ActualStart", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -132,7 +132,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _earlyStart = v, _earlyStart, value,  "EarlyStart");
+				SetValue( v =>  _earlyStart = v, _earlyStart, value,  "EarlyStart", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -146,7 +146,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _lateStart = v, _lateStart, value,  "LateStart");
+				SetValue( v =>  _lateStart = v, _lateStart, value,  "LateStart", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
@@ -160,7 +160,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleStart = v, _scheduleStart, value,  "ScheduleStart");
+				SetValue( v =>  _scheduleStart = v, _scheduleStart, value,  "ScheduleStart", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
@@ -174,7 +174,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _actualFinish = v, _actualFinish, value,  "ActualFinish");
+				SetValue( v =>  _actualFinish = v, _actualFinish, value,  "ActualFinish", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
@@ -188,7 +188,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _earlyFinish = v, _earlyFinish, value,  "EarlyFinish");
+				SetValue( v =>  _earlyFinish = v, _earlyFinish, value,  "EarlyFinish", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
@@ -202,7 +202,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _lateFinish = v, _lateFinish, value,  "LateFinish");
+				SetValue( v =>  _lateFinish = v, _lateFinish, value,  "LateFinish", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
@@ -216,7 +216,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleFinish = v, _scheduleFinish, value,  "ScheduleFinish");
+				SetValue( v =>  _scheduleFinish = v, _scheduleFinish, value,  "ScheduleFinish", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -230,7 +230,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleDuration = v, _scheduleDuration, value,  "ScheduleDuration");
+				SetValue( v =>  _scheduleDuration = v, _scheduleDuration, value,  "ScheduleDuration", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -244,7 +244,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _actualDuration = v, _actualDuration, value,  "ActualDuration");
+				SetValue( v =>  _actualDuration = v, _actualDuration, value,  "ActualDuration", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -258,7 +258,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _remainingTime = v, _remainingTime, value,  "RemainingTime");
+				SetValue( v =>  _remainingTime = v, _remainingTime, value,  "RemainingTime", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
@@ -272,7 +272,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _freeFloat = v, _freeFloat, value,  "FreeFloat");
+				SetValue( v =>  _freeFloat = v, _freeFloat, value,  "FreeFloat", 17);
 			} 
 		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
@@ -286,7 +286,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _totalFloat = v, _totalFloat, value,  "TotalFloat");
+				SetValue( v =>  _totalFloat = v, _totalFloat, value,  "TotalFloat", 18);
 			} 
 		}	
 		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
@@ -300,7 +300,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _isCritical = v, _isCritical, value,  "IsCritical");
+				SetValue( v =>  _isCritical = v, _isCritical, value,  "IsCritical", 19);
 			} 
 		}	
 		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 26)]
@@ -314,7 +314,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _statusTime = v, _statusTime, value,  "StatusTime");
+				SetValue( v =>  _statusTime = v, _statusTime, value,  "StatusTime", 20);
 			} 
 		}	
 		[EntityAttribute(21, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 27)]
@@ -328,7 +328,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _startFloat = v, _startFloat, value,  "StartFloat");
+				SetValue( v =>  _startFloat = v, _startFloat, value,  "StartFloat", 21);
 			} 
 		}	
 		[EntityAttribute(22, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
@@ -342,7 +342,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _finishFloat = v, _finishFloat, value,  "FinishFloat");
+				SetValue( v =>  _finishFloat = v, _finishFloat, value,  "FinishFloat", 22);
 			} 
 		}	
 		[EntityAttribute(23, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
@@ -356,7 +356,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _completion = v, _completion, value,  "Completion");
+				SetValue( v =>  _completion = v, _completion, value,  "Completion", 23);
 			} 
 		}	
 		#endregion

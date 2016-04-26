@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _position = v, _position, value,  "Position");
+				SetValue( v =>  _position = v, _position, value,  "Position", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _polygonalBoundary = v, _polygonalBoundary, value,  "PolygonalBoundary");
+				SetValue( v =>  _polygonalBoundary = v, _polygonalBoundary, value,  "PolygonalBoundary", 4);
 			} 
 		}	
 		#endregion

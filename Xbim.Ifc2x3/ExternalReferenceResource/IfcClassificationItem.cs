@@ -133,7 +133,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _notation = v, _notation, value,  "Notation");
+				SetValue( v =>  _notation = v, _notation, value,  "Notation", 1);
 			} 
 		}	
 		[IndexedProperty]
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _itemOf = v, _itemOf, value,  "ItemOf");
+				SetValue( v =>  _itemOf = v, _itemOf, value,  "ItemOf", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -162,7 +162,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _title = v, _title, value,  "Title");
+				SetValue( v =>  _title = v, _title, value,  "Title", 3);
 			} 
 		}	
 		#endregion
@@ -206,7 +206,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -235,7 +235,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

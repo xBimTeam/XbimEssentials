@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _workMethod = v, _workMethod, value,  "WorkMethod");
+				SetValue( v =>  _workMethod = v, _workMethod, value,  "WorkMethod", 11);
 			} 
 		}	
 		#endregion

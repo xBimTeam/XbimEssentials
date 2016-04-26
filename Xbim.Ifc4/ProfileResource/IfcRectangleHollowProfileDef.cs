@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _wallThickness = v, _wallThickness, value,  "WallThickness");
+				SetValue( v =>  _wallThickness = v, _wallThickness, value,  "WallThickness", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _innerFilletRadius = v, _innerFilletRadius, value,  "InnerFilletRadius");
+				SetValue( v =>  _innerFilletRadius = v, _innerFilletRadius, value,  "InnerFilletRadius", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _outerFilletRadius = v, _outerFilletRadius, value,  "OuterFilletRadius");
+				SetValue( v =>  _outerFilletRadius = v, _outerFilletRadius, value,  "OuterFilletRadius", 8);
 			} 
 		}	
 		#endregion

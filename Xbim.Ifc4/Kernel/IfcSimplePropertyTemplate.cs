@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _templateType = v, _templateType, value,  "TemplateType");
+				SetValue( v =>  _templateType = v, _templateType, value,  "TemplateType", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _primaryMeasureType = v, _primaryMeasureType, value,  "PrimaryMeasureType");
+				SetValue( v =>  _primaryMeasureType = v, _primaryMeasureType, value,  "PrimaryMeasureType", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _secondaryMeasureType = v, _secondaryMeasureType, value,  "SecondaryMeasureType");
+				SetValue( v =>  _secondaryMeasureType = v, _secondaryMeasureType, value,  "SecondaryMeasureType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _enumerators = v, _enumerators, value,  "Enumerators");
+				SetValue( v =>  _enumerators = v, _enumerators, value,  "Enumerators", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -141,7 +141,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _primaryUnit = v, _primaryUnit, value,  "PrimaryUnit");
+				SetValue( v =>  _primaryUnit = v, _primaryUnit, value,  "PrimaryUnit", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -155,7 +155,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _secondaryUnit = v, _secondaryUnit, value,  "SecondaryUnit");
+				SetValue( v =>  _secondaryUnit = v, _secondaryUnit, value,  "SecondaryUnit", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -169,7 +169,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _expression = v, _expression, value,  "Expression");
+				SetValue( v =>  _expression = v, _expression, value,  "Expression", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 16)]
@@ -183,7 +183,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _accessState = v, _accessState, value,  "AccessState");
+				SetValue( v =>  _accessState = v, _accessState, value,  "AccessState", 12);
 			} 
 		}	
 		#endregion

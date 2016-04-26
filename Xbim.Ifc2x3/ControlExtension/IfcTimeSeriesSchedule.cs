@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTimeSeriesSchedule(IModel model) : base(model) 		{ 
 			Model = model; 
-			_applicableDates = new OptionalItemSet<IfcDateTimeSelect>( this, 0 );
+			_applicableDates = new OptionalItemSet<IfcDateTimeSelect>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 			} 
 			set
 			{
-				SetValue( v =>  _timeSeriesScheduleType = v, _timeSeriesScheduleType, value,  "TimeSeriesScheduleType");
+				SetValue( v =>  _timeSeriesScheduleType = v, _timeSeriesScheduleType, value,  "TimeSeriesScheduleType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -96,7 +96,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 			} 
 			set
 			{
-				SetValue( v =>  _timeSeries = v, _timeSeries, value,  "TimeSeries");
+				SetValue( v =>  _timeSeries = v, _timeSeries, value,  "TimeSeries", 8);
 			} 
 		}	
 		#endregion
@@ -118,7 +118,6 @@ namespace Xbim.Ifc2x3.ControlExtension
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 5: 
-					if (_applicableDates == null) _applicableDates = new OptionalItemSet<IfcDateTimeSelect>( this );
 					_applicableDates.InternalAdd((IfcDateTimeSelect)value.EntityVal);
 					return;
 				case 6: 

@@ -108,7 +108,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _torsionalConstantX = v, _torsionalConstantX, value,  "TorsionalConstantX");
+				SetValue( v =>  _torsionalConstantX = v, _torsionalConstantX, value,  "TorsionalConstantX", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -122,7 +122,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _momentOfInertiaYZ = v, _momentOfInertiaYZ, value,  "MomentOfInertiaYZ");
+				SetValue( v =>  _momentOfInertiaYZ = v, _momentOfInertiaYZ, value,  "MomentOfInertiaYZ", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -136,7 +136,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _momentOfInertiaY = v, _momentOfInertiaY, value,  "MomentOfInertiaY");
+				SetValue( v =>  _momentOfInertiaY = v, _momentOfInertiaY, value,  "MomentOfInertiaY", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -150,7 +150,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _momentOfInertiaZ = v, _momentOfInertiaZ, value,  "MomentOfInertiaZ");
+				SetValue( v =>  _momentOfInertiaZ = v, _momentOfInertiaZ, value,  "MomentOfInertiaZ", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -164,7 +164,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _warpingConstant = v, _warpingConstant, value,  "WarpingConstant");
+				SetValue( v =>  _warpingConstant = v, _warpingConstant, value,  "WarpingConstant", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -178,7 +178,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _shearCentreZ = v, _shearCentreZ, value,  "ShearCentreZ");
+				SetValue( v =>  _shearCentreZ = v, _shearCentreZ, value,  "ShearCentreZ", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -192,7 +192,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _shearCentreY = v, _shearCentreY, value,  "ShearCentreY");
+				SetValue( v =>  _shearCentreY = v, _shearCentreY, value,  "ShearCentreY", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -206,7 +206,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _shearDeformationAreaZ = v, _shearDeformationAreaZ, value,  "ShearDeformationAreaZ");
+				SetValue( v =>  _shearDeformationAreaZ = v, _shearDeformationAreaZ, value,  "ShearDeformationAreaZ", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -220,7 +220,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _shearDeformationAreaY = v, _shearDeformationAreaY, value,  "ShearDeformationAreaY");
+				SetValue( v =>  _shearDeformationAreaY = v, _shearDeformationAreaY, value,  "ShearDeformationAreaY", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -234,7 +234,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _maximumSectionModulusY = v, _maximumSectionModulusY, value,  "MaximumSectionModulusY");
+				SetValue( v =>  _maximumSectionModulusY = v, _maximumSectionModulusY, value,  "MaximumSectionModulusY", 17);
 			} 
 		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
@@ -248,7 +248,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _minimumSectionModulusY = v, _minimumSectionModulusY, value,  "MinimumSectionModulusY");
+				SetValue( v =>  _minimumSectionModulusY = v, _minimumSectionModulusY, value,  "MinimumSectionModulusY", 18);
 			} 
 		}	
 		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
@@ -262,7 +262,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _maximumSectionModulusZ = v, _maximumSectionModulusZ, value,  "MaximumSectionModulusZ");
+				SetValue( v =>  _maximumSectionModulusZ = v, _maximumSectionModulusZ, value,  "MaximumSectionModulusZ", 19);
 			} 
 		}	
 		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -276,7 +276,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _minimumSectionModulusZ = v, _minimumSectionModulusZ, value,  "MinimumSectionModulusZ");
+				SetValue( v =>  _minimumSectionModulusZ = v, _minimumSectionModulusZ, value,  "MinimumSectionModulusZ", 20);
 			} 
 		}	
 		[EntityAttribute(21, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -290,7 +290,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _torsionalSectionModulus = v, _torsionalSectionModulus, value,  "TorsionalSectionModulus");
+				SetValue( v =>  _torsionalSectionModulus = v, _torsionalSectionModulus, value,  "TorsionalSectionModulus", 21);
 			} 
 		}	
 		[EntityAttribute(22, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -304,7 +304,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _centreOfGravityInX = v, _centreOfGravityInX, value,  "CentreOfGravityInX");
+				SetValue( v =>  _centreOfGravityInX = v, _centreOfGravityInX, value,  "CentreOfGravityInX", 22);
 			} 
 		}	
 		[EntityAttribute(23, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
@@ -318,7 +318,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _centreOfGravityInY = v, _centreOfGravityInY, value,  "CentreOfGravityInY");
+				SetValue( v =>  _centreOfGravityInY = v, _centreOfGravityInY, value,  "CentreOfGravityInY", 23);
 			} 
 		}	
 		#endregion

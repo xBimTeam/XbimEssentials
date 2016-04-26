@@ -62,7 +62,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 9);
 			} 
 		}	
 		#endregion

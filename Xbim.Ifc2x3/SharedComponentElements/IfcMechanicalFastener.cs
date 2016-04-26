@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			} 
 			set
 			{
-				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter");
+				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 			} 
 			set
 			{
-				SetValue( v =>  _nominalLength = v, _nominalLength, value,  "NominalLength");
+				SetValue( v =>  _nominalLength = v, _nominalLength, value,  "NominalLength", 10);
 			} 
 		}	
 		#endregion

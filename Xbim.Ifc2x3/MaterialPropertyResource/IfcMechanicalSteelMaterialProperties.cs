@@ -57,7 +57,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMechanicalSteelMaterialProperties(IModel model) : base(model) 		{ 
 			Model = model; 
-			_relaxations = new OptionalItemSet<IfcRelaxation>( this, 0 );
+			_relaxations = new OptionalItemSet<IfcRelaxation>( this, 0,  13);
 		}
 
 		#region Explicit attribute fields
@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _yieldStress = v, _yieldStress, value,  "YieldStress");
+				SetValue( v =>  _yieldStress = v, _yieldStress, value,  "YieldStress", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -96,7 +96,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _ultimateStress = v, _ultimateStress, value,  "UltimateStress");
+				SetValue( v =>  _ultimateStress = v, _ultimateStress, value,  "UltimateStress", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -110,7 +110,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _ultimateStrain = v, _ultimateStrain, value,  "UltimateStrain");
+				SetValue( v =>  _ultimateStrain = v, _ultimateStrain, value,  "UltimateStrain", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -124,7 +124,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _hardeningModule = v, _hardeningModule, value,  "HardeningModule");
+				SetValue( v =>  _hardeningModule = v, _hardeningModule, value,  "HardeningModule", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -138,7 +138,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _proportionalStress = v, _proportionalStress, value,  "ProportionalStress");
+				SetValue( v =>  _proportionalStress = v, _proportionalStress, value,  "ProportionalStress", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -152,7 +152,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _plasticStrain = v, _plasticStrain, value,  "PlasticStrain");
+				SetValue( v =>  _plasticStrain = v, _plasticStrain, value,  "PlasticStrain", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 13)]
@@ -203,7 +203,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					_plasticStrain = value.RealVal;
 					return;
 				case 12: 
-					if (_relaxations == null) _relaxations = new OptionalItemSet<IfcRelaxation>( this );
 					_relaxations.InternalAdd((IfcRelaxation)value.EntityVal);
 					return;
 				default:

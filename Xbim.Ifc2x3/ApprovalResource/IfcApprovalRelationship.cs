@@ -133,7 +133,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _relatedApproval = v, _relatedApproval, value,  "RelatedApproval");
+				SetValue( v =>  _relatedApproval = v, _relatedApproval, value,  "RelatedApproval", 1);
 			} 
 		}	
 		[IndexedProperty]
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _relatingApproval = v, _relatingApproval, value,  "RelatingApproval");
+				SetValue( v =>  _relatingApproval = v, _relatingApproval, value,  "RelatingApproval", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -162,7 +162,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -176,7 +176,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 4);
 			} 
 		}	
 		#endregion
@@ -200,7 +200,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -229,7 +229,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

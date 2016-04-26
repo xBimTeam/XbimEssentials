@@ -76,7 +76,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix");
+				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -90,7 +90,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _radius = v, _radius, value,  "Radius");
+				SetValue( v =>  _radius = v, _radius, value,  "Radius", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -104,7 +104,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _innerRadius = v, _innerRadius, value,  "InnerRadius");
+				SetValue( v =>  _innerRadius = v, _innerRadius, value,  "InnerRadius", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -118,7 +118,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _startParam = v, _startParam, value,  "StartParam");
+				SetValue( v =>  _startParam = v, _startParam, value,  "StartParam", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -132,7 +132,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _endParam = v, _endParam, value,  "EndParam");
+				SetValue( v =>  _endParam = v, _endParam, value,  "EndParam", 5);
 			} 
 		}	
 		#endregion

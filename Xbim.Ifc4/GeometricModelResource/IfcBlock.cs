@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _xLength = v, _xLength, value,  "XLength");
+				SetValue( v =>  _xLength = v, _xLength, value,  "XLength", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _yLength = v, _yLength, value,  "YLength");
+				SetValue( v =>  _yLength = v, _yLength, value,  "YLength", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _zLength = v, _zLength, value,  "ZLength");
+				SetValue( v =>  _zLength = v, _zLength, value,  "ZLength", 4);
 			} 
 		}	
 		#endregion

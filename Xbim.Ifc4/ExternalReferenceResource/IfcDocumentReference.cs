@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 4);
 			} 
 		}	
 		[IndexedProperty]
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _referencedDocument = v, _referencedDocument, value,  "ReferencedDocument");
+				SetValue( v =>  _referencedDocument = v, _referencedDocument, value,  "ReferencedDocument", 5);
 			} 
 		}	
 		#endregion

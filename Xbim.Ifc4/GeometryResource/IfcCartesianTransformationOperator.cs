@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _axis1 = v, _axis1, value,  "Axis1");
+				SetValue( v =>  _axis1 = v, _axis1, value,  "Axis1", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _axis2 = v, _axis2, value,  "Axis2");
+				SetValue( v =>  _axis2 = v, _axis2, value,  "Axis2", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _localOrigin = v, _localOrigin, value,  "LocalOrigin");
+				SetValue( v =>  _localOrigin = v, _localOrigin, value,  "LocalOrigin", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -116,7 +116,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _scale = v, _scale, value,  "Scale");
+				SetValue( v =>  _scale = v, _scale, value,  "Scale", 4);
 			} 
 		}	
 		#endregion

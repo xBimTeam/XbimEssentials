@@ -130,7 +130,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _mappingOrigin = v, _mappingOrigin, value,  "MappingOrigin");
+				SetValue( v =>  _mappingOrigin = v, _mappingOrigin, value,  "MappingOrigin", 1);
 			} 
 		}	
 		[IndexedProperty]
@@ -145,7 +145,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _mappedRepresentation = v, _mappedRepresentation, value,  "MappedRepresentation");
+				SetValue( v =>  _mappedRepresentation = v, _mappedRepresentation, value,  "MappedRepresentation", 2);
 			} 
 		}	
 		#endregion
@@ -189,7 +189,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -218,7 +218,7 @@ namespace Xbim.Ifc4.GeometryResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

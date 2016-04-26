@@ -115,7 +115,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSectionReinforcementProperties(IModel model) 		{ 
 			Model = model; 
-			_crossSectionReinforcementDefinitions = new ItemSet<IfcReinforcementBarProperties>( this, 0 );
+			_crossSectionReinforcementDefinitions = new ItemSet<IfcReinforcementBarProperties>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
@@ -139,7 +139,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _longitudinalStartPosition = v, _longitudinalStartPosition, value,  "LongitudinalStartPosition");
+				SetValue( v =>  _longitudinalStartPosition = v, _longitudinalStartPosition, value,  "LongitudinalStartPosition", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -153,7 +153,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _longitudinalEndPosition = v, _longitudinalEndPosition, value,  "LongitudinalEndPosition");
+				SetValue( v =>  _longitudinalEndPosition = v, _longitudinalEndPosition, value,  "LongitudinalEndPosition", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -167,7 +167,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _transversePosition = v, _transversePosition, value,  "TransversePosition");
+				SetValue( v =>  _transversePosition = v, _transversePosition, value,  "TransversePosition", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 4)]
@@ -181,7 +181,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _reinforcementRole = v, _reinforcementRole, value,  "ReinforcementRole");
+				SetValue( v =>  _reinforcementRole = v, _reinforcementRole, value,  "ReinforcementRole", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -195,7 +195,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _sectionDefinition = v, _sectionDefinition, value,  "SectionDefinition");
+				SetValue( v =>  _sectionDefinition = v, _sectionDefinition, value,  "SectionDefinition", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 6)]
@@ -229,7 +229,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -258,7 +258,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -284,7 +284,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 					_sectionDefinition = (IfcSectionProperties)(value.EntityVal);
 					return;
 				case 5: 
-					if (_crossSectionReinforcementDefinitions == null) _crossSectionReinforcementDefinitions = new ItemSet<IfcReinforcementBarProperties>( this );
 					_crossSectionReinforcementDefinitions.InternalAdd((IfcReinforcementBarProperties)value.EntityVal);
 					return;
 				default:

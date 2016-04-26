@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _sizeInX = v, _sizeInX, value,  "SizeInX");
+				SetValue( v =>  _sizeInX = v, _sizeInX, value,  "SizeInX", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _sizeInY = v, _sizeInY, value,  "SizeInY");
+				SetValue( v =>  _sizeInY = v, _sizeInY, value,  "SizeInY", 2);
 			} 
 		}	
 		#endregion

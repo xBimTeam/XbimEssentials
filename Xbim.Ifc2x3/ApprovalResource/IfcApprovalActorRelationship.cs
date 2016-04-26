@@ -129,7 +129,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _actor = v, _actor, value,  "Actor");
+				SetValue( v =>  _actor = v, _actor, value,  "Actor", 1);
 			} 
 		}	
 		[IndexedProperty]
@@ -144,7 +144,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _approval = v, _approval, value,  "Approval");
+				SetValue( v =>  _approval = v, _approval, value,  "Approval", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -158,7 +158,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _role = v, _role, value,  "Role");
+				SetValue( v =>  _role = v, _role, value,  "Role", 3);
 			} 
 		}	
 		#endregion
@@ -182,7 +182,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -211,7 +211,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

@@ -46,7 +46,7 @@ namespace Xbim.Ifc4.TopologyResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEdgeLoop(IModel model) : base(model) 		{ 
 			Model = model; 
-			_edgeList = new ItemSet<IfcOrientedEdge>( this, 0 );
+			_edgeList = new ItemSet<IfcOrientedEdge>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -89,7 +89,6 @@ namespace Xbim.Ifc4.TopologyResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_edgeList == null) _edgeList = new ItemSet<IfcOrientedEdge>( this );
 					_edgeList.InternalAdd((IfcOrientedEdge)value.EntityVal);
 					return;
 				default:

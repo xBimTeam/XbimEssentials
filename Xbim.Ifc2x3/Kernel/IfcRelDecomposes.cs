@@ -46,7 +46,7 @@ namespace Xbim.Ifc2x3.Kernel
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDecomposes(IModel model) : base(model) 		{ 
 			Model = model; 
-			_relatedObjects = new ItemSet<IfcObjectDefinition>( this, 0 );
+			_relatedObjects = new ItemSet<IfcObjectDefinition>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _relatingObject = v, _relatingObject, value,  "RelatingObject");
+				SetValue( v =>  _relatingObject = v, _relatingObject, value,  "RelatingObject", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -102,7 +102,6 @@ namespace Xbim.Ifc2x3.Kernel
 					_relatingObject = (IfcObjectDefinition)(value.EntityVal);
 					return;
 				case 5: 
-					if (_relatedObjects == null) _relatedObjects = new ItemSet<IfcObjectDefinition>( this );
 					_relatedObjects.InternalAdd((IfcObjectDefinition)value.EntityVal);
 					return;
 				default:

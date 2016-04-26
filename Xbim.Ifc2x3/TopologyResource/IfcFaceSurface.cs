@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 			} 
 			set
 			{
-				SetValue( v =>  _faceSurface = v, _faceSurface, value,  "FaceSurface");
+				SetValue( v =>  _faceSurface = v, _faceSurface, value,  "FaceSurface", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 			} 
 			set
 			{
-				SetValue( v =>  _sameSense = v, _sameSense, value,  "SameSense");
+				SetValue( v =>  _sameSense = v, _sameSense, value,  "SameSense", 3);
 			} 
 		}	
 		#endregion

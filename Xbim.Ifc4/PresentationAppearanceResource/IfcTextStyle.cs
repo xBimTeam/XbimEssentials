@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _textCharacterAppearance = v, _textCharacterAppearance, value,  "TextCharacterAppearance");
+				SetValue( v =>  _textCharacterAppearance = v, _textCharacterAppearance, value,  "TextCharacterAppearance", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _textStyle = v, _textStyle, value,  "TextStyle");
+				SetValue( v =>  _textStyle = v, _textStyle, value,  "TextStyle", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _textFontStyle = v, _textFontStyle, value,  "TextFontStyle");
+				SetValue( v =>  _textFontStyle = v, _textFontStyle, value,  "TextFontStyle", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -114,7 +114,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _modelOrDraughting = v, _modelOrDraughting, value,  "ModelOrDraughting");
+				SetValue( v =>  _modelOrDraughting = v, _modelOrDraughting, value,  "ModelOrDraughting", 5);
 			} 
 		}	
 		#endregion

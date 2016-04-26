@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _hatchLineAppearance = v, _hatchLineAppearance, value,  "HatchLineAppearance");
+				SetValue( v =>  _hatchLineAppearance = v, _hatchLineAppearance, value,  "HatchLineAppearance", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -90,7 +90,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _startOfNextHatchLine = v, _startOfNextHatchLine, value,  "StartOfNextHatchLine");
+				SetValue( v =>  _startOfNextHatchLine = v, _startOfNextHatchLine, value,  "StartOfNextHatchLine", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -104,7 +104,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _pointOfReferenceHatchLine = v, _pointOfReferenceHatchLine, value,  "PointOfReferenceHatchLine");
+				SetValue( v =>  _pointOfReferenceHatchLine = v, _pointOfReferenceHatchLine, value,  "PointOfReferenceHatchLine", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
@@ -118,7 +118,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _patternStart = v, _patternStart, value,  "PatternStart");
+				SetValue( v =>  _patternStart = v, _patternStart, value,  "PatternStart", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -132,7 +132,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _hatchLineAngle = v, _hatchLineAngle, value,  "HatchLineAngle");
+				SetValue( v =>  _hatchLineAngle = v, _hatchLineAngle, value,  "HatchLineAngle", 5);
 			} 
 		}	
 		#endregion

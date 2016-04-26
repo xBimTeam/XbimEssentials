@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _subContractor = v, _subContractor, value,  "SubContractor");
+				SetValue( v =>  _subContractor = v, _subContractor, value,  "SubContractor", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _jobDescription = v, _jobDescription, value,  "JobDescription");
+				SetValue( v =>  _jobDescription = v, _jobDescription, value,  "JobDescription", 11);
 			} 
 		}	
 		#endregion

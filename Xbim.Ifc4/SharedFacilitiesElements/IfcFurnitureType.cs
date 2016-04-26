@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _assemblyPlace = v, _assemblyPlace, value,  "AssemblyPlace");
+				SetValue( v =>  _assemblyPlace = v, _assemblyPlace, value,  "AssemblyPlace", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 11);
 			} 
 		}	
 		#endregion

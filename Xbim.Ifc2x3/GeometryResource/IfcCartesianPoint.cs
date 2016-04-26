@@ -45,7 +45,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianPoint(IModel model) : base(model) 		{ 
 			Model = model; 
-			_coordinates = new ItemSet<IfcLengthMeasure>( this, 3 );
+			_coordinates = new ItemSet<IfcLengthMeasure>( this, 3,  1);
 		}
 
 		#region Explicit attribute fields
@@ -88,7 +88,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_coordinates == null) _coordinates = new ItemSet<IfcLengthMeasure>( this );
 					_coordinates.InternalAdd(value.RealVal);
 					return;
 				default:

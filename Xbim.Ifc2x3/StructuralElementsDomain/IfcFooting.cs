@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 9);
 			} 
 		}	
 		#endregion

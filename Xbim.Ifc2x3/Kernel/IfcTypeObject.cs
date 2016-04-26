@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.Kernel
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTypeObject(IModel model) : base(model) 		{ 
 			Model = model; 
-			_hasPropertySets = new OptionalItemSet<IfcPropertySetDefinition>( this, 0 );
+			_hasPropertySets = new OptionalItemSet<IfcPropertySetDefinition>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _applicableOccurrence = v, _applicableOccurrence, value,  "ApplicableOccurrence");
+				SetValue( v =>  _applicableOccurrence = v, _applicableOccurrence, value,  "ApplicableOccurrence", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -115,7 +115,6 @@ namespace Xbim.Ifc2x3.Kernel
 					_applicableOccurrence = value.StringVal;
 					return;
 				case 5: 
-					if (_hasPropertySets == null) _hasPropertySets = new OptionalItemSet<IfcPropertySetDefinition>( this );
 					_hasPropertySets.InternalAdd((IfcPropertySetDefinition)value.EntityVal);
 					return;
 				default:

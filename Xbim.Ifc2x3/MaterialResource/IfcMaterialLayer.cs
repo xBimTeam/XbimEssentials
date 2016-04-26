@@ -132,7 +132,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _material = v, _material, value,  "Material");
+				SetValue( v =>  _material = v, _material, value,  "Material", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -146,7 +146,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _layerThickness = v, _layerThickness, value,  "LayerThickness");
+				SetValue( v =>  _layerThickness = v, _layerThickness, value,  "LayerThickness", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -160,7 +160,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _isVentilated = v, _isVentilated, value,  "IsVentilated");
+				SetValue( v =>  _isVentilated = v, _isVentilated, value,  "IsVentilated", 3);
 			} 
 		}	
 		#endregion
@@ -195,7 +195,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -224,7 +224,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

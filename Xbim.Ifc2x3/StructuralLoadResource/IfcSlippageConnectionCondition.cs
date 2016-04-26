@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _slippageX = v, _slippageX, value,  "SlippageX");
+				SetValue( v =>  _slippageX = v, _slippageX, value,  "SlippageX", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _slippageY = v, _slippageY, value,  "SlippageY");
+				SetValue( v =>  _slippageY = v, _slippageY, value,  "SlippageY", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _slippageZ = v, _slippageZ, value,  "SlippageZ");
+				SetValue( v =>  _slippageZ = v, _slippageZ, value,  "SlippageZ", 4);
 			} 
 		}	
 		#endregion

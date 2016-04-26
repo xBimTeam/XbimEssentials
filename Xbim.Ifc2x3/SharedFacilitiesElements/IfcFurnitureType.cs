@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _assemblyPlace = v, _assemblyPlace, value,  "AssemblyPlace");
+				SetValue( v =>  _assemblyPlace = v, _assemblyPlace, value,  "AssemblyPlace", 10);
 			} 
 		}	
 		#endregion

@@ -62,7 +62,7 @@ namespace Xbim.Ifc4.MeasureResource
 			} 
 			set
 			{
-				SetValue( v =>  _conversionOffset = v, _conversionOffset, value,  "ConversionOffset");
+				SetValue( v =>  _conversionOffset = v, _conversionOffset, value,  "ConversionOffset", 5);
 			} 
 		}	
 		#endregion

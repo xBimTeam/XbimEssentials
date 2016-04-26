@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _curveFont = v, _curveFont, value,  "CurveFont");
+				SetValue( v =>  _curveFont = v, _curveFont, value,  "CurveFont", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _curveWidth = v, _curveWidth, value,  "CurveWidth");
+				SetValue( v =>  _curveWidth = v, _curveWidth, value,  "CurveWidth", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _curveColour = v, _curveColour, value,  "CurveColour");
+				SetValue( v =>  _curveColour = v, _curveColour, value,  "CurveColour", 4);
 			} 
 		}	
 		#endregion

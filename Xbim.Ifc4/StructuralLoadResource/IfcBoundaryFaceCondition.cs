@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _translationalStiffnessByAreaX = v, _translationalStiffnessByAreaX, value,  "TranslationalStiffnessByAreaX");
+				SetValue( v =>  _translationalStiffnessByAreaX = v, _translationalStiffnessByAreaX, value,  "TranslationalStiffnessByAreaX", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _translationalStiffnessByAreaY = v, _translationalStiffnessByAreaY, value,  "TranslationalStiffnessByAreaY");
+				SetValue( v =>  _translationalStiffnessByAreaY = v, _translationalStiffnessByAreaY, value,  "TranslationalStiffnessByAreaY", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _translationalStiffnessByAreaZ = v, _translationalStiffnessByAreaZ, value,  "TranslationalStiffnessByAreaZ");
+				SetValue( v =>  _translationalStiffnessByAreaZ = v, _translationalStiffnessByAreaZ, value,  "TranslationalStiffnessByAreaZ", 4);
 			} 
 		}	
 		#endregion

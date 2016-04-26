@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.MaterialResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialLayerSet(IModel model) : base(model) 		{ 
 			Model = model; 
-			_materialLayers = new ItemSet<IfcMaterialLayer>( this, 0 );
+			_materialLayers = new ItemSet<IfcMaterialLayer>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _layerSetName = v, _layerSetName, value,  "LayerSetName");
+				SetValue( v =>  _layerSetName = v, _layerSetName, value,  "LayerSetName", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 3);
 			} 
 		}	
 		#endregion
@@ -124,7 +124,6 @@ namespace Xbim.Ifc4.MaterialResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_materialLayers == null) _materialLayers = new ItemSet<IfcMaterialLayer>( this );
 					_materialLayers.InternalAdd((IfcMaterialLayer)value.EntityVal);
 					return;
 				case 1: 

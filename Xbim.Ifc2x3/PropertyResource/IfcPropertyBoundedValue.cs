@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _upperBoundValue = v, _upperBoundValue, value,  "UpperBoundValue");
+				SetValue( v =>  _upperBoundValue = v, _upperBoundValue, value,  "UpperBoundValue", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _lowerBoundValue = v, _lowerBoundValue, value,  "LowerBoundValue");
+				SetValue( v =>  _lowerBoundValue = v, _lowerBoundValue, value,  "LowerBoundValue", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _unit = v, _unit, value,  "Unit");
+				SetValue( v =>  _unit = v, _unit, value,  "Unit", 5);
 			} 
 		}	
 		#endregion

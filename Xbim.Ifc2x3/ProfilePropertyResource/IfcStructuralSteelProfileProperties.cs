@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _shearAreaZ = v, _shearAreaZ, value,  "ShearAreaZ");
+				SetValue( v =>  _shearAreaZ = v, _shearAreaZ, value,  "ShearAreaZ", 24);
 			} 
 		}	
 		[EntityAttribute(25, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _shearAreaY = v, _shearAreaY, value,  "ShearAreaY");
+				SetValue( v =>  _shearAreaY = v, _shearAreaY, value,  "ShearAreaY", 25);
 			} 
 		}	
 		[EntityAttribute(26, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 26)]
@@ -100,7 +100,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _plasticShapeFactorY = v, _plasticShapeFactorY, value,  "PlasticShapeFactorY");
+				SetValue( v =>  _plasticShapeFactorY = v, _plasticShapeFactorY, value,  "PlasticShapeFactorY", 26);
 			} 
 		}	
 		[EntityAttribute(27, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 27)]
@@ -114,7 +114,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _plasticShapeFactorZ = v, _plasticShapeFactorZ, value,  "PlasticShapeFactorZ");
+				SetValue( v =>  _plasticShapeFactorZ = v, _plasticShapeFactorZ, value,  "PlasticShapeFactorZ", 27);
 			} 
 		}	
 		#endregion

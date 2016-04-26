@@ -62,7 +62,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _recurrence = v, _recurrence, value,  "Recurrence");
+				SetValue( v =>  _recurrence = v, _recurrence, value,  "Recurrence", 21);
 			} 
 		}	
 		#endregion

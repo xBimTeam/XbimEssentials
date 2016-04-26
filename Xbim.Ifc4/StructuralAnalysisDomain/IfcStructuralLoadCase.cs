@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadCase(IModel model) : base(model) 		{ 
 			Model = model; 
-			_selfWeightCoefficients = new OptionalItemSet<IfcRatioMeasure>( this, 3 );
+			_selfWeightCoefficients = new OptionalItemSet<IfcRatioMeasure>( this, 3,  11);
 		}
 
 		#region Explicit attribute fields
@@ -87,7 +87,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 10: 
-					if (_selfWeightCoefficients == null) _selfWeightCoefficients = new OptionalItemSet<IfcRatioMeasure>( this );
 					_selfWeightCoefficients.InternalAdd(value.RealVal);
 					return;
 				default:

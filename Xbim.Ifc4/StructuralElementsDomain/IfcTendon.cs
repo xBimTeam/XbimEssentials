@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 35)]
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter");
+				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 36)]
@@ -112,7 +112,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea");
+				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 37)]
@@ -126,7 +126,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _tensionForce = v, _tensionForce, value,  "TensionForce");
+				SetValue( v =>  _tensionForce = v, _tensionForce, value,  "TensionForce", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 38)]
@@ -140,7 +140,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _preStress = v, _preStress, value,  "PreStress");
+				SetValue( v =>  _preStress = v, _preStress, value,  "PreStress", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 39)]
@@ -154,7 +154,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _frictionCoefficient = v, _frictionCoefficient, value,  "FrictionCoefficient");
+				SetValue( v =>  _frictionCoefficient = v, _frictionCoefficient, value,  "FrictionCoefficient", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 40)]
@@ -168,7 +168,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _anchorageSlip = v, _anchorageSlip, value,  "AnchorageSlip");
+				SetValue( v =>  _anchorageSlip = v, _anchorageSlip, value,  "AnchorageSlip", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 41)]
@@ -182,7 +182,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _minCurvatureRadius = v, _minCurvatureRadius, value,  "MinCurvatureRadius");
+				SetValue( v =>  _minCurvatureRadius = v, _minCurvatureRadius, value,  "MinCurvatureRadius", 17);
 			} 
 		}	
 		#endregion

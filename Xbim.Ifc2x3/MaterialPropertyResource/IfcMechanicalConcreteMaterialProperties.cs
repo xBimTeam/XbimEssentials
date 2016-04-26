@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _compressiveStrength = v, _compressiveStrength, value,  "CompressiveStrength");
+				SetValue( v =>  _compressiveStrength = v, _compressiveStrength, value,  "CompressiveStrength", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -92,7 +92,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _maxAggregateSize = v, _maxAggregateSize, value,  "MaxAggregateSize");
+				SetValue( v =>  _maxAggregateSize = v, _maxAggregateSize, value,  "MaxAggregateSize", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -106,7 +106,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _admixturesDescription = v, _admixturesDescription, value,  "AdmixturesDescription");
+				SetValue( v =>  _admixturesDescription = v, _admixturesDescription, value,  "AdmixturesDescription", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -120,7 +120,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _workability = v, _workability, value,  "Workability");
+				SetValue( v =>  _workability = v, _workability, value,  "Workability", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -134,7 +134,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _protectivePoreRatio = v, _protectivePoreRatio, value,  "ProtectivePoreRatio");
+				SetValue( v =>  _protectivePoreRatio = v, _protectivePoreRatio, value,  "ProtectivePoreRatio", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _waterImpermeability = v, _waterImpermeability, value,  "WaterImpermeability");
+				SetValue( v =>  _waterImpermeability = v, _waterImpermeability, value,  "WaterImpermeability", 12);
 			} 
 		}	
 		#endregion

@@ -109,7 +109,7 @@ namespace Xbim.Ifc4.MeasureResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDerivedUnit(IModel model) 		{ 
 			Model = model; 
-			_elements = new ItemSet<IfcDerivedUnitElement>( this, 0 );
+			_elements = new ItemSet<IfcDerivedUnitElement>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -140,7 +140,7 @@ namespace Xbim.Ifc4.MeasureResource
 			} 
 			set
 			{
-				SetValue( v =>  _unitType = v, _unitType, value,  "UnitType");
+				SetValue( v =>  _unitType = v, _unitType, value,  "UnitType", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -154,7 +154,7 @@ namespace Xbim.Ifc4.MeasureResource
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedType = v, _userDefinedType, value,  "UserDefinedType");
+				SetValue( v =>  _userDefinedType = v, _userDefinedType, value,  "UserDefinedType", 3);
 			} 
 		}	
 		#endregion
@@ -218,7 +218,7 @@ namespace Xbim.Ifc4.MeasureResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -247,7 +247,7 @@ namespace Xbim.Ifc4.MeasureResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -258,7 +258,6 @@ namespace Xbim.Ifc4.MeasureResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_elements == null) _elements = new ItemSet<IfcDerivedUnitElement>( this );
 					_elements.InternalAdd((IfcDerivedUnitElement)value.EntityVal);
 					return;
 				case 1: 

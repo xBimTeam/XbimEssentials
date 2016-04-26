@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve");
+				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _distance = v, _distance, value,  "Distance");
+				SetValue( v =>  _distance = v, _distance, value,  "Distance", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -100,7 +100,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect");
+				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
@@ -114,7 +114,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _refDirection = v, _refDirection, value,  "RefDirection");
+				SetValue( v =>  _refDirection = v, _refDirection, value,  "RefDirection", 4);
 			} 
 		}	
 		#endregion

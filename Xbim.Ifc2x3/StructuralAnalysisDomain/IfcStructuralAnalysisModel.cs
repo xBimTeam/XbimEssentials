@@ -52,8 +52,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralAnalysisModel(IModel model) : base(model) 		{ 
 			Model = model; 
-			_loadedBy = new OptionalItemSet<IfcStructuralLoadGroup>( this, 0 );
-			_hasResults = new OptionalItemSet<IfcStructuralResultGroup>( this, 0 );
+			_loadedBy = new OptionalItemSet<IfcStructuralLoadGroup>( this, 0,  8);
+			_hasResults = new OptionalItemSet<IfcStructuralResultGroup>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
@@ -75,7 +75,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -89,7 +89,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _orientationOf2DPlane = v, _orientationOf2DPlane, value,  "OrientationOf2DPlane");
+				SetValue( v =>  _orientationOf2DPlane = v, _orientationOf2DPlane, value,  "OrientationOf2DPlane", 7);
 			} 
 		}	
 		[IndexedProperty]
@@ -139,11 +139,9 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					_orientationOf2DPlane = (IfcAxis2Placement3D)(value.EntityVal);
 					return;
 				case 7: 
-					if (_loadedBy == null) _loadedBy = new OptionalItemSet<IfcStructuralLoadGroup>( this );
 					_loadedBy.InternalAdd((IfcStructuralLoadGroup)value.EntityVal);
 					return;
 				case 8: 
-					if (_hasResults == null) _hasResults = new OptionalItemSet<IfcStructuralResultGroup>( this );
 					_hasResults.InternalAdd((IfcStructuralResultGroup)value.EntityVal);
 					return;
 				default:

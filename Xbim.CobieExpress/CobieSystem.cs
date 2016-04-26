@@ -46,7 +46,7 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieSystem(IModel model) : base(model) 		{ 
 			Model = model; 
-			_components = new OptionalItemSet<CobieComponent>( this, 0 );
+			_components = new OptionalItemSet<CobieComponent>( this, 0,  13);
 		}
 
 		#region Explicit attribute fields
@@ -78,7 +78,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _facility = v, _facility, value,  "Facility");
+				SetValue( v =>  _facility = v, _facility, value,  "Facility", 14);
 			} 
 		}	
 		#endregion
@@ -107,7 +107,6 @@ namespace Xbim.CobieExpress
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 12: 
-					if (_components == null) _components = new OptionalItemSet<CobieComponent>( this );
 					_components.InternalAdd((CobieComponent)value.EntityVal);
 					return;
 				case 13: 

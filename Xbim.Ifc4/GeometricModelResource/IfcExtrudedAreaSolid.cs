@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _extrudedDirection = v, _extrudedDirection, value,  "ExtrudedDirection");
+				SetValue( v =>  _extrudedDirection = v, _extrudedDirection, value,  "ExtrudedDirection", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _depth = v, _depth, value,  "Depth");
+				SetValue( v =>  _depth = v, _depth, value,  "Depth", 4);
 			} 
 		}	
 		#endregion

@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _costType = v, _costType, value,  "CostType");
+				SetValue( v =>  _costType = v, _costType, value,  "CostType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _condition = v, _condition, value,  "Condition");
+				SetValue( v =>  _condition = v, _condition, value,  "Condition", 8);
 			} 
 		}	
 		#endregion

@@ -87,7 +87,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight");
+				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -101,7 +101,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _headWidth = v, _headWidth, value,  "HeadWidth");
+				SetValue( v =>  _headWidth = v, _headWidth, value,  "HeadWidth", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -115,7 +115,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _radius = v, _radius, value,  "Radius");
+				SetValue( v =>  _radius = v, _radius, value,  "Radius", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -129,7 +129,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _headDepth2 = v, _headDepth2, value,  "HeadDepth2");
+				SetValue( v =>  _headDepth2 = v, _headDepth2, value,  "HeadDepth2", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -143,7 +143,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _headDepth3 = v, _headDepth3, value,  "HeadDepth3");
+				SetValue( v =>  _headDepth3 = v, _headDepth3, value,  "HeadDepth3", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -157,7 +157,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness");
+				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -171,7 +171,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _baseDepth1 = v, _baseDepth1, value,  "BaseDepth1");
+				SetValue( v =>  _baseDepth1 = v, _baseDepth1, value,  "BaseDepth1", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -185,7 +185,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _baseDepth2 = v, _baseDepth2, value,  "BaseDepth2");
+				SetValue( v =>  _baseDepth2 = v, _baseDepth2, value,  "BaseDepth2", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -199,7 +199,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _centreOfGravityInY = v, _centreOfGravityInY, value,  "CentreOfGravityInY");
+				SetValue( v =>  _centreOfGravityInY = v, _centreOfGravityInY, value,  "CentreOfGravityInY", 12);
 			} 
 		}	
 		#endregion

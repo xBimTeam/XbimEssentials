@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _eccentricityInX = v, _eccentricityInX, value,  "EccentricityInX");
+				SetValue( v =>  _eccentricityInX = v, _eccentricityInX, value,  "EccentricityInX", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _eccentricityInY = v, _eccentricityInY, value,  "EccentricityInY");
+				SetValue( v =>  _eccentricityInY = v, _eccentricityInY, value,  "EccentricityInY", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _eccentricityInZ = v, _eccentricityInZ, value,  "EccentricityInZ");
+				SetValue( v =>  _eccentricityInZ = v, _eccentricityInZ, value,  "EccentricityInZ", 5);
 			} 
 		}	
 		#endregion

@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _actualDate = v, _actualDate, value,  "ActualDate");
+				SetValue( v =>  _actualDate = v, _actualDate, value,  "ActualDate", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _earlyDate = v, _earlyDate, value,  "EarlyDate");
+				SetValue( v =>  _earlyDate = v, _earlyDate, value,  "EarlyDate", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _lateDate = v, _lateDate, value,  "LateDate");
+				SetValue( v =>  _lateDate = v, _lateDate, value,  "LateDate", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleDate = v, _scheduleDate, value,  "ScheduleDate");
+				SetValue( v =>  _scheduleDate = v, _scheduleDate, value,  "ScheduleDate", 7);
 			} 
 		}	
 		#endregion

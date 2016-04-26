@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation");
+				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _magnitude = v, _magnitude, value,  "Magnitude");
+				SetValue( v =>  _magnitude = v, _magnitude, value,  "Magnitude", 2);
 			} 
 		}	
 		#endregion

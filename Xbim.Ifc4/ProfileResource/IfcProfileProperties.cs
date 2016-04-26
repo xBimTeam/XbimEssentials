@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _profileDefinition = v, _profileDefinition, value,  "ProfileDefinition");
+				SetValue( v =>  _profileDefinition = v, _profileDefinition, value,  "ProfileDefinition", 4);
 			} 
 		}	
 		#endregion

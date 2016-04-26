@@ -145,7 +145,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
-				SetValue( v =>  _owningUser = v, _owningUser, value,  "OwningUser");
+				SetValue( v =>  _owningUser = v, _owningUser, value,  "OwningUser", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -159,7 +159,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
-				SetValue( v =>  _owningApplication = v, _owningApplication, value,  "OwningApplication");
+				SetValue( v =>  _owningApplication = v, _owningApplication, value,  "OwningApplication", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 3)]
@@ -173,7 +173,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
-				SetValue( v =>  _state = v, _state, value,  "State");
+				SetValue( v =>  _state = v, _state, value,  "State", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 4)]
@@ -187,7 +187,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
-				SetValue( v =>  _changeAction = v, _changeAction, value,  "ChangeAction");
+				SetValue( v =>  _changeAction = v, _changeAction, value,  "ChangeAction", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -201,7 +201,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
-				SetValue( v =>  _lastModifiedDate = v, _lastModifiedDate, value,  "LastModifiedDate");
+				SetValue( v =>  _lastModifiedDate = v, _lastModifiedDate, value,  "LastModifiedDate", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
@@ -215,7 +215,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
-				SetValue( v =>  _lastModifyingUser = v, _lastModifyingUser, value,  "LastModifyingUser");
+				SetValue( v =>  _lastModifyingUser = v, _lastModifyingUser, value,  "LastModifyingUser", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -229,7 +229,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
-				SetValue( v =>  _lastModifyingApplication = v, _lastModifyingApplication, value,  "LastModifyingApplication");
+				SetValue( v =>  _lastModifyingApplication = v, _lastModifyingApplication, value,  "LastModifyingApplication", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -243,7 +243,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
-				SetValue( v =>  _creationDate = v, _creationDate, value,  "CreationDate");
+				SetValue( v =>  _creationDate = v, _creationDate, value,  "CreationDate", 8);
 			} 
 		}	
 		#endregion
@@ -267,7 +267,7 @@ namespace Xbim.Ifc4.UtilityResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -296,7 +296,7 @@ namespace Xbim.Ifc4.UtilityResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

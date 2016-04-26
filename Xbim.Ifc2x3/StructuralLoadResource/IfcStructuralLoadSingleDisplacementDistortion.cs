@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _distortion = v, _distortion, value,  "Distortion");
+				SetValue( v =>  _distortion = v, _distortion, value,  "Distortion", 8);
 			} 
 		}	
 		#endregion

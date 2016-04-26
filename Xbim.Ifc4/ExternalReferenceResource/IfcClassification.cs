@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcClassification(IModel model) : base(model) 		{ 
 			Model = model; 
-			_referenceTokens = new OptionalItemSet<IfcIdentifier>( this, 0 );
+			_referenceTokens = new OptionalItemSet<IfcIdentifier>( this, 0,  7);
 		}
 
 		#region Explicit attribute fields
@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _source = v, _source, value,  "Source");
+				SetValue( v =>  _source = v, _source, value,  "Source", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _edition = v, _edition, value,  "Edition");
+				SetValue( v =>  _edition = v, _edition, value,  "Edition", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -116,7 +116,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _editionDate = v, _editionDate, value,  "EditionDate");
+				SetValue( v =>  _editionDate = v, _editionDate, value,  "EditionDate", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -130,7 +130,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -144,7 +144,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -158,7 +158,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _location = v, _location, value,  "Location");
+				SetValue( v =>  _location = v, _location, value,  "Location", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 7)]
@@ -221,7 +221,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 					_location = value.StringVal;
 					return;
 				case 6: 
-					if (_referenceTokens == null) _referenceTokens = new OptionalItemSet<IfcIdentifier>( this );
 					_referenceTokens.InternalAdd(value.StringVal);
 					return;
 				default:

@@ -89,7 +89,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -103,7 +103,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -117,7 +117,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _issueType = v, _issueType, value,  "IssueType");
+				SetValue( v =>  _issueType = v, _issueType, value,  "IssueType", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
@@ -131,7 +131,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _risk = v, _risk, value,  "Risk");
+				SetValue( v =>  _risk = v, _risk, value,  "Risk", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
@@ -145,7 +145,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _chance = v, _chance, value,  "Chance");
+				SetValue( v =>  _chance = v, _chance, value,  "Chance", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
@@ -159,7 +159,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _impact = v, _impact, value,  "Impact");
+				SetValue( v =>  _impact = v, _impact, value,  "Impact", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
@@ -173,7 +173,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _owner = v, _owner, value,  "Owner");
+				SetValue( v =>  _owner = v, _owner, value,  "Owner", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -187,7 +187,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _mitigation = v, _mitigation, value,  "Mitigation");
+				SetValue( v =>  _mitigation = v, _mitigation, value,  "Mitigation", 13);
 			} 
 		}	
 		[IndexedProperty]
@@ -202,7 +202,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _causing = v, _causing, value,  "Causing");
+				SetValue( v =>  _causing = v, _causing, value,  "Causing", 14);
 			} 
 		}	
 		[IndexedProperty]
@@ -217,7 +217,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _affected = v, _affected, value,  "Affected");
+				SetValue( v =>  _affected = v, _affected, value,  "Affected", 15);
 			} 
 		}	
 		#endregion

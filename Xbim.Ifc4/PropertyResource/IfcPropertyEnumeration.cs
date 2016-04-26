@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.PropertyResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyEnumeration(IModel model) : base(model) 		{ 
 			Model = model; 
-			_enumerationValues = new ItemSet<IfcValue>( this, 0 );
+			_enumerationValues = new ItemSet<IfcValue>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 3)]
@@ -94,7 +94,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _unit = v, _unit, value,  "Unit");
+				SetValue( v =>  _unit = v, _unit, value,  "Unit", 3);
 			} 
 		}	
 		#endregion
@@ -112,7 +112,6 @@ namespace Xbim.Ifc4.PropertyResource
 					_name = value.StringVal;
 					return;
 				case 1: 
-					if (_enumerationValues == null) _enumerationValues = new ItemSet<IfcValue>( this );
 					_enumerationValues.InternalAdd((IfcValue)value.EntityVal);
 					return;
 				case 2: 

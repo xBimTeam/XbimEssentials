@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _thickness = v, _thickness, value,  "Thickness");
+				SetValue( v =>  _thickness = v, _thickness, value,  "Thickness", 4);
 			} 
 		}	
 		#endregion

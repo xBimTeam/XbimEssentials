@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter");
+				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea");
+				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -114,7 +114,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _sheethDiameter = v, _sheethDiameter, value,  "SheethDiameter");
+				SetValue( v =>  _sheethDiameter = v, _sheethDiameter, value,  "SheethDiameter", 13);
 			} 
 		}	
 		#endregion

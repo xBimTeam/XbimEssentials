@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _relatingStructuralMember = v, _relatingStructuralMember, value,  "RelatingStructuralMember");
+				SetValue( v =>  _relatingStructuralMember = v, _relatingStructuralMember, value,  "RelatingStructuralMember", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _relatedStructuralConnection = v, _relatedStructuralConnection, value,  "RelatedStructuralConnection");
+				SetValue( v =>  _relatedStructuralConnection = v, _relatedStructuralConnection, value,  "RelatedStructuralConnection", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _appliedCondition = v, _appliedCondition, value,  "AppliedCondition");
+				SetValue( v =>  _appliedCondition = v, _appliedCondition, value,  "AppliedCondition", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _additionalConditions = v, _additionalConditions, value,  "AdditionalConditions");
+				SetValue( v =>  _additionalConditions = v, _additionalConditions, value,  "AdditionalConditions", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -139,7 +139,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _supportedLength = v, _supportedLength, value,  "SupportedLength");
+				SetValue( v =>  _supportedLength = v, _supportedLength, value,  "SupportedLength", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
@@ -153,7 +153,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _conditionCoordinateSystem = v, _conditionCoordinateSystem, value,  "ConditionCoordinateSystem");
+				SetValue( v =>  _conditionCoordinateSystem = v, _conditionCoordinateSystem, value,  "ConditionCoordinateSystem", 10);
 			} 
 		}	
 		#endregion

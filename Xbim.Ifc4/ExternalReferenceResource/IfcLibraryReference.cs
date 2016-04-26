@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _language = v, _language, value,  "Language");
+				SetValue( v =>  _language = v, _language, value,  "Language", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _referencedLibrary = v, _referencedLibrary, value,  "ReferencedLibrary");
+				SetValue( v =>  _referencedLibrary = v, _referencedLibrary, value,  "ReferencedLibrary", 6);
 			} 
 		}	
 		#endregion

@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _semiAxis1 = v, _semiAxis1, value,  "SemiAxis1");
+				SetValue( v =>  _semiAxis1 = v, _semiAxis1, value,  "SemiAxis1", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _semiAxis2 = v, _semiAxis2, value,  "SemiAxis2");
+				SetValue( v =>  _semiAxis2 = v, _semiAxis2, value,  "SemiAxis2", 3);
 			} 
 		}	
 		#endregion

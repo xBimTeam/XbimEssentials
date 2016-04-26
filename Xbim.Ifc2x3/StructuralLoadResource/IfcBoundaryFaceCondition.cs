@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _linearStiffnessByAreaX = v, _linearStiffnessByAreaX, value,  "LinearStiffnessByAreaX");
+				SetValue( v =>  _linearStiffnessByAreaX = v, _linearStiffnessByAreaX, value,  "LinearStiffnessByAreaX", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _linearStiffnessByAreaY = v, _linearStiffnessByAreaY, value,  "LinearStiffnessByAreaY");
+				SetValue( v =>  _linearStiffnessByAreaY = v, _linearStiffnessByAreaY, value,  "LinearStiffnessByAreaY", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _linearStiffnessByAreaZ = v, _linearStiffnessByAreaZ, value,  "LinearStiffnessByAreaZ");
+				SetValue( v =>  _linearStiffnessByAreaZ = v, _linearStiffnessByAreaZ, value,  "LinearStiffnessByAreaZ", 4);
 			} 
 		}	
 		#endregion

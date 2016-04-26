@@ -52,8 +52,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsPathElements(IModel model) : base(model) 		{ 
 			Model = model; 
-			_relatingPriorities = new ItemSet<IfcInteger>( this, 0 );
-			_relatedPriorities = new ItemSet<IfcInteger>( this, 0 );
+			_relatingPriorities = new ItemSet<IfcInteger>( this, 0,  8);
+			_relatedPriorities = new ItemSet<IfcInteger>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
@@ -95,7 +95,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _relatedConnectionType = v, _relatedConnectionType, value,  "RelatedConnectionType");
+				SetValue( v =>  _relatedConnectionType = v, _relatedConnectionType, value,  "RelatedConnectionType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
@@ -109,7 +109,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _relatingConnectionType = v, _relatingConnectionType, value,  "RelatingConnectionType");
+				SetValue( v =>  _relatingConnectionType = v, _relatingConnectionType, value,  "RelatingConnectionType", 11);
 			} 
 		}	
 		#endregion
@@ -133,11 +133,9 @@ namespace Xbim.Ifc4.SharedBldgElements
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 7: 
-					if (_relatingPriorities == null) _relatingPriorities = new ItemSet<IfcInteger>( this );
 					_relatingPriorities.InternalAdd(value.IntegerVal);
 					return;
 				case 8: 
-					if (_relatedPriorities == null) _relatedPriorities = new ItemSet<IfcInteger>( this );
 					_relatedPriorities.InternalAdd(value.IntegerVal);
 					return;
 				case 9: 

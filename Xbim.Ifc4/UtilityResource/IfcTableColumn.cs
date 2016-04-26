@@ -136,7 +136,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
-				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier");
+				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -150,7 +150,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -164,7 +164,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -178,7 +178,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
-				SetValue( v =>  _unit = v, _unit, value,  "Unit");
+				SetValue( v =>  _unit = v, _unit, value,  "Unit", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -192,7 +192,7 @@ namespace Xbim.Ifc4.UtilityResource
 			} 
 			set
 			{
-				SetValue( v =>  _referencePath = v, _referencePath, value,  "ReferencePath");
+				SetValue( v =>  _referencePath = v, _referencePath, value,  "ReferencePath", 5);
 			} 
 		}	
 		#endregion
@@ -216,7 +216,7 @@ namespace Xbim.Ifc4.UtilityResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -245,7 +245,7 @@ namespace Xbim.Ifc4.UtilityResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

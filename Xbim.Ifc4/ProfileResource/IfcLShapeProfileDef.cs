@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _depth = v, _depth, value,  "Depth");
+				SetValue( v =>  _depth = v, _depth, value,  "Depth", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -92,7 +92,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _width = v, _width, value,  "Width");
+				SetValue( v =>  _width = v, _width, value,  "Width", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -106,7 +106,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _thickness = v, _thickness, value,  "Thickness");
+				SetValue( v =>  _thickness = v, _thickness, value,  "Thickness", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -120,7 +120,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius");
+				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -134,7 +134,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _edgeRadius = v, _edgeRadius, value,  "EdgeRadius");
+				SetValue( v =>  _edgeRadius = v, _edgeRadius, value,  "EdgeRadius", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -148,7 +148,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _legSlope = v, _legSlope, value,  "LegSlope");
+				SetValue( v =>  _legSlope = v, _legSlope, value,  "LegSlope", 9);
 			} 
 		}	
 		#endregion

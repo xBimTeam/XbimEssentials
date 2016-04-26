@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.MeasureResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.MeasureResource
 			} 
 			set
 			{
-				SetValue( v =>  _conversionFactor = v, _conversionFactor, value,  "ConversionFactor");
+				SetValue( v =>  _conversionFactor = v, _conversionFactor, value,  "ConversionFactor", 4);
 			} 
 		}	
 		#endregion

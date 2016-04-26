@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _benchmark = v, _benchmark, value,  "Benchmark");
+				SetValue( v =>  _benchmark = v, _benchmark, value,  "Benchmark", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _valueSource = v, _valueSource, value,  "ValueSource");
+				SetValue( v =>  _valueSource = v, _valueSource, value,  "ValueSource", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _dataValue = v, _dataValue, value,  "DataValue");
+				SetValue( v =>  _dataValue = v, _dataValue, value,  "DataValue", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -114,7 +114,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _referencePath = v, _referencePath, value,  "ReferencePath");
+				SetValue( v =>  _referencePath = v, _referencePath, value,  "ReferencePath", 11);
 			} 
 		}	
 		#endregion

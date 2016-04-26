@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
-				SetValue( v =>  _item = v, _item, value,  "Item");
+				SetValue( v =>  _item = v, _item, value,  "Item", 1);
 			} 
 		}	
 		[IndexedProperty]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
-				SetValue( v =>  _textureCoordinates = v, _textureCoordinates, value,  "TextureCoordinates");
+				SetValue( v =>  _textureCoordinates = v, _textureCoordinates, value,  "TextureCoordinates", 2);
 			} 
 		}	
 		#endregion

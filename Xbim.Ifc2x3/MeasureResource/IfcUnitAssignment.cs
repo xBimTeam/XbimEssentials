@@ -104,7 +104,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcUnitAssignment(IModel model) 		{ 
 			Model = model; 
-			_units = new ItemSet<IfcUnit>( this, 0 );
+			_units = new ItemSet<IfcUnit>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -143,7 +143,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -172,7 +172,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -183,7 +183,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_units == null) _units = new ItemSet<IfcUnit>( this );
 					_units.InternalAdd((IfcUnit)value.EntityVal);
 					return;
 				default:

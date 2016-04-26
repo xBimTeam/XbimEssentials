@@ -131,7 +131,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _assetType = v, _assetType, value,  "AssetType");
+				SetValue( v =>  _assetType = v, _assetType, value,  "AssetType", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
@@ -145,7 +145,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _manufacturer = v, _manufacturer, value,  "Manufacturer");
+				SetValue( v =>  _manufacturer = v, _manufacturer, value,  "Manufacturer", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -159,7 +159,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _modelNumber = v, _modelNumber, value,  "ModelNumber");
+				SetValue( v =>  _modelNumber = v, _modelNumber, value,  "ModelNumber", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 22)]
@@ -173,7 +173,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _warranty = v, _warranty, value,  "Warranty");
+				SetValue( v =>  _warranty = v, _warranty, value,  "Warranty", 17);
 			} 
 		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
@@ -187,7 +187,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _replacementCost = v, _replacementCost, value,  "ReplacementCost");
+				SetValue( v =>  _replacementCost = v, _replacementCost, value,  "ReplacementCost", 18);
 			} 
 		}	
 		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
@@ -201,7 +201,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _expectedLife = v, _expectedLife, value,  "ExpectedLife");
+				SetValue( v =>  _expectedLife = v, _expectedLife, value,  "ExpectedLife", 19);
 			} 
 		}	
 		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 25)]
@@ -215,7 +215,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit");
+				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit", 20);
 			} 
 		}	
 		[EntityAttribute(21, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 26)]
@@ -229,7 +229,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _nominalLength = v, _nominalLength, value,  "NominalLength");
+				SetValue( v =>  _nominalLength = v, _nominalLength, value,  "NominalLength", 21);
 			} 
 		}	
 		[EntityAttribute(22, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 27)]
@@ -243,7 +243,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _nominalWidth = v, _nominalWidth, value,  "NominalWidth");
+				SetValue( v =>  _nominalWidth = v, _nominalWidth, value,  "NominalWidth", 22);
 			} 
 		}	
 		[EntityAttribute(23, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
@@ -257,7 +257,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _nominalHeight = v, _nominalHeight, value,  "NominalHeight");
+				SetValue( v =>  _nominalHeight = v, _nominalHeight, value,  "NominalHeight", 23);
 			} 
 		}	
 		[EntityAttribute(24, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
@@ -271,7 +271,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _modelReference = v, _modelReference, value,  "ModelReference");
+				SetValue( v =>  _modelReference = v, _modelReference, value,  "ModelReference", 24);
 			} 
 		}	
 		[EntityAttribute(25, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 30)]
@@ -285,7 +285,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _shape = v, _shape, value,  "Shape");
+				SetValue( v =>  _shape = v, _shape, value,  "Shape", 25);
 			} 
 		}	
 		[EntityAttribute(26, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 31)]
@@ -299,7 +299,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _size = v, _size, value,  "Size");
+				SetValue( v =>  _size = v, _size, value,  "Size", 26);
 			} 
 		}	
 		[EntityAttribute(27, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 32)]
@@ -313,7 +313,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _color = v, _color, value,  "Color");
+				SetValue( v =>  _color = v, _color, value,  "Color", 27);
 			} 
 		}	
 		[EntityAttribute(28, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 33)]
@@ -327,7 +327,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _finish = v, _finish, value,  "Finish");
+				SetValue( v =>  _finish = v, _finish, value,  "Finish", 28);
 			} 
 		}	
 		[EntityAttribute(29, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 34)]
@@ -341,7 +341,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _grade = v, _grade, value,  "Grade");
+				SetValue( v =>  _grade = v, _grade, value,  "Grade", 29);
 			} 
 		}	
 		[EntityAttribute(30, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 35)]
@@ -355,7 +355,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _material = v, _material, value,  "Material");
+				SetValue( v =>  _material = v, _material, value,  "Material", 30);
 			} 
 		}	
 		[EntityAttribute(31, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 36)]
@@ -369,7 +369,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _constituents = v, _constituents, value,  "Constituents");
+				SetValue( v =>  _constituents = v, _constituents, value,  "Constituents", 31);
 			} 
 		}	
 		[EntityAttribute(32, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 37)]
@@ -383,7 +383,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _features = v, _features, value,  "Features");
+				SetValue( v =>  _features = v, _features, value,  "Features", 32);
 			} 
 		}	
 		[EntityAttribute(33, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 38)]
@@ -397,7 +397,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _accessibilityPerformance = v, _accessibilityPerformance, value,  "AccessibilityPerformance");
+				SetValue( v =>  _accessibilityPerformance = v, _accessibilityPerformance, value,  "AccessibilityPerformance", 33);
 			} 
 		}	
 		[EntityAttribute(34, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 39)]
@@ -411,7 +411,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _codePerformance = v, _codePerformance, value,  "CodePerformance");
+				SetValue( v =>  _codePerformance = v, _codePerformance, value,  "CodePerformance", 34);
 			} 
 		}	
 		[EntityAttribute(35, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 40)]
@@ -425,7 +425,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _sustainabilityPerformance = v, _sustainabilityPerformance, value,  "SustainabilityPerformance");
+				SetValue( v =>  _sustainabilityPerformance = v, _sustainabilityPerformance, value,  "SustainabilityPerformance", 35);
 			} 
 		}	
 		#endregion

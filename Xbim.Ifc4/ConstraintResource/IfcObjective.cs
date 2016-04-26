@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcObjective(IModel model) : base(model) 		{ 
 			Model = model; 
-			_benchmarkValues = new OptionalItemSet<IfcConstraint>( this, 0 );
+			_benchmarkValues = new OptionalItemSet<IfcConstraint>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _logicalAggregator = v, _logicalAggregator, value,  "LogicalAggregator");
+				SetValue( v =>  _logicalAggregator = v, _logicalAggregator, value,  "LogicalAggregator", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 12)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _objectiveQualifier = v, _objectiveQualifier, value,  "ObjectiveQualifier");
+				SetValue( v =>  _objectiveQualifier = v, _objectiveQualifier, value,  "ObjectiveQualifier", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedQualifier = v, _userDefinedQualifier, value,  "UserDefinedQualifier");
+				SetValue( v =>  _userDefinedQualifier = v, _userDefinedQualifier, value,  "UserDefinedQualifier", 11);
 			} 
 		}	
 		#endregion
@@ -135,7 +135,6 @@ namespace Xbim.Ifc4.ConstraintResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 7: 
-					if (_benchmarkValues == null) _benchmarkValues = new OptionalItemSet<IfcConstraint>( this );
 					_benchmarkValues.InternalAdd((IfcConstraint)value.EntityVal);
 					return;
 				case 8: 

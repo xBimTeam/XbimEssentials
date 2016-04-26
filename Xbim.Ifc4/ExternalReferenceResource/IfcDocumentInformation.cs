@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDocumentInformation(IModel model) : base(model) 		{ 
 			Model = model; 
-			_editors = new OptionalItemSet<IfcActorSelect>( this, 0 );
+			_editors = new OptionalItemSet<IfcActorSelect>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _identification = v, _identification, value,  "Identification");
+				SetValue( v =>  _identification = v, _identification, value,  "Identification", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -137,7 +137,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -151,7 +151,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -165,7 +165,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _location = v, _location, value,  "Location");
+				SetValue( v =>  _location = v, _location, value,  "Location", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -179,7 +179,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose");
+				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -193,7 +193,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _intendedUse = v, _intendedUse, value,  "IntendedUse");
+				SetValue( v =>  _intendedUse = v, _intendedUse, value,  "IntendedUse", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -207,7 +207,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _scope = v, _scope, value,  "Scope");
+				SetValue( v =>  _scope = v, _scope, value,  "Scope", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -221,7 +221,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _revision = v, _revision, value,  "Revision");
+				SetValue( v =>  _revision = v, _revision, value,  "Revision", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
@@ -235,7 +235,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _documentOwner = v, _documentOwner, value,  "DocumentOwner");
+				SetValue( v =>  _documentOwner = v, _documentOwner, value,  "DocumentOwner", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 10)]
@@ -259,7 +259,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _creationTime = v, _creationTime, value,  "CreationTime");
+				SetValue( v =>  _creationTime = v, _creationTime, value,  "CreationTime", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -273,7 +273,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _lastRevisionTime = v, _lastRevisionTime, value,  "LastRevisionTime");
+				SetValue( v =>  _lastRevisionTime = v, _lastRevisionTime, value,  "LastRevisionTime", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -287,7 +287,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _electronicFormat = v, _electronicFormat, value,  "ElectronicFormat");
+				SetValue( v =>  _electronicFormat = v, _electronicFormat, value,  "ElectronicFormat", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -301,7 +301,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _validFrom = v, _validFrom, value,  "ValidFrom");
+				SetValue( v =>  _validFrom = v, _validFrom, value,  "ValidFrom", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -315,7 +315,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _validUntil = v, _validUntil, value,  "ValidUntil");
+				SetValue( v =>  _validUntil = v, _validUntil, value,  "ValidUntil", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 16)]
@@ -329,7 +329,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _confidentiality = v, _confidentiality, value,  "Confidentiality");
+				SetValue( v =>  _confidentiality = v, _confidentiality, value,  "Confidentiality", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 17)]
@@ -343,7 +343,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _status = v, _status, value,  "Status");
+				SetValue( v =>  _status = v, _status, value,  "Status", 17);
 			} 
 		}	
 		#endregion
@@ -423,7 +423,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 					_documentOwner = (IfcActorSelect)(value.EntityVal);
 					return;
 				case 9: 
-					if (_editors == null) _editors = new OptionalItemSet<IfcActorSelect>( this );
 					_editors.InternalAdd((IfcActorSelect)value.EntityVal);
 					return;
 				case 10: 

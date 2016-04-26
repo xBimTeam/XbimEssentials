@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPresentationLayerWithStyle(IModel model) : base(model) 		{ 
 			Model = model; 
-			_layerStyles = new ItemSet<IfcPresentationStyleSelect>( this, 0 );
+			_layerStyles = new ItemSet<IfcPresentationStyleSelect>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
@@ -73,7 +73,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _layerOn = v, _layerOn, value,  "LayerOn");
+				SetValue( v =>  _layerOn = v, _layerOn, value,  "LayerOn", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -87,7 +87,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _layerFrozen = v, _layerFrozen, value,  "LayerFrozen");
+				SetValue( v =>  _layerFrozen = v, _layerFrozen, value,  "LayerFrozen", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -101,7 +101,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _layerBlocked = v, _layerBlocked, value,  "LayerBlocked");
+				SetValue( v =>  _layerBlocked = v, _layerBlocked, value,  "LayerBlocked", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
@@ -141,7 +141,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 					_layerBlocked = value.BooleanVal;
 					return;
 				case 7: 
-					if (_layerStyles == null) _layerStyles = new ItemSet<IfcPresentationStyleSelect>( this );
 					_layerStyles.InternalAdd((IfcPresentationStyleSelect)value.EntityVal);
 					return;
 				default:

@@ -126,7 +126,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _refractionIndex = v, _refractionIndex, value,  "RefractionIndex");
+				SetValue( v =>  _refractionIndex = v, _refractionIndex, value,  "RefractionIndex", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -140,7 +140,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _dispersionFactor = v, _dispersionFactor, value,  "DispersionFactor");
+				SetValue( v =>  _dispersionFactor = v, _dispersionFactor, value,  "DispersionFactor", 2);
 			} 
 		}	
 		#endregion
@@ -164,7 +164,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -193,7 +193,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

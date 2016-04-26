@@ -71,7 +71,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _soundLevelTimeSeries = v, _soundLevelTimeSeries, value,  "SoundLevelTimeSeries");
+				SetValue( v =>  _soundLevelTimeSeries = v, _soundLevelTimeSeries, value,  "SoundLevelTimeSeries", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -85,7 +85,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _frequency = v, _frequency, value,  "Frequency");
+				SetValue( v =>  _frequency = v, _frequency, value,  "Frequency", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
@@ -99,7 +99,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _soundLevelSingleValue = v, _soundLevelSingleValue, value,  "SoundLevelSingleValue");
+				SetValue( v =>  _soundLevelSingleValue = v, _soundLevelSingleValue, value,  "SoundLevelSingleValue", 7);
 			} 
 		}	
 		#endregion

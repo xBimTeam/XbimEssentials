@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDocumentInformationRelationship(IModel model) : base(model) 		{ 
 			Model = model; 
-			_relatedDocuments = new ItemSet<IfcDocumentInformation>( this, 0 );
+			_relatedDocuments = new ItemSet<IfcDocumentInformation>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _relatingDocument = v, _relatingDocument, value,  "RelatingDocument");
+				SetValue( v =>  _relatingDocument = v, _relatingDocument, value,  "RelatingDocument", 3);
 			} 
 		}	
 		[IndexedProperty]
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _relationshipType = v, _relationshipType, value,  "RelationshipType");
+				SetValue( v =>  _relationshipType = v, _relationshipType, value,  "RelationshipType", 5);
 			} 
 		}	
 		#endregion
@@ -118,7 +118,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 					_relatingDocument = (IfcDocumentInformation)(value.EntityVal);
 					return;
 				case 3: 
-					if (_relatedDocuments == null) _relatedDocuments = new ItemSet<IfcDocumentInformation>( this );
 					_relatedDocuments.InternalAdd((IfcDocumentInformation)value.EntityVal);
 					return;
 				case 4: 

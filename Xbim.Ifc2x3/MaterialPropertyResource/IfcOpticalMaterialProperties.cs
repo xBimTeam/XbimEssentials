@@ -87,7 +87,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _visibleTransmittance = v, _visibleTransmittance, value,  "VisibleTransmittance");
+				SetValue( v =>  _visibleTransmittance = v, _visibleTransmittance, value,  "VisibleTransmittance", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -101,7 +101,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _solarTransmittance = v, _solarTransmittance, value,  "SolarTransmittance");
+				SetValue( v =>  _solarTransmittance = v, _solarTransmittance, value,  "SolarTransmittance", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -115,7 +115,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _thermalIrTransmittance = v, _thermalIrTransmittance, value,  "ThermalIrTransmittance");
+				SetValue( v =>  _thermalIrTransmittance = v, _thermalIrTransmittance, value,  "ThermalIrTransmittance", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -129,7 +129,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _thermalIrEmissivityBack = v, _thermalIrEmissivityBack, value,  "ThermalIrEmissivityBack");
+				SetValue( v =>  _thermalIrEmissivityBack = v, _thermalIrEmissivityBack, value,  "ThermalIrEmissivityBack", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -143,7 +143,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _thermalIrEmissivityFront = v, _thermalIrEmissivityFront, value,  "ThermalIrEmissivityFront");
+				SetValue( v =>  _thermalIrEmissivityFront = v, _thermalIrEmissivityFront, value,  "ThermalIrEmissivityFront", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -157,7 +157,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _visibleReflectanceBack = v, _visibleReflectanceBack, value,  "VisibleReflectanceBack");
+				SetValue( v =>  _visibleReflectanceBack = v, _visibleReflectanceBack, value,  "VisibleReflectanceBack", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -171,7 +171,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _visibleReflectanceFront = v, _visibleReflectanceFront, value,  "VisibleReflectanceFront");
+				SetValue( v =>  _visibleReflectanceFront = v, _visibleReflectanceFront, value,  "VisibleReflectanceFront", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -185,7 +185,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _solarReflectanceFront = v, _solarReflectanceFront, value,  "SolarReflectanceFront");
+				SetValue( v =>  _solarReflectanceFront = v, _solarReflectanceFront, value,  "SolarReflectanceFront", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -199,7 +199,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _solarReflectanceBack = v, _solarReflectanceBack, value,  "SolarReflectanceBack");
+				SetValue( v =>  _solarReflectanceBack = v, _solarReflectanceBack, value,  "SolarReflectanceBack", 10);
 			} 
 		}	
 		#endregion

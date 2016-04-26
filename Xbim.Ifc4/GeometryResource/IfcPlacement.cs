@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _location = v, _location, value,  "Location");
+				SetValue( v =>  _location = v, _location, value,  "Location", 1);
 			} 
 		}	
 		#endregion

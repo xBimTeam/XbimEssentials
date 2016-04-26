@@ -65,7 +65,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _placementLocation = v, _placementLocation, value,  "PlacementLocation");
+				SetValue( v =>  _placementLocation = v, _placementLocation, value,  "PlacementLocation", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -79,7 +79,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _placementRefDirection = v, _placementRefDirection, value,  "PlacementRefDirection");
+				SetValue( v =>  _placementRefDirection = v, _placementRefDirection, value,  "PlacementRefDirection", 2);
 			} 
 		}	
 		#endregion

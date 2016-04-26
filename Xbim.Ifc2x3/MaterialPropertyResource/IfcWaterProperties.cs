@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _isPotable = v, _isPotable, value,  "IsPotable");
+				SetValue( v =>  _isPotable = v, _isPotable, value,  "IsPotable", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -95,7 +95,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _hardness = v, _hardness, value,  "Hardness");
+				SetValue( v =>  _hardness = v, _hardness, value,  "Hardness", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -109,7 +109,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _alkalinityConcentration = v, _alkalinityConcentration, value,  "AlkalinityConcentration");
+				SetValue( v =>  _alkalinityConcentration = v, _alkalinityConcentration, value,  "AlkalinityConcentration", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -123,7 +123,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _acidityConcentration = v, _acidityConcentration, value,  "AcidityConcentration");
+				SetValue( v =>  _acidityConcentration = v, _acidityConcentration, value,  "AcidityConcentration", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -137,7 +137,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _impuritiesContent = v, _impuritiesContent, value,  "ImpuritiesContent");
+				SetValue( v =>  _impuritiesContent = v, _impuritiesContent, value,  "ImpuritiesContent", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -151,7 +151,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _pHLevel = v, _pHLevel, value,  "PHLevel");
+				SetValue( v =>  _pHLevel = v, _pHLevel, value,  "PHLevel", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -165,7 +165,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _dissolvedSolidsContent = v, _dissolvedSolidsContent, value,  "DissolvedSolidsContent");
+				SetValue( v =>  _dissolvedSolidsContent = v, _dissolvedSolidsContent, value,  "DissolvedSolidsContent", 8);
 			} 
 		}	
 		#endregion

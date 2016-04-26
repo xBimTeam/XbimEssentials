@@ -120,8 +120,8 @@ namespace Xbim.Ifc2x3.ActorResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOrganization(IModel model) 		{ 
 			Model = model; 
-			_roles = new OptionalItemSet<IfcActorRole>( this, 0 );
-			_addresses = new OptionalItemSet<IfcAddress>( this, 0 );
+			_roles = new OptionalItemSet<IfcActorRole>( this, 0,  4);
+			_addresses = new OptionalItemSet<IfcAddress>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
@@ -144,7 +144,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _id = v, _id, value,  "Id");
+				SetValue( v =>  _id = v, _id, value,  "Id", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -158,7 +158,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -172,7 +172,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 4)]
@@ -246,7 +246,7 @@ namespace Xbim.Ifc2x3.ActorResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -275,7 +275,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -295,11 +295,9 @@ namespace Xbim.Ifc2x3.ActorResource
 					_description = value.StringVal;
 					return;
 				case 3: 
-					if (_roles == null) _roles = new OptionalItemSet<IfcActorRole>( this );
 					_roles.InternalAdd((IfcActorRole)value.EntityVal);
 					return;
 				case 4: 
-					if (_addresses == null) _addresses = new OptionalItemSet<IfcAddress>( this );
 					_addresses.InternalAdd((IfcAddress)value.EntityVal);
 					return;
 				default:

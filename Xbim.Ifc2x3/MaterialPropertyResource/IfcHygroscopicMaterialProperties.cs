@@ -75,7 +75,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _upperVaporResistanceFactor = v, _upperVaporResistanceFactor, value,  "UpperVaporResistanceFactor");
+				SetValue( v =>  _upperVaporResistanceFactor = v, _upperVaporResistanceFactor, value,  "UpperVaporResistanceFactor", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -89,7 +89,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _lowerVaporResistanceFactor = v, _lowerVaporResistanceFactor, value,  "LowerVaporResistanceFactor");
+				SetValue( v =>  _lowerVaporResistanceFactor = v, _lowerVaporResistanceFactor, value,  "LowerVaporResistanceFactor", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -103,7 +103,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _isothermalMoistureCapacity = v, _isothermalMoistureCapacity, value,  "IsothermalMoistureCapacity");
+				SetValue( v =>  _isothermalMoistureCapacity = v, _isothermalMoistureCapacity, value,  "IsothermalMoistureCapacity", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -117,7 +117,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _vaporPermeability = v, _vaporPermeability, value,  "VaporPermeability");
+				SetValue( v =>  _vaporPermeability = v, _vaporPermeability, value,  "VaporPermeability", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -131,7 +131,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _moistureDiffusivity = v, _moistureDiffusivity, value,  "MoistureDiffusivity");
+				SetValue( v =>  _moistureDiffusivity = v, _moistureDiffusivity, value,  "MoistureDiffusivity", 6);
 			} 
 		}	
 		#endregion

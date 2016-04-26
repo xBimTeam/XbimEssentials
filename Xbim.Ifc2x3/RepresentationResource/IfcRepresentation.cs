@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRepresentation(IModel model) 		{ 
 			Model = model; 
-			_items = new ItemSet<IfcRepresentationItem>( this, 0 );
+			_items = new ItemSet<IfcRepresentationItem>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
@@ -142,7 +142,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _contextOfItems = v, _contextOfItems, value,  "ContextOfItems");
+				SetValue( v =>  _contextOfItems = v, _contextOfItems, value,  "ContextOfItems", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -156,7 +156,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _representationIdentifier = v, _representationIdentifier, value,  "RepresentationIdentifier");
+				SetValue( v =>  _representationIdentifier = v, _representationIdentifier, value,  "RepresentationIdentifier", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -170,7 +170,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _representationType = v, _representationType, value,  "RepresentationType");
+				SetValue( v =>  _representationType = v, _representationType, value,  "RepresentationType", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
@@ -233,7 +233,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -262,7 +262,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -282,7 +282,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
 					_representationType = value.StringVal;
 					return;
 				case 3: 
-					if (_items == null) _items = new ItemSet<IfcRepresentationItem>( this );
 					_items.InternalAdd((IfcRepresentationItem)value.EntityVal);
 					return;
 				default:

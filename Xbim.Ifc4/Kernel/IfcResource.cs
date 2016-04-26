@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _identification = v, _identification, value,  "Identification");
+				SetValue( v =>  _identification = v, _identification, value,  "Identification", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription");
+				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription", 7);
 			} 
 		}	
 		#endregion

@@ -105,7 +105,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialList(IModel model) 		{ 
 			Model = model; 
-			_materials = new ItemSet<IfcMaterial>( this, 0 );
+			_materials = new ItemSet<IfcMaterial>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -144,7 +144,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -173,7 +173,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -184,7 +184,6 @@ namespace Xbim.Ifc2x3.MaterialResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_materials == null) _materials = new ItemSet<IfcMaterial>( this );
 					_materials.InternalAdd((IfcMaterial)value.EntityVal);
 					return;
 				default:

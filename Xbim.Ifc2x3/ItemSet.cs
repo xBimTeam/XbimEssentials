@@ -22,6 +22,7 @@ namespace Xbim.Ifc2x3
     public class ItemSet<T> : IItemSet<T>
     {
         private readonly List<T> _set;
+		private readonly byte _property;
 
         private IModel Model { get { return OwningEntity.Model; } }
 
@@ -33,22 +34,25 @@ namespace Xbim.Ifc2x3
         }
 
 
-        internal ItemSet(IPersistEntity entity)
+        internal ItemSet(IPersistEntity entity, byte property)
         {
             _set = new List<T>();
+			_property = property;
 			OwningEntity = entity;
         }
 
-		internal ItemSet(IPersistEntity entity, int capacity)
+		internal ItemSet(IPersistEntity entity, int capacity, byte property)
         {
 			//this will create internal list of optimal capacity
             _set = new List<T>(capacity > 0 ? capacity : 0);
+			_property = property;
 			OwningEntity = entity;
         }
 
-        internal ItemSet(IPersistEntity entity, IEnumerable<T> collection)
+        internal ItemSet(IPersistEntity entity, IEnumerable<T> collection, byte property)
         {
             _set = new List<T>(collection);
+			_property = property;
 			OwningEntity = entity;
         }
 
@@ -72,7 +76,7 @@ namespace Xbim.Ifc2x3
                 return default(T);
 
             var result = (T) Activator.CreateInstance(typeof (T), BindingFlags.NonPublic | BindingFlags.Instance, null,
-                new object[] {OwningEntity}, null);
+                new object[] {OwningEntity, _property}, null);
             InternalAdd(result);
             return result;
 
@@ -96,7 +100,7 @@ namespace Xbim.Ifc2x3
                 return default(T);
             
             var result = (T)Activator.CreateInstance(typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, 
-                new object[]{OwningEntity}, null);
+                new object[]{OwningEntity, _property}, null);
             Insert(index, result);
             return result;
         }
@@ -128,7 +132,7 @@ namespace Xbim.Ifc2x3
 				NotifyCountChanged();
 			};
 
-            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified);
+            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, _property);
 		}
 
         public T First
@@ -224,7 +228,7 @@ namespace Xbim.Ifc2x3
 				NotifyCountChanged();
 			};
 
-            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified);
+            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, _property);
         }
 
 
@@ -252,7 +256,7 @@ namespace Xbim.Ifc2x3
                 NotifyCollectionChanged(NotifyCollectionChangedAction.Add, oldItems);
                 NotifyCountChanged();
             };
-            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified);
+            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, _property);
         }
 
         public bool Contains(T item)
@@ -299,7 +303,7 @@ namespace Xbim.Ifc2x3
                 NotifyCollectionChanged(NotifyCollectionChangedAction.Add, item);
                 NotifyCountChanged();
             };
-            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified);
+            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, _property);
             
             return true;
         }
@@ -418,7 +422,7 @@ namespace Xbim.Ifc2x3
                     NotifyCollectionChanged(NotifyCollectionChangedAction.Replace, oldValue);
 		        };
 		        
-				Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified);
+				Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, _property);
 		    }
 		}
 
@@ -451,7 +455,7 @@ namespace Xbim.Ifc2x3
                 NotifyCollectionChanged(NotifyCollectionChangedAction.Remove, item);
                 NotifyCountChanged();
             };
-            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified);
+            Model.CurrentTransaction.AddReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, _property);
         }
 
         public void RemoveAt(int index)

@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.ControlExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatingApproval = v, _relatingApproval, value,  "RelatingApproval");
+				SetValue( v =>  _relatingApproval = v, _relatingApproval, value,  "RelatingApproval", 6);
 			} 
 		}	
 		#endregion

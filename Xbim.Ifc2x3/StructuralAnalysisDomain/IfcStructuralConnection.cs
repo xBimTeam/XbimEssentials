@@ -65,7 +65,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _appliedCondition = v, _appliedCondition, value,  "AppliedCondition");
+				SetValue( v =>  _appliedCondition = v, _appliedCondition, value,  "AppliedCondition", 8);
 			} 
 		}	
 		#endregion

@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _curveOnRelatingElement = v, _curveOnRelatingElement, value,  "CurveOnRelatingElement");
+				SetValue( v =>  _curveOnRelatingElement = v, _curveOnRelatingElement, value,  "CurveOnRelatingElement", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _curveOnRelatedElement = v, _curveOnRelatedElement, value,  "CurveOnRelatedElement");
+				SetValue( v =>  _curveOnRelatedElement = v, _curveOnRelatedElement, value,  "CurveOnRelatedElement", 2);
 			} 
 		}	
 		#endregion

@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatingOpeningElement = v, _relatingOpeningElement, value,  "RelatingOpeningElement");
+				SetValue( v =>  _relatingOpeningElement = v, _relatingOpeningElement, value,  "RelatingOpeningElement", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatedBuildingElement = v, _relatedBuildingElement, value,  "RelatedBuildingElement");
+				SetValue( v =>  _relatedBuildingElement = v, _relatedBuildingElement, value,  "RelatedBuildingElement", 6);
 			} 
 		}	
 		#endregion

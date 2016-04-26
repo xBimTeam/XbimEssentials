@@ -109,7 +109,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDocumentInformationRelationship(IModel model) 		{ 
 			Model = model; 
-			_relatedDocuments = new ItemSet<IfcDocumentInformation>( this, 0 );
+			_relatedDocuments = new ItemSet<IfcDocumentInformation>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -131,7 +131,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _relatingDocument = v, _relatingDocument, value,  "RelatingDocument");
+				SetValue( v =>  _relatingDocument = v, _relatingDocument, value,  "RelatingDocument", 1);
 			} 
 		}	
 		[IndexedProperty]
@@ -156,7 +156,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _relationshipType = v, _relationshipType, value,  "RelationshipType");
+				SetValue( v =>  _relationshipType = v, _relationshipType, value,  "RelationshipType", 3);
 			} 
 		}	
 		#endregion
@@ -180,7 +180,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -209,7 +209,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -223,7 +223,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					_relatingDocument = (IfcDocumentInformation)(value.EntityVal);
 					return;
 				case 1: 
-					if (_relatedDocuments == null) _relatedDocuments = new ItemSet<IfcDocumentInformation>( this );
 					_relatedDocuments.InternalAdd((IfcDocumentInformation)value.EntityVal);
 					return;
 				case 2: 

@@ -134,7 +134,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _created = v, _created, value,  "Created");
+				SetValue( v =>  _created = v, _created, value,  "Created", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -148,7 +148,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _externalId = v, _externalId, value,  "ExternalId");
+				SetValue( v =>  _externalId = v, _externalId, value,  "ExternalId", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -162,7 +162,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _altExternalId = v, _altExternalId, value,  "AltExternalId");
+				SetValue( v =>  _altExternalId = v, _altExternalId, value,  "AltExternalId", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -176,7 +176,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _externalSystem = v, _externalSystem, value,  "ExternalSystem");
+				SetValue( v =>  _externalSystem = v, _externalSystem, value,  "ExternalSystem", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -190,7 +190,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _externalObject = v, _externalObject, value,  "ExternalObject");
+				SetValue( v =>  _externalObject = v, _externalObject, value,  "ExternalObject", 5);
 			} 
 		}	
 		#endregion
@@ -214,7 +214,7 @@ namespace Xbim.CobieExpress
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -243,7 +243,7 @@ namespace Xbim.CobieExpress
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

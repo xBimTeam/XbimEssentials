@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _axis3 = v, _axis3, value,  "Axis3");
+				SetValue( v =>  _axis3 = v, _axis3, value,  "Axis3", 5);
 			} 
 		}	
 		#endregion

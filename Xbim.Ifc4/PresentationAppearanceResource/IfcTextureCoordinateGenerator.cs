@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureCoordinateGenerator(IModel model) : base(model) 		{ 
 			Model = model; 
-			_parameter = new OptionalItemSet<IfcReal>( this, 0 );
+			_parameter = new OptionalItemSet<IfcReal>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _mode = v, _mode, value,  "Mode");
+				SetValue( v =>  _mode = v, _mode, value,  "Mode", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 3)]
@@ -98,7 +98,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					_mode = value.StringVal;
 					return;
 				case 2: 
-					if (_parameter == null) _parameter = new OptionalItemSet<IfcReal>( this );
 					_parameter.InternalAdd(value.RealVal);
 					return;
 				default:

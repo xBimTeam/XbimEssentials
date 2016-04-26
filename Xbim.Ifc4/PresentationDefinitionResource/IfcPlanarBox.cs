@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			} 
 			set
 			{
-				SetValue( v =>  _placement = v, _placement, value,  "Placement");
+				SetValue( v =>  _placement = v, _placement, value,  "Placement", 3);
 			} 
 		}	
 		#endregion

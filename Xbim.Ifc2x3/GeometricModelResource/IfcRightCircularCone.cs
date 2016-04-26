@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _height = v, _height, value,  "Height");
+				SetValue( v =>  _height = v, _height, value,  "Height", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _bottomRadius = v, _bottomRadius, value,  "BottomRadius");
+				SetValue( v =>  _bottomRadius = v, _bottomRadius, value,  "BottomRadius", 3);
 			} 
 		}	
 		#endregion

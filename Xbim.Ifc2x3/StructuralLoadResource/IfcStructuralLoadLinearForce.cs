@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _linearForceX = v, _linearForceX, value,  "LinearForceX");
+				SetValue( v =>  _linearForceX = v, _linearForceX, value,  "LinearForceX", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -92,7 +92,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _linearForceY = v, _linearForceY, value,  "LinearForceY");
+				SetValue( v =>  _linearForceY = v, _linearForceY, value,  "LinearForceY", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -106,7 +106,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _linearForceZ = v, _linearForceZ, value,  "LinearForceZ");
+				SetValue( v =>  _linearForceZ = v, _linearForceZ, value,  "LinearForceZ", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -120,7 +120,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _linearMomentX = v, _linearMomentX, value,  "LinearMomentX");
+				SetValue( v =>  _linearMomentX = v, _linearMomentX, value,  "LinearMomentX", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -134,7 +134,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _linearMomentY = v, _linearMomentY, value,  "LinearMomentY");
+				SetValue( v =>  _linearMomentY = v, _linearMomentY, value,  "LinearMomentY", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _linearMomentZ = v, _linearMomentZ, value,  "LinearMomentZ");
+				SetValue( v =>  _linearMomentZ = v, _linearMomentZ, value,  "LinearMomentZ", 7);
 			} 
 		}	
 		#endregion

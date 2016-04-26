@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 			set
 			{
-				SetValue( v =>  _unit = v, _unit, value,  "Unit");
+				SetValue( v =>  _unit = v, _unit, value,  "Unit", 3);
 			} 
 		}	
 		#endregion

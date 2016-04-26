@@ -62,7 +62,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 			} 
 			set
 			{
-				SetValue( v =>  _parentEdge = v, _parentEdge, value,  "ParentEdge");
+				SetValue( v =>  _parentEdge = v, _parentEdge, value,  "ParentEdge", 3);
 			} 
 		}	
 		#endregion

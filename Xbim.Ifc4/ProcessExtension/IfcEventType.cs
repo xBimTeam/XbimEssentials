@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _eventTriggerType = v, _eventTriggerType, value,  "EventTriggerType");
+				SetValue( v =>  _eventTriggerType = v, _eventTriggerType, value,  "EventTriggerType", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedEventTriggerType = v, _userDefinedEventTriggerType, value,  "UserDefinedEventTriggerType");
+				SetValue( v =>  _userDefinedEventTriggerType = v, _userDefinedEventTriggerType, value,  "UserDefinedEventTriggerType", 12);
 			} 
 		}	
 		#endregion

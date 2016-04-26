@@ -128,7 +128,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _contextIdentifier = v, _contextIdentifier, value,  "ContextIdentifier");
+				SetValue( v =>  _contextIdentifier = v, _contextIdentifier, value,  "ContextIdentifier", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -142,7 +142,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _contextType = v, _contextType, value,  "ContextType");
+				SetValue( v =>  _contextType = v, _contextType, value,  "ContextType", 2);
 			} 
 		}	
 		#endregion
@@ -177,7 +177,7 @@ namespace Xbim.Ifc4.RepresentationResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -206,7 +206,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

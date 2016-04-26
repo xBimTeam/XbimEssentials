@@ -75,7 +75,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _thickness = v, _thickness, value,  "Thickness");
+				SetValue( v =>  _thickness = v, _thickness, value,  "Thickness", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -89,7 +89,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _ribHeight = v, _ribHeight, value,  "RibHeight");
+				SetValue( v =>  _ribHeight = v, _ribHeight, value,  "RibHeight", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -103,7 +103,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _ribWidth = v, _ribWidth, value,  "RibWidth");
+				SetValue( v =>  _ribWidth = v, _ribWidth, value,  "RibWidth", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -117,7 +117,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _ribSpacing = v, _ribSpacing, value,  "RibSpacing");
+				SetValue( v =>  _ribSpacing = v, _ribSpacing, value,  "RibSpacing", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 7)]
@@ -131,7 +131,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _direction = v, _direction, value,  "Direction");
+				SetValue( v =>  _direction = v, _direction, value,  "Direction", 7);
 			} 
 		}	
 		#endregion

@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.MaterialResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialRelationship(IModel model) : base(model) 		{ 
 			Model = model; 
-			_relatedMaterials = new ItemSet<IfcMaterial>( this, 0 );
+			_relatedMaterials = new ItemSet<IfcMaterial>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _relatingMaterial = v, _relatingMaterial, value,  "RelatingMaterial");
+				SetValue( v =>  _relatingMaterial = v, _relatingMaterial, value,  "RelatingMaterial", 3);
 			} 
 		}	
 		[IndexedProperty]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _expression = v, _expression, value,  "Expression");
+				SetValue( v =>  _expression = v, _expression, value,  "Expression", 5);
 			} 
 		}	
 		#endregion
@@ -119,7 +119,6 @@ namespace Xbim.Ifc4.MaterialResource
 					_relatingMaterial = (IfcMaterial)(value.EntityVal);
 					return;
 				case 3: 
-					if (_relatedMaterials == null) _relatedMaterials = new ItemSet<IfcMaterial>( this );
 					_relatedMaterials.InternalAdd((IfcMaterial)value.EntityVal);
 					return;
 				case 4: 

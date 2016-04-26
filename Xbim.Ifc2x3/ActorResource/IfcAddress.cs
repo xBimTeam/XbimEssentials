@@ -134,7 +134,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose");
+				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -162,7 +162,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedPurpose = v, _userDefinedPurpose, value,  "UserDefinedPurpose");
+				SetValue( v =>  _userDefinedPurpose = v, _userDefinedPurpose, value,  "UserDefinedPurpose", 3);
 			} 
 		}	
 		#endregion
@@ -206,7 +206,7 @@ namespace Xbim.Ifc2x3.ActorResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -235,7 +235,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

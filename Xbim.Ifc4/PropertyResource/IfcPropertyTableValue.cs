@@ -55,8 +55,8 @@ namespace Xbim.Ifc4.PropertyResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyTableValue(IModel model) : base(model) 		{ 
 			Model = model; 
-			_definingValues = new OptionalItemSet<IfcValue>( this, 0 );
-			_definedValues = new OptionalItemSet<IfcValue>( this, 0 );
+			_definingValues = new OptionalItemSet<IfcValue>( this, 0,  3);
+			_definedValues = new OptionalItemSet<IfcValue>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _expression = v, _expression, value,  "Expression");
+				SetValue( v =>  _expression = v, _expression, value,  "Expression", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -114,7 +114,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _definingUnit = v, _definingUnit, value,  "DefiningUnit");
+				SetValue( v =>  _definingUnit = v, _definingUnit, value,  "DefiningUnit", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -128,7 +128,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _definedUnit = v, _definedUnit, value,  "DefinedUnit");
+				SetValue( v =>  _definedUnit = v, _definedUnit, value,  "DefinedUnit", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
@@ -142,7 +142,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _curveInterpolation = v, _curveInterpolation, value,  "CurveInterpolation");
+				SetValue( v =>  _curveInterpolation = v, _curveInterpolation, value,  "CurveInterpolation", 8);
 			} 
 		}	
 		#endregion
@@ -161,11 +161,9 @@ namespace Xbim.Ifc4.PropertyResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 2: 
-					if (_definingValues == null) _definingValues = new OptionalItemSet<IfcValue>( this );
 					_definingValues.InternalAdd((IfcValue)value.EntityVal);
 					return;
 				case 3: 
-					if (_definedValues == null) _definedValues = new OptionalItemSet<IfcValue>( this );
 					_definedValues.InternalAdd((IfcValue)value.EntityVal);
 					return;
 				case 4: 

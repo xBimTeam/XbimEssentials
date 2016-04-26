@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelCoversBldgElements(IModel model) : base(model) 		{ 
 			Model = model; 
-			_relatedCoverings = new ItemSet<IfcCovering>( this, 0 );
+			_relatedCoverings = new ItemSet<IfcCovering>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
@@ -68,7 +68,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatingBuildingElement = v, _relatingBuildingElement, value,  "RelatingBuildingElement");
+				SetValue( v =>  _relatingBuildingElement = v, _relatingBuildingElement, value,  "RelatingBuildingElement", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -103,7 +103,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 					_relatingBuildingElement = (IfcElement)(value.EntityVal);
 					return;
 				case 5: 
-					if (_relatedCoverings == null) _relatedCoverings = new ItemSet<IfcCovering>( this );
 					_relatedCoverings.InternalAdd((IfcCovering)value.EntityVal);
 					return;
 				default:

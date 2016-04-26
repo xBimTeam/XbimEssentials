@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight");
+				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _overallWidth = v, _overallWidth, value,  "OverallWidth");
+				SetValue( v =>  _overallWidth = v, _overallWidth, value,  "OverallWidth", 10);
 			} 
 		}	
 		#endregion

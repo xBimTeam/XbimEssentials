@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _warpingStiffness = v, _warpingStiffness, value,  "WarpingStiffness");
+				SetValue( v =>  _warpingStiffness = v, _warpingStiffness, value,  "WarpingStiffness", 8);
 			} 
 		}	
 		#endregion

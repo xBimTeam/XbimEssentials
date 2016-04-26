@@ -51,8 +51,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSectionedSpine(IModel model) : base(model) 		{ 
 			Model = model; 
-			_crossSections = new ItemSet<IfcProfileDef>( this, 0 );
-			_crossSectionPositions = new ItemSet<IfcAxis2Placement3D>( this, 0 );
+			_crossSections = new ItemSet<IfcProfileDef>( this, 0,  2);
+			_crossSectionPositions = new ItemSet<IfcAxis2Placement3D>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _spineCurve = v, _spineCurve, value,  "SpineCurve");
+				SetValue( v =>  _spineCurve = v, _spineCurve, value,  "SpineCurve", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 4)]
@@ -124,11 +124,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 					_spineCurve = (IfcCompositeCurve)(value.EntityVal);
 					return;
 				case 1: 
-					if (_crossSections == null) _crossSections = new ItemSet<IfcProfileDef>( this );
 					_crossSections.InternalAdd((IfcProfileDef)value.EntityVal);
 					return;
 				case 2: 
-					if (_crossSectionPositions == null) _crossSectionPositions = new ItemSet<IfcAxis2Placement3D>( this );
 					_crossSectionPositions.InternalAdd((IfcAxis2Placement3D)value.EntityVal);
 					return;
 				default:

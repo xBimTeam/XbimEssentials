@@ -128,7 +128,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _hourOffset = v, _hourOffset, value,  "HourOffset");
+				SetValue( v =>  _hourOffset = v, _hourOffset, value,  "HourOffset", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -142,7 +142,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _minuteOffset = v, _minuteOffset, value,  "MinuteOffset");
+				SetValue( v =>  _minuteOffset = v, _minuteOffset, value,  "MinuteOffset", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 3)]
@@ -156,7 +156,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _sense = v, _sense, value,  "Sense");
+				SetValue( v =>  _sense = v, _sense, value,  "Sense", 3);
 			} 
 		}	
 		#endregion
@@ -180,7 +180,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -209,7 +209,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

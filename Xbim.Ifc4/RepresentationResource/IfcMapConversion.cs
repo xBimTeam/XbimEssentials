@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _eastings = v, _eastings, value,  "Eastings");
+				SetValue( v =>  _eastings = v, _eastings, value,  "Eastings", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -92,7 +92,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _northings = v, _northings, value,  "Northings");
+				SetValue( v =>  _northings = v, _northings, value,  "Northings", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -106,7 +106,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _orthogonalHeight = v, _orthogonalHeight, value,  "OrthogonalHeight");
+				SetValue( v =>  _orthogonalHeight = v, _orthogonalHeight, value,  "OrthogonalHeight", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -120,7 +120,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _xAxisAbscissa = v, _xAxisAbscissa, value,  "XAxisAbscissa");
+				SetValue( v =>  _xAxisAbscissa = v, _xAxisAbscissa, value,  "XAxisAbscissa", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -134,7 +134,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _xAxisOrdinate = v, _xAxisOrdinate, value,  "XAxisOrdinate");
+				SetValue( v =>  _xAxisOrdinate = v, _xAxisOrdinate, value,  "XAxisOrdinate", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -148,7 +148,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _scale = v, _scale, value,  "Scale");
+				SetValue( v =>  _scale = v, _scale, value,  "Scale", 8);
 			} 
 		}	
 		#endregion

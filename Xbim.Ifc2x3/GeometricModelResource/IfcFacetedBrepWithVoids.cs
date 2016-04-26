@@ -45,7 +45,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFacetedBrepWithVoids(IModel model) : base(model) 		{ 
 			Model = model; 
-			_voids = new ItemSet<IfcClosedShell>( this, 0 );
+			_voids = new ItemSet<IfcClosedShell>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -78,7 +78,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 1: 
-					if (_voids == null) _voids = new ItemSet<IfcClosedShell>( this );
 					_voids.InternalAdd((IfcClosedShell)value.EntityVal);
 					return;
 				default:

@@ -51,8 +51,8 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCostItem(IModel model) : base(model) 		{ 
 			Model = model; 
-			_costValues = new OptionalItemSet<IfcCostValue>( this, 0 );
-			_costQuantities = new OptionalItemSet<IfcPhysicalQuantity>( this, 0 );
+			_costValues = new OptionalItemSet<IfcCostValue>( this, 0,  8);
+			_costQuantities = new OptionalItemSet<IfcPhysicalQuantity>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 20)]
@@ -119,11 +119,9 @@ namespace Xbim.Ifc4.SharedMgmtElements
                     _predefinedType = (IfcCostItemTypeEnum) System.Enum.Parse(typeof (IfcCostItemTypeEnum), value.EnumVal, true);
 					return;
 				case 7: 
-					if (_costValues == null) _costValues = new OptionalItemSet<IfcCostValue>( this );
 					_costValues.InternalAdd((IfcCostValue)value.EntityVal);
 					return;
 				case 8: 
-					if (_costQuantities == null) _costQuantities = new OptionalItemSet<IfcPhysicalQuantity>( this );
 					_costQuantities.InternalAdd((IfcPhysicalQuantity)value.EntityVal);
 					return;
 				default:

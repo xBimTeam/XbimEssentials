@@ -183,7 +183,7 @@ namespace Xbim.IO
         /// <param name="propVal"></param>
         /// <param name="entityWriter"></param>
         /// <param name="map"></param>
-        private static void WriteProperty(Type propType, object propVal, TextWriter entityWriter,IDictionary<int,int> map, ExpressMetaData metadata)
+        public static void WriteProperty(Type propType, object propVal, TextWriter entityWriter,IDictionary<int,int> map, ExpressMetaData metadata)
         {
             Type itemType;
             if (propVal == null) //null or a value type that maybe null

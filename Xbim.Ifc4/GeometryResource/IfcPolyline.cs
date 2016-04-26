@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPolyline(IModel model) : base(model) 		{ 
 			Model = model; 
-			_points = new ItemSet<IfcCartesianPoint>( this, 0 );
+			_points = new ItemSet<IfcCartesianPoint>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -74,7 +74,6 @@ namespace Xbim.Ifc4.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_points == null) _points = new ItemSet<IfcCartesianPoint>( this );
 					_points.InternalAdd((IfcCartesianPoint)value.EntityVal);
 					return;
 				default:

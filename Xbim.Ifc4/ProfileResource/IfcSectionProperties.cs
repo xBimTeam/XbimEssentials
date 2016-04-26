@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _sectionType = v, _sectionType, value,  "SectionType");
+				SetValue( v =>  _sectionType = v, _sectionType, value,  "SectionType", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _startProfile = v, _startProfile, value,  "StartProfile");
+				SetValue( v =>  _startProfile = v, _startProfile, value,  "StartProfile", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _endProfile = v, _endProfile, value,  "EndProfile");
+				SetValue( v =>  _endProfile = v, _endProfile, value,  "EndProfile", 3);
 			} 
 		}	
 		#endregion
