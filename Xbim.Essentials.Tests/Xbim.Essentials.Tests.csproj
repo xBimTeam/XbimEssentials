@@ -119,9 +119,15 @@
     <None Include="TestSourceFiles\4walls1floorSite.ifczip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestSourceFiles\House.ifc">
+    <None Include="TestSourceFiles\House-Renga.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestSourceFiles\House-ArchiCAD.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\HVAC-Mech.ifc" >
+	 <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
     <None Include="TestSourceFiles\IfcBSplineSurfaceWithKnots.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -144,6 +150,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="GeometryCacheTestFiles\Monolith_v20.xBIM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\rac_basic_sample_project.ifczip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
