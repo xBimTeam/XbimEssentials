@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xbim.Ifc2x3.GeometryResource;
 
 namespace Xbim.Ifc2x3.Extensions
@@ -14,7 +11,7 @@ namespace Xbim.Ifc2x3.Extensions
         /// <returns></returns>
         public static int GetGeometryHashCode(this IfcCartesianPoint pt)
         {
-            Func<double, int> f = pt.ModelOf.ModelFactors.GetGeometryDoubleHash;
+            Func<double, int> f = pt.Model.ModelFactors.GetGeometryDoubleHash;
             switch (pt.Dim)
             {
                 case 1:
@@ -36,7 +33,7 @@ namespace Xbim.Ifc2x3.Extensions
         public static bool GeometricEquals(this IfcCartesianPoint a, IfcCartesianPoint b)
         {
             if (a.Equals(b)) return true;
-            double precision = a.ModelOf.ModelFactors.Precision;
+            var precision = a.Model.ModelFactors.Precision;
             return a.IsEqual(b, precision);
         }
     }

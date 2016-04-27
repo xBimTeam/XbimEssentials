@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
+using Xbim.Ifc2x3.DateTimeResource;
 using Xbim.Ifc2x3.TimeSeriesResource;
 
 namespace Xbim.Ifc2x3.Extensions
@@ -12,14 +10,14 @@ namespace Xbim.Ifc2x3.Extensions
         public static string GetAsString(this IfcTimeSeries ifcTimeSeries)
         {
             StringBuilder timeSeries = new StringBuilder();
-            string start = ifcTimeSeries.StartTime.GetAsString();
+            string start = ifcTimeSeries.StartTime.AsString();
             if (!string.IsNullOrEmpty(start))
             {
                 timeSeries.Append("Start:");
                 timeSeries.Append(start);
                 timeSeries.Append(", ");
             }
-            string end = ifcTimeSeries.EndTime.GetAsString();
+            string end = ifcTimeSeries.EndTime.AsString();
             if (!string.IsNullOrEmpty(end))
             {
                 timeSeries.Append("End:");

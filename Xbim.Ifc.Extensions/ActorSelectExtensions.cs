@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xbim.Ifc2x3.ActorResource;
-using Xbim.XbimExtensions.SelectTypes;
 
 namespace Xbim.Ifc2x3.Extensions
 {
@@ -12,18 +9,20 @@ namespace Xbim.Ifc2x3.Extensions
 
         public static String RoleName(this IfcActorSelect actor)
         {
-            if (actor is IfcPerson)
+            var person = actor as IfcPerson;
+            if (person != null)
             {
-                return ((IfcPerson)actor).RolesString;
+                return string.Join("; ", person.Roles.Select(r => r.RoleString)); 
             }
-            else if (actor is IfcPersonAndOrganization)
+            var personAndOrganization = actor as IfcPersonAndOrganization;
+            if (personAndOrganization != null)
             {
-                return ((IfcPersonAndOrganization)actor).RolesString;
-               
+                return string.Join("; ", personAndOrganization.Roles.Select(r => r.RoleString));
             }
-            else if (actor is IfcOrganization)
+            var organization = actor as IfcOrganization;
+            if (organization != null)
             {
-                return ((IfcOrganization)actor).RolesString;
+                return string.Join("; ", organization.Roles.Select(r => r.RoleString));
             }
             return "";
         }

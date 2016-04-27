@@ -12,8 +12,9 @@
 
 #region Directives
 
-using System.Collections.Generic; using System.Linq;using Xbim.XbimExtensions.Interfaces;
-using Xbim.Ifc2x3.PresentationAppearanceResource;
+using System.Collections.Generic;
+using Xbim.Common;
+using Xbim.Ifc2x3.PresentationResource;
 
 #endregion
 

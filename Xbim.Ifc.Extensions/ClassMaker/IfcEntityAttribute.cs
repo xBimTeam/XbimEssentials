@@ -13,7 +13,8 @@
 #region Directives
 
 using System.Linq;
-using Xbim.XbimExtensions;
+using Xbim.Common;
+using Xbim.Common.XbimExtensions;
 
 #endregion
 
@@ -21,14 +22,14 @@ namespace Xbim.Ifc2x3.XbimExtensions.ClassMaker
 {
     public class IfcEntityAttribute
     {
-        public IfcEntityAttribute(string propertyName, string typeName, IfcAttribute attributeProperties)
+        public IfcEntityAttribute(string propertyName, string typeName, EntityAttributeAttribute attributeAttributeProperties)
         {
             PropertyName = propertyName;
             TypeName = typeName;
-            AttributeProperties = attributeProperties;
+            AttributeAttributeProperties = attributeAttributeProperties;
         }
 
-        public IfcAttribute AttributeProperties;
+        public EntityAttributeAttribute AttributeAttributeProperties;
         public string PropertyName;
         public string TypeName;
 

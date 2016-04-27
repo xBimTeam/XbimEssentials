@@ -15,16 +15,14 @@ using System.Globalization;
 namespace Xbim.Common.Logging.Providers
 {
 	/// <summary>
-	/// A Default logging system based on <see cref="Trace"/>
+	/// A Default logging system based on <see cref="System.Diagnostics.Trace"/>
 	/// </summary>
 	internal class DefaultLogger : ILogger
 	{
 		// TODO: set from config
-		static System.Diagnostics.TraceSwitch trace = new TraceSwitch("TraceLog", "Global Tracelog");
+		static readonly TraceSwitch Trace = new TraceSwitch("TraceLog", "Global Tracelog");
 
-		private const string Logging_UnhandledException = "Unhandled Exception";
-
-		#region ILogger Members
+	    #region ILogger Members
 
 		/// <summary>
 		/// Logs the specified message with the <c>DEBUG</c> level
@@ -33,7 +31,7 @@ namespace Xbim.Common.Logging.Providers
 		public void Debug(object message)
 		{
 			if (IsDebugEnabled)
-				Trace.WriteLine(message);
+				System.Diagnostics.Trace.WriteLine(message);
 		}
 
 		/// <summary>
@@ -45,7 +43,7 @@ namespace Xbim.Common.Logging.Providers
 		{
 			if (IsDebugEnabled)
 			{
-				Trace.WriteLine(message);
+				System.Diagnostics.Trace.WriteLine(message);
 				WriteException(TraceLevel.Verbose, exception);
 			}
 		}
@@ -59,7 +57,7 @@ namespace Xbim.Common.Logging.Providers
 		{
 			if (IsDebugEnabled)
 			{
-				Trace.WriteLine(String.Format(CultureInfo.InvariantCulture, format, args));
+				System.Diagnostics.Trace.WriteLine(String.Format(CultureInfo.InvariantCulture, format, args));
 			}
 		}
 
@@ -71,7 +69,7 @@ namespace Xbim.Common.Logging.Providers
 		/// </value>
 		public bool IsDebugEnabled
 		{
-			get { return trace.TraceVerbose; }
+			get { return Trace.TraceVerbose; }
 		}
 
 		/// <summary>
@@ -81,7 +79,7 @@ namespace Xbim.Common.Logging.Providers
 		public void Info(object message)
 		{
 			if (IsInfoEnabled)
-				Trace.WriteLine(TraceLevel.Info, message.ToString());
+				System.Diagnostics.Trace.WriteLine(TraceLevel.Info, message.ToString());
 		}
 
 		/// <summary>
@@ -93,7 +91,7 @@ namespace Xbim.Common.Logging.Providers
 		{
 			if (IsInfoEnabled)
 			{
-				Trace.TraceInformation(message.ToString());
+				System.Diagnostics.Trace.TraceInformation(message.ToString());
 				WriteException(TraceLevel.Info, exception);
 			}
 		}
@@ -107,7 +105,7 @@ namespace Xbim.Common.Logging.Providers
 		{
 			if (IsInfoEnabled)
 			{
-				Trace.TraceInformation(String.Format(CultureInfo.InvariantCulture, format, args));
+				System.Diagnostics.Trace.TraceInformation(String.Format(CultureInfo.InvariantCulture, format, args));
 			}
 		}
 
@@ -119,7 +117,7 @@ namespace Xbim.Common.Logging.Providers
 		/// </value>
 		public bool IsInfoEnabled
 		{
-			get { return trace.TraceInfo; }
+			get { return Trace.TraceInfo; }
 		}
 
 
@@ -130,7 +128,7 @@ namespace Xbim.Common.Logging.Providers
 		public void Warn(object message)
 		{
 			if (IsWarnEnabled)
-				Trace.TraceWarning(message.ToString());
+				System.Diagnostics.Trace.TraceWarning(message.ToString());
 		}
 
 		/// <summary>
@@ -142,7 +140,7 @@ namespace Xbim.Common.Logging.Providers
 		{
 			if (IsWarnEnabled)
 			{
-				Trace.TraceWarning(message.ToString());
+				System.Diagnostics.Trace.TraceWarning(message.ToString());
 				WriteException(TraceLevel.Warning, exception);
 			}
 		}
@@ -156,7 +154,7 @@ namespace Xbim.Common.Logging.Providers
 		{
 			if (IsWarnEnabled)
 			{
-				Trace.TraceWarning(String.Format(CultureInfo.InvariantCulture, format, args));
+				System.Diagnostics.Trace.TraceWarning(String.Format(CultureInfo.InvariantCulture, format, args));
 			}
 		}
 
@@ -168,7 +166,7 @@ namespace Xbim.Common.Logging.Providers
 		/// </value>
 		public bool IsWarnEnabled
 		{
-			get { return trace.TraceWarning; }
+			get { return Trace.TraceWarning; }
 		}
 
 		/// <summary>
@@ -178,7 +176,7 @@ namespace Xbim.Common.Logging.Providers
 		public void Error(object message)
 		{
 			if (IsErrorEnabled)
-				Trace.TraceError(message.ToString());
+				System.Diagnostics.Trace.TraceError(message.ToString());
 		}
 
 		/// <summary>
@@ -190,7 +188,7 @@ namespace Xbim.Common.Logging.Providers
 		{
 			if (IsErrorEnabled)
 			{
-				Trace.TraceError(message.ToString());
+				System.Diagnostics.Trace.TraceError(message.ToString());
 				WriteException(TraceLevel.Error, exception);
 			}
 		}
@@ -204,7 +202,7 @@ namespace Xbim.Common.Logging.Providers
 		{
 			if (IsErrorEnabled)
 			{
-				Trace.TraceError(String.Format(CultureInfo.InvariantCulture, format, args));
+				System.Diagnostics.Trace.TraceError(String.Format(CultureInfo.InvariantCulture, format, args));
 			}
 		}
 
@@ -216,7 +214,7 @@ namespace Xbim.Common.Logging.Providers
 		/// </value>
 		public bool IsErrorEnabled
 		{
-			get { return trace.TraceError; }
+			get { return Trace.TraceError; }
 		}
 
 		/// <summary>
@@ -271,9 +269,9 @@ namespace Xbim.Common.Logging.Providers
 
 		#endregion
 
-		private void WriteException(TraceLevel traceLevel, Exception exception)
+		private static void WriteException(TraceLevel traceLevel, Exception exception)
 		{
-			Trace.TraceError(exception.ToString());
+			System.Diagnostics.Trace.TraceError(exception.ToString());
 		}
 	}
 }

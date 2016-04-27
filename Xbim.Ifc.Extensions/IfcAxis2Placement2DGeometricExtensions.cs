@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xbim.Ifc2x3.GeometryResource;
+﻿using Xbim.Ifc2x3.GeometryResource;
 
 namespace Xbim.Ifc2x3.Extensions
 {
@@ -27,7 +23,7 @@ namespace Xbim.Ifc2x3.Extensions
         public static bool GeometricEquals(this IfcAxis2Placement2D a, IfcAxis2Placement2D b)
         {
             if (a.Equals(b)) return true;
-            double precision = b.ModelOf.ModelFactors.Precision;
+            double precision = b.Model.ModelFactors.Precision;
             return a.P[0].IsEqual(b.P[0],precision) && 
                 a.P[1].IsEqual(b.P[1],precision) && 
                 a.Location.GeometricEquals(b.Location);

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xbim.Ifc2x3.TopologyResource;
-using Xbim.XbimExtensions.Interfaces;
 
 namespace Xbim.Ifc2x3.Extensions
 {
@@ -13,14 +9,14 @@ namespace Xbim.Ifc2x3.Extensions
             out double Xmin, out double Ymin, out double Zmin, out double Xmax, out double Ymax, out double Zmax)
         {
             double xmin = 0; double ymin = 0; double zmin = 0; double xmax = 0; double ymax = 0; double zmax = 0;
-            bool first = true;
-            IModel model = fSet.ModelOf;
-            model.ForEach<IfcFace>(fSet.CfsFaces, face=>
+            var first = true;
+            var model = fSet.Model;
+            model.ForEach(fSet.CfsFaces, face=>
             {
-                IfcFaceBound outer = face.Bounds.OfType<IfcFaceOuterBound>().FirstOrDefault();
-                if (outer == null) outer = face.Bounds.FirstOrDefault();
+                var outer = face.Bounds.FirstOrDefault<IfcFaceOuterBound>(fb => true) ??
+                                     face.Bounds.FirstOrDefault();
                 if (outer == null) return;
-                IfcPolyLoop loop = outer.Bound as IfcPolyLoop;
+                var loop = outer.Bound as IfcPolyLoop;
                 if (loop != null)
                 {
                     foreach (var pt in loop.Polygon)

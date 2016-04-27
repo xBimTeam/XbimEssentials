@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xbim.Ifc2x3.GeometryResource;
-using Xbim.XbimExtensions.SelectTypes;
 
 namespace Xbim.Ifc2x3.Extensions
 {
     static public class GeometryResourceExtensions
     {
-        static public IfcCircle Create(this IfcCircle c, IfcAxis2Placement position, double radius)
+        static public IfcCircle Create(this IfcCircle circle, IfcAxis2Placement position, double radius)
         {
-            IfcCircle circle = new IfcCircle()
+            var model = circle.Model;
+            return model.Instances.New<IfcCircle>(c =>
             {
-                Position = position,
-                Radius = radius
-            };
-            return circle;
+                c.Position = position;
+                c.Radius = radius;
+            });
         }
 
         static public double Area(this IfcCurve curve)
@@ -38,38 +34,38 @@ namespace Xbim.Ifc2x3.Extensions
 
             if (curve is IfcCircle)
             {
-                IfcCircle c = curve as IfcCircle;
+                var c = curve as IfcCircle;
                 return Math.PI * Math.Pow(c.Radius, 2);
             }
-            else if (curve is IfcEllipse)
+            if (curve is IfcEllipse)
             {
-                IfcEllipse c = curve as IfcEllipse;
+                var c = curve as IfcEllipse;
                 return Math.PI * c.SemiAxis1 * c.SemiAxis2; 
             }
-            else if (curve is IfcLine)
+            if (curve is IfcLine)
             {
                 return 0;
             }
-            else if (curve is IfcOffsetCurve2D)
+            if (curve is IfcOffsetCurve2D)
             {
                 throw new NotImplementedException("Area not implemented for IfcOffsetCurve2D");
             }
-            else if (curve is IfcOffsetCurve3D)
+            if (curve is IfcOffsetCurve3D)
             {
                 throw new NotImplementedException("Area not implemented for IfcOffsetCurve3D");
             }
-            else if (curve is IfcBSplineCurve)
+            if (curve is IfcBSplineCurve)
             {
                 throw new NotImplementedException("Area not implemented for IfcBSplineCurve");
             }
-            else if (curve is IfcTrimmedCurve)
+            if (curve is IfcTrimmedCurve)
             {
                 throw new NotImplementedException("Area not implemented for IfcTrimmedCurve");
             }
-            else if (curve is IfcPolyline)
+            if (curve is IfcPolyline)
             {
                 // todo: needs testing
-                IfcPolyline p = curve as IfcPolyline;
+                var p = curve as IfcPolyline;
 
                 if (p.Dim != 2)
                     throw new NotImplementedException("Area not implemented for 3D IfcPolyline");
@@ -78,8 +74,8 @@ namespace Xbim.Ifc2x3.Extensions
                 // it assumes that the last point is NOT the same of the first one, but it tolerates the case.
                 double area = 0.0f;
 
-                int numVertices = p.Points.Count;
-                for (int i = 0; i < numVertices - 1; ++i)
+                var numVertices = p.Points.Count;
+                for (var i = 0; i < numVertices - 1; ++i)
                 {
                     area += p.Points[i].X * p.Points[i + 1].Y - p.Points[i + 1].X * p.Points[i].Y;
                 }
@@ -87,12 +83,12 @@ namespace Xbim.Ifc2x3.Extensions
                 area /= 2.0;
                 return area;
             }
-            else if (curve is Ifc2DCompositeCurve)
+            if (curve is Ifc2DCompositeCurve)
             {
                 // these are complicated and should be solved with opencascade or some other lib
                 throw new NotImplementedException("Area not implemented for Ifc2DCompositeCurve");
             }
-            else if (curve is IfcCompositeCurve)
+            if (curve is IfcCompositeCurve)
             {
                 // these are complicated and should be solved with opencascade or some other lib
                 throw new NotImplementedException("Area not implemented for IfcCompositeCurve");

@@ -1,24 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Xbim.Common.Geometry
 {
-    
-    public class XbimShapeTriangulation
+
+    public class XbimShapeTriangulation : IXbimTriangulatedFaceSet
     {
         private readonly List<XbimPoint3D> _vertices;
         private readonly List<XbimFaceTriangulation> _faces;
         private readonly byte _version;
+
+        public IList<XbimPoint3D> Vertices
+        {
+            get
+            {
+                return _vertices;
+            }
+        }
+
+        public IList<XbimFaceTriangulation> Faces
+        {
+            get
+            {
+                return _faces;
+            }
+        }
+
+        public byte Version
+        {
+            get
+            {
+                return _version;
+            }
+        }
+
         public XbimShapeTriangulation(List<XbimPoint3D> vertices, List<XbimFaceTriangulation> faces, byte version)
         {
             _vertices = vertices;
             _faces = faces;
             _version = version;
         }
+
+
 
         /// <summary>
         /// Returns the number of triangles in the XbimShapeTriangulation data
@@ -27,7 +52,7 @@ namespace Xbim.Common.Geometry
         /// <returns></returns>
         static public int TriangleCount(byte[] triangulationData)
         {
-            return BitConverter.ToInt32(triangulationData, sizeof (byte) + sizeof (Int32));
+            return BitConverter.ToInt32(triangulationData, sizeof(byte) + sizeof(Int32));
         }
 
         /// <summary>
@@ -37,7 +62,7 @@ namespace Xbim.Common.Geometry
         /// <returns></returns>
         static public int VerticesCount(byte[] triangulationData)
         {
-            return BitConverter.ToInt32(triangulationData, sizeof(byte) );
+            return BitConverter.ToInt32(triangulationData, sizeof(byte));
         }
 
         public XbimShapeTriangulation Transform(XbimMatrix3D matrix3D)

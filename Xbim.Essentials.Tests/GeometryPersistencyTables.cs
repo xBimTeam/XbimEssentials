@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.IO;
-using Xbim.XbimExtensions;
+using Xbim.IO.Esent;
 
 namespace Xbim.Essentials.Tests
 {
@@ -11,7 +11,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CanUpgradeDbStucture()
         {
-            using (var m = new XbimModel())
+            using (var m = new Xbim.Ifc2x3.IO.XbimModel())
             {
                 m.Open(@"Persistency\Monolith_v10.xBIM", XbimDBAccess.Exclusive);
                 Assert.AreEqual(1, m.GeometrySupportLevel, "GeometrySupportLevel for Monolith_v10 should be 1");

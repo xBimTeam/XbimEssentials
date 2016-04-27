@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-namespace XbimGeometry.Interfaces
+namespace Xbim.Common.Geometry
 {
     /// <summary>
     /// A mixed collection of geometry objects
@@ -21,7 +22,15 @@ namespace XbimGeometry.Interfaces
         IXbimGeometryObjectSet Union(IXbimSolid toUnion, double tolerance);
         IXbimGeometryObjectSet Intersection(IXbimSolidSet toIntersect, double tolerance);
         IXbimGeometryObjectSet Intersection(IXbimSolid toIntersect, double tolerance);
-        
+        /// <summary>
+        /// Sews the objects to remove duplicate vertices and edges and make the highest level topology
+        /// </summary>
+        /// <returns>True if the object was sewn, false it is already sewn</returns>
+        bool Sew();
+        /// <summary>
+        /// Converts the object to a string in BRep format
+        /// </summary>
+        String ToBRep { get; }
 
     }
 

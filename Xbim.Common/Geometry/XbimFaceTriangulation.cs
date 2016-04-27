@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace Xbim.Common.Geometry
 {
     public class XbimFaceTriangulation
     {
-        private List<int> _indices;
-        private List<XbimPackedNormal> _normals;
+        private readonly List<int> _indices;
+        private readonly List<XbimPackedNormal> _normals;
         public XbimFaceTriangulation(int numTriangles, int numNormals)
         {
             _normals = new List<XbimPackedNormal>(numNormals);
@@ -45,6 +43,14 @@ namespace Xbim.Common.Geometry
         public IList<XbimPackedNormal> Normals
         {
             get { return _normals; }
+        }
+
+        public IList<int> Indices
+        {
+            get
+            {
+                return _indices;
+            }
         }
 
         public void WriteIndices(BinaryWriter bw, int vertexCount)

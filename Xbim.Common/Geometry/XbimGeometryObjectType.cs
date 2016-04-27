@@ -1,4 +1,4 @@
-﻿namespace XbimGeometry.Interfaces
+﻿namespace Xbim.Common.Geometry
 {
     public enum XbimGeometryObjectType
     {
@@ -19,6 +19,7 @@
         XbimCurveType,
         XbimCurveSetType,
         XbimMeshType,
-        XbimMeshSetType
+        XbimMeshSetType,
+        XbimCompoundType
     }
 }

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 using Xbim.Common.Exceptions;
 
 namespace Xbim.Common.Geometry
@@ -13,6 +10,7 @@ namespace Xbim.Common.Geometry
     {
         #region members
 
+        // ReSharper disable once InconsistentNaming
         private static readonly XbimMatrix3D _identity;
         private double _m11;
         private double _m12;
@@ -30,7 +28,8 @@ namespace Xbim.Common.Geometry
         private double _offsetY;
         private double _offsetZ;
         private double _m44;
-        private const double FLOAT_EPSILON = 0.000001f;
+        private const double FloatEpsilon = 0.000001f;
+        // ReSharper disable once FieldCanBeMadeReadOnly.Local
         private bool _isNotDefaultInitialised;
 
 
@@ -44,7 +43,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._m11 = value;
+                _m11 = value;
             }
         }
         public double M12
@@ -56,7 +55,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._m12 = value;
+                _m12 = value;
             }
         }
         public double M13
@@ -68,7 +67,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._m13 = value;
+                _m13 = value;
             }
         }
         public double M14
@@ -80,7 +79,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._m14 = value;
+                _m14 = value;
             }
         }
         public double M21
@@ -92,7 +91,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._m21 = value;
+                _m21 = value;
             }
         }
         public double M22
@@ -105,7 +104,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._m22 = value;
+                _m22 = value;
             }
         }
         public double M23
@@ -117,7 +116,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._m23 = value;
+                _m23 = value;
             }
         }
         public double M24
@@ -129,7 +128,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._m24 = value;
+                _m24 = value;
             }
         }
         public double M31
@@ -141,7 +140,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._m31 = value;
+                _m31 = value;
             }
         }
         public double M32
@@ -153,7 +152,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._m32 = value;
+                _m32 = value;
             }
         }
         public double M33
@@ -166,7 +165,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._m33 = value;
+                _m33 = value;
             }
         }
         public double M34
@@ -178,7 +177,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._m34 = value;
+                _m34 = value;
             }
         }
         public double OffsetX
@@ -191,7 +190,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._offsetX = value;
+                _offsetX = value;
             }
         }
         public double OffsetY
@@ -204,7 +203,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._offsetY = value;
+                _offsetY = value;
             }
         }
         public double OffsetZ
@@ -217,7 +216,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._offsetZ = value;
+                _offsetZ = value;
             }
         }
         public double M44
@@ -230,7 +229,7 @@ namespace Xbim.Common.Geometry
             set
             {
                 if (!_isNotDefaultInitialised) this = _identity;
-                this._m44 = value;
+                _m44 = value;
             }
         }
        
@@ -238,8 +237,10 @@ namespace Xbim.Common.Geometry
 
         static XbimMatrix3D()
         {
-            _identity = new XbimMatrix3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0);
-            _identity._isNotDefaultInitialised = true;
+            _identity = new XbimMatrix3D(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0)
+            {
+                _isNotDefaultInitialised = true
+            };
         }
 
         [IgnoreDataMember]
@@ -247,7 +248,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                return (this._m14 == 0.0 && this._m24 == 0.0 && this._m34 == 0.0 && this._m44 == 1.0);
+                return Math.Abs(_m14) < FloatEpsilon && Math.Abs(_m24) < FloatEpsilon && Math.Abs(_m34) < FloatEpsilon && Math.Abs(_m44 - 1.0) < FloatEpsilon;
             }
         }
         
@@ -268,12 +269,12 @@ namespace Xbim.Common.Geometry
                     this = _identity;
                     return true;
                 }
-                else return XbimMatrix3D.Equal(this, _identity);
+                else return Equal(this, _identity);
             }
         }
       
 
-        public XbimMatrix3D(XbimVector3D Offset)
+        public XbimMatrix3D(XbimVector3D offset)
         {
             _m11 = Identity.M11;
             _m12 = Identity.M12;
@@ -287,36 +288,36 @@ namespace Xbim.Common.Geometry
             _m32 = Identity.M32;
             _m33 = Identity.M33;
             _m34 = Identity.M34;
-            _offsetX = Offset.X;
-            _offsetY = Offset.Y;
-            _offsetZ = Offset.Z;
+            _offsetX = offset.X;
+            _offsetY = offset.Y;
+            _offsetZ = offset.Z;
             _m44 = Identity.M44;
             _isNotDefaultInitialised = true;
         }
-        public XbimMatrix3D(double Scale)
+        public XbimMatrix3D(double scale)
         {
-            _m11 = Scale;
+            _m11 = scale;
             _m12 = Identity.M12;
             _m13 = Identity.M13;
             _m14 = Identity.M14;
             _m21 = Identity.M21;
-            _m22 = Scale;
+            _m22 = scale;
             _m23 = Identity.M23;
             _m24 = Identity.M24;
             _m31 = Identity.M31;
             _m32 = Identity.M32;
-            _m33 = Scale;
+            _m33 = scale;
             _m34 = Identity.M34;
             _offsetX = Identity.OffsetX;
             _offsetY = Identity.OffsetY;
             _offsetZ = Identity.OffsetZ;
-            _m44 = Identity.M44; ;
+            _m44 = Identity.M44;
             _isNotDefaultInitialised = true;
         }
         /// <summary>
         /// Initialises with doubles
         /// </summary>
-        public XbimMatrix3D(double m11, double m12, double m13, double m14, double m21, double m22, double m23, double m24, double m31, double m32, double m33, double m34, double OffsetX, double OffsetY, double OffsetZ, double m44)
+        public XbimMatrix3D(double m11, double m12, double m13, double m14, double m21, double m22, double m23, double m24, double m31, double m32, double m33, double m34, double offsetX, double offsetY, double offsetZ, double m44)
         {
             _m11 = m11;
             _m12 = m12;
@@ -330,22 +331,22 @@ namespace Xbim.Common.Geometry
             _m32 = m32;
             _m33 = m33;
             _m34 = m34;
-            _offsetX = OffsetX;
-            _offsetY = OffsetY;
-            _offsetZ = OffsetZ;
+            _offsetX = offsetX;
+            _offsetY = offsetY;
+            _offsetZ = offsetZ;
             _m44 = m44;
             _isNotDefaultInitialised = true;
         }
         /// <summary>
         /// Converts string of 15 reals to a matrix
         /// </summary>
-        /// <param name="array"></param>
+        /// <param name="val"></param>
         /// <returns></returns>
         public static XbimMatrix3D FromString(string val)
         {
-            string[] itms = val.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+            string[] itms = val.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
             if (itms.Length == 1 && itms[0] == "I")
-                return XbimMatrix3D.Identity;
+                return Identity;
             Debug.Assert(itms.Length == 16);
             return new XbimMatrix3D(
                 Convert.ToDouble(itms[0], System.Globalization.CultureInfo.InvariantCulture),
@@ -368,7 +369,7 @@ namespace Xbim.Common.Geometry
 
         public static XbimMatrix3D FromArray(byte[] array)
         {
-            if (array.Length == 0) return XbimMatrix3D.Identity;
+            if (array.Length == 0) return Identity;
             MemoryStream ms = new MemoryStream(array);
             BinaryReader strm = new BinaryReader(ms);
             bool useDouble = array.Length > 16 * sizeof(Single);
@@ -393,22 +394,22 @@ namespace Xbim.Common.Geometry
                 );
             else
               return new XbimMatrix3D(
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle(),
-                (double)strm.ReadSingle()
+                strm.ReadSingle(),
+                strm.ReadSingle(),
+                strm.ReadSingle(),
+                strm.ReadSingle(),
+                strm.ReadSingle(),
+                strm.ReadSingle(),
+                strm.ReadSingle(),
+                strm.ReadSingle(),
+                strm.ReadSingle(),
+                strm.ReadSingle(),
+                strm.ReadSingle(),
+                strm.ReadSingle(),
+                strm.ReadSingle(),
+                strm.ReadSingle(),
+                strm.ReadSingle(),
+                strm.ReadSingle()
                 );
         }
 
@@ -422,26 +423,26 @@ namespace Xbim.Common.Geometry
 
         public static XbimMatrix3D operator *(XbimMatrix3D a, XbimMatrix3D b)
         {
-            return XbimMatrix3D.Multiply(a, b);
+            return Multiply(a, b);
         }
         public override bool Equals(object obj)
         {
             if (obj is XbimMatrix3D )
             {
 
-                return XbimMatrix3D.Equal(this, (XbimMatrix3D)obj);
+                return Equal(this, (XbimMatrix3D)obj);
             }
             else
                 return false;
         }
         public override string ToString()
         {
-            return this.Str();
+            return Str();
         }
         public override int GetHashCode()
         {
             XbimPoint3D p = new XbimPoint3D(1, 3, 5); //get a point
-            p = this.Transform(p); //tranform
+            p = Transform(p); //tranform
             return p.GetHashCode(); //use the hash of the point
         }
         #endregion
@@ -516,7 +517,7 @@ namespace Xbim.Common.Geometry
         /// <summary>
         /// Performs a matrix multiplication
         /// </summary>
-        /// <param name="mat">mat First operand</param>
+        /// <param name="mat1">mat First operand</param>
         /// <param name="mat2">mat2 Second operand</param>
         /// <returns>dest if specified, mat otherwise</returns>
         public static XbimMatrix3D Multiply(XbimMatrix3D mat1, XbimMatrix3D mat2)
@@ -530,22 +531,22 @@ namespace Xbim.Common.Geometry
                 return mat1;
             }
             else
-            return new XbimMatrix3D((((mat1._m11 * mat2._m11) + (mat1._m12 * mat2._m21)) + (mat1._m13 * mat2._m31)) + (mat1._m14 * mat2._offsetX),
-          (((mat1._m11 * mat2._m12) + (mat1._m12 * mat2._m22)) + (mat1._m13 * mat2._m32)) + (mat1._m14 * mat2._offsetY),
-          (((mat1._m11 * mat2._m13) + (mat1._m12 * mat2._m23)) + (mat1._m13 * mat2._m33)) + (mat1._m14 * mat2._offsetZ),
-          (((mat1._m11 * mat2._m14) + (mat1._m12 * mat2._m24)) + (mat1._m13 * mat2._m34)) + (mat1._m14 * mat2._m44),
-          (((mat1._m21 * mat2._m11) + (mat1._m22 * mat2._m21)) + (mat1._m23 * mat2._m31)) + (mat1._m24 * mat2._offsetX),
-          (((mat1._m21 * mat2._m12) + (mat1._m22 * mat2._m22)) + (mat1._m23 * mat2._m32)) + (mat1._m24 * mat2._offsetY),
-          (((mat1._m21 * mat2._m13) + (mat1._m22 * mat2._m23)) + (mat1._m23 * mat2._m33)) + (mat1._m24 * mat2._offsetZ),
-          (((mat1._m21 * mat2._m14) + (mat1._m22 * mat2._m24)) + (mat1._m23 * mat2._m34)) + (mat1._m24 * mat2._m44),
-          (((mat1._m31 * mat2._m11) + (mat1._m32 * mat2._m21)) + (mat1._m33 * mat2._m31)) + (mat1._m34 * mat2._offsetX),
-          (((mat1._m31 * mat2._m12) + (mat1._m32 * mat2._m22)) + (mat1._m33 * mat2._m32)) + (mat1._m34 * mat2._offsetY),
-          (((mat1._m31 * mat2._m13) + (mat1._m32 * mat2._m23)) + (mat1._m33 * mat2._m33)) + (mat1._m34 * mat2._offsetZ),
-          (((mat1._m31 * mat2._m14) + (mat1._m32 * mat2._m24)) + (mat1._m33 * mat2._m34)) + (mat1._m34 * mat2._m44),
-          (((mat1._offsetX * mat2._m11) + (mat1._offsetY * mat2._m21)) + (mat1._offsetZ * mat2._m31)) + (mat1._m44 * mat2._offsetX),
-          (((mat1._offsetX * mat2._m12) + (mat1._offsetY * mat2._m22)) + (mat1._offsetZ * mat2._m32)) + (mat1._m44 * mat2._offsetY),
-          (((mat1._offsetX * mat2._m13) + (mat1._offsetY * mat2._m23)) + (mat1._offsetZ * mat2._m33)) + (mat1._m44 * mat2._offsetZ),
-          (((mat1._offsetX * mat2._m14) + (mat1._offsetY * mat2._m24)) + (mat1._offsetZ * mat2._m34)) + (mat1._m44 * mat2._m44));
+            return new XbimMatrix3D(mat1._m11 * mat2._m11 + mat1._m12 * mat2._m21 + mat1._m13 * mat2._m31 + mat1._m14 * mat2._offsetX,
+          mat1._m11 * mat2._m12 + mat1._m12 * mat2._m22 + mat1._m13 * mat2._m32 + mat1._m14 * mat2._offsetY,
+          mat1._m11 * mat2._m13 + mat1._m12 * mat2._m23 + mat1._m13 * mat2._m33 + mat1._m14 * mat2._offsetZ,
+          mat1._m11 * mat2._m14 + mat1._m12 * mat2._m24 + mat1._m13 * mat2._m34 + mat1._m14 * mat2._m44,
+          mat1._m21 * mat2._m11 + mat1._m22 * mat2._m21 + mat1._m23 * mat2._m31 + mat1._m24 * mat2._offsetX,
+          mat1._m21 * mat2._m12 + mat1._m22 * mat2._m22 + mat1._m23 * mat2._m32 + mat1._m24 * mat2._offsetY,
+          mat1._m21 * mat2._m13 + mat1._m22 * mat2._m23 + mat1._m23 * mat2._m33 + mat1._m24 * mat2._offsetZ,
+          mat1._m21 * mat2._m14 + mat1._m22 * mat2._m24 + mat1._m23 * mat2._m34 + mat1._m24 * mat2._m44,
+          mat1._m31 * mat2._m11 + mat1._m32 * mat2._m21 + mat1._m33 * mat2._m31 + mat1._m34 * mat2._offsetX,
+          mat1._m31 * mat2._m12 + mat1._m32 * mat2._m22 + mat1._m33 * mat2._m32 + mat1._m34 * mat2._offsetY,
+          mat1._m31 * mat2._m13 + mat1._m32 * mat2._m23 + mat1._m33 * mat2._m33 + mat1._m34 * mat2._offsetZ,
+          mat1._m31 * mat2._m14 + mat1._m32 * mat2._m24 + mat1._m33 * mat2._m34 + mat1._m34 * mat2._m44,
+          mat1._offsetX * mat2._m11 + mat1._offsetY * mat2._m21 + mat1._offsetZ * mat2._m31 + mat1._m44 * mat2._offsetX,
+          mat1._offsetX * mat2._m12 + mat1._offsetY * mat2._m22 + mat1._offsetZ * mat2._m32 + mat1._m44 * mat2._offsetY,
+          mat1._offsetX * mat2._m13 + mat1._offsetY * mat2._m23 + mat1._offsetZ * mat2._m33 + mat1._m44 * mat2._offsetZ,
+          mat1._offsetX * mat2._m14 + mat1._offsetY * mat2._m24 + mat1._offsetZ * mat2._m34 + mat1._m44 * mat2._m44);
 
         }
         /// <summary>
@@ -556,30 +557,28 @@ namespace Xbim.Common.Geometry
         /// <returns>True if a is equivalent to b</returns>
         public static bool Equal(XbimMatrix3D a, XbimMatrix3D b)
         {
-            return   System.Object.ReferenceEquals(a, b) || (
-                Math.Abs(a.M11 - b.M11) < FLOAT_EPSILON &&
-                Math.Abs(a.M12 - b.M12) < FLOAT_EPSILON &&
-                Math.Abs(a.M13 - b.M13) < FLOAT_EPSILON &&
-                Math.Abs(a.M14 - b.M14) < FLOAT_EPSILON &&
-                Math.Abs(a.M21 - b.M21) < FLOAT_EPSILON &&
-                Math.Abs(a.M22 - b.M22) < FLOAT_EPSILON &&
-                Math.Abs(a.M23 - b.M23) < FLOAT_EPSILON &&
-                Math.Abs(a.M24 - b.M34) < FLOAT_EPSILON &&
-                Math.Abs(a.M31 - b.M31) < FLOAT_EPSILON &&
-                Math.Abs(a.M32 - b.M32) < FLOAT_EPSILON &&
-                Math.Abs(a.M33 - b.M33) < FLOAT_EPSILON &&
-                Math.Abs(a.M34 - b.M34) < FLOAT_EPSILON &&
-                Math.Abs(a.OffsetX - b.OffsetX) < FLOAT_EPSILON &&
-                Math.Abs(a.OffsetY - b.OffsetY) < FLOAT_EPSILON &&
-                Math.Abs(a.OffsetZ - b.OffsetZ) < FLOAT_EPSILON &&
-                Math.Abs(a.M44 - b.M44) < FLOAT_EPSILON
-            );
+            return   Math.Abs(a.M11 - b.M11) < FloatEpsilon &&
+                     Math.Abs(a.M12 - b.M12) < FloatEpsilon &&
+                     Math.Abs(a.M13 - b.M13) < FloatEpsilon &&
+                     Math.Abs(a.M14 - b.M14) < FloatEpsilon &&
+                     Math.Abs(a.M21 - b.M21) < FloatEpsilon &&
+                     Math.Abs(a.M22 - b.M22) < FloatEpsilon &&
+                     Math.Abs(a.M23 - b.M23) < FloatEpsilon &&
+                     Math.Abs(a.M24 - b.M34) < FloatEpsilon &&
+                     Math.Abs(a.M31 - b.M31) < FloatEpsilon &&
+                     Math.Abs(a.M32 - b.M32) < FloatEpsilon &&
+                     Math.Abs(a.M33 - b.M33) < FloatEpsilon &&
+                     Math.Abs(a.M34 - b.M34) < FloatEpsilon &&
+                     Math.Abs(a.OffsetX - b.OffsetX) < FloatEpsilon &&
+                     Math.Abs(a.OffsetY - b.OffsetY) < FloatEpsilon &&
+                     Math.Abs(a.OffsetZ - b.OffsetZ) < FloatEpsilon &&
+                     Math.Abs(a.M44 - b.M44) < FloatEpsilon;
         }
 
         /// <summary>
         /// Creates a new instance of a mat4
         /// </summary>
-        /// <param name="mat">Single[16] containing values to initialize with</param>
+        /// <param name="m">Single[16] containing values to initialize with</param>
         /// <returns>New mat4New mat4</returns>
         public static XbimMatrix3D Copy(XbimMatrix3D m)
         {
@@ -593,26 +592,26 @@ namespace Xbim.Common.Geometry
         /// <summary>
         /// Creates a 3D scaling matrix.
         /// </summary>
-        /// <param name="UniformScale">>The scaling factor along all axis.</param>
+        /// <param name="uniformScale">>The scaling factor along all axis.</param>
         /// <returns>The new scaling matrix</returns>
-        public static XbimMatrix3D CreateScale(double UniformScale)
+        public static XbimMatrix3D CreateScale(double uniformScale)
         {
-            return CreateScale(UniformScale, UniformScale, UniformScale);
+            return CreateScale(uniformScale, uniformScale, uniformScale);
         }
 
         /// <summary>
         /// Creates a 3D scaling matrix.
         /// </summary>
-        /// <param name="ScaleX">>The scaling factor along the x-axis.</param>
-        /// <param name="ScaleY">>The scaling factor along the y-axis.</param>
-        /// <param name="ScaleZ">>The scaling factor along the z-axis.</param>
+        /// <param name="scaleX">>The scaling factor along the x-axis.</param>
+        /// <param name="scaleY">>The scaling factor along the y-axis.</param>
+        /// <param name="scaleZ">>The scaling factor along the z-axis.</param>
         /// <returns>The new scaling matrix</returns>
-        public static XbimMatrix3D CreateScale(double ScaleX, double ScaleY, double ScaleZ)
+        public static XbimMatrix3D CreateScale(double scaleX, double scaleY, double scaleZ)
         {
             return new XbimMatrix3D(
-                ScaleX, 0.0, 0.0, 0.0,
-                0.0, ScaleY, 0.0, 0.0,
-                0.0, 0.0, ScaleZ, 0.0,
+                scaleX, 0.0, 0.0, 0.0,
+                0.0, scaleY, 0.0, 0.0,
+                0.0, 0.0, scaleZ, 0.0,
                 0.0, 0.0, 0.0, 1.0
                 );
         }
@@ -620,10 +619,10 @@ namespace Xbim.Common.Geometry
         public static XbimMatrix3D CreateWorld(XbimVector3D position, XbimVector3D forward, XbimVector3D up)
         {
             // prepare vectors
-            forward.Normalize();
+            forward.Normalized();
             XbimVector3D vector = forward * -1;
             XbimVector3D vector2 = XbimVector3D.CrossProduct(up, vector);
-            vector2.Normalize();
+            vector2.Normalized();
             XbimVector3D vector3 = XbimVector3D.CrossProduct(vector, vector2);
 
             // prepare matrix
@@ -640,9 +639,9 @@ namespace Xbim.Common.Geometry
         {
             // prepare vectors
             XbimVector3D vector = cameraPosition - cameraTarget;
-            vector.Normalize();
+            vector.Normalized();
             XbimVector3D vector2 = XbimVector3D.CrossProduct(cameraUpVector, vector);
-            vector2.Normalize();
+            vector2.Normalized();
             XbimVector3D vector3 = XbimVector3D.CrossProduct(vector, vector2);
 
             // prepare matrix
@@ -658,32 +657,31 @@ namespace Xbim.Common.Geometry
         /// <summary>
         /// Creates a 3D translation matrix.
         /// </summary>
-        public static XbimMatrix3D CreateTranslation(double X, double Y, double Z)
+        public static XbimMatrix3D CreateTranslation(double x, double y, double z)
         {
             return new XbimMatrix3D(
                 1.0, 0.0, 0.0, 0.0,
                 0.0, 1.0, 0.0, 0.0,
                 0.0, 0.0, 1.0, 0.0,
-                X, Y, Z, 1.0
+                x, y, z, 1.0
                 );
         }
 
         /// <summary>
         /// Creates a 3D translation matrix.
         /// </summary>
-        public static XbimMatrix3D CreateTranslation(XbimVector3D TranslationVector)
+        public static XbimMatrix3D CreateTranslation(XbimVector3D translationVector)
         {
-            return CreateTranslation(TranslationVector.X, TranslationVector.Y, TranslationVector.Z);
+            return CreateTranslation(translationVector.X, translationVector.Y, translationVector.Z);
         }
 
         /// <summary>
         /// Returns a string representation of a mat4
         /// </summary>
-        /// <param name="mat">mat mat4 to represent as a string</param>
         /// <returns>String representation of mat</returns>
         public  string Str()
         {
-            if(this.IsIdentity)
+            if(IsIdentity)
                 return "I";
             else
                 return string.Format(System.Globalization.CultureInfo.InvariantCulture, 
@@ -711,16 +709,11 @@ namespace Xbim.Common.Geometry
             // via https://code.google.com/p/sharpdx/source/browse/Source/SharpDX/Matrix.cs?r=9f9e209b1be04f06f294bc6d72b06055ad6abdcc
 
             //Get the translation.
-            translation = new XbimVector3D();
-            translation.X = this._offsetX;
-            translation.Y = this._offsetY;
-            translation.Z = this._offsetZ;
+            translation = new XbimVector3D(_offsetX, _offsetY, _offsetZ);
+
 
             //Scaling is the length of the rows.
-            scale = new XbimVector3D();
-            scale.X = Math.Sqrt((M11 * M11) + (M12 * M12) + (M13 * M13));
-            scale.Y = Math.Sqrt((M21 * M21) + (M22 * M22) + (M23 * M23));
-            scale.Z = Math.Sqrt((M31 * M31) + (M32 * M32) + (M33 * M33));
+            scale = new XbimVector3D(Math.Sqrt(M11 * M11 + M12 * M12 + M13 * M13), Math.Sqrt(M21 * M21 + M22 * M22 + M23 * M23), Math.Sqrt(M31 * M31 + M32 * M32 + M33 * M33));
 
             //If any of the scaling factors are zero, than the rotation matrix can not exist.
             // 
@@ -735,20 +728,22 @@ namespace Xbim.Common.Geometry
             }
 
             //The rotation is the left over matrix after dividing out the scaling.
-            XbimMatrix3D rotationmatrix = new XbimMatrix3D();
-            rotationmatrix.M11 = M11 / scale.X;
-            rotationmatrix.M12 = M12 / scale.X;
-            rotationmatrix.M13 = M13 / scale.X;
+            var rotationmatrix = new XbimMatrix3D
+            {
+                M11 = M11/scale.X,
+                M12 = M12/scale.X,
+                M13 = M13/scale.X,
+                M21 = M21/scale.Y,
+                M22 = M22/scale.Y,
+                M23 = M23/scale.Y,
+                M31 = M31/scale.Z,
+                M32 = M32/scale.Z,
+                M33 = M33/scale.Z,
+                M44 = 1
+            };
 
-            rotationmatrix.M21 = M21 / scale.Y;
-            rotationmatrix.M22 = M22 / scale.Y;
-            rotationmatrix.M23 = M23 / scale.Y;
 
-            rotationmatrix.M31 = M31 / scale.Z;
-            rotationmatrix.M32 = M32 / scale.Z;
-            rotationmatrix.M33 = M33 / scale.Z;
 
-            rotationmatrix.M44 = 1;
 
             XbimQuaternion.RotationMatrix(ref rotationmatrix, out rotation);
             return true;
@@ -782,12 +777,12 @@ namespace Xbim.Common.Geometry
                 b09 = a21 * a32 - a22 * a31,
                 b10 = a21 * a33 - a23 * a31,
                 b11 = a22 * a33 - a23 * a32,
-                d = (b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06),
-                invDet;
+                d = b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
 
             // Calculate the determinant
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
             if (d == 0) { throw new XbimException("Matrix does not have an inverse"); }
-            invDet = 1 / d;
+            var invDet = 1 / d;
 
             M11 = (a11 * b11 - a12 * b10 + a13 * b09) * invDet;
             M12 = (-a01 * b11 + a02 * b10 - a03 * b09) * invDet;
@@ -921,7 +916,7 @@ namespace Xbim.Common.Geometry
             //| 0    cos(radAngle)   sin(radAngle)   0  |
             //| 0    -sin(radAngle)  cos(radAngle)   0  |
             //| 0    0               0               1  |
-            if (this.IsIdentity)
+            if (IsIdentity)
             {
                 _m22 = cosValue;
                 _m23 = sinValue;
@@ -930,15 +925,15 @@ namespace Xbim.Common.Geometry
             }
             else
             {
-                _m21 = ((m21 * cosValue) + (m31 * sinValue));
-                _m22 = ((m22 * cosValue) + (m32 * sinValue));
-                _m23 = ((m23 * cosValue) + (m33 * sinValue));
-                _m24 = ((m24 * cosValue) + (m34 * sinValue));
+                _m21 = m21 * cosValue + m31 * sinValue;
+                _m22 = m22 * cosValue + m32 * sinValue;
+                _m23 = m23 * cosValue + m33 * sinValue;
+                _m24 = m24 * cosValue + m34 * sinValue;
 
-                _m31 = ((m21 * -sinValue) + (m31 * cosValue));
-                _m32 = ((m22 * -sinValue) + (m32 * cosValue));
-                _m33 = ((m23 * -sinValue) + (m33 * cosValue));
-                _m34 = ((m24 * -sinValue) + (m34 * cosValue));
+                _m31 = m21 * -sinValue + m31 * cosValue;
+                _m32 = m22 * -sinValue + m32 * cosValue;
+                _m33 = m23 * -sinValue + m33 * cosValue;
+                _m34 = m24 * -sinValue + m34 * cosValue;
             }
 
             //Perform X axis-specific matrix multiplication (left hand rule)
@@ -994,7 +989,7 @@ namespace Xbim.Common.Geometry
             //| 0               1   0               0  |
             //| sin(radAngle)   0   cos(radAngle)   0  |
             //| 0               0   0               1  |
-            if (this.IsIdentity)
+            if (IsIdentity)
             {
                 _m11 = cosValue;
                 _m13 = -sinValue;
@@ -1003,15 +998,15 @@ namespace Xbim.Common.Geometry
             }
             else
             {
-                _m11 = ((m11 * cosValue) + (m31 * -sinValue));
-                _m12 = ((m12 * cosValue) + (m32 * -sinValue));
-                _m13 = ((m13 * cosValue) + (m33 * -sinValue));
-                _m14 = ((m14 * cosValue) + (m34 * -sinValue));
+                _m11 = m11 * cosValue + m31 * -sinValue;
+                _m12 = m12 * cosValue + m32 * -sinValue;
+                _m13 = m13 * cosValue + m33 * -sinValue;
+                _m14 = m14 * cosValue + m34 * -sinValue;
 
-                _m31 = ((m11 * sinValue) + (m31 * cosValue));
-                _m32 = ((m12 * sinValue) + (m32 * cosValue));
-                _m33 = ((m13 * sinValue) + (m33 * cosValue));
-                _m34 = ((m14 * sinValue) + (m34 * cosValue));
+                _m31 = m11 * sinValue + m31 * cosValue;
+                _m32 = m12 * sinValue + m32 * cosValue;
+                _m33 = m13 * sinValue + m33 * cosValue;
+                _m34 = m14 * sinValue + m34 * cosValue;
             }
 
             //Perform Y axis-specific matrix multiplication (left hand rule)
@@ -1067,7 +1062,7 @@ namespace Xbim.Common.Geometry
             //| -sin(radAngle)   cos(radAngle) 0    0  |
             //| 0               0              1    0  |
             //| 0               0              0    1  |
-            if (this.IsIdentity)
+            if (IsIdentity)
             {
                 _m11 = cosValue;
                 _m12 = sinValue;
@@ -1076,15 +1071,15 @@ namespace Xbim.Common.Geometry
             }
             else
             {
-                _m11 = ((m11 * cosValue) + (m21 * sinValue));
-                _m12 = ((m12 * cosValue) + (m22 * sinValue));
-                _m13 = ((m13 * cosValue) + (m23 * sinValue));
-                _m14 = ((m14 * cosValue) + (m24 * sinValue));
+                _m11 = m11 * cosValue + m21 * sinValue;
+                _m12 = m12 * cosValue + m22 * sinValue;
+                _m13 = m13 * cosValue + m23 * sinValue;
+                _m14 = m14 * cosValue + m24 * sinValue;
 
-                _m21 = ((m11 * -sinValue) + (m21 * cosValue));
-                _m22 = ((m12 * -sinValue) + (m22 * cosValue));
-                _m23 = ((m13 * -sinValue) + (m23 * cosValue));
-                _m24 = ((m14 * -sinValue) + (m24 * cosValue));
+                _m21 = m11 * -sinValue + m21 * cosValue;
+                _m22 = m12 * -sinValue + m22 * cosValue;
+                _m23 = m13 * -sinValue + m23 * cosValue;
+                _m24 = m14 * -sinValue + m24 * cosValue;
             }
 
             //Perform Z axis-specific matrix multiplication (left hand rule)
@@ -1118,7 +1113,7 @@ namespace Xbim.Common.Geometry
             XbimVector3D scale;
             XbimVector3D translation;
             XbimQuaternion rotation;
-            this.Decompose(out scale, out rotation, out translation);
+            Decompose(out scale, out rotation, out translation);
             return rotation;
         }
     }

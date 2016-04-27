@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XbimGeometry.Interfaces
+namespace Xbim.Common.Geometry
 {
     public interface IXbimEdge : IXbimGeometryObject, IEquatable<IXbimEdge>
     {
@@ -21,6 +21,9 @@ namespace XbimGeometry.Interfaces
         /// The length of edge, including any curvature
         /// </summary>
         double Length { get; }
-        
+        /// <summary>
+        /// Converts the object to a string in BRep format
+        /// </summary>
+        String ToBRep { get; }
     }
 }

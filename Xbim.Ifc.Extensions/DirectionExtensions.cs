@@ -12,7 +12,6 @@
 
 #region Directives
 
-using System;
 using Xbim.Ifc2x3.GeometryResource;
 
 

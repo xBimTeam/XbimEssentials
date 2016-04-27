@@ -1,0 +1,95 @@
+/*
+=============================================================================
+NFSA Summary for input file <StepP21Lex.LEX>
+=============================================================================
+Total NFSA states = 2185
+Number of Start Conditions = 2
+Start condition INITIAL:
+  number of patterns = 38, number of nfsa states = 451, accept states = 38
+Start condition COMMENT:
+  number of patterns = 1, number of nfsa states = 4, accept states = 1
+=============================================================================
+GPLEX: NFSA built.   18 msec
+=============================================================================
+GPLEX: DFSA built.  282 msec
+=============================================================================
+GPLEX: DFSA minimized.   23 msec
+=============================================================================
+GPLEX: Shortest strings found.    3 msec
+=============================================================================
+DFSA Summary
+=============================================================================
+Number of dfsa instances = 2
+Start condition INITIAL:
+  number of dfsa states = 151, number of accept states = 100
+Start condition COMMENT:
+  number of dfsa states = 3, number of accept states = 1
+=============================================================================
+GPLEX: C# file emitted.   30 msec
+=============================================================================
+GPLEX Summary
+=============================================================================
+Total number of states = 131, total accept states = 88, backup states = 19
+Original state number was 155, minimized machine has 131 states
+Nextstate table compression was 81.47%, 6,213 entries Vs 33,536
+
+Backup state report --- 
+In <0>, after "\"" automaton could accept "[^)]" in state 8
+--- after ''0'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "&" automaton could accept "[^)]" in state 11
+--- after ''S'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "'" automaton could accept "[^)]" in state 12
+--- after ''\0'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "." automaton could accept "[^)]" in state 18
+--- after ''A'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "ISO" automaton could accept "[a-zA-Z0-9_]+" in state 34
+--- after ''-'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "END" automaton could accept "[a-zA-Z0-9_]+" in state 43
+--- after ''-'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "+." automaton could accept "[\-\+\.0-9][\.0-9]+" in state 62
+--- after ''E'' automaton is in a non-accept state and might need to backup
+
+In <0>, after ".0" automaton could accept "[\-\+\.0-9][\.0-9]+" in state 68
+--- after ''A'' automaton is in a non-accept state and might need to backup
+
+In <0>, after ".0E0" automaton could accept "[\-\+\.0-9][\.0-9]+E[\-\+0-9][0-9]*" in state 72
+--- after ''A'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "+0" automaton could accept "[\-\+0-9][0-9]*" in state 73
+--- after ''E'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "''" automaton could accept "[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[^\\][^X][^0](\\\'))*[\']" in state 74
+--- after ''\0'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "'\t\\'" automaton could accept "[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[^\\][^X][^0](\\\'))*[\']" in state 75
+--- after ''\0'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "'\t\t\\\\'" automaton could accept "[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[^\\][^X][^0](\\\'))*[\']" in state 76
+--- after ''\0'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "'\t\t\t\\''" automaton could accept "[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[^\\][^X][^0](\\\'))*[\']" in state 77
+--- after ''\0'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "'\t\t\t\\'''" automaton could accept "[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[^\\][^X][^0](\\\'))*[\']" in state 78
+--- after ''\0'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "'\t\t\t\\'" automaton could accept "[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[^\\][^X][^0](\\\'))*[\']" in state 79
+--- after ''\0'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "'\t\t'" automaton could accept "[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[^\\][^X][^0](\\\'))*[\']" in state 80
+--- after ''\0'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "'\t'" automaton could accept "[\']([\n]|[\000\011-\046\050-\176\201-\237\240-\377]|[\047][\047]|[^\\][^X][^0](\\\'))*[\']" in state 81
+--- after ''\0'' automaton is in a non-accept state and might need to backup
+
+In <0>, after "#0" automaton could accept "#[0-9]+" in state 83
+--- after ''\t'' automaton is in a non-accept state and might need to backup
+
+=============================================================================
+ */

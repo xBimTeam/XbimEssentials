@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.IO;
-using Xbim.XbimExtensions;
+using Xbim.IO.Esent;
 
 namespace Xbim.Essentials.Tests
 {
@@ -11,7 +11,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void FileVersionIsCorrect()
         {
-            var m = new XbimModel();
+            var m = new Xbim.Ifc2x3.IO.XbimModel();
 
             m.Open("Monolith-NoGeomTables.xBIM", XbimDBAccess.ReadWrite);
             Assert.AreEqual(0, m.GeometrySupportLevel, "GeometrySupportLevel should be 0");

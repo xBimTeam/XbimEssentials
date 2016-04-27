@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using Xbim.Common.Geometry;
 
-namespace XbimGeometry.Interfaces
+namespace Xbim.Common.Geometry
 {
     /// <summary>
     /// A manifold closed shell
@@ -24,7 +22,11 @@ namespace XbimGeometry.Interfaces
         IXbimSolidSet Intersection(IXbimSolidSet toIntersect, double tolerance);
         IXbimSolidSet Intersection(IXbimSolid toIntersect, double tolerance);
         IXbimFaceSet Section(IXbimFace toSection, double tolerance);
-       
+        void SaveAsBrep(string fileName);
+        /// <summary>
+        /// Converts the object to a string in BRep format
+        /// </summary>
+        String ToBRep { get; }
     }
 
 }

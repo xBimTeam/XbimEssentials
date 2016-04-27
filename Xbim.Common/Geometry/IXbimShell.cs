@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using Xbim.Common.Geometry;
 
-namespace XbimGeometry.Interfaces
+namespace Xbim.Common.Geometry
 {
     /// <summary>
     /// A set of connected faces
@@ -28,5 +26,10 @@ namespace XbimGeometry.Interfaces
         IXbimGeometryObjectSet Intersection(IXbimSolidSet toCut, double tolerance);
         IXbimGeometryObjectSet Intersection(IXbimSolid toCut, double tolerance);
         IXbimFaceSet Section(IXbimFace toSection, double tolerance);
+        void SaveAsBrep(string fileName);
+        /// <summary>
+        /// Converts the object to a string in BRep format
+        /// </summary>
+        String ToBRep { get; }
     }
 }

@@ -49,6 +49,7 @@
     <DefineConstants>TRACE;DEBUG;SupportActivation</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -60,6 +61,7 @@
     <DocumentationFile>..\Output\Release\Xbim.Ifc.Extensions.XML</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <NoWarn>1591;1572;1573;1574</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -71,17 +73,13 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-	<Compile Include="..\SharedFileVersionInfo.cs">
+    <Compile Include="..\SharedFileVersionInfo.cs">
       <Link>Properties\SharedFileVersionInfo.cs</Link>
     </Compile>
     <Compile Include="ActorSelectExtensions.cs" />
     <Compile Include="AddressExtensions.cs" />
-    <Compile Include="AppliedValueExtensions.cs" />
     <Compile Include="Axis2Placement2DExtensions.cs" />
     <Compile Include="Axis2Placement3DExtensions.cs" />
-    <Compile Include="BuildingElementExtension.cs" />
-    <Compile Include="BuildingExtensions.cs" />
-    <Compile Include="BuildingStoreyExtensions.cs" />
     <Compile Include="CalendarDateExtensions.cs" />
     <Compile Include="CartesianPointExtensions.cs" />
     <Compile Include="CartesianTransformationOperatorExtensions.cs" />
@@ -619,13 +617,10 @@
     <Compile Include="DataProviders\IfcWindowStyles.cs" />
     <Compile Include="DataProviders\IfcZones.cs" />
     <Compile Include="DataProviders\IfcZShapeProfileDefs.cs" />
-    <Compile Include="DateTimeSelectExtensions.cs" />
     <Compile Include="DirectionExtensions.cs" />
     <Compile Include="DistributionControlElementExtensions.cs" />
-    <Compile Include="DoorExtensions.cs" />
     <Compile Include="DoorLiningPropertiesExtensions.cs" />
     <Compile Include="DoorStyleExtensions.cs" />
-    <Compile Include="ElementExtensions.cs" />
     <Compile Include="ElementTypeExtensions.cs" />
     <Compile Include="FeatureElementSubtractionExtensions.cs" />
     <Compile Include="DistributionFlowElementExtensions.cs" />
@@ -673,47 +668,36 @@
     <Compile Include="IfcSolidModelGeometryExtensions.cs" />
     <Compile Include="IfcSurfaceCurveSweptAreaSolidGeometricExtension.cs" />
     <Compile Include="IfcUShapeProfileDefGeometricExtensions.cs" />
+    <Compile Include="IfcVectorExtensions.cs" />
     <Compile Include="ObjectReferenceSelectExtensions.cs" />
     <Compile Include="OrganisationExtensions.cs" />
     <Compile Include="PersonAndOrganizationExtensions.cs" />
     <Compile Include="PersonExtensions.cs" />
     <Compile Include="PhysicalSimpleQuantityExtensions.cs" />
     <Compile Include="PlacementExtensions.cs" />
+    <Compile Include="ShapeModelListExtension.cs" />
     <Compile Include="TimeSeriesExtensions.cs" />
-    <Compile Include="UnitExtensions.cs" />
     <Compile Include="LocalTimeExtensions.cs" />
     <Compile Include="MaterialExtension.cs" />
-    <Compile Include="MonetaryUnitExtensions.cs" />
-    <Compile Include="NamedUnitExtensions.cs" />
-    <Compile Include="ObjectDefinitionExtensions.cs" />
-    <Compile Include="ObjectExtensions.cs" />
     <Compile Include="ObjectPlacementExtensions.cs" />
     <Compile Include="PolyLoopExtensions.cs" />
     <Compile Include="PresentationStyleAssignmentExtension.cs" />
     <Compile Include="ProductExtensions.cs" />
-    <Compile Include="ProjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyDefinitionExtensions.cs" />
     <Compile Include="PropertySetDefinitionExtensions.cs" />
     <Compile Include="PropertyTableExtension.cs" />
     <Compile Include="RepresentationContextExtension.cs" />
-    <Compile Include="RepresentationExtension.cs" />
     <Compile Include="RepresentationItemExtension.cs" />
     <Compile Include="RoofExtensions.cs" />
     <Compile Include="RootExtensions.cs" />
     <Compile Include="ShapeAspectExtensions.cs" />
     <Compile Include="ShapeModelExtensions.cs" />
-    <Compile Include="SiteExtensions.cs" />
-    <Compile Include="SIUnitExtensions.cs" />
     <Compile Include="SlabExtensions.cs" />
     <Compile Include="SpaceExtensions.cs" />
     <Compile Include="SpatialStructureElementExtensions.cs" />
     <Compile Include="StyledItemExtensions.cs" />
     <Compile Include="SurfaceExtensions.cs" />
-    <Compile Include="TypeObjectExtensions.cs" />
-    <Compile Include="UnitAssignmentExtensions.cs" />
-    <Compile Include="WallExtensions.cs" />
-    <Compile Include="WindowExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="XbimIfcKey.pfx" />
@@ -742,10 +726,25 @@
       <Name>Xbim.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj">
-      <Project>{5D4C907D-1293-4E5F-9642-D0862AE4741C}</Project>
+      <Project>{b6668419-d7a4-4736-b4d8-018756ccf134}</Project>
       <Name>Xbim.Ifc2x3</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj">
+      <Project>{63a3efcf-5d43-4c27-8637-86ccd6033a1e}</Project>
+      <Name>Xbim.Ifc4</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>
