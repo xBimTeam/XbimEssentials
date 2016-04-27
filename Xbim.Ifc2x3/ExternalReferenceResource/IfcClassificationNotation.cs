@@ -104,7 +104,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcClassificationNotation(IModel model) 		{ 
 			Model = model; 
-			_notationFacets = new ItemSet<IfcClassificationNotationFacet>( this, 0 );
+			_notationFacets = new ItemSet<IfcClassificationNotationFacet>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -143,7 +143,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -172,7 +172,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -183,7 +183,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_notationFacets == null) _notationFacets = new ItemSet<IfcClassificationNotationFacet>( this );
 					_notationFacets.InternalAdd((IfcClassificationNotationFacet)value.EntityVal);
 					return;
 				default:

@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _actionID = v, _actionID, value,  "ActionID");
+				SetValue( v =>  _actionID = v, _actionID, value,  "ActionID", 11);
 			} 
 		}	
 		#endregion

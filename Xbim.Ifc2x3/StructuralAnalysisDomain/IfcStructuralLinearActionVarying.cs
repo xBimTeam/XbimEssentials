@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLinearActionVarying(IModel model) : base(model) 		{ 
 			Model = model; 
-			_subsequentAppliedLoads = new ItemSet<IfcStructuralLoad>( this, 0 );
+			_subsequentAppliedLoads = new ItemSet<IfcStructuralLoad>( this, 0,  14);
 		}
 
 		#region Explicit attribute fields
@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _varyingAppliedLoadLocation = v, _varyingAppliedLoadLocation, value,  "VaryingAppliedLoadLocation");
+				SetValue( v =>  _varyingAppliedLoadLocation = v, _varyingAppliedLoadLocation, value,  "VaryingAppliedLoadLocation", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 21)]
@@ -126,7 +126,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					_varyingAppliedLoadLocation = (IfcShapeAspect)(value.EntityVal);
 					return;
 				case 13: 
-					if (_subsequentAppliedLoads == null) _subsequentAppliedLoads = new ItemSet<IfcStructuralLoad>( this );
 					_subsequentAppliedLoads.InternalAdd((IfcStructuralLoad)value.EntityVal);
 					return;
 				default:

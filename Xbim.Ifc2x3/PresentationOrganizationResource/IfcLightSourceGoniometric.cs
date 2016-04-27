@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _position = v, _position, value,  "Position");
+				SetValue( v =>  _position = v, _position, value,  "Position", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -94,7 +94,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _colourAppearance = v, _colourAppearance, value,  "ColourAppearance");
+				SetValue( v =>  _colourAppearance = v, _colourAppearance, value,  "ColourAppearance", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -108,7 +108,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _colourTemperature = v, _colourTemperature, value,  "ColourTemperature");
+				SetValue( v =>  _colourTemperature = v, _colourTemperature, value,  "ColourTemperature", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -122,7 +122,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _luminousFlux = v, _luminousFlux, value,  "LuminousFlux");
+				SetValue( v =>  _luminousFlux = v, _luminousFlux, value,  "LuminousFlux", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
@@ -136,7 +136,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _lightEmissionSource = v, _lightEmissionSource, value,  "LightEmissionSource");
+				SetValue( v =>  _lightEmissionSource = v, _lightEmissionSource, value,  "LightEmissionSource", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
@@ -150,7 +150,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _lightDistributionDataSource = v, _lightDistributionDataSource, value,  "LightDistributionDataSource");
+				SetValue( v =>  _lightDistributionDataSource = v, _lightDistributionDataSource, value,  "LightDistributionDataSource", 10);
 			} 
 		}	
 		#endregion

@@ -60,7 +60,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWorkControl(IModel model) : base(model) 		{ 
 			Model = model; 
-			_creators = new OptionalItemSet<IfcPerson>( this, 0 );
+			_creators = new OptionalItemSet<IfcPerson>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _creationDate = v, _creationDate, value,  "CreationDate");
+				SetValue( v =>  _creationDate = v, _creationDate, value,  "CreationDate", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 20)]
@@ -109,7 +109,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose");
+				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _duration = v, _duration, value,  "Duration");
+				SetValue( v =>  _duration = v, _duration, value,  "Duration", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
@@ -137,7 +137,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _totalFloat = v, _totalFloat, value,  "TotalFloat");
+				SetValue( v =>  _totalFloat = v, _totalFloat, value,  "TotalFloat", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
@@ -151,7 +151,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime");
+				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
@@ -165,7 +165,7 @@ namespace Xbim.Ifc4.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _finishTime = v, _finishTime, value,  "FinishTime");
+				SetValue( v =>  _finishTime = v, _finishTime, value,  "FinishTime", 13);
 			} 
 		}	
 		#endregion
@@ -191,7 +191,6 @@ namespace Xbim.Ifc4.ProcessExtension
 					_creationDate = value.StringVal;
 					return;
 				case 7: 
-					if (_creators == null) _creators = new OptionalItemSet<IfcPerson>( this );
 					_creators.InternalAdd((IfcPerson)value.EntityVal);
 					return;
 				case 8: 

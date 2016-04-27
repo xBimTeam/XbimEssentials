@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyEnumeratedValue(IModel model) : base(model) 		{ 
 			Model = model; 
-			_enumerationValues = new ItemSet<IfcValue>( this, 0 );
+			_enumerationValues = new ItemSet<IfcValue>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -77,7 +77,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _enumerationReference = v, _enumerationReference, value,  "EnumerationReference");
+				SetValue( v =>  _enumerationReference = v, _enumerationReference, value,  "EnumerationReference", 4);
 			} 
 		}	
 		#endregion
@@ -96,7 +96,6 @@ namespace Xbim.Ifc2x3.PropertyResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 2: 
-					if (_enumerationValues == null) _enumerationValues = new ItemSet<IfcValue>( this );
 					_enumerationValues.InternalAdd((IfcValue)value.EntityVal);
 					return;
 				case 3: 

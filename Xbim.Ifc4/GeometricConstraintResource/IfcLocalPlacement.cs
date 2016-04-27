@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _placementRelTo = v, _placementRelTo, value,  "PlacementRelTo");
+				SetValue( v =>  _placementRelTo = v, _placementRelTo, value,  "PlacementRelTo", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _relativePlacement = v, _relativePlacement, value,  "RelativePlacement");
+				SetValue( v =>  _relativePlacement = v, _relativePlacement, value,  "RelativePlacement", 2);
 			} 
 		}	
 		#endregion

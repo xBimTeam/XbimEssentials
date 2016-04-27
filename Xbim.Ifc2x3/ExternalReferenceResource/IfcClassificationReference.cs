@@ -62,7 +62,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _referencedSource = v, _referencedSource, value,  "ReferencedSource");
+				SetValue( v =>  _referencedSource = v, _referencedSource, value,  "ReferencedSource", 4);
 			} 
 		}	
 		#endregion

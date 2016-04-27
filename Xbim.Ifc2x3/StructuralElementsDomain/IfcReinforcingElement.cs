@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _steelGrade = v, _steelGrade, value,  "SteelGrade");
+				SetValue( v =>  _steelGrade = v, _steelGrade, value,  "SteelGrade", 9);
 			} 
 		}	
 		#endregion

@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _controlElementId = v, _controlElementId, value,  "ControlElementId");
+				SetValue( v =>  _controlElementId = v, _controlElementId, value,  "ControlElementId", 9);
 			} 
 		}	
 		#endregion

@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius");
+				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius", 6);
 			} 
 		}	
 		#endregion

@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _placement = v, _placement, value,  "Placement");
+				SetValue( v =>  _placement = v, _placement, value,  "Placement", 3);
 			} 
 		}	
 		#endregion

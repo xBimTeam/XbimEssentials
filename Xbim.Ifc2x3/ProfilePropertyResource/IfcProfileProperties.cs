@@ -127,7 +127,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _profileName = v, _profileName, value,  "ProfileName");
+				SetValue( v =>  _profileName = v, _profileName, value,  "ProfileName", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -141,7 +141,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _profileDefinition = v, _profileDefinition, value,  "ProfileDefinition");
+				SetValue( v =>  _profileDefinition = v, _profileDefinition, value,  "ProfileDefinition", 2);
 			} 
 		}	
 		#endregion
@@ -165,7 +165,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -194,7 +194,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _planarForceX = v, _planarForceX, value,  "PlanarForceX");
+				SetValue( v =>  _planarForceX = v, _planarForceX, value,  "PlanarForceX", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _planarForceY = v, _planarForceY, value,  "PlanarForceY");
+				SetValue( v =>  _planarForceY = v, _planarForceY, value,  "PlanarForceY", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _planarForceZ = v, _planarForceZ, value,  "PlanarForceZ");
+				SetValue( v =>  _planarForceZ = v, _planarForceZ, value,  "PlanarForceZ", 4);
 			} 
 		}	
 		#endregion

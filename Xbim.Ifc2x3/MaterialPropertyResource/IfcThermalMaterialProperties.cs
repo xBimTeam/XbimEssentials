@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _specificHeatCapacity = v, _specificHeatCapacity, value,  "SpecificHeatCapacity");
+				SetValue( v =>  _specificHeatCapacity = v, _specificHeatCapacity, value,  "SpecificHeatCapacity", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _boilingPoint = v, _boilingPoint, value,  "BoilingPoint");
+				SetValue( v =>  _boilingPoint = v, _boilingPoint, value,  "BoilingPoint", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -100,7 +100,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _freezingPoint = v, _freezingPoint, value,  "FreezingPoint");
+				SetValue( v =>  _freezingPoint = v, _freezingPoint, value,  "FreezingPoint", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -114,7 +114,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _thermalConductivity = v, _thermalConductivity, value,  "ThermalConductivity");
+				SetValue( v =>  _thermalConductivity = v, _thermalConductivity, value,  "ThermalConductivity", 5);
 			} 
 		}	
 		#endregion

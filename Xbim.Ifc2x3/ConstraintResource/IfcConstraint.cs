@@ -155,7 +155,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -169,7 +169,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 3)]
@@ -183,7 +183,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _constraintGrade = v, _constraintGrade, value,  "ConstraintGrade");
+				SetValue( v =>  _constraintGrade = v, _constraintGrade, value,  "ConstraintGrade", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -197,7 +197,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _constraintSource = v, _constraintSource, value,  "ConstraintSource");
+				SetValue( v =>  _constraintSource = v, _constraintSource, value,  "ConstraintSource", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -211,7 +211,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _creatingActor = v, _creatingActor, value,  "CreatingActor");
+				SetValue( v =>  _creatingActor = v, _creatingActor, value,  "CreatingActor", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
@@ -225,7 +225,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _creationTime = v, _creationTime, value,  "CreationTime");
+				SetValue( v =>  _creationTime = v, _creationTime, value,  "CreationTime", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -239,7 +239,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedGrade = v, _userDefinedGrade, value,  "UserDefinedGrade");
+				SetValue( v =>  _userDefinedGrade = v, _userDefinedGrade, value,  "UserDefinedGrade", 7);
 			} 
 		}	
 		#endregion
@@ -319,7 +319,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -348,7 +348,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

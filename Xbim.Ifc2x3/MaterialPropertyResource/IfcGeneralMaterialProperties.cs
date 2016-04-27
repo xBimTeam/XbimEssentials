@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _molecularWeight = v, _molecularWeight, value,  "MolecularWeight");
+				SetValue( v =>  _molecularWeight = v, _molecularWeight, value,  "MolecularWeight", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _porosity = v, _porosity, value,  "Porosity");
+				SetValue( v =>  _porosity = v, _porosity, value,  "Porosity", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _massDensity = v, _massDensity, value,  "MassDensity");
+				SetValue( v =>  _massDensity = v, _massDensity, value,  "MassDensity", 4);
 			} 
 		}	
 		#endregion

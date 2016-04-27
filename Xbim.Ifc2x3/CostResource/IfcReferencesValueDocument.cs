@@ -112,7 +112,7 @@ namespace Xbim.Ifc2x3.CostResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReferencesValueDocument(IModel model) 		{ 
 			Model = model; 
-			_referencingValues = new ItemSet<IfcAppliedValue>( this, 0 );
+			_referencingValues = new ItemSet<IfcAppliedValue>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -134,7 +134,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _referencedDocument = v, _referencedDocument, value,  "ReferencedDocument");
+				SetValue( v =>  _referencedDocument = v, _referencedDocument, value,  "ReferencedDocument", 1);
 			} 
 		}	
 		[IndexedProperty]
@@ -159,7 +159,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -173,7 +173,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 4);
 			} 
 		}	
 		#endregion
@@ -197,7 +197,7 @@ namespace Xbim.Ifc2x3.CostResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -226,7 +226,7 @@ namespace Xbim.Ifc2x3.CostResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -240,7 +240,6 @@ namespace Xbim.Ifc2x3.CostResource
 					_referencedDocument = (IfcDocumentSelect)(value.EntityVal);
 					return;
 				case 1: 
-					if (_referencingValues == null) _referencingValues = new ItemSet<IfcAppliedValue>( this );
 					_referencingValues.InternalAdd((IfcAppliedValue)value.EntityVal);
 					return;
 				case 2: 

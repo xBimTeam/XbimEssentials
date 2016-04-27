@@ -53,7 +53,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIndexedColourMap(IModel model) : base(model) 		{ 
 			Model = model; 
-			_colourIndex = new ItemSet<IfcPositiveInteger>( this, 0 );
+			_colourIndex = new ItemSet<IfcPositiveInteger>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _mappedTo = v, _mappedTo, value,  "MappedTo");
+				SetValue( v =>  _mappedTo = v, _mappedTo, value,  "MappedTo", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -90,7 +90,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _opacity = v, _opacity, value,  "Opacity");
+				SetValue( v =>  _opacity = v, _opacity, value,  "Opacity", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -104,7 +104,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _colours = v, _colours, value,  "Colours");
+				SetValue( v =>  _colours = v, _colours, value,  "Colours", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 4)]
@@ -138,7 +138,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					_colours = (IfcColourRgbList)(value.EntityVal);
 					return;
 				case 3: 
-					if (_colourIndex == null) _colourIndex = new ItemSet<IfcPositiveInteger>( this );
 					_colourIndex.InternalAdd(value.IntegerVal);
 					return;
 				default:

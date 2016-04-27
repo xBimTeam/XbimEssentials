@@ -123,11 +123,11 @@ namespace Xbim.Ifc4.ActorResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPerson(IModel model) 		{ 
 			Model = model; 
-			_middleNames = new OptionalItemSet<IfcLabel>( this, 0 );
-			_prefixTitles = new OptionalItemSet<IfcLabel>( this, 0 );
-			_suffixTitles = new OptionalItemSet<IfcLabel>( this, 0 );
-			_roles = new OptionalItemSet<IfcActorRole>( this, 0 );
-			_addresses = new OptionalItemSet<IfcAddress>( this, 0 );
+			_middleNames = new OptionalItemSet<IfcLabel>( this, 0,  4);
+			_prefixTitles = new OptionalItemSet<IfcLabel>( this, 0,  5);
+			_suffixTitles = new OptionalItemSet<IfcLabel>( this, 0,  6);
+			_roles = new OptionalItemSet<IfcActorRole>( this, 0,  7);
+			_addresses = new OptionalItemSet<IfcAddress>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
@@ -153,7 +153,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _identification = v, _identification, value,  "Identification");
+				SetValue( v =>  _identification = v, _identification, value,  "Identification", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -167,7 +167,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _familyName = v, _familyName, value,  "FamilyName");
+				SetValue( v =>  _familyName = v, _familyName, value,  "FamilyName", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -181,7 +181,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _givenName = v, _givenName, value,  "GivenName");
+				SetValue( v =>  _givenName = v, _givenName, value,  "GivenName", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 4)]
@@ -267,7 +267,7 @@ namespace Xbim.Ifc4.ActorResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -296,7 +296,7 @@ namespace Xbim.Ifc4.ActorResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -316,23 +316,18 @@ namespace Xbim.Ifc4.ActorResource
 					_givenName = value.StringVal;
 					return;
 				case 3: 
-					if (_middleNames == null) _middleNames = new OptionalItemSet<IfcLabel>( this );
 					_middleNames.InternalAdd(value.StringVal);
 					return;
 				case 4: 
-					if (_prefixTitles == null) _prefixTitles = new OptionalItemSet<IfcLabel>( this );
 					_prefixTitles.InternalAdd(value.StringVal);
 					return;
 				case 5: 
-					if (_suffixTitles == null) _suffixTitles = new OptionalItemSet<IfcLabel>( this );
 					_suffixTitles.InternalAdd(value.StringVal);
 					return;
 				case 6: 
-					if (_roles == null) _roles = new OptionalItemSet<IfcActorRole>( this );
 					_roles.InternalAdd((IfcActorRole)value.EntityVal);
 					return;
 				case 7: 
-					if (_addresses == null) _addresses = new OptionalItemSet<IfcAddress>( this );
 					_addresses.InternalAdd((IfcAddress)value.EntityVal);
 					return;
 				default:

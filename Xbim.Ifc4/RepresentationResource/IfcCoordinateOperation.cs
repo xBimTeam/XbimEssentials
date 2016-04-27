@@ -126,7 +126,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _sourceCRS = v, _sourceCRS, value,  "SourceCRS");
+				SetValue( v =>  _sourceCRS = v, _sourceCRS, value,  "SourceCRS", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -140,7 +140,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _targetCRS = v, _targetCRS, value,  "TargetCRS");
+				SetValue( v =>  _targetCRS = v, _targetCRS, value,  "TargetCRS", 2);
 			} 
 		}	
 		#endregion
@@ -164,7 +164,7 @@ namespace Xbim.Ifc4.RepresentationResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -193,7 +193,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

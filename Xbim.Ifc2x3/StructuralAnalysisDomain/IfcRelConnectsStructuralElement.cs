@@ -68,7 +68,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement");
+				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _relatedStructuralMember = v, _relatedStructuralMember, value,  "RelatedStructuralMember");
+				SetValue( v =>  _relatedStructuralMember = v, _relatedStructuralMember, value,  "RelatedStructuralMember", 6);
 			} 
 		}	
 		#endregion

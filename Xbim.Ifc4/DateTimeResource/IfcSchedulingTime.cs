@@ -129,7 +129,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 2)]
@@ -143,7 +143,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _dataOrigin = v, _dataOrigin, value,  "DataOrigin");
+				SetValue( v =>  _dataOrigin = v, _dataOrigin, value,  "DataOrigin", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -157,7 +157,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedDataOrigin = v, _userDefinedDataOrigin, value,  "UserDefinedDataOrigin");
+				SetValue( v =>  _userDefinedDataOrigin = v, _userDefinedDataOrigin, value,  "UserDefinedDataOrigin", 3);
 			} 
 		}	
 		#endregion
@@ -181,7 +181,7 @@ namespace Xbim.Ifc4.DateTimeResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -210,7 +210,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

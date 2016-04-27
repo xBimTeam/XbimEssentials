@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsWithRealizingElements(IModel model) : base(model) 		{ 
 			Model = model; 
-			_realizingElements = new ItemSet<IfcElement>( this, 0 );
+			_realizingElements = new ItemSet<IfcElement>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _connectionType = v, _connectionType, value,  "ConnectionType");
+				SetValue( v =>  _connectionType = v, _connectionType, value,  "ConnectionType", 9);
 			} 
 		}	
 		#endregion
@@ -102,7 +102,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 7: 
-					if (_realizingElements == null) _realizingElements = new ItemSet<IfcElement>( this );
 					_realizingElements.InternalAdd((IfcElement)value.EntityVal);
 					return;
 				case 8: 

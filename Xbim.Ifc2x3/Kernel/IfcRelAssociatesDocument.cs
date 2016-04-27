@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _relatingDocument = v, _relatingDocument, value,  "RelatingDocument");
+				SetValue( v =>  _relatingDocument = v, _relatingDocument, value,  "RelatingDocument", 6);
 			} 
 		}	
 		#endregion

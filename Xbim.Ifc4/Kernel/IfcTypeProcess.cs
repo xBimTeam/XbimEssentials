@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _identification = v, _identification, value,  "Identification");
+				SetValue( v =>  _identification = v, _identification, value,  "Identification", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription");
+				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _processType = v, _processType, value,  "ProcessType");
+				SetValue( v =>  _processType = v, _processType, value,  "ProcessType", 9);
 			} 
 		}	
 		#endregion

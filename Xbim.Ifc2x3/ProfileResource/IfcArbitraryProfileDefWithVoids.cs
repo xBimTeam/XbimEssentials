@@ -45,7 +45,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcArbitraryProfileDefWithVoids(IModel model) : base(model) 		{ 
 			Model = model; 
-			_innerCurves = new ItemSet<IfcCurve>( this, 0 );
+			_innerCurves = new ItemSet<IfcCurve>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
@@ -80,7 +80,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 3: 
-					if (_innerCurves == null) _innerCurves = new ItemSet<IfcCurve>( this );
 					_innerCurves.InternalAdd((IfcCurve)value.EntityVal);
 					return;
 				default:

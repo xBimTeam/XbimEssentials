@@ -86,7 +86,7 @@ namespace Xbim.Common
 	}
 
 	public delegate void NewEntityHandler(IPersistEntity entity);
-    public delegate void ModifiedEntityHandler(IPersistEntity entity);
+    public delegate void ModifiedEntityHandler(IPersistEntity entity, byte property);
     public delegate void DeletedEntityHandler(IPersistEntity entity);
 
     public delegate object PropertyTranformDelegate(ExpressMetaProperty property, object parentObject);

@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _relatingDocument = v, _relatingDocument, value,  "RelatingDocument");
+				SetValue( v =>  _relatingDocument = v, _relatingDocument, value,  "RelatingDocument", 6);
 			} 
 		}	
 		#endregion

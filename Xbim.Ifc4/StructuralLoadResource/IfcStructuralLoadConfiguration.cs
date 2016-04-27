@@ -47,8 +47,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadConfiguration(IModel model) : base(model) 		{ 
 			Model = model; 
-			_values = new ItemSet<IfcStructuralLoadOrResult>( this, 0 );
-			_locations = new OptionalItemSet<ItemSet<IfcLengthMeasure>>( this, 0 );
+			_values = new ItemSet<IfcStructuralLoadOrResult>( this, 0,  2);
+			_locations = new OptionalItemSet<ItemSet<IfcLengthMeasure>>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -92,7 +92,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 1: 
-					if (_values == null) _values = new ItemSet<IfcStructuralLoadOrResult>( this );
 					_values.InternalAdd((IfcStructuralLoadOrResult)value.EntityVal);
 					return;
 				case 2: 

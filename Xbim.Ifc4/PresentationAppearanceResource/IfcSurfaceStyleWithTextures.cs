@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleWithTextures(IModel model) : base(model) 		{ 
 			Model = model; 
-			_textures = new ItemSet<IfcSurfaceTexture>( this, 0 );
+			_textures = new ItemSet<IfcSurfaceTexture>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -76,7 +76,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_textures == null) _textures = new ItemSet<IfcSurfaceTexture>( this );
 					_textures.InternalAdd((IfcSurfaceTexture)value.EntityVal);
 					return;
 				default:

@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface");
+				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _pointParameterU = v, _pointParameterU, value,  "PointParameterU");
+				SetValue( v =>  _pointParameterU = v, _pointParameterU, value,  "PointParameterU", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _pointParameterV = v, _pointParameterV, value,  "PointParameterV");
+				SetValue( v =>  _pointParameterV = v, _pointParameterV, value,  "PointParameterV", 3);
 			} 
 		}	
 		#endregion

@@ -60,7 +60,7 @@ namespace Xbim.Ifc4.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineSurface(IModel model) : base(model) 		{ 
 			Model = model; 
-			_controlPointsList = new ItemSet<ItemSet<IfcCartesianPoint>>( this, 0 );
+			_controlPointsList = new ItemSet<ItemSet<IfcCartesianPoint>>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _uDegree = v, _uDegree, value,  "UDegree");
+				SetValue( v =>  _uDegree = v, _uDegree, value,  "UDegree", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _vDegree = v, _vDegree, value,  "VDegree");
+				SetValue( v =>  _vDegree = v, _vDegree, value,  "VDegree", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 2, -1, 5)]
@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _surfaceForm = v, _surfaceForm, value,  "SurfaceForm");
+				SetValue( v =>  _surfaceForm = v, _surfaceForm, value,  "SurfaceForm", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -137,7 +137,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _uClosed = v, _uClosed, value,  "UClosed");
+				SetValue( v =>  _uClosed = v, _uClosed, value,  "UClosed", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -151,7 +151,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _vClosed = v, _vClosed, value,  "VClosed");
+				SetValue( v =>  _vClosed = v, _vClosed, value,  "VClosed", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -165,7 +165,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect");
+				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect", 7);
 			} 
 		}	
 		#endregion

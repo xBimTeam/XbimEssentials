@@ -60,11 +60,11 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieAsset(IModel model) : base(model) 		{ 
 			Model = model; 
-			_categories = new OptionalItemSet<CobieCategory>( this, 0 );
-			_impacts = new OptionalItemSet<CobieImpact>( this, 0 );
-			_documents = new OptionalItemSet<CobieDocument>( this, 0 );
-			_attributes = new OptionalItemSet<CobieAttribute>( this, 0 );
-			_representations = new OptionalItemSet<CobieCoordinate>( this, 0 );
+			_categories = new OptionalItemSet<CobieCategory>( this, 0,  8);
+			_impacts = new OptionalItemSet<CobieImpact>( this, 0,  9);
+			_documents = new OptionalItemSet<CobieDocument>( this, 0,  10);
+			_attributes = new OptionalItemSet<CobieAttribute>( this, 0,  11);
+			_representations = new OptionalItemSet<CobieCoordinate>( this, 0,  12);
 		}
 
 		#region Explicit attribute fields
@@ -89,7 +89,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -103,7 +103,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 8)]
@@ -201,23 +201,18 @@ namespace Xbim.CobieExpress
 					_description = value.StringVal;
 					return;
 				case 7: 
-					if (_categories == null) _categories = new OptionalItemSet<CobieCategory>( this );
 					_categories.InternalAdd((CobieCategory)value.EntityVal);
 					return;
 				case 8: 
-					if (_impacts == null) _impacts = new OptionalItemSet<CobieImpact>( this );
 					_impacts.InternalAdd((CobieImpact)value.EntityVal);
 					return;
 				case 9: 
-					if (_documents == null) _documents = new OptionalItemSet<CobieDocument>( this );
 					_documents.InternalAdd((CobieDocument)value.EntityVal);
 					return;
 				case 10: 
-					if (_attributes == null) _attributes = new OptionalItemSet<CobieAttribute>( this );
 					_attributes.InternalAdd((CobieAttribute)value.EntityVal);
 					return;
 				case 11: 
-					if (_representations == null) _representations = new OptionalItemSet<CobieCoordinate>( this );
 					_representations.InternalAdd((CobieCoordinate)value.EntityVal);
 					return;
 				default:

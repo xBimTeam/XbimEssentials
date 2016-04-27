@@ -109,8 +109,8 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightDistributionData(IModel model) 		{ 
 			Model = model; 
-			_secondaryPlaneAngle = new ItemSet<IfcPlaneAngleMeasure>( this, 0 );
-			_luminousIntensity = new ItemSet<IfcLuminousIntensityDistributionMeasure>( this, 0 );
+			_secondaryPlaneAngle = new ItemSet<IfcPlaneAngleMeasure>( this, 0,  2);
+			_luminousIntensity = new ItemSet<IfcLuminousIntensityDistributionMeasure>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -131,7 +131,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _mainPlaneAngle = v, _mainPlaneAngle, value,  "MainPlaneAngle");
+				SetValue( v =>  _mainPlaneAngle = v, _mainPlaneAngle, value,  "MainPlaneAngle", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 2)]
@@ -175,7 +175,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -204,7 +204,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -218,11 +218,9 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 					_mainPlaneAngle = value.RealVal;
 					return;
 				case 1: 
-					if (_secondaryPlaneAngle == null) _secondaryPlaneAngle = new ItemSet<IfcPlaneAngleMeasure>( this );
 					_secondaryPlaneAngle.InternalAdd(value.RealVal);
 					return;
 				case 2: 
-					if (_luminousIntensity == null) _luminousIntensity = new ItemSet<IfcLuminousIntensityDistributionMeasure>( this );
 					_luminousIntensity.InternalAdd(value.RealVal);
 					return;
 				default:

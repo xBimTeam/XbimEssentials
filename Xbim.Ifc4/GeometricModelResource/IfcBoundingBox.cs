@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _corner = v, _corner, value,  "Corner");
+				SetValue( v =>  _corner = v, _corner, value,  "Corner", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _xDim = v, _xDim, value,  "XDim");
+				SetValue( v =>  _xDim = v, _xDim, value,  "XDim", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _yDim = v, _yDim, value,  "YDim");
+				SetValue( v =>  _yDim = v, _yDim, value,  "YDim", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -116,7 +116,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _zDim = v, _zDim, value,  "ZDim");
+				SetValue( v =>  _zDim = v, _zDim, value,  "ZDim", 4);
 			} 
 		}	
 		#endregion

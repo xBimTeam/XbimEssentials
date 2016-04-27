@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.MaterialResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialLayerWithOffsets(IModel model) : base(model) 		{ 
 			Model = model; 
-			_offsetValues = new ItemSet<IfcLengthMeasure>( this, 2 );
+			_offsetValues = new ItemSet<IfcLengthMeasure>( this, 2,  9);
 		}
 
 		#region Explicit attribute fields
@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _offsetDirection = v, _offsetDirection, value,  "OffsetDirection");
+				SetValue( v =>  _offsetDirection = v, _offsetDirection, value,  "OffsetDirection", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Array, EntityAttributeType.None, 1, 2, 13)]
@@ -104,7 +104,6 @@ namespace Xbim.Ifc4.MaterialResource
                     _offsetDirection = (IfcLayerSetDirectionEnum) System.Enum.Parse(typeof (IfcLayerSetDirectionEnum), value.EnumVal, true);
 					return;
 				case 8: 
-					if (_offsetValues == null) _offsetValues = new ItemSet<IfcLengthMeasure>( this );
 					_offsetValues.InternalAdd(value.RealVal);
 					return;
 				default:

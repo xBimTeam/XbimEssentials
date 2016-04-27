@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _relatingLibrary = v, _relatingLibrary, value,  "RelatingLibrary");
+				SetValue( v =>  _relatingLibrary = v, _relatingLibrary, value,  "RelatingLibrary", 6);
 			} 
 		}	
 		#endregion

@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.ActorResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOrganizationRelationship(IModel model) : base(model) 		{ 
 			Model = model; 
-			_relatedOrganizations = new ItemSet<IfcOrganization>( this, 0 );
+			_relatedOrganizations = new ItemSet<IfcOrganization>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _relatingOrganization = v, _relatingOrganization, value,  "RelatingOrganization");
+				SetValue( v =>  _relatingOrganization = v, _relatingOrganization, value,  "RelatingOrganization", 3);
 			} 
 		}	
 		[IndexedProperty]
@@ -101,7 +101,6 @@ namespace Xbim.Ifc4.ActorResource
 					_relatingOrganization = (IfcOrganization)(value.EntityVal);
 					return;
 				case 3: 
-					if (_relatedOrganizations == null) _relatedOrganizations = new ItemSet<IfcOrganization>( this );
 					_relatedOrganizations.InternalAdd((IfcOrganization)value.EntityVal);
 					return;
 				default:

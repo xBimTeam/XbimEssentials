@@ -53,9 +53,9 @@ namespace Xbim.Ifc2x3.ActorResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTelecomAddress(IModel model) : base(model) 		{ 
 			Model = model; 
-			_telephoneNumbers = new OptionalItemSet<IfcLabel>( this, 0 );
-			_facsimileNumbers = new OptionalItemSet<IfcLabel>( this, 0 );
-			_electronicMailAddresses = new OptionalItemSet<IfcLabel>( this, 0 );
+			_telephoneNumbers = new OptionalItemSet<IfcLabel>( this, 0,  4);
+			_facsimileNumbers = new OptionalItemSet<IfcLabel>( this, 0,  5);
+			_electronicMailAddresses = new OptionalItemSet<IfcLabel>( this, 0,  7);
 		}
 
 		#region Explicit attribute fields
@@ -98,7 +98,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _pagerNumber = v, _pagerNumber, value,  "PagerNumber");
+				SetValue( v =>  _pagerNumber = v, _pagerNumber, value,  "PagerNumber", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 9)]
@@ -122,7 +122,7 @@ namespace Xbim.Ifc2x3.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _wWWHomePageURL = v, _wWWHomePageURL, value,  "WWWHomePageURL");
+				SetValue( v =>  _wWWHomePageURL = v, _wWWHomePageURL, value,  "WWWHomePageURL", 8);
 			} 
 		}	
 		#endregion
@@ -142,18 +142,15 @@ namespace Xbim.Ifc2x3.ActorResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 3: 
-					if (_telephoneNumbers == null) _telephoneNumbers = new OptionalItemSet<IfcLabel>( this );
 					_telephoneNumbers.InternalAdd(value.StringVal);
 					return;
 				case 4: 
-					if (_facsimileNumbers == null) _facsimileNumbers = new OptionalItemSet<IfcLabel>( this );
 					_facsimileNumbers.InternalAdd(value.StringVal);
 					return;
 				case 5: 
 					_pagerNumber = value.StringVal;
 					return;
 				case 6: 
-					if (_electronicMailAddresses == null) _electronicMailAddresses = new OptionalItemSet<IfcLabel>( this );
 					_electronicMailAddresses.InternalAdd(value.StringVal);
 					return;
 				case 7: 

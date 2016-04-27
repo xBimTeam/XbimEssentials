@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.MaterialResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialConstituentSet(IModel model) : base(model) 		{ 
 			Model = model; 
-			_materialConstituents = new OptionalItemSet<IfcMaterialConstituent>( this, 0 );
+			_materialConstituents = new OptionalItemSet<IfcMaterialConstituent>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[IndexedProperty]
@@ -116,7 +116,6 @@ namespace Xbim.Ifc4.MaterialResource
 					_description = value.StringVal;
 					return;
 				case 2: 
-					if (_materialConstituents == null) _materialConstituents = new OptionalItemSet<IfcMaterialConstituent>( this );
 					_materialConstituents.InternalAdd((IfcMaterialConstituent)value.EntityVal);
 					return;
 				default:

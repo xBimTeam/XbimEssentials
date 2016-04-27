@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _flowDirection = v, _flowDirection, value,  "FlowDirection");
+				SetValue( v =>  _flowDirection = v, _flowDirection, value,  "FlowDirection", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 24)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 25)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _systemType = v, _systemType, value,  "SystemType");
+				SetValue( v =>  _systemType = v, _systemType, value,  "SystemType", 10);
 			} 
 		}	
 		#endregion

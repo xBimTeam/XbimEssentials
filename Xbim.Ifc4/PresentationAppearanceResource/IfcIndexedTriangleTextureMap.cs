@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIndexedTriangleTextureMap(IModel model) : base(model) 		{ 
 			Model = model; 
-			_texCoordIndex = new OptionalItemSet<ItemSet<IfcPositiveInteger>>( this, 0 );
+			_texCoordIndex = new OptionalItemSet<ItemSet<IfcPositiveInteger>>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields

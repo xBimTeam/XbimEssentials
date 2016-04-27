@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatingPort = v, _relatingPort, value,  "RelatingPort");
+				SetValue( v =>  _relatingPort = v, _relatingPort, value,  "RelatingPort", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement");
+				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement", 6);
 			} 
 		}	
 		#endregion

@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _axis = v, _axis, value,  "Axis");
+				SetValue( v =>  _axis = v, _axis, value,  "Axis", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _angle = v, _angle, value,  "Angle");
+				SetValue( v =>  _angle = v, _angle, value,  "Angle", 4);
 			} 
 		}	
 		#endregion

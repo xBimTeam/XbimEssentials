@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyleTiles(IModel model) : base(model) 		{ 
 			Model = model; 
-			_tiles = new ItemSet<IfcFillAreaStyleTileShapeSelect>( this, 0 );
+			_tiles = new ItemSet<IfcFillAreaStyleTileShapeSelect>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -71,7 +71,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _tilingPattern = v, _tilingPattern, value,  "TilingPattern");
+				SetValue( v =>  _tilingPattern = v, _tilingPattern, value,  "TilingPattern", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
@@ -95,7 +95,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _tilingScale = v, _tilingScale, value,  "TilingScale");
+				SetValue( v =>  _tilingScale = v, _tilingScale, value,  "TilingScale", 3);
 			} 
 		}	
 		#endregion
@@ -113,7 +113,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					_tilingPattern = (IfcOneDirectionRepeatFactor)(value.EntityVal);
 					return;
 				case 1: 
-					if (_tiles == null) _tiles = new ItemSet<IfcFillAreaStyleTileShapeSelect>( this );
 					_tiles.InternalAdd((IfcFillAreaStyleTileShapeSelect)value.EntityVal);
 					return;
 				case 2: 

@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _identification = v, _identification, value,  "Identification");
+				SetValue( v =>  _identification = v, _identification, value,  "Identification", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _originalValue = v, _originalValue, value,  "OriginalValue");
+				SetValue( v =>  _originalValue = v, _originalValue, value,  "OriginalValue", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
@@ -119,7 +119,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue");
+				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 21)]
@@ -133,7 +133,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _totalReplacementCost = v, _totalReplacementCost, value,  "TotalReplacementCost");
+				SetValue( v =>  _totalReplacementCost = v, _totalReplacementCost, value,  "TotalReplacementCost", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 22)]
@@ -147,7 +147,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _owner = v, _owner, value,  "Owner");
+				SetValue( v =>  _owner = v, _owner, value,  "Owner", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 23)]
@@ -161,7 +161,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _user = v, _user, value,  "User");
+				SetValue( v =>  _user = v, _user, value,  "User", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 24)]
@@ -175,7 +175,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _responsiblePerson = v, _responsiblePerson, value,  "ResponsiblePerson");
+				SetValue( v =>  _responsiblePerson = v, _responsiblePerson, value,  "ResponsiblePerson", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
@@ -189,7 +189,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _incorporationDate = v, _incorporationDate, value,  "IncorporationDate");
+				SetValue( v =>  _incorporationDate = v, _incorporationDate, value,  "IncorporationDate", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 26)]
@@ -203,7 +203,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 			} 
 			set
 			{
-				SetValue( v =>  _depreciatedValue = v, _depreciatedValue, value,  "DepreciatedValue");
+				SetValue( v =>  _depreciatedValue = v, _depreciatedValue, value,  "DepreciatedValue", 14);
 			} 
 		}	
 		#endregion

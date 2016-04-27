@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess");
+				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _quantityInProcess = v, _quantityInProcess, value,  "QuantityInProcess");
+				SetValue( v =>  _quantityInProcess = v, _quantityInProcess, value,  "QuantityInProcess", 8);
 			} 
 		}	
 		#endregion

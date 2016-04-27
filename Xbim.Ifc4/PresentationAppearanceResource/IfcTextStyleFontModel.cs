@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextStyleFontModel(IModel model) : base(model) 		{ 
 			Model = model; 
-			_fontFamily = new ItemSet<IfcTextFontName>( this, 0 );
+			_fontFamily = new ItemSet<IfcTextFontName>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _fontStyle = v, _fontStyle, value,  "FontStyle");
+				SetValue( v =>  _fontStyle = v, _fontStyle, value,  "FontStyle", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _fontVariant = v, _fontVariant, value,  "FontVariant");
+				SetValue( v =>  _fontVariant = v, _fontVariant, value,  "FontVariant", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _fontWeight = v, _fontWeight, value,  "FontWeight");
+				SetValue( v =>  _fontWeight = v, _fontWeight, value,  "FontWeight", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _fontSize = v, _fontSize, value,  "FontSize");
+				SetValue( v =>  _fontSize = v, _fontSize, value,  "FontSize", 6);
 			} 
 		}	
 		#endregion
@@ -145,7 +145,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 1: 
-					if (_fontFamily == null) _fontFamily = new ItemSet<IfcTextFontName>( this );
 					_fontFamily.InternalAdd(value.StringVal);
 					return;
 				case 2: 

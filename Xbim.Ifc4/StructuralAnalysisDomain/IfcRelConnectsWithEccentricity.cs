@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _connectionConstraint = v, _connectionConstraint, value,  "ConnectionConstraint");
+				SetValue( v =>  _connectionConstraint = v, _connectionConstraint, value,  "ConnectionConstraint", 11);
 			} 
 		}	
 		#endregion

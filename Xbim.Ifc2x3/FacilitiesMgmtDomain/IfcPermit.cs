@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _permitID = v, _permitID, value,  "PermitID");
+				SetValue( v =>  _permitID = v, _permitID, value,  "PermitID", 6);
 			} 
 		}	
 		#endregion

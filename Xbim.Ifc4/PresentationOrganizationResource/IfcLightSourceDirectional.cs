@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation");
+				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation", 5);
 			} 
 		}	
 		#endregion

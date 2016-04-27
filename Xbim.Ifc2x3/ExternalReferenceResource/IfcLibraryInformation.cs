@@ -115,7 +115,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLibraryInformation(IModel model) 		{ 
 			Model = model; 
-			_libraryReference = new OptionalItemSet<IfcLibraryReference>( this, 0 );
+			_libraryReference = new OptionalItemSet<IfcLibraryReference>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
@@ -138,7 +138,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -152,7 +152,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _version = v, _version, value,  "Version");
+				SetValue( v =>  _version = v, _version, value,  "Version", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -166,7 +166,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _publisher = v, _publisher, value,  "Publisher");
+				SetValue( v =>  _publisher = v, _publisher, value,  "Publisher", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -180,7 +180,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _versionDate = v, _versionDate, value,  "VersionDate");
+				SetValue( v =>  _versionDate = v, _versionDate, value,  "VersionDate", 4);
 			} 
 		}	
 		[IndexedProperty]
@@ -215,7 +215,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -244,7 +244,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -267,7 +267,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					_versionDate = (IfcCalendarDate)(value.EntityVal);
 					return;
 				case 4: 
-					if (_libraryReference == null) _libraryReference = new OptionalItemSet<IfcLibraryReference>( this );
 					_libraryReference.InternalAdd((IfcLibraryReference)value.EntityVal);
 					return;
 				default:

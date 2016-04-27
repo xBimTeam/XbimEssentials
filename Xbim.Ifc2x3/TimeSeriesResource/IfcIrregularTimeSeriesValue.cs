@@ -108,7 +108,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIrregularTimeSeriesValue(IModel model) 		{ 
 			Model = model; 
-			_listValues = new ItemSet<IfcValue>( this, 0 );
+			_listValues = new ItemSet<IfcValue>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -128,7 +128,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
-				SetValue( v =>  _timeStamp = v, _timeStamp, value,  "TimeStamp");
+				SetValue( v =>  _timeStamp = v, _timeStamp, value,  "TimeStamp", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 2)]
@@ -162,7 +162,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -191,7 +191,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -205,7 +205,6 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 					_timeStamp = (IfcDateTimeSelect)(value.EntityVal);
 					return;
 				case 1: 
-					if (_listValues == null) _listValues = new ItemSet<IfcValue>( this );
 					_listValues.InternalAdd((IfcValue)value.EntityVal);
 					return;
 				default:

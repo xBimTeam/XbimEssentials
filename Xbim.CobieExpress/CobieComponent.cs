@@ -60,7 +60,7 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieComponent(IModel model) : base(model) 		{ 
 			Model = model; 
-			_spaces = new ItemSet<CobieSpace>( this, 2 );
+			_spaces = new ItemSet<CobieSpace>( this, 2,  21);
 		}
 
 		#region Explicit attribute fields
@@ -86,7 +86,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _serialNumber = v, _serialNumber, value,  "SerialNumber");
+				SetValue( v =>  _serialNumber = v, _serialNumber, value,  "SerialNumber", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -100,7 +100,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _installationDate = v, _installationDate, value,  "InstallationDate");
+				SetValue( v =>  _installationDate = v, _installationDate, value,  "InstallationDate", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -114,7 +114,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _warrantyStartDate = v, _warrantyStartDate, value,  "WarrantyStartDate");
+				SetValue( v =>  _warrantyStartDate = v, _warrantyStartDate, value,  "WarrantyStartDate", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -128,7 +128,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _tagNumber = v, _tagNumber, value,  "TagNumber");
+				SetValue( v =>  _tagNumber = v, _tagNumber, value,  "TagNumber", 17);
 			} 
 		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
@@ -142,7 +142,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _barCode = v, _barCode, value,  "BarCode");
+				SetValue( v =>  _barCode = v, _barCode, value,  "BarCode", 18);
 			} 
 		}	
 		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
@@ -156,7 +156,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _assetIdentifier = v, _assetIdentifier, value,  "AssetIdentifier");
+				SetValue( v =>  _assetIdentifier = v, _assetIdentifier, value,  "AssetIdentifier", 19);
 			} 
 		}	
 		[IndexedProperty]
@@ -171,7 +171,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _type = v, _type, value,  "Type");
+				SetValue( v =>  _type = v, _type, value,  "Type", 20);
 			} 
 		}	
 		[IndexedProperty]
@@ -244,7 +244,6 @@ namespace Xbim.CobieExpress
 					_type = (CobieType)(value.EntityVal);
 					return;
 				case 20: 
-					if (_spaces == null) _spaces = new ItemSet<CobieSpace>( this );
 					_spaces.InternalAdd((CobieSpace)value.EntityVal);
 					return;
 				default:

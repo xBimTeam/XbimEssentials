@@ -78,7 +78,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _roomTag = v, _roomTag, value,  "RoomTag");
+				SetValue( v =>  _roomTag = v, _roomTag, value,  "RoomTag", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -92,7 +92,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _usableHeight = v, _usableHeight, value,  "UsableHeight");
+				SetValue( v =>  _usableHeight = v, _usableHeight, value,  "UsableHeight", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -106,7 +106,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _grossArea = v, _grossArea, value,  "GrossArea");
+				SetValue( v =>  _grossArea = v, _grossArea, value,  "GrossArea", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
@@ -120,7 +120,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _netArea = v, _netArea, value,  "NetArea");
+				SetValue( v =>  _netArea = v, _netArea, value,  "NetArea", 16);
 			} 
 		}	
 		[IndexedProperty]
@@ -135,7 +135,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _floor = v, _floor, value,  "Floor");
+				SetValue( v =>  _floor = v, _floor, value,  "Floor", 17);
 			} 
 		}	
 		#endregion

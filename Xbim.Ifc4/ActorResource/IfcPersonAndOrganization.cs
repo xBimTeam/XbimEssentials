@@ -110,7 +110,7 @@ namespace Xbim.Ifc4.ActorResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPersonAndOrganization(IModel model) 		{ 
 			Model = model; 
-			_roles = new OptionalItemSet<IfcActorRole>( this, 0 );
+			_roles = new OptionalItemSet<IfcActorRole>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
@@ -132,7 +132,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _thePerson = v, _thePerson, value,  "ThePerson");
+				SetValue( v =>  _thePerson = v, _thePerson, value,  "ThePerson", 1);
 			} 
 		}	
 		[IndexedProperty]
@@ -147,7 +147,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _theOrganization = v, _theOrganization, value,  "TheOrganization");
+				SetValue( v =>  _theOrganization = v, _theOrganization, value,  "TheOrganization", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 3)]
@@ -181,7 +181,7 @@ namespace Xbim.Ifc4.ActorResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -210,7 +210,7 @@ namespace Xbim.Ifc4.ActorResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -227,7 +227,6 @@ namespace Xbim.Ifc4.ActorResource
 					_theOrganization = (IfcOrganization)(value.EntityVal);
 					return;
 				case 2: 
-					if (_roles == null) _roles = new OptionalItemSet<IfcActorRole>( this );
 					_roles.InternalAdd((IfcActorRole)value.EntityVal);
 					return;
 				default:

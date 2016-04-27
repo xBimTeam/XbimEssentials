@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _longName = v, _longName, value,  "LongName");
+				SetValue( v =>  _longName = v, _longName, value,  "LongName", 6);
 			} 
 		}	
 		#endregion

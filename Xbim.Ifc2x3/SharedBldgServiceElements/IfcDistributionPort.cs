@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _flowDirection = v, _flowDirection, value,  "FlowDirection");
+				SetValue( v =>  _flowDirection = v, _flowDirection, value,  "FlowDirection", 8);
 			} 
 		}	
 		#endregion

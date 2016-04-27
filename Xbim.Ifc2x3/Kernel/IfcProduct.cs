@@ -71,7 +71,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _objectPlacement = v, _objectPlacement, value,  "ObjectPlacement");
+				SetValue( v =>  _objectPlacement = v, _objectPlacement, value,  "ObjectPlacement", 6);
 			} 
 		}	
 		[IndexedProperty]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _representation = v, _representation, value,  "Representation");
+				SetValue( v =>  _representation = v, _representation, value,  "Representation", 7);
 			} 
 		}	
 		#endregion

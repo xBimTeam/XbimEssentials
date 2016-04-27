@@ -87,7 +87,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _linearUnits = v, _linearUnits, value,  "LinearUnits");
+				SetValue( v =>  _linearUnits = v, _linearUnits, value,  "LinearUnits", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
@@ -101,7 +101,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _areaUnits = v, _areaUnits, value,  "AreaUnits");
+				SetValue( v =>  _areaUnits = v, _areaUnits, value,  "AreaUnits", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
@@ -115,7 +115,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _volumeUnits = v, _volumeUnits, value,  "VolumeUnits");
+				SetValue( v =>  _volumeUnits = v, _volumeUnits, value,  "VolumeUnits", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
@@ -129,7 +129,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _currencyUnit = v, _currencyUnit, value,  "CurrencyUnit");
+				SetValue( v =>  _currencyUnit = v, _currencyUnit, value,  "CurrencyUnit", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
@@ -143,7 +143,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _areaMeasurement = v, _areaMeasurement, value,  "AreaMeasurement");
+				SetValue( v =>  _areaMeasurement = v, _areaMeasurement, value,  "AreaMeasurement", 17);
 			} 
 		}	
 		[IndexedProperty]
@@ -158,7 +158,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _project = v, _project, value,  "Project");
+				SetValue( v =>  _project = v, _project, value,  "Project", 18);
 			} 
 		}	
 		[IndexedProperty]
@@ -173,7 +173,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _site = v, _site, value,  "Site");
+				SetValue( v =>  _site = v, _site, value,  "Site", 19);
 			} 
 		}	
 		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 22)]
@@ -187,7 +187,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _phase = v, _phase, value,  "Phase");
+				SetValue( v =>  _phase = v, _phase, value,  "Phase", 20);
 			} 
 		}	
 		#endregion

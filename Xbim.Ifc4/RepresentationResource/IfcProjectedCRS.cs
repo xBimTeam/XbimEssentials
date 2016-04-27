@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _mapProjection = v, _mapProjection, value,  "MapProjection");
+				SetValue( v =>  _mapProjection = v, _mapProjection, value,  "MapProjection", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _mapZone = v, _mapZone, value,  "MapZone");
+				SetValue( v =>  _mapZone = v, _mapZone, value,  "MapZone", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _mapUnit = v, _mapUnit, value,  "MapUnit");
+				SetValue( v =>  _mapUnit = v, _mapUnit, value,  "MapUnit", 7);
 			} 
 		}	
 		#endregion

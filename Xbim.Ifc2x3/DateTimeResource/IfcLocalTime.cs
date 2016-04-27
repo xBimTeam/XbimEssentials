@@ -135,7 +135,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _hourComponent = v, _hourComponent, value,  "HourComponent");
+				SetValue( v =>  _hourComponent = v, _hourComponent, value,  "HourComponent", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -149,7 +149,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _minuteComponent = v, _minuteComponent, value,  "MinuteComponent");
+				SetValue( v =>  _minuteComponent = v, _minuteComponent, value,  "MinuteComponent", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -163,7 +163,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _secondComponent = v, _secondComponent, value,  "SecondComponent");
+				SetValue( v =>  _secondComponent = v, _secondComponent, value,  "SecondComponent", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -177,7 +177,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _zone = v, _zone, value,  "Zone");
+				SetValue( v =>  _zone = v, _zone, value,  "Zone", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -191,7 +191,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _daylightSavingOffset = v, _daylightSavingOffset, value,  "DaylightSavingOffset");
+				SetValue( v =>  _daylightSavingOffset = v, _daylightSavingOffset, value,  "DaylightSavingOffset", 5);
 			} 
 		}	
 		#endregion
@@ -215,7 +215,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -244,7 +244,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

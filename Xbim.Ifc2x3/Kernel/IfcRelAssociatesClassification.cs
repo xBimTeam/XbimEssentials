@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _relatingClassification = v, _relatingClassification, value,  "RelatingClassification");
+				SetValue( v =>  _relatingClassification = v, _relatingClassification, value,  "RelatingClassification", 6);
 			} 
 		}	
 		#endregion

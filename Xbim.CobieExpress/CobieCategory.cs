@@ -65,7 +65,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[IndexedProperty]
@@ -80,7 +80,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _classification = v, _classification, value,  "Classification");
+				SetValue( v =>  _classification = v, _classification, value,  "Classification", 3);
 			} 
 		}	
 		#endregion

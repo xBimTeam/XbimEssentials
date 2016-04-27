@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _numberOfRisers = v, _numberOfRisers, value,  "NumberOfRisers");
+				SetValue( v =>  _numberOfRisers = v, _numberOfRisers, value,  "NumberOfRisers", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 34)]
@@ -90,7 +90,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _numberOfTreads = v, _numberOfTreads, value,  "NumberOfTreads");
+				SetValue( v =>  _numberOfTreads = v, _numberOfTreads, value,  "NumberOfTreads", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 35)]
@@ -104,7 +104,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _riserHeight = v, _riserHeight, value,  "RiserHeight");
+				SetValue( v =>  _riserHeight = v, _riserHeight, value,  "RiserHeight", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 36)]
@@ -118,7 +118,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _treadLength = v, _treadLength, value,  "TreadLength");
+				SetValue( v =>  _treadLength = v, _treadLength, value,  "TreadLength", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 37)]
@@ -132,7 +132,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 13);
 			} 
 		}	
 		#endregion

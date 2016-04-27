@@ -234,7 +234,7 @@ namespace Xbim.IO.Memory
             doAction();
 
             if (_model.IsTransactional)
-                _model.CurrentTransaction.AddReversibleAction(doAction, undo, entity, ChangeType.New);
+                _model.CurrentTransaction.AddReversibleAction(doAction, undo, entity, ChangeType.New, 0);
 
         }
 
@@ -264,7 +264,7 @@ namespace Xbim.IO.Memory
             doAction();
 
             if (_model.IsTransactional) 
-                _model.CurrentTransaction.AddReversibleAction(doAction, undo, entity, ChangeType.Deleted);
+                _model.CurrentTransaction.AddReversibleAction(doAction, undo, entity, ChangeType.Deleted, 0);
             return removed;
         }
 

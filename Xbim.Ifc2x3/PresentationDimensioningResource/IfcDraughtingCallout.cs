@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDraughtingCallout(IModel model) : base(model) 		{ 
 			Model = model; 
-			_contents = new ItemSet<IfcDraughtingCalloutElement>( this, 0 );
+			_contents = new ItemSet<IfcDraughtingCalloutElement>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -99,7 +99,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_contents == null) _contents = new ItemSet<IfcDraughtingCalloutElement>( this );
 					_contents.InternalAdd((IfcDraughtingCalloutElement)value.EntityVal);
 					return;
 				default:

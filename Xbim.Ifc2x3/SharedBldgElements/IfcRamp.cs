@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _shapeType = v, _shapeType, value,  "ShapeType");
+				SetValue( v =>  _shapeType = v, _shapeType, value,  "ShapeType", 9);
 			} 
 		}	
 		#endregion

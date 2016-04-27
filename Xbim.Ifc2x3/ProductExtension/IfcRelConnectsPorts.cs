@@ -70,7 +70,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatingPort = v, _relatingPort, value,  "RelatingPort");
+				SetValue( v =>  _relatingPort = v, _relatingPort, value,  "RelatingPort", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -85,7 +85,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatedPort = v, _relatedPort, value,  "RelatedPort");
+				SetValue( v =>  _relatedPort = v, _relatedPort, value,  "RelatedPort", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -99,7 +99,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _realizingElement = v, _realizingElement, value,  "RealizingElement");
+				SetValue( v =>  _realizingElement = v, _realizingElement, value,  "RealizingElement", 7);
 			} 
 		}	
 		#endregion

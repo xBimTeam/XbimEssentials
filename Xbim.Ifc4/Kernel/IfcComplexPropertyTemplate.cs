@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.Kernel
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcComplexPropertyTemplate(IModel model) : base(model) 		{ 
 			Model = model; 
-			_hasPropertyTemplates = new OptionalItemSet<IfcPropertyTemplate>( this, 0 );
+			_hasPropertyTemplates = new OptionalItemSet<IfcPropertyTemplate>( this, 0,  7);
 		}
 
 		#region Explicit attribute fields
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _usageName = v, _usageName, value,  "UsageName");
+				SetValue( v =>  _usageName = v, _usageName, value,  "UsageName", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 10)]
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _templateType = v, _templateType, value,  "TemplateType");
+				SetValue( v =>  _templateType = v, _templateType, value,  "TemplateType", 6);
 			} 
 		}	
 		[IndexedProperty]
@@ -122,7 +122,6 @@ namespace Xbim.Ifc4.Kernel
                     _templateType = (IfcComplexPropertyTemplateTypeEnum) System.Enum.Parse(typeof (IfcComplexPropertyTemplateTypeEnum), value.EnumVal, true);
 					return;
 				case 6: 
-					if (_hasPropertyTemplates == null) _hasPropertyTemplates = new OptionalItemSet<IfcPropertyTemplate>( this );
 					_hasPropertyTemplates.InternalAdd((IfcPropertyTemplate)value.EntityVal);
 					return;
 				default:

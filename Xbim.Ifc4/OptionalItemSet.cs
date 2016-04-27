@@ -15,15 +15,15 @@ namespace Xbim.Ifc4
     {
         private bool _initialized;
 
-        internal OptionalItemSet(IPersistEntity entity) : base(entity)
+        internal OptionalItemSet(IPersistEntity entity, byte property) : base(entity, property)
         {
         }
 
-        internal OptionalItemSet(IPersistEntity entity, int capacity) : base(entity, capacity)
+        internal OptionalItemSet(IPersistEntity entity, int capacity, byte property) : base(entity, capacity, property)
         {
         }
 
-        internal OptionalItemSet(IPersistEntity entity, IEnumerable<T> collection) : base(entity, collection)
+        internal OptionalItemSet(IPersistEntity entity, IEnumerable<T> collection, byte property) : base(entity, collection, property)
         {
         }
 

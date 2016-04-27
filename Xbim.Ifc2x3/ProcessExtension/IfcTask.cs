@@ -76,7 +76,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _taskId = v, _taskId, value,  "TaskId");
+				SetValue( v =>  _taskId = v, _taskId, value,  "TaskId", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -90,7 +90,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _status = v, _status, value,  "Status");
+				SetValue( v =>  _status = v, _status, value,  "Status", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -104,7 +104,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _workMethod = v, _workMethod, value,  "WorkMethod");
+				SetValue( v =>  _workMethod = v, _workMethod, value,  "WorkMethod", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -118,7 +118,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _isMilestone = v, _isMilestone, value,  "IsMilestone");
+				SetValue( v =>  _isMilestone = v, _isMilestone, value,  "IsMilestone", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
@@ -132,7 +132,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _priority = v, _priority, value,  "Priority");
+				SetValue( v =>  _priority = v, _priority, value,  "Priority", 10);
 			} 
 		}	
 		#endregion

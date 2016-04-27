@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstructionResource(IModel model) : base(model) 		{ 
 			Model = model; 
-			_baseCosts = new OptionalItemSet<IfcAppliedValue>( this, 0 );
+			_baseCosts = new OptionalItemSet<IfcAppliedValue>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _usage = v, _usage, value,  "Usage");
+				SetValue( v =>  _usage = v, _usage, value,  "Usage", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 21)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _baseQuantity = v, _baseQuantity, value,  "BaseQuantity");
+				SetValue( v =>  _baseQuantity = v, _baseQuantity, value,  "BaseQuantity", 10);
 			} 
 		}	
 		#endregion
@@ -124,7 +124,6 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 					_usage = (IfcResourceTime)(value.EntityVal);
 					return;
 				case 8: 
-					if (_baseCosts == null) _baseCosts = new OptionalItemSet<IfcAppliedValue>( this );
 					_baseCosts.InternalAdd((IfcAppliedValue)value.EntityVal);
 					return;
 				case 9: 

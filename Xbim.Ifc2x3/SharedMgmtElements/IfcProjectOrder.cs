@@ -70,7 +70,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _iD = v, _iD, value,  "ID");
+				SetValue( v =>  _iD = v, _iD, value,  "ID", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 13)]
@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -98,7 +98,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _status = v, _status, value,  "Status");
+				SetValue( v =>  _status = v, _status, value,  "Status", 8);
 			} 
 		}	
 		#endregion

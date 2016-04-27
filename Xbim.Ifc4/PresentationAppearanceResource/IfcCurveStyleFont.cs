@@ -48,7 +48,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveStyleFont(IModel model) : base(model) 		{ 
 			Model = model; 
-			_patternList = new ItemSet<IfcCurveStyleFontPattern>( this, 0 );
+			_patternList = new ItemSet<IfcCurveStyleFontPattern>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 2)]
@@ -96,7 +96,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					_name = value.StringVal;
 					return;
 				case 1: 
-					if (_patternList == null) _patternList = new ItemSet<IfcCurveStyleFontPattern>( this );
 					_patternList.InternalAdd((IfcCurveStyleFontPattern)value.EntityVal);
 					return;
 				default:

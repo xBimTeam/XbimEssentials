@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _operator = v, _operator, value,  "Operator");
+				SetValue( v =>  _operator = v, _operator, value,  "Operator", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _firstOperand = v, _firstOperand, value,  "FirstOperand");
+				SetValue( v =>  _firstOperand = v, _firstOperand, value,  "FirstOperand", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _secondOperand = v, _secondOperand, value,  "SecondOperand");
+				SetValue( v =>  _secondOperand = v, _secondOperand, value,  "SecondOperand", 3);
 			} 
 		}	
 		#endregion

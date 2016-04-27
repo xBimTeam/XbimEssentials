@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _red = v, _red, value,  "Red");
+				SetValue( v =>  _red = v, _red, value,  "Red", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _green = v, _green, value,  "Green");
+				SetValue( v =>  _green = v, _green, value,  "Green", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _blue = v, _blue, value,  "Blue");
+				SetValue( v =>  _blue = v, _blue, value,  "Blue", 4);
 			} 
 		}	
 		#endregion

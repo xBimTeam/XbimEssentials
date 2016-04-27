@@ -75,7 +75,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _physicalWeight = v, _physicalWeight, value,  "PhysicalWeight");
+				SetValue( v =>  _physicalWeight = v, _physicalWeight, value,  "PhysicalWeight", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -89,7 +89,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _perimeter = v, _perimeter, value,  "Perimeter");
+				SetValue( v =>  _perimeter = v, _perimeter, value,  "Perimeter", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -103,7 +103,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _minimumPlateThickness = v, _minimumPlateThickness, value,  "MinimumPlateThickness");
+				SetValue( v =>  _minimumPlateThickness = v, _minimumPlateThickness, value,  "MinimumPlateThickness", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -117,7 +117,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _maximumPlateThickness = v, _maximumPlateThickness, value,  "MaximumPlateThickness");
+				SetValue( v =>  _maximumPlateThickness = v, _maximumPlateThickness, value,  "MaximumPlateThickness", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -131,7 +131,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea");
+				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea", 7);
 			} 
 		}	
 		#endregion

@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.ProfileResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSectionReinforcementProperties(IModel model) : base(model) 		{ 
 			Model = model; 
-			_crossSectionReinforcementDefinitions = new ItemSet<IfcReinforcementBarProperties>( this, 0 );
+			_crossSectionReinforcementDefinitions = new ItemSet<IfcReinforcementBarProperties>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _longitudinalStartPosition = v, _longitudinalStartPosition, value,  "LongitudinalStartPosition");
+				SetValue( v =>  _longitudinalStartPosition = v, _longitudinalStartPosition, value,  "LongitudinalStartPosition", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -94,7 +94,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _longitudinalEndPosition = v, _longitudinalEndPosition, value,  "LongitudinalEndPosition");
+				SetValue( v =>  _longitudinalEndPosition = v, _longitudinalEndPosition, value,  "LongitudinalEndPosition", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _transversePosition = v, _transversePosition, value,  "TransversePosition");
+				SetValue( v =>  _transversePosition = v, _transversePosition, value,  "TransversePosition", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 5)]
@@ -122,7 +122,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _reinforcementRole = v, _reinforcementRole, value,  "ReinforcementRole");
+				SetValue( v =>  _reinforcementRole = v, _reinforcementRole, value,  "ReinforcementRole", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
@@ -136,7 +136,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _sectionDefinition = v, _sectionDefinition, value,  "SectionDefinition");
+				SetValue( v =>  _sectionDefinition = v, _sectionDefinition, value,  "SectionDefinition", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 7)]
@@ -176,7 +176,6 @@ namespace Xbim.Ifc4.ProfileResource
 					_sectionDefinition = (IfcSectionProperties)(value.EntityVal);
 					return;
 				case 5: 
-					if (_crossSectionReinforcementDefinitions == null) _crossSectionReinforcementDefinitions = new ItemSet<IfcReinforcementBarProperties>( this );
 					_crossSectionReinforcementDefinitions.InternalAdd((IfcReinforcementBarProperties)value.EntityVal);
 					return;
 				default:

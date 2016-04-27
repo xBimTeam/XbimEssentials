@@ -146,7 +146,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -160,7 +160,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -174,7 +174,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _appliedValue = v, _appliedValue, value,  "AppliedValue");
+				SetValue( v =>  _appliedValue = v, _appliedValue, value,  "AppliedValue", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -188,7 +188,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _unitBasis = v, _unitBasis, value,  "UnitBasis");
+				SetValue( v =>  _unitBasis = v, _unitBasis, value,  "UnitBasis", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -202,7 +202,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _applicableDate = v, _applicableDate, value,  "ApplicableDate");
+				SetValue( v =>  _applicableDate = v, _applicableDate, value,  "ApplicableDate", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
@@ -216,7 +216,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 			set
 			{
-				SetValue( v =>  _fixedUntilDate = v, _fixedUntilDate, value,  "FixedUntilDate");
+				SetValue( v =>  _fixedUntilDate = v, _fixedUntilDate, value,  "FixedUntilDate", 6);
 			} 
 		}	
 		#endregion
@@ -269,7 +269,7 @@ namespace Xbim.Ifc2x3.CostResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -298,7 +298,7 @@ namespace Xbim.Ifc2x3.CostResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

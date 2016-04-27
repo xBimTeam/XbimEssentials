@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix");
+				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _startParam = v, _startParam, value,  "StartParam");
+				SetValue( v =>  _startParam = v, _startParam, value,  "StartParam", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _endParam = v, _endParam, value,  "EndParam");
+				SetValue( v =>  _endParam = v, _endParam, value,  "EndParam", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -115,7 +115,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _referenceSurface = v, _referenceSurface, value,  "ReferenceSurface");
+				SetValue( v =>  _referenceSurface = v, _referenceSurface, value,  "ReferenceSurface", 6);
 			} 
 		}	
 		#endregion

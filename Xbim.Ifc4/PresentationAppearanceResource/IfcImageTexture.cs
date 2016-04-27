@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _uRLReference = v, _uRLReference, value,  "URLReference");
+				SetValue( v =>  _uRLReference = v, _uRLReference, value,  "URLReference", 6);
 			} 
 		}	
 		#endregion

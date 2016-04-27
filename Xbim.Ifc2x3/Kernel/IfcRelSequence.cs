@@ -73,7 +73,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess");
+				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -88,7 +88,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _relatedProcess = v, _relatedProcess, value,  "RelatedProcess");
+				SetValue( v =>  _relatedProcess = v, _relatedProcess, value,  "RelatedProcess", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -102,7 +102,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _timeLag = v, _timeLag, value,  "TimeLag");
+				SetValue( v =>  _timeLag = v, _timeLag, value,  "TimeLag", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 8)]
@@ -116,7 +116,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _sequenceType = v, _sequenceType, value,  "SequenceType");
+				SetValue( v =>  _sequenceType = v, _sequenceType, value,  "SequenceType", 8);
 			} 
 		}	
 		#endregion

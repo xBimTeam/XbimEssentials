@@ -55,7 +55,7 @@ namespace Xbim.CobieExpress
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal CobieAttribute(IModel model) : base(model) 		{ 
 			Model = model; 
-			_allowedValues = new OptionalItemSet<string>( this, 0 );
+			_allowedValues = new OptionalItemSet<string>( this, 0,  11);
 		}
 
 		#region Explicit attribute fields
@@ -79,7 +79,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -93,7 +93,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -107,7 +107,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _stage = v, _stage, value,  "Stage");
+				SetValue( v =>  _stage = v, _stage, value,  "Stage", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
@@ -121,7 +121,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _value = v, _value, value,  "Value");
+				SetValue( v =>  _value = v, _value, value,  "Value", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -135,7 +135,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _unit = v, _unit, value,  "Unit");
+				SetValue( v =>  _unit = v, _unit, value,  "Unit", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 11)]
@@ -195,7 +195,6 @@ namespace Xbim.CobieExpress
 					_unit = value.StringVal;
 					return;
 				case 10: 
-					if (_allowedValues == null) _allowedValues = new OptionalItemSet<string>( this );
 					_allowedValues.InternalAdd(value.StringVal);
 					return;
 				default:

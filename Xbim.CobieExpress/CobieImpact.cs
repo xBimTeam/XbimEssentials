@@ -89,7 +89,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -103,7 +103,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -117,7 +117,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _impactType = v, _impactType, value,  "ImpactType");
+				SetValue( v =>  _impactType = v, _impactType, value,  "ImpactType", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
@@ -131,7 +131,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _impactStage = v, _impactStage, value,  "ImpactStage");
+				SetValue( v =>  _impactStage = v, _impactStage, value,  "ImpactStage", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -145,7 +145,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _value = v, _value, value,  "Value");
+				SetValue( v =>  _value = v, _value, value,  "Value", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
@@ -159,7 +159,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _impactUnit = v, _impactUnit, value,  "ImpactUnit");
+				SetValue( v =>  _impactUnit = v, _impactUnit, value,  "ImpactUnit", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -173,7 +173,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _leadInTime = v, _leadInTime, value,  "LeadInTime");
+				SetValue( v =>  _leadInTime = v, _leadInTime, value,  "LeadInTime", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -187,7 +187,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _duration = v, _duration, value,  "Duration");
+				SetValue( v =>  _duration = v, _duration, value,  "Duration", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -201,7 +201,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _leadOutTime = v, _leadOutTime, value,  "LeadOutTime");
+				SetValue( v =>  _leadOutTime = v, _leadOutTime, value,  "LeadOutTime", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
@@ -215,7 +215,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit");
+				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit", 15);
 			} 
 		}	
 		#endregion

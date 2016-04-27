@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _objectType = v, _objectType, value,  "ObjectType");
+				SetValue( v =>  _objectType = v, _objectType, value,  "ObjectType", 5);
 			} 
 		}	
 		#endregion

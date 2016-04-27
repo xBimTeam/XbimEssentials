@@ -73,7 +73,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _longName = v, _longName, value,  "LongName");
+				SetValue( v =>  _longName = v, _longName, value,  "LongName", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
@@ -87,7 +87,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _compositionType = v, _compositionType, value,  "CompositionType");
+				SetValue( v =>  _compositionType = v, _compositionType, value,  "CompositionType", 9);
 			} 
 		}	
 		#endregion

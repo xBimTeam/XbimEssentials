@@ -101,7 +101,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _email = v, _email, value,  "Email");
+				SetValue( v =>  _email = v, _email, value,  "Email", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -115,7 +115,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _category = v, _category, value,  "Category");
+				SetValue( v =>  _category = v, _category, value,  "Category", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -129,7 +129,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _company = v, _company, value,  "Company");
+				SetValue( v =>  _company = v, _company, value,  "Company", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -143,7 +143,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _phone = v, _phone, value,  "Phone");
+				SetValue( v =>  _phone = v, _phone, value,  "Phone", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -157,7 +157,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _department = v, _department, value,  "Department");
+				SetValue( v =>  _department = v, _department, value,  "Department", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -171,7 +171,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _organizationCode = v, _organizationCode, value,  "OrganizationCode");
+				SetValue( v =>  _organizationCode = v, _organizationCode, value,  "OrganizationCode", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -185,7 +185,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _givenName = v, _givenName, value,  "GivenName");
+				SetValue( v =>  _givenName = v, _givenName, value,  "GivenName", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -199,7 +199,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _familyName = v, _familyName, value,  "FamilyName");
+				SetValue( v =>  _familyName = v, _familyName, value,  "FamilyName", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -213,7 +213,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _street = v, _street, value,  "Street");
+				SetValue( v =>  _street = v, _street, value,  "Street", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -227,7 +227,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _postalBox = v, _postalBox, value,  "PostalBox");
+				SetValue( v =>  _postalBox = v, _postalBox, value,  "PostalBox", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -241,7 +241,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _town = v, _town, value,  "Town");
+				SetValue( v =>  _town = v, _town, value,  "Town", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -255,7 +255,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _stateRegion = v, _stateRegion, value,  "StateRegion");
+				SetValue( v =>  _stateRegion = v, _stateRegion, value,  "StateRegion", 17);
 			} 
 		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
@@ -269,7 +269,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _postalCode = v, _postalCode, value,  "PostalCode");
+				SetValue( v =>  _postalCode = v, _postalCode, value,  "PostalCode", 18);
 			} 
 		}	
 		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
@@ -283,7 +283,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _country = v, _country, value,  "Country");
+				SetValue( v =>  _country = v, _country, value,  "Country", 19);
 			} 
 		}	
 		#endregion

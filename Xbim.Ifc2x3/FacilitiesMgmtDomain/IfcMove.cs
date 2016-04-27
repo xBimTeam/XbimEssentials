@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMove(IModel model) : base(model) 		{ 
 			Model = model; 
-			_punchList = new OptionalItemSet<IfcText>( this, 0 );
+			_punchList = new OptionalItemSet<IfcText>( this, 0,  13);
 		}
 
 		#region Explicit attribute fields
@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _moveFrom = v, _moveFrom, value,  "MoveFrom");
+				SetValue( v =>  _moveFrom = v, _moveFrom, value,  "MoveFrom", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _moveTo = v, _moveTo, value,  "MoveTo");
+				SetValue( v =>  _moveTo = v, _moveTo, value,  "MoveTo", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.None, 1, -1, 21)]
@@ -129,7 +129,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 					_moveTo = (IfcSpatialStructureElement)(value.EntityVal);
 					return;
 				case 12: 
-					if (_punchList == null) _punchList = new OptionalItemSet<IfcText>( this );
 					_punchList.InternalAdd(value.StringVal);
 					return;
 				default:

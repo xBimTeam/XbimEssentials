@@ -49,8 +49,8 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceReinforcementArea(IModel model) : base(model) 		{ 
 			Model = model; 
-			_surfaceReinforcement1 = new OptionalItemSet<IfcLengthMeasure>( this, 3 );
-			_surfaceReinforcement2 = new OptionalItemSet<IfcLengthMeasure>( this, 3 );
+			_surfaceReinforcement1 = new OptionalItemSet<IfcLengthMeasure>( this, 3,  2);
+			_surfaceReinforcement2 = new OptionalItemSet<IfcLengthMeasure>( this, 3,  3);
 		}
 
 		#region Explicit attribute fields
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _shearReinforcement = v, _shearReinforcement, value,  "ShearReinforcement");
+				SetValue( v =>  _shearReinforcement = v, _shearReinforcement, value,  "ShearReinforcement", 4);
 			} 
 		}	
 		#endregion
@@ -109,11 +109,9 @@ namespace Xbim.Ifc4.StructuralLoadResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 1: 
-					if (_surfaceReinforcement1 == null) _surfaceReinforcement1 = new OptionalItemSet<IfcLengthMeasure>( this );
 					_surfaceReinforcement1.InternalAdd(value.RealVal);
 					return;
 				case 2: 
-					if (_surfaceReinforcement2 == null) _surfaceReinforcement2 = new OptionalItemSet<IfcLengthMeasure>( this );
 					_surfaceReinforcement2.InternalAdd(value.RealVal);
 					return;
 				case 3: 

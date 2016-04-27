@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyle(IModel model) : base(model) 		{ 
 			Model = model; 
-			_fillStyles = new ItemSet<IfcFillStyleSelect>( this, 0 );
+			_fillStyles = new ItemSet<IfcFillStyleSelect>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _modelorDraughting = v, _modelorDraughting, value,  "ModelorDraughting");
+				SetValue( v =>  _modelorDraughting = v, _modelorDraughting, value,  "ModelorDraughting", 3);
 			} 
 		}	
 		#endregion
@@ -95,7 +95,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 1: 
-					if (_fillStyles == null) _fillStyles = new ItemSet<IfcFillStyleSelect>( this );
 					_fillStyles.InternalAdd((IfcFillStyleSelect)value.EntityVal);
 					return;
 				case 2: 

@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _combustionTemperature = v, _combustionTemperature, value,  "CombustionTemperature");
+				SetValue( v =>  _combustionTemperature = v, _combustionTemperature, value,  "CombustionTemperature", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _carbonContent = v, _carbonContent, value,  "CarbonContent");
+				SetValue( v =>  _carbonContent = v, _carbonContent, value,  "CarbonContent", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -100,7 +100,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _lowerHeatingValue = v, _lowerHeatingValue, value,  "LowerHeatingValue");
+				SetValue( v =>  _lowerHeatingValue = v, _lowerHeatingValue, value,  "LowerHeatingValue", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -114,7 +114,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _higherHeatingValue = v, _higherHeatingValue, value,  "HigherHeatingValue");
+				SetValue( v =>  _higherHeatingValue = v, _higherHeatingValue, value,  "HigherHeatingValue", 5);
 			} 
 		}	
 		#endregion

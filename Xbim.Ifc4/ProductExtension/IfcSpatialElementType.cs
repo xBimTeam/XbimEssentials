@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _elementType = v, _elementType, value,  "ElementType");
+				SetValue( v =>  _elementType = v, _elementType, value,  "ElementType", 9);
 			} 
 		}	
 		#endregion

@@ -57,7 +57,7 @@ namespace Xbim.Ifc4.ActorResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPostalAddress(IModel model) : base(model) 		{ 
 			Model = model; 
-			_addressLines = new OptionalItemSet<IfcLabel>( this, 0 );
+			_addressLines = new OptionalItemSet<IfcLabel>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _internalLocation = v, _internalLocation, value,  "InternalLocation");
+				SetValue( v =>  _internalLocation = v, _internalLocation, value,  "InternalLocation", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 7)]
@@ -106,7 +106,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _postalBox = v, _postalBox, value,  "PostalBox");
+				SetValue( v =>  _postalBox = v, _postalBox, value,  "PostalBox", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -120,7 +120,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _town = v, _town, value,  "Town");
+				SetValue( v =>  _town = v, _town, value,  "Town", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -134,7 +134,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _region = v, _region, value,  "Region");
+				SetValue( v =>  _region = v, _region, value,  "Region", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -148,7 +148,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _postalCode = v, _postalCode, value,  "PostalCode");
+				SetValue( v =>  _postalCode = v, _postalCode, value,  "PostalCode", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -162,7 +162,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 			set
 			{
-				SetValue( v =>  _country = v, _country, value,  "Country");
+				SetValue( v =>  _country = v, _country, value,  "Country", 10);
 			} 
 		}	
 		#endregion
@@ -185,7 +185,6 @@ namespace Xbim.Ifc4.ActorResource
 					_internalLocation = value.StringVal;
 					return;
 				case 4: 
-					if (_addressLines == null) _addressLines = new OptionalItemSet<IfcLabel>( this );
 					_addressLines.InternalAdd(value.StringVal);
 					return;
 				case 5: 

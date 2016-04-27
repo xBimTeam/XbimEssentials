@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _recurrencePattern = v, _recurrencePattern, value,  "RecurrencePattern");
+				SetValue( v =>  _recurrencePattern = v, _recurrencePattern, value,  "RecurrencePattern", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _start = v, _start, value,  "Start");
+				SetValue( v =>  _start = v, _start, value,  "Start", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _finish = v, _finish, value,  "Finish");
+				SetValue( v =>  _finish = v, _finish, value,  "Finish", 6);
 			} 
 		}	
 		#endregion

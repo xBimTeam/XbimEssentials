@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _axis = v, _axis, value,  "Axis");
+				SetValue( v =>  _axis = v, _axis, value,  "Axis", 9);
 			} 
 		}	
 		#endregion

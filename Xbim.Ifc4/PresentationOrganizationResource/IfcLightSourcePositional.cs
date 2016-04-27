@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _position = v, _position, value,  "Position");
+				SetValue( v =>  _position = v, _position, value,  "Position", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -90,7 +90,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _radius = v, _radius, value,  "Radius");
+				SetValue( v =>  _radius = v, _radius, value,  "Radius", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -104,7 +104,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _constantAttenuation = v, _constantAttenuation, value,  "ConstantAttenuation");
+				SetValue( v =>  _constantAttenuation = v, _constantAttenuation, value,  "ConstantAttenuation", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -118,7 +118,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _distanceAttenuation = v, _distanceAttenuation, value,  "DistanceAttenuation");
+				SetValue( v =>  _distanceAttenuation = v, _distanceAttenuation, value,  "DistanceAttenuation", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -132,7 +132,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _quadricAttenuation = v, _quadricAttenuation, value,  "QuadricAttenuation");
+				SetValue( v =>  _quadricAttenuation = v, _quadricAttenuation, value,  "QuadricAttenuation", 9);
 			} 
 		}	
 		#endregion

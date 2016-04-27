@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 			set
 			{
-				SetValue( v =>  _material = v, _material, value,  "Material");
+				SetValue( v =>  _material = v, _material, value,  "Material", 4);
 			} 
 		}	
 		#endregion

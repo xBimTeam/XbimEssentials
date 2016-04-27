@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPixelTexture(IModel model) : base(model) 		{ 
 			Model = model; 
-			_pixel = new ItemSet<IfcBinary>( this, 0 );
+			_pixel = new ItemSet<IfcBinary>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _width = v, _width, value,  "Width");
+				SetValue( v =>  _width = v, _width, value,  "Width", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _height = v, _height, value,  "Height");
+				SetValue( v =>  _height = v, _height, value,  "Height", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _colourComponents = v, _colourComponents, value,  "ColourComponents");
+				SetValue( v =>  _colourComponents = v, _colourComponents, value,  "ColourComponents", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 11)]
@@ -142,7 +142,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					_colourComponents = value.IntegerVal;
 					return;
 				case 8: 
-					if (_pixel == null) _pixel = new ItemSet<IfcBinary>( this );
 					_pixel.InternalAdd(value.HexadecimalVal);
 					return;
 				default:

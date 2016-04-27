@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation");
+				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _concentrationExponent = v, _concentrationExponent, value,  "ConcentrationExponent");
+				SetValue( v =>  _concentrationExponent = v, _concentrationExponent, value,  "ConcentrationExponent", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _spreadAngle = v, _spreadAngle, value,  "SpreadAngle");
+				SetValue( v =>  _spreadAngle = v, _spreadAngle, value,  "SpreadAngle", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -115,7 +115,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			} 
 			set
 			{
-				SetValue( v =>  _beamWidthAngle = v, _beamWidthAngle, value,  "BeamWidthAngle");
+				SetValue( v =>  _beamWidthAngle = v, _beamWidthAngle, value,  "BeamWidthAngle", 13);
 			} 
 		}	
 		#endregion

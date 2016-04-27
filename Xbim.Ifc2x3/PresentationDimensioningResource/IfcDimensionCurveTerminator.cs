@@ -62,7 +62,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 			} 
 			set
 			{
-				SetValue( v =>  _role = v, _role, value,  "Role");
+				SetValue( v =>  _role = v, _role, value,  "Role", 5);
 			} 
 		}	
 		#endregion

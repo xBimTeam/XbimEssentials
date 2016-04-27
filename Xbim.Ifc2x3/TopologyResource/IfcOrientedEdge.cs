@@ -65,7 +65,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 			} 
 			set
 			{
-				SetValue( v =>  _edgeElement = v, _edgeElement, value,  "EdgeElement");
+				SetValue( v =>  _edgeElement = v, _edgeElement, value,  "EdgeElement", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -79,7 +79,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 			} 
 			set
 			{
-				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation");
+				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation", 4);
 			} 
 		}	
 		#endregion

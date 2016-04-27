@@ -75,7 +75,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _dynamicViscosity = v, _dynamicViscosity, value,  "DynamicViscosity");
+				SetValue( v =>  _dynamicViscosity = v, _dynamicViscosity, value,  "DynamicViscosity", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -89,7 +89,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _youngModulus = v, _youngModulus, value,  "YoungModulus");
+				SetValue( v =>  _youngModulus = v, _youngModulus, value,  "YoungModulus", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -103,7 +103,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _shearModulus = v, _shearModulus, value,  "ShearModulus");
+				SetValue( v =>  _shearModulus = v, _shearModulus, value,  "ShearModulus", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -117,7 +117,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _poissonRatio = v, _poissonRatio, value,  "PoissonRatio");
+				SetValue( v =>  _poissonRatio = v, _poissonRatio, value,  "PoissonRatio", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -131,7 +131,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _thermalExpansionCoefficient = v, _thermalExpansionCoefficient, value,  "ThermalExpansionCoefficient");
+				SetValue( v =>  _thermalExpansionCoefficient = v, _thermalExpansionCoefficient, value,  "ThermalExpansionCoefficient", 6);
 			} 
 		}	
 		#endregion

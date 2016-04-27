@@ -129,7 +129,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _fileExtension = v, _fileExtension, value,  "FileExtension");
+				SetValue( v =>  _fileExtension = v, _fileExtension, value,  "FileExtension", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -143,7 +143,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _mimeContentType = v, _mimeContentType, value,  "MimeContentType");
+				SetValue( v =>  _mimeContentType = v, _mimeContentType, value,  "MimeContentType", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -157,7 +157,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _mimeSubtype = v, _mimeSubtype, value,  "MimeSubtype");
+				SetValue( v =>  _mimeSubtype = v, _mimeSubtype, value,  "MimeSubtype", 3);
 			} 
 		}	
 		#endregion
@@ -181,7 +181,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -210,7 +210,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

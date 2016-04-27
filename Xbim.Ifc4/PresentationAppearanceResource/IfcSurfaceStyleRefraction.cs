@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _refractionIndex = v, _refractionIndex, value,  "RefractionIndex");
+				SetValue( v =>  _refractionIndex = v, _refractionIndex, value,  "RefractionIndex", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _dispersionFactor = v, _dispersionFactor, value,  "DispersionFactor");
+				SetValue( v =>  _dispersionFactor = v, _dispersionFactor, value,  "DispersionFactor", 2);
 			} 
 		}	
 		#endregion

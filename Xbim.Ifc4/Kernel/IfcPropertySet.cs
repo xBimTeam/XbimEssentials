@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.Kernel
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertySet(IModel model) : base(model) 		{ 
 			Model = model; 
-			_hasProperties = new ItemSet<IfcProperty>( this, 0 );
+			_hasProperties = new ItemSet<IfcProperty>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
@@ -82,7 +82,6 @@ namespace Xbim.Ifc4.Kernel
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 4: 
-					if (_hasProperties == null) _hasProperties = new ItemSet<IfcProperty>( this );
 					_hasProperties.InternalAdd((IfcProperty)value.EntityVal);
 					return;
 				default:

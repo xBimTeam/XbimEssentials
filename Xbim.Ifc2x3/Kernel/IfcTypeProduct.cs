@@ -48,7 +48,7 @@ namespace Xbim.Ifc2x3.Kernel
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTypeProduct(IModel model) : base(model) 		{ 
 			Model = model; 
-			_representationMaps = new OptionalItemSet<IfcRepresentationMap>( this, 0 );
+			_representationMaps = new OptionalItemSet<IfcRepresentationMap>( this, 0,  7);
 		}
 
 		#region Explicit attribute fields
@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _tag = v, _tag, value,  "Tag");
+				SetValue( v =>  _tag = v, _tag, value,  "Tag", 8);
 			} 
 		}	
 		#endregion
@@ -101,7 +101,6 @@ namespace Xbim.Ifc2x3.Kernel
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 6: 
-					if (_representationMaps == null) _representationMaps = new OptionalItemSet<IfcRepresentationMap>( this );
 					_representationMaps.InternalAdd((IfcRepresentationMap)value.EntityVal);
 					return;
 				case 7: 

@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _longName = v, _longName, value,  "LongName");
+				SetValue( v =>  _longName = v, _longName, value,  "LongName", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 7);
 			} 
 		}	
 		#endregion

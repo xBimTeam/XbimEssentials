@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _wallThickness = v, _wallThickness, value,  "WallThickness");
+				SetValue( v =>  _wallThickness = v, _wallThickness, value,  "WallThickness", 5);
 			} 
 		}	
 		#endregion

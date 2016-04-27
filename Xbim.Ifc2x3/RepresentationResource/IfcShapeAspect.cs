@@ -113,7 +113,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcShapeAspect(IModel model) 		{ 
 			Model = model; 
-			_shapeRepresentations = new ItemSet<IfcShapeModel>( this, 0 );
+			_shapeRepresentations = new ItemSet<IfcShapeModel>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -147,7 +147,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -161,7 +161,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -175,7 +175,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _productDefinitional = v, _productDefinitional, value,  "ProductDefinitional");
+				SetValue( v =>  _productDefinitional = v, _productDefinitional, value,  "ProductDefinitional", 4);
 			} 
 		}	
 		[IndexedProperty]
@@ -190,7 +190,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 			set
 			{
-				SetValue( v =>  _partOfProductDefinitionShape = v, _partOfProductDefinitionShape, value,  "PartOfProductDefinitionShape");
+				SetValue( v =>  _partOfProductDefinitionShape = v, _partOfProductDefinitionShape, value,  "PartOfProductDefinitionShape", 5);
 			} 
 		}	
 		#endregion
@@ -214,7 +214,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -243,7 +243,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -254,7 +254,6 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_shapeRepresentations == null) _shapeRepresentations = new ItemSet<IfcShapeModel>( this );
 					_shapeRepresentations.InternalAdd((IfcShapeModel)value.EntityVal);
 					return;
 				case 1: 

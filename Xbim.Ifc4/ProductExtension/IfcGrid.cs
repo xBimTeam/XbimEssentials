@@ -54,9 +54,9 @@ namespace Xbim.Ifc4.ProductExtension
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGrid(IModel model) : base(model) 		{ 
 			Model = model; 
-			_uAxes = new ItemSet<IfcGridAxis>( this, 0 );
-			_vAxes = new ItemSet<IfcGridAxis>( this, 0 );
-			_wAxes = new OptionalItemSet<IfcGridAxis>( this, 0 );
+			_uAxes = new ItemSet<IfcGridAxis>( this, 0,  8);
+			_vAxes = new ItemSet<IfcGridAxis>( this, 0,  9);
+			_wAxes = new OptionalItemSet<IfcGridAxis>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 11);
 			} 
 		}	
 		#endregion
@@ -146,15 +146,12 @@ namespace Xbim.Ifc4.ProductExtension
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 7: 
-					if (_uAxes == null) _uAxes = new ItemSet<IfcGridAxis>( this );
 					_uAxes.InternalAdd((IfcGridAxis)value.EntityVal);
 					return;
 				case 8: 
-					if (_vAxes == null) _vAxes = new ItemSet<IfcGridAxis>( this );
 					_vAxes.InternalAdd((IfcGridAxis)value.EntityVal);
 					return;
 				case 9: 
-					if (_wAxes == null) _wAxes = new OptionalItemSet<IfcGridAxis>( this );
 					_wAxes.InternalAdd((IfcGridAxis)value.EntityVal);
 					return;
 				case 10: 

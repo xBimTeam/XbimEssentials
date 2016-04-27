@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _mappingSource = v, _mappingSource, value,  "MappingSource");
+				SetValue( v =>  _mappingSource = v, _mappingSource, value,  "MappingSource", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _mappingTarget = v, _mappingTarget, value,  "MappingTarget");
+				SetValue( v =>  _mappingTarget = v, _mappingTarget, value,  "MappingTarget", 2);
 			} 
 		}	
 		#endregion

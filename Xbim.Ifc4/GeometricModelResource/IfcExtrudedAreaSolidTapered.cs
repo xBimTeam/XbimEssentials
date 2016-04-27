@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _endSweptArea = v, _endSweptArea, value,  "EndSweptArea");
+				SetValue( v =>  _endSweptArea = v, _endSweptArea, value,  "EndSweptArea", 5);
 			} 
 		}	
 		#endregion

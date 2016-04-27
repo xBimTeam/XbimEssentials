@@ -73,7 +73,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _resourceIdentifier = v, _resourceIdentifier, value,  "ResourceIdentifier");
+				SetValue( v =>  _resourceIdentifier = v, _resourceIdentifier, value,  "ResourceIdentifier", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -87,7 +87,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _resourceGroup = v, _resourceGroup, value,  "ResourceGroup");
+				SetValue( v =>  _resourceGroup = v, _resourceGroup, value,  "ResourceGroup", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 14)]
@@ -101,7 +101,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _resourceConsumption = v, _resourceConsumption, value,  "ResourceConsumption");
+				SetValue( v =>  _resourceConsumption = v, _resourceConsumption, value,  "ResourceConsumption", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
@@ -115,7 +115,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _baseQuantity = v, _baseQuantity, value,  "BaseQuantity");
+				SetValue( v =>  _baseQuantity = v, _baseQuantity, value,  "BaseQuantity", 9);
 			} 
 		}	
 		#endregion

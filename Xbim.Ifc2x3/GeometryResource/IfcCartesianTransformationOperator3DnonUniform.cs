@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _scale2 = v, _scale2, value,  "Scale2");
+				SetValue( v =>  _scale2 = v, _scale2, value,  "Scale2", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _scale3 = v, _scale3, value,  "Scale3");
+				SetValue( v =>  _scale3 = v, _scale3, value,  "Scale3", 7);
 			} 
 		}	
 		#endregion

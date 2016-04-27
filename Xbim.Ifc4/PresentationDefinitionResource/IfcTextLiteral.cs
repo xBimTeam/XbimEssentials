@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			} 
 			set
 			{
-				SetValue( v =>  _literal = v, _literal, value,  "Literal");
+				SetValue( v =>  _literal = v, _literal, value,  "Literal", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			} 
 			set
 			{
-				SetValue( v =>  _placement = v, _placement, value,  "Placement");
+				SetValue( v =>  _placement = v, _placement, value,  "Placement", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 5)]
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			} 
 			set
 			{
-				SetValue( v =>  _path = v, _path, value,  "Path");
+				SetValue( v =>  _path = v, _path, value,  "Path", 3);
 			} 
 		}	
 		#endregion

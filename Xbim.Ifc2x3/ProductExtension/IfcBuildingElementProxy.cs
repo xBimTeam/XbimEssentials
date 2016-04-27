@@ -62,7 +62,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _compositionType = v, _compositionType, value,  "CompositionType");
+				SetValue( v =>  _compositionType = v, _compositionType, value,  "CompositionType", 9);
 			} 
 		}	
 		#endregion

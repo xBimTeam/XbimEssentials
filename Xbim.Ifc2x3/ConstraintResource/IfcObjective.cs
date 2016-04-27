@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _benchmarkValues = v, _benchmarkValues, value,  "BenchmarkValues");
+				SetValue( v =>  _benchmarkValues = v, _benchmarkValues, value,  "BenchmarkValues", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _resultValues = v, _resultValues, value,  "ResultValues");
+				SetValue( v =>  _resultValues = v, _resultValues, value,  "ResultValues", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 16)]
@@ -100,7 +100,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _objectiveQualifier = v, _objectiveQualifier, value,  "ObjectiveQualifier");
+				SetValue( v =>  _objectiveQualifier = v, _objectiveQualifier, value,  "ObjectiveQualifier", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -114,7 +114,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedQualifier = v, _userDefinedQualifier, value,  "UserDefinedQualifier");
+				SetValue( v =>  _userDefinedQualifier = v, _userDefinedQualifier, value,  "UserDefinedQualifier", 11);
 			} 
 		}	
 		#endregion

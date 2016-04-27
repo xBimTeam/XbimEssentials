@@ -83,7 +83,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -97,7 +97,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -111,7 +111,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _connectionType = v, _connectionType, value,  "ConnectionType");
+				SetValue( v =>  _connectionType = v, _connectionType, value,  "ConnectionType", 8);
 			} 
 		}	
 		[IndexedProperty]
@@ -126,7 +126,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _componentA = v, _componentA, value,  "ComponentA");
+				SetValue( v =>  _componentA = v, _componentA, value,  "ComponentA", 9);
 			} 
 		}	
 		[IndexedProperty]
@@ -141,7 +141,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _componentB = v, _componentB, value,  "ComponentB");
+				SetValue( v =>  _componentB = v, _componentB, value,  "ComponentB", 10);
 			} 
 		}	
 		[IndexedProperty]
@@ -156,7 +156,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _realizingComponent = v, _realizingComponent, value,  "RealizingComponent");
+				SetValue( v =>  _realizingComponent = v, _realizingComponent, value,  "RealizingComponent", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -170,7 +170,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _portNameA = v, _portNameA, value,  "PortNameA");
+				SetValue( v =>  _portNameA = v, _portNameA, value,  "PortNameA", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -184,7 +184,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _portNameB = v, _portNameB, value,  "PortNameB");
+				SetValue( v =>  _portNameB = v, _portNameB, value,  "PortNameB", 13);
 			} 
 		}	
 		#endregion

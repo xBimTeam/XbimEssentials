@@ -62,7 +62,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCostSchedule(IModel model) : base(model) 		{ 
 			Model = model; 
-			_targetUsers = new OptionalItemSet<IfcActorSelect>( this, 0 );
+			_targetUsers = new OptionalItemSet<IfcActorSelect>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
@@ -88,7 +88,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _submittedBy = v, _submittedBy, value,  "SubmittedBy");
+				SetValue( v =>  _submittedBy = v, _submittedBy, value,  "SubmittedBy", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -102,7 +102,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _preparedBy = v, _preparedBy, value,  "PreparedBy");
+				SetValue( v =>  _preparedBy = v, _preparedBy, value,  "PreparedBy", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -116,7 +116,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _submittedOn = v, _submittedOn, value,  "SubmittedOn");
+				SetValue( v =>  _submittedOn = v, _submittedOn, value,  "SubmittedOn", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -130,7 +130,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _status = v, _status, value,  "Status");
+				SetValue( v =>  _status = v, _status, value,  "Status", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 16)]
@@ -154,7 +154,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _updateDate = v, _updateDate, value,  "UpdateDate");
+				SetValue( v =>  _updateDate = v, _updateDate, value,  "UpdateDate", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
@@ -168,7 +168,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _iD = v, _iD, value,  "ID");
+				SetValue( v =>  _iD = v, _iD, value,  "ID", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
@@ -182,7 +182,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 13);
 			} 
 		}	
 		#endregion
@@ -216,7 +216,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 					_status = value.StringVal;
 					return;
 				case 9: 
-					if (_targetUsers == null) _targetUsers = new OptionalItemSet<IfcActorSelect>( this );
 					_targetUsers.InternalAdd((IfcActorSelect)value.EntityVal);
 					return;
 				case 10: 

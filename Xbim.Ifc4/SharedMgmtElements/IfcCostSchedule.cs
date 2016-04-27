@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _status = v, _status, value,  "Status");
+				SetValue( v =>  _status = v, _status, value,  "Status", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _submittedOn = v, _submittedOn, value,  "SubmittedOn");
+				SetValue( v =>  _submittedOn = v, _submittedOn, value,  "SubmittedOn", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -116,7 +116,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _updateDate = v, _updateDate, value,  "UpdateDate");
+				SetValue( v =>  _updateDate = v, _updateDate, value,  "UpdateDate", 10);
 			} 
 		}	
 		#endregion

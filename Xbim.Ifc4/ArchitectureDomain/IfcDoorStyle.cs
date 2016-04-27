@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType");
+				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _constructionType = v, _constructionType, value,  "ConstructionType");
+				SetValue( v =>  _constructionType = v, _constructionType, value,  "ConstructionType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence");
+				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -115,7 +115,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _sizeable = v, _sizeable, value,  "Sizeable");
+				SetValue( v =>  _sizeable = v, _sizeable, value,  "Sizeable", 12);
 			} 
 		}	
 		#endregion

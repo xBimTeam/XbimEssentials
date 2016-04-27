@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleWork = v, _scheduleWork, value,  "ScheduleWork");
+				SetValue( v =>  _scheduleWork = v, _scheduleWork, value,  "ScheduleWork", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -119,7 +119,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleUsage = v, _scheduleUsage, value,  "ScheduleUsage");
+				SetValue( v =>  _scheduleUsage = v, _scheduleUsage, value,  "ScheduleUsage", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -133,7 +133,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleStart = v, _scheduleStart, value,  "ScheduleStart");
+				SetValue( v =>  _scheduleStart = v, _scheduleStart, value,  "ScheduleStart", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -147,7 +147,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleFinish = v, _scheduleFinish, value,  "ScheduleFinish");
+				SetValue( v =>  _scheduleFinish = v, _scheduleFinish, value,  "ScheduleFinish", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -161,7 +161,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleContour = v, _scheduleContour, value,  "ScheduleContour");
+				SetValue( v =>  _scheduleContour = v, _scheduleContour, value,  "ScheduleContour", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -175,7 +175,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _levelingDelay = v, _levelingDelay, value,  "LevelingDelay");
+				SetValue( v =>  _levelingDelay = v, _levelingDelay, value,  "LevelingDelay", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -189,7 +189,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _isOverAllocated = v, _isOverAllocated, value,  "IsOverAllocated");
+				SetValue( v =>  _isOverAllocated = v, _isOverAllocated, value,  "IsOverAllocated", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -203,7 +203,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _statusTime = v, _statusTime, value,  "StatusTime");
+				SetValue( v =>  _statusTime = v, _statusTime, value,  "StatusTime", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -217,7 +217,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _actualWork = v, _actualWork, value,  "ActualWork");
+				SetValue( v =>  _actualWork = v, _actualWork, value,  "ActualWork", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -231,7 +231,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _actualUsage = v, _actualUsage, value,  "ActualUsage");
+				SetValue( v =>  _actualUsage = v, _actualUsage, value,  "ActualUsage", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -245,7 +245,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _actualStart = v, _actualStart, value,  "ActualStart");
+				SetValue( v =>  _actualStart = v, _actualStart, value,  "ActualStart", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -259,7 +259,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _actualFinish = v, _actualFinish, value,  "ActualFinish");
+				SetValue( v =>  _actualFinish = v, _actualFinish, value,  "ActualFinish", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -273,7 +273,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _remainingWork = v, _remainingWork, value,  "RemainingWork");
+				SetValue( v =>  _remainingWork = v, _remainingWork, value,  "RemainingWork", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -287,7 +287,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _remainingUsage = v, _remainingUsage, value,  "RemainingUsage");
+				SetValue( v =>  _remainingUsage = v, _remainingUsage, value,  "RemainingUsage", 17);
 			} 
 		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
@@ -301,7 +301,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _completion = v, _completion, value,  "Completion");
+				SetValue( v =>  _completion = v, _completion, value,  "Completion", 18);
 			} 
 		}	
 		#endregion

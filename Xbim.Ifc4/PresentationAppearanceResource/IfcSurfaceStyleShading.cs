@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _surfaceColour = v, _surfaceColour, value,  "SurfaceColour");
+				SetValue( v =>  _surfaceColour = v, _surfaceColour, value,  "SurfaceColour", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _transparency = v, _transparency, value,  "Transparency");
+				SetValue( v =>  _transparency = v, _transparency, value,  "Transparency", 2);
 			} 
 		}	
 		#endregion

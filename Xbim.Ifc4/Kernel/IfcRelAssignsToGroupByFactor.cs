@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _factor = v, _factor, value,  "Factor");
+				SetValue( v =>  _factor = v, _factor, value,  "Factor", 8);
 			} 
 		}	
 		#endregion

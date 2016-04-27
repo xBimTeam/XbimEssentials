@@ -170,7 +170,7 @@ namespace Xbim.IO.Esent
         public IPersistEntity New(Type t)
         {
             var entity = Cache.CreateNew(t);
-            _model.HandleEntityChange(ChangeType.New, entity);
+            _model.HandleEntityChange(ChangeType.New, entity, 0);
             return entity;
 
         }

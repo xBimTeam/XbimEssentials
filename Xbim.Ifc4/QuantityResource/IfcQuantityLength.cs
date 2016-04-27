@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.QuantityResource
 			} 
 			set
 			{
-				SetValue( v =>  _lengthValue = v, _lengthValue, value,  "LengthValue");
+				SetValue( v =>  _lengthValue = v, _lengthValue, value,  "LengthValue", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.QuantityResource
 			} 
 			set
 			{
-				SetValue( v =>  _formula = v, _formula, value,  "Formula");
+				SetValue( v =>  _formula = v, _formula, value,  "Formula", 5);
 			} 
 		}	
 		#endregion

@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _liningDepth = v, _liningDepth, value,  "LiningDepth");
+				SetValue( v =>  _liningDepth = v, _liningDepth, value,  "LiningDepth", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -115,7 +115,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _liningThickness = v, _liningThickness, value,  "LiningThickness");
+				SetValue( v =>  _liningThickness = v, _liningThickness, value,  "LiningThickness", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -129,7 +129,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _thresholdDepth = v, _thresholdDepth, value,  "ThresholdDepth");
+				SetValue( v =>  _thresholdDepth = v, _thresholdDepth, value,  "ThresholdDepth", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -143,7 +143,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _thresholdThickness = v, _thresholdThickness, value,  "ThresholdThickness");
+				SetValue( v =>  _thresholdThickness = v, _thresholdThickness, value,  "ThresholdThickness", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -157,7 +157,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _transomThickness = v, _transomThickness, value,  "TransomThickness");
+				SetValue( v =>  _transomThickness = v, _transomThickness, value,  "TransomThickness", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -171,7 +171,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _transomOffset = v, _transomOffset, value,  "TransomOffset");
+				SetValue( v =>  _transomOffset = v, _transomOffset, value,  "TransomOffset", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -185,7 +185,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _liningOffset = v, _liningOffset, value,  "LiningOffset");
+				SetValue( v =>  _liningOffset = v, _liningOffset, value,  "LiningOffset", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -199,7 +199,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _thresholdOffset = v, _thresholdOffset, value,  "ThresholdOffset");
+				SetValue( v =>  _thresholdOffset = v, _thresholdOffset, value,  "ThresholdOffset", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
@@ -213,7 +213,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _casingThickness = v, _casingThickness, value,  "CasingThickness");
+				SetValue( v =>  _casingThickness = v, _casingThickness, value,  "CasingThickness", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
@@ -227,7 +227,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _casingDepth = v, _casingDepth, value,  "CasingDepth");
+				SetValue( v =>  _casingDepth = v, _casingDepth, value,  "CasingDepth", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
@@ -241,7 +241,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle");
+				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -255,7 +255,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _liningToPanelOffsetX = v, _liningToPanelOffsetX, value,  "LiningToPanelOffsetX");
+				SetValue( v =>  _liningToPanelOffsetX = v, _liningToPanelOffsetX, value,  "LiningToPanelOffsetX", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -269,7 +269,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _liningToPanelOffsetY = v, _liningToPanelOffsetY, value,  "LiningToPanelOffsetY");
+				SetValue( v =>  _liningToPanelOffsetY = v, _liningToPanelOffsetY, value,  "LiningToPanelOffsetY", 17);
 			} 
 		}	
 		#endregion

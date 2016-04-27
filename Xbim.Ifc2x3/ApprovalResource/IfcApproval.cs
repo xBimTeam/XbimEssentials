@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -162,7 +162,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _approvalDateTime = v, _approvalDateTime, value,  "ApprovalDateTime");
+				SetValue( v =>  _approvalDateTime = v, _approvalDateTime, value,  "ApprovalDateTime", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -176,7 +176,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _approvalStatus = v, _approvalStatus, value,  "ApprovalStatus");
+				SetValue( v =>  _approvalStatus = v, _approvalStatus, value,  "ApprovalStatus", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -190,7 +190,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _approvalLevel = v, _approvalLevel, value,  "ApprovalLevel");
+				SetValue( v =>  _approvalLevel = v, _approvalLevel, value,  "ApprovalLevel", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -204,7 +204,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _approvalQualifier = v, _approvalQualifier, value,  "ApprovalQualifier");
+				SetValue( v =>  _approvalQualifier = v, _approvalQualifier, value,  "ApprovalQualifier", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -218,7 +218,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -232,7 +232,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier");
+				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier", 7);
 			} 
 		}	
 		#endregion
@@ -285,7 +285,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -314,7 +314,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

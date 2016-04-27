@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _criterion = v, _criterion, value,  "Criterion");
+				SetValue( v =>  _criterion = v, _criterion, value,  "Criterion", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _criterionDateTime = v, _criterionDateTime, value,  "CriterionDateTime");
+				SetValue( v =>  _criterionDateTime = v, _criterionDateTime, value,  "CriterionDateTime", 7);
 			} 
 		}	
 		#endregion

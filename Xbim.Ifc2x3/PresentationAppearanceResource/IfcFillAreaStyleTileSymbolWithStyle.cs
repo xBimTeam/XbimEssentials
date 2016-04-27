@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _symbol = v, _symbol, value,  "Symbol");
+				SetValue( v =>  _symbol = v, _symbol, value,  "Symbol", 1);
 			} 
 		}	
 		#endregion

@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement");
+				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -93,7 +93,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement");
+				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -107,7 +107,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _interferenceGeometry = v, _interferenceGeometry, value,  "InterferenceGeometry");
+				SetValue( v =>  _interferenceGeometry = v, _interferenceGeometry, value,  "InterferenceGeometry", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -121,7 +121,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _interferenceType = v, _interferenceType, value,  "InterferenceType");
+				SetValue( v =>  _interferenceType = v, _interferenceType, value,  "InterferenceType", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -135,7 +135,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _impliedOrder = v, _impliedOrder, value,  "ImpliedOrder");
+				SetValue( v =>  _impliedOrder = v, _impliedOrder, value,  "ImpliedOrder", 9);
 			} 
 		}	
 		#endregion

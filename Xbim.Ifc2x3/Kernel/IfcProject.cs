@@ -52,7 +52,7 @@ namespace Xbim.Ifc2x3.Kernel
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProject(IModel model) : base(model) 		{ 
 			Model = model; 
-			_representationContexts = new ItemSet<IfcRepresentationContext>( this, 0 );
+			_representationContexts = new ItemSet<IfcRepresentationContext>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
@@ -74,7 +74,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _longName = v, _longName, value,  "LongName");
+				SetValue( v =>  _longName = v, _longName, value,  "LongName", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -88,7 +88,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _phase = v, _phase, value,  "Phase");
+				SetValue( v =>  _phase = v, _phase, value,  "Phase", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 13)]
@@ -112,7 +112,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _unitsInContext = v, _unitsInContext, value,  "UnitsInContext");
+				SetValue( v =>  _unitsInContext = v, _unitsInContext, value,  "UnitsInContext", 9);
 			} 
 		}	
 		#endregion
@@ -140,7 +140,6 @@ namespace Xbim.Ifc2x3.Kernel
 					_phase = value.StringVal;
 					return;
 				case 7: 
-					if (_representationContexts == null) _representationContexts = new ItemSet<IfcRepresentationContext>( this );
 					_representationContexts.InternalAdd((IfcRepresentationContext)value.EntityVal);
 					return;
 				case 8: 

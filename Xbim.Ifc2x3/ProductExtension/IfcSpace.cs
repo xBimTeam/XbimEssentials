@@ -70,7 +70,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _interiorOrExteriorSpace = v, _interiorOrExteriorSpace, value,  "InteriorOrExteriorSpace");
+				SetValue( v =>  _interiorOrExteriorSpace = v, _interiorOrExteriorSpace, value,  "InteriorOrExteriorSpace", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _elevationWithFlooring = v, _elevationWithFlooring, value,  "ElevationWithFlooring");
+				SetValue( v =>  _elevationWithFlooring = v, _elevationWithFlooring, value,  "ElevationWithFlooring", 11);
 			} 
 		}	
 		#endregion

@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstructionResourceType(IModel model) : base(model) 		{ 
 			Model = model; 
-			_baseCosts = new OptionalItemSet<IfcAppliedValue>( this, 0 );
+			_baseCosts = new OptionalItemSet<IfcAppliedValue>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _baseQuantity = v, _baseQuantity, value,  "BaseQuantity");
+				SetValue( v =>  _baseQuantity = v, _baseQuantity, value,  "BaseQuantity", 11);
 			} 
 		}	
 		#endregion
@@ -105,7 +105,6 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 9: 
-					if (_baseCosts == null) _baseCosts = new OptionalItemSet<IfcAppliedValue>( this );
 					_baseCosts.InternalAdd((IfcAppliedValue)value.EntityVal);
 					return;
 				case 10: 

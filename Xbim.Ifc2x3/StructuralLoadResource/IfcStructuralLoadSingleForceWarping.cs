@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _warpingMoment = v, _warpingMoment, value,  "WarpingMoment");
+				SetValue( v =>  _warpingMoment = v, _warpingMoment, value,  "WarpingMoment", 8);
 			} 
 		}	
 		#endregion

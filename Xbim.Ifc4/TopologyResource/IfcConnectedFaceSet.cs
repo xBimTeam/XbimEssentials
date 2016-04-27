@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.TopologyResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectedFaceSet(IModel model) : base(model) 		{ 
 			Model = model; 
-			_cfsFaces = new ItemSet<IfcFace>( this, 0 );
+			_cfsFaces = new ItemSet<IfcFace>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -74,7 +74,6 @@ namespace Xbim.Ifc4.TopologyResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_cfsFaces == null) _cfsFaces = new ItemSet<IfcFace>( this );
 					_cfsFaces.InternalAdd((IfcFace)value.EntityVal);
 					return;
 				default:

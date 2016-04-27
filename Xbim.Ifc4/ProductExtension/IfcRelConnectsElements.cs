@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _connectionGeometry = v, _connectionGeometry, value,  "ConnectionGeometry");
+				SetValue( v =>  _connectionGeometry = v, _connectionGeometry, value,  "ConnectionGeometry", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement");
+				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement", 6);
 			} 
 		}	
 		[IndexedProperty]
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement");
+				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement", 7);
 			} 
 		}	
 		#endregion

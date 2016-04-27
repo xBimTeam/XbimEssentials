@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _parentBoundary = v, _parentBoundary, value,  "ParentBoundary");
+				SetValue( v =>  _parentBoundary = v, _parentBoundary, value,  "ParentBoundary", 10);
 			} 
 		}	
 		#endregion

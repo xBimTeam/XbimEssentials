@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _displacementX = v, _displacementX, value,  "DisplacementX");
+				SetValue( v =>  _displacementX = v, _displacementX, value,  "DisplacementX", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -92,7 +92,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _displacementY = v, _displacementY, value,  "DisplacementY");
+				SetValue( v =>  _displacementY = v, _displacementY, value,  "DisplacementY", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -106,7 +106,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _displacementZ = v, _displacementZ, value,  "DisplacementZ");
+				SetValue( v =>  _displacementZ = v, _displacementZ, value,  "DisplacementZ", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -120,7 +120,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _rotationalDisplacementRX = v, _rotationalDisplacementRX, value,  "RotationalDisplacementRX");
+				SetValue( v =>  _rotationalDisplacementRX = v, _rotationalDisplacementRX, value,  "RotationalDisplacementRX", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -134,7 +134,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _rotationalDisplacementRY = v, _rotationalDisplacementRY, value,  "RotationalDisplacementRY");
+				SetValue( v =>  _rotationalDisplacementRY = v, _rotationalDisplacementRY, value,  "RotationalDisplacementRY", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -148,7 +148,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 			} 
 			set
 			{
-				SetValue( v =>  _rotationalDisplacementRZ = v, _rotationalDisplacementRZ, value,  "RotationalDisplacementRZ");
+				SetValue( v =>  _rotationalDisplacementRZ = v, _rotationalDisplacementRZ, value,  "RotationalDisplacementRZ", 7);
 			} 
 		}	
 		#endregion

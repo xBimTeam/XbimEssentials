@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProjectOrderRecord(IModel model) : base(model) 		{ 
 			Model = model; 
-			_records = new ItemSet<IfcRelAssignsToProjectOrder>( this, 0 );
+			_records = new ItemSet<IfcRelAssignsToProjectOrder>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
@@ -77,7 +77,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 7);
 			} 
 		}	
 		#endregion
@@ -99,7 +99,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 5: 
-					if (_records == null) _records = new ItemSet<IfcRelAssignsToProjectOrder>( this );
 					_records.InternalAdd((IfcRelAssignsToProjectOrder)value.EntityVal);
 					return;
 				case 6: 

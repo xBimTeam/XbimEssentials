@@ -119,10 +119,10 @@ namespace Xbim.Ifc4.DateTimeResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRecurrencePattern(IModel model) 		{ 
 			Model = model; 
-			_dayComponent = new OptionalItemSet<IfcDayInMonthNumber>( this, 0 );
-			_weekdayComponent = new OptionalItemSet<IfcDayInWeekNumber>( this, 0 );
-			_monthComponent = new OptionalItemSet<IfcMonthInYearNumber>( this, 0 );
-			_timePeriods = new OptionalItemSet<IfcTimePeriod>( this, 0 );
+			_dayComponent = new OptionalItemSet<IfcDayInMonthNumber>( this, 0,  2);
+			_weekdayComponent = new OptionalItemSet<IfcDayInWeekNumber>( this, 0,  3);
+			_monthComponent = new OptionalItemSet<IfcMonthInYearNumber>( this, 0,  4);
+			_timePeriods = new OptionalItemSet<IfcTimePeriod>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
@@ -148,7 +148,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _recurrenceType = v, _recurrenceType, value,  "RecurrenceType");
+				SetValue( v =>  _recurrenceType = v, _recurrenceType, value,  "RecurrenceType", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, 1, -1, 2)]
@@ -192,7 +192,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _position = v, _position, value,  "Position");
+				SetValue( v =>  _position = v, _position, value,  "Position", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -206,7 +206,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _interval = v, _interval, value,  "Interval");
+				SetValue( v =>  _interval = v, _interval, value,  "Interval", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -220,7 +220,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			} 
 			set
 			{
-				SetValue( v =>  _occurrences = v, _occurrences, value,  "Occurrences");
+				SetValue( v =>  _occurrences = v, _occurrences, value,  "Occurrences", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 8)]
@@ -254,7 +254,7 @@ namespace Xbim.Ifc4.DateTimeResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -283,7 +283,7 @@ namespace Xbim.Ifc4.DateTimeResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -297,15 +297,12 @@ namespace Xbim.Ifc4.DateTimeResource
                     _recurrenceType = (IfcRecurrenceTypeEnum) System.Enum.Parse(typeof (IfcRecurrenceTypeEnum), value.EnumVal, true);
 					return;
 				case 1: 
-					if (_dayComponent == null) _dayComponent = new OptionalItemSet<IfcDayInMonthNumber>( this );
 					_dayComponent.InternalAdd(value.IntegerVal);
 					return;
 				case 2: 
-					if (_weekdayComponent == null) _weekdayComponent = new OptionalItemSet<IfcDayInWeekNumber>( this );
 					_weekdayComponent.InternalAdd(value.IntegerVal);
 					return;
 				case 3: 
-					if (_monthComponent == null) _monthComponent = new OptionalItemSet<IfcMonthInYearNumber>( this );
 					_monthComponent.InternalAdd(value.IntegerVal);
 					return;
 				case 4: 
@@ -318,7 +315,6 @@ namespace Xbim.Ifc4.DateTimeResource
 					_occurrences = value.IntegerVal;
 					return;
 				case 7: 
-					if (_timePeriods == null) _timePeriods = new OptionalItemSet<IfcTimePeriod>( this );
 					_timePeriods.InternalAdd((IfcTimePeriod)value.EntityVal);
 					return;
 				default:

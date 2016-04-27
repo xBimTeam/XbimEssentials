@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _relatingControl = v, _relatingControl, value,  "RelatingControl");
+				SetValue( v =>  _relatingControl = v, _relatingControl, value,  "RelatingControl", 7);
 			} 
 		}	
 		#endregion

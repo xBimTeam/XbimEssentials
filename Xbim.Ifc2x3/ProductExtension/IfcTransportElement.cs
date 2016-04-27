@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType");
+				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _capacityByWeight = v, _capacityByWeight, value,  "CapacityByWeight");
+				SetValue( v =>  _capacityByWeight = v, _capacityByWeight, value,  "CapacityByWeight", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _capacityByNumber = v, _capacityByNumber, value,  "CapacityByNumber");
+				SetValue( v =>  _capacityByNumber = v, _capacityByNumber, value,  "CapacityByNumber", 11);
 			} 
 		}	
 		#endregion

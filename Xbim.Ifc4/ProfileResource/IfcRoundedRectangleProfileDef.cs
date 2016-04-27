@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _roundingRadius = v, _roundingRadius, value,  "RoundingRadius");
+				SetValue( v =>  _roundingRadius = v, _roundingRadius, value,  "RoundingRadius", 6);
 			} 
 		}	
 		#endregion

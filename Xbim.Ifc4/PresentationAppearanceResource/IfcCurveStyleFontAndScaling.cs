@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _curveFont = v, _curveFont, value,  "CurveFont");
+				SetValue( v =>  _curveFont = v, _curveFont, value,  "CurveFont", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _curveFontScaling = v, _curveFontScaling, value,  "CurveFontScaling");
+				SetValue( v =>  _curveFontScaling = v, _curveFontScaling, value,  "CurveFontScaling", 3);
 			} 
 		}	
 		#endregion

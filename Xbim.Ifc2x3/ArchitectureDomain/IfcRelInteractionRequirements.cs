@@ -77,7 +77,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _dailyInteraction = v, _dailyInteraction, value,  "DailyInteraction");
+				SetValue( v =>  _dailyInteraction = v, _dailyInteraction, value,  "DailyInteraction", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -91,7 +91,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _importanceRating = v, _importanceRating, value,  "ImportanceRating");
+				SetValue( v =>  _importanceRating = v, _importanceRating, value,  "ImportanceRating", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -105,7 +105,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _locationOfInteraction = v, _locationOfInteraction, value,  "LocationOfInteraction");
+				SetValue( v =>  _locationOfInteraction = v, _locationOfInteraction, value,  "LocationOfInteraction", 7);
 			} 
 		}	
 		[IndexedProperty]
@@ -120,7 +120,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _relatedSpaceProgram = v, _relatedSpaceProgram, value,  "RelatedSpaceProgram");
+				SetValue( v =>  _relatedSpaceProgram = v, _relatedSpaceProgram, value,  "RelatedSpaceProgram", 8);
 			} 
 		}	
 		[IndexedProperty]
@@ -135,7 +135,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _relatingSpaceProgram = v, _relatingSpaceProgram, value,  "RelatingSpaceProgram");
+				SetValue( v =>  _relatingSpaceProgram = v, _relatingSpaceProgram, value,  "RelatingSpaceProgram", 9);
 			} 
 		}	
 		#endregion

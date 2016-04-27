@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcementDefinitionProperties(IModel model) : base(model) 		{ 
 			Model = model; 
-			_reinforcementSectionDefinitions = new ItemSet<IfcSectionReinforcementProperties>( this, 0 );
+			_reinforcementSectionDefinitions = new ItemSet<IfcSectionReinforcementProperties>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _definitionType = v, _definitionType, value,  "DefinitionType");
+				SetValue( v =>  _definitionType = v, _definitionType, value,  "DefinitionType", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 11)]
@@ -103,7 +103,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 					_definitionType = value.StringVal;
 					return;
 				case 5: 
-					if (_reinforcementSectionDefinitions == null) _reinforcementSectionDefinitions = new ItemSet<IfcSectionReinforcementProperties>( this );
 					_reinforcementSectionDefinitions.InternalAdd((IfcSectionReinforcementProperties)value.EntityVal);
 					return;
 				default:

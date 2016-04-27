@@ -62,7 +62,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 			} 
 			set
 			{
-				SetValue( v =>  _loopVertex = v, _loopVertex, value,  "LoopVertex");
+				SetValue( v =>  _loopVertex = v, _loopVertex, value,  "LoopVertex", 1);
 			} 
 		}	
 		#endregion

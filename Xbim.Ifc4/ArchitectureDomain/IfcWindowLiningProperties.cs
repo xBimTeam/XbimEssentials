@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _liningDepth = v, _liningDepth, value,  "LiningDepth");
+				SetValue( v =>  _liningDepth = v, _liningDepth, value,  "LiningDepth", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -112,7 +112,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _liningThickness = v, _liningThickness, value,  "LiningThickness");
+				SetValue( v =>  _liningThickness = v, _liningThickness, value,  "LiningThickness", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -126,7 +126,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _transomThickness = v, _transomThickness, value,  "TransomThickness");
+				SetValue( v =>  _transomThickness = v, _transomThickness, value,  "TransomThickness", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -140,7 +140,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _mullionThickness = v, _mullionThickness, value,  "MullionThickness");
+				SetValue( v =>  _mullionThickness = v, _mullionThickness, value,  "MullionThickness", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -154,7 +154,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _firstTransomOffset = v, _firstTransomOffset, value,  "FirstTransomOffset");
+				SetValue( v =>  _firstTransomOffset = v, _firstTransomOffset, value,  "FirstTransomOffset", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -168,7 +168,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _secondTransomOffset = v, _secondTransomOffset, value,  "SecondTransomOffset");
+				SetValue( v =>  _secondTransomOffset = v, _secondTransomOffset, value,  "SecondTransomOffset", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -182,7 +182,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _firstMullionOffset = v, _firstMullionOffset, value,  "FirstMullionOffset");
+				SetValue( v =>  _firstMullionOffset = v, _firstMullionOffset, value,  "FirstMullionOffset", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -196,7 +196,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _secondMullionOffset = v, _secondMullionOffset, value,  "SecondMullionOffset");
+				SetValue( v =>  _secondMullionOffset = v, _secondMullionOffset, value,  "SecondMullionOffset", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
@@ -210,7 +210,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle");
+				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
@@ -224,7 +224,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _liningOffset = v, _liningOffset, value,  "LiningOffset");
+				SetValue( v =>  _liningOffset = v, _liningOffset, value,  "LiningOffset", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -238,7 +238,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _liningToPanelOffsetX = v, _liningToPanelOffsetX, value,  "LiningToPanelOffsetX");
+				SetValue( v =>  _liningToPanelOffsetX = v, _liningToPanelOffsetX, value,  "LiningToPanelOffsetX", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -252,7 +252,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			} 
 			set
 			{
-				SetValue( v =>  _liningToPanelOffsetY = v, _liningToPanelOffsetY, value,  "LiningToPanelOffsetY");
+				SetValue( v =>  _liningToPanelOffsetY = v, _liningToPanelOffsetY, value,  "LiningToPanelOffsetY", 16);
 			} 
 		}	
 		#endregion

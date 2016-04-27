@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
-				SetValue( v =>  _fillStyleTarget = v, _fillStyleTarget, value,  "FillStyleTarget");
+				SetValue( v =>  _fillStyleTarget = v, _fillStyleTarget, value,  "FillStyleTarget", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 7)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
-				SetValue( v =>  _globalOrLocal = v, _globalOrLocal, value,  "GlobalOrLocal");
+				SetValue( v =>  _globalOrLocal = v, _globalOrLocal, value,  "GlobalOrLocal", 5);
 			} 
 		}	
 		#endregion

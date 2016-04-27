@@ -49,7 +49,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralSurfaceMemberVarying(IModel model) : base(model) 		{ 
 			Model = model; 
-			_subsequentThickness = new ItemSet<IfcPositiveLengthMeasure>( this, 0 );
+			_subsequentThickness = new ItemSet<IfcPositiveLengthMeasure>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
@@ -79,7 +79,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _varyingThicknessLocation = v, _varyingThicknessLocation, value,  "VaryingThicknessLocation");
+				SetValue( v =>  _varyingThicknessLocation = v, _varyingThicknessLocation, value,  "VaryingThicknessLocation", 11);
 			} 
 		}	
 		#endregion
@@ -120,7 +120,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 9: 
-					if (_subsequentThickness == null) _subsequentThickness = new ItemSet<IfcPositiveLengthMeasure>( this );
 					_subsequentThickness.InternalAdd(value.RealVal);
 					return;
 				case 10: 

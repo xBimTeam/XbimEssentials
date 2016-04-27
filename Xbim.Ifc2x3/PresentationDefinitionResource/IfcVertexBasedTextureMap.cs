@@ -107,8 +107,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcVertexBasedTextureMap(IModel model) 		{ 
 			Model = model; 
-			_textureVertices = new ItemSet<IfcTextureVertex>( this, 0 );
-			_texturePoints = new ItemSet<IfcCartesianPoint>( this, 0 );
+			_textureVertices = new ItemSet<IfcTextureVertex>( this, 0,  1);
+			_texturePoints = new ItemSet<IfcCartesianPoint>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -158,7 +158,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -187,7 +187,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -198,11 +198,9 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_textureVertices == null) _textureVertices = new ItemSet<IfcTextureVertex>( this );
 					_textureVertices.InternalAdd((IfcTextureVertex)value.EntityVal);
 					return;
 				case 1: 
-					if (_texturePoints == null) _texturePoints = new ItemSet<IfcCartesianPoint>( this );
 					_texturePoints.InternalAdd((IfcCartesianPoint)value.EntityVal);
 					return;
 				default:

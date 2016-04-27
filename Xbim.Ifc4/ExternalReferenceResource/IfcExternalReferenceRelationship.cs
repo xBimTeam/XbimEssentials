@@ -46,7 +46,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExternalReferenceRelationship(IModel model) : base(model) 		{ 
 			Model = model; 
-			_relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this, 0 );
+			_relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 			set
 			{
-				SetValue( v =>  _relatingReference = v, _relatingReference, value,  "RelatingReference");
+				SetValue( v =>  _relatingReference = v, _relatingReference, value,  "RelatingReference", 3);
 			} 
 		}	
 		[IndexedProperty]
@@ -100,7 +100,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 					_relatingReference = (IfcExternalReference)(value.EntityVal);
 					return;
 				case 3: 
-					if (_relatedResourceObjects == null) _relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this );
 					_relatedResourceObjects.InternalAdd((IfcResourceObjectSelect)value.EntityVal);
 					return;
 				default:

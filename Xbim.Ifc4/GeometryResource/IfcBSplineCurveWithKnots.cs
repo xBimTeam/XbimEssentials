@@ -50,8 +50,8 @@ namespace Xbim.Ifc4.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineCurveWithKnots(IModel model) : base(model) 		{ 
 			Model = model; 
-			_knotMultiplicities = new ItemSet<IfcInteger>( this, 0 );
-			_knots = new ItemSet<IfcParameterValue>( this, 0 );
+			_knotMultiplicities = new ItemSet<IfcInteger>( this, 0,  6);
+			_knots = new ItemSet<IfcParameterValue>( this, 0,  7);
 		}
 
 		#region Explicit attribute fields
@@ -92,7 +92,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _knotSpec = v, _knotSpec, value,  "KnotSpec");
+				SetValue( v =>  _knotSpec = v, _knotSpec, value,  "KnotSpec", 8);
 			} 
 		}	
 		#endregion
@@ -127,11 +127,9 @@ namespace Xbim.Ifc4.GeometryResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 5: 
-					if (_knotMultiplicities == null) _knotMultiplicities = new ItemSet<IfcInteger>( this );
 					_knotMultiplicities.InternalAdd(value.IntegerVal);
 					return;
 				case 6: 
-					if (_knots == null) _knots = new ItemSet<IfcParameterValue>( this );
 					_knots.InternalAdd(value.RealVal);
 					return;
 				case 7: 

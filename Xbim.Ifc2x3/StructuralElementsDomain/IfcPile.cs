@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 28)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 			} 
 			set
 			{
-				SetValue( v =>  _constructionType = v, _constructionType, value,  "ConstructionType");
+				SetValue( v =>  _constructionType = v, _constructionType, value,  "ConstructionType", 10);
 			} 
 		}	
 		#endregion

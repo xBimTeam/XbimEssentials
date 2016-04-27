@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _partitioningType = v, _partitioningType, value,  "PartitioningType");
+				SetValue( v =>  _partitioningType = v, _partitioningType, value,  "PartitioningType", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence");
+				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -115,7 +115,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedPartitioningType = v, _userDefinedPartitioningType, value,  "UserDefinedPartitioningType");
+				SetValue( v =>  _userDefinedPartitioningType = v, _userDefinedPartitioningType, value,  "UserDefinedPartitioningType", 13);
 			} 
 		}	
 		#endregion

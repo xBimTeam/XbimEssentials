@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 			set
 			{
-				SetValue( v =>  _curve = v, _curve, value,  "Curve");
+				SetValue( v =>  _curve = v, _curve, value,  "Curve", 3);
 			} 
 		}	
 		#endregion

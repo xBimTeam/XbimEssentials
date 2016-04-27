@@ -46,7 +46,7 @@ namespace Xbim.Ifc4.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRationalBSplineSurfaceWithKnots(IModel model) : base(model) 		{ 
 			Model = model; 
-			_weightsData = new ItemSet<ItemSet<IfcReal>>( this, 0 );
+			_weightsData = new ItemSet<ItemSet<IfcReal>>( this, 0,  13);
 		}
 
 		#region Explicit attribute fields

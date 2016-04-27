@@ -49,7 +49,7 @@ namespace Xbim.Ifc4.ProductExtension
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElementQuantity(IModel model) : base(model) 		{ 
 			Model = model; 
-			_quantities = new ItemSet<IfcPhysicalQuantity>( this, 0 );
+			_quantities = new ItemSet<IfcPhysicalQuantity>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _methodOfMeasurement = v, _methodOfMeasurement, value,  "MethodOfMeasurement");
+				SetValue( v =>  _methodOfMeasurement = v, _methodOfMeasurement, value,  "MethodOfMeasurement", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 11)]
@@ -103,7 +103,6 @@ namespace Xbim.Ifc4.ProductExtension
 					_methodOfMeasurement = value.StringVal;
 					return;
 				case 5: 
-					if (_quantities == null) _quantities = new ItemSet<IfcPhysicalQuantity>( this );
 					_quantities.InternalAdd((IfcPhysicalQuantity)value.EntityVal);
 					return;
 				default:

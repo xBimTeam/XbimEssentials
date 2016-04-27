@@ -67,7 +67,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _sweptArea = v, _sweptArea, value,  "SweptArea");
+				SetValue( v =>  _sweptArea = v, _sweptArea, value,  "SweptArea", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _position = v, _position, value,  "Position");
+				SetValue( v =>  _position = v, _position, value,  "Position", 2);
 			} 
 		}	
 		#endregion

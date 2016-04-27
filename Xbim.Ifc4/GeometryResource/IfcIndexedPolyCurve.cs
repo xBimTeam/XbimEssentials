@@ -50,7 +50,7 @@ namespace Xbim.Ifc4.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIndexedPolyCurve(IModel model) : base(model) 		{ 
 			Model = model; 
-			_segments = new OptionalItemSet<IfcSegmentIndexSelect>( this, 0 );
+			_segments = new OptionalItemSet<IfcSegmentIndexSelect>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _points = v, _points, value,  "Points");
+				SetValue( v =>  _points = v, _points, value,  "Points", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 4)]
@@ -95,7 +95,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect");
+				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect", 3);
 			} 
 		}	
 		#endregion
@@ -113,7 +113,6 @@ namespace Xbim.Ifc4.GeometryResource
 					_points = (IfcCartesianPointList)(value.EntityVal);
 					return;
 				case 1: 
-					if (_segments == null) _segments = new OptionalItemSet<IfcSegmentIndexSelect>( this );
 					_segments.InternalAdd((IfcSegmentIndexSelect)value.EntityVal);
 					return;
 				case 2: 

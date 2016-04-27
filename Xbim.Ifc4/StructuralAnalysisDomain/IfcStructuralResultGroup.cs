@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _theoryType = v, _theoryType, value,  "TheoryType");
+				SetValue( v =>  _theoryType = v, _theoryType, value,  "TheoryType", 6);
 			} 
 		}	
 		[IndexedProperty]
@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _resultForLoadGroup = v, _resultForLoadGroup, value,  "ResultForLoadGroup");
+				SetValue( v =>  _resultForLoadGroup = v, _resultForLoadGroup, value,  "ResultForLoadGroup", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 			set
 			{
-				SetValue( v =>  _isLinear = v, _isLinear, value,  "IsLinear");
+				SetValue( v =>  _isLinear = v, _isLinear, value,  "IsLinear", 8);
 			} 
 		}	
 		#endregion

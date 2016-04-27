@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.MeasureResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 3);
 			} 
 		}	
 		#endregion

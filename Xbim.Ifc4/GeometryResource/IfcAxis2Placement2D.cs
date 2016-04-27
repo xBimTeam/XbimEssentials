@@ -62,7 +62,7 @@ namespace Xbim.Ifc4.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _refDirection = v, _refDirection, value,  "RefDirection");
+				SetValue( v =>  _refDirection = v, _refDirection, value,  "RefDirection", 2);
 			} 
 		}	
 		#endregion

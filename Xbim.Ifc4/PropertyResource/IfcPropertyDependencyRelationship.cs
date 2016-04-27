@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _dependingProperty = v, _dependingProperty, value,  "DependingProperty");
+				SetValue( v =>  _dependingProperty = v, _dependingProperty, value,  "DependingProperty", 3);
 			} 
 		}	
 		[IndexedProperty]
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _dependantProperty = v, _dependantProperty, value,  "DependantProperty");
+				SetValue( v =>  _dependantProperty = v, _dependantProperty, value,  "DependantProperty", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 			set
 			{
-				SetValue( v =>  _expression = v, _expression, value,  "Expression");
+				SetValue( v =>  _expression = v, _expression, value,  "Expression", 5);
 			} 
 		}	
 		#endregion

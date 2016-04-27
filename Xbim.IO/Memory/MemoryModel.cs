@@ -372,7 +372,7 @@ namespace Xbim.IO.Memory
         /// </summary>
         public event DeletedEntityHandler EntityDeleted;
 
-        internal void HandleEntityChange(ChangeType changeType, IPersistEntity entity)
+        internal void HandleEntityChange(ChangeType changeType, IPersistEntity entity, byte propertyOrder)
         {
             switch (changeType)
             {
@@ -386,7 +386,7 @@ namespace Xbim.IO.Memory
                     break;
                 case ChangeType.Modified:
                     if (EntityModified != null)
-                        EntityModified(entity);
+                        EntityModified(entity, propertyOrder);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("changeType", changeType, null);

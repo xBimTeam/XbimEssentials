@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _sweptCurve = v, _sweptCurve, value,  "SweptCurve");
+				SetValue( v =>  _sweptCurve = v, _sweptCurve, value,  "SweptCurve", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _position = v, _position, value,  "Position");
+				SetValue( v =>  _position = v, _position, value,  "Position", 2);
 			} 
 		}	
 		#endregion

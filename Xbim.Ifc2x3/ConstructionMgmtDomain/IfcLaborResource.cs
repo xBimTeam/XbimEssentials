@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 			} 
 			set
 			{
-				SetValue( v =>  _skillSet = v, _skillSet, value,  "SkillSet");
+				SetValue( v =>  _skillSet = v, _skillSet, value,  "SkillSet", 10);
 			} 
 		}	
 		#endregion

@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
-				SetValue( v =>  _definition = v, _definition, value,  "Definition");
+				SetValue( v =>  _definition = v, _definition, value,  "Definition", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 			} 
 			set
 			{
-				SetValue( v =>  _target = v, _target, value,  "Target");
+				SetValue( v =>  _target = v, _target, value,  "Target", 2);
 			} 
 		}	
 		#endregion

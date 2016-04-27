@@ -109,10 +109,10 @@ namespace Xbim.Ifc
             EntityNew(entity);
         }
 
-        private void _model_EntityModified(IPersistEntity entity)
+        private void _model_EntityModified(IPersistEntity entity, byte property)
         {
             if (EntityModified == null) return;
-            EntityModified(entity);
+            EntityModified(entity, property);
         }
         //public static IfcStore LoadStep21( Stream inputStream, XbimStorageType storageType, string xbimDbName, XbimDBAccess accessMode = XbimDBAccess.Read, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
         //{
@@ -528,7 +528,7 @@ namespace Xbim.Ifc
         #region OwnerHistory Management
 
 
-        private void IfcRootModifiedIfc2X3(IPersistEntity entity)
+        private void IfcRootModifiedIfc2X3(IPersistEntity entity, byte property)
         {
 
             var root = entity as Ifc2x3.Kernel.IfcRoot;
@@ -550,7 +550,7 @@ namespace Xbim.Ifc
         }
 
 
-        private void IfcRootModifiedIfc4(IPersistEntity entity)
+        private void IfcRootModifiedIfc4(IPersistEntity entity, byte property)
         {
             var root = entity as Ifc4.Kernel.IfcRoot;
             if (root == null || root.OwnerHistory == (Ifc4.UtilityResource.IfcOwnerHistory)_ownerHistoryAddObject)

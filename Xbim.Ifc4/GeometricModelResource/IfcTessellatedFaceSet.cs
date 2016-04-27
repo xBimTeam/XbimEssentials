@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTessellatedFaceSet(IModel model) : base(model) 		{ 
 			Model = model; 
-			_normals = new OptionalItemSet<ItemSet<IfcParameterValue>>( this, 0 );
+			_normals = new OptionalItemSet<ItemSet<IfcParameterValue>>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
@@ -75,7 +75,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _coordinates = v, _coordinates, value,  "Coordinates");
+				SetValue( v =>  _coordinates = v, _coordinates, value,  "Coordinates", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 3, 3, 4)]
@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 			set
 			{
-				SetValue( v =>  _closed = v, _closed, value,  "Closed");
+				SetValue( v =>  _closed = v, _closed, value,  "Closed", 3);
 			} 
 		}	
 		#endregion

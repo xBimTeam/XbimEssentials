@@ -65,7 +65,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 			set
 			{
-				SetValue( v =>  _theActor = v, _theActor, value,  "TheActor");
+				SetValue( v =>  _theActor = v, _theActor, value,  "TheActor", 6);
 			} 
 		}	
 		#endregion

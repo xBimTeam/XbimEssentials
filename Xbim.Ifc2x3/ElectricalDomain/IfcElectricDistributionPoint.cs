@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
-				SetValue( v =>  _distributionPointFunction = v, _distributionPointFunction, value,  "DistributionPointFunction");
+				SetValue( v =>  _distributionPointFunction = v, _distributionPointFunction, value,  "DistributionPointFunction", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedFunction = v, _userDefinedFunction, value,  "UserDefinedFunction");
+				SetValue( v =>  _userDefinedFunction = v, _userDefinedFunction, value,  "UserDefinedFunction", 10);
 			} 
 		}	
 		#endregion

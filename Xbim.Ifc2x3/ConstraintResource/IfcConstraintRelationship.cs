@@ -111,7 +111,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstraintRelationship(IModel model) 		{ 
 			Model = model; 
-			_relatedConstraints = new ItemSet<IfcConstraint>( this, 0 );
+			_relatedConstraints = new ItemSet<IfcConstraint>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
@@ -133,7 +133,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -147,7 +147,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[IndexedProperty]
@@ -162,7 +162,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _relatingConstraint = v, _relatingConstraint, value,  "RelatingConstraint");
+				SetValue( v =>  _relatingConstraint = v, _relatingConstraint, value,  "RelatingConstraint", 3);
 			} 
 		}	
 		[IndexedProperty]
@@ -197,7 +197,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -226,7 +226,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -246,7 +246,6 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					_relatingConstraint = (IfcConstraint)(value.EntityVal);
 					return;
 				case 3: 
-					if (_relatedConstraints == null) _relatedConstraints = new ItemSet<IfcConstraint>( this );
 					_relatedConstraints.InternalAdd((IfcConstraint)value.EntityVal);
 					return;
 				default:

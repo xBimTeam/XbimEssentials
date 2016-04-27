@@ -69,7 +69,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _benchmark = v, _benchmark, value,  "Benchmark");
+				SetValue( v =>  _benchmark = v, _benchmark, value,  "Benchmark", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -83,7 +83,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _valueSource = v, _valueSource, value,  "ValueSource");
+				SetValue( v =>  _valueSource = v, _valueSource, value,  "ValueSource", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
@@ -97,7 +97,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _dataValue = v, _dataValue, value,  "DataValue");
+				SetValue( v =>  _dataValue = v, _dataValue, value,  "DataValue", 10);
 			} 
 		}	
 		#endregion

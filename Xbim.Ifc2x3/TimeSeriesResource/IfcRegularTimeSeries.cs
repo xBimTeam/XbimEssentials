@@ -47,7 +47,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRegularTimeSeries(IModel model) : base(model) 		{ 
 			Model = model; 
-			_values = new ItemSet<IfcTimeSeriesValue>( this, 0 );
+			_values = new ItemSet<IfcTimeSeriesValue>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 			} 
 			set
 			{
-				SetValue( v =>  _timeStep = v, _timeStep, value,  "TimeStep");
+				SetValue( v =>  _timeStep = v, _timeStep, value,  "TimeStep", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 11)]
@@ -105,7 +105,6 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 					_timeStep = value.RealVal;
 					return;
 				case 9: 
-					if (_values == null) _values = new ItemSet<IfcTimeSeriesValue>( this );
 					_values.InternalAdd((IfcTimeSeriesValue)value.EntityVal);
 					return;
 				default:

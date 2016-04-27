@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 			} 
 			set
 			{
-				SetValue( v =>  _timeForTask = v, _timeForTask, value,  "TimeForTask");
+				SetValue( v =>  _timeForTask = v, _timeForTask, value,  "TimeForTask", 8);
 			} 
 		}	
 		#endregion

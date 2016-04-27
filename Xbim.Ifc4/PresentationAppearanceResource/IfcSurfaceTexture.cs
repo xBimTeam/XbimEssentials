@@ -59,7 +59,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceTexture(IModel model) : base(model) 		{ 
 			Model = model; 
-			_parameter = new OptionalItemSet<IfcIdentifier>( this, 0 );
+			_parameter = new OptionalItemSet<IfcIdentifier>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _repeatS = v, _repeatS, value,  "RepeatS");
+				SetValue( v =>  _repeatS = v, _repeatS, value,  "RepeatS", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _repeatT = v, _repeatT, value,  "RepeatT");
+				SetValue( v =>  _repeatT = v, _repeatT, value,  "RepeatT", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -110,7 +110,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _mode = v, _mode, value,  "Mode");
+				SetValue( v =>  _mode = v, _mode, value,  "Mode", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -124,7 +124,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _textureTransform = v, _textureTransform, value,  "TextureTransform");
+				SetValue( v =>  _textureTransform = v, _textureTransform, value,  "TextureTransform", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 5)]
@@ -181,7 +181,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					_textureTransform = (IfcCartesianTransformationOperator2D)(value.EntityVal);
 					return;
 				case 4: 
-					if (_parameter == null) _parameter = new OptionalItemSet<IfcIdentifier>( this );
 					_parameter.InternalAdd(value.StringVal);
 					return;
 				default:

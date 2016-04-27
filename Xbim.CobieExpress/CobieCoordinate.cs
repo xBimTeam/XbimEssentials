@@ -83,7 +83,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 7)]
@@ -97,7 +97,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _coordinateType = v, _coordinateType, value,  "CoordinateType");
+				SetValue( v =>  _coordinateType = v, _coordinateType, value,  "CoordinateType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -111,7 +111,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _x = v, _x, value,  "X");
+				SetValue( v =>  _x = v, _x, value,  "X", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -125,7 +125,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _y = v, _y, value,  "Y");
+				SetValue( v =>  _y = v, _y, value,  "Y", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -139,7 +139,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _z = v, _z, value,  "Z");
+				SetValue( v =>  _z = v, _z, value,  "Z", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -153,7 +153,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _rotationX = v, _rotationX, value,  "RotationX");
+				SetValue( v =>  _rotationX = v, _rotationX, value,  "RotationX", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -167,7 +167,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _rotationY = v, _rotationY, value,  "RotationY");
+				SetValue( v =>  _rotationY = v, _rotationY, value,  "RotationY", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -181,7 +181,7 @@ namespace Xbim.CobieExpress
 			} 
 			set
 			{
-				SetValue( v =>  _rotationZ = v, _rotationZ, value,  "RotationZ");
+				SetValue( v =>  _rotationZ = v, _rotationZ, value,  "RotationZ", 13);
 			} 
 		}	
 		#endregion

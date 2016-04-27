@@ -132,7 +132,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _repeatS = v, _repeatS, value,  "RepeatS");
+				SetValue( v =>  _repeatS = v, _repeatS, value,  "RepeatS", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -146,7 +146,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _repeatT = v, _repeatT, value,  "RepeatT");
+				SetValue( v =>  _repeatT = v, _repeatT, value,  "RepeatT", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 3)]
@@ -160,7 +160,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _textureType = v, _textureType, value,  "TextureType");
+				SetValue( v =>  _textureType = v, _textureType, value,  "TextureType", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -174,7 +174,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				SetValue( v =>  _textureTransform = v, _textureTransform, value,  "TextureTransform");
+				SetValue( v =>  _textureTransform = v, _textureTransform, value,  "TextureTransform", 4);
 			} 
 		}	
 		#endregion
@@ -198,7 +198,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -227,7 +227,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion

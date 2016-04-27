@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 			} 
 			set
 			{
-				SetValue( v =>  _edgeGeometry = v, _edgeGeometry, value,  "EdgeGeometry");
+				SetValue( v =>  _edgeGeometry = v, _edgeGeometry, value,  "EdgeGeometry", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.TopologyResource
 			} 
 			set
 			{
-				SetValue( v =>  _sameSense = v, _sameSense, value,  "SameSense");
+				SetValue( v =>  _sameSense = v, _sameSense, value,  "SameSense", 4);
 			} 
 		}	
 		#endregion

@@ -52,8 +52,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTrimmedCurve(IModel model) : base(model) 		{ 
 			Model = model; 
-			_trim1 = new ItemSet<IfcTrimmingSelect>( this, 2 );
-			_trim2 = new ItemSet<IfcTrimmingSelect>( this, 2 );
+			_trim1 = new ItemSet<IfcTrimmingSelect>( this, 2,  2);
+			_trim2 = new ItemSet<IfcTrimmingSelect>( this, 2,  3);
 		}
 
 		#region Explicit attribute fields
@@ -76,7 +76,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve");
+				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 2, 4)]
@@ -110,7 +110,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _senseAgreement = v, _senseAgreement, value,  "SenseAgreement");
+				SetValue( v =>  _senseAgreement = v, _senseAgreement, value,  "SenseAgreement", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 7)]
@@ -124,7 +124,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _masterRepresentation = v, _masterRepresentation, value,  "MasterRepresentation");
+				SetValue( v =>  _masterRepresentation = v, _masterRepresentation, value,  "MasterRepresentation", 5);
 			} 
 		}	
 		#endregion
@@ -142,11 +142,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 					_basisCurve = (IfcCurve)(value.EntityVal);
 					return;
 				case 1: 
-					if (_trim1 == null) _trim1 = new ItemSet<IfcTrimmingSelect>( this );
 					_trim1.InternalAdd((IfcTrimmingSelect)value.EntityVal);
 					return;
 				case 2: 
-					if (_trim2 == null) _trim2 = new ItemSet<IfcTrimmingSelect>( this );
 					_trim2.InternalAdd((IfcTrimmingSelect)value.EntityVal);
 					return;
 				case 3: 

@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcShellBasedSurfaceModel(IModel model) : base(model) 		{ 
 			Model = model; 
-			_sbsmBoundary = new ItemSet<IfcShell>( this, 0 );
+			_sbsmBoundary = new ItemSet<IfcShell>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -90,7 +90,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_sbsmBoundary == null) _sbsmBoundary = new ItemSet<IfcShell>( this );
 					_sbsmBoundary.InternalAdd((IfcShell)value.EntityVal);
 					return;
 				default:

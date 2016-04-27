@@ -50,7 +50,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSoundProperties(IModel model) : base(model) 		{ 
 			Model = model; 
-			_soundValues = new ItemSet<IfcSoundValue>( this, 8 );
+			_soundValues = new ItemSet<IfcSoundValue>( this, 8,  7);
 		}
 
 		#region Explicit attribute fields
@@ -71,7 +71,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _isAttenuating = v, _isAttenuating, value,  "IsAttenuating");
+				SetValue( v =>  _isAttenuating = v, _isAttenuating, value,  "IsAttenuating", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 9)]
@@ -85,7 +85,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 			} 
 			set
 			{
-				SetValue( v =>  _soundScale = v, _soundScale, value,  "SoundScale");
+				SetValue( v =>  _soundScale = v, _soundScale, value,  "SoundScale", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, 8, 10)]
@@ -122,7 +122,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
                     _soundScale = (IfcSoundScaleEnum) System.Enum.Parse(typeof (IfcSoundScaleEnum), value.EnumVal, true);
 					return;
 				case 6: 
-					if (_soundValues == null) _soundValues = new ItemSet<IfcSoundValue>( this );
 					_soundValues.InternalAdd((IfcSoundValue)value.EntityVal);
 					return;
 				default:

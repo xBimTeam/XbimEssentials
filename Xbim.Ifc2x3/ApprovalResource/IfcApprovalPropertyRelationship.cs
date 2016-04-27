@@ -107,7 +107,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcApprovalPropertyRelationship(IModel model) 		{ 
 			Model = model; 
-			_approvedProperties = new ItemSet<IfcProperty>( this, 0 );
+			_approvedProperties = new ItemSet<IfcProperty>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
@@ -137,7 +137,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 			set
 			{
-				SetValue( v =>  _approval = v, _approval, value,  "Approval");
+				SetValue( v =>  _approval = v, _approval, value,  "Approval", 2);
 			} 
 		}	
 		#endregion
@@ -161,7 +161,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 
 		#region Transactional property setting
 
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
+		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName, byte propertyOrder)
 		{
 			//activate for write if it is not activated yet
 			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
@@ -190,7 +190,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			doAction();
 
 			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
+			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
 		}
 
 		#endregion
@@ -201,7 +201,6 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			switch (propIndex)
 			{
 				case 0: 
-					if (_approvedProperties == null) _approvedProperties = new ItemSet<IfcProperty>( this );
 					_approvedProperties.InternalAdd((IfcProperty)value.EntityVal);
 					return;
 				case 1: 
