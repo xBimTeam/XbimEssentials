@@ -6,9 +6,7 @@ using Xbim.Common;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
-using Xbim.Ifc2x3.ProductExtension;
 
 namespace Xbim.Essentials.Tests
 {
@@ -16,32 +14,6 @@ namespace Xbim.Essentials.Tests
     [DeploymentItem(@"TestSourceFiles\")]
     public class ModelFilterTest
     {
-        private static Ifc2x3.IO.XbimModel CreateAndInitModel(string projectName)
-        {
-            var model = Ifc2x3.IO.XbimModel.CreateModel(projectName + ".xBIM"); //create an empty model
-            //Begin a transaction as all changes to a model are transacted
-            using (var txn = model.BeginTransaction("Initialise Model"))
-            {
-                //do once only initialisation of model application and editor values
-                model.DefaultOwningUser.ThePerson.GivenName = "John";
-                model.DefaultOwningUser.ThePerson.FamilyName = "Bloggs";
-                model.DefaultOwningUser.TheOrganization.Name = "Department of Building";
-                model.DefaultOwningApplication.ApplicationIdentifier = "Construction Software inc.";
-                model.DefaultOwningApplication.ApplicationDeveloper.Name = "Construction Programmers Ltd.";
-                model.DefaultOwningApplication.ApplicationFullName = "Ifc sample programme";
-                model.DefaultOwningApplication.Version = "2.0.1";
-                //set up a project and initialise the defaults
-                var project = model.Instances.New<IfcProject>();
-                project.Initialize(ProjectUnits.SIUnitsUK);
-                project.Name = "testProject";
-                project.OwnerHistory.OwningUser = model.DefaultOwningUser;
-                project.OwnerHistory.OwningApplication = model.DefaultOwningApplication;
-				
-                txn.Commit();
-                return model;
-            }
-        }
-
         [TestMethod]
         public void MergeProductsTest()
         {
@@ -57,7 +29,6 @@ namespace Xbim.Essentials.Tests
                     return value;
                 };
                
-
                 using (var model2 = IfcStore.Open(model2File))
                 {
 
@@ -65,19 +36,22 @@ namespace Xbim.Essentials.Tests
                     using (var txn = newModel.BeginTransaction())
                     {
                         var copied = new XbimInstanceHandleMap(model1, newModel);
-                        foreach (var item in model1.Instances.OfType<IfcProduct>())
+                        foreach (var item in model1.Instances)
                         {
                             newModel.InsertCopy(item, copied, propTransform, false, false);
                         }
                         copied = new XbimInstanceHandleMap(model2, newModel);
-                        foreach (var item in model2.Instances.OfType<IfcProduct>())
+                        foreach (var item in model2.Instances)
                         {
-                            var buildingElement = item as IfcBuildingElement;
-                            if (model1.Instances.OfType<IfcBuildingElement>()
-                                .Any(item1 => buildingElement != null && buildingElement.GlobalId == item1.GlobalId))
+                            if (item is IfcProduct)
                             {
-                                rencontre = true;
-                            }
+                                var product2 = item as IfcProduct;
+                                if (model1.Instances.OfType<IfcProduct>()
+                                    .Any(product => product2.GlobalId == product.GlobalId))
+                                {
+                                    rencontre = true;
+                                }
+                            }      
                             if (!rencontre)
                             {
                                 newModel.InsertCopy(item, copied, propTransform, false, false);
@@ -95,8 +69,8 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CopyAllEntitiesTest()
         {
-            var sourceFile = "source.ifc";
-            var copyFile = "copy.ifc";
+            const string sourceFile = "source.ifc";
+            const string copyFile = "copy.ifc";
             using (var source = new Ifc2x3.IO.XbimModel())
             {
                 PropertyTranformDelegate propTransform = delegate (ExpressMetaProperty prop, object toCopy)
@@ -119,7 +93,7 @@ namespace Xbim.Essentials.Tests
 
                         foreach (var item in source.Instances)
                         {
-                            target.InsertCopy(item, copied, txn, propTransform,true);
+                            target.InsertCopy(item, copied, txn, propTransform, true);
                         }
                         txn.Commit();
                     }
@@ -154,8 +128,7 @@ namespace Xbim.Essentials.Tests
 
                 //source.LoadStep21("BIM Logo-LetterM.xBIM");
                 //source.SaveAs("WithGeometry.ifc");
-                var modelName = @"4walls1floorSite";
-                var xbimModelName = Path.ChangeExtension(modelName, "xbim");
+                const string modelName = @"4walls1floorSite";
 
                 source.CreateFrom(Path.ChangeExtension(modelName, "ifc"), null, null, true);
 
@@ -168,7 +141,7 @@ namespace Xbim.Essentials.Tests
 
                         foreach (var item in source.Instances.OfType<IfcRoot>())
                         {
-                            target.InsertCopy(item, copied, txn, propTransform, false);
+                            target.InsertCopy(item, copied, txn, propTransform);
                         }
                         txn.Commit();
                     }
@@ -177,33 +150,24 @@ namespace Xbim.Essentials.Tests
                     target.Close();
 
                 }
-
                 source.Close();
                 // XbimModel.Compact(Path.ChangeExtension(modelName + "_NoGeom", "xbim"), Path.ChangeExtension(modelName + "_NoGeom_Compacted", "xbim"));
                 //the two files should be the same
             }
         }
 
-
-
         // This method accepts two strings the represent two files to 
         // compare. A return value of 0 indicates that the contents of the files
         // are the same. A return value of any other value indicates that the 
         // files are not the same.
-        private void FileCompare(string file1, string file2)
+        private static void FileCompare(string file1, string file2)
         {
-            string file1Line;
-            string file2Line;
-            
             // Determine if the same file was referenced two times.
             if (file1 == file2)
             {
                 // Return to indicate that the files are the same.
                 return;
             }
-
-
-
             //// Check the file sizes. If they are not the same, the files 
             //// are not the same.
             //var l1 = new FileInfo(file1).Length;
@@ -221,6 +185,8 @@ namespace Xbim.Essentials.Tests
                     // Read and compare a line from each file until either a
                     // non-matching set of bytes is found or until the end of
                     // file1 is reached.
+                    string file1Line;
+                    string file2Line;
                     do
                     {
                         // Read one line from each file.
