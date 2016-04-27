@@ -31,18 +31,21 @@ namespace Xbim.Essentials.Tests
                     using (var txn = newModel.BeginTransaction())
                     {
                         var copied = new XbimInstanceHandleMap(model1, newModel);
-                        foreach (var item in model1.Instances.OfType<IfcProduct>())
+                        foreach (var item in model1.Instances)
                         {
                             newModel.InsertCopy(item, copied, propTransform, false, false);
                         }
                         copied = new XbimInstanceHandleMap(model2, newModel);
-                        foreach (var item in model2.Instances.OfType<IfcProduct>())
+                        foreach (var item in model2.Instances)
                         {
-                            var buildingElement = item as IfcBuildingElement;
-                            if (model1.Instances.OfType<IfcBuildingElement>()
-                                .Any(item1 => buildingElement != null && buildingElement.GlobalId == item1.GlobalId))
+                            if (item is IfcProduct)
                             {
-                                rencontre = true;
+                                var product2 = item as IfcProduct;
+                                if (model1.Instances.OfType<IfcProduct>()
+                                    .Any(product1 => product2.GlobalId == product1.GlobalId))
+                                {
+                                    rencontre = true;
+                                }    
                             }
                             if (!rencontre)
                             {
@@ -60,8 +63,8 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CopyAllEntitiesTest()
         {
-            var sourceFile = "source.ifc";
-            var copyFile = "copy.ifc";
+            const string sourceFile = "source.ifc";
+            const string copyFile = "copy.ifc";
             using (var source = IfcStore.Open("BIM Logo-LetterM.xBIM"))
             {
                 PropertyTranformDelegate propTransform = PropTransform;
@@ -76,7 +79,7 @@ namespace Xbim.Essentials.Tests
 
                         foreach (var item in source.Instances)
                         {
-                            target.InsertCopy(item, copied, propTransform, true, true);
+                            target.InsertCopy(item, copied, propTransform, false, true);
                         }
                         txn.Commit();
                     }
@@ -95,8 +98,8 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CopyAllEntitiesOfModelOfRevitMepTest()
         {
-            var sourceFile = "HVAC-Mech.ifc";
-            var copyFile = "HVAC-Mech_copy.ifc";
+            const string sourceFile = "HVAC-Mech.ifc";
+            const string copyFile = "HVAC-Mech_copy.ifc";
             using (var source = IfcStore.Open(sourceFile))
             {
                 PropertyTranformDelegate propTransform = PropTransform;
@@ -128,8 +131,8 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CopyAllEntitiesOfComplexModelOfRevitTest()
         {
-            var sourceFile = "rac_basic_sample_project.ifczip";
-            var copyFile = "rac_basic_sample_project_copy.ifc";
+            const string sourceFile = "rac_basic_sample_project.ifczip";
+            const string copyFile = "rac_basic_sample_project_copy.ifc";
             using (var source = IfcStore.Open(sourceFile))
             {
                 PropertyTranformDelegate propTransform = PropTransform;
@@ -161,8 +164,8 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CopyAllEntitiesOfComplexModelOfArchiCADTest()
         {
-            var sourceFile = "House-ArchiCAD.ifc";
-            var copyFile = "House-ArchiCAD_copy.ifc";
+            const string sourceFile = "House-ArchiCAD.ifc";
+            const string copyFile = "House-ArchiCAD_copy.ifc";
             using (var source = IfcStore.Open(sourceFile))
             {
                 PropertyTranformDelegate propTransform = PropTransform;
@@ -194,8 +197,8 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CopyAllEntitiesOfComplexModelOfRengaTest()
         {
-            var sourceFile = "House-Renga.ifc";
-            var copyFile = "House-Renga_copy.ifc";
+            const string sourceFile = "House-Renga.ifc";
+            const string copyFile = "House-Renga_copy.ifc";
             using (var source = IfcStore.Open(sourceFile))
             {
                 PropertyTranformDelegate propTransform = PropTransform;
@@ -224,7 +227,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void ExtractIfcGeometryEntitiesTest()
         {
-            var modelName = @"4walls1floorSite";
+            const string modelName = @"4walls1floorSite";
             var xbimModelName = Path.ChangeExtension(modelName, "xbim");
             using (var source = IfcStore.Open(xbimModelName))
             {
@@ -272,7 +275,7 @@ namespace Xbim.Essentials.Tests
             return value;
         }
 
-        private void Diff2IfcFiles(string file1, string file2)
+        private static void Diff2IfcFiles(string file1, string file2)
         {
             var firstModel = IfcStore.Open(file1);
             var secondModel = IfcStore.Open(file2);
@@ -320,12 +323,18 @@ namespace Xbim.Essentials.Tests
                     // Read and compare a line from each file until either a
                     // non-matching set of bytes is found or until the end of
                     // file1 is reached.
+                    var i = 0;
                     do
                     {
+                        i++;  
                         // Read one line from each file.
                         file1Line = fs1.ReadLine();
                         file2Line = fs2.ReadLine();
-                        Assert.IsTrue(file1Line == file2Line, string.Format("'{0}' != '{1}'", file1Line, file2Line));
+                        // Ignore the header
+                        if (i != 3 && i != 4)
+                        {
+                            Assert.IsTrue(file1Line == file2Line, string.Format("'{0}' != '{1}'", file1Line, file2Line));
+                        }
                     }
                     while (file1Line != null);
                     Assert.IsTrue(file2Line == null, "Copy file is longer than the source file");                   

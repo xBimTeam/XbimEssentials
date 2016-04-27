@@ -30,7 +30,7 @@ namespace Xbim.IO.Step21
         public void Write(IModel model, TextWriter output, ExpressMetaData metadata, IDictionary<int, int> map = null)
         {
             output.Write(HeaderAsString(model.Header ?? new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults)));
-            foreach (var entity in model.Instances)
+            foreach (var entity in model.Instances.OrderBy( e => e.EntityLabel))
                 entity.WriteEntity(output, metadata, map);
 
             output.WriteLine("ENDSEC;");
