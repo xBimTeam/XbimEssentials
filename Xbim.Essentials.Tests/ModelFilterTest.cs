@@ -7,7 +7,6 @@ using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.Ifc2x3.Kernel;
-using Xbim.Ifc2x3.ProductExtension;
 
 namespace Xbim.Essentials.Tests
 {
