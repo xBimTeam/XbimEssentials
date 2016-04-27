@@ -94,7 +94,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDefinesByType>(e => e.RelatingType == this, "RelatingType", this);
+				return Model.Instances.Where<IfcRelDefinesByType>(e => Equals(e.RelatingType), "RelatingType", this);
 			} 
 		}
 		#endregion

@@ -58,7 +58,7 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDefinesByProperties>(e => e.RelatingPropertyDefinition == this, "RelatingPropertyDefinition", this);
+				return Model.Instances.Where<IfcRelDefinesByProperties>(e => Equals(e.RelatingPropertyDefinition), "RelatingPropertyDefinition", this);
 			} 
 		}
 		[InverseProperty("HasPropertySets")]

@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesMaterial>(e => e.RelatingMaterial == this, "RelatingMaterial", this);
+				return Model.Instances.Where<IfcRelAssociatesMaterial>(e => Equals(e.RelatingMaterial), "RelatingMaterial", this);
 			} 
 		}
 		[InverseProperty("RelatedResourceObjects")]
@@ -141,7 +141,7 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMaterialProperties>(e => e.Material == this, "Material", this);
+				return Model.Instances.Where<IfcMaterialProperties>(e => Equals(e.Material), "Material", this);
 			} 
 		}
 		#endregion

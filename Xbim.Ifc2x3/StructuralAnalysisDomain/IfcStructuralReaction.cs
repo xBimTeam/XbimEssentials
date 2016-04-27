@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcStructuralAction>(e => e.CausedBy == this, "CausedBy", this);
+				return Model.Instances.Where<IfcStructuralAction>(e => Equals(e.CausedBy), "CausedBy", this);
 			} 
 		}
 		#endregion

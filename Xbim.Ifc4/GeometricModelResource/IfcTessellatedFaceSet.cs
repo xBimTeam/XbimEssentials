@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcIndexedColourMap>(e => e.MappedTo == this, "MappedTo", this);
+				return Model.Instances.Where<IfcIndexedColourMap>(e => Equals(e.MappedTo), "MappedTo", this);
 			} 
 		}
 		[InverseProperty("MappedTo")]
@@ -122,7 +122,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcIndexedTextureMap>(e => e.MappedTo == this, "MappedTo", this);
+				return Model.Instances.Where<IfcIndexedTextureMap>(e => Equals(e.MappedTo), "MappedTo", this);
 			} 
 		}
 		#endregion

@@ -255,7 +255,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcResourceConstraintRelationship>(e => e.RelatingConstraint == this, "RelatingConstraint", this);
+				return Model.Instances.Where<IfcResourceConstraintRelationship>(e => Equals(e.RelatingConstraint), "RelatingConstraint", this);
 			} 
 		}
 		#endregion

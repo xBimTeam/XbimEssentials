@@ -157,7 +157,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcMappedItem>(e => e.MappingSource == this, "MappingSource", this);
+				return Model.Instances.Where<IfcMappedItem>(e => Equals(e.MappingSource), "MappingSource", this);
 			} 
 		}
 		#endregion

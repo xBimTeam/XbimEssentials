@@ -169,7 +169,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesLibrary>(e => e.RelatingLibrary == this, "RelatingLibrary", this);
+				return Model.Instances.Where<IfcRelAssociatesLibrary>(e => Equals(e.RelatingLibrary), "RelatingLibrary", this);
 			} 
 		}
 		[InverseProperty("ReferencedLibrary")]
@@ -178,7 +178,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcLibraryReference>(e => e.ReferencedLibrary == this, "ReferencedLibrary", this);
+				return Model.Instances.Where<IfcLibraryReference>(e => Equals(e.ReferencedLibrary), "ReferencedLibrary", this);
 			} 
 		}
 		#endregion

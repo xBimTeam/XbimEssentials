@@ -607,7 +607,6 @@
     <Compile Include="Interfaces\IfcWorkPlanTypeEnum.cs" />
     <Compile Include="Interfaces\IfcWorkScheduleTypeEnum.cs" />
     <Compile Include="IPhongMaterial.cs" />
-    <Compile Include="IPropertyOrQuantity.cs" />
     <Compile Include="ItemSet.cs" />
     <Compile Include="IXbimGeometryEngine.cs" />
     <Compile Include="IXbimMeshCollectionReceiver.cs" />
@@ -1242,6 +1241,8 @@
     <Compile Include="StructuralLoadResource\IfcSurfaceReinforcementArea.cs" />
     <Compile Include="StructuralLoadResource\IfcTranslationalStiffnessSelect.cs" />
     <Compile Include="StructuralLoadResource\IfcWarpingStiffnessSelect.cs" />
+    <Compile Include="SurfaceStyle.cs" />
+    <Compile Include="SurfaceStyling.cs" />
     <Compile Include="TopologyResource\IfcAdvancedFace.cs" />
     <Compile Include="TopologyResource\IfcClosedShell.cs" />
     <Compile Include="TopologyResource\IfcConnectedFaceSet.cs" />

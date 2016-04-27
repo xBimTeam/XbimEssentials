@@ -7,7 +7,7 @@ namespace Xbim.Ifc4.Interfaces
     /// Readonly interface for IfcPhysicalQuantity
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-    public partial interface IIfcPhysicalQuantity : IPropertyOrQuantity
+    public partial interface IIfcPhysicalQuantity
     {
     }
 }
@@ -16,10 +16,6 @@ namespace Xbim.Ifc4.QuantityResource
 {
     public abstract partial class IfcPhysicalQuantity
     {
-        IfcIdentifier IPropertyOrQuantity.Name
-        {
-            get { return Name.Value as string; }
-        }
 
     }
 }

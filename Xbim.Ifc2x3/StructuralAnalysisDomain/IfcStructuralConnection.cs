@@ -79,7 +79,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelConnectsStructuralMember>(e => e.RelatedStructuralConnection == this, "RelatedStructuralConnection", this);
+				return Model.Instances.Where<IfcRelConnectsStructuralMember>(e => Equals(e.RelatedStructuralConnection), "RelatedStructuralConnection", this);
 			} 
 		}
 		#endregion

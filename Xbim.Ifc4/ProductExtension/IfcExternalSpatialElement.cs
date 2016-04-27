@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSpaceBoundary>(e => e.RelatingSpace == this, "RelatingSpace", this);
+				return Model.Instances.Where<IfcRelSpaceBoundary>(e => Equals(e.RelatingSpace), "RelatingSpace", this);
 			} 
 		}
 		#endregion

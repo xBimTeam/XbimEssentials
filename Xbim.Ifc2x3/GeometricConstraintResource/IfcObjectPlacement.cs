@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcProduct>(e => e.ObjectPlacement == this, "ObjectPlacement", this);
+				return Model.Instances.Where<IfcProduct>(e => Equals(e.ObjectPlacement), "ObjectPlacement", this);
 			} 
 		}
 		[InverseProperty("PlacementRelTo")]
@@ -128,7 +128,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcLocalPlacement>(e => e.PlacementRelTo == this, "PlacementRelTo", this);
+				return Model.Instances.Where<IfcLocalPlacement>(e => Equals(e.PlacementRelTo), "PlacementRelTo", this);
 			} 
 		}
 		#endregion

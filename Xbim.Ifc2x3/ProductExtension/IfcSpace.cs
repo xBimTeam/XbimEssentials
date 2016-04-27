@@ -98,7 +98,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelCoversSpaces>(e => e.RelatedSpace == this, "RelatedSpace", this);
+				return Model.Instances.Where<IfcRelCoversSpaces>(e => Equals(e.RelatedSpace), "RelatedSpace", this);
 			} 
 		}
 		[InverseProperty("RelatingSpace")]
@@ -107,7 +107,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSpaceBoundary>(e => e.RelatingSpace == this, "RelatingSpace", this);
+				return Model.Instances.Where<IfcRelSpaceBoundary>(e => Equals(e.RelatingSpace), "RelatingSpace", this);
 			} 
 		}
 		#endregion

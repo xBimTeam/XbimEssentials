@@ -12,12 +12,5 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         public IEnumerable<Ifc4.Interfaces.IIfcPhysicalComplexQuantity> PartOfComplex { get { yield break; } }
         public Ifc4.Interfaces.IIfcNamedUnit Unit { get; internal set; }
 
-        IfcIdentifier IPropertyOrQuantity.Name
-        {
-            get
-            {
-                return new IfcIdentifier(Name);
-            }
-        }
     }
 }

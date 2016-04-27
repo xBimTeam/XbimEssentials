@@ -190,7 +190,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcCoordinateOperation>(e => e.SourceCRS == this, "SourceCRS", this);
+				return Model.Instances.Where<IfcCoordinateOperation>(e => Equals(e.SourceCRS), "SourceCRS", this);
 			} 
 		}
 		#endregion

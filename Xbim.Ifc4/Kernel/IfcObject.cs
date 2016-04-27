@@ -94,7 +94,7 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelDefinesByObject>(e => e.RelatingObject == this, "RelatingObject", this);
+				return Model.Instances.Where<IfcRelDefinesByObject>(e => Equals(e.RelatingObject), "RelatingObject", this);
 			} 
 		}
 		[InverseProperty("RelatedObjects")]

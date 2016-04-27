@@ -419,7 +419,7 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => e.RelatingDocument == this, "RelatingDocument", this);
+				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => Equals(e.RelatingDocument), "RelatingDocument", this);
 			} 
 		}
 		#endregion

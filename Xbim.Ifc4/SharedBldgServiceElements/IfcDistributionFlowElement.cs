@@ -57,7 +57,7 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelFlowControlElements>(e => e.RelatingFlowElement == this, "RelatingFlowElement", this);
+				return Model.Instances.Where<IfcRelFlowControlElements>(e => Equals(e.RelatingFlowElement), "RelatingFlowElement", this);
 			} 
 		}
 		#endregion

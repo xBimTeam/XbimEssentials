@@ -129,7 +129,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcStyledItem>(e => e.Item == this, "Item", this);
+				return Model.Instances.Where<IfcStyledItem>(e => Equals(e.Item), "Item", this);
 			} 
 		}
 		#endregion

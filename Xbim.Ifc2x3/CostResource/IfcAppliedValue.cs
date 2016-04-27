@@ -239,7 +239,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcAppliedValueRelationship>(e => e.ComponentOfTotal == this, "ComponentOfTotal", this);
+				return Model.Instances.Where<IfcAppliedValueRelationship>(e => Equals(e.ComponentOfTotal), "ComponentOfTotal", this);
 			} 
 		}
 		[InverseProperty("Components")]
