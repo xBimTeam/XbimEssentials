@@ -313,7 +313,7 @@ namespace Xbim.IO.Esent
         public XbimReadWriteTransaction BeginTransaction(string operationName)
         {
             if (InverseCache != null)
-                throw new Exception("Transaction can't be open when cache is in operation.");
+                throw new XbimException("Transaction can't be open when cache is in operation.");
 
             if (_editTransactionEntityCursor != null) 
                 throw new XbimException("Attempt to begin another transaction whilst one is already running");
