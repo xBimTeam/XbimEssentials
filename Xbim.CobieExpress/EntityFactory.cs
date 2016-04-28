@@ -67,8 +67,6 @@ namespace Xbim.CobieExpress
 				case "ZONE": return new CobieZone ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };
 				case "COBIETYPE": return new CobieType ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };
 				case "TYPE": return new CobieType ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };
-				case "COBIEWARRANTY": return new CobieWarranty ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };
-				case "WARRANTY": return new CobieWarranty ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };
 				case "COBIECOMPONENT": return new CobieComponent ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };
 				case "COMPONENT": return new CobieComponent ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };
 				case "COBIESYSTEM": return new CobieSystem ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };
@@ -162,7 +160,6 @@ namespace Xbim.CobieExpress
 				case 18: return new CobieSpace ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };
 				case 19: return new CobieZone ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };
 				case 21: return new CobieType ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };
-				case 22: return new CobieWarranty ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };
 				case 23: return new CobieComponent ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };
 				case 24: return new CobieSystem ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };
 				case 25: return new CobieConnection ( model ) { ActivationStatus = activated ? ActivationStatus.ActivatedRead : ActivationStatus.NotActivated, EntityLabel = entityLabel };

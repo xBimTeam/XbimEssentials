@@ -343,12 +343,9 @@ namespace Xbim.MemoryModel.Tests
                 {
                     t.Name = "Boiler";
                     t.Description = "Very performant boiler which doesn't use almost any energy";
-                    t.Warranty = test.Instances.New<CobieWarranty>(w =>
-                    {
-                        w.Description = "Warranty information for a boiler";
-                        w.DurationLabor = 45;
-                        w.DurationParts = 78;
-                    });
+                    t.WarrantyDescription = "Warranty information for a boiler";
+                    t.WarrantyDurationLabor = 45;
+                    t.WarrantyDurationParts = 78;
                 });
                 txn.Commit();
             }
@@ -372,10 +369,9 @@ namespace Xbim.MemoryModel.Tests
             Assert.IsNotNull(facility.Site.Description);
             Assert.IsNotNull(facility.Site.ExternalId);
 
-            Assert.IsNotNull(type.Warranty);
-            Assert.IsNotNull(type.Warranty.Description);
-            Assert.IsNotNull(type.Warranty.DurationParts);
-            Assert.IsNotNull(type.Warranty.DurationLabor);
+            Assert.IsNotNull(type.WarrantyDescription);
+            Assert.IsNotNull(type.WarrantyDurationParts);
+            Assert.IsNotNull(type.WarrantyDurationLabor);
 
             Assert.IsNotNull(facility.VolumeUnits);
             Assert.IsTrue(facility.Attributes.Count == 5);
