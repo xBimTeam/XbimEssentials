@@ -83,6 +83,27 @@ namespace Xbim.Common
         /// </summary>
         event DeletedEntityHandler EntityDeleted;
 
+        /// <summary>
+        /// This will start to cache inverse relations which are heavily used in EXPRESS schema
+        /// to model bidirectional relations. You shouldn't only use cache outside of transaction
+        /// when you query the data but you don't change any values. Implementations of IModel
+        /// might throw an exception in case you call this function inside of transaction
+        /// or if you begin transaction before you stop caching. You should always keep the caching
+        /// object inside of using statement as IModel should only hold the weak reference to it.
+        /// </summary>
+        /// <returns></returns>
+        IInverseCache BeginCaching();
+        /// <summary>
+        /// Stops caching of inverse relations and forces it to dispose and not to be used anymore
+        /// </summary>
+        void StopCaching();
+        /// <summary>
+        /// Implementations of IModel should only keep a weak reference to the caching object so that
+        /// user can use using statement to constrain existence of the cache. Entity collection might use
+        /// this cache to speed up search for inverse relations.
+        /// </summary>
+	    IInverseCache InverseCache { get; }
+
 	}
 
 	public delegate void NewEntityHandler(IPersistEntity entity);

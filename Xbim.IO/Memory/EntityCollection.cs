@@ -53,7 +53,15 @@ namespace Xbim.IO.Memory
             where T : IPersistEntity
 
         {
-            return Where(condition);
+            if (_model.InverseCache == null)
+                return Where(condition);
+
+            IEnumerable<T> result;
+            if (_model.InverseCache.TryGet(inverseProperty, inverseArgument, out result))
+                return result;
+            result = Where(condition).ToList();
+            _model.InverseCache.Add(inverseProperty, inverseArgument, result);
+            return result;
         }
 
         public IEnumerable<T> Where<T>(Func<T, bool> condition) where T : IPersistEntity
@@ -67,9 +75,9 @@ namespace Xbim.IO.Memory
                 foreach (var type in resultTypes)
                 {
                     ICollection<IPersistEntity> entities;
-                    if (_internal.TryGetValue(type, out entities))
-                        foreach (var candidate in entities.Where(c => condition((T)c)))
-                            yield return (T)candidate;
+                    if (!_internal.TryGetValue(type, out entities)) continue;
+                    foreach (var candidate in entities.Where(c => condition((T)c)))
+                        yield return (T)candidate;
                 }
             }
             else
@@ -77,9 +85,9 @@ namespace Xbim.IO.Memory
                 foreach (var type in resultTypes)
                 {
                     ICollection<IPersistEntity> entities;
-                    if (_internal.TryGetValue(type, out entities))
-                        foreach (var candidate in entities)
-                            yield return (T)candidate;
+                    if (!_internal.TryGetValue(type, out entities)) continue;
+                    foreach (var candidate in entities)
+                        yield return (T)candidate;
                 }
             }
         }
@@ -97,7 +105,7 @@ namespace Xbim.IO.Memory
 
         public T FirstOrDefault<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument) where T : IPersistEntity
         {
-            return FirstOrDefault(condition);
+            return Where(condition, inverseProperty, inverseArgument).FirstOrDefault();
         }
 
         public IEnumerable<T> OfType<T>() where T : IPersistEntity

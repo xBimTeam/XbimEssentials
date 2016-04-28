@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System;
 
 namespace Xbim.Common
@@ -36,13 +35,19 @@ namespace Xbim.Common
         /// <returns></returns>
 	    IEnumerable<T> Where<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument)
 	        where T : IPersistEntity;
+
+	    /// <summary>
+	    /// Returns first or default entity satysfying the condition
+	    /// </summary>
+	    /// <typeparam name="T">Type of the result</typeparam>
+	    /// <returns></returns>
+	    T FirstOrDefault<T>() where T : IPersistEntity;
         /// <summary>
         /// Returns first or default entity satysfying the condition
         /// </summary>
         /// <typeparam name="T">Type of the result</typeparam>
         /// <param name="condition">Condition to evaluate</param>
         /// <returns></returns>
-        T FirstOrDefault<T>() where T : IPersistEntity;
         T FirstOrDefault<T>(Func<T, bool> condition) where T : IPersistEntity;
         /// <summary>
         /// Returns firs or default entitiy satysfying the condition utilizing secondary index for inverse relations.

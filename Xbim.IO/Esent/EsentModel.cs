@@ -169,6 +169,49 @@ namespace Xbim.IO.Esent
         /// </summary>
         public event DeletedEntityHandler EntityDeleted;
 
+        public IInverseCache BeginCaching()
+        {
+            if(CurrentTransaction != null)
+                throw new XbimException("Caching is not allowed within active transaction.");
+            var c = InverseCache;
+            if (c != null)
+                return c;
+            return InverseCache = new InverseCache();
+        }
+
+        public void StopCaching()
+        {
+            var c = InverseCache;
+            if (c == null)
+                return;
+
+            c.Dispose();
+            InverseCache = null;
+        }
+
+        private WeakReference _cacheReference;
+        public IInverseCache InverseCache
+        {
+            get
+            {
+                if (_cacheReference == null || !_cacheReference.IsAlive)
+                    return null;
+                return _cacheReference.Target as IInverseCache;
+            }
+            private set
+            {
+                if (value == null)
+                {
+                    _cacheReference = null;
+                    return;
+                }
+                if (_cacheReference == null)
+                    _cacheReference = new WeakReference(value);
+                else
+                    _cacheReference.Target = value;
+            }
+        }
+
         internal void HandleEntityChange(ChangeType changeType, IPersistEntity entity, byte property)
         {
             switch (changeType)
@@ -269,6 +312,9 @@ namespace Xbim.IO.Esent
 
         public XbimReadWriteTransaction BeginTransaction(string operationName)
         {
+            if (InverseCache != null)
+                throw new Exception("Transaction can't be open when cache is in operation.");
+
             if (_editTransactionEntityCursor != null) 
                 throw new XbimException("Attempt to begin another transaction whilst one is already running");
             try

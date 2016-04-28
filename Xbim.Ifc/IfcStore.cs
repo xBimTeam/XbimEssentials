@@ -33,6 +33,21 @@ namespace Xbim.Ifc
         public event NewEntityHandler EntityNew;
         public event ModifiedEntityHandler EntityModified;
         public event DeletedEntityHandler EntityDeleted;
+        public IInverseCache BeginCaching()
+        {
+            return _model.BeginCaching();
+        }
+
+        public void StopCaching()
+        {
+            _model.StopCaching();
+        }
+
+        public IInverseCache InverseCache
+        {
+            get { return _model.InverseCache; }
+        }
+
         private bool _disposed;
         /// <summary>
         /// The default largest size in MB for an ifc file to be loaded into memory, above this size the store will choose to use the database storage media to mimise the memory footprint. This size can be set in the config file or in the open statement of this store 
