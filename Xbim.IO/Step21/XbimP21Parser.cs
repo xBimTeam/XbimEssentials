@@ -29,7 +29,7 @@ namespace Xbim.IO.Step21
 {
     public class XbimP21Parser : P21Parser
     {
-        private readonly ILogger _logger = LoggerFactory.GetLogger();
+        protected readonly ILogger Logger = LoggerFactory.GetLogger();
         public event ReportProgressDelegate ProgressStatus;
         private readonly Stack<Part21Entity> _processStack = new Stack<Part21Entity>();
         protected int ListNestLevel = -1;
@@ -39,7 +39,6 @@ namespace Xbim.IO.Step21
         protected PropertyValue PropertyValue;
         private readonly List<DeferredReference> _deferredReferences;
         private readonly double _streamSize = -1;
-        private int _errorCount;
         public static int MaxErrorCount = 100;
         private int _percentageParsed;
         private bool _deferListItems;
@@ -47,13 +46,13 @@ namespace Xbim.IO.Step21
         private readonly List<int> _nestedIndex = new List<int>();
         public int[] NestedIndex { get { return ListNestLevel > 0 ? _nestedIndex.ToArray() : null; } }
 
-        private readonly ExpressMetaData _metadata;
+        protected readonly ExpressMetaData Metadata;
 
 
         public XbimP21Parser(Stream strm, ExpressMetaData metadata, long streamSize)
             : base(strm)
         {
-            _metadata = metadata;
+            Metadata = metadata;
             var entityApproxCount = 5000;
             if (streamSize>0)
             {
@@ -63,22 +62,19 @@ namespace Xbim.IO.Step21
 
             _entities = new Dictionary<long, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount/2); //assume 50% deferred
-            _errorCount = 0;
+            ErrorCount = 0;
         }
 
         protected XbimP21Parser(ExpressMetaData metadata)
         {
-            _metadata = metadata;
+            Metadata = metadata;
             const int entityApproxCount = 5000;
             _entities = new Dictionary<long, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred
-            _errorCount = 0;
+            ErrorCount = 0;
         }
 
-        public int ErrorCount
-        {
-            get { return _errorCount; }
-        }
+        public int ErrorCount { get; protected set; }
 
         internal override void SetErrorMessage()
         {
@@ -86,7 +82,7 @@ namespace Xbim.IO.Step21
 
         protected override void CharacterError()
         {
-            _logger.WarnFormat("Error parsing Ifc File, illegal character found");
+            Logger.WarnFormat("Error parsing Ifc File, illegal character found");
         }
 
         protected override void BeginParse()
@@ -98,7 +94,7 @@ namespace Xbim.IO.Step21
             foreach (var defRef in _deferredReferences)
             {
                 if (!TrySetObjectValue(defRef.HostEntity, defRef.ParameterIndex, defRef.ReferenceId, defRef.NestedIndex))
-                    _logger.WarnFormat("Entity #{0,-5} is referenced but could not be instantiated",
+                    Logger.WarnFormat("Entity #{0,-5} is referenced but could not be instantiated",
                                                       defRef.ReferenceId);
             }
         }
@@ -299,14 +295,14 @@ namespace Xbim.IO.Step21
             }
             catch (Exception )
             {
-                if (_errorCount > MaxErrorCount)
+                if (ErrorCount > MaxErrorCount)
                     throw new Exception("Too many errors in file, parser execution terminated");
-                _errorCount++;
+                ErrorCount++;
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
                 {
-                    var expressType = _metadata.ExpressType(mainEntity.Entity);
-                    _logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
+                    var expressType = Metadata.ExpressType(mainEntity.Entity);
+                    Logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
                                                mainEntity.EntityLabel, mainEntity.Entity.GetType().Name.ToUpper(),
                                                mainEntity.CurrentParamIndex + 1,
                                                expressType.Properties[mainEntity.CurrentParamIndex + 1].PropertyInfo.Name,
@@ -314,7 +310,7 @@ namespace Xbim.IO.Step21
                 }
                 else
                 {
-                    _logger.Error("Unhandled Parser error, in Parser.cs EndNestedType");
+                    Logger.Error("Unhandled Parser error, in Parser.cs EndNestedType");
                 }
             }
             if (ListNestLevel == 0)
@@ -345,22 +341,22 @@ namespace Xbim.IO.Step21
             }
             catch (Exception )
             {
-                if (_errorCount > MaxErrorCount)
+                if (ErrorCount > MaxErrorCount)
                     throw new Exception("Too many errors in file, parser execution terminated");
-                _errorCount++;
+                ErrorCount++;
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
                 {
-                    if (_metadata != null)
+                    if (Metadata != null)
                     {
-                        var expressType = _metadata.ExpressType(mainEntity.Entity);
+                        var expressType = Metadata.ExpressType(mainEntity.Entity);
 
 
                         var propertyName = mainEntity.CurrentParamIndex + 1 > expressType.Properties.Count
                             ? "[UnknownProperty]"
                             : expressType.Properties[mainEntity.CurrentParamIndex + 1].PropertyInfo.Name;
 
-                        _logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
+                        Logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
                             mainEntity.EntityLabel,
                             mainEntity.Entity.GetType().Name.ToUpper(),
                             mainEntity.CurrentParamIndex + 1,
@@ -369,7 +365,7 @@ namespace Xbim.IO.Step21
                     }
                     else
                     {
-                        _logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2} value = {3}",
+                        Logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2} value = {3}",
                            mainEntity.EntityLabel,
                            mainEntity.Entity.GetType().Name.ToUpper(),
                            mainEntity.CurrentParamIndex + 1,                          
@@ -379,7 +375,7 @@ namespace Xbim.IO.Step21
                 }
                 else
                 {
-                    _logger.Error("Unhandled Parser error, in Parser.cs SetEntityParameter");
+                    Logger.Error("Unhandled Parser error, in Parser.cs SetEntityParameter");
                 }
             }
             if (ListNestLevel == 0)
@@ -409,13 +405,13 @@ namespace Xbim.IO.Step21
             }
             catch (Exception )
             {
-                if (_errorCount > MaxErrorCount)
+                if (ErrorCount > MaxErrorCount)
                     throw new Exception("Too many errors in file, parser execution terminated");
-                _errorCount++;
-                var expressType = _metadata.ExpressType(host);
+                ErrorCount++;
+                var expressType = Metadata.ExpressType(host);
                 var propertyName = paramIndex+1 > expressType.Properties.Count ? "[UnknownProperty]" :
                         expressType.Properties[paramIndex+1].PropertyInfo.Name;
-                _logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3}",
+                Logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3}",
                                            refId, expressType.Type.Name.ToUpper(), paramIndex + 1,
                                            propertyName);
                 
